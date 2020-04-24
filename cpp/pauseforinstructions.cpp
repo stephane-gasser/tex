@@ -1,0 +1,25 @@
+#include "pauseforinstructions.h"
+#include "printnl.h"
+#include "print.h"
+#include "error.h"
+
+void pauseforinstructions(void)
+{
+	if (OKtointerrupt)
+	{
+		interaction = 3;
+		if (selector == 18 || selector == 16)
+			selector++;
+		if (interaction == 3)
+			printnl(262); //! 
+		print(296); //Interruption
+		helpptr = 3;
+		helpline[2] = 297; //You rang?
+		helpline[1] = 298; //Try to insert some instructions for me (e.g.,`I\showlists'),
+		helpline[0] = 299; //unless you just want to quit by typing `X'.
+		deletionsallowed = false;
+		error();
+		deletionsallowed = true;
+		interrupt = 0;
+	}
+}

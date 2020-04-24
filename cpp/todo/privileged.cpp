@@ -1,0 +1,11 @@
+#include "privileged.h"
+bool privileged(void)
+begin
+  if curlist.modefield > 0 then
+    privileged := true
+  else
+  begin
+    reportillegalcase;
+    privileged := false;
+  end;
+end;

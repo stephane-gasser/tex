@@ -1,3 +1,6 @@
+#ifndef GLOBALS_H
+#define GLOBALS_H
+
 #include "tex.h"
 #include <map>
 
@@ -45,7 +48,7 @@ int threshold;
 int minimumdemerits;
 map<char, ASCIIcode> xord;
 map<ASCIIcode, char> xchr;
-char nameoffile[filenamesize+1]; // débute à 1
+std::string nameoffile;// char[filenamesize+1]; // débute à 1
 char namelength; //0..filenamesize;
 ASCIIcode buffer[bufsize+1]; // débute à 0
 int First;// 0..bufsize
@@ -138,7 +141,7 @@ strnumber curarea;
 strnumber curext;
 poolpointer areadelimiter;
 poolpointer extdelimiter;
-char TEXformatdefault[21]; // commence à 1
+std::string TEXformatdefault; // commence à 1
 bool nameinprogress;
 strnumber jobname;
 bool logopened;
@@ -296,3 +299,5 @@ wordfile fmtfile;
 alphafile writefile[16];
 bool writeopen[18];
 halfword writeloc;
+
+#endif

@@ -44,6 +44,7 @@ typedef unsigned char smallnumber; // 0..63
 typedef float glueratio;
 typedef std::uint8_t quarterword; // 0..255
 typedef std::uint16_t halfword; // 0..65535
+
 typedef struct
 {
     std::uint16_t rh;
@@ -78,7 +79,6 @@ typedef struct
 } memoryword;
 
 typedef std::fstream wordfile; // file of memoryword
-
 typedef char glueord; //0..3
 
 typedef struct
