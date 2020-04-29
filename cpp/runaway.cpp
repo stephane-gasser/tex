@@ -31,6 +31,6 @@ void runaway(void)
 		}
 		printchar('?');
 		println();
-		showtokenlist(mem[p].hh.rh, 0, errorline-10);
+		showtokenlist(link(p), 0, errorline-10);
 	}
 }

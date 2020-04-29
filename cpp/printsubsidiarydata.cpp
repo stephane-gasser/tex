@@ -9,14 +9,14 @@ void printsubsidiarydata(halfword p, ASCIIcode c)
 {
 	if (poolptr-strstart[strptr] >= depththreshold)
 	{
-		if (mem[p].hh.rh)
+		if (link(p))
 			print(314);// []
 	}
 	else
 	{
 		strpool[poolptr++] = c;
 		tempptr = p;
-		switch (mem[p].hh.rh)
+		switch (link(p))
 		{
 			case 1:
 				println();
@@ -27,7 +27,7 @@ void printsubsidiarydata(halfword p, ASCIIcode c)
 				showinfo();
 				break;
 			case 3: 
-				if (mem[p].hh.lh == 0)
+				if (info(p) == 0)
 				{
 					println();
 					printcurrentstring();

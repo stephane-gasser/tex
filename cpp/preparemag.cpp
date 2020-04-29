@@ -4,7 +4,6 @@
 #include "printint.h"
 #include "interror.h"
 #include "geqworddefine.h"
-#include "constantes.h"
 
 void preparemag(void)
 {

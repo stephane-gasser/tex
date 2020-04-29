@@ -1,5 +1,4 @@
 #include "fixdateandtime.h"
-#include "constantes.h"
 
 void fixdateandtime(void)
 {

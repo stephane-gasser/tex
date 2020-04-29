@@ -2,7 +2,6 @@
 #include "println.h"
 #include "print.h"
 #include "terminput.h"
-#include "constantes.h"
 
 void firmuptheline(void)
 {

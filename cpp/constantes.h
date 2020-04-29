@@ -1,3 +1,6 @@
+#ifndef CONSTANTES_H
+#define CONSTANTES_H
+
 /*banner=='This is TeX, Version 3.14159265' //printed when \TeX\ starts
 mtype==t@&y@&p@&e //this is a \.//WEB coding trick:
 start_of_TEX=1 //go here when \TeX's variables are initialized
@@ -123,23 +126,44 @@ hi(#)==#+min_halfword
 ho(#)==#-min_halfword
 sc==int //|scaled| data is equivalent to |integer|
 pointer==halfword //a flag or a location in |mem| or |eqtb|
-null==min_halfword //the null pointer
-link(#) == mem[#].hh.rh //the |link| field of a memory word
-info(#) == mem[#].hh.lh //the |info| field of a memory word
-free_avail(#)== //single-word node liberation
+null==min_halfword //the null pointer*/
+/*free_avail(#)== //single-word node liberation
 fast_get_avail(#)==@t@>@;@/
 empty_flag == max_halfword //the |link| of an empty variable-size node
 is_empty(#) == (link(#)=empty_flag) //tests for empty node
 node_size == info //the size field in empty variable-size nodes
 llink(#) == info(#+1) //left link in doubly-linked list of empty nodes
-rlink(#) == link(#+1) //right link in doubly-linked list of empty nodes
-type(#) == mem[#].hh.b0 //identifies what kind of node this is
-subtype(#) == mem[#].hh.b1 //secondary identification in some cases
-is_char_node(#) == (#>=hi_mem_min)
+rlink(#) == link(#+1) //right link in doubly-linked list of empty nodes*/
+
+// link(#) == mem[#].hh.rh //the |link| field of a memory word
+halfword& link(halfword p)
+{
+	return mem[p].hh.rh;
+}
+
+// info(#) == mem[#].hh.lh //the |info| field of a memory word
+halfword& info(halfword p)
+{
+	return mem[p].hh.lh;
+}
+
+//type(#) == mem[#].hh.b0 //identifies what kind of node this is
+quarterword& type(halfword p)
+{
+	return mem[p].hh.b0;
+}
+
+//subtype(#) == mem[#].hh.b1 //secondary identification in some cases
+quarterword& subtype(halfword p)
+{
+	return mem[p].hh.b1;
+}
+
+/*is_char_node(#) == (#>=hi_mem_min)
 font == type //the font code in a |char_node|
-character == subtype //the character code in a |char_node|
-hlist_node=0 //|type| of hlist nodes
-box_node_size=7 //number of words to allocate for a box node
+character == subtype //the character code in a |char_node|*/
+constexpr int hlist_node = 0; //|type| of hlist nodes
+/*box_node_size=7 //number of words to allocate for a box node
 width_offset=1 //position of |width| field in a box node
 depth_offset=2 //position of |depth| field in a box node
 height_offset=3 //position of |height| field in a box node
@@ -155,37 +179,37 @@ normal=0 //the most common case when several cases are named
 stretching = 1 //glue setting applies to the stretch components
 shrinking = 2 //glue setting applies to the shrink components
 glue_offset = 6 //position of |glue_set| in a box node
-glue_set(#) == mem[#+glue_offset].gr
-vlist_node=1 //|type| of vlist nodes
-rule_node=2 //|type| of rule nodes
-rule_node_size=4 //number of words to allocate for a rule node
+glue_set(#) == mem[#+glue_offset].gr*/
+constexpr int vlist_node = 1; //|type| of vlist nodes
+constexpr int rule_node = 2; //|type| of rule nodes
+/*rule_node_size=4 //number of words to allocate for a rule node
 null_flag==-@'10000000000 //$-2^//30$, signifies a missing item
-is_running(#) == (#=null_flag) //tests for a running dimension
-ins_node=3 //|type| of insertion nodes
-ins_node_size=5 //number of words to allocate for an insertion
+is_running(#) == (#=null_flag) //tests for a running dimension*/
+constexpr int ins_node = 3; //|type| of insertion nodes
+/*ins_node_size=5 //number of words to allocate for an insertion
 float_cost(#)==mem[#+1].int //the |floating_penalty| to be used
 ins_ptr(#)==info(#+4) //the vertical list to be inserted
-split_top_ptr(#)==link(#+4) //the |split_top_skip| to be used
-mark_node=4 //|type| of a mark node
-small_node_size=2 //number of words to allocate for most node types
-mark_ptr(#)==mem[#+1].int //head of the token list for a mark
-adjust_node=5 //|type| of an adjust node
-adjust_ptr==mark_ptr //vertical list to be moved out of horizontal list
-ligature_node=6 //|type| of a ligature node
-lig_char(#)==#+1 //the word where the ligature is to be found
-lig_ptr(#)==link(lig_char(#)) //the list of characters
-disc_node=7 //|type| of a discretionary node
-replace_count==subtype //how many subsequent nodes to replace
+split_top_ptr(#)==link(#+4) //the |split_top_skip| to be used*/
+constexpr int mark_node = 4; //|type| of a mark node
+/*small_node_size=2 //number of words to allocate for most node types
+mark_ptr(#)==mem[#+1].int //head of the token list for a mark*/
+constexpr int adjust_node = 5; //|type| of an adjust node
+/*adjust_ptr==mark_ptr //vertical list to be moved out of horizontal list*/
+constexpr int ligature_node = 6; //|type| of a ligature node
+/*lig_char(#)==#+1 //the word where the ligature is to be found
+lig_ptr(#)==link(lig_char(#)) //the list of characters*/
+constexpr int disc_node = 7; //|type| of a discretionary node
+/*replace_count==subtype //how many subsequent nodes to replace
 pre_break==llink //text that precedes a discretionary break
-post_break==rlink //text that follows a discretionary break
-whatsit_node=8 //|type| of special extension nodes
-math_node=9 //|type| of a math node
-before=0 //|subtype| for math node that introduces a formula
+post_break==rlink //text that follows a discretionary break*/
+constexpr int whatsit_node = 8; //|type| of special extension nodes
+constexpr int math_node = 9; //|type| of a math node
+/*before=0 //|subtype| for math node that introduces a formula
 after=1 //|subtype| for math node that winds up a formula
 precedes_break(#)==(type(#)<math_node)
-non_discardable(#)==(type(#)<math_node)
-glue_node=10 //|type| of node that points to a glue specification
-cond_math_glue=98 //special |subtype| to suppress glue in the next node
+non_discardable(#)==(type(#)<math_node)*/
+constexpr int glue_node = 10; //|type| of node that points to a glue specification
+/*cond_math_glue=98 //special |subtype| to suppress glue in the next node
 mu_glue=99 //|subtype| for math glue
 a_leaders=100 //|subtype| for aligned leaders
 c_leaders=101 //|subtype| for centered leaders
@@ -200,12 +224,12 @@ stretch_order == type //order of infinity for stretching
 shrink_order == subtype //order of infinity for shrinking
 fil=1 //first-order infinity
 fill=2 //second-order infinity
-filll=3 //third-order infinity
-kern_node=11 //|type| of a kern node
-explicit=1 //|subtype| of kern nodes from \.//\\kern and \.//\\/
-acc_kern=2 //|subtype| of kern nodes from accents
-penalty_node=12 //|type| of a penalty node
-inf_penalty=inf_bad //``infinite'' penalty value
+filll=3 //third-order infinity*/
+constexpr int kern_node = 11; //|type| of a kern node
+/*explicit=1 //|subtype| of kern nodes from \.//\\kern and \.//\\/
+acc_kern=2 //|subtype| of kern nodes from accents*/
+constexpr int penalty_node = 12; //|type| of a penalty node
+/*inf_penalty=inf_bad //``infinite'' penalty value
 eject_penalty=-inf_penalty //``negatively infinite'' penalty value
 penalty(#) == mem[#+1].int //the added cost of breaking a list here
 unset_node=13 //|type| for an unset node
@@ -497,6 +521,7 @@ int cat_code(int c)
 	return eqtb[cat_code_base+c].hh.rh;
 }
 //cat_code(#)==equiv(cat_code_base+#)
+
 /*lc_code(#)==equiv(lc_code_base+#)
 uc_code(#)==equiv(uc_code_base+#)
 sf_code(#)==equiv(sf_code_base+#)
@@ -1000,16 +1025,16 @@ vcenter_noad=accent_noad+1 //|type| of a noad for \.//\\vcenter
 left_noad=vcenter_noad+1 //|type| of a noad for \.//\\left
 right_noad=left_noad+1 //|type| of a noad for \.//\\right
 delimiter==nucleus //|delimiter| field in left and right noads
-scripts_allowed(#)==(type(#)>=ord_noad)and(type(#)<left_noad)
-style_node=unset_node+1 //|type| of a style node
-style_node_size=3 //number of words in a style node
+scripts_allowed(#)==(type(#)>=ord_noad)and(type(#)<left_noad)*/
+constexpr int style_node = 14; //unset_node+1 //|type| of a style node
+/*style_node_size=3 //number of words in a style node
 display_style=0 //|subtype| for \.//\\displaystyle
 text_style=2 //|subtype| for \.//\\textstyle
 script_style=4 //|subtype| for \.//\\scriptstyle
 script_script_style=6 //|subtype| for \.//\\scriptscriptstyle
-cramped=1 //add this to an uncramped style if you want to cramp it
-choice_node=unset_node+2 //|type| of a choice node
-display_mlist(#)==info(#+1) //mlist to be used in display style
+cramped=1 //add this to an uncramped style if you want to cramp it*/
+constexpr int choice_node = 15; //unset_node+2 //|type| of a choice node
+/*display_mlist(#)==info(#+1) //mlist to be used in display style
 text_mlist(#)==link(#+1) //mlist to be used in text style
 script_mlist(#)==info(#+2) //mlist to be used in script style
 script_script_mlist(#)==link(#+2) //mlist to be used in scriptscript style
@@ -1222,3 +1247,5 @@ immediate_code=4 //command modifier for \.//\\immediate
 set_language_code=5 //command modifier for \.//\\setlanguage
 @ adv_past(#)==@+if subtype(#)=language_node then
 end_write_token==cs_token_flag+end_write*/
+
+#endif

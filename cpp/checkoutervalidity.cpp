@@ -21,7 +21,7 @@ void checkoutervalidity(void)
 			if (curinput.statefield == 0 || curinput.namefield < 1 || curinput.namefield > 17)
 			{
 				auto p = getavail();
-				mem[p].hh.lh = 4095+curcs;
+				info(p) = 4095+curcs;
 				begintokenlist(p, 3);
 			}
 			curcmd = 10;
@@ -50,25 +50,25 @@ void checkoutervalidity(void)
 			{
 				case 2:
 					print(570); //definition
-					mem[p].hh.lh = 637;
+					info(p) = 637;
 					break;
 				case 3:
 					print(612); //use
-					mem[p].hh.lh = partoken;
+					info(p) = partoken;
 					longstate = 113;
 					break;
 				case 4:
 					print(572); //preamble
-					mem[p].hh.lh = 637;
+					info(p) = 637;
 					q = p;
 					p = getavail();
-					mem[p].hh.rh = q;
-					mem[p].hh.lh = 6710;
+					link(p) = q;
+					info(p) = 6710;
 					alignstate = -1000000;
 					break;
 				case 5:
 					print(573); //text
-					mem[p].hh.lh = 637;				
+					info(p) = 637;
 			}
 			begintokenlist(p, 4);
 			print(607); // of 

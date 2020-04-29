@@ -48,15 +48,15 @@ void shownodelist(int p)
 		if (p >= himemmin)
 			printfontandchar(p);
 		else
-			switch (mem[p].hh.b0)
+			switch (type(p))
 			{
 				case 0:
 				case 1:
 				case 13:
-					if (mem[p].hh.b0 == 0)
+					if (type(p) == 0)
 						printesc('h');
 					else 
-						if (mem[p].hh.b0 == 1)
+						if (type(p) == 1)
 							printesc('v');
 						else
 							printesc(318); //unset
@@ -66,32 +66,32 @@ void shownodelist(int p)
 					printscaled(mem[p+2].int_);
 					print(320); //)x
 					printscaled(mem[p+1].int_);
-					if (mem[p].hh.b0 == 13)
+					if (type(p) == 13)
 					{
-						if (mem[p].hh.b1)
+						if (subtype(p))
 						{
 							print(286); // (
-							printint(mem[p].hh.b1+1);
+							printint(subtype(p)+1);
 							print(322); // columns)
 						}
 						if (mem[p+6].int_)
 						{
 							print(323); //, stretch 
-							printglue(mem[p+6].int_, mem[p+5].hh.b1, 0);
+							printglue(mem[p+6].int_, subtype(p+5), 0);
 						}
 						if (mem[p+4].int_)
 						{
 							print(324); //, shrink 
-							printglue(mem[p+4].int_, mem[p+5].hh.b0, 0);
+							printglue(mem[p+4].int_, type(p+5), 0);
 						}
 					}
 					else
 					{
 						g = mem[p+6].gr;
-						if (g && mem[p+5].hh.b0)
+						if (g && type(p+5))
 						{
 							print(325); //, glue set 
-							if (mem[p+5].hh.b0 == 2)
+							if (type(p+5) == 2)
 								print(326); //- 
 							if (abs(mem[p+6].int_) < 1048576)
 								print(327); //?.?
@@ -102,10 +102,10 @@ void shownodelist(int p)
 										printchar('>');
 									else
 										print(328); //< -
-									printglue(20000*65536, mem[p+5].hh.b1, 0);
+									printglue(20000*65536, subtype(p+5), 0);
 								}
 								else
-									printglue(round(65536*g), mem[p+5].hh.b1, 0);
+									printglue(round(65536*g), subtype(p+5), 0);
 						}
 						if (mem[p+4].int_)
 						{
@@ -114,7 +114,7 @@ void shownodelist(int p)
 						}
 					}
 					strpool[poolptr++] = '.';
-					shownodelist(mem[p+5].hh.rh);
+					shownodelist(link(p+5));
 					poolptr--;
 					break;
 				case 2:
@@ -127,45 +127,45 @@ void shownodelist(int p)
 					break;
 				case 3:
 					printesc(330); //insert
-					printint(mem[p].hh.b1);
+					printint(subtype(p));
 					print(331); //, natural size 
 					printscaled(mem[p+3].int_);
 					print(332); //; split(
-					printspec(mem[p+4].hh.rh, 0);
+					printspec(link(p+4), 0);
 					printchar(',');
 					printscaled(mem[p+2].int_);
 					print(333); //); float cost 
 					printint(mem[p+1].int_);
 					strpool[poolptr++] = '.';
-					shownodelist(mem[p+4].hh.lh);
+					shownodelist(info(p+4));
 					poolptr--;
 					break;
 				case 8:
-					switch (mem[p].hh.b1)
+					switch (subtype(p))
 					{
 						case 0:
 							printwritewhatsit(1284, p); //openout
 							printchar('=');
-							printfilename(mem[p+1].hh.rh, mem[p+2].hh.lh, mem[p+2].hh.rh);
+							printfilename(link(p+1), info(p+2), link(p+2));
 							break;
 						case 1:
 							printwritewhatsit(594, p); //write
-							printmark(mem[p+1].hh.rh);
+							printmark(link(p+1));
 							break;
 						case 2: 
 							printwritewhatsit(1285, p); //closeout
 							break;
 						case 3:
 							printesc(1286); //special
-							printmark(mem[p+1].hh.rh);
+							printmark(link(p+1));
 							break;
 						case 4:
 							printesc(1288); //setlanguage
-							printint(mem[p+1].hh.rh);
+							printint(link(p+1));
 							print(1291); // (hyphenmin 
-							printint(mem[p+1].hh.b0);
+							printint(type(p+1));
 							printchar(',');
-							printint(mem[p+1].hh.b1);
+							printint(subtype(p+1));
 							printchar(')');
 							break;
 						default: 
@@ -173,52 +173,52 @@ void shownodelist(int p)
 					}
 					break;
 				case 10:
-					if (mem[p].hh.b1 >= 100)
+					if (subtype(p) >= 100)
 					{
 						printesc(338); //
-						if (mem[p].hh.b1 == 101)
+						if (subtype(p) == 101)
 							printchar('c');
 						else 
-							if (mem[p].hh.b1 == 102)
+							if (subtype(p) == 102)
 								printchar('x');
 						print(339); //leaders 
-						printspec(mem[p+1].hh.lh, 0);
+						printspec(info(p+1), 0);
 						strpool[poolptr++] = '.';
-						shownodelist(mem[p+1].hh.rh);
+						shownodelist(link(p+1));
 						poolptr--;
 					}
 					else
 					{
 						printesc(334); //glue
-						if (mem[p].hh.b1)
+						if (subtype(p))
 						{
 							printchar('(');
-							if (mem[p].hh.b1 < 98)
-								printskipparam(mem[p].hh.b1-1);
+							if (subtype(p) < 98)
+								printskipparam(subtype(p)-1);
 							else 
-								if (mem[p].hh.b1 == 98)
+								if (subtype(p) == 98)
 								printesc(335); //nonscript
 							else
 								printesc(336); //mskip
 							printchar(')');
 						}
-						if (mem[p].hh.b1 != 98)
+						if (subtype(p) != 98)
 						{
 							printchar(' ');
-							if (mem[p].hh.b1 < 98)
-								printspec(mem[p+1].hh.lh, 0);
+							if (subtype(p) < 98)
+								printspec(info(p+1), 0);
 							else
-								printspec(mem[p+1].hh.lh, 337); //mu
+								printspec(info(p+1), 337); //mu
 						}
 					}
 				case 11:
-					if (mem[p].hh.b1 != 99)
+					if (subtype(p) != 99)
 					{
 						printesc(340); //kern
-						if (mem[p].hh.b1)
+						if (subtype(p))
 							printchar(' ');
 						printscaled(mem[p+1].int_);
-						if (mem[p].hh.b1 == 2)
+						if (subtype(p) == 2)
 							print(341); // (for accent)
 					}
 					else
@@ -230,7 +230,7 @@ void shownodelist(int p)
 					break;
 				case 9:
 					printesc(343); //math
-					if (mem[p].hh.b1 == 0)
+					if (subtype(p) == 0)
 						print(344); //on
 					else
 						print(345); //off
@@ -243,11 +243,11 @@ void shownodelist(int p)
 				case 6:
 					printfontandchar(p+1);
 					print(347); // (ligature 
-					if (mem[p].hh.b1 > 1)
+					if (subtype(p) > 1)
 						printchar('|');
-					fontinshortdisplay = mem[p+1].hh.b0;
-					shortdisplay(mem[p+1].hh.rh);
-					if (mem[p].hh.b1%2)
+					fontinshortdisplay = type(p+1);
+					shortdisplay(link(p+1));
+					if (subtype(p)%2)
 						printchar('|');
 					printchar(')');
 					break;
@@ -257,16 +257,16 @@ void shownodelist(int p)
 					break;
 				case 7:
 					printesc(349); //discretionary
-					if (mem[p].hh.b1 > 0)
+					if (subtype(p) > 0)
 					{
 						print(350); // replacing 
-						printint(mem[p].hh.b1);
+						printint(subtype(p));
 					}
 					strpool[poolptr++] = '.';
-					shownodelist(mem[p+1].hh.lh);
+					shownodelist(info(p+1));
 					poolptr--;
 					strpool[poolptr++] = '|';
-					shownodelist(mem[p+1].hh.rh);
+					shownodelist(link(p+1));
 					poolptr--;
 					break;
 				case 4:
@@ -280,21 +280,21 @@ void shownodelist(int p)
 					poolptr--;
 					break;
 				case 14: 
-					printstyle(mem[p].hh.b1);
+					printstyle(subtype(p));
 					break;
 				case 15:
 					printesc(525); //mathchoice
 					strpool[poolptr++] = 'D';
-					shownodelist(mem[p+1].hh.lh);
+					shownodelist(info(p+1));
 					poolptr--;
 					strpool[poolptr++] = 'T';
-					shownodelist(mem[p+1].hh.rh);
+					shownodelist(link(p+1));
 					poolptr--;
 					strpool[poolptr++] = 'S';
-					shownodelist(mem[p+2].hh.lh);
+					shownodelist(info(p+2));
 					poolptr--;
 					strpool[poolptr++] = 's';
-					shownodelist(mem[p+2].hh.rh);
+					shownodelist(link(p+2));
 					poolptr--;
 					break;
 				case 16:
@@ -312,7 +312,7 @@ void shownodelist(int p)
 				case 28:
 				case 30:
 				case 31:
-					switch (mem[p].hh.b0)
+					switch (type(p))
 					{
 						case 16: 
 							printesc(865); //mathord
@@ -363,12 +363,12 @@ void shownodelist(int p)
 							printesc(876); //right
 							printdelimiter(p+1);
 					}
-					if (mem[p].hh.b1)
-						if (mem[p].hh.b1 == 1)
+					if (subtype(p))
+						if (subtype(p) == 1)
 							printesc(877); //limits
 						else
 							printesc(878); //nolimits
-					if (mem[p].hh.b0 < 30)
+					if (type(p) < 30)
 					printsubsidiarydata(p+1, '.');
 					printsubsidiarydata(p+2, '^');
 					printsubsidiarydata(p+3, '_');
@@ -395,6 +395,6 @@ void shownodelist(int p)
 				default: 
 					print(317); //Unknown node type!
 			}
-		p = mem[p].hh.rh;
+		p = link(p);
 	}
 }

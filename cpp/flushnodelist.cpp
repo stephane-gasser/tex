@@ -8,39 +8,39 @@ void flushnodelist(halfword p)
 {
 	while (p)
 	{
-		auto q = mem[p].hh.rh;
+		auto q = link(p);
 		if (p >= himemmin)
 		{
-			mem[p].hh.rh = avail;
+			link(p) = avail;
 			avail = p;
 		}
 		else
 		{
-			switch (mem[p].hh.b0)
+			switch (type(p))
 			{
 				case 0:
 				case 1:
 				case 13:
-					flushnodelist(mem[p+5].hh.rh);
+					flushnodelist(link(p+5));
 					freenode(p, 7);
 					break;
 				case 2:
 					freenode(p, 4);
 					break;
 				case 3:
-					flushnodelist(mem[p+4].hh.lh);
-					deleteglueref(mem[p+4].hh.rh);
+					flushnodelist(info(p+4));
+					deleteglueref(link(p+4));
 					freenode(p, 5);
 					break;
 				case 8:
-					switch (mem[p].hh.b1)
+					switch (subtype(p))
 					{
 						case 0:
 							freenode(p, 3);
 							break;
 						case 1:
 						case 3:
-							deletetokenref(mem[p+1].hh.rh);
+							deletetokenref(link(p+1));
 							freenode(p, 2);
 							break;
 						case 2:
@@ -52,12 +52,12 @@ void flushnodelist(halfword p)
 					}
 					break;
 				case 10:
-					if (mem[mem[p+1].hh.lh].hh.rh == 0)
-						freenode(mem[p+1].hh.lh, 4);
+					if (link(info(p+1)) == 0)
+						freenode(info(p+1), 4);
 					else
-						mem[mem[p+1].hh.lh].hh.rh--;
-					if (mem[p+1].hh.rh)
-						flushnodelist(mem[p+1].hh.rh);
+						link(info(p+1))--;
+					if (link(p+1))
+						flushnodelist(link(p+1));
 					freenode(p, 2);
 					break;
 				case 11:
@@ -66,7 +66,7 @@ void flushnodelist(halfword p)
 					freenode(p, 2);
 					break;
 				case 6: 
-					flushnodelist(mem[p+1].hh.rh);
+					flushnodelist(link(p+1));
 					freenode(p, 2);
 					break;
 				case 4: 
@@ -74,8 +74,8 @@ void flushnodelist(halfword p)
 					freenode(p, 2);
 					break;
 				case 7:
-					flushnodelist(mem[p+1].hh.lh);
-					flushnodelist(mem[p+1].hh.rh);
+					flushnodelist(info(p+1));
+					flushnodelist(link(p+1));
 					freenode(p, 2);
 					break;
 				case 5: 
@@ -86,10 +86,10 @@ void flushnodelist(halfword p)
 					freenode(p, 3);
 					break;
 				case 15:
-					flushnodelist(mem[p+1].hh.lh);
-					flushnodelist(mem[p+1].hh.rh);
-					flushnodelist(mem[p+2].hh.lh);
-					flushnodelist(mem[p+2].hh.rh);
+					flushnodelist(info(p+1));
+					flushnodelist(link(p+1));
+					flushnodelist(info(p+2));
+					flushnodelist(link(p+2));
 					freenode(p, 3);
 					break;
 				case 16:
@@ -105,16 +105,16 @@ void flushnodelist(halfword p)
 				case 26:
 				case 29:
 				case 28:
-					if (mem[p+1].hh.rh >= 2)
-						flushnodelist(mem[p+1].hh.lh);
-					if (mem[p+2].hh.rh >= 2)
-						flushnodelist(mem[p+2].hh.lh);
-					if (mem[p+3].hh.rh >= 2)
-						flushnodelist(mem[p+3].hh.lh);
-					if (mem[p].hh.b0 == 24)
+					if (link(p+1) >= 2)
+						flushnodelist(info(p+1));
+					if (link(p+2) >= 2)
+						flushnodelist(info(p+2));
+					if (link(p+3) >= 2)
+						flushnodelist(info(p+3));
+					if (type(p) == 24)
 						freenode(p, 5);
 					else 
-						if (mem[p].hh.b0 == 28)
+						if (type(p) == 28)
 							freenode(p, 5);
 						else
 						freenode(p, 4);
@@ -124,8 +124,8 @@ void flushnodelist(halfword p)
 					freenode(p, 4);
 					break;
 				case 25:
-					flushnodelist(mem[p+2].hh.lh);
-					flushnodelist(mem[p+3].hh.lh);
+					flushnodelist(info(p+2));
+					flushnodelist(info(p+3));
 					freenode(p, 6);
 					break;
 				default: 

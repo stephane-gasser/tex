@@ -7,654 +7,654 @@ var
   p, q: halfword;
   x: integer;
   w: fourquarters;
-begin
-  {1308:}
-x := fmtfile^.int;
-  if x <> 117275187 then
+{
+  
+x = fmtfile^.int;
+  if (x != 117275187)
     goto 6666;
-  begin
+  {
     get(fmtfile);
-    x := fmtfile^.int;
-  end;
-  if x <> 0 then
+    x = fmtfile^.int;
+  }
+  if (x != 0)
     goto 6666;
-  begin
+  {
     get(fmtfile);
-    x := fmtfile^.int;
-  end;
-  if x <> 30000 then
+    x = fmtfile^.int;
+  }
+  if (x != 30000)
     goto 6666;
-  begin
+  {
     get(fmtfile);
-    x := fmtfile^.int;
-  end;
-  if x <> 6106 then
+    x = fmtfile^.int;
+  }
+  if (x != 6106)
     goto 6666;
-  begin
+  {
     get(fmtfile);
-    x := fmtfile^.int;
-  end;
-  if x <> 1777 then
+    x = fmtfile^.int;
+  }
+  if (x != 1777)
     goto 6666;
-  begin
+  {
     get(fmtfile);
-    x := fmtfile^.int;
-  end;
-  if x <> 307 then
-    goto 6666{:1308}
+    x = fmtfile^.int;
+  }
+  if (x != 307)
+    goto 6666
 ;
-  {1310:}
-begin
-    begin
+  
+{
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if x < 0 then
+      x = fmtfile^.int;
+    }
+    if (x < 0)
       goto 6666;
-    if x > poolsize then
-    begin
+    if (x > poolsize)
+    {
       ;
       writeln(termout, '---! Must increase the ', 'string pool size');
       goto 6666;
-    end
+    }
     else
-      poolptr := x;
-  end;
-  begin
-    begin
+      poolptr = x;
+  }
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if x < 0 then
+      x = fmtfile^.int;
+    }
+    if (x < 0)
       goto 6666;
-    if x > maxstrings then
-    begin
+    if (x > maxstrings)
+    {
       ;
       writeln(termout, '---! Must increase the ', 'max strings');
       goto 6666;
-    end
+    }
     else
-      strptr := x;
-  end;
-  for k := 0 to strptr do
-  begin
-    begin
+      strptr = x;
+  }
+  for k = 0 to strptr do
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < 0) or (x > poolptr) then
+      x = fmtfile^.int;
+    }
+    if ((x < 0) or (x > poolptr))
       goto 6666
     else
-      strstart[k] := x;
-  end;
-  k := 0;
-  while k + 4 < poolptr do
-  begin
-    begin
+      strstart[k] = x;
+  }
+  k = 0;
+  while k+4 < poolptr do
+  {
+    {
       get(fmtfile);
-      w := fmtfile^.qqqq;
-    end;
-    strpool[k] := w.b0 - 0;
-    strpool[k + 1] := w.b1 - 0;
-    strpool[k + 2] := w.b2 - 0;
-    strpool[k + 3] := w.b3 - 0;
-    k := k + 4;
-  end;
-  k := poolptr - 4;
-  begin
+      w = fmtfile^.qqqq;
+    }
+    strpool[k] = w.b0-0;
+    strpool[k+1] = w.b1-0;
+    strpool[k+2] = w.b2-0;
+    strpool[k+3] = w.b3-0;
+    k = k+4;
+  }
+  k = poolptr-4;
+  {
     get(fmtfile);
-    w := fmtfile^.qqqq;
-  end;
-  strpool[k] := w.b0 - 0;
-  strpool[k + 1] := w.b1 - 0;
-  strpool[k + 2] := w.b2 - 0;
-  strpool[k + 3] := w.b3 - 0;
-  initstrptr := strptr;
-  initpoolptr := poolptr{:1310}
-;{1312:}
+    w = fmtfile^.qqqq;
+  }
+  strpool[k] = w.b0-0;
+  strpool[k+1] = w.b1-0;
+  strpool[k+2] = w.b2-0;
+  strpool[k+3] = w.b3-0;
+  initstrptr = strptr;
+  initpoolptr = poolptr
+;
 
-  begin
-    begin
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < 1019) or (x > 29986) then
+      x = fmtfile^.int;
+    }
+    if ((x < 1019) or (x > 29986))
       goto 6666
     else
-      lomemmax := x;
-  end;
-  begin
-    begin
+      lomemmax = x;
+  }
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < 20) or (x > lomemmax) then
+      x = fmtfile^.int;
+    }
+    if ((x < 20) or (x > lomemmax))
       goto 6666
     else
-      rover := x;
-  end;
-  p := 0;
-  q := rover;
+      rover = x;
+  }
+  p = 0;
+  q = rover;
   repeat
-    for k := p to q + 1 do
-    begin
+    for k = p to q+1 do
+    {
       get(fmtfile);
-      mem[k] := fmtfile^;
-    end;
-    p := q + mem[q].hh.lh;
-    if (p > lomemmax) or ((q >= mem[q + 1].hh.rh) and (mem[q + 1].hh.rh <> rover)) then
+      mem[k] = fmtfile^;
+    }
+    p = q+mem[q].hh.lh;
+    if ((p > lomemmax) or ((q >= mem[q+1].hh.rh) and (mem[q+1].hh.rh != rover)))
       goto6666;
-    q := mem[q + 1].hh.rh;
-  until q = rover;
-  for k := p to lomemmax do
-  begin
+    q = mem[q+1].hh.rh;
+  until q == rover;
+  for k = p to lomemmax do
+  {
     get(fmtfile);
-    mem[k] := fmtfile^;
-  end;
-  if memmin < -2 then
-  begin
-    p := mem[rover + 1].hh.lh;
-    q := memmin + 1;
-    mem[memmin].hh.rh := 0;
-    mem[memmin].hh.lh := 0;
-    mem[p + 1].hh.rh := q;
-    mem[rover + 1].hh.lh := q;
-    mem[q + 1].hh.rh := rover;
-    mem[q + 1].hh.lh := p;
-    mem[q].hh.rh := 65535;
-    mem[q].hh.lh := -0 - q;
-  end;
-  begin
-    begin
+    mem[k] = fmtfile^;
+  }
+  if (memmin < -2)
+  {
+    p = mem[rover+1].hh.lh;
+    q = memmin+1;
+    mem[memmin].hh.rh = 0;
+    mem[memmin].hh.lh = 0;
+    mem[p+1].hh.rh = q;
+    mem[rover+1].hh.lh = q;
+    mem[q+1].hh.rh = rover;
+    mem[q+1].hh.lh = p;
+    mem[q].hh.rh = 65535;
+    mem[q].hh.lh = -0-q;
+  }
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < lomemmax + 1) or (x > 29987) then
+      x = fmtfile^.int;
+    }
+    if ((x < lomemmax+1) or (x > 29987))
       goto 6666
     else
-      himemmin := x;
-  end;
-  begin
-    begin
+      himemmin = x;
+  }
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < 0) or (x > 30000) then
+      x = fmtfile^.int;
+    }
+    if ((x < 0) or (x > 30000))
       goto 6666
     else
-      avail := x;
-  end;
-  memend := 30000;
-  for k := himemmin to memend do
-  begin
+      avail = x;
+  }
+  memend = 30000;
+  for k = himemmin to memend do
+  {
     get(fmtfile);
-    mem[k] := fmtfile^;
-  end;
-  begin
+    mem[k] = fmtfile^;
+  }
+  {
     get(fmtfile);
-    varused := fmtfile^.int;
-  end;
-  begin
+    varused = fmtfile^.int;
+  }
+  {
     get(fmtfile);
-    dynused := fmtfile^.int;
-  end{:1312}
+    dynused = fmtfile^.int;
+  }
 ;
-  {1314:}
-{1317:}
-k := 1;
+  
+
+k = 1;
   repeat
-    begin
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < 1) or (k + x > 6107) then
+      x = fmtfile^.int;
+    }
+    if ((x < 1) or (k+x > 6107))
       goto 6666;
-    for j := k to k + x - 1 do
-    begin
+    for j = k to k+x-1 do
+    {
       get(fmtfile);
-      eqtb[j] := fmtfile^;
-    end;
-    k := k + x;
-    begin
+      eqtb[j] = fmtfile^;
+    }
+    k = k+x;
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < 0) or (k + x > 6107) then
+      x = fmtfile^.int;
+    }
+    if ((x < 0) or (k+x > 6107))
       goto 6666;
-    for j := k to k + x - 1 do
-      eqtb[j] := eqtb[k - 1];
-    k := k + x;
-  until k > 6106{:1317}
+    for j = k to k+x-1 do
+      eqtb[j] = eqtb[k-1];
+    k = k+x;
+  until k > 6106
 ;
-  begin
-    begin
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < 514) or (x > 2614) then
+      x = fmtfile^.int;
+    }
+    if ((x < 514) or (x > 2614))
       goto 6666
     else
-      parloc := x;
-  end;
-  partoken := 4095 + parloc;
-  begin
-    begin
+      parloc = x;
+  }
+  partoken = 4095+parloc;
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < 514) or (x > 2614) then
+      x = fmtfile^.int;
+    }
+    if ((x < 514) or (x > 2614))
       goto 6666
     else
-      writeloc := x;
-  end;
-  {1319:}
-begin
-    begin
+      writeloc = x;
+  }
+  
+{
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < 514) or (x > 2614) then
+      x = fmtfile^.int;
+    }
+    if ((x < 514) or (x > 2614))
       goto 6666
     else
-      hashused := x;
-  end;
-  p := 513;
+      hashused = x;
+  }
+  p = 513;
   repeat
-    begin
-      begin
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < p + 1) or (x > hashused) then
+        x = fmtfile^.int;
+      }
+      if ((x < p+1) or (x > hashused))
         goto 6666
       else
-        p := x;
-    end;
-    begin
+        p = x;
+    }
+    {
       get(fmtfile);
-      hash[p] := fmtfile^.hh;
-    end;
-  until p = hashused;
-  for p := hashused + 1 to 2880 do
-  begin
+      hash[p] = fmtfile^.hh;
+    }
+  until p == hashused;
+  for p = hashused+1 to 2880 do
+  {
     get(fmtfile);
-    hash[p] := fmtfile^.hh;
-  end;
-  begin
+    hash[p] = fmtfile^.hh;
+  }
+  {
     get(fmtfile);
-    cscount := fmtfile^.int;
-  end{:1319}
-{:1314}
+    cscount = fmtfile^.int;
+  }
+
 ;
-  {1321:}
-begin
-    begin
+  
+{
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if x < 7 then
+      x = fmtfile^.int;
+    }
+    if (x < 7)
       goto 6666;
-    if x > fontmemsize then
-    begin
+    if (x > fontmemsize)
+    {
       ;
       writeln(termout, '---! Must increase the ', 'font mem size');
       goto 6666;
-    end
+    }
     else
-      fmemptr := x;
-  end;
-  for k := 0 to fmemptr - 1 do
-  begin
+      fmemptr = x;
+  }
+  for k = 0 to fmemptr-1 do
+  {
     get(fmtfile);
-    fontinfo[k] := fmtfile^;
-  end;
-  begin
-    begin
+    fontinfo[k] = fmtfile^;
+  }
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if x < 0 then
+      x = fmtfile^.int;
+    }
+    if (x < 0)
       goto 6666;
-    if x > fontmax then
-    begin
+    if (x > fontmax)
+    {
       ;
       writeln(termout, '---! Must increase the ', 'font max');
       goto 6666;
-    end
+    }
     else
-      fontptr := x;
-  end;
-  for k := 0 to fontptr do{1323:}
+      fontptr = x;
+  }
+  for k = 0 to fontptr do
 
-  begin
-    begin
+  {
+    {
       get(fmtfile);
-      fontcheck[k] := fmtfile^.qqqq;
-    end;
-    begin
+      fontcheck[k] = fmtfile^.qqqq;
+    }
+    {
       get(fmtfile);
-      fontsize[k] := fmtfile^.int;
-    end;
-    begin
+      fontsize[k] = fmtfile^.int;
+    }
+    {
       get(fmtfile);
-      fontdsize[k] := fmtfile^.int;
-    end;
-    begin
-      begin
+      fontdsize[k] = fmtfile^.int;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > 65535) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > 65535))
         goto 6666
       else
-        fontparams[k] := x;
-    end;
-    begin
+        fontparams[k] = x;
+    }
+    {
       get(fmtfile);
-      hyphenchar[k] := fmtfile^.int;
-    end;
-    begin
+      hyphenchar[k] = fmtfile^.int;
+    }
+    {
       get(fmtfile);
-      skewchar[k] := fmtfile^.int;
-    end;
-    begin
-      begin
+      skewchar[k] = fmtfile^.int;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > strptr) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > strptr))
         goto 6666
       else
-        fontname[k] := x;
-    end;
-    begin
-      begin
+        fontname[k] = x;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > strptr) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > strptr))
         goto 6666
       else
-        fontarea[k] := x;
-    end;
-    begin
-      begin
+        fontarea[k] = x;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > 255) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > 255))
         goto 6666
       else
-        fontbc[k] := x;
-    end;
-    begin
-      begin
+        fontbc[k] = x;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > 255) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > 255))
         goto 6666
       else
-        fontec[k] := x;
-    end;
-    begin
+        fontec[k] = x;
+    }
+    {
       get(fmtfile);
-      charbase[k] := fmtfile^.int;
-    end;
-    begin
+      charbase[k] = fmtfile^.int;
+    }
+    {
       get(fmtfile);
-      widthbase[k] := fmtfile^.int;
-    end;
-    begin
+      widthbase[k] = fmtfile^.int;
+    }
+    {
       get(fmtfile);
-      heightbase[k] := fmtfile^.int;
-    end;
-    begin
+      heightbase[k] = fmtfile^.int;
+    }
+    {
       get(fmtfile);
-      depthbase[k] := fmtfile^.int;
-    end;
-    begin
+      depthbase[k] = fmtfile^.int;
+    }
+    {
       get(fmtfile);
-      italicbase[k] := fmtfile^.int;
-    end;
-    begin
+      italicbase[k] = fmtfile^.int;
+    }
+    {
       get(fmtfile);
-      ligkernbase[k] := fmtfile^.int;
-    end;
-    begin
+      ligkernbase[k] = fmtfile^.int;
+    }
+    {
       get(fmtfile);
-      kernbase[k] := fmtfile^.int;
-    end;
-    begin
+      kernbase[k] = fmtfile^.int;
+    }
+    {
       get(fmtfile);
-      extenbase[k] := fmtfile^.int;
-    end;
-    begin
+      extenbase[k] = fmtfile^.int;
+    }
+    {
       get(fmtfile);
-      parambase[k] := fmtfile^.int;
-    end;
-    begin
-      begin
+      parambase[k] = fmtfile^.int;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > lomemmax) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > lomemmax))
         goto 6666
       else
-        fontglue[k] := x;
-    end;
-    begin
-      begin
+        fontglue[k] = x;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > fmemptr - 1) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > fmemptr-1))
         goto 6666
       else
-        bcharlabel[k] := x;
-    end;
-    begin
-      begin
+        bcharlabel[k] = x;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > 256) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > 256))
         goto 6666
       else
-        fontbchar[k] := x;
-    end;
-    begin
-      begin
+        fontbchar[k] = x;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > 256) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > 256))
         goto 6666
       else
-        fontfalsebchar[k] := x;
-    end;
-  end{:1323}
-{:1321}
-;{1325:}
+        fontfalsebchar[k] = x;
+    }
+  }
 
-  begin
-    begin
+;
+
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < 0) or (x > 307) then
+      x = fmtfile^.int;
+    }
+    if ((x < 0) or (x > 307))
       goto 6666
     else
-      hyphcount := x;
-  end;
-  for k := 1 to hyphcount do
-  begin
-    begin
-      begin
+      hyphcount = x;
+  }
+  for k = 1 to hyphcount do
+  {
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > 307) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > 307))
         goto 6666
       else
-        j := x;
-    end;
-    begin
-      begin
+        j = x;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > strptr) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > strptr))
         goto 6666
       else
-        hyphword[j] := x;
-    end;
-    begin
-      begin
+        hyphword[j] = x;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > 65535) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > 65535))
         goto 6666
       else
-        hyphlist[j] := x;
-    end;
-  end;
-  begin
-    begin
+        hyphlist[j] = x;
+    }
+  }
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if x < 0 then
+      x = fmtfile^.int;
+    }
+    if (x < 0)
       goto 6666;
-    if x > triesize then
-    begin
+    if (x > triesize)
+    {
       ;
       writeln(termout, '---! Must increase the ', 'trie size');
       goto 6666;
-    end
+    }
     else
-      j := x;
-  end;
-  triemax := j;
-  for k := 0 to j do
-  begin
+      j = x;
+  }
+  triemax = j;
+  for k = 0 to j do
+  {
     get(fmtfile);
-    trie[k] := fmtfile^.hh;
-  end;
-  begin
-    begin
+    trie[k] = fmtfile^.hh;
+  }
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if x < 0 then
+      x = fmtfile^.int;
+    }
+    if (x < 0)
       goto 6666;
-    if x > trieopsize then
-    begin
+    if (x > trieopsize)
+    {
       ;
       writeln(termout, '---! Must increase the ', 'trie op size');
       goto 6666;
-    end
+    }
     else
-      j := x;
-  end;
-  trieopptr := j;
-  for k := 1 to j do
-  begin
-    begin
-      begin
+      j = x;
+  }
+  trieopptr = j;
+  for k = 1 to j do
+  {
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > 63) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > 63))
         goto 6666
       else
-        hyfdistance[k] := x;
-    end;
-    begin
-      begin
+        hyfdistance[k] = x;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > 63) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > 63))
         goto 6666
       else
-        hyfnum[k] := x;
-    end;
-    begin
-      begin
+        hyfnum[k] = x;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > 255) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > 255))
         goto 6666
       else
-        hyfnext[k] := x;
-    end;
-  end;
-  for k := 0 to 255 do
-    trieused[k] := 0;
-  k := 256;
+        hyfnext[k] = x;
+    }
+  }
+  for k = 0 to 255 do
+    trieused[k] = 0;
+  k = 256;
   while j > 0 do
-  begin
-    begin
-      begin
+  {
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 0) or (x > k - 1) then
+        x = fmtfile^.int;
+      }
+      if ((x < 0) or (x > k-1))
         goto 6666
       else
-        k := x;
-    end;
-    begin
-      begin
+        k = x;
+    }
+    {
+      {
         get(fmtfile);
-        x := fmtfile^.int;
-      end;
-      if (x < 1) or (x > j) then
+        x = fmtfile^.int;
+      }
+      if ((x < 1) or (x > j))
         goto 6666
       else
-        x := x;
-    end;
-    trieused[k] := x + 0;
-    j := j - x;
-    opstart[k] := j - 0;
-  end;
-  trienotready := false{:1325}
+        x = x;
+    }
+    trieused[k] = x+0;
+    j = j-x;
+    opstart[k] = j-0;
+  }
+  trienotready = false
 ;
-  {1327:}
-begin
-    begin
+  
+{
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < 0) or (x > 3) then
+      x = fmtfile^.int;
+    }
+    if ((x < 0) or (x > 3))
       goto 6666
     else
-      interaction := x;
-  end;
-  begin
-    begin
+      interaction = x;
+  }
+  {
+    {
       get(fmtfile);
-      x := fmtfile^.int;
-    end;
-    if (x < 0) or (x > strptr) then
+      x = fmtfile^.int;
+    }
+    if ((x < 0) or (x > strptr))
       goto 6666
     else
-      formatident := x;
-  end;
-  begin
+      formatident = x;
+  }
+  {
     get(fmtfile);
-    x := fmtfile^.int;
-  end;
-  if (x <> 69069) or EOF(fmtfile) then
-    goto 6666{:1327}
+    x = fmtfile^.int;
+  }
+  if ((x != 69069) or EOF(fmtfile))
+    goto 6666
 ;
-  loadfmtfile := true;
+  loadfmtfile = true;
   goto 10;
   6666: ;
   writeln(termout, '(Fatal format file error; I''m stymied)');
-  loadfmtfile := false;
+  loadfmtfile = false;
   10: ;
-end;
+}

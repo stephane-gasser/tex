@@ -8,9 +8,9 @@ void flushlist(halfword p)
 		do
 		{
 			q = r;
-			r = mem[r].hh.rh;
+			r = link(r);
 		} while (r);
-		mem[q].hh.rh = avail;
+		link(q) = avail;
 		avail = p;
 	}
 }

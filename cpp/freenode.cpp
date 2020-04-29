@@ -2,11 +2,11 @@
 
 void freenode(halfword p, halfword s)
 {
-	mem[p].hh.lh = s;
-	mem[p].hh.rh = 65535;
-	halfword q = mem[rover+1].hh.lh;
-	mem[p+1].hh.lh = q;
-	mem[p+1].hh.rh = rover;
-	mem[rover+1].hh.lh = p;
-	mem[q+1].hh.rh = p;
+	info(p) = s;
+	link(p) = 65535;
+	halfword q = info(rover+1);
+	info(p+1) = q;
+	link(p+1) = rover;
+	info(rover+1) = p;
+	link(q+1) = p;
 }

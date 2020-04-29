@@ -160,7 +160,7 @@ void error(void)
 			if (baseptr > 0)
 				print(270); //E to edit your file,
 			if (deletionsallowed)
-				printnl(271); //1 or ... or 9 to ignore the next 1 to 9 tokens of input,
+				printnl(271); //1 or ... or 9 to ignore the link 1 to 9 tokens of input,
 			printnl(272); //H for help, X to quit.
 		}
 	errorcount++;

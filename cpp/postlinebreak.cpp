@@ -1,0 +1,185 @@
+#include "postlinebreak.h"
+#include "deleteglueref.h"
+#include "flushnodelist.h"
+#include "newparamglue.h"
+#include "hpack.h"
+#include "appendtovlist.h"
+#include "newpenalty.h"
+#include "confusion.h"
+
+void postlinebreak(int finalwidowpenalty)
+{
+	halfword q, r, s;
+	bool discbreak, postdiscbreak;
+	scaled curwidth, curindent;
+	quarterword t;
+	int pen;
+	halfword curline;
+	q = link(bestbet+1);
+	curp = 0;
+	do
+	{
+		r = q;
+		q = info(q+1);
+		info(r+1) = curp;
+		curp = r;
+	} while (q);
+	curline = curlist.pgfield+1;
+	do
+	{
+		q = link(curp+1);
+		discbreak = false;
+		postdiscbreak = false;
+		if (q)
+			if (type(q) == 10)
+			{
+				deleteglueref(info(q+1));
+				info(q+1) = eqtb[2890].hh.rh;
+				subtype(q) = 9;
+				link(eqtb[2890].hh.rh)++;
+			}
+			else
+			{
+				if (type(q) == 7)
+				{
+					t = subtype(q);
+					if (t == 0)
+						r = link(q);
+					else
+					{
+						r = q;
+						while (t > 1)
+						{
+							r = link(r);
+							t--;
+						}
+						s = link(r);
+						r = link(s);
+						link(s) = 0;
+						flushnodelist(link(q));
+						subtype(q) = 0;
+					}
+					if (link(q+1))
+					{
+						s = link(q+1);
+						while (link(s))
+							s = link(s);
+						link(s) = r;
+						r = link(q+1);
+						link(q+1) = 0;
+						postdiscbreak = true;
+					}
+					if (info(q+1))
+					{
+						s = info(q+1);
+						link(q) = s;
+						while (link(s))
+							s = link(s);
+						info(q+1) = 0;
+						q = s;
+					}
+					link(q) = r;
+					discbreak = true;
+					}
+					else 
+						if (type(q) == 9 || type(q) == 11)
+							mem[q+1].int_ = 0;
+				r = newparamglue(8);
+				link(r) = link(q);
+				link(q) = r;
+				q = r;
+			}
+		else
+		{
+			q = 29997;
+			while (link(q))
+				q = link(q);
+			r = newparamglue(8);
+			link(r) = link(q);
+			link(q) = r;
+			q = r;
+		}
+		r = link(q);
+		link(q) = 0;
+		q = link(29997);
+		link(29997) = r;
+		if (eqtb[2889].hh.rh)
+		{
+			r = newparamglue(7);
+			link(r) = q;
+			q = r;
+		}
+		if (curline > lastspecialline)
+		{
+			curwidth = secondwidth;
+			curindent = secondindent;
+		}
+		else 
+			if (eqtb[3412].hh.rh == 0)
+			{
+				curwidth = firstwidth;
+				curindent = firstindent;
+			}
+			else
+			{
+				curwidth = mem[eqtb[3412].hh.rh+2*curline].int_;
+				curindent = mem[eqtb[3412].hh.rh+2*curline-1].int_;
+			}
+		adjusttail = 29995;
+		justbox = hpack(q, curwidth, 0);
+		mem[justbox+4].int_ = curindent;
+		appendtovlist(justbox);
+		if (29995 != adjusttail)
+		{
+			link(curlist.tailfield) = link(29995);
+			curlist.tailfield = adjusttail;
+		}
+		adjusttail = 0;
+		if (curline+1 != bestline)
+		{
+			pen = eqtb[5276].int_;
+			if (curline == curlist.pgfield+1)
+				pen += eqtb[5268].int_;
+			if (curline+2 == bestline)
+				pen += finalwidowpenalty;
+			if (discbreak)
+				pen += eqtb[5271].int_;
+			if (pen)
+			{
+				r = newpenalty(pen);
+				link(curlist.tailfield) = r;
+				curlist.tailfield = r;
+			}
+		}
+		curline++;
+		curp = info(curp+1);
+		if (curp)
+			if (not postdiscbreak)
+			{
+				r = 29997;
+				while (true)
+				{
+					q = link(r);
+					if (q == link(curp+1))
+						break;
+					if (q >= himemmin)
+						break;
+					if (type(q) < 9)
+						break;
+					if (type(q) == 11)
+						if (subtype(q) != 1)
+							break;
+					r = q;
+				}
+				if (r != 29997)
+				{
+					link(r) = 0;
+					flushnodelist(link(29997));
+					link(29997) = q;
+				}
+			}
+	} while (curp);
+	if (curline != bestline || link(29997))
+		confusion(938); //line breaking
+	curlist.pgfield = bestline-1;
+}

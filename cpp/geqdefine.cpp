@@ -4,7 +4,7 @@
 void geqdefine(halfword p, quarterword t, halfword e)
 {
 	eqdestroy(eqtb[p]);
-	eqtb[p].hh.b1 = 1;
-	eqtb[p].hh.b0 = t;
+	subtype(p) = 1;
+	type(p) = t;
 	eqtb[p].hh.rh = e;
 }

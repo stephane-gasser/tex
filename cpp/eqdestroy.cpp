@@ -21,7 +21,7 @@ void eqdestroy(memoryword w)
 		case 118:
 			q = w.hh.rh;
 			if (q)
-				freenode(q, mem[q].hh.lh+mem[q].hh.lh+1);
+				freenode(q, 2*info(q)+1);
 			break;
 		case 119: 
 			flushnodelist(w.hh.rh);

@@ -2,7 +2,6 @@
 #include "printesc.h"
 #include "printchar.h"
 #include "print.h"
-#include "constantes.h"
 
 void printfontandchar(int p)
 {
@@ -10,11 +9,11 @@ void printfontandchar(int p)
 		printesc(309); //CLOBBERED.
 	else
 	{
-		if (mem[p].hh.b0 < 0 || mem[p].hh.b0 > fontmax)
+		if (type(p) < 0 || type(p) > fontmax)
 		printchar('*');
 		else
-		printesc(hash[frozen_null_font+mem[p].hh.b0].rh);
+		printesc(hash[frozen_null_font+type(p)].rh);
 		printchar(' ');
-		print(mem[p].hh.b1);
+		print(subtype(p));
 	}
 }

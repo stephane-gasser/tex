@@ -4,7 +4,7 @@
 halfword newligitem(quarterword c)
 {
 	auto p = getnode(2);
-	mem[p].hh.b1 = c;
-	mem[p+1].hh.rh = 0;
+	subtype(p) = c;
+	link(p+1) = 0;
 	return p;
 }

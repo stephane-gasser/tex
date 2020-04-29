@@ -6,10 +6,10 @@
 void printwritewhatsit(strnumber s, halfword p)
 {
 	printesc(s);
-	if (mem[p+1].hh.lh < 16)
-		printint(mem[p+1].hh.lh);
+	if (info(p+1) < 16)
+		printint(info(p+1));
 	else 
-		if (mem[p+1].hh.lh == 16)
+		if (info(p+1) == 16)
 			printchar('*');
 		else
 			printchar('-');

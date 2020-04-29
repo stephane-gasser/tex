@@ -20,7 +20,6 @@
 #include "showtokenlist.h"
 #include "enddiagnostic.h"
 #include "overflow.h"
-#include "constantes.h"
 
 void macrocall(void)
 {
@@ -28,7 +27,7 @@ void macrocall(void)
 	auto savewarningindex = warningindex;
 	warningindex = curcs;
 	halfword refcount = curchr;
-	halfword r = mem[refcount].hh.rh;
+	halfword r = link(refcount);
 	smallnumber n = 0;
 	if (int_par(tracing_macros_code) > 0)
 	{
@@ -39,26 +38,26 @@ void macrocall(void)
 		enddiagnostic(false);
 	}
 	ASCIIcode matchchr;
-	if (mem[r].hh.lh != 3584)
+	if (info(r) != 3584)
 	{
 		scannerstatus = 3;
 		halfword unbalance = 0;
-		longstate = eqtb[curcs].hh.b0;
+		longstate = type(curcs);
 		if (longstate >= 113)
 			longstate -= 2;
 
 		do
 		{
-			mem[29997].hh.rh = 0;
+			link(29997) = 0;
 			halfword s;
 			halfword p;
 			halfword m;
-			if (mem[r].hh.lh > 3583 || mem[r].hh.lh < 3328)
+			if (info(r) > 3583 || info(r) < 3328)
 				s = 0;
 			else
 			{
-				matchchr = mem[r].hh.lh-3328;
-				s = mem[r].hh.rh;
+				matchchr = info(r)-3328;
+				s = link(r);
 				r = s;
 				p = 29997;
 				m = 0;
@@ -67,10 +66,10 @@ void macrocall(void)
 			while (true)
 			{
 				gettoken();
-				if (curtok = mem[r].hh.lh)
+				if (curtok = info(r))
 				{
-					r = mem[r].hh.rh;
-					if (mem[r].hh.lh >= 3328 && mem[r].hh.lh <= 3584)
+					r = link(r);
+					if (info(r) >= 3328 && info(r) <= 3584)
 					{
 						if (curtok < 512)
 							alignstate--;
@@ -104,30 +103,30 @@ void macrocall(void)
 						do
 						{
 							auto q = getavail();
-							mem[p].hh.rh = q;
-							mem[q].hh.lh = mem[t].hh.lh;
+							link(p) = q;
+							info(q) = info(t);
 							p = q;
 							m++;
-							auto u = mem[t].hh.rh;
+							auto u = link(t);
 							auto v = s;
 							while(true)
 							{
 								if (u == r)
-									if (curtok != mem[v].hh.lh)
+									if (curtok != info(v))
 										break;
 									else
 									{
-										r = mem[v].hh.rh;
+										r = link(v);
 										l22 = true;
 										break;
 									}
-								if (mem[u].hh.lh != mem[v].hh.lh)
+								if (info(u) != info(v))
 									break;
-								u = mem[u].hh.rh;
-								v = mem[v].hh.rh;
+								u = link(u);
+								v = link(v);
 							}
 							if (!l22)
-								t = mem[t].hh.rh;
+								t = link(t);
 						} while (t != r && !l22);
 						if (l22)
 							continue;
@@ -150,7 +149,7 @@ void macrocall(void)
 							helpline[0] = 649; //My plan is to forget the whole thing and hope for the best.
 							backerror();
 						}
-						pstack[n] = mem[29997].hh.rh;
+						pstack[n] = link(29997);
 						alignstate -= unbalance;
 						for (int m = 0; m <= n; m++)
 							flushlist(pstack[m]);
@@ -169,11 +168,11 @@ void macrocall(void)
 								q = getavail();
 							else
 							{
-								avail = mem[q].hh.rh;
-								mem[q].hh.rh = 0;
+								avail = link(q);
+								link(q) = 0;
 							}
-							mem[p].hh.rh = q;
-							mem[q].hh.lh = curtok;
+							link(p) = q;
+							info(q) = curtok;
 							p = q;
 							gettoken();
 							if (curtok == partoken)
@@ -193,7 +192,7 @@ void macrocall(void)
 										helpline[0] = 649; //My plan is to forget the whole thing and hope for the best.
 										backerror();
 									}
-									pstack[n] = mem[29997].hh.rh;
+									pstack[n] = link(29997);
 									alignstate -= unbalance;
 									for (int m = 0; m <= n; m++)
 										flushlist(pstack[m]);
@@ -213,8 +212,8 @@ void macrocall(void)
 						}
 						rbraceptr = p;
 						auto q = getavail();
-						mem[p].hh.rh = q;
-						mem[q].hh.lh = curtok;
+						link(p) = q;
+						info(q) = curtok;
 						p = q;
 					}
 					else
@@ -241,35 +240,35 @@ void macrocall(void)
 				else
 				{
 					if (curtok == 2592)
-						if (mem[r].hh.lh <= 3584)
-							if (mem[r].hh.lh >= 3328)
+						if (info(r) <= 3584)
+							if (info(r) >= 3328)
 								continue;
 					auto q = getavail();
-					mem[p].hh.rh = q;
-					mem[q].hh.lh = curtok;
+					link(p) = q;
+					info(q) = curtok;
 					p = q;
 				}
 				m++;
-				if (mem[r].hh.lh > 3584)
+				if (info(r) > 3584)
 					continue;
-				if (mem[r].hh.lh < 3328)
+				if (info(r) < 3328)
 					continue;
 				break;
 			}
-			if (s != 0)
+			if (s)
 			{
-				if (m == 1 && mem[p].hh.lh < 768 && p != 29997)
+				if (m == 1 && info(p) < 768 && p != 29997)
 				{
-					mem[rbraceptr].hh.rh = 0;
-					mem[p].hh.rh = avail;
+					link(rbraceptr) = 0;
+					link(p) = avail;
 					avail = p;
-					p = mem[29997].hh.rh;
-					pstack[n] = mem[p].hh.rh;
-					mem[p].hh.rh = avail;
+					p = link(29997);
+					pstack[n] = link(p);
+					link(p) = avail;
 					avail = p;
 				}
 				else
-					pstack[n] = mem[29997].hh.rh;
+					pstack[n] = link(29997);
 				n++;
 				if (int_par(tracing_macros_code) > 0)
 				{
@@ -281,13 +280,13 @@ void macrocall(void)
 					enddiagnostic(false);
 				}
 			}
-		} while (mem[r].hh.lh != 3584);
+		} while (info(r) != 3584);
 	}
 	while (curinput.statefield == 0 && curinput.locfield == 0 && curinput.indexfield != 2)
 		endtokenlist();
 	begintokenlist(refcount, 5);
 	curinput.namefield = warningindex;
-	curinput.locfield = mem[r].hh.rh;
+	curinput.locfield = link(r);
 	if (n > 0)
 	{
 		if (paramptr+n > maxparamstack)

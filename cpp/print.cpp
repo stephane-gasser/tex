@@ -1,7 +1,6 @@
 #include "print.h"
 #include "printchar.h"
 #include "println.h"
-#include "constantes.h"
 
 void print(int s)
 {

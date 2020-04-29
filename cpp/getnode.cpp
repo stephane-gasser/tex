@@ -11,36 +11,36 @@ halfword getnode(int s)
 		halfword p = rover;
 		do
 		{ 
-			halfword q = p+mem[p].hh.lh;
-			while (mem[q].hh.rh == 65535)
+			halfword q = p+info(p);
+			while (link(q) == 65535)
 			{
-				int t = mem[q+1].hh.rh;
+				auto t = link(q+1);
 				if (q == rover)
 					rover = t;
-				mem[t+1].hh.lh = mem[q+1].hh.lh;
-				mem[mem[q+1].hh.lh+1].hh.rh = t;
-				q += mem[q].hh.lh;
+				info(t+1) = info(q+1);
+				link(info(q+1)+1) = t;
+				q += info(q);
 			}
 			r = q-s;
 			if (r > p+1)
 			{
-				mem[p].hh.lh = r - p;
+				info(p) = r-p;
 				rover = p;
-				mem[r].hh.rh = 0;
+				link(r) = 0;
 				return r;
 			}
 			if (r == p)
-			if (mem[p+1].hh.rh != p)
+			if (link(p+1) != p)
 			{
-				rover = mem[p+1].hh.rh;
-				int t = mem[p+1].hh.lh;
-				mem[rover+1].hh.lh = t;
-				mem[t+1].hh.rh = rover;
-				mem[r].hh.rh = 0;
+				rover = link(p+1);
+				int t = info(p+1);
+				info(rover+1) = t;
+				link(t+1) = rover;
+				link(r) = 0;
 				return r;
 			}
-			mem[p].hh.lh = q-p;
-			p = mem[p+1].hh.rh;
+			info(p) = q-p;
+			p = link(p+1);
 		} while (p != rover);
 		if (s == 1073741824)
 			return 65535;
@@ -51,24 +51,24 @@ halfword getnode(int s)
 				t = lomemmax+1000;
 			else
 				t = lomemmax+1+(himemmin-lomemmax)/2;
-			p = mem[rover+1].hh.lh;
+			p = info(rover+1);
 			halfword q = lomemmax;
-			mem[p+1].hh.rh = q;
-			mem[rover+1].hh.lh = q;
+			link(p+1) = q;
+			info(rover+1) = q;
 			if (t > 65535)
 				t = 65535;
-			mem[q+1].hh.rh = rover;
-			mem[q+1].hh.lh = p;
-			mem[q].hh.rh = 65535;
-			mem[q].hh.lh = t-lomemmax;
+			link(q+1) = rover;
+			info(q+1) = p;
+			link(q) = 65535;
+			info(q) = t-lomemmax;
 			lomemmax = t;
-			mem[lomemmax].hh.rh = 0;
-			mem[lomemmax].hh.lh = 0;
+			link(lomemmax) = 0;
+			info(lomemmax) = 0;
 			rover = q;
 			label20 = true;
 		}
 	} while (label20);
 	overflow(300, memmax+1-memmin); //main memory size
-	mem[r].hh.rh = 0;
+	link(r) = 0;
 	return r;
 }

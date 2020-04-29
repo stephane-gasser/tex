@@ -16,12 +16,12 @@ void printspec(int p, strnumber s)
 		if (mem[p+2].int_)
 		{
 			print(312); // plus 
-			printglue(mem[p+2].int_, mem[p].hh.b0, s);
+			printglue(mem[p+2].int_, type(p), s);
 		}
 		if (mem[p+3].int_)
 		{
 			print(313); // minus 
-			printglue(mem[p+3].int_, mem[p].hh.b1, s);
+			printglue(mem[p+3].int_, subtype(p), s);
 		}
 	}
 }

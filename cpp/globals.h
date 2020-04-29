@@ -300,4 +300,6 @@ alphafile writefile[16];
 bool writeopen[18];
 halfword writeloc;
 
+#include "constantes.h"
+
 #endif

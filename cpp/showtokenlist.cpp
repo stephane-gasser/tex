@@ -23,13 +23,13 @@ void showtokenlist(int p, int  q, int l)
 			printesc(309); //CLOBBERED.
 			return;
 		}
-		if (mem[p].hh.lh >= 4095)
-			printcs(mem[p].hh.lh - 4095);
+		if (info(p) >= 4095)
+			printcs(info(p)-4095);
 		else
 		{
-			int m = mem[p].hh.lh/256;
-			int c = mem[p].hh.lh%256;
-			if (mem[p].hh.lh < 0)
+			int m = info(p)/256;
+			int c = info(p)%256;
+			if (info(p) < 0)
 				printesc(555); //BAD.
 			else
 				switch (m)
@@ -74,7 +74,7 @@ void showtokenlist(int p, int  q, int l)
 			  			printesc(555); //BAD.
 				}
 		}
-		p = mem[p].hh.rh;
+		p = link(p);
 	}
 	if (p)
 		printesc(554); //ETC.

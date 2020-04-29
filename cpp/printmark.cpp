@@ -9,6 +9,6 @@ void printmark(int p)
 	if (p < himemmin || p > memend)
 		printesc(309); //CLOBBERED.
 	else
-		showtokenlist(mem[p].hh.rh, 0, maxprintline-10);
+		showtokenlist(link(p), 0, maxprintline-10);
 	printchar('}');
 }

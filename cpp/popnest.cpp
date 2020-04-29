@@ -2,7 +2,7 @@
 
 void popnest(void)
 {
-	mem[curlist.headfield].hh.rh = avail;
+	link(curlist.headfield) = avail;
 	avail = curlist.headfield;
 	nestptr--;
 	curlist = nest[nestptr];

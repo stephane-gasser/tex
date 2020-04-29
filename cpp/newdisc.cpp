@@ -4,9 +4,9 @@
 halfword newdisc(void)
 {
 	auto p = getnode(2);
-	mem[p].hh.b0 = 7;
-	mem[p].hh.b1 = 0;
-	mem[p+1].hh.lh = 0;
-	mem[p+1].hh.rh = 0;
+	type(p) = disc_node;
+	subtype(p) = 0;
+	info(p+1) = 0;
+	link(p+1) = 0;
 	return p;
 }

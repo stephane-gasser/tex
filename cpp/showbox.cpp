@@ -1,7 +1,6 @@
 #include "showbox.h"
 #include "shownodelist.h"
 #include "println.h"
-#include "constantes.h"
 
 void showbox(halfword p)
 {  

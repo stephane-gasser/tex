@@ -8,7 +8,7 @@ void backinput(void)
 	while (curinput.statefield == 0 && curinput.locfield == 0 && curinput.indexfield != 2)
 		endtokenlist();
 	auto p = getavail();
-	mem[p].hh.lh = curtok;
+	info(p) = curtok;
 	if (curtok < 768)
 		if (curtok < 512)
 			alignstate--;

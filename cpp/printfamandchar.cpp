@@ -7,7 +7,7 @@
 void printfamandchar(halfword p)
 {
 	printesc(464); //fam
-	printint(mem[p].hh.b0);
+	printint(type(p));
 	printchar(' ');
-	print(mem[p].hh.b1 - 0);
+	print(subtype(p));
 }

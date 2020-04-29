@@ -3,6 +3,6 @@
 
 void tokenshow(halfword p)
 {
-  if (p)
-	showtokenlist(mem[p].hh.rh, 0, 10000000);
+	if (p)
+		showtokenlist(link(p), 0, 10000000);
 }

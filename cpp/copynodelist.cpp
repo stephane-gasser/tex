@@ -14,7 +14,7 @@ halfword copynodelist(halfword p)
 		if (p >= himemmin)
 			r = getavail();
 		else
-			switch (mem[p].hh.b0)
+			switch (type(p))
 			{
 				case 0:
 				case 1:
@@ -22,7 +22,7 @@ halfword copynodelist(halfword p)
 					r = getnode(7);
 					mem[r+6] = mem[p+6];
 					mem[r+5] = mem[p+5];
-					mem[r+5].hh.rh = copynodelist(mem[p+5].hh.rh);
+					link(r+5) = copynodelist(link(p+5));
 					words = 5;
 					break;
 				case 2:
@@ -32,12 +32,12 @@ halfword copynodelist(halfword p)
 				case 3:
 					r = getnode(5);
 					mem[r+4] = mem[p+4];
-					mem[mem[p+4].hh.rh].hh.rh++;
-					mem[r+4].hh.lh = copynodelist(mem[p+4].hh.lh);
+					link(link(p+4))++;
+					info(r+4) = copynodelist(info(p+4));
 					words = 4;
 					break;
 				case 8:
-					switch (mem[p].hh.b1)
+					switch (subtype(p))
 					{
 						case 0:
 							r = getnode(3);
@@ -46,7 +46,7 @@ halfword copynodelist(halfword p)
 						case 1:
 						case 3:
 							r = getnode(2);
-							mem[mem[p+1].hh.rh].hh.lh++;
+							info(link(p+1))++;
 							words = 2;
 							break;
 						case 2:
@@ -60,9 +60,9 @@ halfword copynodelist(halfword p)
 					break;
 				case 10:
 					r = getnode(2);
-					mem[mem[p+1].hh.lh].hh.rh++;
-					mem[r+1].hh.lh = mem[p+1].hh.lh;
-					mem[r+1].hh.rh = copynodelist(mem[p+1].hh.rh);
+					link(info(p+1))++;
+					info(r+1) = info(p+1);
+					link(r+1) = copynodelist(link(p+1));
 					break;
 				case 11:
 				case 9:
@@ -73,16 +73,16 @@ halfword copynodelist(halfword p)
 				case 6:
 					r = getnode(2);
 					mem[r+1] = mem[p+1];
-					mem[r+1].hh.rh = copynodelist(mem[p+1].hh.rh);
+					link(r+1) = copynodelist(link(p+1));
 					break;
 				case 7:
 					r = getnode(2);
-					mem[r+1].hh.lh = copynodelist(mem[p+1].hh.lh);
-					mem[r+1].hh.rh = copynodelist(mem[p+1].hh.rh);
+					info(r+1) = copynodelist(info(p+1));
+					link(r+1) = copynodelist(link(p+1));
 					break;
 				case 4:
 					r = getnode(2);
-					mem[mem[p+1].int_].hh.lh++;
+					info(mem[p+1].int_)++;
 					words = 2;
 					break;
 				case 5:
@@ -95,13 +95,13 @@ halfword copynodelist(halfword p)
 		;
 		for (;words > 0; words--)
 			mem[r+words] = mem[p+words];
-		mem[q].hh.rh = r;
+		link(q) = r;
 		q = r;
-		p = mem[p].hh.rh;
+		p = link(p);
 	}
-	mem[q].hh.rh = 0;
-	q = mem[h].hh.rh;
-	mem[h].hh.rh = avail;
+	link(q) = 0;
+	q = link(h);
+	link(h) = avail;
 	avail = h;
 	return q;
 }

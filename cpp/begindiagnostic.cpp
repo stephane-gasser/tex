@@ -1,5 +1,4 @@
 #include "begindiagnostic.h"
-#include "constantes.h"
 
 void begindiagnostic(void)
 {

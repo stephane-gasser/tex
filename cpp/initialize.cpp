@@ -1,5 +1,4 @@
 #include "initialize.h"
-#include "constantes.h"
 
 void Initialize(void)
 {
@@ -34,7 +33,7 @@ void Initialize(void)
 	shownmode = 0;
 	pagecontents = 0;
 	pagetail = 29998;
-	mem[29998].hh.rh = 0;
+	link(29998) = 0;
 	lastglue = 65535;
 	lastpenalty = 0;
 	lastkern = 0;
@@ -127,41 +126,41 @@ void Initialize(void)
 		mem[k].int_ = 0;
 	for (int k = 0; k <= 19; k += 4)
 	{
-		mem[k].hh.rh = 1;
-		mem[k].hh.b0 = 0;
-		mem[k].hh.b1 = 0;
+		link(k) = 1;
+		type(k) = 0;
+		subtype(k) = 0;
 	}
 	mem[6].int_ = 65536;
-	mem[4].hh.b0 = 1;
+	type(4) = 1;
 	mem[10].int_ = 65536;
-	mem[8].hh.b0 = 2;
+	type(8) = 2;
 	mem[14].int_ = 65536;
-	mem[12].hh.b0 = 1;
+	type(12) = 1;
 	mem[15].int_ = 65536;
-	mem[12].hh.b1 = 1;
+	subtype(12) = 1;
 	mem[18].int_ = -65536;
-	mem[16].hh.b0 = 1;
+	type(16) = 1;
 	rover = 20;
-	mem[rover].hh.rh = 65535;
-	mem[rover].hh.lh = 1000;
-	mem[rover + 1].hh.lh = rover;
-	mem[rover + 1].hh.rh = rover;
+	link(rover) = 65535;
+	info(rover) = 1000;
+	info(rover+1) = rover;
+	link(rover+1) = rover;
 	lomemmax = rover + 1000;
-	mem[lomemmax].hh.rh = 0;
-	mem[lomemmax].hh.lh = 0;
+	link(lomemmax) = 0;
+	info(lomemmax) = 0;
 	for (int k = 29987; k < 30001; k++)
 		mem[k] = mem[lomemmax];
-	mem[29990].hh.lh = 6714;
-	mem[29991].hh.rh = 256;
-	mem[29991].hh.lh = 0;
-	mem[29993].hh.b0 = 1;
-	mem[29994].hh.lh = 65535;
-	mem[29993].hh.b1 = 0;
-	mem[30000].hh.b1 = 255;
-	mem[30000].hh.b0 = 1;
-	mem[30000].hh.rh = 30000;
-	mem[29998].hh.b0 = 10;
-	mem[29998].hh.b1 = 0;
+	info(29990) = 6714;
+	link(29991) = 256;
+	info(29991) = 0;
+	type(29993) = 1;
+	info(29994) = 65535;
+	subtype(29993) = 0;
+	subtype(30000) = 255;
+	type(30000) = 1;
+	link(30000) = 30000;
+	type(29998) = 10;
+	subtype(29998) = 0;
 	avail = 0;
 	memend = 30000;
 	himemmin = 29987;
@@ -177,7 +176,7 @@ void Initialize(void)
 	eqtb[glue_base].hh.b0 = 117;
 	for (int k = glue_base+1; k < local_base; k++)
 		eqtb[k] = eqtb[glue_base];
-	mem[0].hh.rh = mem[0].hh.rh + 530;
+	link(0) += 530;
 	eqtb[local_base].hh.rh = 0;
 	eqtb[local_base].hh.b0 = 118;
 	eqtb[local_base].hh.b1 = 1;

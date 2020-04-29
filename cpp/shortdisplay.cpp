@@ -2,7 +2,6 @@
 #include "printchar.h"
 #include "print.h"
 #include "printesc.h"
-#include "constantes.h"
 
 void shortdisplay(int p)
 {
@@ -12,20 +11,20 @@ void shortdisplay(int p)
 		{
 			if (p <= memend)
 			{
-				if (mem[p].hh.b0 != fontinshortdisplay)
+				if (type(p) != fontinshortdisplay)
 				{
-					if (mem[p].hh.b0 < 0 || mem[p].hh.b0 > fontmax)
+					if (type(p) < 0 || type(p) > fontmax)
 						printchar('*');
 					else
-						printesc(hash[frozen_null_font+mem[p].hh.b0].rh);
+						printesc(hash[frozen_null_font+type(p)].rh);
 					printchar(' ');
-					fontinshortdisplay = mem[p].hh.b0;
+					fontinshortdisplay = type(p);
 				}
-				print(mem[p].hh.b1);
+				print(subtype(p));
 			}
 		}
 		else
-		switch (mem[p].hh.b0)
+		switch (type(p))
 		{
 			case 0:
 			case 1:
@@ -40,22 +39,22 @@ void shortdisplay(int p)
 				printchar('|');
 				break;
 			case 10: 
-				if (mem[p+1].hh.lh)
+				if (info(p+1))
 					printchar(' ');
 				break;
 			case 9:
 				printchar('$');
 				break;
 			case 6:
-				shortdisplay(mem[p+1].hh.rh);
+				shortdisplay(link(p+1));
 				break;
 			case 7:
-				shortdisplay(mem[p+1].hh.lh);
-				shortdisplay(mem[p+1].hh.rh);
-				for (int n = mem[p].hh.b1; n > 0; n--)
-					if (mem[p].hh.rh)
-						p = mem[p].hh.rh;
+				shortdisplay(info(p+1));
+				shortdisplay(link(p+1));
+				for (int n = subtype(p); n > 0; n--)
+					if (link(p))
+						p = link(p);
 		}
-		p = mem[p].hh.rh;
+		p = link(p);
 	}
 }

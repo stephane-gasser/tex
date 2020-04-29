@@ -48,20 +48,20 @@ void showactivities(void)
 			{
 				printnl(979); //### current page:
 				if (outputactive)
-					print(980); // (held over for next output)
-				showbox(mem[29998].hh.rh);
+					print(980); // (held over for link output)
+				showbox(link(29998));
 				if (pagecontents > 0)
 				{
 					printnl(981); //total height 
 					printtotals();
 					printnl(982); // goal height
 					printscaled(pagesofar[0]);
-					halfword r = mem[30000].hh.rh;
+					halfword r = link(30000);
 					while (r != 30000)
 					{
 						println();
 						printesc(330); //insert
-						int t = mem[r].hh.b1;
+						int t = subtype(r);
 						printint(t);
 						print(983); // adds 
 						if (eqtb[5318+t].int_ == 1000)
@@ -69,29 +69,29 @@ void showactivities(void)
 						else
 							t = xovern(mem[r+3].int_, 1000)*eqtb[5318+t].int_;
 						printscaled(t);
-						if (mem[r].hh.b0 == 1)
+						if (type(r) == 1)
 						{
 							halfword q = 29998;
 							t = 0;
 							do
 							{
-								q = mem[q].hh.rh;
-								if (mem[q].hh.b0 == 3 && mem[q].hh.b1 == mem[r].hh.b1)
+								q = link(q);
+								if (type(q) == 3 && subtype(q) == subtype(r))
 									t++;
-							} while (q != mem[r+1].hh.lh);
+							} while (q != info(r+1));
 							print(984); //, #
 							printint(t);
 							print(985); // might split
 						}
-						r = mem[r].hh.rh;
+						r = link(r);
 					}
 				}
 			}
 			;
-			if (mem[29999].hh.rh)
+			if (link(29999))
 			printnl(368); //### recent contributions:
 		}
-		showbox(mem[nest[p].headfield].hh.rh);
+		showbox(link(nest[p].headfield));
 		switch (abs(m)/101)
 		{
 			case 0:

@@ -6,7 +6,7 @@ halfword getavail(void)
 {
 	halfword p = avail;
 	if (p)
-		avail = mem[avail].hh.rh;
+		avail = link(avail);
 	else 
 		if (memend < memmax)
 			p = ++memend;
@@ -16,9 +16,9 @@ halfword getavail(void)
 			if (himemmin <= lomemmax)
 			{
 				runaway();
-				overflow(300, memmax + 1 - memmin); //main memory size
+				overflow(300, memmax+1-memmin); //main memory size
 			}
 		}
-	mem[p].hh.rh = 0;
+	link(p) = 0;
 	return p;
 }

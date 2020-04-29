@@ -17,7 +17,6 @@
 #include "endtokenlist.h"
 #include "idlookup.h"
 #include "globals.h"
-#include "constantes.h"
 
 bool isHexDigit(ASCIIcode c)
 {
@@ -332,8 +331,8 @@ void getnext(void)
 		else
 			if (curinput.locfield)
 			{
-				int t = mem[curinput.locfield].hh.lh;
-				curinput.locfield = mem[curinput.locfield].hh.rh;
+				int t = info(curinput.locfield);
+				curinput.locfield = link(curinput.locfield);
 				if (t >= 4095)
 				{
 					curcs = t-4095;
@@ -342,7 +341,7 @@ void getnext(void)
 					if (curcmd >= 113)
 						if (curcmd = 116)
 						{
-							curcs = mem[curinput.locfield].hh.lh - 4095;
+							curcs = info(curinput.locfield)-4095;
 							curinput.locfield = 0;
 							curcmd = eqtb[curcs].hh.b0;
 							curchr = eqtb[curcs].hh.rh;
@@ -382,8 +381,8 @@ void getnext(void)
 		{
 			if (scannerstatus == 4 || curalign == 0)
 				fatalerror(595); //(interwoven alignment preambles are not allowed)
-			curcmd = mem[curalign+5].hh.lh;
-			mem[curalign+5].hh.lh = curchr;
+			curcmd = info(curalign+5);
+			info(curalign+5) = curchr;
 			if (curcmd == '?')
 				begintokenlist(29990, 2);
 			else

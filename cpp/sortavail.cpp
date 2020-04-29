@@ -4,33 +4,33 @@
 void sortavail(void)
 {
 	halfword p = getnode(1073741824);
-	p = mem[rover+1].hh.rh;
-	mem[rover+1].hh.rh = 65535;
+	p = link(rover+1);
+	link(rover+1) = 65535;
 	halfword oldrover = rover;
 	while (p != oldrover)
 		if (p < rover)
 		{
 			halfword q = p;
-			p = mem[q+1].hh.rh;
-			mem[q+1].hh.rh = rover;
+			p = link(q+1);
+			link(q+1) = rover;
 			rover = q;
 		}
 		else
 		{
 			halfword q = rover;
-			while (mem[q+1].hh.rh < p)
-			q = mem[q+1].hh.rh;
-			halfword r = mem[p+1].hh.rh;
-			mem[p+1].hh.rh = mem[q+1].hh.rh;
-			mem[q+1].hh.rh = p;
+			while (link(q+1) < p)
+				q = link(q+1);
+			halfword r = link(p+1);
+			link(p+1) = link(q+1);
+			link(q+1) = p;
 			p = r;
 		}
 	p = rover;
-	while (mem[p+1].hh.rh != 65535)
+	while (link(p+1) != 65535)
 	{
-		mem[mem[p+1].hh.rh+1].hh.lh = p;
-		p = mem[p+1].hh.rh;
+		info(link(p+1)+1) = p;
+		p = link(p+1);
 	}
-	mem[p+1].hh.rh = rover;
-	mem[rover+1].hh.lh = p;
+	link(p+1) = rover;
+	info(rover+1) = p;
 }

@@ -7,7 +7,6 @@
 #include "printesc.h"
 #include "printnl.h"
 #include "printcmdchr.h"
-#include "constantes.h"
 
 void begintokenlist(halfword p, quarterword t)
 {
@@ -23,12 +22,12 @@ void begintokenlist(halfword p, quarterword t)
 	curinput.indexfield = t;
 	if (t >= 5)
 	{
-		mem[p].hh.lh++;
+		info(p)++;
 		if (t == 5)
 			curinput.limitfield = paramptr;
 		else
 		{
-			curinput.locfield = mem[p].hh.rh;
+			curinput.locfield = link(p);
 			if (int_par(tracing_macros_code) > 1)
 			{
 				begindiagnostic();

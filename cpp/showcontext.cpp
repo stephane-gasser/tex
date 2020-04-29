@@ -135,7 +135,7 @@ void showcontext(void)
 					if (curinput.indexfield < 5)
 						showtokenlist(curinput.startfield, curinput.locfield, 100000);
 					else
-						showtokenlist(mem[curinput.startfield].hh.rh, curinput.locfield, 100000);
+						showtokenlist(link(curinput.startfield), curinput.locfield, 100000);
 				}
 				selector = oldsetting;
 				if (trickcount == 1000000)
