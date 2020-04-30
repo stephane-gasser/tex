@@ -26,7 +26,7 @@ constexpr int triesize = 8000;
 constexpr int trieopsize = 500;
 constexpr int dvibufsize = 800;
 constexpr int filenamesize = 40;
-constexpr char poolname[] = "TeXformats:TEX.POOL                     ";
+constexpr char poolname[] = "tex.pool";
 
 ///////////////////////////////////////////////////////////////////////////////
 // types
