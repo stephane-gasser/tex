@@ -136,7 +136,7 @@ void conditional(void)
 		case 10:
 		case 11:
 			scaneightbitint();
-			p = eqtb[3678+curval].hh.rh;
+			p = box(curval);
 			if (thisif == 9)
 				b = p == 0;
 			else 

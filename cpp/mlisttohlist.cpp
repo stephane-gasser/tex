@@ -43,7 +43,7 @@ void mlisttohlist(void)
 		cursize = 0;
 	else
 		cursize = 16*((curstyle-2)/2);
-	curmu = xovern(fontinfo[6+parambase[eqtb[3937+cursize].hh.rh]].int_, 18);
+	curmu = xovern(fontinfo[6+parambase[fam_fnt(2+cursize)]].int_, 18);
 	while (q)
 	{
 		delta = 0;
@@ -136,7 +136,7 @@ void mlisttohlist(void)
 					cursize = 0;
 				else
 					cursize = 16*((curstyle-2)/2);
-				curmu = xovern(fontinfo[6+parambase[eqtb[3937+cursize].hh.rh]].int_, 18);
+				curmu = xovern(fontinfo[6+parambase[fam_fnt(2+cursize)]].int_, 18);
 				q = link(q);
 				continue;
 				break;
@@ -259,7 +259,7 @@ void mlisttohlist(void)
 					cursize = 0;
 				else
 					cursize = 16*((curstyle-2)/2);
-				curmu = xovern(fontinfo[6+parambase[eqtb[3937+cursize].hh.rh]].int_, 18);
+				curmu = xovern(fontinfo[6+parambase[fam_fnt(2+cursize)]].int_, 18);
 				p = hpack(link(29997), 0, 1);
 				break;
 			default: 
@@ -289,7 +289,7 @@ void mlisttohlist(void)
 		cursize = 0;
 	else
 		cursize = 16*((curstyle-2)/2);
-	curmu = xovern(fontinfo[6+parambase[eqtb[3937+cursize].hh.rh]].int_, 18);
+	curmu = xovern(fontinfo[6+parambase[fam_fnt(2+cursize)]].int_, 18);
 	while (q)
 	{
 		t = 16;
@@ -338,7 +338,7 @@ void mlisttohlist(void)
 					cursize = 0;
 				else
 					cursize = 16*((curstyle-2)/2);
-				curmu = xovern(fontinfo[6+parambase[eqtb[3937+cursize].hh.rh]].int_, 18);
+				curmu = xovern(fontinfo[6+parambase[fam_fnt(2+cursize)]].int_, 18);
 				r = q;
 				q = link(q);
 				freenode(r, s);
@@ -394,7 +394,7 @@ void mlisttohlist(void)
 			}
 			if (x)
 			{
-				y = mathglue(eqtb[2882+x].hh.rh, curmu);
+				y = mathglue(glue_par(x), curmu);
 				z = newglue(y);
 				link(y) = 0;
 				link(p) = z;

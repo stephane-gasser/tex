@@ -8,8 +8,8 @@ void setmathchar(int c)
 	if (c >= 32768)
 	{
 		curcs = curchr+1;
-		curcmd = eqtb[curcs].hh.b0;
-		curchr = eqtb[curcs].hh.rh;
+		curcmd = eq_type(curcs);
+		curchr = equiv(curcs);
 		xtoken();
 		backinput();
 	}

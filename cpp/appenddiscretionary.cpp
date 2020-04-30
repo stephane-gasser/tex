@@ -11,9 +11,9 @@ void appenddiscretionary(void)
 	curlist.tailfield = link(curlist.tailfield);
 	if (curchr == 1)
 	{
-		int c = hyphenchar[eqtb[3934].hh.rh];
+		int c = hyphenchar[cur_font()];
 		if (c >= 0 && c < 256)
-			info(curlist.tailfield+1) = newcharacter(eqtb[3934].hh.rh, c);
+			info(curlist.tailfield+1) = newcharacter(cur_font(), c);
 	}
 	else
 	{

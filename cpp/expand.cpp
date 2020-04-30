@@ -128,7 +128,7 @@ void expand(void)
 				else
 					curcs = 257+buffer[First];
 				flushlist(r);
-				if (eqtb[curcs].hh.b0 == 101)
+				if (eq_type(curcs) == 101)
 					eqdefine(curcs, 0, 256);
 				curtok = curcs+4095;
 				backinput();

@@ -15,20 +15,20 @@ void appspace(void)
 			mainp = eqtb[2894].hh.rh;
 		else
 		{
-			mainp = fontglue[eqtb[3934].hh.rh];
+			mainp = fontglue[cur_font()];
 			if (mainp == 0)
 			{
 				mainp = newspec(0);
-				maink = parambase[eqtb[3934].hh.rh]+2;
+				maink = parambase[cur_font()]+2;
 				mem[mainp+1].int_ = fontinfo[maink].int_;
 				mem[mainp+2].int_ = fontinfo[maink+1].int_;
 				mem[mainp+3].int_ = fontinfo[maink+2].int_;
-				fontglue[eqtb[3934].hh.rh] = mainp;
+				fontglue[cur_font()] = mainp;
 			}
 		}
 		mainp = newspec(mainp);
 		if (curlist.auxfield.hh.lh >= 2000)
-			mem[mainp+1].int_ += fontinfo[7+parambase[eqtb[3934].hh.rh]].int_;
+			mem[mainp+1].int_ += fontinfo[7+parambase[cur_font()]].int_;
 		mem[mainp+2].int_ = xnoverd(mem[mainp+2].int_, curlist.auxfield.hh.lh, 1000);
 		mem[mainp+3].int_ = xnoverd(mem[mainp+3].int_, 1000, curlist.auxfield.hh.lh);
 		q = newglue(mainp);

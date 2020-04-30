@@ -159,7 +159,7 @@ void storefmtfile(void)
 	{
 		bool label41 = false;
 		for (j = k; j < 5262; j++)
-			if (eqtb[j].hh.rh == eqtb[j+1].hh.rh && eqtb[j].hh.b0 == eqtb[j+1].hh.b0 && eqtb[j].hh.b1 == eqtb[j+1].hh.b1)
+			if (equiv(j) == equiv(j+1) && eq_type(j) == eq_type(j+1) && eq_level(j) == eq_level(j+1))
 			{
 				label41 = true;
 				break;
@@ -169,7 +169,7 @@ void storefmtfile(void)
 			j++;
 			l = j;
 			for (;j < 5262; j++)
-				if (eqtb[j].hh.rh != eqtb[j+1].hh.rh || eqtb[j].hh.b0 != eqtb[j+1].hh.b0 || eqtb[j].hh.b1 != eqtb[j+1].hh.b1)
+				if (equiv(j) != equiv(j+1) || eq_type(j) != eq_type(j+1) || eq_level(j) != eq_level(j+1))
 					break;
 		}
 		else

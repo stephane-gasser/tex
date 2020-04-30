@@ -24,12 +24,12 @@ void beginbox(int boxcontext)
 	{
 		case 0:
 			scaneightbitint();
-			curbox = eqtb[3678+curval].hh.rh;
-			eqtb[3678+curval].hh.rh = 0;
+			curbox = box(curval);
+			box(curval) = 0;
 			break;
 		case 1:
 			scaneightbitint();
-			curbox = copynodelist(eqtb[3678+curval].hh.rh);
+			curbox = copynodelist(box(curval));
 			break;
 		case 2:
 			curbox = 0;

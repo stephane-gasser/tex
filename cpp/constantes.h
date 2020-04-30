@@ -398,14 +398,20 @@ space_factor==aux.hh.lh //part of |aux| in horizontal mode
 clang==aux.hh.rh //the other part of |aux| in horizontal mode
 incompleat_noad==aux.int //the name of |aux| in math mode
 mode_line==cur_list.ml_field //source file line number at beginning of list
-tail_append(#)==begin link(tail):=#; tail:=link(tail);
-eq_level_field(#)==#.hh.b1
-eq_type_field(#)==#.hh.b0
-equiv_field(#)==#.hh.rh
-eq_level(#)==eq_level_field(eqtb[#]) //level of definition
-eq_type(#)==eq_type_field(eqtb[#]) //command code for equivalent
-equiv(#)==equiv_field(eqtb[#]) //equivalent value
-level_zero=min_quarterword //level for undefined quantities
+tail_append(#)==begin link(tail):=#; tail:=link(tail);*/
+
+//eq_level_field(#)==#.hh.b1
+quarterword& eq_level(halfword);
+
+//eq_type_field(#)==#.hh.b0
+//eq_type(#)==eq_type_field(eqtb[#]) //command code for equivalent
+quarterword& eq_type(halfword);
+
+//equiv_field(#)==#.hh.rh
+//equiv(#)==equiv_field(eqtb[#]) //equivalent value
+halfword& equiv(halfword);
+
+/*level_zero=min_quarterword //level for undefined quantities
 level_one=level_zero+1 //outermost level for defined quantities*/
 constexpr int active_base = 1; //beginning of region 1, for active character equivalents
 constexpr int single_base = 257; //active_base+256 //equivalents of one-character control sequences
@@ -448,10 +454,17 @@ constexpr int glue_pars = 18; //total number of glue parameters
 constexpr int skip_base = 2900; //glue_base+glue_pars //table of 256 ``skip'' registers
 constexpr int mu_skip_base = 3156; //skip_base+256 //table of 256 ``muskip'' registers
 constexpr int local_base = 3412; //mu_skip_base+256 //beginning of region 4
-/*skip(#)==equiv(skip_base+#) //|mem| location of glue specification
-mu_skip(#)==equiv(mu_skip_base+#) //|mem| location of math glue spec
-glue_par(#)==equiv(glue_base+#) //|mem| location of glue specification
-line_skip==glue_par(line_skip_code)
+
+//skip(#)==equiv(skip_base+#) //|mem| location of glue specification
+halfword& skip(halfword);
+
+//mu_skip(#)==equiv(mu_skip_base+#) //|mem| location of math glue spec
+halfword& mu_skip(halfword);
+
+//glue_par(#)==equiv(glue_base+#) //|mem| location of glue specification
+halfword& glue_par(halfword);
+
+/*line_skip==glue_par(line_skip_code)
 baseline_skip==glue_par(baseline_skip_code)
 par_skip==glue_par(par_skip_code)
 above_display_skip==glue_par(above_display_skip_code)
@@ -499,10 +512,16 @@ every_vbox==equiv(every_vbox_loc)
 every_job==equiv(every_job_loc)
 every_cr==equiv(every_cr_loc)
 err_help==equiv(err_help_loc)
-toks(#)==equiv(toks_base+#)
-box(#)==equiv(box_base+#)
-cur_font==equiv(cur_font_loc)
-fam_fnt(#)==equiv(math_font_base+#)*/
+toks(#)==equiv(toks_base+#)*/
+
+//box(#)==equiv(box_base+#)
+halfword& box(halfword);
+
+//cur_font==equiv(cur_font_loc)
+halfword& cur_font(void);
+
+//fam_fnt(#)==equiv(math_font_base+#)
+halfword& fam_fnt(halfword);
 
 //cat_code(#)==equiv(cat_code_base+#)
 int cat_code(int);
@@ -683,11 +702,18 @@ emergency_stretch==dimen_par(emergency_stretch_code)
 next(#) == hash[#].lh //link for coalesced lists
 text(#) == hash[#].rh //string number for control sequence name
 hash_is_full == (hash_used=hash_base) //test if all positions are occupied
-font_id_text(#) == text(font_id_base+#) //a frozen font identifier's name
-save_type(#)==save_stack[#].hh.b0 //classifies a |save_stack| entry
-save_level(#)==save_stack[#].hh.b1
-save_index(#)==save_stack[#].hh.rh
-restore_old_value=0 //|save_type| when a value should be restored later
+font_id_text(#) == text(font_id_base+#) //a frozen font identifier's name*/
+
+//save_type(#)==save_stack[#].hh.b0 //classifies a |save_stack| entry
+quarterword& save_type(halfword p);
+
+//save_level(#)==save_stack[#].hh.b1
+quarterword& save_level(halfword);
+
+//save_index(#)==save_stack[#].hh.rh
+halfword& save_index(halfword);
+
+/*restore_old_value=0 //|save_type| when a value should be restored later
 restore_zero=1 //|save_type| when an undefined entry should be restored
 insert_token=2 //|save_type| when a token is being saved for later use
 level_boundary=3 //|save_type| corresponding to beginning of group

@@ -10,6 +10,6 @@ void alterboxdimen(void)
 	auto b = curval;
 	scanoptionalequals();
 	scandimen(false, false, false);
-	if (eqtb[3678+b].hh.rh)
-		mem[eqtb[3678+b].hh.rh+c].int_ = curval;
+	if (box(b))
+		mem[box(b)+c].int_ = curval;
 }

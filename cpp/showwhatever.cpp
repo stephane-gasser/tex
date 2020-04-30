@@ -39,10 +39,10 @@ void showwhatever(void)
 			printnl(1253); //> \box
 			printint(curval);
 			printchar('='); //
-			if (eqtb[3678+curval].hh.rh == 0)
+			if (box(curval) == 0)
 				print(410); //void
 			else
-				showbox(eqtb[3678+curval].hh.rh);
+				showbox(box(curval));
 			enddiagnostic(true);
 			if (interaction == 3)
 				printnl(262);//! 

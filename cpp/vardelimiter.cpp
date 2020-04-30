@@ -22,7 +22,7 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 			do
 			{
 				z -= 16;
-				g = eqtb[3935+z].hh.rh;
+				g = fam_fnt(z);
 				if (g)
 				{
 					auto y = x;
@@ -131,6 +131,6 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 		b = newnullbox();
 		mem[b+1].int_ = eqtb[5841].int_;
 	}
-	mem[b+4].int_ = half(mem[b+3].int_-mem[b+2].int_)-fontinfo[22+parambase[eqtb[3937+s].hh.rh]].int_;
+	mem[b+4].int_ = half(mem[b+3].int_-mem[b+2].int_)-fontinfo[22+parambase[fam_fnt(2+s)]].int_;
 	return b;
 }

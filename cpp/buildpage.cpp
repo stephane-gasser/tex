@@ -124,12 +124,12 @@ void buildpage(void)
 					subtype(r) = n;
 					type(r) = 0;
 					ensurevbox(n);
-					if (eqtb[3678+n].hh.rh == 0)
+					if (box(n) == 0)
 						mem[r+3].int_ = 0;
 					else
-						mem[r+3].int_ = mem[eqtb[3678+n].hh.rh+3].int_+mem[eqtb[3678+n].hh.rh+2].int_;
+						mem[r+3].int_ = mem[box(n)+3].int_+mem[box(n)+2].int_;
 					info(r+2) = 0;
-					q = eqtb[2900+n].hh.rh;
+					q = skip(2900);
 					if (eqtb[5318+n].int_ == 1000)
 						h = mem[r+3].int_;
 					else

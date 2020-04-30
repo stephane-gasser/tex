@@ -9,9 +9,9 @@ void newsavelevel(groupcode c)
 		if (maxsavestack > savesize - 6)
 			overflow(541, savesize); //save size
 	}
-	savestack[saveptr].hh.b0 = 3;
-	savestack[saveptr].hh.b1 = curgroup;
-	savestack[saveptr].hh.rh = curboundary;
+	save_type(saveptr) = 3;
+	save_level(saveptr) = curgroup;
+	save_index(saveptr) = curboundary;
 	if (curlevel == 255)
 		overflow(542, 255); //grouping levels
 	curboundary = saveptr;

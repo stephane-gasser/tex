@@ -5,7 +5,7 @@
 
 void ensurevbox(eightbits n)
 {
-	auto p = eqtb[3678+n].hh.rh;
+	auto p = box(n);
 	if (p && type(p) == hlist_node)
 	{
 		if (interaction == 3)

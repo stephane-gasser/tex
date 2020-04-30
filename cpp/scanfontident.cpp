@@ -12,7 +12,7 @@ void scanfontident(void)
 	while (curcmd == 10);
 	internalfontnumber f;
 	if (curcmd == 88)
-		f = eqtb[3934].hh.rh;
+		f = cur_font();
 	else 
 		if (curcmd == 87)
 			f = curchr;

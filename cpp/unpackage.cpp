@@ -10,7 +10,7 @@ void unpackage(void)
 {
 	auto c = curchr;
 	scaneightbitint();
-	halfword p = eqtb[3678+curval].hh.rh;
+	halfword p = box(curval);
 	if (p == 0)
 		return;
 	if (abs(curlist.modefield) == 203 || (abs(curlist.modefield) == 1 && type(p) != vlist_node) || (abs(curlist.modefield) == 102 && type(p) != hlist_node))

@@ -4,7 +4,7 @@
 void primitive(strnumber s, quarterword c, halfword o)
 {
 	if (s < 256)
-		curval = s + 257;
+		curval = s+257;
 	else
 	{
 		int k = strstart[s];
@@ -16,7 +16,7 @@ void primitive(strnumber s, quarterword c, halfword o)
 		poolptr = strstart[strptr];
 		hash[curval].rh = s;
 	}
-	eqtb[curval].hh.b1 = 1;
-	eqtb[curval].hh.b0 = c;
-	eqtb[curval].hh.rh = o;
+	eq_level(curval) = 1;
+	eq_type(curval) = c;
+	equiv(curval) = o;
 }

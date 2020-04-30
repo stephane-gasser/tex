@@ -11,7 +11,7 @@
 
 halfword vsplit(eightbits n, scaled h)
 {
-	auto v = eqtb[3678+n].hh.rh;
+	auto v = box(n);
 	if (curmark[3])
 	{
 		deletetokenref(curmark[3]);
@@ -66,8 +66,8 @@ halfword vsplit(eightbits n, scaled h)
 	p = link(v+5);
 	freenode(v, 7);
 	if (q == 0)
-		eqtb[3678+n].hh.rh = 0;
+		box(n) = 0;
 	else
-		eqtb[3678+n].hh.rh = vpackage(q, 0, 1, 1073741823);
+		box(n) = vpackage(q, 0, 1, 1073741823);
 	return vpackage(p, h, 0, eqtb[5836].int_);
 }

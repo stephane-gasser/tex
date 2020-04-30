@@ -10,7 +10,7 @@
 void fetch(halfword a)
 {
 	curc = subtype(a);
-	curf = eqtb[3935+type(a)+cursize].hh.rh;
+	curf = fam_fnt(type(a)+cursize);
 	if (curf == 0)
 	{
 		if (interaction == 3)

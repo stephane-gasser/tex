@@ -30,7 +30,7 @@ scaled makeop(halfword q)
 		auto x = cleanbox(q+1, curstyle);
 		if (link(q+3) && subtype(q) != 1)
 		mem[x+1].int_ -= delta;
-		mem[x+4].int_ = half(mem[x+3].int_-mem[x+2].int_)-fontinfo[22+parambase[eqtb[3937+cursize].hh.rh]].int_;
+		mem[x+4].int_ = half(mem[x+3].int_-mem[x+2].int_)-fontinfo[22+parambase[fam_fnt(2+cursize)]].int_;
 		link(q+1) = 2;
 		info(q+1) = x;
 	}
@@ -62,30 +62,30 @@ scaled makeop(halfword q)
 		}
 		else
 		{
-			scaled shiftup = fontinfo[11+parambase[eqtb[3938+cursize].hh.rh]].int_-mem[x+2].int_;
-			if (shiftup < fontinfo[9+parambase[eqtb[3938+cursize].hh.rh]].int_)
-				shiftup = fontinfo[9+parambase[eqtb[3938+cursize].hh.rh]].int_;
+			scaled shiftup = fontinfo[11+parambase[fam_fnt(3+cursize)]].int_-mem[x+2].int_;
+			if (shiftup < fontinfo[9+parambase[fam_fnt(3+cursize)]].int_)
+				shiftup = fontinfo[9+parambase[fam_fnt(3+cursize)]].int_;
 			auto p = newkern(shiftup);
 			link(p) = y;
 			link(x) = p;
-			p = newkern(fontinfo[13+parambase[eqtb[3938+cursize].hh.rh]].int_);
+			p = newkern(fontinfo[13+parambase[fam_fnt(3+cursize)]].int_);
 			link(p) = x;
 			link(v+5) = p;
-			mem[v+3].int_ = mem[v+3].int_+fontinfo[13+parambase[eqtb[3938+cursize].hh.rh]].int_+mem[x+3].int_+mem[x+2].int_+shiftup;
+			mem[v+3].int_ = mem[v+3].int_+fontinfo[13+parambase[fam_fnt(3+cursize)]].int_+mem[x+3].int_+mem[x+2].int_+shiftup;
 		}
 		if (link(q+3) == 0)
 			freenode(z, 7);
 		else
 		{
-			scaled shiftdown = fontinfo[12+parambase[eqtb[3938+cursize].hh.rh]].int_-mem[z+3].int_;
-			if (shiftdown < fontinfo[10+parambase[eqtb[3938+cursize].hh.rh]].int_)
-				shiftdown = fontinfo[10+parambase[eqtb[3938+cursize].hh.rh]].int_;
+			scaled shiftdown = fontinfo[12+parambase[fam_fnt(3+cursize)]].int_-mem[z+3].int_;
+			if (shiftdown < fontinfo[10+parambase[fam_fnt(3+cursize)]].int_)
+				shiftdown = fontinfo[10+parambase[fam_fnt(3+cursize)]].int_;
 			auto p = newkern(shiftdown);
 			link(y) = p;
 			link(p) = z;
-			p = newkern(fontinfo[13+parambase[eqtb[3938+cursize].hh.rh]].int_);
+			p = newkern(fontinfo[13+parambase[fam_fnt(3+cursize)]].int_);
 			link(z) = p;
-			mem[v+2].int_ = mem[v+2].int_+fontinfo[13+parambase[eqtb[3938+cursize].hh.rh]].int_+mem[z+3].int_+mem[z+2].int_+shiftdown;
+			mem[v+2].int_ = mem[v+2].int_+fontinfo[13+parambase[fam_fnt(3+cursize)]].int_+mem[z+3].int_+mem[z+2].int_+shiftdown;
 		}
 		mem[q+1].int_ = v;
 	}

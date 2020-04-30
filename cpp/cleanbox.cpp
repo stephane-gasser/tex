@@ -38,7 +38,7 @@ halfword cleanbox(halfword p, smallnumber s)
 			cursize = 0;
 		else
 			cursize = 16*((curstyle-2)/2);
-		curmu = xovern(fontinfo[6+parambase[eqtb[3937+cursize].hh.rh]].int_, 18);
+		curmu = xovern(fontinfo[6+parambase[fam_fnt(2+cursize)]].int_, 18);
 		break;
 	} while (false);
 	halfword x;

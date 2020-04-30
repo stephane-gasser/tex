@@ -168,7 +168,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 		{
 			if (scankeyword(708)) //em
 			{
-				auto v = fontinfo[6+parambase[eqtb[3934].hh.rh]].int_;
+				auto v = fontinfo[6+parambase[cur_font()]].int_;
 				getxtoken();
 				if (curcmd != 10)
 					backinput();
@@ -176,7 +176,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 			else 
 				if (scankeyword(709)) //ex
 				{
-					auto v = fontinfo[5+parambase[eqtb[3934].hh.rh]].int_;
+					auto v = fontinfo[5+parambase[cur_font()]].int_;
 					getxtoken();
 					if (curcmd != 10)
 						backinput();

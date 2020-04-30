@@ -11,8 +11,8 @@ void boxerror(eightbits n)
 	error();
 	begindiagnostic();
 	printnl(835); //The following box has been deleted:
-	showbox(eqtb[3678+n].hh.rh);
+	showbox(box(n));
 	enddiagnostic(true);
-	flushnodelist(eqtb[3678+n].hh.rh);
-	eqtb[3678+n].hh.rh = 0;
+	flushnodelist(box(n));
+	box(n) = 0;
 }

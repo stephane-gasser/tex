@@ -26,7 +26,7 @@ void initmath(void)
 		else
 		{
 			linebreak(eqtb[5270].int_);
-			v = mem[justbox+4].int_+2*fontinfo[6+parambase[eqtb[3934].hh.rh]].int_;
+			v = mem[justbox+4].int_+2*fontinfo[6+parambase[cur_font()]].int_;
 			w = -1073741823;
 			p = link(justbox+5);
 			while (p)

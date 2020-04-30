@@ -27,7 +27,7 @@ void aftermath(void)
 	smallnumber g1, g2;
 	halfword r, t;
 	bool danger = false;
-	if (fontparams[eqtb[3937].hh.rh] < 22 || fontparams[eqtb[3953].hh.rh] < 22 || fontparams[eqtb[3969].hh.rh] < 22)
+	if (fontparams[fam_fnt(2)] < 22 || fontparams[eqtb[3953].hh.rh] < 22 || fontparams[eqtb[3969].hh.rh] < 22)
 	{
 		if (interaction == 3)
 			printnl(262); //! 
@@ -40,7 +40,7 @@ void aftermath(void)
 		flushmath();
 		danger = true;
 	}
-	else if (fontparams[eqtb[3938].hh.rh] < 13 || fontparams[eqtb[3954].hh.rh] < 13 || fontparams[eqtb[3970].hh.rh] < 13)
+	else if (fontparams[fam_fnt(3)] < 13 || fontparams[eqtb[3954].hh.rh] < 13 || fontparams[eqtb[3970].hh.rh] < 13)
 	{
 		if (interaction == 3)
 			printnl(262); //! 
@@ -77,7 +77,7 @@ void aftermath(void)
 		if (savestack[saveptr].int_ == 1)
 			l = true;
 		danger = false;
-		if (fontparams[eqtb[3937].hh.rh] < 22 || fontparams[eqtb[3953].hh.rh] < 22 || fontparams[eqtb[3969].hh.rh] < 22)
+		if (fontparams[fam_fnt(2)] < 22 || fontparams[eqtb[3953].hh.rh] < 22 || fontparams[eqtb[3969].hh.rh] < 22)
 		{
 			if (interaction == 3)
 				printnl(262); //! 
@@ -91,7 +91,7 @@ void aftermath(void)
 			danger = true;
 		}
 		else 
-			if (fontparams[eqtb[3938].hh.rh] < 13 || fontparams[eqtb[3954].hh.rh] < 13 || fontparams[eqtb[3970].hh.rh] < 13)
+			if (fontparams[fam_fnt(3)] < 13 || fontparams[eqtb[3954].hh.rh] < 13 || fontparams[eqtb[3970].hh.rh] < 13)
 			{
 				if (interaction == 3)
 					printnl(262); //! 
@@ -162,7 +162,7 @@ void aftermath(void)
 		else
 		{
 			e = mem[a+1].int_;
-			q = e+fontinfo[6+parambase[eqtb[3937].hh.rh]].int_;
+			q = e+fontinfo[6+parambase[fam_fnt(2)]].int_;
 		}
 		if (w+q > z)
 		{

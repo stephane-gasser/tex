@@ -69,9 +69,9 @@ void fireup(halfword c)
 			{
 				n = subtype(r);
 				ensurevbox(n);
-				if (eqtb[3678+n].hh.rh == 0)
-					eqtb[3678+n].hh.rh = newnullbox();
-				p = eqtb[3678+n].hh.rh+5;
+				if (box(n) == 0)
+					box(n) = newnullbox();
+				p = box(n)+5;
 				while (link(p))
 					p = link(p);
 				link(r+2) = p;

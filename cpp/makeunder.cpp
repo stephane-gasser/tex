@@ -7,11 +7,11 @@
 void makeunder(halfword q)
 {
 	auto x = cleanbox(q+1, curstyle);
-	auto p = newkern(3 * fontinfo[8+parambase[eqtb[3938+cursize].hh.rh]].int_);
+	auto p = newkern(3 * fontinfo[8+parambase[fam_fnt(3+cursize)]].int_);
 	link(x) = p;
-	link(p) = fractionrule(fontinfo[8+parambase[eqtb[3938+cursize].hh.rh]].int_);
+	link(p) = fractionrule(fontinfo[8+parambase[fam_fnt(3+cursize)]].int_);
 	auto y = vpackage(x, 0, 1, 1073741823);
-	scaled delta = mem[y+3].int_+mem[y+2].int_+fontinfo[8+parambase[eqtb[3938+cursize].hh.rh]].int_;
+	scaled delta = mem[y+3].int_+mem[y+2].int_+fontinfo[8+parambase[fam_fnt(3+cursize)]].int_;
 	mem[y+3].int_ = mem[x+3].int_;
 	mem[y+2].int_ = delta-mem[y+3].int_;
 	info(q+1) = y;

@@ -4,352 +4,352 @@
 void initprim(void)
 {
 	nonewcontrolsequence = false;
-	primitive(376, 75, 2882);
-	primitive(377, 75, 2883);
-	primitive(378, 75, 2884);
-	primitive(379, 75, 2885);
-	primitive(380, 75, 2886);
-	primitive(381, 75, 2887);
-	primitive(382, 75, 2888);
-	primitive(383, 75, 2889);
-	primitive(384, 75, 2890);
-	primitive(385, 75, 2891);
-	primitive(386, 75, 2892);
-	primitive(387, 75, 2893);
-	primitive(388, 75, 2894);
-	primitive(389, 75, 2895);
-	primitive(390, 75, 2896);
-	primitive(391, 76, 2897);
-	primitive(392, 76, 2898);
-	primitive(393, 76, 2899);
-	primitive(398, 72, 3413);
-	primitive(399, 72, 3414);
-	primitive(400, 72, 3415);
-	primitive(401, 72, 3416);
-	primitive(402, 72, 3417);
-	primitive(403, 72, 3418);
-	primitive(404, 72, 3419);
-	primitive(405, 72, 3420);
-	primitive(406, 72, 3421);
-	primitive(420, 73, 5263);
-	primitive(421, 73, 5264);
-	primitive(422, 73, 5265);
-	primitive(423, 73, 5266);
-	primitive(424, 73, 5267);
-	primitive(425, 73, 5268);
-	primitive(426, 73, 5269);
-	primitive(427, 73, 5270);
-	primitive(428, 73, 5271);
-	primitive(429, 73, 5272);
-	primitive(430, 73, 5273);
-	primitive(431, 73, 5274);
-	primitive(432, 73, 5275);
-	primitive(433, 73, 5276);
-	primitive(434, 73, 5277);
-	primitive(435, 73, 5278);
-	primitive(436, 73, 5279);
-	primitive(437, 73, 5280);
-	primitive(438, 73, 5281);
-	primitive(439, 73, 5282);
-	primitive(440, 73, 5283);
-	primitive(441, 73, 5284);
-	primitive(442, 73, 5285);
-	primitive(443, 73, 5286);
-	primitive(444, 73, 5287);
-	primitive(445, 73, 5288);
-	primitive(446, 73, 5289);
-	primitive(447, 73, 5290);
-	primitive(448, 73, 5291);
-	primitive(449, 73, 5292);
-	primitive(450, 73, 5293);
-	primitive(451, 73, 5294);
-	primitive(452, 73, 5295);
-	primitive(453, 73, 5296);
-	primitive(454, 73, 5297);
-	primitive(455, 73, 5298);
-	primitive(456, 73, 5299);
-	primitive(457, 73, 5300);
-	primitive(458, 73, 5301);
-	primitive(459, 73, 5302);
-	primitive(460, 73, 5303);
-	primitive(461, 73, 5304);
-	primitive(462, 73, 5305);
-	primitive(463, 73, 5306);
-	primitive(464, 73, 5307);
-	primitive(465, 73, 5308);
-	primitive(466, 73, 5309);
-	primitive(467, 73, 5310);
-	primitive(468, 73, 5311);
-	primitive(469, 73, 5312);
-	primitive(470, 73, 5313);
-	primitive(471, 73, 5314);
-	primitive(472, 73, 5315);
-	primitive(473, 73, 5316);
-	primitive(474, 73, 5317);
-	primitive(478, 74, 5830);
-	primitive(479, 74, 5831);
-	primitive(480, 74, 5832);
-	primitive(481, 74, 5833);
-	primitive(482, 74, 5834);
-	primitive(483, 74, 5835);
-	primitive(484, 74, 5836);
-	primitive(485, 74, 5837);
-	primitive(486, 74, 5838);
-	primitive(487, 74, 5839);
-	primitive(488, 74, 5840);
-	primitive(489, 74, 5841);
-	primitive(490, 74, 5842);
-	primitive(491, 74, 5843);
-	primitive(492, 74, 5844);
-	primitive(493, 74, 5845);
-	primitive(494, 74, 5846);
-	primitive(495, 74, 5847);
-	primitive(496, 74, 5848);
-	primitive(497, 74, 5849);
-	primitive(498, 74, 5850);
-	primitive(32, 64, 0);
-	primitive(47, 44, 0);
-	primitive(508, 45, 0);
-	primitive(509, 90, 0);
-	primitive(510, 40, 0);
-	primitive(511, 41, 0);
-	primitive(512, 61, 0);
-	primitive(513, 16, 0);
-	primitive(504, 107, 0);
-	primitive(514, 15, 0);
-	primitive(515, 92, 0);
-	primitive(505, 67, 0);
-	primitive(516, 62, 0);
-	hash[2616].rh = 516;
+	primitive(376, 75, 2882); //lineskip
+	primitive(377, 75, 2883); //baselineskip
+	primitive(378, 75, 2884); //parskip
+	primitive(379, 75, 2885); //abovedisplayskip
+	primitive(380, 75, 2886); //belowdisplayskip
+	primitive(381, 75, 2887); //abovedisplayshortskip
+	primitive(382, 75, 2888); //belowdisplayshortskip
+	primitive(383, 75, 2889); //leftskip
+	primitive(384, 75, 2890); //rightskip
+	primitive(385, 75, 2891); //topskip
+	primitive(386, 75, 2892); //splittopskip
+	primitive(387, 75, 2893); //tabskip
+	primitive(388, 75, 2894); //spaceskip
+	primitive(389, 75, 2895); //xspaceskip
+	primitive(390, 75, 2896); //parfillskip
+	primitive(391, 76, 2897); //thinmuskip
+	primitive(392, 76, 2898); //medmuskip
+	primitive(393, 76, 2899); //thickmuskip
+	primitive(398, 72, 3413); //output
+	primitive(399, 72, 3414); //everypar
+	primitive(400, 72, 3415); //everymath
+	primitive(401, 72, 3416); //everydisplay
+	primitive(402, 72, 3417); //everyhbox
+	primitive(403, 72, 3418); //everyvbox
+	primitive(404, 72, 3419); //everyjob
+	primitive(405, 72, 3420); //everycr
+	primitive(406, 72, 3421); //errhelp
+	primitive(420, 73, 5263); //pretolerance
+	primitive(421, 73, 5264); //tolerance
+	primitive(422, 73, 5265); //linepenalty
+	primitive(423, 73, 5266); //hyphenpenalty
+	primitive(424, 73, 5267); //exhyphenpenalty
+	primitive(425, 73, 5268); //clubpenalty
+	primitive(426, 73, 5269); //widowpenalty
+	primitive(427, 73, 5270); //displaywidowpenalty
+	primitive(428, 73, 5271); //brokenpenalty
+	primitive(429, 73, 5272); //binoppenalty
+	primitive(430, 73, 5273); //relpenalty
+	primitive(431, 73, 5274); //predisplaypenalty
+	primitive(432, 73, 5275); //postdisplaypenalty
+	primitive(433, 73, 5276); //interlinepenalty
+	primitive(434, 73, 5277); //doublehyphendemerits
+	primitive(435, 73, 5278); //finalhyphendemerits
+	primitive(436, 73, 5279); //adjdemerits
+	primitive(437, 73, 5280); //mag
+	primitive(438, 73, 5281); //delimiterfactor
+	primitive(439, 73, 5282); //looseness
+	primitive(440, 73, 5283); //time
+	primitive(441, 73, 5284); //day
+	primitive(442, 73, 5285); //month
+	primitive(443, 73, 5286); //year
+	primitive(444, 73, 5287); //showboxbreadth
+	primitive(445, 73, 5288); //showboxdepth
+	primitive(446, 73, 5289); //hbadness
+	primitive(447, 73, 5290); //vbadness
+	primitive(448, 73, 5291); //pausing
+	primitive(449, 73, 5292); //tracingonline
+	primitive(450, 73, 5293); //tracingmacros
+	primitive(451, 73, 5294); //tracingstats
+	primitive(452, 73, 5295); //tracingparagraphs
+	primitive(453, 73, 5296); //tracingpages
+	primitive(454, 73, 5297); //tracingoutput
+	primitive(455, 73, 5298); //tracinglostchars
+	primitive(456, 73, 5299); //tracingcommands
+	primitive(457, 73, 5300); //tracingrestores
+	primitive(458, 73, 5301); //uchyph
+	primitive(459, 73, 5302); //outputpenalty
+	primitive(460, 73, 5303); //maxdeadcycles
+	primitive(461, 73, 5304); //hangafter
+	primitive(462, 73, 5305); //floatingpenalty
+	primitive(463, 73, 5306); //globaldefs
+	primitive(464, 73, 5307); //fam
+	primitive(465, 73, 5308); //escapechar
+	primitive(466, 73, 5309); //defaulthyphenchar
+	primitive(467, 73, 5310); //defaultskewchar
+	primitive(468, 73, 5311); //endlinechar
+	primitive(469, 73, 5312); //newlinechar
+	primitive(470, 73, 5313); //language
+	primitive(471, 73, 5314); //lefthyphenmin
+	primitive(472, 73, 5315); //righthyphenmin
+	primitive(473, 73, 5316); //holdinginserts
+	primitive(474, 73, 5317); //errorcontextlines
+	primitive(478, 74, 5830); //parindent
+	primitive(479, 74, 5831); //mathsurround
+	primitive(480, 74, 5832); //lineskiplimit
+	primitive(481, 74, 5833); //hsize
+	primitive(482, 74, 5834); //vsize
+	primitive(483, 74, 5835); //maxdepth
+	primitive(484, 74, 5836); //splitmaxdepth
+	primitive(485, 74, 5837); //boxmaxdepth
+	primitive(486, 74, 5838); //hfuzz
+	primitive(487, 74, 5839); //vfuzz
+	primitive(488, 74, 5840); //delimitershortfall
+	primitive(489, 74, 5841); //nulldelimiterspace
+	primitive(490, 74, 5842); //scriptspace
+	primitive(491, 74, 5843); //predisplaysize
+	primitive(492, 74, 5844); //displaywidth
+	primitive(493, 74, 5845); //displayindent
+	primitive(494, 74, 5846); //overfullrule
+	primitive(495, 74, 5847); //hangindent
+	primitive(496, 74, 5848); //hoffset
+	primitive(497, 74, 5849); //voffset
+	primitive(498, 74, 5850); //emergencystretch
+	primitive(' ', 64, 0);
+	primitive('/', 44, 0);
+	primitive(508, 45, 0); //accent
+	primitive(509, 90, 0); //advance
+	primitive(510, 40, 0); //afterassignment
+	primitive(511, 41, 0); //aftergroup
+	primitive(512, 61, 0); //begingroup
+	primitive(513, 16, 0); //char
+	primitive(504, 107, 0); //csname
+	primitive(514, 15, 0); //delimiter
+	primitive(515, 92, 0); //divide
+	primitive(505, 67, 0); //endcsname
+	primitive(516, 62, 0); //endgroup
+	hash[2616].rh = 516; //endgroup
 	eqtb[2616] = eqtb[curval];
-	primitive(517, 102, 0);
-	primitive(518, 88, 0);
-	primitive(519, 77, 0);
-	primitive(520, 32, 0);
-	primitive(521, 36, 0);
-	primitive(522, 39, 0);
-	primitive(330, 37, 0);
-	primitive(351, 18, 0);
-	primitive(523, 46, 0);
-	primitive(524, 17, 0);
-	primitive(525, 54, 0);
-	primitive(526, 91, 0);
-	primitive(527, 34, 0);
-	primitive(528, 65, 0);
-	primitive(529, 103, 0);
-	primitive(335, 55, 0);
-	primitive(530, 63, 0);
-	primitive(408, 84, 0);
-	primitive(531, 42, 0);
-	primitive(532, 80, 0);
-	primitive(533, 66, 0);
-	primitive(534, 96, 0);
-	primitive(535, 0, 256);
-	hash[2621].rh = 535;
+	primitive(517, 102, 0); //expandafter
+	primitive(518, 88, 0); //font
+	primitive(519, 77, 0); //fontdimen
+	primitive(520, 32, 0); //halign
+	primitive(521, 36, 0); //hrule
+	primitive(522, 39, 0); //ignorespaces
+	primitive(330, 37, 0); //insert
+	primitive(351, 18, 0); //mark
+	primitive(523, 46, 0); //mathaccent
+	primitive(524, 17, 0); //mathchar
+	primitive(525, 54, 0); //mathchoice
+	primitive(526, 91, 0); //multiply
+	primitive(527, 34, 0); //noalign
+	primitive(528, 65, 0); //noboundary
+	primitive(529, 103, 0); //noexpand
+	primitive(335, 55, 0); //nonscript
+	primitive(530, 63, 0); //omit
+	primitive(408, 84, 0); //parshape
+	primitive(531, 42, 0); //penalty
+	primitive(532, 80, 0); //prevgraf
+	primitive(533, 66, 0); //radical
+	primitive(534, 96, 0); //read
+	primitive(535, 0, 256); //relax
+	hash[2621].rh = 535; //relax
 	eqtb[2621] = eqtb[curval];
-	primitive(536, 98, 0);
-	primitive(537, 109, 0);
-	primitive(407, 71, 0);
-	primitive(352, 38, 0);
-	primitive(538, 33, 0);
-	primitive(539, 56, 0);
-	primitive(540, 35, 0);
-	primitive(597, 13, 256);
+	primitive(536, 98, 0); //setbox
+	primitive(537, 109, 0); //the
+	primitive(407, 71, 0); //toks
+	primitive(352, 38, 0); //vadjust
+	primitive(538, 33, 0); //valign
+	primitive(539, 56, 0); //vcenter
+	primitive(540, 35, 0); //vrule
+	primitive(597, 13, 256); //par
 	parloc = curval;
 	partoken = 4095+parloc;
-	primitive(629, 104, 0);
-	primitive(630, 104, 1);
-	primitive(631, 110, 0);
-	primitive(632, 110, 1);
-	primitive(633, 110, 2);
-	primitive(634, 110, 3);
-	primitive(635, 110, 4);
-	primitive(476, 89, 0);
-	primitive(500, 89, 1);
-	primitive(395, 89, 2);
-	primitive(396, 89, 3);
-	primitive(668, 79, 102);
-	primitive(669, 79, 1);
-	primitive(670, 82, 0);
-	primitive(671, 82, 1);
-	primitive(672, 83, 1);
-	primitive(673, 83, 3);
-	primitive(674, 83, 2);
-	primitive(675, 70, 0);
-	primitive(676, 70, 1);
-	primitive(677, 70, 2);
-	primitive(678, 70, 3);
-	primitive(679, 70, 4);
-	primitive(735, 108, 0);
-	primitive(736, 108, 1);
-	primitive(737, 108, 2);
-	primitive(738, 108, 3);
-	primitive(739, 108, 4);
-	primitive(740, 108, 5);
-	primitive(756, 105, 0);
-	primitive(757, 105, 1);
-	primitive(758, 105, 2);
-	primitive(759, 105, 3);
-	primitive(760, 105, 4);
-	primitive(761, 105, 5);
-	primitive(762, 105, 6);
-	primitive(763, 105, 7);
-	primitive(764, 105, 8);
-	primitive(765, 105, 9);
-	primitive(766, 105, 10);
-	primitive(767, 105, 11);
-	primitive(768, 105, 12);
-	primitive(769, 105, 13);
-	primitive(770, 105, 14);
-	primitive(771, 105, 15);
-	primitive(772, 105, 16);
-	primitive(773, 106, 2);
-	hash[2618].rh = 773;
+	primitive(629, 104, 0); //input
+	primitive(630, 104, 1); //endinput
+	primitive(631, 110, 0); //topmark
+	primitive(632, 110, 1); //firstmark
+	primitive(633, 110, 2); //botmark
+	primitive(634, 110, 3); //splitfirstmark
+	primitive(635, 110, 4); //splitbotmark
+	primitive(476, 89, 0); //count
+	primitive(500, 89, 1); //dimen
+	primitive(395, 89, 2); //skip
+	primitive(396, 89, 3); //muskip
+	primitive(668, 79, 102); //spacefactor
+	primitive(669, 79, 1); //prevdepth
+	primitive(670, 82, 0); //deadcycles
+	primitive(671, 82, 1); //insertpenalties
+	primitive(672, 83, 1); //wd
+	primitive(673, 83, 3); //ht
+	primitive(674, 83, 2); //dp
+	primitive(675, 70, 0); //lastpenalty
+	primitive(676, 70, 1); //lastkern
+	primitive(677, 70, 2); //lastskip
+	primitive(678, 70, 3); //inputlineno
+	primitive(679, 70, 4); //badness
+	primitive(735, 108, 0); //number
+	primitive(736, 108, 1); //romannumeral
+	primitive(737, 108, 2); //string
+	primitive(738, 108, 3); //meaning
+	primitive(739, 108, 4); //fontname
+	primitive(740, 108, 5); //jobname
+	primitive(756, 105, 0); //if
+	primitive(757, 105, 1); //ifcat
+	primitive(758, 105, 2); //ifnum
+	primitive(759, 105, 3); //ifdim
+	primitive(760, 105, 4); //ifodd
+	primitive(761, 105, 5); //ifvmode
+	primitive(762, 105, 6); //ifhmode
+	primitive(763, 105, 7); //ifmmode
+	primitive(764, 105, 8); //ifinner
+	primitive(765, 105, 9); //ifvoid
+	primitive(766, 105, 10); //ifhbox
+	primitive(767, 105, 11); //ifvbox
+	primitive(768, 105, 12); //ifx
+	primitive(769, 105, 13); //ifeof
+	primitive(770, 105, 14); //iftrue
+	primitive(771, 105, 15); //iffalse
+	primitive(772, 105, 16); //ifcase
+	primitive(773, 106, 2); //fi
+	hash[2618].rh = 773; //fi
 	eqtb[2618] = eqtb[curval];
-	primitive(774, 106, 4);
-	primitive(775, 106, 3);
-	primitive(800, 87, 0);
-	hash[2624].rh = 800;
-	eqtb[2624] = eqtb[curval];
-	primitive(897, 4, 256);
-	primitive(898, 5, 257);
-	hash[2615].rh = 898;
+	primitive(774, 106, 4); //or
+	primitive(775, 106, 3); //else
+	primitive(800, 87, 0); //nullfont
+	hash[2624].rh = 800; //nullfont
+	eqtb[2624] = eqtb[curval]; 
+	primitive(897, 4, 256); //span
+	primitive(898, 5, 257); //cr
+	hash[2615].rh = 898; //cr
 	eqtb[2615] = eqtb[curval];
-	primitive(899, 5, 258);
-	hash[2619].rh = 900;
-	hash[2620].rh = 900;
-	eqtb[2620].hh.b0 = 9;
-	eqtb[2620].hh.rh = 29989;
-	eqtb[2620].hh.b1 = 1;
+	primitive(899, 5, 258); //crcr
+	hash[2619].rh = 900; //endtemplate
+	hash[2620].rh = 900; //endtemplate
+	eq_type(2620) = 9;
+	equiv(2620) = 29989;
+	eq_level(2620) = 1;
 	eqtb[2619] = eqtb[2620];
-	eqtb[2619].hh.b0 = 115;
-	primitive(969, 81, 0);
-	primitive(970, 81, 1);
-	primitive(971, 81, 2);
-	primitive(972, 81, 3);
-	primitive(973, 81, 4);
-	primitive(974, 81, 5);
-	primitive(975, 81, 6);
-	primitive(976, 81, 7);
-	primitive(1024, 14, 0);
-	primitive(1025, 14, 1);
-	primitive(1026, 26, 4);
-	primitive(1027, 26, 0);
-	primitive(1028, 26, 1);
-	primitive(1029, 26, 2);
-	primitive(1030, 26, 3);
-	primitive(1031, 27, 4);
-	primitive(1032, 27, 0);
-	primitive(1033, 27, 1);
-	primitive(1034, 27, 2);
-	primitive(1035, 27, 3);
-	primitive(336, 28, 5);
-	primitive(340, 29, 1);
-	primitive(342, 30, 99);
-	primitive(1053, 21, 1);
-	primitive(1054, 21, 0);
-	primitive(1055, 22, 1);
-	primitive(1056, 22, 0);
-	primitive(409, 20, 0);
-	primitive(1057, 20, 1);
-	primitive(1058, 20, 2);
-	primitive(964, 20, 3);
-	primitive(1059, 20, 4);
-	primitive(966, 20, 5);
-	primitive(1060, 20, 106);
-	primitive(1061, 31, 99);
-	primitive(1062, 31, 100);
-	primitive(1063, 31, 101);
-	primitive(1064, 31, 102);
-	primitive(1079, 43, 1);
-	primitive(1080, 43, 0);
-	primitive(1089, 25, 12);
-	primitive(1090, 25, 11);
-	primitive(1091, 25, 10);
-	primitive(1092, 23, 0);
-	primitive(1093, 23, 1);
-	primitive(1094, 24, 0);
-	primitive(1095, 24, 1);
-	primitive(45, 47, 1);
-	primitive(349, 47, 0);
-	primitive(1126, 48, 0);
-	primitive(1127, 48, 1);
-	primitive(865, 50, 16);
-	primitive(866, 50, 17);
-	primitive(867, 50, 18);
-	primitive(868, 50, 19);
-	primitive(869, 50, 20);
-	primitive(870, 50, 21);
-	primitive(871, 50, 22);
-	primitive(872, 50, 23);
-	primitive(874, 50, 26);
-	primitive(873, 50, 27);
-	primitive(1128, 51, 0);
-	primitive(877, 51, 1);
-	primitive(878, 51, 2);
-	primitive(860, 53, 0);
-	primitive(861, 53, 2);
-	primitive(862, 53, 4);
-	primitive(863, 53, 6);
-	primitive(1146, 52, 0);
-	primitive(1147, 52, 1);
-	primitive(1148, 52, 2);
-	primitive(1149, 52, 3);
-	primitive(1150, 52, 4);
-	primitive(1151, 52, 5);
-	primitive(875, 49, 30);
-	primitive(876, 49, 31);
-	hash[2617].rh = 876;
+	eq_type(2619) = 115;
+	primitive(969, 81, 0); //pagegoal
+	primitive(970, 81, 1); //pagetotal
+	primitive(971, 81, 2); //pagestretch
+	primitive(972, 81, 3); //pagefilstretch
+	primitive(973, 81, 4); //pagefillstretch
+	primitive(974, 81, 5); //pagefilllstretch
+	primitive(975, 81, 6); //pageshrink
+	primitive(976, 81, 7); //pagedepth
+	primitive(1024, 14, 0); //end
+	primitive(1025, 14, 1); //dump
+	primitive(1026, 26, 4); //hskip
+	primitive(1027, 26, 0); //hfil
+	primitive(1028, 26, 1); //hfill
+	primitive(1029, 26, 2); //hss
+	primitive(1030, 26, 3); //hfilneg
+	primitive(1031, 27, 4); //vskip
+	primitive(1032, 27, 0); //vfil
+	primitive(1033, 27, 1); //vfill
+	primitive(1034, 27, 2); //vss
+	primitive(1035, 27, 3); //vfilneg
+	primitive(336, 28, 5); //mskip
+	primitive(340, 29, 1); //kern
+	primitive(342, 30, 99); //mkern
+	primitive(1053, 21, 1); //moveleft
+	primitive(1054, 21, 0); //moveright
+	primitive(1055, 22, 1); //raise
+	primitive(1056, 22, 0); //lower
+	primitive(409, 20, 0); //box
+	primitive(1057, 20, 1); //copy
+	primitive(1058, 20, 2); //lastbox
+	primitive(964, 20, 3); //vsplit
+	primitive(1059, 20, 4); //vtop
+	primitive(966, 20, 5); //vbox
+	primitive(1060, 20, 106); //hbox
+	primitive(1061, 31, 99); //shipout
+	primitive(1062, 31, 100); //leaders
+	primitive(1063, 31, 101); //cleaders
+	primitive(1064, 31, 102); //xleaders
+	primitive(1079, 43, 1); //indent
+	primitive(1080, 43, 0); //noindent
+	primitive(1089, 25, 12); //unpenalty
+	primitive(1090, 25, 11); //unkern
+	primitive(1091, 25, 10); //unskip
+	primitive(1092, 23, 0); //unhbox
+	primitive(1093, 23, 1); //unhcopy
+	primitive(1094, 24, 0); //unvbox
+	primitive(1095, 24, 1); //unvcopy
+	primitive('-', 47, 1);
+	primitive(349, 47, 0); //discretionary
+	primitive(1126, 48, 0); //eqno
+	primitive(1127, 48, 1); //leqno
+	primitive(865, 50, 16); //mathord
+	primitive(866, 50, 17); //mathop
+	primitive(867, 50, 18); //mathbin
+	primitive(868, 50, 19); //mathrel
+	primitive(869, 50, 20); //mathopen
+	primitive(870, 50, 21); //mathclose
+	primitive(871, 50, 22); //mathpunct
+	primitive(872, 50, 23); //mathinner
+	primitive(874, 50, 26); //underline
+	primitive(873, 50, 27); //overline
+	primitive(1128, 51, 0); //displaylimits
+	primitive(877, 51, 1); //limits
+	primitive(878, 51, 2); //nolimits
+	primitive(860, 53, 0); //displaystyle
+	primitive(861, 53, 2); //textstyle
+	primitive(862, 53, 4); //scriptstyle
+	primitive(863, 53, 6); //scriptscriptstyle
+	primitive(1146, 52, 0); //above
+	primitive(1147, 52, 1); //over
+	primitive(1148, 52, 2); //atop
+	primitive(1149, 52, 3); //abovewithdelims
+	primitive(1150, 52, 4); //overwithdelims
+	primitive(1151, 52, 5); //atopwithdelims
+	primitive(875, 49, 30); //left
+	primitive(876, 49, 31); //right
+	hash[2617].rh = 876; //right
 	eqtb[2617] = eqtb[curval];
-	primitive(1170, 93, 1);
-	primitive(1171, 93, 2);
-	primitive(1172, 93, 4);
-	primitive(1173, 97, 0);
-	primitive(1174, 97, 1);
-	primitive(1175, 97, 2);
-	primitive(1176, 97, 3);
-	primitive(1190, 94, 0);
-	primitive(1191, 94, 1);
-	primitive(1192, 95, 0);
-	primitive(1193, 95, 1);
-	primitive(1194, 95, 2);
-	primitive(1195, 95, 3);
-	primitive(1196, 95, 4);
-	primitive(1197, 95, 5);
-	primitive(1198, 95, 6);
-	primitive(415, 85, 3983);
-	primitive(419, 85, 5007);
-	primitive(416, 85, 4239);
-	primitive(417, 85, 4495);
-	primitive(418, 85, 4751);
-	primitive(477, 85, 5574);
-	primitive(412, 86, 3935);
-	primitive(413, 86, 3951);
-	primitive(414, 86, 3967);
-	primitive(940, 99, 0);
-	primitive(952, 99, 1);
-	primitive(1216, 78, 0);
-	primitive(1217, 78, 1);
-	primitive(274, 100, 0);
-	primitive(275, 100, 1);
-	primitive(276, 100, 2);
-	primitive(1226, 100, 3);
-	primitive(1227, 60, 1);
-	primitive(1228, 60, 0);
-	primitive(1229, 58, 0);
-	primitive(1230, 58, 1);
-	primitive(1236, 57, 4239);
-	primitive(1237, 57, 4495);
-	primitive(1238, 19, 0);
-	primitive(1239, 19, 1);
-	primitive(1240, 19, 2);
-	primitive(1241, 19, 3);
-	primitive(1284, 59, 0);
-	primitive(594, 59, 1);
-	writeloc = curval;
-	primitive(1285, 59, 2);
-	primitive(1286, 59, 3);
-	primitive(1287, 59, 4);
-	primitive(1288, 59, 5);
+	primitive(1170, 93, 1); //long
+	primitive(1171, 93, 2); //outer
+	primitive(1172, 93, 4); //global
+	primitive(1173, 97, 0); //def
+	primitive(1174, 97, 1); //gdef
+	primitive(1175, 97, 2); //edef
+	primitive(1176, 97, 3); //xdef
+	primitive(1190, 94, 0); //let
+	primitive(1191, 94, 1); //futurelet
+	primitive(1192, 95, 0); //chardef
+	primitive(1193, 95, 1); //mathchardef
+	primitive(1194, 95, 2); //countdef
+	primitive(1195, 95, 3); //dimendef
+	primitive(1196, 95, 4); //skipdef
+	primitive(1197, 95, 5); //muskipdef
+	primitive(1198, 95, 6); //toksdef
+	primitive(415, 85, 3983); //catcode
+	primitive(419, 85, 5007); //mathcode
+	primitive(416, 85, 4239); //lccode
+	primitive(417, 85, 4495); //uccode
+	primitive(418, 85, 4751); //sfcode
+	primitive(477, 85, 5574); //delcode
+	primitive(412, 86, 3935); //textfont
+	primitive(413, 86, 3951); //scriptfont
+	primitive(414, 86, 3967); //scriptscriptfont
+	primitive(940, 99, 0); //hyphenation
+	primitive(952, 99, 1); //patterns
+	primitive(1216, 78, 0); //hyphenchar
+	primitive(1217, 78, 1); //skewchar
+	primitive(274, 100, 0); //batchmode
+	primitive(275, 100, 1); //nonstopmode
+	primitive(276, 100, 2); //scrollmode
+	primitive(1226, 100, 3); //errorstopmode
+	primitive(1227, 60, 1); //openin
+	primitive(1228, 60, 0); //closein
+	primitive(1229, 58, 0); //message
+	primitive(1230, 58, 1); //errmessage
+	primitive(1236, 57, 4239); //lowercase
+	primitive(1237, 57, 4495); //uppercase
+	primitive(1238, 19, 0); //show
+	primitive(1239, 19, 1); //showbox
+	primitive(1240, 19, 2); //showthe
+	primitive(1241, 19, 3); //showlists
+	primitive(1284, 59, 0); //openout
+	primitive(594, 59, 1); //write
+	writeloc = curval; 
+	primitive(1285, 59, 2); //closeout
+	primitive(1286, 59, 3); //special
+	primitive(1287, 59, 4); //immediate
+	primitive(1288, 59, 5); //setlanguage
 	nonewcontrolsequence = true;
 }

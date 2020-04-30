@@ -169,10 +169,10 @@ void scansomethinginternal(smallnumber level, bool negative)
 			break;
 		case 83:
 			scaneightbitint();
-			if (eqtb[3678+curval].hh.rh == 0)
+			if (box(curval) == 0)
 				curval = 0;
 			else
-				curval = mem[eqtb[3678+curval].hh.rh+m].int_;
+				curval = mem[box(curval)+m].int_;
 			curvallevel = 1;
 		break;
 		case 68:
@@ -210,10 +210,10 @@ void scansomethinginternal(smallnumber level, bool negative)
 					curval = eqtb[5851+curval].int_;
 					break;
 				case 2: 
-					curval = eqtb[2900+curval].hh.rh;
+					curval = skip(2900);
 					break;
 				case 3: 
-					curval = eqtb[3156+curval].hh.rh;
+					curval = mu_skip(3156);
 			};
 			curvallevel = m;
 			break;

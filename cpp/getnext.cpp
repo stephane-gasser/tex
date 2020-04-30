@@ -157,8 +157,8 @@ void getnext(void)
 										curinput.locfield++;
 									}
 								}
-								curcmd = eqtb[curcs].hh.b0;
-								curchr = eqtb[curcs].hh.rh;
+								curcmd = eq_type(curcs);
+								curchr = equiv(curcs);
 								if (curcmd >= 113)
 									checkoutervalidity();
 								break;
@@ -166,8 +166,8 @@ void getnext(void)
 							case 17+active_char:
 							case 33+active_char:
 								curcs = curchr+1;
-								curcmd = eqtb[curcs].hh.b0;
-								curchr = eqtb[curcs].hh.rh;
+								curcmd = eq_type(curcs);
+								curchr = equiv(curcs);
 								curinput.statefield = 1;
 								if (curcmd >= 113)
 									checkoutervalidity();
@@ -216,8 +216,8 @@ void getnext(void)
 							case 33+car_ret:
 								curinput.locfield = curinput.limitfield+1;
 								curcs = parloc;
-								curcmd = eqtb[curcs].hh.b0;
-								curchr = eqtb[curcs].hh.rh;
+								curcmd = eq_type(curcs);
+								curchr = equiv(curcs);
 								if (curcmd >= 113)
 									checkoutervalidity();
 								break;
@@ -336,15 +336,15 @@ void getnext(void)
 				if (t >= 4095)
 				{
 					curcs = t-4095;
-					curcmd = eqtb[curcs].hh.b0;
-					curchr = eqtb[curcs].hh.rh;
+					curcmd = eq_type(curcs);
+					curchr = equiv(curcs);
 					if (curcmd >= 113)
 						if (curcmd = 116)
 						{
 							curcs = info(curinput.locfield)-4095;
 							curinput.locfield = 0;
-							curcmd = eqtb[curcs].hh.b0;
-							curchr = eqtb[curcs].hh.rh;
+							curcmd = eq_type(curcs);
+							curchr = equiv(curcs);
 							if (curcmd > 100)
 							{
 								curcmd = 0;

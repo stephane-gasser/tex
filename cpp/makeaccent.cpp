@@ -14,7 +14,7 @@ void makeaccent(void)
 	scaled a, h, x, w, delta;
 	fourquarters i;
 	scancharnum();
-	internalfontnumber f = eqtb[3934].hh.rh;
+	internalfontnumber f = cur_font();
 	auto p = newcharacter(f, curval);
 	if (p)
 	{
@@ -23,7 +23,7 @@ void makeaccent(void)
 		a = fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(p)].qqqq.b0].int_;
 		doassignments();
 		halfword q = 0;
-		f = eqtb[3934].hh.rh;
+		f = cur_font();
 		if (curcmd == 11 || curcmd == 12 || curcmd == 68)
 			q = newcharacter(f, curchr);
 		else 

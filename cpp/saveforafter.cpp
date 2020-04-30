@@ -11,9 +11,9 @@ void saveforafter(halfword t)
 			if (maxsavestack > savesize - 6)
 				overflow(541, savesize); //save size
 		}
-		savestack[saveptr].hh.b0 = 2;
-		savestack[saveptr].hh.b1 = 0;
-		savestack[saveptr].hh.rh = t;
+		save_type(saveptr) = 2;
+		save_level(saveptr) = 0;
+		save_index(saveptr) = t;
 		saveptr++;
 	}
 }

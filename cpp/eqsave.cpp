@@ -10,13 +10,13 @@ void eqsave(halfword p, quarterword l)
 			overflow(541, savesize); //save size
 	}
 	if (l == 0)
-		savestack[saveptr].hh.b0 = 1;
+		save_type(saveptr) = 1;
 	else
 	{
 		savestack[saveptr++] = eqtb[p];
-		savestack[saveptr].hh.b0 = 0;
+		save_type(saveptr) = 0;
 	}
-	savestack[saveptr].hh.b1 = l;
-	savestack[saveptr].hh.rh = p;
+	save_level(saveptr) = l;
+	save_index(saveptr) = p;
 	saveptr++;
 }

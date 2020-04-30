@@ -11,11 +11,11 @@ void unsave(void)
 		while (true)
 		{
 			saveptr--;
-			if (savestack[saveptr].hh.b0 == 3)
+			if (save_type(saveptr) == 3)
 				break;
-			halfword p = savestack[saveptr].hh.rh;
+			halfword p = save_index(saveptr);
 			quarterword l;
-			if (savestack[saveptr].hh.b0 == 2)
+			if (save_type(saveptr) == 2)
 			{
 				halfword t = curtok;
 				curtok = p;
@@ -24,15 +24,15 @@ void unsave(void)
 			}
 			else
 			{
-				if (savestack[saveptr].hh.b0 == 0)
+				if (save_type(saveptr) == 0)
 				{
-					l = savestack[saveptr].hh.b1;
+					l = save_level(saveptr);
 					saveptr--;
 				}
 				else
 					savestack[saveptr] = eqtb[2881];
 				if (p < 5263)
-					if (eqtb[p].hh.b1 == 1)
+					if (eq_level(p) == 1)
 						eqdestroy(savestack[saveptr]);
 					else
 					{
@@ -47,8 +47,8 @@ void unsave(void)
 					}
 			}
 		}	
-		curgroup = savestack[saveptr].hh.b1;
-		curboundary = savestack[saveptr].hh.rh;
+		curgroup = save_level(saveptr);
+		curboundary = save_index(saveptr);
 	}
 	else
 		confusion(543); //curlevel

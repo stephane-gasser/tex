@@ -97,7 +97,7 @@ void goto70()
 					curlist.auxfield.hh.lh = 1000;
 				else
 					curlist.auxfield.hh.lh = mains;
-	mainf = eqtb[3934].hh.rh;
+	mainf = cur_font();
 	bchar = fontbchar[mainf];
 	falsebchar = fontfalsebchar[mainf];
 	if (curlist.modefield > 0 && eqtb[5313].int_ != curlist.auxfield.hh.rh)
@@ -241,15 +241,15 @@ void goto120()
 {
 	if (eqtb[2894].hh.rh == 0)
 	{
-		mainp = fontglue[eqtb[3934].hh.rh];
+		mainp = fontglue[cur_font()];
 		if (mainp == 0)
 		{
 			mainp = newspec(0);
-			maink = parambase[eqtb[3934].hh.rh]+2;
+			maink = parambase[cur_font()]+2;
 			mem[mainp+1].int_ = fontinfo[maink].int_;
 			mem[mainp+2].int_ = fontinfo[maink+1].int_;
 			mem[mainp+3].int_ = fontinfo[maink+2].int_;
-			fontglue[eqtb[3934].hh.rh] = mainp;
+			fontglue[cur_font()] = mainp;
 		}
 		tempptr = newglue(mainp);
 	}
