@@ -54,7 +54,7 @@ bool getstringsstarted(void)
 				{
 					if (xord[n] < '0' || xord[n] > '9')
 					{
-						std::cout << "! TEX.POOL check sum doesn''t have nine digits." << std::endl;
+						std::cout << "! TEX.POOL check sum doesn't have nine digits." << std::endl;
 						aclose(poolfile);
 						return false;
 					}
@@ -66,7 +66,7 @@ bool getstringsstarted(void)
 				}
 				if (a != 117275187)
 				{
-					std::cout << "! TEX.POOL doesn''t match; TANGLE me again." << std::endl;
+					std::cout << "! TEX.POOL doesn't match; TANGLE me again." << std::endl;
 					aclose(poolfile);
 					return false;
 				}
@@ -76,7 +76,7 @@ bool getstringsstarted(void)
 			{
 				if (xord[m] < '0' || xord[m] > '9' || xord[n] < '0' || xord[n] > '9')
 				{
-					std::cout << "! TEX.POOL line doesn''t begin with two digits." << std::endl;
+					std::cout << "! TEX.POOL line doesn't begin with two digits." << std::endl;
 					aclose(poolfile);
 					return false;
 				}
@@ -105,7 +105,7 @@ bool getstringsstarted(void)
 	}
 	else
 	{
-		std::cout << "! I can''t read TEX.POOL." << std::endl;
+		std::cout << "! I can't read TEX.POOL." << std::endl;
 		aclose(poolfile);
 		return false;
 	}

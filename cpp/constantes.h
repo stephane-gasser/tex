@@ -1,6 +1,8 @@
 #ifndef CONSTANTES_H
 #define CONSTANTES_H
 
+#include "tex.h"
+
 /*banner=='This is TeX, Version 3.14159265' //printed when \TeX\ starts
 mtype==t@&y@&p@&e //this is a \.//WEB coding trick:
 start_of_TEX=1 //go here when \TeX's variables are initialized
@@ -136,28 +138,13 @@ llink(#) == info(#+1) //left link in doubly-linked list of empty nodes
 rlink(#) == link(#+1) //right link in doubly-linked list of empty nodes*/
 
 // link(#) == mem[#].hh.rh //the |link| field of a memory word
-halfword& link(halfword p)
-{
-	return mem[p].hh.rh;
-}
-
+halfword& link(halfword p);
 // info(#) == mem[#].hh.lh //the |info| field of a memory word
-halfword& info(halfword p)
-{
-	return mem[p].hh.lh;
-}
-
+halfword& info(halfword p);
 //type(#) == mem[#].hh.b0 //identifies what kind of node this is
-quarterword& type(halfword p)
-{
-	return mem[p].hh.b0;
-}
-
+quarterword& type(halfword p);
 //subtype(#) == mem[#].hh.b1 //secondary identification in some cases
-quarterword& subtype(halfword p)
-{
-	return mem[p].hh.b1;
-}
+quarterword& subtype(halfword p);
 
 /*is_char_node(#) == (#>=hi_mem_min)
 font == type //the font code in a |char_node|
@@ -516,11 +503,9 @@ toks(#)==equiv(toks_base+#)
 box(#)==equiv(box_base+#)
 cur_font==equiv(cur_font_loc)
 fam_fnt(#)==equiv(math_font_base+#)*/
-int cat_code(int c)
-{
-	return eqtb[cat_code_base+c].hh.rh;
-}
+
 //cat_code(#)==equiv(cat_code_base+#)
+int cat_code(int);
 
 /*lc_code(#)==equiv(lc_code_base+#)
 uc_code(#)==equiv(uc_code_base+#)
@@ -589,11 +574,10 @@ constexpr int del_code_base = 5574; //count_base+256 //256 delimiter code mappin
 constexpr int dimen_base = 5830; //del_code_base+256 //beginning of region 6
 /*del_code(#)==eqtb[del_code_base+#].int
 count(#)==eqtb[count_base+#].int*/
+
 //int_par(#)==eqtb[int_base+#].int //an integer parameter
-int &int_par(int c)
-{
-	return eqtb[int_base+c].int_;
-}
+int &int_par(int);
+
 /*pretolerance==int_par(pretolerance_code)
 tolerance==int_par(tolerance_code)
 line_penalty==int_par(line_penalty_code)

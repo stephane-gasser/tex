@@ -14,7 +14,7 @@
 #include "badness.h"
 /*#include "newrule.h"*/
 
-void goto50(halfword r)
+static void goto50(halfword r)
 {
 	if (outputactive)
 		print(846); //) has occurred while \output is active

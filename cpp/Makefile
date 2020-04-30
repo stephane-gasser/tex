@@ -1,11 +1,8 @@
 SRC = $(wildcard *.cpp)
 OBJ = $(SRC:.cpp=.o)
 
-main: $(OBJ)
-	@echo PAS ENCORE COMPLET
-#	g++ -o $@ $^
+myTeX: $(OBJ)
+	g++ -o $@ $^
 
 %.o: %.cpp
 	g++ -c $<
-
-#.PHONY: jumpout.cpp
