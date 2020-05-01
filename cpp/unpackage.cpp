@@ -30,7 +30,7 @@ void unpackage(void)
 	else
 	{
 		link(curlist.tailfield) = link(p+5);
-		eqtb[3678+curval].hh.rh = 0;
+		box(curval) = 0;
 		freenode(p, 7);
 	}
 	while (link(curlist.tailfield))

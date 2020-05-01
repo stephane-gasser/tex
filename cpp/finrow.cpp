@@ -30,8 +30,8 @@ void finrow(void)
 	}
 	type(p) = 13;
 	mem[p+6].int_ = 0;
-	if (eqtb[3420].hh.rh != 0)
-	begintokenlist(eqtb[3420].hh.rh, 13);
+	if (every_cr())
+		begintokenlist(every_cr(), 13);
 	alignpeek();
 }
 

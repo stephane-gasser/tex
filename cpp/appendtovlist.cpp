@@ -6,9 +6,9 @@ void appendtovlist(halfword b)
 {
 	if (curlist.auxfield.int_ > -65536000)
 	{
-		scaled d = mem[eqtb[2883].hh.rh+1].int_-curlist.auxfield.int_-mem[b+3].int_;
+		scaled d = mem[baseline_skip()+1].int_-curlist.auxfield.int_-mem[b+3].int_;
 		halfword p;
-		if (d < eqtb[5832].int_)
+		if (d < dimen_par(line_skip_limit_code))
 			p = newparamglue(0);
 		else
 		{

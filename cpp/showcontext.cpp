@@ -20,7 +20,7 @@ void showcontext(void)
 		if (curinput.statefield)
 			if (curinput.namefield > 17 || baseptr == 0)
 				bottomline = true;
-		if (baseptr == inputptr || bottomline || nn < eqtb[5317].int_)
+		if (baseptr == inputptr || bottomline || nn < int_par(error_context_lines_code))
 		{
 			if (baseptr == inputptr || curinput.statefield || curinput.indexfield != 3 || curinput.locfield)
 			{
@@ -54,7 +54,7 @@ void showcontext(void)
 					selector = 20;
 					trickcount = 1000000;
 					int j;
-					if (buffer[curinput.limitfield] == eqtb[5311].int_)
+					if (buffer[curinput.limitfield] == int_par(end_line_char_code))
 						j = curinput.limitfield;
 					else
 						j = curinput.limitfield+1;
@@ -179,7 +179,7 @@ void showcontext(void)
 			}
 		}
 		else 
-			if (nn == eqtb[5317].int_)
+			if (nn == int_par(error_context_lines_code))
 			{
 				printnl(277); //...
 				nn++;

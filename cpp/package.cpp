@@ -7,7 +7,7 @@
 
 void package(smallnumber c)
 {
-	scaled d = eqtb[5837].int_;
+	scaled d = dimen_par(box_max_depth_code);
 	unsave();
 	saveptr -= 3;
 	if (curlist.modefield == -102)
@@ -21,7 +21,7 @@ void package(smallnumber c)
 			auto p = link(curbox+5);
 			if (p && type(p) <= 2)
 				h = mem[p+3].int_;
-			mem[curbox+2].int_ = mem[curbox+2].int_-h+mem[curbox+3].int_;
+			mem[curbox+2].int_ += -h+mem[curbox+3].int_;
 			mem[curbox+3].int_ = h;
 		}
 	}

@@ -28,21 +28,21 @@ void openlogfile(void)
 	logfile << "This is TeX, Version 3.14159265";
 	slowprint(formatident);
 	print(799); //  
-	printint(eqtb[5284].int_);
+	printint(int_par(day_code));
 	printchar(' ');
 	char months[] = "JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC";
-	for (int k = 3*eqtb[5285].int_-2; k<= 3*eqtb[5285].int_; k++)
+	for (int k = 3*int_par(month_code)-2; k<= 3*int_par(month_code); k++)
 		logfile << months[k];
 	printchar(' ');
-	printint(eqtb[5286].int_);
+	printint(int_par(year_code));
 	printchar(' ');
-	printtwo(eqtb[5283].int_/60);
+	printtwo(int_par(time_code)/60);
 	printchar(':');
-	printtwo(eqtb[5283].int_%60);
+	printtwo(int_par(time_code)%60);
 	inputstack[inputptr] = curinput;
 	printnl(797); //**
 	int l = inputstack[0].limitfield;
-	if (buffer[l] == eqtb[5311].int_)
+	if (buffer[l] == int_par(end_line_char_code))
 		l--;
 	for (int k = 1; k <= l; k++)
 		print(buffer[k]);

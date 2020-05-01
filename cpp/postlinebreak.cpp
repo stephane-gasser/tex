@@ -34,9 +34,9 @@ void postlinebreak(int finalwidowpenalty)
 			if (type(q) == 10)
 			{
 				deleteglueref(info(q+1));
-				info(q+1) = eqtb[2890].hh.rh;
+				info(q+1) = right_skip();
 				subtype(q) = 9;
-				link(eqtb[2890].hh.rh)++;
+				link(right_skip())++;
 			}
 			else
 			{
@@ -103,7 +103,7 @@ void postlinebreak(int finalwidowpenalty)
 		link(q) = 0;
 		q = link(29997);
 		link(29997) = r;
-		if (eqtb[2889].hh.rh)
+		if (left_skip())
 		{
 			r = newparamglue(7);
 			link(r) = q;
@@ -115,15 +115,15 @@ void postlinebreak(int finalwidowpenalty)
 			curindent = secondindent;
 		}
 		else 
-			if (eqtb[3412].hh.rh == 0)
+			if (par_shape_ptr() == 0)
 			{
 				curwidth = firstwidth;
 				curindent = firstindent;
 			}
 			else
 			{
-				curwidth = mem[eqtb[3412].hh.rh+2*curline].int_;
-				curindent = mem[eqtb[3412].hh.rh+2*curline-1].int_;
+				curwidth = mem[par_shape_ptr()+2*curline].int_;
+				curindent = mem[par_shape_ptr()+2*curline-1].int_;
 			}
 		adjusttail = 29995;
 		justbox = hpack(q, curwidth, 0);
@@ -137,13 +137,13 @@ void postlinebreak(int finalwidowpenalty)
 		adjusttail = 0;
 		if (curline+1 != bestline)
 		{
-			pen = eqtb[5276].int_;
+			pen = int_par(inter_line_penalty_code);
 			if (curline == curlist.pgfield+1)
-				pen += eqtb[5268].int_;
+				pen += int_par(club_penalty_code);
 			if (curline+2 == bestline)
 				pen += finalwidowpenalty;
 			if (discbreak)
-				pen += eqtb[5271].int_;
+				pen += int_par(broken_penalty_code);
 			if (pen)
 			{
 				r = newpenalty(pen);

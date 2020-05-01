@@ -123,7 +123,7 @@ void initalign(void)
 	}
 	scannerstatus = 0;
 	newsavelevel(6);
-	if (eqtb[3420].hh.rh)
-		begintokenlist(eqtb[3420].hh.rh, 13);
+	if (every_cr())
+		begintokenlist(every_cr(), 13);
 	alignpeek();
 }

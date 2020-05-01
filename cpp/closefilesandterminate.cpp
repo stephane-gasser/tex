@@ -47,7 +47,7 @@ void closefilesandterminate(void)
 		dvifour(25400000);
 		dvifour(473628672);
 		preparemag();
-		dvifour(eqtb[5280].int_);
+		dvifour(int_par(mag_code));
 		dvifour(maxv);
 		dvifour(maxh);
 		dvibuf[dviptr++] = maxpush/256;

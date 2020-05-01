@@ -23,13 +23,13 @@ void scansomethinginternal(smallnumber level, bool negative)
 			scancharnum();
 			if (m == 5007)
 			{
-				curval = eqtb[5007+curval].hh.rh;
+				curval = math_code(curval);
 				curvallevel = 0;
 			}
 			else 
 				if (m < 5007)
 				{
-					curval = eqtb[m+curval].hh.rh;
+					curval = equiv(m+curval);
 					curvallevel = 0;
 				}
 				else
@@ -64,7 +64,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 						scaneightbitint;
 						m = 3422+curval;
 					}
-					curval = eqtb[m].hh.rh;
+					curval = equiv(m);
 					curvallevel = 5;
 				}
 				else
@@ -84,11 +84,11 @@ void scansomethinginternal(smallnumber level, bool negative)
 			curvallevel = 1;
 			break;
 		case 75:
-			curval = eqtb[m].hh.rh;
+			curval = equiv(m);
 			curvallevel = 2;
 			break;
 		case 76:
-			curval = eqtb[m].hh.rh;
+			curval = equiv(m);
 			curvallevel = 3;
 			break;
 		case 79:
@@ -161,10 +161,10 @@ void scansomethinginternal(smallnumber level, bool negative)
 			curvallevel = 1;
 			break;
 		case 84:
-			if (eqtb[3412].hh.rh == 0)
+			if (par_shape_ptr() == 0)
 				curval = 0;
 			else
-				curval = info(eqtb[3412].hh.rh);
+				curval = info(par_shape_ptr());
 			curvallevel = 0;
 			break;
 		case 83:
@@ -204,10 +204,10 @@ void scansomethinginternal(smallnumber level, bool negative)
 			switch (m)
 			{
 				case 0: 
-					curval = eqtb[5318+curval].int_;
+					curval = count(curval);
 					break;
 				case 1: 
-					curval = eqtb[5851+curval].int_;
+					curval = dimen(curval);
 					break;
 				case 2: 
 					curval = skip(2900);

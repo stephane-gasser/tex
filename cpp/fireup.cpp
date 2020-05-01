@@ -46,7 +46,7 @@ void fireup(halfword c)
 	}
 	if (c == bestpagebreak)
 		bestpagebreak = 0;
-	if (eqtb[3933].hh.rh)
+	if (box(255))
 	{
 		if (interaction == 3)
 			printnl(262); //! 
@@ -59,8 +59,8 @@ void fireup(halfword c)
 		boxerror(255);
 	}
 	insertpenalties = 0;
-	savesplittopskip = eqtb[2892].hh.rh;
-	if (eqtb[5316].int_ <= 0)
+	savesplittopskip = split_top_skip();
+	if (int_par(holding_inserts_code) <= 0)
 	{
 		r = link(30000);
 		while (r != 30000)
@@ -87,7 +87,7 @@ void fireup(halfword c)
 	{
 		if (type(p) == ins_node) //3
 		{
-			if (eqtb[5316].int_ <= 0)
+			if (int_par(holding_inserts_code) <= 0)
 			{
 			r = link(30000);
 			while (subtype(r) != subtype(p))
@@ -107,7 +107,7 @@ void fireup(halfword c)
 						while (link(s) != link(r+1))
 							s = link(s);
 						link(s) = 0;
-						eqtb[2892].hh.rh = link(p+4);
+						split_top_skip() = link(p+4);
 						info(p+4) = prunepagetop(link(r+1));
 						if (info(p+4))
 						{
@@ -119,9 +119,9 @@ void fireup(halfword c)
 					}
 					info(r+2) = 0;
 					n = subtype(r);
-					tempptr = info(eqtb[3678+n].hh.rh+5);
-					freenode(eqtb[3678+n].hh.rh, 7);
-					eqtb[3678+n].hh.rh = vpackage(tempptr, 0, 1, 1073741823);
+					tempptr = info(box(n)+5);
+					freenode(box(n), 7);
+					box(n) = vpackage(tempptr, 0, 1, 1073741823);
 				}
 				else
 				{
@@ -161,7 +161,7 @@ void fireup(halfword c)
 		prevp = p;
 		p = link(prevp);
 	}
-	eqtb[2892].hh.rh = savesplittopskip;
+	split_top_skip() = savesplittopskip;
 	if (p)
 	{
 		if (link(29999) == 0)
@@ -173,13 +173,13 @@ void fireup(halfword c)
 		link(29999) = p;
 		link(prevp) = 0;
 	}
-	savevbadness = eqtb[5290].int_;
-	eqtb[5290].int_ = 10000;
-	savevfuzz = eqtb[5839].int_;
-	eqtb[5839].int_ = 1073741823;
-	eqtb[3933].hh.rh = vpackage(mem[29998].hh.rh, bestsize, 0, pagemaxdepth);
-	eqtb[5290].int_ = savevbadness;
-	eqtb[5839].int_ = savevfuzz;
+	savevbadness = int_par(vbadness_code);
+	int_par(vbadness_code) = 10000;
+	savevfuzz = dimen_par(vfuzz_code);
+	dimen_par(vfuzz_code) = 1073741823;
+	box(255) = vpackage(mem[29998].hh.rh, bestsize, 0, pagemaxdepth);
+	int_par(vbadness_code) = savevbadness;
+	dimen_par(vfuzz_code) = savevfuzz;
 	if (lastglue != 65535)
 		deleteglueref(lastglue);
 	pagecontents = 0;
@@ -208,8 +208,8 @@ void fireup(halfword c)
 		curmark[1] = curmark[0];
 		info(curmark[0])++;
 	}
-	if (eqtb[3413].hh.rh)
-		if (deadcycles >= eqtb[5303].int_)
+	if (output_routine())
+		if (deadcycles >= int_par(max_dead_cycles_code))
 		{
 			if (interaction == 3)
 				printnl(262); //! 
@@ -230,7 +230,7 @@ void fireup(halfword c)
 			curlist.modefield = -1;
 			curlist.auxfield.int_ = -65536000;
 			curlist.mlfield = -line;
-			begintokenlist(eqtb[3413].hh.rh, 6);
+			begintokenlist(output_routine(), 6);
 			newsavelevel(8);
 			normalparagraph();
 			scanleftbrace();
@@ -249,6 +249,6 @@ void fireup(halfword c)
 		link(29998) = 0;
 		pagetail = 29998;
 	}
-	shipout(eqtb[3933].hh.rh);
-	eqtb[3933].hh.rh = 0;
+	shipout(box(255));
+	box(255) = 0;
 }

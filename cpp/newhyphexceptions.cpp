@@ -20,13 +20,13 @@ void newhyphexceptions(void)
 	strnumber s, t;
 	poolpointer u, v;
 	scanleftbrace();
-	if (eqtb[5313].int_ <= 0)
+	if (int_par(cur_fam_code) <= 0)
 		curlang = 0;
 	else 
-		if (eqtb[5313].int_ > 255)
+		if (int_par(cur_fam_code) > 255)
 			curlang = 0;
 		else
-		curlang = eqtb[5313].int_;
+		curlang = int_par(cur_fam_code);
 	n = 0;
 	p = 0;
 	getxtoken();
@@ -48,7 +48,7 @@ void newhyphexceptions(void)
 					}
 				}
 				else 
-					if (eqtb[4239+curchr].hh.rh == 0)
+					if (lc_code(curchr) == 0)
 					{
 						if (interaction == 3)
 							printnl(262); //! 
@@ -62,7 +62,7 @@ void newhyphexceptions(void)
 						if (n < 63)
 						{
 							n++;
-							hc[n] = eqtb[4239+curchr].hh.rh;
+							hc[n] = lc_code(curchr);
 						}
 				break;
 			case 16:

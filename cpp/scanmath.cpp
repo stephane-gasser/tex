@@ -24,7 +24,7 @@ void scanmath(halfword p)
 			case 11:
 			case 12:
 			case 68:
-				c = eqtb[5007+curchr].hh.rh;
+				c = math_code(curchr);
 				if (c == 32768)
 				{
 					curcs = curchr+1;
@@ -66,8 +66,8 @@ void scanmath(halfword p)
 	} while (label21);
 	link(p) = 1;
 	subtype(p) = c%256;
-	if (c >= 28672 && eqtb[5307].int_ >= 0 && eqtb[5307].int_ < 16)
-		type(p) = eqtb[5307].int_;
+	if (c >= 28672 && int_par(cur_fam_code) >= 0 && int_par(cur_fam_code) < 16)
+		type(p) = int_par(cur_fam_code);
 	else
 		type(p) = (c/256)%16;
 }

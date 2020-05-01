@@ -5,19 +5,19 @@
 void fixlanguage(void)
 {
 	ASCIIcode l;
-	if (eqtb[5313].int_ <= 0)
+	if (int_par(language_code) <= 0)
 		l = 0;
 	else 
-		if (eqtb[5313].int_ > 255)
+		if (int_par(language_code) > 255)
 			l = 0;
 		else
-			l = eqtb[5313].int_;
+			l = int_par(language_code);
 	if (l != curlist.auxfield.hh.rh)
 	{
 		newwhatsit(4, 2);
 		link(curlist.tailfield+1) = l;
 		curlist.auxfield.hh.rh = l;
-		type(curlist.tailfield+1) = normmin(eqtb[5314].int_);
-		subtype(curlist.tailfield+1) = normmin(eqtb[5315].int_);
+		type(curlist.tailfield+1) = normmin(int_par(left_hyphen_min_code));
+		subtype(curlist.tailfield+1) = normmin(int_par(right_hyphen_min_code));
 	}
 }

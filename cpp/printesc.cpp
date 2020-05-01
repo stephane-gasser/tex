@@ -4,9 +4,8 @@
 
 void printesc(strnumber s)
 {
-	auto &c = eqtb[5308].int_;
-	if (c >= 0)
-		if (c < 256)
-			print(c);
+	auto &c = int_par(escape_char_code);
+	if (c >= 0 && c < 256)
+		print(c);
 	slowprint(s);
 }

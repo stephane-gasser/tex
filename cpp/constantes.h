@@ -432,21 +432,21 @@ constexpr int frozen_null_font = 2624; //frozen_control_sequence+10
 /*font_id_base=frozen_null_font-font_base*/
 constexpr int undefined_control_sequence = 2881;// frozen_null_font+257 //dummy location
 constexpr int glue_base = 2882; //undefined_control_sequence+1 //beginning of region 3
-/*line_skip_code=0 //interline glue if |baseline_skip| is infeasible
-baseline_skip_code=1 //desired glue between baselines
-par_skip_code=2 //extra glue just above a paragraph
+/*line_skip_code=0 //interline glue if |baseline_skip| is infeasible*/
+constexpr int baseline_skip_code = 1; //desired glue between baselines
+/*par_skip_code=2 //extra glue just above a paragraph
 above_display_skip_code=3 //extra glue just above displayed math
 below_display_skip_code=4 //extra glue just below displayed math
 above_display_short_skip_code=5
-below_display_short_skip_code=6
-left_skip_code=7 //glue at left of justified lines
-right_skip_code=8 //glue at right of justified lines
-top_skip_code=9 //glue at top of main pages
-split_top_skip_code=10 //glue at top of split pages
-tab_skip_code=11 //glue between aligned entries
-space_skip_code=12 //glue between words (if not |zero_glue|)
-xspace_skip_code=13 //glue after sentences (if not |zero_glue|)
-par_fill_skip_code=14 //glue on last line of paragraph
+below_display_short_skip_code=6*/
+constexpr int left_skip_code = 7; //glue at left of justified lines
+constexpr int right_skip_code = 8; //glue at right of justified lines
+/*top_skip_code=9 //glue at top of main pages*/
+constexpr int split_top_skip_code = 10; //glue at top of split pages
+/*tab_skip_code=11 //glue between aligned entries*/
+constexpr int space_skip_code = 12; //glue between words (if not |zero_glue|)
+constexpr int xspace_skip_code = 13; //glue after sentences (if not |zero_glue|)
+/*par_fill_skip_code=14 //glue on last line of paragraph
 thin_mu_skip_code=15 //thin space in math formula
 med_mu_skip_code=16 //medium space in math formula
 thick_mu_skip_code=17 //thick space in math formula*/
@@ -464,34 +464,51 @@ halfword& mu_skip(halfword);
 //glue_par(#)==equiv(glue_base+#) //|mem| location of glue specification
 halfword& glue_par(halfword);
 
-/*line_skip==glue_par(line_skip_code)
-baseline_skip==glue_par(baseline_skip_code)
-par_skip==glue_par(par_skip_code)
+/*line_skip==glue_par(line_skip_code)*/
+
+//baseline_skip==glue_par(baseline_skip_code)
+halfword& baseline_skip(void);
+
+/*par_skip==glue_par(par_skip_code)
 above_display_skip==glue_par(above_display_skip_code)
 below_display_skip==glue_par(below_display_skip_code)
 above_display_short_skip==glue_par(above_display_short_skip_code)
-below_display_short_skip==glue_par(below_display_short_skip_code)
-left_skip==glue_par(left_skip_code)
-right_skip==glue_par(right_skip_code)
-top_skip==glue_par(top_skip_code)
-split_top_skip==glue_par(split_top_skip_code)
-tab_skip==glue_par(tab_skip_code)
-space_skip==glue_par(space_skip_code)
-xspace_skip==glue_par(xspace_skip_code)
-par_fill_skip==glue_par(par_fill_skip_code)
+below_display_short_skip==glue_par(below_display_short_skip_code)*/
+
+//left_skip==glue_par(left_skip_code)
+halfword& left_skip(void);
+
+//right_skip==glue_par(right_skip_code)
+halfword& right_skip(void);
+
+/*top_skip==glue_par(top_skip_code)*/
+
+//split_top_skip==glue_par(split_top_skip_code)
+halfword& split_top_skip(void);
+
+/*tab_skip==glue_par(tab_skip_code)*/
+
+//space_skip==glue_par(space_skip_code)
+halfword& space_skip(void);
+
+//xspace_skip==glue_par(xspace_skip_code)
+halfword& xspace_skip(void);
+
+/*par_fill_skip==glue_par(par_fill_skip_code)
 thin_mu_skip==glue_par(thin_mu_skip_code)
 med_mu_skip==glue_par(med_mu_skip_code)
 thick_mu_skip==glue_par(thick_mu_skip_code)
-par_shape_loc=local_base //specifies paragraph shape
-output_routine_loc=local_base+1 //points to token list for \.//\\output
-every_par_loc=local_base+2 //points to token list for \.//\\everypar
-every_math_loc=local_base+3 //points to token list for \.//\\everymath
-every_display_loc=local_base+4 //points to token list for \.//\\everydisplay
-every_hbox_loc=local_base+5 //points to token list for \.//\\everyhbox
-every_vbox_loc=local_base+6 //points to token list for \.//\\everyvbox
-every_job_loc=local_base+7 //points to token list for \.//\\everyjob
-every_cr_loc=local_base+8 //points to token list for \.//\\everycr
-err_help_loc=local_base+9 //points to token list for \.//\\errhelp*/
+*/
+constexpr int par_shape_loc = 3412; //local_base //specifies paragraph shape
+constexpr int output_routine_loc = 3413; //local_base+1 //points to token list for \.//\\output
+constexpr int every_par_loc = 3414; //local_base+2 //points to token list for \.//\\everypar
+constexpr int every_math_loc = 3415; //local_base+3 //points to token list for \.//\\everymath
+constexpr int every_display_loc = 3416; //local_base+4 //points to token list for \.//\\everydisplay
+constexpr int every_hbox_loc = 3417; //local_base+5 //points to token list for \.//\\everyhbox
+constexpr int every_vbox_loc = 3418; //local_base+6 //points to token list for \.//\\everyvbox
+constexpr int every_job_loc = 3419; //local_base+7 //points to token list for \.//\\everyjob
+constexpr int every_cr_loc = 3420; //local_base+8 //points to token list for \.//\\everycr
+constexpr int err_help_loc = 3421; //local_base+9 //points to token list for \.//\\errhelp*/
 constexpr int toks_base = 3422;//local_base+10 //table of 256 token list registers
 constexpr int box_base = 3678; //toks_base+256 //table of 256 box registers
 constexpr int cur_font_loc = 3934;//box_base+256 //internal font number outside math mode
@@ -502,17 +519,38 @@ constexpr int uc_code_base = 4495; //lc_code_base+256 //table of 256 uppercase m
 constexpr int sf_code_base = 4751; // uc_code_base+256 //table of 256 spacefactor mappings
 constexpr int math_code_base = 5007; //sf_code_base+256 //table of 256 math mode mappings
 constexpr int int_base = 5263;//math_code_base+256 //beginning of region 5
-/*par_shape_ptr==equiv(par_shape_loc)
-output_routine==equiv(output_routine_loc)
-every_par==equiv(every_par_loc)
-every_math==equiv(every_math_loc)
-every_display==equiv(every_display_loc)
-every_hbox==equiv(every_hbox_loc)
-every_vbox==equiv(every_vbox_loc)
-every_job==equiv(every_job_loc)
-every_cr==equiv(every_cr_loc)
-err_help==equiv(err_help_loc)
-toks(#)==equiv(toks_base+#)*/
+
+//par_shape_ptr==equiv(par_shape_loc)
+halfword& par_shape_ptr(void);
+
+//output_routine==equiv(output_routine_loc)
+halfword& output_routine(void);
+
+//every_par==equiv(every_par_loc)
+halfword& every_par(void);
+
+//every_math==equiv(every_math_loc)
+halfword& every_math(void);
+
+//every_display==equiv(every_display_loc)
+halfword& every_display(void);
+
+//every_hbox==equiv(every_hbox_loc)
+halfword& every_hbox(void);
+
+//every_vbox==equiv(every_vbox_loc)
+halfword& every_vbox(void);
+
+//every_job==equiv(every_job_loc)
+halfword& every_job(void);
+
+//every_cr==equiv(every_cr_loc)
+halfword& every_cr(void);
+
+//err_help==equiv(err_help_loc)
+halfword& err_help(void);
+
+/*toks(#)==equiv(toks_base+#)*/
 
 //box(#)==equiv(box_base+#)
 halfword& box(halfword);
@@ -524,78 +562,90 @@ halfword& cur_font(void);
 halfword& fam_fnt(halfword);
 
 //cat_code(#)==equiv(cat_code_base+#)
-int cat_code(int);
+halfword& cat_code(halfword);
 
-/*lc_code(#)==equiv(lc_code_base+#)
-uc_code(#)==equiv(uc_code_base+#)
-sf_code(#)==equiv(sf_code_base+#)
-math_code(#)==equiv(math_code_base+#)
-null_font==font_base
-var_code==@'70000 //math code meaning ``use the current family''
-pretolerance_code=0 //badness tolerance before hyphenation*/
+//lc_code(#)==equiv(lc_code_base+#)
+halfword& lc_code(halfword p);
+
+//uc_code(#)==equiv(uc_code_base+#)
+halfword& uc_code(halfword p);
+
+//sf_code(#)==equiv(sf_code_base+#)
+halfword& sf_code(halfword p);
+
+//math_code(#)==equiv(math_code_base+#)
+halfword& math_code(halfword p);
+
+/*null_font==font_base
+var_code==@'70000 //math code meaning ``use the current family''*/
+constexpr int pretolerance_code = 0; //badness tolerance before hyphenation
 constexpr int tolerance_code = 1; //badness tolerance after hyphenation
-/*line_penalty_code=2 //added to the badness of every line
-hyphen_penalty_code=3 //penalty for break after discretionary hyphen
-ex_hyphen_penalty_code=4 //penalty for break after explicit hyphen
-club_penalty_code=5 //penalty for creating a club line
-widow_penalty_code=6 //penalty for creating a widow line
-display_widow_penalty_code=7 //ditto, just before a display
-broken_penalty_code=8 //penalty for breaking a page at a broken line
-bin_op_penalty_code=9 //penalty for breaking after a binary operation
-rel_penalty_code=10 //penalty for breaking after a relation
-pre_display_penalty_code=11
-post_display_penalty_code=12
-inter_line_penalty_code=13 //additional penalty between lines
-double_hyphen_demerits_code=14 //demerits for double hyphen break
-final_hyphen_demerits_code=15 //demerits for final hyphen break
-adj_demerits_code=16 //demerits for adjacent incompatible lines*/
+constexpr int line_penalty_code = 2; //added to the badness of every line
+constexpr int hyphen_penalty_code = 3; //penalty for break after discretionary hyphen
+constexpr int ex_hyphen_penalty_code = 4; //penalty for break after explicit hyphen
+constexpr int club_penalty_code = 5; //penalty for creating a club line
+constexpr int widow_penalty_code = 6; //penalty for creating a widow line
+constexpr int display_widow_penalty_code = 7; //ditto, just before a display
+constexpr int broken_penalty_code = 8; //penalty for breaking a page at a broken line
+constexpr int bin_op_penalty_code = 9; //penalty for breaking after a binary operation
+constexpr int rel_penalty_code = 10; //penalty for breaking after a relation
+constexpr int pre_display_penalty_code = 11;
+constexpr int post_display_penalty_code = 12;
+constexpr int inter_line_penalty_code = 13; //additional penalty between lines
+constexpr int double_hyphen_demerits_code = 14; //demerits for double hyphen break
+constexpr int final_hyphen_demerits_code = 15; //demerits for final hyphen break
+constexpr int adj_demerits_code = 16; //demerits for adjacent incompatible lines
 constexpr int mag_code = 17; //magnification ratio
-/*delimiter_factor_code=18 //ratio for variable-size delimiters
-looseness_code=19 //change in number of lines for a paragraph*/
+constexpr int delimiter_factor_code = 18; //ratio for variable-size delimiters
+constexpr int looseness_code = 19; //change in number of lines for a paragraph
 constexpr int time_code = 20; //current time of day
 constexpr int day_code = 21; //current day of the month
 constexpr int month_code = 22; //current month of the year
 constexpr int year_code = 23; //current year of our Lord
 constexpr int show_box_breadth_code = 24; //nodes per level in |show_box|
 constexpr int show_box_depth_code = 25; //maximum level in |show_box|
-/*hbadness_code=26 //hboxes exceeding this badness will be shown by |hpack|
-vbadness_code=27 //vboxes exceeding this badness will be shown by |vpack|*/
+constexpr int hbadness_code = 26; //hboxes exceeding this badness will be shown by |hpack|
+constexpr int vbadness_code = 27; //vboxes exceeding this badness will be shown by |vpack|
 constexpr int pausing_code = 28; //pause after each line is read from a file
 constexpr int tracing_online_code = 29; //show diagnostic output on terminal
 constexpr int tracing_macros_code = 30; //show macros as they are being expanded
-/*tracing_stats_code=31 //show memory usage if \TeX\ knows it
-tracing_paragraphs_code=32 //show line-break calculations
-tracing_pages_code=33 //show page-break calculations
-tracing_output_code=34 //show boxes when they are shipped out
-tracing_lost_chars_code=35 //show characters that aren't in the font
-tracing_commands_code=36 //show command codes at |big_switch|
-tracing_restores_code=37 //show equivalents when they are restored
-uc_hyph_code=38 //hyphenate words beginning with a capital letter
-output_penalty_code=39 //penalty found at current page break*/
+constexpr int tracing_stats_code = 31; //show memory usage if \TeX\ knows it
+/*tracing_paragraphs_code=32 //show line-break calculations
+tracing_pages_code=33 //show page-break calculations*/
+constexpr int tracing_output_code = 34; //show boxes when they are shipped out
+constexpr int tracing_lost_chars_code = 35; //show characters that aren't in the font
+constexpr int tracing_commands_code = 36; //show command codes at |big_switch|
+/*tracing_restores_code=37 //show equivalents when they are restored*/
+constexpr int uc_hyph_code = 38; //hyphenate words beginning with a capital letter
+/*output_penalty_code=39 //penalty found at current page break*/
 constexpr int max_dead_cycles_code = 40; //bound on consecutive dead cycles of output
 constexpr int hang_after_code = 41; //hanging indentation changes after this many lines
-/*floating_penalty_code=42 //penalty for insertions heldover after a split
-global_defs_code=43 //override \.//\\global specifications
-cur_fam_code=44 //current family*/
+constexpr int floating_penalty_code = 42; //penalty for insertions heldover after a split
+constexpr int global_defs_code = 43; //override \.//\\global specifications
+constexpr int cur_fam_code = 44; //current family
 constexpr int escape_char_code = 45; //escape character for token output
-/*default_hyphen_char_code=46 //value of \.//\\hyphenchar when a font is loaded
-default_skew_char_code=47 //value of \.//\\skewchar when a font is loaded*/
+constexpr int default_hyphen_char_code = 46; //value of \.//\\hyphenchar when a font is loaded
+constexpr int default_skew_char_code = 47; //value of \.//\\skewchar when a font is loaded
 constexpr int end_line_char_code = 48; //character placed at the right end of the buffer
 constexpr int new_line_char_code = 49; //character that prints as |print_ln|
-/*language_code=50 //current hyphenation table
-left_hyphen_min_code=51 //minimum left hyphenation fragment size
-right_hyphen_min_code=52 //minimum right hyphenation fragment size
-holding_inserts_code=53 //do not remove insertion nodes from \.//\\box255
-error_context_lines_code=54 //maximum intermediate line pairs shown*/
+constexpr int language_code = 50; //current hyphenation table
+constexpr int left_hyphen_min_code = 51; //minimum left hyphenation fragment size
+constexpr int right_hyphen_min_code = 52; //minimum right hyphenation fragment size
+constexpr int holding_inserts_code = 53; //do not remove insertion nodes from \.//\\box255
+constexpr int error_context_lines_code = 54; //maximum intermediate line pairs shown
 constexpr int int_pars = 55; //total number of integer parameters
 constexpr int count_base = 5318; //int_base+int_pars //256 user \.//\\count registers
 constexpr int del_code_base = 5574; //count_base+256 //256 delimiter code mappings
 constexpr int dimen_base = 5830; //del_code_base+256 //beginning of region 6
-/*del_code(#)==eqtb[del_code_base+#].int
-count(#)==eqtb[count_base+#].int*/
+
+//del_code(#)==eqtb[del_code_base+#].int
+int& del_code(halfword p);
+
+//count(#)==eqtb[count_base+#].int
+int& count(halfword p);
 
 //int_par(#)==eqtb[int_base+#].int //an integer parameter
-int &int_par(int);
+int& int_par(halfword);
 
 /*pretolerance==int_par(pretolerance_code)
 tolerance==int_par(tolerance_code)
@@ -651,34 +701,39 @@ language==int_par(language_code)
 left_hyphen_min==int_par(left_hyphen_min_code)
 right_hyphen_min==int_par(right_hyphen_min_code)
 holding_inserts==int_par(holding_inserts_code)
-error_context_lines==int_par(error_context_lines_code)
-par_indent_code=0 //indentation of paragraphs
-math_surround_code=1 //space around math in text
-line_skip_limit_code=2 //threshold for |line_skip| instead of |baseline_skip|
-hsize_code=3 //line width in horizontal mode
-vsize_code=4 //page height in vertical mode
-max_depth_code=5 //maximum depth of boxes on main pages
-split_max_depth_code=6 //maximum depth of boxes on split pages
-box_max_depth_code=7 //maximum depth of explicit vboxes
-hfuzz_code=8 //tolerance for overfull hbox messages
-vfuzz_code=9 //tolerance for overfull vbox messages
-delimiter_shortfall_code=10 //maximum amount uncovered by variable delimiters
-null_delimiter_space_code=11 //blank space in null delimiters
-script_space_code=12 //extra space after subscript or superscript
-pre_display_size_code=13 //length of text preceding a display
-display_width_code=14 //length of line for displayed equation
-display_indent_code=15 //indentation of line for displayed equation
-overfull_rule_code=16 //width of rule that identifies overfull hboxes
-hang_indent_code=17 //amount of hanging indentation
-h_offset_code=18 //amount of horizontal offset when shipping pages out
-v_offset_code=19 //amount of vertical offset when shipping pages out
-emergency_stretch_code=20 //reduces badnesses on final pass of line-breaking*/
+error_context_lines==int_par(error_context_lines_code)*/
+constexpr int par_indent_code = 0; //indentation of paragraphs
+constexpr int math_surround_code = 1; //space around math in text
+constexpr int line_skip_limit_code = 2; //threshold for |line_skip| instead of |baseline_skip|
+constexpr int hsize_code = 3; //line width in horizontal mode
+constexpr int vsize_code = 4; //page height in vertical mode
+/*max_depth_code=5 //maximum depth of boxes on main pages*/
+constexpr int split_max_depth_code = 6; //maximum depth of boxes on split pages
+constexpr int box_max_depth_code = 7; //maximum depth of explicit vboxes
+constexpr int hfuzz_code = 8; //tolerance for overfull hbox messages
+constexpr int vfuzz_code = 9; //tolerance for overfull vbox messages
+constexpr int delimiter_shortfall_code = 10; //maximum amount uncovered by variable delimiters
+constexpr int null_delimiter_space_code = 11; //blank space in null delimiters
+constexpr int script_space_code = 12; //extra space after subscript or superscript
+constexpr int pre_display_size_code = 13; //length of text preceding a display
+constexpr int display_width_code = 14; //length of line for displayed equation
+constexpr int display_indent_code = 15; //indentation of line for displayed equation
+constexpr int overfull_rule_code = 16; //width of rule that identifies overfull hboxes
+constexpr int hang_indent_code = 17; //amount of hanging indentation
+constexpr int h_offset_code = 18; //amount of horizontal offset when shipping pages out
+constexpr int v_offset_code = 19; //amount of vertical offset when shipping pages out
+constexpr int emergency_stretch_code = 20; //reduces badnesses on final pass of line-breaking
 constexpr int dimen_pars = 21; //total number of dimension parameters
 constexpr int scaled_base = 5851; //dimen_base+dimen_pars;
 constexpr int eqtb_size = 6106; // scaled_base+255; //largest subscript of |eqtb|
-/*dimen(#)==eqtb[scaled_base+#].sc
-dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity
-par_indent==dimen_par(par_indent_code)
+
+//dimen(#)==eqtb[scaled_base+#].sc
+int& dimen(halfword);
+
+//dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity
+int& dimen_par(halfword p);
+
+/*par_indent==dimen_par(par_indent_code)
 math_surround==dimen_par(math_surround_code)
 line_skip_limit==dimen_par(line_skip_limit_code)
 hsize==dimen_par(hsize_code)

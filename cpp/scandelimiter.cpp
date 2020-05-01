@@ -18,7 +18,7 @@ void scandelimiter(halfword p, bool r)
 		{
 			case 11:
 			case 12: 
-				curval = eqtb[5574+curchr].int_;
+				curval = del_code(curchr);
 				break;
 			case 15: 
 				scantwentysevenbitint();

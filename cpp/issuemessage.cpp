@@ -40,7 +40,7 @@ void issuemessage(void)
 			printnl(262); //! 
 		print(338);//
 		slowprint(s);
-		if (eqtb[3421].hh.rh)
+		if (err_help())
 			useerrhelp = true;
 		else 
 			if (longhelpseen)

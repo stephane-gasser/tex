@@ -28,7 +28,7 @@ void showwhatever(void)
 			if (interaction == 3)
 				printnl(262);//! 
 			print(1254); //OK
-			if (selector == 19 && eqtb[5292].int_ <= 0)
+			if (selector == 19 && int_par(tracing_online_code) <= 0)
 				selector = 17;
 			print(1255); // (see the transcript file)
 			selector = 19;
@@ -47,7 +47,7 @@ void showwhatever(void)
 			if (interaction == 3)
 				printnl(262);//! 
 			print(1254); //OK
-			if (selector == 19 && eqtb[5292].int_ <= 0)
+			if (selector == 19 && int_par(tracing_online_code) <= 0)
 				selector = 17;
 			print(1255); // (see the transcript file)
 			selector = 19;
@@ -77,7 +77,7 @@ void showwhatever(void)
 		errorcount--;
 	}
 	else 
-		if (eqtb[5292].int_ > 0)
+		if (int_par(tracing_online_code) > 0)
 		{
 			helpptr = 3;
 			helpline[2] = 1242; //This isn't an error message; I'm just \showing something.

@@ -17,7 +17,7 @@ void print(int s)
 					printchar(s);
 					return;
 				}
-				if (s == eqtb[int_base+new_line_char_code].int_)
+				if (s == int_par(new_line_char_code))
 					if (selector < 20)
 					{
 						println();

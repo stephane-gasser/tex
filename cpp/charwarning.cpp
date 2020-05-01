@@ -8,7 +8,7 @@
 
 void charwarning(internalfontnumber f, eightbits c)
 {
-	if (eqtb[5298].int_ > 0)
+	if (int_par(tracing_lost_chars_code) > 0)
 	{
 		begindiagnostic();
 		printnl(824); //Missing character: There is no 

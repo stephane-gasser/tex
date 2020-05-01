@@ -546,8 +546,8 @@ var
 		fontparams[f] = np;
 	else
 		fontparams[f] = 7;
-	hyphenchar[f] = eqtb[5309].int_;
-	skewchar[f] = eqtb[5310].int_;
+	hyphenchar[f] = int_par(default_hyphen_char_code);
+	skewchar[f] = int_par(default_skew_char_code);
 	if (bchlabel < nl)
 		bcharlabel[f] = bchlabel+ligkernbase[f];
 	else

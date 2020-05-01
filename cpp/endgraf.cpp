@@ -10,7 +10,7 @@ void endgraf(void)
 		if (curlist.headfield == curlist.tailfield)
 			popnest();
 		else
-			linebreak(eqtb[5269].int_);
+			linebreak(int_par(widow_penalty_code));
 		normalparagraph();
 		errorcount = 0;
 	}

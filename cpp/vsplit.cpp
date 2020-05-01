@@ -35,7 +35,7 @@ halfword vsplit(eightbits n, scaled h)
 		error();
 		return 0;
 	}
-	auto q = vertbreak(link(v+5), h, eqtb[5836].int_);
+	auto q = vertbreak(link(v+5), h, dimen_par(split_max_depth_code));
 	auto p = link(v+5);
 	if (p == q)
 		link(v+5) = 0;
@@ -69,5 +69,5 @@ halfword vsplit(eightbits n, scaled h)
 		box(n) = 0;
 	else
 		box(n) = vpackage(q, 0, 1, 1073741823);
-	return vpackage(p, h, 0, eqtb[5836].int_);
+	return vpackage(p, h, 0, dimen_par(split_max_depth_code));
 }

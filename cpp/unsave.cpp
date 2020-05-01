@@ -30,7 +30,7 @@ void unsave(void)
 					saveptr--;
 				}
 				else
-					savestack[saveptr] = eqtb[2881];
+					savestack[saveptr] = eqtb[undefined_control_sequence];
 				if (p < 5263)
 					if (eq_level(p) == 1)
 						eqdestroy(savestack[saveptr]);

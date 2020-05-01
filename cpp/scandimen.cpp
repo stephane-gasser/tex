@@ -209,10 +209,10 @@ void scandimen(bool mu, bool inf, bool shortcut)
 		if (scankeyword(704)) //true
 		{
 			preparemag();
-			if (eqtb[5280].int_ != 1000)
+			if (int_par(mag_code) != 1000)
 			{
-				curval = xnoverd(curval, 1000, eqtb[5280].int_);
-				f = (1000*f+65536*remainder_)/eqtb[5280].int_;
+				curval = xnoverd(curval, 1000, int_par(mag_code));
+				f = (1000*f+65536*remainder_)/int_par(mag_code);
 				curval += f/65536;
 				f %= 65536;
 			}

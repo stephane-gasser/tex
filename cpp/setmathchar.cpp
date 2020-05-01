@@ -21,8 +21,8 @@ void setmathchar(int c)
 		type(p+1) = (c/256)%6;
 		if (c >= 28672)
 		{
-			if (eqtb[5307].int_ >= 0 && eqtb[5307].int_ < 16)
-				type(p+1) = eqtb[5307].int_;
+			if (int_par(cur_fam_code) >= 0 && int_par(cur_fam_code) < 16)
+				type(p+1) = int_par(cur_fam_code);
 			type(p) = 16;
 		}
 		else

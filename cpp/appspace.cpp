@@ -7,12 +7,12 @@
 void appspace(void)
 {
 	halfword q;
-	if (curlist.auxfield.hh.lh >= 2000 && eqtb[2895].hh.rh)
+	if (curlist.auxfield.hh.lh >= 2000 && xspace_skip())
 		q = newparamglue(13);
 	else
 	{
-		if (eqtb[2894].hh.rh)
-			mainp = eqtb[2894].hh.rh;
+		if (space_skip())
+			mainp = space_skip();
 		else
 		{
 			mainp = fontglue[cur_font()];

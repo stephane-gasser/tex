@@ -15,7 +15,7 @@ bool itsallover(void)
 		backinput();
 		link(curlist.tailfield) = newnullbox();
 		curlist.tailfield = link(curlist.tailfield);
-		mem[curlist.tailfield+1].int_ = eqtb[5833].int_;
+		mem[curlist.tailfield+1].int_ = dimen_par(hsize_code);
 		link(curlist.tailfield) = newglue(8);
 		curlist.tailfield = link(curlist.tailfield);
 		link(curlist.tailfield) = newpenalty(-1073741824);

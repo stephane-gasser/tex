@@ -119,14 +119,14 @@ void beginbox(int boxcontext)
 			if (k == 1)
 			{
 				curlist.auxfield.int_ = -65536000;
-				if (eqtb[3418].hh.rh)
-					begintokenlist(eqtb[3418].hh.rh, 11);
+				if (every_vbox())
+					begintokenlist(every_vbox(), 11);
 			}
 			else
 			{
 				curlist.auxfield.hh.lh = 1000;
-				if (eqtb[3417].hh.rh)
-					begintokenlist(eqtb[3417].hh.rh, 10);
+				if (every_hbox())
+					begintokenlist(every_hbox(), 10);
 			}
 			return;
 	}

@@ -27,7 +27,7 @@ void aftermath(void)
 	smallnumber g1, g2;
 	halfword r, t;
 	bool danger = false;
-	if (fontparams[fam_fnt(2)] < 22 || fontparams[eqtb[3953].hh.rh] < 22 || fontparams[eqtb[3969].hh.rh] < 22)
+	if (fontparams[fam_fnt(2)] < 22 || fontparams[fam_fnt(18)] < 22 || fontparams[fam_fnt(34)] < 22)
 	{
 		if (interaction == 3)
 			printnl(262); //! 
@@ -40,7 +40,7 @@ void aftermath(void)
 		flushmath();
 		danger = true;
 	}
-	else if (fontparams[fam_fnt(3)] < 13 || fontparams[eqtb[3954].hh.rh] < 13 || fontparams[eqtb[3970].hh.rh] < 13)
+	else if (fontparams[fam_fnt(3)] < 13 || fontparams[fam_fnt(19)] < 13 || fontparams[fam_fnt(35)] < 13)
 	{
 		if (interaction == 3)
 			printnl(262); //! 
@@ -77,7 +77,7 @@ void aftermath(void)
 		if (savestack[saveptr].int_ == 1)
 			l = true;
 		danger = false;
-		if (fontparams[fam_fnt(2)] < 22 || fontparams[eqtb[3953].hh.rh] < 22 || fontparams[eqtb[3969].hh.rh] < 22)
+		if (fontparams[fam_fnt(2)] < 22 || fontparams[fam_fnt(18)] < 22 || fontparams[fam_fnt(34)] < 22)
 		{
 			if (interaction == 3)
 				printnl(262); //! 
@@ -91,7 +91,7 @@ void aftermath(void)
 			danger = true;
 		}
 		else 
-			if (fontparams[fam_fnt(3)] < 13 || fontparams[eqtb[3954].hh.rh] < 13 || fontparams[eqtb[3970].hh.rh] < 13)
+			if (fontparams[fam_fnt(3)] < 13 || fontparams[fam_fnt(19)] < 13 || fontparams[fam_fnt(35)] < 13)
 			{
 				if (interaction == 3)
 					printnl(262); //! 
@@ -111,7 +111,7 @@ void aftermath(void)
 		a = 0;
 	if (m < 0)
 	{
-		link(curlist.tailfield) = newmath(eqtb[5831].int_, 0);
+		link(curlist.tailfield) = newmath(dimen_par(math_surround_code), 0);
 		curlist.tailfield = link(curlist.tailfield);
 		curmlist = p;
 		curstyle = 2;
@@ -120,7 +120,7 @@ void aftermath(void)
 		link(curlist.tailfield) = link(29997);
 		while (link(curlist.tailfield))
 			curlist.tailfield = link(curlist.tailfield);
-		link(curlist.tailfield) = newmath(eqtb[5831].int_, 1);
+		link(curlist.tailfield) = newmath(dimen_par(math_surround_code), 1);
 		curlist.tailfield = link(curlist.tailfield);
 		curlist.auxfield.hh.lh = 1000;
 		unsave();
@@ -152,8 +152,8 @@ void aftermath(void)
 		t = adjusttail;
 		adjusttail = 0;
 		w = mem[b+1].int_;
-		z = eqtb[5844].int_;
-		s = eqtb[5845].int_;
+		z = dimen_par(display_width_code);
+		s = dimen_par(display_indent_code);
 		if (a == 0 || danger)
 		{
 			e = 0;
@@ -189,9 +189,9 @@ void aftermath(void)
 			if (p && p < himemmin && type(p) == glue_node) //10
 			d = 0;
 		}
-		link(curlist.tailfield) = newpenalty(eqtb[5274].int_);
+		link(curlist.tailfield) = newpenalty(int_par(pre_display_penalty_code));
 		curlist.tailfield = link(curlist.tailfield);
-		if (d+s <= eqtb[5843].int_ || l)
+		if (d+s <= dimen_par(pre_display_size_code) || l)
 		{
 			g1 = 3;
 			g2 = 4;
@@ -246,7 +246,7 @@ void aftermath(void)
 			link(curlist.tailfield) = link(29995);
 			curlist.tailfield = t;
 		}
-		link(curlist.tailfield) = newpenalty(eqtb[5275].int_);
+		link(curlist.tailfield) = newpenalty(int_par(post_display_penalty_code));
 		curlist.tailfield = link(curlist.tailfield);
 		if (g2 > 0)
 		{

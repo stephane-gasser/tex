@@ -161,10 +161,10 @@ void trybreak(int pi, smallnumber breaktype)
 						prevprevr = prevr;
 						prevr = q;
 					}
-				if (abs(eqtb[5279].int_) >= 1073741823-minimumdemerits)
+				if (abs(int_par(adj_demerits_code)) >= 1073741823-minimumdemerits)
 					minimumdemerits = 1073741822;
 				else
-					minimumdemerits += abs(eqtb[5279].int_);
+					minimumdemerits += abs(int_par(adj_demerits_code));
 				for (fitclass = 0; fitclass <= 3; fitclass++)
 				{
 					if (minimaldemerits[fitclass] <= minimumdemerits)
@@ -213,10 +213,10 @@ void trybreak(int pi, smallnumber breaktype)
 				if (l > lastspecialline)
 					linewidth = secondwidth;
 				else 
-					if (eqtb[3412].hh.rh == 0)
+					if (par_shape_ptr() == 0)
 						linewidth = firstwidth;
 					else
-						linewidth = mem[eqtb[3412].hh.rh+2*l].int_;
+						linewidth = mem[par_shape_ptr()+2*l].int_;
 			}
 		}
 		artificialdemerits = false;
@@ -316,7 +316,7 @@ void trybreak(int pi, smallnumber breaktype)
 			d = 0;
 		else
 		{
-			d = eqtb[5265].int_+b;
+			d = int_par(line_penalty_code)+b;
 			if (abs(d) >= 10000)
 				d = 100000000;
 			else
@@ -329,11 +329,11 @@ void trybreak(int pi, smallnumber breaktype)
 						d -= pi*pi;
 			if (breaktype == 1 && type(r) == 1)
 				if (curp)
-					d += eqtb[5277].int_;
+					d += int_par(double_hyphen_demerits_code);
 				else
-				d += eqtb[5278].int_;
+				d += int_par(final_hyphen_demerits_code);
 			if (abs(fitclass-subtype(r)) > 1)
-				d += eqtb[5279].int_;
+				d += int_par(adj_demerits_code);
 		}
 		d += mem[r+2].int_;
 		if (d <= minimaldemerits[fitclass])

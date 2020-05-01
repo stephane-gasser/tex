@@ -199,41 +199,41 @@ void Initialize(void)
 		eqtb[k] = eqtb[cat_code_base];
 	for (int k = 0; k < 256; k++)
 	{
-		eqtb[cat_code_base+k].hh.rh = other_char;
-		eqtb[math_code_base+k].hh.rh = k;
-		eqtb[sf_code_base+k].hh.rh = 1000;
+		cat_code(k) = other_char;
+		math_code(k) = k;
+		sf_code(k) = 1000;
 	}
-	eqtb[cat_code_base+'\r'].hh.rh = car_ret;
-	eqtb[cat_code_base+' '].hh.rh = spacer;
-	eqtb[cat_code_base+'\\'].hh.rh = escape;
-	eqtb[cat_code_base+'%'].hh.rh = comment;
-	eqtb[cat_code_base+127].hh.rh = invalid_char;
-	eqtb[cat_code_base].hh.rh = ignore;
+	cat_code('\r') = car_ret;
+	cat_code(' ') = spacer;
+	cat_code('\\') = escape;
+	cat_code('%') = comment;
+	cat_code(127) = invalid_char;
+	cat_code('\0') = ignore;
 	for (int k = '0'; k <= '9'; k++)
-		eqtb[math_code_base+k].hh.rh = k+0x7000;
+		math_code(k) = k+0x7000;
 	for (int k = 'A'; k <= 'Z'; k++)
 	{
-		eqtb[cat_code_base+k].hh.rh = letter;
-		eqtb[cat_code_base+k+'a'-'A'].hh.rh = letter;
-		eqtb[math_code_base+k].hh.rh = k+0x7100;
-		eqtb[math_code_base+k+'a'-'A'].hh.rh = k+0x7100+'a'-'A';
-		eqtb[lc_code_base+k].hh.rh = k+'a'-'A';
-		eqtb[lc_code_base+k+'a'-'A'].hh.rh = k+'a'-'A';
-		eqtb[uc_code_base+k].hh.rh = k;
-		eqtb[uc_code_base+k+'a'-'A'].hh.rh = k;
-		eqtb[sf_code_base+k].hh.rh = 999;
+		cat_code(k) = letter;
+		cat_code(k+'a'-'A') = letter;
+		math_code(k) = k+0x7100;
+		math_code(k+'a'-'A') = k+0x7100+'a'-'A';
+		lc_code(k) = k+'a'-'A';
+		lc_code(k+'a'-'A') = k+'a'-'A';
+		uc_code(k) = k;
+		uc_code(k+'a'-'A') = k;
+		sf_code(k) = 999;
 	}
 	for (int k = int_base; k < del_code_base; k++)
 		eqtb[k].int_ = 0;
-	eqtb[int_base+mag_code].int_ = 1000;
-	eqtb[int_base+tolerance_code].int_ = 10000;
-	eqtb[int_base+hang_after_code].int_ = 1;
-	eqtb[int_base+max_dead_cycles_code].int_ = 25;
-	eqtb[int_base+escape_char_code].int_ = '\\';
-	eqtb[int_base+end_line_char_code].int_ = '\r';
+	int_par(mag_code) = 1000;
+	int_par(tolerance_code) = 10000;
+	int_par(hang_after_code) = 1;
+	int_par(max_dead_cycles_code) = 25;
+	int_par(escape_char_code) = '\\';
+	int_par(end_line_char_code) = '\r';
 	for (int k = 0; k < 256; k++)
-		eqtb[del_code_base+k].int_ = -1;
-	eqtb[del_code_base+'.'].int_ = 0;
+		del_code(k) = -1;
+	del_code('.') = 0;
 	for (int k = dimen_base; k <= eqtb_size; k++)
 		eqtb[k].int_ = 0;
 	hashused = frozen_control_sequence;

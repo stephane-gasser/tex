@@ -31,7 +31,7 @@ void makescripts(halfword q, scaled delta)
 	if (link(q+2) == 0)
 	{
 		x = cleanbox(q+3, 2*(curstyle/4)+5);
-		mem[x+1].int_ += eqtb[5842].int_;
+		mem[x+1].int_ += dimen_par(script_space_code);
 		if (shiftdown < fontinfo[16+parambase[fam_fnt(2+cursize)]].int_)
 			shiftdown = fontinfo[16+parambase[fam_fnt(2+cursize)]].int_;
 		clr = mem[x+3].int_-(abs(fontinfo[5+parambase[fam_fnt(2+cursize)]].int_*4)/5);
@@ -42,7 +42,7 @@ void makescripts(halfword q, scaled delta)
 	else
 	{
 		x = cleanbox(q+2, 2*(curstyle/4)+4+(curstyle%2));
-		mem[x+1].int_ += eqtb[5842].int_;
+		mem[x+1].int_ += dimen_par(script_space_code);
 		if (curstyle%2)
 			clr = fontinfo[15+parambase[fam_fnt(2+cursize)]].int_;
 		else 
@@ -60,7 +60,7 @@ void makescripts(halfword q, scaled delta)
 		else
 		{
 			auto y = cleanbox(q+3, 2*(curstyle/4)+5);
-			mem[y+1].int_ = mem[y+1].int_+eqtb[5842].int_;
+			mem[y+1].int_ = mem[y+1].int_+dimen_par(script_space_code);
 			if (shiftdown < fontinfo[17+parambase[fam_fnt(2+cursize)]].int_)
 				shiftdown = fontinfo[17+parambase[fam_fnt(2+cursize)]].int_;
 			clr = 4*fontinfo[8+parambase[fam_fnt(3+cursize)]].int_-(shiftup-mem[x+2].int_-(mem[y+3].int_-shiftdown));

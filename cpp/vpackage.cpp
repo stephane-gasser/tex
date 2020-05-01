@@ -146,7 +146,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 			if (link(r+5))
 			{
 				lastbadness = badness(x, totalstretch[0]);
-				if (lastbadness > eqtb[5290].int_)
+				if (lastbadness > int_par(vbadness_code))
 				{
 					println();
 					if (lastbadness > 100)
@@ -185,7 +185,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 			{
 				lastbadness = 1000000;
 				mem[r+6].gr = 1.0;
-				if (-x-totalshrink[0] > eqtb[5839].int_ || eqtb[5290].int_ < 100)
+				if (-x-totalshrink[0] > dimen_par(vfuzz_code) || int_par(vbadness_code) < 100)
 				{
 					println();
 					printnl(856); //6Overfull \vbox (
@@ -198,7 +198,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 				if (o == 0 && link(r+5))
 				{
 					lastbadness = badness(-x, totalshrink[0]);
-					if (lastbadness > eqtb[5290].int_)
+					if (lastbadness > int_par(vbadness_code))
 					{
 						println();
 						printnl(858); //Tight \vbox (badness 

@@ -130,10 +130,10 @@ void buildpage(void)
 						mem[r+3].int_ = mem[box(n)+3].int_+mem[box(n)+2].int_;
 					info(r+2) = 0;
 					q = skip(2900);
-					if (eqtb[5318+n].int_ == 1000)
+					if (count(n) == 1000)
 						h = mem[r+3].int_;
 					else
-						h = xovern(mem[r+3].int_, 1000)*eqtb[5318+n].int_;
+						h = xovern(mem[r+3].int_, 1000)*count(n);
 					pagesofar[0] -= h+mem[q+1].int_;
 					pagesofar[2+type(q)] += mem[q+2].int_;
 					pagesofar[6] += mem[q+3].int_;
@@ -157,31 +157,31 @@ void buildpage(void)
 				{
 					link(r+2) = p;
 					delta = pagesofar[0]-pagesofar[1]-pagesofar[7]+pagesofar[6];
-					if (eqtb[5318+n].int_ == 1000)
+					if (count(n) == 1000)
 						h = mem[p+3].int_;
 					else
-						h = xovern(mem[p+3].int_, 1000)*eqtb[5318+n].int_;
-					if ((h <= 0 || h <= delta) && mem[p+3].int_+mem[r+3].int_ <= eqtb[5851+n].int_)
+						h = xovern(mem[p+3].int_, 1000)*count(n);
+					if ((h <= 0 || h <= delta) && mem[p+3].int_+mem[r+3].int_ <= dimen(n))
 					{
 						pagesofar[0] -= h;
 						mem[r+3].int_ += mem[p+3].int_;
 					}
 					else
 					{
-						if (eqtb[5318+n].int_ <= 0)
+						if (count(n) <= 0)
 							w = 1073741823;
 						else
 						{
 							w = pagesofar[0]-pagesofar[1]-pagesofar[7];
-							if (eqtb[5318+n].int_ != 1000)
-								w = xovern(w, eqtb[5318+n].int_)*1000;
+							if (count(n) != 1000)
+								w = xovern(w, count(n))*1000;
 						}
-						if (w > eqtb[5851+n].int_-mem[r+3].int_)
-							w = eqtb[5851+n].int_-mem[r+3].int_;
+						if (w > dimen(n)-mem[r+3].int_)
+							w = dimen(n)-mem[r+3].int_;
 						q = vertbreak(info(p+4), w, mem[p+2].int_);
 						mem[r+3].int_ += bestheightplusdepth;
-						if (eqtb[5318+n].int_ != 1000)
-							bestheightplusdepth = xovern(bestheightplusdepth, 1000)*eqtb[5318+n].int_;
+						if (count(n) != 1000)
+							bestheightplusdepth = xovern(bestheightplusdepth, 1000)*count(n);
 						pagesofar[0] -= bestheightplusdepth;
 						type(r) = 1;
 						link(r+1) = q;

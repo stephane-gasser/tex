@@ -64,11 +64,11 @@ void storefmtfile(void)
 	print(1271); // (preloaded format=
 	print(jobname);
 	printchar(' ');
-	printint(eqtb[5286].int_);
+	printint(int_par(year_code));
 	printchar('.');
-	printint(eqtb[5285].int_);
+	printint(int_par(month_code));
 	printchar('.');
-	printint(eqtb[5284].int_);
+	printint(int_par(day_code));
 	printchar(')');
 	if (interaction == 0)
 		selector = 18;
@@ -316,6 +316,6 @@ void storefmtfile(void)
 	writeInt(interaction);
 	writeInt(formatident);
 	writeInt(69069);
-	eqtb[5294].int_ = 0;
+	int_par(tracing_stats_code) = 0;
 	wclose(fmtfile);
 }

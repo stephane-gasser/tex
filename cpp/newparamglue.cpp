@@ -7,7 +7,7 @@ halfword newparamglue(smallnumber n)
 	type(p) = glue_node;
 	subtype(p) = n+1;
 	link(p+1) = 0;
-	auto q = eqtb[glue_base+n].hh.rh;
+	auto q = glue_par(n);
 	info(p+1) = q;
 	link(q)++;
 	return p;

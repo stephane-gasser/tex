@@ -3,5 +3,5 @@
 
 void giveerrhelp(void)
 {
-	tokenshow(eqtb[3421].hh.rh);
+	tokenshow(err_help());
 }

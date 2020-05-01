@@ -38,7 +38,7 @@ void expand(void)
 	halfword backupbackup = link(29987);
 	if (curcmd < 111)
 	{
-		if (eqtb[5299].int_ > 1)
+		if (int_par(tracing_commands_code) > 1)
 			showcurcmdchr();
 		halfword t;
 		smallnumber savescannerstatus;

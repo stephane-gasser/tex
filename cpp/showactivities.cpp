@@ -64,10 +64,10 @@ void showactivities(void)
 						int t = subtype(r);
 						printint(t);
 						print(983); // adds 
-						if (eqtb[5318+t].int_ == 1000)
+						if (count(t) == 1000)
 							t = mem[r+3].int_;
 						else
-							t = xovern(mem[r+3].int_, 1000)*eqtb[5318+t].int_;
+							t = xovern(mem[r+3].int_, 1000)*count(t);
 						printscaled(t);
 						if (type(r) == 1)
 						{

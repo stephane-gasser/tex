@@ -68,10 +68,10 @@ void handlerightbrace(void)
 			break;
 		case 11:
 			endgraf();
-			q = eqtb[2892].hh.rh;
+			q = split_top_skip();
 			link(q)++;
-			d = eqtb[5836].int_;
-			f = eqtb[5305].int_;
+			d = dimen_par(split_max_depth_code);
+			f = int_par(floating_penalty_code);
 			unsave();
 			saveptr--;
 			p = vpackage(link(curlist.headfield), 0, 1, 1073741823);
@@ -120,7 +120,7 @@ void handlerightbrace(void)
 			unsave();
 			outputactive = false;
 			insertpenalties = 0;
-			if (eqtb[3933].hh.rh)
+			if (box(255))
 			{
 				if (interaction == 3)
 					printnl(262); //! 

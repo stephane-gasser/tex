@@ -37,7 +37,7 @@ void finalign(void)
 		confusion(915); //align0
 	unsave();
 	if (nest[nestptr-1].modefield == 203)
-		o = eqtb[5845].int_;
+		o = dimen_par(display_indent_code);
 	else
 		o = 0;
 	q = link(link(29992));
@@ -104,10 +104,10 @@ void finalign(void)
 	packbeginline = -curlist.mlfield;
 	if (curlist.modefield == -1)
 	{
-		rulesave = eqtb[5846].int_;
-		eqtb[5846].int_ = 0;
+		rulesave = dimen_par(overfull_rule_code);
+		dimen_par(overfull_rule_code) = 0;
 		p = hpack(link(29992), savestack[saveptr+1].int_, savestack[saveptr].int_);
-		eqtb[5846].int_ = rulesave;
+		dimen_par(overfull_rule_code) = rulesave;
 	}
 	else
 	{
@@ -320,14 +320,14 @@ void finalign(void)
 			}
 		}
 		popnest();
-		link(curlist.tailfield) = newpenalty(eqtb[5274].int_);
+		link(curlist.tailfield) = newpenalty(int_par(pre_display_penalty_code));
 		curlist.tailfield = link(curlist.tailfield);
 		link(curlist.tailfield) = newparamglue(3);
 		curlist.tailfield = link(curlist.tailfield);
 		link(curlist.tailfield) = p;
 		if (p)
 			curlist.tailfield = q;
-		link(curlist.tailfield) = newpenalty(eqtb[5275].int_);
+		link(curlist.tailfield) = newpenalty(int_par(post_display_penalty_code));
 		curlist.tailfield = link(curlist.tailfield);
 		link(curlist.tailfield) = newparamglue(4);
 		curlist.tailfield = link(curlist.tailfield);

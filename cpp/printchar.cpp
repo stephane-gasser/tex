@@ -3,7 +3,7 @@
 
 void printchar(ASCIIcode s)
 {
-	if (s == eqtb[5312].int_)
+	if (s == int_par(new_line_char_code))
 		if (selector < 20)
 		{
 			println();

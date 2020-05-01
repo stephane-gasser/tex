@@ -129,7 +129,7 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 	else
 	{
 		b = newnullbox();
-		mem[b+1].int_ = eqtb[5841].int_;
+		mem[b+1].int_ = dimen_par(null_delimiter_space_code);
 	}
 	mem[b+4].int_ = half(mem[b+3].int_-mem[b+2].int_)-fontinfo[22+parambase[fam_fnt(2+s)]].int_;
 	return b;

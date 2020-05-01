@@ -193,7 +193,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 			if (o == 0 && link(r+5) != 0)
 			{
 				lastbadness = badness(x, totalstretch[0]);
-				if (lastbadness > eqtb[5289].int_)
+				if (lastbadness > int_par(hbadness_code))
 				{
 					println();
 					if (lastbadness > 100)
@@ -232,14 +232,14 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 			{
 				lastbadness = 1000000;
 				mem[r+6].gr = 1.0;
-				if (-x-totalshrink[0] > eqtb[5838].int_ || eqtb[5289].int_ < 100)
+				if (-x-totalshrink[0] > dimen_par(hfuzz_code) || int_par(hbadness_code) < 100)
 				{
-					if (eqtb[5846].int_ > 0 && -x-totalshrink[0] > eqtb[5838].int_)
+					if (dimen_par(overfull_rule_code) > 0 && -x-totalshrink[0] > dimen_par(hfuzz_code))
 					{
 						while (link(q))
 							q = link(q);
 						link(q) = newrule();
-						mem[link(q)+1].int_ = eqtb[5846].int_;
+						mem[link(q)+1].int_ = dimen_par(overfull_rule_code);
 					}
 					println();
 					printnl(851); //Overfull \hbox (
@@ -253,7 +253,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 					if (link(r+5))
 					{
 						lastbadness = badness(-x, totalshrink[0]);
-						if (lastbadness > eqtb[5289].int_)
+						if (lastbadness > int_par(hbadness_code))
 						{
 							println();
 							printnl(853); //Tight \hbox (badness 

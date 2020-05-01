@@ -59,10 +59,10 @@ void startinput(void)
 	line = 1;
 	if (inputln(inputfile[curinput.indexfield], false))
 		firmuptheline();
-	if ((eqtb[5311].int_ < 0 || eqtb[5311].int_ > 255))
+	if ((int_par(end_line_char_code) < 0 || int_par(end_line_char_code) > 255))
 		curinput.limitfield--;
 	else
-		buffer[curinput.limitfield] = eqtb[5311].int_;
+		buffer[curinput.limitfield] = int_par(end_line_char_code);
 	First = curinput.limitfield+1;
 	curinput.locfield = curinput.startfield;
 }

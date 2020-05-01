@@ -27,7 +27,7 @@ void getpreambletoken(void)
 		{
 			scanoptionalequals();
 			scanglue(2);
-			if (eqtb[5306].int_ > 0)
+			if (int_par(global_defs_code) > 0)
 				geqdefine(2893, 117, curval);
 			else
 				eqdefine(2893, 117, curval);

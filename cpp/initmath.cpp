@@ -25,7 +25,7 @@ void initmath(void)
 		}
 		else
 		{
-			linebreak(eqtb[5270].int_);
+			linebreak(int_par(display_widow_penalty_code));
 			v = mem[justbox+4].int_+2*fontinfo[6+parambase[cur_font()]].int_;
 			w = -1073741823;
 			p = link(justbox+5);
@@ -115,27 +115,27 @@ void initmath(void)
 				continue;
 			}
 		}
-		if (eqtb[3412].hh.rh == 0)
-			if (eqtb[5847].int_ && ((eqtb[5304].int_ >= 0 && curlist.pgfield+2 > eqtb[5304].int_) || curlist.pgfield+1 < -eqtb[5304].int_))
+		if (par_shape_ptr() == 0)
+			if (dimen_par(hang_indent_code) && ((int_par(hang_after_code) >= 0 && curlist.pgfield+2 > int_par(hang_after_code)) || curlist.pgfield+1 < -int_par(hang_after_code)))
 			{
-				l = eqtb[5833].int_-abs(eqtb[5847].int_);
-				if (eqtb[5847].int_ > 0)
-					s = eqtb[5847].int_;
+				l = dimen_par(hsize_code)-abs(dimen_par(hang_indent_code));
+				if (dimen_par(hang_indent_code) > 0)
+					s = dimen_par(hang_indent_code);
 				else
 					s = 0;
 			}
 			else
 			{
-				l = eqtb[5833].int_;
+				l = dimen_par(hsize_code);
 				s = 0;
 			}
 		else
 		{
-			n = info(eqtb[3412].hh.rh);
+			n = info(par_shape_ptr());
 			if (curlist.pgfield+2 >= n)
-				p = eqtb[3412].hh.rh+2*n;
+				p = par_shape_ptr()+2*n;
 			else
-				p = eqtb[3412].hh.rh+2*(curlist.pgfield+2);
+				p = par_shape_ptr()+2*(curlist.pgfield+2);
 			s = mem[p-1].int_;
 			l = mem[p].int_;
 		}
@@ -145,8 +145,8 @@ void initmath(void)
 		eqworddefine(5843, w);
 		eqworddefine(5844, l);
 		eqworddefine(5845, s);
-		if (eqtb[3416].hh.rh)
-			begintokenlist(eqtb[3416].hh.rh, 9);
+		if (every_display())
+			begintokenlist(every_display(), 9);
 		if (nestptr == 1)
 			buildpage();
 	}
@@ -155,7 +155,7 @@ void initmath(void)
 		backinput();
 		pushmath(15);
 		eqworddefine(5307, -1);
-		if (eqtb[3415].hh.rh)
-			begintokenlist(eqtb[3415].hh.rh, 8);
+		if (every_math())
+			begintokenlist(every_math(), 8);
 	}
 }

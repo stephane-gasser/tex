@@ -31,8 +31,8 @@ void mathac(void)
 	link(curlist.tailfield+4) = 1;
 	scanfifteenbitint();
 	subtype(curlist.tailfield+4) = curval%256;
-	if (curval >= 28672 && eqtb[5307].int_ >= 0 && eqtb[5307].int_ < 16)
-		type(curlist.tailfield+4) = eqtb[5307].int_;
+	if (curval >= 28672 && int_par(cur_fam_code) >= 0 && int_par(cur_fam_code) < 16)
+		type(curlist.tailfield+4) = int_par(cur_fam_code);
 	else
 		type(curlist.tailfield+4) = (curval/256)%16;
 	scanmath(curlist.tailfield+1);

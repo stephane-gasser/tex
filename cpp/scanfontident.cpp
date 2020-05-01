@@ -21,7 +21,7 @@ void scanfontident(void)
 			{
 				halfword m = curchr;
 				scanfourbitint();
-				f = eqtb[m+curval].hh.rh;
+				f = equiv(m+curval);
 			}
 			else
 			{

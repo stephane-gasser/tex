@@ -21,14 +21,14 @@ quarterword& subtype(halfword p)
 	return mem[p].hh.b1;
 }
 
-int cat_code(int c)
+halfword& cat_code(halfword p)
 {
-	return eqtb[cat_code_base+c].hh.rh;
+	return equiv(cat_code_base+p);
 }
 
-int &int_par(int c)
+int &int_par(halfword p)
 {
-	return eqtb[int_base+c].int_;
+	return eqtb[int_base+p].int_;
 }
 
 quarterword& save_type(halfword p)
@@ -90,4 +90,125 @@ halfword& box(halfword p)
 halfword& cur_font(void)
 {
 	return equiv(cur_font_loc);
+}
+
+halfword& par_shape_ptr(void)
+{
+	return equiv(par_shape_loc);
+}
+
+halfword& output_routine(void)
+{
+	return equiv(output_routine_loc);
+}
+
+halfword& every_par(void)
+{
+	return equiv(every_par_loc);
+}
+
+halfword& every_math(void)
+{
+	return equiv(every_math_loc);
+}
+
+halfword& every_display(void)
+{
+	return equiv(every_display_loc);
+}
+
+halfword& every_hbox(void)
+{
+	return equiv(every_hbox_loc);
+}
+
+halfword& every_vbox(void)
+{
+	return equiv(every_vbox_loc);
+}
+
+halfword& every_job(void)
+{
+	return equiv(every_job_loc);
+}
+
+halfword& every_cr(void)
+{
+	return equiv(every_cr_loc);
+}
+
+halfword& err_help(void)
+{
+	return equiv(err_help_loc);
+}
+
+halfword& baseline_skip(void)
+{
+	return glue_par(baseline_skip_code);
+}
+
+halfword& left_skip(void)
+{
+	return glue_par(left_skip_code);
+}
+
+halfword& right_skip(void)
+{
+	return glue_par(right_skip_code);
+}
+
+halfword& split_top_skip(void)
+{
+	return glue_par(split_top_skip_code);
+};
+
+
+halfword& space_skip(void)
+{
+	return glue_par(space_skip_code);
+}
+
+halfword& xspace_skip(void)
+{
+	return glue_par(xspace_skip_code);
+}
+
+halfword& lc_code(halfword p)
+{
+	return equiv(lc_code_base+p);
+}
+
+halfword& sf_code(halfword p)
+{
+	return equiv(sf_code_base+p);
+}
+
+halfword& math_code(halfword p)
+{
+	return equiv(math_code_base+p);
+}
+
+int& count(halfword p)
+{
+	return eqtb[count_base+p].int_;
+}
+
+int& dimen(halfword p)
+{
+	return eqtb[scaled_base+p].int_;
+}
+
+halfword& uc_code(halfword p)
+{
+	return equiv(uc_code_base+p);
+}
+
+int& dimen_par(halfword p)
+{
+	return eqtb[dimen_base+p].int_;
+}
+
+int& del_code(halfword p)
+{
+	return eqtb[del_code_base+p].int_;
 }

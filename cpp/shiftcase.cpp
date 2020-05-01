@@ -15,8 +15,8 @@ void shiftcase(void)
 		if (t < 4352)
 		{
 			c = t%256;
-			if (eqtb[b+c].hh.rh)
-				info(p) = t-c+eqtb[b+c].hh.rh;
+			if (equiv(b+c))
+				info(p) = t-c+equiv(b+c);
 		}
 		p = link(p);
 	}

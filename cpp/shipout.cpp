@@ -24,7 +24,7 @@
 
 void shipout(halfword p)
 {
-	if (eqtb[5297].int_ > 0)
+	if (int_par(tracing_output_code))
 	{
 		printnl(338); //
 		println();
@@ -37,23 +37,23 @@ void shipout(halfword p)
 		printchar(' ');
 	printchar('[');
 	int j = 9;
-	while (eqtb[5318+j].int_ == 0 && j > 0)
+	while (count(j) == 0 && j > 0)
 		j--;
 	for (int k = 0; k <= j; k++)
 	{
-		printint(eqtb[5318+k].int_);
+		printint(count(k));
 		if (k < j)
 			printchar('.');
 	}
 	std::cout << std::flush;
-	if (eqtb[5297].int_ > 0)
+	if (int_par(tracing_output_code) > 0)
 	{
 		printchar(']');
 		begindiagnostic();
 		showbox(p);
 		enddiagnostic(true);
 	}
-	if (mem[p+3].int_ > 1073741823 || mem[p+2].int_ > 1073741823 || mem[p+3].int_+mem[p+2].int_+eqtb[5849].int_ > 1073741823 || mem[p+1].int_+eqtb[5848].int_ > 1073741823)
+	if (mem[p+3].int_ > 1073741823 || mem[p+2].int_ > 1073741823 || mem[p+3].int_+mem[p+2].int_+dimen_par(v_offset_code) > 1073741823 || mem[p+1].int_+dimen_par(h_offset_code) > 1073741823)
 	{
 		if (interaction == 3)
 			printnl(262); //! 
@@ -62,27 +62,27 @@ void shipout(halfword p)
 		helpline[1] = 833; //The page just created is more than 18 feet tall or
 		helpline[0] = 834; //more than 18 feet wide, so I suspect something went wrong.
 		error();
-		if (eqtb[5297].int_ <= 0)
+		if (int_par(tracing_output_code) <= 0)
 		{
 			begindiagnostic;
 			printnl(835);
 			showbox(p);
 			enddiagnostic(true);
 		}
-		if (eqtb[5297].int_ <= 0)
+		if (int_par(tracing_output_code) <= 0)
 		printchar(']');
 		deadcycles = 0;
 		std::cout << std::flush;
 		flushnodelist(p);
 		return;
 	}
-	if (mem[p+3].int_+mem[p+2].int_+eqtb[5849].int_ > maxv)
-		maxv = mem[p+3].int_+mem[p+2].int_+eqtb[5849].int_;
-	if (mem[p+1].int_+eqtb[5848].int_ > maxh)
-		maxh = mem[p+1].int_+eqtb[5848].int_;
+	if (mem[p+3].int_+mem[p+2].int_+dimen_par(v_offset_code) > maxv)
+		maxv = mem[p+3].int_+mem[p+2].int_+dimen_par(v_offset_code);
+	if (mem[p+1].int_+dimen_par(h_offset_code) > maxh)
+		maxh = mem[p+1].int_+dimen_par(h_offset_code);
 	dvih = 0;
 	dviv = 0;
-	curh = eqtb[5848].int_;
+	curh = dimen_par(h_offset_code);
 	dvif = 0;
 	if (outputfilename == 0)
 	{
@@ -104,18 +104,18 @@ void shipout(halfword p)
 		dvifour(25400000);
 		dvifour(473628672);
 		preparemag();
-		dvifour(eqtb[5280].int_);
+		dvifour(int_par(mag_code));
 		oldsetting = selector;
 		selector = 21;
 		print(826); // TeX output 
-		printint(eqtb[5286].int_);
+		printint(int_par(year_code));
 		printchar('.');
-		printtwo(eqtb[5285].int_);
+		printtwo(int_par(month_code));
 		printchar('.');
-		printtwo(eqtb[5284].int_);
+		printtwo(int_par(day_code));
 		printchar(':');
-		printtwo(eqtb[5283].int_/60);
-		printtwo(eqtb[5283].int_%60);
+		printtwo(int_par(time_code)/60);
+		printtwo(int_par(time_code)%60);
 		selector = oldsetting;
 		dvibuf[dviptr++] = poolptr-strstart[strptr];
 		if (dviptr == dvilimit)
@@ -133,10 +133,10 @@ void shipout(halfword p)
 	if (dviptr == dvilimit)
 		dviswap();
 	for (auto k = 0; k < 10; k++)
-		dvifour(eqtb[5318+k].int_);
+		dvifour(count(k));
 	dvifour(lastbop);
 	lastbop = pageloc;
-	curv = mem[p+3].int_+eqtb[5849].int_;
+	curv = mem[p+3].int_+dimen_par(v_offset_code);
 	tempptr = p;
 	if (type(p) == 1)
 		vlistout();
@@ -147,7 +147,7 @@ void shipout(halfword p)
 		dviswap();
 	totalpages++;
 	curs = -1;
-	if (eqtb[5297].int_ <= 0)
+	if (int_par(tracing_output_code) <= 0)
 		printchar(']');
 	deadcycles = 0;
 	std::cout << std::flush;

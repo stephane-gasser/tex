@@ -20,13 +20,13 @@ void newpatterns(void)
 	ASCIIcode c;
 	if (trienotready)
 	{
-		if (eqtb[5313].int_ <= 0)
+		if (int_par(cur_fam_code) <= 0)
 			curlang = 0;
 		else 
-			if (eqtb[5313].int_ > 255)
+			if (int_par(cur_fam_code) > 255)
 				curlang = 0;
 			else
-				curlang = eqtb[5313].int_;
+				curlang = int_par(cur_fam_code);
 		scanleftbrace();
 		k = 0;
 		hyf[0] = 0;
@@ -45,7 +45,7 @@ void newpatterns(void)
 							curchr = 0;
 						else
 						{
-							curchr = eqtb[4239+curchr].hh.rh;
+							curchr = lc_code(curchr);
 							if (curchr == 0)
 							{
 								if (interaction == 3)

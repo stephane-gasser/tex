@@ -89,7 +89,7 @@ void doregistercommand(smallnumber a)
 			if (q == 90)
 			{
 				q = newspec(curval);
-				r = eqtb[l].hh.rh;
+				r = equiv(l);
 				deleteglueref(curval);
 				mem[q+1].int_ += mem[r+1].int_;
 				if (mem[q+2].int_ == 0)
@@ -128,7 +128,7 @@ void doregistercommand(smallnumber a)
 				curval = xovern(eqtb[l].int_, curval);
 		else
 		{
-			s = eqtb[l].hh.rh;
+			s = equiv(l);
 			r = newspec(s);
 			if (q == 91)
 				for (int i = 1; i <= 3; i++)

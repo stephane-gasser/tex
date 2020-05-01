@@ -139,17 +139,17 @@ int main()
 			while (curinput.locfield < curinput.limitfield && buffer[curinput.locfield] == ' ')
 				curinput.locfield++;
 		}
-		if (eqtb[5311].int_ < 0 || eqtb[5311].int_ > 255)
+		if (int_par(end_line_char_code) < 0 || int_par(end_line_char_code) > 255)
 			curinput.limitfield--;
 		else
-			buffer[curinput.limitfield] = eqtb[5311].int_;
+			buffer[curinput.limitfield] = int_par(end_line_char_code);
 		fixdateandtime();
 		magicoffset = strstart[891]-9*16;
 		if (interaction == 0)
 			selector = 16;
 		else
 			selector = 17;
-		if (curinput.locfield < curinput.limitfield && eqtb[3983 + buffer[curinput.locfield]].hh.rh != 0)
+		if (curinput.locfield < curinput.limitfield && cat_code(buffer[curinput.locfield]))
 			startinput();
 		history = 0;
 		maincontrol();

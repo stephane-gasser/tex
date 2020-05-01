@@ -83,7 +83,7 @@
 
 void goto70()
 {
-	mains = eqtb[4751+curchr].hh.rh;
+	mains = sf_code(curchr);
 	if (mains == 1000)
 		curlist.auxfield.hh.lh = 1000;
 		else 
@@ -100,7 +100,7 @@ void goto70()
 	mainf = cur_font();
 	bchar = fontbchar[mainf];
 	falsebchar = fontfalsebchar[mainf];
-	if (curlist.modefield > 0 && eqtb[5313].int_ != curlist.auxfield.hh.rh)
+	if (curlist.modefield > 0 && int_par(language_code) != curlist.auxfield.hh.rh)
 		fixlanguage();
 	ligstack = avail;
 	if (ligstack == 0)
@@ -161,7 +161,7 @@ void goto80()
 
 void goto101()
 {
-	mains = eqtb[4751+curchr].hh.rh;
+	mains = sf_code(curchr);
 	if (mains == 1000)
 		curlist.auxfield.hh.lh = 1000;
 	else 
@@ -239,7 +239,7 @@ void goto95()
 
 void goto120()
 {
-	if (eqtb[2894].hh.rh == 0)
+	if (space_skip())
 	{
 		mainp = fontglue[cur_font()];
 		if (mainp == 0)
@@ -547,8 +547,8 @@ void goto110112(bool is110)
 void maincontrol(void)
 {
 	int t;
-	if (eqtb[3419].hh.rh)
-		begintokenlist(eqtb[3419].hh.rh, 12);
+	if (every_job())
+		begintokenlist(every_job(), 12);
 	getxtoken();
 	while (true)
 	{
@@ -560,7 +560,7 @@ void maincontrol(void)
 			getxtoken();
 			continue;
 		}
-		if (eqtb[5299].int_ > 0)
+		if (int_par(tracing_commands_code) > 0)
 			showcurcmdchr();
 		switch (abs(curlist.modefield)+curcmd)
 		{
@@ -893,12 +893,12 @@ void maincontrol(void)
 			case 214:
 			case 215:
 			case 271: 
-				setmathchar(eqtb[5007+curchr].hh.rh);
+				setmathchar(math_code(curchr));
 				break;
 			case 219:
 				scancharnum();
 				curchr = curval;
-				setmathchar(eqtb[5007+curchr].hh.rh);
+				setmathchar(math_code(curchr));
 				break;
 			case 220:
 				scanfifteenbitint();
@@ -933,8 +933,8 @@ void maincontrol(void)
 				pushnest();
 				curlist.modefield = -1;
 				curlist.auxfield.int_ = -65536000;
-				if (eqtb[3418].hh.rh)
-				begintokenlist(eqtb[3418].hh.rh, 11);
+				if (every_vbox())
+				begintokenlist(every_vbox(), 11);
 				break;
 			case 256:
 				link(curlist.tailfield) = newstyle(curchr);

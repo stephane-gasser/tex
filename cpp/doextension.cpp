@@ -73,8 +73,8 @@ void doextension(void)
 					else
 						curlist.auxfield.hh.rh = curval;
 				link(curlist.tailfield+1) = curlist.auxfield.hh.rh;
-				type(curlist.tailfield+1) = normmin(eqtb[5314].int_);
-				subtype(curlist.tailfield+1) = normmin(eqtb[5315].int_);
+				type(curlist.tailfield+1) = normmin(int_par(left_hyphen_min_code));
+				subtype(curlist.tailfield+1) = normmin(int_par(right_hyphen_min_code));
 			}
 			break;
 		default: 

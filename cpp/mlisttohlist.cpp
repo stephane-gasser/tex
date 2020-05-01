@@ -306,11 +306,11 @@ void mlisttohlist(void)
 				break;
 			case 18:
 				t = 18;
-				pen = eqtb[5272].int_;
+				pen = int_par(bin_op_penalty_code);
 				break;
 			case 19:
 				t = 19;
-				pen = eqtb[5273].int_;
+				pen = int_par(rel_penalty_code);
 				break;
 			case 16:
 			case 29:

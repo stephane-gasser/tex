@@ -16,7 +16,7 @@ void printcs(int p)
 			else
 			{
 				printesc(p-257);
-				if (eqtb[3983+p-257].hh.rh == 11)
+				if (cat_code(p-257) == letter)
 					printchar(' ');
 			}
 		else 

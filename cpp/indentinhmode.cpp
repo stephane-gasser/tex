@@ -7,7 +7,7 @@ void indentinhmode(void)
 	if (curchr > 0)
 	{
 		auto p = newnullbox();
-		mem[p+1].int_ = eqtb[5830].int_;
+		mem[p+1].int_ = dimen_par(par_indent_code);
 		if (abs(curlist.modefield) == 102)
 			curlist.auxfield.hh.lh = 1000;
 		else

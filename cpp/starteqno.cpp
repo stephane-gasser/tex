@@ -8,6 +8,6 @@ void starteqno(void)
 	savestack[saveptr++].int_ = curchr;
 	pushmath(15);
 	eqworddefine(5307, -1);
-	if (eqtb[3415].hh.rh)
-		begintokenlist(eqtb[3415].hh.rh, 8);
+	if (every_math())
+		begintokenlist(every_math(), 8);
 }

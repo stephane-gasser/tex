@@ -46,12 +46,12 @@ void linebreak(int finalwidowpenalty)
 	initrhyf = (curlist.pgfield/65536)%64;
 	popnest();
 	noshrinkerroryet = true;
-	if (subtype(eqtb[2889].hh.rh) && mem[eqtb[2889].hh.rh+3].int_)
-		eqtb[2889].hh.rh = finiteshrink(eqtb[2889].hh.rh);
-	if (subtype(eqtb[2890].hh.rh)  &&mem[eqtb[2890].hh.rh+3].int_)
-		eqtb[2890].hh.rh = finiteshrink(eqtb[2890].hh.rh);
-	q = eqtb[2889].hh.rh;
-	r = eqtb[2890].hh.rh;
+	if (subtype(left_skip()) && mem[left_skip()+3].int_)
+		left_skip() = finiteshrink(left_skip());
+	if (subtype(right_skip()) && mem[right_skip()+3].int_)
+		right_skip() = finiteshrink(right_skip());
+	q = left_skip();
+	r = right_skip();
 	background[1] = mem[q+1].int_+mem[r+1].int_;
 	background[2] = 0;
 	background[3] = 0;
@@ -65,48 +65,48 @@ void linebreak(int finalwidowpenalty)
 	minimaldemerits[2] = 1073741823;
 	minimaldemerits[1] = 1073741823;
 	minimaldemerits[0] = 1073741823;
-	if (eqtb[3412].hh.rh == 0)
-		if (eqtb[5847].int_ == 0)
+	if (par_shape_ptr() == 0)
+		if (dimen_par(hang_indent_code) == 0)
 		{
 			lastspecialline = 0;
-			secondwidth = eqtb[5833].int_;
+			secondwidth = dimen_par(hsize_code);
 			secondindent = 0;
 		}
 		else
 		{
-			lastspecialline = abs(eqtb[5304].int_);
-			if (eqtb[5304].int_ < 0)
+			lastspecialline = abs(int_par(hang_after_code));
+			if (int_par(hang_after_code) < 0)
 			{
-				firstwidth = eqtb[5833].int_-abs(eqtb[5847].int_);
-				if (eqtb[5847].int_ >= 0)
-					firstindent = eqtb[5847].int_;
+				firstwidth = dimen_par(hsize_code)-abs(dimen_par(hang_indent_code));
+				if (dimen_par(hang_indent_code) >= 0)
+					firstindent = dimen_par(hang_indent_code);
 				else
 					firstindent = 0;
-				secondwidth = eqtb[5833].int_;
+				secondwidth = dimen_par(hsize_code);
 				secondindent = 0;
 			}
 			else
 			{
-				firstwidth = eqtb[5833].int_;
+				firstwidth = dimen_par(hsize_code);
 				firstindent = 0;
-				secondwidth = eqtb[5833].int_-abs(eqtb[5847].int_);
-				if (eqtb[5847].int_ >= 0)
-					secondindent = eqtb[5847].int_;
+				secondwidth = dimen_par(hsize_code)-abs(dimen_par(hang_indent_code));
+				if (dimen_par(hang_indent_code) >= 0)
+					secondindent = dimen_par(hang_indent_code);
 				else
 					secondindent = 0;
 			}
 		}
 	else
 	{
-		lastspecialline = info(eqtb[3412].hh.rh)-1;
-		secondwidth = mem[eqtb[3412].hh.rh+2 * (lastspecialline+1)].int_;
-		secondindent = mem[eqtb[3412].hh.rh+2 * lastspecialline+1].int_;
+		lastspecialline = info(par_shape_ptr())-1;
+		secondwidth = mem[par_shape_ptr()+2 * (lastspecialline+1)].int_;
+		secondindent = mem[par_shape_ptr()+2 * lastspecialline+1].int_;
 	}
-	if (eqtb[5282].int_ == 0)
+	if (int_par(looseness_code) == 0)
 		easyline = lastspecialline;
 	else
 		easyline = 65535;
-	threshold = eqtb[5263].int_;
+	threshold = int_par(pretolerance_code);
 	if (threshold >= 0)
 	{
 		secondpass = false;
@@ -114,9 +114,9 @@ void linebreak(int finalwidowpenalty)
 	}
 	else
 	{
-		threshold = eqtb[5264].int_;
+		threshold = int_par(tolerance_code);
 		secondpass = true;
-		finalpass = (eqtb[5850].int_ <= 0);
+		finalpass = (dimen_par(emergency_stretch_code) <= 0);
 	}
 	while (true)
 	{
@@ -243,8 +243,8 @@ void linebreak(int finalwidowpenalty)
 												label31 = true;
 												break;
 											}
-								if (eqtb[4239+c].hh.rh)
-									if (eqtb[4239+c].hh.rh == c && eqtb[5301].int_ > 0)
+								if (lc_code(c))
+									if (lc_code(c) == c && int_par(uc_hyph_code) > 0)
 										break;
 									else
 									{
@@ -273,14 +273,14 @@ void linebreak(int finalwidowpenalty)
 											break;
 										hyfbchar = subtype(s);
 										c = hyfbchar;
-										if (eqtb[4239+c].hh.rh == 0)
+										if (lc_code(c) == 0)
 											break;
 										if (hn == 63)
 											break;
 										hb = s;
 										hn++;
 										hu[hn] = c;
-										hc[hn] = eqtb[4239+c].hh.rh;
+										hc[hn] = lc_code(c);
 										hyfbchar = 256;
 									}
 									else 
@@ -295,13 +295,13 @@ void linebreak(int finalwidowpenalty)
 											while (q > 0)
 											{
 												c = subtype(q);
-												if (eqtb[4239+c].hh.rh == 0)
+												if (lc_code(c) == 0)
 													break;
 												if (j == 63)
 													break;
 												j++;
 												hu[j] = c;
-												hc[j] = eqtb[4239+c].hh.rh;
+												hc[j] = lc_code(c);
 												q = link(q);
 											}
 											hb = s;
@@ -377,7 +377,7 @@ void linebreak(int finalwidowpenalty)
 					s = info(curp+1);
 					discwidth = 0;
 					if (s == 0)
-						trybreak(eqtb[5267].int_, 1);
+						trybreak(int_par(ex_hyphen_penalty_code), 1);
 					else
 					{
 						do
@@ -406,7 +406,7 @@ void linebreak(int finalwidowpenalty)
 							s = link(s);
 						} while (s);
 						activewidth[1] += discwidth;
-						trybreak(eqtb[5266].int_, 1);
+						trybreak(int_par(hyphen_penalty_code), 1);
 						activewidth[1] -= discwidth;
 					}
 					r = subtype(curp);
@@ -478,7 +478,7 @@ void linebreak(int finalwidowpenalty)
 					r = link(r);
 				} while (r != 29993);
 				bestline = info(bestbet+1);
-				if (eqtb[5282].int_ == 0)
+				if (int_par(looseness_code) == 0)
 				{
 					postlinebreak(finalwidowpenalty);
 					q = link(29993);
@@ -508,7 +508,7 @@ void linebreak(int finalwidowpenalty)
 					if (type(r) != 2)
 					{
 						linediff = info(r+1)-bestline;
-						if ((linediff < actuallooseness && eqtb[5282].int_ <= linediff) || (linediff > actuallooseness && eqtb[5282].int_ >= linediff))
+						if ((linediff < actuallooseness && int_par(looseness_code) <= linediff) || (linediff > actuallooseness && int_par(looseness_code) >= linediff))
 						{
 							bestbet = r;
 							actuallooseness = linediff;
@@ -524,7 +524,7 @@ void linebreak(int finalwidowpenalty)
 					r = link(r);
 				} while (r != 29993);
 				bestline = info(bestbet+1);
-				if (actuallooseness == eqtb[5282].int_ || finalpass)
+				if (actuallooseness == int_par(looseness_code) || finalpass)
 				{
 					postlinebreak(finalwidowpenalty);
 					q = link(29993);
@@ -569,13 +569,13 @@ void linebreak(int finalwidowpenalty)
 		;
 		if (!secondpass)
 		{
-			threshold = eqtb[5264].int_;
+			threshold = int_par(tolerance_code);
 			secondpass = true;
-			finalpass = eqtb[5850].int_ <= 0;
+			finalpass = dimen_par(emergency_stretch_code) <= 0;
 		}
 		else
 		{
-			background[2] += eqtb[5850].int_;
+			background[2] += dimen_par(emergency_stretch_code);
 			finalpass = true;
 		}
 	}

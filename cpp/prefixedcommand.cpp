@@ -90,8 +90,8 @@ void prefixedcommand(void)
 		helpline[0] = 1182; //I'll pretend you didn't say \long or \outer here.
 		error();
 	}
-	if (eqtb[5306].int_)
-		if (eqtb[5306].int_ < 0)
+	if (int_par(global_defs_code))
+		if (int_par(global_defs_code) < 0)
 		{
 			if (a >= 4)
 				a -= 4;
@@ -108,7 +108,7 @@ void prefixedcommand(void)
 				eqdefine(3934, 120, curchr);
 			break;
 		case 97:
-			if (curchr%2 & a < 4  && eqtb[5306].int_ >= 0)
+			if (curchr%2 & a < 4  && int_par(global_defs_code) >= 0)
 				a += 4;
 			e = curchr >= 2;
 			getrtoken();
@@ -257,7 +257,7 @@ void prefixedcommand(void)
 				}
 				if (curcmd == 72)
 				{
-					q = eqtb[curchr].hh.rh;
+					q = equiv(curchr);
 					if (q == 0)
 						if (a >= 4)
 							geqdefine(p, 101, 0);

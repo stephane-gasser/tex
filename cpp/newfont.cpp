@@ -116,7 +116,7 @@ void newfont(smallnumber a)
 		}
 	if (f > fontptr)
 		f = readfontinfo(u, curname, curarea, s);
-	eqtb[u].hh.rh = f;
-	eqtb[2624+f] = eqtb[u];
-	hash[2624+f].rh = t;
+	equiv(u) = f;
+	eqtb[frozen_null_font+f] = eqtb[u];
+	hash[frozen_null_font+f].rh = t;
 }

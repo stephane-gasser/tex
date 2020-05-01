@@ -164,7 +164,7 @@ void conditional(void)
 				else
 				{
 					p = link(curchr);
-					q = link(eqtb[n].hh.rh);
+					q = link(equiv(n));
 					if (p == q)
 						b = true;
 					else
@@ -195,7 +195,7 @@ void conditional(void)
 		case 16:
 			scanint();
 			n = curval;
-			if (eqtb[5299].int_ > 1)
+			if (int_par(tracing_commands_code) > 1)
 			{
 				begindiagnostic();
 				print(782); //{case 
@@ -238,7 +238,7 @@ void conditional(void)
 			changeiflimit(4, savecondptr);
 			return;
 	}
-	if (eqtb[5299].int_ > 1)
+	if (int_par(tracing_commands_code) > 1)
 	{
 		begindiagnostic();
 		if (b)
