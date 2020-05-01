@@ -8,7 +8,7 @@
 void terminput(void)
 {
 	std::cout << std::flush;
-	if (!inputln(termin, true))
+	if (!inputln(std::cin, true))
 		fatalerror(261); //End of file on the terminal!
 	termoffset = 0;
 	selector--;

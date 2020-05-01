@@ -2,7 +2,7 @@
 #include "overflow.h"
 #include <iostream>
 
-bool inputln(alphafile& f, bool bypasseoln)
+bool inputln(std::istream& f, bool bypasseoln)
 {
 	if (bypasseoln)
 		if (!f.eof())

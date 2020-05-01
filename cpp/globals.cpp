@@ -50,8 +50,6 @@ ASCIIcode buffer[bufsize+1]; // débute à 0
 int First;// 0..bufsize
 int last; // 0..bufsize
 int maxbufstack; // 0..bufsize
-alphafile termin;
-alphafile termout;
 packedASCIIcode strpool[poolsize+1]; // débute à 0
 poolpointer strstart[maxstrings+1]; // débute à 1
 poolpointer poolptr;

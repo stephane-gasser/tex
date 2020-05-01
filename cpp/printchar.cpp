@@ -1,5 +1,6 @@
 #include "printchar.h"
 #include "println.h"
+#include <iostream>
 
 void printchar(ASCIIcode s)
 {
@@ -12,13 +13,13 @@ void printchar(ASCIIcode s)
 	switch (selector)
 	{
 		case 19:
-			termout << xchr[s];
+			std::cout << xchr[s];
 			logfile << xchr[s];
 			termoffset++;
 			fileoffset++;
 			if (termoffset == maxprintline)
 			{
-				termout << "\n";
+				std::cout << "\n";
 				termoffset = 0;
 			}
 			if (fileoffset == maxprintline)
@@ -34,7 +35,7 @@ void printchar(ASCIIcode s)
 			println();
 			break;
 		case 17:
-			termout << xchr[s];
+			std::cout << xchr[s];
 			termoffset++;
 			if (termoffset == maxprintline)
 				println();

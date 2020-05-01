@@ -7,7 +7,7 @@ bool initterminal(void)
 	while (true)
 	{
 		std::cout << "**" << std::flush;
-		if (!inputln(termin, true))
+		if (!inputln(std::cin, true))
 		{
 			std::cout << std::endl;
 			std::cout << "! End of file on the terminal... why?'";

@@ -52,8 +52,6 @@ extern ASCIIcode buffer[bufsize+1]; // débute à 0
 extern int First;// 0..bufsize
 extern int last; // 0..bufsize
 extern int maxbufstack; // 0..bufsize
-extern alphafile termin;
-extern alphafile termout;
 extern packedASCIIcode strpool[poolsize+1]; // débute à 0
 extern poolpointer strstart[maxstrings+1]; // débute à 1
 extern poolpointer poolptr;
