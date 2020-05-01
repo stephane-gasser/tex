@@ -5,8 +5,8 @@
 
 halfword prunepagetop(halfword p)
 {
-	halfword prevp = 29997, q;
-	link(29997) = p;
+	halfword prevp = temp_head, q;
+	link(temp_head) = p;
 	while (p)
 		switch (type(p))
 		{
@@ -40,5 +40,5 @@ halfword prunepagetop(halfword p)
 			default: 
 				confusion(958); //pruning
 		}
-	return link(29997);
+	return link(temp_head);
 }

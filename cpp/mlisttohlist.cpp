@@ -260,7 +260,7 @@ void mlisttohlist(void)
 				else
 					cursize = 16*((curstyle-2)/2);
 				curmu = xovern(fontinfo[6+parambase[fam_fnt(2+cursize)]].int_, 18);
-				p = hpack(link(29997), 0, 1);
+				p = hpack(link(temp_head), 0, 1);
 				break;
 			default: 
 				confusion(889); //mlist2
@@ -280,7 +280,7 @@ void mlisttohlist(void)
 	}
 	if (rtype == 18)
 		type(r) = 16;
-	p = 29997;
+	p = temp_head;
 	link(p) = 0;
 	q = mlist;
 	rtype = 0;

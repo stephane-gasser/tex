@@ -219,7 +219,7 @@ void initprim(void)
 	hash[2619].rh = 900; //endtemplate
 	hash[2620].rh = 900; //endtemplate
 	eq_type(2620) = 9;
-	equiv(2620) = 29989;
+	equiv(2620) = null_list;
 	eq_level(2620) = 1;
 	eqtb[2619] = eqtb[2620];
 	eq_type(2619) = 115;

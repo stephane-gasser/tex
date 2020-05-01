@@ -67,9 +67,9 @@ void initmath(void)
 						p = link(p);
 						continue;
 					case ligature_node: //6
-						mem[29988] = mem[p+1];
-						link(29988) = link(p);
-						p = 29988;
+						mem[lig_trick] = mem[p+1];
+						link(lig_trick) = link(p);
+						p = lig_trick;
 						continue;
 					case kern_node: //11
 					case math_node: //9

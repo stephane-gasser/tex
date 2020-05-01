@@ -13,8 +13,8 @@ void mathfraction(void)
 	{
 		if (c >= 3)
 		{
-			scandelimiter(29988, false);
-			scandelimiter(29988, false);
+			scandelimiter(garbage, false);
+			scandelimiter(garbage, false);
 		}
 		if (c%3 == 0)
 			scandimen(false, false, false);

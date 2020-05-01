@@ -91,7 +91,7 @@ void postlinebreak(int finalwidowpenalty)
 			}
 		else
 		{
-			q = 29997;
+			q = temp_head;
 			while (link(q))
 				q = link(q);
 			r = newparamglue(8);
@@ -101,8 +101,8 @@ void postlinebreak(int finalwidowpenalty)
 		}
 		r = link(q);
 		link(q) = 0;
-		q = link(29997);
-		link(29997) = r;
+		q = link(temp_head);
+		link(temp_head) = r;
 		if (left_skip())
 		{
 			r = newparamglue(7);
@@ -125,13 +125,13 @@ void postlinebreak(int finalwidowpenalty)
 				curwidth = mem[par_shape_ptr()+2*curline].int_;
 				curindent = mem[par_shape_ptr()+2*curline-1].int_;
 			}
-		adjusttail = 29995;
+		adjusttail = adjust_head;
 		justbox = hpack(q, curwidth, 0);
 		mem[justbox+4].int_ = curindent;
 		appendtovlist(justbox);
-		if (29995 != adjusttail)
+		if (adjust_head != adjusttail)
 		{
-			link(curlist.tailfield) = link(29995);
+			link(curlist.tailfield) = link(adjust_head);
 			curlist.tailfield = adjusttail;
 		}
 		adjusttail = 0;
@@ -156,7 +156,7 @@ void postlinebreak(int finalwidowpenalty)
 		if (curp)
 			if (not postdiscbreak)
 			{
-				r = 29997;
+				r = temp_head;
 				while (true)
 				{
 					q = link(r);
@@ -171,15 +171,15 @@ void postlinebreak(int finalwidowpenalty)
 							break;
 					r = q;
 				}
-				if (r != 29997)
+				if (r != temp_head)
 				{
 					link(r) = 0;
-					flushnodelist(link(29997));
-					link(29997) = q;
+					flushnodelist(link(temp_head));
+					link(temp_head) = q;
 				}
 			}
 	} while (curp);
-	if (curline != bestline || link(29997))
+	if (curline != bestline || link(temp_head))
 		confusion(938); //line breaking
 	curlist.pgfield = bestline-1;
 }

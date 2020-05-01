@@ -35,7 +35,7 @@ void expand(void)
 	smallnumber cvlbackup = curvallevel;
 	smallnumber radixbackup = radix;
 	smallnumber cobackup = curorder;
-	halfword backupbackup = link(29987);
+	halfword backupbackup = link(backup_head);
 	if (curcmd < 111)
 	{
 		if (int_par(tracing_commands_code) > 1)
@@ -204,5 +204,5 @@ void expand(void)
 	curvallevel = cvlbackup;
 	radix = radixbackup;
 	curorder = cobackup;
-	link(29987) = backupbackup;
+	link(backup_head) = backupbackup;
 }

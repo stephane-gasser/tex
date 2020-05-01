@@ -14,9 +14,9 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 	scaled w;
 	fontindex k;
 	hyphenpassed = 0;
-	t = 29996;
+	t = hold_head;
 	w = 0;
-	link(29996) = 0;
+	link(hold_head) = 0;
 	curl = hu[j];
 	curq = t;
 	if (j == 0)

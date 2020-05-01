@@ -45,8 +45,8 @@ void initalign(void)
 		if (curlist.modefield > 0)
 		curlist.modefield = -curlist.modefield;
 	scanspec(6, false);
-	link(29992) = 0;
-	curalign = 29992;
+	link(align_head) = 0;
+	curalign = align_head;
 	curloop = 0;
 	scannerstatus = 4;
 	warningindex = savecsptr;
@@ -58,7 +58,7 @@ void initalign(void)
 		curalign = link(curalign);
 		if (curcmd == 5)
 			break;
-		p = 29996;
+		p = hold_head;
 		link(p) = 0;
 		while (true)
 		{
@@ -66,7 +66,7 @@ void initalign(void)
 			if (curcmd == 6)
 				break;
 			if (curcmd <= 5 && curcmd >= 4 &&alignstate == -1000000)
-				if (p == 29996 && curloop == 0 &&curcmd == 4)
+				if (p == hold_head && curloop == 0 &&curcmd == 4)
 					curloop = curalign;
 				else
 				{
@@ -81,7 +81,7 @@ void initalign(void)
 					break;
 				}
 			else 
-				if (curcmd != 10 || p != 29996)
+				if (curcmd != 10 || p != hold_head)
 				{
 					link(p) = getavail();
 					p = link(p);
@@ -90,10 +90,10 @@ void initalign(void)
 		}
 		link(curalign) = newnullbox();
 		curalign = link(curalign);
-		info(curalign) = 29991;
+		info(curalign) = end_span;
 		mem[curalign+1].int_ = -1073741824;
-		mem[curalign+3].int_ = link(29996);
-		p = 29996;
+		mem[curalign+3].int_ = link(hold_head);
+		p = hold_head;
 		link(p) = 0;
 		while (true)
 		{
@@ -119,7 +119,7 @@ void initalign(void)
 		link(p) = getavail();
 		p = link(p);
 		info(p) = 6714;
-		mem[curalign+2].int_ = link(29996);
+		mem[curalign+2].int_ = link(hold_head);
 	}
 	scannerstatus = 0;
 	newsavelevel(6);

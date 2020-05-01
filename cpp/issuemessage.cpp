@@ -15,7 +15,7 @@
 void issuemessage(void)
 {
 	auto c = curchr;
-	link(29988) = scantoks(false, true);
+	link(garbage) = scantoks(false, true);
 	auto oldsetting = selector;
 	selector = 21;
 	tokenshow(defref);

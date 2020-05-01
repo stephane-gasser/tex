@@ -3,8 +3,8 @@
 
 #include "tex.h"
 
-/*banner=='This is TeX, Version 3.14159265' //printed when \TeX\ starts
-mtype==t@&y@&p@&e //this is a \.//WEB coding trick:
+constexpr char banner[] ="This is TeX, Version 3.14159265"; //printed when \TeX\ starts
+/*mtype==t@&y@&p@&e //this is a \.//WEB coding trick:
 start_of_TEX=1 //go here when \TeX's variables are initialized
 end_of_TEX=9998 //go here to close files and terminate gracefully
 final_end=9999 //this label marks the ending of the program
@@ -16,9 +16,9 @@ init== //change this to `$\\//init\equiv\.//@@\//$' in the production version
 tini== //change this to `$\\//tini\equiv\.//@@\$' in the production version
 othercases == others: //default for cases not listed explicitly
 endcases == @+end //follows the default case in an extended |case| statement
-mem_bot=0 //smallest index in the |mem| array dumped by \.//INITEX;
-mem_top==30000 //largest index in the |mem| array dumped by \.//INITEX;
-font_base=0 //smallest internal font number; must not be less*/
+mem_bot=0 //smallest index in the |mem| array dumped by \.//INITEX;*/
+constexpr int mem_top = 30000; //largest index in the |mem| array dumped by \.//INITEX;
+/*font_base=0 //smallest internal font number; must not be less*/
 constexpr int hash_size=2100; //maximum number of control sequences; it should be at most
 /*hash_prime=1777 //a prime number equal to about 85\pct! of |hash_size|
 hyph_size=307 //another prime; the number of \.//\\hyphenation exceptions
@@ -228,23 +228,25 @@ fil_glue==zero_glue+glue_spec_size //\.//0pt plus 1fil minus 0pt
 fill_glue==fil_glue+glue_spec_size //\.//0pt plus 1fill minus 0pt
 ss_glue==fill_glue+glue_spec_size //\.//0pt plus 1fil minus 1fil
 fil_neg_glue==ss_glue+glue_spec_size //\.//0pt plus -1fil minus 0pt
-lo_mem_stat_max==fil_neg_glue+glue_spec_size-1 //largest statically
-page_ins_head==mem_top //list of insertion data for current page
-contrib_head==mem_top-1 //vlist of items not yet on current page
-page_head==mem_top-2 //vlist for current page
-temp_head==mem_top-3 //head of a temporary list of some kind
-hold_head==mem_top-4 //head of a temporary list of another kind
-adjust_head==mem_top-5 //head of adjustment list returned by |hpack|
-active==mem_top-7 //head of active list in |line_break|, needs two words
-align_head==mem_top-8 //head of preamble list for alignments
-end_span==mem_top-9 //tail of spanned-width lists
-omit_template==mem_top-10 //a constant token list
-null_list==mem_top-11 //permanently empty list
-lig_trick==mem_top-12 //a ligature masquerading as a |char_node|
-garbage==mem_top-12 //used for scrap information
-backup_head==mem_top-13 //head of token list built by |scan_keyword|
-hi_mem_stat_min==mem_top-13 //smallest statically allocated word in
-hi_mem_stat_usage=14 //the number of one-word nodes always present
+lo_mem_stat_max==fil_neg_glue+glue_spec_size-1 //largest statically*/
+
+constexpr int page_ins_head = 30000; //mem_top //list of insertion data for current page
+constexpr int contrib_head = 29999; //mem_top-1 //vlist of items not yet on current page
+constexpr int page_head = 29998; //mem_top-2 //vlist for current page
+constexpr int temp_head = 29997; //mem_top-3 //head of a temporary list of some kind
+constexpr int hold_head = 29996; //mem_top-4 //head of a temporary list of another kind
+constexpr int adjust_head = 29995; //mem_top-5 //head of adjustment list returned by |hpack|
+constexpr int active = 29993; //mem_top-7 //head of active list in |line_break|, needs two words
+constexpr int align_head = 29992; //mem_top-8 //head of preamble list for alignments
+constexpr int end_span = 29991; //mem_top-9 //tail of spanned-width lists
+constexpr int omit_template = 29990; //mem_top-10 //a constant token list
+constexpr int null_list = 29989; //mem_top-11 //permanently empty list
+constexpr int lig_trick = 29988; //mem_top-12 //a ligature masquerading as a |char_node|
+constexpr int garbage = 29988; //mem_top-12 //used for scrap information
+constexpr int backup_head = 29987; //mem_top-13 //head of token list built by |scan_keyword|
+constexpr int hi_mem_stat_min = 29987; //mem_top-13 //smallest statically allocated word in
+
+/*hi_mem_stat_usage=14 //the number of one-word nodes always present
 node_list_display(#)==
 token_ref_count(#) == info(#) //reference count preceding a token list
 fast_delete_glue_ref(#)==@t@>@;@/

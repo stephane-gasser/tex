@@ -32,7 +32,7 @@ halfword cleanbox(halfword p, smallnumber s)
 		curstyle = s;
 		mlistpenalties = false;
 		mlisttohlist();
-		q = link(29997);
+		q = link(temp_head);
 		curstyle = savestyle;
 		if (curstyle < 4)
 			cursize = 0;

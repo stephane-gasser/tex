@@ -17,7 +17,7 @@ void mathleftright(void)
 	{
 		if (curgroup == 15)
 		{
-			scandelimiter(29988, false);
+			scandelimiter(garbage, false);
 			if (interaction == 3)
 				printnl(262); //! 
 			print(776); //Extra 

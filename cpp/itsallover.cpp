@@ -10,7 +10,7 @@ bool itsallover(void)
 {
 	if (privileged())
 	{
-		if (29998 == pagetail && curlist.headfield == curlist.tailfield &&deadcycles == 0)
+		if (page_head == pagetail && curlist.headfield == curlist.tailfield &&deadcycles == 0)
 			return true;
 		backinput();
 		link(curlist.tailfield) = newnullbox();

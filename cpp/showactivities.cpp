@@ -44,20 +44,20 @@ void showactivities(void)
 			print(367); // (\output routine)
 		if (p == 0)
 		{
-			if (29998 != pagetail)
+			if (page_head != pagetail)
 			{
 				printnl(979); //### current page:
 				if (outputactive)
 					print(980); // (held over for link output)
-				showbox(link(29998));
+				showbox(link(page_head));
 				if (pagecontents > 0)
 				{
 					printnl(981); //total height 
 					printtotals();
 					printnl(982); // goal height
 					printscaled(pagesofar[0]);
-					halfword r = link(30000);
-					while (r != 30000)
+					halfword r = link(page_ins_head);
+					while (r != page_ins_head)
 					{
 						println();
 						printesc(330); //insert
@@ -71,7 +71,7 @@ void showactivities(void)
 						printscaled(t);
 						if (type(r) == 1)
 						{
-							halfword q = 29998;
+							halfword q = page_head;
 							t = 0;
 							do
 							{
@@ -88,7 +88,7 @@ void showactivities(void)
 				}
 			}
 			;
-			if (link(29999))
+			if (link(contrib_head))
 			printnl(368); //### recent contributions:
 		}
 		showbox(link(nest[p].headfield));

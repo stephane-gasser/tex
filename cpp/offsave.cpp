@@ -26,7 +26,7 @@ void offsave(void)
 	{
 		backinput();
 		p = getavail();
-		link(29997) = p;
+		link(temp_head) = p;
 		if (interaction == 3)
 			printnl(262); //! 
 		print(625); //Missing 
@@ -52,7 +52,7 @@ void offsave(void)
 				printchar('}');
 		}
 		print(626); // inserted
-		begintokenlist(link(29997), 4);
+		begintokenlist(link(temp_head), 4);
 		{
 			helpptr = 5;
 			helpline[4] = 1036; //I've inserted something that you may have forgotten.

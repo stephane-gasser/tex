@@ -189,21 +189,21 @@ void hyphenate(void)
 		j = reconstitute(j, hn, bchar, hyfchar)+1;
 		if (hyphenpassed == 0)
 		{
-			link(s) = link(29996);
+			link(s) = link(hold_head);
 			while (link(s) > 0)
 				s = link(s);
 			if (hyf[j-1]%2)
 			{
 				l = j;
 				hyphenpassed = j-1;
-				link(29996) = 0;
+				link(hold_head) = 0;
 			}
 		}
 		if (hyphenpassed > 0)
 			do
 			{
 				r = getnode(2);
-				link(r) = link(29996);
+				link(r) = link(hold_head);
 				type(r) = 7;
 				majortail = r;
 				rcount = 0;
@@ -228,13 +228,13 @@ void hyphenate(void)
 				while (l <= i)
 				{
 					l = reconstitute(l, i, fontbchar[hf], 256)+1;
-					if (link(29996) > 0)
+					if (link(hold_head) > 0)
 					{
 						if (minortail == 0)
-							info(r+1) = link(29996);
+							info(r+1) = link(hold_head);
 						else
-							link(minortail) = link(29996);
-						minortail = link(29996);
+							link(minortail) = link(hold_head);
+						minortail = link(hold_head);
 						while (link(minortail) > 0)
 							minortail = link(minortail);
 					}
@@ -265,13 +265,13 @@ void hyphenate(void)
 							hu[cloc] = c;
 							cloc = 0;
 						}
-						if (link(29996) > 0)
+						if (link(hold_head) > 0)
 						{
 							if (minortail == 0)
-								link(r+1) = link(29996);
+								link(r+1) = link(hold_head);
 							else
-								link(minortail) = link(29996);
-							minortail = link(29996);
+								link(minortail) = link(hold_head);
+							minortail = link(hold_head);
 							while (link(minortail) > 0)
 								minortail = link(minortail);
 						}
@@ -279,7 +279,7 @@ void hyphenate(void)
 					while (l > j)
 					{
 						j = reconstitute(j, hn, bchar, 256)+1;
-						link(majortail) = link(29996);
+						link(majortail) = link(hold_head);
 						while (link(majortail) > 0)
 						{
 							majortail = link(majortail);
@@ -300,7 +300,7 @@ void hyphenate(void)
 				}
 				s = majortail;
 				hyphenpassed = j-1;
-				link(29996) = 0;
+				link(hold_head) = 0;
 			} while (hyf[j-1]%2);
 	} while (j <= hn);
 	link(s) = q;

@@ -24,11 +24,11 @@ void buildpage(void)
 	int b, c, pi;
 	unsigned char n;
 	scaled delta, h, w;
-	if (mem[29999].hh.rh == 0 || outputactive)
+	if (link(contrib_head) == 0 || outputactive)
 		return;
 	do
 	{
-		p = link(29999);
+		p = link(contrib_head);
 		if (lastglue != 65535)
 			deleteglueref(lastglue);
 		lastpenalty = 0;
@@ -64,7 +64,7 @@ void buildpage(void)
 					else
 						mem[tempptr+1].int_ = 0;
 					link(q) = p;
-					link(29999) = q;
+					link(contrib_head) = q;
 					continue;
 				}
 				pagesofar[1] += pagesofar[7]+mem[p+3].int_;
@@ -75,7 +75,7 @@ void buildpage(void)
 			case glue_node: //10
 				if (pagecontents < 2)
 				{
-					link(29999) = link(p);
+					link(contrib_head) = link(p);
 					link(p) = 0;
 					flushnodelist(p);
 					continue;
@@ -86,7 +86,7 @@ void buildpage(void)
 			case kern_node: //11
 				if (pagecontents < 2)
 				{
-					link(29999) = link(p);
+					link(contrib_head) = link(p);
 					link(p) = 0;
 					flushnodelist(p);
 					continue;
@@ -99,7 +99,7 @@ void buildpage(void)
 			case penalty_node: //12
 				if (pagecontents < 2)
 				{
-					link(29999) = link(p);
+					link(contrib_head) = link(p);
 					link(p) = 0;
 					flushnodelist(p);
 					continue;
@@ -112,7 +112,7 @@ void buildpage(void)
 				if (pagecontents == 0)
 					freezepagespecs(1);
 				n = subtype(p);
-				r = 30000;
+				r = page_ins_head;
 				while (n >= subtype(link(r)))
 					r = link(r);
 				if (subtype(r) != n)
@@ -227,8 +227,8 @@ void buildpage(void)
 					bestpagebreak = p;
 					bestsize = pagesofar[0];
 					leastpagecost = c;
-					r = link(30000);
-					while (r != 30000)
+					r = link(page_ins_head);
+					while (r != page_ins_head)
 					{
 						info(r+2) = link(r+2);
 						r = link(r);
@@ -280,11 +280,11 @@ void buildpage(void)
 		}
 		link(pagetail) = p;
 		pagetail = p;
-		link(29999) = link(p);
+		link(contrib_head) = link(p);
 		link(p) = 0;
-	} while (link(29999));
+	} while (link(contrib_head));
 	if (nestptr == 0)
-		curlist.tailfield = 29999;
+		curlist.tailfield = contrib_head;
 	else
-		nest[0].tailfield = 29999;
+		nest[0].tailfield = contrib_head;
 }

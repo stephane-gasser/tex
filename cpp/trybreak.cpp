@@ -26,7 +26,7 @@ void trybreak(int pi, smallnumber breaktype)
 		else
 		pi = -10000;
 	nobreakyet = true;
-	prevr = 29993;
+	prevr = active;
 	oldl = 0;
 	for (int i = 1; i <= 6; i++)
 		curactivewidth[i] = activewidth[i];
@@ -44,7 +44,7 @@ void trybreak(int pi, smallnumber breaktype)
 		l = info(r+1);
 		if (l > oldl)
 		{
-			if ((minimumdemerits < 1073741823) and ((oldl != easyline) or (r == 29993)))
+			if ((minimumdemerits < 1073741823) and ((oldl != easyline) or (r == active)))
 			{
 				if (nobreakyet)
 				{
@@ -146,7 +146,7 @@ void trybreak(int pi, smallnumber breaktype)
 					for (int i = 1; i <= 6; i++)
 						mem[prevr+i].int_ += -curactivewidth[i]+breakwidth[i];
 				else 
-					if (prevr == 29993)
+					if (prevr == active)
 						for (int i = 1; i <= 6; i++)
 							activewidth[i] = breakwidth[i];
 					else
@@ -187,7 +187,7 @@ void trybreak(int pi, smallnumber breaktype)
 					minimaldemerits[fitclass] = 1073741823;
 				}
 				minimumdemerits = 1073741823;
-				if (r != 29993)
+				if (r != active)
 				{
 					q = getnode(7);
 					link(q) = r;
@@ -200,7 +200,7 @@ void trybreak(int pi, smallnumber breaktype)
 					prevr = q;
 				}
 			}
-			if (r == 29993)
+			if (r == active)
 				return;
 			if (l > easyline)
 			{
@@ -259,21 +259,21 @@ void trybreak(int pi, smallnumber breaktype)
 		}
 		if (b > 10000 || pi == -10000)
 		{
-			if (finalpass && minimumdemerits == 1073741823 && link(r) == 29993 &&prevr == 29993)
+			if (finalpass && minimumdemerits == 1073741823 && link(r) == active &&prevr == active)
 				artificialdemerits = true;
 			else 
 				if (b > threshold)
 				{
 					link(prevr) = link(r);
 					freenode(r, 3);
-					if (prevr == 29993)
+					if (prevr == active)
 					{
-						r = link(29993);
+						r = link(active);
 						if (type(r) == 2)
 						{
 							for (int i = 1; i <= 6; i++)
 								curactivewidth[i] = activewidth[i] = activewidth[i]+mem[r+i].int_;
-							link(29993) = link(r);
+							link(active) = link(r);
 							freenode(r, 7);
 						}
 					}
@@ -281,11 +281,11 @@ void trybreak(int pi, smallnumber breaktype)
 						if (type(prevr) == 2)
 						{
 							r = link(prevr);
-							if (r == 29993)
+							if (r == active)
 							{
 								for (int i = 1; i <= 6; i++)
 									curactivewidth[i] -= mem[prevr+1].int_;
-								link(prevprevr) = 29993;
+								link(prevprevr) = active;
 								freenode(prevr, 7);
 								prevr = prevprevr;
 							}
@@ -348,14 +348,14 @@ void trybreak(int pi, smallnumber breaktype)
 			continue;
 		link(prevr) = link(r);
 		freenode(r, 3);
-		if (prevr == 29993)
+		if (prevr == active)
 		{
-			r = link(29993);
+			r = link(active);
 			if (type(r) == 2)
 			{
 				for (int i = 1; i <= 6; i++)
 					curactivewidth[i] = activewidth[i] = activewidth[i]+mem[r+i].int_;
-				link(29993) = link(r);
+				link(active) = link(r);
 				freenode(r, 7);
 			}
 		}
@@ -363,11 +363,11 @@ void trybreak(int pi, smallnumber breaktype)
 			if (type(prevr) == 2)
 			{
 				r = link(prevr);
-				if (r == 29993)
+				if (r == active)
 				{
 					for (int i = 1; i <= 6; i++)
 						curactivewidth[i] -= mem[prevr+1].int_;
-					link(prevprevr) = 29993;
+					link(prevprevr) = active;
 					freenode(prevr, 7);
 					prevr = prevprevr;
 				}

@@ -121,9 +121,9 @@ halfword scantoks(bool macrodef, bool xpand)
 				else
 				{
 					auto q = thetoks();
-					if (link(29997))
+					if (link(temp_head))
 					{
-						link(p) = link(29997);
+						link(p) = link(temp_head);
 						p = q;
 					}
 				}

@@ -7,7 +7,7 @@ void pushalignment(void)
 	auto p = getnode(5);
 	link(p) = alignptr;
 	info(p) = curalign;
-	info(p+1) = link(29992);
+	info(p+1) = link(align_head);
 	link(p+1) = curspan;
 	mem[p+2].int_ = curloop;
 	mem[p+3].int_ = alignstate;

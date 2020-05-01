@@ -280,9 +280,9 @@ void hlistout(void)
 					curh = curh+mem[p+1].int_;
 					break;
 				case 6:
-					mem[29988] = mem[p+1];
-					link(29988) = link(p);
-					p = 29988;
+					mem[lig_trick] = mem[p+1];
+					link(lig_trick) = link(p);
+					p = lig_trick;
 					continue;
 			}
 			p = link(p);

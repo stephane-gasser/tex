@@ -15,7 +15,7 @@ halfword thetoks(void)
 	scansomethinginternal(5, false);
 	if (curvallevel >= 4)
 	{
-		halfword p = 29997;
+		halfword p = temp_head;
 		link(p) = 0;
 		if (curvallevel == 4)
 		{

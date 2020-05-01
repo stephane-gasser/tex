@@ -40,7 +40,7 @@ bool loadfmtfile(void)
 		return false;
 	}
 	readInt(x);
-	if (x != 30000)
+	if (x != mem_top)
 	{
 		std::cout << "(Fatal format file error; I''m stymied\n";
 		return false;
@@ -119,7 +119,7 @@ bool loadfmtfile(void)
 	initstrptr = strptr;
 	initpoolptr = poolptr;
 	readInt(x);	
-	if (x < 1019 || x > 29986)
+	if (x < 1019 || x >= hi_mem_stat_min)
 	{
 		std::cout << "(Fatal format file error; I''m stymied\n";
 		return false;
@@ -164,7 +164,7 @@ bool loadfmtfile(void)
 		info(q) = -q;
 	}
 	readInt(x);	
-	if (x < lomemmax+1 || x > 29987)
+	if (x < lomemmax+1 || x > hi_mem_stat_min)
 	{
 		std::cout << "(Fatal format file error; I''m stymied\n";
 		return false;
@@ -172,14 +172,14 @@ bool loadfmtfile(void)
 	else
 		himemmin = x;
 	readInt(x);	
-	if (x < 0 || x > 30000)
+	if (x < 0 || x > mem_top)
 	{
 		std::cout << "(Fatal format file error; I''m stymied\n";
 		return false;
 	}
 	else
 		avail = x;
-	memend = 30000;
+	memend = mem_top;
 	for (k = himemmin; k <= memend; k++)
 		readInt(mem[k]);
 	readInt(varused);

@@ -29,17 +29,17 @@ int main()
 				bad = 2;
 			if (dvibufsize%8)
 				bad = 3;
-			if (1100 > 30000)
+			if (1100 > mem_top)
 				bad = 4;
 			if (1777 > 2100)
 				bad = 5;
 			if (maxinopen >= 128)
 				bad = 6;
-			if (30000 < 267)
+			if (mem_top < 267)
 				bad = 7;
-			if (memmin != 0 || memmax != 30000)
+			if (memmin != 0 || memmax != mem_top)
 				bad = 10;
-			if (memmin > 0 || memmax < 30000)
+			if (memmin > 0 || memmax < mem_top)
 				bad = 10;
 			if (0 > 0 || 255 < 127)
 				bad = 11;
@@ -63,7 +63,7 @@ int main()
 				bad = 21;
 			if (20 > filenamesize)
 				bad = 31;
-			if (2*65535 < 30000-memmin)
+			if (2*65535 < mem_top-memmin)
 				bad = 41;
 			if (bad > 0)
 			{
@@ -83,7 +83,7 @@ int main()
 		tally = 0;
 		termoffset = 0;
 		fileoffset = 0;
-		std::cout << "This is TeX, Version 3.14159265" << std::endl;
+		std::cout << banner << std::endl;
 		if (formatident == 0)
 			std::cout << " (no format preloaded)'" << std::endl;
 		else

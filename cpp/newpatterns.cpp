@@ -161,7 +161,7 @@ void newpatterns(void)
 		helpptr = 1;
 		helpline[0] = 953; //All patterns must be given before typesetting begins.
 		error();
-		link(29988) = scantoks(false, false);
+		link(garbage) = scantoks(false, false);
 		flushlist(defref);
 	}
 }

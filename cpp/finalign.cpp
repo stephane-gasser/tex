@@ -40,7 +40,7 @@ void finalign(void)
 		o = dimen_par(display_indent_code);
 	else
 		o = 0;
-	q = link(link(29992));
+	q = link(link(align_head));
 	do
 	{
 		flushlist(mem[q+3].int_);
@@ -58,11 +58,11 @@ void finalign(void)
 				info(r+1) = 0;
 			}
 		}
-		if (info(q) != 29991)
+		if (info(q) != end_span)
 		{
 			t = mem[q+1].int_+mem[info(link(q)+1)+1].int_;
 			r = info(q);
-			s = 29991;
+			s = end_span;
 			info(s) = p;
 			n = 1;
 			do
@@ -88,7 +88,7 @@ void finalign(void)
 					freenode(r, 2);
 				}
 				r = u;
-			} while (r != 29991);
+			} while (r != end_span);
 		}
 		type(q) = 13;
 		subtype(q) = 0;
@@ -106,20 +106,20 @@ void finalign(void)
 	{
 		rulesave = dimen_par(overfull_rule_code);
 		dimen_par(overfull_rule_code) = 0;
-		p = hpack(link(29992), savestack[saveptr+1].int_, savestack[saveptr].int_);
+		p = hpack(link(align_head), savestack[saveptr+1].int_, savestack[saveptr].int_);
 		dimen_par(overfull_rule_code) = rulesave;
 	}
 	else
 	{
-		q = link(link(29992));
+		q = link(link(align_head));
 		do
 		{
 			mem[q+3].int_ = mem[q+1].int_;
 			mem[q+1].int_ = 0;
 			q = link(link(q));
 		} while (q);
-		p = vpackage(link(29992), savestack[saveptr+1].int_, savestack[saveptr+0].int_, 1073741823);
-		q = link(link(29992));
+		p = vpackage(link(align_head), savestack[saveptr+1].int_, savestack[saveptr+0].int_, 1073741823);
+		q = link(link(align_head));
 		do
 		{
 			mem[q+1].int_ = mem[q+3].int_;
@@ -156,7 +156,7 @@ void finalign(void)
 					n = subtype(r);
 					t = mem[s+1].int_;
 					w = t;
-					u = 29996;
+					u = hold_head;
 					while (n > 0)
 					{
 						n--;
@@ -254,10 +254,10 @@ void finalign(void)
 						type(r) = 1;
 					}
 					mem[r+4].int_ = 0;
-					if (u != 29996)
+					if (u != hold_head)
 					{
 						link(u) = link(r);
-						link(r) = link(29996);
+						link(r) = link(hold_head);
 						r = u;
 					}
 					r = link(link(r));

@@ -21,7 +21,7 @@ void linebreak(int finalwidowpenalty)
 	smallnumber j;
 	unsigned char c;
 	packbeginline = curlist.mlfield;
-	link(29997) = link(curlist.headfield);
+	link(temp_head) = link(curlist.headfield);
 	if ((curlist.tailfield >= himemmin))
 	{
 		link(curlist.tailfield) = newpenalty(10000);
@@ -133,21 +133,21 @@ void linebreak(int finalwidowpenalty)
 		q = getnode(3);
 		type(q) = 0;
 		subtype(q) = 2;
-		link(q) = 29993;
+		link(q) = active;
 		link(q+1) = 0;
 		info(q+1) = curlist.pgfield+1;
 		mem[q+2].int_ = 0;
-		link(29993) = q;
+		link(active) = q;
 		for (int i = 1; i <= 6; i++)
 			activewidth[i] = background[i];
 		passive = 0;
-		printednode = 29997;
+		printednode = temp_head;
 		passnumber = 0;
 		fontinshortdisplay = 0;
-		curp = link(29997);
+		curp = link(temp_head);
 		autobreaking = true;
 		prevp = curp;
-		while (curp && link(29993) != 29993)
+		while (curp && link(active) != active)
 		{
 			if ((curp >= himemmin))
 			{
@@ -464,9 +464,9 @@ void linebreak(int finalwidowpenalty)
 		if (curp == 0)
 		{
 			trybreak(-10000, 1);
-			if (link(29993) != 29993)
+			if (link(active) != active)
 			{
-				r = link(29993);
+				r = link(active);
 				fewestdemerits = 1073741823;
 				do
 				{
@@ -476,13 +476,13 @@ void linebreak(int finalwidowpenalty)
 						bestbet = r;
 					}
 					r = link(r);
-				} while (r != 29993);
+				} while (r != active);
 				bestline = info(bestbet+1);
 				if (int_par(looseness_code) == 0)
 				{
 					postlinebreak(finalwidowpenalty);
-					q = link(29993);
-					while (q != 29993)
+					q = link(active);
+					while (q != active)
 					{
 						curp = link(q);
 						if (type(q) == 2)
@@ -501,7 +501,7 @@ void linebreak(int finalwidowpenalty)
 					packbeginline = 0;
 					return;
 				}
-				r = link(29993);
+				r = link(active);
 				actuallooseness = 0;
 				do
 				{
@@ -522,13 +522,13 @@ void linebreak(int finalwidowpenalty)
 							}
 					}
 					r = link(r);
-				} while (r != 29993);
+				} while (r != active);
 				bestline = info(bestbet+1);
 				if (actuallooseness == int_par(looseness_code) || finalpass)
 				{
 					postlinebreak(finalwidowpenalty);
-					q = link(29993);
-					while (q != 29993)
+					q = link(active);
+					while (q != active)
 					{
 						curp = link(q);
 						if (type(q) == 2)
@@ -549,8 +549,8 @@ void linebreak(int finalwidowpenalty)
 				}
 			}
 		}
-		q = link(29993);
-		while (q != 29993)
+		q = link(active);
+		while (q != active)
 		{
 			curp = link(q);
 			if (type(q) == 2)
@@ -580,8 +580,8 @@ void linebreak(int finalwidowpenalty)
 		}
 	}
 	postlinebreak(finalwidowpenalty);
-	q = link(29993);
-	while (q != 29993)
+	q = link(active);
+	while (q != active)
 	{
 		curp = link(q);
 		if (type(q) == 2)

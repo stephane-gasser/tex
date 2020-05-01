@@ -7,7 +7,7 @@
 
 bool scankeyword(strnumber s)
 {
-	halfword p = 29987;
+	halfword p = backup_head;
 	link(p) = 0;
 	auto k = strstart[s];
 	while (k < strstart[s+1])
@@ -22,14 +22,14 @@ bool scankeyword(strnumber s)
 			k++;
 		}
 		else 
-			if (curcmd != 10 || p != 29987)
+			if (curcmd != 10 || p != backup_head)
 			{
 				backinput();
-				if (p != 29987)
-					begintokenlist(link(29987), 3);
+				if (p != backup_head)
+					begintokenlist(link(backup_head), 3);
 				return false;
 			}
 	}
-	flushlist(link(29987));
+	flushlist(link(backup_head));
 	return true;
 }

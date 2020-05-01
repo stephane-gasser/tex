@@ -71,7 +71,7 @@ void aftermath(void)
 		curstyle = 2;
 		mlistpenalties = false;
 		mlisttohlist();
-		a = hpack(link(29997), 0, 1);
+		a = hpack(link(temp_head), 0, 1);
 		unsave();
 		saveptr--;
 		if (savestack[saveptr].int_ == 1)
@@ -117,7 +117,7 @@ void aftermath(void)
 		curstyle = 2;
 		mlistpenalties = curlist.modefield > 0;
 		mlisttohlist();
-		link(curlist.tailfield) = link(29997);
+		link(curlist.tailfield) = link(temp_head);
 		while (link(curlist.tailfield))
 			curlist.tailfield = link(curlist.tailfield);
 		link(curlist.tailfield) = newmath(dimen_par(math_surround_code), 1);
@@ -145,8 +145,8 @@ void aftermath(void)
 		curstyle = 0;
 		mlistpenalties = false;
 		mlisttohlist();
-		p = link(29997);
-		adjusttail = 29995;
+		p = link(temp_head);
+		adjusttail = adjust_head;
 		b = hpack(p, 0, 1);
 		p = link(b+5);
 		t = adjusttail;
@@ -241,9 +241,9 @@ void aftermath(void)
 			appendtovlist(a);
 			g2 = 0;
 		}
-		if (t != 29995)
+		if (t != adjust_head)
 		{
-			link(curlist.tailfield) = link(29995);
+			link(curlist.tailfield) = link(adjust_head);
 			curlist.tailfield = t;
 		}
 		link(curlist.tailfield) = newpenalty(int_par(post_display_penalty_code));

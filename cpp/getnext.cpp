@@ -384,7 +384,7 @@ void getnext(void)
 			curcmd = info(curalign+5);
 			info(curalign+5) = curchr;
 			if (curcmd == '?')
-				begintokenlist(29990, 2);
+				begintokenlist(omit_template, 2);
 			else
 				begintokenlist(mem[curalign+2].int_, 2);
 			alignstate = 1000000;

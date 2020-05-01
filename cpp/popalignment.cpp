@@ -11,7 +11,7 @@ void popalignment(void)
 	alignstate = mem[p+3].int_;
 	curloop = mem[p+2].int_;
 	curspan = link(p+1);
-	link(29992) = info(p+1);
+	link(align_head) = info(p+1);
 	curalign = info(p);
 	alignptr = link(p);
 	freenode(p, 5);

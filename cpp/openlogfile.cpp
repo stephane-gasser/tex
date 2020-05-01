@@ -25,7 +25,7 @@ void openlogfile(void)
 	logname = amakenamestring(logfile);
 	selector = 18;
 	logopened = true;
-	logfile << "This is TeX, Version 3.14159265";
+	logfile << banner;
 	slowprint(formatident);
 	print(799); //  
 	printint(int_par(day_code));

@@ -88,7 +88,7 @@ void storefmtfile(void)
 	slowprint(formatident);
 	writeInt(117275187);
 	writeInt(0);
-	writeInt(30000);
+	writeInt(mem_top);
 	writeInt(6106);
 	writeInt(1777);
 	writeInt(307);

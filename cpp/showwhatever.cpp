@@ -67,8 +67,8 @@ void showwhatever(void)
 			p = thetoks();
 			if (interaction == 3)
 				printnl(1247); //> 
-			tokenshow(29997);
-			flushlist(link(29997));
+			tokenshow(temp_head);
+			flushlist(link(temp_head));
 			break;
 	}
 	if (interaction < 3)

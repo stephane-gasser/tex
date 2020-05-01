@@ -25,9 +25,9 @@ void boxend(int boxcontext)
 				appendtovlist(curbox);
 				if (adjusttail)
 				{
-					if (29995 != adjusttail)
+					if (adjust_head != adjusttail)
 					{
-						link(curlist.tailfield) = link(29995);
+						link(curlist.tailfield) = link(adjust_head);
 						curlist.tailfield = adjusttail;
 					}
 					adjusttail = 0;

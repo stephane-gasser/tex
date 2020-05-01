@@ -19,11 +19,11 @@ void runaway(void)
 				break;
 			case 3:
 				print(571); //argument
-				p = 29997;
+				p = temp_head;
 				break;
 			case 4:
 				print(572); //preamble
-				p = 29996;
+				p = hold_head;
 				break;
 			case 5:
 				print(573); //text

@@ -55,7 +55,7 @@ void handlerightbrace(void)
 			package(0);
 			break;
 		case 3:
-			adjusttail = 29995;
+			adjusttail = adjust_head;
 			package(0);
 			break;
 		case 4:
@@ -140,14 +140,14 @@ void handlerightbrace(void)
 				link(pagetail) = link(curlist.headfield);
 				pagetail = curlist.tailfield;
 			}
-			if (link(29998))
+			if (link(page_head))
 			{
-				if (link(29999) == 0)
+				if (link(contrib_head) == 0)
 					nest[0].tailfield = pagetail;
-				link(pagetail) = link(29999);
-				link(29999) = link(29998);
-				link(29998) = 0;
-				pagetail = 29998;
+				link(pagetail) = link(contrib_head);
+				link(contrib_head) = link(page_head);
+				link(page_head) = 0;
+				pagetail = page_head;
 			}
 			popnest();
 			buildpage();

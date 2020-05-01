@@ -37,10 +37,10 @@ bool fincol(void)
 		{
 			link(q) = newnullbox();
 			p = link(q);
-			info(p) = 29991;
+			info(p) = end_span;
 			mem[p+1].int_ = -1073741824;
 			curloop = link(curloop);
-			q = 29996;
+			q = hold_head;
 			r = mem[curloop+3].int_;
 			while (r)
 			{
@@ -50,8 +50,8 @@ bool fincol(void)
 				r = link(r);
 			}
 			link(q) = 0;
-			mem[p+3].int_ = link(29996);
-			q = 29996;
+			mem[p+3].int_ = link(hold_head);
+			q = hold_head;
 			r = mem[curloop+2].int_;
 			while (r)
 			{
@@ -61,7 +61,7 @@ bool fincol(void)
 				r = link(r);
 			}
 			link(q) = 0;
-			mem[p+2].int_ = link(29996);
+			mem[p+2].int_ = link(hold_head);
 			curloop = link(curloop);
 			link(p) = newglue(info(curloop+1));
 		}

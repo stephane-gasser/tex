@@ -70,7 +70,7 @@ void convtoks(void)
 			print(jobname);
 	}
 	selector = oldsetting;
-	link(29988) = strtoks(b);
-	begintokenlist(link(29997), 4);
+	link(garbage) = strtoks(b);
+	begintokenlist(link(temp_head), 4);
 }
 

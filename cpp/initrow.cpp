@@ -12,11 +12,11 @@ void initrow(void)
 	else
 		curlist.auxfield.int_ = 0;
 	{
-		link(curlist.tailfield) = newglue(info(link(29992)+1));
+		link(curlist.tailfield) = newglue(info(link(align_head)+1));
 		curlist.tailfield = link(curlist.tailfield);
 	}
 	subtype(curlist.tailfield) = 12;
-	curalign = link(link(29992));
+	curalign = link(link(align_head));
 	curtail = curhead;
 	initspan(curalign);
 }

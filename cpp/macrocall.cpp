@@ -48,7 +48,7 @@ void macrocall(void)
 
 		do
 		{
-			link(29997) = 0;
+			link(temp_head) = 0;
 			halfword s;
 			halfword p;
 			halfword m;
@@ -59,7 +59,7 @@ void macrocall(void)
 				matchchr = info(r)-3328;
 				s = link(r);
 				r = s;
-				p = 29997;
+				p = temp_head;
 				m = 0;
 			}
 			halfword rbraceptr;
@@ -149,7 +149,7 @@ void macrocall(void)
 							helpline[0] = 649; //My plan is to forget the whole thing and hope for the best.
 							backerror();
 						}
-						pstack[n] = link(29997);
+						pstack[n] = link(temp_head);
 						alignstate -= unbalance;
 						for (int m = 0; m <= n; m++)
 							flushlist(pstack[m]);
@@ -192,7 +192,7 @@ void macrocall(void)
 										helpline[0] = 649; //My plan is to forget the whole thing and hope for the best.
 										backerror();
 									}
-									pstack[n] = link(29997);
+									pstack[n] = link(temp_head);
 									alignstate -= unbalance;
 									for (int m = 0; m <= n; m++)
 										flushlist(pstack[m]);
@@ -257,18 +257,18 @@ void macrocall(void)
 			}
 			if (s)
 			{
-				if (m == 1 && info(p) < 768 && p != 29997)
+				if (m == 1 && info(p) < 768 && p != temp_head)
 				{
 					link(rbraceptr) = 0;
 					link(p) = avail;
 					avail = p;
-					p = link(29997);
+					p = link(temp_head);
 					pstack[n] = link(p);
 					link(p) = avail;
 					avail = p;
 				}
 				else
-					pstack[n] = link(29997);
+					pstack[n] = link(temp_head);
 				n++;
 				if (int_par(tracing_macros_code) > 0)
 				{

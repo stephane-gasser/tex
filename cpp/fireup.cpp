@@ -62,8 +62,8 @@ void fireup(halfword c)
 	savesplittopskip = split_top_skip();
 	if (int_par(holding_inserts_code) <= 0)
 	{
-		r = link(30000);
-		while (r != 30000)
+		r = link(page_ins_head);
+		while (r != page_ins_head)
 		{
 			if (info(r+2))
 			{
@@ -79,9 +79,9 @@ void fireup(halfword c)
 			r = link(r);
 		}
 	}
-	q = 29996;
+	q = hold_head;
 	link(q) = 0;
-	prevp = 29998;
+	prevp = page_head;
 	p = link(prevp);
 	while (p != bestpagebreak)
 	{
@@ -89,7 +89,7 @@ void fireup(halfword c)
 		{
 			if (int_par(holding_inserts_code) <= 0)
 			{
-			r = link(30000);
+			r = link(page_ins_head);
 			while (subtype(r) != subtype(p))
 				r = link(r);
 			if (info(r+2) == 0)
@@ -164,45 +164,45 @@ void fireup(halfword c)
 	split_top_skip() = savesplittopskip;
 	if (p)
 	{
-		if (link(29999) == 0)
+		if (link(contrib_head) == 0)
 			if (nestptr == 0)
 				curlist.tailfield = pagetail;
 			else
 				nest[0].tailfield = pagetail;
-		link(pagetail) = link(29999);
-		link(29999) = p;
+		link(pagetail) = link(contrib_head);
+		link(contrib_head) = p;
 		link(prevp) = 0;
 	}
 	savevbadness = int_par(vbadness_code);
 	int_par(vbadness_code) = 10000;
 	savevfuzz = dimen_par(vfuzz_code);
 	dimen_par(vfuzz_code) = 1073741823;
-	box(255) = vpackage(mem[29998].hh.rh, bestsize, 0, pagemaxdepth);
+	box(255) = vpackage(link(page_head), bestsize, 0, pagemaxdepth);
 	int_par(vbadness_code) = savevbadness;
 	dimen_par(vfuzz_code) = savevfuzz;
 	if (lastglue != 65535)
 		deleteglueref(lastglue);
 	pagecontents = 0;
-	pagetail = 29998;
-	link(29998) = 0;
+	pagetail = page_head;
+	link(page_head) = 0;
 	lastglue = 65535;
 	lastpenalty = 0;
 	lastkern = 0;
 	pagesofar[7] = 0;
 	pagemaxdepth = 0;
-	if (q != 29996)
+	if (q != hold_head)
 	{
-		link(29998) = link(29996);
+		link(page_head) = link(hold_head);
 		pagetail = q;
 	}
-	r = link(30000);
-	while (r != 30000)
+	r = link(page_ins_head);
+	while (r != page_ins_head)
 	{
 		q = link(r);
 		freenode(r, 4);
 		r = q;
 	}
-	link(30000) = 30000;
+	link(page_ins_head) = page_ins_head;
 	if (curmark[0] && curmark[1] == 0)
 	{
 		curmark[1] = curmark[0];
@@ -236,18 +236,18 @@ void fireup(halfword c)
 			scanleftbrace();
 			return;
 		}
-	if (link(29998) != 0)
+	if (link(page_head))
 	{
-		if (link(29999) == 0)
+		if (link(contrib_head) == 0)
 			if (nestptr == 0)
 				curlist.tailfield = pagetail;
 			else
 				nest[0].tailfield = pagetail;
 		else
-			link(pagetail) = link(29999);
-		link(29999) = link(29998);
-		link(29998) = 0;
-		pagetail = 29998;
+			link(pagetail) = link(contrib_head);
+		link(contrib_head) = link(page_head);
+		link(page_head) = 0;
+		pagetail = page_head;
 	}
 	shipout(box(255));
 	box(255) = 0;

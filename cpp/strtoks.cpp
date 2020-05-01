@@ -6,7 +6,7 @@ halfword strtoks(poolpointer b)
 {
 	if (poolptr + 1 > poolsize)
 		overflow(257, poolsize - initpoolptr); //pool size
-	halfword p = 29997;
+	halfword p = temp_head;
 	link(p) = 0;
 	for (auto k = b; k < poolptr; k++)
 	{
