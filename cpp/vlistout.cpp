@@ -21,7 +21,7 @@ void vlistout(void)
 	curs++;
 	if (curs > 0)
 	{
-		dvibuf[dviptr++] = 141;
+		dvibuf[dviptr++] = push;
 		if (dviptr == dvilimit)
 			dviswap();
 	}
@@ -85,7 +85,7 @@ void vlistout(void)
 							movement(curv-dviv, 157);
 							dviv = curv;
 						}
-						dvibuf[dviptr++] = 137;
+						dvibuf[dviptr++] = put_rule;
 						if (dviptr == dvilimit)
 							dviswap();
 						dvifour(ruleht);
@@ -150,7 +150,7 @@ void vlistout(void)
 									movement(curv-dviv, 157);
 									dviv = curv;
 								}
-								dvibuf[dviptr++] = 137;
+								dvibuf[dviptr++] = put_rule;
 								if (dviptr == dvilimit)
 									dviswap();
 								dvifour(ruleht);

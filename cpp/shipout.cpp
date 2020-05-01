@@ -95,10 +95,10 @@ void shipout(halfword p)
 	}
 	if (totalpages == 0)
 	{
-		dvibuf[dviptr++] = 247;
+		dvibuf[dviptr++] = pre;
 		if (dviptr == dvilimit)
 			dviswap();
-		dvibuf[dviptr++] = 2;
+		dvibuf[dviptr++] = id_byte;
 		if (dviptr == dvilimit)
 			dviswap();
 		dvifour(25400000);
@@ -129,7 +129,7 @@ void shipout(halfword p)
 		poolptr = strstart[strptr];
 	}
 	auto pageloc = dvioffset+dviptr;
-	dvibuf[dviptr++] = 139;
+	dvibuf[dviptr++] = bop;
 	if (dviptr == dvilimit)
 		dviswap();
 	for (auto k = 0; k < 10; k++)
@@ -142,7 +142,7 @@ void shipout(halfword p)
 		vlistout();
 	else
 		hlistout();
-	dvibuf[dviptr++] = 140;
+	dvibuf[dviptr++] = eop;
 	if (dviptr == dvilimit)
 		dviswap();
 	totalpages++;

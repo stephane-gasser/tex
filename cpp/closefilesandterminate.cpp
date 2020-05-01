@@ -22,13 +22,13 @@ void closefilesandterminate(void)
 	{
 		if (curs > 0)
 		{
-			dvibuf[dviptr++] = 142;
+			dvibuf[dviptr++] = pop;
 			if (dviptr == dvilimit)
 				dviswap();
 		}
 		else
 		{
-			dvibuf[dviptr++] = 140;
+			dvibuf[dviptr++] = eop;
 			if (dviptr == dvilimit)
 				dviswap();
 			totalpages++;
@@ -39,7 +39,7 @@ void closefilesandterminate(void)
 		printnl(836); //No pages of output.
 	else
 	{
-		dvibuf[dviptr++] = 248;
+		dvibuf[dviptr++] = post;
 		if (dviptr == dvilimit)
 			dviswap();
 		dvifour(lastbop);
@@ -65,17 +65,16 @@ void closefilesandterminate(void)
 		for (;fontptr > 0; fontptr--)
 			if (fontused[fontptr])
 				dvifontdef(fontptr);
-		dvibuf[dviptr++] = 249;
+		dvibuf[dviptr++] = post_post;
 		if (dviptr == dvilimit)
 			dviswap();
 		dvifour(lastbop);
-		dvibuf[dviptr++] = 2;
+		dvibuf[dviptr++] = id_byte;
 		if (dviptr == dvilimit)
 			dviswap();
 		for (k = 4+(dvibufsize-dviptr)%4; k > 0; k--)
 		{
 			dvibuf[dviptr++] = 223;
-			dviptr = dviptr+1;
 			if (dviptr == dvilimit)
 				dviswap();
 		}

@@ -5,7 +5,7 @@
 void dvifontdef(internalfontnumber f)
 
 {
-	dvibuf[dviptr++] = 243;
+	dvibuf[dviptr++] = fnt_def1;
 	if (dviptr == dvilimit)
 		dviswap();
 	dvibuf[dviptr++] = f-1;

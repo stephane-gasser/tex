@@ -7,7 +7,7 @@ void dvipop(int l)
 		dviptr--;
 	else
 	{
-		dvibuf[dviptr++] = 142;
+		dvibuf[dviptr++] = pop;
 		if (dviptr == dvilimit)
 			dviswap();
 	}

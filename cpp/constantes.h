@@ -996,16 +996,16 @@ current_character_being_worked_on==k+bc-fmem_ptr
 store_scaled(#)==begin fget; a:=fbyte; fget; b:=fbyte;
 @ check_existence(#)==@t@>@;@/
 adjust(#)==#[f]:=qo(#[f])
-@ set_char_0=0 //typeset character 0 and move right
-set1=128 //typeset a character and move right
-set_rule=132 //typeset a rule and move right
-put_rule=137 //typeset a rule
-nop=138 //no operation
-bop=139 //beginning of page
-eop=140 //ending of page
-push=141 //save the current positions
-pop=142 //restore previous positions
-right1=143 //move right
+@ set_char_0=0 //typeset character 0 and move right*/
+constexpr int set1 = 128; //typeset a character and move right
+constexpr int set_rule = 132; //typeset a rule and move right
+constexpr int put_rule = 137; //typeset a rule
+/*nop=138 //no operation*/
+constexpr int bop = 139; //beginning of page
+constexpr int eop = 140; //ending of page
+constexpr int push = 141; //save the current positions
+constexpr int pop = 142; //restore previous positions
+/*right1=143 //move right
 w0=147 //move right by |w|
 w1=148 //move right and set |w|
 x0=152 //move right by |x|
@@ -1016,15 +1016,15 @@ y1=162 //move down and set |y|
 z0=166 //move down by |z|
 z1=167 //move down and set |z|
 fnt_num_0=171 //set current font to 0
-fnt1=235 //set current font
-xxx1=239 //extension to \.//DVI primitives
-xxx4=242 //potentially long extension to \.//DVI primitives
-fnt_def1=243 //define the meaning of a font number
-pre=247 //preamble
-post=248 //postamble beginning
-post_post=249 //postamble ending
-id_byte=2 //identifies the kind of \.//DVI files described here
-dvi_out(#)==@+begin dvi_buf[dvi_ptr]:=#; incr(dvi_ptr);
+fnt1=235 //set current font*/
+constexpr int xxx1 = 239; //extension to \.//DVI primitives
+constexpr int xxx4 = 242; //potentially long extension to \.//DVI primitives
+constexpr int fnt_def1 = 243; //define the meaning of a font number
+constexpr int pre = 247; //preamble
+constexpr int post = 248; //postamble beginning
+constexpr int post_post = 249; //postamble ending
+constexpr int id_byte = 2; //identifies the kind of \.//DVI files described here
+/*dvi_out(#)==@+begin dvi_buf[dvi_ptr]:=#; incr(dvi_ptr);
 movement_node_size=3 //number of words per entry in the down and right stacks
 location(#)==mem[#+2].int //\.//DVI byte number for a movement command
 y_here=1 //|info| when the movement entry points to a |y| command

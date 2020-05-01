@@ -27,7 +27,7 @@ int main()
 				bad = 1;
 			if (maxprintline < 60)
 				bad = 2;
-			if (dvibufsize%8 != 0)
+			if (dvibufsize%8)
 				bad = 3;
 			if (1100 > 30000)
 				bad = 4;

@@ -25,7 +25,7 @@ void specialout(halfword p)
 		overflow(257, poolsize-initpoolptr); //pool size
 	if ((poolptr-strstart[strptr]) < 256)
 	{
-		dvibuf[dviptr++] = 239;
+		dvibuf[dviptr++] = xxx1;
 		if (dviptr == dvilimit)
 			dviswap();
 		dvibuf[dviptr++] = poolptr-strstart[strptr];
@@ -34,7 +34,7 @@ void specialout(halfword p)
 	}
 	else
 	{
-		dvibuf[dviptr++] = 242;
+		dvibuf[dviptr++] = xxx4;
 		if (dviptr == dvilimit)
 			dviswap();
 		dvifour(poolptr-strstart[strptr]);
