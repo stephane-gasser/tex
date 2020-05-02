@@ -27,16 +27,16 @@ void doregistercommand(smallnumber a)
 	q = curcmd;
 	do 
 	{
-		if (q != 89)
+		if (q != register_)
 		{
 			getxtoken();
-			if (curcmd >= 73 && curcmd <= 76)
+			if (curcmd >= assign_int && curcmd <= assign_mu_glue) // assign_int, assign_dimen, assign_int, assign_mu_glue
 			{
 				l = curchr;
-				p = curcmd-73;
+				p = curcmd-assign_int;
 				continue;
 			}
-			if (curcmd != 89)
+			if (curcmd != register_)
 			{
 				if (interaction == 3)
 					printnl(262); //! 
@@ -68,25 +68,25 @@ void doregistercommand(smallnumber a)
 				break;
 		}
 	} while (false);
-	if (q == 89)
+	if (q == register_)
 		scanoptionalequals();
 	else 
 		if (scankeyword(1205)) //by
 			aritherror = false;
-	if (q < 91)
+	if (q < multiply)
 		if (p < 2)
 		{
 			if (p == 0)
 				scanint();
 			else
 				scandimen(false, false, false);
-			if (q == 90)
+			if (q == advance)
 				curval += eqtb[l].int_;
 		}
 		else
 		{
 			scanglue(p);
-			if (q == 90)
+			if (q == advance)
 			{
 				q = newspec(curval);
 				r = equiv(l);
@@ -119,20 +119,20 @@ void doregistercommand(smallnumber a)
 	{
 		scanint();
 		if (p < 2)
-			if (q == 91)
+			if (q == multiply)
 				if (p == 0)
-					curval = multandadd(eqtb[l].int_, curval, 0, 2147483647);
+					curval = multandadd(eqtb[l].int_, curval, 0, 0x7F'FF'FF'FF);
 				else
-					curval = multandadd(eqtb[l].int_, curval, 0, 1073741823);
+					curval = multandadd(eqtb[l].int_, curval, 0, 0x3F'FF'FF'FF);
 			else
 				curval = xovern(eqtb[l].int_, curval);
 		else
 		{
 			s = equiv(l);
 			r = newspec(s);
-			if (q == 91)
+			if (q == multiply)
 				for (int i = 1; i <= 3; i++)
-					mem[r+i].int_ = multandadd(mem[s+i].int_, curval, 0, 1073741823);
+					mem[r+i].int_ = multandadd(mem[s+i].int_, curval, 0, 0x3F'FF'FF'FF);
 			else
 				for (int i = 1; i <= 3; i++)
 					mem[r+i].int_ = xovern(mem[s+i].int_, curval);

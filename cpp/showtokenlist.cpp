@@ -23,12 +23,12 @@ void showtokenlist(int p, int  q, int l)
 			printesc(309); //CLOBBERED.
 			return;
 		}
-		if (info(p) >= 4095)
-			printcs(info(p)-4095);
+		if (info(p) >= 0x0F'FF)
+			printcs(info(p)-0x0F'FF);
 		else
 		{
-			int m = info(p)/256;
-			int c = info(p)%256;
+			int m = info(p)/0x1'00;
+			int c = info(p)%0x1'00;
 			if (info(p) < 0)
 				printesc(555); //BAD.
 			else

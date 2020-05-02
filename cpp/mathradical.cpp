@@ -5,13 +5,12 @@
 
 void mathradical(void)
 {
-	link(curlist.tailfield) = getnode(5);
-	curlist.tailfield = link(curlist.tailfield);
-	type(curlist.tailfield) = 24;
-	subtype(curlist.tailfield) = 0;
-	mem[curlist.tailfield+1].hh = emptyfield;
-	mem[curlist.tailfield+3].hh = emptyfield;
-	mem[curlist.tailfield+2].hh = emptyfield;
-	scandelimiter(curlist.tailfield+4, true);
-	scanmath(curlist.tailfield+1);
+	tail_append(getnode(5));
+	type(tail) = 24;
+	subtype(tail) = 0;
+	mem[tail+1].hh = emptyfield;
+	mem[tail+3].hh = emptyfield;
+	mem[tail+2].hh = emptyfield;
+	scandelimiter(tail+4, true);
+	scanmath(tail+1);
 }

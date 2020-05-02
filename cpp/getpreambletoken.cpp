@@ -12,25 +12,25 @@ void getpreambletoken(void)
 	while (true)
 	{
 		gettoken();
-		while (curchr == 256 && curcmd == 4)
+		while (curchr == 256 && curcmd == tab_mark)
 		{
 			gettoken();
-			if (curcmd > 100)
+			if (curcmd > max_command)
 			{
 				expand();
 				gettoken();
 			}
 		}
-		if (curcmd == 9)
+		if (curcmd == endv)
 			fatalerror(595); //(interwoven alignment preambles are not allowed)
-		if (curcmd == 75 && curchr == 2893)
+		if (curcmd == assign_glue && curchr == 2893)
 		{
 			scanoptionalequals();
 			scanglue(2);
 			if (int_par(global_defs_code) > 0)
-				geqdefine(2893, 117, curval);
+				geqdefine(2893, glue_ref, curval);
 			else
-				eqdefine(2893, 117, curval);
+				eqdefine(2893, glue_ref, curval);
 			continue;
 		}
 		break;

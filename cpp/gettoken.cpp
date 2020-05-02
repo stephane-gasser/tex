@@ -7,7 +7,7 @@ void gettoken(void)
 	getnext();
 	nonewcontrolsequence = true;
 	if (curcs == 0)
-		curtok = curcmd*256+curchr;
+		curtok = curcmd*0x1'00+curchr;
 	else
-		curtok = 4095+curcs;
+		curtok = 0x0F'FF+curcs;
 }

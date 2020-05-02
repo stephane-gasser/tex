@@ -113,7 +113,7 @@ void expand(void)
 						if (maxbufstack = bufsize)
 							overflow(256, bufsize); //buffer size
 					};
-					buffer[j++] = info(p)%256;
+					buffer[j++] = info(p)%0x1'00;
 					p = link(p);
 				};
 				if (j > First+1)
@@ -128,7 +128,7 @@ void expand(void)
 				else
 					curcs = 257+buffer[First];
 				flushlist(r);
-				if (eq_type(curcs) == 101)
+				if (eq_type(curcs) == undefined_cs)
 					eqdefine(curcs, 0, 256);
 				curtok = curcs+4095;
 				backinput();
@@ -193,7 +193,7 @@ void expand(void)
 		}
 	}
 	else 
-		if (curcmd < 115)
+		if (curcmd < end_template)
 			macrocall();
 		else
 		{

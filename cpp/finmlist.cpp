@@ -5,26 +5,26 @@
 halfword finmlist(halfword p)
 {
 	halfword q;
-	if (curlist.auxfield.int_)
+	if (incompleat_noad)
 	{
-		link(curlist.auxfield.int_+3) = 3;
-		info(curlist.auxfield.int_+3) = link(curlist.headfield);
+		link(incompleat_noad+3) = 3;
+		info(incompleat_noad+3) = link(head);
 		if (p == 0)
-			q = curlist.auxfield.int_;
+			q = incompleat_noad;
 		else
 		{
-			q = info(curlist.auxfield.int_+2);
+			q = info(incompleat_noad+2);
 			if (type(q) != 30)
 				confusion(876);
-			info(curlist.auxfield.int_+2) = link(q);
-			link(q) = curlist.auxfield.int_;
-			link(curlist.auxfield.int_) = p;
+			info(incompleat_noad+2) = link(q);
+			link(q) = incompleat_noad;
+			link(incompleat_noad) = p;
 		}
 	}
 	else
 	{
-		link(curlist.tailfield) = p;
-		q = link(curlist.headfield);
+		link(tail) = p;
+		q = link(head);
 	}
 	popnest();
 	return q;

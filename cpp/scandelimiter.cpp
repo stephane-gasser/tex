@@ -13,14 +13,14 @@ void scandelimiter(halfword p, bool r)
 	{
 		do
 			getxtoken();
-		while (curcmd == 10 || curcmd == 0);
+		while (curcmd == spacer || curcmd == escape);
 		switch (curcmd)
 		{
-			case 11:
-			case 12: 
+			case letter:
+			case other_char: 
 				curval = del_code(curchr);
 				break;
-			case 15: 
+			case delim_num: 
 				scantwentysevenbitint();
 				break;
 			default: 
@@ -43,8 +43,8 @@ void scandelimiter(halfword p, bool r)
 		curval = 0;
 	}
 	;
-	mem[p].qqqq.b0 = (curval/1048576)%16;
-	mem[p].qqqq.b1 = (curval/4096)%256;
-	mem[p].qqqq.b2 = (curval/256)%16;
-	mem[p].qqqq.b3 = curval%256;
+	mem[p].qqqq.b0 = (curval/0x10'00'00)%0x10;
+	mem[p].qqqq.b1 = (curval/0x10'00)%0x1'00;
+	mem[p].qqqq.b2 = (curval/0x1'00)%0x10;
+	mem[p].qqqq.b3 = curval%0x1'00;
 }

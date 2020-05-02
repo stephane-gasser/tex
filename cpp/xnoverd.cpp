@@ -1,17 +1,17 @@
 #include "xnoverd.h"
 
-scaled xnoverd(scaled x, int n, int  d)
+scaled xnoverd(scaled x, int n, int d)
 {
 	bool positive = x >= 0;
 	if (!positive)
 		x = -x;
-	int t = (x%32768)*n;
-	int u = (x/32768)*n+t/32768;
-	int v = (u%d)*32768+t%32768;
-	if (u/d >= 32768)
+	int t = (x%0x80'00)*n;
+	int u = (x/0x80'00)*n+t/0x80'00;
+	int v = (u%d)*0x80'00+t%0x80'00;
+	if (u/d >= 0x80'00)
 		aritherror = true;
 	else
-		u = 32768*(u/d)+v/d;
+		u = 0x80'00*(u/d)+v/d;
 	if (positive)
 	{
 		remainder_ = v%d;

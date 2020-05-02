@@ -9,7 +9,7 @@
 
 void mathac(void)
 {
-	if (curcmd == 45)
+	if (curcmd == accent)
 	{
 		if (interaction == 3)
 			printnl(262); //! 
@@ -21,19 +21,18 @@ void mathac(void)
 		helpline[0] = 1141; //(Accents are not the same in formulas as they are in text.)
 		error();
 	}
-	link(curlist.tailfield) = getnode(5);
-	curlist.tailfield = link(curlist.tailfield);
-	type(curlist.tailfield) = 28;
-	subtype(curlist.tailfield) = 0;
-	mem[curlist.tailfield+1].hh = emptyfield;
-	mem[curlist.tailfield+3].hh = emptyfield;
-	mem[curlist.tailfield+2].hh = emptyfield;
-	link(curlist.tailfield+4) = 1;
+	tail_append(getnode(5));
+	type(tail) = 28;
+	subtype(tail) = 0;
+	mem[tail+1].hh = emptyfield;
+	mem[tail+3].hh = emptyfield;
+	mem[tail+2].hh = emptyfield;
+	link(tail+4) = 1;
 	scanfifteenbitint();
-	subtype(curlist.tailfield+4) = curval%256;
-	if (curval >= 28672 && int_par(cur_fam_code) >= 0 && int_par(cur_fam_code) < 16)
-		type(curlist.tailfield+4) = int_par(cur_fam_code);
+	subtype(tail+4) = curval%0x1'00;
+	if (curval >= 0x7000 && int_par(cur_fam_code) >= 0 && int_par(cur_fam_code) < 0x10)
+		type(tail+4) = int_par(cur_fam_code);
 	else
-		type(curlist.tailfield+4) = (curval/256)%16;
-	scanmath(curlist.tailfield+1);
+		type(tail+4) = (curval/0x1'00)%0x10;
+	scanmath(tail+1);
 }

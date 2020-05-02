@@ -10,7 +10,7 @@ void passtext(void)
 	while (true)
 	{
 		getnext();
-		if (curcmd == 106)
+		if (curcmd == fi_or_else)
 		{
 			if (l == 0)
 				break;
@@ -18,7 +18,7 @@ void passtext(void)
 				l--;
 		}
 		else 
-			if (curcmd == 105)
+			if (curcmd == if_test)
 				l++;
 	}
 	scannerstatus = savescannerstatus;

@@ -6,11 +6,11 @@
 halfword scanrulespec(void)
 {
 	auto q = newrule();
-	if (curcmd == 35)
-		mem[q+1].int_ = 26214;
+	if (curcmd == vrule)
+		mem[q+1].int_ = default_rule;
 	else
 	{
-		mem[q+3].int_ = 26214;
+		mem[q+3].int_ = default_rule;
 		mem[q+2].int_ = 0;
 	}
 	while (true)

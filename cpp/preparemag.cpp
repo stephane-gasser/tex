@@ -21,13 +21,13 @@ void preparemag(void)
 		interror(magset);
 		geqworddefine(int_base+mag_code, magset);
 	}
-	if (int_par(mag_code) <= 0 || int_par(mag_code) > 32768)
+	if (int_par(mag_code) <= 0 || int_par(mag_code) > 0x80'00)
 	{
 		if (interaction == 3)
 			printnl(262); //! 
 		print(552); //Illegal magnification has been changed to 1000
 		helpptr = 1;
-		helpline[0] = 553; //The magnification ratio must be between 1 and 32768.
+		helpline[0] = 553; //The magnification ratio must be between 1 and 0x80'00.
 		interror(int_par(mag_code));
 		geqworddefine(int_base+mag_code, 1000);
 	}

@@ -5,7 +5,7 @@
 void initcol(void)
 {
 	info(curalign+5) = curcmd;
-	if (curcmd == 63)
+	if (curcmd == omit)
 		alignstate = 0;
 	else
 	{

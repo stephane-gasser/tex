@@ -8,8 +8,8 @@ void doassignments(void)
 	{
 		do
 			getxtoken();
-		while (curcmd == 10 || curcmd == 0);
-		if (curcmd <= 70)
+		while (curcmd == spacer || curcmd == escape);
+		if (curcmd <= max_non_prefixed_command)
 			return;
 		setboxallowed = false;
 		prefixedcommand();

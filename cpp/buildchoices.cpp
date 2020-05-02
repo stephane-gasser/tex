@@ -11,16 +11,16 @@ void buildchoices(void)
 	switch (savestack[saveptr-1].int_)
 	{
 		case 0: 
-			info(curlist.tailfield+1) = p;
+			info(tail+1) = p;
 			break;
 		case 1: 
-			link(curlist.tailfield+1) = p;
+			link(tail+1) = p;
 			break;
 		case 2: 
-			info(curlist.tailfield+2) = p;
+			info(tail+2) = p;
 			break;
 		case 3:
-			link(curlist.tailfield+2) = p;
+			link(tail+2) = p;
 			saveptr--;
 			return;
 	}

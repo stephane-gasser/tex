@@ -24,7 +24,7 @@ void postlinebreak(int finalwidowpenalty)
 		info(r+1) = curp;
 		curp = r;
 	} while (q);
-	curline = curlist.pgfield+1;
+	curline = prev_graf+1;
 	do
 	{
 		q = link(curp+1);
@@ -131,14 +131,14 @@ void postlinebreak(int finalwidowpenalty)
 		appendtovlist(justbox);
 		if (adjust_head != adjusttail)
 		{
-			link(curlist.tailfield) = link(adjust_head);
-			curlist.tailfield = adjusttail;
+			link(tail) = link(adjust_head);
+			tail = adjusttail;
 		}
 		adjusttail = 0;
 		if (curline+1 != bestline)
 		{
 			pen = int_par(inter_line_penalty_code);
-			if (curline == curlist.pgfield+1)
+			if (curline == prev_graf+1)
 				pen += int_par(club_penalty_code);
 			if (curline+2 == bestline)
 				pen += finalwidowpenalty;
@@ -147,8 +147,7 @@ void postlinebreak(int finalwidowpenalty)
 			if (pen)
 			{
 				r = newpenalty(pen);
-				link(curlist.tailfield) = r;
-				curlist.tailfield = r;
+				tail_append(r);
 			}
 		}
 		curline++;
@@ -181,5 +180,5 @@ void postlinebreak(int finalwidowpenalty)
 	} while (curp);
 	if (curline != bestline || link(temp_head))
 		confusion(938); //line breaking
-	curlist.pgfield = bestline-1;
+	prev_graf = bestline-1;
 }

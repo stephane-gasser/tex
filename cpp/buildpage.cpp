@@ -29,7 +29,7 @@ void buildpage(void)
 	do
 	{
 		p = link(contrib_head);
-		if (lastglue != 65535)
+		if (lastglue != 0xFF'FF)
 			deleteglueref(lastglue);
 		lastpenalty = 0;
 		lastkern = 0;
@@ -40,7 +40,7 @@ void buildpage(void)
 		}
 		else
 		{
-			lastglue = 65535;
+			lastglue = 0xFF'FF;
 			if (type(p) == penalty_node) //12
 				lastpenalty = mem[p+1].int_;
 			else 
@@ -169,7 +169,7 @@ void buildpage(void)
 					else
 					{
 						if (count(n) <= 0)
-							w = 1073741823;
+							w = 0x3F'FF'FF'FF;
 						else
 						{
 							w = pagesofar[0]-pagesofar[1]-pagesofar[7];
@@ -207,10 +207,10 @@ void buildpage(void)
 						b =	badness(pagesofar[0]-pagesofar[1], pagesofar[2]);
 				else 
 					if (pagesofar[1]-pagesofar[0] > pagesofar[6])
-						b = 1073741823;
+						b = 0x3F'FF'FF'FF;
 				else
 						b = badness(pagesofar[1]-pagesofar[0], pagesofar[6]);
-				if (b < 1073741823)
+				if (b < 0x3F'FF'FF'FF)
 					if (pi <= -10000)
 						c = pi;
 					else 
@@ -221,7 +221,7 @@ void buildpage(void)
 				else
 					c = b;
 				if (insertpenalties >= 10000)
-					c = 1073741823;
+					c = 0x3F'FF'FF'FF;
 				if (c <= leastpagecost)
 				{
 					bestpagebreak = p;
@@ -234,7 +234,7 @@ void buildpage(void)
 						r = link(r);
 					}
 				}
-				if (c == 1073741823 || pi <= -10000)
+				if (c == 0x3F'FF'FF'FF || pi <= -10000)
 				{
 					fireup(p);
 					if (outputactive)
@@ -284,7 +284,7 @@ void buildpage(void)
 		link(p) = 0;
 	} while (link(contrib_head));
 	if (nestptr == 0)
-		curlist.tailfield = contrib_head;
+		tail = contrib_head;
 	else
 		nest[0].tailfield = contrib_head;
 }

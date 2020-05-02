@@ -3,10 +3,10 @@
 
 void flushmath(void)
 {
-	flushnodelist(link(curlist.headfield));
-	flushnodelist(curlist.auxfield.int_);
-	link(curlist.headfield) = 0;
-	curlist.tailfield = curlist.headfield;
-	curlist.auxfield.int_ = 0;
+	flushnodelist(link(head));
+	flushnodelist(incompleat_noad);
+	link(head) = 0;
+	tail = head;
+	incompleat_noad = 0;
 }
 

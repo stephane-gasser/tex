@@ -9,7 +9,7 @@
 
 void alteraux(void)
 {
-	if (curchr != abs(curlist.modefield))
+	if (curchr != abs(mode))
 		reportillegalcase();
 	else
 	{
@@ -18,22 +18,22 @@ void alteraux(void)
 		if (c == 1)
 		{
 			scandimen(false, false, false);
-			curlist.auxfield.int_ = curval;
+			prev_depth = curval;
 		}
 		else
 		{
 			scanint();
-			if (curval <= 0 || curval > 32767)
+			if (curval <= 0 || curval > 0x7F'FF)
 			{
 				if (interaction == 3)
 					printnl(262); //! 
 				print(1212); //Bad space factor
 				helpptr = 1;
-				helpline[0] = 1213; //I allow only values in the range 1..32767 here.
+				helpline[0] = 1213; //I allow only values in the range 1..0x7F'FF here.
 				interror(curval);
 			}
 			else
-			curlist.auxfield.hh.lh = curval;
+			space_factor = curval;
 		}
 	}
 }

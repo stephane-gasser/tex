@@ -68,6 +68,6 @@ halfword vsplit(eightbits n, scaled h)
 	if (q == 0)
 		box(n) = 0;
 	else
-		box(n) = vpackage(q, 0, 1, 1073741823);
+		box(n) = vpackage(q, 0, 1, 0x3F'FF'FF'FF);
 	return vpackage(p, h, 0, dimen_par(split_max_depth_code));
 }

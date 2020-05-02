@@ -111,7 +111,7 @@ void fireup(halfword c)
 						info(p+4) = prunepagetop(link(r+1));
 						if (info(p+4))
 						{
-							tempptr = vpackage(info(p+4), 0, 1, 1073741823);
+							tempptr = vpackage(info(p+4), 0, 1, 0x3F'FF'FF'FF);
 							mem[p+3].int_ = mem[tempptr+3].int_+mem[tempptr+2].int_;
 							freenode(tempptr, 7);
 							wait = true;
@@ -121,7 +121,7 @@ void fireup(halfword c)
 					n = subtype(r);
 					tempptr = info(box(n)+5);
 					freenode(box(n), 7);
-					box(n) = vpackage(tempptr, 0, 1, 1073741823);
+					box(n) = vpackage(tempptr, 0, 1, 0x3F'FF'FF'FF);
 				}
 				else
 				{
@@ -166,7 +166,7 @@ void fireup(halfword c)
 	{
 		if (link(contrib_head) == 0)
 			if (nestptr == 0)
-				curlist.tailfield = pagetail;
+				tail = pagetail;
 			else
 				nest[0].tailfield = pagetail;
 		link(pagetail) = link(contrib_head);
@@ -176,16 +176,16 @@ void fireup(halfword c)
 	savevbadness = int_par(vbadness_code);
 	int_par(vbadness_code) = 10000;
 	savevfuzz = dimen_par(vfuzz_code);
-	dimen_par(vfuzz_code) = 1073741823;
+	dimen_par(vfuzz_code) = 0x3F'FF'FF'FF;
 	box(255) = vpackage(link(page_head), bestsize, 0, pagemaxdepth);
 	int_par(vbadness_code) = savevbadness;
 	dimen_par(vfuzz_code) = savevfuzz;
-	if (lastglue != 65535)
+	if (lastglue != 0xFF'FF)
 		deleteglueref(lastglue);
 	pagecontents = 0;
 	pagetail = page_head;
 	link(page_head) = 0;
-	lastglue = 65535;
+	lastglue = 0xFF'FF;
 	lastpenalty = 0;
 	lastkern = 0;
 	pagesofar[7] = 0;
@@ -227,9 +227,9 @@ void fireup(halfword c)
 			outputactive = true;
 			deadcycles++;
 			pushnest();
-			curlist.modefield = -1;
-			curlist.auxfield.int_ = -65536000;
-			curlist.mlfield = -line;
+			mode = -vmode;
+			prev_depth = -0x1'00'00*1000;
+			mode_line = -line;
 			begintokenlist(output_routine(), 6);
 			newsavelevel(8);
 			normalparagraph();
@@ -240,7 +240,7 @@ void fireup(halfword c)
 	{
 		if (link(contrib_head) == 0)
 			if (nestptr == 0)
-				curlist.tailfield = pagetail;
+				tail = pagetail;
 			else
 				nest[0].tailfield = pagetail;
 		else

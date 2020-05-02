@@ -7,5 +7,5 @@ void freezepagespecs(smallnumber s)
 	pagemaxdepth = dimen_par(vsize_code);
 	for (int i = 1; i <= 7; i++)
 		pagesofar[i] = 0;
-	leastpagecost = 1073741823;
+	leastpagecost = 0x3F'FF'FF'FF;
 }

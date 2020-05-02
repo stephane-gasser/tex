@@ -10,16 +10,13 @@ bool itsallover(void)
 {
 	if (privileged())
 	{
-		if (page_head == pagetail && curlist.headfield == curlist.tailfield &&deadcycles == 0)
+		if (page_head == pagetail && head == tail && deadcycles == 0)
 			return true;
 		backinput();
-		link(curlist.tailfield) = newnullbox();
-		curlist.tailfield = link(curlist.tailfield);
-		mem[curlist.tailfield+1].int_ = dimen_par(hsize_code);
-		link(curlist.tailfield) = newglue(8);
-		curlist.tailfield = link(curlist.tailfield);
-		link(curlist.tailfield) = newpenalty(-1073741824);
-		curlist.tailfield = link(curlist.tailfield);
+		tail_append(newnullbox());
+		mem[tail+1].int_ = dimen_par(hsize_code);
+		tail_append(newglue(8));
+		tail_append(newpenalty(-0x40'00'00'00));
 		buildpage();
 	}
 	return false;

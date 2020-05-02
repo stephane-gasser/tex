@@ -20,30 +20,24 @@ void linebreak(int finalwidowpenalty)
 	internalfontnumber f;
 	smallnumber j;
 	unsigned char c;
-	packbeginline = curlist.mlfield;
-	link(temp_head) = link(curlist.headfield);
-	if ((curlist.tailfield >= himemmin))
-	{
-		link(curlist.tailfield) = newpenalty(10000);
-		curlist.tailfield = link(curlist.tailfield);
-	}
+	packbeginline = mode_line;
+	link(temp_head) = link(head);
+	if ((tail >= himemmin))
+		tail_append(newpenalty(10000));
 	else 
-		if (type(curlist.tailfield) != 10)
-		{
-			link(curlist.tailfield) = newpenalty(10000);
-			curlist.tailfield = link(curlist.tailfield);
-		}
+		if (type(tail) != 10)
+			tail_append(newpenalty(10000));
 		else
 		{
-			type(curlist.tailfield) = 12;
-			deleteglueref(info(curlist.tailfield+1));
-			flushnodelist(link(curlist.tailfield+1));
-			mem[curlist.tailfield+1].int_ = 10000;
+			type(tail) = 12;
+			deleteglueref(info(tail+1));
+			flushnodelist(link(tail+1));
+			mem[tail+1].int_ = 10000;
 		}
-	link(curlist.tailfield) = newparamglue(14);
-	initcurlang = curlist.pgfield%65536;
-	initlhyf = curlist.pgfield/4194304;
-	initrhyf = (curlist.pgfield/65536)%64;
+	link(tail) = newparamglue(14);
+	initcurlang = prev_graf%0x1'00'00;
+	initlhyf = prev_graf/4194304;
+	initrhyf = (prev_graf/0x1'00'00)%64;
 	popnest();
 	noshrinkerroryet = true;
 	if (subtype(left_skip()) && mem[left_skip()+3].int_)
@@ -60,11 +54,11 @@ void linebreak(int finalwidowpenalty)
 	background[2+type(q)] = mem[q+2].int_;
 	background[2+type(r)] = background[2+type(r)]+mem[r+2].int_;
 	background[6] = mem[q+3].int_+mem[r+3].int_;
-	minimumdemerits = 1073741823;
-	minimaldemerits[3] = 1073741823;
-	minimaldemerits[2] = 1073741823;
-	minimaldemerits[1] = 1073741823;
-	minimaldemerits[0] = 1073741823;
+	minimumdemerits = 0x3F'FF'FF'FF;
+	minimaldemerits[3] = 0x3F'FF'FF'FF;
+	minimaldemerits[2] = 0x3F'FF'FF'FF;
+	minimaldemerits[1] = 0x3F'FF'FF'FF;
+	minimaldemerits[0] = 0x3F'FF'FF'FF;
 	if (par_shape_ptr() == 0)
 		if (dimen_par(hang_indent_code) == 0)
 		{
@@ -105,7 +99,7 @@ void linebreak(int finalwidowpenalty)
 	if (int_par(looseness_code) == 0)
 		easyline = lastspecialline;
 	else
-		easyline = 65535;
+		easyline = 0xFF'FF;
 	threshold = int_par(pretolerance_code);
 	if (threshold >= 0)
 	{
@@ -135,7 +129,7 @@ void linebreak(int finalwidowpenalty)
 		subtype(q) = 2;
 		link(q) = active;
 		link(q+1) = 0;
-		info(q+1) = curlist.pgfield+1;
+		info(q+1) = prev_graf+1;
 		mem[q+2].int_ = 0;
 		link(active) = q;
 		for (int i = 1; i <= 6; i++)
@@ -467,7 +461,7 @@ void linebreak(int finalwidowpenalty)
 			if (link(active) != active)
 			{
 				r = link(active);
-				fewestdemerits = 1073741823;
+				fewestdemerits = 0x3F'FF'FF'FF;
 				do
 				{
 					if (type(r) != 2 && mem[r+2].int_ < fewestdemerits)

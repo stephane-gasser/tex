@@ -12,12 +12,6 @@
 #include "xovern.h"
 
 void showactivities(void)
-/*var
-  p: 0..nestsize;
-  m: -203..203;
-  a: memoryword;
-  q, r: halfword;
-  t: integer;*/
 {
 	nest[nestptr] = curlist;
 	printnl(338); //
@@ -33,11 +27,11 @@ void showactivities(void)
 		if (m == 102 && nest[p].pgfield != 8585216)
 		{
 			print(365); // (language
-			printint(nest[p].pgfield%65536);
+			printint(nest[p].pgfield%0x1'00'00);
 			print(366); //:hyphenmin
 			printint(nest[p].pgfield/4194304);
 			printchar(',');
-			printint((nest[p].pgfield/65536)%64);
+			printint((nest[p].pgfield/0x1'00'00)%64);
 			printchar(')');
 		}
 		if (nest[p].mlfield < 0)
@@ -96,7 +90,7 @@ void showactivities(void)
 		{
 			case 0:
 				printnl(369); //prevdepth 
-				if (a.int_ <= -65536000)
+				if (a.int_ <= -0x1'00'00*1000)
 					print(370); //ignored
 				else
 					printscaled(a.int_);

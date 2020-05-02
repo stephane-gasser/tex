@@ -3,7 +3,7 @@
 
 bool privileged(void)
 {
-	if (curlist.modefield > 0)
+	if (mode > 0)
 		return true;
 	reportillegalcase();
 	return false;

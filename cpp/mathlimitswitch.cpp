@@ -5,9 +5,9 @@
 
 void mathlimitswitch(void)
 {
-	if (curlist.headfield != curlist.tailfield && type(curlist.tailfield) == 17)
+	if (head != tail && type(tail) == 17)
 		{
-			subtype(curlist.tailfield) = curchr;
+			subtype(tail) = curchr;
 			return;
 		}
 	if (interaction == 3)

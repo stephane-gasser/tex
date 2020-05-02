@@ -9,15 +9,15 @@ void scanfontident(void)
 {
 	do
 		getxtoken();
-	while (curcmd == 10);
+	while (curcmd == spacer);
 	internalfontnumber f;
-	if (curcmd == 88)
+	if (curcmd == def_font)
 		f = cur_font();
 	else 
-		if (curcmd == 87)
+		if (curcmd == set_font)
 			f = curchr;
 		else 
-			if (curcmd == 86)
+			if (curcmd == def_family)
 			{
 				halfword m = curchr;
 				scanfourbitint();

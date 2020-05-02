@@ -7,13 +7,12 @@
 
 void appenddiscretionary(void)
 {
-	link(curlist.tailfield) = newdisc();
-	curlist.tailfield = link(curlist.tailfield);
+	tail_append(newdisc());
 	if (curchr == 1)
 	{
 		int c = hyphenchar[cur_font()];
-		if (c >= 0 && c < 256)
-			info(curlist.tailfield+1) = newcharacter(cur_font(), c);
+		if (c >= 0 && c < 0x1'00)
+			info(tail+1) = newcharacter(cur_font(), c);
 	}
 	else
 	{
@@ -21,7 +20,7 @@ void appenddiscretionary(void)
 		newsavelevel(10);
 		scanleftbrace();
 		pushnest();
-		curlist.modefield = -102;
-		curlist.auxfield.hh.lh = 1000;
+		mode = -hmode;
+		space_factor = 1000;
 	}
 }

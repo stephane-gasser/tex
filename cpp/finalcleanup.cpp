@@ -65,7 +65,7 @@ void finalcleanup(void)
 		for (c = 0; c <= 4; c++)
 		if (curmark[c])
 			deletetokenref(curmark[c]);
-		if (lastglue != 65535)
+		if (lastglue != 0xFF'FF)
 			deleteglueref(lastglue);
 		storefmtfile();
 		return;

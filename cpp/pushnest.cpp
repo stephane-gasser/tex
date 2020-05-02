@@ -11,7 +11,7 @@ void pushnest(void)
 		overflow(362, nestsize); //semantic nest size
 	}
 	nest[nestptr++] = curlist;
-	curlist.tailfield = curlist.headfield = getavail();
-	curlist.pgfield = 0;
-	curlist.mlfield = line;
+	tail = head = getavail();
+	prev_graf = 0;
+	mode_line = line;
 }

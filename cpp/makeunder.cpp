@@ -10,7 +10,7 @@ void makeunder(halfword q)
 	auto p = newkern(3 * fontinfo[8+parambase[fam_fnt(3+cursize)]].int_);
 	link(x) = p;
 	link(p) = fractionrule(fontinfo[8+parambase[fam_fnt(3+cursize)]].int_);
-	auto y = vpackage(x, 0, 1, 1073741823);
+	auto y = vpackage(x, 0, 1, 0x3F'FF'FF'FF);
 	scaled delta = mem[y+3].int_+mem[y+2].int_+fontinfo[8+parambase[fam_fnt(3+cursize)]].int_;
 	mem[y+3].int_ = mem[x+3].int_;
 	mem[y+2].int_ = delta-mem[y+3].int_;

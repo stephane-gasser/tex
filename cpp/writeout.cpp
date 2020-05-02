@@ -23,8 +23,8 @@ void writeout(halfword p)
 	q = getavail();
 	info(q) = 379;
 	begintokenlist(q, 4);
-	int oldmode = curlist.modefield;
-	curlist.modefield = 0;
+	int oldmode = mode;
+	mode = 0;
 	curcs = writeloc;
 	q = scantoks(false, true);
 	gettoken();
@@ -42,7 +42,7 @@ void writeout(halfword p)
 		while (curtok != 6717);
 	}
 	;
-	curlist.modefield = oldmode;
+	mode = oldmode;
 	endtokenlist();
 	auto oldsetting = selector;
 	auto j = info(p+1);

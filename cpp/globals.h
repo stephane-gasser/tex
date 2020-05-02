@@ -87,6 +87,30 @@ extern liststaterecord nest[nestsize+1];
 extern char nestptr; //0..nestsize
 extern char maxneststack; // 0..nestsize
 extern liststaterecord curlist;
+
+//aux==cur_list.aux_field //auxiliary data about the current list
+extern memoryword& aux;
+//prev_depth==aux.sc //the name of |aux| in vertical mode
+extern int& prev_depth;
+//space_factor==aux.hh.lh //part of |aux| in horizontal mode
+extern halfword& space_factor;
+ //clang==aux.hh.rh //the other part of |aux| in horizontal mode 
+extern halfword& clang;
+//incompleat_noad==aux.int //the name of |aux| in math mode*/
+extern int& incompleat_noad;
+//mode==cur_list.mode_field //current mode
+extern int& mode;
+//head==cur_list.head_field //header node of current list
+extern halfword& head;
+//tail==cur_list.tail_field //final node on current list
+extern halfword& tail;
+//prev_graf==cur_list.pg_field //number of paragraph lines accumulated
+extern int& prev_graf;
+//mode_line==cur_list.ml_field //source file line number at beginning of list
+extern int& mode_line;
+//tail_append(#)==begin link(tail):=#; tail:=link(tail);
+void tail_append(halfword);
+
 extern int shownmode; //-203..203
 extern char oldsetting; // 0..21
 extern memoryword eqtb[6107]; // débute à 1

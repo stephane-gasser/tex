@@ -8,8 +8,8 @@ void indentinhmode(void)
 	{
 		auto p = newnullbox();
 		mem[p+1].int_ = dimen_par(par_indent_code);
-		if (abs(curlist.modefield) == 102)
-			curlist.auxfield.hh.lh = 1000;
+		if (abs(mode) == 102)
+			space_factor = 1000;
 		else
 		{
 			auto q = newnoad();
@@ -17,7 +17,6 @@ void indentinhmode(void)
 			info(q+1) = p;
 			p = q;
 		}
-		link(curlist.tailfield) = p;
-		curlist.tailfield = link(curlist.tailfield);
+		tail_append(p);
 	}
 }

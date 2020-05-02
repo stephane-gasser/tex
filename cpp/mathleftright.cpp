@@ -37,18 +37,17 @@ void mathleftright(void)
 		if (t == 30)
 		{
 			pushmath(16);
-			link(curlist.headfield) = p;
-			curlist.tailfield = p;
+			link(head) = p;
+			tail = p;
 		}
 		else
 		{
 			p = finmlist(p);
 			unsave();
-			link(curlist.tailfield) = newnoad();
-			curlist.tailfield = link(curlist.tailfield);
-			type(curlist.tailfield) = 23;
-			link(curlist.tailfield+1) = 3;
-			info(curlist.tailfield+1) = p;
+			tail_append(newnoad());
+			type(tail) = 23;
+			link(tail+1) = 3;
+			info(tail+1) = p;
 		}
 	}
 }

@@ -50,16 +50,16 @@ void closefilesandterminate(void)
 		dvifour(int_par(mag_code));
 		dvifour(maxv);
 		dvifour(maxh);
-		dvibuf[dviptr++] = maxpush/256;
+		dvibuf[dviptr++] = maxpush/0x1'00;
 		if (dviptr == dvilimit)
 			dviswap();
-		dvibuf[dviptr++] = maxpush%256;
+		dvibuf[dviptr++] = maxpush%0x1'00;
 		if (dviptr == dvilimit)
 			dviswap();
-		dvibuf[dviptr++] = (totalpages/256)%256;
+		dvibuf[dviptr++] = (totalpages/0x1'00)%0x1'00;
 		if (dviptr == dvilimit)
 			dviswap();
-		dvibuf[dviptr++] = totalpages%256;
+		dvibuf[dviptr++] = totalpages%0x1'00;
 		if (dviptr == dvilimit)
 			dviswap();
 		for (;fontptr > 0; fontptr--)

@@ -5,8 +5,7 @@
 
 void appendchoices(void)
 {
-	link(curlist.tailfield) = newchoice();
-	curlist.tailfield = link(curlist.tailfield);
+	tail_append(newchoice());
 	savestack[saveptr++].int_ = 0;
 	pushmath(13);
 	scanleftbrace();

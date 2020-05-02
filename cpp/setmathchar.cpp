@@ -5,7 +5,7 @@
 
 void setmathchar(int c)
 {
-	if (c >= 32768)
+	if (c >= 0x80'00)
 	{
 		curcs = curchr+1;
 		curcmd = eq_type(curcs);
@@ -17,17 +17,16 @@ void setmathchar(int c)
 	{
 		auto p = newnoad();
 		link(p+1) = 1;
-		subtype(p+1) = c%256;
-		type(p+1) = (c/256)%6;
-		if (c >= 28672)
+		subtype(p+1) = c%0x1'00;
+		type(p+1) = (c/0x1'00)%6;
+		if (c >= 0x70'00)
 		{
-			if (int_par(cur_fam_code) >= 0 && int_par(cur_fam_code) < 16)
+			if (int_par(cur_fam_code) >= 0 && int_par(cur_fam_code) < 0x10)
 				type(p+1) = int_par(cur_fam_code);
-			type(p) = 16;
+			type(p) = 0x10;
 		}
 		else
-			type(p) = 16+c/4096;
-		link(curlist.tailfield) = p;
-		curlist.tailfield = p;
+			type(p) = 0x10+c/0x10'00;
+		tail_append(p);
 	}
 }

@@ -5,9 +5,9 @@
 
 void deletelast(void)
 {
-	if (curlist.modefield == 1 && curlist.tailfield == curlist.headfield)
+	if (mode == vmode && tail == head)
 	{
-		if (curchr != '\n' || lastglue != 65535)
+		if (curchr != '\n' || lastglue != 0xFF'FF)
 		{
 			youcant();
 			helpptr = 2;
@@ -22,10 +22,10 @@ void deletelast(void)
 		}
 	}
 	else 
-		if (curlist.tailfield < himemmin)
-			if (type(curlist.tailfield) == curchr)
+		if (tail < himemmin)
+			if (type(tail) == curchr)
 			{
-				halfword q = curlist.headfield, p;
+				halfword q = head, p;
 				do
 				{
 					p = q;
@@ -33,13 +33,13 @@ void deletelast(void)
 					{
 						for (quarterword m = 1; m <= subtype(q); m++)
 							p = link(p);
-						if (p == curlist.tailfield)
+						if (p == tail)
 							return;
 					}
 					q = link(p);
-				} while (q != curlist.tailfield);
+				} while (q != tail);
 				link(p) = 0;
-				flushnodelist(curlist.tailfield);
-				curlist.tailfield = p;
+				flushnodelist(tail);
+				tail = p;
 			}
 }

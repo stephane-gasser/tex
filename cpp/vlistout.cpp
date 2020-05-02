@@ -69,7 +69,7 @@ void vlistout(void)
 					ruleht = mem[p+3].int_;
 					ruledp = mem[p+2].int_;
 					rulewd = mem[p+1].int_;
-					if ((rulewd == -1073741824))
+					if ((rulewd == -0x40'00'00'00))
 						rulewd = mem[thisbox+1].int_;
 					ruleht += ruledp;
 					curv += ruleht;
@@ -134,7 +134,7 @@ void vlistout(void)
 						{
 							rulewd = mem[leaderbox+1].int_;
 							ruledp = 0;
-							if ((rulewd == -1073741824))
+							if ((rulewd == -0x40'00'00'00))
 								rulewd = mem[thisbox+1].int_;
 							ruleht += ruledp;
 							curv += ruleht;

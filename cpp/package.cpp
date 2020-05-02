@@ -10,11 +10,11 @@ void package(smallnumber c)
 	scaled d = dimen_par(box_max_depth_code);
 	unsave();
 	saveptr -= 3;
-	if (curlist.modefield == -102)
-		curbox = hpack(mem[curlist.headfield].hh.rh, savestack[saveptr+2].int_, savestack[saveptr+1].int_);
+	if (mode == -hmode)
+		curbox = hpack(link(head), savestack[saveptr+2].int_, savestack[saveptr+1].int_);
 	else
 	{
-		curbox = vpackage(mem[curlist.headfield].hh.rh, savestack[saveptr+2].int_, savestack[saveptr+1].int_, d);
+		curbox = vpackage(link(head), savestack[saveptr+2].int_, savestack[saveptr+1].int_, d);
 		if (c == 4)
 		{
 			scaled h = 0;

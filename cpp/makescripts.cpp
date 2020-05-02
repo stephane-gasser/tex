@@ -78,7 +78,7 @@ void makescripts(halfword q, scaled delta)
 			p = newkern(shiftup-mem[x+2].int_-(mem[y+3].int_-shiftdown));
 			link(x) = p;
 			link(p) = y;
-			x = vpackage(x, 0, 1, 1073741823);
+			x = vpackage(x, 0, 1, 0x3F'FF'FF'FF);
 			mem[x+4].int_ = shiftdown;
 		}
 	}

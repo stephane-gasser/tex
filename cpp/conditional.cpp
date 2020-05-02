@@ -44,12 +44,11 @@ void conditional(void)
 		case 0:
 		case 1:
 			getxtoken();
-			if (curcmd == 0)
-				if (curchr == 257)
-				{
-					curcmd = 13;
-					curchr = curtok-4096;
-				}
+			if (curcmd == escape && curchr == 257)
+			{
+				curcmd = active_char;
+				curchr = curtok-0x10'00;
+			}
 			if (curcmd > 13 || curchr > 255)
 			{
 				m = 0;
@@ -61,12 +60,11 @@ void conditional(void)
 				n = curchr;
 			}
 			getxtoken;
-			if (curcmd == 0)
-				if (curchr == 257)
-				{
-					curcmd = 13;
-					curchr = curtok-4096;
-				}
+			if (curcmd == escape && curchr == 257)
+			{
+				curcmd = active_char;
+				curchr = curtok-0x10'00;
+			}
 			if (curcmd > 13 || curchr > 255)
 			{
 				curcmd = 0;
@@ -86,9 +84,9 @@ void conditional(void)
 			n = curval;
 			do
 				getxtoken();
-			while (curcmd == 10);
-			if (curtok >= 3132 && curtok <= 3134)
-				r = curtok-3072;
+			while (curcmd == spacer);
+			if (curtok >= 0x0C'00+'<' && curtok <= 0x0C'00+'>')
+				r = curtok-0x0C'00;
 			else
 			{
 				if (interaction == 3)
@@ -121,16 +119,16 @@ void conditional(void)
 			b = curval%2;
 			break;
 		case 5: 
-			b = abs(curlist.modefield) == 1;
+			b = abs(mode) == 1;
 			break;
 		case 6: 
-			b = abs(curlist.modefield) == 102;
+			b = abs(mode) == 102;
 			break;
 		case 7: 
-			b = abs(curlist.modefield) == 203;
+			b = abs(mode) == 203;
 			break;
 		case 8: 
-			b = curlist.modefield < 0;
+			b = mode < 0;
 			break;
 		case 9:
 		case 10:
@@ -159,7 +157,7 @@ void conditional(void)
 			if (curcmd != p)
 				b = false;
 			else 
-				if (curcmd < 111)
+				if (curcmd < call)
 					b = curchr == q;
 				else
 				{

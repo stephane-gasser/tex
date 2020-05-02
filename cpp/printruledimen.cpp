@@ -4,7 +4,7 @@
 
 void printruledimen(scaled d)
 {
-	if (d == -1073741824)
+	if (d == -0x40'00'00'00)
 		printchar('*');
 	else
 		printscaled(d);

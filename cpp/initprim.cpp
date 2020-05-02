@@ -156,7 +156,7 @@ void initprim(void)
 	primitive(540, 35, 0); //vrule
 	primitive(597, 13, 256); //par
 	parloc = curval;
-	partoken = 4095+parloc;
+	partoken = 0x0F'FF+parloc;
 	primitive(629, 104, 0); //input
 	primitive(630, 104, 1); //endinput
 	primitive(631, 110, 0); //topmark
@@ -222,7 +222,7 @@ void initprim(void)
 	equiv(2620) = null_list;
 	eq_level(2620) = 1;
 	eqtb[2619] = eqtb[2620];
-	eq_type(2619) = 115;
+	eq_type(2619) = end_template;
 	primitive(969, 81, 0); //pagegoal
 	primitive(970, 81, 1); //pagetotal
 	primitive(971, 81, 2); //pagestretch

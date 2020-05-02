@@ -6,7 +6,7 @@ void scanoptionalequals(void)
 {
 	do
 		getxtoken();
-	while (curcmd == 10);
+	while (curcmd == spacer);
 	if (curtok != 3133)
 		backinput();
 }

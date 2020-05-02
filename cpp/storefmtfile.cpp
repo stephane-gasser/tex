@@ -90,7 +90,7 @@ void storefmtfile(void)
 	writeInt(0);
 	writeInt(mem_top);
 	writeInt(6106);
-	writeInt(1777);
+	writeInt(hash_prime);
 	writeInt(307);
 	writeInt(poolptr);
 	writeInt(strptr);
@@ -209,7 +209,7 @@ void storefmtfile(void)
 	writeInt(writeloc);
 	writeInt(hashused);
 	cscount = 2613-hashused;
-	for (p = 514; p <= hashused; p++)
+	for (p = hash_base; p <= hashused; p++)
 		if (hash[p].rh)
 		{
 			writeInt(p);

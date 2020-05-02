@@ -85,6 +85,16 @@ liststaterecord nest[nestsize+1];
 char nestptr; //0..nestsize
 char maxneststack; // 0..nestsize
 liststaterecord curlist;
+memoryword& aux = curlist.auxfield;
+int& prev_depth = aux.int_;
+halfword& space_factor = aux.hh.lh;
+halfword& clang = aux.hh.rh;
+int &incompleat_noad = aux.int_;
+int& mode = curlist.modefield;
+halfword& head = curlist.headfield;
+halfword& tail = curlist.tailfield;
+int& prev_graf = curlist.pgfield;
+int& mode_line = curlist.mlfield;
 int shownmode; //-203..203
 char oldsetting; // 0..21
 memoryword eqtb[6107]; // débute à 1
@@ -293,3 +303,9 @@ wordfile fmtfile;
 alphafile writefile[16];
 bool writeopen[18];
 halfword writeloc;
+
+void tail_append(halfword p)
+{
+	link(tail) = p;
+	tail = link(tail);
+}

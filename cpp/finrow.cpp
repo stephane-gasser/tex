@@ -9,24 +9,24 @@
 void finrow(void)
 {
 	halfword p;
-	if (curlist.modefield == -102)
+	if (mode == -hmode)
 	{
-		p = hpack(link(curlist.headfield), 0, 1);
+		p = hpack(link(head), 0, 1);
 		popnest();
 		appendtovlist(p);
 		if (curhead != curtail)
 		{
-			link(curlist.tailfield) = link(curhead);
-			curlist.tailfield = curtail;
+			link(tail) = link(curhead);
+			tail = curtail;
 		}
 	}
 	else
 	{
-		p = vpackage(link(curlist.headfield), 0, 1, 1073741823);
+		p = vpackage(link(head), 0, 1, 0x3F'FF'FF'FF);
 		popnest();
-		link(curlist.tailfield) = p;
-		curlist.tailfield = p;
-		curlist.auxfield.hh.lh = 1000;
+		link(tail) = p;
+		tail = p;
+		space_factor = 1000;
 	}
 	type(p) = 13;
 	mem[p+6].int_ = 0;

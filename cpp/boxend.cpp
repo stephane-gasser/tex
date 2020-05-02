@@ -15,30 +15,27 @@
 void boxend(int boxcontext)
 {
 	halfword p;
-	if (boxcontext < 1073741824)
+	if (boxcontext < 0x40'00'00'00)
 	{
 		if (curbox)
 		{
 			mem[curbox+4].int_ = boxcontext;
-			if (abs(curlist.modefield) == 1)
+			if (abs(mode) == 1)
 			{
 				appendtovlist(curbox);
 				if (adjusttail)
 				{
 					if (adjust_head != adjusttail)
-					{
-						link(curlist.tailfield) = link(adjust_head);
-						curlist.tailfield = adjusttail;
-					}
+						tail_append(adjust_head);
 					adjusttail = 0;
 				}
-				if (curlist.modefield > 0)
+				if (mode > 0)
 					buildpage();
 			}
 			else
 			{
-				if (abs(curlist.modefield) == 102)
-					curlist.auxfield.hh.lh = 1000;
+				if (abs(mode) == 102)
+					space_factor = 1000;
 				else
 				{
 					p = newnoad();
@@ -46,29 +43,28 @@ void boxend(int boxcontext)
 					info(p+1) = curbox;
 					curbox = p;
 				}
-				link(curlist.tailfield) = curbox;
-				curlist.tailfield = curbox;
+				tail_append(curbox);
 			}
 		}
 	}
 	else 
-		if (boxcontext < 1073742336)
-			if (boxcontext < 1073742080)
-				eqdefine(-1073738146+boxcontext, 119, curbox);
+		if (boxcontext < 0x40'00'02'00)
+			if (boxcontext < 0x40'00'01'00)
+				eqdefine(boxcontext-0x40'00'00'00+box_base, 119, curbox);
 			else
-				geqdefine(-1073738402+boxcontext, 119, curbox);
+				geqdefine(boxcontext-0x40'00'01'00+box_base, 119, curbox);
 		else 
 			if (curbox)
-				if (boxcontext > 1073742336)
+				if (boxcontext > 0x40'00'02'00)
 				{
 					do
 						getxtoken();
-					while (curcmd == 10 || curcmd == 0);
-					if ((curcmd == 26 && abs(curlist.modefield) != 1) || (curcmd == 27 && abs(curlist.modefield) == 1))
+					while (curcmd == spacer || curcmd == escape);
+					if ((curcmd == hskip && abs(mode) != vmode) || (curcmd == vskip && abs(mode) == vmode))
 					{
 						appendglue();
-						subtype(curlist.tailfield) = boxcontext-1073742237;
-						link(curlist.tailfield+1) = curbox;
+						subtype(tail) = boxcontext-0x40'00'02'00+99;
+						link(tail+1) = curbox;
 					}
 					else
 					{

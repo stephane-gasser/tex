@@ -9,6 +9,5 @@ void makemark(void)
 	type(p) = mark_node;
 	subtype(p) = 0;
 	mem[p+1].int_ = defref;
-	link(curlist.tailfield) = p;
-	curlist.tailfield = p;
+	tail_append(p);
 }

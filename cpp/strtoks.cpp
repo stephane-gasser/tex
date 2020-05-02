@@ -12,9 +12,9 @@ halfword strtoks(poolpointer b)
 	{
 		halfword t = strpool[k];
 		if (t == ' ')
-			t = 2592;
+			t = 0x0A'00+' ';
 		else
-			t = 3072+t;
+			t += 0x0C'00;
 		auto q = avail;
 		if (q == 0)
 			q = getavail();

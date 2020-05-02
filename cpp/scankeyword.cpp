@@ -13,7 +13,7 @@ bool scankeyword(strnumber s)
 	while (k < strstart[s+1])
 	{
 		getxtoken();
-		if (curcs == 0 && (curchr == strpool[k] || curchr == strpool[k]-32))
+		if (curcs == 0 && (curchr == strpool[k] || curchr == strpool[k]-'a'+'A'))
 		{
 			auto q = getavail();
 			link(p) = q;
@@ -22,7 +22,7 @@ bool scankeyword(strnumber s)
 			k++;
 		}
 		else 
-			if (curcmd != 10 || p != backup_head)
+			if (curcmd != spacer || p != backup_head)
 			{
 				backinput();
 				if (p != backup_head)

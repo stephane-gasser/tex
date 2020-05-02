@@ -13,7 +13,7 @@ void unpackage(void)
 	halfword p = box(curval);
 	if (p == 0)
 		return;
-	if (abs(curlist.modefield) == 203 || (abs(curlist.modefield) == 1 && type(p) != vlist_node) || (abs(curlist.modefield) == 102 && type(p) != hlist_node))
+	if (abs(mode) == 203 || (abs(mode) == 1 && type(p) != vlist_node) || (abs(mode) == 102 && type(p) != hlist_node))
 	{
 		if (interaction == 3)
 			printnl(262); //! 
@@ -26,13 +26,13 @@ void unpackage(void)
 		return;
 	}
 	if (c == 1)
-		link(curlist.tailfield) = copynodelist(link(p+5));
+		link(tail) = copynodelist(link(p+5));
 	else
 	{
-		link(curlist.tailfield) = link(p+5);
+		link(tail) = link(p+5);
 		box(curval) = 0;
 		freenode(p, 7);
 	}
-	while (link(curlist.tailfield))
-		curlist.tailfield = link(curlist.tailfield);
+	while (link(tail))
+		tail = link(tail);
 }

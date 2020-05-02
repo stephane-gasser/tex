@@ -25,12 +25,11 @@ void appendglue(void)
 		case 5: 
 			scanglue(3);
 	}
-	link(curlist.tailfield) = newglue(curval);
-	curlist.tailfield = link(curlist.tailfield);
+	tail_append(newglue(curval));
 	if (s >= 4)
 	{
 		link(curval)--;
 		if (s > 4)
-			subtype(curlist.tailfield) = 99;
+			subtype(tail) = 99;
 	}
 }

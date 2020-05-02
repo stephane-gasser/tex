@@ -34,10 +34,10 @@ void newhyphexceptions(void)
 	{
 		switch (curcmd)
 		{
-			case 11:
-			case 12:
-			case 68:
-				if (curchr == 45)
+			case letter:
+			case other_char:
+			case char_given:
+				if (curchr == '-')
 				{
 					if (n < 63)
 					{
@@ -65,13 +65,13 @@ void newhyphexceptions(void)
 							hc[n] = lc_code(curchr);
 						}
 				break;
-			case 16:
+			case char_num:
 				scancharnum();
 				curchr = curval;
-				curcmd = 68;
+				curcmd = char_given;
 				continue;
-			case 10:
-			case 2:
+			case spacer:
+			case right_brace:
 				if (n > 1)
 				{
 					n++;
@@ -81,12 +81,12 @@ void newhyphexceptions(void)
 					h = 0;
 					for (j = 1; j <= n; j++)
 					{
-						h = (2*h+hc[j])%307;
+						h = (2*h+hc[j])%hyph_size;
 						strpool[poolptr++] = hc[j];
 					}
 					s = makestring();
-					if (hyphcount == 307)
-						overflow(947, 307); //exception dictionary
+					if (hyphcount == hyph_size)
+						overflow(947, hyph_size); //exception dictionary
 					hyphcount++;
 					while (hyphword[h])
 					{
@@ -138,12 +138,12 @@ void newhyphexceptions(void)
 						if (h > 0)
 							h--;
 						else
-							h = 307;
+							h = hyph_size;
 					}
 					hyphword[h] = s;
 					hyphlist[h] = p;
 				}
-				if (curcmd == 2)
+				if (curcmd == right_brace)
 					return;
 				n = 0;
 				p = 0;

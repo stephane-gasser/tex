@@ -15,14 +15,14 @@ tats==@t@>@ //change this to `$\\//tats\equiv\null$' when gathering
 init== //change this to `$\\//init\equiv\.//@@\//$' in the production version
 tini== //change this to `$\\//tini\equiv\.//@@\$' in the production version
 othercases == others: //default for cases not listed explicitly
-endcases == @+end //follows the default case in an extended |case| statement
-mem_bot=0 //smallest index in the |mem| array dumped by \.//INITEX;*/
+endcases == @+end //follows the default case in an extended |case| statement*/
+constexpr int mem_bot = 0; //smallest index in the |mem| array dumped by \.//INITEX;
 constexpr int mem_top = 30000; //largest index in the |mem| array dumped by \.//INITEX;
 /*font_base=0 //smallest internal font number; must not be less*/
 constexpr int hash_size=2100; //maximum number of control sequences; it should be at most
-/*hash_prime=1777 //a prime number equal to about 85\pct! of |hash_size|
-hyph_size=307 //another prime; the number of \.//\\hyphenation exceptions
-exit=10 //go here to leave a procedure
+constexpr int hash_prime = 1777; //a prime number equal to about 85\pct! of |hash_size|
+constexpr int hyph_size = 307; //another prime; the number of \.//\\hyphenation exceptions
+/*exit=10 //go here to leave a procedure
 restart=20 //go here to start a procedure again
 reswitch=21 //go here to start a case statement again
 continue=22 //go here to resume a loop
@@ -222,9 +222,9 @@ penalty(#) == mem[#+1].int //the added cost of breaking a list here
 unset_node=13 //|type| for an unset node
 glue_stretch(#)==mem[#+glue_offset].sc //total stretch in an unset node
 glue_shrink==shift_amount //total shrink in an unset node
-span_count==subtype //indicates the number of spanned columns
-zero_glue==mem_bot //specification for \.//0pt plus 0pt minus 0pt
-fil_glue==zero_glue+glue_spec_size //\.//0pt plus 1fil minus 0pt
+span_count==subtype //indicates the number of spanned columns*/
+constexpr int zero_glue = 0; //mem_bot //specification for \.//0pt plus 0pt minus 0pt
+/*fil_glue==zero_glue+glue_spec_size //\.//0pt plus 1fil minus 0pt
 fill_glue==fil_glue+glue_spec_size //\.//0pt plus 1fill minus 0pt
 ss_glue==fill_glue+glue_spec_size //\.//0pt plus 1fil minus 1fil
 fil_neg_glue==ss_glue+glue_spec_size //\.//0pt plus -1fil minus 0pt
@@ -253,154 +253,143 @@ fast_delete_glue_ref(#)==@t@>@;@/
 add_token_ref(#)==incr(token_ref_count(#)) //new reference to a token list
 add_glue_ref(#)==incr(glue_ref_count(#)) //new reference to a glue spec*/
 constexpr int escape = 0; //escape delimiter (called \.\\ in //\sl The \TeX book\/)
-/*relax=0 //do nothing ( \.//\\relax )*/
+constexpr int relax = 0; //do nothing ( \.//\\relax )
 constexpr int left_brace = 1; //beginning of a group ( \.\// )
 constexpr int right_brace = 2; //ending of a group ( \.\ )
 constexpr int math_shift = 3; //mathematics shift character ( \.\$ )
 constexpr int tab_mark = 4; //alignment delimiter ( \.\&, \.//\\span )
 constexpr int car_ret = 5; //end of line ( |carriage_return|, \.//\\cr, \.//\\crcr )
-/*out_param=5 //output a macro parameter*/
+constexpr int out_param = 5;  //output a macro parameter
 constexpr int mac_param = 6; //macro parameter symbol ( \.\# )
 constexpr int sup_mark = 7; //superscript ( \.//\char'136 )
 constexpr int sub_mark = 8; //subscript ( \.//\char'137 )
 constexpr int ignore = 9; //characters to ignore ( \.//\^\^@@ )
-/*endv=9 //end of \<v_j> list in alignment template*/
+constexpr int endv = 9; //end of \<v_j> list in alignment template*/
 constexpr int spacer = 10; //characters equivalent to blank space ( \.//\  )
 constexpr int letter = 11; //characters regarded as letters ( \.//A..Z, \.//a..z )
 constexpr int other_char = 12; //none of the special character types
 constexpr int active_char = 13; //characters that invoke macros ( \.//\char`\~ )
-/*par_end=13 //end of paragraph ( \.//\\par )
-match=13 //match a macro parameter*/
+constexpr int par_end = 13; //end of paragraph ( \.//\\par )
+/*match=13 //match a macro parameter*/
 constexpr int comment = 14; //characters that introduce comments ( \.\% )
-/*end_match=14 //end of parameters to macro
-stop=14 //end of job ( \.//\\end, \.//\\dump )*/
+/*end_match=14 //end of parameters to macro*/
+constexpr int stop = 14; //end of job ( \.//\\end, \.//\\dump )*/
 constexpr int invalid_char = 15; //characters that shouldn't appear ( \.//\^\^? )
-/*delim_num=15 //specify delimiter numerically ( \.//\\delimiter )
-max_char_code=15 //largest catcode for individual characters
-char_num=16 //character specified numerically ( \.//\\char )
-math_char_num=17 //explicit math code ( \.//\\mathchar )
-mark=18 //mark definition ( \.//\\mark )
-xray=19 //peek inside of \TeX\ ( \.//\\show, \.//\\showbox, etc.~)
-make_box=20 //make a box ( \.//\\box, \.//\\copy, \.//\\hbox, etc.~)
-hmove=21 //horizontal motion ( \.//\\moveleft, \.//\\moveright )
-vmove=22 //vertical motion ( \.//\\raise, \.//\\lower )
-un_hbox=23 //unglue a box ( \.//\\unhbox, \.//\\unhcopy )
-un_vbox=24 //unglue a box ( \.//\\unvbox, \.//\\unvcopy )
-remove_item=25 //nullify last item ( \.//\\unpenalty,
-hskip=26 //horizontal glue ( \.//\\hskip, \.//\\hfil, etc.~)
-vskip=27 //vertical glue ( \.//\\vskip, \.//\\vfil, etc.~)
-mskip=28 //math glue ( \.//\\mskip )
-kern=29 //fixed space ( \.//\\kern)
-mkern=30 //math kern ( \.//\\mkern )
-leader_ship=31 //use a box ( \.//\\shipout, \.//\\leaders, etc.~)
-halign=32 //horizontal table alignment ( \.//\\halign )
-valign=33 //vertical table alignment ( \.//\\valign )
-no_align=34 //temporary escape from alignment ( \.//\\noalign )
-vrule=35 //vertical rule ( \.//\\vrule )
-hrule=36 //horizontal rule ( \.//\\hrule )
-insert=37 //vlist inserted in box ( \.//\\insert )
-vadjust=38 //vlist inserted in enclosing paragraph ( \.//\\vadjust )
-ignore_spaces=39 //gobble |spacer| tokens ( \.//\\ignorespaces )
-after_assignment=40 //save till assignment is done ( \.//\\afterassignment )
-after_group=41 //save till group is done ( \.//\\aftergroup )
-break_penalty=42 //additional badness ( \.//\\penalty )
-start_par=43 //begin paragraph ( \.//\\indent, \.//\\noindent )
-ital_corr=44 //italic correction ( \.//\\/ )
-accent=45 //attach accent in text ( \.//\\accent )
-math_accent=46 //attach accent in math ( \.//\\mathaccent )
-discretionary=47 //discretionary texts ( \.//\\-, \.//\\discretionary )
-eq_no=48 //equation number ( \.//\\eqno, \.//\\leqno )
-left_right=49 //variable delimiter ( \.//\\left, \.//\\right )
-math_comp=50 //component of formula ( \.//\\mathbin, etc.~)
-limit_switch=51 //diddle limit conventions ( \.//\\displaylimits, etc.~)
-above=52 //generalized fraction ( \.//\\above, \.//\\atop, etc.~)
-math_style=53 //style specification ( \.//\\displaystyle, etc.~)
-math_choice=54 //choice specification ( \.//\\mathchoice )
-non_script=55 //conditional math glue ( \.//\\nonscript )
-vcenter=56 //vertically center a vbox ( \.//\\vcenter )
-case_shift=57 //force specific case ( \.//\\lowercase, \.//\\uppercase~)
-message=58 //send to user ( \.//\\message, \.//\\errmessage )
-extension=59 //extensions to \TeX\ ( \.//\\write, \.//\\special, etc.~)
-in_stream=60 //files for reading ( \.//\\openin, \.//\\closein )
-begin_group=61 //begin local grouping ( \.//\\begingroup )
-end_group=62 //end local grouping ( \.//\\endgroup )
-omit=63 //omit alignment template ( \.//\\omit )
-ex_space=64 //explicit space ( \.//\\\  )
-no_boundary=65 //suppress boundary ligatures ( \.//\\noboundary )
-radical=66 //square root and similar signs ( \.//\\radical )
-end_cs_name=67 //end control sequence ( \.//\\endcsname )
-min_internal=68 //the smallest code that can follow \.//\\the
-char_given=68 //character code defined by \.//\\chardef
-math_given=69 //math code defined by \.//\\mathchardef
-last_item=70 //most recent item ( \.//\\lastpenalty,
-max_non_prefixed_command=70 //largest command code that can't be \.//\\global
-toks_register=71 //token list register ( \.//\\toks )
-assign_toks=72 //special token list ( \.//\\output, \.//\\everypar, etc.~)
-assign_int=73 //user-defined integer ( \.//\\tolerance, \.//\\day, etc.~)
-assign_dimen=74 //user-defined length ( \.//\\hsize, etc.~)
-assign_glue=75 //user-defined glue ( \.//\\baselineskip, etc.~)
-assign_mu_glue=76 //user-defined muglue ( \.//\\thinmuskip, etc.~)
-assign_font_dimen=77 //user-defined font dimension ( \.//\\fontdimen )
-assign_font_int=78 //user-defined font integer ( \.//\\hyphenchar,
-set_aux=79 //specify state info ( \.//\\spacefactor, \.//\\prevdepth )
-set_prev_graf=80 //specify state info ( \.//\\prevgraf )
-set_page_dimen=81 //specify state info ( \.//\\pagegoal, etc.~)
-set_page_int=82 //specify state info ( \.//\\deadcycles,
-set_box_dimen=83 //change dimension of box ( \.//\\wd, \.//\\ht, \.//\\dp )
-set_shape=84 //specify fancy paragraph shape ( \.//\\parshape )
-def_code=85 //define a character code ( \.//\\catcode, etc.~)
-def_family=86 //declare math fonts ( \.//\\textfont, etc.~)
-set_font=87 //set current font ( font identifiers )
-def_font=88 //define a font file ( \.//\\font )
-register=89 //internal register ( \.//\\count, \.//\\dimen, etc.~)
-max_internal=89 //the largest code that can follow \.//\\the
-advance=90 //advance a register or parameter ( \.//\\advance )
-multiply=91 //multiply a register or parameter ( \.//\\multiply )
-divide=92 //divide a register or parameter ( \.//\\divide )
-prefix=93 //qualify a definition ( \.//\\global, \.//\\long, \.//\\outer )
-let=94 //assign a command code ( \.//\\let, \.//\\futurelet )
-shorthand_def=95 //code definition ( \.//\\chardef, \.//\\countdef, etc.~)
-read_to_cs=96 //read into a control sequence ( \.//\\read )
-def=97 //macro definition ( \.//\\def, \.//\\gdef, \.//\\xdef, \.//\\edef )
-set_box=98 //set a box ( \.//\\setbox )
-hyph_data=99 //hyphenation data ( \.//\\hyphenation, \.//\\patterns )
-set_interaction=100 //define level of interaction ( \.//\\batchmode, etc.~)
-max_command=100 //the largest command code seen at |big_switch|
-undefined_cs=max_command+1 //initial state of most |eq_type| fields
-expand_after=max_command+2 //special expansion ( \.//\\expandafter )
-no_expand=max_command+3 //special nonexpansion ( \.//\\noexpand )
-input=max_command+4 //input a source file ( \.//\\input, \.//\\endinput )
-if_test=max_command+5 //conditional text ( \.//\\if, \.//\\ifcase, etc.~)
-fi_or_else=max_command+6 //delimiters for conditionals ( \.//\\else, etc.~)
-cs_name=max_command+7 //make a control sequence from tokens ( \.//\\csname )
-convert=max_command+8 //convert to text ( \.//\\number, \.//\\string, etc.~)
-the=max_command+9 //expand an internal quantity ( \.//\\the )
-top_bot_mark=max_command+10 //inserted mark ( \.//\\topmark, etc.~)
-call=max_command+11 //non-long, non-outer control sequence
-long_call=max_command+12 //long, non-outer control sequence
-outer_call=max_command+13 //non-long, outer control sequence
-long_outer_call=max_command+14 //long, outer control sequence
-end_template=max_command+15 //end of an alignment template
-dont_expand=max_command+16 //the following token was marked by \.//\\noexpand
-glue_ref=max_command+17 //the equivalent points to a glue specification
-shape_ref=max_command+18 //the equivalent points to a parshape specification
-box_ref=max_command+19 //the equivalent points to a box node, or is |null|
-data=max_command+20 //the equivalent is simply a halfword number
-vmode=1 //vertical mode
-hmode=vmode+max_command+1 //horizontal mode
-mmode=hmode+max_command+1 //math mode
-ignore_depth==-65536000 //|prev_depth| value that is ignored
-@ mode==cur_list.mode_field //current mode
-head==cur_list.head_field //header node of current list
-tail==cur_list.tail_field //final node on current list
-prev_graf==cur_list.pg_field //number of paragraph lines accumulated
-aux==cur_list.aux_field //auxiliary data about the current list
-prev_depth==aux.sc //the name of |aux| in vertical mode
-space_factor==aux.hh.lh //part of |aux| in horizontal mode
-clang==aux.hh.rh //the other part of |aux| in horizontal mode
-incompleat_noad==aux.int //the name of |aux| in math mode
-mode_line==cur_list.ml_field //source file line number at beginning of list
-tail_append(#)==begin link(tail):=#; tail:=link(tail);*/
+constexpr int delim_num = 15; //specify delimiter numerically ( \.//\\delimiter )
+/*max_char_code=15 //largest catcode for individual characters*/
+constexpr int char_num = 16; //character specified numerically ( \.//\\char )
+constexpr int math_char_num = 17; //explicit math code ( \.//\\mathchar )
+constexpr int mark = 18; //mark definition ( \.//\\mark )
+constexpr int xray = 19; //peek inside of \TeX\ ( \.//\\show, \.//\\showbox, etc.~)
+constexpr int make_box = 20; //make a box ( \.//\\box, \.//\\copy, \.//\\hbox, etc.~)
+constexpr int hmove = 21; //horizontal motion ( \.//\\moveleft, \.//\\moveright )
+constexpr int vmove = 22; //vertical motion ( \.//\\raise, \.//\\lower )
+constexpr int un_hbox = 23; //unglue a box ( \.//\\unhbox, \.//\\unhcopy )
+constexpr int un_vbox = 24; //unglue a box ( \.//\\unvbox, \.//\\unvcopy )
+constexpr int remove_item = 25; //nullify last item ( \.//\\unpenalty,
+constexpr int hskip = 26; //horizontal glue ( \.//\\hskip, \.//\\hfil, etc.~)
+constexpr int vskip = 27; //vertical glue ( \.//\\vskip, \.//\\vfil, etc.~)
+constexpr int mskip = 28; //math glue ( \.//\\mskip )
+constexpr int kern = 29; //fixed space ( \.//\\kern)*/
+constexpr int mkern = 30; //math kern ( \.//\\mkern )
+constexpr int leader_ship = 31; //use a box ( \.//\\shipout, \.//\\leaders, etc.~)
+constexpr int halign = 32; //horizontal table alignment ( \.//\\halign )
+constexpr int valign = 33; //vertical table alignment ( \.//\\valign )
+constexpr int no_align = 34; //temporary escape from alignment ( \.//\\noalign )
+constexpr int vrule = 35; //vertical rule ( \.//\\vrule )
+constexpr int hrule = 36; //horizontal rule ( \.//\\hrule )
+constexpr int insert = 37; //vlist inserted in box ( \.//\\insert )
+constexpr int vadjust = 38; //vlist inserted in enclosing paragraph ( \.//\\vadjust )*/
+constexpr int ignore_spaces = 39; //gobble |spacer| tokens ( \.//\\ignorespaces )
+constexpr int after_assignment = 40; //save till assignment is done ( \.//\\afterassignment )
+constexpr int after_group = 41; //save till group is done ( \.//\\aftergroup )
+constexpr int break_penalty = 42; //additional badness ( \.//\\penalty )
+constexpr int start_par = 43; //begin paragraph ( \.//\\indent, \.//\\noindent )
+constexpr int ital_corr = 44; //italic correction ( \.//\\/ )
+constexpr int accent = 45; //attach accent in text ( \.//\\accent )*/
+constexpr int math_accent = 46; //attach accent in math ( \.//\\mathaccent )
+constexpr int discretionary = 47; //discretionary texts ( \.//\\-, \.//\\discretionary )
+constexpr int eq_no = 48; //equation number ( \.//\\eqno, \.//\\leqno )
+constexpr int left_right = 49; //variable delimiter ( \.//\\left, \.//\\right )
+constexpr int math_comp = 50; //component of formula ( \.//\\mathbin, etc.~)
+constexpr int limit_switch = 51; //diddle limit conventions ( \.//\\displaylimits, etc.~)
+constexpr int above = 52; //generalized fraction ( \.//\\above, \.//\\atop, etc.~)
+constexpr int math_style = 53; //style specification ( \.//\\displaystyle, etc.~)
+constexpr int math_choice = 54; //choice specification ( \.//\\mathchoice )
+constexpr int non_script = 55; //conditional math glue ( \.//\\nonscript )
+constexpr int vcenter = 56; //vertically center a vbox ( \.//\\vcenter )
+constexpr int case_shift = 57; //force specific case ( \.//\\lowercase, \.//\\uppercase~)
+constexpr int message = 58; //send to user ( \.//\\message, \.//\\errmessage )*/
+constexpr int extension = 59; //extensions to \TeX\ ( \.//\\write, \.//\\special, etc.~)
+constexpr int in_stream = 60; //files for reading ( \.//\\openin, \.//\\closein )
+constexpr int begin_group = 61; //begin local grouping ( \.//\\begingroup )
+constexpr int end_group = 62; //end local grouping ( \.//\\endgroup )
+constexpr int omit = 63; //omit alignment template ( \.//\\omit )
+constexpr int ex_space = 64; //explicit space ( \.//\\\  )
+constexpr int no_boundary = 65; //suppress boundary ligatures ( \.//\\noboundary )
+constexpr int radical = 66; //square root and similar signs ( \.//\\radical )
+constexpr int end_cs_name = 67; //end control sequence ( \.//\\endcsname )
+constexpr int min_internal = 68; //the smallest code that can follow \.//\\the*/
+constexpr int char_given = 68; //character code defined by \.//\\chardef
+constexpr int math_given = 69; //math code defined by \.//\\mathchardef
+constexpr int last_item = 70; //most recent item ( \.//\\lastpenalty,
+constexpr int max_non_prefixed_command = 70; //largest command code that can't be \.//\\global*/
+constexpr int toks_register = 71; //token list register ( \.//\\toks )
+constexpr int assign_toks = 72; //special token list ( \.//\\output, \.//\\everypar, etc.~)
+constexpr int assign_int = 73; //user-defined integer ( \.//\\tolerance, \.//\\day, etc.~)
+constexpr int assign_dimen = 74; //user-defined length ( \.//\\hsize, etc.~)
+constexpr int assign_glue = 75; //user-defined glue ( \.//\\baselineskip, etc.~)
+constexpr int assign_mu_glue = 76; //user-defined muglue ( \.//\\thinmuskip, etc.~)
+constexpr int assign_font_dimen = 77; //user-defined font dimension ( \.//\\fontdimen )
+constexpr int assign_font_int = 78; //user-defined font integer ( \.//\\hyphenchar,*/
+constexpr int set_aux = 79; //specify state info ( \.//\\spacefactor, \.//\\prevdepth )
+constexpr int set_prev_graf = 80; //specify state info ( \.//\\prevgraf )
+constexpr int set_page_dimen = 81; //specify state info ( \.//\\pagegoal, etc.~)
+constexpr int set_page_int = 82; //specify state info ( \.//\\deadcycles,
+constexpr int set_box_dimen = 83; //change dimension of box ( \.//\\wd, \.//\\ht, \.//\\dp )
+constexpr int set_shape = 84; //specify fancy paragraph shape ( \.//\\parshape )
+constexpr int def_code = 85; //define a character code ( \.//\\catcode, etc.~)
+constexpr int def_family = 86; //declare math fonts ( \.//\\textfont, etc.~)
+constexpr int set_font = 87; //set current font ( font identifiers )
+constexpr int def_font = 88; //define a font file ( \.//\\font )
+constexpr int register_ = 89; //internal register ( \.//\\count, \.//\\dimen, etc.~)
+constexpr int max_internal = 89; //the largest code that can follow \.//\\the
+constexpr int advance = 90; //advance a register or parameter ( \.//\\advance )
+constexpr int multiply = 91; //multiply a register or parameter ( \.//\\multiply )
+constexpr int divide = 92; //divide a register or parameter ( \.//\\divide )
+constexpr int prefix = 93; //qualify a definition ( \.//\\global, \.//\\long, \.//\\outer )
+constexpr int let = 94; //assign a command code ( \.//\\let, \.//\\futurelet )
+constexpr int shorthand_def = 95; //code definition ( \.//\\chardef, \.//\\countdef, etc.~)
+constexpr int read_to_cs = 96; //read into a control sequence ( \.//\\read )
+constexpr int def = 97; //macro definition ( \.//\\def, \.//\\gdef, \.//\\xdef, \.//\\edef )
+constexpr int set_box = 98; //set a box ( \.//\\setbox )
+constexpr int hyph_data = 99; //hyphenation data ( \.//\\hyphenation, \.//\\patterns )
+constexpr int set_interaction = 100; //define level of interaction ( \.//\\batchmode, etc.~)*/
+constexpr int max_command = 100; //the largest command code seen at |big_switch|
+constexpr int undefined_cs = 101; //=max_command+1 //initial state of most |eq_type| fields
+constexpr int expand_after = 102; // max_command+2 //special expansion ( \.//\\expandafter )
+constexpr int no_expand = 103; //max_command+3 //special nonexpansion ( \.//\\noexpand )
+constexpr int input = 104; //max_command+4 //input a source file ( \.//\\input, \.//\\endinput )
+constexpr int if_test = 105; //max_command+5 //conditional text ( \.//\\if, \.//\\ifcase, etc.~)
+constexpr int fi_or_else = 106; //max_command+6 //delimiters for conditionals ( \.//\\else, etc.~)
+constexpr int cs_name = 107; //max_command+7 //make a control sequence from tokens ( \.//\\csname )
+constexpr int convert = 108; // max_command+8 //convert to text ( \.//\\number, \.//\\string, etc.~)
+constexpr int the = 109; // max_command+9 //expand an internal quantity ( \.//\\the )
+constexpr int top_bot_mark = 110; //max_command+10 //inserted mark ( \.//\\topmark, etc.~)
+constexpr int call = 111; //max_command+11 //non-long, non-outer control sequence
+constexpr int long_call = 112; //max_command+12 //long, non-outer control sequence
+constexpr int outer_call = 113; //max_command+13 //non-long, outer control sequence
+constexpr int long_outer_call = 114; //max_command+14 //long, outer control sequence
+constexpr int end_template = 115; //max_command+15 //end of an alignment template
+constexpr int dont_expand = 116; //max_command+16 //the following token was marked by \.//\\noexpand
+constexpr int glue_ref = 117; //max_command+17 //the equivalent points to a glue specification
+constexpr int shape_ref = 118; //max_command+18 //the equivalent points to a parshape specification
+constexpr int box_ref = 119; //max_command+19 //the equivalent points to a box node, or is |null|
+constexpr int data = 120; //max_command+20 //the equivalent is simply a halfword number*/
+constexpr int vmode = 1; //vertical mode
+constexpr int hmode = 102; //=vmode+max_command+1 //horizontal mode
+constexpr int mmode = 203; //=hmode+max_command+1 //math mode
+constexpr int ignore_depth = -65536000; //|prev_depth| value that is ignored
 
 //eq_level_field(#)==#.hh.b1
 quarterword& eq_level(halfword);
@@ -892,9 +881,9 @@ attach_fraction=88 //go here to pack |cur_val| and |f| into |cur_val|
 attach_sign=89 //go here when |cur_val| is correct except perhaps for sign
 scan_normal_dimen==scan_dimen(false,false,false)
 set_conversion_end(#)== denom:=#; end
-set_conversion(#)==@+begin num:=#; set_conversion_end
-default_rule=26214 //0.4\thinspace pt
-number_code=0 //command code for \.//\\number
+set_conversion(#)==@+begin num:=#; set_conversion_end*/
+constexpr int default_rule = 26214; //0.4\thinspace pt
+/*number_code=0 //command code for \.//\\number
 roman_numeral_code=1 //command code for \.//\\romannumeral
 string_code=2 //command code for \.//\\string
 meaning_code=3 //command code for \.//\\meaning
@@ -975,7 +964,7 @@ char_kern_end(#)==256*op_byte(#)+rem_byte(#)].sc
 char_kern(#)==font_info[kern_base[#]+char_kern_end
 kern_base_offset==256*(128+min_quarterword)
 lig_kern_start(#)==lig_kern_base[#]+rem_byte //beginning of lig/kern program
-lig_kern_restart_end(#)==256*op_byte(#)+rem_byte(#)+32768-kern_base_offset
+lig_kern_restart_end(#)==256*op_byte(#)+rem_byte(#)+0x80'00-kern_base_offset
 lig_kern_restart(#)==lig_kern_base[#]+lig_kern_restart_end
 param_end(#)==param_base[#]].sc
 param(#)==font_info[#+param_end

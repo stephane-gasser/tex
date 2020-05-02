@@ -93,21 +93,21 @@ void movement(scaled w, eightbits o)
 			dvifour(w);
 			return;
 		}
-		if (abs(w) >= 32768)
+		if (abs(w) >= 0x80'00)
 		{
 			dvibuf[dviptr++] = o+2;
 			if (dviptr == dvilimit)
 				dviswap();
 			if (w < 0)
 				w += 16777216;
-			dvibuf[dviptr++] = w/65536;
+			dvibuf[dviptr++] = w/0x1'00'00;
 			if (dviptr == dvilimit)
 				dviswap();
-			w %= 65536;
-			dvibuf[dviptr++] = w/256;
+			w %= 0x1'00'00;
+			dvibuf[dviptr++] = w/0x1'00;
 			if (dviptr == dvilimit)
 				dviswap();
-			dvibuf[dviptr++] = w%256;
+			dvibuf[dviptr++] = w%0x1'00;
 			if (dviptr == dvilimit)
 				dviswap();
 			return;
@@ -118,11 +118,11 @@ void movement(scaled w, eightbits o)
 			if (dviptr == dvilimit)
 				dviswap();
 			if (w < 0)
-			w += 65536;
-			dvibuf[dviptr++] = w/256;
+			w += 0x1'00'00;
+			dvibuf[dviptr++] = w/0x1'00;
 			if (dviptr == dvilimit)
 				dviswap();
-			dvibuf[dviptr++] = w%256;
+			dvibuf[dviptr++] = w%0x1'00;
 			if (dviptr == dvilimit)
 				dviswap();
 			return;
@@ -131,8 +131,8 @@ void movement(scaled w, eightbits o)
 		if (dviptr == dvilimit)
 			dviswap();
 		if (w < 0)
-		w += 256;
-		dvibuf[dviptr++] = w%256;
+		w += 0x1'00;
+		dvibuf[dviptr++] = w%0x1'00;
 		if (dviptr == dvilimit)
 			dviswap();
 		return;

@@ -19,15 +19,15 @@ void scansomethinginternal(smallnumber level, bool negative)
 	halfword m = curchr;
 	switch (curcmd)
 	{
-		case 85:
+		case def_code:
 			scancharnum();
-			if (m == 5007)
+			if (m == math_code_base)
 			{
 				curval = math_code(curval);
 				curvallevel = 0;
 			}
 			else 
-				if (m < 5007)
+				if (m < math_code_base)
 				{
 					curval = equiv(m+curval);
 					curvallevel = 0;
@@ -38,11 +38,11 @@ void scansomethinginternal(smallnumber level, bool negative)
 					curvallevel = 0;
 				}
 			break;
-		case 71:
-		case 72:
-		case 86:
-		case 87:
-		case 88:
+		case toks_register:
+		case assign_toks:
+		case def_family:
+		case set_font:
+		case def_font:
 			if (level != 5)
 			{
 				if (interaction == 3)
@@ -57,12 +57,12 @@ void scansomethinginternal(smallnumber level, bool negative)
 				curvallevel = 1;
 			}
 			else 
-				if (curcmd <= 72)
+				if (curcmd <= assign_toks)
 				{
-					if (curcmd < 72)
+					if (curcmd < assign_toks)
 					{
 						scaneightbitint;
-						m = 3422+curval;
+						m = toks_base+curval;
 					}
 					curval = equiv(m);
 					curvallevel = 5;
@@ -71,28 +71,28 @@ void scansomethinginternal(smallnumber level, bool negative)
 				{
 					backinput();
 					scanfontident();
-					curval += 2624;
+					curval += frozen_null_font;
 					curvallevel = 4;
 				}
 			break;
-		case 73:
+		case assign_int:
 			curval = eqtb[m].int_;
 			curvallevel = 0;
 			break;
-		case 74:
+		case assign_dimen:
 			curval = eqtb[m].int_;
 			curvallevel = 1;
 			break;
-		case 75:
+		case assign_glue:
 			curval = equiv(m);
 			curvallevel = 2;
 			break;
-		case 76:
+		case assign_mu_glue:
 			curval = equiv(m);
 			curvallevel = 3;
 			break;
-		case 79:
-			if (abs(curlist.modefield) != m)
+		case set_aux:
+			if (abs(mode) != m)
 			{
 				if (interaction == 3)
 					printnl(262); //! 
@@ -118,17 +118,17 @@ void scansomethinginternal(smallnumber level, bool negative)
 			else 
 				if (m == 1)
 				{
-					curval = curlist.auxfield.int_;
+					curval = prev_depth;
 					curvallevel = 1;
 				}
 				else
 				{
-					curval = curlist.auxfield.hh.lh;
+					curval = space_factor;
 					curvallevel = 0;
 				}
 			break;
-		case 80:
-			if (curlist.modefield == 0)
+		case set_prev_graf:
+			if (mode == 0)
 			{
 				curval = 0;
 				curvallevel = 0;
@@ -137,37 +137,37 @@ void scansomethinginternal(smallnumber level, bool negative)
 			{
 				nest[nestptr] = curlist;
 				auto p = nestptr;
-				while (abs(nest[p].modefield) != 1)
+				while (abs(nest[p].modefield) != vmode)
 					p--;
 				curval = nest[p].pgfield;
 				curvallevel = 0;
 			}
 			break;
-		case 82:
+		case set_page_int:
 			if (m == 0)
 				curval = deadcycles;
 			else
 				curval = insertpenalties;
 			curvallevel = 0;
 			break;
-		case 81:
+		case set_page_dimen:
 			if (pagecontents == 0 && !outputactive)
 				if (m == 0)
-					curval = 1073741823;
+					curval = 0x3F'FF'FF'FF;
 				else
 					curval = 0;
 			else
 				curval = pagesofar[m];
 			curvallevel = 1;
 			break;
-		case 84:
+		case set_shape:
 			if (par_shape_ptr() == 0)
 				curval = 0;
 			else
 				curval = info(par_shape_ptr());
 			curvallevel = 0;
 			break;
-		case 83:
+		case set_box_dimen:
 			scaneightbitint();
 			if (box(curval) == 0)
 				curval = 0;
@@ -175,18 +175,18 @@ void scansomethinginternal(smallnumber level, bool negative)
 				curval = mem[box(curval)+m].int_;
 			curvallevel = 1;
 		break;
-		case 68:
-		case 69:
+		case char_given:
+		case math_given:
 			curval = curchr;
 			curvallevel = 0;
 			break;
-		case 77:
+		case assign_font_dimen:
 			findfontdimen(false);
 			fontinfo[fmemptr].int_ = 0;
 			curval = fontinfo[curval].int_;
 			curvallevel = 1;
 			break;
-		case 78:
+		case assign_font_int:
 			scanfontident();
 			if (m == 0)
 			{
@@ -199,7 +199,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 				curvallevel = 0;
 			};
 			break;
-		case 89:
+		case register_:
 			scaneightbitint();
 			switch (m)
 			{
@@ -217,7 +217,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 			};
 			curvallevel = m;
 			break;
-		case 70:
+		case last_item:
 			if (curchr > 2)
 			{
 				if (curchr == 3)
@@ -233,27 +233,27 @@ void scansomethinginternal(smallnumber level, bool negative)
 				else
 					curval = 0;
 				curvallevel = curchr;
-				if (curlist.tailfield < himemmin && curlist.modefield)
+				if (tail < himemmin && mode)
 					switch (curchr)
 					{
 						case 0: 
-							if (type(curlist.tailfield) == 12)
-								curval = mem[curlist.tailfield+1].int_;
+							if (type(tail) == 12)
+								curval = mem[tail+1].int_;
 							break;
 						case 1: 
-							if (type(curlist.tailfield) == 11)
-								curval = mem[curlist.tailfield+1].int_;
+							if (type(tail) == 11)
+								curval = mem[tail+1].int_;
 							break;
 						case 2: 
-							if (type(curlist.tailfield) == 10)
+							if (type(tail) == 10)
 							{
-								curval = info(curlist.tailfield+1);
-								if (subtype(curlist.tailfield) == 99)
+								curval = info(tail+1);
+								if (subtype(tail) == 99)
 									curvallevel = 3;
 							}
 					}
 				else 
-					if (curlist.modefield == 1 &&curlist.tailfield == curlist.headfield)
+					if (mode == vmode && tail == head)
 						switch (curchr)
 						{
 							case 0: 
@@ -263,7 +263,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 								curval = lastkern;
 								break;
 							case 2: 
-								if (lastglue != 65535)
+								if (lastglue != 0xFF'FF)
 									curval = lastglue;
 						}
 			}

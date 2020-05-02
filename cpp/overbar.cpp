@@ -11,5 +11,5 @@ halfword overbar(halfword b, scaled k, scaled  t)
 	link(q) = p;
 	p = newkern(t);
 	link(p) = q;
-	return vpackage(p, 0, 1, 1073741823);
+	return vpackage(p, 0, 1, 0x3F'FF'FF'FF);
 }

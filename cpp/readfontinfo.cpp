@@ -47,20 +47,6 @@ void notLoadable(halfword u, strnumber nom, strnumber aire, scaled s, bool fileo
 }
 
 internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scaled s)
-/*label
-  30, 11, 45;
-var
-  k: fontindex;
-  fileopened: boolean;
-  f: internalfontnumber;
-  g: internalfontnumber;
-  qw: fourquarters;
-  sw: scaled;
-  bchlabel: integer;
-  bchar: 0..256;
-  z: scaled;
-  alpha: integer;
-  beta: 1..16;*/
 {
 	bool fileopened = false;
 	if (aire == 338) //
@@ -79,28 +65,28 @@ var
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	lf = lf*256+tfmfile.get();
+	lf = lf*0x1'00+tfmfile.get();
 	halfword lh = tfmfile.get();
 	if (lh > 127)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	lh = lh * 256+tfmfile.get();
+	lh = lh*0x1'00+tfmfile.get();
 	halfword bc = tfmfile.get();
 	if (bc > 127)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	bc = bc*256+tfmfile.get();
+	bc = bc*0x1'00+tfmfile.get();
 	halfword ec = tfmfile.get();
 	if (ec > 127)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	ec = ec*256+tfmfile.get();
+	ec = ec*0x1'00+tfmfile.get();
 	if (bc > ec+1 || ec > 255)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
@@ -115,56 +101,56 @@ var
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	nw = nw*256+tfmfile.get();
+	nw = nw*0x1'00+tfmfile.get();
 	halfword nh = tfmfile.get();
 	if (nh > 127)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	nh = nh*256+tfmfile.get();
+	nh = nh*0x1'00+tfmfile.get();
 	halfword nd = tfmfile.get();
 	if (nd > 127)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	nd = nd * 256+tfmfile.get();
+	nd = nd*0x1'00+tfmfile.get();
 	halfword ni = tfmfile.get();
 	if (ni > 127)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	ni = ni*256+tfmfile.get();
+	ni = ni*0x1'00+tfmfile.get();
 	halfword nl = tfmfile.get();
 	if (nl > 127)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	nl = nl*256+tfmfile.get();
+	nl = nl*0x1'00+tfmfile.get();
 	halfword nk = tfmfile.get();
 	if (nk > 127)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	nk = nk*256+tfmfile.get();
+	nk = nk*0x1'00+tfmfile.get();
 	halfword ne = tfmfile.get();
 	if (ne > 127)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	ne = ne*256+tfmfile.get();
+	ne = ne*0x1'00+tfmfile.get();
 	halfword np = tfmfile.get();
 	if (np > 127)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	np = np*256+tfmfile.get();
+	np = np*0x1'00+tfmfile.get();
 	if (lf != 6+lh+(ec-bc+1)+nw+nh+nd+ni+nl+nk+ne+np)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
@@ -218,8 +204,8 @@ var
 	depthbase[f] = heightbase[f]+nh;
 	italicbase[f] = depthbase[f]+nd;
 	ligkernbase[f] = italicbase[f]+ni;
-	kernbase[f] = ligkernbase[f]+nl-256*128;
-	extenbase[f] = kernbase[f]+256*128+nk;
+	kernbase[f] = ligkernbase[f]+nl-0x80'00;
+	extenbase[f] = kernbase[f]+0x80'00+nk;
 	parambase[f] = extenbase[f]+ne;
 	if (lh < 2)
 	{
@@ -239,10 +225,10 @@ var
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	z = z*256+tfmfile.get();
-	z = z*256+tfmfile.get();
+	z = z*0x1'00+tfmfile.get();
+	z = z*0x1'00+tfmfile.get();
 	z = z*16+tfmfile.get()/16;
-	if (z < 65536)
+	if (z < 0x1'00'00)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
@@ -320,7 +306,7 @@ var
 		z /= 2;
 		alpha *= 2;
 	}
-	int beta = 256/alpha;
+	int beta = 0x1'00/alpha;
 	alpha *= z;
 	for (int k = widthbase[f]; k < ligkernbase[f]; k++)
 	{
@@ -328,7 +314,7 @@ var
 		b = tfmfile.get();
 		c = tfmfile.get();
 		d = tfmfile.get();
-		scaled sw = ((((d*z)/256+c*z)/256)+b*z)/beta;
+		scaled sw = ((((d*z)/0x1'00+c*z)/0x1'00)+b*z)/beta;
 		if (a == 0)
 			fontinfo[k].int_ = sw;
 		else 
@@ -360,11 +346,11 @@ var
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	int bchlabel = 32767;
+	int bchlabel = 0x7F'FF;
 	bchar = 256;
 	if (nl > 0)
 	{
-		for (int k = ligkernbase[f]; k < kernbase[f]+256*128; k++)
+		for (int k = ligkernbase[f]; k < kernbase[f]+0x80'00; k++)
 		{
 			qw.b0 = a = tfmfile.get();
 			qw.b1 = b = tfmfile.get();
@@ -373,7 +359,7 @@ var
 			fontinfo[k].qqqq = qw;
 			if (a > 128)
 			{
-				if (256*c+d >= nl)
+				if (0x1'00*c+d >= nl)
 				{
 					notLoadable(u, nom, aire, s, fileopened);
 					return 0;
@@ -412,7 +398,7 @@ var
 				}
 			}
 			else 
-				if (256*(c-128)+d >= nk)
+				if (0x1'00*(c-0x80)+d >= nk)
 				{
 					notLoadable(u, nom, aire, s, fileopened);
 					return 0;
@@ -426,15 +412,15 @@ var
 			}
 		}
 		if (a == 255)
-			bchlabel = 256*c+d;
+			bchlabel = 0x1'00*c+d;
 	}
-	for (int k = kernbase[f]+256*128; k < extenbase[f]; k++)
+	for (int k = kernbase[f]+0x80'00; k < extenbase[f]; k++)
 	{
 		a = tfmfile.get();
 		b = tfmfile.get();
 		c = tfmfile.get();
 		d = tfmfile.get();
-		scaled sw = ((((d*z)/256+c*z)/256)+b*z)/beta;
+		scaled sw = ((((d*z)/0x1'00+c*z)/0x1'00)+b*z)/beta;
 		if (a == 0)
 			fontinfo[k].int_ = sw;
 		else 
@@ -512,9 +498,9 @@ var
 		{
 			scaled sw = tfmfile.get();
 			if (sw > 127)
-				sw -= 256;
-			sw = sw*256+tfmfile.get();
-			sw = sw * 256+tfmfile.get();
+				sw -= 0x1'00;
+			sw = sw*0x1'00+tfmfile.get();
+			sw = sw*0x1'00+tfmfile.get();
 			fontinfo[parambase[f]].int_ = sw*16+tfmfile.get()/16;
 		}
 		else
@@ -523,7 +509,7 @@ var
 			b = tfmfile.get();
 			c = tfmfile.get();
 			d = tfmfile.get();
-			scaled sw = ((((d*z)/256+c*z)/256)+b*z)/beta;
+			scaled sw = ((((d*z)/0x1'00+c*z)/0x1'00)+b*z)/beta;
 			if (a == 0)
 				fontinfo[parambase[f]+k-1].int_ = sw;
 			else 

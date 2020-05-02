@@ -15,14 +15,14 @@ void scanglue(smallnumber level)
 	{
 		do
 			getxtoken();
-		while (curcmd == 10);
+		while (curcmd == spacer);
 		if (curtok == 3117)
 		{
 			negative = !negative;
 			curtok = 3115;
 		}
 	} while (curtok != 3115);
-	if (curcmd >= 68 && curcmd <= 89)
+	if (curcmd >= min_internal && curcmd <= max_internal)
 	{
 		scansomethinginternal(level, negative);
 		if (curvallevel >= 2)

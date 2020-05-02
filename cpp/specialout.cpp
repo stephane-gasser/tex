@@ -23,7 +23,7 @@ void specialout(halfword p)
 	selector = oldsetting;
 	if (poolptr+1 > poolsize)
 		overflow(257, poolsize-initpoolptr); //pool size
-	if ((poolptr-strstart[strptr]) < 256)
+	if (poolptr-strstart[strptr] < 256)
 	{
 		dvibuf[dviptr++] = xxx1;
 		if (dviptr == dvilimit)

@@ -2,8 +2,8 @@
 
 void popnest(void)
 {
-	link(curlist.headfield) = avail;
-	avail = curlist.headfield;
+	link(head) = avail;
+	avail = head;
 	nestptr--;
 	curlist = nest[nestptr];
 }

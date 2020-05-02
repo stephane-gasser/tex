@@ -159,7 +159,7 @@ void getnext(void)
 								}
 								curcmd = eq_type(curcs);
 								curchr = equiv(curcs);
-								if (curcmd >= 113)
+								if (curcmd >= outer_call)
 									checkoutervalidity();
 								break;
 							case 1+active_char:
@@ -169,7 +169,7 @@ void getnext(void)
 								curcmd = eq_type(curcs);
 								curchr = equiv(curcs);
 								curinput.statefield = 1;
-								if (curcmd >= 113)
+								if (curcmd >= outer_call)
 									checkoutervalidity();
 								break;
 							case 1+sup_mark:
@@ -218,7 +218,7 @@ void getnext(void)
 								curcs = parloc;
 								curcmd = eq_type(curcs);
 								curchr = equiv(curcs);
-								if (curcmd >= 113)
+								if (curcmd >= outer_call)
 									checkoutervalidity();
 								break;
 							case 17+left_brace:
@@ -338,16 +338,16 @@ void getnext(void)
 					curcs = t-4095;
 					curcmd = eq_type(curcs);
 					curchr = equiv(curcs);
-					if (curcmd >= 113)
-						if (curcmd = 116)
+					if (curcmd >= outer_call)
+						if (curcmd == dont_expand)
 						{
 							curcs = info(curinput.locfield)-4095;
 							curinput.locfield = 0;
 							curcmd = eq_type(curcs);
 							curchr = equiv(curcs);
-							if (curcmd > 100)
+							if (curcmd > max_command)
 							{
-								curcmd = 0;
+								curcmd = relax;
 								curchr = 257;
 							}
 						}
@@ -356,17 +356,17 @@ void getnext(void)
 				}
 				else
 				{
-					curcmd = t/256;
-					curchr = t%256;
+					curcmd = t/0x1'00;
+					curchr = t%0x1'00;
 					switch (curcmd)
 					{
-						case 1: 
+						case left_brace: 
 							alignstate++;
 							break;
-						case 2: 
+						case right_brace: 
 							alignstate--;
 							break;
-						case 5:
+						case out_param:
 							begintokenlist(paramstack[curinput.limitfield+curchr-1], 0);
 							recommence = true;
 					}
@@ -377,13 +377,13 @@ void getnext(void)
 				endtokenlist();
 				recommence = true;
 			}
-		if (!recommence && curcmd <= 5 && curcmd >= 4 && alignstate == 0)
+		if (!recommence && curcmd <= out_param && curcmd >= tab_mark && alignstate == 0)
 		{
 			if (scannerstatus == 4 || curalign == 0)
 				fatalerror(595); //(interwoven alignment preambles are not allowed)
 			curcmd = info(curalign+5);
 			info(curalign+5) = curchr;
-			if (curcmd == '?')
+			if (curcmd == omit)
 				begintokenlist(omit_template, 2);
 			else
 				begintokenlist(mem[curalign+2].int_, 2);

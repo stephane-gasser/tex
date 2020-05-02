@@ -17,7 +17,7 @@
 void builddiscretionary(void)
 {
 	unsave();
-	auto q = curlist.headfield;
+	auto q = head;
 	auto p = link(q);
 	int n = 0;
 	while (p)
@@ -42,18 +42,18 @@ void builddiscretionary(void)
 		p = link(q);
 		n++;
 	}
-	p = link(curlist.headfield);
+	p = link(head);
 	popnest();
 	switch (savestack[saveptr-1].int_)
 	{
 		case 0: 
-			info(curlist.tailfield+1) = p;
+			info(tail+1) = p;
 			break;
 		case 1: 
-			link(curlist.tailfield+1) = p;
+			link(tail+1) = p;
 			break;
 		case 2:
-			if (n > 0 && abs(curlist.modefield) == 203)
+			if (n > 0 && abs(mode) == mmode)
 			{
 				if (interaction == 3)
 					printnl(262); //! 
@@ -67,9 +67,9 @@ void builddiscretionary(void)
 				error();
 			}
 			else
-				link(curlist.tailfield) = p;
+				link(tail) = p;
 			if (n <= 255)
-				subtype(curlist.tailfield) = n;
+				subtype(tail) = n;
 			else
 			{
 				if (interaction == 3)
@@ -81,7 +81,7 @@ void builddiscretionary(void)
 				error();
 			}
 			if (n > 0)
-				curlist.tailfield = q;
+				tail = q;
 			saveptr--;
 			return;
 	}
@@ -89,6 +89,6 @@ void builddiscretionary(void)
 	newsavelevel(10);
 	scanleftbrace();
 	pushnest();
-	curlist.modefield = -102;
-	curlist.auxfield.hh.lh = 1000;
+	mode = -hmode;
+	space_factor = 1000;
 }

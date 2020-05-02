@@ -73,7 +73,7 @@ void newfont(smallnumber a)
 			helpline[1] = 1223; //I can only handle fonts at positive sizes that are
 			helpline[0] = 1224; //less than 2048pt, so I've changed what you said to 10pt.
 			error();
-			s = 10*65536;
+			s = 10*0x1'00'00;
 		}
 	}
 	else 
@@ -81,13 +81,13 @@ void newfont(smallnumber a)
 		{
 			scanint();
 			s = -curval;
-			if (curval <= 0 || curval > 32768)
+			if (curval <= 0 || curval > 0x80'00)
 			{
 				if (interaction == 3);
 					printnl(262); //! 
 				print(552); //Illegal magnification has been changed to 1000
 				helpptr = 1;
-				helpline[0] = 553; //The magnification ratio must be between 1 and 32768.
+				helpline[0] = 553; //The magnification ratio must be between 1 and 0x80'00.
 				interror(curval);
 				s = -1000;
 			}

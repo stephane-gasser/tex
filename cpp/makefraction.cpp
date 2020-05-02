@@ -10,7 +10,7 @@
 
 void makefraction(halfword q)
 {
-	if (mem[q+1].int_ == 1073741824)
+	if (mem[q+1].int_ == 0x40'00'00'00)
 		mem[q+1].int_ = fontinfo[8+parambase[fam_fnt(3+cursize)]].int_;
 	auto x = cleanbox(q+2, curstyle+2-2*(curstyle/6));
 	auto z = cleanbox(q+3, 2*(curstyle/2)+3-2*(curstyle/6));

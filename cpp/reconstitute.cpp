@@ -74,9 +74,9 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 			{
 				k = ligkernbase[hf]+q.b3;
 				q = fontinfo[k].qqqq;
-				if (q.b0 > 128)
+				if (q.b0 > 0x80)
 				{
-					k = ligkernbase[hf]+256*q.b2+q.b3+32768-256*128;
+					k = ligkernbase[hf]+0x1'00*q.b2+q.b3;
 					q = fontinfo[k].qqqq;
 				}
 			}
@@ -222,7 +222,7 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 							recommence = true;
 							break;
 						}
-						w = fontinfo[kernbase[hf]+256*q.b2+q.b3].int_;
+						w = fontinfo[kernbase[hf]+0x1'00*q.b2+q.b3].int_;
 						skipLoop = true;
 						continue;
 					}

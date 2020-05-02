@@ -8,8 +8,8 @@ void scanleftbrace(void)
 {
 	do  
 		getxtoken();
-	while (curcmd == 10 || curcmd == 0);
-	if (curcmd != 1)
+	while (curcmd == spacer || curcmd == escape);
+	if (curcmd != left_brace)
 	{
 		if (interaction = 3)
 			printnl(262); //! 

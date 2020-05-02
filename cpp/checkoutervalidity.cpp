@@ -21,10 +21,10 @@ void checkoutervalidity(void)
 			if (curinput.statefield == 0 || curinput.namefield < 1 || curinput.namefield > 17)
 			{
 				auto p = getavail();
-				info(p) = 4095+curcs;
+				info(p) = 0x0F'FF+curcs;
 				begintokenlist(p, 3);
 			}
-			curcmd = 10;
+			curcmd = spacer;
 			curchr = ' ';
 		}
 		if (scannerstatus > 1)

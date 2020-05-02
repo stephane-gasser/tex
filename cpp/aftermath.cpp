@@ -53,13 +53,13 @@ void aftermath(void)
 		flushmath();
 		danger = true;
 	}
-	m = curlist.modefield;
+	m = mode;
 	l = false;
 	p = finmlist(0);
-	if (curlist.modefield == -m)
+	if (mode == -m)
 	{
 		getxtoken();
-		if (curcmd != 3)
+		if (curcmd != math_shift)
 			if (interaction == 3)
 				printnl(262); //! 
 		print(1165); //Display math should end with $$
@@ -104,25 +104,23 @@ void aftermath(void)
 				flushmath();
 				danger = true;
 			}
-		m = curlist.modefield;
+		m = mode;
 		p = finmlist(0);
 	}
 	else
 		a = 0;
 	if (m < 0)
 	{
-		link(curlist.tailfield) = newmath(dimen_par(math_surround_code), 0);
-		curlist.tailfield = link(curlist.tailfield);
+		tail_append(newmath(dimen_par(math_surround_code), 0));
 		curmlist = p;
 		curstyle = 2;
-		mlistpenalties = curlist.modefield > 0;
+		mlistpenalties = mode > 0;
 		mlisttohlist();
-		link(curlist.tailfield) = link(temp_head);
-		while (link(curlist.tailfield))
-			curlist.tailfield = link(curlist.tailfield);
-		link(curlist.tailfield) = newmath(dimen_par(math_surround_code), 1);
-		curlist.tailfield = link(curlist.tailfield);
-		curlist.auxfield.hh.lh = 1000;
+		link(tail) = link(temp_head);
+		while (link(tail))
+			tail = link(tail);
+		tail_append(newmath(dimen_par(math_surround_code), 1));
+		space_factor = 1000;
 		unsave();
 	}
 	else
@@ -130,7 +128,7 @@ void aftermath(void)
 		if (a == 0)
 		{
 			getxtoken();
-			if (curcmd != 3)
+			if (curcmd != math_shift)
 			{
 				if (interaction == 3)
 					printnl(262); //! 
@@ -189,8 +187,7 @@ void aftermath(void)
 			if (p && p < himemmin && type(p) == glue_node) //10
 			d = 0;
 		}
-		link(curlist.tailfield) = newpenalty(int_par(pre_display_penalty_code));
-		curlist.tailfield = link(curlist.tailfield);
+		tail_append(newpenalty(int_par(pre_display_penalty_code)));
 		if (d+s <= dimen_par(pre_display_size_code) || l)
 		{
 			g1 = 3;
@@ -205,14 +202,10 @@ void aftermath(void)
 		{
 			mem[a+4].int_ = s;
 			appendtovlist(a);
-			link(curlist.tailfield) = newpenalty(10000);
-			curlist.tailfield = link(curlist.tailfield);
+			tail_append(newpenalty(10000));
 		}
 		else
-		{
-			link(curlist.tailfield) = newparamglue(g1);
-			curlist.tailfield = link(curlist.tailfield);
-		}
+			tail_append(newparamglue(g1));
 		if (e)
 		{
 			r = newkern(z-w-e-d);
@@ -235,24 +228,19 @@ void aftermath(void)
 
 		if (a && e == 0 && !l)
 		{
-			link(curlist.tailfield) = newpenalty(10000);
-			curlist.tailfield = link(curlist.tailfield);
+			tail_append(newpenalty(10000));
 			mem[a+4].int_ = s+z-mem[a+1].int_;
 			appendtovlist(a);
 			g2 = 0;
 		}
 		if (t != adjust_head)
 		{
-			link(curlist.tailfield) = link(adjust_head);
-			curlist.tailfield = t;
+			link(tail) = link(adjust_head);
+			tail = t;
 		}
-		link(curlist.tailfield) = newpenalty(int_par(post_display_penalty_code));
-		curlist.tailfield = link(curlist.tailfield);
+		tail_append(newpenalty(int_par(post_display_penalty_code)));
 		if (g2 > 0)
-		{
-			link(curlist.tailfield) = newparamglue(g2);
-			curlist.tailfield = link(curlist.tailfield);
-		}
+			tail_append(newparamglue(g2));
 		resumeafterdisplay();
 	}
 }

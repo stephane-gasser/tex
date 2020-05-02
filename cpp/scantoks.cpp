@@ -37,7 +37,7 @@ halfword scantoks(bool macrodef, bool xpand)
 				link(p) = q;
 				info(q) = 3584;
 				p = q;
-				if (curcmd == 2)
+				if (curcmd == right_brace)
 				{
 					if (interaction == 3)
 						printnl(262); //! 
@@ -52,11 +52,11 @@ halfword scantoks(bool macrodef, bool xpand)
 				}
 				break;
 			}
-			if (curcmd == 6)
+			if (curcmd == mac_param)
 			{
 				auto s = 3328+curchr;
 				gettoken();
-				if (curcmd == 1)
+				if (curcmd == left_brace)
 				{
 					hashbrace = curtok;
 					{
@@ -114,9 +114,9 @@ halfword scantoks(bool macrodef, bool xpand)
 			while (true)
 			{
 				getnext();
-				if (curcmd <= 100)
+				if (curcmd <= max_command)
 					break;
-				if (curcmd != 109)
+				if (curcmd != the)
 					expand();
 				else
 				{
@@ -133,7 +133,7 @@ halfword scantoks(bool macrodef, bool xpand)
 		else
 			gettoken();
 		if (curtok < 768)
-			if (curcmd < 2)
+			if (curcmd < right_brace)
 				unbalance++;
 			else
 			{
@@ -142,7 +142,7 @@ halfword scantoks(bool macrodef, bool xpand)
 					break;
 			}
 		else 
-			if (curcmd == 6)
+			if (curcmd == mac_param)
 				if (macrodef)
 				{
 					auto s = curtok;
@@ -150,7 +150,7 @@ halfword scantoks(bool macrodef, bool xpand)
 						getxtoken();
 					else
 						gettoken();
-					if (curcmd != 6)
+					if (curcmd != mac_param)
 						if (curtok <= 3120 || curtok > t)
 						{
 							if (interaction == 3)

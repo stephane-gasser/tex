@@ -26,7 +26,7 @@ void makemathaccent(halfword q)
 				curi = fontinfo[a].qqqq;
 				if (curi.b0 > 128)
 				{
-					a = ligkernbase[curf]+256*curi.b2+curi.b3+32768-256*128;
+					a = ligkernbase[curf]+0x1'00*curi.b2+curi.b3;
 					curi = fontinfo[a].qqqq;
 				}
 				while (true)
@@ -35,7 +35,7 @@ void makemathaccent(halfword q)
 					{
 						if (curi.b2 >= 128)
 							if (curi.b0 <= 128)
-								s = fontinfo[kernbase[curf]+256 * curi.b2+curi.b3].int_;
+								s = fontinfo[kernbase[curf]+0x1'00*curi.b2+curi.b3].int_;
 						break;
 					}
 					if (curi.b0 >= 128)
@@ -87,7 +87,7 @@ void makemathaccent(halfword q)
 		auto p = newkern(-delta);
 		link(p) = x;
 		link(y) = p;
-		y = vpackage(y, 0, 1, 1073741823);
+		y = vpackage(y, 0, 1, 0x3F'FF'FF'FF);
 		mem[y+1].int_ = mem[x+1].int_;
 		if (mem[y+3].int_ < h)
 		{

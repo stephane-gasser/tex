@@ -5,9 +5,9 @@
 
 void endgraf(void)
 {
-	if (curlist.modefield == 102)
+	if (mode == hmode)
 	{
-		if (curlist.headfield == curlist.tailfield)
+		if (head == tail)
 			popnest();
 		else
 			linebreak(int_par(widow_penalty_code));

@@ -4,9 +4,9 @@
 
 void appendtovlist(halfword b)
 {
-	if (curlist.auxfield.int_ > -65536000)
+	if (prev_depth > ignore_depth)
 	{
-		scaled d = mem[baseline_skip()+1].int_-curlist.auxfield.int_-mem[b+3].int_;
+		scaled d = mem[baseline_skip()+1].int_-prev_depth-mem[b+3].int_;
 		halfword p;
 		if (d < dimen_par(line_skip_limit_code))
 			p = newparamglue(0);
@@ -15,10 +15,8 @@ void appendtovlist(halfword b)
 			p = newskipparam(1);
 			mem[tempptr+1].int_ = d;
 		}
-		link(curlist.tailfield) = p;
-		curlist.tailfield = p;
+		tail_append(p);
 	}
-	link(curlist.tailfield) = b;
-	curlist.tailfield = b;
-	curlist.auxfield.int_ = mem[b+2].int_;
+	tail_append(b);
+	prev_depth = mem[b+2].int_;
 }

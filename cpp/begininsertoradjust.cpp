@@ -12,7 +12,7 @@
 
 void begininsertoradjust(void)
 {
-	if (curcmd == 38)
+	if (curcmd == vadjust)
 		curval = 255;
 	else
 	{
@@ -35,6 +35,6 @@ void begininsertoradjust(void)
 	scanleftbrace();
 	normalparagraph();
 	pushnest();
-	curlist.modefield = -1;
-	curlist.auxfield.int_ = -65536000;
+	mode = -vmode;
+	prev_depth = ignore_depth;
 }

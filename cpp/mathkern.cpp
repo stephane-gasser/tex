@@ -7,14 +7,14 @@ void mathkern(halfword p, scaled m)
 {
 	if (subtype(p) == 99)
 	{
-		int n = xovern(m, 65536);
+		int n = xovern(m, 0x1'00'00);
 		scaled f = remainder_;
 		if (f < 0)
 		{
 			n--;
-			f += 65536;
+			f += 0x1'00'00;
 		}
-		mem[p+1].int_ = multandadd(n, mem[p+1].int_, xnoverd(mem[p+1].int_, f, 65536), 1073741823);
+		mem[p+1].int_ = multandadd(n, mem[p+1].int_, xnoverd(mem[p+1].int_, f, 0x1'00'00), 0x3F'FF'FF'FF);
 		subtype(p) = 1;
 	}
 }

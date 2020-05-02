@@ -15,7 +15,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 	scaled prevdp;
 	smallnumber t;
 	prevp = p;
-	leastcost = 1073741823;
+	leastcost = 0x3F'FF'FF'FF;
 	for (int i = 1; i <= 6; i++)
 		activewidth[i] = 0;
 	prevdp = 0;
@@ -65,10 +65,10 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 					b = badness(h-activewidth[1], activewidth[2]);
 				else 
 					if (activewidth[1]-h > activewidth[6])
-						b = 1073741823;
+						b = 0x3F'FF'FF'FF;
 					else
 						b = badness(activewidth[1]-h, activewidth[6]);
-				if (b < 1073741823)
+				if (b < 0x3F'FF'FF'FF)
 					if (pi <= -10000)
 						b = pi;
 					else 
@@ -82,7 +82,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 					leastcost = b;
 					bestheightplusdepth = activewidth[1]+prevdp;
 				}
-				if (b == 1073741823 || pi <= -10000)
+				if (b == 0x3F'FF'FF'FF || pi <= -10000)
 					return bestplace;
 			}
 		if (type(p) == kern_node)

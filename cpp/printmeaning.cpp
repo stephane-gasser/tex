@@ -7,14 +7,14 @@
 void printmeaning(void)
 {
 	printcmdchr(curcmd, curchr);
-	if (curcmd >= 111)
+	if (curcmd >= call)
 	{
 		printchar(':');
 		println();
 		tokenshow(curchr);
 	}
 	else 
-		if (curcmd = 110)
+		if (curcmd == top_bot_mark)
 		{
 			printchar(':');
 			println();

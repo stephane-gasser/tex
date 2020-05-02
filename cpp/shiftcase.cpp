@@ -12,9 +12,9 @@ void shiftcase(void)
 	while (p)
 	{
 		t = info(p);
-		if (t < 4352)
+		if (t < 4352) //0x1100
 		{
-			c = t%256;
+			c = t%0x1'00;
 			if (equiv(b+c))
 				info(p) = t-c+equiv(b+c);
 		}

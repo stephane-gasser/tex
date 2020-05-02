@@ -37,8 +37,8 @@ void newpatterns(void)
 			getxtoken();
 			switch (curcmd)
 			{
-				case 11:
-				case 12:
+				case letter:
+				case other_char:
 					if (digitsensed  || curchr < '0' || curchr > '9')
 					{
 						if (curchr == '.')
@@ -71,8 +71,8 @@ void newpatterns(void)
 							digitsensed = true;
 						}
 					break;
-				case 10:
-				case 2:
+				case spacer:
+				case right_brace:
 					if (k > 0)
 					{
 						if (hc[1] == 0)
@@ -132,7 +132,7 @@ void newpatterns(void)
 						}
 						trieo[q] = v;
 					}
-					if (curcmd == 2)
+					if (curcmd == right_brace)
 					{
 						keepIn = false;
 						continue;

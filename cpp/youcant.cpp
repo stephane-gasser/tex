@@ -11,5 +11,5 @@ void youcant(void)
 	print(685); //You can't use `
 	printcmdchr(curcmd, curchr);
 	print(1019); //' in 
-	printmode(curlist.modefield);
+	printmode(mode);
 }

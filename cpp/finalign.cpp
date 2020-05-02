@@ -36,7 +36,7 @@ void finalign(void)
 	if (curgroup != 6)
 		confusion(915); //align0
 	unsave();
-	if (nest[nestptr-1].modefield == 203)
+	if (nest[nestptr-1].modefield == mmode)
 		o = dimen_par(display_indent_code);
 	else
 		o = 0;
@@ -46,14 +46,14 @@ void finalign(void)
 		flushlist(mem[q+3].int_);
 		flushlist(mem[q+2].int_);
 		p = link(link(q));
-		if (mem[q+1].int_ == -1073741824)
+		if (mem[q+1].int_ == -0x40'00'00'00)
 		{
 			mem[q+1].int_ = 0;
 			r = link(q);
 			s = info(r+1);
 			if (s)
 			{
-				link(0)++;
+				link(zero_glue)++;
 				deleteglueref(s);
 				info(r+1) = 0;
 			}
@@ -101,8 +101,8 @@ void finalign(void)
 		q = p;
 	} while (q);
 	saveptr -= 2;
-	packbeginline = -curlist.mlfield;
-	if (curlist.modefield == -1)
+	packbeginline = -mode_line;
+	if (mode == -vmode)
 	{
 		rulesave = dimen_par(overfull_rule_code);
 		dimen_par(overfull_rule_code) = 0;
@@ -118,7 +118,7 @@ void finalign(void)
 			mem[q+1].int_ = 0;
 			q = link(link(q));
 		} while (q);
-		p = vpackage(link(align_head), savestack[saveptr+1].int_, savestack[saveptr+0].int_, 1073741823);
+		p = vpackage(link(align_head), savestack[saveptr+1].int_, savestack[saveptr+0].int_, 0x3F'FF'FF'FF);
 		q = link(link(align_head));
 		do
 		{
@@ -128,14 +128,14 @@ void finalign(void)
 		} while (q);
 	}
 	packbeginline = 0;
-	q = link(curlist.headfield);
-	s = curlist.headfield;
+	q = link(head);
+	s = head;
 	while (q)
 	{
 		if (q < himemmin)
 			if (type(q) == 13)
 			{
-				if (curlist.modefield == -1)
+				if (mode == -vmode)
 				{
 					type(q) = 0;
 					mem[q+1].int_ = mem[p+1].int_;
@@ -178,7 +178,7 @@ void finalign(void)
 						link(u) = newnullbox();
 						u = link(u);
 						t += mem[s+1].int_;
-						if (curlist.modefield == -1)
+						if (mode == -vmode)
 							mem[u+1].int_ = mem[s+1].int_;
 						else
 						{
@@ -186,7 +186,7 @@ void finalign(void)
 							mem[u+3].int_ = mem[s+1].int_;
 						}
 					}
-					if (curlist.modefield == -1)
+					if (mode == -vmode)
 					{
 						mem[r+3].int_ = mem[q+3].int_;
 						mem[r+2].int_ = mem[q+2].int_;
@@ -267,11 +267,11 @@ void finalign(void)
 			else 
 				if (type(q) == 2)
 				{
-					if ((mem[q+1].int_ == -1073741824))
+					if ((mem[q+1].int_ == -0x40'00'00'00))
 						mem[q+1].int_ = mem[p+1].int_;
-					if ((mem[q+3].int_ == -1073741824))
+					if ((mem[q+3].int_ == -0x40'00'00'00))
 						mem[q+3].int_ = mem[p+3].int_;
-					if ((mem[q+2].int_ == -1073741824))
+					if ((mem[q+2].int_ == -0x40'00'00'00))
 						mem[q+2].int_ = mem[p+2].int_;
 					if (o != 0)
 					{
@@ -288,14 +288,14 @@ void finalign(void)
 	}
 	flushnodelist(p);
 	popalignment();
-	auxsave = curlist.auxfield;
-	p = link(curlist.headfield);
-	q = curlist.tailfield;
+	auxsave = aux;
+	p = link(head);
+	q = tail;
 	popnest();
-	if (curlist.modefield == 203)
+	if (mode == mmode)
 	{
 		doassignments();
-		if (curcmd != 3)
+		if (curcmd != math_shift)
 		{
 			if (interaction == 3)
 				printnl(262); //! 
@@ -308,7 +308,7 @@ void finalign(void)
 		else
 		{
 			getxtoken();
-			if (curcmd != 3)
+			if (curcmd != math_shift)
 			{
 				if (interaction == 3)
 					printnl(262); //! 
@@ -320,27 +320,23 @@ void finalign(void)
 			}
 		}
 		popnest();
-		link(curlist.tailfield) = newpenalty(int_par(pre_display_penalty_code));
-		curlist.tailfield = link(curlist.tailfield);
-		link(curlist.tailfield) = newparamglue(3);
-		curlist.tailfield = link(curlist.tailfield);
-		link(curlist.tailfield) = p;
+		tail_append(newpenalty(int_par(pre_display_penalty_code)));
+		tail_append(newparamglue(3));
+		link(tail) = p;
 		if (p)
-			curlist.tailfield = q;
-		link(curlist.tailfield) = newpenalty(int_par(post_display_penalty_code));
-		curlist.tailfield = link(curlist.tailfield);
-		link(curlist.tailfield) = newparamglue(4);
-		curlist.tailfield = link(curlist.tailfield);
-		curlist.auxfield.int_ = auxsave.int_;
+			tail = q;
+		tail_append(newpenalty(int_par(post_display_penalty_code)));
+		tail_append(newparamglue(4));
+		aux = auxsave;
 		resumeafterdisplay();
 	}
 	else
 	{
-		curlist.auxfield = auxsave;
-		link(curlist.tailfield) = p;
+		aux = auxsave;
+		link(tail) = p;
 		if (p)
-			curlist.tailfield = q;
-		if (curlist.modefield == 1)
+			tail = q;
+		if (mode == vmode)
 			buildpage();
 	}
 }

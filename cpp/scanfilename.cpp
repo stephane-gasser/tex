@@ -11,10 +11,10 @@ void scanfilename(void)
 	beginname();
 	do
 		getxtoken();
-	while (curcmd == 10);
+	while (curcmd == spacer);
 	while (true)
 	{
-		if (curcmd > 12 || curchr > 255)
+		if (curcmd > other_char || curchr > 255)
 		{
 			backinput();
 			break;

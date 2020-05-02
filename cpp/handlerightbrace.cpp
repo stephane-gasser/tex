@@ -74,27 +74,25 @@ void handlerightbrace(void)
 			f = int_par(floating_penalty_code);
 			unsave();
 			saveptr--;
-			p = vpackage(link(curlist.headfield), 0, 1, 1073741823);
+			p = vpackage(link(head), 0, 1, 0x3F'FF'FF'FF);
 			popnest();
 			if (savestack[saveptr+0].int_ < 255)
 			{
-				link(curlist.tailfield) = getnode(5);
-				curlist.tailfield = link(curlist.tailfield);
-				type(curlist.tailfield) = ins_node; //3
-				subtype(curlist.tailfield) = savestack[saveptr+0].int_;
-				mem[curlist.tailfield+3].int_ = mem[p+3].int_+mem[p+2].int_;
-				info(curlist.tailfield+4) = link(p+5);
-				link(curlist.tailfield+4) = q;
-				mem[curlist.tailfield+2].int_ = d;
-				mem[curlist.tailfield+1].int_ = f;
+				tail_append(getnode(5));
+				type(tail) = ins_node; //3
+				subtype(tail) = savestack[saveptr+0].int_;
+				mem[tail+3].int_ = mem[p+3].int_+mem[p+2].int_;
+				info(tail+4) = link(p+5);
+				link(tail+4) = q;
+				mem[tail+2].int_ = d;
+				mem[tail+1].int_ = f;
 			}
 			else
 			{
-				link(curlist.tailfield) = getnode(2);
-				curlist.tailfield = link(curlist.tailfield);
-				type(curlist.tailfield) = adjust_node; //5
-				type(curlist.tailfield) = 0;
-				mem[curlist.tailfield+1].int_ = link(p+5);
+				tail_append(getnode(2));
+				type(tail) = adjust_node; //5
+				type(tail) = 0;
+				mem[tail+1].int_ = link(p+5);
 				deleteglueref(q);
 			}
 			freenode(p, 7);
@@ -135,10 +133,10 @@ void handlerightbrace(void)
 				}
 				boxerror(255);
 			}
-			if (curlist.tailfield != curlist.headfield)
+			if (tail != head)
 			{
-				link(pagetail) = link(curlist.headfield);
-				pagetail = curlist.tailfield;
+				link(pagetail) = link(head);
+				pagetail = tail;
 			}
 			if (link(page_head))
 			{
@@ -176,13 +174,12 @@ void handlerightbrace(void)
 			endgraf();
 			unsave();
 			saveptr -= 2;
-			p = vpackage(link(curlist.headfield), savestack[saveptr+1].int_, savestack[saveptr].int_, 1073741823);
+			p = vpackage(link(head), savestack[saveptr+1].int_, savestack[saveptr].int_, 0x3F'FF'FF'FF);
 			popnest();
-			link(curlist.tailfield) = newnoad();
-			curlist.tailfield = link(curlist.tailfield);
-			type(curlist.tailfield) = 29;
-			link(curlist.tailfield+1) = 2;
-			info(curlist.tailfield+1) = p;
+			tail_append(newnoad());
+			type(tail) = 29;
+			link(tail+1) = 2;
+			info(tail+1) = p;
 			break;
 		case 13: 
 			buildchoices();
@@ -205,15 +202,15 @@ void handlerightbrace(void)
 					}
 					else 
 						if (type(p) == 28)
-							if (savestack[saveptr].int_ == curlist.tailfield+1)
-								if (type(curlist.tailfield) == 16)
+							if (savestack[saveptr].int_ == tail+1)
+								if (type(tail) == 16)
 								{
-									q = curlist.headfield;
-									while (link(q) != curlist.tailfield)
+									q = head;
+									while (link(q) != tail)
 										q = link(q);
 									link(q) = p;
-									freenode(curlist.tailfield, 4);
-									curlist.tailfield = p;
+									freenode(tail, 4);
+									tail = p;
 								}
 			break;
 		default: 

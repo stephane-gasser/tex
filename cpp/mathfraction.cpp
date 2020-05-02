@@ -9,7 +9,7 @@
 void mathfraction(void)
 {
 	smallnumber c = curchr;
-	if (curlist.auxfield.int_)
+	if (incompleat_noad)
 	{
 		if (c >= 3)
 		{
@@ -29,32 +29,32 @@ void mathfraction(void)
 	}
 	else
 	{
-		curlist.auxfield.int_ = getnode(6);
-		type(curlist.auxfield.int_) = 25;
-		subtype(curlist.auxfield.int_) = 0;
-		link(curlist.auxfield.int_+2) = 3;
-		info(curlist.auxfield.int_+2) = link(curlist.headfield);
-		mem[curlist.auxfield.int_+3].hh = emptyfield;
-		mem[curlist.auxfield.int_+4].qqqq = nulldelimiter;
-		mem[curlist.auxfield.int_+5].qqqq = nulldelimiter;
-		link(curlist.headfield) = 0;
-		curlist.tailfield = curlist.headfield;
+		incompleat_noad = getnode(6);
+		type(incompleat_noad) = 25;
+		subtype(incompleat_noad) = 0;
+		link(incompleat_noad+2) = 3;
+		info(incompleat_noad+2) = link(head);
+		mem[incompleat_noad+3].hh = emptyfield;
+		mem[incompleat_noad+4].qqqq = nulldelimiter;
+		mem[incompleat_noad+5].qqqq = nulldelimiter;
+		link(head) = 0;
+		tail = head;
 		if (c >= 3)
 		{
-			scandelimiter(curlist.auxfield.int_+4, false);
-			scandelimiter(curlist.auxfield.int_+5, false);
+			scandelimiter(incompleat_noad+4, false);
+			scandelimiter(incompleat_noad+5, false);
 		}
 		switch (c%3)
 		{
 			case 0:
 				scandimen(false, false, false);
-				mem[curlist.auxfield.int_+1].int_ = curval;
+				mem[incompleat_noad+1].int_ = curval;
 				break;
 			case 1: 
-				mem[curlist.auxfield.int_+1].int_ = 1073741824;
+				mem[incompleat_noad+1].int_ = 0x40'00'00'00;
 				break;
 			case 2: 
-				mem[curlist.auxfield.int_+1].int_ = 0;
+				mem[incompleat_noad+1].int_ = 0;
 				break;
 		}
 	}

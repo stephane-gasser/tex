@@ -43,7 +43,7 @@ typedef unsigned int nonnegativeinteger; //0..2147483647
 typedef unsigned char smallnumber; // 0..63
 typedef float glueratio;
 typedef std::uint8_t quarterword; // 0..255
-typedef std::uint16_t halfword; // 0..65535
+typedef std::uint16_t halfword; // 0..0xFF'FF
 
 typedef struct
 {

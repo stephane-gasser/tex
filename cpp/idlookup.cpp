@@ -8,11 +8,11 @@ halfword idlookup(int j, int l)
 	int h = buffer[j];
 	for (halfword k = j+1; k <j+l; k++)
 	{
-		h = h+h+buffer[k];
-		while (h >= 1777)
-			h -= 1777;
+		h = 2*h+buffer[k];
+		while (h >= hash_prime)
+			h -= hash_prime;
 	}
-	halfword p = h+514;
+	halfword p = h+hash_base;
 	while (true)
 	{
 		if (hash[p].rh > 0)
@@ -22,14 +22,14 @@ halfword idlookup(int j, int l)
 		if (hash[p].lh == 0)
 		{
 			if (nonewcontrolsequence)
-				p = 2881;
+				p = undefined_control_sequence;
 			else
 			{
 				if (hash[p].rh > 0)
 				{
 					do
 					{
-						if (hashused == 514)
+						if (hashused == hash_base)
 							overflow(503, 2100); //hash size
 						hashused--;
 					} while (hash[hashused].rh);

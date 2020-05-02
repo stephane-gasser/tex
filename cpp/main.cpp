@@ -31,7 +31,7 @@ int main()
 				bad = 3;
 			if (1100 > mem_top)
 				bad = 4;
-			if (1777 > 2100)
+			if (hash_prime > 2100)
 				bad = 5;
 			if (maxinopen >= 128)
 				bad = 6;
@@ -43,27 +43,27 @@ int main()
 				bad = 10;
 			if (0 > 0 || 255 < 127)
 				bad = 11;
-			if (0 > 0 || 65535 < 32767)
+			if (0 > 0 || 0xFF'FF < 0x7F'FF)
 				bad = 12;
-			if (0 < 0 || 255 > 65535)
+			if (0 < 0 || 255 > 0xFF'FF)
 				bad = 13;
-			if (memmin < 0 || memmax >= 65535 || -0-memmin > 65536)
+			if (memmin < 0 || memmax >= 0xFF'FF || -0-memmin > 0x1'00'00)
 				bad = 14;
 			if (0 < 0 || fontmax > 255)
 				bad = 15;
 			if (fontmax > 256)
 				bad = 16;
-			if (savesize > 65535 || maxstrings > 65535) 
+			if (savesize > 0xFF'FF || maxstrings > 0xFF'FF) 
 				bad = 17;
-			if (bufsize > 65535)
+			if (bufsize > 0xFF'FF)
 				bad = 18;
 			if (255 < 255)
 				bad = 19;
-			if (6976 > 65535)
+			if (6976 > 0xFF'FF)
 				bad = 21;
 			if (20 > filenamesize)
 				bad = 31;
-			if (2*65535 < mem_top-memmin)
+			if (2*0xFF'FF < mem_top-memmin)
 				bad = 41;
 			if (bad > 0)
 			{

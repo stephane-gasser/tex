@@ -18,5 +18,5 @@ void newwritewhatsit(smallnumber w)
 			if (curval > 15)
 				curval = 16;
 	}
-	info(curlist.tailfield+1) = curval;
+	info(tail+1) = curval;
 }

@@ -102,10 +102,10 @@ void shownodelist(int p)
 										printchar('>');
 									else
 										print(328); //< -
-									printglue(20000*65536, subtype(p+5), 0);
+									printglue(20000*0x1'00'00, subtype(p+5), 0);
 								}
 								else
-									printglue(round(65536*g), subtype(p+5), 0);
+									printglue(round(0x1'00'00*g), subtype(p+5), 0);
 						}
 						if (mem[p+4].int_)
 						{
@@ -375,7 +375,7 @@ void shownodelist(int p)
 					break;
 				case 25:
 					printesc(879); //fraction, thickness 
-					if (mem[p+1].int_ == 1073741824)
+					if (mem[p+1].int_ == 0x40'00'00'00)
 						print(880); //= default
 					else
 						printscaled(mem[p+1].int_);

@@ -6,8 +6,7 @@
 void appendpenalty(void)
 {
 	scanint();
-	link(curlist.tailfield) = newpenalty(curval);
-	curlist.tailfield = link(curlist.tailfield);
-	if (curlist.modefield == 1)
+	tail_append(newpenalty(curval));
+	if (mode == vmode)
 		buildpage();
 }

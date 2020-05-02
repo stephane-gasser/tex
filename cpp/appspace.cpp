@@ -7,7 +7,7 @@
 void appspace(void)
 {
 	halfword q;
-	if (curlist.auxfield.hh.lh >= 2000 && xspace_skip())
+	if (space_factor >= 2000 && xspace_skip())
 		q = newparamglue(13);
 	else
 	{
@@ -27,13 +27,12 @@ void appspace(void)
 			}
 		}
 		mainp = newspec(mainp);
-		if (curlist.auxfield.hh.lh >= 2000)
+		if (space_factor >= 2000)
 			mem[mainp+1].int_ += fontinfo[7+parambase[cur_font()]].int_;
-		mem[mainp+2].int_ = xnoverd(mem[mainp+2].int_, curlist.auxfield.hh.lh, 1000);
-		mem[mainp+3].int_ = xnoverd(mem[mainp+3].int_, 1000, curlist.auxfield.hh.lh);
+		mem[mainp+2].int_ = xnoverd(mem[mainp+2].int_, space_factor, 1000);
+		mem[mainp+3].int_ = xnoverd(mem[mainp+3].int_, 1000, space_factor);
 		q = newglue(mainp);
 		link(mainp) = 0;
 	}
-	link(curlist.tailfield) = q;
-	curlist.tailfield = q;
+	tail_append(q);
 }

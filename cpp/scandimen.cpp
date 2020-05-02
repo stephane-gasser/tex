@@ -32,14 +32,14 @@ void scandimen(bool mu, bool inf, bool shortcut)
 			{
 				do
 					getxtoken();
-				while (curcmd == 10);
+				while (curcmd == spacer);
 				if (curtok == 3117)
 				{
 					negative = !negative;
 					curtok = 3115;
 				}
 			} while (curtok == 3115);
-			if (curcmd >= 68 && curcmd <= 89)
+			if (curcmd >= min_internal && curcmd <= max_internal)
 				if (mu)
 				{
 					scansomethinginternal(3, false);
@@ -102,7 +102,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 						avail = q;
 					};
 					f = rounddecimals(k);
-					if (curcmd != 10)
+					if (curcmd != spacer)
 						backinput();
 				}
 			}
@@ -132,17 +132,17 @@ void scandimen(bool mu, bool inf, bool shortcut)
 				if (curval >= 16384)
 					aritherror = true;
 				else
-					curval = curval*65536+f;
+					curval = curval*0x1'00'00+f;
 				getxtoken();
-				if (curcmd != 10)
+				if (curcmd != spacer)
 					backinput();
 				break;
 			}
 		auto savecurval = curval;
 		do
 			getxtoken();
-		while (curcmd == 10);
-		if (curcmd < 68 || curcmd > 89)
+		while (curcmd == spacer);
+		if (curcmd < min_internal || curcmd > max_internal)
 			backinput();
 		else
 		{
@@ -161,7 +161,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 			else
 				scansomethinginternal(1, false);
 			auto v = curval;
-			curval = multandadd(savecurval, v, xnoverd(v, f, 65536), 1073741823);
+			curval = multandadd(savecurval, v, xnoverd(v, f, 0x1'00'00), 0x3F'FF'FF'FF);
 			break;
 		}
 		if (!mu)
@@ -170,7 +170,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 			{
 				auto v = fontinfo[6+parambase[cur_font()]].int_;
 				getxtoken();
-				if (curcmd != 10)
+				if (curcmd != spacer)
 					backinput();
 			}
 			else 
@@ -178,7 +178,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 				{
 					auto v = fontinfo[5+parambase[cur_font()]].int_;
 					getxtoken();
-					if (curcmd != 10)
+					if (curcmd != spacer)
 						backinput();
 				}
 		}
@@ -200,9 +200,9 @@ void scandimen(bool mu, bool inf, bool shortcut)
 			if (curval >= 16384)
 				aritherror = true;
 			else
-				curval = curval*65536+f;
+				curval = curval*0x1'00'00+f;
 			getxtoken();
-			if (curcmd != 10)
+			if (curcmd != spacer)
 				backinput();
 			break;
 		}
@@ -212,9 +212,9 @@ void scandimen(bool mu, bool inf, bool shortcut)
 			if (int_par(mag_code) != 1000)
 			{
 				curval = xnoverd(curval, 1000, int_par(mag_code));
-				f = (1000*f+65536*remainder_)/int_par(mag_code);
-				curval += f/65536;
-				f %= 65536;
+				f = (1000*f+0x1'00'00*remainder_)/int_par(mag_code);
+				curval += f/0x1'00'00;
+				f %= 0x1'00'00;
 			}
 		}
 		if (scankeyword(397)) //pt
@@ -222,9 +222,9 @@ void scandimen(bool mu, bool inf, bool shortcut)
 			if (curval >= 16384)
 				aritherror = true;
 			else
-				curval = curval*65536+f;
+				curval = curval*0x1'00'00+f;
 			getxtoken();
-			if (curcmd != 10)
+			if (curcmd != spacer)
 				backinput();
 			break;
 		}
@@ -274,7 +274,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 									if (scankeyword(722)) //sp
 									{
 										getxtoken();
-										if (curcmd != 10)
+										if (curcmd != spacer)
 											backinput();
 										break;
 									}
@@ -295,26 +295,26 @@ void scandimen(bool mu, bool inf, bool shortcut)
 										if (curval >= 16384)
 											aritherror = true;
 										else
-											curval = curval*65536+f;
+											curval = curval*0x1'00'00+f;
 										getxtoken();
-										if (curcmd != 10)
+										if (curcmd != spacer)
 											backinput();
 										break;
 									}
 		curval = xnoverd(curval, num, denom);
-		f = (num*f+65536*remainder_)/denom;
-		curval += f/65536;
-		f %= 65536;
+		f = (num*f+0x1'00'00*remainder_)/denom;
+		curval += f/0x1'00'00;
+		f %= 0x1'00'00;
 		if (curval >= 16384)
 			aritherror = true;
 		else
-			curval = curval*65536+f;
+			curval = curval*0x1'00'00+f;
 		getxtoken();
-		if (curcmd != 10)
+		if (curcmd != spacer)
 			backinput();
 		break;
 	} 
-	if (aritherror || abs(curval) >= 1073741824)
+	if (aritherror || abs(curval) >= 0x40'00'00'00)
 	{
 		if (interaction == 3)
 			printnl(262); //! 
@@ -323,7 +323,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 		helpline[1] = 728; //I can't work with sizes bigger than about 19 feet.
 		helpline[0] = 729; //Continue and I'll use the largest value I can.
 		error;
-		curval = 1073741823;
+		curval = 0x3F'FF'FF'FF;
 		aritherror = false;
 	}
 	if (negative)

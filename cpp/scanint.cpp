@@ -17,7 +17,7 @@ void scanint(void)
 	{
 		do
 			getxtoken();
-		while (curcmd == 10);
+		while (curcmd == spacer);
 		if (curtok == 3117)
 		{
 			negative = !negative;
@@ -27,21 +27,21 @@ void scanint(void)
 	if (curtok == 3168)
 	{
 		gettoken();
-		if (curtok < 4095)
+		if (curtok < 0x0F'FF)
 		{
 			curval = curchr;
-			if (curcmd <= 2)
-				if (curcmd == 2)
+			if (curcmd <= right_brace)
+				if (curcmd == right_brace)
 					alignstate++;
 				else
 					alignstate--;
 		}
 		else 
-			if (curtok < 4352)
-				curval = curtok-4096;
+			if (curtok < 0x11'00)
+				curval = curtok-0x10'00;
 			else
-				curval = curtok-4352;
-		if (curval > 255)
+				curval = curtok-0x11'00;
+		if (curval > 0xFF)
 		{
 			if (interaction == 3)
 				printnl(262); //! 
@@ -55,12 +55,12 @@ void scanint(void)
 		else
 		{
 			getxtoken();
-			if (curcmd != 10)
+			if (curcmd != spacer)
 				backinput();
 		}
 	}
 	else 
-		if (curcmd >= 68 && curcmd <= 89)
+		if (curcmd >= min_internal && curcmd <= max_internal)
 			scansomethinginternal(0, false);
 		else
 		{
@@ -84,15 +84,15 @@ void scanint(void)
 			while (true)
 			{
 				int d;
-				if (curtok < 3120+radix && curtok >= 3120 && curtok <= 3129)
-					d = curtok-3120;
+				if (curtok < 0x0C'00+'0'+radix && curtok >= 0x0C'00+'0' && curtok <= 0x0C'00+'9')
+					d = curtok-0x0C'00-'0';
 				else 
 					if (radix == 16)
-						if (curtok <= 2886 && curtok >= 2881)
-							d = curtok-2871;
+						if (curtok <= 0x0B'00+'F' && curtok >= 0x0B'00+'A')
+							d = curtok-0x0B'00-'A'+10;
 						else 
-							if (curtok <= 3142 && curtok >= 3137)
-								d = curtok-3127;
+							if (curtok <= 0x0C'00+'F' && curtok >= 0x0C'00+'A')
+								d = curtok-0x0C'00-'A'+10;
 							else
 								break;
 					else
@@ -109,7 +109,7 @@ void scanint(void)
 						helpline[1] = 702; //I can only go up to 2147483647='17777777777="7FFFFFFF,
 						helpline[0] = 703; //so I'm using that number instead of yours.
 						error();
-						curval = 2147483647;
+						curval = 0x7F'FF'FF'FF;
 						OKsofar = false;
 					}
 				}
@@ -129,7 +129,7 @@ void scanint(void)
 				backerror();
 			}
 			else 
-				if (curcmd != 10)
+				if (curcmd != spacer)
 					backinput();
 		}
 	if (negative)

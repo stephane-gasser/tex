@@ -38,7 +38,7 @@ bool fincol(void)
 			link(q) = newnullbox();
 			p = link(q);
 			info(p) = end_span;
-			mem[p+1].int_ = -1073741824;
+			mem[p+1].int_ = -0x40'00'00'00;
 			curloop = link(curloop);
 			q = hold_head;
 			r = mem[curloop+3].int_;
@@ -82,17 +82,17 @@ bool fincol(void)
 	{
 		unsave();
 		newsavelevel(6);
-		if (curlist.modefield == -102)
+		if (mode == -hmode)
 		{
 			adjusttail = curtail;
-			u = hpack(link(curlist.headfield), 0, 1);
+			u = hpack(link(head), 0, 1);
 			w = mem[u+1].int_;
 			curtail = adjusttail;
 			adjusttail = 0;
 		}
 		else
 		{
-			u = vpackage(link(curlist.headfield), 0, 1, 0);
+			u = vpackage(link(head), 0, 1, 0);
 			w = mem[u+3].int_;
 		}
 		n = 0;
@@ -151,11 +151,10 @@ bool fincol(void)
 		type(u+5) = o;
 		mem[u+4].int_ = totalshrink[o];
 		popnest();
-		link(curlist.tailfield) = u;
-		curlist.tailfield = u;
-		link(curlist.tailfield) = newglue(info(link(curalign)+1));
-		curlist.tailfield = link(curlist.tailfield);
-		subtype(curlist.tailfield) = 12;
+		link(tail) = u;
+		tail = u;
+		tail_append(newglue(info(link(curalign)+1)));
+		subtype(tail) = 12;
 		if (info(curalign+5) >= 257)
 			return true;
 		initspan(p);
@@ -163,7 +162,7 @@ bool fincol(void)
 	alignstate = 1000000;
 	do
 		getxtoken();
-	while (curcmd == 10);
+	while (curcmd == spacer);
 	curalign = p;
 	initcol();
 	return false;

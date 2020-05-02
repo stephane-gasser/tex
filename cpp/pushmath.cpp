@@ -5,7 +5,7 @@
 void pushmath(groupcode c)
 {
 	pushnest();
-	curlist.modefield = -203;
-	curlist.auxfield.int_ = 0;
+	mode = -mmode;
+	incompleat_noad = 0;
 	newsavelevel(c);
 }

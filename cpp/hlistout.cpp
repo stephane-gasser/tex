@@ -114,9 +114,9 @@ void hlistout(void)
 					ruleht = mem[p+3].int_;
 					ruledp = mem[p+2].int_;
 					rulewd = mem[p+1].int_;
-					if ((ruleht == -1073741824))
+					if ((ruleht == -0x40'00'00'00))
 						ruleht = mem[thisbox+3].int_;
-					if ((ruledp == -1073741824))
+					if ((ruledp == -0x40'00'00'00))
 						ruledp = mem[thisbox+2].int_;
 					ruleht = ruleht+ruledp;
 					if (ruleht > 0 && rulewd > 0)
@@ -184,9 +184,9 @@ void hlistout(void)
 						{
 							ruleht = mem[leaderbox+3].int_;
 							ruledp = mem[leaderbox+2].int_;
-							if ((ruleht == -1073741824))
+							if ((ruleht == -0x40'00'00'00))
 								ruleht = mem[thisbox+3].int_;
-							if ((ruledp == -1073741824))
+							if ((ruledp == -0x40'00'00'00))
 								ruledp = mem[thisbox+2].int_;
 							ruleht = ruleht+ruledp;
 							if (ruleht > 0 && rulewd > 0)

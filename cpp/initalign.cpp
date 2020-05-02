@@ -21,7 +21,7 @@ void initalign(void)
 	auto savecsptr = curcs;
 	pushalignment();
 	alignstate = -1000000;
-	if (curlist.modefield == 203 && (curlist.tailfield != curlist.headfield || curlist.auxfield.int_))
+	if (mode == mmode && (tail != head || incompleat_noad))
 	{
 		if (interaction == 3)
 			printnl(262); //! 
@@ -36,14 +36,14 @@ void initalign(void)
 		flushmath();
 	}
 	pushnest();
-	if (curlist.modefield == 203)
+	if (mode == mmode)
 	{
-		curlist.modefield = -1;
-		curlist.auxfield.int_ = nest[nestptr-2].auxfield.int_;
+		mode = -1;
+		incompleat_noad = nest[nestptr-2].auxfield.int_;
 	}
 	else 
-		if (curlist.modefield > 0)
-		curlist.modefield = -curlist.modefield;
+		if (mode > 0)
+		mode = -mode;
 	scanspec(6, false);
 	link(align_head) = 0;
 	curalign = align_head;
@@ -56,17 +56,17 @@ void initalign(void)
 	{
 		link(curalign) = newparamglue(11);
 		curalign = link(curalign);
-		if (curcmd == 5)
+		if (curcmd == car_ret)
 			break;
 		p = hold_head;
 		link(p) = 0;
 		while (true)
 		{
 			getpreambletoken();
-			if (curcmd == 6)
+			if (curcmd == mac_param)
 				break;
-			if (curcmd <= 5 && curcmd >= 4 &&alignstate == -1000000)
-				if (p == hold_head && curloop == 0 &&curcmd == 4)
+			if (curcmd <= out_param && curcmd >= tab_mark &&alignstate == -1000000)
+				if (p == hold_head && curloop == 0 && curcmd == tab_mark)
 					curloop = curalign;
 				else
 				{
@@ -81,7 +81,7 @@ void initalign(void)
 					break;
 				}
 			else 
-				if (curcmd != 10 || p != hold_head)
+				if (curcmd != spacer || p != hold_head)
 				{
 					link(p) = getavail();
 					p = link(p);
@@ -91,16 +91,16 @@ void initalign(void)
 		link(curalign) = newnullbox();
 		curalign = link(curalign);
 		info(curalign) = end_span;
-		mem[curalign+1].int_ = -1073741824;
+		mem[curalign+1].int_ = -0x40'00'00'00;
 		mem[curalign+3].int_ = link(hold_head);
 		p = hold_head;
 		link(p) = 0;
 		while (true)
 		{
 			getpreambletoken();
-			if (curcmd <= 5 && curcmd >= 4 &&alignstate == -1000000)
+			if (curcmd <= out_param && curcmd >= tab_mark &&alignstate == -1000000)
 				break;
-			if (curcmd == 6)
+			if (curcmd == mac_param)
 			{
 				if (interaction == 3)
 					printnl(262); //!

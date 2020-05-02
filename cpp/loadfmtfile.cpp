@@ -52,7 +52,7 @@ bool loadfmtfile(void)
 		return false;
 	}
 	readInt(x);	
-	if (x != 1777)
+	if (x != hash_prime)
 	{
 		std::cout << "(Fatal format file error; I''m stymied\n";
 		return false;
@@ -160,7 +160,7 @@ bool loadfmtfile(void)
 		info(rover+1) = q;
 		link(q+1) = rover;
 		info(q+1) = p;
-		link(q) = 65535;
+		link(q) = 0xFF'FF;
 		info(q) = -q;
 	}
 	readInt(x);	
@@ -284,7 +284,7 @@ bool loadfmtfile(void)
 		readInt(fontsize[k]);
 		readInt(fontdsize[k]);
 		readInt(x);	
-		if (x < 0 || x > 65535)
+		if (x < 0 || x > 0xFF'FF)
 		{
 			std::cout << "(Fatal format file error; I''m stymied\n";
 			return false;
@@ -396,7 +396,7 @@ bool loadfmtfile(void)
 		else
 			hyphword[j] = x;
 		readInt(x);
-		if (x < 0 || x > 65535)
+		if (x < 0 || x > 0xFF'FF)
 		{
 			std::cout << "(Fatal format file error; I''m stymied\n";
 			return false;

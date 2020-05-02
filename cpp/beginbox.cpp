@@ -33,7 +33,7 @@ void beginbox(int boxcontext)
 			break;
 		case 2:
 			curbox = 0;
-			if (abs(curlist.modefield) == 203)
+			if (abs(mode) == mmode)
 			{
 				youcant();
 				helpptr = 1;
@@ -41,7 +41,7 @@ void beginbox(int boxcontext)
 				error();
 			}
 			else 
-				if (curlist.modefield == 1 &&curlist.headfield == curlist.tailfield)
+				if (mode == vmode && head == tail)
 				{
 					youcant();
 					helpptr = 2;
@@ -50,10 +50,10 @@ void beginbox(int boxcontext)
 					error();
 				}
 				else 
-					if (curlist.tailfield < himemmin)
-						if (type(curlist.tailfield) == hlist_node || type(curlist.tailfield) == vlist_node)
+					if (tail < himemmin)
+						if (type(tail) == hlist_node || type(tail) == vlist_node)
 						{
-							q = curlist.headfield;
+							q = head;
 							bool brk = false;
 							do
 							{
@@ -62,19 +62,19 @@ void beginbox(int boxcontext)
 								{
 									for (m = 1 ; m <= subtype(q); m++)
 										p = link(p);
-									if (p == curlist.tailfield)
+									if (p == tail)
 									{
 										brk = true;
 										break;
 									}
 								}
 								q = link(p);
-							} while (q != curlist.tailfield);
+							} while (q != tail);
 							if (!brk)
 							{
-								curbox = curlist.tailfield;
+								curbox = tail;
 								mem[curbox+4].int_ = 0;
-								curlist.tailfield = p;
+								tail = p;
 								link(p) = 0;
 							}
 						}
@@ -99,7 +99,7 @@ void beginbox(int boxcontext)
 			k = curchr-4;
 			savestack[saveptr].int_ = boxcontext;
 			if (k == 102)
-				if (boxcontext < 1073741824 && abs(curlist.modefield) == 1)
+				if (boxcontext < 0x40'00'00'00 && abs(mode) == vmode)
 					scanspec(3, true);
 				else
 					scanspec(2, true);
@@ -115,16 +115,16 @@ void beginbox(int boxcontext)
 				normalparagraph();
 			}
 			pushnest();
-			curlist.modefield = -k;
+			mode = -k;
 			if (k == 1)
 			{
-				curlist.auxfield.int_ = -65536000;
+				prev_depth = ignore_depth;
 				if (every_vbox())
 					begintokenlist(every_vbox(), 11);
 			}
 			else
 			{
-				curlist.auxfield.hh.lh = 1000;
+				space_factor = 1000;
 				if (every_hbox())
 					begintokenlist(every_hbox(), 10);
 			}

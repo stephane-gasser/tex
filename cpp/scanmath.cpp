@@ -13,7 +13,7 @@ void scanmath(halfword p)
 {
 	do
 		getxtoken();
-	while (curcmd == 10 || curcmd == 0);
+	while (curcmd == spacer || curcmd == escape);
 	bool label21;
 	do
 	{
@@ -21,11 +21,11 @@ void scanmath(halfword p)
 		int c;
 		switch (curcmd)
 		{
-			case 11:
-			case 12:
-			case 68:
+			case letter:
+			case other_char:
+			case char_given:
 				c = math_code(curchr);
-				if (c == 32768)
+				if (c == 0x80'00)
 				{
 					curcs = curchr+1;
 					curcmd = eq_type(curcs);
@@ -34,27 +34,27 @@ void scanmath(halfword p)
 					backinput();
 					do
 						getxtoken();
-					while (curcmd == 10 || curcmd == 0);
+					while (curcmd == spacer || curcmd == escape);
 					label21 = true;
 					continue;
 				}
 				break;
-			case 16:
+			case char_num:
 				scancharnum();
 				curchr = curval;
-				curcmd = 68;
+				curcmd = char_given;
 				label21 = true;
 				continue;
-			case 17:
+			case math_char_num:
 				scanfifteenbitint();
 				c = curval;
 				break;
-			case 69: 
+			case math_given: 
 				c = curchr;
 				break;
-			case 15:
+			case delim_num:
 				scantwentysevenbitint();
-				c = curval/4096;
+				c = curval/0x10'00;
 				break;
 			default:
 				backinput();
@@ -65,9 +65,9 @@ void scanmath(halfword p)
 		}
 	} while (label21);
 	link(p) = 1;
-	subtype(p) = c%256;
-	if (c >= 28672 && int_par(cur_fam_code) >= 0 && int_par(cur_fam_code) < 16)
+	subtype(p) = c%0x1'00;
+	if (c >= 0x7000 && int_par(cur_fam_code) >= 0 && int_par(cur_fam_code) < 0x10)
 		type(p) = int_par(cur_fam_code);
 	else
-		type(p) = (c/256)%16;
+		type(p) = (c/0x1'00)%0x10;
 }

@@ -14,19 +14,19 @@ void alignpeek(void)
 		alignstate = 1000000;
 		do
 			getxtoken();
-		while (curcmd == 10);
-		if (curcmd == 34)
+		while (curcmd == spacer);
+		if (curcmd == no_align)
 		{
 			scanleftbrace();
 			newsavelevel(7);
-			if (curlist.modefield == -1)
+			if (mode == -vmode)
 				normalparagraph();
 		}
 		else 
-			if (curcmd == 2)
+			if (curcmd == right_brace)
 				finalign();
 			else 
-				if (curcmd == 5 && curchr == 258)
+				if (curcmd == car_ret && curchr == 258)
 					continue;
 				else
 				{

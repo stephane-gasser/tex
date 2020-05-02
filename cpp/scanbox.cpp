@@ -11,11 +11,11 @@ void scanbox(int boxcontext)
 {
 	do
 		getxtoken();
-	while (curcmd == 10 || curcmd == 0);
-	if (curcmd == 20)
+	while (curcmd == spacer || curcmd == escape);
+	if (curcmd == make_box)
 		beginbox(boxcontext);
 	else 
-		if (boxcontext >= 1073742337 && (curcmd == 36 || curcmd == 35))
+		if (boxcontext > 0x40'00'02'00 && (curcmd == hrule || curcmd == vrule))
 		{
 			curbox = scanrulespec();
 			boxend(boxcontext);

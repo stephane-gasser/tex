@@ -24,7 +24,7 @@ void makeord(halfword q)
 					curi = fontinfo[a].qqqq;
 					if (curi.b0 > 128)
 					{
-						a = ligkernbase[curf]+256*curi.b2+curi.b3+32768-256*128;
+						a = ligkernbase[curf]+0x1'00*curi.b2+curi.b3;
 						curi = fontinfo[a].qqqq;
 					}
 					while (true)
@@ -34,7 +34,7 @@ void makeord(halfword q)
 							if (curi.b0 <= 128)
 								if (curi.b2 >= 128)
 								{
-									p = newkern(fontinfo[kernbase[curf]+256*curi.b2+curi.b3].int_);
+									p = newkern(fontinfo[kernbase[curf]+0x1'00*curi.b2+curi.b3].int_);
 									link(p) = link(q);
 									link(q) = p;
 									return;

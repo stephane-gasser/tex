@@ -9,20 +9,19 @@ void subsup(void)
 {
 	smallnumber t = 0;
 	halfword p = 0;
-	if (curlist.tailfield != curlist.headfield)
-		if (type(curlist.tailfield) >= 16 && type(curlist.tailfield) < 30)
+	if (tail != head)
+		if (type(tail) >= 16 && type(tail) < 30)
 		{
-			p = curlist.tailfield+2+curcmd-7;
+			p = tail+2+curcmd-sup_mark;
 			t = link(p);
 		}
 	if (p == 0 || t)
 	{
-		link(curlist.tailfield) = newnoad();
-		curlist.tailfield = link(curlist.tailfield);
-		p = curlist.tailfield+2+curcmd-7;
+		tail_append(newnoad());
+		p = tail+2+curcmd-sup_mark;
 		if (t)
 		{
-			if (curcmd == 7)
+			if (curcmd == sup_mark)
 			{
 				if (interaction == 3)
 					printnl(262); //! 

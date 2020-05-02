@@ -8,8 +8,8 @@
 
 void headforvmode(void)
 {
-	if (curlist.modefield < 0)
-		if (curcmd != 36)
+	if (mode < 0)
+		if (curcmd != hrule)
 			offsave();
 		else
 		{

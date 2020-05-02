@@ -4,8 +4,8 @@
 
 void printdelimiter(halfword p)
 {
-	int a = mem[p].qqqq.b0*256+mem[p].qqqq.b1;
-	a = a*4096+mem[p].qqqq.b2*256+mem[p].qqqq.b3;
+	int a = mem[p].qqqq.b0*0x1'00+mem[p].qqqq.b1;
+	a = a*0x10'00+mem[p].qqqq.b2*0x1'00+mem[p].qqqq.b3;
 	if (a < 0)
 		printint(a);
 	else
