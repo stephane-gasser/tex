@@ -3,9 +3,9 @@
 
 void insertrelax(void)
 {
-	curtok = 4095+curcs;
+	curtok = cs_token_flag+curcs;
 	backinput();
-	curtok = 6716;
+	curtok = cs_token_flag+frozen_relax;
 	backinput();
 	curinput.indexfield = 4;
 }

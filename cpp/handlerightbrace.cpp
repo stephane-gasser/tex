@@ -38,8 +38,7 @@ void handlerightbrace(void)
 			unsave();
 			break;
 		case 0:
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(1043); //Too many }'s
 			helpptr = 2;
 			helpline[1] = 1044; //You've closed more groups than you opened.
@@ -74,7 +73,7 @@ void handlerightbrace(void)
 			f = int_par(floating_penalty_code);
 			unsave();
 			saveptr--;
-			p = vpackage(link(head), 0, 1, 0x3F'FF'FF'FF);
+			p = vpackage(link(head), 0, 1, max_dimen);
 			popnest();
 			if (savestack[saveptr+0].int_ < 255)
 			{
@@ -102,8 +101,7 @@ void handlerightbrace(void)
 		case 8:
 			if ((curinput.locfield || curinput.indexfield != 6) && curinput.indexfield != 3)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(1009); //Unbalanced output routine
 				helpptr = 2;
 				helpline[1] = 1010; //Your sneaky output routine has problematic {'s and/or }'s.
@@ -120,8 +118,7 @@ void handlerightbrace(void)
 			insertpenalties = 0;
 			if (box(255))
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(1012); //Output routine didn't use all of 
 				printesc(409); //box
 				printint(255); 
@@ -155,9 +152,8 @@ void handlerightbrace(void)
 			break;
 		case 6:
 			backinput();
-			curtok = 6710;
-			if (interaction == 3)
-				printnl(262); //! 
+			curtok = cs_token_flag+frozen_cr;
+			printnl(262); //! 
 			print(625); //Missing 
 			printesc(898); //cr
 			print(626); // inserted
@@ -174,7 +170,7 @@ void handlerightbrace(void)
 			endgraf();
 			unsave();
 			saveptr -= 2;
-			p = vpackage(link(head), savestack[saveptr+1].int_, savestack[saveptr].int_, 0x3F'FF'FF'FF);
+			p = vpackage(link(head), savestack[saveptr+1].int_, savestack[saveptr].int_, max_dimen);
 			popnest();
 			tail_append(newnoad());
 			type(tail) = 29;

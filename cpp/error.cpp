@@ -17,11 +17,11 @@
 
 void error(void)
 {
-	if (history < 2)
-		history = 2;
+	if (history < error_message_issued)
+		history = error_message_issued;
 	printchar('.');
 	showcontext();
-	if (interaction == 3)
+	if (interaction == error_stop_mode)
 		while (true)
 		{
 			clearforerrorprompt();
@@ -80,7 +80,7 @@ void error(void)
 						slowprint(inputstack[baseptr].namefield);
 						print(266); // at line 
 						printint(line);
-						interaction = 2;
+						interaction = scroll_mode;
 						jumpout();
 					}
 					break;
@@ -150,7 +150,7 @@ void error(void)
 					std::cout << std::flush;
 					return;
 				case 88:
-					interaction = 2;
+					interaction = scroll_mode;
 					jumpout();
 					break;
 			}
@@ -167,10 +167,10 @@ void error(void)
 	if (errorcount == 100)
 	{
 		printnl(263); //(That makes 100 errors; please try again.)
-		history = 3;
+		history = fatal_error_stop;
 		jumpout();
 	}
-	if (interaction > 0)
+	if (interaction > batch_mode)
 		selector--;
 	if (useerrhelp)
 	{
@@ -184,7 +184,7 @@ void error(void)
 			printnl(helpline[helpptr]);
 		}
 	println();
-	if (interaction > 0)
+	if (interaction > batch_mode)
 		selector++;
 	println();
 }

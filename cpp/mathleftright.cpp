@@ -18,8 +18,7 @@ void mathleftright(void)
 		if (curgroup == 15)
 		{
 			scandelimiter(garbage, false);
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(776); //Extra 
 			printesc(876); //right
 			helpptr = 1;

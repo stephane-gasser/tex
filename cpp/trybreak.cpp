@@ -44,7 +44,7 @@ void trybreak(int pi, smallnumber breaktype)
 		l = info(r+1);
 		if (l > oldl)
 		{
-			if ((minimumdemerits < 0x3F'FF'FF'FF) and ((oldl != easyline) or (r == active)))
+			if ((minimumdemerits < max_dimen) and ((oldl != easyline) or (r == active)))
 			{
 				if (nobreakyet)
 				{
@@ -161,7 +161,7 @@ void trybreak(int pi, smallnumber breaktype)
 						prevprevr = prevr;
 						prevr = q;
 					}
-				if (abs(int_par(adj_demerits_code)) >= 0x3F'FF'FF'FF-minimumdemerits)
+				if (abs(int_par(adj_demerits_code)) >= max_dimen-minimumdemerits)
 					minimumdemerits = 1073741822;
 				else
 					minimumdemerits += abs(int_par(adj_demerits_code));
@@ -184,9 +184,9 @@ void trybreak(int pi, smallnumber breaktype)
 						link(prevr) = q;
 						prevr = q;
 					}
-					minimaldemerits[fitclass] = 0x3F'FF'FF'FF;
+					minimaldemerits[fitclass] = max_dimen;
 				}
-				minimumdemerits = 0x3F'FF'FF'FF;
+				minimumdemerits = max_dimen;
 				if (r != active)
 				{
 					q = getnode(7);
@@ -259,7 +259,7 @@ void trybreak(int pi, smallnumber breaktype)
 		}
 		if (b > 10000 || pi == -10000)
 		{
-			if (finalpass && minimumdemerits == 0x3F'FF'FF'FF && link(r) == active &&prevr == active)
+			if (finalpass && minimumdemerits == max_dimen && link(r) == active &&prevr == active)
 				artificialdemerits = true;
 			else 
 				if (b > threshold)

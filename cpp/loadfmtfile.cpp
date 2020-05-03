@@ -46,7 +46,7 @@ bool loadfmtfile(void)
 		return false;
 	}
 	readInt(x);	
-	if (x != 6106)
+	if (x != eqtb_size)
 	{
 		std::cout << "(Fatal format file error; I''m stymied\n";
 		return false;
@@ -58,7 +58,7 @@ bool loadfmtfile(void)
 		return false;
 	}
 	readInt(x);	
-	if (x != 307)
+	if (x != hyph_size)
 	{
 		std::cout << "(Fatal format file error; I''m stymied\n";
 		return false;
@@ -205,19 +205,18 @@ bool loadfmtfile(void)
 		for (j = k; j < k+x; j++)
 			eqtb[j] = eqtb[k-1];
 		k += x;
-	}
-	while (k <= 6106);
+	} while (k <= eqtb_size);
 	readInt(x);	
-	if (x < 514 || x > 2614)
+	if (x < hash_base || x > frozen_control_sequence)
 	{
 		std::cout << "(Fatal format file error; I''m stymied\n";
 		return false;
 	}
 	else
 		parloc = x;
-	partoken = 4095+parloc;
+	partoken = cs_token_flag+parloc;
 	readInt(x);	
-	if (x < 514 || x > 2614)
+	if (x < hash_base || x > frozen_control_sequence)
 	{
 		std::cout << "(Fatal format file error; I''m stymied\n";
 		return false;
@@ -225,14 +224,14 @@ bool loadfmtfile(void)
 	else
 		writeloc = x;
 	readInt(x);	
-	if (x < 514 || x > 2614)
+	if (x < hash_base || x > frozen_control_sequence)
 	{
 		std::cout << "(Fatal format file error; I''m stymied\n";
 		return false;
 	}
 	else
 		hashused = x;
-	p = 513;
+	p = null_cs;
 	do
 	{
 		readInt(x);	
@@ -245,7 +244,7 @@ bool loadfmtfile(void)
 			p = x;
 		readInt(hash[p]);
 	} while (p != hashused);
-	for (p = hashused+1; p <= 2880; p++)
+	for (p = hashused+1; p < undefined_control_sequence; p++)
 		readInt(hash[p]);
 	readInt(cscount);
 	readInt(x);

@@ -19,8 +19,7 @@ void begininsertoradjust(void)
 		scaneightbitint();
 		if (curval == 255)
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(1084); //You can't 
 			printesc(330); //insert
 			printint(255);

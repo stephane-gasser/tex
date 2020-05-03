@@ -6,8 +6,7 @@
 
 void omiterror(void)
 {
-	if (interaction == 3)
-		printnl(262); //! 
+	printnl(262); //! 
 	print(1113); //Misplaced 
 	printesc(530); //omit
 	helpptr = 2;

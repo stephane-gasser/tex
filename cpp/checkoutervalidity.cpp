@@ -21,7 +21,7 @@ void checkoutervalidity(void)
 			if (curinput.statefield == 0 || curinput.namefield < 1 || curinput.namefield > 17)
 			{
 				auto p = getavail();
-				info(p) = 0x0F'FF+curcs;
+				info(p) = cs_token_flag+curcs;
 				begintokenlist(p, 3);
 			}
 			curcmd = spacer;
@@ -32,15 +32,13 @@ void checkoutervalidity(void)
 			runaway();
 			if (curcs == 0)
 			{
-				if (interaction = 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(604); //File ended
 			}
 			else
 			{
 				curcs = 0;
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(605); //Forbidden control sequence found
 			}
 			print(606); // while scanning 
@@ -50,7 +48,7 @@ void checkoutervalidity(void)
 			{
 				case 2:
 					print(570); //definition
-					info(p) = 637;
+					info(p) = right_brace*0x01'00+'}';
 					break;
 				case 3:
 					print(612); //use
@@ -59,16 +57,16 @@ void checkoutervalidity(void)
 					break;
 				case 4:
 					print(572); //preamble
-					info(p) = 637;
+					info(p) = right_brace*0x01'00+'}';
 					q = p;
 					p = getavail();
 					link(p) = q;
-					info(p) = 6710;
+					info(p) = frozen_cr+cs_token_flag;
 					alignstate = -1000000;
 					break;
 				case 5:
 					print(573); //text
-					info(p) = 637;
+					info(p) = right_brace*0x01'00+'}';
 			}
 			begintokenlist(p, 4);
 			print(607); // of 
@@ -84,8 +82,7 @@ void checkoutervalidity(void)
 		}
 		else
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(598); //Incomplete 
 			printcmdchr(105, curif);
 			print(599); //; all text was ignored after line 
@@ -98,7 +95,7 @@ void checkoutervalidity(void)
 				curcs = 0;
 			else
 				helpline[2] = 603; //The file ended while I was skipping conditional text.
-			curtok = 6713;
+			curtok = frozen_fi+cs_token_flag;
 			inserror();
 		}
 		deletionsallowed = true;

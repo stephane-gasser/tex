@@ -19,7 +19,7 @@ int main()
 {
 	try
 	{
-		history = 3;
+		history = fatal_error_stop;
 		if (readyalready != 314159)
 		{
 			bad = 0;
@@ -145,13 +145,13 @@ int main()
 			buffer[curinput.limitfield] = int_par(end_line_char_code);
 		fixdateandtime();
 		magicoffset = strstart[891]-9*16;
-		if (interaction == 0)
+		if (interaction == batch_mode)
 			selector = 16;
 		else
 			selector = 17;
 		if (curinput.locfield < curinput.limitfield && cat_code(buffer[curinput.locfield]))
 			startinput();
-		history = 0;
+		history = spotless;
 		maincontrol();
 		finalcleanup();
 	}

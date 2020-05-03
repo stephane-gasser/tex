@@ -48,8 +48,7 @@ void fireup(halfword c)
 		bestpagebreak = 0;
 	if (box(255))
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(338); //
 		printesc(409); //box
 		print(1002); //255 is not void
@@ -111,7 +110,7 @@ void fireup(halfword c)
 						info(p+4) = prunepagetop(link(r+1));
 						if (info(p+4))
 						{
-							tempptr = vpackage(info(p+4), 0, 1, 0x3F'FF'FF'FF);
+							tempptr = vpackage(info(p+4), 0, 1, max_dimen);
 							mem[p+3].int_ = mem[tempptr+3].int_+mem[tempptr+2].int_;
 							freenode(tempptr, 7);
 							wait = true;
@@ -121,7 +120,7 @@ void fireup(halfword c)
 					n = subtype(r);
 					tempptr = info(box(n)+5);
 					freenode(box(n), 7);
-					box(n) = vpackage(tempptr, 0, 1, 0x3F'FF'FF'FF);
+					box(n) = vpackage(tempptr, 0, 1, max_dimen);
 				}
 				else
 				{
@@ -176,7 +175,7 @@ void fireup(halfword c)
 	savevbadness = int_par(vbadness_code);
 	int_par(vbadness_code) = 10000;
 	savevfuzz = dimen_par(vfuzz_code);
-	dimen_par(vfuzz_code) = 0x3F'FF'FF'FF;
+	dimen_par(vfuzz_code) = max_dimen;
 	box(255) = vpackage(link(page_head), bestsize, 0, pagemaxdepth);
 	int_par(vbadness_code) = savevbadness;
 	dimen_par(vfuzz_code) = savevfuzz;
@@ -211,8 +210,7 @@ void fireup(halfword c)
 	if (output_routine())
 		if (deadcycles >= int_par(max_dead_cycles_code))
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(1004); //Output loop---
 			printint(deadcycles);
 			print(1005); // consecutive dead cycles

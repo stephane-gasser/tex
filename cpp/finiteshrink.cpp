@@ -11,8 +11,7 @@ halfword finiteshrink(halfword p)
 	if (noshrinkerroryet)
 	{
 		noshrinkerroryet = false;
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(916); //Infinite glue shrinkage found in a paragraph
 		helpptr = 5;
 		helpline[4] = 917; //The paragraph just ended includes some glue that has

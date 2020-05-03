@@ -68,10 +68,10 @@ void expand(void)
 				scannerstatus = savescannerstatus;
 				t = curtok;
 				backinput();
-				if (t >= 4095)
+				if (t >= cs_token_flag)
 				{
 					p = getavail();
-					info(p) = 6718;
+					info(p) = frozen_dont_expand+cs_token_flag;
 					link(p) = curinput.locfield;
 					curinput.startfield = p;
 					curinput.locfield = p;
@@ -93,8 +93,7 @@ void expand(void)
 				} while (curcs == 0);
 				if (curcmd != 67)
 				{
-					if (interaction = 3)
-						printnl(262); //! 
+					printnl(262); //! 
 					print(625); //Missing 
 					printesc(505); //endcsname
 					print(626); // inserted
@@ -130,7 +129,7 @@ void expand(void)
 				flushlist(r);
 				if (eq_type(curcs) == undefined_cs)
 					eqdefine(curcs, 0, 256);
-				curtok = curcs+4095;
+				curtok = curcs+cs_token_flag;
 				backinput();
 				break;
 			case 108: 
@@ -148,8 +147,7 @@ void expand(void)
 						insertrelax();
 					else
 					{
-						if (interaction == 3)
-							printnl(262); //! 
+						printnl(262); //! 
 						print(776); //Extra 
 						printcmdchr(106, curchr); 
 						{
@@ -180,8 +178,7 @@ void expand(void)
 						startinput();
 				break;
 			default:
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(619); //Undefined control sequence
 				helpptr = 5;
 				helpline[4] = 620; //The control sequence at the end of the top line
@@ -197,7 +194,7 @@ void expand(void)
 			macrocall();
 		else
 		{
-			curtok = 6715;
+			curtok = frozen_endv+cs_token_flag; 
 			backinput();
 		}
 	curval = cvbackup;

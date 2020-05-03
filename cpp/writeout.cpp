@@ -14,24 +14,23 @@
 void writeout(halfword p)
 {
 	auto q = getavail();
-	info(q) = 637;
+	info(q) = right_brace*0x1'00+'}';
 	auto r = getavail();
 	link(q) = r;
-	info(r) = 6717;
+	info(r) = cs_token_flag+end_write;
 	begintokenlist(q, 4);
 	begintokenlist(link(p+1), 15);
 	q = getavail();
-	info(q) = 379;
+	info(q) = left_brace*0x1'00+'{';
 	begintokenlist(q, 4);
 	int oldmode = mode;
 	mode = 0;
 	curcs = writeloc;
 	q = scantoks(false, true);
 	gettoken();
-	if (curtok != 6717)
+	if (curtok != end_write+cs_token_flag)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(1296); //Unbalanced write command
 		helpptr = 2;
 		helpline[1] = 1297; //On this page there's a \write with fewer real {'s than }'s.
@@ -39,7 +38,7 @@ void writeout(halfword p)
 		error();
 		do
 			gettoken();
-		while (curtok != 6717);
+		while (curtok != end_write+cs_token_flag);
 	}
 	;
 	mode = oldmode;

@@ -29,8 +29,7 @@ void aftermath(void)
 	bool danger = false;
 	if (fontparams[fam_fnt(2)] < 22 || fontparams[fam_fnt(18)] < 22 || fontparams[fam_fnt(34)] < 22)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(1157); //Math formula deleted: Insufficient symbol fonts
 		helpptr = 3;
 		helpline[2] = 1158; //0Sorry, but I can't typeset math unless \textfont 2
@@ -42,8 +41,7 @@ void aftermath(void)
 	}
 	else if (fontparams[fam_fnt(3)] < 13 || fontparams[fam_fnt(19)] < 13 || fontparams[fam_fnt(35)] < 13)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(1161); //Math formula deleted: Insufficient extension fonts
 		helpptr = 3;
 		helpline[2] = 1162; //Sorry, but I can't typeset math unless \textfont 3
@@ -59,9 +57,7 @@ void aftermath(void)
 	if (mode == -m)
 	{
 		getxtoken();
-		if (curcmd != math_shift)
-			if (interaction == 3)
-				printnl(262); //! 
+		printnl(262); //! 
 		print(1165); //Display math should end with $$
 		helpptr = 2;
 		helpline[1] = 1166; //The `$' that I just saw supposedly matches a previous `$$'.
@@ -79,8 +75,7 @@ void aftermath(void)
 		danger = false;
 		if (fontparams[fam_fnt(2)] < 22 || fontparams[fam_fnt(18)] < 22 || fontparams[fam_fnt(34)] < 22)
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(1157); //Math formula deleted: Insufficient symbol fonts
 			helpptr = 3;
 			helpline[2] = 1158; //Sorry, but I can't typeset math unless \textfont 2
@@ -93,8 +88,7 @@ void aftermath(void)
 		else 
 			if (fontparams[fam_fnt(3)] < 13 || fontparams[fam_fnt(19)] < 13 || fontparams[fam_fnt(35)] < 13)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(1161); //Math formula deleted: Insufficient extension fonts
 				helpptr = 3;
 				helpline[2] = 1162; //Sorry, but I can't typeset math unless \textfont 3
@@ -130,8 +124,7 @@ void aftermath(void)
 			getxtoken();
 			if (curcmd != math_shift)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(1165); //Display math should end with $$
 				helpptr = 2;
 				helpline[1] = 1166; //The `$' that I just saw supposedly matches a previous `$$'.

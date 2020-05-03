@@ -18,16 +18,16 @@ void scanint(void)
 		do
 			getxtoken();
 		while (curcmd == spacer);
-		if (curtok == 3117)
+		if (curtok == other_char*0x01'00+'-')
 		{
 			negative = !negative;
-			curtok = 3115;
+			curtok = other_char*0x01'00+'+';
 		}
-	} while (curtok == 3115);
-	if (curtok == 3168)
+	} while (curtok == other_char*0x01'00+'+');
+	if (curtok == other_char*0x01'00+'`')
 	{
 		gettoken();
-		if (curtok < 0x0F'FF)
+		if (curtok < cs_token_flag)
 		{
 			curval = curchr;
 			if (curcmd <= right_brace)
@@ -37,19 +37,18 @@ void scanint(void)
 					alignstate--;
 		}
 		else 
-			if (curtok < 0x11'00)
+			if (curtok < 0x11'00) // cmd < 17
 				curval = curtok-0x10'00;
 			else
 				curval = curtok-0x11'00;
 		if (curval > 0xFF)
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(698); //Improper alphabetic constant
 			helpptr = 2;
 			helpline[1] = 699; //A one-character control sequence belongs after a ` mark.
 			helpline[0] = 700; //So I'm essentially inserting \0 here.
-			curval = 48;
+			curval = '0';
 			backerror();
 		}
 		else
@@ -66,17 +65,17 @@ void scanint(void)
 		{
 			radix = 10;
 			auto m = 214748364;
-			if (curtok == 3111)
+			if (curtok == 3111) //other_char+'\''
 			{
 				radix = 8;
-				m = 268435456;
+				m = 0x10'00'00'00;
 				getxtoken();
 			}
 			else 
-				if (curtok == 3106)
+				if (curtok == 3106) //other_char+'\"'
 				{
 					radix = 16;
-					m = 134217728;
+					m = 0x08'00'00'00;
 					getxtoken();
 				};
 			bool vacuous = true;
@@ -85,13 +84,13 @@ void scanint(void)
 			{
 				int d;
 				if (curtok < 0x0C'00+'0'+radix && curtok >= 0x0C'00+'0' && curtok <= 0x0C'00+'9')
-					d = curtok-0x0C'00-'0';
+					d = curtok-0x0C'00-'0'; // 0xc00 = other_char
 				else 
 					if (radix == 16)
-						if (curtok <= 0x0B'00+'F' && curtok >= 0x0B'00+'A')
+						if (curtok <= 0x0B'00+'F' && curtok >= 0x0B'00+'A') //oxb00 = letter
 							d = curtok-0x0B'00-'A'+10;
 						else 
-							if (curtok <= 0x0C'00+'F' && curtok >= 0x0C'00+'A')
+							if (curtok <= 0x0C'00+'F' && curtok >= 0x0C'00+'A') // 0xc00 = other_char
 								d = curtok-0x0C'00-'A'+10;
 							else
 								break;
@@ -102,14 +101,13 @@ void scanint(void)
 				{
 					if (OKsofar)
 					{
-						if (interaction == 3)
-							printnl(262); //! 
+						printnl(262); //! 
 						print(701); //Number too big
 						helpptr = 2;
 						helpline[1] = 702; //I can only go up to 2147483647='17777777777="7FFFFFFF,
 						helpline[0] = 703; //so I'm using that number instead of yours.
 						error();
-						curval = 0x7F'FF'FF'FF;
+						curval = infinity;
 						OKsofar = false;
 					}
 				}
@@ -119,8 +117,7 @@ void scanint(void)
 			}
 			if (vacuous)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(664); //Missing number, treated as zero
 				helpptr = 3;
 				helpline[2] = 665; //A number should have been here; I inserted `0'.

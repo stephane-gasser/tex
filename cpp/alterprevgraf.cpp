@@ -16,8 +16,7 @@ void alterprevgraf(void)
 	scanint();
 	if (curval < 0)
 	{
-		if (interaction == 3)
-			printnl(262); //
+		printnl(262); //
 		print(954); // Bad 
 		printesc(532); //prevgraf
 		helpptr = 1;

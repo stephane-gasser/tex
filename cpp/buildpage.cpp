@@ -139,8 +139,7 @@ void buildpage(void)
 					pagesofar[6] += mem[q+3].int_;
 					if (subtype(q) && mem[q+3].int_)
 					{
-						if (interaction == 3)
-							printnl(262); //! 
+						printnl(262); //! 
 						print(997); //Infinite glue shrinkage inserted from 
 						printesc(395); //skip
 						printint(n);
@@ -169,7 +168,7 @@ void buildpage(void)
 					else
 					{
 						if (count(n) <= 0)
-							w = 0x3F'FF'FF'FF;
+							w = max_dimen;
 						else
 						{
 							w = pagesofar[0]-pagesofar[1]-pagesofar[7];
@@ -207,10 +206,10 @@ void buildpage(void)
 						b =	badness(pagesofar[0]-pagesofar[1], pagesofar[2]);
 				else 
 					if (pagesofar[1]-pagesofar[0] > pagesofar[6])
-						b = 0x3F'FF'FF'FF;
+						b = max_dimen;
 				else
 						b = badness(pagesofar[1]-pagesofar[0], pagesofar[6]);
-				if (b < 0x3F'FF'FF'FF)
+				if (b < max_dimen)
 					if (pi <= -10000)
 						c = pi;
 					else 
@@ -221,7 +220,7 @@ void buildpage(void)
 				else
 					c = b;
 				if (insertpenalties >= 10000)
-					c = 0x3F'FF'FF'FF;
+					c = max_dimen;
 				if (c <= leastpagecost)
 				{
 					bestpagebreak = p;
@@ -234,7 +233,7 @@ void buildpage(void)
 						r = link(r);
 					}
 				}
-				if (c == 0x3F'FF'FF'FF || pi <= -10000)
+				if (c == max_dimen || pi <= -10000)
 				{
 					fireup(p);
 					if (outputactive)
@@ -255,8 +254,7 @@ void buildpage(void)
 			pagesofar[6] += mem[q+3].int_;
 			if (subtype(q) && mem[q+3].int_)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(993); //Infinite glue shrinkage found on current page
 				helpptr = 4;
 				helpline[3] = 994; //The page about to be output contains some infinitely

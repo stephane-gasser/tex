@@ -9,10 +9,9 @@
 void confusion(strnumber s)
 {
 	normalizeselector();
-	if (history < 2)
+	if (history < error_message_issued)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(291); //This can't happen (
 		print(s);
 		printchar(')');
@@ -21,17 +20,16 @@ void confusion(strnumber s)
 	}
 	else
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(293); //I can't go on meeting you like this
 		helpptr = 2;
 		helpline[1] = 294; //One of your faux pas seems to have wounded me deeply...
 		helpline[0] = 295; //in fact, I'm barely conscious. Please fix it and try again.
 	}
-	if (interaction == 3)
-		interaction = 2;
+	if (interaction == error_stop_mode)
+		interaction = scroll_mode;
 	if (logopened)
 		error();
-	history = 3;
+	history = fatal_error_stop;
 	jumpout();
 }

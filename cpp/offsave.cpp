@@ -14,8 +14,7 @@ void offsave(void)
 	halfword p;
 	if (curgroup == 0)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(776); //Extra 
 		printcmdchr(curcmd, curchr);
 		helpptr = 1;
@@ -27,28 +26,27 @@ void offsave(void)
 		backinput();
 		p = getavail();
 		link(temp_head) = p;
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(625); //Missing 
 		switch (curgroup)
 		{
 			case 14:
-				info(p) = 6711;
+				info(p) = frozen_end_group+cs_token_flag;
 				printesc(516); //endgroup
 				break;
 			case 15:
-				info(p) = 804;
+				info(p) = math_shift*0x01'FF+'$';
 				printchar('$');
 				break;
 			case 16:
-				info(p) = 6712;
+				info(p) = frozen_right+cs_token_flag;
 				link(p) = getavail();
 				p = link(p);
-				info(p) = 3118;
+				info(p) = other_char*0x01'FF+'.';
 				printesc(1041); //right.
 				break;
 			default:
-				info(p) = 637;
+				info(p) = right_brace*0x01'00+'}';
 				printchar('}');
 		}
 		print(626); // inserted

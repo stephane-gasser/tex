@@ -54,11 +54,11 @@ void linebreak(int finalwidowpenalty)
 	background[2+type(q)] = mem[q+2].int_;
 	background[2+type(r)] = background[2+type(r)]+mem[r+2].int_;
 	background[6] = mem[q+3].int_+mem[r+3].int_;
-	minimumdemerits = 0x3F'FF'FF'FF;
-	minimaldemerits[3] = 0x3F'FF'FF'FF;
-	minimaldemerits[2] = 0x3F'FF'FF'FF;
-	minimaldemerits[1] = 0x3F'FF'FF'FF;
-	minimaldemerits[0] = 0x3F'FF'FF'FF;
+	minimumdemerits = max_dimen;
+	minimaldemerits[3] = max_dimen;
+	minimaldemerits[2] = max_dimen;
+	minimaldemerits[1] = max_dimen;
+	minimaldemerits[0] = max_dimen;
 	if (par_shape_ptr() == 0)
 		if (dimen_par(hang_indent_code) == 0)
 		{
@@ -461,7 +461,7 @@ void linebreak(int finalwidowpenalty)
 			if (link(active) != active)
 			{
 				r = link(active);
-				fewestdemerits = 0x3F'FF'FF'FF;
+				fewestdemerits = max_dimen;
 				do
 				{
 					if (type(r) != 2 && mem[r+2].int_ < fewestdemerits)

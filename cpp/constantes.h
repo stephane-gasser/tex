@@ -18,7 +18,7 @@ othercases == others: //default for cases not listed explicitly
 endcases == @+end //follows the default case in an extended |case| statement*/
 constexpr int mem_bot = 0; //smallest index in the |mem| array dumped by \.//INITEX;
 constexpr int mem_top = 30000; //largest index in the |mem| array dumped by \.//INITEX;
-/*font_base=0 //smallest internal font number; must not be less*/
+constexpr int font_base = 0; //smallest internal font number; must not be less
 constexpr int hash_size=2100; //maximum number of control sequences; it should be at most
 constexpr int hash_prime = 1777; //a prime number equal to about 85\pct! of |hash_size|
 constexpr int hyph_size = 307; //another prime; the number of \.//\\hyphenation exceptions
@@ -83,17 +83,17 @@ wlog(#)==write(log_file,#)
 wlog_ln(#)==write_ln(log_file,#)
 wlog_cr==write_ln(log_file)
 print_ASCII == print
-prompt_input(#)==begin wake_up_terminal; print(#); term_input;
-batch_mode=0 //omits all stops and omits terminal output
-nonstop_mode=1 //omits all stops
-scroll_mode=2 //omits error stops
-error_stop_mode=3 //stops at every opportunity to interact
-print_err(#)==begin if interaction=error_stop_mode then wake_up_terminal;
-spotless=0 //|history| value when nothing has been amiss yet
-warning_issued=1 //|history| value when |begin_diagnostic| has been called
-error_message_issued=2 //|history| value when |error| has been called
-fatal_error_stop=3 //|history| value when termination was premature
-hlp1(#)==help_line[0]:=#;@+end
+prompt_input(#)==begin wake_up_terminal; print(#); term_input;*/
+constexpr int batch_mode = 0; //omits all stops and omits terminal output
+constexpr int nonstop_mode = 1; //omits all stops
+constexpr int scroll_mode = 2; //omits error stops
+constexpr int error_stop_mode = 3; //stops at every opportunity to interact
+/*print_err(#)==begin if interaction=error_stop_mode then wake_up_terminal;*/
+constexpr int spotless = 0; //|history| value when nothing has been amiss yet
+constexpr int warning_issued = 1; //|history| value when |begin_diagnostic| has been called
+constexpr int error_message_issued = 2; //|history| value when |error| has been called
+constexpr int fatal_error_stop = 3; //|history| value when termination was premature
+/*hlp1(#)==help_line[0]:=#;@+end
 hlp2(#)==help_line[1]:=#; hlp1
 hlp3(#)==help_line[2]:=#; hlp2
 hlp4(#)==help_line[3]:=#; hlp3
@@ -270,7 +270,7 @@ constexpr int letter = 11; //characters regarded as letters ( \.//A..Z, \.//a..z
 constexpr int other_char = 12; //none of the special character types
 constexpr int active_char = 13; //characters that invoke macros ( \.//\char`\~ )
 constexpr int par_end = 13; //end of paragraph ( \.//\\par )
-/*match=13 //match a macro parameter*/
+constexpr int match = 13; //match a macro parameter
 constexpr int comment = 14; //characters that introduce comments ( \.\% )
 /*end_match=14 //end of parameters to macro*/
 constexpr int stop = 14; //end of job ( \.//\\end, \.//\\dump )*/
@@ -409,18 +409,18 @@ constexpr int single_base = 257; //active_base+256 //equivalents of one-characte
 constexpr int null_cs = 513; // single_base+256 //equivalent of \.//\\csname\\endcsname
 constexpr int hash_base = 514; //null_cs+1 //beginning of region 2, for the hash table
 constexpr int frozen_control_sequence = 2614; //hash_base+hash_size //for error recovery
-/*frozen_protection=frozen_control_sequence //inaccessible but definable
-frozen_cr=frozen_control_sequence+1 //permanent `\.//\\cr'
-frozen_end_group=frozen_control_sequence+2 //permanent `\.//\\endgroup'
-frozen_right=frozen_control_sequence+3 //permanent `\.//\\right'
-frozen_fi=frozen_control_sequence+4 //permanent `\.//\\fi'
-frozen_end_template=frozen_control_sequence+5 //permanent `\.//\\endtemplate'
-frozen_endv=frozen_control_sequence+6 //second permanent `\.//\\endtemplate'
-frozen_relax=frozen_control_sequence+7 //permanent `\.//\\relax'*/
+constexpr int frozen_protection = 2614; //frozen_control_sequence //inaccessible but definable
+constexpr int frozen_cr = 2615; //frozen_control_sequence+1 //permanent `\.//\\cr'
+constexpr int frozen_end_group = 2616; //=frozen_control_sequence+2 //permanent `\.//\\endgroup'
+constexpr int frozen_right = 2617; //frozen_control_sequence+3 //permanent `\.//\\right'*/
+constexpr int frozen_fi = 2618; //frozen_control_sequence+4 //permanent `\.//\\fi'
+constexpr int frozen_end_template = 2619; //=frozen_control_sequence+5 //permanent `\.//\\endtemplate'*/
+constexpr int frozen_endv = 2620; //frozen_control_sequence+6 //second permanent `\.//\\endtemplate'
+constexpr int frozen_relax = 2621; //frozen_control_sequence+7 //permanent `\.//\\relax'*/
 constexpr int end_write = 2622; //frozen_control_sequence+8 //permanent `\.//\\endwrite'
 constexpr int frozen_dont_expand = 2623; //frozen_control_sequence+9
 constexpr int frozen_null_font = 2624; //frozen_control_sequence+10
-/*font_id_base=frozen_null_font-font_base*/
+constexpr int font_id_base = 2624; //frozen_null_font-font_base
 constexpr int undefined_control_sequence = 2881;// frozen_null_font+257 //dummy location
 constexpr int glue_base = 2882; //undefined_control_sequence+1 //beginning of region 3
 /*line_skip_code=0 //interline glue if |baseline_skip| is infeasible*/
@@ -782,9 +782,9 @@ math_shift_group=15 //code for `\.//\$...\$'
 math_left_group=16 //code for `\.//\\left...\\right'
 max_group_code=16
 check_full_save_stack==if save_ptr>max_save_stack then
-saved(#)==save_stack[save_ptr+#].int
-cs_token_flag==@'7777 //amount added to the |eqtb| location in a
-left_brace_token=@'0400 //$2^8\cdot|left_brace|$
+saved(#)==save_stack[save_ptr+#].int*/
+constexpr int cs_token_flag = 4095; //==@'7777 //amount added to the |eqtb| location in a
+/*left_brace_token=@'0400 //$2^8\cdot|left_brace|$
 left_brace_limit=@'1000 //$2^8\cdot(|left_brace|+1)$
 right_brace_token=@'1000 //$2^8\cdot|right_brace|$
 right_brace_limit=@'1400 //$2^8\cdot(|right_brace|+1)$
@@ -866,15 +866,15 @@ tok_val=5 //token lists
 scanned_result_end(#)==cur_val_level:=#;@+end
 scanned_result(#)==@+begin cur_val:=#;scanned_result_end
 input_line_no_code=glue_val+1 //code for \.//\\inputlineno
-badness_code=glue_val+2 //code for \.//\\badness
-max_dimen==@'7777777777 //$2^//30-1$
-octal_token=other_token+"'" //apostrophe, indicates an octal constant
+badness_code=glue_val+2 //code for \.//\\badness*/
+constexpr int max_dimen = 1073741823; //=@'7777777777 //$2^//30-1$
+/*octal_token=other_token+"'" //apostrophe, indicates an octal constant
 hex_token=other_token+"""" //double quote, indicates a hex constant
 alpha_token=other_token+"`" //reverse apostrophe, precedes alpha constants
 point_token=other_token+"." //decimal point
-continental_point_token=other_token+"," //decimal point, Eurostyle
-@ infinity==@'17777777777 //the largest positive value that \TeX\ knows
-zero_token=other_token+"0" //zero, the smallest digit
+continental_point_token=other_token+"," //decimal point, Eurostyle*/
+constexpr int infinity = 2147483647; //==@'17777777777 //the largest positive value that \TeX\ knows
+/*zero_token=other_token+"0" //zero, the smallest digit
 A_token=letter_token+"A" //the smallest special hex digit
 other_A_token=other_token+"A" //special hex digit of type |other_char|
 attach_fraction=88 //go here to pack |cur_val| and |f| into |cur_val|

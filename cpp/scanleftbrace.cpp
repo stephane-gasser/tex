@@ -11,8 +11,7 @@ void scanleftbrace(void)
 	while (curcmd == spacer || curcmd == escape);
 	if (curcmd != left_brace)
 	{
-		if (interaction = 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(657); //Missing { inserted
 		helpptr = 4;
 		helpline[3] = 658; //A left brace was mandatory here, so I've put one in.
@@ -20,9 +19,9 @@ void scanleftbrace(void)
 		helpline[1] = 660; //so that I will find a matching right brace soon.
 		helpline[0] = 661; //(If you're confused by all this, try typing `I}' now.)
 		backerror();
-		curtok = 379;
+		curtok = left_brace*0x01'00+'{';
 		curcmd = 1;
-		curchr = 123;
+		curchr = '{'; 
 		alignstate++;
 	}
 }

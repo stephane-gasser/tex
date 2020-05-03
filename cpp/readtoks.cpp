@@ -25,7 +25,7 @@ void readtoks(int n, halfword r)
 	auto p = defref;
 	auto q = getavail();
 	link(p) = q;
-	info(q) = 3584;
+	info(q) = 0x0E'00; //cmd=end_match/comment/stop ?
 	p = q;
 	smallnumber m;
 	if (n < 0 || n > 15)
@@ -39,7 +39,7 @@ void readtoks(int n, halfword r)
 		beginfilereading();
 		curinput.namefield = m+1;
 		if (readopen[m] == 2)
-			if (interaction > 1)
+			if (interaction > nonstop_mode)
 				if (n < 0)
 				{
 					print(338); //
@@ -74,7 +74,6 @@ void readtoks(int n, halfword r)
 					if (alignstate != 1000000)
 					{
 						runaway();
-						if (interaction == 3)
 						printnl(262); //! 
 						print(754); //File ended within 
 						printesc(534); //read

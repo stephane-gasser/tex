@@ -47,7 +47,7 @@ void conditional(void)
 			if (curcmd == escape && curchr == 257)
 			{
 				curcmd = active_char;
-				curchr = curtok-0x10'00;
+				curchr = curtok-0x10'00; //cmd=char_num?
 			}
 			if (curcmd > 13 || curchr > 255)
 			{
@@ -63,7 +63,7 @@ void conditional(void)
 			if (curcmd == escape && curchr == 257)
 			{
 				curcmd = active_char;
-				curchr = curtok-0x10'00;
+				curchr = curtok-0x10'00; //cmd=char_num?
 			}
 			if (curcmd > 13 || curchr > 255)
 			{
@@ -89,8 +89,7 @@ void conditional(void)
 				r = curtok-0x0C'00;
 			else
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(780); //Missing = inserted for 
 				printcmdchr(105, thisif);
 				helpptr = 1;
@@ -270,8 +269,7 @@ void conditional(void)
 					iflimit = 2;
 				return;
 			}
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(776); //Extra 
 			printesc(774); //or
 			helpptr = 1;

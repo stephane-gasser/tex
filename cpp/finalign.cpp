@@ -118,7 +118,7 @@ void finalign(void)
 			mem[q+1].int_ = 0;
 			q = link(link(q));
 		} while (q);
-		p = vpackage(link(align_head), savestack[saveptr+1].int_, savestack[saveptr+0].int_, 0x3F'FF'FF'FF);
+		p = vpackage(link(align_head), savestack[saveptr+1].int_, savestack[saveptr+0].int_, max_dimen);
 		q = link(link(align_head));
 		do
 		{
@@ -297,8 +297,7 @@ void finalign(void)
 		doassignments();
 		if (curcmd != math_shift)
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(1169); //Missing $$ inserted
 			helpptr = 2;
 			helpline[1] = 894; //Displays can use special alignments (like \eqalignno)
@@ -310,8 +309,7 @@ void finalign(void)
 			getxtoken();
 			if (curcmd != math_shift)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(1165); //Display math should end with $$
 				helpptr = 2;
 				helpline[1] = 1166; //The `$' that I just saw supposedly matches a previous `$$'.

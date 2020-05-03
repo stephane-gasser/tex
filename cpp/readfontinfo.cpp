@@ -14,8 +14,7 @@
 
 void notLoadable(halfword u, strnumber nom, strnumber aire, scaled s, bool fileopened)
 {
-	if (interaction == 3)
-		printnl(262); //! 
+	printnl(262); //! 
 	print(801); //Font 
 	sprintcs(u);
 	printchar('=');
@@ -166,8 +165,7 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 		lf += 7-np;
 	if (fontptr == fontmax || fmemptr+lf > fontmemsize)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(801); //Font 
 		sprintcs(u);
 		printchar('=');

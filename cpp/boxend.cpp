@@ -68,8 +68,7 @@ void boxend(int boxcontext)
 					}
 					else
 					{
-						if (interaction == 3)
-							printnl(262); //! 
+						printnl(262); //! 
 						print(1065); //Leaders not followed by proper glue
 						helpptr = 3;
 						helpline[2] = 1066; //You should say `\leaders <box or rule><hskip or vskip>'.

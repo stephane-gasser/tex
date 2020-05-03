@@ -23,8 +23,7 @@ halfword vsplit(eightbits n, scaled h)
 		return 0;
 	if (type(v) != 1)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(338); // 
 		printesc(964); //vsplit
 		print(965); // needs a 
@@ -68,6 +67,6 @@ halfword vsplit(eightbits n, scaled h)
 	if (q == 0)
 		box(n) = 0;
 	else
-		box(n) = vpackage(q, 0, 1, 0x3F'FF'FF'FF);
+		box(n) = vpackage(q, 0, 1, max_dimen);
 	return vpackage(p, h, 0, dimen_par(split_max_depth_code));
 }

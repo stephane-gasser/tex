@@ -7,11 +7,10 @@ void pauseforinstructions(void)
 {
 	if (OKtointerrupt)
 	{
-		interaction = 3;
+		interaction = error_stop_mode;
 		if (selector == 18 || selector == 16)
 			selector++;
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(296); //Interruption
 		helpptr = 3;
 		helpline[2] = 297; //You rang?

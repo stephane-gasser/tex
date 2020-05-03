@@ -22,8 +22,7 @@ void scanbox(int boxcontext)
 		}
 		else
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(1075); //A <box> was supposed to be here
 			helpptr = 3;
 			helpline[2] = 1076; //I was expecting to see \hbox or \vbox or \copy or \box or

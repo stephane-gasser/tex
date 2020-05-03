@@ -14,7 +14,7 @@ void Initialize(void)
 		xord[xchr[i]] = i;
 	for (int i = 0; i < 127; i++)
 		xord[xchr[i]] = i;
-	interaction = 3;
+	interaction = error_stop_mode;
 	deletionsallowed = true;
 	setboxallowed = true;
 	errorcount = 0;
@@ -150,7 +150,7 @@ void Initialize(void)
 	info(lomemmax) = 0;
 	for (int k = hi_mem_stat_min; k < 30001; k++)
 		mem[k] = mem[lomemmax];
-	info(omit_template) = 6714;
+	info(omit_template) = frozen_end_template+cs_token_flag;
 	link(end_span) = 256;
 	info(end_span) = 0;
 	type(active) = 1;

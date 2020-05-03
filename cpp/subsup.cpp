@@ -23,16 +23,14 @@ void subsup(void)
 		{
 			if (curcmd == sup_mark)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(1142); //Double superscript
 				helpptr = 1;
 				helpline[0] = 1143; //I treat `x^1^2' essentially like `x^1{}^2'.
 			}
 			else
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(1144); //Double subscript
 				helpptr = 1;
 				helpline[0] = 1145; //I treat `x_1_2' essentially like `x_1{}_2'.

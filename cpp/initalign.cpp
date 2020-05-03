@@ -23,8 +23,7 @@ void initalign(void)
 	alignstate = -1000000;
 	if (mode == mmode && (tail != head || incompleat_noad))
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(680); //Improper 
 		printesc(520); //halign
 		print(893); // inside $$'s
@@ -70,8 +69,7 @@ void initalign(void)
 					curloop = curalign;
 				else
 				{
-					if (interaction == 3)
-						printnl(262); //! 
+					printnl(262); //! 
 					print(902); //Missing # inserted in alignment preamble
 					helpptr = 3;
 					helpline[2] = 903; //There should be exactly one # between &'s, when an
@@ -102,8 +100,7 @@ void initalign(void)
 				break;
 			if (curcmd == mac_param)
 			{
-				if (interaction == 3)
-					printnl(262); //!
+				printnl(262); //!
 				print(906); //Only one # is allowed per tab
 				helpptr = 3;
 				helpline[2] = 903; //There should be exactly one # between &'s, when an
@@ -118,7 +115,7 @@ void initalign(void)
 		}
 		link(p) = getavail();
 		p = link(p);
-		info(p) = 6714;
+		info(p) = frozen_end_template+cs_token_flag;
 		mem[curalign+2].int_ = link(hold_head);
 	}
 	scannerstatus = 0;

@@ -16,12 +16,12 @@ void scanglue(smallnumber level)
 		do
 			getxtoken();
 		while (curcmd == spacer);
-		if (curtok == 3117)
+		if (curtok == 3117) // other_char + '-'
 		{
 			negative = !negative;
-			curtok = 3115;
+			curtok = 3115; // other_char + '+'
 		}
-	} while (curtok != 3115);
+	} while (curtok != 3115); // other_char + '+'
 	if (curcmd >= min_internal && curcmd <= max_internal)
 	{
 		scansomethinginternal(level, negative);

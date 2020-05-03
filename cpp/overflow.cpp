@@ -11,8 +11,7 @@
 void overflow(strnumber s, int n)
 {
 	normalizeselector();
-	if (interaction == 3)
-		printnl(262); //! 
+	printnl(262); //! 
 	print(288); //TeX capacity exceeded, sorry [
 	print(s);
 	printchar('=');
@@ -21,10 +20,10 @@ void overflow(strnumber s, int n)
 	helpptr = 2;
 	helpline[1] = 289; //If you really absolutely need more capacity,
 	helpline[0] = 290; //you can ask a wizard to enlarge me.
-	if (interaction == 3)
-		interaction = 2;
+	if (interaction == error_stop_mode)
+		interaction = scroll_mode;
 	if (logopened)
 		error();
-	history = 3;
+	history = fatal_error_stop;
 	jumpout();
 }

@@ -186,8 +186,7 @@ void getnext(void)
 							case 1+invalid_char:
 							case 17+invalid_char:
 							case 33+invalid_char:
-								if (interaction == 3)
-									printnl(262); //! 
+								printnl(262); //! 
 								print(613); //Text line contains an invalid character
 								helpptr = 2;
 								helpline[1] = 614; //A funny symbol that I can't read has just been input.
@@ -297,7 +296,7 @@ void getnext(void)
 						{
 							if (selector < 18)
 								openlogfile();
-							if (interaction > 1)
+							if (interaction > nonstop_mode)
 							{
 								if (int_par(end_line_char_code) < 0 || int_par(end_line_char_code) > 255)
 									curinput.limitfield++;
@@ -333,15 +332,15 @@ void getnext(void)
 			{
 				int t = info(curinput.locfield);
 				curinput.locfield = link(curinput.locfield);
-				if (t >= 4095)
+				if (t >= cs_token_flag)
 				{
-					curcs = t-4095;
+					curcs = t-cs_token_flag;
 					curcmd = eq_type(curcs);
 					curchr = equiv(curcs);
 					if (curcmd >= outer_call)
 						if (curcmd == dont_expand)
 						{
-							curcs = info(curinput.locfield)-4095;
+							curcs = info(curinput.locfield)-cs_token_flag;
 							curinput.locfield = 0;
 							curcmd = eq_type(curcs);
 							curchr = equiv(curcs);

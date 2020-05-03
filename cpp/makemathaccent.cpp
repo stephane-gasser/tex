@@ -87,7 +87,7 @@ void makemathaccent(halfword q)
 		auto p = newkern(-delta);
 		link(p) = x;
 		link(y) = p;
-		y = vpackage(y, 0, 1, 0x3F'FF'FF'FF);
+		y = vpackage(y, 0, 1, max_dimen);
 		mem[y+1].int_ = mem[x+1].int_;
 		if (mem[y+3].int_ < h)
 		{

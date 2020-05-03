@@ -10,8 +10,7 @@ void mathlimitswitch(void)
 			subtype(tail) = curchr;
 			return;
 		}
-	if (interaction == 3)
-		printnl(262); //! 
+	printnl(262); //! 
 	print(1129); //Limit controls must follow a math operator
 	helpptr = 1;
 	helpline[0] = 1130; //I'm ignoring this misplaced \limits or \nolimits command.

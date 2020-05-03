@@ -22,7 +22,7 @@ void finrow(void)
 	}
 	else
 	{
-		p = vpackage(link(head), 0, 1, 0x3F'FF'FF'FF);
+		p = vpackage(link(head), 0, 1, max_dimen);
 		popnest();
 		link(tail) = p;
 		tail = p;

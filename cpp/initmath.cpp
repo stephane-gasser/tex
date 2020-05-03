@@ -21,13 +21,13 @@ void initmath(void)
 		if (head == tail)
 		{
 			popnest();
-			w = -0x3F'FF'FF'FF;
+			w = -max_dimen;
 		}
 		else
 		{
 			linebreak(int_par(display_widow_penalty_code));
 			v = mem[justbox+4].int_+2*fontinfo[6+parambase[cur_font()]].int_;
-			w = -0x3F'FF'FF'FF;
+			w = -max_dimen;
 			p = link(justbox+5);
 			while (p)
 			{
@@ -35,14 +35,14 @@ void initmath(void)
 				{
 					f = type(p);
 					d = fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(p)].qqqq.b0].int_;
-					if (v < 0x3F'FF'FF'FF)
+					if (v < max_dimen)
 					{
 						v += d;
 						w = v;
 					}
 					else
 					{
-						w = 0x3F'FF'FF'FF;
+						w = max_dimen;
 						break;
 					}
 					p = link(p);
@@ -54,14 +54,14 @@ void initmath(void)
 					case vlist_node: //1
 					case rule_node: //2
 						d = mem[p+1].int_;
-						if (v < 0x3F'FF'FF'FF)
+						if (v < max_dimen)
 						{
 							v += d;
 							w = v;
 						}
 						else
 						{
-							w = 0x3F'FF'FF'FF;
+							w = max_dimen;
 							break;
 						}
 						p = link(p);
@@ -81,22 +81,22 @@ void initmath(void)
 						if (type(justbox+5) == 1)
 						{
 							if (subtype(justbox+5) == type(q) && mem[q+2].int_)
-								v = 0x3F'FF'FF'FF;
+								v = max_dimen;
 						}
 						else 
 							if (type(justbox+5) == 2)
 								if (subtype(justbox+5) == subtype(q) && mem[q+3].int_)
-									v = 0x3F'FF'FF'FF;
+									v = max_dimen;
 						if (subtype(p) >= 100)
 						{
-							if (v < 0x3F'FF'FF'FF)
+							if (v < max_dimen)
 							{
 								v += d;
 								w = v;
 							}
 							else
 							{
-								w = 0x3F'FF'FF'FF;
+								w = max_dimen;
 								break;
 							}
 							p = link(p);
@@ -109,7 +109,7 @@ void initmath(void)
 					default: 
 						d = 0;
 				}
-				if (v < 0x3F'FF'FF'FF)
+				if (v < max_dimen)
 					v += d;
 				p = link(p);
 				continue;

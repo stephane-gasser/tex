@@ -13,8 +13,7 @@ void fetch(halfword a)
 	curf = fam_fnt(type(a)+cursize);
 	if (curf == 0)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(338); //
 		printsize(cursize);
 		printchar(' ');

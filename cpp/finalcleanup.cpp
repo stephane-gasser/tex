@@ -54,7 +54,7 @@ void finalcleanup(void)
 		condptr = link(condptr);
 		freenode(tempptr, 2);
 	}
-	if (history && (history == 1 || interaction < 3) && selector == 19)
+	if (history && (history == warning_issued || interaction < error_stop_mode) && selector == 19)
 	{
 		selector = 17;
 		printnl(1281); //(see the transcript file for additional information)

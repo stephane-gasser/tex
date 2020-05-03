@@ -29,8 +29,7 @@ void scandelimiter(halfword p, bool r)
 	}
 	if (curval < 0)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(1131); //Missing delimiter (. inserted)
 		helpptr = 6;
 		helpline[5] = 1132; //I was expecting to see something like `(' or `\{' or

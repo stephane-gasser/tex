@@ -5,7 +5,7 @@ void newinteraction(void)
 {
 	println();
 	interaction = curchr;
-	if (interaction == 0)
+	if (interaction == batch_mode)
 		selector = 16;
 	else
 		selector = 17;

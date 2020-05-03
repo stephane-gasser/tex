@@ -14,7 +14,7 @@ void mathkern(halfword p, scaled m)
 			n--;
 			f += 0x1'00'00;
 		}
-		mem[p+1].int_ = multandadd(n, mem[p+1].int_, xnoverd(mem[p+1].int_, f, 0x1'00'00), 0x3F'FF'FF'FF);
+		mem[p+1].int_ = multandadd(n, mem[p+1].int_, xnoverd(mem[p+1].int_, f, 0x1'00'00), max_dimen);
 		subtype(p) = 1;
 	}
 }

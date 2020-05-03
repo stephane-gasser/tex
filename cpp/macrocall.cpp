@@ -38,12 +38,12 @@ void macrocall(void)
 		enddiagnostic(false);
 	}
 	ASCIIcode matchchr;
-	if (info(r) != 3584)
+	if (info(r) != 0x0E'00) 
 	{
 		scannerstatus = 3;
 		halfword unbalance = 0;
 		longstate = type(curcs);
-		if (longstate >= 113)
+		if (longstate >= outer_call)
 			longstate -= 2;
 
 		do
@@ -52,11 +52,11 @@ void macrocall(void)
 			halfword s;
 			halfword p;
 			halfword m;
-			if (info(r) > 3583 || info(r) < 3328)
+			if (info(r) > 0x0D'FF || info(r) < 0x0D'00)
 				s = 0;
 			else
 			{
-				matchchr = info(r)-3328;
+				matchchr = info(r)-0x0D'00;
 				s = link(r);
 				r = s;
 				p = temp_head;
@@ -69,9 +69,9 @@ void macrocall(void)
 				if (curtok = info(r))
 				{
 					r = link(r);
-					if (info(r) >= 3328 && info(r) <= 3584)
+					if (info(r) >= 0x0D'00 && info(r) <= 0x0E'00)
 					{
-						if (curtok < 512)
+						if (curtok < 0x02'00) // cmd < right_brace
 							alignstate--;
 						break;
 					}
@@ -79,10 +79,9 @@ void macrocall(void)
 						continue;
 				}
 				if (s != r)
-					if (s = 0)
+					if (s == 0)
 					{
-						if (interaction == 3)
-							printnl(262); //! 
+						printnl(262); //! 
 						print(650); //Use of 
 						sprintcs(warningindex);
 						print(651); // doesn't match its definition
@@ -133,13 +132,12 @@ void macrocall(void)
 						r = s;
 					}
 				if (curtok == partoken)
-					if (longstate != 112)
+					if (longstate != long_call)
 					{
-						if (longstate == 111)
+						if (longstate == call)
 						{
 							runaway();
-							if (interaction == 3)
-								printnl(262); //! 
+							printnl(262); //! 
 							print(645); //Paragraph ended before 
 							sprintcs(warningindex);
 							print(646); // was complete
@@ -157,8 +155,8 @@ void macrocall(void)
 						warningindex = savewarningindex;
 						return;
 					}
-				if (curtok < 768)
-					if (curtok < 512)
+				if (curtok < 0x03'00) // cmd <= right_bracce
+					if (curtok < 0x02'00) // cmd < right_brace
 					{
 						unbalance = 1;
 						while (true)
@@ -176,13 +174,12 @@ void macrocall(void)
 							p = q;
 							gettoken();
 							if (curtok == partoken)
-								if (longstate != 112)
+								if (longstate != long_call)
 								{
-									if (longstate == 111)
+									if (longstate == call)
 									{
 										runaway();
-										if (interaction = 3)
-											printnl(262); //! 
+										printnl(262); //! 
 										print(645); //Paragraph ended before 
 										sprintcs(warningindex);
 										print(646); // was complete
@@ -200,8 +197,8 @@ void macrocall(void)
 									warningindex = savewarningindex;
 									return;
 								}
-							if (curtok < 768)
-								if (curtok < 512)
+							if (curtok < 0x03'00) // cmd <= right_brace
+								if (curtok < 0x02'00) // cmd < right_brace
 									unbalance++;
 								else
 								{
@@ -219,8 +216,7 @@ void macrocall(void)
 					else
 					{
 						backinput();
-						if (interaction == 3)
-							printnl(262); //! 
+						printnl(262); //! 
 						print(637); //Argument of 
 						sprintcs(warningindex);
 						print(638); // has an extra }
@@ -239,25 +235,22 @@ void macrocall(void)
 					}
 				else
 				{
-					if (curtok == 2592)
-						if (info(r) <= 3584)
-							if (info(r) >= 3328)
-								continue;
+					if (curtok == spacer*0x01'00+' ')
+						if (info(r) <= 0x0E'00 && info(r) >= 0x0D'00) // cmd == 13
+							continue;
 					auto q = getavail();
 					link(p) = q;
 					info(q) = curtok;
 					p = q;
 				}
 				m++;
-				if (info(r) > 3584)
-					continue;
-				if (info(r) < 3328)
+				if (info(r) > 0x0E'00 || info(r) < 0x0D'00) // cmd != 13
 					continue;
 				break;
 			}
 			if (s)
 			{
-				if (m == 1 && info(p) < 768 && p != temp_head)
+				if (m == 1 && info(p) < 0x03'00 && p != temp_head)
 				{
 					link(rbraceptr) = 0;
 					link(p) = avail;
@@ -280,7 +273,7 @@ void macrocall(void)
 					enddiagnostic(false);
 				}
 			}
-		} while (info(r) != 3584);
+		} while (info(r) != 0x0E'00); // cmd = end_match
 	}
 	while (curinput.statefield == 0 && curinput.locfield == 0 && curinput.indexfield != 2)
 		endtokenlist();

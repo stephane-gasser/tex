@@ -9,8 +9,8 @@ void backinput(void)
 		endtokenlist();
 	auto p = getavail();
 	info(p) = curtok;
-	if (curtok < 768)
-		if (curtok < 512)
+	if (curtok < 768) // curcmd <= 2
+		if (curtok < 512) // curcmd <= 1
 			alignstate--;
 		else
 			alignstate++;

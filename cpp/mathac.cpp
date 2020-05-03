@@ -11,8 +11,7 @@ void mathac(void)
 {
 	if (curcmd == accent)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(1138); //Please use 
 		printesc(523); //mathaccent
 		print(1139); // for accents in math mode

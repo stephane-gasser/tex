@@ -11,11 +11,10 @@ void getrtoken(void)
 	{
 		do
 			gettoken();
-		while (curtok == 2592);
-		if (curcs == 0 || curcs > 2614)
+		while (curtok == spacer*0x01'00+' ');
+		if (curcs == 0 || curcs > frozen_control_sequence)
 		{
-			if (interaction == 3)
-				printnl(262); //
+			printnl(262); //
 			print(1183); //Missing control sequence inserted
 			helpptr = 5;
 			helpline[4] = 1184; //Please don't say `\def cs{...}', say `\def\cs{...}'.
@@ -24,8 +23,8 @@ void getrtoken(void)
 			helpline[1] = 1187; //You can recover graciously from this error, if you're
 			helpline[0] = 1188; //careful; see exercise 27.2 in The TeXbook.
 			if (curcs == 0)
-			backinput();
-			curtok = 6709;
+				backinput();
+			curtok = frozen_protection+cs_token_flag;
 			inserror();
 			continue;
 		}

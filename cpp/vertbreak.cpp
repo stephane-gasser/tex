@@ -15,7 +15,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 	scaled prevdp;
 	smallnumber t;
 	prevp = p;
-	leastcost = 0x3F'FF'FF'FF;
+	leastcost = max_dimen;
 	for (int i = 1; i <= 6; i++)
 		activewidth[i] = 0;
 	prevdp = 0;
@@ -65,10 +65,10 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 					b = badness(h-activewidth[1], activewidth[2]);
 				else 
 					if (activewidth[1]-h > activewidth[6])
-						b = 0x3F'FF'FF'FF;
+						b = max_dimen;
 					else
 						b = badness(activewidth[1]-h, activewidth[6]);
-				if (b < 0x3F'FF'FF'FF)
+				if (b < max_dimen)
 					if (pi <= -10000)
 						b = pi;
 					else 
@@ -82,7 +82,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 					leastcost = b;
 					bestheightplusdepth = activewidth[1]+prevdp;
 				}
-				if (b == 0x3F'FF'FF'FF || pi <= -10000)
+				if (b == max_dimen || pi <= -10000)
 					return bestplace;
 			}
 		if (type(p) == kern_node)
@@ -98,8 +98,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 			activewidth[6] += mem[q+3].int_;
 			if (subtype(q) && mem[q+3].int_)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(960); //Infinite glue shrinkage found in box being split
 				helpptr = 4;
 				helpline[3] = 961; //The box you are \vsplitting contains some infinitely

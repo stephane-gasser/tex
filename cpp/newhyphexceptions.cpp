@@ -50,8 +50,7 @@ void newhyphexceptions(void)
 				else 
 					if (lc_code(curchr) == 0)
 					{
-						if (interaction == 3)
-							printnl(262); //! 
+						printnl(262); //! 
 						print(944); //Not a letter
 						helpptr = 2;
 						helpline[1] = 945; //Letters in \hyphenation words must have \lccode>0.
@@ -149,18 +148,13 @@ void newhyphexceptions(void)
 				p = 0;
 				break;
 			default:
-				{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(680); //Improper 
-				}
 				printesc(940); //hyphenation
 				print(941); // will be flushed
-				{
 				helpptr = 2;
 				helpline[1] = 942; //Hyphenation exceptions must contain only letters
 				helpline[0] = 943; //and hyphens. But continue; I'll forgive and forget.
-				}
 				error();
 		}
 		getxtoken();

@@ -6,7 +6,7 @@ void begindiagnostic(void)
 	if (int_par(tracing_online_code) <= 0 && selector == 19)
 	{
 		selector--;
-		if (history == 0)
-			history = 1;
+		if (history == spotless)
+			history = warning_issued;
 	}
 }

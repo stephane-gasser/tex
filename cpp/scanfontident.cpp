@@ -25,8 +25,7 @@ void scanfontident(void)
 			}
 			else
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(816); //Missing font identifier
 				helpptr = 2;
 				helpline[1] = 817; //I was looking for a control sequence whose

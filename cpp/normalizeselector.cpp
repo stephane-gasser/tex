@@ -9,6 +9,6 @@ void normalizeselector(void)
 	selector = 17;
 	if (jobname == 0)
 		openlogfile();
-	if (interaction == 0)
+	if (interaction == batch_mode)
 		selector--;
 }

@@ -6,7 +6,7 @@
 void firmuptheline(void)
 {
 	curinput.limitfield = last;
-	if (int_par(pausing_code) > 0 && interaction > 1)
+	if (int_par(pausing_code) > 0 && interaction > nonstop_mode)
 		{
 			println();
 			if (curinput.startfield < curinput.limitfield)

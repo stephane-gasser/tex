@@ -43,10 +43,9 @@ void findfontdimen(bool writing)
 	}
 	if (curval == fmemptr)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(801); //Font 
-		printesc(hash[2624+f].rh);
+		printesc(hash[font_id_base+f].rh);
 		print(819); // has only 
 		printint(fontparams[f]);
 		print(820); // fontdimen parameters

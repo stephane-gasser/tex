@@ -64,8 +64,7 @@ void prefixedcommand(void)
 		while (curcmd == spacer || curcmd == escape);
 		if (curcmd <= max_non_prefixed_command)
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(1178); //You can't use a prefix with `
 			printcmdchr(curcmd, curchr);
 			printchar('\''); 
@@ -77,8 +76,7 @@ void prefixedcommand(void)
 	}
 	if (curcmd != def && a%4)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(685); //You can't use `
 		printesc(1170); //long
 		print(1180); //' or `
@@ -128,7 +126,7 @@ void prefixedcommand(void)
 				do
 					gettoken();
 				while (curcmd == spacer);
-				if (curtok == 3133)
+				if (curtok == 3133) // other_char + '='
 				{
 					gettoken();
 					if (curcmd == spacer)
@@ -217,8 +215,7 @@ void prefixedcommand(void)
 			n = curval;
 			if (!scankeyword(841)) //to
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(1072); //Missing `to' inserted
 				helpptr = 2;
 				helpline[1] = 1199; //You should have said `\read<number> to \cs'.
@@ -288,13 +285,13 @@ void prefixedcommand(void)
 			}
 			else
 			{
-				if (p == 3413)
+				if (p == 3413) //match +'U'/85 ?
 				{
 					link(q) = getavail();
 					q = link(q);
-					info(q) = 637;
+					info(q) = right_brace*0x01'00+'}';
 					q = getavail();
-					info(q) = 379;
+					info(q) = left_brace*0x01'00+'{';
 					link(q) = link(defref);
 					link(defref) = q;
 				}
@@ -358,8 +355,7 @@ void prefixedcommand(void)
 			scanint();
 			if ((curval < 0 && p < del_code_base) || curval > n)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(1201); //Invalid code (
 				printint(curval);
 				if (p < del_code_base)
@@ -417,8 +413,7 @@ void prefixedcommand(void)
 				scanbox(0x40'00'00'00+n);
 			else
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(680); //Improper 
 				printesc(536); //setbox
 				helpptr = 2;

@@ -64,8 +64,7 @@ void newfont(smallnumber a)
 		s = curval;
 		if (s <= 0 || s >= 134217728)
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(1221); //Improper `at' size (
 			printscaled(s);
 			print(1222); //pt), replaced by 10pt
@@ -83,8 +82,7 @@ void newfont(smallnumber a)
 			s = -curval;
 			if (curval <= 0 || curval > 0x80'00)
 			{
-				if (interaction == 3);
-					printnl(262); //! 
+				printnl(262); //! 
 				print(552); //Illegal magnification has been changed to 1000
 				helpptr = 1;
 				helpline[0] = 553; //The magnification ratio must be between 1 and 0x80'00.

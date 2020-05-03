@@ -53,10 +53,9 @@ void shipout(halfword p)
 		showbox(p);
 		enddiagnostic(true);
 	}
-	if (mem[p+3].int_ > 0x3F'FF'FF'FF || mem[p+2].int_ > 0x3F'FF'FF'FF || mem[p+3].int_+mem[p+2].int_+dimen_par(v_offset_code) > 0x3F'FF'FF'FF || mem[p+1].int_+dimen_par(h_offset_code) > 0x3F'FF'FF'FF)
+	if (mem[p+3].int_ > max_dimen || mem[p+2].int_ > max_dimen || mem[p+3].int_+mem[p+2].int_+dimen_par(v_offset_code) > max_dimen || mem[p+1].int_+dimen_par(h_offset_code) > max_dimen)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(832); //Huge page cannot be shipped out
 		helpptr = 2;
 		helpline[1] = 833; //The page just created is more than 18 feet tall or

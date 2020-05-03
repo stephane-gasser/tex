@@ -10,8 +10,7 @@ void scaneightbitint(void)
 	scanint();
 	if (curval < 0 || curval > 255)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(687); //Bad register code
 		helpptr = 2;
 		helpline[1] = 688; //A register number must be between 0 and 255.

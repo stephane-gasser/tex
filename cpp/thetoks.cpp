@@ -21,7 +21,7 @@ halfword thetoks(void)
 		{
 			auto q = getavail();
 			link(p) = q;
-			info(q) = 4095+curval;
+			info(q) = cs_token_flag+curval;
 			p = q;
 		}
 		else 

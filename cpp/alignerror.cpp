@@ -10,11 +10,10 @@ void alignerror(void)
 {
 	if (abs(alignstate) > 2)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(1113); //Misplaced 
 		printcmdchr(curcmd, curchr);
-		if (curtok == 1062)
+		if (curtok == 1062) // tab_mark + '&'
 		{
 			helpptr = 6;
 			helpline[5] = 1114; //I can't figure out why you would want to use a tab mark
@@ -40,19 +39,17 @@ void alignerror(void)
 		backinput();
 		if (alignstate < 0)
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(657); //Missing { inserted
 			alignstate++;
-			curtok = 379;
+			curtok = left_brace*0x01'00+'{'; 
 		}
 		else
 		{
-			if (interaction == 3);
-				printnl(262); //! 
+			printnl(262); //! 
 			print(1109); //Missing } inserted
 			alignstate--;
-			curtok = 637;
+			curtok = right_brace*0x01'00+ '}';
 		}
 		helpptr = 3;
 		helpline[2] = 1110; //I've put in what seems to be necessary to fix

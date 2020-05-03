@@ -84,8 +84,7 @@ void beginbox(int boxcontext)
 			n = curval;
 			if (!scankeyword(841)) //to
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(1072); //Missing `to' inserted
 				helpptr = 2;
 				helpline[1] = 1073; //I'm working on `\vsplit<box number> to <dimen>';

@@ -8,15 +8,14 @@
 void fatalerror(strnumber s)
 {
 	normalizeselector();
-	if (interaction == 3)
-		printnl(262); //! 
+	printnl(262); //! 
 	print(287); //Emergency stop
 	helpptr = 1;
 	helpline[0] = s;
-	if (interaction == 3)
-		interaction = 2;
+	if (interaction == error_stop_mode)
+		interaction = scroll_mode;
 	if (logopened)
 		error();
-	history = 3;
+	history = fatal_error_stop;
 	jumpout();
 }

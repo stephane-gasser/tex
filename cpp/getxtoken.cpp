@@ -15,7 +15,7 @@ void getxtoken(void)
 				macrocall();
 			else
 			{
-				curcs = 2620;
+				curcs = frozen_endv;
 				curcmd = ignore;
 				break;
 			}
@@ -25,5 +25,5 @@ void getxtoken(void)
 	if (curcs == 0)
 		curtok = (curcmd*0x1'00)+curchr;
 	else
-		curtok = 0x0F'FF+curcs;
+		curtok = cs_token_flag+curcs;
 }

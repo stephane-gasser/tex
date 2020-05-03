@@ -6,8 +6,7 @@
 
 void cserror(void)
 {
-	if (interaction == 3)
-		printnl(262);//! 
+	printnl(262);//! 
 	print(776); //Extra 
 	printesc(505); //endcsname
 	helpptr = 1;

@@ -25,8 +25,7 @@ void showwhatever(void)
 			begindiagnostic();
 			showactivities();
 			enddiagnostic(true);
-			if (interaction == 3)
-				printnl(262);//! 
+			printnl(262);//! 
 			print(1254); //OK
 			if (selector == 19 && int_par(tracing_online_code) <= 0)
 				selector = 17;
@@ -44,8 +43,7 @@ void showwhatever(void)
 			else
 				showbox(box(curval));
 			enddiagnostic(true);
-			if (interaction == 3)
-				printnl(262);//! 
+			printnl(262);//! 
 			print(1254); //OK
 			if (selector == 19 && int_par(tracing_online_code) <= 0)
 				selector = 17;
@@ -54,8 +52,7 @@ void showwhatever(void)
 			break;
 		case 0:
 			gettoken();
-			if (interaction == 3)
-				printnl(1247); //> 
+			printnl(1247); //> 
 			if (curcs)
 			{
 				sprintcs(curcs);
@@ -65,13 +62,12 @@ void showwhatever(void)
 			break;
 		default:
 			p = thetoks();
-			if (interaction == 3)
-				printnl(1247); //> 
+			printnl(1247); //> 
 			tokenshow(temp_head);
 			flushlist(link(temp_head));
 			break;
 	}
-	if (interaction < 3)
+	if (interaction < error_stop_mode)
 	{
 		helpptr = 0;
 		errorcount--;

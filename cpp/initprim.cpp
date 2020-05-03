@@ -120,8 +120,8 @@ void initprim(void)
 	primitive(515, 92, 0); //divide
 	primitive(505, 67, 0); //endcsname
 	primitive(516, 62, 0); //endgroup
-	hash[2616].rh = 516; //endgroup
-	eqtb[2616] = eqtb[curval];
+	hash[frozen_end_group].rh = 516; //endgroup
+	eqtb[frozen_end_group] = eqtb[curval];
 	primitive(517, 102, 0); //expandafter
 	primitive(518, 88, 0); //font
 	primitive(519, 77, 0); //fontdimen
@@ -145,8 +145,8 @@ void initprim(void)
 	primitive(533, 66, 0); //radical
 	primitive(534, 96, 0); //read
 	primitive(535, 0, 256); //relax
-	hash[2621].rh = 535; //relax
-	eqtb[2621] = eqtb[curval];
+	hash[frozen_relax].rh = 535; //relax
+	eqtb[frozen_relax] = eqtb[curval];
 	primitive(536, 98, 0); //setbox
 	primitive(537, 109, 0); //the
 	primitive(407, 71, 0); //toks
@@ -156,7 +156,7 @@ void initprim(void)
 	primitive(540, 35, 0); //vrule
 	primitive(597, 13, 256); //par
 	parloc = curval;
-	partoken = 0x0F'FF+parloc;
+	partoken = cs_token_flag+parloc;
 	primitive(629, 104, 0); //input
 	primitive(630, 104, 1); //endinput
 	primitive(631, 110, 0); //topmark
@@ -204,25 +204,25 @@ void initprim(void)
 	primitive(771, 105, 15); //iffalse
 	primitive(772, 105, 16); //ifcase
 	primitive(773, 106, 2); //fi
-	hash[2618].rh = 773; //fi
-	eqtb[2618] = eqtb[curval];
+	hash[frozen_fi].rh = 773; //fi
+	eqtb[frozen_fi] = eqtb[curval];
 	primitive(774, 106, 4); //or
 	primitive(775, 106, 3); //else
 	primitive(800, 87, 0); //nullfont
-	hash[2624].rh = 800; //nullfont
-	eqtb[2624] = eqtb[curval]; 
+	hash[frozen_null_font].rh = 800; //nullfont
+	eqtb[frozen_null_font] = eqtb[curval]; 
 	primitive(897, 4, 256); //span
 	primitive(898, 5, 257); //cr
-	hash[2615].rh = 898; //cr
-	eqtb[2615] = eqtb[curval];
+	hash[frozen_cr].rh = 898; //cr
+	eqtb[frozen_cr] = eqtb[curval];
 	primitive(899, 5, 258); //crcr
-	hash[2619].rh = 900; //endtemplate
-	hash[2620].rh = 900; //endtemplate
-	eq_type(2620) = 9;
-	equiv(2620) = null_list;
-	eq_level(2620) = 1;
-	eqtb[2619] = eqtb[2620];
-	eq_type(2619) = end_template;
+	hash[frozen_end_template].rh = 900; //endtemplate
+	hash[frozen_endv].rh = 900; //endtemplate
+	eq_type(frozen_endv) = endv;
+	equiv(frozen_endv) = null_list;
+	eq_level(frozen_endv) = 1;
+	eqtb[frozen_end_template] = eqtb[frozen_endv];
+	eq_type(frozen_end_template) = end_template;
 	primitive(969, 81, 0); //pagegoal
 	primitive(970, 81, 1); //pagetotal
 	primitive(971, 81, 2); //pagestretch
@@ -299,8 +299,8 @@ void initprim(void)
 	primitive(1151, 52, 5); //atopwithdelims
 	primitive(875, 49, 30); //left
 	primitive(876, 49, 31); //right
-	hash[2617].rh = 876; //right
-	eqtb[2617] = eqtb[curval];
+	hash[frozen_right].rh = 876; //right
+	eqtb[frozen_right] = eqtb[curval];
 	primitive(1170, 93, 1); //long
 	primitive(1171, 93, 2); //outer
 	primitive(1172, 93, 4); //global

@@ -48,8 +48,7 @@ void newpatterns(void)
 							curchr = lc_code(curchr);
 							if (curchr == 0)
 							{
-								if (interaction == 3)
-									printnl(262); //! 
+								printnl(262); //! 
 								print(956); //Nonletter
 								helpptr = 1;
 								helpline[0] = 955; //(See Appendix H.)
@@ -123,8 +122,7 @@ void newpatterns(void)
 						}
 						if (trieo[q])
 						{
-							if (interaction == 3)
-								printnl(262); //! 
+							printnl(262); //! 
 							print(957); //Duplicate pattern
 							helpptr = 1;
 							helpline[0] = 955; //(See Appendix H.)
@@ -142,8 +140,7 @@ void newpatterns(void)
 					digitsensed = false;
 					break;
 				default:
-					if (interaction == 3)
-						printnl(262); //! 
+					printnl(262); //! 
 					print(954); //Bad 
 					printesc(952); //patterns
 					helpptr = 1;
@@ -154,8 +151,7 @@ void newpatterns(void)
 	}
 	else
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(951); //Too late for 
 		printesc(952); //patterns
 		helpptr = 1;

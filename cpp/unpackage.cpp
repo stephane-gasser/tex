@@ -13,10 +13,9 @@ void unpackage(void)
 	halfword p = box(curval);
 	if (p == 0)
 		return;
-	if (abs(mode) == 203 || (abs(mode) == 1 && type(p) != vlist_node) || (abs(mode) == 102 && type(p) != hlist_node))
+	if (abs(mode) == mmode || (abs(mode) == vmode && type(p) != vlist_node) || (abs(mode) == hmode && type(p) != hlist_node))
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(1096); //Incompatible list can't be unboxed
 		helpptr = 3;
 		helpline[2] = 1097; //Sorry, Pandora. (You sneaky devil.)

@@ -8,8 +8,7 @@ void ensurevbox(eightbits n)
 	auto p = box(n);
 	if (p && type(p) == hlist_node)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(988); //Insertions can only be added to a vbox
 		helpptr = 3;
 		helpline[2] = 989; //Tut tut: You're trying to \insert into a

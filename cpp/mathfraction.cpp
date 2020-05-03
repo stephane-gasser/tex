@@ -18,8 +18,7 @@ void mathfraction(void)
 		}
 		if (c%3 == 0)
 			scandimen(false, false, false);
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(1152); //Ambiguous; you need another { and }
 		helpptr = 3;
 		helpline[2] = 1153; //I'm ignoring this fraction specification, since I don't

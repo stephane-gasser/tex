@@ -24,7 +24,7 @@ halfword scantoks(bool macrodef, bool xpand)
 	info(defref) = 0;
 	auto p = defref;
 	halfword hashbrace = 0;
-	halfword t = 3120;
+	halfword t = other_char*0x01'FF+'0';
 	bool l40 = false;
 	if (macrodef)
 	{
@@ -35,12 +35,11 @@ halfword scantoks(bool macrodef, bool xpand)
 			{
 				auto q = getavail();
 				link(p) = q;
-				info(q) = 3584;
+				info(q) = 0x0E'00; //cmd=end_match/comment/stop ?
 				p = q;
 				if (curcmd == right_brace)
 				{
-					if (interaction == 3)
-						printnl(262); //! 
+					printnl(262); //! 
 					print(657); //Missing { inserted
 					alignstate++;
 					helpptr = 2;
@@ -54,7 +53,7 @@ halfword scantoks(bool macrodef, bool xpand)
 			}
 			if (curcmd == mac_param)
 			{
-				auto s = 3328+curchr;
+				auto s = 0x0D'00+curchr; // cmd = active_char/par_end/match?
 				gettoken();
 				if (curcmd == left_brace)
 				{
@@ -67,14 +66,13 @@ halfword scantoks(bool macrodef, bool xpand)
 					}
 					auto q = getavail();
 					link(p) = q;
-					info(q) = 3584;
+					info(q) = 0x0E'00; //cmd=end_match/comment/stop ?
 					p = q;
 					break;
 				}
-				if (t == 3129)
+				if (t == other_char*0x01'00+'9')
 				{
-					if (interaction == 3)
-						printnl(262); //! 
+					printnl(262); //! 
 					print(744); //You already have nine parameters
 					helpptr = 1;
 					helpline[0] = 745; //I'm going to ignore the # sign you just used.
@@ -85,8 +83,7 @@ halfword scantoks(bool macrodef, bool xpand)
 					t++;
 					if (curtok != t)
 					{
-						if (interaction == 3)
-							printnl(262); //! 
+						printnl(262); //! 
 						print(746); //Parameters must be numbered consecutively
 						helpptr = 2;
 						helpline[1] = 747; //I've inserted the digit you should have used after the #.
@@ -132,7 +129,7 @@ halfword scantoks(bool macrodef, bool xpand)
 		}
 		else
 			gettoken();
-		if (curtok < 768)
+		if (curtok < 768) // cmd <= right_brace
 			if (curcmd < right_brace)
 				unbalance++;
 			else
@@ -151,10 +148,9 @@ halfword scantoks(bool macrodef, bool xpand)
 					else
 						gettoken();
 					if (curcmd != mac_param)
-						if (curtok <= 3120 || curtok > t)
+						if (curtok <= other_char*0x01'00+'0' || curtok > t) 
 						{
-							if (interaction == 3)
-								printnl(262); //! 
+							printnl(262); //! 
 							print(749); //Illegal parameter number in definition of 
 							sprintcs(warningindex);
 							helpptr = 3;
@@ -165,7 +161,7 @@ halfword scantoks(bool macrodef, bool xpand)
 							curtok = s;
 						}
 						else
-							curtok = 1232+curchr;
+							curtok = out_param*0x01'00+curchr-'0';
 				}
 		auto q = getavail();
 		link(p) = q;

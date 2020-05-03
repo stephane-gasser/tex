@@ -9,8 +9,7 @@ void preparemag(void)
 {
 	if (magset > 0 && int_par(mag_code) != magset)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(547); //Incompatible magnification (
 		printint(int_par(mag_code));
 		print(548); //);
@@ -23,8 +22,7 @@ void preparemag(void)
 	}
 	if (int_par(mag_code) <= 0 || int_par(mag_code) > 0x80'00)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(552); //Illegal magnification has been changed to 1000
 		helpptr = 1;
 		helpline[0] = 553; //The magnification ratio must be between 1 and 0x80'00.

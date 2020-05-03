@@ -38,8 +38,7 @@ void doregistercommand(smallnumber a)
 			}
 			if (curcmd != register_)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(685); //You can't use `
 				printcmdchr(curcmd, curchr);
 				print(686); //' after 
@@ -55,16 +54,16 @@ void doregistercommand(smallnumber a)
 		switch (p)
 		{
 			case 0: 
-				l = curval+5318;
+				l = curval+count_base;
 				break;
 			case 1: 
-				l = curval+5851;
+				l = curval+scaled_base;
 				break;
 			case 2: 
-				l = curval+2900;
+				l = curval+skip_base;
 				break;
 			case 3: 
-				l = curval+3156;
+				l = curval+mu_skip_base;
 				break;
 		}
 	} while (false);
@@ -121,9 +120,9 @@ void doregistercommand(smallnumber a)
 		if (p < 2)
 			if (q == multiply)
 				if (p == 0)
-					curval = multandadd(eqtb[l].int_, curval, 0, 0x7F'FF'FF'FF);
+					curval = multandadd(eqtb[l].int_, curval, 0, infinity);
 				else
-					curval = multandadd(eqtb[l].int_, curval, 0, 0x3F'FF'FF'FF);
+					curval = multandadd(eqtb[l].int_, curval, 0, max_dimen);
 			else
 				curval = xovern(eqtb[l].int_, curval);
 		else
@@ -132,7 +131,7 @@ void doregistercommand(smallnumber a)
 			r = newspec(s);
 			if (q == multiply)
 				for (int i = 1; i <= 3; i++)
-					mem[r+i].int_ = multandadd(mem[s+i].int_, curval, 0, 0x3F'FF'FF'FF);
+					mem[r+i].int_ = multandadd(mem[s+i].int_, curval, 0, max_dimen);
 			else
 				for (int i = 1; i <= 3; i++)
 					mem[r+i].int_ = xovern(mem[s+i].int_, curval);
@@ -141,8 +140,7 @@ void doregistercommand(smallnumber a)
 	}
 	if (aritherror)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(1206); //Arithmetic overflow
 		helpptr = 2;
 		helpline[1] = 1207; //I can't carry out that multiplication or division,

@@ -24,8 +24,7 @@ void builddiscretionary(void)
 	{
 		if (p < himemmin && type(p) > 2 && type(p) != kern_node && type(p) != ligature_node)
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(1106); //Improper discretionary list
 			helpptr = 1;
 			helpline[0] = 1107; //Discretionary lists must contain only boxes and kerns.
@@ -55,8 +54,7 @@ void builddiscretionary(void)
 		case 2:
 			if (n > 0 && abs(mode) == mmode)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(1100); //Illegal math 
 				printesc(349); //discretionary
 				helpptr = 2;
@@ -72,8 +70,7 @@ void builddiscretionary(void)
 				subtype(tail) = n;
 			else
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(1103); //Discretionary list is too long
 				helpptr = 2;
 				helpline[1] = 1104; //Wow---I never thought anybody would tweak me here.

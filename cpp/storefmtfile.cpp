@@ -48,16 +48,15 @@ void storefmtfile(void)
 	fourquarters w;
 	if (saveptr)
 	{
-		if (interaction == 3)
-			printnl(262); //! 
+		printnl(262); //! 
 		print(1257); //You can't dump inside a group
 		helpptr = 1;
 		helpline[0] = 1258; //`{...\dump}' is a no-no.
-		if (interaction == 3)
-			interaction = 2;
+		if (interaction == error_stop_mode)
+			interaction = scroll_mode;
 		if (logopened)
 			error();
-		history = 3;
+		history = fatal_error_stop;
 		jumpout();
 	}
 	selector = 21;
@@ -70,7 +69,7 @@ void storefmtfile(void)
 	printchar('.');
 	printint(int_par(day_code));
 	printchar(')');
-	if (interaction == 0)
+	if (interaction == batch_mode)
 		selector = 18;
 	else
 		selector = 19;
@@ -252,7 +251,7 @@ void storefmtfile(void)
 		writeInt(fontbchar[k]);
 		writeInt(fontfalsebchar[k]);
 		printnl(1264); //\font
-		printesc(hash[2624+k].rh);
+		printesc(hash[font_id_base+k].rh);
 		printchar('=');
 		printfilename(fontname[k], fontarea[k], 338); //
 		if (fontsize[k] != fontdsize[k])

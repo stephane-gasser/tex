@@ -7,8 +7,7 @@
 
 void extrarightbrace(void)
 {
-	if (interaction == 3)
-		printnl(262); //! 
+	printnl(262); //! 
 	print(1047); //Extra }, or forgotten 
 	switch (curgroup)
 	{

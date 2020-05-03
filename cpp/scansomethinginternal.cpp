@@ -45,8 +45,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case def_font:
 			if (level != 5)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(664); //Missing number, treated as zero
 				helpptr = 3;
 				helpline[2] = 665; //A number should have been here; I inserted `0'.
@@ -94,10 +93,9 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case set_aux:
 			if (abs(mode) != m)
 			{
-				if (interaction == 3)
-					printnl(262); //! 
+				printnl(262); //! 
 				print(680); //Improper 
-				printcmdchr(79, m);
+				printcmdchr(set_aux, m);
 				helpptr = 4;
 				helpline[3] = 681; // You can refer to \spacefactor only in horizontal mode;
 				helpline[2] = 682; //you can refer to \prevdepth only in vertical mode; and
@@ -153,7 +151,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case set_page_dimen:
 			if (pagecontents == 0 && !outputactive)
 				if (m == 0)
-					curval = 0x3F'FF'FF'FF;
+					curval = max_dimen;
 				else
 					curval = 0;
 			else
@@ -269,8 +267,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 			}
 			break;
 		default:
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(685); //You can't use `
 			printcmdchr(curcmd, curchr);
 			print(686); //' after 

@@ -67,8 +67,7 @@ bool fincol(void)
 		}
 		else
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(909); //Extra alignment tab has been changed to 
 			printesc(898); //cr
 			helpptr = 3;

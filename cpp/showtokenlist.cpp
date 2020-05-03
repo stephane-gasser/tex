@@ -23,8 +23,8 @@ void showtokenlist(int p, int  q, int l)
 			printesc(309); //CLOBBERED.
 			return;
 		}
-		if (info(p) >= 0x0F'FF)
-			printcs(info(p)-0x0F'FF);
+		if (info(p) >= cs_token_flag)
+			printcs(info(p)-cs_token_flag);
 		else
 		{
 			int m = info(p)/0x1'00;

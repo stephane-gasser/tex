@@ -13,8 +13,7 @@ void headforvmode(void)
 			offsave();
 		else
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(685); //You can't use `
 			printesc(521); //hrule
 			print(1081); //' here except with leaders

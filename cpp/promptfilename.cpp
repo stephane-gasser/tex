@@ -13,17 +13,15 @@
 
 void promptfilename(strnumber s, strnumber e)
 {
-	if (interaction == 2)
+	if (interaction == scroll_mode)
 		if (s == 786) //input file name
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(787); //I can't find file `
 		}
 		else
 		{
-			if (interaction == 3)
-				printnl(262); //! 
+			printnl(262); //! 
 			print(788); //I can't write on file `
 		};
 	printfilename(curname, curarea, curext);
@@ -32,7 +30,7 @@ void promptfilename(strnumber s, strnumber e)
 		showcontext();
 	printnl(791); //Please type another 
 	print(s);
-	if (interaction < 2)
+	if (interaction < scroll_mode)
 		fatalerror(792); //*** (job aborted, file error in nonstop mode)
 	std::cin.clear();
 	print(568); //: 

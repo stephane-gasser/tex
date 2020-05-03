@@ -7,9 +7,8 @@
 void insertdollarsign(void)
 {
 	backinput();
-	curtok = 804;
-	if (interaction == 3)
-		printnl(262); //! 
+	curtok = 804; //math_shift + '$'
+	printnl(262); //! 
 	print(1016); //Missing $ inserted
 	helpptr = 2;
 	helpline[1] = 1017; //I've inserted a begin-math/end-math symbol since I think
