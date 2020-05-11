@@ -27,7 +27,7 @@ void newgraf(bool indented)
 	{
 		tail = newnullbox();
 		link(head) = tail;
-		mem[tail+1].int_ = dimen_par(par_indent_code);
+		width(tail) = dimen_par(par_indent_code);
 	}
 	if (every_par())
 		begintokenlist(every_par(), 7);

@@ -59,7 +59,7 @@ void storefmtfile(void)
 		history = fatal_error_stop;
 		jumpout();
 	}
-	selector = 21;
+	selector = new_string;
 	print(1271); // (preloaded format=
 	print(jobname);
 	printchar(' ');
@@ -70,9 +70,9 @@ void storefmtfile(void)
 	printint(int_par(day_code));
 	printchar(')');
 	if (interaction == batch_mode)
-		selector = 18;
+		selector = log_only;
 	else
-		selector = 19;
+		selector = term_and_log;
 	if (poolptr+1 > poolsize)
 		overflow(257, poolsize-initpoolptr); //pool size
 	formatident = makestring();

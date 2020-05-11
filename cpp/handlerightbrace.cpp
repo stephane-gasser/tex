@@ -75,23 +75,23 @@ void handlerightbrace(void)
 			saveptr--;
 			p = vpackage(link(head), 0, 1, max_dimen);
 			popnest();
-			if (savestack[saveptr+0].int_ < 255)
+			if (saved(0) < 255)
 			{
 				tail_append(getnode(5));
 				type(tail) = ins_node; //3
-				subtype(tail) = savestack[saveptr+0].int_;
-				mem[tail+3].int_ = mem[p+3].int_+mem[p+2].int_;
-				info(tail+4) = link(p+5);
-				link(tail+4) = q;
-				mem[tail+2].int_ = d;
-				mem[tail+1].int_ = f;
+				subtype(tail) = saved(0);
+				height(tail) = height(p)+depth(p);
+				ins_ptr(tail) = list_ptr(p);
+				split_top_ptr(tail) = q;
+				depth(tail) = d;
+				float_cost(tail) = f;
 			}
 			else
 			{
 				tail_append(getnode(2));
 				type(tail) = adjust_node; //5
 				type(tail) = 0;
-				mem[tail+1].int_ = link(p+5);
+				adjust_ptr(tail) = list_ptr(p);
 				deleteglueref(q);
 			}
 			freenode(p, 7);
@@ -170,7 +170,7 @@ void handlerightbrace(void)
 			endgraf();
 			unsave();
 			saveptr -= 2;
-			p = vpackage(link(head), savestack[saveptr+1].int_, savestack[saveptr].int_, max_dimen);
+			p = vpackage(link(head), saved(1), saved(0), max_dimen);
 			popnest();
 			tail_append(newnoad());
 			type(tail) = 29;
@@ -183,31 +183,30 @@ void handlerightbrace(void)
 		case 9:
 			unsave();
 			saveptr--;
-			link(savestack[saveptr].int_) = 3;
+			link(saved(0)) = 3;
 			p = finmlist(0);
-			info(savestack[saveptr].int_) = p;
-			if (p)
-				if (link(p) == 0)
-					if (type(p) == 16)
+			info(saved(0)) = p;
+			if (p && link(p) == 0)
+				if (type(p) == ord_noad)
+				{
+					if (math_type(subscr(p)) == 0 && math_type(supscr(p)) == 0)
 					{
-						if (link(p+3) == 0 && link(p+2) == 0)
-						{
-							mem[savestack[saveptr].int_].hh = mem[p+1].hh;
-							freenode(p, 4);
-						}
+						mem[saved(0)] = mem[nucleus(p)];
+						freenode(p, 4);
 					}
-					else 
-						if (type(p) == 28)
-							if (savestack[saveptr].int_ == tail+1)
-								if (type(tail) == 16)
-								{
-									q = head;
-									while (link(q) != tail)
-										q = link(q);
-									link(q) = p;
-									freenode(tail, 4);
-									tail = p;
-								}
+				}
+				else 
+					if (type(p) == accent_noad)
+						if (saved(0) == tail+1)
+							if (type(tail) == ord_noad)
+							{
+								q = head;
+								while (link(q) != tail)
+									q = link(q);
+								link(q) = p;
+								freenode(tail, 4);
+								tail = p;
+							}
 			break;
 		default: 
 			confusion(1046); //rightbrace

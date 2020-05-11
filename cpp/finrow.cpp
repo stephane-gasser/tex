@@ -28,8 +28,8 @@ void finrow(void)
 		tail = p;
 		space_factor = 1000;
 	}
-	type(p) = 13;
-	mem[p+6].int_ = 0;
+	type(p) = unset_node;
+	glue_stretch(p) = 0;
 	if (every_cr())
 		begintokenlist(every_cr(), 13);
 	alignpeek();

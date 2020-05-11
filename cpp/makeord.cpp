@@ -17,24 +17,24 @@ void makeord(halfword q)
 			{
 				link(q+1) = 4;
 				fetch(q+1);
-				if (curi.b2%4 == 1)
+				if (char_tag(curi) == lig_tag)
 				{
-					int a = ligkernbase[curf]+curi.b3;
-					curc = subtype(p+1);
+					int a = lig_kern_start(curf, curi);
+					curc = character(lig_char(p));
 					curi = fontinfo[a].qqqq;
-					if (curi.b0 > 128)
+					if (skip_byte(curi) > stop_flag)
 					{
-						a = ligkernbase[curf]+0x1'00*curi.b2+curi.b3;
+						a = lig_kern_restart(curf, curi);
 						curi = fontinfo[a].qqqq;
 					}
 					while (true)
 					{
 						halfword r;
-						if (curi.b1 == curc)
-							if (curi.b0 <= 128)
-								if (curi.b2 >= 128)
+						if (next_char(curi) == curc)
+							if (skip_byte(curi) <= stop_flag)
+								if (op_byte(curi) >= kern_flag)
 								{
-									p = newkern(fontinfo[kernbase[curf]+0x1'00*curi.b2+curi.b3].int_);
+									p = newkern(char_kern(curf, curi));
 									link(p) = link(q);
 									link(q) = p;
 									return;
@@ -43,46 +43,46 @@ void makeord(halfword q)
 								{
 									if (interrupt)
 										pauseforinstructions();
-									switch (curi.b2)
+									switch (op_byte(curi))
 									{
 										case 1:
 										case 5: 
-											subtype(q+1) = curi.b3;
+											subtype(q+1) = rem_byte(curi);
 											break;
 										case 2:
 										case 6: 
-											subtype(p+1) = curi.b3;
+											subtype(p+1) = rem_byte(curi);
 											break;
 										case 3:
 										case 7:
 										case 11:
 											r = newnoad();
-											subtype(r+1) = curi.b3;
+											subtype(r+1) = rem_byte(curi);
 											type(r+1) = type(q+1);
 											link(q) = r;
 											link(r) = p;
-											if (curi.b2 < 11)
+											if (op_byte(curi) < 11)
 												link(r+1) = 1;
 											else
 												link(r+1) = 4;
 											break;
 										default:
 											link(q) = link(p);
-											subtype(q+1) = curi.b3;
+											subtype(q+1) = rem_byte(curi);
 											mem[q+3] = mem[p+3];
 											mem[q+2] = mem[p+2];
 											freenode(p, 4);
 									}
-									if (curi.b2 > 3)
+									if (op_byte(curi) > 3)
 										return;
 									link(q+1) = 1;
 									label20 = true;
 								}
 						if (label20)
 							break;
-						if (curi.b0 >= 128)
+						if (skip_byte(curi) >= stop_flag)
 							return;
-						a += curi.b0+1;
+						a += skip_byte(curi)+1;
 						curi = fontinfo[a].qqqq;
 					}
 				}

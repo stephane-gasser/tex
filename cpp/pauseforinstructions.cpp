@@ -8,7 +8,7 @@ void pauseforinstructions(void)
 	if (OKtointerrupt)
 	{
 		interaction = error_stop_mode;
-		if (selector == 18 || selector == 16)
+		if (selector == log_only || selector == no_print)
 			selector++;
 		printnl(262); //! 
 		print(296); //Interruption

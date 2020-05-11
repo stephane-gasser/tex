@@ -34,7 +34,7 @@ void Initialize(void)
 	pagecontents = 0;
 	pagetail = page_head;
 	link(page_head) = 0;
-	lastglue = 0xFF'FF;
+	lastglue = empty_flag;
 	lastpenalty = 0;
 	lastkern = 0;
 	pagesofar[7] = 0;
@@ -124,37 +124,37 @@ void Initialize(void)
 		writeopen[k] = false;
 	for (int k = 1; k < 20; k++)
 		mem[k].int_ = 0;
-	for (int k = 0; k <= 19; k += 4)
+	for (int k = 0; k <= lo_mem_stat_max; k += glue_spec_size)
 	{
-		link(k) = 1;
-		type(k) = 0;
-		subtype(k) = 0;
+		glue_ref_count(k) = 1;
+		stretch_order(k) = normal;
+		shrink_order(k) = normal;
 	}
-	mem[6].int_ = 0x1'00'00;
-	type(4) = 1;
-	mem[10].int_ = 0x1'00'00;
-	type(8) = 2;
-	mem[14].int_ = 0x1'00'00;
-	type(12) = 1;
-	mem[15].int_ = 0x1'00'00;
-	subtype(12) = 1;
-	mem[18].int_ = -0x1'00'00;
-	type(16) = 1;
-	rover = 20;
-	link(rover) = 0xFF'FF;
-	info(rover) = 1000;
-	info(rover+1) = rover;
-	link(rover+1) = rover;
-	lomemmax = rover + 1000;
+	stretch(fil_glue) = unity;
+	stretch_order(fil_glue) = fil;
+	stretch(fill_glue) = unity;
+	stretch_order(fill_glue) = fill;
+	stretch(ss_glue) = unity;
+	stretch_order(ss_glue) = fil;
+	shrink(ss_glue) = unity;
+	shrink_order(ss_glue) = fil;
+	stretch(fil_neg_glue) = -unity;
+	stretch_order(fil_neg_glue) = fil;
+	rover = lo_mem_stat_max+1;
+	link(rover) = empty_flag;
+	node_size(rover) = 1000;
+	llink(rover) = rover;
+	rlink(rover) = rover;
+	lomemmax = rover+1000;
 	link(lomemmax) = 0;
 	info(lomemmax) = 0;
-	for (int k = hi_mem_stat_min; k < 30001; k++)
+	for (int k = hi_mem_stat_min; k <= mem_top; k++)
 		mem[k] = mem[lomemmax];
 	info(omit_template) = frozen_end_template+cs_token_flag;
 	link(end_span) = 256;
 	info(end_span) = 0;
 	type(active) = 1;
-	info(29994) = 0xFF'FF;
+	info(29994) = empty_flag;
 	subtype(active) = 0;
 	subtype(page_ins_head) = 255;
 	type(page_ins_head) = 1;

@@ -73,7 +73,7 @@ void beginbox(int boxcontext)
 							if (!brk)
 							{
 								curbox = tail;
-								mem[curbox+4].int_ = 0;
+								shift_amount(curbox) = 0;
 								tail = p;
 								link(p) = 0;
 							}

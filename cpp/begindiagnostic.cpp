@@ -3,7 +3,7 @@
 void begindiagnostic(void)
 {
 	oldsetting = selector;
-	if (int_par(tracing_online_code) <= 0 && selector == 19)
+	if (int_par(tracing_online_code) <= 0 && selector == term_and_log)
 	{
 		selector--;
 		if (history == spotless)

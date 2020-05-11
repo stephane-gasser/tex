@@ -10,36 +10,36 @@
 
 void makefraction(halfword q)
 {
-	if (mem[q+1].int_ == 0x40'00'00'00)
-		mem[q+1].int_ = fontinfo[8+parambase[fam_fnt(3+cursize)]].int_;
+	if (thickness(q) == default_code)
+		thickness(q) = default_rule_thickness();
 	auto x = cleanbox(q+2, curstyle+2-2*(curstyle/6));
 	auto z = cleanbox(q+3, 2*(curstyle/2)+3-2*(curstyle/6));
-	if (mem[x+1].int_ < mem[z+1].int_)
-		x = rebox(x, mem[z+1].int_);
+	if (width(x) < width(z))
+		x = rebox(x, width(z));
 	else
-		z = rebox(z, mem[x+1].int_);
+		z = rebox(z, width(x));
 	scaled shiftup, shiftdown;
 	if (curstyle < 2)
 	{
-		shiftup = fontinfo[8+parambase[fam_fnt(2+cursize)]].int_;
-		shiftdown = fontinfo[11+parambase[fam_fnt(2+cursize)]].int_;
+		shiftup = num1(cursize);
+		shiftdown = denom1(cursize);
 	}
 	else
 	{
-		shiftdown = fontinfo[12+parambase[fam_fnt(2+cursize)]].int_;
-		if (mem[q+1].int_)
-			shiftup = fontinfo[9+parambase[fam_fnt(2+cursize)]].int_;
+		shiftdown = denom2(cursize);
+		if (thickness(q))
+			shiftup = num2(cursize);
 		else
-			shiftup = fontinfo[10+parambase[fam_fnt(2+cursize)]].int_;
+			shiftup = num3(cursize);
 	}
 	scaled clr, delta;
-	if (mem[q+1].int_ == 0)
+	if (thickness(q) == 0)
 	{
 		if (curstyle < 2)
-			clr = 7*fontinfo[8+parambase[fam_fnt(3+cursize)]].int_;
+			clr = 7*default_rule_thickness();
 		else
-			clr = 3*fontinfo[8+parambase[fam_fnt(3+cursize)]].int_;
-		delta = half(clr-((shiftup-mem[x+2].int_)-(mem[z+3].int_-shiftdown)));
+			clr = 3*default_rule_thickness();
+		delta = half(clr-((shiftup-depth(x))-(height(z)-shiftdown)));
 		if (delta > 0)
 		{
 			shiftup += delta;
@@ -49,46 +49,46 @@ void makefraction(halfword q)
 	else
 	{
 		if (curstyle < 2)
-			clr = 3*mem[q+1].int_;
+			clr = 3*thickness(q);
 		else
-			clr = mem[q+1].int_;
-		delta = half(mem[q+1].int_);
-		scaled delta1 = clr-(shiftup-mem[x+2].int_-(fontinfo[22+parambase[fam_fnt(2+cursize)]].int_+delta));
-		scaled delta2 = clr-(fontinfo[22+parambase[fam_fnt(2+cursize)]].int_-delta-(mem[z+3].int_-shiftdown));
+			clr = thickness(q);
+		delta = half(thickness(q));
+		scaled delta1 = clr-(shiftup-depth(x)-(axis_height(cursize)+delta));
+		scaled delta2 = clr-(axis_height(cursize)-delta-(height(z)-shiftdown));
 		if (delta1 > 0)
 			shiftup += delta1;
 		if (delta2 > 0)
 			shiftdown += delta2;
 	}
 	auto v = newnullbox();
-	type(v) = 1;
-	mem[v+3].int_ = shiftup+mem[x+3].int_;
-	mem[v+2].int_ = mem[z+2].int_+shiftdown;
-	mem[v+1].int_ = mem[x+1].int_;
+	type(v) = vlist_node;
+	height(v) = shiftup+height(x);
+	depth(v) = depth(z)+shiftdown;
+	width(v) = width(x);
 	halfword p;
-	if (mem[q+1].int_ == 0)
+	if (thickness(q) == 0)
 	{
-		p = newkern((shiftup-mem[x+2].int_)-(mem[z+3].int_-shiftdown));
+		p = newkern((shiftup-depth(x))-(height(z)-shiftdown));
 		link(p) = z;
 	}
 	else
 	{
-		auto y = fractionrule(mem[q+1].int_);
-		p = newkern((fontinfo[22+parambase[fam_fnt(2+cursize)]].int_-delta)-(mem[z+3].int_-shiftdown));
+		auto y = fractionrule(thickness(q));
+		p = newkern((axis_height(cursize)-delta)-(height(z)-shiftdown));
 		link(y) = p;
 		link(p) = z;
-		p = newkern((shiftup-mem[x+2].int_)-(fontinfo[22+parambase[fam_fnt(2+cursize)]].int_+delta));
+		p = newkern((shiftup-depth(x))-(axis_height(cursize)+delta));
 		link(p) = y;
 	}
 	link(x) = p;
-	link(v+5) = x;
+	list_ptr(v) = x;
 	if (curstyle < 2)
-		delta = fontinfo[20+parambase[fam_fnt(2+cursize)]].int_;
+		delta = delim1(cursize);
 	else
-		delta = fontinfo[21+parambase[fam_fnt(2+cursize)]].int_;
-	x = vardelimiter(q+4, cursize, delta);
+		delta = delim2(cursize);
+	x = vardelimiter(left_delimiter(q), cursize, delta);
 	link(x) = v;
-	z = vardelimiter(q+5, cursize, delta);
+	z = vardelimiter(right_delimiter(q), cursize, delta);
 	link(v) = z;
-	mem[q+1].int_ = hpack(x, 0, 1);
+	thickness(q) = hpack(x, 0, 1);
 }

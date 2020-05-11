@@ -18,19 +18,19 @@ void appspace(void)
 			mainp = fontglue[cur_font()];
 			if (mainp == 0)
 			{
-				mainp = newspec(0);
-				maink = parambase[cur_font()]+2;
-				mem[mainp+1].int_ = fontinfo[maink].int_;
-				mem[mainp+2].int_ = fontinfo[maink+1].int_;
-				mem[mainp+3].int_ = fontinfo[maink+2].int_;
+				mainp = newspec(zero_glue);
+				maink = 2+parambase[cur_font()];
+				width(mainp) = param(space_code, cur_font());
+				stretch(mainp) = param(space_stretch_code, cur_font());
+				shrink(mainp) = param(space_shrink_code, cur_font());
 				fontglue[cur_font()] = mainp;
 			}
 		}
 		mainp = newspec(mainp);
 		if (space_factor >= 2000)
-			mem[mainp+1].int_ += fontinfo[7+parambase[cur_font()]].int_;
-		mem[mainp+2].int_ = xnoverd(mem[mainp+2].int_, space_factor, 1000);
-		mem[mainp+3].int_ = xnoverd(mem[mainp+3].int_, 1000, space_factor);
+			width(mainp) += param(extra_space_code, cur_font());
+		stretch(mainp) = xnoverd(stretch(mainp), space_factor, 1000);
+		shrink(mainp) = xnoverd(shrink(mainp), 1000, space_factor);
 		q = newglue(mainp);
 		link(mainp) = 0;
 	}

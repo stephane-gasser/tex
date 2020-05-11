@@ -11,7 +11,7 @@
 void makemathaccent(halfword q)
 {
 	fetch(q+4);
-	if (curi.b0 > 0)
+	if (skip_byte(curi) > 0)
 	{
 		auto i = curi;
 		auto c = curc;
@@ -20,51 +20,47 @@ void makemathaccent(halfword q)
 		if (link(q+1) == 1)
 		{
 			fetch(q+1);
-			if (curi.b2%4 == 1)
+			if (char_tag(curi) == lig_tag)
 			{
-				int a = ligkernbase[curf]+curi.b3;
+				int a = lig_kern_start(curf, curi);
 				curi = fontinfo[a].qqqq;
-				if (curi.b0 > 128)
+				if (skip_byte(curi) > stop_flag)
 				{
-					a = ligkernbase[curf]+0x1'00*curi.b2+curi.b3;
+					a = lig_kern_start(curf, curi);
 					curi = fontinfo[a].qqqq;
 				}
 				while (true)
 				{
-					if (curi.b1-0 == skewchar[curf])
+					if (next_char(curi) == skewchar[curf])
 					{
-						if (curi.b2 >= 128)
-							if (curi.b0 <= 128)
-								s = fontinfo[kernbase[curf]+0x1'00*curi.b2+curi.b3].int_;
+						if (op_byte(curi) >= kern_flag)
+							if (skip_byte(curi) <= stop_flag)
+								s = char_kern(curf, curi);
 						break;
 					}
-					if (curi.b0 >= 128)
+					if (skip_byte(curi) >= stop_flag)
 						break;
-					a += curi.b0+1;
+					a += skip_byte(curi)+1;
 					curi = fontinfo[a].qqqq;
 				}
 			}
 		}
 		auto x = cleanbox(q+1, 2*(curstyle/2)+1);
-		scaled w = mem[x+1].int_;
-		scaled h = mem[x+3].int_;
+		scaled w = width(x);
+		scaled h = height(x);
 		while (true)
 		{
-			if (i.b2%4 != 2)
+			if (char_tag(i) != list_tag)
 				break;
-			halfword y = i.b3;
-			i = fontinfo[charbase[f]+y].qqqq;
-			if (i.b0 <= 0)
+			halfword y = rem_byte(i);
+			i = char_info(f, y);
+			if (skip_byte(i) <= 0)
 				break;
-			if (fontinfo[widthbase[f]+i.b0].int_ > w)
+			if (char_width(f, i) > w)
 				break;
 			c = y;
 		}
-		scaled delta;
-		if (h < fontinfo[5+parambase[f]].int_)
-			delta = h;
-		else
-			delta = fontinfo[5+parambase[f]].int_;
+		scaled delta = std::min(h,  param(x_height_code, f));
 		if (link(q+2) || link(q+3))
 			if (link(q+1) == 1)
 			{
@@ -78,25 +74,25 @@ void makemathaccent(halfword q)
 				link(q+1) = 3;
 				info(q+1) = x;
 				x = cleanbox(q+1, curstyle);
-				delta += mem[x+3].int_-h;
-				h = mem[x+3].int_;
+				delta += height(x)-h;
+				h = height(x);
 			}
 		auto y = charbox(f, c);
-		mem[y+4].int_ = s+half(w-mem[y+1].int_);
-		mem[y+1].int_ = 0;
+		shift_amount(y) = s+half(w-width(y));
+		width(y) = 0;
 		auto p = newkern(-delta);
 		link(p) = x;
 		link(y) = p;
 		y = vpackage(y, 0, 1, max_dimen);
-		mem[y+1].int_ = mem[x+1].int_;
-		if (mem[y+3].int_ < h)
+		width(y) = width(x);
+		if (height(y) < h)
 		{
-			p = newkern(h-mem[y+3].int_);
-			link(p) = link(y+5);
-			link(y+5) = p;
-			mem[y+3].int_ = h;
+			p = newkern(h-height(y));
+			link(p) = list_ptr(y);
+			list_ptr(y) = p;
+			height(y) = h;
 		}
-		info(q+1) = y;
-		link(q+1) = 2;
+		info(nucleus(q)) = y;
+		math_type(nucleus(q)) = sub_box;
 	}
 }

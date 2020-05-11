@@ -5,14 +5,14 @@
 void printchar(ASCIIcode s)
 {
 	if (s == int_par(new_line_char_code))
-		if (selector < 20)
+		if (selector < pseudo)
 		{
 			println();
 			return;
 		}
 	switch (selector)
 	{
-		case 19:
+		case term_and_log:
 			std::cout << xchr[s];
 			logfile << xchr[s];
 			termoffset++;
@@ -28,25 +28,25 @@ void printchar(ASCIIcode s)
 				fileoffset = 0;
 			}
 			break;
-		case 18:
+		case log_only:
 			logfile << xchr[s];
 			fileoffset++;
 			if (fileoffset = maxprintline)
 			println();
 			break;
-		case 17:
+		case term_only:
 			std::cout << xchr[s];
 			termoffset++;
 			if (termoffset == maxprintline)
 				println();
 			break;
-		case 16:
+		case no_print:
 			break;
-		case 20: 
+		case pseudo: 
 			if (tally < trickcount)
 				trickbuf[tally%errorline] = s;
 			break;
-		case 21: 
+		case new_string: 
 			if (poolptr < poolsize)
 			{
 				strpool[poolptr] = s;

@@ -248,14 +248,10 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 	fontsize[f] = z;
 	for (int k = fmemptr; k < widthbase[f]; k++)
 	{
-		a = tfmfile.get();
-		qw.b0 = a;
-		b = tfmfile.get();
-		qw.b1 = b;
-		c = tfmfile.get();
-		qw.b2 = c;
-		d = tfmfile.get();
-		qw.b3 = d;
+		qw.b0 = a = tfmfile.get();
+		qw.b1 = b = tfmfile.get();
+		qw.b2 = c = tfmfile.get();
+		qw.b3 = d = tfmfile.get();
 		fontinfo[k].qqqq = qw;
 		if (a >= nw || b/16 >= nh || b%16 >= nd || c/4 >= ni)
 		{
@@ -286,7 +282,7 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 				}
 				while (d < k+bc-fmemptr)
 				{
-					qw = fontinfo[charbase[f]+d].qqqq;
+					qw = char_info(f, d);
 					if (qw.b2%4 != 2)
 						break;
 					d = qw.b3;
@@ -324,22 +320,22 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 			return 0;
 		}
 	}
-	if (fontinfo[widthbase[f]].int_ != 0)
+	if (fontinfo[widthbase[f]].int_)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	if (fontinfo[heightbase[f]].int_ != 0)
+	if (fontinfo[heightbase[f]].int_)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	if (fontinfo[depthbase[f]].int_ != 0)
+	if (fontinfo[depthbase[f]].int_)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
 	}
-	if (fontinfo[italicbase[f]].int_ != 0)
+	if (fontinfo[italicbase[f]].int_)
 	{
 		notLoadable(u, nom, aire, s, fileopened);
 		return 0;
@@ -374,8 +370,8 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 						notLoadable(u, nom, aire, s, fileopened);
 						return 0;
 					}
-					qw = fontinfo[charbase[f]+b].qqqq;
-					if (qw.b0 <= 0)
+					qw = char_info(f, b);
+					if (skip_byte(qw) <= 0)
 					{
 						notLoadable(u, nom, aire, s, fileopened);
 						return 0;
@@ -388,8 +384,8 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 					notLoadable(u, nom, aire, s, fileopened);
 					return 0;
 				}
-				qw = fontinfo[charbase[f]+d].qqqq;
-				if (qw.b0 <= 0)
+				qw = char_info(f, d);
+				if (skip_byte(qw) <= 0)
 				{
 					notLoadable(u, nom, aire, s, fileopened);
 					return 0;
@@ -437,43 +433,43 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 		qw.b2 = c = tfmfile.get();
 		qw.b3 = d = tfmfile.get();
 		fontinfo[k].qqqq = qw;
-		if (a != 0)
+		if (a)
 		{
 			if (a < bc || a > ec)
 			{
 				notLoadable(u, nom, aire, s, fileopened);
 				return 0;
 			}
-			qw = fontinfo[charbase[f]+a].qqqq;
-			if (qw.b0 <= 0)
+			qw = char_info(f, a);
+			if (skip_byte(qw) <= 0)
 			{
 				notLoadable(u, nom, aire, s, fileopened);
 				return 0;
 			}
 		}
-		if (b != 0)
+		if (b)
 		{
 			if (b < bc || b > ec)
 			{
 				notLoadable(u, nom, aire, s, fileopened);
 				return 0;
 			}
-			qw = fontinfo[charbase[f]+b].qqqq;
-			if (qw.b0 <= 0)
+			qw = char_info(f, b);
+			if (skip_byte(qw) <= 0)
 			{
 				notLoadable(u, nom, aire, s, fileopened);
 				return 0;
 			}
 		}
-		if (c != 0)
+		if (c)
 		{
 			if (c < bc || c > ec)
 			{
 				notLoadable(u, nom, aire, s, fileopened);
 				return 0;
 			}
-			qw = fontinfo[charbase[f]+c].qqqq;
-			if (qw.b0 <= 0)
+			qw = char_info(f, c);
+			if (skip_byte(qw) <= 0)
 			{
 				notLoadable(u, nom, aire, s, fileopened);
 				return 0;
@@ -484,8 +480,8 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 				notLoadable(u, nom, aire, s, fileopened);
 				return 0;
 			}
-		qw = fontinfo[charbase[f]+d].qqqq;
-		if (qw.b0 <= 0)
+		qw = char_info(f, d);
+		if (skip_byte(qw) <= 0)
 			{
 				notLoadable(u, nom, aire, s, fileopened);
 				return 0;
@@ -499,7 +495,7 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 				sw -= 0x1'00;
 			sw = sw*0x1'00+tfmfile.get();
 			sw = sw*0x1'00+tfmfile.get();
-			fontinfo[parambase[f]].int_ = sw*16+tfmfile.get()/16;
+			param(0, f) = sw*16+tfmfile.get()/16;
 		}
 		else
 		{
@@ -509,10 +505,10 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 			d = tfmfile.get();
 			scaled sw = ((((d*z)/0x1'00+c*z)/0x1'00)+b*z)/beta;
 			if (a == 0)
-				fontinfo[parambase[f]+k-1].int_ = sw;
+				param(k-1, f) = sw;
 			else 
 				if (a == 255)
-					fontinfo[parambase[f]+k-1].int_ = sw-alpha;
+					param(k-1, f) = sw-alpha;
 				else
 				{
 					notLoadable(u, nom, aire, s, fileopened);
@@ -525,7 +521,7 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 		return 0;
 	}
 	for (int k = np+1; k <= 7; k++)
-		fontinfo[parambase[f]+k-1].int_ = 0;
+		param(k-1, f) = 0;
 	if (np >= 7)
 		fontparams[f] = np;
 	else
@@ -540,8 +536,8 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 	fontfalsebchar[f] = bchar;
 	if (bchar <= ec && bchar >= bc)
 	{
-		qw = fontinfo[charbase[f]+bchar].qqqq;
-		if ((qw.b0 > 0))
+		qw = char_info(f, bchar);
+		if ((skip_byte(qw) > 0))
 			fontfalsebchar[f] = 256;
 	}
 	fontname[f] = nom;

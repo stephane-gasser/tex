@@ -10,8 +10,8 @@ void popalignment(void)
 	curhead = info(p+4);
 	alignstate = mem[p+3].int_;
 	curloop = mem[p+2].int_;
-	curspan = link(p+1);
-	link(align_head) = info(p+1);
+	curspan = rlink(p);
+	preamble() = llink(p);
 	curalign = info(p);
 	alignptr = link(p);
 	freenode(p, 5);

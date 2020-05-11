@@ -142,7 +142,7 @@ void aftermath(void)
 		p = link(b+5);
 		t = adjusttail;
 		adjusttail = 0;
-		w = mem[b+1].int_;
+		w = width(b);
 		z = dimen_par(display_width_code);
 		s = dimen_par(display_indent_code);
 		if (a == 0 || danger)
@@ -152,8 +152,8 @@ void aftermath(void)
 		}
 		else
 		{
-			e = mem[a+1].int_;
-			q = e+fontinfo[6+parambase[fam_fnt(2)]].int_;
+			e = width(a);
+			q = e+math_quad(0);
 		}
 		if (w+q > z)
 		{
@@ -171,7 +171,7 @@ void aftermath(void)
 					b = hpack(p, z, 0);
 				}
 			}
-			w = mem[b+1].int_;
+			w = width(b);
 		}
 		d = half(z-w);
 		if (e > 0 && d < 2*e)
@@ -193,7 +193,7 @@ void aftermath(void)
 		}
 		if (l && e == 0)
 		{
-			mem[a+4].int_ = s;
+			shift_amount(a) = s;
 			appendtovlist(a);
 			tail_append(newpenalty(10000));
 		}
@@ -216,13 +216,12 @@ void aftermath(void)
 			}
 			b = hpack(b, 0, 1);
 		}
-		mem[b+4].int_ = s+d;
+		shift_amount(b) = s+d;
 		appendtovlist(b);
-
 		if (a && e == 0 && !l)
 		{
 			tail_append(newpenalty(10000));
-			mem[a+4].int_ = s+z-mem[a+1].int_;
+			shift_amount(a) = s+z-width(a);
 			appendtovlist(a);
 			g2 = 0;
 		}

@@ -49,8 +49,8 @@ void writeout(halfword p)
 		selector = j;
 	else
 	{
-		if (j == 17 && selector == 19)
-			selector = 18;
+		if (j == 17 && selector == term_and_log)
+			selector = log_only;
 		printnl(338); //
 	}
 	tokenshow(defref);

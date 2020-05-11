@@ -59,20 +59,20 @@ void showactivities(void)
 						printint(t);
 						print(983); // adds 
 						if (count(t) == 1000)
-							t = mem[r+3].int_;
+							t = height(r);
 						else
-							t = xovern(mem[r+3].int_, 1000)*count(t);
+							t = xovern(height(r), 1000)*count(t);
 						printscaled(t);
-						if (type(r) == 1)
+						if (type(r) == vlist_node)
 						{
 							halfword q = page_head;
 							t = 0;
 							do
 							{
 								q = link(q);
-								if (type(q) == 3 && subtype(q) == subtype(r))
+								if (type(q) == ins_node && subtype(q) == subtype(r))
 									t++;
-							} while (q != info(r+1));
+							} while (q != llink(r));
 							print(984); //, #
 							printint(t);
 							print(985); // might split

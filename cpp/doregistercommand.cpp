@@ -90,26 +90,26 @@ void doregistercommand(smallnumber a)
 				q = newspec(curval);
 				r = equiv(l);
 				deleteglueref(curval);
-				mem[q+1].int_ += mem[r+1].int_;
-				if (mem[q+2].int_ == 0)
-					type(q) = 0;
-				if (type(q) == type(r))
-					mem[q+2].int_ += mem[r+2].int_;
+				width(q) += width(r);
+				if (stretch(q) == 0)
+					stretch_order(q) = 0;
+				if (stretch_order(q) == stretch_order(r))
+					stretch(q) += stretch(r);
 				else 
-					if (type(q) < type(r) && mem[r+2].int_)
+					if (stretch_order(q) < stretch_order(r) && stretch(r))
 					{
-						mem[q+2].int_ = mem[r+2].int_;
-						type(q) = type(r);
+						stretch(q) = stretch(r);
+						stretch_order(q) = stretch_order(r);
 					}
-				if (mem[q+3].int_ == 0)
-					subtype(q) = 0;
-				if (subtype(q) == subtype(r))
-					mem[q+3].int_ += mem[r+3].int_;
+				if (shrink(q) == 0)
+					shrink_order(q) = 0;
+				if (shrink_order(q) == shrink_order(r))
+					shrink(q) += shrink(r);
 				else 
-					if (subtype(q) < subtype(r) && mem[r+3].int_)
+					if (shrink_order(q) < shrink_order(r) && shrink(r))
 					{
-						mem[q+3].int_ = mem[r+3].int_;
-						subtype(q) = subtype(r);
+						shrink(q) = shrink(r);
+						shrink_order(q) = shrink_order(r);
 					}
 				curval = q;
 			}
@@ -130,11 +130,17 @@ void doregistercommand(smallnumber a)
 			s = equiv(l);
 			r = newspec(s);
 			if (q == multiply)
-				for (int i = 1; i <= 3; i++)
-					mem[r+i].int_ = multandadd(mem[s+i].int_, curval, 0, max_dimen);
+			{
+				width(r) = multandadd(width(s), curval, 0, max_dimen);
+				depth(r) = multandadd(depth(s), curval, 0, max_dimen);
+				height(r) = multandadd(height(s), curval, 0, max_dimen);
+			}
 			else
-				for (int i = 1; i <= 3; i++)
-					mem[r+i].int_ = xovern(mem[s+i].int_, curval);
+			{
+				width(r) = xovern(width(s), curval);
+				depth(r) = xovern(depth(s), curval);
+				height(r) = xovern(height(s), curval);
+			}
 			curval = r;
 		}
 	}

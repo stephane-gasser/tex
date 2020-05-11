@@ -53,7 +53,9 @@ void shipout(halfword p)
 		showbox(p);
 		enddiagnostic(true);
 	}
-	if (mem[p+3].int_ > max_dimen || mem[p+2].int_ > max_dimen || mem[p+3].int_+mem[p+2].int_+dimen_par(v_offset_code) > max_dimen || mem[p+1].int_+dimen_par(h_offset_code) > max_dimen)
+	if (height(p) > max_dimen || depth(p) > max_dimen 
+	 || height(p)+depth(p)+dimen_par(v_offset_code) > max_dimen 
+	 || width(p)+dimen_par(h_offset_code) > max_dimen)
 	{
 		printnl(262); //! 
 		print(832); //Huge page cannot be shipped out
@@ -75,10 +77,10 @@ void shipout(halfword p)
 		flushnodelist(p);
 		return;
 	}
-	if (mem[p+3].int_+mem[p+2].int_+dimen_par(v_offset_code) > maxv)
-		maxv = mem[p+3].int_+mem[p+2].int_+dimen_par(v_offset_code);
-	if (mem[p+1].int_+dimen_par(h_offset_code) > maxh)
-		maxh = mem[p+1].int_+dimen_par(h_offset_code);
+	if (height(p)+depth(p)+dimen_par(v_offset_code) > maxv)
+		maxv = height(p)+depth(p)+dimen_par(v_offset_code);
+	if (width(p)+dimen_par(h_offset_code) > maxh)
+		maxh = width(p)+dimen_par(h_offset_code);
 	dvih = 0;
 	dviv = 0;
 	curh = dimen_par(h_offset_code);
@@ -105,7 +107,7 @@ void shipout(halfword p)
 		preparemag();
 		dvifour(int_par(mag_code));
 		oldsetting = selector;
-		selector = 21;
+		selector = new_string;
 		print(826); // TeX output 
 		printint(int_par(year_code));
 		printchar('.');
@@ -135,9 +137,9 @@ void shipout(halfword p)
 		dvifour(count(k));
 	dvifour(lastbop);
 	lastbop = pageloc;
-	curv = mem[p+3].int_+dimen_par(v_offset_code);
+	curv = height(p)+dimen_par(v_offset_code);
 	tempptr = p;
-	if (type(p) == 1)
+	if (type(p) == vlist_node)
 		vlistout();
 	else
 		hlistout();

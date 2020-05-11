@@ -16,27 +16,27 @@ halfword copynodelist(halfword p)
 		else
 			switch (type(p))
 			{
-				case 0:
-				case 1:
-				case 13:
+				case hlist_node:
+				case vlist_node:
+				case unset_node:
 					r = getnode(7);
 					mem[r+6] = mem[p+6];
 					mem[r+5] = mem[p+5];
 					link(r+5) = copynodelist(link(p+5));
 					words = 5;
 					break;
-				case 2:
+				case rule_node:
 					r = getnode(4);
 					words = 4;
 					break;
-				case 3:
+				case ins_node:
 					r = getnode(5);
 					mem[r+4] = mem[p+4];
 					link(link(p+4))++;
 					info(r+4) = copynodelist(info(p+4));
 					words = 4;
 					break;
-				case 8:
+				case whatsit_node:
 					switch (subtype(p))
 					{
 						case 0:
@@ -58,36 +58,36 @@ halfword copynodelist(halfword p)
 							confusion(1293); //ext2
 					}
 					break;
-				case 10:
+				case glue_node:
 					r = getnode(2);
 					link(info(p+1))++;
 					info(r+1) = info(p+1);
 					link(r+1) = copynodelist(link(p+1));
 					break;
-				case 11:
-				case 9:
-				case 12:
+				case kern_node:
+				case math_node:
+				case penalty_node:
 					r = getnode(2);
 					words = 2;
 					break;
-				case 6:
+				case ligature_node:
 					r = getnode(2);
 					mem[r+1] = mem[p+1];
 					link(r+1) = copynodelist(link(p+1));
 					break;
-				case 7:
+				case disc_node:
 					r = getnode(2);
 					info(r+1) = copynodelist(info(p+1));
 					link(r+1) = copynodelist(link(p+1));
 					break;
-				case 4:
+				case mark_node:
 					r = getnode(2);
-					info(mem[p+1].int_)++;
+					info(mark_ptr(p))++;
 					words = 2;
 					break;
-				case 5:
+				case adjust_node:
 					r = getnode(2);
-					mem[r+1].int_ = copynodelist(mem[p+1].int_);
+					adjust_ptr(r) = copynodelist(adjust_ptr(p));
 					break;
 				default: 
 					confusion(354); //copying

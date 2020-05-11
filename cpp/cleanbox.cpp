@@ -15,7 +15,7 @@ halfword cleanbox(halfword p, smallnumber s)
 		{
 			case 1:
 				curmlist = newnoad();
-				mem[curmlist+1] = mem[p];
+				mem[nucleus(curmlist)] = mem[p];
 				break;
 			case 2:
 				q = info(p);
@@ -38,14 +38,14 @@ halfword cleanbox(halfword p, smallnumber s)
 			cursize = 0;
 		else
 			cursize = 16*((curstyle-2)/2);
-		curmu = xovern(fontinfo[6+parambase[fam_fnt(2+cursize)]].int_, 18);
+		curmu = xovern(math_quad(cursize), 18);
 		break;
 	} while (false);
 	halfword x;
 	if (q >= himemmin || q == 0)
 		x = hpack(q, 0, 1);
 	else 
-		if (link(q) == 0 && type(q) <= 1 && mem[q+4].int_ == 0)
+		if (link(q) == 0 && type(q) <= vlist_node && shift_amount(q) == 0)
 			x = q;
 		else
 			x = hpack(q, 0, 1);
@@ -53,7 +53,7 @@ halfword cleanbox(halfword p, smallnumber s)
 	if (q >= himemmin)
 	{
 		auto r = link(q);
-		if (r && link(r) == 0 && r < himemmin && type(r) == 11)
+		if (r && link(r) == 0 && r < himemmin && type(r) == kern_node)
 		{
 			freenode(r, 2);
 			link(q) = 0;

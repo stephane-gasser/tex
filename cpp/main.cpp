@@ -43,27 +43,27 @@ int main()
 				bad = 10;
 			if (0 > 0 || 255 < 127)
 				bad = 11;
-			if (0 > 0 || 0xFF'FF < 0x7F'FF)
+			if (0 > 0 || empty_flag < 0x7F'FF)
 				bad = 12;
-			if (0 < 0 || 255 > 0xFF'FF)
+			if (0 < 0 || 255 > empty_flag)
 				bad = 13;
-			if (memmin < 0 || memmax >= 0xFF'FF || -0-memmin > 0x1'00'00)
+			if (memmin < 0 || memmax >= empty_flag || -0-memmin > 0x1'00'00)
 				bad = 14;
 			if (0 < 0 || fontmax > 255)
 				bad = 15;
 			if (fontmax > 256)
 				bad = 16;
-			if (savesize > 0xFF'FF || maxstrings > 0xFF'FF) 
+			if (savesize > empty_flag || maxstrings > empty_flag) 
 				bad = 17;
-			if (bufsize > 0xFF'FF)
+			if (bufsize > empty_flag)
 				bad = 18;
 			if (255 < 255)
 				bad = 19;
-			if (6976 > 0xFF'FF)
+			if (6976 > empty_flag)
 				bad = 21;
 			if (20 > filenamesize)
 				bad = 31;
-			if (2*0xFF'FF < mem_top-memmin)
+			if (2*empty_flag < mem_top-memmin)
 				bad = 41;
 			if (bad > 0)
 			{
@@ -79,7 +79,7 @@ int main()
 			fixdateandtime();
 			readyalready = 314159;
 		}
-		selector = 17;
+		selector = term_only;
 		tally = 0;
 		termoffset = 0;
 		fileoffset = 0;
@@ -146,9 +146,9 @@ int main()
 		fixdateandtime();
 		magicoffset = strstart[891]-9*16;
 		if (interaction == batch_mode)
-			selector = 16;
+			selector = no_print;
 		else
-			selector = 17;
+			selector = term_only;
 		if (curinput.locfield < curinput.limitfield && cat_code(buffer[curinput.locfield]))
 			startinput();
 		history = spotless;

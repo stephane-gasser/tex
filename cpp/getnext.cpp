@@ -294,7 +294,7 @@ void getnext(void)
 						}
 						if (!recommence)
 						{
-							if (selector < 18)
+							if (selector < log_only)
 								openlogfile();
 							if (interaction > nonstop_mode)
 							{
@@ -385,7 +385,7 @@ void getnext(void)
 			if (curcmd == omit)
 				begintokenlist(omit_template, 2);
 			else
-				begintokenlist(mem[curalign+2].int_, 2);
+				begintokenlist(v_part(curalign), 2);
 			alignstate = 1000000;
 			recommence = true;
 		}

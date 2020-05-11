@@ -48,7 +48,7 @@ void finalcleanup(void)
 			printint(ifline);
 		}
 		print(1280); // was incomplete)
-		ifline = mem[condptr+1].int_;
+		ifline = if_line_field(condptr);
 		curif = subtype(condptr);
 		tempptr = condptr;
 		condptr = link(condptr);
@@ -56,16 +56,16 @@ void finalcleanup(void)
 	}
 	if (history && (history == warning_issued || interaction < error_stop_mode) && selector == 19)
 	{
-		selector = 17;
+		selector = term_only;
 		printnl(1281); //(see the transcript file for additional information)
-		selector = 19;
+		selector = term_and_log;
 	}
 	if (c == 1)
 	{
 		for (c = 0; c <= 4; c++)
 		if (curmark[c])
 			deletetokenref(curmark[c]);
-		if (lastglue != 0xFF'FF)
+		if (lastglue != empty_flag)
 			deleteglueref(lastglue);
 		storefmtfile();
 		return;

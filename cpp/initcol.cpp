@@ -10,6 +10,6 @@ void initcol(void)
 	else
 	{
 		backinput();
-		begintokenlist(mem[curalign+3].int_, 1);
+		begintokenlist(u_part(curalign), 1);
 	}
 }

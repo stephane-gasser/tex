@@ -5,7 +5,7 @@ void sortavail(void)
 {
 	halfword p = getnode(0x40'00'00'00);
 	p = link(rover+1);
-	link(rover+1) = 0xFF'FF;
+	link(rover+1) = empty_flag;
 	halfword oldrover = rover;
 	while (p != oldrover)
 		if (p < rover)
@@ -26,7 +26,7 @@ void sortavail(void)
 			p = r;
 		}
 	p = rover;
-	while (link(p+1) != 0xFF'FF)
+	while (link(p+1) != empty_flag)
 	{
 		info(link(p+1)+1) = p;
 		p = link(p+1);

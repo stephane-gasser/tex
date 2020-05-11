@@ -18,9 +18,9 @@ void makeaccent(void)
 	auto p = newcharacter(f, curval);
 	if (p)
 	{
-		x = fontinfo[5+parambase[f]].int_;
-		s = fontinfo[1+parambase[f]].int_/float(0x1'00'00);
-		a = fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(p)].qqqq.b0].int_;
+		x = param(x_height_code, f);
+		s = param(slant_code, f)/float(unity);
+		a = char_width(f, char_info(f, character(p)));
 		doassignments();
 		halfword q = 0;
 		f = cur_font();
@@ -36,14 +36,14 @@ void makeaccent(void)
 				backinput();
 		if (q)
 		{
-			t = fontinfo[1+parambase[f]].int_/float(0x1'00'00);
-			i = fontinfo[charbase[f]+subtype(q)].qqqq;
-			w = fontinfo[widthbase[f]+i.b0].int_;
-			h = fontinfo[heightbase[f]+i.b1/16].int_;
+			t = param(slant_code, f)/float(unity);
+			i = char_info(f, character(q));
+			w = char_width(f, i);
+			h = char_height(f, i);
 			if (h != x)
 			{
 				p = hpack(p, 0, 1);
-				mem[p+4].int_ = x-h;
+				shift_amount(p) = x-h;
 			}
 			delta = round((w-a)/2.0+h*t-x*s);
 			r = newkern(delta);

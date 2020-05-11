@@ -67,16 +67,16 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 		}
 		else
 		{
-			q = fontinfo[charbase[hf]+curl].qqqq;
-			if (q.b2%4 != 1)
+			q = char_info(hf, curl);
+			if (char_tag(q) != lig_tag)
 				skipLoop = true;
 			else
 			{
-				k = ligkernbase[hf]+q.b3;
+				k = lig_kern_start(hf, q);
 				q = fontinfo[k].qqqq;
-				if (q.b0 > 0x80)
+				if (skip_byte(q) > stop_flag)
 				{
-					k = ligkernbase[hf]+0x1'00*q.b2+q.b3;
+					k = lig_kern_restart(hf, q);
 					q = fontinfo[k].qqqq;
 				}
 			}
@@ -222,7 +222,7 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 							recommence = true;
 							break;
 						}
-						w = fontinfo[kernbase[hf]+0x1'00*q.b2+q.b3].int_;
+						w = char_kern(hf, q);
 						skipLoop = true;
 						continue;
 					}

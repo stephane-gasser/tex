@@ -4,15 +4,14 @@
 
 halfword charbox(internalfontnumber f, quarterword c)
 {
-	auto q = fontinfo[charbase[f]+c].qqqq;
-	auto hd = q.b1;
+	auto q = char_info(f, c);
 	auto b = newnullbox();
-	mem[b+1].int_ = fontinfo[widthbase[f]+q.b0].int_+fontinfo[italicbase[f]+q.b2/4].int_;
-	mem[b+3].int_ = fontinfo[heightbase[f]+(hd)/16].int_;
-	mem[b+2].int_ = fontinfo[depthbase[f]+(hd)%16].int_;
+	width(b) = char_width(f, q)+char_italic(f, q);
+	height(b) = char_height(f, q);
+	depth(b) = char_depth(f, q);
 	auto p = getavail();
 	subtype(p) = c;
 	type(p) = f;
-	link(b+5) = p;
+	list_ptr(b) = p;
 	return b;
 }

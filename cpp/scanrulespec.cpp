@@ -7,30 +7,30 @@ halfword scanrulespec(void)
 {
 	auto q = newrule();
 	if (curcmd == vrule)
-		mem[q+1].int_ = default_rule;
+		width(q) = default_rule;
 	else
 	{
-		mem[q+3].int_ = default_rule;
-		mem[q+2].int_ = 0;
+		height(q) = default_rule;
+		depth(q) = 0;
 	}
 	while (true)
 	{
 		if (scankeyword(732)) //width
 		{
 			scandimen(false, false, false);
-			mem[q+1].int_ = curval;
+			width(q) = curval;
 			continue;
 		}
 		if (scankeyword(733)) //height
 		{
 			scandimen(false, false, false);
-			mem[q+3].int_ = curval;
+			height(q) = curval;
 			continue;
 		}
 		if (scankeyword(734)) //depth
 		{
 			scandimen(false, false, false);
-			mem[q+2].int_ = curval;
+			depth(q) = curval;
 			continue;
 		}
 	break;

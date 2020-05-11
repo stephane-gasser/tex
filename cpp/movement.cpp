@@ -6,8 +6,8 @@
 void movement(scaled w, eightbits o)
 {
 	auto q = getnode(3);
-	mem[q+1].int_ = w;
-	mem[q+2].int_ = dvioffset+dviptr;
+	width(q) = w;
+	location(q) = dvioffset+dviptr;
 	if (o == 157)
 	{
 		link(q) = downptr;
@@ -24,18 +24,18 @@ void movement(scaled w, eightbits o)
 	int k;
 	while (p)
 	{
-		if (mem[p+1].int_ == w)
+		if (width(p) == w)
 			switch (mstate+info(p))
 			{
 				case 3:
 				case 4:
 				case 15:
 				case 16: 
-					if (mem[p+2].int_ < dvigone)
+					if (location(p) < dvigone)
 						break;
 					else
 					{
-						k = mem[p+2].int_-dvioffset;
+						k = location(p)-dvioffset;
 						if (k < 0)
 							k += dvibufsize;
 						dvibuf[k] += 5;
@@ -47,11 +47,11 @@ void movement(scaled w, eightbits o)
 				case 5:
 				case 9:
 				case 11: 
-					if (mem[p+2].int_ < dvigone)
+					if (location(p) < dvigone)
 						break;
 					else
 					{
-						k = mem[p+2].int_-dvioffset;
+						k = location(p)-dvioffset;
 						if (k < 0)
 							k += dvibufsize;
 						dvibuf[k] += 10;

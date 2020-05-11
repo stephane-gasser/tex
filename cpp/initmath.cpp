@@ -26,15 +26,15 @@ void initmath(void)
 		else
 		{
 			linebreak(int_par(display_widow_penalty_code));
-			v = mem[justbox+4].int_+2*fontinfo[6+parambase[cur_font()]].int_;
+			v = shift_amount(justbox)+2*param(quad_code, cur_font());
 			w = -max_dimen;
-			p = link(justbox+5);
+			p = list_ptr(justbox);
 			while (p)
 			{
 				if (p >= himemmin)
 				{
 					f = type(p);
-					d = fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(p)].qqqq.b0].int_;
+					d = char_width(f, char_info(f, character(p)));
 					if (v < max_dimen)
 					{
 						v += d;
@@ -53,7 +53,7 @@ void initmath(void)
 					case hlist_node: //0
 					case vlist_node: //1
 					case rule_node: //2
-						d = mem[p+1].int_;
+						d = width(p);
 						if (v < max_dimen)
 						{
 							v += d;
@@ -67,27 +67,27 @@ void initmath(void)
 						p = link(p);
 						continue;
 					case ligature_node: //6
-						mem[lig_trick] = mem[p+1];
+						mem[lig_trick] = mem[lig_char(p)];
 						link(lig_trick) = link(p);
 						p = lig_trick;
 						continue;
 					case kern_node: //11
 					case math_node: //9
-						d = mem[p+1].int_;
+						d = width(p);
 						break;
 					case glue_node: //10
-						q = info(p+1);
-						d = mem[q+1].int_;
-						if (type(justbox+5) == 1)
+						q = glue_ptr(p);
+						d = width(q);
+						if (glue_sign(justbox) == stretching)
 						{
-							if (subtype(justbox+5) == type(q) && mem[q+2].int_)
+							if (glue_order(justbox) == stretch_order(q) && stretch(q))
 								v = max_dimen;
 						}
 						else 
-							if (type(justbox+5) == 2)
-								if (subtype(justbox+5) == subtype(q) && mem[q+3].int_)
+							if (glue_sign(justbox) == shrinking)
+								if (glue_order(justbox) == shrink_order(q) && shrink(q))
 									v = max_dimen;
-						if (subtype(p) >= 100)
+						if (subtype(p) >= a_leaders)
 						{
 							if (v < max_dimen)
 							{
@@ -139,12 +139,12 @@ void initmath(void)
 			s = mem[p-1].int_;
 			l = mem[p].int_;
 		}
-		pushmath(15);
+		pushmath(math_shift_group);
 		mode = mmode;
-		eqworddefine(5307, -1);
-		eqworddefine(5843, w);
-		eqworddefine(5844, l);
-		eqworddefine(5845, s);
+		eqworddefine(int_base+cur_fam_code, -1);
+		eqworddefine(dimen_base+pre_display_size_code, w);
+		eqworddefine(dimen_base+display_width_code, l);
+		eqworddefine(dimen_base+display_indent_code, s);
 		if (every_display())
 			begintokenlist(every_display(), 9);
 		if (nestptr == 1)
@@ -153,8 +153,8 @@ void initmath(void)
 	else
 	{
 		backinput();
-		pushmath(15);
-		eqworddefine(5307, -1);
+		pushmath(math_shift_group);
+		eqworddefine(int_base+cur_fam_code, -1);
 		if (every_math())
 			begintokenlist(every_math(), 8);
 	}

@@ -34,7 +34,7 @@ static void goto50(halfword r)
 	}
 	println();
 	fontinshortdisplay = 0;
-	shortdisplay(link(r+5));
+	shortdisplay(list_ptr(r));
 	println();
 	begindiagnostic();
 	showbox(r);
@@ -47,9 +47,9 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 	auto r = getnode(7);
 	type(r) = 0;
 	subtype(r) = 0;
-	mem[r+4].int_ = 0;
+	glue_shrink(r) = 0;
 	auto q = r+5;
-	link(q) = p;
+	list_ptr(r) = p;
 	scaled h = 0;
 	scaled d = 0;
 	scaled x = 0;
@@ -68,13 +68,12 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 		while (p >= himemmin)
 		{
 			f = type(p);
-			auto i = fontinfo[charbase[f]+subtype(p)].qqqq;
-			eightbits hd = i.b1;
-			x += fontinfo[widthbase[f]+i.b0].int_;
-			s = fontinfo[heightbase[f]+hd/16].int_;
+			auto i = char_info(f, character(p));
+			x += char_width(f, i);
+			s = char_height(f, i);
 			if (s > h)
 				h = s;
-			s = fontinfo[depthbase[f]+hd%16].int_;
+			s = char_depth(f, i);
 			if (s > d)
 				d = s;
 			p = link(p);
@@ -83,30 +82,30 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 		{
 			switch (type(p))
 			{
-				case 0:
-				case 1:
-				case 2:
-				case 13:
-					x += mem[p+1].int_;
-					if (type(p) >= 2)
+				case hlist_node:
+				case vlist_node:
+				case rule_node:
+				case unset_node:
+					x += width(p);
+					if (type(p) >= rule_node)
 						s = 0;
 					else
-						s = mem[p+4].int_;
-					if (mem[p+3].int_-s > h)
-						h = mem[p+3].int_-s;
-					if (mem[p+2].int_+s > d)
-						d = mem[p+2].int_+s;
+						s = shift_amount(p);
+					if (height(p)-s > h)
+						h = height(p)-s;
+					if (depth(p) > d)
+						d = depth(p)+s;
 					break;
-				case 3:
-				case 4:
-				case 5: 
+				case ins_node:
+				case mark_node:
+				case adjust_node: 
 					if (adjusttail)
 					{
 						while (link(q) != p)
 							q = link(q);
-						if (type(p) == 5)
+						if (type(p) == adjust_node)
 						{
-							link(adjusttail) = mem[p+1].int_;
+							link(adjusttail) = adjust_ptr(p);
 							while (link(adjusttail))
 								adjusttail = link(adjusttail);
 							p = link(p);
@@ -122,30 +121,30 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 						p = q;
 					}
 					break;
-				case 8:
+				case whatsit_node:
 					break;
-				case 10:
+				case glue_node:
 					g = info(p+1);
-					x += mem[g+1].int_;
+					x += width(g);
 					o = type(g);
-					totalstretch[o] += mem[g+2].int_;
+					totalstretch[o] += stretch(g);
 					o = subtype(g);
-					totalshrink[o] = totalshrink[o]+mem[g+3].int_;
+					totalshrink[o] += shrink(g);
 					if (subtype(p) >= 100)
 					{
 						g = link(p+1);
-						if (mem[g+3].int_ > h)
-							h = mem[g+3].int_;
-						if (mem[g+2].int_ > d)
-							d = mem[g+2].int_;
+						if (shrink(g) > h)
+							h = shrink(g);
+						if (stretch(g) > d)
+							d = stretch(g);
 					}
 					break;
-				case 11:
-				case 9: 
-					x += mem[p+1].int_;
+				case kern_node:
+				case math_node: 
+					x += width(p);
 					break;
-				case 6:
-					mem[lig_trick] = mem[p+1];
+				case ligature_node:
+					mem[lig_trick] = mem[lig_char(p)];
 					link(lig_trick) = link(p);
 					p = lig_trick;
 					continue;
@@ -155,17 +154,17 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 	}
 	if (adjusttail)
 		link(adjusttail) = 0;
-	mem[r+3].int_ = h;
-	mem[r+2].int_ = d;
+	height(r) = h;
+	depth(r) = d;
 	if (m == 1)
 		w += x;
-	mem[r+1].int_ = w;
+	width(r) = w;
 	x = w-x;
 	if (x == 0)
 	{
-		type(r+5) = 0;
-		subtype(r+5) = 0;
-		mem[r+6].gr = 0.0;
+		glue_sign(r) = normal;
+		glue_order(r) = 0;
+		glue_set(r) = 0.0;
 	}
 	else 
 		if (x > 0)
@@ -181,16 +180,16 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 						o = 1;
 					else
 						o = 0;
-			subtype(r+5) = o;
-			type(r+5) = 1;
+			glue_order(r) = o;
+			glue_sign(r) = stretching;
 			if (totalstretch[o])
-				mem[r+6].gr = x/totalstretch[o];
+				glue_set(r) = x/totalstretch[o];
 			else
 			{
-				type(r+5) = 0;
-				mem[r+6].gr = 0.0;
+				glue_sign(r) = normal;
+				glue_set(r) = 0.0;
 			}
-			if (o == 0 && link(r+5) != 0)
+			if (o == 0 && list_ptr(r))
 			{
 				lastbadness = badness(x, totalstretch[0]);
 				if (lastbadness > int_par(hbadness_code))
@@ -219,19 +218,19 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 						o = 1;
 					else
 						o = 0;
-			subtype(r+5) = o;
-			type(r+5) = 2;
+			glue_order(r) = o;
+			glue_sign(r) = shrinking;
 			if (totalshrink[o])
-				mem[r+6].gr = (-x)/totalshrink[o];
+				glue_set(r) = (-x)/totalshrink[o];
 			else
 			{
-				type(r+5) = 0;
-				mem[r+6].gr = 0.0;
+				glue_sign(r) = normal;
+				glue_set(r) = 0.0;
 			}
-			if (totalshrink[o] < -x && o == 0 && link(r+5) != 0)
+			if (totalshrink[o] < -x && o == 0 && list_ptr(r))
 			{
 				lastbadness = 1000000;
-				mem[r+6].gr = 1.0;
+				glue_set(r) = 1.0;
 				if (-x-totalshrink[0] > dimen_par(hfuzz_code) || int_par(hbadness_code) < 100)
 				{
 					if (dimen_par(overfull_rule_code) > 0 && -x-totalshrink[0] > dimen_par(hfuzz_code))
@@ -239,7 +238,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 						while (link(q))
 							q = link(q);
 						link(q) = newrule();
-						mem[link(q)+1].int_ = dimen_par(overfull_rule_code);
+						width(link(q)) = dimen_par(overfull_rule_code);
 					}
 					println();
 					printnl(851); //Overfull \hbox (
@@ -250,7 +249,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 			}
 			else 
 				if (o == 0)
-					if (link(r+5))
+					if (list_ptr(r))
 					{
 						lastbadness = badness(-x, totalshrink[0]);
 						if (lastbadness > int_par(hbadness_code))

@@ -10,18 +10,18 @@ void printspec(int p, strnumber s)
 		printchar('*');
 	else
 	{
-		printscaled(mem[p+1].int_);
+		printscaled(width(p));
 		if (s)
 			print(s);
-		if (mem[p+2].int_)
+		if (stretch(p))
 		{
 			print(312); // plus 
-			printglue(mem[p+2].int_, type(p), s);
+			printglue(stretch(p), type(p), s);
 		}
-		if (mem[p+3].int_)
+		if (shrink(p))
 		{
 			print(313); // minus 
-			printglue(mem[p+3].int_, subtype(p), s);
+			printglue(shrink(p), subtype(p), s);
 		}
 	}
 }

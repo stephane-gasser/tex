@@ -6,25 +6,25 @@
 
 halfword mathglue(halfword g, scaled m)
 {
-	int n = xovern(m, 0x1'00'00);
+	int n = xovern(m, unity);
 	scaled f = remainder_;
 	if (f < 0)
 	{
 		n--;
-		f += 0x1'00'00;
+		f += unity;
 	}
 	auto p = getnode(4);
-	mem[p+1].int_ = multandadd(n, mem[g+1].int_, xnoverd(mem[g+1].int_, f, 0x1'00'00), max_dimen);
-	type(p) = type(g);
-	if (type(p) == 0)
-		mem[p+2].int_ = multandadd(n, mem[g+2].int_, xnoverd(mem[g+2].int_, f, 0x1'00'00), max_dimen);
+	width(p) = multandadd(n, width(g), xnoverd(width(g), f, unity), max_dimen);
+	stretch_order(p) = stretch_order(g);
+	if (stretch_order(p) == normal)
+		stretch(p) = multandadd(n, stretch(g), xnoverd(stretch(g), f, unity), max_dimen);
 	else
-		mem[p+2].int_ = mem[g+2].int_;
-	subtype(p) = subtype(g);
-	if (subtype(p) == 0)
-		mem[p+3].int_ = multandadd(n, mem[g+3].int_, xnoverd(mem[g+3].int_, f, 0x1'00'00), max_dimen);
+		stretch(p) = stretch(g);
+	shrink_order(p) = shrink_order(g);
+	if (shrink_order(p) == normal)
+		shrink(p) = multandadd(n, shrink(g), xnoverd(shrink(g), f, unity), max_dimen);
 	else
-		mem[p+3].int_ = mem[g+3].int_;
+		shrink(p) = shrink(g);
 	return p;
 }
 

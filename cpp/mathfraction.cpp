@@ -11,12 +11,12 @@ void mathfraction(void)
 	smallnumber c = curchr;
 	if (incompleat_noad)
 	{
-		if (c >= 3)
+		if (c >= delimited_code)
 		{
 			scandelimiter(garbage, false);
 			scandelimiter(garbage, false);
 		}
-		if (c%3 == 0)
+		if (c%delimited_code == 0)
 			scandimen(false, false, false);
 		printnl(262); //! 
 		print(1152); //Ambiguous; you need another { and }
@@ -29,31 +29,31 @@ void mathfraction(void)
 	else
 	{
 		incompleat_noad = getnode(6);
-		type(incompleat_noad) = 25;
-		subtype(incompleat_noad) = 0;
-		link(incompleat_noad+2) = 3;
-		info(incompleat_noad+2) = link(head);
-		mem[incompleat_noad+3].hh = emptyfield;
-		mem[incompleat_noad+4].qqqq = nulldelimiter;
-		mem[incompleat_noad+5].qqqq = nulldelimiter;
+		type(incompleat_noad) = fraction_noad;
+		subtype(incompleat_noad) = normal;
+		link(numerator(incompleat_noad)) = 3;
+		info(numerator(incompleat_noad)) = link(head);
+		mem[denominator(incompleat_noad)].hh = emptyfield;
+		mem[left_delimiter(incompleat_noad)].qqqq = nulldelimiter;
+		mem[right_delimiter(incompleat_noad)].qqqq = nulldelimiter;
 		link(head) = 0;
 		tail = head;
 		if (c >= 3)
 		{
-			scandelimiter(incompleat_noad+4, false);
-			scandelimiter(incompleat_noad+5, false);
+			scandelimiter(left_delimiter(incompleat_noad), false);
+			scandelimiter(right_delimiter(incompleat_noad), false);
 		}
 		switch (c%3)
 		{
-			case 0:
+			case above_code:
 				scandimen(false, false, false);
-				mem[incompleat_noad+1].int_ = curval;
+				thickness(incompleat_noad) = curval;
 				break;
-			case 1: 
-				mem[incompleat_noad+1].int_ = 0x40'00'00'00;
+			case over_code: 
+				thickness(incompleat_noad) = default_code;
 				break;
-			case 2: 
-				mem[incompleat_noad+1].int_ = 0;
+			case atop_code: 
+				thickness(incompleat_noad) = 0;
 				break;
 		}
 	}

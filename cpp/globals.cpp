@@ -303,9 +303,3 @@ wordfile fmtfile;
 alphafile writefile[16];
 bool writeopen[18];
 halfword writeloc;
-
-void tail_append(halfword p)
-{
-	link(tail) = p;
-	tail = link(tail);
-}

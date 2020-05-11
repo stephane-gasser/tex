@@ -161,7 +161,7 @@ void expand(void)
 					while (curchr != 2)
 						passtext();
 					p = condptr;
-					ifline = mem[p+1].int_;
+					ifline = if_line_field(p);
 					curif = subtype(p);
 					iflimit = type(p);
 					condptr = link(p);

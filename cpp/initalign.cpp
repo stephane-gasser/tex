@@ -89,14 +89,14 @@ void initalign(void)
 		link(curalign) = newnullbox();
 		curalign = link(curalign);
 		info(curalign) = end_span;
-		mem[curalign+1].int_ = -0x40'00'00'00;
-		mem[curalign+3].int_ = link(hold_head);
+		width(curalign) = null_flag;
+		u_part(curalign) = link(hold_head);
 		p = hold_head;
 		link(p) = 0;
 		while (true)
 		{
 			getpreambletoken();
-			if (curcmd <= out_param && curcmd >= tab_mark &&alignstate == -1000000)
+			if (curcmd <= out_param && curcmd >= tab_mark && alignstate == -1000000)
 				break;
 			if (curcmd == mac_param)
 			{
@@ -116,7 +116,7 @@ void initalign(void)
 		link(p) = getavail();
 		p = link(p);
 		info(p) = frozen_end_template+cs_token_flag;
-		mem[curalign+2].int_ = link(hold_head);
+		v_part(curalign) = link(hold_head);
 	}
 	scannerstatus = 0;
 	newsavelevel(6);

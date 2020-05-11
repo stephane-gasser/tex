@@ -47,7 +47,7 @@ halfword thetoks(void)
 		return p;
 	}
 	oldsetting = selector;
-	selector = 21;
+	selector = new_string;
 	auto b = poolptr;
 	switch (curvallevel)
 	{

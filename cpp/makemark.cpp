@@ -8,6 +8,6 @@ void makemark(void)
 	p = getnode(2);
 	type(p) = mark_node;
 	subtype(p) = 0;
-	mem[p+1].int_ = defref;
+	mark_ptr(p) = defref;
 	tail_append(p);
 }

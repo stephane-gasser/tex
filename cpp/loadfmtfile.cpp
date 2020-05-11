@@ -160,7 +160,7 @@ bool loadfmtfile(void)
 		info(rover+1) = q;
 		link(q+1) = rover;
 		info(q+1) = p;
-		link(q) = 0xFF'FF;
+		link(q) = empty_flag;
 		info(q) = -q;
 	}
 	readInt(x);	
@@ -283,7 +283,7 @@ bool loadfmtfile(void)
 		readInt(fontsize[k]);
 		readInt(fontdsize[k]);
 		readInt(x);	
-		if (x < 0 || x > 0xFF'FF)
+		if (x < 0 || x > empty_flag)
 		{
 			std::cout << "(Fatal format file error; I''m stymied\n";
 			return false;
@@ -395,7 +395,7 @@ bool loadfmtfile(void)
 		else
 			hyphword[j] = x;
 		readInt(x);
-		if (x < 0 || x > 0xFF'FF)
+		if (x < 0 || x > empty_flag)
 		{
 			std::cout << "(Fatal format file error; I''m stymied\n";
 			return false;

@@ -40,15 +40,15 @@ void finalign(void)
 		o = dimen_par(display_indent_code);
 	else
 		o = 0;
-	q = link(link(align_head));
+	q = link(preamble());
 	do
 	{
-		flushlist(mem[q+3].int_);
-		flushlist(mem[q+2].int_);
+		flushlist(u_part(q));
+		flushlist(v_part(q));
 		p = link(link(q));
-		if (mem[q+1].int_ == -0x40'00'00'00)
+		if (width(q) == null_flag)
 		{
-			mem[q+1].int_ = 0;
+			width(q) = 0;
 			r = link(q);
 			s = info(r+1);
 			if (s)
@@ -60,14 +60,14 @@ void finalign(void)
 		}
 		if (info(q) != end_span)
 		{
-			t = mem[q+1].int_+mem[info(link(q)+1)+1].int_;
+			t = width(q)+width(info(link(q)+1));
 			r = info(q);
 			s = end_span;
 			info(s) = p;
 			n = 1;
 			do
 			{
-				mem[r+1].int_ -= t;
+				width(r) -= t;
 				u = info(r);
 				while (link(r) > n)
 				{
@@ -83,21 +83,21 @@ void finalign(void)
 				}
 				else
 				{
-					if (mem[r+1].int_ > mem[info(s)+1].int_)
-						mem[info(s)+1].int_ = mem[r+1].int_;
+					if (width(r) > width(info(s)+1))
+						width(info(s)+1) = width(r);
 					freenode(r, 2);
 				}
 				r = u;
 			} while (r != end_span);
 		}
-		type(q) = 13;
+		type(q) = unset_node;
 		subtype(q) = 0;
-		mem[q+3].int_ = 0;
-		mem[q+2].int_ = 0;
-		subtype(q+5) = 0;
-		type(q+5) = 0;
-		mem[q+6].int_ = 0;
-		mem[q+4].int_ = 0;
+		height(q) = 0;
+		depth(q) = 0;
+		glue_order(q) = 0;
+		glue_sign(q) = 0;
+		glue_stretch(q) = 0;
+		glue_shrink(q) = 0;
 		q = p;
 	} while (q);
 	saveptr -= 2;
@@ -106,24 +106,24 @@ void finalign(void)
 	{
 		rulesave = dimen_par(overfull_rule_code);
 		dimen_par(overfull_rule_code) = 0;
-		p = hpack(link(align_head), savestack[saveptr+1].int_, savestack[saveptr].int_);
+		p = hpack(preamble(), savestack[saveptr+1].int_, savestack[saveptr].int_);
 		dimen_par(overfull_rule_code) = rulesave;
 	}
 	else
 	{
-		q = link(link(align_head));
+		q = link(preamble());
 		do
 		{
-			mem[q+3].int_ = mem[q+1].int_;
-			mem[q+1].int_ = 0;
+			height(q) = width(q);
+			width(q) = 0;
 			q = link(link(q));
 		} while (q);
-		p = vpackage(link(align_head), savestack[saveptr+1].int_, savestack[saveptr+0].int_, max_dimen);
-		q = link(link(align_head));
+		p = vpackage(preamble(), savestack[saveptr+1].int_, savestack[saveptr+0].int_, max_dimen);
+		q = link(preamble());
 		do
 		{
-			mem[q+1].int_ = mem[q+3].int_;
-			mem[q+3].int_ = 0;
+			width(q) = height(q);
+			height(q) = 0;
 			q = link(link(q));
 		} while (q);
 	}
@@ -133,28 +133,28 @@ void finalign(void)
 	while (q)
 	{
 		if (q < himemmin)
-			if (type(q) == 13)
+			if (type(q) == unset_node)
 			{
 				if (mode == -vmode)
 				{
-					type(q) = 0;
-					mem[q+1].int_ = mem[p+1].int_;
+					type(q) = hlist_node;
+					width(q) = width(p);
 				}
 				else
 				{
-					type(q) = 1;
-					mem[q+3].int_ = mem[p+3].int_;
+					type(q) = vlist_node;
+					height(q) = height(p);
 				}
-				subtype(q+5) = subtype(p+5);
-				type(q+5) = type(p+5);
-				mem[q+6].gr = mem[p+6].gr;
-				mem[q+4].int_ = o;
-				r = link(link(q+5));
-				s = link(link(p+5));
+				glue_order(q) = glue_order(p);
+				glue_sign(q) = glue_sign(p);
+				glue_set(q) = glue_set(p);
+				shift_amount(q) = o;
+				r = link(list_ptr(q));
+				s = link(list_ptr(p));
 				do
 				{
 					n = subtype(r);
-					t = mem[s+1].int_;
+					t = width(s);
 					w = t;
 					u = hold_head;
 					while (n > 0)
@@ -165,95 +165,95 @@ void finalign(void)
 						link(u) = newglue(v);
 						u = link(u);
 						subtype(u) = 12;
-						t += mem[v+1].int_;
-						if (type(p+5) == 1)
+						t += width(v);
+						if (glue_sign(p) == stretching)
 						{
-							if (type(v) == subtype(p+5))
-								t += round(mem[p+6].gr*mem[v+2].int_);
+							if (type(v) == glue_order(p))
+								t += round(glue_set(p)*depth(v));
 						}
 						else 
-							if (type(p+5) == 2 && subtype(v) == subtype(p+5))
-								t -round(mem[p+6].gr*mem[v+3].int_);
+							if (glue_sign(p) == shrinking && subtype(v) == glue_order(p))
+								t -= round(glue_set(p)*height(v));
 						s = link(s);
 						link(u) = newnullbox();
 						u = link(u);
-						t += mem[s+1].int_;
+						t += width(s);
 						if (mode == -vmode)
-							mem[u+1].int_ = mem[s+1].int_;
+							width(u) = width(s);
 						else
 						{
-							type(u) = 1;
-							mem[u+3].int_ = mem[s+1].int_;
+							type(u) = vlist_node;
+							height(u) = height(s);
 						}
 					}
 					if (mode == -vmode)
 					{
-						mem[r+3].int_ = mem[q+3].int_;
-						mem[r+2].int_ = mem[q+2].int_;
-						if (t == mem[r+1].int_)
+						height(r) = height(q);
+						depth(r) = depth(q);
+						if (t == width(r))
 						{
-							type(r+5) = 0;
-							subtype(r+5) = 0;
-							mem[r+6].gr = 0.0;
+							glue_sign(r) = 0;
+							glue_order(r) = 0;
+							glue_set(r) = 0.0;
 						}
 						else 
-							if (t > mem[r+1].int_)
+							if (t > width(r))
 							{
-								type(r+5) = 1;
-								if (mem[r+6].int_ == 0)
-									mem[r+6].gr = 0.0;
+								glue_sign(r) = stretching;
+								if (glue_stretch(r) == 0)
+									glue_set(r) = 0.0;
 								else
-									mem[r+6].gr = (t-mem[r+1].int_) / mem[r+6].int_;
+									glue_set(r) = (t-width(r))/glue_stretch(r);
 							}
 							else
 							{
-							subtype(r+5) = type(r+5);
-							type(r+5) = 2;
-							if (mem[r+4].int_ == 0)
-								mem[r+6].gr = 0.0;
-							else 
-								if (subtype(r+5) == 0 && mem[r+1].int_-t > mem[r+4].int_)
-									mem[r+6].gr = 1.0;
-								else
-									mem[r+6].gr = (mem[r+1].int_-t) / mem[r+4].int_;
+								glue_order(r) = glue_sign(r);
+								glue_sign(r) = shrinking;
+								if (glue_shrink(r) == 0)
+									glue_set(r) = 0.0;
+								else 
+									if (glue_order(r) == 0 && width(r)-t > glue_shrink(r))
+										glue_set(r) = 1.0;
+									else
+										glue_set(r) = (width(r)-t) / glue_shrink(r);
 							}
-						mem[r+1].int_ = w;
+						width(r) = w;
 						type(r) = 0;
 					}
 					else
 					{
-						mem[r+1].int_ = mem[q+1].int_;
-						if (t == mem[r+3].int_)
+						width(r) = width(q);
+						if (t == height(r))
 						{
-							type(r+5) = 0;
-							subtype(r+5) = 0;
-							mem[r+6].gr = 0.0;
+							glue_sign(r) = 0;
+							glue_order(r) = 0;
+							glue_set(r) = 0.0;
 						}
 						else 
-							if (t > mem[r+3].int_)
+							if (t > height(r))
 							{
-								type(r+5) = 1;
-								if (mem[r+6].int_ == 0)
-									mem[r+6].gr = 0.0;
+								glue_sign(r) = stretching;
+								if (glue_stretch(r) == 0)
+									glue_set(r) = 0.0;
 								else
-									mem[r+6].gr = (t-mem[r+3].int_) / mem[r+6].int_;
+									glue_set(r) = (t-height(r)) / glue_stretch(r);
 							}
 							else
 							{
-								subtype(r+5) = type(r+5);
-								type(r+5) = 2;
-								if (mem[r+4].int_ == 0)
-									mem[r+6].gr = 0.0;
+								glue_order(r) = glue_sign(r);
+								glue_sign(r) = shrinking;
+								if (glue_shrink(r) == 0)
+									glue_set(r) = 0.0;
 								else 
-									if (subtype(r+5) == 0 && mem[r+3].int_-t > mem[r+4].int_)
-										mem[r+6].gr = 1.0;
+									if (glue_order(r) == 0 && height(r)-t > glue_shrink(r))
+										glue_set(r) = 1.0;
 									else
-										mem[r+6].gr = (mem[r+3].int_-t) / mem[r+4].int_;
+										glue_set(r) = (height(r)-t) / glue_shrink(r);
 							}
-						mem[r+3].int_ = w;
-						type(r) = 1;
+						height(r) = w;
+						type(r) = vlist_node;
 					}
-					mem[r+4].int_ = 0;
+					shift_amount(r) = 0;
 					if (u != hold_head)
 					{
 						link(u) = link(r);
@@ -265,20 +265,20 @@ void finalign(void)
 				} while (r);
 			}
 			else 
-				if (type(q) == 2)
+				if (type(q) == rule_node)
 				{
-					if ((mem[q+1].int_ == -0x40'00'00'00))
-						mem[q+1].int_ = mem[p+1].int_;
-					if ((mem[q+3].int_ == -0x40'00'00'00))
-						mem[q+3].int_ = mem[p+3].int_;
-					if ((mem[q+2].int_ == -0x40'00'00'00))
-						mem[q+2].int_ = mem[p+2].int_;
-					if (o != 0)
+					if ((width(q) == null_flag))
+						width(q) = width(p);
+					if ((height(q) == null_flag))
+						height(q) = height(p);
+					if ((depth(q) == null_flag))
+						depth(q) = depth(p);
+					if (o)
 					{
 						r = link(q);
 						link(q) = 0;
 						q = hpack(q, 0, 1);
-						mem[q+4].int_ = o;
+						shift_amount(q) = o;
 						link(q) = r;
 						link(s) = q;
 					}

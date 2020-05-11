@@ -7,7 +7,7 @@ smallnumber makeleftright(halfword q, smallnumber style, scaled maxd, scaled  ma
 		cursize = 0;
 	else
 		cursize = 16*((style-2)/2);
-	scaled delta2 = maxd+fontinfo[22+parambase[fam_fnt(2+cursize)]].int_;
+	scaled delta2 = maxd+axis_height(cursize);
 	scaled delta1 = maxh+maxd-delta2;
 	if (delta2 > delta1)
 		delta1 = delta2;
@@ -15,6 +15,6 @@ smallnumber makeleftright(halfword q, smallnumber style, scaled maxd, scaled  ma
 	delta2 = 2*delta1-dimen_par(delimiter_shortfall_code);
 	if (delta < delta2)
 		delta = delta2;
-	mem[q+1].int_ = vardelimiter(q+1, cursize, delta);
+	width(q) = vardelimiter(delimiter(q), cursize, delta);
 	return type(q)-10;
 }

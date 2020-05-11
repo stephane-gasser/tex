@@ -27,10 +27,10 @@ void showwhatever(void)
 			enddiagnostic(true);
 			printnl(262);//! 
 			print(1254); //OK
-			if (selector == 19 && int_par(tracing_online_code) <= 0)
-				selector = 17;
+			if (selector == term_and_log && int_par(tracing_online_code) <= 0)
+				selector = term_only;
 			print(1255); // (see the transcript file)
-			selector = 19;
+			selector = term_and_log;
 			break;
 		case 1:
 			scaneightbitint();
@@ -45,10 +45,10 @@ void showwhatever(void)
 			enddiagnostic(true);
 			printnl(262);//! 
 			print(1254); //OK
-			if (selector == 19 && int_par(tracing_online_code) <= 0)
-				selector = 17;
+			if (selector == term_and_log && int_par(tracing_online_code) <= 0)
+				selector = term_only;
 			print(1255); // (see the transcript file)
-			selector = 19;
+			selector = term_and_log;
 			break;
 		case 0:
 			gettoken();

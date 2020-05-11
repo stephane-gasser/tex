@@ -6,9 +6,9 @@ void newinteraction(void)
 	println();
 	interaction = curchr;
 	if (interaction == batch_mode)
-		selector = 16;
+		selector = no_print;
 	else
-		selector = 17;
+		selector = term_only;
 	if (logopened)
 		selector += 2;
 }

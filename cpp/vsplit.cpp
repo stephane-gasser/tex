@@ -44,14 +44,14 @@ halfword vsplit(eightbits n, scaled h)
 			if (type(p) == mark_node) //4
 				if (curmark[3] == 0)
 				{
-					curmark[3] = mem[p+1].int_;
+					curmark[3] = mark_ptr(p);
 					curmark[4] = curmark[3];
 					info(curmark[3]) += 2;
 				}
 				else
 				{
 					deletetokenref(curmark[4]);
-					curmark[4] = mem[p+1].int_;
+					curmark[4] = mark_ptr(p);
 					info(curmark[4])++;
 				}
 			if (link(p) == q)

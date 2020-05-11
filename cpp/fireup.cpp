@@ -30,8 +30,8 @@ void fireup(halfword c)
 	halfword savesplittopskip;
 	if (type(bestpagebreak) == penalty_node) //12
 	{
-		geqworddefine(5302, mem[bestpagebreak+1].int_);
-		mem[bestpagebreak+1].int_ = 10000;
+		geqworddefine(5302, penalty(bestpagebreak));
+		penalty(bestpagebreak) = 10000;
 	}
 	else
 		geqworddefine(5302, 10000);
@@ -111,7 +111,7 @@ void fireup(halfword c)
 						if (info(p+4))
 						{
 							tempptr = vpackage(info(p+4), 0, 1, max_dimen);
-							mem[p+3].int_ = mem[tempptr+3].int_+mem[tempptr+2].int_;
+							height(p) = height(tempptr)+depth(tempptr);
 							freenode(tempptr, 7);
 							wait = true;
 						}
@@ -149,12 +149,12 @@ void fireup(halfword c)
 		{
 			if (curmark[1] == 0)
 			{
-				curmark[1] = mem[p+1].int_;
+				curmark[1] = mark_ptr(p);
 				info(curmark[1])++;
 			}
 			if (curmark[2])
 				deletetokenref(curmark[2]);
-			curmark[2] = mem[p+1].int_;
+			curmark[2] = mark_ptr(p);
 			info(curmark[2])++;
 		}
 		prevp = p;
@@ -179,12 +179,12 @@ void fireup(halfword c)
 	box(255) = vpackage(link(page_head), bestsize, 0, pagemaxdepth);
 	int_par(vbadness_code) = savevbadness;
 	dimen_par(vfuzz_code) = savevfuzz;
-	if (lastglue != 0xFF'FF)
+	if (lastglue != empty_flag)
 		deleteglueref(lastglue);
 	pagecontents = 0;
 	pagetail = page_head;
 	link(page_head) = 0;
-	lastglue = 0xFF'FF;
+	lastglue = empty_flag;
 	lastpenalty = 0;
 	lastkern = 0;
 	pagesofar[7] = 0;

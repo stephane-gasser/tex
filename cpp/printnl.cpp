@@ -4,7 +4,7 @@
 
 void printnl(strnumber s)
 {
-	if ((termoffset > 0 && selector%2 == 1) || (fileoffset > 0 && selector >= 18))
+	if ((termoffset > 0 && selector%2 == 1) || (fileoffset > 0 && selector >= log_only))
 		println();
 	print(s);
 }

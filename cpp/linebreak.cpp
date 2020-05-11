@@ -23,37 +23,37 @@ void linebreak(int finalwidowpenalty)
 	packbeginline = mode_line;
 	link(temp_head) = link(head);
 	if ((tail >= himemmin))
-		tail_append(newpenalty(10000));
+		tail_append(newpenalty(inf_penalty));
 	else 
-		if (type(tail) != 10)
-			tail_append(newpenalty(10000));
+		if (type(tail) != glue_node)
+			tail_append(newpenalty(inf_penalty));
 		else
 		{
-			type(tail) = 12;
-			deleteglueref(info(tail+1));
-			flushnodelist(link(tail+1));
-			mem[tail+1].int_ = 10000;
+			type(tail) = penalty_node;
+			deleteglueref(glue_ptr(tail));
+			flushnodelist(leader_ptr(tail));
+			penalty(tail) = inf_penalty;
 		}
 	link(tail) = newparamglue(14);
 	initcurlang = prev_graf%0x1'00'00;
-	initlhyf = prev_graf/4194304;
-	initrhyf = (prev_graf/0x1'00'00)%64;
+	initlhyf = prev_graf/0x40'00'00;
+	initrhyf = (prev_graf/0x1'00'00)%0x40;
 	popnest();
 	noshrinkerroryet = true;
-	if (subtype(left_skip()) && mem[left_skip()+3].int_)
+	if (shrink_order(left_skip()) && shrink(left_skip()))
 		left_skip() = finiteshrink(left_skip());
-	if (subtype(right_skip()) && mem[right_skip()+3].int_)
+	if (shrink_order(right_skip()) && shrink(right_skip()))
 		right_skip() = finiteshrink(right_skip());
 	q = left_skip();
 	r = right_skip();
-	background[1] = mem[q+1].int_+mem[r+1].int_;
+	background[1] = width(q)+width(r);
 	background[2] = 0;
 	background[3] = 0;
 	background[4] = 0;
 	background[5] = 0;
-	background[2+type(q)] = mem[q+2].int_;
-	background[2+type(r)] = background[2+type(r)]+mem[r+2].int_;
-	background[6] = mem[q+3].int_+mem[r+3].int_;
+	background[2+stretch_order(q)] = stretch(q);
+	background[2+stretch_order(r)] += stretch(r);
+	background[6] = shrink(q)+shrink(r);
 	minimumdemerits = max_dimen;
 	minimaldemerits[3] = max_dimen;
 	minimaldemerits[2] = max_dimen;
@@ -93,13 +93,13 @@ void linebreak(int finalwidowpenalty)
 	else
 	{
 		lastspecialline = info(par_shape_ptr())-1;
-		secondwidth = mem[par_shape_ptr()+2 * (lastspecialline+1)].int_;
-		secondindent = mem[par_shape_ptr()+2 * lastspecialline+1].int_;
+		secondwidth = mem[par_shape_ptr()+2*(lastspecialline+1)].int_;
+		secondindent = mem[par_shape_ptr()+2*lastspecialline+1].int_;
 	}
 	if (int_par(looseness_code) == 0)
 		easyline = lastspecialline;
 	else
-		easyline = 0xFF'FF;
+		easyline = empty_flag;
 	threshold = int_par(pretolerance_code);
 	if (threshold >= 0)
 	{
@@ -125,15 +125,14 @@ void linebreak(int finalwidowpenalty)
 			rhyf = initrhyf;
 		}
 		q = getnode(3);
-		type(q) = 0;
-		subtype(q) = 2;
+		type(q) = unhyphenated;
+		fitness(q) = decent_fit;
 		link(q) = active;
-		link(q+1) = 0;
-		info(q+1) = prev_graf+1;
-		mem[q+2].int_ = 0;
+		break_node(q) = 0;
+		line_number(q) = prev_graf+1;
+		total_demerits(q) = 0;
 		link(active) = q;
-		for (int i = 1; i <= 6; i++)
-			activewidth[i] = background[i];
+		store_background();
 		passive = 0;
 		printednode = temp_head;
 		passnumber = 0;
@@ -149,18 +148,18 @@ void linebreak(int finalwidowpenalty)
 				do
 				{
 					f = type(curp);
-					activewidth[1] += fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(curp)].qqqq.b0].int_;
+					activewidth[1] += char_width(f, char_info(f, character(curp)));
 					curp = link(curp);
 				} while (curp >= himemmin);
 			}
 			switch (type(curp))
 			{
-				case 0:
-				case 1:
-				case 2: 
-					activewidth[1] += mem[curp+1].int_;
+				case hlist_node:
+				case vlist_node:
+				case rule_node: 
+					activewidth[1] += width(curp);
 					break;
-				case 8:
+				case whatsit_node:
 					if (subtype(curp) == 4)
 					{
 						curlang = link(curp+1);
@@ -168,22 +167,22 @@ void linebreak(int finalwidowpenalty)
 						rhyf = subtype(curp+1);
 					}
 					break;
-				case 10:
+				case glue_node:
 					if (autobreaking)
-						if (prevp >= himemmin)
-							trybreak(0, 0);
+						if (is_char_node(prevp))
+							trybreak(0, unhyphenated);
 						else 
-							if (type(prevp) < 9)
-								trybreak(0, 0);
+							if (type(prevp) < math_node)
+								trybreak(0, unhyphenated);
 							else 
-								if (type(prevp) == 11 && subtype(prevp) != 1)
-									trybreak(0, 0);
-					if (subtype(info(curp+1)) && mem[info(curp+1)+3].int_)
-						info(curp+1) = finiteshrink(info(curp+1));
-					q = info(curp+1);
-					activewidth[1] += mem[q+1].int_;
-					activewidth[2+type(q)] += mem[q+2].int_;
-					activewidth[6] += mem[q+3].int_;
+								if (type(prevp) == kern_node && subtype(prevp) != explicit_)
+									trybreak(0, unhyphenated);
+					if (shrink_order(glue_ptr(curp)) && shrink(glue_ptr(curp)))
+						glue_ptr(curp) = finiteshrink(glue_ptr(curp));
+					q = glue_ptr(curp);
+					activewidth[1] += width(q);
+					activewidth[2+stretch_order(q)] += stretch(q);
+					activewidth[6] += shrink(q);
 					if (secondpass && autobreaking)
 					{
 						prevs = curp;
@@ -353,25 +352,20 @@ void linebreak(int finalwidowpenalty)
 						}
 					}
 					break;
-				case 11: 
-					if (subtype(curp) == 1)
-					{
-						if (link(curp) < himemmin && autobreaking && type(link(curp)) == 10)
-							trybreak(0, 0);
-						activewidth[1] += mem[curp+1].int_;
-					}
-					else
-						activewidth[1] += mem[curp+1].int_;
+				case kern_node: 
+					if (subtype(curp) == explicit_ && link(curp) < himemmin && autobreaking && type(link(curp)) == glue_node)
+						trybreak(0, unhyphenated);
+					activewidth[1] += width(curp);
 					break;
-				case 6:
-					f = type(curp+1);
-					activewidth[1] += fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(curp+1)].qqqq.b0].int_;
+				case ligature_node:
+					f = type(lig_char(curp));
+					activewidth[1] += char_width(f, char_info(f, character(lig_char(curp))));
 					break;
-				case 7:
-					s = info(curp+1);
+				case disc_node:
+					s = pre_break(curp);
 					discwidth = 0;
 					if (s == 0)
-						trybreak(int_par(ex_hyphen_penalty_code), 1);
+						trybreak(int_par(ex_hyphen_penalty_code), hyphenated);
 					else
 					{
 						do
@@ -379,20 +373,20 @@ void linebreak(int finalwidowpenalty)
 							if (s >= himemmin)
 							{
 								f = type(s);
-								discwidth += fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(s)].qqqq.b0].int_;
+								discwidth += char_width(f, char_info(f, character(s)));
 							}
 							else
 								switch (type(s))
 								{
-									case 6:
-										f = type(s+1);
-										discwidth += fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(s+1)].qqqq.b0].int_;
+									case ligature_node:
+										f = type(lig_char(s));
+										discwidth += char_width(f, char_info(f, character(lig_char(s))));
 										break;
-									case 0:
-									case 1:
-									case 2:
-									case 11: 
-										discwidth += mem[s+1].int_;
+									case hlist_node:
+									case vlist_node:
+									case rule_node:
+									case kern_node: 
+										discwidth += width(s);
 										break;
 									default: 
 										confusion(936); //disc3
@@ -409,45 +403,45 @@ void linebreak(int finalwidowpenalty)
 					{
 						if (s >= himemmin)
 						{
-							f = type(s);
-							activewidth[1] += fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(s)].qqqq.b0].int_;
+							f = font(s);
+							activewidth[1] += char_width(f, char_info(f, character(s)));
 						}
 						else
 							switch (type(s))
 							{
-								case 6:
-									f = type(s+1);
-									activewidth[1] += fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(s+1)].qqqq.b0].int_;
+								case ligature_node:
+									f = font(lig_char(s));
+									activewidth[1] += char_width(f, char_info(f, character(lig_char(s))));
 									break;
-								case 0:
-								case 1:
-								case 2:
-								case 11: 
-									activewidth[1] += mem[s+1].int_;
+								case hlist_node:
+								case vlist_node:
+								case rule_node:
+								case kern_node: 
+									activewidth[1] += width(s);
 									break;
 								default: 
 									confusion(937); //disc4
 							}
-						r = r-1;
+						r--;
 						s = link(s);
 					}
 					prevp = curp;
 					curp = s;
 					continue;
-				case 9:
+				case math_node:
 					autobreaking = subtype(curp) == 1;
 					{
-						if (link(curp) < himemmin && autobreaking && type(link(curp)) == 10)
-							trybreak(0, 0);
-						activewidth[1] += mem[curp+1].int_;
+						if (link(curp) < himemmin && autobreaking && type(link(curp)) == glue_node)
+							trybreak(0, unhyphenated);
+						activewidth[1] += width(curp);
 					}
 					break;
-				case 12: 
-					trybreak(mem[curp+1].int_, 0);
+				case penalty_node: 
+					trybreak(penalty(curp), unhyphenated);
 					break;
-				case 4:
-				case 3:
-				case 5: 
+				case mark_node:
+				case ins_node:
+				case adjust_node:
 					break;
 				default: 
 					confusion(935); //paragraph
@@ -464,9 +458,9 @@ void linebreak(int finalwidowpenalty)
 				fewestdemerits = max_dimen;
 				do
 				{
-					if (type(r) != 2 && mem[r+2].int_ < fewestdemerits)
+					if (type(r) != rule_node && total_demerits(r) < fewestdemerits)
 					{
-						fewestdemerits = mem[r+2].int_;
+						fewestdemerits = total_demerits(r);
 						bestbet = r;
 					}
 					r = link(r);
@@ -506,13 +500,13 @@ void linebreak(int finalwidowpenalty)
 						{
 							bestbet = r;
 							actuallooseness = linediff;
-							fewestdemerits = mem[r+2].int_;
+							fewestdemerits = total_demerits(r);
 						}
 						else 
-							if (linediff == actuallooseness && mem[r+2].int_ < fewestdemerits)
+							if (linediff == actuallooseness && total_demerits(r) < fewestdemerits)
 							{
 								bestbet = r;
-								fewestdemerits = mem[r+2].int_;
+								fewestdemerits = total_demerits(r);
 							}
 					}
 					r = link(r);

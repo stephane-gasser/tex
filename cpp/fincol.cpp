@@ -33,15 +33,15 @@ bool fincol(void)
 		fatalerror(595); //(interwoven alignment preambles are not allowed)
 	p = link(q);
 	if (p == 0 && info(curalign+5) < 257)
-		if (curloop != 0)
+		if (curloop)
 		{
 			link(q) = newnullbox();
 			p = link(q);
 			info(p) = end_span;
-			mem[p+1].int_ = -0x40'00'00'00;
+			width(p) = null_flag;
 			curloop = link(curloop);
 			q = hold_head;
-			r = mem[curloop+3].int_;
+			r = u_part(curloop);
 			while (r)
 			{
 				link(q) = getavail();
@@ -50,9 +50,9 @@ bool fincol(void)
 				r = link(r);
 			}
 			link(q) = 0;
-			mem[p+3].int_ = link(hold_head);
+			u_part(p) = link(hold_head);
 			q = hold_head;
-			r = mem[curloop+2].int_;
+			r = v_part(curloop);
 			while (r)
 			{
 				link(q) = getavail();
@@ -61,7 +61,7 @@ bool fincol(void)
 				r = link(r);
 			}
 			link(q) = 0;
-			mem[p+2].int_ = link(hold_head);
+			v_part(p) = link(hold_head);
 			curloop = link(curloop);
 			link(p) = newglue(info(curloop+1));
 		}
@@ -85,14 +85,14 @@ bool fincol(void)
 		{
 			adjusttail = curtail;
 			u = hpack(link(head), 0, 1);
-			w = mem[u+1].int_;
+			w = width(u);
 			curtail = adjusttail;
 			adjusttail = 0;
 		}
 		else
 		{
 			u = vpackage(link(head), 0, 1, 0);
-			w = mem[u+3].int_;
+			w = height(u);
 		}
 		n = 0;
 		if (curspan != curalign)
@@ -114,16 +114,16 @@ bool fincol(void)
 				info(s) = info(q);
 				link(s) = n;
 				info(q) = s;
-				mem[s+1].int_ = w;
+				width(s) = w;
 			}
 			else 
-				if (mem[info(q)+1].int_ < w)
-					mem[info(q)+1].int_ = w;
+				if (width(info(q)) < w)
+					width(info(q)) = w;
 		}
 		else 
-			if (w > mem[curalign+1].int_)
-				mem[curalign+1].int_ = w;
-		type(u) = 13;
+			if (w > width(curalign))
+				width(curalign) = w;
+		type(u) = unset_node;
 		subtype(u) = n;
 		if (totalstretch[3])
 			o = 3;
@@ -135,8 +135,8 @@ bool fincol(void)
 						o = 1;
 					else
 						o = 0;
-		subtype(u+5) = o;
-		mem[u+6].int_ = totalstretch[o];
+		glue_order(u) = o;
+		glue_stretch(u) = totalstretch[o];
 		if (totalshrink[3])
 			o = 3;
 		else 
@@ -147,8 +147,8 @@ bool fincol(void)
 					o = 1;
 				else
 					o = 0;
-		type(u+5) = o;
-		mem[u+4].int_ = totalshrink[o];
+		glue_sign(u) = o;
+		glue_shrink(u) = totalshrink[o];
 		popnest();
 		link(tail) = u;
 		tail = u;

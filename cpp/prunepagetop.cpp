@@ -10,27 +10,27 @@ halfword prunepagetop(halfword p)
 	while (p)
 		switch (type(p))
 		{
-			case 0:
-			case 1:
-			case 2:
+			case hlist_node:
+			case vlist_node:
+			case rule_node:
 				q = newskipparam(10);
 				link(prevp) = q;
 				link(q) = p;
-				if (mem[tempptr+1].int_ > mem[p+3].int_)
-					mem[tempptr+1].int_ -= mem[p+3].int_;
+				if (width(tempptr) > height(p))
+					width(tempptr+1) -= height(p);
 				else
-					mem[tempptr+1].int_ = 0;
+					width(tempptr) = 0;
 				p = 0;
 				break;
-			case 8:
-			case 4:
-			case 3:
+			case whatsit_node:
+			case mark_node:
+			case ins_node:
 				prevp = p;
 				p = link(prevp);
 				break;
-			case 10:
-			case 11:
-			case 12:
+			case glue_node:
+			case kern_node:
+			case penalty_node:
 				q = p;
 				p = link(q);
 				link(q) = 0;

@@ -45,7 +45,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 					scansomethinginternal(3, false);
 					if (curvallevel >= 2)
 					{
-						auto v = mem[curval+1].int_;
+						auto v = width(curval);
 						deleteglueref(curval);
 						curval = v;
 					}
@@ -150,7 +150,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 				scansomethinginternal(3, false);
 				if (curvallevel >= 2)
 				{
-					auto v = mem[curval+1].int_;
+					auto v = width(curval);
 					deleteglueref(curval);
 					curval = v;
 				}
@@ -167,7 +167,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 		{
 			if (scankeyword(708)) //em
 			{
-				auto v = fontinfo[6+parambase[cur_font()]].int_;
+				auto v = param(quad_code, cur_font());
 				getxtoken();
 				if (curcmd != spacer)
 					backinput();
@@ -175,7 +175,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 			else 
 				if (scankeyword(709)) //ex
 				{
-					auto v = fontinfo[5+parambase[cur_font()]].int_;
+					auto v = param(x_height_code, cur_font());
 					getxtoken();
 					if (curcmd != spacer)
 						backinput();

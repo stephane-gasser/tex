@@ -235,18 +235,18 @@ void scansomethinginternal(smallnumber level, bool negative)
 					switch (curchr)
 					{
 						case 0: 
-							if (type(tail) == 12)
-								curval = mem[tail+1].int_;
+							if (type(tail) == penalty_node)
+								curval = penalty(tail);
 							break;
 						case 1: 
-							if (type(tail) == 11)
-								curval = mem[tail+1].int_;
+							if (type(tail) == kern_node)
+								curval = width(tail);
 							break;
 						case 2: 
-							if (type(tail) == 10)
+							if (type(tail) == glue_node)
 							{
-								curval = info(tail+1);
-								if (subtype(tail) == 99)
+								curval = glue_ptr(tail);
+								if (subtype(tail) == mu_glue)
 									curvallevel = 3;
 							}
 					}
@@ -261,7 +261,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 								curval = lastkern;
 								break;
 							case 2: 
-								if (lastglue != 0xFF'FF)
+								if (lastglue != empty_flag)
 									curval = lastglue;
 						}
 			}
@@ -289,7 +289,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 	while (curvallevel > level)
 	{
 		if (curvallevel == 2)
-			curval = mem[curval+1].int_;
+			curval = width(curval);
 		else 
 			if (curvallevel == 3)
 			muerror();
@@ -299,9 +299,9 @@ void scansomethinginternal(smallnumber level, bool negative)
 		if (curvallevel >= 2)
 		{
 			curval = newspec(curval);
-			mem[curval+1].int_ = -mem[curval+1].int_;
-			mem[curval+2].int_ = -mem[curval+2].int_;
-			mem[curval+3].int_ = -mem[curval+3].int_;
+			width(curval) = -width(curval);
+			stretch(curval) = -stretch(curval);
+			shrink(curval) = -shrink(curval);
 		}
 		else
 			curval = -curval;

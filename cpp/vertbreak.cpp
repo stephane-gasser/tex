@@ -29,8 +29,8 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 				case hlist_node: //0
 				case vlist_node: //1
 				case rule_node: //2
-					activewidth[1] += prevdp+mem[p+3].int_;
-					prevdp = mem[p+2].int_;
+					activewidth[1] += prevdp+height(p);
+					prevdp = depth(p);
 					break;
 				case whatsit_node: //8
 					break;
@@ -47,7 +47,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 						pi = 0;
 					break;
 				case penalty_node: //12
-					pi = mem[p+1].int_;
+					pi = penalty(p);
 					break;
 				case mark_node: //4
 				case ins_node: //3
@@ -88,15 +88,15 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 		if (type(p) == kern_node)
 		{
 			q = p;
-			activewidth[1] += prevdp+mem[q+1].int_;
+			activewidth[1] += prevdp+width(q);
 			prevdp = 0;
 		}
 		if (type(p) == glue_node)
 		{
 			q = info(p+1);
-			activewidth[2+type(q)] = activewidth[2+type(q)]+mem[q+2].int_;
-			activewidth[6] += mem[q+3].int_;
-			if (subtype(q) && mem[q+3].int_)
+			activewidth[2+stretch_order(q)] = activewidth[2+stretch_order(q)]+stretch(q);
+			activewidth[6] += shrink(q);
+			if (shrink_order(q) && shrink(q))
 			{
 				printnl(262); //! 
 				print(960); //Infinite glue shrinkage found in box being split
@@ -112,7 +112,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 				info(p+1) = r;
 				q = r;
 			}
-			activewidth[1] += prevdp+mem[q+1].int_;
+			activewidth[1] += prevdp+width(q);
 			prevdp = 0;
 		}
 		if (prevdp > d)

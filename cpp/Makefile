@@ -2,7 +2,10 @@ SRC = $(wildcard *.cpp)
 OBJ = $(SRC:.cpp=.o)
 
 myTeX: $(OBJ)
-	g++ -o $@ $^
+	g++ -std=c++17 -o $@ $^
 
 %.o: %.cpp
-	g++ -c $<
+	g++ -std=c++17 -c $<
+
+clean:
+	rm -rf *.o

@@ -3,9 +3,9 @@
 
 void trapzeroglue(void)
 {
-	if (mem[curval+1].int_ == 0 && mem[curval+2].int_ == 0 && mem[curval+3].int_ == 0)
+	if (width(curval) == 0 && stretch(curval) == 0 && shrink(curval) == 0)
 	{
-		link(zero_glue)++;
+		glue_ref_count(zero_glue)++;
 		deleteglueref(curval);
 		curval = 0;
 	}

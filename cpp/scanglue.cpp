@@ -16,12 +16,12 @@ void scanglue(smallnumber level)
 		do
 			getxtoken();
 		while (curcmd == spacer);
-		if (curtok == 3117) // other_char + '-'
+		if (curtok == other_char*0x1'00+'-')
 		{
 			negative = !negative;
-			curtok = 3115; // other_char + '+'
+			curtok = other_char*0x1'00+'+';
 		}
-	} while (curtok != 3115); // other_char + '+'
+	} while (curtok != other_char*0x1'00+'+');
 	if (curcmd >= min_internal && curcmd <= max_internal)
 	{
 		scansomethinginternal(level, negative);
@@ -44,18 +44,18 @@ void scanglue(smallnumber level)
 		if (negative)
 			curval = -curval;
 	}
-	auto q = newspec(0);
-	mem[q+1].int_ = curval;
+	auto q = newspec(zero_glue);
+	width(q) = curval;
 	if (scankeyword(730)) //plus
 	{
 		scandimen(mu, true, false);
-		mem[q+2].int_ = curval;
+		stretch(q) = curval;
 		type(q) = curorder;
 	}
 	if (scankeyword(731)) //minus
 	{
 		scandimen(mu, true, false);
-		mem[q+3].int_ = curval;
+		shrink(q) = curval;
 		subtype(q) = curorder;
 	}
 	curval = q;

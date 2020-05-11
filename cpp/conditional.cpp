@@ -27,7 +27,7 @@ void conditional(void)
 	link(p) = condptr;
 	type(p) = iflimit;
 	subtype(p) = curif;
-	mem[p+1].int_ = ifline;
+	if_line_field(p) = ifline;
 	condptr = p;
 	curif = curchr;
 	iflimit = 1;
@@ -211,7 +211,7 @@ void conditional(void)
 						if (curchr == 2)
 						{
 							p = condptr;
-							ifline = mem[p+1].int_;
+							ifline = if_line_field(p);
 							curif = subtype(p);
 							iflimit = type(p);
 							condptr = link(p);
@@ -225,7 +225,7 @@ void conditional(void)
 					if (curchr == 2)
 					{
 						p = condptr;
-						ifline = mem[p+1].int_;
+						ifline = if_line_field(p);
 						curif = subtype(p);
 						iflimit = type(p);
 						condptr = link(p);
@@ -259,7 +259,7 @@ void conditional(void)
 				if (curchr == 2)
 				{
 					p = condptr;
-					ifline = mem[p+1].int_;
+					ifline = if_line_field(p);
 					curif = subtype(p);
 					iflimit = type(p);
 					condptr = link(p);
@@ -280,7 +280,7 @@ void conditional(void)
 			if (curchr == 2)
 			{
 				p = condptr;
-				ifline = mem[p+1].int_;
+				ifline = if_line_field(p);
 				curif = subtype(p);
 				iflimit = type(p);
 				condptr = link(p);

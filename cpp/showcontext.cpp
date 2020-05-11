@@ -51,7 +51,7 @@ void showcontext(void)
 					printchar(' ');
 					l = tally;
 					tally = 0;
-					selector = 20;
+					selector = pseudo;
 					trickcount = 1000000;
 					int j;
 					if (buffer[curinput.limitfield] == int_par(end_line_char_code))
@@ -130,7 +130,7 @@ void showcontext(void)
 					}
 					l = tally;
 					tally = 0;
-					selector = 20;
+					selector = pseudo;
 					trickcount = 1000000;
 					if (curinput.indexfield < 5)
 						showtokenlist(curinput.startfield, curinput.locfield, 100000);

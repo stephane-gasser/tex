@@ -5,7 +5,7 @@ void prunemovements(int l)
 {
 	while (downptr)
 	{
-		if (mem[downptr+2].int_ < l)
+		if (location(downptr) < l)
 			break;
 		auto p = downptr;
 		downptr = link(p);
@@ -13,7 +13,7 @@ void prunemovements(int l)
 	}
 	while (rightptr)
 	{
-		if (mem[rightptr+2].int_ < l)
+		if (location(rightptr) < l)
 			break;
 		auto p = rightptr;
 		rightptr = link(p);

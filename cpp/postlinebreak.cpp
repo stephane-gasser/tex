@@ -82,8 +82,8 @@ void postlinebreak(int finalwidowpenalty)
 					discbreak = true;
 					}
 					else 
-						if (type(q) == 9 || type(q) == 11)
-							mem[q+1].int_ = 0;
+						if (type(q) == math_node || type(q) == kern_node)
+							width(q) = 0;
 				r = newparamglue(8);
 				link(r) = link(q);
 				link(q) = r;
@@ -127,7 +127,7 @@ void postlinebreak(int finalwidowpenalty)
 			}
 		adjusttail = adjust_head;
 		justbox = hpack(q, curwidth, 0);
-		mem[justbox+4].int_ = curindent;
+		shift_amount(justbox) = curindent;
 		appendtovlist(justbox);
 		if (adjust_head != adjusttail)
 		{

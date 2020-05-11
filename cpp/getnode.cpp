@@ -12,7 +12,7 @@ halfword getnode(int s)
 		do
 		{ 
 			halfword q = p+info(p);
-			while (link(q) == 0xFF'FF)
+			while (link(q) == empty_flag)
 			{
 				auto t = link(q+1);
 				if (q == rover)
@@ -43,8 +43,8 @@ halfword getnode(int s)
 			p = link(p+1);
 		} while (p != rover);
 		if (s == 0x40'00'00'00)
-			return 0xFF'FF;
-		if (lomemmax+2 < himemmin && lomemmax+2 <= 0xFF'FF)
+			return empty_flag;
+		if (lomemmax+2 < himemmin && lomemmax+2 <= empty_flag)
 		{
 			int t;
 			if (himemmin-lomemmax >= 1998)
@@ -55,11 +55,11 @@ halfword getnode(int s)
 			halfword q = lomemmax;
 			link(p+1) = q;
 			info(rover+1) = q;
-			if (t > 0xFF'FF)
-				t = 0xFF'FF;
+			if (t > empty_flag)
+				t = empty_flag;
 			link(q+1) = rover;
 			info(q+1) = p;
-			link(q) = 0xFF'FF;
+			link(q) = empty_flag;
 			info(q) = t-lomemmax;
 			lomemmax = t;
 			link(lomemmax) = 0;

@@ -3,7 +3,7 @@
 void freenode(halfword p, halfword s)
 {
 	info(p) = s;
-	link(p) = 0xFF'FF;
+	link(p) = empty_flag;
 	halfword q = info(rover+1);
 	info(p+1) = q;
 	link(p+1) = rover;

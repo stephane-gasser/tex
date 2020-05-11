@@ -19,7 +19,7 @@ void boxend(int boxcontext)
 	{
 		if (curbox)
 		{
-			mem[curbox+4].int_ = boxcontext;
+			shift_amount(curbox) = boxcontext;
 			if (abs(mode) == 1)
 			{
 				appendtovlist(curbox);

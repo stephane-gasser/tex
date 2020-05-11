@@ -14,7 +14,7 @@ bool itsallover(void)
 			return true;
 		backinput();
 		tail_append(newnullbox());
-		mem[tail+1].int_ = dimen_par(hsize_code);
+		width(tail) = dimen_par(hsize_code);
 		tail_append(newglue(8));
 		tail_append(newpenalty(-0x40'00'00'00));
 		buildpage();

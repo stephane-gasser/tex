@@ -43,7 +43,7 @@ void newfont(smallnumber a)
 		else
 		{
 			oldsetting = selector;
-			selector = 21;
+			selector = new_string;
 			print(1218); //FONT
 			print(u-1);
 			selector = oldsetting;

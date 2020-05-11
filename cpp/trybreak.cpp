@@ -28,15 +28,13 @@ void trybreak(int pi, smallnumber breaktype)
 	nobreakyet = true;
 	prevr = active;
 	oldl = 0;
-	for (int i = 1; i <= 6; i++)
-		curactivewidth[i] = activewidth[i];
+	copy_to_cur_active();
 	while (true)
 	{
 		r = link(prevr);
-		if (type(r) == 2)
+		if (type(r) == delta_node)
 		{
-			for (int i = 1; i <= 6; i++)
-				curactivewidth[i] = curactivewidth[i]+mem[r+1].int_;
+			update_width(r);
 			prevprevr = prevr;
 			prevr = r;
 			continue;
@@ -49,8 +47,7 @@ void trybreak(int pi, smallnumber breaktype)
 				if (nobreakyet)
 				{
 					nobreakyet = false;
-					for (int i = 1; i <= 6; i++)
-						breakwidth[i] = background[i];
+					set_break_width_to_background();
 					s = curp;
 					if (breaktype > 0)
 						if (curp)
@@ -65,20 +62,20 @@ void trybreak(int pi, smallnumber breaktype)
 								if (v >= himemmin)
 								{
 									f = type(v);
-									breakwidth[1] += -fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(v)].qqqq.b0].int_;
+									breakwidth[1] += -char_width(f, char_info(f, subtype(v)));
 								}
 								else
 									switch (type(v))
 									{
-										case 6:
+										case ligature_node:
 											f = type(v+1);
-											breakwidth[1] += -fontinfo[widthbase[f]+fontinfo[charbase[f]+type(v+1)].qqqq.b0].int_;
+											breakwidth[1] += -char_width(f, char_info(f, type(v+1)));
 											break;
-										case 0:
-										case 1:
-										case 2:
-										case 11: 
-											breakwidth[1] -= mem[v+1].int_;
+										case hlist_node:
+										case vlist_node:
+										case rule_node:
+										case kern_node: 
+											breakwidth[1] -= width(v);
 											break;
 										default: 
 											confusion(922); //disc1
@@ -89,20 +86,20 @@ void trybreak(int pi, smallnumber breaktype)
 								if (s >= himemmin)
 								{
 									f = type(s);
-									breakwidth[1] += fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(s)].qqqq.b0].int_;
+									breakwidth[1] += char_width(f, char_info(f, subtype(s)));
 								}
 								else
 									switch (type(s))
 									{
-										case 6:
+										case ligature_node:
 											f = type(s+1);
-											breakwidth[1] += fontinfo[widthbase[f]+fontinfo[charbase[f]+subtype(s+1)].qqqq.b0].int_;
+											breakwidth[1] += char_width(f, char_info(f, subtype(s+1)));
 											break;
-										case 0:
-										case 1:
-										case 2:
-										case 11: 
-											breakwidth[1] += mem[s+1].int_;
+										case hlist_node:
+										case vlist_node:
+										case rule_node:
+										case kern_node: 
+											breakwidth[1] += width(s);
 											break;
 										default: 
 											confusion(923); //disc2
@@ -119,22 +116,22 @@ void trybreak(int pi, smallnumber breaktype)
 							continue;
 						switch (type(s))
 						{
-							case 10:
-								v = info(s+1);
-								breakwidth[1] -= mem[v+1].int_;
-								breakwidth[2+type(v)] -= mem[v+2].int_;
-								breakwidth[6] -= mem[v+3].int_;
+							case glue_node:
+								v = glue_ptr(s);
+								breakwidth[1] -= width(v);
+								breakwidth[2+stretch_order(v)] -= stretch(v);
+								breakwidth[6] -= shrink(v);
 								break;
-							case 12: 
+							case penalty_node: 
 								break;
-							case 9: 
-								breakwidth[1] -= mem[s+1].int_;
+							case math_node: 
+								breakwidth[1] -= width(s);
 								break;
-							case 11: 
-								if (subtype(s) != 1)
+							case kern_node: 
+								if (subtype(s) != explicit_)
 									continue;
 								else
-									breakwidth[1] -= mem[s+1].int_;
+									breakwidth[1] -= width(s);
 								break;
 							default: 
 								continue;
@@ -142,21 +139,18 @@ void trybreak(int pi, smallnumber breaktype)
 						s = link(s);
 					}
 				}
-				if (type(prevr) == 2)
-					for (int i = 1; i <= 6; i++)
-						mem[prevr+i].int_ += -curactivewidth[i]+breakwidth[i];
+				if (type(prevr) == delta_node)
+					convert_to_break_width(prevr);
 				else 
 					if (prevr == active)
-						for (int i = 1; i <= 6; i++)
-							activewidth[i] = breakwidth[i];
+						store_break_width();
 					else
 					{
 						q = getnode(7);
 						link(q) = r;
-						type(q) = 2;
+						type(q) = delta_node;
 						subtype(q) = 0;
-						for (int i = 1; i <= 6; i++)
-							mem[q+i].int_ = breakwidth[i]-curactivewidth[i];
+						new_delta_to_break_width(q);
 						link(prevr) = q;
 						prevprevr = prevr;
 						prevr = q;
@@ -165,21 +159,21 @@ void trybreak(int pi, smallnumber breaktype)
 					minimumdemerits = 1073741822;
 				else
 					minimumdemerits += abs(int_par(adj_demerits_code));
-				for (fitclass = 0; fitclass <= 3; fitclass++)
+				for (fitclass = very_loose_fit; fitclass <= tight_fit; fitclass++)
 				{
 					if (minimaldemerits[fitclass] <= minimumdemerits)
 					{
 						q = getnode(2);
 						link(q) = passive;
 						passive = q;
-						link(q+1) = curp;
-						info(q+1) = bestplace[fitclass];
+						break_node(q) = curp;
+						line_number(q) = bestplace[fitclass];
 						q = getnode(3);
-						link(q+1) = passive;
-						info(q+1) = bestplline[fitclass]+1;
-						subtype(q) = fitclass;
+						break_node(q) = passive;
+						line_number(q) = bestplline[fitclass]+1;
+						fitness(q) = fitclass;
 						type(q) = breaktype;
-						mem[q+2].int_ = minimaldemerits[fitclass];
+						total_demerits(q) = minimaldemerits[fitclass];
 						link(q) = r;
 						link(prevr) = q;
 						prevr = q;
@@ -191,10 +185,9 @@ void trybreak(int pi, smallnumber breaktype)
 				{
 					q = getnode(7);
 					link(q) = r;
-					type(q) = 2;
+					type(q) = delta_node;
 					subtype(q) = 0;
-					for (int i = 1; i <= 6; i++)
-						mem[q+i].int_ = curactivewidth[i]-breakwidth[i];
+					new_delta_from_break_width(q);
 					link(prevr) = q;
 					prevprevr = prevr;
 					prevr = q;
@@ -225,25 +218,25 @@ void trybreak(int pi, smallnumber breaktype)
 			if (curactivewidth[3] || curactivewidth[4] || curactivewidth[5])
 			{
 				b = 0;
-				fitclass = 2;
+				fitclass = decent_fit;
 			}
 			else
 			{
 				if (shortfall > 7230584 && curactivewidth[2] < 1663497)
 				{
 					b = 10000;
-					fitclass = 0;
+					fitclass = very_loose_fit;
 				}
 				else
 				{
 					b = badness(shortfall, curactivewidth[2]);
 					if (b > 12)
 						if (b > 99)
-							fitclass = 0;
+							fitclass = very_loose_fit;
 						else
-							fitclass = 1;
+							fitclass = loose_fit;
 					else
-						fitclass = 2;
+						fitclass = decent_fit;
 				}
 			}
 		else
@@ -253,9 +246,9 @@ void trybreak(int pi, smallnumber breaktype)
 			else
 				b = badness(-shortfall, curactivewidth[6]);
 			if (b > 12)
-				fitclass = 3;
+				fitclass = tight_fit;
 			else
-				fitclass = 2;
+				fitclass = decent_fit;
 		}
 		if (b > 10000 || pi == -10000)
 		{
@@ -269,34 +262,30 @@ void trybreak(int pi, smallnumber breaktype)
 					if (prevr == active)
 					{
 						r = link(active);
-						if (type(r) == 2)
+						if (type(r) == delta_node)
 						{
-							for (int i = 1; i <= 6; i++)
-								curactivewidth[i] = activewidth[i] = activewidth[i]+mem[r+i].int_;
+							update_active(r);
+							copy_to_cur_active();
 							link(active) = link(r);
 							freenode(r, 7);
 						}
 					}
 					else 
-						if (type(prevr) == 2)
+						if (type(prevr) == delta_node)
 						{
 							r = link(prevr);
 							if (r == active)
 							{
-								for (int i = 1; i <= 6; i++)
-									curactivewidth[i] -= mem[prevr+1].int_;
+								downdate_width(prevr);
 								link(prevprevr) = active;
 								freenode(prevr, 7);
 								prevr = prevprevr;
 							}
 							else 
-								if (type(r) == 2)
+								if (type(r) == delta_node)
 								{
-									for (int i = 1; i <= 6; i++)
-									{
-										curactivewidth[i] += mem[r+1].int_;
-										mem[prevr+i].int_ += mem[r+i].int_;
-									}
+									update_width(r);
+									combine_two_deltas(prevr, r);
 									link(prevr) = link(r);
 									freenode(r, 7);
 								}
@@ -327,7 +316,7 @@ void trybreak(int pi, smallnumber breaktype)
 				else 
 					if (pi > -10000)
 						d -= pi*pi;
-			if (breaktype == 1 && type(r) == 1)
+			if (breaktype == 1 && type(r) == vlist_node)
 				if (curp)
 					d += int_par(double_hyphen_demerits_code);
 				else
@@ -335,7 +324,7 @@ void trybreak(int pi, smallnumber breaktype)
 			if (abs(fitclass-subtype(r)) > 1)
 				d += int_par(adj_demerits_code);
 		}
-		d += mem[r+2].int_;
+		d += depth(r);
 		if (d <= minimaldemerits[fitclass])
 		{
 			minimaldemerits[fitclass] = d;
@@ -351,34 +340,30 @@ void trybreak(int pi, smallnumber breaktype)
 		if (prevr == active)
 		{
 			r = link(active);
-			if (type(r) == 2)
+			if (type(r) == delta_node)
 			{
-				for (int i = 1; i <= 6; i++)
-					curactivewidth[i] = activewidth[i] = activewidth[i]+mem[r+i].int_;
+				update_active(r);
+				copy_to_cur_active();
 				link(active) = link(r);
 				freenode(r, 7);
 			}
 		}
 		else 
-			if (type(prevr) == 2)
+			if (type(prevr) == delta_node)
 			{
 				r = link(prevr);
 				if (r == active)
 				{
-					for (int i = 1; i <= 6; i++)
-						curactivewidth[i] -= mem[prevr+1].int_;
+					downdate_width(prevr);
 					link(prevprevr) = active;
 					freenode(prevr, 7);
 					prevr = prevprevr;
 				}
 				else 
-					if (type(r) == 2)
+					if (type(r) == delta_node)
 					{
-						for (int i = 1; i <= 6; i++)
-						{
-							curactivewidth[i] += mem[r+1].int_;
-							mem[prevr+i].int_ += mem[r+i].int_;
-						}
+						update_width(r);
+						combine_two_deltas(prevr, r);
 						link(prevr) = link(r);
 						freenode(r, 7);
 					}

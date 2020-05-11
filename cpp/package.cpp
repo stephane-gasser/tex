@@ -11,20 +11,20 @@ void package(smallnumber c)
 	unsave();
 	saveptr -= 3;
 	if (mode == -hmode)
-		curbox = hpack(link(head), savestack[saveptr+2].int_, savestack[saveptr+1].int_);
+		curbox = hpack(link(head), saved(2), saved(1));
 	else
 	{
-		curbox = vpackage(link(head), savestack[saveptr+2].int_, savestack[saveptr+1].int_, d);
+		curbox = vpackage(link(head), saved(2), saved(1), d);
 		if (c == 4)
 		{
 			scaled h = 0;
-			auto p = link(curbox+5);
-			if (p && type(p) <= 2)
-				h = mem[p+3].int_;
-			mem[curbox+2].int_ += -h+mem[curbox+3].int_;
-			mem[curbox+3].int_ = h;
+			auto p = list_ptr(curbox);
+			if (p && type(p) <= rule_node)
+				h = height(p);
+			depth(curbox) += -h+height(curbox);
+			height(curbox) = h;
 		}
 	}
 	popnest();
-	boxend(savestack[saveptr].int_);
+	boxend(saved(0));
 }

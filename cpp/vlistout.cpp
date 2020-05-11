@@ -15,9 +15,9 @@ void vlistout(void)
 	scaled curg = 0;
 	float curglue = 0.0;
 	auto thisbox = tempptr;
-	glueord gorder = subtype(thisbox+5);
-	char gsign = type(thisbox+5);
-	halfword p = link(thisbox+5);
+	glueord gorder = glue_order(thisbox);
+	char gsign = glue_sign(thisbox);
+	halfword p = list_ptr(thisbox);
 	curs++;
 	if (curs > 0)
 	{
@@ -29,7 +29,7 @@ void vlistout(void)
 		maxpush = curs;
 	int saveloc = dvioffset+dviptr;
 	auto leftedge = curh;
-	curv = curv-mem[thisbox+3].int_;
+	curv -= height(thisbox);
 	auto topedge = curv;
 	while (p)
 	{
@@ -39,13 +39,13 @@ void vlistout(void)
 		{
 			switch (type(p))
 			{
-				case 0:
-				case 1:
-					if (link(p+5) == 0)
-						curv = curv+mem[p+3].int_+mem[p+2].int_;
+				case hlist_node:
+				case vlist_node:
+					if (list_ptr(p) == 0)
+						curv += height(p)+depth(p);
 					else
 					{
-						curv = curv+mem[p+3].int_;
+						curv += height(p);
 						if (curv != dviv)
 						{
 							movement(curv-dviv, 157);
@@ -53,7 +53,7 @@ void vlistout(void)
 						}
 						auto saveh = dvih;
 						auto savev = dviv;
-						curh = leftedge+mem[p+4].int_;
+						curh = leftedge+shift_amount(p);
 						tempptr = p;
 						if (type(p) == 1)
 							vlistout();
@@ -61,16 +61,16 @@ void vlistout(void)
 							hlistout();
 						dvih = saveh;
 						dviv = savev;
-						curv = savev+mem[p+2].int_;
+						curv = savev+depth(p);
 						curh = leftedge;
 					}
 					break;
-				case 2:
-					ruleht = mem[p+3].int_;
-					ruledp = mem[p+2].int_;
-					rulewd = mem[p+1].int_;
-					if ((rulewd == -0x40'00'00'00))
-						rulewd = mem[thisbox+1].int_;
+				case rule_node:
+					ruleht = height(p);
+					ruledp = depth(p);
+					rulewd = width(p);
+					if ((rulewd == null_flag))
+						rulewd = width(thisbox);
 					ruleht += ruledp;
 					curv += ruleht;
 					if (ruleht > 0 &&rulewd > 0)
@@ -93,19 +93,19 @@ void vlistout(void)
 					}
 					p = link(p);
 					continue;
-				case 8:
+				case whatsit_node:
 					outwhat(p);
 					break;
-				case 10:
-					g = info(p+1);
-					ruleht = mem[g+1].int_-curg;
-					if (gsign != 0)
+				case glue_node:
+					g = glue_ptr(p);
+					ruleht = width(g)-curg;
+					if (gsign)
 						if (gsign == 1)
 						{
 							if (type(g) == gorder)
 							{
-								curglue += mem[g+2].int_;
-								float gluetemp = mem[thisbox+6].gr*curglue;
+								curglue += stretch(g);
+								float gluetemp = glue_set(thisbox)*curglue;
 								if (gluetemp > 1000000000.0)
 									gluetemp = 1000000000.0;
 								else 
@@ -117,8 +117,8 @@ void vlistout(void)
 						else 
 							if (subtype(g) == gorder)
 							{
-								curglue -= mem[g+3].int_;
-								float gluetemp = mem[thisbox+6].gr*curglue;
+								curglue -= shrink(g);
+								float gluetemp = glue_set(thisbox)*curglue;
 								if (gluetemp > 1000000000.0)
 									gluetemp = 1000000000.0;
 								else 
@@ -132,10 +132,10 @@ void vlistout(void)
 						halfword leaderbox = link(p+1);
 						if (type(leaderbox) == 2)
 						{
-							rulewd = mem[leaderbox+1].int_;
+							rulewd = width(leaderbox);
 							ruledp = 0;
-							if ((rulewd == -0x40'00'00'00))
-								rulewd = mem[thisbox+1].int_;
+							if ((rulewd == null_flag))
+								rulewd = width(thisbox);
 							ruleht += ruledp;
 							curv += ruleht;
 							if (ruleht > 0 &&rulewd > 0)
@@ -159,7 +159,7 @@ void vlistout(void)
 							p = link(p);
 							continue;
 						}
-						auto leaderht = mem[leaderbox+3].int_+mem[leaderbox+2].int_;
+						auto leaderht = height(leaderbox)+depth(leaderbox);
 						if ((leaderht > 0) and (ruleht > 0))
 						{
 							ruleht += 10;
@@ -186,14 +186,14 @@ void vlistout(void)
 							}
 							while (curv+leaderht <= edge)
 							{
-								curh = leftedge+mem[leaderbox+4].int_;
+								curh = leftedge+shift_amount(leaderbox);
 								if (curh != dvih)
 								{
 									movement(curh-dvih, 143);
 									dvih = curh;
 								}
 								auto saveh = dvih;
-								curv = curv+mem[leaderbox+3].int_;
+								curv += height(leaderbox);
 								if (curv != dviv)
 								{
 									movement(curv-dviv, 157);
@@ -211,7 +211,7 @@ void vlistout(void)
 								dviv = savev;
 								dvih = saveh;
 								curh = leftedge;
-								curv = savev-mem[leaderbox+3].int_+leaderht+lx;
+								curv = savev-height(leaderbox)+leaderht+lx;
 							}
 							curv = edge-10;
 							p = link(p);
@@ -221,8 +221,8 @@ void vlistout(void)
 					curv = curv+ruleht;
 					p = link(p);
 					continue;
-				case 11: 
-					curv = curv+mem[p+1].int_;
+				case kern_node: 
+					curv += width(p);
 				}
 			p = link(p);
 			continue;

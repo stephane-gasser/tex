@@ -195,7 +195,7 @@ void goto95()
 	tempptr = ligstack;
 	ligstack = link(tempptr);
 	freenode(tempptr, 2);
-	maini = fontinfo[charbase[mainf]+curl].qqqq;
+	maini = char_info(mainf, curl);
 	ligaturepresent = true;
 	if (ligstack == 0)
 		if (mainp > 0)
@@ -240,9 +240,9 @@ void goto120()
 		{
 			mainp = newspec(0);
 			maink = parambase[cur_font()]+2;
-			mem[mainp+1].int_ = fontinfo[maink].int_;
-			mem[mainp+2].int_ = fontinfo[maink+1].int_;
-			mem[mainp+3].int_ = fontinfo[maink+2].int_;
+			width(mainp) = param(space_code, cur_font());
+			stretch(mainp) = param(space_stretch_code, cur_font());
+			shrink(mainp) = param(space_shrink_code, cur_font());
 			fontglue[cur_font()] = mainp;
 		}
 		tempptr = newglue(mainp);
@@ -263,7 +263,7 @@ bool goto92()
 		getxtoken();
 		return true;
 	}
-	maini = fontinfo[charbase[mainf]+curl].qqqq;
+	maini = char_info(mainf, curl);
 	if (maini.b0 <= 0)
 	{
 		charwarning(mainf, curchr);
@@ -337,11 +337,11 @@ void goto110112(bool is110)
 				is110 = true;
 				continue;
 			}
-			maink = ligkernbase[mainf]+maini.b3;
+			maink = lig_kern_start(mainf, maini);
 			mainj = fontinfo[maink].qqqq;
-			if (mainj.b0 > 128)
+			if (skip_byte(mainj) > stop_flag)
 			{
-				maink = ligkernbase[mainf]+256*mainj.b2+mainj.b3;
+				maink = lig_kern_restart(mainf, mainj);
 				mainj = fontinfo[maink].qqqq;
 			}
 		}
@@ -378,7 +378,7 @@ void goto110112(bool is110)
 								tail_append(newdisc());
 						}
 					}
-					tail_append(newkern(fontinfo[kernbase[mainf]+0x1'00*mainj.b2+mainj.b3].int_));
+					tail_append(newkern(char_kern(mainf, mainj)));
 					if (ligstack == 0)
 						return;;
 					curq = tail;
@@ -403,7 +403,7 @@ void goto110112(bool is110)
 					case 1:
 					case 5:
 						curl = mainj.b3;
-						maini = fontinfo[charbase[mainf]+curl].qqqq;
+						maini = char_info(mainf, curl);
 						ligaturepresent = true;
 						break;
 					case 2:
@@ -458,7 +458,7 @@ void goto110112(bool is110)
 						}
 						curq = tail;
 						curl = mainj.b3;
-						maini = fontinfo[charbase[mainf]+curl].qqqq;
+						maini = char_info(mainf, curl);
 						ligaturepresent = true;
 						break;
 					default:
@@ -921,7 +921,7 @@ void maincontrol(void)
 				break;
 			case mmode+non_script:
 				tail_append(newglue(0));
-				mem[tail].hh.b1 = 98;
+				subtype(tail) = cond_math_glue;
 				break;
 			case mmode+math_choice: 
 				appendchoices();

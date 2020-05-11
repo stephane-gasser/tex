@@ -18,21 +18,21 @@ void flushnodelist(halfword p)
 		{
 			switch (type(p))
 			{
-				case 0:
-				case 1:
-				case 13:
-					flushnodelist(link(p+5));
+				case hlist_node:
+				case vlist_node:
+				case unset_node:
+					flushnodelist(list_ptr(p));
 					freenode(p, 7);
 					break;
-				case 2:
+				case rule_node:
 					freenode(p, 4);
 					break;
-				case 3:
-					flushnodelist(info(p+4));
-					deleteglueref(link(p+4));
+				case ins_node:
+					flushnodelist(ins_ptr(p));
+					deleteglueref(ins_ptr(p));
 					freenode(p, 5);
 					break;
-				case 8:
+				case whatsit_node:
 					switch (subtype(p))
 					{
 						case 0:
@@ -51,81 +51,78 @@ void flushnodelist(halfword p)
 							confusion(1294); //ext3
 					}
 					break;
-				case 10:
-					if (link(info(p+1)) == 0)
-						freenode(info(p+1), 4);
+				case glue_node:
+					if (glue_ref_count(glue_ptr(p)) == 0)
+						freenode(glue_ptr(p), 4);
 					else
-						link(info(p+1))--;
-					if (link(p+1))
-						flushnodelist(link(p+1));
+						glue_ref_count(glue_ptr(p))--;
+					if (leader_ptr(p))
+						flushnodelist(leader_ptr(p));
 					freenode(p, 2);
 					break;
-				case 11:
-				case 9:
-				case 12: 
+				case kern_node:
+				case math_node:
+				case penalty_node: 
 					freenode(p, 2);
 					break;
-				case 6: 
-					flushnodelist(link(p+1));
+				case ligature_node: 
+					flushnodelist(lig_ptr(p));
 					freenode(p, 2);
 					break;
-				case 4: 
-					deletetokenref(mem[p+1].int_);
+				case mark_node: 
+					deletetokenref(mark_ptr(p));
 					freenode(p, 2);
 					break;
-				case 7:
-					flushnodelist(info(p+1));
-					flushnodelist(link(p+1));
+				case disc_node:
+					flushnodelist(pre_break(p));
+					flushnodelist(post_break(p));
 					freenode(p, 2);
 					break;
-				case 5: 
-					flushnodelist(mem[p+1].int_);
+				case adjust_node: 
+					flushnodelist(adjust_ptr(p));
 					freenode(p, 2);
 					break;
-				case 14:
+				case style_node:
 					freenode(p, 3);
 					break;
-				case 15:
-					flushnodelist(info(p+1));
-					flushnodelist(link(p+1));
-					flushnodelist(info(p+2));
-					flushnodelist(link(p+2));
+				case choice_node:
+					flushnodelist(display_mlist(p));
+					flushnodelist(text_mlist(p));
+					flushnodelist(script_mlist(p));
+					flushnodelist(script_script_mlist(p));
 					freenode(p, 3);
 					break;
-				case 16:
-				case 17:
-				case 18:
-				case 19:
-				case 20:
-				case 21:
-				case 22:
-				case 23:
-				case 24:
-				case 27:
-				case 26:
-				case 29:
-				case 28:
-					if (link(p+1) >= 2)
-						flushnodelist(info(p+1));
-					if (link(p+2) >= 2)
-						flushnodelist(info(p+2));
-					if (link(p+3) >= 2)
-						flushnodelist(info(p+3));
-					if (type(p) == 24)
+				case ord_noad:
+				case op_noad:
+				case bin_noad:
+				case rel_noad:
+				case open_noad:
+				case close_noad:
+				case punct_noad:
+				case inner_noad:
+				case radical_noad:
+				case over_noad:
+				case under_noad:
+				case vcenter_noad:
+				case accent_noad:
+					if (math_type(nucleus(p)) >= sub_box)
+						flushnodelist(nucleus(p));
+					if (math_type(supscr(p)) >= sub_box)
+						flushnodelist(info(supscr(p)));
+					if (math_type(subscr(p)) >= sub_box)
+						flushnodelist(info(subscr(p)));
+					if (type(p) == radical_noad || type(p) == accent_noad)
 						freenode(p, 5);
-					else 
-						if (type(p) == 28)
-							freenode(p, 5);
-						else
+					else
 						freenode(p, 4);
 					break;
-				case 30:
-				case 31:
+				case left_noad:
+				case right_noad:
 					freenode(p, 4);
 					break;
-				case 25:
-					flushnodelist(info(p+2));
-					flushnodelist(info(p+3));
+				case fraction_noad:
+					flushnodelist(info(numerator(p)));
+					flushnodelist(info(denominator(p)));
 					freenode(p, 6);
 					break;
 				default: 

@@ -7,7 +7,7 @@ void deletelast(void)
 {
 	if (mode == vmode && tail == head)
 	{
-		if (curchr != '\n' || lastglue != 0xFF'FF)
+		if (curchr != '\n' || lastglue != empty_flag)
 		{
 			youcant();
 			helpptr = 2;

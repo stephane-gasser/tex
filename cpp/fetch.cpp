@@ -35,12 +35,12 @@ void fetch(halfword a)
 	else
 	{
 		if (curc >= fontbc[curf] && curc <= fontec[curf])
-			curi = fontinfo[charbase[curf]+curc].qqqq;
+			curi = char_info(curf, curc);
 		else
 			curi = nullcharacter;
-		if (curi.b0 <= 0)
+		if (skip_byte(curi) <= 0)
 		{
-			charwarning(curf, curc-0);
+			charwarning(curf, curc);
 			link(a) = 0;
 		}
 	}

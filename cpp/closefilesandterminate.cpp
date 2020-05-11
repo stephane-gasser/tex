@@ -99,7 +99,7 @@ void closefilesandterminate(void)
 		logfile << "\n";
 		aclose(logfile);
 		selector -= 2;
-		if (selector == 17)
+		if (selector == term_only)
 		{
 			printnl(1274); //Transcript written on 
 			slowprint(logname);

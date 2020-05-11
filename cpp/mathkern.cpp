@@ -5,16 +5,16 @@
 
 void mathkern(halfword p, scaled m)
 {
-	if (subtype(p) == 99)
+	if (subtype(p) == mu_glue)
 	{
-		int n = xovern(m, 0x1'00'00);
+		int n = xovern(m, unity);
 		scaled f = remainder_;
 		if (f < 0)
 		{
 			n--;
-			f += 0x1'00'00;
+			f += unity;
 		}
-		mem[p+1].int_ = multandadd(n, mem[p+1].int_, xnoverd(mem[p+1].int_, f, 0x1'00'00), max_dimen);
+		width(p) = multandadd(n, width(p), xnoverd(width(p), f, unity), max_dimen);
 		subtype(p) = 1;
 	}
 }

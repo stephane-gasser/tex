@@ -19,11 +19,11 @@ void openlogfile(void)
 	packjobname(796); //.log
 	while (!aopenout(logfile))
 	{
-		selector = 17;
+		selector = term_only;
 		promptfilename(798, 796); // transcript file name//.log
 	}
 	logname = amakenamestring(logfile);
-	selector = 18;
+	selector = log_only;
 	logopened = true;
 	logfile << banner;
 	slowprint(formatident);

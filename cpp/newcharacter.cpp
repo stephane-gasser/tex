@@ -6,7 +6,7 @@ halfword newcharacter(internalfontnumber f, eightbits c)
 {
 	if (fontbc[f] <= c)
 		if (fontec[f] >= c)
-			if ((fontinfo[charbase[f]+c].qqqq.b0 > 0))
+			if ((skip_byte(char_info(f, c)) > 0))
 			{
 				auto p = getavail();
 				type(p) = f;

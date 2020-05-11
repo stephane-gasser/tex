@@ -10,8 +10,8 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 	internalfontnumber f = 0;
 	scaled w = 0;
 	bool largeattempt = false;
-	smallnumber z = mem[d].qqqq.b0;
-	quarterword x = mem[d].qqqq.b1;
+	smallnumber z = small_fam(d);
+	quarterword x = small_char(d);
 	bool label40 = false;
 	fourquarters q;
 	while (true)
@@ -32,18 +32,17 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 						do 
 						{
 							label22 = false;
-							q = fontinfo[charbase[g]+y].qqqq;
-							if (q.b0 > 0)
+							q = char_info(g, y);
+							if (char_exists(q))
 							{
-								if (q.b2%4 == 3)
+								if (char_tag(q) == ext_tag)
 								{
 									f = g;
 									c = y;
 									label40 = true;
 									break;
 								}
-								eightbits hd = q.b1;
-								scaled u = fontinfo[heightbase[g]+hd/16].int_+fontinfo[depthbase[g]+hd%16].int_;
+								scaled u = char_height(g, q)+char_depth(g, q);
 								if (u > w)
 								{
 									f = g;
@@ -55,9 +54,9 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 										break;
 									}
 								}
-								if (q.b2%4 == 2)
+								if (char_tag(q) == list_tag)
 								{
-									y = q.b3;
+									y = rem_byte(q);
 									label22 = true;
 								}
 							}
@@ -71,29 +70,29 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 		if (!largeattempt && !label40)
 		{
 			largeattempt = true;
-			z = mem[d].qqqq.b2;
-			x = mem[d].qqqq.b3;
+			z = large_fam(d);
+			x = large_char(d);
 		}
 	}
 	halfword b;
 	if (f)
-		if (q.b2%4 == 3)
+		if (char_tag(q) == ext_tag)
 		{
 			b = newnullbox();
-			type(b) = 1;
-			fourquarters r = fontinfo[extenbase[f]+q.b3].qqqq;
-			c = r.b3;
+			type(b) = vlist_node;
+			fourquarters r = fontinfo[extenbase[f]+rem_byte(q)].qqqq;
+			c = ext_rep(r);
 			auto u = heightplusdepth(f, c);
 			w = 0;
-			q = fontinfo[charbase[f]+c].qqqq;
-			mem[b+1].int_ = fontinfo[widthbase[f]+q.b0].int_+fontinfo[italicbase[f]+q.b2/4].int_;
-			c = r.b2;
+			q = char_info(f, c);
+			width(b) = char_width(f, q)+char_italic(f, q);
+			c = ext_bot(r);
 			if (c)
 				w += heightplusdepth(f, c);
-			c = r.b1;
+			c = ext_mid(r);
 			if (c)
 				w += heightplusdepth(f, c);
-			c = r.b0;
+			c = ext_top(r);
 			if (c)
 				w += heightplusdepth(f, c);
 			int n = 0;
@@ -102,35 +101,35 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 				{
 					w += u;
 					n++;
-					if (r.b1)
+					if (ext_mid(r))
 						w += u;
 				}
-			c = r.b2;
+			c = ext_bot(r);
 			if (c)
 				stackintobox(b, f, c);
-			c = r.b3;
+			c = ext_rep(r);
 			for (int m = 1; m <= n; m++)
 				stackintobox(b, f, c);
-			c = r.b1;
+			c = ext_mid(r);
 			if (c)
 			{
 				stackintobox(b, f, c);
-				c = r.b3;
+				c = ext_rep(r);
 				for (int m = 1; m <= n; m++)
 					stackintobox(b, f, c);
 			}
-			c = r.b0;
+			c = ext_top(r);
 			if (c)
 				stackintobox(b, f, c);
-			mem[b+2].int_ = w-mem[b+3].int_;
+			depth(b) = w-height(b);
 		}
 		else
 			b = charbox(f, c);
 	else
 	{
 		b = newnullbox();
-		mem[b+1].int_ = dimen_par(null_delimiter_space_code);
+		width(b) = dimen_par(null_delimiter_space_code);
 	}
-	mem[b+4].int_ = half(mem[b+3].int_-mem[b+2].int_)-fontinfo[22+parambase[fam_fnt(2+s)]].int_;
+	shift_amount(b) = half(height(b)-depth(b))-axis_height(s);
 	return b;
 }

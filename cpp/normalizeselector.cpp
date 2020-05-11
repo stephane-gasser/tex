@@ -4,9 +4,9 @@
 void normalizeselector(void)
 {
 	if (logopened)
-		selector = 19;
+		selector = term_and_log;
 	else
-	selector = 17;
+	selector = term_only;
 	if (jobname == 0)
 		openlogfile();
 	if (interaction == batch_mode)

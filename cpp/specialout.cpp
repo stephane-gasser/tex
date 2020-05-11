@@ -18,7 +18,7 @@ void specialout(halfword p)
 		dviv = curv;
 	}
 	auto oldsetting = selector;
-	selector = 21;
+	selector = new_string;
 	showtokenlist(link(link(p+1)), 0, poolsize-poolptr);
 	selector = oldsetting;
 	if (poolptr+1 > poolsize)

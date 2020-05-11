@@ -50,23 +50,23 @@ void shownodelist(int p)
 		else
 			switch (type(p))
 			{
-				case 0:
-				case 1:
-				case 13:
-					if (type(p) == 0)
+				case hlist_node:
+				case vlist_node:
+				case unset_node:
+					if (type(p) == hlist_node)
 						printesc('h');
 					else 
-						if (type(p) == 1)
+						if (type(p) == vlist_node)
 							printesc('v');
 						else
 							printesc(318); //unset
 					print(319); //box(
-					printscaled(mem[p+3].int_);
+					printscaled(height(p));
 					printchar('+');
-					printscaled(mem[p+2].int_);
+					printscaled(depth(p));
 					print(320); //)x
-					printscaled(mem[p+1].int_);
-					if (type(p) == 13)
+					printscaled(width(p));
+					if (type(p) == unset_node)
 					{
 						if (subtype(p))
 						{
@@ -74,26 +74,26 @@ void shownodelist(int p)
 							printint(subtype(p)+1);
 							print(322); // columns)
 						}
-						if (mem[p+6].int_)
+						if (glue_stretch(p))
 						{
 							print(323); //, stretch 
-							printglue(mem[p+6].int_, subtype(p+5), 0);
+							printglue(glue_stretch(p), glue_order(p), 0);
 						}
-						if (mem[p+4].int_)
+						if (glue_shrink(p))
 						{
 							print(324); //, shrink 
-							printglue(mem[p+4].int_, type(p+5), 0);
+							printglue(glue_shrink(p), glue_sign(p), 0);
 						}
 					}
 					else
 					{
-						g = mem[p+6].gr;
-						if (g && type(p+5))
+						g = glue_set(p);
+						if (g && glue_sign(p))
 						{
 							print(325); //, glue set 
-							if (type(p+5) == 2)
+							if (glue_sign(p) == shrinking)
 								print(326); //- 
-							if (abs(mem[p+6].int_) < 1048576)
+							if (!std::isfinite(glue_set(p)))
 								print(327); //?.?
 							else 
 								if (abs(g) > 20000.0)
@@ -102,45 +102,45 @@ void shownodelist(int p)
 										printchar('>');
 									else
 										print(328); //< -
-									printglue(20000*0x1'00'00, subtype(p+5), 0);
+									printglue(20000*0x1'00'00, glue_order(p), 0);
 								}
 								else
-									printglue(round(0x1'00'00*g), subtype(p+5), 0);
+									printglue(round(0x1'00'00*g), glue_order(p), 0);
 						}
-						if (mem[p+4].int_)
+						if (shift_amount(p))
 						{
 							print(321); //, shifted 
-							printscaled(mem[p+4].int_);
+							printscaled(shift_amount(p));
 						}
 					}
 					strpool[poolptr++] = '.';
-					shownodelist(link(p+5));
+					shownodelist(list_ptr(p));
 					poolptr--;
 					break;
-				case 2:
+				case rule_node:
 					printesc(329); //rule(
-					printruledimen(mem[p+3].int_);
+					printruledimen(width(p));
 					printchar('+');
-					printruledimen(mem[p+2].int_);
+					printruledimen(depth(p));
 					print(320); //)x
-					printruledimen(mem[p+1].int_);
+					printruledimen(width(p));
 					break;
-				case 3:
+				case ins_node:
 					printesc(330); //insert
 					printint(subtype(p));
 					print(331); //, natural size 
-					printscaled(mem[p+3].int_);
+					printscaled(height(p));
 					print(332); //; split(
-					printspec(link(p+4), 0);
+					printspec(split_top_ptr(p), 0);
 					printchar(',');
-					printscaled(mem[p+2].int_);
+					printscaled(depth(p));
 					print(333); //); float cost 
-					printint(mem[p+1].int_);
+					printint(float_cost(p));
 					strpool[poolptr++] = '.';
-					shownodelist(info(p+4));
+					shownodelist(ins_ptr(p));
 					poolptr--;
 					break;
-				case 8:
+				case whatsit_node:
 					switch (subtype(p))
 					{
 						case 0:
@@ -172,7 +172,7 @@ void shownodelist(int p)
 							print(1292); //whatsit?
 					}
 					break;
-				case 10:
+				case glue_node:
 					if (subtype(p) >= 100)
 					{
 						printesc(338); //
@@ -211,36 +211,36 @@ void shownodelist(int p)
 								printspec(info(p+1), 337); //mu
 						}
 					}
-				case 11:
+				case kern_node:
 					if (subtype(p) != 99)
 					{
 						printesc(340); //kern
 						if (subtype(p))
 							printchar(' ');
-						printscaled(mem[p+1].int_);
+						printscaled(width(p));
 						if (subtype(p) == 2)
 							print(341); // (for accent)
 					}
 					else
 					{
 						printesc(342); //mkern
-						printscaled(mem[p+1].int_);
+						printscaled(width(p));
 						print(337); //mu
 					}
 					break;
-				case 9:
+				case math_node:
 					printesc(343); //math
 					if (subtype(p) == 0)
 						print(344); //on
 					else
 						print(345); //off
-					if (mem[p+1].int_)
+					if (width(p))
 					{
 						print(346); //, surrounded 
-						printscaled(mem[p+1].int_);
+						printscaled(width(p));
 					}
 					break;
-				case 6:
+				case ligature_node:
 					printfontandchar(p+1);
 					print(347); // (ligature 
 					if (subtype(p) > 1)
@@ -251,11 +251,11 @@ void shownodelist(int p)
 						printchar('|');
 					printchar(')');
 					break;
-				case 12:
+				case penalty_node:
 					printesc(348); //penalty 
-					printint(mem[p+1].int_);
+					printint(penalty(p));
 					break;
-				case 7:
+				case disc_node:
 					printesc(349); //discretionary
 					if (subtype(p) > 0)
 					{
@@ -269,14 +269,14 @@ void shownodelist(int p)
 					shownodelist(link(p+1));
 					poolptr--;
 					break;
-				case 4:
+				case mark_node:
 					printesc(351); //mark
-					printmark(mem[p+1].int_);
+					printmark(mark_ptr(p));
 					break;
-				case 5:
+				case adjust_node:
 					printesc(352); //vadjust
 					strpool[poolptr++] = '.';
-					shownodelist(mem[p+1].int_);
+					shownodelist(adjust_ptr(p));
 					poolptr--;
 					break;
 				case 14: 
@@ -297,100 +297,106 @@ void shownodelist(int p)
 					shownodelist(link(p+2));
 					poolptr--;
 					break;
-				case 16:
-				case 17:
-				case 18:
-				case 19:
-				case 20:
-				case 21:
-				case 22:
-				case 23:
-				case 24:
-				case 27:
-				case 26:
-				case 29:
-				case 28:
-				case 30:
-				case 31:
+				case ord_noad:
+				case op_noad:
+				case bin_noad:
+				case rel_noad:
+				case open_noad:
+				case close_noad:
+				case punct_noad:
+				case inner_noad:
+				case radical_noad:
+				case over_noad:
+				case under_noad:
+				case vcenter_noad:
+				case accent_noad:
+				case left_noad:
+				case right_noad:
 					switch (type(p))
 					{
-						case 16: 
+						case ord_noad: 
 							printesc(865); //mathord
 							break;
-						case 17: 
+						case op_noad: 
 							printesc(866); //mathop
 							break;
-						case 18: 
+						case bin_noad: 
 							printesc(867); //mathbin
 							break;
-						case 19: 
+						case rel_noad: 
 							printesc(868); //mathrel
 							break;
-						case 20: 
+						case open_noad: 
 							printesc(869); //mathopen
 							break;
-						case 21: 
+						case close_noad: 
 							printesc(870); //mathclose
 							break;
-						case 22: 
+						case punct_noad: 
 							printesc(871); //mathpunct
 							break;
-						case 23: 
+						case inner_noad: 
 							printesc(872); //mathinner
 							break;
-						case 27: 
+						case over_noad: 
 							printesc(873); //overline
 							break;
-						case 26: 
+						case under_noad: 
 							printesc(874); //underline
 							break;
-						case 29: 
+						case vcenter_noad: 
 							printesc(539); //vcenter
 							break;
-						case 24:
+						case radical_noad:
 							printesc(533); //radical
-							printdelimiter(p+4);
+							printdelimiter(left_delimiter(4));
 							break;
-						case 28:
+						case accent_noad:
 							printesc(508); //accent
-							printfamandchar(p+4);
+							printfamandchar(accent_chr(p));
 							break;
-						case 30:
+						case left_noad:
 							printesc(875); //left
-							printdelimiter(p+1);
+							printdelimiter(delimiter(p));
 							break;
-						case 31:
+						case right_noad:
 							printesc(876); //right
-							printdelimiter(p+1);
+							printdelimiter(delimiter(p));
 					}
 					if (subtype(p))
-						if (subtype(p) == 1)
+						if (subtype(p) == limits)
 							printesc(877); //limits
 						else
 							printesc(878); //nolimits
-					if (type(p) < 30)
-					printsubsidiarydata(p+1, '.');
-					printsubsidiarydata(p+2, '^');
-					printsubsidiarydata(p+3, '_');
+					if (type(p) < left_noad)
+						printsubsidiarydata(nucleus(p), '.');
+					printsubsidiarydata(supscr(p), '^');
+					printsubsidiarydata(subscr(p), '_');
 					break;
-				case 25:
+				case fraction_noad:
 					printesc(879); //fraction, thickness 
-					if (mem[p+1].int_ == 0x40'00'00'00)
+					if (new_hlist(p) == default_code)
 						print(880); //= default
 					else
-						printscaled(mem[p+1].int_);
-					if (mem[p+4].qqqq.b0 || mem[p+4].qqqq.b1 || mem[p+4].qqqq.b2 || mem[p+4].qqqq.b3)
+						printscaled(new_hlist(p));
+					if (small_fam(left_delimiter(p))
+					 || small_char(left_delimiter(p))
+					 || large_fam(left_delimiter(p))
+					 || large_char(left_delimiter(p)))
 					{
 						print(881); //, left-delimiter 
-						printdelimiter(p+4);
+						printdelimiter(left_delimiter(p));
 					}
-					if (mem[p+5].qqqq.b0 || mem[p+5].qqqq.b1 || mem[p+5].qqqq.b2 || mem[p+5].qqqq.b3)
+					if (small_fam(right_delimiter(p))
+					 || small_char(right_delimiter(p))
+					 || large_fam(right_delimiter(p))
+					 || large_char(right_delimiter(p)))
 					{
 						print(882); //, right-delimiter 
-						printdelimiter(p+5);
+						printdelimiter(right_delimiter(p));
 					}
-					printsubsidiarydata(p+2, '\\');
-					printsubsidiarydata(p+3, '/');
+					printsubsidiarydata(numerator(p), '\\');
+					printsubsidiarydata(denominator(p), '/');
 					break;
 				default: 
 					print(317); //Unknown node type!

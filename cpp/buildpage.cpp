@@ -29,7 +29,7 @@ void buildpage(void)
 	do
 	{
 		p = link(contrib_head);
-		if (lastglue != 0xFF'FF)
+		if (lastglue != empty_flag)
 			deleteglueref(lastglue);
 		lastpenalty = 0;
 		lastkern = 0;
@@ -40,12 +40,12 @@ void buildpage(void)
 		}
 		else
 		{
-			lastglue = 0xFF'FF;
+			lastglue = empty_flag;
 			if (type(p) == penalty_node) //12
-				lastpenalty = mem[p+1].int_;
+				lastpenalty = penalty(p);
 			else 
-				if (mem[p].hh.b0 == kern_node) //11
-					lastkern = mem[p+1].int_;
+				if (type(p) == kern_node) //11
+					lastkern = width(p);
 		}
 		switch (type(p))
 		{
@@ -59,16 +59,16 @@ void buildpage(void)
 					else
 						pagecontents = 2;
 					q = newskipparam(9);
-					if (mem[tempptr+1].int_ > mem[p+3].int_)
-						mem[tempptr+1].int_ -= mem[p+3].int_;
+					if (width(tempptr) > height(p))
+						width(tempptr) -= height(p);
 					else
-						mem[tempptr+1].int_ = 0;
+						width(tempptr) = 0;
 					link(q) = p;
 					link(contrib_head) = q;
 					continue;
 				}
-				pagesofar[1] += pagesofar[7]+mem[p+3].int_;
-				pagesofar[7] = mem[p+2].int_;
+				pagesofar[1] += pagesofar[7]+height(p);
+				pagesofar[7] = depth(p);
 				break;
 			case whatsit_node: //8
 				break;
@@ -104,7 +104,7 @@ void buildpage(void)
 					flushnodelist(p);
 					continue;
 				}
-				pi = mem[p+1].int_;
+				pi = penalty(p);
 				break;
 			case mark_node: //4
 				break;
@@ -122,22 +122,22 @@ void buildpage(void)
 					link(r) = q;
 					r = q;
 					subtype(r) = n;
-					type(r) = 0;
+					type(r) = hlist_node;
 					ensurevbox(n);
 					if (box(n) == 0)
-						mem[r+3].int_ = 0;
+						height(r) = 0;
 					else
-						mem[r+3].int_ = mem[box(n)+3].int_+mem[box(n)+2].int_;
+						height(r) = height(box(n))+depth(box(n));
 					info(r+2) = 0;
 					q = skip(2900);
 					if (count(n) == 1000)
-						h = mem[r+3].int_;
+						h = height(r);
 					else
-						h = xovern(mem[r+3].int_, 1000)*count(n);
-					pagesofar[0] -= h+mem[q+1].int_;
-					pagesofar[2+type(q)] += mem[q+2].int_;
-					pagesofar[6] += mem[q+3].int_;
-					if (subtype(q) && mem[q+3].int_)
+						h = xovern(height(r), 1000)*count(n);
+					pagesofar[0] -= h+width(q);
+					pagesofar[2+type(q)] += depth(q);
+					pagesofar[6] += height(q);
+					if (subtype(q) && height(q))
 					{
 						printnl(262); //! 
 						print(997); //Infinite glue shrinkage inserted from 
@@ -150,20 +150,20 @@ void buildpage(void)
 						error();
 					}
 				}
-				if (type(r) == 1)
-					insertpenalties += mem[p+1].int_;
+				if (type(r) == vlist_node)
+					insertpenalties += width(p);
 				else
 				{
 					link(r+2) = p;
 					delta = pagesofar[0]-pagesofar[1]-pagesofar[7]+pagesofar[6];
 					if (count(n) == 1000)
-						h = mem[p+3].int_;
+						h = height(p);
 					else
-						h = xovern(mem[p+3].int_, 1000)*count(n);
-					if ((h <= 0 || h <= delta) && mem[p+3].int_+mem[r+3].int_ <= dimen(n))
+						h = xovern(height(p), 1000)*count(n);
+					if ((h <= 0 || h <= delta) && height(p)+height(r) <= dimen(n))
 					{
 						pagesofar[0] -= h;
-						mem[r+3].int_ += mem[p+3].int_;
+						height(r) += height(p);
 					}
 					else
 					{
@@ -175,10 +175,10 @@ void buildpage(void)
 							if (count(n) != 1000)
 								w = xovern(w, count(n))*1000;
 						}
-						if (w > dimen(n)-mem[r+3].int_)
-							w = dimen(n)-mem[r+3].int_;
-						q = vertbreak(info(p+4), w, mem[p+2].int_);
-						mem[r+3].int_ += bestheightplusdepth;
+						if (w > dimen(n)-height(r))
+							w = dimen(n)-height(r);
+						q = vertbreak(info(p+4), w, depth(p));
+						height(r) += bestheightplusdepth;
 						if (count(n) != 1000)
 							bestheightplusdepth = xovern(bestheightplusdepth, 1000)*count(n);
 						pagesofar[0] -= bestheightplusdepth;
@@ -189,7 +189,7 @@ void buildpage(void)
 							insertpenalties -= 10000;
 						else 
 							if (type(q) == 12)
-								insertpenalties += mem[q+1].int_;
+								insertpenalties += width(q);
 					}
 				}
 				break;
@@ -244,15 +244,15 @@ void buildpage(void)
 		if (type(p) == kern_node)
 		{
 			q = p;
-			pagesofar[1] += pagesofar[7]+mem[q+1].int_;
+			pagesofar[1] += pagesofar[7]+width(q);
 			pagesofar[7] = 0;
 		}
 		if (type(p) == glue_node)
 		{
 			q = info(p+1);
-			pagesofar[2+type(q)] += mem[q+2].int_;
-			pagesofar[6] += mem[q+3].int_;
-			if (subtype(q) && mem[q+3].int_)
+			pagesofar[2+type(q)] += depth(q);
+			pagesofar[6] += height(q);
+			if (subtype(q) && height(q))
 			{
 				printnl(262); //! 
 				print(993); //Infinite glue shrinkage found on current page
@@ -268,7 +268,7 @@ void buildpage(void)
 				info(p+1) = r;
 				q = r;
 			}
-			pagesofar[1] += pagesofar[7]+mem[q+1].int_;
+			pagesofar[1] += pagesofar[7]+width(q);
 			pagesofar[7] = 0;
 		}
 		if (pagesofar[7] > pagemaxdepth)

@@ -14,9 +14,9 @@ void hlistout(void)
 	scaled curg = 0;
 	float curglue = 0.0;
 	auto thisbox = tempptr;
-	glueord gorder = subtype(thisbox+5);
-	char gsign = type(thisbox+5);
-	halfword p = link(thisbox+5);
+	glueord gorder = glue_order(thisbox);
+	char gsign = glue_sign(thisbox);
+	halfword p = list_ptr(thisbox);
 	curs++;
 	if (curs > 0)
 	{
@@ -80,7 +80,7 @@ void hlistout(void)
 				dvibuf[dviptr++] = c;
 				if (dviptr == dvilimit)
 					dviswap();
-				curh += fontinfo[widthbase[f]+fontinfo[charbase[f]+c].qqqq.b0].int_;
+				curh += char_width(f, char_info(f, c));
 				p = link(p);
 			} while (p >= himemmin);
 			dvih = curh;
@@ -89,36 +89,36 @@ void hlistout(void)
 		{
 			switch (type(p))
 			{
-				case 0:
-				case 1:
-					if (link(p+5) == 0)
-						curh = curh+mem[p+1].int_;
+				case hlist_node:
+				case vlist_node:
+					if (list_ptr(p) == hlist_node)
+						curh += width(p);
 					else
 					{
 						auto saveh = dvih;
 						auto savev = dviv;
-						curv = baseline+mem[p+4].int_;
+						curv = baseline+shift_amount(p);
 						tempptr = p;
 						auto edge = curh;
-						if (type(p) == 1)
+						if (type(p) == vlist_node)
 							vlistout();
 						else
 							hlistout();
 						dvih = saveh;
 						dviv = savev;
-						curh = edge+mem[p+1].int_;
+						curh = edge+width(p);
 						curv = baseline;
 					}
 					break;
-				case 2:
-					ruleht = mem[p+3].int_;
-					ruledp = mem[p+2].int_;
-					rulewd = mem[p+1].int_;
-					if ((ruleht == -0x40'00'00'00))
-						ruleht = mem[thisbox+3].int_;
-					if ((ruledp == -0x40'00'00'00))
-						ruledp = mem[thisbox+2].int_;
-					ruleht = ruleht+ruledp;
+				case rule_node:
+					ruleht = height(p);
+					ruledp = depth(p);
+					rulewd = width(p);
+					if ((ruleht == null_flag))
+						ruleht = height(thisbox);
+					if ((ruledp == null_flag))
+						ruledp = depth(thisbox);
+					ruleht += ruledp;
 					if (ruleht > 0 && rulewd > 0)
 					{
 						if (curh != dvih)
@@ -143,19 +143,19 @@ void hlistout(void)
 					curh = curh+rulewd;
 					p = link(p);
 					continue;
-				case 8:
+				case whatsit_node:
 					outwhat(p);
 					break;
-				case 10:
+				case glue_node:
 					g = info(p+1);
-					rulewd = mem[g+1].int_-curg;
-					if (gsign != 0)
+					rulewd = width(g)-curg;
+					if (gsign)
 						if (gsign == 1)
 						{
 							if (type(g) == gorder)
 							{
-								curglue = curglue+mem[g+2].int_;
-								float gluetemp = mem[thisbox+6].gr*curglue;
+								curglue += stretch(g);
+								float gluetemp = glue_set(thisbox)*curglue;
 								if (gluetemp > 1000000000.0)
 									gluetemp = 1000000000.0;
 								else 
@@ -167,8 +167,8 @@ void hlistout(void)
 						else 
 							if (subtype(g) == gorder)
 							{
-								curglue = curglue-mem[g+3].int_;
-								float gluetemp = mem[thisbox+6].gr*curglue;
+								curglue -= shrink(g);
+								float gluetemp = glue_set(thisbox)*curglue;
 								if (gluetemp > 1000000000.0)
 									gluetemp = 1000000000.0;
 								else 
@@ -182,13 +182,13 @@ void hlistout(void)
 						halfword leaderbox = link(p+1);
 						if (type(leaderbox) == 2)
 						{
-							ruleht = mem[leaderbox+3].int_;
-							ruledp = mem[leaderbox+2].int_;
-							if ((ruleht == -0x40'00'00'00))
-								ruleht = mem[thisbox+3].int_;
-							if ((ruledp == -0x40'00'00'00))
-								ruledp = mem[thisbox+2].int_;
-							ruleht = ruleht+ruledp;
+							ruleht = height(leaderbox);
+							ruledp = depth(leaderbox);
+							if ((ruleht == null_flag))
+								ruleht = height(thisbox);
+							if ((ruledp == null_flag))
+								ruledp = depth(thisbox);
+							ruleht += ruledp;
 							if (ruleht > 0 && rulewd > 0)
 							{
 								if (curh != dvih)
@@ -214,7 +214,7 @@ void hlistout(void)
 							p = link(p);
 							continue;
 						}
-						scaled leaderwd = mem[leaderbox+1].int_;
+						scaled leaderwd = width(leaderbox);
 						if (leaderwd > 0 && rulewd > 0)
 						{
 							rulewd = rulewd+10;
@@ -241,7 +241,7 @@ void hlistout(void)
 							}
 							while (curh+leaderwd <= edge)
 							{
-								curv = baseline+mem[leaderbox+4].int_;
+								curv = baseline+shift_amount(leaderbox);
 								if (curv != dviv)
 								{
 									movement(curv-dviv, 157);
@@ -275,12 +275,12 @@ void hlistout(void)
 					curh = curh+rulewd;
 					p = link(p);
 					continue;
-				case 11:
-				case 9: 
-					curh = curh+mem[p+1].int_;
+				case kern_node:
+				case math_node: 
+					curh += width(p);
 					break;
-				case 6:
-					mem[lig_trick] = mem[p+1];
+				case ligature_node:
+					mem[lig_trick] = mem[lig_char(p)];
 					link(lig_trick) = link(p);
 					p = lig_trick;
 					continue;

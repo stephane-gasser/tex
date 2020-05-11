@@ -17,7 +17,7 @@ void issuemessage(void)
 	auto c = curchr;
 	link(garbage) = scantoks(false, true);
 	auto oldsetting = selector;
-	selector = 21;
+	selector = new_string;
 	tokenshow(defref);
 	selector = oldsetting;
 	flushlist(defref);

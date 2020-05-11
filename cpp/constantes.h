@@ -4,191 +4,127 @@
 #include "tex.h"
 
 constexpr char banner[] ="This is TeX, Version 3.14159265"; //printed when \TeX\ starts
-/*mtype==t@&y@&p@&e //this is a \.//WEB coding trick:
-start_of_TEX=1 //go here when \TeX's variables are initialized
-end_of_TEX=9998 //go here to close files and terminate gracefully
-final_end=9999 //this label marks the ending of the program
-debug==@// //change this to `$\\//debug\equiv\null$' when debugging
-gubed==@t@>@ //change this to `$\\//gubed\equiv\null$' when debugging
-stat==@// //change this to `$\\//stat\equiv\null$' when gathering
-tats==@t@>@ //change this to `$\\//tats\equiv\null$' when gathering
-init== //change this to `$\\//init\equiv\.//@@\//$' in the production version
-tini== //change this to `$\\//tini\equiv\.//@@\$' in the production version
-othercases == others: //default for cases not listed explicitly
-endcases == @+end //follows the default case in an extended |case| statement*/
 constexpr int mem_bot = 0; //smallest index in the |mem| array dumped by \.//INITEX;
 constexpr int mem_top = 30000; //largest index in the |mem| array dumped by \.//INITEX;
 constexpr int font_base = 0; //smallest internal font number; must not be less
 constexpr int hash_size=2100; //maximum number of control sequences; it should be at most
 constexpr int hash_prime = 1777; //a prime number equal to about 85\pct! of |hash_size|
 constexpr int hyph_size = 307; //another prime; the number of \.//\\hyphenation exceptions
-/*exit=10 //go here to leave a procedure
-restart=20 //go here to start a procedure again
-reswitch=21 //go here to start a case statement again
-continue=22 //go here to resume a loop
-done=30 //go here to exit a loop
-done1=31 //like |done|, when there is more than one loop
-done2=32 //for exiting the second loop in a long block
-done3=33 //for exiting the third loop in a very long block
-done4=34 //for exiting the fourth loop in an extremely long block
-done5=35 //for exiting the fifth loop in an immense block
-done6=36 //for exiting the sixth loop in a block
-found=40 //go here when you've found it
-found1=41 //like |found|, when there's more than one per routine
-found2=42 //like |found|, when there's more than two per routine
-not_found=45 //go here when you've found nothing
-common_ending=50 //go here when you want to merge with another branch
-incr(#) == #:=#+1 //increase a variable by unity
-decr(#) == #:=#-1 //decrease a variable by unity
-negate(#) == #:=-# //change the sign of a variable
-loop == @+ while true do@+ //repeat over and over until a |goto| happens
-do_nothing == //empty statement
-return == goto exit //terminate a procedure call
-empty=0 //symbolic name for a null constant
-text_char == char //the data type of characters in text files
-first_text_char=0 //ordinal number of the smallest element of |text_char|
-last_text_char=255 //ordinal number of the largest element of |text_char|
-null_code=@'0 //ASCII code that might disappear
-carriage_return=@'15 //ASCII code used at end of line
-invalid_code=@'177 //ASCII code that many systems prohibit in text files
-reset_OK(#)==erstat(#)=0
-rewrite_OK(#)==erstat(#)=0
-t_open_in==reset(term_in,'TTY:','/O/I') //open the terminal for text input
-t_open_out==rewrite(term_out,'TTY:','/O') //open the terminal for text output
-update_terminal == break(term_out) //empty the terminal output buffer
-clear_terminal == break_in(term_in,true) //clear the terminal input buffer
-wake_up_terminal == do_nothing //cancel the user's cancellation of output
-loc==cur_input.loc_field //location of first unread character in |buffer|
-si(#) == # //convert from |ASCII_code| to |packed_ASCII_code|
-so(#) == # //convert from |packed_ASCII_code| to |ASCII_code|
-length(#)==(str_start[#+1]-str_start[#]) //the number of characters
+//loc==cur_input.loc_field //location of first unread character in |buffer|
+/*length(#)==(str_start[#+1]-str_start[#]) //the number of characters
 cur_length == (pool_ptr - str_start[str_ptr])
 append_char(#) == //put |ASCII_code| \# at the end of |str_pool|
 flush_char == decr(pool_ptr) //forget the last character in the pool
 str_room(#) == //make sure that the pool hasn't overflowed
 flush_string==begin decr(str_ptr); pool_ptr:=str_start[str_ptr];
 @ app_lc_hex(#)==l:=#;
-@ bad_pool(#)==begin wake_up_terminal; write_ln(term_out,#);
-no_print=16 //|selector| setting that makes data disappear
-term_only=17 //printing is destined for the terminal only
-log_only=18 //printing is destined for the transcript file only
-term_and_log=19 //normal |selector| setting
-pseudo=20 //special |selector| setting for |show_context|
-new_string=21 //printing is deflected to the string pool
-max_selector=21 //highest selector setting
-wterm(#)==write(term_out,#)
-wterm_ln(#)==write_ln(term_out,#)
-wterm_cr==write_ln(term_out)
-wlog(#)==write(log_file,#)
-wlog_ln(#)==write_ln(log_file,#)
-wlog_cr==write_ln(log_file)
-print_ASCII == print
-prompt_input(#)==begin wake_up_terminal; print(#); term_input;*/
+@ bad_pool(#)==begin wake_up_terminal; write_ln(term_out,#);*/
+constexpr int no_print = 16; //|selector| setting that makes data disappear
+constexpr int term_only = 17; //printing is destined for the terminal only
+constexpr int log_only = 18; //printing is destined for the transcript file only
+constexpr int term_and_log = 19; //normal |selector| setting
+constexpr int pseudo = 20; //special |selector| setting for |show_context|
+constexpr int new_string = 21; //printing is deflected to the string pool
+//constexpr int max_selector = 21; //highest selector setting
 constexpr int batch_mode = 0; //omits all stops and omits terminal output
 constexpr int nonstop_mode = 1; //omits all stops
 constexpr int scroll_mode = 2; //omits error stops
 constexpr int error_stop_mode = 3; //stops at every opportunity to interact
-/*print_err(#)==begin if interaction=error_stop_mode then wake_up_terminal;*/
 constexpr int spotless = 0; //|history| value when nothing has been amiss yet
 constexpr int warning_issued = 1; //|history| value when |begin_diagnostic| has been called
 constexpr int error_message_issued = 2; //|history| value when |error| has been called
 constexpr int fatal_error_stop = 3; //|history| value when termination was premature
-/*hlp1(#)==help_line[0]:=#;@+end
-hlp2(#)==help_line[1]:=#; hlp1
-hlp3(#)==help_line[2]:=#; hlp2
-hlp4(#)==help_line[3]:=#; hlp3
-hlp5(#)==help_line[4]:=#; hlp4
-hlp6(#)==help_line[5]:=#; hlp5
-help0==help_ptr:=0 //sometimes there might be no help
-help1==@+begin help_ptr:=1; hlp1 //use this with one help line
-help2==@+begin help_ptr:=2; hlp2 //use this with two help lines
-help3==@+begin help_ptr:=3; hlp3 //use this with three help lines
-help4==@+begin help_ptr:=4; hlp4 //use this with four help lines
-help5==@+begin help_ptr:=5; hlp5 //use this with five help lines
-help6==@+begin help_ptr:=6; hlp6 //use this with six help lines
-succumb==begin if interaction=error_stop_mode then
-check_interrupt==begin if interrupt<>0 then pause_for_instructions;
-unity == @'200000 //$2^//16$, represents 1.00000
-two == @'400000 //$2^//17$, represents 2.00000
+/*check_interrupt==begin if interrupt<>0 then pause_for_instructions;*/
+constexpr int unity = 65536; //== @'200000 //$2^//16$, represents 1.00000
+/*two == @'400000 //$2^//17$, represents 2.00000
 nx_plus_y(#)==mult_and_add(#,@'7777777777)
-mult_integers(#)==mult_and_add(#,0,@'17777777777)
-inf_bad = 10000 //infinitely bad value
-set_glue_ratio_zero(#) == #:=0.0 //store the representation of zero ratio
-set_glue_ratio_one(#) == #:=1.0 //store the representation of unit ratio
-float(#) == # //convert from |glue_ratio| to type |real|
-unfloat(#) == # //convert from |real| to type |glue_ratio|
-float_constant(#) == #.0 //convert |integer| constant to |real|
-min_quarterword=0 //smallest allowable value in a |quarterword|
-max_quarterword=255 //largest allowable value in a |quarterword|
-min_halfword==0 //smallest allowable value in a |halfword|
-max_halfword==65535 //largest allowable value in a |halfword|
-qi(#)==#+min_quarterword
-qo(#)==#-min_quarterword
-hi(#)==#+min_halfword
-ho(#)==#-min_halfword
-sc==int //|scaled| data is equivalent to |integer|
-pointer==halfword //a flag or a location in |mem| or |eqtb|
-null==min_halfword //the null pointer*/
+mult_integers(#)==mult_and_add(#,0,@'17777777777)*/
+constexpr int inf_bad = 10000; //infinitely bad value
 /*free_avail(#)== //single-word node liberation
-fast_get_avail(#)==@t@>@;@/
-empty_flag == max_halfword //the |link| of an empty variable-size node
-is_empty(#) == (link(#)=empty_flag) //tests for empty node
-node_size == info //the size field in empty variable-size nodes
-llink(#) == info(#+1) //left link in doubly-linked list of empty nodes
-rlink(#) == link(#+1) //right link in doubly-linked list of empty nodes*/
+fast_get_avail(#)==@t@>@;@/*/
+extern memoryword& aux; //aux==cur_list.aux_field //auxiliary data about the current list
+extern int& prev_depth; //prev_depth==aux.sc //the name of |aux| in vertical mode
+extern halfword& space_factor; //space_factor==aux.hh.lh //part of |aux| in horizontal mode
+extern halfword& clang; //clang==aux.hh.rh //the other part of |aux| in horizontal mode  
+extern int& incompleat_noad; //incompleat_noad==aux.int //the name of |aux| in math mode*/
+extern int& mode; //mode==cur_list.mode_field //current mode
+extern halfword& head; //head==cur_list.head_field //header node of current list
+extern halfword& tail; //tail==cur_list.tail_field //final node on current list
+extern int& prev_graf; //prev_graf==cur_list.pg_field //number of paragraph lines accumulated
+extern int& mode_line; //mode_line==cur_list.ml_field //source file line number at beginning of list
+void tail_append(halfword); //tail_append(#)==begin link(tail):=#; tail:=link(tail);
 
-// link(#) == mem[#].hh.rh //the |link| field of a memory word
-halfword& link(halfword p);
-// info(#) == mem[#].hh.lh //the |info| field of a memory word
-halfword& info(halfword p);
-//type(#) == mem[#].hh.b0 //identifies what kind of node this is
-quarterword& type(halfword p);
-//subtype(#) == mem[#].hh.b1 //secondary identification in some cases
-quarterword& subtype(halfword p);
+constexpr int empty_flag = 65535; // == max_halfword //the |link| of an empty variable-size node
+/*is_empty(#) == (link(#)=empty_flag) //tests for empty node*/
+halfword& node_size(halfword); //node_size == info //the size field in empty variable-size nodes
+halfword& llink(halfword); //llink(#) == info(#+1) //left link in doubly-linked list of empty nodes
+halfword& rlink(halfword); //rlink(#) == link(#+1) //right link in doubly-linked list of empty nodes
+halfword& link(halfword p); // link(#) == mem[#].hh.rh //the |link| field of a memory word
+halfword& info(halfword p); // info(#) == mem[#].hh.lh //the |info| field of a memory word
+quarterword& type(halfword p); //type(#) == mem[#].hh.b0 //identifies what kind of node this is
+quarterword& subtype(halfword p); //subtype(#) == mem[#].hh.b1 //secondary identification in some cases
 
-/*is_char_node(#) == (#>=hi_mem_min)
-font == type //the font code in a |char_node|
-character == subtype //the character code in a |char_node|*/
+bool is_char_node(halfword); //is_char_node(#) == (#>=hi_mem_min)
+quarterword& font(halfword); //font == type //the font code in a |char_node|
+quarterword& character(halfword); // character == subtype //the character code in a |char_node|*/
 constexpr int hlist_node = 0; //|type| of hlist nodes
-/*box_node_size=7 //number of words to allocate for a box node
-width_offset=1 //position of |width| field in a box node
-depth_offset=2 //position of |depth| field in a box node
-height_offset=3 //position of |height| field in a box node
-width(#) == mem[#+width_offset].sc //width of the box, in sp
-depth(#) == mem[#+depth_offset].sc //depth of the box, in sp
-height(#) == mem[#+height_offset].sc //height of the box, in sp
-shift_amount(#) == mem[#+4].sc //repositioning distance, in sp
-list_offset=5 //position of |list_ptr| field in a box node
-list_ptr(#) == link(#+list_offset) //beginning of the list inside the box
-glue_order(#) == subtype(#+list_offset) //applicable order of infinity
-glue_sign(#) == type(#+list_offset) //stretching or shrinking
-normal=0 //the most common case when several cases are named
-stretching = 1 //glue setting applies to the stretch components
-shrinking = 2 //glue setting applies to the shrink components
-glue_offset = 6 //position of |glue_set| in a box node
-glue_set(#) == mem[#+glue_offset].gr*/
+/*box_node_size=7 //number of words to allocate for a box node*/
+
+constexpr int width_offset = 1; //position of |width| field in a box node
+int& width(halfword); //width(#) == mem[#+width_offset].sc //width of the box, in sp
+
+constexpr int depth_offset = 2; //position of |depth| field in a box node
+int& depth(halfword); //depth(#) == mem[#+depth_offset].sc //depth of the box, in sp
+
+constexpr int height_offset = 3; //position of |height| field in a box node
+int& height(halfword); //height(#) == mem[#+height_offset].sc //height of the box, in sp
+
+int& shift_amount(halfword); //shift_amount(#) == mem[#+4].sc //repositioning distance, in sp
+
+constexpr int list_offset = 5; //position of |list_ptr| field in a box node
+
+halfword& list_ptr(halfword); //list_ptr(#) == link(#+list_offset) //beginning of the list inside the box
+quarterword& glue_order(halfword); //glue_order(#) == subtype(#+list_offset) //applicable order of infinity
+quarterword& glue_sign(halfword); //glue_sign(#) == type(#+list_offset) //stretching or shrinking
+
+constexpr int normal = 0; //the most common case when several cases are named
+constexpr int stretching = 1; //glue setting applies to the stretch components
+constexpr int shrinking = 2; //glue setting applies to the shrink components
+constexpr int glue_offset = 6; //position of |glue_set| in a box node
+
+float &glue_set(halfword); //glue_set(#) == mem[#+glue_offset].gr
+
 constexpr int vlist_node = 1; //|type| of vlist nodes
 constexpr int rule_node = 2; //|type| of rule nodes
-/*rule_node_size=4 //number of words to allocate for a rule node
-null_flag==-@'10000000000 //$-2^//30$, signifies a missing item
-is_running(#) == (#=null_flag) //tests for a running dimension*/
+/*rule_node_size=4 //number of words to allocate for a rule node*/
+constexpr int null_flag = -1073741824; //==-@'10000000000 //$-2^//30$, signifies a missing item
+/*is_running(#) == (#=null_flag) //tests for a running dimension*/
 constexpr int ins_node = 3; //|type| of insertion nodes
-/*ins_node_size=5 //number of words to allocate for an insertion
-float_cost(#)==mem[#+1].int //the |floating_penalty| to be used
-ins_ptr(#)==info(#+4) //the vertical list to be inserted
-split_top_ptr(#)==link(#+4) //the |split_top_skip| to be used*/
+/*ins_node_size=5 //number of words to allocate for an insertion*/
+
+int& float_cost(halfword); //float_cost(#)==mem[#+1].int //the |floating_penalty| to be used
+halfword& ins_ptr(halfword); //ins_ptr(#)==info(#+4) //the vertical list to be inserted
+halfword& split_top_ptr(halfword);// split_top_ptr(#)==link(#+4) //the |split_top_skip| to be used
+
 constexpr int mark_node = 4; //|type| of a mark node
-/*small_node_size=2 //number of words to allocate for most node types
-mark_ptr(#)==mem[#+1].int //head of the token list for a mark*/
+/*small_node_size=2 //number of words to allocate for most node types*/
+
+int& mark_ptr(halfword); //mark_ptr(#)==mem[#+1].int //head of the token list for a mark
+
 constexpr int adjust_node = 5; //|type| of an adjust node
-/*adjust_ptr==mark_ptr //vertical list to be moved out of horizontal list*/
+int& adjust_ptr(halfword); //adjust_ptr==mark_ptr //vertical list to be moved out of horizontal list
+
 constexpr int ligature_node = 6; //|type| of a ligature node
-/*lig_char(#)==#+1 //the word where the ligature is to be found
-lig_ptr(#)==link(lig_char(#)) //the list of characters*/
+
+halfword lig_char(halfword); //lig_char(#)==#+1 //the word where the ligature is to be found
+halfword& lig_ptr(halfword); //lig_ptr(#)==link(lig_char(#)) //the list of characters
+
 constexpr int disc_node = 7; //|type| of a discretionary node
-/*replace_count==subtype //how many subsequent nodes to replace
-pre_break==llink //text that precedes a discretionary break
-post_break==rlink //text that follows a discretionary break*/
+/*replace_count==subtype //how many subsequent nodes to replace*/
+
+halfword& pre_break(halfword); //pre_break==llink //text that precedes a discretionary break
+halfword& post_break(halfword); //post_break==rlink //text that follows a discretionary break
+
 constexpr int whatsit_node = 8; //|type| of special extension nodes
 constexpr int math_node = 9; //|type| of a math node
 /*before=0 //|subtype| for math node that introduces a formula
@@ -196,40 +132,39 @@ after=1 //|subtype| for math node that winds up a formula
 precedes_break(#)==(type(#)<math_node)
 non_discardable(#)==(type(#)<math_node)*/
 constexpr int glue_node = 10; //|type| of node that points to a glue specification
-/*cond_math_glue=98 //special |subtype| to suppress glue in the next node
-mu_glue=99 //|subtype| for math glue
-a_leaders=100 //|subtype| for aligned leaders
-c_leaders=101 //|subtype| for centered leaders
-x_leaders=102 //|subtype| for expanded leaders
-glue_ptr==llink //pointer to a glue specification
-leader_ptr==rlink //pointer to box or rule node for leaders
-glue_spec_size=4 //number of words to allocate for a glue specification
-glue_ref_count(#) == link(#) //reference count of a glue specification
-stretch(#) == mem[#+2].sc //the stretchability of this glob of glue
-shrink(#) == mem[#+3].sc //the shrinkability of this glob of glue
-stretch_order == type //order of infinity for stretching
-shrink_order == subtype //order of infinity for shrinking
-fil=1 //first-order infinity
-fill=2 //second-order infinity
-filll=3 //third-order infinity*/
+constexpr int cond_math_glue = 98; //special |subtype| to suppress glue in the next node
+constexpr int mu_glue = 99; //|subtype| for math glue
+constexpr int a_leaders = 100; //|subtype| for aligned leaders
+/*c_leaders=101 //|subtype| for centered leaders
+x_leaders=102 //|subtype| for expanded leaders*/
+halfword& glue_ptr(halfword); //glue_ptr==llink //pointer to a glue specification
+halfword& leader_ptr(halfword); //leader_ptr==rlink //pointer to box or rule node for leaders
+constexpr int glue_spec_size = 4; //number of words to allocate for a glue specification*/
+halfword& glue_ref_count(halfword); //glue_ref_count(#) == link(#) //reference count of a glue specification
+int& stretch(halfword); //stretch(#) == mem[#+2].sc //the stretchability of this glob of glue
+int& shrink(halfword); //shrink(#) == mem[#+3].sc //the shrinkability of this glob of glue
+quarterword& stretch_order(halfword);//stretch_order == type //order of infinity for stretching
+quarterword& shrink_order(halfword); //shrink_order == subtype //order of infinity for shrinking
+constexpr int fil = 1; //first-order infinity
+constexpr int fill = 2; //second-order infinity
+constexpr int filll = 3; //third-order infinity
 constexpr int kern_node = 11; //|type| of a kern node
-/*explicit=1 //|subtype| of kern nodes from \.//\\kern and \.//\\/
-acc_kern=2 //|subtype| of kern nodes from accents*/
+constexpr int explicit_ = 1; //|subtype| of kern nodes from \.//\\kern and \.//\\/
+/*acc_kern=2 //|subtype| of kern nodes from accents*/
 constexpr int penalty_node = 12; //|type| of a penalty node
-/*inf_penalty=inf_bad //``infinite'' penalty value
-eject_penalty=-inf_penalty //``negatively infinite'' penalty value
-penalty(#) == mem[#+1].int //the added cost of breaking a list here
-unset_node=13 //|type| for an unset node
-glue_stretch(#)==mem[#+glue_offset].sc //total stretch in an unset node
-glue_shrink==shift_amount //total shrink in an unset node
-span_count==subtype //indicates the number of spanned columns*/
+constexpr int inf_penalty = 10000; //inf_bad //``infinite'' penalty value
+/*eject_penalty=-inf_penalty //``negatively infinite'' penalty value*/
+int& penalty(halfword); // penalty(#) == mem[#+1].int //the added cost of breaking a list here
+constexpr int unset_node = 13; //|type| for an unset node
+int& glue_stretch(halfword); //glue_stretch(#)==mem[#+glue_offset].sc //total stretch in an unset node
+int& glue_shrink(halfword); //glue_shrink==shift_amount //total shrink in an unset node
+/*span_count==subtype //indicates the number of spanned columns*/
 constexpr int zero_glue = 0; //mem_bot //specification for \.//0pt plus 0pt minus 0pt
-/*fil_glue==zero_glue+glue_spec_size //\.//0pt plus 1fil minus 0pt
-fill_glue==fil_glue+glue_spec_size //\.//0pt plus 1fill minus 0pt
-ss_glue==fill_glue+glue_spec_size //\.//0pt plus 1fil minus 1fil
-fil_neg_glue==ss_glue+glue_spec_size //\.//0pt plus -1fil minus 0pt
-lo_mem_stat_max==fil_neg_glue+glue_spec_size-1 //largest statically*/
-
+constexpr int fil_glue = 4; //==zero_glue+glue_spec_size //\.//0pt plus 1fil minus 0pt
+constexpr int fill_glue = 8; //==fil_glue+glue_spec_size //\.//0pt plus 1fill minus 0pt
+constexpr int ss_glue = 12; //==fill_glue+glue_spec_size //\.//0pt plus 1fil minus 1fil
+constexpr int fil_neg_glue = 16; //==ss_glue+glue_spec_size //\.//0pt plus -1fil minus 0pt
+constexpr int lo_mem_stat_max = 19; //=fil_neg_glue+glue_spec_size-1 //largest statically
 constexpr int page_ins_head = 30000; //mem_top //list of insertion data for current page
 constexpr int contrib_head = 29999; //mem_top-1 //vlist of items not yet on current page
 constexpr int page_head = 29998; //mem_top-2 //vlist for current page
@@ -245,7 +180,6 @@ constexpr int lig_trick = 29988; //mem_top-12 //a ligature masquerading as a |ch
 constexpr int garbage = 29988; //mem_top-12 //used for scrap information
 constexpr int backup_head = 29987; //mem_top-13 //head of token list built by |scan_keyword|
 constexpr int hi_mem_stat_min = 29987; //mem_top-13 //smallest statically allocated word in
-
 /*hi_mem_stat_usage=14 //the number of one-word nodes always present
 node_list_display(#)==
 token_ref_count(#) == info(#) //reference count preceding a token list
@@ -390,17 +324,11 @@ constexpr int vmode = 1; //vertical mode
 constexpr int hmode = 102; //=vmode+max_command+1 //horizontal mode
 constexpr int mmode = 203; //=hmode+max_command+1 //math mode
 constexpr int ignore_depth = -65536000; //|prev_depth| value that is ignored
-
-//eq_level_field(#)==#.hh.b1
-quarterword& eq_level(halfword);
-
+quarterword& eq_level(halfword); //eq_level_field(#)==#.hh.b1
 //eq_type_field(#)==#.hh.b0
-//eq_type(#)==eq_type_field(eqtb[#]) //command code for equivalent
-quarterword& eq_type(halfword);
-
+quarterword& eq_type(halfword); //eq_type(#)==eq_type_field(eqtb[#]) //command code for equivalent
 //equiv_field(#)==#.hh.rh
-//equiv(#)==equiv_field(eqtb[#]) //equivalent value
-halfword& equiv(halfword);
+halfword& equiv(halfword); //equiv(#)==equiv_field(eqtb[#]) //equivalent value
 
 /*level_zero=min_quarterword //level for undefined quantities
 level_one=level_zero+1 //outermost level for defined quantities*/
@@ -445,51 +373,27 @@ constexpr int glue_pars = 18; //total number of glue parameters
 constexpr int skip_base = 2900; //glue_base+glue_pars //table of 256 ``skip'' registers
 constexpr int mu_skip_base = 3156; //skip_base+256 //table of 256 ``muskip'' registers
 constexpr int local_base = 3412; //mu_skip_base+256 //beginning of region 4
-
-//skip(#)==equiv(skip_base+#) //|mem| location of glue specification
-halfword& skip(halfword);
-
-//mu_skip(#)==equiv(mu_skip_base+#) //|mem| location of math glue spec
-halfword& mu_skip(halfword);
-
-//glue_par(#)==equiv(glue_base+#) //|mem| location of glue specification
-halfword& glue_par(halfword);
-
+halfword& skip(halfword); //skip(#)==equiv(skip_base+#) //|mem| location of glue specification
+halfword& mu_skip(halfword); //mu_skip(#)==equiv(mu_skip_base+#) //|mem| location of math glue spec
+halfword& glue_par(halfword); //glue_par(#)==equiv(glue_base+#) //|mem| location of glue specification
 /*line_skip==glue_par(line_skip_code)*/
-
-//baseline_skip==glue_par(baseline_skip_code)
-halfword& baseline_skip(void);
-
+halfword& baseline_skip(void); //baseline_skip==glue_par(baseline_skip_code)
 /*par_skip==glue_par(par_skip_code)
 above_display_skip==glue_par(above_display_skip_code)
 below_display_skip==glue_par(below_display_skip_code)
 above_display_short_skip==glue_par(above_display_short_skip_code)
 below_display_short_skip==glue_par(below_display_short_skip_code)*/
-
-//left_skip==glue_par(left_skip_code)
-halfword& left_skip(void);
-
-//right_skip==glue_par(right_skip_code)
-halfword& right_skip(void);
-
+halfword& left_skip(void); //left_skip==glue_par(left_skip_code)
+halfword& right_skip(void); //right_skip==glue_par(right_skip_code)
 /*top_skip==glue_par(top_skip_code)*/
-
-//split_top_skip==glue_par(split_top_skip_code)
-halfword& split_top_skip(void);
-
+halfword& split_top_skip(void); //split_top_skip==glue_par(split_top_skip_code)
 /*tab_skip==glue_par(tab_skip_code)*/
-
-//space_skip==glue_par(space_skip_code)
-halfword& space_skip(void);
-
-//xspace_skip==glue_par(xspace_skip_code)
-halfword& xspace_skip(void);
-
+halfword& space_skip(void); //space_skip==glue_par(space_skip_code)
+halfword& xspace_skip(void); //xspace_skip==glue_par(xspace_skip_code)
 /*par_fill_skip==glue_par(par_fill_skip_code)
 thin_mu_skip==glue_par(thin_mu_skip_code)
 med_mu_skip==glue_par(med_mu_skip_code)
-thick_mu_skip==glue_par(thick_mu_skip_code)
-*/
+thick_mu_skip==glue_par(thick_mu_skip_code)*/
 constexpr int par_shape_loc = 3412; //local_base //specifies paragraph shape
 constexpr int output_routine_loc = 3413; //local_base+1 //points to token list for \.//\\output
 constexpr int every_par_loc = 3414; //local_base+2 //points to token list for \.//\\everypar
@@ -511,62 +415,25 @@ constexpr int sf_code_base = 4751; // uc_code_base+256 //table of 256 spacefacto
 constexpr int math_code_base = 5007; //sf_code_base+256 //table of 256 math mode mappings
 constexpr int int_base = 5263;//math_code_base+256 //beginning of region 5
 
-//par_shape_ptr==equiv(par_shape_loc)
-halfword& par_shape_ptr(void);
-
-//output_routine==equiv(output_routine_loc)
-halfword& output_routine(void);
-
-//every_par==equiv(every_par_loc)
-halfword& every_par(void);
-
-//every_math==equiv(every_math_loc)
-halfword& every_math(void);
-
-//every_display==equiv(every_display_loc)
-halfword& every_display(void);
-
-//every_hbox==equiv(every_hbox_loc)
-halfword& every_hbox(void);
-
-//every_vbox==equiv(every_vbox_loc)
-halfword& every_vbox(void);
-
-//every_job==equiv(every_job_loc)
-halfword& every_job(void);
-
-//every_cr==equiv(every_cr_loc)
-halfword& every_cr(void);
-
-//err_help==equiv(err_help_loc)
-halfword& err_help(void);
-
+halfword& par_shape_ptr(void); //par_shape_ptr==equiv(par_shape_loc)
+halfword& output_routine(void); //output_routine==equiv(output_routine_loc)
+halfword& every_par(void); //every_par==equiv(every_par_loc)
+halfword& every_math(void); //every_math==equiv(every_math_loc)
+halfword& every_display(void); //every_display==equiv(every_display_loc)
+halfword& every_hbox(void); //every_hbox==equiv(every_hbox_loc)
+halfword& every_vbox(void); //every_vbox==equiv(every_vbox_loc)
+halfword& every_job(void); //every_job==equiv(every_job_loc)
+halfword& every_cr(void); //every_cr==equiv(every_cr_loc)
+halfword& err_help(void); //err_help==equiv(err_help_loc)
 /*toks(#)==equiv(toks_base+#)*/
-
-//box(#)==equiv(box_base+#)
-halfword& box(halfword);
-
-//cur_font==equiv(cur_font_loc)
-halfword& cur_font(void);
-
-//fam_fnt(#)==equiv(math_font_base+#)
-halfword& fam_fnt(halfword);
-
-//cat_code(#)==equiv(cat_code_base+#)
-halfword& cat_code(halfword);
-
-//lc_code(#)==equiv(lc_code_base+#)
-halfword& lc_code(halfword p);
-
-//uc_code(#)==equiv(uc_code_base+#)
-halfword& uc_code(halfword p);
-
-//sf_code(#)==equiv(sf_code_base+#)
-halfword& sf_code(halfword p);
-
-//math_code(#)==equiv(math_code_base+#)
-halfword& math_code(halfword p);
-
+halfword& box(halfword); //box(#)==equiv(box_base+#)
+halfword& cur_font(void); //cur_font==equiv(cur_font_loc)
+halfword& fam_fnt(halfword); //fam_fnt(#)==equiv(math_font_base+#)
+halfword& cat_code(halfword); //cat_code(#)==equiv(cat_code_base+#)
+halfword& lc_code(halfword p); //lc_code(#)==equiv(lc_code_base+#)
+halfword& uc_code(halfword p); //uc_code(#)==equiv(uc_code_base+#)
+halfword& sf_code(halfword p); //sf_code(#)==equiv(sf_code_base+#)
+halfword& math_code(halfword p); //math_code(#)==equiv(math_code_base+#)
 /*null_font==font_base
 var_code==@'70000 //math code meaning ``use the current family''*/
 constexpr int pretolerance_code = 0; //badness tolerance before hyphenation
@@ -628,16 +495,9 @@ constexpr int int_pars = 55; //total number of integer parameters
 constexpr int count_base = 5318; //int_base+int_pars //256 user \.//\\count registers
 constexpr int del_code_base = 5574; //count_base+256 //256 delimiter code mappings
 constexpr int dimen_base = 5830; //del_code_base+256 //beginning of region 6
-
-//del_code(#)==eqtb[del_code_base+#].int
-int& del_code(halfword p);
-
-//count(#)==eqtb[count_base+#].int
-int& count(halfword p);
-
-//int_par(#)==eqtb[int_base+#].int //an integer parameter
-int& int_par(halfword);
-
+int& del_code(halfword p); //del_code(#)==eqtb[del_code_base+#].int
+int& count(halfword p); //count(#)==eqtb[count_base+#].int
+int& int_par(halfword); //int_par(#)==eqtb[int_base+#].int //an integer parameter
 /*pretolerance==int_par(pretolerance_code)
 tolerance==int_par(tolerance_code)
 line_penalty==int_par(line_penalty_code)
@@ -718,12 +578,8 @@ constexpr int dimen_pars = 21; //total number of dimension parameters
 constexpr int scaled_base = 5851; //dimen_base+dimen_pars;
 constexpr int eqtb_size = 6106; // scaled_base+255; //largest subscript of |eqtb|
 
-//dimen(#)==eqtb[scaled_base+#].sc
-int& dimen(halfword);
-
-//dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity
-int& dimen_par(halfword p);
-
+int& dimen(halfword); //dimen(#)==eqtb[scaled_base+#].sc
+int& dimen_par(halfword p); //dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity
 /*par_indent==dimen_par(par_indent_code)
 math_surround==dimen_par(math_surround_code)
 line_skip_limit==dimen_par(line_skip_limit_code)
@@ -749,16 +605,9 @@ next(#) == hash[#].lh //link for coalesced lists
 text(#) == hash[#].rh //string number for control sequence name
 hash_is_full == (hash_used=hash_base) //test if all positions are occupied
 font_id_text(#) == text(font_id_base+#) //a frozen font identifier's name*/
-
-//save_type(#)==save_stack[#].hh.b0 //classifies a |save_stack| entry
-quarterword& save_type(halfword p);
-
-//save_level(#)==save_stack[#].hh.b1
-quarterword& save_level(halfword);
-
-//save_index(#)==save_stack[#].hh.rh
-halfword& save_index(halfword);
-
+quarterword& save_type(halfword p); //save_type(#)==save_stack[#].hh.b0 //classifies a |save_stack| entry
+quarterword& save_level(halfword); //save_level(#)==save_stack[#].hh.b1
+halfword& save_index(halfword); //save_index(#)==save_stack[#].hh.rh
 /*restore_old_value=0 //|save_type| when a value should be restored later
 restore_zero=1 //|save_type| when an undefined entry should be restored
 insert_token=2 //|save_type| when a token is being saved for later use
@@ -777,12 +626,12 @@ disc_group=10 //code for `\.//\\discretionary\grp\grp\grp'
 insert_group=11 //code for `\.//\\insert\grp', `\.//\\vadjust\grp'
 vcenter_group=12 //code for `\.//\\vcenter\grp'
 math_choice_group=13 //code for `\.//\\mathchoice\grp\grp\grp\grp'
-semi_simple_group=14 //code for `\.//\\begingroup...\\endgroup'
-math_shift_group=15 //code for `\.//\$...\$'
-math_left_group=16 //code for `\.//\\left...\\right'
+semi_simple_group=14 //code for `\.//\\begingroup...\\endgroup'*/
+constexpr int math_shift_group = 15; // //code for `\.//\$...\$'
+/*math_left_group=16 //code for `\.//\\left...\\right'
 max_group_code=16
-check_full_save_stack==if save_ptr>max_save_stack then
-saved(#)==save_stack[save_ptr+#].int*/
+check_full_save_stack==if save_ptr>max_save_stack then*/
+int& saved(halfword); //saved(#)==save_stack[save_ptr+#].int
 constexpr int cs_token_flag = 4095; //==@'7777 //amount added to the |eqtb| location in a
 /*left_brace_token=@'0400 //$2^8\cdot|left_brace|$
 left_brace_limit=@'1000 //$2^8\cdot(|left_brace|+1)$
@@ -908,9 +757,9 @@ if_eof_code=13 // `\.//\\ifeof'
 if_true_code=14 // `\.//\\iftrue' 
 if_false_code=15 // `\.//\\iffalse' 
 if_case_code=16 // `\.//\\ifcase' 
-if_node_size=2 //number of words in stack entry for conditionals
-if_line_field(#)==mem[#+1].int
-if_code=1 //code for \.//\\if... being evaluated
+if_node_size=2 //number of words in stack entry for conditionals*/
+int& if_line_field(halfword); //if_line_field(#)==mem[#+1].int
+/*if_code=1 //code for \.//\\if... being evaluated
 fi_code=2 //code for \.//\\fi
 else_code=3 //code for \.//\\else
 or_code=4 //code for \.//\\or
@@ -923,52 +772,62 @@ format_area_length=11 //length of its area part
 format_ext_length=4 //length of its `\.//.fmt' part
 format_extension=".fmt" //the extension, as a \.//WEB constant
 pack_cur_name==pack_file_name(cur_name,cur_area,cur_ext)
-ensure_dvi_open==if output_file_name=0 then
-no_tag=0 //vanilla character
-lig_tag=1 //character has a ligature/kerning program
-list_tag=2 //character has a successor in a charlist
-ext_tag=3 //character is extensible
-stop_flag==qi(128) //value indicating `\.//STOP' in a lig/kern program
-kern_flag==qi(128) //op code for a kern step
-skip_byte(#)==#.b0
-next_char(#)==#.b1
-op_byte(#)==#.b2
-rem_byte(#)==#.b3
-ext_top(#)==#.b0 //|top| piece in a recipe
-ext_mid(#)==#.b1 //|mid| piece in a recipe
-ext_bot(#)==#.b2 //|bot| piece in a recipe
-ext_rep(#)==#.b3 //|rep| piece in a recipe
-slant_code=1
-space_code=2
-space_stretch_code=3
-space_shrink_code=4
-x_height_code=5
-quad_code=6
-extra_space_code=7
-non_char==qi(256) //a |halfword| code that can't match a real character
-non_address=0 //a spurious |bchar_label|
-char_info_end(#)==#].qqqq
-char_info(#)==font_info[char_base[#]+char_info_end
-char_width_end(#)==#.b0].sc
-char_width(#)==font_info[width_base[#]+char_width_end
-char_exists(#)==(#.b0>min_quarterword)
-char_italic_end(#)==(qo(#.b2)) div 4].sc
-char_italic(#)==font_info[italic_base[#]+char_italic_end
-height_depth(#)==qo(#.b1)
-char_height_end(#)==(#) div 16].sc
-char_height(#)==font_info[height_base[#]+char_height_end
-char_depth_end(#)==(#) mod 16].sc
-char_depth(#)==font_info[depth_base[#]+char_depth_end
-char_tag(#)==((qo(#.b2)) mod 4)
-char_kern_end(#)==256*op_byte(#)+rem_byte(#)].sc
-char_kern(#)==font_info[kern_base[#]+char_kern_end
-kern_base_offset==256*(128+min_quarterword)
-lig_kern_start(#)==lig_kern_base[#]+rem_byte //beginning of lig/kern program
-lig_kern_restart_end(#)==256*op_byte(#)+rem_byte(#)+0x80'00-kern_base_offset
-lig_kern_restart(#)==lig_kern_base[#]+lig_kern_restart_end
-param_end(#)==param_base[#]].sc
-param(#)==font_info[#+param_end
-slant==param(slant_code) //slant to the right, per unit distance upward
+ensure_dvi_open==if output_file_name=0 then*/
+constexpr int no_tag = 0; //vanilla character
+constexpr int lig_tag = 1; //character has a ligature/kerning program
+constexpr int list_tag = 2; //character has a successor in a charlist
+constexpr int ext_tag = 3; //character is extensible
+constexpr int stop_flag = 128; //==qi(128) //value indicating `\.//STOP' in a lig/kern program
+constexpr int kern_flag = 128; //==qi(128) //op code for a kern step
+quarterword skip_byte(fourquarters); // skip_byte(#)==#.b0
+quarterword next_char(fourquarters); //next_char(#)==#.b1
+quarterword op_byte(fourquarters); //op_byte(#)==#.b2
+quarterword rem_byte(fourquarters); //rem_byte(#)==#.b3
+quarterword ext_top(fourquarters); //ext_top(#)==#.b0 //|top| piece in a recipe
+quarterword ext_mid(fourquarters); //ext_mid(#)==#.b1 //|mid| pie1ce in a recipe
+quarterword ext_bot(fourquarters); //ext_bot(#)==#.b2 //|bot| piece in a recipe
+quarterword ext_rep(fourquarters); //ext_rep(#)==#.b3 //|rep| piece in a recipe
+constexpr int slant_code = 1;
+constexpr int space_code = 2;
+constexpr int space_stretch_code = 3;
+constexpr int space_shrink_code = 4;
+constexpr int x_height_code = 5;
+constexpr int quad_code = 6;
+constexpr int extra_space_code = 7;
+/*non_char==qi(256) //a |halfword| code that can't match a real character
+non_address=0 //a spurious |bchar_label|*/
+
+//char_info_end(#)==#].qqqq
+fourquarters char_info(internalfontnumber, smallnumber); //char_info(#)==font_info[char_base[#]+char_info_end
+
+//char_width_end(#)==#.b0].sc
+int char_width(internalfontnumber, fourquarters); //char_width(#)==font_info[width_base[#]+char_width_end
+
+bool char_exists(fourquarters); //char_exists(#)==(#.b0>min_quarterword)
+
+//char_italic_end(#)==(qo(#.b2)) div 4].sc
+int char_italic(internalfontnumber, fourquarters); //char_italic(#)==font_info[italic_base[#]+char_italic_end
+
+/*height_depth(#)==qo(#.b1)*/
+
+//char_height_end(#)==(#) div 16].sc
+int char_height(internalfontnumber, fourquarters); //char_height(#)==font_info[height_base[#]+char_height_end
+
+//char_depth_end(#)==(#) mod 16].sc
+int char_depth(internalfontnumber, fourquarters); //char_depth(#)==font_info[depth_base[#]+char_depth_end
+int char_tag(fourquarters);//char_tag(#)==((qo(#.b2)) mod 4)
+
+//char_kern_end(#)==256*op_byte(#)+rem_byte(#)].sc
+int char_kern(internalfontnumber, fourquarters); //char_kern(#)==font_info[kern_base[#]+char_kern_end
+
+int lig_kern_start(internalfontnumber, fourquarters); //lig_kern_start(#)==lig_kern_base[#]+rem_byte //beginning of lig/kern program
+//lig_kern_restart_end(#)==256*op_byte(#)+rem_byte(#)+0x80'00-kern_base_offset
+int lig_kern_restart(internalfontnumber, fourquarters); //lig_kern_restart(#)==lig_kern_base[#]+lig_kern_restart_end
+
+//param_end(#)==param_base[#]].sc
+int& param(smallnumber, internalfontnumber); //param(#)==font_info[#+param_end
+
+/*slant==param(slant_code) //slant to the right, per unit distance upward
 space==param(space_code) //normal space between words
 space_stretch==param(space_stretch_code) //stretch between words
 space_shrink==param(space_shrink_code) //shrink between words
@@ -1016,9 +875,9 @@ constexpr int post = 248; //postamble beginning
 constexpr int post_post = 249; //postamble ending
 constexpr int id_byte = 2; //identifies the kind of \.//DVI files described here
 /*dvi_out(#)==@+begin dvi_buf[dvi_ptr]:=#; incr(dvi_ptr);
-movement_node_size=3 //number of words per entry in the down and right stacks
-location(#)==mem[#+2].int //\.//DVI byte number for a movement command
-y_here=1 //|info| when the movement entry points to a |y| command
+movement_node_size=3 //number of words per entry in the down and right stacks*/
+int& location(halfword); //location(#)==mem[#+2].int //\.//DVI byte number for a movement command
+/*y_here=1 //|info| when the movement entry points to a |y| command
 z_here=2 //|info| when the movement entry points to a |z| command
 yz_OK=3 //|info| corresponding to an unconstrained \\//down command
 y_OK=4 //|info| corresponding to a \\//down that can't become a |z|
@@ -1038,50 +897,50 @@ exactly=0 //a box dimension is pre-specified
 additional=1 //a box dimension is increased from the natural one
 natural==0,additional //shorthand for parameters to |hpack| and |vpack|
 vpack(#)==vpackage(#,max_dimen) //special case of unconstrained depth
-noad_size=4 //number of words in a normal noad
-nucleus(#)==#+1 //the |nucleus| field of a noad
-supscr(#)==#+2 //the |supscr| field of a noad
-subscr(#)==#+3 //the |subscr| field of a noad
-math_type==link //a |halfword| in |mem|
-fam==font //a |quarterword| in |mem|
-math_char=1 //|math_type| when the attribute is simple
-sub_box=2 //|math_type| when the attribute is a box
-sub_mlist=3 //|math_type| when the attribute is a formula
-math_text_char=4 //|math_type| when italic correction is dubious
-ord_noad=unset_node+3 //|type| of a noad classified Ord
-op_noad=ord_noad+1 //|type| of a noad classified Op
-bin_noad=ord_noad+2 //|type| of a noad classified Bin
-rel_noad=ord_noad+3 //|type| of a noad classified Rel
-open_noad=ord_noad+4 //|type| of a noad classified Ope
-close_noad=ord_noad+5 //|type| of a noad classified Clo
-punct_noad=ord_noad+6 //|type| of a noad classified Pun
-inner_noad=ord_noad+7 //|type| of a noad classified Inn
-limits=1 //|subtype| of |op_noad| whose scripts are to be above, below
-no_limits=2 //|subtype| of |op_noad| whose scripts are to be normal
-left_delimiter(#)==#+4 //first delimiter field of a noad
-right_delimiter(#)==#+5 //second delimiter field of a fraction noad
-radical_noad=inner_noad+1 //|type| of a noad for square roots
-radical_noad_size=5 //number of |mem| words in a radical noad
-fraction_noad=radical_noad+1 //|type| of a noad for generalized fractions
-fraction_noad_size=6 //number of |mem| words in a fraction noad
-small_fam(#)==mem[#].qqqq.b0 //|fam| for ``small'' delimiter
-small_char(#)==mem[#].qqqq.b1 //|character| for ``small'' delimiter
-large_fam(#)==mem[#].qqqq.b2 //|fam| for ``large'' delimiter
-large_char(#)==mem[#].qqqq.b3 //|character| for ``large'' delimiter
-thickness==width //|thickness| field in a fraction noad
-default_code==@'10000000000 //denotes |default_rule_thickness|
-numerator==supscr //|numerator| field in a fraction noad
-denominator==subscr //|denominator| field in a fraction noad
-under_noad=fraction_noad+1 //|type| of a noad for underlining
-over_noad=under_noad+1 //|type| of a noad for overlining
-accent_noad=over_noad+1 //|type| of a noad for accented subformulas
-accent_noad_size=5 //number of |mem| words in an accent noad
-accent_chr(#)==#+4 //the |accent_chr| field of an accent noad
-vcenter_noad=accent_noad+1 //|type| of a noad for \.//\\vcenter
-left_noad=vcenter_noad+1 //|type| of a noad for \.//\\left
-right_noad=left_noad+1 //|type| of a noad for \.//\\right
-delimiter==nucleus //|delimiter| field in left and right noads
-scripts_allowed(#)==(type(#)>=ord_noad)and(type(#)<left_noad)*/
+noad_size=4 //number of words in a normal noad*/
+halfword nucleus(halfword); //nucleus(#)==#+1 //the |nucleus| field of a noad
+halfword supscr(halfword); //supscr(#)==#+2 //the |supscr| field of a noad
+halfword subscr(halfword); //subscr(#)==#+3 //the |subscr| field of a noad
+halfword& math_type(halfword); //math_type==link //a |halfword| in |mem|
+/*fam==font //a |quarterword| in |mem|
+math_char=1 //|math_type| when the attribute is simple*/
+constexpr int sub_box = 2; //|math_type| when the attribute is a box
+/*sub_mlist=3 //|math_type| when the attribute is a formula
+math_text_char=4 //|math_type| when italic correction is dubious*/
+constexpr int ord_noad = 16; //unset_node+3 //|type| of a noad classified Ord
+constexpr int op_noad = 17; //ord_noad+1 //|type| of a noad classified Op
+constexpr int bin_noad = 18; //ord_noad+2 //|type| of a noad classified Bin
+constexpr int rel_noad = 19;//ord_noad+3 //|type| of a noad classified Rel
+constexpr int open_noad = 20; //ord_noad+4 //|type| of a noad classified Ope
+constexpr int close_noad = 21; //ord_noad+5 //|type| of a noad classified Clo
+constexpr int punct_noad = 22; //ord_noad+6 //|type| of a noad classified Pun
+constexpr int inner_noad = 23; //ord_noad+7 //|type| of a noad classified Inn
+constexpr int limits = 1; //|subtype| of |op_noad| whose scripts are to be above, below
+constexpr int no_limits = 2; //|subtype| of |op_noad| whose scripts are to be normal
+halfword left_delimiter(halfword); //left_delimiter(#)==#+4 //first delimiter field of a noad
+halfword right_delimiter(halfword); //right_delimiter(#)==#+5 //second delimiter field of a fraction noad
+constexpr int radical_noad = 24; //inner_noad+1 //|type| of a noad for square roots
+//radical_noad_size=5 //number of |mem| words in a radical noad
+constexpr int fraction_noad = 25; //radical_noad+1 //|type| of a noad for generalized fractions
+//fraction_noad_size=6 //number of |mem| words in a fraction noad
+quarterword& small_fam(halfword); //small_fam(#)==mem[#].qqqq.b0 //|fam| for ``small'' delimiter
+quarterword& small_char(halfword);//small_char(#)==mem[#].qqqq.b1 //|character| for ``small'' delimiter
+quarterword& large_fam(halfword); //large_fam(#)==mem[#].qqqq.b2 //|fam| for ``large'' delimiter
+quarterword& large_char(halfword); //large_char(#)==mem[#].qqqq.b3 //|character| for ``large'' delimiter
+int& thickness(halfword); //thickness==width //|thickness| field in a fraction noad
+constexpr int default_code = 1073741824;//==@'10000000000 //denotes |default_rule_thickness|
+halfword numerator(halfword); //numerator==supscr //|numerator| field in a fraction noad
+halfword denominator(halfword); //denominator==subscr //|denominator| field in a fraction noad
+constexpr int under_noad = 26; //fraction_noad+1 //|type| of a noad for underlining
+constexpr int over_noad = 27; // under_noad+1 //|type| of a noad for overlining
+constexpr int accent_noad = 28; //over_noad+1 //|type| of a noad for accented subformulas
+/*accent_noad_size=5 //number of |mem| words in an accent noad*/
+halfword accent_chr(halfword); //accent_chr(#)==#+4 //the |accent_chr| field of an accent noad
+constexpr int vcenter_noad = 29; //accent_noad+1 //|type| of a noad for \.//\\vcenter
+constexpr int left_noad = 30; //vcenter_noad+1 //|type| of a noad for \.//\\left
+constexpr int right_noad = 31; //left_noad+1 //|type| of a noad for \.//\\right
+halfword delimiter(halfword); //delimiter==nucleus //|delimiter| field in left and right noads
+/*scripts_allowed(#)==(type(#)>=ord_noad)and(type(#)<left_noad)*/
 constexpr int style_node = 14; //unset_node+1 //|type| of a style node
 /*style_node_size=3 //number of words in a style node
 display_style=0 //|subtype| for \.//\\displaystyle
@@ -1090,97 +949,99 @@ script_style=4 //|subtype| for \.//\\scriptstyle
 script_script_style=6 //|subtype| for \.//\\scriptscriptstyle
 cramped=1 //add this to an uncramped style if you want to cramp it*/
 constexpr int choice_node = 15; //unset_node+2 //|type| of a choice node
-/*display_mlist(#)==info(#+1) //mlist to be used in display style
-text_mlist(#)==link(#+1) //mlist to be used in text style
-script_mlist(#)==info(#+2) //mlist to be used in script style
-script_script_mlist(#)==link(#+2) //mlist to be used in scriptscript style
-text_size=0 //size code for the largest size in a family
+halfword& display_mlist(halfword); //display_mlist(#)==info(#+1) //mlist to be used in display style
+halfword& text_mlist(halfword); //text_mlist(#)==link(#+1) //mlist to be used in text style
+halfword& script_mlist(halfword); //script_mlist(#)==info(#+2) //mlist to be used in script style
+halfword& script_script_mlist(halfword); //script_script_mlist(#)==link(#+2) //mlist to be used in scriptscript style
+/*text_size=0 //size code for the largest size in a family
 script_size=16 //size code for the medium size in a family
-script_script_size=32 //size code for the smallest size in a family
-mathsy_end(#)==fam_fnt(2+#)]].sc
-mathsy(#)==font_info[#+param_base[mathsy_end
-math_x_height==mathsy(5) //height of `\.x'
-math_quad==mathsy(6) //\.//18mu
-num1==mathsy(8) //numerator shift-up in display styles
-num2==mathsy(9) //numerator shift-up in non-display, non-\.//\\atop
-num3==mathsy(10) //numerator shift-up in non-display \.//\\atop
-denom1==mathsy(11) //denominator shift-down in display styles
-denom2==mathsy(12) //denominator shift-down in non-display styles
-sup1==mathsy(13) //superscript shift-up in uncramped display style
-sup2==mathsy(14) //superscript shift-up in uncramped non-display
-sup3==mathsy(15) //superscript shift-up in cramped styles
-sub1==mathsy(16) //subscript shift-down if superscript is absent
-sub2==mathsy(17) //subscript shift-down if superscript is present
-sup_drop==mathsy(18) //superscript baseline below top of large box
-sub_drop==mathsy(19) //subscript baseline below bottom of large box
-delim1==mathsy(20) //size of \.//\\atopwithdelims delimiters
-delim2==mathsy(21) //size of \.//\\atopwithdelims delimiters in non-displays
-axis_height==mathsy(22) //height of fraction lines above the baseline
-total_mathsy_params=22
-mathex(#)==font_info[#+param_base[fam_fnt(3+cur_size)]].sc
-default_rule_thickness==mathex(8) //thickness of \.//\\over bars
-big_op_spacing1==mathex(9) //minimum clearance above a displayed op
-big_op_spacing2==mathex(10) //minimum clearance below a displayed op
-big_op_spacing3==mathex(11) //minimum baselineskip above displayed op
-big_op_spacing4==mathex(12) //minimum baselineskip below displayed op
-big_op_spacing5==mathex(13) //padding above and below displayed limits
-total_mathex_params=13
+script_script_size=32 //size code for the smallest size in a family*/
+int mathsy(smallnumber, smallnumber); //mathsy(#)==font_info[#+param_base[mathsy_end //mathsy_end(#)==fam_fnt(2+#)]].sc
+int math_x_height(smallnumber); //math_x_height==mathsy(5) //height of `\.x'
+int math_quad(smallnumber); //math_quad==mathsy(6) //\.//18mu
+int num1(smallnumber); //num1==mathsy(8) //numerator shift-up in display styles
+int num2(smallnumber); //num2==mathsy(9) //numerator shift-up in non-display, non-\.//\\atop
+int num3(smallnumber); //num3==mathsy(10) //numerator shift-up in non-display \.//\\atop
+int denom1(smallnumber); //denom1==mathsy(11) //denominator shift-down in display styles
+int denom2(smallnumber); //denom2==mathsy(12) //denominator shift-down in non-display styles
+int sup1(smallnumber); //sup1==mathsy(13) //superscript shift-up in uncramped display style
+int sup2(smallnumber);//sup2==mathsy(14) //superscript shift-up in uncramped non-display
+int sup3(smallnumber);//sup3==mathsy(15) //superscript shift-up in cramped styles
+int sub1(smallnumber);//sub1==mathsy(16) //subscript shift-down if superscript is absent
+int sub2(smallnumber);//sub2==mathsy(17) //subscript shift-down if superscript is present
+int sup_drop(smallnumber); //sup_drop==mathsy(18) //superscript baseline below top of large box
+int sub_drop(smallnumber); //sub_drop==mathsy(19) //subscript baseline below bottom of large box
+int delim1(smallnumber); //delim1==mathsy(20) //size of \.//\\atopwithdelims delimiters
+int delim2(smallnumber); //delim2==mathsy(21) //size of \.//\\atopwithdelims delimiters in non-displays
+int axis_height(smallnumber); //axis_height==mathsy(22) //height of fraction lines above the baseline
+/*total_mathsy_params=22*/
+int mathex(smallnumber); //mathex(#)==font_info[#+param_base[fam_fnt(3+cur_size)]].sc
+int default_rule_thickness(void); //default_rule_thickness==mathex(8) //thickness of \.//\\over bars
+int big_op_spacing1(void); //big_op_spacing1==mathex(9) //minimum clearance above a displayed op
+int big_op_spacing2(void); //big_op_spacing2==mathex(10) //minimum clearance below a displayed op
+int big_op_spacing3(void); //big_op_spacing3==mathex(11) //minimum baselineskip above displayed op
+int big_op_spacing4(void); //big_op_spacing4==mathex(12) //minimum baselineskip below displayed op
+int big_op_spacing5(void); //big_op_spacing5==mathex(13) //padding above and below displayed limits
+/*total_mathex_params=13
 cramped_style(#)==2*(# div 2)+cramped //cramp the style
 sub_style(#)==2*(# div 4)+script_style+cramped //smaller and cramped
 sup_style(#)==2*(# div 4)+script_style+(# mod 2) //smaller
 num_style(#)==#+2-2*(# div 6) //smaller unless already script-script
 denom_style(#)==2*(# div 2)+cramped+2-2*(# div 6) //smaller, cramped
-mu_mult(#)==nx_plus_y(n,#,xn_over_d(#,f,@'200000))
-new_hlist(#)==mem[nucleus(#)].int //the translation of an mlist
-done_with_noad=80 //go here when a noad has been fully translated
+mu_mult(#)==nx_plus_y(n,#,xn_over_d(#,f,@'200000))*/
+int& new_hlist(halfword); //new_hlist(#)==mem[nucleus(#)].int //the translation of an mlist
+/*done_with_noad=80 //go here when a noad has been fully translated
 done_with_node=81 //go here when a node has been fully converted
 check_dimensions=82 //go here to update |max_h| and |max_d|
 delete_q=83 //go here to delete |q| and move to the next node
 @ choose_mlist(#)==begin p:=#(q); #(q):=null;@+end
-math_spacing=@;@/
-u_part(#)==mem[#+height_offset].int //pointer to \<u_j> token list
-v_part(#)==mem[#+depth_offset].int //pointer to \<v_j> token list
-extra_info(#)==info(#+list_offset) //info to remember during template
-preamble==link(align_head) //the current preamble list
-align_stack_node_size=5 //number of |mem| words to save alignment states
+math_spacing=@;@/*/
+//u_part(#)==mem[#+height_offset].int //pointer to \<u_j> token list
+int& u_part(halfword);
+//v_part(#)==mem[#+depth_offset].int //pointer to \<v_j> token list
+int&v_part(halfword);
+/*extra_info(#)==info(#+list_offset) //info to remember during template*/
+//preamble==link(align_head) //the current preamble list
+halfword& preamble(void);
+/*align_stack_node_size=5 //number of |mem| words to save alignment states
 span_code=256 //distinct from any character
 cr_code=257 //distinct from |span_code| and from any character
 cr_cr_code=cr_code+1 //this distinguishes \.//\\crcr from \.//\\cr
 end_template_token==cs_token_flag+frozen_end_template
-span_node_size=2 //number of |mem| words for a span node
-tight_fit=3 //fitness classification for lines shrinking 0.5 to 1.0 of their
-loose_fit=1 //fitness classification for lines stretching 0.5 to 1.0 of their
-very_loose_fit=0 //fitness classification for lines stretching more than
-decent_fit=2 //fitness classification for all other lines
-active_node_size=3 //number of words in active nodes
-fitness==subtype //|very_loose_fit..tight_fit| on final line for this break
-break_node==rlink //pointer to the corresponding passive node
-line_number==llink //line that begins at this breakpoint
-total_demerits(#)==mem[#+2].int //the quantity that \TeX\ minimizes
-unhyphenated=0 //the |type| of a normal active break node
-hyphenated=1 //the |type| of an active node that breaks at a |disc_node|
-last_active==active //the active list ends where it begins
+span_node_size=2 //number of |mem| words for a span node*/
+constexpr int tight_fit = 3; //fitness classification for lines shrinking 0.5 to 1.0 of their
+constexpr int loose_fit = 1; //fitness classification for lines stretching 0.5 to 1.0 of their
+constexpr int very_loose_fit = 0; //fitness classification for lines stretching more than
+constexpr int decent_fit = 2; //fitness classification for all other lines
+//active_node_size=3 //number of words in active nodes
+quarterword& fitness(halfword); //fitness==subtype //|very_loose_fit..tight_fit| on final line for this break
+halfword& break_node(halfword); //break_node==rlink //pointer to the corresponding passive node
+halfword& line_number(halfword); //line_number==llink //line that begins at this breakpoint
+int& total_demerits(halfword); //total_demerits(#)==mem[#+2].int //the quantity that \TeX\ minimizes
+
+constexpr int unhyphenated = 0; //the |type| of a normal active break node
+constexpr int hyphenated = 1; //the |type| of an active node that breaks at a |disc_node|
+/*last_active==active //the active list ends where it begins
 passive_node_size=2 //number of words in passive nodes
 cur_break==rlink //in passive node, points to position of this breakpoint
 prev_break==llink //points to passive node that should precede this one
 serial==info //serial number for symbolic identification
-delta_node_size=7 //number of words in a delta node
-delta_node=2 //|type| field in a delta node
-do_all_six(#)==#(1);#(2);#(3);#(4);#(5);#(6)
-check_shrinkage(#)==if (shrink_order(#)<>normal)and(shrink(#)<>0) then
-copy_to_cur_active(#)==cur_active_width[#]:=active_width[#]
-deactivate=60 //go here when node |r| should be deactivated
-update_width(#)==@|
-awful_bad==@'7777777777 //more than a billion demerits
-set_break_width_to_background(#)==break_width[#]:=background[#]
-convert_to_break_width(#)==@|
-store_break_width(#)==active_width[#]:=break_width[#]
-new_delta_to_break_width(#)==@|
-new_delta_from_break_width(#)==@|mem[q+#].sc:=
-combine_two_deltas(#)==@|mem[prev_r+#].sc:=mem[prev_r+#].sc+mem[r+#].sc
-downdate_width(#)==@|cur_active_width[#]:=cur_active_width[#]-
-update_active(#)==active_width[#]:=active_width[#]+mem[r+#].sc
-store_background(#)==active_width[#]:=background[#]
+delta_node_size=7 //number of words in a delta node*/
+constexpr int delta_node = 2; //|type| field in a delta node
+//check_shrinkage(#)==if (shrink_order(#)<>normal)and(shrink(#)<>0) then
+void copy_to_cur_active(void); //copy_to_cur_active(#)==cur_active_width[#]:=active_width[#]
+//deactivate=60 //go here when node |r| should be deactivated
+void update_width(halfword); //update_width(#)==cur_active_width[#]:=cur_active_width[#]+mem[r+#].sc
+//awful_bad==@'7777777777 //more than a billion demerits
+void set_break_width_to_background(void); //set_break_width_to_background(#)==break_width[#]:=background[#]
+void convert_to_break_width(halfword prev_r); // convert_to_break_width(#)==@|mem[prev_r+#].sc:=mem[prev_r+#].sc  -cur_active_width[#]+break_width[#]
+void store_break_width(void); // store_break_width(#)==active_width[#]:=break_width[#]
+void new_delta_to_break_width(halfword); //new_delta_to_break_width(#)==@|mem[q+#].sc:=break_width[#]-cur_active_width[#]
+void new_delta_from_break_width(halfword); //new_delta_from_break_width(#)==@|mem[q+#].sc:= cur_active_width[#]-break_width[#]
+void combine_two_deltas(halfword, halfword); //combine_two_deltas(#)==@|mem[prev_r+#].sc:=mem[prev_r+#].sc+mem[r+#].sc
+void downdate_width(halfword); //downdate_width(#)==@|cur_active_width[#]:=cur_active_width[#]-mem[prev_r+#].sc
+void update_active(halfword); //update_active(#)==active_width[#]:=active_width[#]+mem[r+#].sc
+void store_background(void); /*store_background(#)==active_width[#]:=background[#]
 act_width==active_width[1] //length from first active node to current node
 kern_break==begin if not is_char_node(link(cur_p)) and auto_breaking then
 next_break==prev_break //new name for |prev_break| after links are reversed
@@ -1246,12 +1107,12 @@ copy_code=1 //|chr_code| for `\.//\\copy'
 last_box_code=2 //|chr_code| for `\.//\\lastbox'
 vsplit_code=3 //|chr_code| for `\.//\\vsplit'
 vtop_code=4 //|chr_code| for `\.//\\vtop'
-fam_in_range==((cur_fam>=0)and(cur_fam<16))
-above_code=0 // `\.//\\above' 
-over_code=1 // `\.//\\over' 
-atop_code=2 // `\.//\\atop' 
-delimited_code=3 // `\.//\\abovewithdelims', etc.
-global==(a>=4)
+fam_in_range==((cur_fam>=0)and(cur_fam<16))*/
+constexpr int above_code = 0; // `\.//\\above' 
+constexpr int over_code = 1; // `\.//\\over' 
+constexpr int atop_code = 2; // `\.//\\atop' 
+constexpr int delimited_code = 3; // `\.//\\abovewithdelims', etc.
+/*global==(a>=4)
 define(#)==if global then geq_define(#)@+else eq_define(#)
 word_define(#)==if global then geq_word_define(#)@+else eq_word_define(#)
 char_def_code=0 //|shorthand_def| for \.//\\chardef

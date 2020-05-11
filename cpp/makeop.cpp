@@ -15,10 +15,10 @@ scaled makeop(halfword q)
 	if (link(q+1) == 1)
 	{
 		fetch(q+1);
-		if (curstyle < 2 && curi.b2%4 == 2)
+		if (curstyle < 2 && char_tag(curi) == list_tag)
 		{
-			auto c = curi.b3;
-			auto i = fontinfo[charbase[curf]+c].qqqq;
+			auto c = rem_byte(curi);
+			auto i = char_info(curf, c);
 			if (i.b0 > 0)
 			{
 				curc = c;
@@ -26,11 +26,11 @@ scaled makeop(halfword q)
 				subtype(q+1) = c;
 			}
 		}
-		delta = fontinfo[italicbase[curf]+curi.b2/4].int_;
+		delta = char_italic(curf, curi);
 		auto x = cleanbox(q+1, curstyle);
 		if (link(q+3) && subtype(q) != 1)
-		mem[x+1].int_ -= delta;
-		mem[x+4].int_ = half(mem[x+3].int_-mem[x+2].int_)-fontinfo[22+parambase[fam_fnt(2+cursize)]].int_;
+		width(x) -= delta;
+		shift_amount(x) = half(height(x)-depth(x))-axis_height(cursize);
 		link(q+1) = 2;
 		info(q+1) = x;
 	}
@@ -42,19 +42,15 @@ scaled makeop(halfword q)
 		auto y = cleanbox(q+1, curstyle);
 		auto z = cleanbox(q+3, 2*(curstyle/4)+5);
 		auto v = newnullbox();
-		type(v) = 1;
-		mem[v+1].int_ = mem[y+1].int_;
-		if (mem[x+1].int_ > mem[v+1].int_)
-			mem[v+1].int_ = mem[x+1].int_;
-		if (mem[z+1].int_ > mem[v+1].int_)
-			mem[v+1].int_ = mem[z+1].int_;
-		x = rebox(x, mem[v+1].int_);
-		y = rebox(y, mem[v+1].int_);
-		z = rebox(z, mem[v+1].int_);
-		mem[x+4].int_ = half(delta);
-		mem[z+4].int_ = -mem[x+4].int_;
-		mem[v+3].int_ = mem[y+3].int_;
-		mem[v+2].int_ = mem[y+2].int_;
+		type(v) = vlist_node;
+		width(v) = std::max(std::max(width(x), width(y)), width(z));
+		x = rebox(x, width(v));
+		y = rebox(y, width(v));
+		z = rebox(z, width(v));
+		shift_amount(x) = half(delta);
+		shift_amount(z) = -shift_amount(x);
+		height(v) = height(y);
+		depth(v) = depth(y);
 		if (link(q+2) == 0)
 		{
 			freenode(x, 7);
@@ -62,32 +58,32 @@ scaled makeop(halfword q)
 		}
 		else
 		{
-			scaled shiftup = fontinfo[11+parambase[fam_fnt(3+cursize)]].int_-mem[x+2].int_;
-			if (shiftup < fontinfo[9+parambase[fam_fnt(3+cursize)]].int_)
-				shiftup = fontinfo[9+parambase[fam_fnt(3+cursize)]].int_;
+			scaled shiftup = big_op_spacing3()-depth(x);
+			if (shiftup < big_op_spacing1())
+				shiftup = big_op_spacing1();
 			auto p = newkern(shiftup);
 			link(p) = y;
 			link(x) = p;
-			p = newkern(fontinfo[13+parambase[fam_fnt(3+cursize)]].int_);
+			p = newkern(big_op_spacing5());
 			link(p) = x;
-			link(v+5) = p;
-			mem[v+3].int_ = mem[v+3].int_+fontinfo[13+parambase[fam_fnt(3+cursize)]].int_+mem[x+3].int_+mem[x+2].int_+shiftup;
+			list_ptr(v) = p;
+			height(v) += mathex(big_op_spacing5())+height(x)+depth(x)+shiftup;
 		}
 		if (link(q+3) == 0)
 			freenode(z, 7);
 		else
 		{
-			scaled shiftdown = fontinfo[12+parambase[fam_fnt(3+cursize)]].int_-mem[z+3].int_;
-			if (shiftdown < fontinfo[10+parambase[fam_fnt(3+cursize)]].int_)
-				shiftdown = fontinfo[10+parambase[fam_fnt(3+cursize)]].int_;
+			scaled shiftdown = big_op_spacing4()-height(z);
+			if (shiftdown < big_op_spacing2())
+				shiftdown = big_op_spacing2();
 			auto p = newkern(shiftdown);
 			link(y) = p;
 			link(p) = z;
-			p = newkern(fontinfo[13+parambase[fam_fnt(3+cursize)]].int_);
+			p = newkern(big_op_spacing5());
 			link(z) = p;
-			mem[v+2].int_ = mem[v+2].int_+fontinfo[13+parambase[fam_fnt(3+cursize)]].int_+mem[z+3].int_+mem[z+2].int_+shiftdown;
+			depth(v) += big_op_spacing5()+height(z)+depth(z)+shiftdown;
 		}
-		mem[q+1].int_ = v;
+		new_hlist(q) = v;
 	}
 	return delta;
 }
