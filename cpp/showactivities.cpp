@@ -14,50 +14,50 @@
 void showactivities(void)
 {
 	nest[nestptr] = curlist;
-	printnl(338); //
+	printnl("");
 	println();
 	for (int p = nestptr; p >= 0; p--)
 	{
 		int m = nest[p].modefield;
 		memoryword a = nest[p].auxfield;
-		printnl(363); //### 
+		printnl("### ");
 		printmode(m);
-		print(364); // entered at line 
+		print(" entered at line ");
 		printint(abs(nest[p].mlfield));
-		if (m == 102 && nest[p].pgfield != 8585216)
+		if (m == hmode && nest[p].pgfield != 8585216)
 		{
-			print(365); // (language
+			print(" (language");
 			printint(nest[p].pgfield%0x1'00'00);
-			print(366); //:hyphenmin
+			print(":hyphenmin");
 			printint(nest[p].pgfield/4194304);
 			printchar(',');
 			printint((nest[p].pgfield/0x1'00'00)%64);
 			printchar(')');
 		}
 		if (nest[p].mlfield < 0)
-			print(367); // (\output routine)
+			print(" (\\output routine)");
 		if (p == 0)
 		{
 			if (page_head != pagetail)
 			{
-				printnl(979); //### current page:
+				printnl("### current page:");
 				if (outputactive)
-					print(980); // (held over for link output)
+					print(" (held over for link output)");
 				showbox(link(page_head));
 				if (pagecontents > 0)
 				{
-					printnl(981); //total height 
+					printnl("total height ");
 					printtotals();
-					printnl(982); // goal height
+					printnl(" goal height");
 					printscaled(pagesofar[0]);
 					halfword r = link(page_ins_head);
 					while (r != page_ins_head)
 					{
 						println();
-						printesc(330); //insert
+						printesc("insert");
 						int t = subtype(r);
 						printint(t);
-						print(983); // adds 
+						print(" adds ");
 						if (count(t) == 1000)
 							t = height(r);
 						else
@@ -73,9 +73,9 @@ void showactivities(void)
 								if (type(q) == ins_node && subtype(q) == subtype(r))
 									t++;
 							} while (q != llink(r));
-							print(984); //, #
+							print(", #");
 							printint(t);
-							print(985); // might split
+							print(" might split");
 						}
 						r = link(r);
 					}
@@ -83,39 +83,39 @@ void showactivities(void)
 			}
 			;
 			if (link(contrib_head))
-			printnl(368); //### recent contributions:
+			printnl("### recent contributions:");
 		}
 		showbox(link(nest[p].headfield));
 		switch (abs(m)/101)
 		{
 			case 0:
-				printnl(369); //prevdepth 
+				printnl("prevdepth ");
 				if (a.int_ <= -0x1'00'00*1000)
-					print(370); //ignored
+					print("ignored");
 				else
 					printscaled(a.int_);
 				if (nest[p].pgfield)
 				{
-					print(371); //, prevgraf 
+					print(", prevgraf ");
 					printint(nest[p].pgfield);
-					print(372); // line
+					print(" line");
 					if (nest[p].pgfield != 1)
 						printchar('s');
 				}
 				break;
 			case 1:
-				printnl(373); //spacefactor 
+				printnl("spacefactor ");
 				printint(a.hh.lh);
 				if (m > 0 && a.hh.rh > 0)
 				{
-					print(374); //, current language 
+					print(", current language ");
 					printint(a.hh.rh);
 				}
 				break;
 			case 2: 
 				if (a.int_)
 				{
-					print(375); //this will be denominator of:
+					print("this will be denominator of:");
 					showbox(a.int_);
 				}
 		}

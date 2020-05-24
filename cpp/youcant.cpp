@@ -6,9 +6,9 @@
 
 void youcant(void)
 {
-	printnl(262); //! 
-	print(685); //You can't use `
+	printnl("! ");
+	print("You can't use `");
 	printcmdchr(curcmd, curchr);
-	print(1019); //' in 
+	print("' in ");
 	printmode(mode);
 }

@@ -13,6 +13,7 @@
 #include "pushnest.h"
 #include "begintokenlist.h"
 #include "boxend.h"
+#include "texte.h"
 
 void beginbox(int boxcontext)
 {
@@ -82,13 +83,13 @@ void beginbox(int boxcontext)
 		case 3:
 			scaneightbitint();
 			n = curval;
-			if (!scankeyword(841)) //to
+			if (!scankeyword("to"))
 			{
-				printnl(262); //! 
-				print(1072); //Missing `to' inserted
+				printnl("! ");
+				print("Missing `to' inserted");
 				helpptr = 2;
-				helpline[1] = 1073; //I'm working on `\vsplit<box number> to <dimen>';
-				helpline[0] = 1074; //will look for the <dimen> next.
+				helpline[1] = txt("I'm working on `\\vsplit<box number> to <dimen>';");
+				helpline[0] = txt("will look for the <dimen> next.");
 				error();
 			}
 			scandimen(false, false, false);
@@ -97,35 +98,35 @@ void beginbox(int boxcontext)
 		default:
 			k = curchr-4;
 			savestack[saveptr].int_ = boxcontext;
-			if (k == 102)
+			if (k == hmode)
 				if (boxcontext < 0x40'00'00'00 && abs(mode) == vmode)
 					scanspec(3, true);
 				else
 					scanspec(2, true);
 			else
 			{
-				if (k == 1)
+				if (k == vmode)
 					scanspec(4,	true);
 				else
 				{
 					scanspec(5, true);
-					k = 1;
+					k = vmode;
 				}
 				normalparagraph();
 			}
 			pushnest();
 			mode = -k;
-			if (k == 1)
+			if (k == vmode)
 			{
 				prev_depth = ignore_depth;
 				if (every_vbox())
-					begintokenlist(every_vbox(), 11);
+					begintokenlist(every_vbox(), every_vbox_text);
 			}
 			else
 			{
 				space_factor = 1000;
 				if (every_hbox())
-					begintokenlist(every_hbox(), 10);
+					begintokenlist(every_hbox(), every_hbox_text);
 			}
 			return;
 	}

@@ -15,7 +15,7 @@ halfword finmlist(halfword p)
 		{
 			q = info(incompleat_noad+2);
 			if (type(q) != 30)
-				confusion(876);
+				confusion("right");
 			info(incompleat_noad+2) = link(q);
 			link(q) = incompleat_noad;
 			link(incompleat_noad) = p;

@@ -3,16 +3,17 @@
 #include "printnl.h"
 #include "print.h"
 #include "inserror.h"
+#include "texte.h"
 
 void insertdollarsign(void)
 {
 	backinput();
 	curtok = 804; //math_shift + '$'
-	printnl(262); //! 
-	print(1016); //Missing $ inserted
+	printnl("! ");
+	print("Missing $ inserted");
 	helpptr = 2;
-	helpline[1] = 1017; //I've inserted a begin-math/end-math symbol since I think
-	helpline[0] = 1018; //you left one out. Proceed, with fingers crossed.
+	helpline[1] = txt("I've inserted a begin-math/end-math symbol since I think");
+	helpline[0] = txt("you left one out. Proceed, with fingers crossed.");
 	inserror();
 }
 

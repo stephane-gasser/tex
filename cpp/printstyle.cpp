@@ -7,18 +7,18 @@ void printstyle(int c)
 	switch (c/2)
 	{
 		case 0: 
-			printesc(860); //displaystyle
+			printesc("displaystyle");
 			break;
 		case 1: 
-			printesc(861); //textstyle
+			printesc("textstyle");
 			break;
 		case 2: 
-			printesc(862); //scriptstyle
+			printesc("scriptstyle");
 			break;
 		case 3:
-			printesc(863); //scriptscriptstyle
+			printesc("scriptscriptstyle");
 			break;
 		default:
-			print(864); //Unknown style!
+			print("Unknown style!");
 	}
 }

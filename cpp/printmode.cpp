@@ -7,28 +7,28 @@ void printmode(int m)
 	switch (m/101)
 	{
 		case 0: 
-			print(355); //vertical
+			print("vertical");
 			break;
 		case 1: 
-			print(356); //horizontal
+			print("horizontal");
 			break;
 		case 2: 
-			print(357); //display math
+			print("display math");
 	}
 	else 
 		if (m == 0)
-			print(358); //no
+			print("no");
 		else
 			switch ((-m)/101)
 			{
 				case 0: 
-					print(359); //internal vertical
+					print("internal vertical");
 					break;
 				case 1: 
-					print(360); //restricted horizontal
+					print("restricted horizontal");
 					break;
 				case 2: 
-				print(343); //math
+				print("math");
 			}
-	print(361); // mode
+	print(" mode");
 }

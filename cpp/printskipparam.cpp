@@ -7,60 +7,60 @@ void printskipparam(int n)
 	switch (n)
 	{
 		case 0: 
-			printesc(376); //lineskip
+			printesc("lineskip");
 			break;
 		case 1: 
-			printesc(377); //baselineskip
+			printesc("baselineskip");
 			break;
 		case 2: 
-			printesc(378); //parskip
+			printesc("parskip");
 			break;
 		case 3: 
-			printesc(379); //abovedisplayskip
+			printesc("abovedisplayskip");
 			break;
 		case 4: 
-			printesc(380); //belowdisplayskip
+			printesc("belowdisplayskip");
 			break;
 		case 5: 
-			printesc(381); //abovedisplayshortskip
+			printesc("abovedisplayshortskip");
 			break;
 		case 6: 
-			printesc(382); //belowdisplayshortskip
+			printesc("belowdisplayshortskip");
 			break;
 		case 7: 
-			printesc(383); //leftskip
+			printesc("leftskip");
 			break;
 		case 8: 
-			printesc(384); //rightskip
+			printesc("rightskip");
 			break;
 		case 9: 
-			printesc(385); //topskip
+			printesc("topskip");
 			break;
 		case 10: 
-			printesc(386); //splittopskip
+			printesc("splittopskip");
 			break;
 		case 11: 
-			printesc(387); //tabskip
+			printesc("tabskip");
 			break;
 		case 12: 
-			printesc(388); //spaceskip
+			printesc("spaceskip");
 			break;
 		case 13: 
-			printesc(389); //xspaceskip
+			printesc("xspaceskip");
 			break;
 		case 14: 
-			printesc(390); //parfillskip
+			printesc("parfillskip");
 			break;
 		case 15: 
-			printesc(391); //thinmuskip
+			printesc("thinmuskip");
 			break;
 		case 16: 
-			printesc(392); //medmuskip
+			printesc("medmuskip");
 			break;
 		case 17: 
-			printesc(393); //thickmuskip
+			printesc("thickmuskip");
 			break;
 		default: 
-			print(394); //[unknown glue parameter!]
+			print("[unknown glue parameter!]");
 	}
 }

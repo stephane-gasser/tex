@@ -44,7 +44,7 @@ void Initialize(void)
 	nonewcontrolsequence = true;
 	hash[514].lh = 0;
 	hash[514].rh = 0;
-	for (int k = 515; k <2881; k++)
+	for (int k = 515; k < 2881; k++)
 	    hash[k] = hash[514];
 	saveptr = 0;
 	curlevel = 1;
@@ -239,10 +239,10 @@ void Initialize(void)
 	hashused = frozen_control_sequence;
 	cscount = 0;
 	eq_type(frozen_dont_expand) = dont_expand;
-	hash[frozen_dont_expand].rh = 502;
+	hash[frozen_dont_expand].rh = 502; //notexpanded:
 	fontptr = 0;
 	fmemptr = 7;
-	fontname[0] = 800;
+	fontname[0] = 800; //nullfont
 	fontarea[0] = 338;
 	hyphenchar[0] = 45;
 	skewchar[0] = -1;
@@ -275,9 +275,9 @@ void Initialize(void)
 	triel[0] = 0;
 	triec[0] = 0;
 	trieptr = 0;
-	hash[frozen_control_sequence].rh = 1189;
-	formatident = 1256;
-	hash[end_write].rh = 1295;
+	hash[frozen_control_sequence].rh = 1189; //inaccessible
+	formatident = 1256; // (INITEX)
+	hash[end_write].rh = 1295; //endwrite
 	eq_level(end_write) = 1;
 	eq_type(end_write) = outer_call;
 	equiv(end_write) = 0;

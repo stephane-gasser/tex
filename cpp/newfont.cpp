@@ -18,6 +18,7 @@
 #include "error.h"
 #include "xnoverd.h"
 #include "readfontinfo.h"
+#include "texte.h"
 
 void newfont(smallnumber a)
 
@@ -44,11 +45,11 @@ void newfont(smallnumber a)
 		{
 			oldsetting = selector;
 			selector = new_string;
-			print(1218); //FONT
-			print(u-1);
+			print("FONT");
+			print(std::string(1, char(u-1)));
 			selector = oldsetting;
 			if (poolptr+1 > poolsize)
-				overflow(257, poolsize-initpoolptr); //pool size
+				overflow("pool size", poolsize-initpoolptr);
 			t = makestring();
 		}
 	if (a >= 4)
@@ -58,34 +59,34 @@ void newfont(smallnumber a)
 	scanoptionalequals();
 	scanfilename();
 	nameinprogress = true;
-	if (scankeyword(1219)) //at
+	if (scankeyword("at"))
 	{
 		scandimen(false, false, false);
 		s = curval;
 		if (s <= 0 || s >= 134217728)
 		{
-			printnl(262); //! 
-			print(1221); //Improper `at' size (
+			printnl("! ");
+			print("Improper `at' size (");
 			printscaled(s);
-			print(1222); //pt), replaced by 10pt
+			print("pt), replaced by 10pt");
 			helpptr = 2;
-			helpline[1] = 1223; //I can only handle fonts at positive sizes that are
-			helpline[0] = 1224; //less than 2048pt, so I've changed what you said to 10pt.
+			helpline[1] = txt("I can only handle fonts at positive sizes that are");
+			helpline[0] = txt("less than 2048pt, so I've changed what you said to 10pt.");
 			error();
 			s = 10*0x1'00'00;
 		}
 	}
 	else 
-		if (scankeyword(1220)) //scaled
+		if (scankeyword("scaled"))
 		{
 			scanint();
 			s = -curval;
 			if (curval <= 0 || curval > 0x80'00)
 			{
-				printnl(262); //! 
-				print(552); //Illegal magnification has been changed to 1000
+				printnl("! ");
+				print("Illegal magnification has been changed to 1000");
 				helpptr = 1;
-				helpline[0] = 553; //The magnification ratio must be between 1 and 0x80'00.
+				helpline[0] = txt("The magnification ratio must be between 1 and 0x80'00.");
 				interror(curval);
 				s = -1000;
 			}

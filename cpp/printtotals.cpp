@@ -7,31 +7,31 @@ void printtotals(void)
 	printscaled(pagesofar[1]);
 	if (pagesofar[2])
 	{
-		print(312); // plus 
+		print(" plus ");
 		printscaled(pagesofar[2]);
-		print(338); //
+		print("");
 	}
 	if (pagesofar[3])
 	{
-		print(312); // plus 
+		print(" plus ");
 		printscaled(pagesofar[3]);
-		print(311); //fil
+		print("fil");
 	}
 	if (pagesofar[4])
 	{
-		print(312); // plus 
+		print(" plus ");
 		printscaled(pagesofar[4]);
-		print(977); //fill
+		print("fill");
 	}
 	if (pagesofar[5])
 	{
-		print(312); // plus 
+		print(" plus ");
 		printscaled(pagesofar[5]);
-		print(978); //filll
+		print("filll");
 	}
 	if (pagesofar[6])
 	{
-		print(313); // minus 
+		print(" minus ");
 		printscaled(pagesofar[6]);
 	}
 }

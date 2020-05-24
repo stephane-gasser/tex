@@ -7,7 +7,7 @@ void printmark(int p)
 {
 	printchar('{');
 	if (p < himemmin || p > memend)
-		printesc(309); //CLOBBERED.
+		printesc("CLOBBERED.");
 	else
 		showtokenlist(link(p), 0, maxprintline-10);
 	printchar('}');

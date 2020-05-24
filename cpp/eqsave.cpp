@@ -6,8 +6,8 @@ void eqsave(halfword p, quarterword l)
 	if (saveptr > maxsavestack)
 	{
 		maxsavestack = saveptr;
-		if (maxsavestack > savesize - 6)
-			overflow(541, savesize); //save size
+		if (maxsavestack > savesize-6)
+			overflow("save size", savesize);
 	}
 	if (l == 0)
 		save_type(saveptr) = 1;

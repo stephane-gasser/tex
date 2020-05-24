@@ -6,6 +6,7 @@
 #include "error.h"
 #include "newspec.h"
 #include "deleteglueref.h"
+#include "texte.h"
 
 halfword vertbreak(halfword p, scaled h, scaled d)
 {
@@ -53,7 +54,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 				case ins_node: //3
 					break;
 				default: 
-					confusion(959); //vertbreak
+					confusion("vertbreak");
 			}
 		if (p == 0 || (type(p) == glue_node && type(prevp) < 9) || (type(p) == kern_node && t == glue_node) || type(p) == penalty_node)
 			if (pi < 10000)
@@ -98,13 +99,13 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 			activewidth[6] += shrink(q);
 			if (shrink_order(q) && shrink(q))
 			{
-				printnl(262); //! 
-				print(960); //Infinite glue shrinkage found in box being split
+				printnl("! ");
+				print("Infinite glue shrinkage found in box being split"); 
 				helpptr = 4;
-				helpline[3] = 961; //The box you are \vsplitting contains some infinitely
-				helpline[2] = 962; //shrinkable glue, e.g., `\vss' or `\vskip 0pt minus 1fil'.
-				helpline[1] = 963; //Such glue doesn't belong there; but you can safely proceed,
-				helpline[0] = 921; //since the offensive shrinkability has been made finite.
+				helpline[3] = txt("The box you are \\vsplitting contains some infinitely");
+				helpline[2] = txt("shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.");
+				helpline[1] = txt("Such glue doesn't belong there; but you can safely proceed,");
+				helpline[0] = txt("since the offensive shrinkability has been made finite.");
 				error();
 				r = newspec(q);
 				subtype(r) = 0;

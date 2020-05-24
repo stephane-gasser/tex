@@ -36,7 +36,7 @@ void closefilesandterminate(void)
 		curs--;
 	}
 	if (totalpages == 0)
-		printnl(836); //No pages of output.
+		printnl("No pages of output.");
 	else
 	{
 		dvibuf[dviptr++] = post;
@@ -82,16 +82,16 @@ void closefilesandterminate(void)
 			writedvi(halfbuf, dvibufsize-1);
 		if (dviptr > 0)
 			writedvi(0, dviptr-1);
-		printnl(837); //Output written on 
+		printnl("Output written on ");
 		slowprint(outputfilename);
-		print(286); // (
+		print("// (");
 		printint(totalpages);
-		print(838); // page
+		print(" page");
 		if (totalpages != 1)
 			printchar('s');
-		print(839); //, 
+		print(", "); 
 		printint(dvioffset+dviptr);
-		print(840); // bytes).
+		print(" bytes).");
 		bclose(dvifile);
 	}
 	if (logopened)
@@ -101,7 +101,7 @@ void closefilesandterminate(void)
 		selector -= 2;
 		if (selector == term_only)
 		{
-			printnl(1274); //Transcript written on 
+			printnl("Transcript written on ");
 			slowprint(logname);
 			printchar('.');
 		}

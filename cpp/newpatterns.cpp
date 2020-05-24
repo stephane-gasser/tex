@@ -9,6 +9,7 @@
 #include "printesc.h"
 #include "scantoks.h"
 #include "flushlist.h"
+#include "texte.h"
 
 void newpatterns(void)
 {
@@ -48,10 +49,10 @@ void newpatterns(void)
 							curchr = lc_code(curchr);
 							if (curchr == 0)
 							{
-								printnl(262); //! 
-								print(956); //Nonletter
+								printnl("! ");
+								print("Nonletter");
 								helpptr = 1;
-								helpline[0] = 955; //(See Appendix H.)
+								helpline[0] = txt("(See Appendix H.)");
 								error();
 							}
 						}
@@ -106,7 +107,7 @@ void newpatterns(void)
 							if (p == 0 || c < triec[p])
 							{
 								if (trieptr == triesize)
-									overflow(950, triesize); //pattern memory
+									overflow("pattern memory", triesize);
 								trieptr++;
 								trier[trieptr] = p;
 								p = trieptr;
@@ -122,10 +123,10 @@ void newpatterns(void)
 						}
 						if (trieo[q])
 						{
-							printnl(262); //! 
-							print(957); //Duplicate pattern
+							printnl("! ");
+							print("Duplicate pattern");
 							helpptr = 1;
-							helpline[0] = 955; //(See Appendix H.)
+							helpline[0] = txt("(See Appendix H.)");
 							error();
 						}
 						trieo[q] = v;
@@ -140,22 +141,22 @@ void newpatterns(void)
 					digitsensed = false;
 					break;
 				default:
-					printnl(262); //! 
-					print(954); //Bad 
-					printesc(952); //patterns
+					printnl("! ");
+					print("Bad ");
+					printesc("patterns");
 					helpptr = 1;
-					helpline[0] = 955; //(See Appendix H.)
+					helpline[0] = txt("(See Appendix H.)");
 					error();
 			}
 		}
 	}
 	else
 	{
-		printnl(262); //! 
-		print(951); //Too late for 
-		printesc(952); //patterns
+		printnl("! ");
+		print("Too late for ");
+		printesc("patterns");
 		helpptr = 1;
-		helpline[0] = 953; //All patterns must be given before typesetting begins.
+		helpline[0] = txt("All patterns must be given before typesetting begins.");
 		error();
 		link(garbage) = scantoks(false, false);
 		flushlist(defref);

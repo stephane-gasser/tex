@@ -11,8 +11,11 @@ constexpr int hash_size=2100; //maximum number of control sequences; it should b
 constexpr int hash_prime = 1777; //a prime number equal to about 85\pct! of |hash_size|
 constexpr int hyph_size = 307; //another prime; the number of \.//\\hyphenation exceptions
 //loc==cur_input.loc_field //location of first unread character in |buffer|
-/*length(#)==(str_start[#+1]-str_start[#]) //the number of characters
-cur_length == (pool_ptr - str_start[str_ptr])
+
+//length(#)==(str_start[#+1]-str_start[#]) //the number of characters
+int length(halfword);
+
+/*cur_length == (pool_ptr - str_start[str_ptr])
 append_char(#) == //put |ASCII_code| \# at the end of |str_pool|
 flush_char == decr(pool_ptr) //forget the last character in the pool
 str_room(#) == //make sure that the pool hasn't overflowed
@@ -134,9 +137,14 @@ non_discardable(#)==(type(#)<math_node)*/
 constexpr int glue_node = 10; //|type| of node that points to a glue specification
 constexpr int cond_math_glue = 98; //special |subtype| to suppress glue in the next node
 constexpr int mu_glue = 99; //|subtype| for math glue
-constexpr int a_leaders = 100; //|subtype| for aligned leaders
-/*c_leaders=101 //|subtype| for centered leaders
-x_leaders=102 //|subtype| for expanded leaders*/
+
+enum
+{
+	a_leaders = 100, //|subtype| for aligned leaders
+	c_leaders = 101, //|subtype| for centered leaders
+	x_leaders = 102, //|subtype| for expanded leaders
+};
+
 halfword& glue_ptr(halfword); //glue_ptr==llink //pointer to a glue specification
 halfword& leader_ptr(halfword); //leader_ptr==rlink //pointer to box or rule node for leaders
 constexpr int glue_spec_size = 4; //number of words to allocate for a glue specification*/
@@ -210,7 +218,7 @@ constexpr int comment = 14; //characters that introduce comments ( \.\% )
 constexpr int stop = 14; //end of job ( \.//\\end, \.//\\dump )*/
 constexpr int invalid_char = 15; //characters that shouldn't appear ( \.//\^\^? )
 constexpr int delim_num = 15; //specify delimiter numerically ( \.//\\delimiter )
-/*max_char_code=15 //largest catcode for individual characters*/
+constexpr int max_char_code = 15; //largest catcode for individual characters
 constexpr int char_num = 16; //character specified numerically ( \.//\\char )
 constexpr int math_char_num = 17; //explicit math code ( \.//\\mathchar )
 constexpr int mark = 18; //mark definition ( \.//\\mark )
@@ -330,8 +338,8 @@ quarterword& eq_type(halfword); //eq_type(#)==eq_type_field(eqtb[#]) //command c
 //equiv_field(#)==#.hh.rh
 halfword& equiv(halfword); //equiv(#)==equiv_field(eqtb[#]) //equivalent value
 
-/*level_zero=min_quarterword //level for undefined quantities
-level_one=level_zero+1 //outermost level for defined quantities*/
+constexpr int level_zero = 0; // min_quarterword //level for undefined quantities
+constexpr int level_one = 1; // level_zero+1 //outermost level for defined quantities
 constexpr int active_base = 1; //beginning of region 1, for active character equivalents
 constexpr int single_base = 257; //active_base+256 //equivalents of one-character control sequences
 constexpr int null_cs = 513; // single_base+256 //equivalent of \.//\\csname\\endcsname
@@ -351,24 +359,24 @@ constexpr int frozen_null_font = 2624; //frozen_control_sequence+10
 constexpr int font_id_base = 2624; //frozen_null_font-font_base
 constexpr int undefined_control_sequence = 2881;// frozen_null_font+257 //dummy location
 constexpr int glue_base = 2882; //undefined_control_sequence+1 //beginning of region 3
-/*line_skip_code=0 //interline glue if |baseline_skip| is infeasible*/
+constexpr int line_skip_code = 0; //interline glue if |baseline_skip| is infeasible
 constexpr int baseline_skip_code = 1; //desired glue between baselines
-/*par_skip_code=2 //extra glue just above a paragraph
-above_display_skip_code=3 //extra glue just above displayed math
-below_display_skip_code=4 //extra glue just below displayed math
-above_display_short_skip_code=5
-below_display_short_skip_code=6*/
+constexpr int par_skip_code = 2; //extra glue just above a paragraph
+constexpr int above_display_skip_code = 3; //extra glue just above displayed math
+constexpr int below_display_skip_code = 4; //extra glue just below displayed math
+constexpr int above_display_short_skip_code = 5;
+constexpr int below_display_short_skip_code = 6;
 constexpr int left_skip_code = 7; //glue at left of justified lines
 constexpr int right_skip_code = 8; //glue at right of justified lines
-/*top_skip_code=9 //glue at top of main pages*/
+constexpr int top_skip_code = 9; //glue at top of main pages
 constexpr int split_top_skip_code = 10; //glue at top of split pages
-/*tab_skip_code=11 //glue between aligned entries*/
+constexpr int tab_skip_code = 11; //glue between aligned entries*/
 constexpr int space_skip_code = 12; //glue between words (if not |zero_glue|)
 constexpr int xspace_skip_code = 13; //glue after sentences (if not |zero_glue|)
-/*par_fill_skip_code=14 //glue on last line of paragraph
-thin_mu_skip_code=15 //thin space in math formula
-med_mu_skip_code=16 //medium space in math formula
-thick_mu_skip_code=17 //thick space in math formula*/
+constexpr int par_fill_skip_code = 14; //glue on last line of paragraph
+constexpr int thin_mu_skip_code = 15; //thin space in math formula
+constexpr int med_mu_skip_code = 16; //medium space in math formula
+constexpr int thick_mu_skip_code = 17; //thick space in math formula
 constexpr int glue_pars = 18; //total number of glue parameters
 constexpr int skip_base = 2900; //glue_base+glue_pars //table of 256 ``skip'' registers
 constexpr int mu_skip_base = 3156; //skip_base+256 //table of 256 ``muskip'' registers
@@ -468,14 +476,14 @@ constexpr int pausing_code = 28; //pause after each line is read from a file
 constexpr int tracing_online_code = 29; //show diagnostic output on terminal
 constexpr int tracing_macros_code = 30; //show macros as they are being expanded
 constexpr int tracing_stats_code = 31; //show memory usage if \TeX\ knows it
-/*tracing_paragraphs_code=32 //show line-break calculations
-tracing_pages_code=33 //show page-break calculations*/
+constexpr int tracing_paragraphs_code = 32; //show line-break calculations
+constexpr int tracing_pages_code = 33; //show page-break calculations
 constexpr int tracing_output_code = 34; //show boxes when they are shipped out
 constexpr int tracing_lost_chars_code = 35; //show characters that aren't in the font
 constexpr int tracing_commands_code = 36; //show command codes at |big_switch|
-/*tracing_restores_code=37 //show equivalents when they are restored*/
+constexpr int tracing_restores_code = 37; //show equivalents when they are restored
 constexpr int uc_hyph_code = 38; //hyphenate words beginning with a capital letter
-/*output_penalty_code=39 //penalty found at current page break*/
+constexpr int output_penalty_code = 39; //penalty found at current page break
 constexpr int max_dead_cycles_code = 40; //bound on consecutive dead cycles of output
 constexpr int hang_after_code = 41; //hanging indentation changes after this many lines
 constexpr int floating_penalty_code = 42; //penalty for insertions heldover after a split
@@ -558,7 +566,7 @@ constexpr int math_surround_code = 1; //space around math in text
 constexpr int line_skip_limit_code = 2; //threshold for |line_skip| instead of |baseline_skip|
 constexpr int hsize_code = 3; //line width in horizontal mode
 constexpr int vsize_code = 4; //page height in vertical mode
-/*max_depth_code=5 //maximum depth of boxes on main pages*/
+constexpr int max_depth_code = 5; //maximum depth of boxes on main pages
 constexpr int split_max_depth_code = 6; //maximum depth of boxes on split pages
 constexpr int box_max_depth_code = 7; //maximum depth of explicit vboxes
 constexpr int hfuzz_code = 8; //tolerance for overfull hbox messages
@@ -600,11 +608,18 @@ overfull_rule==dimen_par(overfull_rule_code)
 hang_indent==dimen_par(hang_indent_code)
 h_offset==dimen_par(h_offset_code)
 v_offset==dimen_par(v_offset_code)
-emergency_stretch==dimen_par(emergency_stretch_code)
-next(#) == hash[#].lh //link for coalesced lists
-text(#) == hash[#].rh //string number for control sequence name
-hash_is_full == (hash_used=hash_base) //test if all positions are occupied
-font_id_text(#) == text(font_id_base+#) //a frozen font identifier's name*/
+emergency_stretch==dimen_par(emergency_stretch_code)*/
+
+//next(#) == hash[#].lh //link for coalesced lists
+halfword& next(halfword);
+
+//text(#) == hash[#].rh //string number for control sequence name
+halfword& text(halfword);
+
+//hash_is_full == (hash_used=hash_base) //test if all positions are occupied
+bool hash_is_full(void);
+
+/*font_id_text(#) == text(font_id_base+#) //a frozen font identifier's name*/
 quarterword& save_type(halfword p); //save_type(#)==save_stack[#].hh.b0 //classifies a |save_stack| entry
 quarterword& save_level(halfword); //save_level(#)==save_stack[#].hh.b1
 halfword& save_index(halfword); //save_index(#)==save_stack[#].hh.rh
@@ -650,37 +665,46 @@ state==cur_input.state_field //current scanner state
 index==cur_input.index_field //reference for buffer information
 start==cur_input.start_field //starting position in |buffer|
 limit==cur_input.limit_field //end of current line in |buffer|
-name==cur_input.name_field //name of the current file
-mid_line=1 //|state| code when scanning a line of characters
-skip_blanks=2+max_char_code //|state| code when ignoring blanks
-new_line=3+max_char_code+max_char_code //|state| code at start of line
-terminal_input==(name=0) //are we reading from the terminal?
-cur_file==input_file[index] //the current |alpha_file| variable
-skipping=1 //|scanner_status| when passing conditional text
-defining=2 //|scanner_status| when reading a macro definition
-matching=3 //|scanner_status| when reading macro arguments
-aligning=4 //|scanner_status| when reading an alignment preamble
-absorbing=5 //|scanner_status| when reading a balanced text
-token_list=0 //|state| code when scanning a token list
+name==cur_input.name_field //name of the current file*/
+constexpr int mid_line = 1; //|state| code when scanning a line of characters
+constexpr int skip_blanks= 17; //2+max_char_code //|state| code when ignoring blanks
+constexpr int new_line = 33; //3+max_char_code+max_char_code //|state| code at start of line
+/*terminal_input==(name=0) //are we reading from the terminal?
+cur_file==input_file[index] //the current |alpha_file| variable*/
+
+enum
+{
+	skipping = 1, //|scanner_status| when passing conditional text
+	defining = 2, //|scanner_status| when reading a macro definition
+	matching = 3, //|scanner_status| when reading macro arguments
+	aligning = 4, //|scanner_status| when reading an alignment preamble
+	absorbing = 5 //|scanner_status| when reading a balanced text
+};
+
+/*token_list=0 //|state| code when scanning a token list
 token_type==index //type of current token list
-param_start==limit //base of macro parameters in |param_stack|
-parameter=0 //|token_type| code for parameter
-u_template=1 //|token_type| code for \<u_j> template
-v_template=2 //|token_type| code for \<v_j> template
-backed_up=3 //|token_type| code for text to be reread
-inserted=4 //|token_type| code for inserted texts
-macro=5 //|token_type| code for defined control sequences
-output_text=6 //|token_type| code for output routines
-every_par_text=7 //|token_type| code for \.//\\everypar
-every_math_text=8 //|token_type| code for \.//\\everymath
-every_display_text=9 //|token_type| code for \.//\\everydisplay
-every_hbox_text=10 //|token_type| code for \.//\\everyhbox
-every_vbox_text=11 //|token_type| code for \.//\\everyvbox
-every_job_text=12 //|token_type| code for \.//\\everyjob
-every_cr_text=13 //|token_type| code for \.//\\everycr
-mark_text=14 //|token_type| code for \.//\\topmark, etc.
-write_text=15 //|token_type| code for \.//\\write
-begin_pseudoprint==
+param_start==limit //base of macro parameters in |param_stack|*/
+
+enum
+{
+	parameter = 0, //|token_type| code for parameter
+	u_template = 1, //|token_type| code for \<u_j> template
+	v_template = 2, //|token_type| code for \<v_j> template
+	backed_up = 3, //|token_type| code for text to be reread
+	inserted = 4, //|token_type| code for inserted texts
+	macro = 5, //|token_type| code for defined control sequences
+	output_text = 6, //|token_type| code for output routines
+	every_par_text = 7, //|token_type| code for \.//\\everypar
+	every_math_text = 8, //|token_type| code for \.//\\everymath
+	every_display_text = 9, //|token_type| code for \.//\\everydisplay
+	every_hbox_text = 10, //|token_type| code for \.//\\everyhbox
+	every_vbox_text = 11, //|token_type| code for \.//\\everyvbox
+	every_job_text = 12, //|token_type| code for \.//\\everyjob
+	every_cr_text = 13, //|token_type| code for \.//\\everycr
+	mark_text = 14, //|token_type| code for \.//\\topmark, etc.
+	write_text = 15 //|token_type| code for \.//\\write
+};
+/*begin_pseudoprint==
 set_trick_count==
 push_input==@t@> //enter a new input level, save the old
 pop_input==@t@> //leave an input level, re-enter the old
@@ -695,27 +719,27 @@ hex_to_cur_chr==
 no_expand_flag=257 //this characterizes a special variant of |relax|
 end_line_char_inactive == (end_line_char<0)or(end_line_char>255)
 store_new_token(#)==begin q:=get_avail; link(p):=q; info(q):=#;
-fast_store_new_token(#)==begin fast_get_avail(q); link(p):=q; info(q):=#;
-top_mark_code=0 //the mark in effect at the previous page break
-first_mark_code=1 //the first mark between |top_mark| and |bot_mark|
-bot_mark_code=2 //the mark in effect at the current page break
-split_first_mark_code=3 //the first mark found by \.//\\vsplit
-split_bot_mark_code=4 //the last mark found by \.//\\vsplit
-top_mark==cur_mark[top_mark_code]
+fast_store_new_token(#)==begin fast_get_avail(q); link(p):=q; info(q):=#;*/
+constexpr int top_mark_code = 0; //the mark in effect at the previous page break
+constexpr int first_mark_code = 1; //the first mark between |top_mark| and |bot_mark|
+constexpr int bot_mark_code = 2; //the mark in effect at the current page break
+constexpr int split_first_mark_code = 3; //the first mark found by \.//\\vsplit
+constexpr int split_bot_mark_code = 4; //the last mark found by \.//\\vsplit
+/*top_mark==cur_mark[top_mark_code]
 first_mark==cur_mark[first_mark_code]
 bot_mark==cur_mark[bot_mark_code]
 split_first_mark==cur_mark[split_first_mark_code]
-split_bot_mark==cur_mark[split_bot_mark_code]
-int_val=0 //integer values
-dimen_val=1 //dimension values
-glue_val=2 //glue specifications
-mu_val=3 //math glue specifications
-ident_val=4 //font identifier
+split_bot_mark==cur_mark[split_bot_mark_code]*/
+constexpr int int_val = 0; //integer values
+constexpr int dimen_val = 1; //dimension values
+constexpr int glue_val = 2; //glue specifications
+constexpr int mu_val = 3; //math glue specifications
+/*ident_val=4 //font identifier
 tok_val=5 //token lists
 scanned_result_end(#)==cur_val_level:=#;@+end
-scanned_result(#)==@+begin cur_val:=#;scanned_result_end
-input_line_no_code=glue_val+1 //code for \.//\\inputlineno
-badness_code=glue_val+2 //code for \.//\\badness*/
+scanned_result(#)==@+begin cur_val:=#;scanned_result_end*/
+constexpr int input_line_no_code = 3; //glue_val+1 //code for \.//\\inputlineno
+constexpr int badness_code = 4; //glue_val+2 //code for \.//\\badness
 constexpr int max_dimen = 1073741823; //=@'7777777777 //$2^//30-1$
 /*octal_token=other_token+"'" //apostrophe, indicates an octal constant
 hex_token=other_token+"""" //double quote, indicates a hex constant
@@ -732,38 +756,38 @@ scan_normal_dimen==scan_dimen(false,false,false)
 set_conversion_end(#)== denom:=#; end
 set_conversion(#)==@+begin num:=#; set_conversion_end*/
 constexpr int default_rule = 26214; //0.4\thinspace pt
-/*number_code=0 //command code for \.//\\number
-roman_numeral_code=1 //command code for \.//\\romannumeral
-string_code=2 //command code for \.//\\string
-meaning_code=3 //command code for \.//\\meaning
-font_name_code=4 //command code for \.//\\fontname
-job_name_code=5 //command code for \.//\\jobname
-closed=2 //not open, or at end of file
-just_open=1 //newly opened, first line not yet read
-if_char_code=0 // `\.//\\if' 
-if_cat_code=1 // `\.//\\ifcat' 
-if_int_code=2 // `\.//\\ifnum' 
-if_dim_code=3 // `\.//\\ifdim' 
-if_odd_code=4 // `\.//\\ifodd' 
-if_vmode_code=5 // `\.//\\ifvmode' 
-if_hmode_code=6 // `\.//\\ifhmode' 
-if_mmode_code=7 // `\.//\\ifmmode' 
-if_inner_code=8 // `\.//\\ifinner' 
-if_void_code=9 // `\.//\\ifvoid' 
-if_hbox_code=10 // `\.//\\ifhbox' 
-if_vbox_code=11 // `\.//\\ifvbox' 
-ifx_code=12 // `\.//\\ifx' 
-if_eof_code=13 // `\.//\\ifeof' 
-if_true_code=14 // `\.//\\iftrue' 
-if_false_code=15 // `\.//\\iffalse' 
-if_case_code=16 // `\.//\\ifcase' 
-if_node_size=2 //number of words in stack entry for conditionals*/
+constexpr int number_code = 0; // //command code for \.//\\number
+constexpr int roman_numeral_code = 1; //command code for \.//\\romannumeral
+constexpr int string_code = 2; //command code for \.//\\string
+constexpr int meaning_code = 3; //command code for \.//\\meaning
+constexpr int font_name_code = 4; //command code for \.//\\fontname
+constexpr int job_name_code = 5; //command code for \.//\\jobname
+/*closed=2 //not open, or at end of file
+just_open=1 //newly opened, first line not yet read*/
+constexpr int if_char_code = 0; // `\.//\\if' 
+constexpr int if_cat_code = 1; // `\.//\\ifcat' 
+constexpr int if_int_code = 2; // `\.//\\ifnum' 
+constexpr int if_dim_code = 3; // `\.//\\ifdim' 
+constexpr int if_odd_code = 4; // `\.//\\ifodd' 
+constexpr int if_vmode_code = 5; // `\.//\\ifvmode' 
+constexpr int if_hmode_code = 6; // `\.//\\ifhmode' 
+constexpr int if_mmode_code = 7; // `\.//\\ifmmode' 
+constexpr int if_inner_code = 8; // `\.//\\ifinner' 
+constexpr int if_void_code = 9; // `\.//\\ifvoid' 
+constexpr int if_hbox_code = 10; // `\.//\\ifhbox' 
+constexpr int if_vbox_code = 11; // `\.//\\ifvbox' 
+constexpr int ifx_code = 12; // `\.//\\ifx' 
+constexpr int if_eof_code = 13; // `\.//\\ifeof' 
+constexpr int if_true_code = 14; // `\.//\\iftrue' 
+constexpr int if_false_code = 15; // `\.//\\iffalse' 
+constexpr int if_case_code = 16; // `\.//\\ifcase' 
+/*if_node_size=2 //number of words in stack entry for conditionals*/
 int& if_line_field(halfword); //if_line_field(#)==mem[#+1].int
-/*if_code=1 //code for \.//\\if... being evaluated
-fi_code=2 //code for \.//\\fi
-else_code=3 //code for \.//\\else
-or_code=4 //code for \.//\\or
-get_x_token_or_active_char==@t@>@;
+constexpr int if_code = 1; //code for \.//\\if... being evaluated
+constexpr int fi_code = 2; //code for \.//\\fi
+constexpr int else_code = 3; //code for \.//\\else
+constexpr int or_code = 4; //code for \.//\\or
+/*get_x_token_or_active_char==@t@>@;
 TEX_area=="TeXinputs:"
 TEX_font_area=="TeXfonts:"
 append_to_name(#)==begin c:=#; incr(k);
@@ -942,20 +966,30 @@ constexpr int right_noad = 31; //left_noad+1 //|type| of a noad for \.//\\right
 halfword delimiter(halfword); //delimiter==nucleus //|delimiter| field in left and right noads
 /*scripts_allowed(#)==(type(#)>=ord_noad)and(type(#)<left_noad)*/
 constexpr int style_node = 14; //unset_node+1 //|type| of a style node
-/*style_node_size=3 //number of words in a style node
-display_style=0 //|subtype| for \.//\\displaystyle
-text_style=2 //|subtype| for \.//\\textstyle
-script_style=4 //|subtype| for \.//\\scriptstyle
-script_script_style=6 //|subtype| for \.//\\scriptscriptstyle
-cramped=1 //add this to an uncramped style if you want to cramp it*/
+/*style_node_size=3 //number of words in a style node*/
+
+enum
+{
+	display_style = 0, //|subtype| for \.//\\displaystyle
+	text_style = 2, //|subtype| for \.//\\textstyle
+	script_style = 4, //|subtype| for \.//\\scriptstyle
+	script_script_style = 6 //|subtype| for \.//\\scriptscriptstyle
+};
+
+/*cramped=1 //add this to an uncramped style if you want to cramp it*/
 constexpr int choice_node = 15; //unset_node+2 //|type| of a choice node
 halfword& display_mlist(halfword); //display_mlist(#)==info(#+1) //mlist to be used in display style
 halfword& text_mlist(halfword); //text_mlist(#)==link(#+1) //mlist to be used in text style
 halfword& script_mlist(halfword); //script_mlist(#)==info(#+2) //mlist to be used in script style
 halfword& script_script_mlist(halfword); //script_script_mlist(#)==link(#+2) //mlist to be used in scriptscript style
-/*text_size=0 //size code for the largest size in a family
-script_size=16 //size code for the medium size in a family
-script_script_size=32 //size code for the smallest size in a family*/
+
+enum
+{
+	text_size = 0, //size code for the largest size in a family
+	script_size = 16, //size code for the medium size in a family
+	script_script_size = 32 //size code for the smallest size in a family
+};
+
 int mathsy(smallnumber, smallnumber); //mathsy(#)==font_info[#+param_base[mathsy_end //mathsy_end(#)==fam_fnt(2+#)]].sc
 int math_x_height(smallnumber); //math_x_height==mathsy(5) //height of `\.x'
 int math_quad(smallnumber); //math_quad==mathsy(6) //\.//18mu
@@ -1003,11 +1037,11 @@ int&v_part(halfword);
 /*extra_info(#)==info(#+list_offset) //info to remember during template*/
 //preamble==link(align_head) //the current preamble list
 halfword& preamble(void);
-/*align_stack_node_size=5 //number of |mem| words to save alignment states
-span_code=256 //distinct from any character
-cr_code=257 //distinct from |span_code| and from any character
-cr_cr_code=cr_code+1 //this distinguishes \.//\\crcr from \.//\\cr
-end_template_token==cs_token_flag+frozen_end_template
+/*align_stack_node_size=5 //number of |mem| words to save alignment states*/
+constexpr int span_code = 256; //distinct from any character
+constexpr int cr_code = 257; //distinct from |span_code| and from any character
+constexpr int cr_cr_code = 258; //cr_code+1 //this distinguishes \.//\\crcr from \.//\\cr
+/*end_template_token==cs_token_flag+frozen_end_template
 span_node_size=2 //number of |mem| words for a span node*/
 constexpr int tight_fit = 3; //fitness classification for lines shrinking 0.5 to 1.0 of their
 constexpr int loose_fit = 1; //fitness classification for lines stretching 0.5 to 1.0 of their
@@ -1092,41 +1126,61 @@ adjust_space_factor==@t@>@;@/
 pack_lig(#)== //the parameter is either |rt_hit| or |false|
 wrapup(#)==if cur_l<non_char then
 any_mode(#)==vmode+#,hmode+#,mmode+# //for mode-independent commands
-non_math(#)==vmode+#,hmode+#
-fil_code=0 //identifies \.//\\hfil and \.//\\vfil
-fill_code=1 //identifies \.//\\hfill and \.//\\vfill
-ss_code=2 //identifies \.//\\hss and \.//\\vss
-fil_neg_code=3 //identifies \.//\\hfilneg and \.//\\vfilneg
-skip_code=4 //identifies \.//\\hskip and \.//\\vskip
-mskip_code=5 //identifies \.//\\mskip
-box_flag==@'10000000000 //context code for `\.//\\setbox0'
+non_math(#)==vmode+#,hmode+#*/
+
+enum
+{
+	fil_code = 0, //identifies \.//\\hfil and \.//\\vfil
+	fill_code = 1, //identifies \.//\\hfill and \.//\\vfill
+	ss_code = 2, //identifies \.//\\hss and \.//\\vss
+	fil_neg_code = 3, //identifies \.//\\hfilneg and \.//\\vfilneg
+	skip_code = 4, //identifies \.//\\hskip and \.//\\vskip
+	mskip_code = 5 //identifies \.//\\mskip
+};
+
+/*box_flag==@'10000000000 //context code for `\.//\\setbox0'
 ship_out_flag==box_flag+512 //context code for `\.//\\shipout'
-leader_flag==box_flag+513 //context code for `\.//\\leaders'
-box_code=0 //|chr_code| for `\.//\\box'
-copy_code=1 //|chr_code| for `\.//\\copy'
-last_box_code=2 //|chr_code| for `\.//\\lastbox'
-vsplit_code=3 //|chr_code| for `\.//\\vsplit'
-vtop_code=4 //|chr_code| for `\.//\\vtop'
-fam_in_range==((cur_fam>=0)and(cur_fam<16))*/
+leader_flag==box_flag+513 //context code for `\.//\\leaders'*/
+
+enum
+{
+	box_code = 0, //|chr_code| for `\.//\\box'
+	copy_code = 1, //|chr_code| for `\.//\\copy'
+	last_box_code = 2, //|chr_code| for `\.//\\lastbox'
+	vsplit_code = 3, //|chr_code| for `\.//\\vsplit'
+	vtop_code = 4 //|chr_code| for `\.//\\vtop'
+};
+
+/*fam_in_range==((cur_fam>=0)and(cur_fam<16))*/
+
 constexpr int above_code = 0; // `\.//\\above' 
 constexpr int over_code = 1; // `\.//\\over' 
 constexpr int atop_code = 2; // `\.//\\atop' 
 constexpr int delimited_code = 3; // `\.//\\abovewithdelims', etc.
 /*global==(a>=4)
 define(#)==if global then geq_define(#)@+else eq_define(#)
-word_define(#)==if global then geq_word_define(#)@+else eq_word_define(#)
-char_def_code=0 //|shorthand_def| for \.//\\chardef
-math_char_def_code=1 //|shorthand_def| for \.//\\mathchardef
-count_def_code=2 //|shorthand_def| for \.//\\countdef
-dimen_def_code=3 //|shorthand_def| for \.//\\dimendef
-skip_def_code=4 //|shorthand_def| for \.//\\skipdef
-mu_skip_def_code=5 //|shorthand_def| for \.//\\muskipdef
-toks_def_code=6 //|shorthand_def| for \.//\\toksdef
-@ show_code=0 // \.//\\show 
-show_box_code=1 // \.//\\showbox 
-show_the_code=2 // \.//\\showthe 
-show_lists=3 // \.//\\showlists 
-bad_fmt=6666 //go here if the format file is unacceptable
+word_define(#)==if global then geq_word_define(#)@+else eq_word_define(#)*/
+
+enum
+{
+	char_def_code = 0, //|shorthand_def| for \.//\\chardef
+	math_char_def_code = 1, //|shorthand_def| for \.//\\mathchardef
+	count_def_code = 2, //|shorthand_def| for \.//\\countdef
+	dimen_def_code = 3, //|shorthand_def| for \.//\\dimendef
+	skip_def_code = 4, //|shorthand_def| for \.//\\skipdef
+	mu_skip_def_code = 5, //|shorthand_def| for \.//\\muskipdef
+	toks_def_code = 6 //|shorthand_def| for \.//\\toksdef
+};
+
+enum
+{
+	show_code = 0, // \.//\\show 
+	show_box_code = 1, // \.//\\showbox 
+	show_the_code = 2, // \.//\\showthe 
+	show_lists = 3 // \.//\\showlists
+};
+ 
+/*bad_fmt=6666 //go here if the format file is unacceptable
 too_small(#)==begin wake_up_terminal;
 dump_wd(#)==begin fmt_file^:=#; put(fmt_file);@+end
 dump_int(#)==begin fmt_file^.int:=#; put(fmt_file);@+end
@@ -1146,13 +1200,20 @@ undump_size(#)==begin undump_int(x);
 @ undump_four_ASCII==
 breakpoint=888 //place where a breakpoint is desirable
 write_node_size=2 //number of words in a write/whatsit node
-open_node_size=3 //number of words in an open/whatsit node
-open_node=0 //|subtype| in whatsits that represent files to \.//\\openout
-write_node=1 //|subtype| in whatsits that represent things to \.//\\write
-close_node=2 //|subtype| in whatsits that represent streams to \.//\\closeout
-special_node=3 //|subtype| in whatsits that represent \.//\\special things
-language_node=4 //|subtype| in whatsits that change the current language
-what_lang(#)==link(#+1) //language number, in the range |0..255|
+open_node_size=3 //number of words in an open/whatsit node*/
+
+enum
+{
+	open_node = 0, //|subtype| in whatsits that represent files to \.//\\openout
+	write_node = 1, //|subtype| in whatsits that represent things to \.//\\write
+	close_node = 2, //|subtype| in whatsits that represent streams to \.//\\closeout
+	special_node = 3, //|subtype| in whatsits that represent \.//\\special things
+//	language_node=4 //|subtype| in whatsits that change the current language
+	immediate_code = 4, //command modifier for \.//\\immediate
+	set_language_code = 5 //command modifier for \.//\\setlanguage
+};
+
+/*what_lang(#)==link(#+1) //language number, in the range |0..255|
 what_lhm(#)==type(#+1) //minimum left fragment, in the range |1..63|
 what_rhm(#)==subtype(#+1) //minimum right fragment, in the range |1..63|
 write_tokens(#) == link(#+1) //reference count of token list to write
@@ -1160,8 +1221,6 @@ write_stream(#) == info(#+1) //stream number (0 to 17)
 open_name(#) == link(#+1) //string number of file name to open
 open_area(#) == info(#+2) //string number of file area for |open_name|
 open_ext(#) == link(#+2) //string number of file extension for |open_name|
-immediate_code=4 //command modifier for \.//\\immediate
-set_language_code=5 //command modifier for \.//\\setlanguage
 @ adv_past(#)==@+if subtype(#)=language_node then
 end_write_token==cs_token_flag+end_write*/
 

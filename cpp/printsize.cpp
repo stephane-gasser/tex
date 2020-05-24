@@ -4,10 +4,10 @@
 void printsize(int s)
 {
 	if (s == 0)
-		printesc(412); //textfont
+		printesc("textfont");
 	else 
 		if (s == 16)
-			printesc(413); //scriptfont
+			printesc("scriptfont");
 		else
-		printesc(414); //scriptscriptfont
+		printesc("scriptscriptfont");
 }

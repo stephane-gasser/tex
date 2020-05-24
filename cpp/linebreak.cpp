@@ -389,7 +389,7 @@ void linebreak(int finalwidowpenalty)
 										discwidth += width(s);
 										break;
 									default: 
-										confusion(936); //disc3
+										confusion("disc3");
 								}
 							s = link(s);
 						} while (s);
@@ -420,7 +420,7 @@ void linebreak(int finalwidowpenalty)
 									activewidth[1] += width(s);
 									break;
 								default: 
-									confusion(937); //disc4
+									confusion("disc4");
 							}
 						r--;
 						s = link(s);
@@ -444,7 +444,7 @@ void linebreak(int finalwidowpenalty)
 				case adjust_node:
 					break;
 				default: 
-					confusion(935); //paragraph
+					confusion("paragraph");
 			}
 			prevp = curp;
 			curp = link(curp);

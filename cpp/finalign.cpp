@@ -21,6 +21,7 @@
 #include "newpenalty.h"
 #include "newparamglue.h"
 #include <cmath>
+#include "texte.h"
 
 void finalign(void)
 {
@@ -31,10 +32,10 @@ void finalign(void)
 	scaled rulesave;
 	memoryword auxsave;
 	if (curgroup != 6)
-		confusion(914); //align1
+		confusion("align1");
 	unsave();
 	if (curgroup != 6)
-		confusion(915); //align0
+		confusion("align0"); 
 	unsave();
 	if (nest[nestptr-1].modefield == mmode)
 		o = dimen_par(display_indent_code);
@@ -297,11 +298,11 @@ void finalign(void)
 		doassignments();
 		if (curcmd != math_shift)
 		{
-			printnl(262); //! 
-			print(1169); //Missing $$ inserted
+			printnl("! ");
+			print("Missing $$ inserted"); 
 			helpptr = 2;
-			helpline[1] = 894; //Displays can use special alignments (like \eqalignno)
-			helpline[0] = 895; //only if nothing but the alignment itself is between $$'s.
+			helpline[1] = txt("Displays can use special alignments (like \\eqalignno)");
+			helpline[0] = txt("only if nothing but the alignment itself is between $$'s.");
 			backerror();
 		}
 		else
@@ -309,11 +310,11 @@ void finalign(void)
 			getxtoken();
 			if (curcmd != math_shift)
 			{
-				printnl(262); //! 
-				print(1165); //Display math should end with $$
+				printnl("! ");
+				print("Display math should end with $$");
 				helpptr = 2;
-				helpline[1] = 1166; //The `$' that I just saw supposedly matches a previous `$$'.
-				helpline[0] = 1167; //So I shall assume that you typed `$$' both times.
+				helpline[1] = txt("The `$' that I just saw supposedly matches a previous `$$'.");
+				helpline[0] = txt("So I shall assume that you typed `$$' both times.");
 				backerror();
 			}
 		}

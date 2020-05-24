@@ -17,6 +17,7 @@
 #include "endtokenlist.h"
 #include "idlookup.h"
 #include "globals.h"
+#include "texte.h"
 
 bool isHexDigit(ASCIIcode c)
 {
@@ -84,16 +85,16 @@ void getnext(void)
 						curcmd = cat_code(curchr);
 						switch (curinput.statefield+curcmd)
 						{
-							case 1+ignore:
-							case 17+ignore:
-							case 33+ignore:
-							case 17+spacer:
-							case 33+spacer:
+							case mid_line+ignore:
+							case skip_blanks+ignore:
+							case new_line+ignore:
+							case skip_blanks+spacer:
+							case new_line+spacer:
 								skip = true;
 								break;
-							case 1+escape:
-							case 17+escape:
-							case 33+escape:
+							case mid_line+escape:
+							case skip_blanks+escape:
+							case new_line+escape:
 								if (curinput.locfield > curinput.limitfield)
 									curcs = 513;
 								else
@@ -106,7 +107,7 @@ void getnext(void)
 										curchr = buffer[curinput.locfield];
 										int cat = cat_code(curchr);
 										int k = curinput.locfield+1;
-										curinput.statefield = (cat == letter || cat == spacer) ? 17 : 1;
+										curinput.statefield = (cat == letter || cat == spacer) ? skip_blanks : mid_line;
 										if (cat == letter && k <= curinput.limitfield)
 										{
 											do
@@ -162,57 +163,57 @@ void getnext(void)
 								if (curcmd >= outer_call)
 									checkoutervalidity();
 								break;
-							case 1+active_char:
-							case 17+active_char:
-							case 33+active_char:
+							case mid_line+active_char:
+							case skip_blanks+active_char:
+							case new_line+active_char:
 								curcs = curchr+1;
 								curcmd = eq_type(curcs);
 								curchr = equiv(curcs);
-								curinput.statefield = 1;
+								curinput.statefield = mid_line;
 								if (curcmd >= outer_call)
 									checkoutervalidity();
 								break;
-							case 1+sup_mark:
-							case 17+sup_mark:
-							case 33+sup_mark:
+							case mid_line+sup_mark:
+							case skip_blanks+sup_mark:
+							case new_line+sup_mark:
 								if (prochainCaractereOK(curinput.locfield))
 								{
 									curinput.locfield += processBuffer(curinput.locfield, curchr);
 									superscript2 = true;
 								}
 								else
-									curinput.statefield = 1;
+									curinput.statefield = mid_line;
 								break;
-							case 1+invalid_char:
-							case 17+invalid_char:
-							case 33+invalid_char:
-								printnl(262); //! 
-								print(613); //Text line contains an invalid character
+							case mid_line+invalid_char:
+							case skip_blanks+invalid_char:
+							case new_line+invalid_char:
+								printnl("! ");
+								print("Text line contains an invalid character");
 								helpptr = 2;
-								helpline[1] = 614; //A funny symbol that I can't read has just been input.
-								helpline[0] = 615; //Continue, and I'll forget that it ever happened.
+								helpline[1] = txt("A funny symbol that I can't read has just been input.");
+								helpline[0] = txt("Continue, and I'll forget that it ever happened.");
 								deletionsallowed = false;
 								error();
 								deletionsallowed = true;
 								recommence = true;
 								break;
-							case 1+spacer:
-								curinput.statefield = 17;
+							case mid_line+spacer:
+								curinput.statefield = skip_blanks;
 								curchr = ' ';
 								break;
-							case 1+car_ret:
+							case mid_line+car_ret:
 								curinput.locfield = curinput.limitfield+1;
 								curcmd = spacer;
 								curchr = ' ';
 								break;
-							case 17+car_ret:
-							case 1+comment:
-							case 17+comment:
-							case 33+comment:
+							case skip_blanks+car_ret:
+							case mid_line+comment:
+							case skip_blanks+comment:
+							case new_line+comment:
 								curinput.locfield = curinput.limitfield+1;
 								skip = true;
 								break;
-							case 33+car_ret:
+							case new_line+car_ret:
 								curinput.locfield = curinput.limitfield+1;
 								curcs = parloc;
 								curcmd = eq_type(curcs);
@@ -220,37 +221,37 @@ void getnext(void)
 								if (curcmd >= outer_call)
 									checkoutervalidity();
 								break;
-							case 17+left_brace:
-							case 33+left_brace:
-								curinput.statefield = 1;
-							case 1+left_brace:
+							case skip_blanks+left_brace:
+							case new_line+left_brace:
+								curinput.statefield = mid_line;
+							case mid_line+left_brace:
 								alignstate++;
 								break;
-							case 17+right_brace:
-							case 33+right_brace:
-								curinput.statefield = 1;
-							case 1+right_brace:
+							case skip_blanks+right_brace:
+							case new_line+right_brace:
+								curinput.statefield = mid_line;
+							case mid_line+right_brace:
 								alignstate--;
 								break;
-							case 17+math_shift:
-							case 17+tab_mark:
-							case 17+mac_param:
-							case 17+sub_mark:
-							case 17+letter:
-							case 17+other_char:
-							case 33+math_shift:
-							case 33+tab_mark:
-							case 33+mac_param:
-							case 33+sub_mark:
-							case 33+letter:
-							case 33+other_char:
-								curinput.statefield = 1;
+							case skip_blanks+math_shift:
+							case skip_blanks+tab_mark:
+							case skip_blanks+mac_param:
+							case skip_blanks+sub_mark:
+							case skip_blanks+letter:
+							case skip_blanks+other_char:
+							case new_line+math_shift:
+							case new_line+tab_mark:
+							case new_line+mac_param:
+							case new_line+sub_mark:
+							case new_line+letter:
+							case new_line+other_char:
+								curinput.statefield = mid_line;
 						}
 					} while (superscript2 && !skip && !recommence);
 				}
 				else
 				{
-					curinput.statefield = 33;
+					curinput.statefield = new_line;
 					if (curinput.namefield > 17)
 					{
 						line++;
@@ -301,10 +302,10 @@ void getnext(void)
 								if (int_par(end_line_char_code) < 0 || int_par(end_line_char_code) > 255)
 									curinput.limitfield++;
 								if (curinput.limitfield == curinput.startfield)
-									printnl(616); //(Please type a command or say `\end')
+									printnl("(Please type a command or say `\\end')");
 								println();
 								First = curinput.startfield;
-								print('*');
+								printchar('*');
 								terminput();
 								curinput.limitfield = last;
 								if (int_par(end_line_char_code) < 0 || int_par(end_line_char_code) > 255)
@@ -315,7 +316,7 @@ void getnext(void)
 								curinput.locfield = curinput.startfield;
 							}
 							else
-								fatalerror(617); //*** (job aborted, no legal \end found)
+								fatalerror("*** (job aborted, no legal \end found)");
 						}
 					}
 					if (!recommence)
@@ -379,7 +380,7 @@ void getnext(void)
 		if (!recommence && curcmd <= out_param && curcmd >= tab_mark && alignstate == 0)
 		{
 			if (scannerstatus == 4 || curalign == 0)
-				fatalerror(595); //(interwoven alignment preambles are not allowed)
+				fatalerror("(interwoven alignment preambles are not allowed)");
 			curcmd = info(curalign+5);
 			info(curalign+5) = curchr;
 			if (curcmd == omit)

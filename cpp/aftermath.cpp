@@ -17,6 +17,7 @@
 #include "newparamglue.h"
 #include "newkern.h"
 #include "resumeafterdisplay.h"
+#include "texte.h"
 
 void aftermath(void)
 {
@@ -29,24 +30,24 @@ void aftermath(void)
 	bool danger = false;
 	if (fontparams[fam_fnt(2)] < 22 || fontparams[fam_fnt(18)] < 22 || fontparams[fam_fnt(34)] < 22)
 	{
-		printnl(262); //! 
-		print(1157); //Math formula deleted: Insufficient symbol fonts
+		printnl("! ");
+		print("Math formula deleted: Insufficient symbol fonts");
 		helpptr = 3;
-		helpline[2] = 1158; //0Sorry, but I can't typeset math unless \textfont 2
-		helpline[1] = 1159; //and \scriptfont 2 and \scriptscriptfont 2 have all
-		helpline[0] = 1160; //The \fontdimen values needed in math symbol fonts.
+		helpline[2] = txt("Sorry, but I can't typeset math unless \\textfont 2");
+		helpline[1] = txt("and \\scriptfont 2 and \\scriptscriptfont 2 have all");
+		helpline[0] = txt("The \\fontdimen values needed in math symbol fonts.");
 		error();
 		flushmath();
 		danger = true;
 	}
 	else if (fontparams[fam_fnt(3)] < 13 || fontparams[fam_fnt(19)] < 13 || fontparams[fam_fnt(35)] < 13)
 	{
-		printnl(262); //! 
-		print(1161); //Math formula deleted: Insufficient extension fonts
+		printnl("! ");
+		print("Math formula deleted: Insufficient extension fonts"); 
 		helpptr = 3;
-		helpline[2] = 1162; //Sorry, but I can't typeset math unless \textfont 3
-		helpline[1] = 1163; //and \scriptfont 3 and \scriptscriptfont 3 have all
-		helpline[0] = 1164; //the \fontdimen values needed in math extension fonts.
+		helpline[2] = txt("Sorry, but I can't typeset math unless \\textfont 3");
+		helpline[1] = txt("and \\scriptfont 3 and \\scriptscriptfont 3 have all");
+		helpline[0] = txt("the \\fontdimen values needed in math extension fonts.");
 		error();
 		flushmath();
 		danger = true;
@@ -57,11 +58,11 @@ void aftermath(void)
 	if (mode == -m)
 	{
 		getxtoken();
-		printnl(262); //! 
-		print(1165); //Display math should end with $$
+		printnl("! ");
+		print("Display math should end with $$"); 
 		helpptr = 2;
-		helpline[1] = 1166; //The `$' that I just saw supposedly matches a previous `$$'.
-		helpline[0] = 1167; //So I shall assume that you typed `$$' both times.
+		helpline[1] = txt("The `$' that I just saw supposedly matches a previous `$$'.");
+		helpline[0] = txt("So I shall assume that you typed `$$' both times.");
 		backerror();
 		curmlist = p;
 		curstyle = 2;
@@ -75,12 +76,12 @@ void aftermath(void)
 		danger = false;
 		if (fontparams[fam_fnt(2)] < 22 || fontparams[fam_fnt(18)] < 22 || fontparams[fam_fnt(34)] < 22)
 		{
-			printnl(262); //! 
-			print(1157); //Math formula deleted: Insufficient symbol fonts
+			printnl("! ");
+			print("Math formula deleted: Insufficient symbol fonts");
 			helpptr = 3;
-			helpline[2] = 1158; //Sorry, but I can't typeset math unless \textfont 2
-			helpline[1] = 1159; //and \scriptfont 2 and \scriptscriptfont 2 have all
-			helpline[0] = 1160; //the \fontdimen values needed in math symbol fonts.
+			helpline[2] = txt("Sorry, but I can't typeset math unless \\textfont 2");
+			helpline[1] = txt("and \\scriptfont 2 and \\scriptscriptfont 2 have all");
+			helpline[0] = txt("the \\fontdimen values needed in math symbol fonts.");
 			error();
 			flushmath();
 			danger = true;
@@ -88,12 +89,12 @@ void aftermath(void)
 		else 
 			if (fontparams[fam_fnt(3)] < 13 || fontparams[fam_fnt(19)] < 13 || fontparams[fam_fnt(35)] < 13)
 			{
-				printnl(262); //! 
-				print(1161); //Math formula deleted: Insufficient extension fonts
+				printnl("! "); 
+				print("Math formula deleted: Insufficient extension fonts"); 
 				helpptr = 3;
-				helpline[2] = 1162; //Sorry, but I can't typeset math unless \textfont 3
-				helpline[1] = 1163; //and \scriptfont 3 and \scriptscriptfont 3 have all
-				helpline[0] = 1164; //the \fontdimen values needed in math extension fonts.
+				helpline[2] = txt("Sorry, but I can't typeset math unless \\textfont 3");
+				helpline[1] = txt("and \\scriptfont 3 and \\scriptscriptfont 3 have all");
+				helpline[0] = txt("the \\fontdimen values needed in math extension fonts.");
 				error();
 				flushmath();
 				danger = true;
@@ -124,11 +125,11 @@ void aftermath(void)
 			getxtoken();
 			if (curcmd != math_shift)
 			{
-				printnl(262); //! 
-				print(1165); //Display math should end with $$
+				printnl("! ");
+				print("Display math should end with $$");
 				helpptr = 2;
-				helpline[1] = 1166; //The `$' that I just saw supposedly matches a previous `$$'.
-				helpline[0] = 1167; //So I shall assume that you typed `$$' both times.
+				helpline[1] = txt("The `$' that I just saw supposedly matches a previous `$$'.");
+				helpline[0] = txt("So I shall assume that you typed `$$' both times.");
 				backerror();
 			}
 		}

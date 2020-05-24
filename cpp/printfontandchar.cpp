@@ -2,18 +2,20 @@
 #include "printesc.h"
 #include "printchar.h"
 #include "print.h"
+#include "texte.h"
 
 void printfontandchar(int p)
 {
 	if (p > memend)
-		printesc(309); //CLOBBERED.
+		printesc("CLOBBERED.");
 	else
 	{
 		if (type(p) < 0 || type(p) > fontmax)
 		printchar('*');
 		else
-		printesc(hash[frozen_null_font+type(p)].rh);
+		printesc(TXT(text(frozen_null_font+type(p))));
+		printesc("FONT");
 		printchar(' ');
-		print(subtype(p));
+		print(TXT(subtype(p)));
 	}
 }

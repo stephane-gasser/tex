@@ -10,6 +10,7 @@
 #include "makestring.h"
 #include "printesc.h"
 #include "error.h"
+#include "texte.h"
 
 void newhyphexceptions(void)
 {
@@ -50,11 +51,11 @@ void newhyphexceptions(void)
 				else 
 					if (lc_code(curchr) == 0)
 					{
-						printnl(262); //! 
-						print(944); //Not a letter
+						printnl("! ");
+						print("Not a letter");
 						helpptr = 2;
-						helpline[1] = 945; //Letters in \hyphenation words must have \lccode>0.
-						helpline[0] = 946; //7Proceed; I'll ignore the character I just read.
+						helpline[1] = txt("Letters in \\hyphenation words must have \\lccode>0.");
+						helpline[0] = txt("Proceed; I'll ignore the character I just read.");
 						error();
 					}
 					else 
@@ -76,7 +77,7 @@ void newhyphexceptions(void)
 					n++;
 					hc[n] = curlang;
 					if (poolptr+n > poolsize)
-						overflow(257, poolsize-initpoolptr); //pool size
+						overflow("pool size", poolsize-initpoolptr);
 					h = 0;
 					for (j = 1; j <= n; j++)
 					{
@@ -85,7 +86,7 @@ void newhyphexceptions(void)
 					}
 					s = makestring();
 					if (hyphcount == hyph_size)
-						overflow(947, hyph_size); //exception dictionary
+						overflow("exception dictionary", hyph_size);
 					hyphcount++;
 					while (hyphword[h])
 					{
@@ -148,13 +149,13 @@ void newhyphexceptions(void)
 				p = 0;
 				break;
 			default:
-				printnl(262); //! 
-				print(680); //Improper 
-				printesc(940); //hyphenation
-				print(941); // will be flushed
+				printnl("! ");
+				print("Improper ");
+				printesc("hyphenation");
+				print(" will be flushed");
 				helpptr = 2;
-				helpline[1] = 942; //Hyphenation exceptions must contain only letters
-				helpline[0] = 943; //and hyphens. But continue; I'll forgive and forget.
+				helpline[1] = txt("Hyphenation exceptions must contain only letters");
+				helpline[0] = txt("and hyphens. But continue; I'll forgive and forget.");
 				error();
 		}
 		getxtoken();

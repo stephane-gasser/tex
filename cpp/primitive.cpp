@@ -1,22 +1,24 @@
 #include "primitive.h"
 #include "idlookup.h"
+#include "texte.h"
 
-void primitive(strnumber s, quarterword c, halfword o)
+void primitive(ASCIIcode s, quarterword c, halfword o) 
 {
-	if (s < 256)
-		curval = s+257;
-	else
-	{
-		int k = strstart[s];
-		int l = strstart[s+1]-k;
-		for (int j = 0; j < l; j++)
-			buffer[j] = strpool[k+j];
-		curval = idlookup(0, l);
-		strptr--;
-		poolptr = strstart[strptr];
-		hash[curval].rh = s;
-	}
-	eq_level(curval) = 1;
+	curval = s+single_base;
+	eq_level(curval) = level_one;
+	eq_type(curval) = c;
+	equiv(curval) = o;
+}
+
+void primitive(const std::string &t, quarterword c, halfword o) 
+{
+	strnumber s = txt(t);
+	t.copy(reinterpret_cast<char *>(buffer), bufsize+1);
+	curval = idlookup(0, t.size());
+	strptr--;
+	poolptr = strstart[strptr];
+	text(curval) = s;
+	eq_level(curval) = level_one;
 	eq_type(curval) = c;
 	equiv(curval) = o;
 }

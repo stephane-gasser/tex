@@ -7,6 +7,7 @@
 #include "backinput.h"
 #include "scansomethinginternal.h"
 #include "error.h"
+#include "texte.h"
 
 void scanint(void)
 {
@@ -43,11 +44,11 @@ void scanint(void)
 				curval = curtok-0x11'00;
 		if (curval > 0xFF)
 		{
-			printnl(262); //! 
-			print(698); //Improper alphabetic constant
+			printnl("! ");
+			print("Improper alphabetic constant");
 			helpptr = 2;
-			helpline[1] = 699; //A one-character control sequence belongs after a ` mark.
-			helpline[0] = 700; //So I'm essentially inserting \0 here.
+			helpline[1] = txt("A one-character control sequence belongs after a ` mark.");
+			helpline[0] = txt("So I'm essentially inserting \\0 here.");
 			curval = '0';
 			backerror();
 		}
@@ -101,11 +102,11 @@ void scanint(void)
 				{
 					if (OKsofar)
 					{
-						printnl(262); //! 
-						print(701); //Number too big
+						printnl("! ");
+						print("Number too big");
 						helpptr = 2;
-						helpline[1] = 702; //I can only go up to 2147483647='17777777777="7FFFFFFF,
-						helpline[0] = 703; //so I'm using that number instead of yours.
+						helpline[1] = txt("I can only go up to 2147483647='17777777777=\"7FFFFFFF,");
+						helpline[0] = txt("so I'm using that number instead of yours.");
 						error();
 						curval = infinity;
 						OKsofar = false;
@@ -117,12 +118,12 @@ void scanint(void)
 			}
 			if (vacuous)
 			{
-				printnl(262); //! 
-				print(664); //Missing number, treated as zero
+				printnl("! ");
+				print("Missing number, treated as zero");
 				helpptr = 3;
-				helpline[2] = 665; //A number should have been here; I inserted `0'.
-				helpline[1] = 666; //(If you can't figure out why I needed to see a number,
-				helpline[0] = 667; //look up `weird error' in the index to The TeXbook.)
+				helpline[2] = txt("A number should have been here; I inserted `0'.");
+				helpline[1] = txt("(If you can't figure out why I needed to see a number,");
+				helpline[0] = txt("look up `weird error' in the index to The TeXbook.)");
 				backerror();
 			}
 			else 

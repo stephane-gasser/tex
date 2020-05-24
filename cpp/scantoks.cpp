@@ -12,6 +12,7 @@
 #include "xtoken.h"
 #include "getxtoken.h"
 #include "sprintcs.h"
+#include "texte.h"
 
 halfword scantoks(bool macrodef, bool xpand)
 {
@@ -39,12 +40,12 @@ halfword scantoks(bool macrodef, bool xpand)
 				p = q;
 				if (curcmd == right_brace)
 				{
-					printnl(262); //! 
-					print(657); //Missing { inserted
+					printnl("! ");
+					print("Missing { inserted"); 
 					alignstate++;
 					helpptr = 2;
-					helpline[1] = 742; //Where was the left brace? You said something like `\def\a}',
-					helpline[0] = 743; //which I'm going to interpret as `\def\a{}'.
+					helpline[1] = txt("Where was the left brace? You said something like `\\def\\a}',");
+					helpline[0] = txt("which I'm going to interpret as `\\def\\a{}'.");
 					error();
 					l40 = true;
 					break;
@@ -72,10 +73,10 @@ halfword scantoks(bool macrodef, bool xpand)
 				}
 				if (t == other_char*0x01'00+'9')
 				{
-					printnl(262); //! 
-					print(744); //You already have nine parameters
+					printnl("! ");
+					print("You already have nine parameters");
 					helpptr = 1;
-					helpline[0] = 745; //I'm going to ignore the # sign you just used.
+					helpline[0] = txt("I'm going to ignore the # sign you just used.");
 					error();
 				}
 				else
@@ -83,11 +84,11 @@ halfword scantoks(bool macrodef, bool xpand)
 					t++;
 					if (curtok != t)
 					{
-						printnl(262); //! 
-						print(746); //Parameters must be numbered consecutively
+						printnl("! "); 
+						print("Parameters must be numbered consecutively");
 						helpptr = 2;
-						helpline[1] = 747; //I've inserted the digit you should have used after the #.
-						helpline[0] = 748; //Type `1' to delete what you did use.
+						helpline[1] = txt("I've inserted the digit you should have used after the #.");
+						helpline[0] = txt("Type `1' to delete what you did use.");
 						backerror();
 					};
 					curtok = s;
@@ -150,13 +151,13 @@ halfword scantoks(bool macrodef, bool xpand)
 					if (curcmd != mac_param)
 						if (curtok <= other_char*0x01'00+'0' || curtok > t) 
 						{
-							printnl(262); //! 
-							print(749); //Illegal parameter number in definition of 
+							printnl("! ");
+							print("Illegal parameter number in definition of "); 
 							sprintcs(warningindex);
 							helpptr = 3;
-							helpline[2] = 750; //You meant to type ## instead of #, right?
-							helpline[1] = 751; //Or maybe a } was forgotten somewhere earlier, and things
-							helpline[0] = 752; //are all screwed up? I'm going to assume that you meant ##.
+							helpline[2] = txt("You meant to type ## instead of #, right?");
+							helpline[1] = txt("Or maybe a } was forgotten somewhere earlier, and things");
+							helpline[0] = txt("are all screwed up? I'm going to assume that you meant ##.");
 							backerror();
 							curtok = s;
 						}

@@ -7,26 +7,26 @@
 
 void runaway(void)
 {
-	if (scannerstatus > 1)
+	if (scannerstatus > skipping)
 	{
-		printnl(569); //Runaway 
+		printnl("Runaway ");
 		halfword p;
 		switch (scannerstatus)
 		{
-			case 2:
-				print(570); //definition
+			case defining:
+				print("definition");
 				p = defref;
 				break;
-			case 3:
-				print(571); //argument
+			case matching:
+				print("argument");
 				p = temp_head;
 				break;
-			case 4:
-				print(572); //preamble
+			case aligning:
+				print("preamble");
 				p = hold_head;
 				break;
-			case 5:
-				print(573); //text
+			case absorbing:
+				print("text");
 				p = defref;
 		}
 		printchar('?');

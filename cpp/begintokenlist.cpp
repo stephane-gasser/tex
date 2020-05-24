@@ -14,7 +14,7 @@ void begintokenlist(halfword p, quarterword t)
 	{
 		maxinstack = inputptr;
 		if (inputptr == stacksize)
-			overflow(593, stacksize); //input stack size
+			overflow("input stack size", stacksize);
 	}
 	inputstack[inputptr++] = curinput;
 	curinput.statefield = 0;
@@ -31,19 +31,19 @@ void begintokenlist(halfword p, quarterword t)
 			if (int_par(tracing_macros_code) > 1)
 			{
 				begindiagnostic();
-				printnl(338); //
+				printnl("");
 				switch (t)
 				{
 					case 14: 
-						printesc(351); //mark
+						printesc("mark");
 						break;
 					case 15: 
-						printesc(594); //write
+						printesc("write");
 						break;
 					default: 
 						printcmdchr(72, t+3407);
 				}
-				print(556); //->
+				print("->");
 				tokenshow(p);
 				enddiagnostic(false);
 			}

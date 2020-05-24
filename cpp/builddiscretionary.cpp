@@ -13,6 +13,7 @@
 #include "newsavelevel.h"
 #include "scanleftbrace.h"
 #include "pushnest.h"
+#include "texte.h"
 
 void builddiscretionary(void)
 {
@@ -24,13 +25,13 @@ void builddiscretionary(void)
 	{
 		if (p < himemmin && type(p) > 2 && type(p) != kern_node && type(p) != ligature_node)
 		{
-			printnl(262); //! 
-			print(1106); //Improper discretionary list
+			printnl("! "); 
+			print("Improper discretionary list"); 
 			helpptr = 1;
-			helpline[0] = 1107; //Discretionary lists must contain only boxes and kerns.
+			helpline[0] = txt("Discretionary lists must contain only boxes and kerns.");
 			error();
 			begindiagnostic();
-			printnl(1108); //The following discretionary sublist has been deleted:
+			printnl("The following discretionary sublist has been deleted:");
 			showbox(p);
 			enddiagnostic(true);
 			flushnodelist(p);
@@ -54,12 +55,12 @@ void builddiscretionary(void)
 		case 2:
 			if (n > 0 && abs(mode) == mmode)
 			{
-				printnl(262); //! 
-				print(1100); //Illegal math 
-				printesc(349); //discretionary
+				printnl("! "); 
+				print("Illegal math ");
+				printesc("discretionary");
 				helpptr = 2;
-				helpline[1] = 1101; //Sorry: The third part of a discretionary break must be
-				helpline[0] = 1102; //empty, in math formulas. I had to delete your third part.
+				helpline[1] = txt("Sorry: The third part of a discretionary break must be");
+				helpline[0] = txt("empty, in math formulas. I had to delete your third part.");
 				flushnodelist(p);
 				n = 0;
 				error();
@@ -70,11 +71,11 @@ void builddiscretionary(void)
 				subtype(tail) = n;
 			else
 			{
-				printnl(262); //! 
-				print(1103); //Discretionary list is too long
+				printnl("! ");
+				print("Discretionary list is too long");
 				helpptr = 2;
-				helpline[1] = 1104; //Wow---I never thought anybody would tweak me here.
-				helpline[0] = 1105; //You can't seriously need such a huge discretionary list?
+				helpline[1] = txt("Wow---I never thought anybody would tweak me here.");
+				helpline[0] = txt("You can't seriously need such a huge discretionary list?");
 				error();
 			}
 			if (n > 0)

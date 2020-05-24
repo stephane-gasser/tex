@@ -179,6 +179,6 @@ void postlinebreak(int finalwidowpenalty)
 			}
 	} while (curp);
 	if (curline != bestline || link(temp_head))
-		confusion(938); //line breaking
+		confusion("line breaking");
 	prev_graf = bestline-1;
 }

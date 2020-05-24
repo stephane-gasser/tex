@@ -31,7 +31,7 @@ void printchar(ASCIIcode s)
 		case log_only:
 			logfile << xchr[s];
 			fileoffset++;
-			if (fileoffset = maxprintline)
+			if (fileoffset == maxprintline)
 			println();
 			break;
 		case term_only:

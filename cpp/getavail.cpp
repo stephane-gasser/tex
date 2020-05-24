@@ -16,7 +16,7 @@ halfword getavail(void)
 			if (himemmin <= lomemmax)
 			{
 				runaway();
-				overflow(300, memmax+1-memmin); //main memory size
+				overflow("main memory size", memmax+1-memmin);
 			}
 		}
 	link(p) = 0;

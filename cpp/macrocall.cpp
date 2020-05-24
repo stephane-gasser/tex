@@ -20,6 +20,7 @@
 #include "showtokenlist.h"
 #include "enddiagnostic.h"
 #include "overflow.h"
+#include "texte.h"
 
 void macrocall(void)
 {
@@ -81,15 +82,15 @@ void macrocall(void)
 				if (s != r)
 					if (s == 0)
 					{
-						printnl(262); //! 
-						print(650); //Use of 
+						printnl("! ");
+						print("Use of ");
 						sprintcs(warningindex);
-						print(651); // doesn't match its definition
+						print(" doesn't match its definition");
 						helpptr = 4;
-						helpline[3] = 652; //If you say, e.g., `\def\a1{...}', then you must always
-						helpline[2] = 653; //put `1' after `\a', since control sequence names are
-						helpline[1] = 654; //made up of letters only. The macro here has not been
-						helpline[0] = 655; //followed by the required stuff, so I'm ignoring it.
+						helpline[3] = txt("If you say, e.g., `\\def\\a1{...}', then you must always");
+						helpline[2] = txt("put `1' after `\\a', since control sequence names are");
+						helpline[1] = txt("made up of letters only. The macro here has not been");
+						helpline[0] = txt("followed by the required stuff, so I'm ignoring it.");
 						error();
 						scannerstatus = savescannerstatus;
 						warningindex = savewarningindex;
@@ -137,14 +138,14 @@ void macrocall(void)
 						if (longstate == call)
 						{
 							runaway();
-							printnl(262); //! 
-							print(645); //Paragraph ended before 
+							printnl("! ");
+							print("Paragraph ended before ");
 							sprintcs(warningindex);
-							print(646); // was complete
+							print(" was complete");
 							helpptr = 3;
-							helpline[2] = 647; //I suspect you've forgotten a `}', causing me to apply this
-							helpline[1] = 648; //control sequence to too much text. How can we recover?
-							helpline[0] = 649; //My plan is to forget the whole thing and hope for the best.
+							helpline[2] = txt("I suspect you've forgotten a `}', causing me to apply this");
+							helpline[1] = txt("control sequence to too much text. How can we recover?");
+							helpline[0] = txt("My plan is to forget the whole thing and hope for the best.");
 							backerror();
 						}
 						pstack[n] = link(temp_head);
@@ -179,14 +180,14 @@ void macrocall(void)
 									if (longstate == call)
 									{
 										runaway();
-										printnl(262); //! 
-										print(645); //Paragraph ended before 
+										printnl("! ");
+										print("Paragraph ended before ");
 										sprintcs(warningindex);
-										print(646); // was complete
+										print(" was complete");
 										helpptr = 3;
-										helpline[2] = 647; //I suspect you've forgotten a `}', causing me to apply this
-										helpline[1] = 648; //control sequence to too much text. How can we recover?
-										helpline[0] = 649; //My plan is to forget the whole thing and hope for the best.
+										helpline[2] = txt("I suspect you've forgotten a `}', causing me to apply this"); 
+										helpline[1] = txt("control sequence to too much text. How can we recover?");
+										helpline[0] = txt("My plan is to forget the whole thing and hope for the best.");
 										backerror();
 									}
 									pstack[n] = link(temp_head);
@@ -216,19 +217,19 @@ void macrocall(void)
 					else
 					{
 						backinput();
-						printnl(262); //! 
-						print(637); //Argument of 
+						printnl("! ");
+						print("Argument of ");
 						sprintcs(warningindex);
-						print(638); // has an extra }
+						print(" has an extra }");
 						helpptr = 6;
-						helpline[5] = 639; //I've run across a `}' that doesn't seem to match anything.
-						helpline[4] = 640; //For example, `\def\a#1{...}' and `\a}' would produce
-						helpline[3] = 641; //this error. If you simply proceed now, the `\par' that
-						helpline[2] = 642; //I've just inserted will cause me to report a runaway
-						helpline[1] = 643; //argument that might be the root of the problem. But if
-						helpline[0] = 644; //your `}' was spurious, just type `2' and it will go away.
+						helpline[5] = txt("I've run across a `}' that doesn't seem to match anything.");
+						helpline[4] = txt("For example, `\\def\\a#1{...}' and `\\a}' would produce");
+						helpline[3] = txt("this error. If you simply proceed now, the `\\par' that");
+						helpline[2] = txt("I've just inserted will cause me to report a runaway");
+						helpline[1] = txt("argument that might be the root of the problem. But if");
+						helpline[0] = txt("your `}' was spurious, just type `2' and it will go away.");
 						alignstate++;
-						longstate = 111;
+						longstate = call;
 						curtok = partoken;
 						inserror();
 						continue;
@@ -266,9 +267,9 @@ void macrocall(void)
 				if (int_par(tracing_macros_code) > 0)
 				{
 					begindiagnostic();
-					printnl(matchchr);
+					printnl(std::string(1, char(matchchr)));
 					printint(n);
-					print(656); //<-
+					print("<-");
 					showtokenlist(pstack[n-1], 0, 1000);
 					enddiagnostic(false);
 				}
@@ -286,7 +287,7 @@ void macrocall(void)
 		{
 			maxparamstack =	paramptr+n;
 			if (maxparamstack > paramsize)
-				overflow(636, paramsize); //parameter stack size
+				overflow("parameter stack size", paramsize);
 		}
 		for (int m = 0; m < n; m++)
 			paramstack[paramptr+m] = pstack[m];

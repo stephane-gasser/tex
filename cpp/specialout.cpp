@@ -22,7 +22,7 @@ void specialout(halfword p)
 	showtokenlist(link(link(p+1)), 0, poolsize-poolptr);
 	selector = oldsetting;
 	if (poolptr+1 > poolsize)
-		overflow(257, poolsize-initpoolptr); //pool size
+		overflow("pool size", poolsize-initpoolptr); 
 	if (poolptr-strstart[strptr] < 256)
 	{
 		dvibuf[dviptr++] = xxx1;

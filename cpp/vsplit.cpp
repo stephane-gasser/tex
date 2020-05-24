@@ -8,6 +8,7 @@
 #include "prunepagetop.h"
 #include "freenode.h"
 #include "vpackage.h"
+#include "texte.h"
 
 halfword vsplit(eightbits n, scaled h)
 {
@@ -23,14 +24,14 @@ halfword vsplit(eightbits n, scaled h)
 		return 0;
 	if (type(v) != 1)
 	{
-		printnl(262); //! 
-		print(338); // 
-		printesc(964); //vsplit
-		print(965); // needs a 
-		printesc(966); //vbox
+		printnl("! ");
+		print("");
+		printesc("vsplit");
+		print(" needs a ");
+		printesc("vbox");
 		helpptr = 2;
-		helpline[1] = 967; //The box you are trying to split is an \hbox.
-		helpline[0] = 968; //I can't split such a box, so I'll leave it alone.
+		helpline[1] = txt("The box you are trying to split is an \\hbox.");
+		helpline[0] = txt("I can't split such a box, so I'll leave it alone.");
 		error();
 		return 0;
 	}

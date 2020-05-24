@@ -2,6 +2,7 @@
 #include "printesc.h"
 #include "printchar.h"
 #include "print.h"
+#include "texte.h"
 
 void printcs(int p)
 {
@@ -9,30 +10,30 @@ void printcs(int p)
 		if (p >= 257)
 			if (p == 513) 
 			{
-				printesc(504); //csname
-				printesc(505); //endcsname
+				printesc("csname");
+				printesc("endcsname");
 				printchar(' ');
 			}
 			else
 			{
-				printesc(p-257);
+				printesc(std::string(1, char(p-257)));
 				if (cat_code(p-257) == letter)
 					printchar(' ');
 			}
 		else 
 			if (p < 1)
-				printesc(506); //IMPOSSIBLE.
+				printesc("IMPOSSIBLE.");
 			else
-				print(p-1);
+				printchar(p-1);
 	else 
-		if (p >= 2881)
-			printesc(506); //IMPOSSIBLE.
+		if (p >= undefined_control_sequence)
+			printesc("IMPOSSIBLE.");
 		else 
-			if (hash[p].rh < 0 || hash[p].rh >= strptr)
-				printesc(507); //NONEXISTENT.
+			if (text(p) < 0 || text(p) >= strptr)
+				printesc("NONEXISTENT.");
 			else
 			{
-				printesc(hash[p].rh);
+				printesc(TXT(hash[p].rh));
 				printchar(' ');
 			}
 }

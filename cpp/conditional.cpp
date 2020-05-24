@@ -19,6 +19,7 @@
 #include "changeiflimit.h"
 #include "printesc.h"
 #include "error.h"
+#include "texte.h"
 
 void conditional(void)
 {
@@ -41,8 +42,8 @@ void conditional(void)
 	smallnumber savescannerstatus;
 	switch (thisif)
 	{
-		case 0:
-		case 1:
+		case if_char_code:
+		case if_cat_code:
 			getxtoken();
 			if (curcmd == escape && curchr == 257)
 			{
@@ -70,14 +71,14 @@ void conditional(void)
 				curcmd = 0;
 				curchr = 256;
 			}
-			if (thisif == 0)
+			if (thisif == if_char_code)
 				b = n == curchr;
 			else
 				b = m == curcmd;
 			break;
-		case 2:
-		case 3:
-			if (thisif == 2)
+		case if_int_code:
+		case if_dim_code:
+			if (thisif == if_int_code)
 				scanint();
 			else
 				scandimen(false, false,	false);
@@ -89,15 +90,15 @@ void conditional(void)
 				r = curtok-0x0C'00;
 			else
 			{
-				printnl(262); //! 
-				print(780); //Missing = inserted for 
-				printcmdchr(105, thisif);
+				printnl("! ");
+				print("Missing = inserted for ");
+				printcmdchr(if_test, thisif);
 				helpptr = 1;
-				helpline[0] = 781; //I was expecting to see `<', `=', or `>'. Didn't.
+				helpline[0] = txt("I was expecting to see `<', `=', or `>'. Didn't.");
 				backerror();
 				r = '=';
 			}
-			if (thisif == 2)
+			if (thisif == if_int_code)
 				scanint();
 			else
 				scandimen(false, false, false);
@@ -113,39 +114,39 @@ void conditional(void)
 					b = n > curval;
 			}
 			break;
-		case 4:
+		case if_odd_code:
 			scanint();
 			b = curval%2;
 			break;
-		case 5: 
-			b = abs(mode) == 1;
+		case if_vmode_code: 
+			b = abs(mode) == vmode;
 			break;
-		case 6: 
-			b = abs(mode) == 102;
+		case if_hmode_code: 
+			b = abs(mode) == hmode;
 			break;
-		case 7: 
-			b = abs(mode) == 203;
+		case if_mmode_code: 
+			b = abs(mode) == mmode;
 			break;
-		case 8: 
+		case if_inner_code: 
 			b = mode < 0;
 			break;
-		case 9:
-		case 10:
-		case 11:
+		case if_void_code:
+		case if_hbox_code:
+		case if_vbox_code:
 			scaneightbitint();
 			p = box(curval);
-			if (thisif == 9)
+			if (thisif == if_void_code)
 				b = p == 0;
 			else 
 				if (p == 0)
 					b = false;
 				else 
-					if (thisif == 10)
+					if (thisif == if_hbox_code)
 						b = type(p) == 0;
 					else
 						b = type(p) == 1;
 			break;
-		case 12:
+		case ifx_code:
 			savescannerstatus = scannerstatus;
 			scannerstatus = 0;
 			getnext();
@@ -179,23 +180,23 @@ void conditional(void)
 				}
 			scannerstatus = savescannerstatus;
 			break;
-		case 13:
+		case if_eof_code:
 			scanfourbitint();
 			b = readopen[curval] == 2;
 			break;
-		case 14: 
+		case if_true_code: 
 			b = true;
 			break;
-		case 15: 
+		case if_false_code: 
 			b = false;
 			break;
-		case 16:
+		case if_case_code:
 			scanint();
 			n = curval;
 			if (int_par(tracing_commands_code) > 1)
 			{
 				begindiagnostic();
-				print(782); //{case 
+				print("{case ");
 				printint(n);
 				printchar('}');
 				enddiagnostic(false);
@@ -239,9 +240,9 @@ void conditional(void)
 	{
 		begindiagnostic();
 		if (b)
-			print(778); //{true}
+			print("{true}");
 		else
-			print(779); //{false}
+			print("{false}");
 		enddiagnostic(false);
 	}
 	if (b)
@@ -269,11 +270,11 @@ void conditional(void)
 					iflimit = 2;
 				return;
 			}
-			printnl(262); //! 
-			print(776); //Extra 
-			printesc(774); //or
+			printnl("! "); 
+			print("Extra ");
+			printesc("or");
 			helpptr = 1;
-			helpline[0] = 777; //I'm ignoring this; it doesn't match any \if.
+			helpline[0] = txt("I'm ignoring this; it doesn't match any \\if.");
 			error();
 		}
 		else 

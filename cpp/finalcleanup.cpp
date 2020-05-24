@@ -25,29 +25,29 @@ void finalcleanup(void)
 		endfilereading();
 	while (openparens > 0)
 	{
-		print(1275); // )
+		print(" )");
 		openparens--;
 	}
 	if (curlevel > 1)
 	{
-		printnl('(');
-		printesc(1276); //end occurred 
-		print(1277); //inside a group at level 
+		printnl("(");
+		printesc("end occurred ");
+		print("inside a group at level ");
 		printint(curlevel-1);
 		printchar(')');
 	}
 	while (condptr)
 	{
-		printnl('(');
-		printesc(1276); //end occurred 
-		print(1278); //when 
-		printcmdchr(105, curif);
+		printnl("(");
+		printesc("end occurred ");
+		print("when ");
+		printcmdchr(if_test, curif);
 		if (ifline)
 		{
-			print(1279); // on line 
+			print(" on line ");
 			printint(ifline);
 		}
-		print(1280); // was incomplete)
+		print(" was incomplete)");
 		ifline = if_line_field(condptr);
 		curif = subtype(condptr);
 		tempptr = condptr;
@@ -57,7 +57,7 @@ void finalcleanup(void)
 	if (history && (history == warning_issued || interaction < error_stop_mode) && selector == 19)
 	{
 		selector = term_only;
-		printnl(1281); //(see the transcript file for additional information)
+		printnl("(see the transcript file for additional information)");
 		selector = term_and_log;
 	}
 	if (c == 1)

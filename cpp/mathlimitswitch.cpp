@@ -2,6 +2,7 @@
 #include "print.h"
 #include "printnl.h"
 #include "error.h"
+#include "texte.h"
 
 void mathlimitswitch(void)
 {
@@ -10,9 +11,9 @@ void mathlimitswitch(void)
 			subtype(tail) = curchr;
 			return;
 		}
-	printnl(262); //! 
-	print(1129); //Limit controls must follow a math operator
+	printnl("! ");
+	print("Limit controls must follow a math operator");
 	helpptr = 1;
-	helpline[0] = 1130; //I'm ignoring this misplaced \limits or \nolimits command.
+	helpline[0] = txt("I'm ignoring this misplaced \\limits or \\nolimits command.");
 	error();
 }

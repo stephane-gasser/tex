@@ -1,5 +1,8 @@
 #ifndef OVERFLOW_H
 #define OVERFLOW_H
+
 #include "globals.h"
-void overflow(strnumber s, int n);
+
+void overflow(const std::string &, int n);
+
 #endif

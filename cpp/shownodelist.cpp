@@ -26,7 +26,7 @@ void shownodelist(int p)
 	if (poolptr - strstart[strptr] > depththreshold)
 	{
 		if (p > 0)
-			print(314); // []
+			print(" []");
 		return;
 	}
 	int n = 0;
@@ -36,13 +36,13 @@ void shownodelist(int p)
 		printcurrentstring();
 		if (p > memend)
 		{
-			print(315); //Bad link, display aborted.
+			print("Bad link, display aborted.");
 			return;
 		}
 		n++;
 		if (n > breadthmax)
 		{
-			print(316); //etc.
+			print("etc.");
 			return;
 		}
 		if (p >= himemmin)
@@ -54,34 +54,34 @@ void shownodelist(int p)
 				case vlist_node:
 				case unset_node:
 					if (type(p) == hlist_node)
-						printesc('h');
+						printesc("h");
 					else 
 						if (type(p) == vlist_node)
-							printesc('v');
+							printesc("v");
 						else
-							printesc(318); //unset
-					print(319); //box(
+							printesc("unset");
+					print("box(");
 					printscaled(height(p));
 					printchar('+');
 					printscaled(depth(p));
-					print(320); //)x
+					print(")x");
 					printscaled(width(p));
 					if (type(p) == unset_node)
 					{
 						if (subtype(p))
 						{
-							print(286); // (
+							print(" (");
 							printint(subtype(p)+1);
-							print(322); // columns)
+							print(" columns)");
 						}
 						if (glue_stretch(p))
 						{
-							print(323); //, stretch 
+							print(", stretch ");
 							printglue(glue_stretch(p), glue_order(p), 0);
 						}
 						if (glue_shrink(p))
 						{
-							print(324); //, shrink 
+							print(", shrink ");
 							printglue(glue_shrink(p), glue_sign(p), 0);
 						}
 					}
@@ -90,18 +90,18 @@ void shownodelist(int p)
 						g = glue_set(p);
 						if (g && glue_sign(p))
 						{
-							print(325); //, glue set 
+							print(", glue set ");
 							if (glue_sign(p) == shrinking)
-								print(326); //- 
+								print("- ");
 							if (!std::isfinite(glue_set(p)))
-								print(327); //?.?
+								print("?.?");
 							else 
 								if (abs(g) > 20000.0)
 								{
 									if (g > 0.0)
 										printchar('>');
 									else
-										print(328); //< -
+										print("< -");
 									printglue(20000*0x1'00'00, glue_order(p), 0);
 								}
 								else
@@ -109,7 +109,7 @@ void shownodelist(int p)
 						}
 						if (shift_amount(p))
 						{
-							print(321); //, shifted 
+							print(", shifted ");
 							printscaled(shift_amount(p));
 						}
 					}
@@ -118,23 +118,23 @@ void shownodelist(int p)
 					poolptr--;
 					break;
 				case rule_node:
-					printesc(329); //rule(
+					printesc("rule(");
 					printruledimen(width(p));
 					printchar('+');
 					printruledimen(depth(p));
-					print(320); //)x
+					print(")x");
 					printruledimen(width(p));
 					break;
 				case ins_node:
-					printesc(330); //insert
+					printesc("insert");
 					printint(subtype(p));
-					print(331); //, natural size 
+					print(", natural size ");
 					printscaled(height(p));
-					print(332); //; split(
+					print("; split(");
 					printspec(split_top_ptr(p), 0);
 					printchar(',');
 					printscaled(depth(p));
-					print(333); //); float cost 
+					print("); float cost ");
 					printint(float_cost(p));
 					strpool[poolptr++] = '.';
 					shownodelist(ins_ptr(p));
@@ -144,44 +144,44 @@ void shownodelist(int p)
 					switch (subtype(p))
 					{
 						case 0:
-							printwritewhatsit(1284, p); //openout
+							printwritewhatsit("openout", p);
 							printchar('=');
 							printfilename(link(p+1), info(p+2), link(p+2));
 							break;
 						case 1:
-							printwritewhatsit(594, p); //write
+							printwritewhatsit("write", p);
 							printmark(link(p+1));
 							break;
 						case 2: 
-							printwritewhatsit(1285, p); //closeout
+							printwritewhatsit("closeout", p); 
 							break;
 						case 3:
-							printesc(1286); //special
+							printesc("special");
 							printmark(link(p+1));
 							break;
 						case 4:
-							printesc(1288); //setlanguage
+							printesc("setlanguage");
 							printint(link(p+1));
-							print(1291); // (hyphenmin 
+							print(" (hyphenmin"); 
 							printint(type(p+1));
 							printchar(',');
 							printint(subtype(p+1));
 							printchar(')');
 							break;
 						default: 
-							print(1292); //whatsit?
+							print("whatsit?");
 					}
 					break;
 				case glue_node:
 					if (subtype(p) >= 100)
 					{
-						printesc(338); //
+						printesc("");
 						if (subtype(p) == 101)
 							printchar('c');
 						else 
 							if (subtype(p) == 102)
 								printchar('x');
-						print(339); //leaders 
+						print("leaders ");
 						printspec(info(p+1), 0);
 						strpool[poolptr++] = '.';
 						shownodelist(link(p+1));
@@ -189,7 +189,7 @@ void shownodelist(int p)
 					}
 					else
 					{
-						printesc(334); //glue
+						printesc("glue");
 						if (subtype(p))
 						{
 							printchar('(');
@@ -197,9 +197,9 @@ void shownodelist(int p)
 								printskipparam(subtype(p)-1);
 							else 
 								if (subtype(p) == 98)
-								printesc(335); //nonscript
+								printesc("nonscript");
 							else
-								printesc(336); //mskip
+								printesc("mskip");
 							printchar(')');
 						}
 						if (subtype(p) != 98)
@@ -208,41 +208,41 @@ void shownodelist(int p)
 							if (subtype(p) < 98)
 								printspec(info(p+1), 0);
 							else
-								printspec(info(p+1), 337); //mu
+								printspec(info(p+1), "mu");
 						}
 					}
 				case kern_node:
 					if (subtype(p) != 99)
 					{
-						printesc(340); //kern
+						printesc("kern");
 						if (subtype(p))
 							printchar(' ');
 						printscaled(width(p));
 						if (subtype(p) == 2)
-							print(341); // (for accent)
+							print(" (for accent)");
 					}
 					else
 					{
-						printesc(342); //mkern
+						printesc("mkern");
 						printscaled(width(p));
-						print(337); //mu
+						print("mu");
 					}
 					break;
 				case math_node:
-					printesc(343); //math
+					printesc("math");
 					if (subtype(p) == 0)
-						print(344); //on
+						print("on");
 					else
-						print(345); //off
+						print("off");
 					if (width(p))
 					{
-						print(346); //, surrounded 
+						print(", surrounded ");
 						printscaled(width(p));
 					}
 					break;
 				case ligature_node:
 					printfontandchar(p+1);
-					print(347); // (ligature 
+					print(" (ligature ");
 					if (subtype(p) > 1)
 						printchar('|');
 					fontinshortdisplay = type(p+1);
@@ -252,14 +252,14 @@ void shownodelist(int p)
 					printchar(')');
 					break;
 				case penalty_node:
-					printesc(348); //penalty 
+					printesc("penalty ");
 					printint(penalty(p));
 					break;
 				case disc_node:
-					printesc(349); //discretionary
+					printesc("discretionary");
 					if (subtype(p) > 0)
 					{
-						print(350); // replacing 
+						print(" replacing ");
 						printint(subtype(p));
 					}
 					strpool[poolptr++] = '.';
@@ -270,20 +270,20 @@ void shownodelist(int p)
 					poolptr--;
 					break;
 				case mark_node:
-					printesc(351); //mark
+					printesc("mark");
 					printmark(mark_ptr(p));
 					break;
 				case adjust_node:
-					printesc(352); //vadjust
+					printesc("vadjust");
 					strpool[poolptr++] = '.';
 					shownodelist(adjust_ptr(p));
 					poolptr--;
 					break;
-				case 14: 
+				case style_node: 
 					printstyle(subtype(p));
 					break;
-				case 15:
-					printesc(525); //mathchoice
+				case choice_node:
+					printesc("mathchoice");
 					strpool[poolptr++] = 'D';
 					shownodelist(info(p+1));
 					poolptr--;
@@ -315,68 +315,68 @@ void shownodelist(int p)
 					switch (type(p))
 					{
 						case ord_noad: 
-							printesc(865); //mathord
+							printesc("mathord");
 							break;
 						case op_noad: 
-							printesc(866); //mathop
+							printesc("mathop");
 							break;
 						case bin_noad: 
-							printesc(867); //mathbin
+							printesc("mathbin");
 							break;
 						case rel_noad: 
-							printesc(868); //mathrel
+							printesc("mathrel");
 							break;
 						case open_noad: 
-							printesc(869); //mathopen
+							printesc("mathopen");
 							break;
 						case close_noad: 
-							printesc(870); //mathclose
+							printesc("mathclose");
 							break;
 						case punct_noad: 
-							printesc(871); //mathpunct
+							printesc("mathpunct");
 							break;
 						case inner_noad: 
-							printesc(872); //mathinner
+							printesc("mathinner");
 							break;
 						case over_noad: 
-							printesc(873); //overline
+							printesc("overline");
 							break;
 						case under_noad: 
-							printesc(874); //underline
+							printesc("underline");
 							break;
 						case vcenter_noad: 
-							printesc(539); //vcenter
+							printesc("vcenter");
 							break;
 						case radical_noad:
-							printesc(533); //radical
+							printesc("radical");
 							printdelimiter(left_delimiter(4));
 							break;
 						case accent_noad:
-							printesc(508); //accent
+							printesc("accent");
 							printfamandchar(accent_chr(p));
 							break;
 						case left_noad:
-							printesc(875); //left
+							printesc("left");
 							printdelimiter(delimiter(p));
 							break;
 						case right_noad:
-							printesc(876); //right
+							printesc("right");
 							printdelimiter(delimiter(p));
 					}
 					if (subtype(p))
 						if (subtype(p) == limits)
-							printesc(877); //limits
+							printesc("limits");
 						else
-							printesc(878); //nolimits
+							printesc("nolimits");
 					if (type(p) < left_noad)
 						printsubsidiarydata(nucleus(p), '.');
 					printsubsidiarydata(supscr(p), '^');
 					printsubsidiarydata(subscr(p), '_');
 					break;
 				case fraction_noad:
-					printesc(879); //fraction, thickness 
+					printesc("fraction, thickness ");
 					if (new_hlist(p) == default_code)
-						print(880); //= default
+						print("= default");
 					else
 						printscaled(new_hlist(p));
 					if (small_fam(left_delimiter(p))
@@ -384,7 +384,7 @@ void shownodelist(int p)
 					 || large_fam(left_delimiter(p))
 					 || large_char(left_delimiter(p)))
 					{
-						print(881); //, left-delimiter 
+						print(", left-delimiter ");
 						printdelimiter(left_delimiter(p));
 					}
 					if (small_fam(right_delimiter(p))
@@ -392,14 +392,14 @@ void shownodelist(int p)
 					 || large_fam(right_delimiter(p))
 					 || large_char(right_delimiter(p)))
 					{
-						print(882); //, right-delimiter 
+						print(", right-delimiter ");
 						printdelimiter(right_delimiter(p));
 					}
 					printsubsidiarydata(numerator(p), '\\');
 					printsubsidiarydata(denominator(p), '/');
 					break;
 				default: 
-					print(317); //Unknown node type!
+					print("Unknown node type!");
 			}
 		p = link(p);
 	}

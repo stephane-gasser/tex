@@ -2,20 +2,21 @@
 #include "print.h"
 #include "printchar.h"
 #include "printscaled.h"
+#include "texte.h"
 
-void printglue(scaled d, int order, strnumber s)
+void printglue(scaled d, int order, const std::string &s)
 {
 	printscaled(d);
 	if (order < 0 || order > 3)
-		print(310); //foul
+		print("foul");
 	else 
 		if (order > 0)
 		{
-			print(311); //fil
+			print("fil");
 			for (;order > 1; order--)
 				printchar('l');
 		}
 		else 
-			if (s)
+			if (txt(s))
 				print(s);
 }

@@ -6,7 +6,7 @@
 
 void interror(int n)
 {
-	print(286); // (
+	print(" (");
 	printint(n);
 	printchar(')');
 	error();

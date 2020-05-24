@@ -3,13 +3,14 @@
 #include "print.h"
 #include "printesc.h"
 #include "error.h"
+#include "texte.h"
 
 void cserror(void)
 {
-	printnl(262);//! 
-	print(776); //Extra 
-	printesc(505); //endcsname
+	printnl("! ");
+	print("Extra ");
+	printesc("endcsname");
 	helpptr = 1;
-	helpline[0] = 1125; //I'm ignoring this, since I wasn't doing a \csname.
+	helpline[0] = txt("I'm ignoring this, since I wasn't doing a \\csname.");
 	error();
 }

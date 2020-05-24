@@ -56,14 +56,14 @@ halfword thetoks(void)
 			break;
 		case 1:
 			printscaled(curval);
-			print(397); //pt
+			print("pt");
 			break;
 		case 2:
-			printspec(curval, 397); //pt
+			printspec(curval, "pt");
 			deleteglueref(curval);
 			break;
 		case 3:
-			printspec(curval, 337); //mu
+			printspec(curval, "mu");
 			deleteglueref(curval);
 	}
 	selector = oldsetting;

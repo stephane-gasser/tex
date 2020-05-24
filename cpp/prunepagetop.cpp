@@ -38,7 +38,7 @@ halfword prunepagetop(halfword p)
 				flushnodelist(q);
 				break;
 			default: 
-				confusion(958); //pruning
+				confusion("pruning");
 		}
 	return link(temp_head);
 }

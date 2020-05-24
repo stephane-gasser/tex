@@ -4,6 +4,7 @@
 #include "printnl.h"
 #include "print.h"
 #include "backerror.h"
+#include "texte.h"
 
 void scandelimiter(halfword p, bool r)
 {
@@ -29,15 +30,15 @@ void scandelimiter(halfword p, bool r)
 	}
 	if (curval < 0)
 	{
-		printnl(262); //! 
-		print(1131); //Missing delimiter (. inserted)
+		printnl("! ");
+		print("Missing delimiter (. inserted)");
 		helpptr = 6;
-		helpline[5] = 1132; //I was expecting to see something like `(' or `\{' or
-		helpline[4] = 1133; //`\}' here. If you typed, e.g., `{' instead of `\{', you
-		helpline[3] = 1134; //should probably delete the `{' by typing `1' now, so that
-		helpline[2] = 1135; //braces don't get unbalanced. Otherwise just proceed.
-		helpline[1] = 1136; //Acceptable delimiters are characters whose \delcode is
-		helpline[0] = 1137; //nonnegative, or you can use `\delimiter <delimiter code>'.
+		helpline[5] = txt("I was expecting to see something like `(' or `\\{' or");
+		helpline[4] = txt("`\\}' here. If you typed, e.g., `{' instead of `\\{', you");
+		helpline[3] = txt("should probably delete the `{' by typing `1' now, so that");
+		helpline[2] = txt("braces don't get unbalanced. Otherwise just proceed.");
+		helpline[1] = txt("Acceptable delimiters are characters whose \\delcode is");
+		helpline[0] = txt("nonnegative, or you can use `\\delimiter <delimiter code>'.");
 		backerror();
 		curval = 0;
 	}

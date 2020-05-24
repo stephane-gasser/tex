@@ -12,6 +12,7 @@
 #include "printscaled.h"
 #include "begintokenlist.h"
 #include "strtoks.h"
+#include "texte.h"
 
 void convtoks(void)
 {
@@ -58,16 +59,16 @@ void convtoks(void)
 			printmeaning();
 			break;
 		case 4:
-			print(fontname[curval]);
+			print(TXT(fontname[curval]));
 			if (fontsize[curval] != fontdsize[curval])
 			{
-				print(741); // at 
+				print(" at ");
 				printscaled(fontsize[curval]);
-				print(397); //pt
+				print("pt");
 			}
 			break;
 		case 5: 
-			print(jobname);
+			print(TXT(jobname));
 	}
 	selector = oldsetting;
 	link(garbage) = strtoks(b);

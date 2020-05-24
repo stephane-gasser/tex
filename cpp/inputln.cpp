@@ -4,14 +4,15 @@
 
 bool inputln(std::istream& f, bool bypasseoln)
 {
-	if (bypasseoln)
-		if (!f.eof())
-			f.get();
+	if (bypasseoln && !f.eof())
+		f.get();
 	last = First;
 	if (f.eof())
 		return false;
+	std::string line;
+	getline(f, line);
 	int lastnonblank = First;
-	while (f.peek() != '\n')
+	for (char c: line)
 	{
 		if (last >= maxbufstack)
 		{
@@ -26,10 +27,10 @@ bool inputln(std::istream& f, bool bypasseoln)
 				{
 					curinput.locfield = First;
 					curinput.limitfield = last-1;
-					overflow(256, bufsize); //buffer size
+					overflow("buffer size", bufsize); 
 				}
 		}
-		buffer[last] = xord[f.get()];
+		buffer[last] = xord[c];
 		last++;
 		if (buffer[last-1] != ' ')
 			lastnonblank = last;

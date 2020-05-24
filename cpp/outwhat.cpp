@@ -6,6 +6,7 @@
 #include "promptfilename.h"
 #include "specialout.h"
 #include "confusion.h"
+#include "texte.h"
 
 void outwhat(halfword p)
 {
@@ -32,10 +33,10 @@ void outwhat(halfword p)
 							curarea = info(p+2);
 							curext = link(p+2);
 							if (curext == 338) //
-								curext = 790; //.tex
+								curext = txt(".tex");
 							packfilename(curname, curarea, curext);
 							while (!aopenout(writefile[j]))
-							promptfilename(1299, 790); //output file name//.tex
+							promptfilename("output file name", ".tex"); 
 							writeopen[j] = true;
 						}
 				}
@@ -47,6 +48,6 @@ void outwhat(halfword p)
 		case 4:
 			break;
 		default:
-			confusion(1298); //ext4
+			confusion("ext4");
 	}
 }

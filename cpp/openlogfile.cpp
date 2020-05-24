@@ -10,24 +10,25 @@
 #include "printtwo.h"
 #include "printnl.h"
 #include "println.h"
+#include "texte.h"
 
 void openlogfile(void)
 {
 	auto oldsetting = selector;
 	if (jobname == 0)
-		jobname = 795; //texput
-	packjobname(796); //.log
+		jobname = txt("texput");
+	packjobname(".log");
 	while (!aopenout(logfile))
 	{
 		selector = term_only;
-		promptfilename(798, 796); // transcript file name//.log
+		promptfilename(" transcript file name", ".log");
 	}
 	logname = amakenamestring(logfile);
 	selector = log_only;
 	logopened = true;
 	logfile << banner;
 	slowprint(formatident);
-	print(799); //  
+	print("  ");
 	printint(int_par(day_code));
 	printchar(' ');
 	char months[] = "JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC";
@@ -40,12 +41,12 @@ void openlogfile(void)
 	printchar(':');
 	printtwo(int_par(time_code)%60);
 	inputstack[inputptr] = curinput;
-	printnl(797); //**
+	printnl("**");
 	int l = inputstack[0].limitfield;
 	if (buffer[l] == int_par(end_line_char_code))
 		l--;
 	for (int k = 1; k <= l; k++)
-		print(buffer[k]);
+		printchar(buffer[k]);
 	println();
 	selector = oldsetting+2;
 }

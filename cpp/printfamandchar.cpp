@@ -3,11 +3,12 @@
 #include "printint.h"
 #include "printchar.h"
 #include "print.h"
+#include "texte.h"
 
 void printfamandchar(halfword p)
 {
-	printesc(464); //fam
+	printesc("fam");
 	printint(type(p));
 	printchar(' ');
-	print(subtype(p));
+	print(TXT(subtype(p)));
 }

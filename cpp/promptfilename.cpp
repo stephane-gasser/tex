@@ -10,30 +10,31 @@
 #include "endname.h"
 #include "packfilename.h"
 #include <iostream>
+#include "texte.h"
 
-void promptfilename(strnumber s, strnumber e)
+void promptfilename(const std::string &s, const std::string &e)
 {
 	if (interaction == scroll_mode)
-		if (s == 786) //input file name
+		if (s == "input file name")
 		{
-			printnl(262); //! 
-			print(787); //I can't find file `
+			printnl("! ");
+			print("I can't find file `");
 		}
 		else
 		{
-			printnl(262); //! 
-			print(788); //I can't write on file `
+			printnl("! ");
+			print("I can't write on file `");
 		};
 	printfilename(curname, curarea, curext);
-	print(789); //'.
-	if (e == 790) //.tex
+	print("'.");
+	if (e == ".tex")
 		showcontext();
-	printnl(791); //Please type another 
+	printnl("Please type another ");
 	print(s);
 	if (interaction < scroll_mode)
-		fatalerror(792); //*** (job aborted, file error in nonstop mode)
+		fatalerror("*** (job aborted, file error in nonstop mode)");
 	std::cin.clear();
-	print(568); //: 
+	print(": ");
 	terminput();
 	beginname();
 	auto k = First;
@@ -48,7 +49,7 @@ void promptfilename(strnumber s, strnumber e)
 		k++;
 	}
 	endname();
-	if (curext == 338) //
-		curext = e;
+	if (curext == 338)
+		curext = txt(e);
 	packfilename(curname, curarea, curext);
 }

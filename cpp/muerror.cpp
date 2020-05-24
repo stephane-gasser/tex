@@ -2,12 +2,13 @@
 #include "error.h"
 #include "printnl.h"
 #include "print.h"
+#include "texte.h"
 
 void muerror(void)
 {
-	printnl(262); //! 
-	print(662); //Incompatible glue units
+	printnl("! ");
+	print("Incompatible glue units"); 
 	helpptr = 1;
-	helpline[0] = 663; //I'm going to assume that 1mu=1pt when they're mixed.
+	helpline[0] = txt("I'm going to assume that 1mu=1pt when they're mixed.");
 	error();
 }

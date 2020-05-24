@@ -68,7 +68,7 @@ halfword getnode(int s)
 			label20 = true;
 		}
 	} while (label20);
-	overflow(300, memmax+1-memmin); //main memory size
+	overflow("main memory size", memmax+1-memmin);
 	link(r) = 0;
 	return r;
 }

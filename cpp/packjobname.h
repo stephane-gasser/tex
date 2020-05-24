@@ -1,5 +1,8 @@
 #ifndef PACKJOBNAME_H
 #define PACKJOBNAME_H
+
 #include "globals.h"
-void packjobname(strnumber s);
+
+void packjobname(const std::string &);
+
 #endif

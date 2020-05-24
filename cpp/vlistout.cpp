@@ -34,7 +34,7 @@ void vlistout(void)
 	while (p)
 	{
 		if (p >= himemmin)
-			confusion(827); //vlistout
+			confusion("vlistout");
 		else
 		{
 			switch (type(p))

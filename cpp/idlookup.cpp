@@ -6,7 +6,7 @@
 halfword idlookup(int j, int l)
 {
 	int h = buffer[j];
-	for (halfword k = j+1; k <j+l; k++)
+	for (halfword k = j+1; k < j+l; k++)
 	{
 		h = 2*h+buffer[k];
 		while (h >= hash_prime)
@@ -15,29 +15,29 @@ halfword idlookup(int j, int l)
 	halfword p = h+hash_base;
 	while (true)
 	{
-		if (hash[p].rh > 0)
-			if (strstart[hash[p].rh+1]-strstart[hash[p].rh] == l)
-				if (streqbuf(hash[p].rh, j))
+		if (text(p) > 0)
+			if (length(text(p)) == l)
+				if (streqbuf(text(p), j))
 					return p;
-		if (hash[p].lh == 0)
+		if (next(p) == 0)
 		{
 			if (nonewcontrolsequence)
 				p = undefined_control_sequence;
 			else
 			{
-				if (hash[p].rh > 0)
+				if (text(p) > 0)
 				{
 					do
 					{
-						if (hashused == hash_base)
-							overflow(503, 2100); //hash size
+						if (hash_is_full())
+							overflow("hash size", hash_size);
 						hashused--;
-					} while (hash[hashused].rh);
-					hash[p].lh = hashused;
+					} while (text(hashused));
+					next(p) = hashused;
 					p = hashused;
 				}
 				if (poolptr+l > poolsize)
-					overflow(257, poolsize-initpoolptr); //pool size
+					overflow("pool size", poolsize-initpoolptr);
 				int d = (poolptr-strstart[strptr]);
 				while (poolptr > strstart[strptr])
 				{
@@ -46,11 +46,11 @@ halfword idlookup(int j, int l)
 				}
 				for (halfword k = j; k <j+l; k++)
 					strpool[poolptr++] = buffer[k];
-				hash[p].rh = makestring();
+				text(p) = makestring();
 				poolptr += d;
 			}
 			return p;
 		}
-		p = hash[p].lh;
+		p = next(p);
 	}
 }

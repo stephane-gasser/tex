@@ -7,171 +7,171 @@ void printparam(int n)
 	switch (n)
 	{
 		case 0:
-			printesc(420); //pretolerance
+			printesc("pretolerance");
 			break;
 		case 1:
-			printesc(421); //tolerance
+			printesc("tolerance");
 			break;
 		case 2:
-			printesc(422); //linepenalty
+			printesc("linepenalty");
 			break;
 		case 3:
-			printesc(423); //hyphenpenalty
+			printesc("hyphenpenalty");
 			break;
 		case 4:
-			printesc(424); //exhyphenpenalty
+			printesc("exhyphenpenalty");
 			break;
 		case 5:
-			printesc(425); //clubpenalty
+			printesc("clubpenalty");
 			break;
 		case 6:
-			printesc(426); //widowpenalty
+			printesc("widowpenalty");
 			break;
 		case 7:
-			printesc(427); //displaywidowpenalty
+			printesc("displaywidowpenalty");
 			break;
 		case 8:
-			printesc(428); //brokenpenalty
+			printesc("brokenpenalty");
 			break;
 		case 9:
-			printesc(429); //binoppenalty
+			printesc("binoppenalty");
 			break;
 		case 10:
-			printesc(430); //relpenalty
+			printesc("relpenalty");
 			break;
 		case 11:
-			printesc(431); //predisplaypenalty
+			printesc("predisplaypenalty");
 			break;
 		case 12:
-			printesc(432); //postdisplaypenalty
+			printesc("postdisplaypenalty");
 			break;
 		case 13:
-			printesc(433); //interlinepenalty
+			printesc("interlinepenalty");
 			break;
 		case 14:
-			printesc(434); //doublehyphendemerits
+			printesc("doublehyphendemerits");
 			break;
 		case 15:
-			printesc(435); //finalhyphendemerits
+			printesc("finalhyphendemerits");
 			break;
 		case 16:
-			printesc(436); //adjdemerits
+			printesc("adjdemerits");
 			break;
 		case 17:
-			printesc(437); //mag
+			printesc("mag");
 			break;
 		case 18:
-			printesc(438); //delimiterfactor
+			printesc("delimiterfactor");
 			break;
 		case 19:
-			printesc(439); //looseness
+			printesc("looseness");
 			break;
 		case 20:
-			printesc(440); //time
+			printesc("time");
 			break;
 		case 21:
-			printesc(441); //day
+			printesc("day");
 			break;
 		case 22:
-			printesc(442); //month
+			printesc("month");
 			break;
 		case 23:
-			printesc(443); //year
+			printesc("year");
 			break;
 		case 24:
-			printesc(444); //showboxbreadth
+			printesc("showboxbreadth");
 			break;
 		case 25:
-			printesc(445); //showboxdepth
+			printesc("showboxdepth");
 			break;
 		case 26:
-			printesc(446); //hbadness
+			printesc("hbadness");
 			break;
 		case 27:
-			printesc(447); //vbadness
+			printesc("vbadness");
 			break;
 		case 28:
-			printesc(448); //pausing
+			printesc("pausing");
 			break;
 		case 29:
-			printesc(449); //tracingonline
+			printesc("tracingonline");
 			break;
 		case 30:
-			printesc(450); //tracingmacros
+			printesc("tracingmacros");
 			break;
 		case 31:
-			printesc(451); //tracingstats
+			printesc("tracingstats");
 			break;
 		case 32:
-			printesc(452); //tracingparagraphs
+			printesc("tracingparagraphs");
 			break;
 		case 33:
-			printesc(453); //tracingpages
+			printesc("tracingpages");
 			break;
 		case 34:
-			printesc(454); //tracingoutput
+			printesc("tracingoutput");
 			break;
 		case 35:
-			printesc(455); //tracinglostchars
+			printesc("tracinglostchars");
 			break;
 		case 36:
-			printesc(456); //tracingcommands
+			printesc("tracingcommands");
 			break;
 		case 37:
-			printesc(457); //tracingrestores
+			printesc("tracingrestores");
 			break;
 		case 38:
-			printesc(458); //uchyph
+			printesc("uchyph");
 			break;
 		case 39:
-			printesc(459); //outputpenalty
+			printesc("outputpenalty");
 			break;
 		case 40:
-			printesc(460); //maxdeadcycles
+			printesc("maxdeadcycles");
 			break;
 		case 41:
-			printesc(461); //hangafter
+			printesc("hangafter");
 			break;
 		case 42:
-			printesc(462); //floatingpenalty
+			printesc("floatingpenalty");
 			break;
 		case 43:
-			printesc(463); //globaldefs
+			printesc("globaldefs");
 			break;
 		case 44:
-			printesc(464); //fam
+			printesc("fam");
 			break;
 		case 45:
-			printesc(465); //escapechar
+			printesc("escapechar");
 			break;
 		case 46:
-			printesc(466); //defaulthyphenchar
+			printesc("defaulthyphenchar");
 			break;
 		case 47:
-			printesc(467); //defaultskewchar
+			printesc("defaultskewchar");
 			break;
 		case 48:
-			printesc(468); //endlinechar
+			printesc("endlinechar");
 			break;
 		case 49:
-			printesc(469); //newlinechar
+			printesc("newlinechar");
 			break;
 		case 50:
-			printesc(470); //language
+			printesc("language");
 			break;
 		case 51:
-			printesc(471); //lefthyphenmin
+			printesc("lefthyphenmin");
 			break;
 		case 52:
-			printesc(472); //righthyphenmin
+			printesc("righthyphenmin");
 			break;
 		case 53:
-			printesc(473); //holdinginserts
+			printesc("holdinginserts");
 			break;
 		case 54:
-			printesc(474); //errorcontextlines
+			printesc("errorcontextlines");
 			break;
 		default:
-			print(475); //[unknown integer parameter!]
+			print("[unknown integer parameter!]");
 	}
 }

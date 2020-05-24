@@ -10,7 +10,7 @@ void printsubsidiarydata(halfword p, ASCIIcode c)
 	if (poolptr-strstart[strptr] >= depththreshold)
 	{
 		if (link(p))
-			print(314);// []
+			print(" []");
 	}
 	else
 	{
@@ -31,7 +31,7 @@ void printsubsidiarydata(halfword p, ASCIIcode c)
 				{
 					println();
 					printcurrentstring();
-					print(859); //{}
+					print("{}");
 				}
 				else
 					showinfo();

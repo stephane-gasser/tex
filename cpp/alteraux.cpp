@@ -6,6 +6,7 @@
 #include "printnl.h"
 #include "print.h"
 #include "interror.h"
+#include "texte.h"
 
 void alteraux(void)
 {
@@ -25,10 +26,10 @@ void alteraux(void)
 			scanint();
 			if (curval <= 0 || curval > 0x7F'FF)
 			{
-				printnl(262); //! 
-				print(1212); //Bad space factor
+				printnl("! ");
+				print("Bad space factor");
 				helpptr = 1;
-				helpline[0] = 1213; //I allow only values in the range 1..0x7F'FF here.
+				helpline[0] = txt("I allow only values in the range 1..0x7F'FF here.");
 				interror(curval);
 			}
 			else

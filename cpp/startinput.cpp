@@ -13,12 +13,13 @@
 #include "amakenamestring.h"
 #include "inputln.h"
 #include <iostream>
+#include "texte.h"
 
 void startinput(void)
 {
 	scanfilename();
 	if (curext == 338) //
-		curext = 790; //.tex
+		curext = txt(".tex");
 	packfilename(curname, curarea, curext);
 	while (true)
 	{
@@ -27,12 +28,12 @@ void startinput(void)
 			break;
 		if (curarea == 338) //
 		{
-			packfilename(curname, 783, curext); //TeXinputs:
+			packfilename(curname, txt("TeXinputs:"), curext);
 			if (aopenin(inputfile[curinput.indexfield]))
 				break;
 		}
 		endfilereading();
-		promptfilename(786, 790); //input file name//.tex
+		promptfilename("input file name", ".tex");
 	}
 	curinput.namefield = amakenamestring(inputfile[curinput.indexfield]);
 	if (jobname == 0)

@@ -529,6 +529,7 @@ void goto110112(bool is110)
 	}
 }
 
+#include <iostream>
 void maincontrol(void)
 {
 	int t;

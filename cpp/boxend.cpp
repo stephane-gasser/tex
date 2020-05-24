@@ -11,6 +11,7 @@
 #include "backerror.h"
 #include "flushnodelist.h"
 #include "shipout.h"
+#include "texte.h"
 
 void boxend(int boxcontext)
 {
@@ -20,7 +21,7 @@ void boxend(int boxcontext)
 		if (curbox)
 		{
 			shift_amount(curbox) = boxcontext;
-			if (abs(mode) == 1)
+			if (abs(mode) == vmode)
 			{
 				appendtovlist(curbox);
 				if (adjusttail)
@@ -34,7 +35,7 @@ void boxend(int boxcontext)
 			}
 			else
 			{
-				if (abs(mode) == 102)
+				if (abs(mode) == hmode)
 					space_factor = 1000;
 				else
 				{
@@ -68,12 +69,12 @@ void boxend(int boxcontext)
 					}
 					else
 					{
-						printnl(262); //! 
-						print(1065); //Leaders not followed by proper glue
+						printnl("! ");
+						print("Leaders not followed by proper glue");
 						helpptr = 3;
-						helpline[2] = 1066; //You should say `\leaders <box or rule><hskip or vskip>'.
-						helpline[1] = 1067; //I found the <box or rule>, but there's no suitable
-						helpline[0] = 1068; //<hskip or vskip>, so I'm ignoring these leaders.
+						helpline[2] = txt("You should say `\\leaders <box or rule><hskip or vskip>'.");
+						helpline[1] = txt("I found the <box or rule>, but there's no suitable");
+						helpline[0] = txt("<hskip or vskip>, so I'm ignoring these leaders.");
 						backerror();
 						flushnodelist(curbox);
 					}

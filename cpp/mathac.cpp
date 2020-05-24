@@ -6,18 +6,19 @@
 #include "getnode.h"
 #include "scanfifteenbitint.h"
 #include "scanmath.h"
+#include "texte.h"
 
 void mathac(void)
 {
 	if (curcmd == accent)
 	{
-		printnl(262); //! 
-		print(1138); //Please use 
-		printesc(523); //mathaccent
-		print(1139); // for accents in math mode
+		printnl("! ");
+		print("Please use ");
+		printesc("mathaccent");
+		print(" for accents in math mode");
 		helpptr = 2;
-		helpline[1] = 1140; //I'm changing \accent to \mathaccent here; wish me luck.
-		helpline[0] = 1141; //(Accents are not the same in formulas as they are in text.)
+		helpline[1] = txt("I'm changing \\accent to \\mathaccent here; wish me luck.");
+		helpline[0] = txt("(Accents are not the same in formulas as they are in text.)");
 		error();
 	}
 	tail_append(getnode(5));

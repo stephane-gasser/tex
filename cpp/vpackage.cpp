@@ -17,17 +17,17 @@
 static void goto50(halfword r)
 {
 	if (outputactive)
-		print(846); //) has occurred while \output is active
+		print(") has occurred while \\output is active");
 	else
 	{
 		if (packbeginline)
 		{
-			print(848); //) in alignment at lines 
+			print(") in alignment at lines ");
 			printint(abs(packbeginline));
-			print(849); //--
+			print("--");
 		}
 		else
-			print(850); //) detected at line 
+			print(") detected at line ");
 		printint(line);
 		println();
 	}
@@ -60,7 +60,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 	while (p)
 	{
 		if (p >= himemmin)
-			confusion(854); //vpack
+			confusion("vpack");
 		else
 			switch (type(p))
 			{
@@ -150,10 +150,10 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 				{
 					println();
 					if (lastbadness > 100)
-						printnl(843); //Underfull
+						printnl("Underfull");
 					else
-						printnl(844); //Loose
-					print(855); //\vbox (badness 
+						printnl("Loose");
+					print("\\vbox (badness ");
 					printint(lastbadness);
 					goto50(r);
 				}
@@ -188,9 +188,9 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 				if (-x-totalshrink[0] > dimen_par(vfuzz_code) || int_par(vbadness_code) < 100)
 				{
 					println();
-					printnl(856); //6Overfull \vbox (
+					printnl("Overfull \\vbox (");
 					printscaled(-x-totalshrink[0]);
-					print(857); //pt too high
+					print("pt too high");
 					goto50(r);
 				}
 			}
@@ -201,7 +201,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 					if (lastbadness > int_par(vbadness_code))
 					{
 						println();
-						printnl(858); //Tight \vbox (badness 
+						printnl("Tight \\vbox (badness ");
 						printint(lastbadness);
 						goto50(r);
 					}

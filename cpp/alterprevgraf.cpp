@@ -5,6 +5,7 @@
 #include "print.h"
 #include "printesc.h"
 #include "interror.h"
+#include "texte.h"
 
 void alterprevgraf(void)
 {
@@ -16,11 +17,11 @@ void alterprevgraf(void)
 	scanint();
 	if (curval < 0)
 	{
-		printnl(262); //
-		print(954); // Bad 
-		printesc(532); //prevgraf
+		printnl("! ");
+		print(" Bad ");
+		printesc("prevgraf");
 		helpptr = 1;
-		helpline[0] = 1214; //I allow only nonnegative values here.
+		helpline[0] = txt("I allow only nonnegative values here.");
 		interror(curval);
 	}
 	else

@@ -1,6 +1,7 @@
 #include "firmuptheline.h"
 #include "println.h"
 #include "print.h"
+#include "printchar.h"
 #include "terminput.h"
 
 void firmuptheline(void)
@@ -11,9 +12,9 @@ void firmuptheline(void)
 			println();
 			if (curinput.startfield < curinput.limitfield)
 				for (int k = curinput.startfield; k < curinput.limitfield; k++)
-					print(buffer[k]);
+					printchar(buffer[k]);
 			First = curinput.limitfield;
-			print(618); //=>
+			print("=>");
 			terminput();
 			if (last > First)
 			{

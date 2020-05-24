@@ -4,6 +4,7 @@
 #include "printnl.h"
 #include "print.h"
 #include "backerror.h"
+#include "texte.h"
 
 void scanfontident(void)
 {
@@ -25,11 +26,11 @@ void scanfontident(void)
 			}
 			else
 			{
-				printnl(262); //! 
-				print(816); //Missing font identifier
+				printnl("! ");
+				print("Missing font identifier");
 				helpptr = 2;
-				helpline[1] = 817; //I was looking for a control sequence whose
-				helpline[0] = 818; //2current meaning has been defined by \font.
+				helpline[1] = txt("I was looking for a control sequence whose");
+				helpline[0] = txt("current meaning has been defined by \\font.");
 				backerror();
 				f = 0;
 			}

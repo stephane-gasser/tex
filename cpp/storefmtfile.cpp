@@ -19,6 +19,7 @@
 #include "printscaled.h"
 #include "inittrie.h"
 #include "wclose.h"
+#include "texte.h"
 
 void writeInt(twohalves num)
 {
@@ -48,10 +49,10 @@ void storefmtfile(void)
 	fourquarters w;
 	if (saveptr)
 	{
-		printnl(262); //! 
-		print(1257); //You can't dump inside a group
+		printnl("! ");
+		print("You can't dump inside a group");
 		helpptr = 1;
-		helpline[0] = 1258; //`{...\dump}' is a no-no.
+		helpline[0] = txt("`{...\\dump}' is a no-no.");
 		if (interaction == error_stop_mode)
 			interaction = scroll_mode;
 		if (logopened)
@@ -60,8 +61,8 @@ void storefmtfile(void)
 		jumpout();
 	}
 	selector = new_string;
-	print(1271); // (preloaded format=
-	print(jobname);
+	print(" (preloaded format=");
+	print(TXT(jobname));
 	printchar(' ');
 	printint(int_par(year_code));
 	printchar('.');
@@ -74,16 +75,16 @@ void storefmtfile(void)
 	else
 		selector = term_and_log;
 	if (poolptr+1 > poolsize)
-		overflow(257, poolsize-initpoolptr); //pool size
+		overflow("pool size", poolsize-initpoolptr);
 	formatident = makestring();
-	packjobname(785); //.fmt
+	packjobname(".fmt");
 	while (!wopenout(fmtfile))
-		promptfilename(1272, 785); //format file name//.fmt
-	printnl(1273); //Beginning to dump on file 
+		promptfilename("format file name", ".fmt"); 
+	printnl("Beginning to dump on file ");
 	slowprint(wmakenamestring(fmtfile));
 	strptr--;
 	poolptr = strstart[strptr];
-	printnl(338); //
+	printnl("");
 	slowprint(formatident);
 	writeInt(117275187);
 	writeInt(0);
@@ -111,7 +112,7 @@ void storefmtfile(void)
 	writeInt(w);
 	println();
 	printint(strptr);
-	print(1259); // strings of total length 
+	print(" strings of total length ");
 	printint(poolptr);
 	sortavail();
 	varused = 0;
@@ -149,7 +150,7 @@ void storefmtfile(void)
 	writeInt(dynused);
 	println();
 	printint(x);
-	print(1260); // memory locations dumped; current usage is 
+	print(" memory locations dumped; current usage is ");
 	printint(varused);
 	printchar('&');
 	printint(dynused);
@@ -220,7 +221,7 @@ void storefmtfile(void)
 	writeInt(cscount);
 	println();
 	printint(cscount);
-	print(1261); // multiletter control sequences
+	print(" multiletter control sequences");
 	writeInt(fmemptr);
 	for (k = 0; k <fmemptr; k++)
 		writeInt(fontinfo[k]);
@@ -250,22 +251,23 @@ void storefmtfile(void)
 		writeInt(bcharlabel[k]);
 		writeInt(fontbchar[k]);
 		writeInt(fontfalsebchar[k]);
-		printnl(1264); //\font
-		printesc(hash[font_id_base+k].rh);
+		printnl("\\font");
+		printesc(TXT(text(font_id_base+k)));
+		printesc("FONT");
 		printchar('=');
-		printfilename(fontname[k], fontarea[k], 338); //
+		printfilename(fontname[k], fontarea[k], txt(""));
 		if (fontsize[k] != fontdsize[k])
 		{
-			print(741); // at 
+			print(" at ");
 			printscaled(fontsize[k]);
-			print(397); //pt
+			print("pt");
 		}
 	}
 	println();
 	printint(fmemptr-7);
-	print(1262); // words of font info for 
+	print(" words of font info for ");
 	printint(fontptr-0);
-	print(1263); // preloaded font
+	print(" preloaded font");
 	if (fontptr != 1)
 		printchar('s');
 	writeInt(hyphcount);
@@ -278,7 +280,7 @@ void storefmtfile(void)
 		}
 	println();
 	printint(hyphcount);
-	print(1265); // hyphenation exception
+	print(" hyphenation exception");
 	if (hyphcount != 1)
 		printchar('s');
 	if (trienotready)
@@ -293,21 +295,21 @@ void storefmtfile(void)
 		writeInt(hyfnum[k]);
 		writeInt(hyfnext[k]);
 	}
-	printnl(1266); //Hyphenation trie of length 
+	printnl("Hyphenation trie of length ");
 	printint(triemax);
-	print(1267); // has 
+	print(" has ");
 	printint(trieopptr);
-	print(1268); // op
+	print(" op");
 	if (trieopptr != 1)
 		printchar('s');
-	print(1269); // out of 
+	print(" out of ");
 	printint(trieopsize);
 	for (k = 255; k > -1; k--)
 		if (trieused[k] > 0)
 		{
-			printnl(799); //    
+			printnl("    ");
 			printint(trieused[k]);
-			print(1270); // for language 
+			print(" for language ");
 			printint(k);
 			writeInt(k);
 			writeInt(trieused[k]);

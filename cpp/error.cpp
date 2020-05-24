@@ -14,6 +14,7 @@
 #include "gettoken.h"
 #include "beginfilereading.h"
 #include <iostream>
+#include "texte.h"
 
 void error(void)
 {
@@ -25,7 +26,7 @@ void error(void)
 		while (true)
 		{
 			clearforerrorprompt();
-			print(264); //? 
+			print("? ");
 			terminput();
 			if (last == First)
 				return;
@@ -34,16 +35,16 @@ void error(void)
 				c -= 'a'-'A'; // conversion en majuscule
 			switch (c)
 			{
-				case 48:
-				case 49:
-				case 50:
-				case 51:
-				case 52:
-				case 53:
-				case 54:
-				case 55:
-				case 56:
-				case 57:
+				case '0':
+				case '1':
+				case '2':
+				case '3':
+				case '4':
+				case '5':
+				case '6':
+				case '7':
+				case '8':
+				case '9':
 					if (deletionsallowed)
 					{
 						int s1 = curtok;
@@ -67,24 +68,24 @@ void error(void)
 						alignstate = s4;
 						OKtointerrupt = true;
 						helpptr = 2;
-						helpline[1] = 279; //I have just deleted some text, as you asked.
-						helpline[0] = 280; //You can now delete more, or insert, or whatever.
+						helpline[1] = txt("I have just deleted some text, as you asked.");
+						helpline[0] = txt("You can now delete more, or insert, or whatever.");
 						showcontext();
 						return;
 					}
 					break;
-				case 69: 
+				case 'E': 
 					if (baseptr > 0)
 					{
-						printnl(265); //You want to edit file 
+						printnl("You want to edit file ");
 						slowprint(inputstack[baseptr].namefield);
-						print(266); // at line 
+						print(" at line ");
 						printint(line);
 						interaction = scroll_mode;
 						jumpout();
 					}
 					break;
-				case 72:
+				case 'H':
 					if (useerrhelp)
 					{
 						giveerrhelp();
@@ -95,23 +96,23 @@ void error(void)
 						if (helpptr == 0)
 						{
 							helpptr = 2;
-							helpline[1] = 281; //Sorry, I don't know how to help in this situation.
-							helpline[0] = 282; //Maybe you should try asking a human?
+							helpline[1] = txt("Sorry, I don't know how to help in this situation.");
+							helpline[0] = txt("Maybe you should try asking a human?");
 						}
 						do
 						{
 							helpptr--;
-							print(helpline[helpptr]);
+							print(TXT(helpline[helpptr]));
 							println();
 						} while (helpptr);
 					}
 					helpptr = 4;
-					helpline[3] = 283; //Sorry, I already gave what help I could...
-					helpline[2] = 282; //Maybe you should try asking a human?
-					helpline[1] = 284; //An error might have occurred before I noticed any problems.
-					helpline[0] = 285; //``If all else fails, read the instructions.''
+					helpline[3] = txt("Sorry, I already gave what help I could...");
+					helpline[2] = txt("Maybe you should try asking a human?");
+					helpline[1] = txt("An error might have occurred before I noticed any problems.");
+					helpline[0] = txt("``If all else fails, read the instructions.''");
 					continue;
-				case 73:
+				case 'I':
 					beginfilereading();
 					if (last > First + 1)
 					{
@@ -120,53 +121,53 @@ void error(void)
 					}
 					else
 					{
-						print(278); //insert>
+						print("insert>");
 						terminput();
 						curinput.locfield = First;
 					}
 					First = last;
 					curinput.limitfield = last - 1;
 					return;
-				case 81:
-				case 82:
-				case 83:
+				case 'Q':
+				case 'R':
+				case 'S':
 					errorcount = 0;
-					interaction = c-81;
-					print(273); //OK, entering 
+					interaction = c-'Q';
+					print("OK, entering ");
 					switch (c)
 					{
-						case 81:
-							printesc(274); //batchmode
+						case 'Q':
+							printesc("batchmode");
 							selector--;
 						  	break;
-						case 82: 
-							printesc(275); //nonstopmode
+						case 'R': 
+							printesc("nonstopmode");
 							break;
-						case 83:
-							printesc(276); //scrollmode
+						case 'S':
+							printesc("scrollmode");
 					}
-					print(277); // ...
+					print(" ...");
 					println();
 					std::cout << std::flush;
 					return;
-				case 88:
+				case 'X':
 					interaction = scroll_mode;
 					jumpout();
 					break;
 			}
-			print(267); //Type <return> to proceed, S to scroll future error messages,
-			printnl(268); //R to run without stopping, Q to run quietly,
-			printnl(269); //I to insert something, 
+			print("Type <return> to proceed, S to scroll future error messages,");
+			printnl("R to run without stopping, Q to run quietly,");
+			printnl("I to insert something, ");
 			if (baseptr > 0)
-				print(270); //E to edit your file,
+				print("E to edit your file,");
 			if (deletionsallowed)
-				printnl(271); //1 or ... or 9 to ignore the link 1 to 9 tokens of input,
-			printnl(272); //H for help, X to quit.
+				printnl("1 or ... or 9 to ignore the link 1 to 9 tokens of input,");
+			printnl("H for help, X to quit.");
 		}
 	errorcount++;
 	if (errorcount == 100)
 	{
-		printnl(263); //(That makes 100 errors; please try again.)
+		printnl("(That makes 100 errors; please try again.)");
 		history = fatal_error_stop;
 		jumpout();
 	}
@@ -181,7 +182,7 @@ void error(void)
 		while (helpptr > 0)
 		{
 			helpptr--;
-			printnl(helpline[helpptr]);
+			printnl(TXT(helpline[helpptr]));
 		}
 	println();
 	if (interaction > batch_mode)

@@ -19,6 +19,7 @@
 #include "normalparagraph.h"
 #include "scanleftbrace.h"
 #include "shipout.h"
+#include "texte.h"
 
 void fireup(halfword c)
 {
@@ -48,13 +49,13 @@ void fireup(halfword c)
 		bestpagebreak = 0;
 	if (box(255))
 	{
-		printnl(262); //! 
-		print(338); //
-		printesc(409); //box
-		print(1002); //255 is not void
+		printnl("! ");
+		print(""); 
+		printesc("box");
+		print("255 is not void");
 		helpptr = 2;
-		helpline[1] = 1003; //You shouldn't use \box255 except in \output routines.
-		helpline[0] = 991; //Proceed, and I'll discard its present contents.
+		helpline[1] = txt("You shouldn't use \\box255 except in \\output routines.");
+		helpline[0] = txt("Proceed, and I'll discard its present contents.");
 		boxerror(255);
 	}
 	insertpenalties = 0;
@@ -210,14 +211,14 @@ void fireup(halfword c)
 	if (output_routine())
 		if (deadcycles >= int_par(max_dead_cycles_code))
 		{
-			printnl(262); //! 
-			print(1004); //Output loop---
+			printnl("! ");
+			print("Output loop---");
 			printint(deadcycles);
-			print(1005); // consecutive dead cycles
+			print(" consecutive dead cycles");
 			helpptr = 3;
-			helpline[2] = 1006; //I've concluded that your \output is awry; it never does a
-			helpline[1] = 1007; //\shipout, so I'm shipping \box255 out myself. Next time
-			helpline[0] = 1008; //increase \maxdeadcycles if you want me to be more patient!
+			helpline[2] = txt("I've concluded that your \\output is awry; it never does a");
+			helpline[1] = txt("\\shipout, so I'm shipping \\box255 out myself. Next time");
+			helpline[0] = txt("increase \\maxdeadcycles if you want me to be more patient!");
 			error();
 		}
 		else

@@ -8,6 +8,7 @@
 #include "printesc.h"
 #include "printint.h"
 #include "error.h"
+#include "texte.h"
 
 void findfontdimen(bool writing)
 {
@@ -32,7 +33,7 @@ void findfontdimen(bool writing)
 				do
 				{
 					if (fmemptr == fontmemsize)
-						overflow(823, fontmemsize); //font memory
+						overflow("font memory", fontmemsize);
 					fontinfo[fmemptr++].int_ = 0;
 					fontparams[f]++;
 				} while (n != fontparams[f]);
@@ -43,15 +44,15 @@ void findfontdimen(bool writing)
 	}
 	if (curval == fmemptr)
 	{
-		printnl(262); //! 
-		print(801); //Font 
-		printesc(hash[font_id_base+f].rh);
-		print(819); // has only 
+		printnl("! "); 
+		print("Font ");
+		printesc(TXT(hash[font_id_base+f].rh));
+		print(" has only "); 
 		printint(fontparams[f]);
-		print(820); // fontdimen parameters
+		print(" fontdimen parameters");
 		helpptr = 2;
-		helpline[1] = 821; //To increase the number of font parameters, you must
-		helpline[0] = 822; //use \fontdimen immediately after the \font is loaded.
+		helpline[1] = txt("To increase the number of font parameters, you must");
+		helpline[0] = txt("use \\fontdimen immediately after the \\font is loaded.");
 		error();
 	}
 }

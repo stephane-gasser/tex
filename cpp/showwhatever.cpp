@@ -15,6 +15,7 @@
 #include "flushlist.h"
 #include "tokenshow.h"
 #include "error.h"
+#include "texte.h"
 
 void showwhatever(void)
 {
@@ -25,34 +26,34 @@ void showwhatever(void)
 			begindiagnostic();
 			showactivities();
 			enddiagnostic(true);
-			printnl(262);//! 
-			print(1254); //OK
+			printnl("! ");
+			print("OK");
 			if (selector == term_and_log && int_par(tracing_online_code) <= 0)
 				selector = term_only;
-			print(1255); // (see the transcript file)
+			print(" (see the transcript file)");
 			selector = term_and_log;
 			break;
 		case 1:
 			scaneightbitint();
 			begindiagnostic();
-			printnl(1253); //> \box
+			printnl("> \\box");
 			printint(curval);
-			printchar('='); //
+			printchar('='); 
 			if (box(curval) == 0)
-				print(410); //void
+				print("void");
 			else
 				showbox(box(curval));
 			enddiagnostic(true);
-			printnl(262);//! 
-			print(1254); //OK
+			printnl("! ");
+			print("OK");
 			if (selector == term_and_log && int_par(tracing_online_code) <= 0)
 				selector = term_only;
-			print(1255); // (see the transcript file)
+			print(" (see the transcript file)");
 			selector = term_and_log;
 			break;
 		case 0:
 			gettoken();
-			printnl(1247); //> 
+			printnl("> ");
 			if (curcs)
 			{
 				sprintcs(curcs);
@@ -62,7 +63,7 @@ void showwhatever(void)
 			break;
 		default:
 			p = thetoks();
-			printnl(1247); //> 
+			printnl("> ");
 			tokenshow(temp_head);
 			flushlist(link(temp_head));
 			break;
@@ -76,18 +77,18 @@ void showwhatever(void)
 		if (int_par(tracing_online_code) > 0)
 		{
 			helpptr = 3;
-			helpline[2] = 1242; //This isn't an error message; I'm just \showing something.
-			helpline[1] = 1243; //Type `I\show...' to show more (e.g., \show\cs,
-			helpline[0] = 1244; //\showthe\count10, \showbox255, \showlists).
+			helpline[2] = txt("This isn't an error message; I'm just \\showing something.");
+			helpline[1] = txt("Type `I\\show...' to show more (e.g., \\show\\cs,");
+			helpline[0] = txt("\\showthe\\count10, \\showbox255, \\showlists).");
 		}
 		else
 		{
 		helpptr = 5;
-			helpline[4] = 1242; //This isn't an error message; I'm just \showing something.
-			helpline[3] = 1243; //Type `I\show...' to show more (e.g., \show\cs,
-			helpline[2] = 1244; //\showthe\count10, \showbox255, \showlists).
-			helpline[1] = 1245; //And type `I\tracingonline=1\show...' to show boxes and
-			helpline[0] = 1246; //lists on your terminal as well as in the transcript file.
+			helpline[4] = txt("This isn't an error message; I'm just \\showing something.");
+			helpline[3] = txt("Type `I\\show...' to show more (e.g., \\show\\cs,");
+			helpline[2] = txt("\\showthe\\count10, \\showbox255, \\showlists).");
+			helpline[1] = txt("And type `I\\tracingonline=1\\show...' to show boxes and");
+			helpline[0] = txt("lists on your terminal as well as in the transcript file.");
 		}
 	error();
 }

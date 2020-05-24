@@ -5,6 +5,7 @@
 #include "print.h"
 #include "error.h"
 #include "backinput.h"
+#include "texte.h"
 
 void headforvmode(void)
 {
@@ -13,13 +14,13 @@ void headforvmode(void)
 			offsave();
 		else
 		{
-			printnl(262); //! 
-			print(685); //You can't use `
-			printesc(521); //hrule
-			print(1081); //' here except with leaders
+			printnl("! ");
+			print("You can't use `");
+			printesc("hrule");
+			print("' here except with leaders");
 			helpptr = 2;
-			helpline[1] = 1082; //To put a horizontal rule in an hbox or an alignment,
-			helpline[0] = 1083; //you should use \leaders or \hrulefill (see The TeXbook).
+			helpline[1] = txt("To put a horizontal rule in an hbox or an alignment,");
+			helpline[0] = txt("you should use \\leaders or \\hrulefill (see The TeXbook).");
 			error();
 		}
 	else

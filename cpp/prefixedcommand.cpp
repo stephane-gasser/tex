@@ -44,6 +44,7 @@
 #include "newfont.h"
 #include "newinteraction.h"
 #include "confusion.h"
+#include "texte.h"
 
 void prefixedcommand(void)
 {
@@ -64,28 +65,28 @@ void prefixedcommand(void)
 		while (curcmd == spacer || curcmd == escape);
 		if (curcmd <= max_non_prefixed_command)
 		{
-			printnl(262); //! 
-			print(1178); //You can't use a prefix with `
+			printnl("! ");
+			print("You can't use a prefix with `");
 			printcmdchr(curcmd, curchr);
 			printchar('\''); 
 			helpptr = 1;
-			helpline[0] = 1179; //I'll pretend you didn't say \long or \outer or \global.
+			helpline[0] = txt("I'll pretend you didn't say \\long or \\outer or \\global.");
 			backerror;
 			return;
 		}
 	}
 	if (curcmd != def && a%4)
 	{
-		printnl(262); //! 
-		print(685); //You can't use `
-		printesc(1170); //long
-		print(1180); //' or `
-		printesc(1171); //outer
-		print(1181); //' with `
+		printnl("! ");
+		print("You can't use `");
+		printesc("long");
+		print("' or `");
+		printesc("outer");
+		print("' with `");
 		printcmdchr(curcmd, curchr);
 		printchar('\'');
 		helpptr = 1;
-		helpline[0] = 1182; //I'll pretend you didn't say \long or \outer here.
+		helpline[0] = txt("I'll pretend you didn't say \\long or \\outer here.");
 		error();
 	}
 	if (int_par(global_defs_code))
@@ -213,13 +214,13 @@ void prefixedcommand(void)
 		case read_to_cs:
 			scanint();
 			n = curval;
-			if (!scankeyword(841)) //to
+			if (!scankeyword("to")) 
 			{
-				printnl(262); //! 
-				print(1072); //Missing `to' inserted
+				printnl("! ");
+				print("Missing `to' inserted");
 				helpptr = 2;
-				helpline[1] = 1199; //You should have said `\read<number> to \cs'.
-				helpline[0] = 1200; //I'm going to look for the \cs now.
+				helpline[1] = txt("You should have said `\\read<number> to \\cs'.");
+				helpline[0] = txt("I'm going to look for the \\cs now.");
 				error();
 			}
 			getrtoken();
@@ -355,16 +356,16 @@ void prefixedcommand(void)
 			scanint();
 			if ((curval < 0 && p < del_code_base) || curval > n)
 			{
-				printnl(262); //! 
-				print(1201); //Invalid code (
+				printnl("! ");
+				print("Invalid code (");
 				printint(curval);
 				if (p < del_code_base)
-					print(1202); //), should be in the range 0..
+					print("), should be in the range 0..");
 				else
-					print(1203); //), should be at most 
+					print("//), should be at most ");
 				printint(n);
 				helpptr = 1;
-				helpline[0] = 1204; //I'm going to use 0 instead of that illegal code value.
+				helpline[0] = txt("I'm going to use 0 instead of that illegal code value.");
 				error;
 				curval = 0;
 			}
@@ -413,12 +414,12 @@ void prefixedcommand(void)
 				scanbox(0x40'00'00'00+n);
 			else
 			{
-				printnl(262); //! 
-				print(680); //Improper 
-				printesc(536); //setbox
+				printnl("! ");
+				print("Improper ");
+				printesc("setbox");
 				helpptr = 2;
-				helpline[1] = 1210; //Sorry, \setbox is not allowed after \halign in a display,
-				helpline[0] = 1211; //or between \accent and an accented character.
+				helpline[1] = txt("Sorry, \\setbox is not allowed after \\halign in a display,");
+				helpline[0] = txt("or between \\accent and an accented character.");
 				error();
 			}
 			break;
@@ -491,7 +492,7 @@ void prefixedcommand(void)
 			newinteraction();
 			break;
 		default: 
-			confusion(1177); //prefix
+			confusion("prefix");
 	}
 	if (aftertoken)
 	{

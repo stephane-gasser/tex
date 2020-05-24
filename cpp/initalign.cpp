@@ -15,6 +15,7 @@
 #include "newsavelevel.h"
 #include "begintokenlist.h"
 #include "alignpeek.h"
+#include "texte.h"
 
 void initalign(void)
 {
@@ -23,14 +24,14 @@ void initalign(void)
 	alignstate = -1000000;
 	if (mode == mmode && (tail != head || incompleat_noad))
 	{
-		printnl(262); //! 
-		print(680); //Improper 
-		printesc(520); //halign
-		print(893); // inside $$'s
+		printnl("! ");
+		print("Improper ");
+		printesc("halign");
+		print(" inside $$'s");
 		helpptr = 3;
-		helpline[2] = 894; //Displays can use special alignments (like \eqalignno)
-		helpline[1] = 895; //only if nothing but the alignment itself is between $$'s.
-		helpline[0] = 896; //So I've deleted the formulas that preceded this alignment.
+		helpline[2] = txt("Displays can use special alignments (like \\eqalignno)");
+		helpline[1] = txt("only if nothing but the alignment itself is between $$'s.");
+		helpline[0] = txt("So I've deleted the formulas that preceded this alignment.");
 		error();
 		flushmath();
 	}
@@ -69,12 +70,12 @@ void initalign(void)
 					curloop = curalign;
 				else
 				{
-					printnl(262); //! 
-					print(902); //Missing # inserted in alignment preamble
+					printnl("! ");
+					print("Missing # inserted in alignment preamble");
 					helpptr = 3;
-					helpline[2] = 903; //There should be exactly one # between &'s, when an
-					helpline[1] = 904; //\halign or \valign is being set up. In this case you had
-					helpline[0] = 905; //none, so I've put one in; maybe that will work.
+					helpline[2] = txt("There should be exactly one # between &'s, when an");
+					helpline[1] = txt("\\halign or \\valign is being set up. In this case you had");
+					helpline[0] = txt("none, so I've put one in; maybe that will work.");
 					backerror();
 					break;
 				}
@@ -100,12 +101,12 @@ void initalign(void)
 				break;
 			if (curcmd == mac_param)
 			{
-				printnl(262); //!
-				print(906); //Only one # is allowed per tab
+				printnl("! ");
+				print("Only one # is allowed per tab");
 				helpptr = 3;
-				helpline[2] = 903; //There should be exactly one # between &'s, when an
-				helpline[1] = 904; //\halign or \valign is being set up. In this case you had
-				helpline[0] = 907; //more than one, so I'm ignoring all but the first.
+				helpline[2] = txt("There should be exactly one # between &'s, when an");
+				helpline[1] = txt("\\halign or \\valign is being set up. In this case you had");
+				helpline[0] = txt("more than one, so I'm ignoring all but the first.");
 				error();
 				continue;
 			}

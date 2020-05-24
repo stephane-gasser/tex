@@ -18,7 +18,7 @@ void backinput(void)
 	{
 		maxinstack = inputptr;
 		if (inputptr == stacksize)
-			overflow(593, stacksize); // input stack size
+			overflow("input stack size", stacksize); 
 	}
 	inputstack[inputptr++] = curinput;
 	curinput.statefield = 0;

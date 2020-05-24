@@ -4,7 +4,7 @@
 strnumber makestring(void)
 {
 	if (strptr == maxstrings)
-		overflow(258, maxstrings-initstrptr); //number of strings
+		overflow("number of strings", maxstrings-initstrptr);
 	strptr++;
 	strstart[strptr] = poolptr;
 	return strptr-1;

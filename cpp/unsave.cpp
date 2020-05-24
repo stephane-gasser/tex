@@ -31,7 +31,7 @@ void unsave(void)
 				}
 				else
 					savestack[saveptr] = eqtb[undefined_control_sequence];
-				if (p < 5263)
+				if (p < int_base)
 					if (eq_level(p) == 1)
 						eqdestroy(savestack[saveptr]);
 					else
@@ -51,5 +51,5 @@ void unsave(void)
 		curboundary = save_index(saveptr);
 	}
 	else
-		confusion(543); //curlevel
+		confusion("curlevel");
 }

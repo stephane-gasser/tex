@@ -10,7 +10,7 @@
 void resumeafterdisplay(void)
 {
 	if (curgroup != 15)
-		confusion(1168); //display
+		confusion("display");
 	unsave();
 	prev_graf += 3;
 	pushnest();

@@ -8,8 +8,8 @@ void saveforafter(halfword t)
 		if (saveptr > maxsavestack)
 		{
 			maxsavestack = saveptr;
-			if (maxsavestack > savesize - 6)
-				overflow(541, savesize); //save size
+			if (maxsavestack > savesize-6)
+				overflow("save size", savesize);
 		}
 		save_type(saveptr) = 2;
 		save_level(saveptr) = 0;

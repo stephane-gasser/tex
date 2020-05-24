@@ -3,6 +3,7 @@
 #include "getavail.h"
 #include "terminput.h"
 #include "print.h"
+#include "printchar.h"
 #include "println.h"
 #include "sprintcs.h"
 #include "print.h"
@@ -15,6 +16,7 @@
 #include "gettoken.h"
 #include "error.h"
 #include "endfilereading.h"
+#include "texte.h"
 
 void readtoks(int n, halfword r)
 {
@@ -42,19 +44,19 @@ void readtoks(int n, halfword r)
 			if (interaction > nonstop_mode)
 				if (n < 0)
 				{
-					print(338); //
+					print("");
 					terminput();
 				}
 				else
 				{
 					println();
 					sprintcs(r);
-					print('=');
+					printchar('=');
 					terminput;
 					n = -1;
 				}
 		else
-			fatalerror(753); //*** (cannot \read from terminal in nonstop modes)
+			fatalerror("*** (cannot \read from terminal in nonstop modes)");
 
 		else 
 			if (readopen[m] == 1)
@@ -74,11 +76,11 @@ void readtoks(int n, halfword r)
 					if (alignstate != 1000000)
 					{
 						runaway();
-						printnl(262); //! 
-						print(754); //File ended within 
-						printesc(534); //read
+						printnl("! ");
+						print("File ended within ");
+						printesc("read");
 						helpptr = 1;
-						helpline[0] = 755; //This \read has unbalanced braces.
+						helpline[0] = txt("This \\read has unbalanced braces.");
 						alignstate = 1000000;
 						error();
 					}

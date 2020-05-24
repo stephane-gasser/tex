@@ -20,7 +20,7 @@ void showtokenlist(int p, int  q, int l)
 		}
 		if (p < himemmin || p > memend)
 		{
-			printesc(309); //CLOBBERED.
+			printesc("CLOBBERED.");
 			return;
 		}
 		if (info(p) >= cs_token_flag)
@@ -30,7 +30,7 @@ void showtokenlist(int p, int  q, int l)
 			int m = info(p)/0x1'00;
 			int c = info(p)%0x1'00;
 			if (info(p) < 0)
-				printesc(555); //BAD.
+				printesc("BAD.");
 			else
 				switch (m)
 				{
@@ -43,14 +43,14 @@ void showtokenlist(int p, int  q, int l)
 					case 10:
 					case 11:
 					case 12: 
-						print(c);
+						print(std::string(1, char(c)));
 						break;
 					case 6:
-						print(c);
-						print(c);
+						print(std::string(1, char(c)));
+						print(std::string(1, char(c)));
 						break;
 					case 5:
-						print(matchchr);
+						print(std::string(1, char(matchchr)));
 						if (c <= 9)
 							printchar(c+'0');
 						else
@@ -61,21 +61,21 @@ void showtokenlist(int p, int  q, int l)
 						break;
 					case 13:
 						matchchr = c;
-						print(c);
+						print(std::string(1, char(c)));
 						n++;
 						printchar(n);
 						if (n > 57)
 							return;
 						break;
 					case 14: 
-						print(556); //->
+						print("->");
 						break;
 					default:
-			  			printesc(555); //BAD.
+			  			printesc("BAD.");
 				}
 		}
 		p = link(p);
 	}
 	if (p)
-		printesc(554); //ETC.
+		printesc("ETC.");
 }

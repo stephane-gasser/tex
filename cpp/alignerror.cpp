@@ -5,32 +5,33 @@
 #include "error.h"
 #include "backinput.h"
 #include "inserror.h"
+#include "texte.h"
 
 void alignerror(void)
 {
 	if (abs(alignstate) > 2)
 	{
-		printnl(262); //! 
-		print(1113); //Misplaced 
+		printnl("! ");
+		print("Misplaced ");
 		printcmdchr(curcmd, curchr);
 		if (curtok == 1062) // tab_mark + '&'
 		{
 			helpptr = 6;
-			helpline[5] = 1114; //I can't figure out why you would want to use a tab mark
-			helpline[4] = 1115; //here. If you just want an ampersand, the remedy is
-			helpline[3] = 1116; //simple: Just type `I\&' now. But if some right brace
-			helpline[2] = 1117; //up above has ended a previous alignment prematurely,
-			helpline[1] = 1118; //you're probably due for more error messages, and you
-			helpline[0] = 1119; //might try typing `S' now just to see what is salvageable.
+			helpline[5] = txt("I can't figure out why you would want to use a tab mark");
+			helpline[4] = txt("here. If you just want an ampersand, the remedy is");
+			helpline[3] = txt("simple: Just type `I\\&' now. But if some right brace");
+			helpline[2] = txt("up above has ended a previous alignment prematurely,");
+			helpline[1] = txt("you're probably due for more error messages, and you");
+			helpline[0] = txt("might try typing `S' now just to see what is salvageable.");
 		}
 		else
 		{
 			helpptr = 5;
-			helpline[4] = 1114; //I can't figure out why you would want to use a tab mark
-			helpline[3] = 1120; //or \cr or \span just now. If something like a right brace
-			helpline[2] = 1117; //up above has ended a previous alignment prematurely,
-			helpline[1] = 1118; //you're probably due for more error messages, and you
-			helpline[0] = 1119; //might try typing `S' now just to see what is salvageable.
+			helpline[4] = txt("I can't figure out why you would want to use a tab mark");
+			helpline[3] = txt("or \\cr or \\span just now. If something like a right brace");
+			helpline[2] = txt("up above has ended a previous alignment prematurely,");
+			helpline[1] = txt("you're probably due for more error messages, and you");
+			helpline[0] = txt("might try typing `S' now just to see what is salvageable.");
 		}
 		error();
 	}
@@ -39,22 +40,22 @@ void alignerror(void)
 		backinput();
 		if (alignstate < 0)
 		{
-			printnl(262); //! 
-			print(657); //Missing { inserted
+			printnl("! ");
+			print("Missing { inserted");
 			alignstate++;
 			curtok = left_brace*0x01'00+'{'; 
 		}
 		else
 		{
-			printnl(262); //! 
-			print(1109); //Missing } inserted
+			printnl("! ");
+			print("Missing } inserted");
 			alignstate--;
 			curtok = right_brace*0x01'00+ '}';
 		}
 		helpptr = 3;
-		helpline[2] = 1110; //I've put in what seems to be necessary to fix
-		helpline[1] = 1111; //the current column of the current alignment.
-		helpline[0] = 1112; //Try to go on, since this might almost work.
+		helpline[2] = txt("I've put in what seems to be necessary to fix");
+		helpline[1] = txt("the current column of the current alignment.");
+		helpline[0] = txt("Try to go on, since this might almost work.");
 		inserror();
 	}
 }

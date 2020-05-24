@@ -21,14 +21,15 @@
 #include "vlistout.h"
 #include "hlistout.h"
 #include <iostream>
+#include "texte.h"
 
 void shipout(halfword p)
 {
 	if (int_par(tracing_output_code))
 	{
-		printnl(338); //
+		printnl("");
 		println();
-		print(828); //Completed box being shipped out
+		print("Completed box being shipped out");
 	}
 	if (termoffset > maxprintline-9)
 		println();
@@ -57,16 +58,16 @@ void shipout(halfword p)
 	 || height(p)+depth(p)+dimen_par(v_offset_code) > max_dimen 
 	 || width(p)+dimen_par(h_offset_code) > max_dimen)
 	{
-		printnl(262); //! 
-		print(832); //Huge page cannot be shipped out
+		printnl("! ");
+		print("Huge page cannot be shipped out");
 		helpptr = 2;
-		helpline[1] = 833; //The page just created is more than 18 feet tall or
-		helpline[0] = 834; //more than 18 feet wide, so I suspect something went wrong.
+		helpline[1] = txt("The page just created is more than 18 feet tall or");
+		helpline[0] = txt("more than 18 feet wide, so I suspect something went wrong.");
 		error();
 		if (int_par(tracing_output_code) <= 0)
 		{
 			begindiagnostic;
-			printnl(835);
+			printnl("The following box has been deleted:");
 			showbox(p);
 			enddiagnostic(true);
 		}
@@ -89,9 +90,9 @@ void shipout(halfword p)
 	{
 		if (jobname == 0)
 			openlogfile();
-		packjobname(793); //.dvi
+		packjobname(".dvi");
 		while (!bopenout(dvifile))
-			promptfilename(794, 793); //file name for output//.dvi
+			promptfilename("file name for output", ".dvi");
 		outputfilename = bmakenamestring(dvifile);
 	}
 	if (totalpages == 0)
@@ -108,7 +109,7 @@ void shipout(halfword p)
 		dvifour(int_par(mag_code));
 		oldsetting = selector;
 		selector = new_string;
-		print(826); // TeX output 
+		print(" TeX output ");
 		printint(int_par(year_code));
 		printchar('.');
 		printtwo(int_par(month_code));

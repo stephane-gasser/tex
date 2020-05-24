@@ -5,13 +5,14 @@
 void endname(void)
 {
 	if (strptr+3 > maxstrings)
-		overflow(258, maxstrings-initstrptr);
+		overflow("number of strings", maxstrings-initstrptr);
 	if (areadelimiter == 0)
 		curarea = 338;
 	else
 	{
 		curarea = strptr;
-		strstart[1+strptr++] = strstart[strptr]+areadelimiter;
+		strstart[1+strptr] = strstart[strptr]+areadelimiter;
+		strptr++;
 	}
 	if (extdelimiter == 0)
 	{

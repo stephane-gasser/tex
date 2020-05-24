@@ -10,11 +10,11 @@
 void showcurcmdchr(void)
 {
 	begindiagnostic();
-	printnl('{');
+	printnl("{");
 	if (mode != shownmode)
 	{
 		printmode(mode);
-		print(568); //: 
+		print(": ");
 		shownmode = mode;
 	}
 	printcmdchr(curcmd, curchr);

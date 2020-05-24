@@ -16,6 +16,7 @@
 #include "error.h"
 #include "preparemag.h"
 #include "xnoverd.h"
+#include "texte.h"
 
 void scandimen(bool mu, bool inf, bool shortcut)
 {
@@ -113,17 +114,17 @@ void scandimen(bool mu, bool inf, bool shortcut)
 			curval = -curval;
 		}
 		if (inf)
-			if (scankeyword(311)) //fil
+			if (scankeyword("fil"))
 			{
 				curorder = 1;
 				while (scankeyword('l')) 
 				if (curorder == 3)
 				{
-					printnl(262); //! 
-					print(705); //Illegal unit of measure (
-					print(706); //replaced by filll)
+					printnl("! ");
+					print("Illegal unit of measure ("); 
+					print("replaced by filll)");
 					helpptr = 1;
-					helpline[0] = 707; //I dddon't go any higher than filll.
+					helpline[0] = txt("I dddon't go any higher than filll.");
 					error();
 				}
 				else
@@ -165,7 +166,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 		}
 		if (!mu)
 		{
-			if (scankeyword(708)) //em
+			if (scankeyword("em"))
 			{
 				auto v = param(quad_code, cur_font());
 				getxtoken();
@@ -173,7 +174,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 					backinput();
 			}
 			else 
-				if (scankeyword(709)) //ex
+				if (scankeyword("ex"))
 				{
 					auto v = param(x_height_code, cur_font());
 					getxtoken();
@@ -183,16 +184,16 @@ void scandimen(bool mu, bool inf, bool shortcut)
 		}
 		if (mu)
 		{
-			if (!scankeyword(337)) //mu
+			if (!scankeyword("mu"))
 			{
-				printnl(262); //! 
-				print(705); //Illegal unit of measure (
-				print(710); //mu inserted)
+				printnl("! ");
+				print("Illegal unit of measure ("); 
+				print("mu inserted)"); 
 				helpptr = 4;
-				helpline[3] = 711; //The unit of measurement in math glue must be mu.
-				helpline[2] = 712; //To recover gracefully from this error, it's best to
-				helpline[1] = 713; //delete the erroneous units; e.g., type `2' to delete
-				helpline[0] = 714; //two letters. (See Chapter 27 of The TeXbook.)
+				helpline[3] = txt("The unit of measurement in math glue must be mu.");
+				helpline[2] = txt("To recover gracefully from this error, it's best to");
+				helpline[1] = txt("delete the erroneous units; e.g., type `2' to delete");
+				helpline[0] = txt("two letters. (See Chapter 27 of The TeXbook.)");
 				error();
 			}
 			if (curval >= 0x40'00)
@@ -204,7 +205,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 				backinput();
 			break;
 		}
-		if (scankeyword(704)) //true
+		if (scankeyword("true"))
 		{
 			preparemag();
 			if (int_par(mag_code) != 1000)
@@ -215,7 +216,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 				f %= 0x01'00'00;
 			}
 		}
-		if (scankeyword(397)) //pt
+		if (scankeyword("pt"))
 		{
 			if (curval >= 0x40'00)
 				aritherror = true;
@@ -227,49 +228,49 @@ void scandimen(bool mu, bool inf, bool shortcut)
 			break;
 		}
 		int num, denom;
-		if (scankeyword(715)) //in
+		if (scankeyword("in"))
 		{
 			num = 7227;
 			denom = 100;
 		}
 		else 
-			if (scankeyword(716)) //pc
+			if (scankeyword("pc"))
 			{
 				num = 12;
 				denom = 1;
 			}
 			else 
-				if (scankeyword(717)) //cm
+				if (scankeyword("cm"))
 				{
 					num = 7227;
 					denom = 254;
 				}
 				else 
-					if (scankeyword(718)) //mm
+					if (scankeyword("mm"))
 					{
 						num = 7227;
 						denom = 2540;
 					}
 					else 
-						if (scankeyword(719)) //bp
+						if (scankeyword("bp"))
 						{
 							num = 7227;
 							denom = 7200;
 						}
 						else 
-							if (scankeyword(720)) //dd
+							if (scankeyword("dd"))
 							{
 								num = 1238;
 								denom = 1157;
 							}
 							else 
-								if (scankeyword(721)) //cc
+								if (scankeyword("cc"))
 								{
 									num = 14856;
 									denom = 1157;
 								}
 								else 
-									if (scankeyword(722)) //sp
+									if (scankeyword("sp")) 
 									{
 										getxtoken();
 										if (curcmd != spacer)
@@ -278,16 +279,16 @@ void scandimen(bool mu, bool inf, bool shortcut)
 									}
 									else
 									{
-										printnl(262); //! 
-										print(705); //Illegal unit of measure (
-										print(723); //pt inserted)
+										printnl("! "); 
+										print("Illegal unit of measure ("); 
+										print("pt inserted)");
 										helpptr = 6;
-										helpline[5] = 724; //Dimensions can be in units of em, ex, in, pt, pc,
-										helpline[4] = 725; //cm, mm, dd, cc, bp, or sp; but yours is a new one!
-										helpline[3] = 726; //I'll assume that you meant to say pt, for printer's points.
-										helpline[2] = 712; //Dimension too large
-										helpline[1] = 713; //I can't work with sizes bigger than about 19 feet.
-										helpline[0] = 714; //Continue and I'll use the largest value I can.
+										helpline[5] = txt("Dimensions can be in units of em, ex, in, pt, pc,");
+										helpline[4] = txt("cm, mm, dd, cc, bp, or sp; but yours is a new one!");
+										helpline[3] = txt("I'll assume that you meant to say pt, for printer's points.");
+										helpline[2] = txt("Dimension too large");
+										helpline[1] = txt("I can't work with sizes bigger than about 19 feet.");
+										helpline[0] = txt("Continue and I'll use the largest value I can.");
 										error();
 										if (curval >= 0x40'00)
 											aritherror = true;
@@ -313,11 +314,11 @@ void scandimen(bool mu, bool inf, bool shortcut)
 	} 
 	if (aritherror || abs(curval) >= 0x40'00'00'00)
 	{
-		printnl(262); //! 
-		print(727); //Dimension too large
+		printnl("! ");
+		print("Dimension too large"); 
 		helpptr = 2;
-		helpline[1] = 728; //I can't work with sizes bigger than about 19 feet.
-		helpline[0] = 729; //Continue and I'll use the largest value I can.
+		helpline[1] = txt("I can't work with sizes bigger than about 19 feet.");
+		helpline[0] = txt("Continue and I'll use the largest value I can.");
 		error;
 		curval = max_dimen;
 		aritherror = false;

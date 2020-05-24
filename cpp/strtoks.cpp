@@ -4,8 +4,8 @@
 
 halfword strtoks(poolpointer b)
 {
-	if (poolptr + 1 > poolsize)
-		overflow(257, poolsize - initpoolptr); //pool size
+	if (poolptr+1 > poolsize)
+		overflow("pool size", poolsize-initpoolptr);
 	halfword p = temp_head;
 	link(p) = 0;
 	for (auto k = b; k < poolptr; k++)

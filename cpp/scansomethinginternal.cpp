@@ -12,7 +12,7 @@
 #include "error.h"
 #include "muerror.h"
 #include "newspec.h"
-
+#include "texte.h"
 
 void scansomethinginternal(smallnumber level, bool negative)
 {
@@ -45,12 +45,12 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case def_font:
 			if (level != 5)
 			{
-				printnl(262); //! 
-				print(664); //Missing number, treated as zero
+				printnl("! ");
+				print("Missing number, treated as zero");
 				helpptr = 3;
-				helpline[2] = 665; //A number should have been here; I inserted `0'.
-				helpline[1] = 666; //(If you can't figure out why I needed to see a number,
-				helpline[0] = 667; //look up `weird error' in the index to The TeXbook.)
+				helpline[2] = txt("A number should have been here; I inserted `0'.");
+				helpline[1] = txt("(If you can't figure out why I needed to see a number,");
+				helpline[0] = txt("look up `weird error' in the index to The TeXbook.)");
 				backerror();
 				curval = 0;
 				curvallevel = 1;
@@ -93,14 +93,14 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case set_aux:
 			if (abs(mode) != m)
 			{
-				printnl(262); //! 
-				print(680); //Improper 
+				printnl("! ");
+				print("Improper ");
 				printcmdchr(set_aux, m);
 				helpptr = 4;
-				helpline[3] = 681; // You can refer to \spacefactor only in horizontal mode;
-				helpline[2] = 682; //you can refer to \prevdepth only in vertical mode; and
-				helpline[1] = 683; //neither of these is meaningful inside \write. So
-				helpline[0] = 684; //I'm forgetting what you said and using zero instead.
+				helpline[3] = txt("You can refer to \\spacefactor only in horizontal mode;");
+				helpline[2] = txt("you can refer to \\prevdepth only in vertical mode; and");
+				helpline[1] = txt("neither of these is meaningful inside \\write. So");
+				helpline[0] = txt("I'm forgetting what you said and using zero instead.");
 				error();
 				if (level != 5)
 				{
@@ -267,13 +267,13 @@ void scansomethinginternal(smallnumber level, bool negative)
 			}
 			break;
 		default:
-			printnl(262); //! 
-			print(685); //You can't use `
+			printnl("! ");
+			print("You can't use `");
 			printcmdchr(curcmd, curchr);
-			print(686); //' after 
-			printesc(537); //the
+			print("' after ");
+			printesc("the");
 			helpptr = 1;
-			helpline[0] = 684; //I'm forgetting what you said and using zero instead.
+			helpline[0] = txt("I'm forgetting what you said and using zero instead.");
 			error();
 			if (level != 5)
 			{

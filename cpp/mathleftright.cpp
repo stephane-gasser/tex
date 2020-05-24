@@ -9,6 +9,7 @@
 #include "pushmath.h"
 #include "unsave.h"
 #include "finmlist.h"
+#include "texte.h"
 
 void mathleftright(void)
 {
@@ -18,11 +19,11 @@ void mathleftright(void)
 		if (curgroup == 15)
 		{
 			scandelimiter(garbage, false);
-			printnl(262); //! 
-			print(776); //Extra 
-			printesc(876); //right
+			printnl("! ");
+			print("Extra ");
+			printesc("right");
 			helpptr = 1;
-			helpline[0] = 1156; //I'm ignoring a \right that had no matching \left.
+			helpline[0] = txt("I'm ignoring a \\right that had no matching \\left.");
 			error();
 		}
 		else

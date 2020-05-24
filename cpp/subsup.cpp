@@ -4,6 +4,7 @@
 #include "print.h"
 #include "error.h"
 #include "scanmath.h"
+#include "texte.h"
 
 void subsup(void)
 {
@@ -23,17 +24,17 @@ void subsup(void)
 		{
 			if (curcmd == sup_mark)
 			{
-				printnl(262); //! 
-				print(1142); //Double superscript
+				printnl("! ");
+				print("Double superscript");
 				helpptr = 1;
-				helpline[0] = 1143; //I treat `x^1^2' essentially like `x^1{}^2'.
+				helpline[0] = txt("I treat `x^1^2' essentially like `x^1{}^2'.");
 			}
 			else
 			{
-				printnl(262); //! 
-				print(1144); //Double subscript
+				printnl("! ");
+				print("Double subscript");
 				helpptr = 1;
-				helpline[0] = 1145; //I treat `x_1_2' essentially like `x_1{}_2'.
+				helpline[0] = txt("I treat `x_1_2' essentially like `x_1{}_2'.");
 			}
 			error();
 		}

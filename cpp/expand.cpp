@@ -23,20 +23,16 @@
 #include "freenode.h"
 #include "startinput.h"
 #include "macrocall.h"
+#include "texte.h"
 
 void expand(void)
-/*var
-  t: halfword;
-  p, q, r: halfword;
-  j: 0..bufsize;
-  savescannerstatus: smallnumber;*/
 {
 	int cvbackup = curval;
 	smallnumber cvlbackup = curvallevel;
 	smallnumber radixbackup = radix;
 	smallnumber cobackup = curorder;
 	halfword backupbackup = link(backup_head);
-	if (curcmd < 111)
+	if (curcmd < call)
 	{
 		if (int_par(tracing_commands_code) > 1)
 			showcurcmdchr();
@@ -46,22 +42,22 @@ void expand(void)
 		int j;
 		switch (curcmd)
 		{
-			case 110:
+			case top_bot_mark:
 				if (curmark[curchr])
 					begintokenlist(curmark[curchr], 14);
 				break;
-			case 102:
+			case expand_after:
 				gettoken();
 				t = curtok;
 				gettoken();
-				if (curcmd > 100)
+				if (curcmd > max_command)
 					expand();
 				else
 					backinput();
 				curtok = t;
 				backinput();
 				break;
-			case 103:
+			case no_expand:
 				savescannerstatus = scannerstatus;
 				scannerstatus = 0;
 				gettoken();
@@ -77,7 +73,7 @@ void expand(void)
 					curinput.locfield = p;
 				}
 				break;
-			case 107:
+			case cs_name:
 				r = getavail();
 				p = r;
 				do
@@ -93,13 +89,13 @@ void expand(void)
 				} while (curcs == 0);
 				if (curcmd != 67)
 				{
-					printnl(262); //! 
-					print(625); //Missing 
-					printesc(505); //endcsname
-					print(626); // inserted
+					printnl("! ");
+					print("Missing ");
+					printesc("endcsname");
+					print(" inserted");
 					helpptr = 2;
-					helpline[1] = 627; //The control sequence marked <to be read again> should
-					helpline[0] = 628; //not appear between \csname and \endcsname.
+					helpline[1] = txt("The control sequence marked <to be read again> should");
+					helpline[0] = txt("not appear between \\csname and \\endcsname.");
 					backerror();
 				}
 				j = First;
@@ -109,8 +105,8 @@ void expand(void)
 					if (j >= maxbufstack)
 					{
 						maxbufstack = j+1;
-						if (maxbufstack = bufsize)
-							overflow(256, bufsize); //buffer size
+						if (maxbufstack == bufsize)
+							overflow("buffer size", bufsize);
 					};
 					buffer[j++] = info(p)%0x1'00;
 					p = link(p);
@@ -132,27 +128,27 @@ void expand(void)
 				curtok = curcs+cs_token_flag;
 				backinput();
 				break;
-			case 108: 
+			case convert: 
 				convtoks();
 				break;
-			case 109: 
+			case the: 
 				insthetoks();
 				break;
-			case 105: 
+			case if_test: 
 				conditional();
 				break;
-			case 106:
+			case fi_or_else:
 				if (curchr > iflimit)
 					if (iflimit = 1)
 						insertrelax();
 					else
 					{
-						printnl(262); //! 
-						print(776); //Extra 
-						printcmdchr(106, curchr); 
+						printnl("! ");
+						print("Extra ");
+						printcmdchr(fi_or_else, curchr); 
 						{
 							helpptr = 1;
-							helpline[0] = 777; //I'm ignoring this; it doesn't match any \if.
+							helpline[0] = txt("I'm ignoring this; it doesn't match any \\if.");
 						}
 						error();
 					}
@@ -168,7 +164,7 @@ void expand(void)
 					freenode(p, 2);
 				}
 				break;
-			case 104:
+			case input:
 				if (curchr > 0)
 					forceeof = true;
 				else 
@@ -178,14 +174,14 @@ void expand(void)
 						startinput();
 				break;
 			default:
-				printnl(262); //! 
-				print(619); //Undefined control sequence
+				printnl("! ");
+				print("Undefined control sequence");
 				helpptr = 5;
-				helpline[4] = 620; //The control sequence at the end of the top line
-				helpline[3] = 621; //of your error message was never \def'ed. If you have
-				helpline[2] = 622; //misspelled it (e.g., `\hobx'), type `I' and the correct
-				helpline[1] = 623; //spelling (e.g., `I\hbox'). Otherwise just continue,
-				helpline[0] = 624; //and I'll forget about whatever was undefined.
+				helpline[4] = txt("The control sequence at the end of the top line");
+				helpline[3] = txt("of your error message was never \\def'ed. If you have");
+				helpline[2] = txt("misspelled it (e.g., `\\hobx'), type `I' and the correct");
+				helpline[1] = txt("spelling (e.g., `I\\hbox'). Otherwise just continue,");
+				helpline[0] = txt("and I'll forget about whatever was undefined.");
 				error();
 		}
 	}

@@ -2,6 +2,7 @@
 #include "printchar.h"
 #include "print.h"
 #include "printesc.h"
+#include "texte.h"
 
 void shortdisplay(int p)
 {
@@ -16,11 +17,12 @@ void shortdisplay(int p)
 					if (type(p) < 0 || type(p) > fontmax)
 						printchar('*');
 					else
-						printesc(hash[frozen_null_font+type(p)].rh);
+						printesc(TXT(text(frozen_null_font+type(p))));
+						
 					printchar(' ');
 					fontinshortdisplay = type(p);
 				}
-				print(subtype(p));
+				print(std::string(1, subtype(p)));
 			}
 		}
 		else
@@ -33,7 +35,7 @@ void shortdisplay(int p)
 			case 4:
 			case 5:
 			case 13: 
-				print(308); //[]
+				print("[]");
 				break;
 			case 2: 
 				printchar('|');

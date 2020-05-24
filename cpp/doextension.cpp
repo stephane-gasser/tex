@@ -78,6 +78,6 @@ void doextension(void)
 			}
 			break;
 		default: 
-			confusion(1290); //ext1
+			confusion("ext1");
 	}
 }

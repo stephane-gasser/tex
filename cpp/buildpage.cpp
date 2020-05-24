@@ -17,6 +17,7 @@
 #include "badness.h"
 #include "fireup.h"
 #include "newspec.h"
+#include "texte.h"
 
 void buildpage(void)
 {
@@ -139,14 +140,14 @@ void buildpage(void)
 					pagesofar[6] += height(q);
 					if (subtype(q) && height(q))
 					{
-						printnl(262); //! 
-						print(997); //Infinite glue shrinkage inserted from 
-						printesc(395); //skip
+						printnl("! ");
+						print("Infinite glue shrinkage inserted from ");
+						printesc("skip");
 						printint(n);
 						helpptr = 3;
-						helpline[2] = 998; //The correction glue for page breaking with insertions
-						helpline[1] = 999; //must have finite shrinkability. But you may proceed,
-						helpline[0] = 921; //since the offensive shrinkability has been made finite.
+						helpline[2] = txt("The correction glue for page breaking with insertions");
+						helpline[1] = txt("must have finite shrinkability. But you may proceed,");
+						helpline[0] = txt("since the offensive shrinkability has been made finite.");
 						error();
 					}
 				}
@@ -194,7 +195,7 @@ void buildpage(void)
 				}
 				break;
 			default: 
-				confusion(992); //page
+				confusion("page");
 		}
 		if ((type(p) == glue_node && type(pagetail) < 9) || (type(p) ==  kern_node && type(link(p)) == glue_node) || type(p) == penalty_node)
 			if (pi < 10000)
@@ -254,13 +255,13 @@ void buildpage(void)
 			pagesofar[6] += height(q);
 			if (subtype(q) && height(q))
 			{
-				printnl(262); //! 
-				print(993); //Infinite glue shrinkage found on current page
+				printnl("! ");
+				print("Infinite glue shrinkage found on current page");
 				helpptr = 4;
-				helpline[3] = 994; //The page about to be output contains some infinitely
-				helpline[2] = 962; //shrinkable glue, e.g., `\vss' or `\vskip 0pt minus 1fil'.
-				helpline[1] = 963; //Such glue doesn't belong there; but you can safely proceed,
-				helpline[0] = 921; //since the offensive shrinkability has been made finite.
+				helpline[3] = txt("The page about to be output contains some infinitely");
+				helpline[2] = txt("shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.");
+				helpline[1] = txt("Such glue doesn't belong there; but you can safely proceed,");
+				helpline[0] = txt("since the offensive shrinkability has been made finite.");
 				error();
 				r = newspec(q);
 				subtype(r) = 0;

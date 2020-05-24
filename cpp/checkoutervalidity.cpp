@@ -10,6 +10,7 @@
 #include "sprintcs.h"
 #include "runaway.h"
 #include "error.h"
+#include "texte.h"
 
 void checkoutervalidity(void)
 {
@@ -32,31 +33,31 @@ void checkoutervalidity(void)
 			runaway();
 			if (curcs == 0)
 			{
-				printnl(262); //! 
-				print(604); //File ended
+				printnl("! ");
+				print("File ended");
 			}
 			else
 			{
 				curcs = 0;
-				printnl(262); //! 
-				print(605); //Forbidden control sequence found
+				printnl("! ");
+				print("Forbidden control sequence found");
 			}
-			print(606); // while scanning 
+			print(" while scanning ");
 			auto p = getavail();
 			decltype(p) q;
 			switch (scannerstatus)
 			{
 				case 2:
-					print(570); //definition
+					print("definition");
 					info(p) = right_brace*0x01'00+'}';
 					break;
 				case 3:
-					print(612); //use
+					print("use");
 					info(p) = partoken;
-					longstate = 113;
+					longstate = outer_call;
 					break;
 				case 4:
-					print(572); //preamble
+					print("preamble");
 					info(p) = right_brace*0x01'00+'}';
 					q = p;
 					p = getavail();
@@ -65,36 +66,36 @@ void checkoutervalidity(void)
 					alignstate = -1000000;
 					break;
 				case 5:
-					print(573); //text
+					print("text");
 					info(p) = right_brace*0x01'00+'}';
 			}
 			begintokenlist(p, 4);
-			print(607); // of 
+			print(" of ");
 			sprintcs(warningindex);
 			{
 				helpptr = 4;
-				helpline[3] = 608; //I suspect you have forgotten a `}', causing me
-				helpline[2] = 609; //to read past where you wanted me to stop.
-				helpline[1] = 610; //I'll try to recover; but if the error is serious,
-				helpline[0] = 611; //you'd better type `E' or `X' now and fix your file.
+				helpline[3] = txt("I suspect you have forgotten a `}', causing me");
+				helpline[2] = txt("to read past where you wanted me to stop.");
+				helpline[1] = txt("I'll try to recover; but if the error is serious,");
+				helpline[0] = txt("you'd better type `E' or `X' now and fix your file.");
 			}
 			error();
 		}
 		else
 		{
-			printnl(262); //! 
-			print(598); //Incomplete 
-			printcmdchr(105, curif);
-			print(599); //; all text was ignored after line 
+			printnl("! ");
+			print("Incomplete ");
+			printcmdchr(if_test, curif);
+			print("; all text was ignored after line ");
 			printint(skipline);
 			helpptr = 3;
-			helpline[2] = 600; //A forbidden control sequence occurred in skipped text.
-			helpline[1] = 601; //This kind of error happens when you say `\if...' and forget
-			helpline[0] = 602; //the matching `\fi'. I've inserted a `\fi'; this might work.
+			helpline[2] = txt("A forbidden control sequence occurred in skipped text.");
+			helpline[1] = txt("This kind of error happens when you say `\\if...' and forget");
+			helpline[0] = txt("the matching `\\fi'. I've inserted a `\\fi'; this might work.");
 			if (curcs)
 				curcs = 0;
 			else
-				helpline[2] = 603; //The file ended while I was skipping conditional text.
+				helpline[2] = txt("The file ended while I was skipping conditional text.");
 			curtok = frozen_fi+cs_token_flag;
 			inserror();
 		}

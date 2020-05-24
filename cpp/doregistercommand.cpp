@@ -19,6 +19,7 @@
 #include "eqworddefine.h"
 #include "geqdefine.h"
 #include "eqdefine.h"
+#include "texte.h"
 
 void doregistercommand(smallnumber a)
 {
@@ -38,13 +39,13 @@ void doregistercommand(smallnumber a)
 			}
 			if (curcmd != register_)
 			{
-				printnl(262); //! 
-				print(685); //You can't use `
+				printnl("! ");
+				print("You can't use `"); 
 				printcmdchr(curcmd, curchr);
-				print(686); //' after 
+				print("' after ");
 				printcmdchr(q, 0);
 				helpptr = 1;
-				helpline[0] = 1209; //I'm forgetting what you said and not changing anything.
+				helpline[0] = txt("I'm forgetting what you said and not changing anything.");
 				error();
 				return;
 			}
@@ -70,7 +71,7 @@ void doregistercommand(smallnumber a)
 	if (q == register_)
 		scanoptionalequals();
 	else 
-		if (scankeyword(1205)) //by
+		if (scankeyword("by"))
 			aritherror = false;
 	if (q < multiply)
 		if (p < 2)
@@ -146,11 +147,11 @@ void doregistercommand(smallnumber a)
 	}
 	if (aritherror)
 	{
-		printnl(262); //! 
-		print(1206); //Arithmetic overflow
+		printnl("! ");
+		print("Arithmetic overflow");
 		helpptr = 2;
-		helpline[1] = 1207; //I can't carry out that multiplication or division,
-		helpline[0] = 1208; //since the result is out of range.
+		helpline[1] = txt("I can't carry out that multiplication or division,");
+		helpline[0] = txt("since the result is out of range.");
 		if (p >= 2)
 			deleteglueref(curval);
 		error();
@@ -165,8 +166,8 @@ void doregistercommand(smallnumber a)
 	{
 		trapzeroglue();
 		if (a >= 4)
-			geqdefine(l, 117, curval);
+			geqdefine(l, glue_ref, curval);
 		else
-			eqdefine(l, 117, curval);
+			eqdefine(l, glue_ref, curval);
 	}
 }

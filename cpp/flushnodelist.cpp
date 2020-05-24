@@ -48,7 +48,7 @@ void flushnodelist(halfword p)
 							freenode(p, 2);
 							break;
 						default: 
-							confusion(1294); //ext3
+							confusion("ext3");
 					}
 					break;
 				case glue_node:
@@ -126,7 +126,7 @@ void flushnodelist(halfword p)
 					freenode(p, 6);
 					break;
 				default: 
-					confusion(353); //flushing
+					confusion("flushing"); 
 			}
 		}
 		p = q;

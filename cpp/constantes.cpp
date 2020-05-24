@@ -827,4 +827,22 @@ int big_op_spacing5(void)
 	return mathex(13);
 }
 
+halfword& next(halfword p)
+{
+	return hash[p].lh;
+}
 
+halfword& text(halfword p)
+{
+	return hash[p].rh;
+}
+
+int length(halfword p)
+{
+	return strstart[p+1]-strstart[p];
+}
+
+bool hash_is_full(void)
+{
+	return hashused == hash_base;
+}

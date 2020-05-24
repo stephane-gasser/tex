@@ -16,20 +16,20 @@
 static void goto50(halfword r)
 {
 	if (outputactive)
-		print(846); //) has occurred while \output is active
+		print(") has occurred while \\output is active");
 	else
 	{
 		if (packbeginline)
 		{
 			if (packbeginline > 0)
-				print(847); //) in paragraph at lines 
+				print(") in paragraph at lines ");
 			else
-				print(848); //) in alignment at lines 
+				print(") in alignment at lines ");
 			printint(abs(packbeginline));
-			print(849); //--
+			print("--");
 		}
 		else
-			print(850); //) detected at line
+			print(") detected at line");
 		printint(line);
 	}
 	println();
@@ -196,10 +196,10 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 				{
 					println();
 					if (lastbadness > 100)
-						printnl(843); //Underfull
+						printnl("Underfull");
 					else
-					printnl(844); //Loose
-					print(845); // \hbox (badness 
+					printnl("Loose");
+					print(" \\hbox (badness ");
 					printint(lastbadness);
 					goto50(r);
 				}
@@ -241,9 +241,9 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 						width(link(q)) = dimen_par(overfull_rule_code);
 					}
 					println();
-					printnl(851); //Overfull \hbox (
+					printnl("Overfull \\hbox (");
 					printscaled(-x-totalshrink[0]);
-					print(852); //pt too wide
+					print("pt too wide");
 					goto50(r);
 				}
 			}
@@ -255,7 +255,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 						if (lastbadness > int_par(hbadness_code))
 						{
 							println();
-							printnl(853); //Tight \hbox (badness 
+							printnl("Tight \\hbox (badness ");
 							printint(lastbadness);
 							goto50(r);
 						}

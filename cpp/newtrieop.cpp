@@ -10,10 +10,10 @@ quarterword newtrieop(smallnumber d, smallnumber  n, quarterword v)
 		if (l == 0)
 		{
 			if (trieopptr == trieopsize)
-				overflow(948, trieopsize); //pattern memory ops
+				overflow("pattern memory ops", trieopsize);
 			quarterword u = trieused[curlang];
 			if (u == 255)
-				overflow(949, 255); //pattern memory ops per language
+				overflow("pattern memory ops per language", 255);
 			trieopptr++;
 			u++;
 			trieused[curlang] = u;

@@ -55,7 +55,7 @@ halfword copynodelist(halfword p)
 							words = 2;
 							break;
 						default:
-							confusion(1293); //ext2
+							confusion("ext2");
 					}
 					break;
 				case glue_node:
@@ -90,7 +90,7 @@ halfword copynodelist(halfword p)
 					adjust_ptr(r) = copynodelist(adjust_ptr(p));
 					break;
 				default: 
-					confusion(354); //copying
+					confusion("copying");
 			}
 		;
 		for (;words > 0; words--)

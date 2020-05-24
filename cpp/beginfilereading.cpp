@@ -4,15 +4,15 @@
 void beginfilereading(void)
 {
 	if (inopen == maxinopen)
-		overflow(596, maxinopen); //text input levels
+		overflow("text input levels", maxinopen); 
 	if (First == bufsize)
-		overflow(256, bufsize); //buffer size
+		overflow("buffer size", bufsize);
 	inopen++;
 	if (inputptr > maxinstack)
 	{
 		maxinstack = inputptr;
 		if (inputptr == stacksize)
-		overflow(593, stacksize); //input stack size
+		overflow("input stack size", stacksize);
 	}
 	inputstack[inputptr] = curinput;
 	inputptr++;

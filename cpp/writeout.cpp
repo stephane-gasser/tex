@@ -10,6 +10,7 @@
 #include "endtokenlist.h"
 #include "tokenshow.h"
 #include "flushlist.h"
+#include "texte.h"
 
 void writeout(halfword p)
 {
@@ -30,11 +31,11 @@ void writeout(halfword p)
 	gettoken();
 	if (curtok != end_write+cs_token_flag)
 	{
-		printnl(262); //! 
-		print(1296); //Unbalanced write command
+		printnl("! ");
+		print("Unbalanced write command");
 		helpptr = 2;
-		helpline[1] = 1297; //On this page there's a \write with fewer real {'s than }'s.
-		helpline[0] = 1011; //I can't handle that very well; good luck.
+		helpline[1] = txt("On this page there's a \\write with fewer real {'s than }'s.");
+		helpline[0] = txt("I can't handle that very well; good luck.");
 		error();
 		do
 			gettoken();
@@ -51,7 +52,7 @@ void writeout(halfword p)
 	{
 		if (j == 17 && selector == term_and_log)
 			selector = log_only;
-		printnl(338); //
+		printnl(""); 
 	}
 	tokenshow(defref);
 	println();

@@ -26,6 +26,7 @@
 #include "buildchoices.h"
 #include "finmlist.h"
 #include "confusion.h"
+#include "texte.h"
 
 void handlerightbrace(void)
 {
@@ -38,11 +39,11 @@ void handlerightbrace(void)
 			unsave();
 			break;
 		case 0:
-			printnl(262); //! 
-			print(1043); //Too many }'s
+			printnl("! ");
+			print("Too many }'s");
 			helpptr = 2;
-			helpline[1] = 1044; //You've closed more groups than you opened.
-			helpline[0] = 1045; //Such booboos are generally harmless, so keep going.
+			helpline[1] = txt("You've closed more groups than you opened.");
+			helpline[0] = txt("Such booboos are generally harmless, so keep going.");
 			error();
 			break;
 		case 14:
@@ -101,11 +102,11 @@ void handlerightbrace(void)
 		case 8:
 			if ((curinput.locfield || curinput.indexfield != 6) && curinput.indexfield != 3)
 			{
-				printnl(262); //! 
-				print(1009); //Unbalanced output routine
+				printnl("! ");
+				print("Unbalanced output routine");
 				helpptr = 2;
-				helpline[1] = 1010; //Your sneaky output routine has problematic {'s and/or }'s.
-				helpline[0] = 1011; //I can't handle that very well; good luck.
+				helpline[1] = txt("Your sneaky output routine has problematic {'s and/or }'s.");
+				helpline[0] = txt("I can't handle that very well; good luck.");
 				error();
 				do
 					gettoken();
@@ -118,16 +119,14 @@ void handlerightbrace(void)
 			insertpenalties = 0;
 			if (box(255))
 			{
-				printnl(262); //! 
-				print(1012); //Output routine didn't use all of 
-				printesc(409); //box
+				printnl("! ");
+				print("Output routine didn't use all of ");
+				printesc("box");
 				printint(255); 
-				{
 				helpptr = 3;
-				helpline[2] = 1013; //Your \output commands should empty \box255,
-				helpline[1] = 1014; //e.g., by saying `\shipout\box255'.
-				helpline[0] = 1015; //Proceed; I'll discard its present contents.
-				}
+				helpline[2] = txt("Your \\output commands should empty \\box255,");
+				helpline[1] = txt("e.g., by saying `\\shipout\\box255'.");
+				helpline[0] = txt("Proceed; I'll discard its present contents.");
 				boxerror(255);
 			}
 			if (tail != head)
@@ -153,12 +152,12 @@ void handlerightbrace(void)
 		case 6:
 			backinput();
 			curtok = cs_token_flag+frozen_cr;
-			printnl(262); //! 
-			print(625); //Missing 
-			printesc(898); //cr
-			print(626); // inserted
+			printnl("! ");
+			print("Missing ");
+			printesc("cr");
+			print(" inserted");
 			helpptr = 1;
-			helpline[0] = 1124; //I'm guessing that you meant to end an alignment here.
+			helpline[0] = txt("I'm guessing that you meant to end an alignment here.");
 			inserror();
 			break;
 		case 7:
@@ -209,6 +208,6 @@ void handlerightbrace(void)
 							}
 			break;
 		default: 
-			confusion(1046); //rightbrace
+			confusion("rightbrace");
 	}
 }

@@ -31,12 +31,12 @@ void showcontext(void)
 					if (curinput.namefield <= 17)
 						if (curinput.namefield == 0)
 							if (baseptr == 0)
-								printnl(574); //<*>
+								printnl("<*>");
 							else
-								printnl(575); //<insert> 
+								printnl("<insert> ");
 						else
 						{
-							printnl(576); //<read 
+							printnl("<read ");
 							if (curinput.namefield == 17)
 								printchar('*');
 							else
@@ -45,7 +45,7 @@ void showcontext(void)
 						}
 					else
 					{
-						printnl(577); //l.
+						printnl("l.");
 						printint(line);
 					}
 					printchar(' ');
@@ -68,65 +68,65 @@ void showcontext(void)
 								if (trickcount < errorline)
 									trickcount = errorline;
 							}
-							print(buffer[i]);
+							printchar(buffer[i]);
 						}
 				}
 				else
 				{
 					switch (curinput.indexfield)
 					{
-						case 0: 
-							printnl(578); //<argument> 
+						case parameter: 
+							printnl("<argument> ");
 							break;
-						case 1:
-						case 2:
-							printnl(579); //<template> 
+						case u_template:
+						case v_template:
+							printnl("<template> ");
 							break;
-						case 3: 
+						case backed_up: 
 							if (curinput.locfield == 0)
-								printnl(580); //<recently read> 
+								printnl("<recently read> ");
 							else
-								printnl(581); //<to be read again> 
+								printnl("<to be read again> ");
 							break;
-						case 4: 
-							printnl(582); //<inserted text> 
+						case inserted: 
+							printnl("<inserted text> ");
 							break;
-						case 5:
+						case macro:
 							println();
 							printcs(curinput.namefield);
 							break;
-						case 6: 
-							printnl(583); //<output> 
+						case output_text: 
+							printnl("<output> ");
 							break;
-						case 7: 
-							printnl(584); //<everypar> 
+						case every_par_text: 
+							printnl("<everypar> ");
 							break;
-						case 8: 
-							printnl(585); //<everymath> 
+						case every_math_text: 
+							printnl("<everymath> ");
 							break;
-						case 9: 
-							printnl(586); //<everydisplay> 
+						case every_display_text: 
+							printnl("<everydisplay> ");
 							break;
-						case 10: 
-							printnl(587); //<everyhbox> 
+						case every_hbox_text: 
+							printnl("<everyhbox> ");
 							break;
-						case 11: 
-							printnl(588); //<everyvbox> 
+						case every_vbox_text: 
+							printnl("<everyvbox> ");
 							break;
-						case 12: 
-							printnl(589); //<everyjob> 
+						case every_job_text: 
+							printnl("<everyjob> ");
 							break;
-						case 13: 
-							printnl(590); //<everycr> 
+						case every_cr_text: 
+							printnl("<everycr> ");
 							break;
-						case 14: 
-							printnl(591); //<mark> 
+						case mark_text: 
+							printnl("<mark> ");
 							break;
-						case 15: 
-							printnl(592); //<write> 
+						case write_text: 
+							printnl("<write> ");
 							break;
 						default: 
-							printnl('?');
+							printnl("?");
 					}
 					l = tally;
 					tally = 0;
@@ -141,7 +141,7 @@ void showcontext(void)
 				if (trickcount == 1000000)
 				{
 					firstcount = tally;
-					trickcount = tally + 1 + errorline - halferrorline;
+					trickcount = tally+1+errorline-halferrorline;
 					if (trickcount < errorline)
 						trickcount = errorline;
 				}
@@ -149,17 +149,17 @@ void showcontext(void)
 				if (tally < trickcount)
 					m = tally - firstcount;
 				else
-					m = trickcount - firstcount;
+					m = trickcount-firstcount;
 				int p, n;
-				if (l + firstcount <= halferrorline)
+				if (l+firstcount <= halferrorline)
 				{
 					p = 0;
-					n = l + firstcount;
+					n = l+firstcount;
 				}
 				else
 				{
-					print(277); //...
-					p = l + firstcount - halferrorline + 3;
+					print("...");
+					p = l+firstcount-halferrorline+3;
 					n = halferrorline;
 				}
 				for (int q = p; q < firstcount; q++)
@@ -168,20 +168,20 @@ void showcontext(void)
 				for (int q = 0; q < n; q++)
 					printchar(' ');
 				if (m + n <= errorline)
-					p = firstcount + m;
+					p = firstcount+m;
 				else
-					p = firstcount + (errorline - n - 3);
+					p = firstcount+errorline-n-3;
 				for (int q = firstcount; q < p; q++)
 					printchar(trickbuf[q%errorline]);
-				if (m + n > errorline)
-					print(277); //...
+				if (m+n > errorline)
+					print("...");
 				nn++;
 			}
 		}
 		else 
 			if (nn == int_par(error_context_lines_code))
 			{
-				printnl(277); //...
+				printnl("...");
 				nn++;
 			}
 		if (bottomline)

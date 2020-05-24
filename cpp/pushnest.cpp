@@ -8,7 +8,7 @@ void pushnest(void)
 	{
 		maxneststack = nestptr;
 	if (nestptr == nestsize)
-		overflow(362, nestsize); //semantic nest size
+		overflow("semantic nest size", nestsize); 
 	}
 	nest[nestptr++] = curlist;
 	tail = head = getavail();

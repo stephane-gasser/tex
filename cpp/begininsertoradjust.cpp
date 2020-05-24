@@ -9,6 +9,7 @@
 #include "scanleftbrace.h"
 #include "normalparagraph.h"
 #include "pushnest.h"
+#include "texte.h"
 
 void begininsertoradjust(void)
 {
@@ -19,12 +20,12 @@ void begininsertoradjust(void)
 		scaneightbitint();
 		if (curval == 255)
 		{
-			printnl(262); //! 
-			print(1084); //You can't 
-			printesc(330); //insert
+			printnl("! ");
+			print("You can't ");
+			printesc("insert");
 			printint(255);
 			helpptr = 1;
-			helpline[0] = 1085; //I'm changing to \insert0; box 255 is special.
+			helpline[0] = txt("I'm changing to \\insert0; box 255 is special.");
 			error();
 			curval = 0;
 		}

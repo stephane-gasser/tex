@@ -6,6 +6,7 @@
 #include "print.h"
 #include "backerror.h"
 #include "scanrulespec.h"
+#include "texte.h"
 
 void scanbox(int boxcontext)
 {
@@ -22,12 +23,12 @@ void scanbox(int boxcontext)
 		}
 		else
 		{
-			printnl(262); //! 
-			print(1075); //A <box> was supposed to be here
+			printnl("! ");
+			print("A <box> was supposed to be here");
 			helpptr = 3;
-			helpline[2] = 1076; //I was expecting to see \hbox or \vbox or \copy or \box or
-			helpline[1] = 1077; //something like that. So you might find something missing in
-			helpline[0] = 1078; //your output. But keep trying; you can fix this later.
+			helpline[2] = txt("I was expecting to see \\hbox or \\vbox or \\copy or \\box or");
+			helpline[1] = txt("something like that. So you might find something missing in");
+			helpline[0] = txt("your output. But keep trying; you can fix this later.");
 			backerror();
 		}
 }

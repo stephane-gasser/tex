@@ -1,6 +1,7 @@
 #include "printcmdchr.h"
 #include "printesc.h"
 #include "print.h"
+#include "printchar.h"
 #include "printscaled.h"
 #include "slowprint.h"
 #include "printhex.h"
@@ -16,43 +17,43 @@ void printcmdchr(quarterword cmd, halfword chrcode)
 	switch (cmd)
 	{
 		case 1:
-			print(557); //begin-group character 
-			print(chrcode);
+			print("begin-group character ");
+			printchar(chrcode);
 			break;
 		case 2:
-			print(558); //end-group character 
-			print(chrcode);
+			print("end-group character ");
+			printchar(chrcode);
 			break;
 		case 3:
-			print(559); //math shift character 
-			print(chrcode);
+			print("math shift character ");
+			printchar(chrcode);
 			break;
 		case 6:
-			print(560); //macro parameter character 
-			print(chrcode);
+			print("macro parameter character ");
+			printchar(chrcode);
 			break;
 		case 7:
-			print(561); //superscript character 
-			print(chrcode);
+			print("superscript character ");
+			printchar(chrcode);
 			break;
 		case 8:
-			print(562); //subscript character 
-			print(chrcode);
+			print("subscript character ");
+			printchar(chrcode);
 			break;
 		case 9: 
-			print(563); //end of alignment template
+			print("end of alignment template");
 			break;
 		case 10:
-			print(564); //blank space 
-			print(chrcode);
+			print("blank space ");
+			printchar(chrcode);
 			break;
 		case 11:
-			print(565); //the letter 
-			print(chrcode);
+			print("the letter ");
+			printchar(chrcode);
 			break;
 		case 12:
-			print(566); //the character 
-			print(chrcode);
+			print("the character ");
+			printchar(chrcode);
 			break;
 		case 75:
 		case 76: 
@@ -61,50 +62,50 @@ void printcmdchr(quarterword cmd, halfword chrcode)
 			else 
 				if (chrcode < 3156)
 				{
-					printesc(395); //skip
+					printesc("skip");
 					printint(chrcode-2900);
 				}
 				else
 				{
-					printesc(396); //muskip
+					printesc("muskip");
 					printint(chrcode-3156);
 				}
 			break;
 		case 72: 
 			if (chrcode >= 3422)
 			{
-				printesc(407); //toks
+				printesc("toks");
 				printint(chrcode-3422);
 			}
 			else
 				switch (chrcode)
 				{
 					case 3413: 
-						printesc(398); //output
+						printesc("output");
 						break;
 					case 3414: 
-						printesc(399); //everypar
+						printesc("everypar");
 						break;
 					case 3415: 
-						printesc(400); //everymath
+						printesc("everymath");
 						break;
 					case 3416: 
-						printesc(401); //everydisplay
+						printesc("everydisplay");
 						break;
 					case 3417: 
-						printesc(402); //everyhbox
+						printesc("everyhbox");
 						break;
 					case 3418: 
-						printesc(403); //everyvbox
+						printesc("everyvbox");
 						break;
 					case 3419: 
-						printesc(404); //everyjob
+						printesc("everyjob");
 						break;
 					case 3420: 
-						printesc(405); //everycr
+						printesc("everycr");
 						break;
 					default: 
-						printesc(406); //errhelp
+						printesc("errhelp");
 				}
 			break;
 		case 73: 
@@ -112,7 +113,7 @@ void printcmdchr(quarterword cmd, halfword chrcode)
 				printparam(chrcode-5263);
 			else
 			{
-				printesc(476); //count
+				printesc("count");
 				printint(chrcode-5318);
 			}
 			break;
@@ -121,531 +122,531 @@ void printcmdchr(quarterword cmd, halfword chrcode)
 				printlengthparam(chrcode-5830);
 			else
 			{
-				printesc(500); //dimen
+				printesc("dimen");
 				printint(chrcode-5851);
 			}
 			break;
 		case 45: 
-			printesc(508); //accent
+			printesc("accent");
 			break;
 		case 90: 
-			printesc(509); //advance
+			printesc("advance");
 			break;
 		case 40: 
-			printesc(510); //afterassignment
+			printesc("afterassignment");
 			break;
 		case 41: 
-			printesc(511); //aftergroup
+			printesc("aftergroup");
 			break;
 		case 77: 
-			printesc(519); //fontdimen
+			printesc("fontdimen");
 			break;
 		case 61: 
-			printesc(512); //begingroup
+			printesc("begingroup");
 			break;
 		case 42: 
-			printesc(531); //penalty
+			printesc("penalty");
 			break;
 		case 16: 
-			printesc(513); //char
+			printesc("char");
 			break;
 		case 107: 
-			printesc(504); //csname
+			printesc("csname");
 			break;
 		case 88: 
-			printesc(518); //font
+			printesc("font");
 			break;
 		case 15: 
-			printesc(514); //delimiter
+			printesc("delimiter");
 			break;
 		case 92: 
-			printesc(515); //divide
+			printesc("divide");
 			break;
 		case 67: 
-			printesc(505); //endcsname
+			printesc("endcsname");
 			break;
 		case 62: 
-			printesc(516); //endgroup
+			printesc("endgroup");
 			break;
 		case 64: 
-			printesc(' ');
+			printesc(" ");
 			break;
 		case 102: 
-			printesc(517); //expandafter
+			printesc("expandafter");
 			break;
 		case 32: 
-			printesc(520); //halign
+			printesc("halign");
 			break;
 		case 36: 
-			printesc(521); //hrule
+			printesc("hrule");
 			break;
 		case 39: 
-			printesc(522); //ignorespaces
+			printesc("ignorespaces");
 			break;
 		case 37: 
-			printesc(330); //insert
+			printesc("insert");
 			break;
 		case 44: 
-			printesc('/');
+			printesc("/");
 			break;
 		case 18: 
-			printesc(351); //mark
+			printesc("mark");
 			break;
 		case 46: 
-			printesc(523); //mathaccent
+			printesc("mathaccent");
 			break;
 		case 17: 
-			printesc(524); //mathchar
+			printesc("mathchar");
 			break;
 		case 54: 
-			printesc(525); //mathchoice
+			printesc("mathchoice");
 			break;
 		case 91: 
-			printesc(526); //multiply
+			printesc("multiply");
 			break;
 		case 34: 
-			printesc(527); //noalign
+			printesc("noalign");
 			break;
 		case 65: 
-			printesc(528); //noboundary
+			printesc("noboundary");
 			break;
 		case 103: 
-			printesc(529); //noexpand
+			printesc("noexpand");
 			break;
 		case 55: 
-			printesc(335); //nonscript
+			printesc("nonscript");
 			break;
 		case 63: 
-			printesc(530); //omit
+			printesc("omit");
 			break;
 		case 66: 
-			printesc(533); //radical
+			printesc("radical");
 			break;
 		case 96: 
-			printesc(534); //read
+			printesc("read");
 			break;
 		case 0: 
-			printesc(535); //relax
+			printesc("relax");
 			break;
 		case 98: 
-			printesc(536); //setbox
+			printesc("setbox");
 			break;
 		case 80: 
-			printesc(532); //prevgraf
+			printesc("prevgraf");
 			break;
 		case 84: 
-			printesc(408); //parshape
+			printesc("parshape");
 			break;
 		case 109: 
-			printesc(537); //the
+			printesc("the");
 			break;
 		case 71: 
-			printesc(407); //toks
+			printesc("toks");
 			break;
 		case 38: 
-			printesc(352); //vadjust
+			printesc("vadjust");
 			break;
 		case 33: 
-			printesc(538); //valign
+			printesc("valign");
 			break;
 		case 56: 
-			printesc(539); //vcenter
+			printesc("vcenter");
 			break;
 		case 35: 
-			printesc(540); //vrule
+			printesc("vrule");
 			break;
 		case 13: 
-			printesc(597); //par
+			printesc("par");
 			break;
 		case 104: 
 			if (chrcode == 0)
-				printesc(629); //input
+				printesc("input");
 			else
-				printesc(630); //endinput
+				printesc("endinput");
 			break;
 		case 110: 
 			switch (chrcode)
 			{
 				case 1: 
-					printesc(632); //firstmark
+					printesc("firstmark");
 					break;
 				case 2: 
-					printesc(633); //botmark
+					printesc("botmark");
 					break;
 				case 3: 
-					printesc(634); //splitfirstmark
+					printesc("splitfirstmark");
 					break;
 				case 4: 
-					printesc(635); //splitbotmark
+					printesc("splitbotmark");
 					break;
 				default: 
-					printesc(631); //topmark
+					printesc("topmark");
 			}
 			break;
 		case 89: 
 			if (chrcode == 0)
-				printesc(476); //count
+				printesc("count");
 			else 
 				if (chrcode == 1)
-					printesc(500); //dimen
+					printesc("dimen");
 				else 
 					if (chrcode == 2)
-						printesc(395); //skip
+						printesc("skip");
 					else
-						printesc(396); //muskip
+						printesc("muskip");
 			break;
 		case 79: 
 			if (chrcode == 1)
-				printesc(669); //prevdepth
+				printesc("prevdepth");
 			else
-				printesc(668); //spacefactor
+				printesc("spacefactor");
 			break;
 		case 82: 
 			if (chrcode == 0)
-				printesc(670); //deadcycles
+				printesc("deadcycles");
 			else
-				printesc(671); //insertpenalties
+				printesc("insertpenalties");
 			break;
 		case 83: 
 			if (chrcode == 1)
-				printesc(672); //wd
+				printesc("wd");
 			else 
 				if (chrcode == 3)
-					printesc(673); //ht
+					printesc("ht");
 				else
-					printesc(674); //dp
+					printesc("dp");
 			break;
 		case 70: 
 			switch (chrcode)
 			{
 				case 0: 
-					printesc(675); //lastpenalty
+					printesc("lastpenalty");
 					break;
 				case 1: 
-					printesc(676); //lastkern
+					printesc("lastkern");
 					break;
 				case 2: 
-					printesc(677); //lastskip
+					printesc("lastskip");
 					break;
 				case 3: 
-					printesc(678); //inputlineno
+					printesc("inputlineno");
 					break;
 				default: 
-					printesc(679); //badness
+					printesc("badness");
 			}
 			break;
 		case 108: 
 			switch (chrcode)
 			{
 				case 0: 
-					printesc(735); //number
+					printesc("number");
 					break;
 				case 1: 
-					printesc(736); //romannumeral
+					printesc("romannumeral");
 					break;
 				case 2: 
-					printesc(737); //string
+					printesc("string");
 					break;
 				case 3: 
-					printesc(738); //meaning
+					printesc("meaning");
 					break;
 				case 4: 
-					printesc(739); //fontname
+					printesc("fontname");
 					break;
 				default: 
-					printesc(740); //jobname
+					printesc("jobname");
 			}
 			break;
 		case 105: 
 			switch (chrcode)
 			{
 				case 1: 
-					printesc(757); //ifcat
+					printesc("ifcat");
 					break;
 				case 2: 
-					printesc(758); //ifnum
+					printesc("ifnum");
 					break;
 				case 3: 
-					printesc(759); //ifdim
+					printesc("ifdim");
 					break;
 				case 4: 
-					printesc(760); //ifodd
+					printesc("ifodd");
 					break;
 				case 5: 
-					printesc(761); //ifvmode
+					printesc("ifvmode");
 					break;
 				case 6: 
-					printesc(762); //ifhmode
+					printesc("ifhmode");
 					break;
 				case 7: 
-					printesc(763); //ifmmode
+					printesc("ifmmode");
 					break;
 				case 8: 
-					printesc(764); //ifinner
+					printesc("ifinner");
 					break;
 				case 9: 
-					printesc(765); //ifvoid
+					printesc("ifvoid");
 					break;
 				case 10: 
-					printesc(766); //ifhbox
+					printesc("ifhbox");
 					break;
 				case 11: 
-					printesc(767); //ifvbox
+					printesc("ifvbox");
 					break;
 				case 12: 
-					printesc(768); //ifx
+					printesc("ifx");
 					break;
 				case 13: 
-					printesc(769); //ifeof
+					printesc("ifeof");
 					break;
 				case 14: 
-					printesc(770); //iftrue
+					printesc("iftrue");
 					break;
 				case 15: 
-					printesc(771); //iffalse
+					printesc("iffalse");
 					break;
 				case 16: 
-					printesc(772); //ifcase
+					printesc("ifcase");
 					break;
 			default: 
-				printesc(756); //if
+				printesc("if");
 			}
 			break;
 		case 106: 
 			if (chrcode == 2)
-				printesc(773); //fi
+				printesc("fi");
 			else 
 				if (chrcode == 4)
-					printesc(774); //or
+					printesc("or");
 				else
-					printesc(775); //else
+					printesc("else");
 			break;
 		case 4: 
 			if (chrcode == 256)
-				printesc(897); //span
+				printesc("span");
 			else
 			{
-				print(901); //alignment tab character 
-				print(chrcode);
+				print("alignment tab character ");
+				printchar(chrcode);
 			}
 			break;
 		case 5: 
 			if (chrcode == 257)
-				printesc(898); //cr
+				printesc("cr");
 			else
-				printesc(899); //crcr
+				printesc("crcr");
 			break;
 		case 81: 
 			switch (chrcode)
 			{
 				case 0: 
-					printesc(969); //pagegoal
+					printesc("pagegoal");
 					break;
 				case 1: 
-					printesc(970); //pagetotal
+					printesc("pagetotal");
 					break;
 				case 2: 
-					printesc(971); //pagestretch
+					printesc("pagestretch");
 					break;
 				case 3: 
-					printesc(972); //pagefilstretch
+					printesc("pagefilstretch");
 					break;
 				case 4: 
-					printesc(973); //pagefillstretch
+					printesc("pagefillstretch");
 					break;
 				case 5: 
-					printesc(974); //pagefilllstretch
+					printesc("pagefilllstretch");
 					break;
 				case 6: 
-					printesc(975); //pageshrink
+					printesc("pageshrink");
 					break;
 				default: 
-					printesc(976); //pagedepth
+					printesc("pagedepth");
 			}
 			break;
 		case 14: 
 			if (chrcode == 1)
-				printesc(1025); //dump
+				printesc("dump");
 			else
-				printesc(1024); //end
+				printesc("end");
 			break;
 		case 26: 
 			switch (chrcode)
 			{
 				case 4: 
-					printesc(1026); //hskip
+					printesc("hskip");
 					break;
 				case 0: 
-					printesc(1027); //hfil
+					printesc("hfil");
 					break;
 				case 1: 
-					printesc(1028); //hfill
+					printesc("hfill");
 					break;
 				case 2: 
-					printesc(1029); //hss
+					printesc("hss");
 					break;
 				default: 
-					printesc(1030); //hfilneg
+					printesc("hfilneg");
 			}
 			break;
 		case 27: 
 			switch (chrcode)
 			{
 				case 4: 
-					printesc(1031); //vskip
+					printesc("vskip");
 					break;
 				case 0: 
-					printesc(1032); //vfil
+					printesc("vfil");
 					break;
 				case 1: 
-					printesc(1033); //vfill
+					printesc("vfill");
 					break;
 				case 2: 
-					printesc(1034); //vss
+					printesc("vss");
 					break;
 				default: 
-					printesc(1035); //vfilneg
+					printesc("vfilneg");
 			}
 			break;
 		case 28: 
-			printesc(336); //mskip
+			printesc("mskip");
 			break;
 		case 29: 
-			printesc(340); //kern
+			printesc("kern");
 			break;
 		case 30: 
-			printesc(342); //mkern
+			printesc("mkern");
 			break;
 		case 21: 
 			if (chrcode == 1)
-				printesc(1053); //moveleft
+				printesc("moveleft");
 			else
-				printesc(1054); //moveright
+				printesc("moveright");
 			break;
 		case 22: 
 			if (chrcode == 1)
-				printesc(1055); //raise
+				printesc("raise");
 			else
-				printesc(1056); //lower
+				printesc("lower");
 			break;
 		case 20: 
 			switch (chrcode)
 			{
 				case 0: 
-					printesc(409); //box
+					printesc("box");
 					break;
 				case 1: 
-					printesc(1057); //copy
+					printesc("copy");
 					break;
 				case 2: 
-					printesc(1058); //lastbox
+					printesc("lastbox");
 					break;
 				case 3: 
-					printesc(964); //vsplit
+					printesc("vsplit");
 					break;
 				case 4: 
-					printesc(1059); //vtop
+					printesc("vtop");
 					break;
 				case 5: 
-					printesc(966); //vbox
+					printesc("vbox");
 					break;
 				default: 
-					printesc(1060); //hbox
+					printesc("hbox");
 			}
 			break;
 		case 31: 
 			if (chrcode == 100)
-				printesc(1062); //leaders
+				printesc("leaders");
 			else 
 				if (chrcode == 101)
-					printesc(1063); //cleaders
+					printesc("cleaders");
 				else 
 					if (chrcode == 102)
-						printesc(1064); //xleaders
+						printesc("xleaders");
 					else
-						printesc(1061); //shipout
+						printesc("shipout");
 			break;
 		case 43: 
 			if (chrcode == 0)
-				printesc(1080); //noindent
+				printesc("noindent");
 			else
-				printesc(1079); //indent
+				printesc("indent");
 			break;
 		case 25: 
 			if (chrcode == 10)
-				printesc(1091); //unskip
+				printesc("unskip");
 				else 
 					if (chrcode == 11)
-						printesc(1090); //unkern
+						printesc("unkern");
 					else
-						printesc(1089); //unpenalty
+						printesc("unpenalty");
 			break;
 		case 23: 
 			if (chrcode == 1)
-				printesc(1093); //unhcopy
+				printesc("unhcopy");
 			else
-				printesc(1092); //unhbox
+				printesc("unhbox");
 			break;
 		case 24: 
 			if (chrcode == 1)
-				printesc(1095); //unvcopy
+				printesc("unvcopy");
 			else
-			printesc(1094); //unvbox
+			printesc("unvbox");
 			break;
 		case 47: 
 			if (chrcode == 1)
-				printesc('-');
+				printesc("-");
 			else
-				printesc(349); //discretionary
+				printesc("discretionary");
 			break;
 		case 48: 
 			if (chrcode == 1)
-				printesc(1127); //leqno
+				printesc("leqno");
 			else
-				printesc(1126); //eqno
+				printesc("eqno");
 			break;
 		case 50: 
 			switch (chrcode)
 			{
 				case 16: 
-					printesc(865); //mathord
+					printesc("mathord");
 					break;
 				case 17: 
-					printesc(866); //mathop
+					printesc("mathop");
 					break;
 				case 18: 
-					printesc(867); //mathbin
+					printesc("mathbin");
 					break;
 				case 19: 
-					printesc(868); //mathrel
+					printesc("mathrel");
 					break;
 				case 20: 
-					printesc(869); //mathopen
+					printesc("mathopen");
 					break;
 				case 21: 
-					printesc(870); //mathclose
+					printesc("mathclose");
 					break;
 				case 22: 
-					printesc(871); //mathpunct
+					printesc("mathpunct");
 					break;
 				case 23: 
-					printesc(872); //mathinner
+					printesc("mathinner");
 					break;
 				case 26: 
-					printesc(874); //overline
+					printesc("overline");
 					break;
 				default: 
-					printesc(873); //underline
+					printesc("underline");
 			}
 			break;
 		case 51: 
 			if (chrcode == 1)
-			printesc(877); //limits
+			printesc("limits");
 			else 
 				if (chrcode == 2)
-					printesc(878); //nolimits
+					printesc("nolimits");
 				else
-				printesc(1128); //displaylimits
+				printesc("displaylimits");
 			break;
 		case 53: 
 			printstyle(chrcode);
@@ -654,226 +655,226 @@ void printcmdchr(quarterword cmd, halfword chrcode)
 			switch (chrcode)
 			{
 				case 1: 
-					printesc(1147); //over
+					printesc("over");
 					break;
 				case 2: 
-					printesc(1148); //atop
+					printesc("atop");
 					break;
 				case 3: 
-					printesc(1149); //abovewithdelims
+					printesc("abovewithdelims");
 					break;
 				case 4: 
-					printesc(1150); //overwithdelims
+					printesc("overwithdelims");
 					break;
 				case 5: 
-					printesc(1151); //atopwithdelims
+					printesc("atopwithdelims");
 					break;
 				default: 
-					printesc(1146); //above
+					printesc("above");
 			}
 			break;
 		case 49: 
 			if (chrcode == 30)
-				printesc(875); //left
+				printesc("left");
 			else
-				printesc(876); //right
+				printesc("right");
 			break;
 		case 93: 
 			if (chrcode == 1)
-				printesc(1170); //long
+				printesc("long");
 			else 
 				if (chrcode == 2)
-					printesc(1171); //outer
+					printesc("outer");
 				else
-					printesc(1172); //global
+					printesc("global");
 		case 97: 
 			if (chrcode == 0)
-				printesc(1173); //def
+				printesc("def");
 			else 
 				if (chrcode == 1)
-					printesc(1174); //gdef
+					printesc("gdef");
 				else 
 					if (chrcode == 2)
-						printesc(1175); //edef
+						printesc("edef");
 					else
-						printesc(1176); //xdef
+						printesc("xdef");
 			break;
 		case 94: 
 			if (chrcode)
-				printesc(1191); //futurelet
+				printesc("futurelet");
 			else
-				printesc(1190); //let
+				printesc("let");
 			break;
 		case 95: 
 			switch (chrcode)
 			{
 				case 0: 
-					printesc(1192); //chardef
+					printesc("chardef");
 					break;
 				case 1: 
-					printesc(1193); //mathchardef
+					printesc("mathchardef");
 					break;
 				case 2: 
-					printesc(1194); //countdef
+					printesc("countdef");
 					break;
 				case 3: 
-					printesc(1195); //dimendef
+					printesc("dimendef");
 					break;
 				case 4: 
-					printesc(1196); //skipdef
+					printesc("skipdef");
 					break;
 				case 5: 
-					printesc(1197); //muskipdef
+					printesc("muskipdef");
 					break;
-				default: printesc(1198); //toksdef
+				default: printesc("toksdef");
 			}
 			break;
 		case 68:
-			printesc(513); //char
+			printesc("char");
 			printhex(chrcode);
 			break;
 		case 69:
-			printesc(524); //delimiter
+			printesc("delimiter");
 			printhex(chrcode);
 			break;
 		case 85: 
 			if (chrcode == 3983)
-				printesc(415); //catcode
+				printesc("catcode");
 			else 
 				if (chrcode == 5007)
-					printesc(419); //mathcode
+					printesc("mathcode");
 				else 
 					if (chrcode == 4239)
-						printesc(416); //lccode
+						printesc("lccode");
 					else 
 						if (chrcode == 4495)
-							printesc(417); //uccode
+							printesc("uccode");
 						else 
 							if (chrcode == 4751)
-								printesc(418); //sfcode
+								printesc("sfcode");
 							else
-								printesc(477); //delcode
+								printesc("delcode");
 			break;
 		case 86: 
 			printsize(chrcode-3935);
 			break;
 		case 99: 
 			if (chrcode == 1)
-				printesc(952); //patterns
+				printesc("patterns");
 			else
-				printesc(940); //hyphenation
+				printesc("hyphenation");
 			break;
 		case 78: 
 			if (chrcode == 0)
-				printesc(1216); //hyphenchar
+				printesc("hyphenchar");
 			else
-				printesc(1217); //skewchar
+				printesc("skewchar");
 			break;
 		case 87:
-			print(1225); //select font 
+			print("select font ");
 			slowprint(fontname[chrcode]);
 			if (fontsize[chrcode] != fontdsize[chrcode])
 			{
-				print(741); // at 
+				print(" at ");
 				printscaled(fontsize[chrcode]);
-				print(397); //pt
+				print("pt");
 			}
 			break;
 		case 100: 
 			switch (chrcode)
 			{
 				case 0: 
-					printesc(274); //batchmode
+					printesc("batchmode");
 					break;
 				case 1: 
-					printesc(275); //nonstopmode
+					printesc("nonstopmode");
 					break;
 				case 2: 
-					printesc(276); //scrollmode
+					printesc("scrollmode");
 					break;
 				default: 
-					printesc(1226); //errorstopmode
+					printesc("errorstopmode");
 			}
 			break;
 		case 60: 
 			if (chrcode == 0)
-				printesc(1228); //closein
+				printesc("closein");
 			else
-				printesc(1227); //openin
+				printesc("openin");
 			break;
 		case 58: 
 			if (chrcode == 0)
-				printesc(1229); //message
+				printesc("message");
 			else
-				printesc(1230); //errmessage
+				printesc("errmessage");
 			break;
 		case 57: 
 			if (chrcode == 4239)
-				printesc(1236); //lowercase
+				printesc("lowercase");
 			else
-				printesc(1237); //uppercase
+				printesc("uppercase");
 			break;
 		case 19: 
 			switch (chrcode)
 			{
 				case 1: 
-					printesc(1239); //showbox
+					printesc("showbox");
 					break;
 				case 2: 
-					printesc(1240); //showthe
+					printesc("showthe");
 					break;
 				case 3: 
-					printesc(1241); //showlists
+					printesc("showlists");
 					break;
 				default: 
-					printesc(1238); //show
+					printesc("show");
 			}
 			break;
 		case 101: 
-			print(1248); //undefined
+			print("undefined");
 			break;
 		case 111: 
-			print(1249); //macro
+			print("macro");
 			break;
 		case 112: 
-			printesc(1250); //long macro
+			printesc("long macro");
 			break;
 		case 113: 
-			printesc(1251); //outer macro
+			printesc("outer macro");
 			break;
 		case 114:
-			printesc(1170); //long
-			printesc(1251); //outer macro
+			printesc("long");
+			printesc("outer macro");
 			break;
 		case 115: 
-			printesc(1252); //outer endtemplate
+			printesc("outer endtemplate");
 			break;
 		case 59: 
 			switch (chrcode)
 			{
 				case 0: 
-					printesc(1284); //openout
+					printesc("openout");
 					break;
 				case 1: 
-					printesc(594); //write
+					printesc("write");
 					break;
 				case 2: 
-					printesc(1285); //closeout
+					printesc("closeout");
 					break;
 				case 3: 
-					printesc(1286); //special
+					printesc("special");
 					break;
 				case 4: 
-					printesc(1287); //immediate
+					printesc("immediate");
 					break;
 				case 5: 
-					printesc(1288); //setlanguage
+					printesc("setlanguage");
 					break;
 				default: 
-					print(1289); //[unknown extension!]
+					print("[unknown extension!]");
 			}
 			break;
 		default: 
-			print(567); //[unknown command code!]
+			print("[unknown command code!]");
 	}
 }

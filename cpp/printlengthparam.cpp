@@ -6,70 +6,70 @@ void printlengthparam(int n)
 {
 	switch (n)
 	{
-		case 0:
-			printesc(478); //parindent
+		case par_indent_code:
+			printesc("parindent");
 			break;
-		case 1:
-			printesc(479); //mathsurround
+		case math_surround_code:
+			printesc("mathsurround");
 			break;
-		case 2:
-			printesc(480); //lineskiplimit
+		case line_skip_limit_code:
+			printesc("lineskiplimit");
 			break;
-		case 3:
-			printesc(481); //hsize
+		case hsize_code:
+			printesc("hsize");
 			break;
-		case 4:
-			printesc(482); //vsize
+		case vsize_code:
+			printesc("vsize");
 			break;
-		case 5:
-			printesc(483); //maxdepth
+		case max_depth_code:
+			printesc("maxdepth");
 			break;
-		case 6:
-			printesc(484); //splitmaxdepth
+		case split_max_depth_code:
+			printesc("splitmaxdepth");
 			break;
-		case 7:
-			printesc(485); //boxmaxdepth
+		case box_max_depth_code:
+			printesc("boxmaxdepth");
 			break;
-		case 8:
-			printesc(486); //hfuzz
+		case hfuzz_code:
+			printesc("hfuzz");
 			break;
-		case 9:
-			printesc(487); //vfuzz
+		case vfuzz_code:
+			printesc("vfuzz");
 			break;
-		case 10:
-			printesc(488); //delimitershortfall
+		case delimiter_shortfall_code:
+			printesc("delimitershortfall");
 			break;
-		case 11:
-			printesc(489); //nulldelimiterspace
+		case null_delimiter_space_code:
+			printesc("nulldelimiterspace");
 			break;
-		case 12:
-			printesc(490); //scriptspace
+		case script_space_code:
+			printesc("scriptspace");
 			break;
-		case 13:
-			printesc(491); //predisplaysize
+		case pre_display_size_code:
+			printesc("predisplaysize");
 			break;
-		case 14:
-			printesc(492); //displaywidth
+		case display_width_code:
+			printesc("displaywidth");
 			break;
-		case 15:
-			printesc(493); //displayindent
+		case display_indent_code:
+			printesc("displayindent");
 			break;
-		case 16:
-			printesc(494); //overfullrule
+		case overfull_rule_code:
+			printesc("overfullrule");
 			break;
-		case 17:
-			printesc(495); //hangindent
+		case hang_indent_code:
+			printesc("hangindent");
 			break;
-		case 18:
-			printesc(496); //hoffset
+		case h_offset_code:
+			printesc("hoffset");
 			break;
-		case 19:
-			printesc(497); //voffset
+		case v_offset_code:
+			printesc("voffset");
 			break;
-		case 20:
-			printesc(498); //emergencystretch
+		case emergency_stretch_code:
+			printesc("emergencystretch");
 			break;
 		default:
-			print(499); //[unknown dimen parameter!]
+			print("[unknown dimen parameter!]");
 	}
 }

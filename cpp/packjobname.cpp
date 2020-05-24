@@ -1,10 +1,11 @@
 #include "packjobname.h"
 #include "packfilename.h"
+#include "texte.h"
 
-void packjobname(strnumber s)
+void packjobname(const std::string &s)
 {
-	curarea = 338;
-	curext = s;
+	curarea = txt("");
+	curext = txt(s);
 	curname = jobname;
 	packfilename(curname, curarea, curext);
 }

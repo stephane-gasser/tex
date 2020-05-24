@@ -5,6 +5,7 @@
 #include "print.h"
 #include "error.h"
 #include "getnode.h"
+#include "texte.h"
 
 void mathfraction(void)
 {
@@ -18,12 +19,12 @@ void mathfraction(void)
 		}
 		if (c%delimited_code == 0)
 			scandimen(false, false, false);
-		printnl(262); //! 
-		print(1152); //Ambiguous; you need another { and }
+		printnl("! ");
+		print("Ambiguous; you need another { and }");
 		helpptr = 3;
-		helpline[2] = 1153; //I'm ignoring this fraction specification, since I don't
-		helpline[1] = 1154; //know whether a construction like `x \over y \over z'
-		helpline[0] = 1155; //means `{x \over y} \over z' or `x \over {y \over z}'.
+		helpline[2] = txt("I'm ignoring this fraction specification, since I don't");
+		helpline[1] = txt("know whether a construction like `x \\over y \\over z'");
+		helpline[0] = txt("means `{x \\over y} \\over z' or `x \\over {y \\over z}'.");
 		error();
 	}
 	else

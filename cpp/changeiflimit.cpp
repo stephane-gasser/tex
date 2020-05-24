@@ -11,7 +11,7 @@ void changeiflimit(smallnumber l, halfword p)
 		while (true)
 		{
 			if (q == 0)
-				confusion(756); //if
+				confusion("if");
 			if (link(q) == p)
 			{
 				type(q) = l;

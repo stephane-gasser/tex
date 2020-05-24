@@ -17,6 +17,7 @@
 #include "popnest.h"
 #include "getxtoken.h"
 #include "initcol.h"
+#include "texte.h"
 
 bool fincol(void)
 {
@@ -25,12 +26,12 @@ bool fincol(void)
 	glueord o;
 	halfword n;
 	if (curalign == 0)
-		confusion(908); //endv
+		confusion("endv");
 	q = link(curalign);
 	if (q == 0)
-		confusion(908); //endv
+		confusion("endv");
 	if (alignstate < 500000)
-		fatalerror(595); //(interwoven alignment preambles are not allowed)
+		fatalerror("(interwoven alignment preambles are not allowed)");
 	p = link(q);
 	if (p == 0 && info(curalign+5) < 257)
 		if (curloop)
@@ -67,13 +68,13 @@ bool fincol(void)
 		}
 		else
 		{
-			printnl(262); //! 
-			print(909); //Extra alignment tab has been changed to 
-			printesc(898); //cr
+			printnl("! ");
+			print("Extra alignment tab has been changed to ");
+			printesc("cr");
 			helpptr = 3;
-			helpline[2] = 910; //You have given more \span or & marks than there were
-			helpline[1] = 911; //in the preamble to the \halign or \valign now in progress.
-			helpline[0] = 912; //So I'll assume that you meant to type \cr instead.
+			helpline[2] = txt("You have given more \\span or & marks than there were");
+			helpline[1] = txt("in the preamble to the \\halign or \\valign now in progress.");
+			helpline[0] = txt("So I'll assume that you meant to type \\cr instead.");
 			info(curalign+5) = 257;
 			error();
 		}
@@ -104,7 +105,7 @@ bool fincol(void)
 				q = link(link(q));
 			} while (q != curalign);
 			if (n > 255)
-			confusion(913); // spans
+				confusion("256 spans");
 			q = curspan;
 			while (link(link(q)) < n)
 				q = link(q);

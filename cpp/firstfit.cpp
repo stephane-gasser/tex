@@ -13,7 +13,7 @@ void firstfit(triepointer p)
 		if (triemax < h+256)
 		{
 			if (triesize <= h+256)
-				overflow(950, triesize); //pattern memory
+				overflow("pattern memory", triesize);
 			do
 			{
 				triemax++;

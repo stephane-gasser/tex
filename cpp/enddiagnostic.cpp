@@ -4,7 +4,7 @@
 
 void enddiagnostic(bool blankline)
 {
-	printnl(338); //
+	printnl("");
 	if (blankline)
 		println();
 	selector = oldsetting;

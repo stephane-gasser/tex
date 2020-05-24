@@ -4,9 +4,9 @@
 bool morename(ASCIIcode c)
 {
 	if (c == ' ')
-	return false;
+		return false;
 	if (poolptr+1 > poolsize)
-	overflow(257, poolsize-initpoolptr); //pool size
+	overflow("pool size", poolsize-initpoolptr);
 	strpool[poolptr++] = c;
 	if (c == '>' || c == ':')
 	{
