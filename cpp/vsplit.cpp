@@ -30,8 +30,8 @@ halfword vsplit(eightbits n, scaled h)
 		print(" needs a ");
 		printesc("vbox");
 		helpptr = 2;
-		helpline[1] = txt("The box you are trying to split is an \\hbox.");
-		helpline[0] = txt("I can't split such a box, so I'll leave it alone.");
+		helpline[1] = "The box you are trying to split is an \\hbox.";
+		helpline[0] = "I can't split such a box, so I'll leave it alone.";
 		error();
 		return 0;
 	}

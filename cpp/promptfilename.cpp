@@ -49,7 +49,7 @@ void promptfilename(const std::string &s, const std::string &e)
 		k++;
 	}
 	endname();
-	if (curext == 338)
-		curext = txt(e);
+	if (curext == "")
+		curext = e;
 	packfilename(curname, curarea, curext);
 }

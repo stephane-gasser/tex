@@ -17,21 +17,21 @@ void alignerror(void)
 		if (curtok == 1062) // tab_mark + '&'
 		{
 			helpptr = 6;
-			helpline[5] = txt("I can't figure out why you would want to use a tab mark");
-			helpline[4] = txt("here. If you just want an ampersand, the remedy is");
-			helpline[3] = txt("simple: Just type `I\\&' now. But if some right brace");
-			helpline[2] = txt("up above has ended a previous alignment prematurely,");
-			helpline[1] = txt("you're probably due for more error messages, and you");
-			helpline[0] = txt("might try typing `S' now just to see what is salvageable.");
+			helpline[5] = "I can't figure out why you would want to use a tab mark";
+			helpline[4] = "here. If you just want an ampersand, the remedy is";
+			helpline[3] = "simple: Just type `I\\&' now. But if some right brace";
+			helpline[2] = "up above has ended a previous alignment prematurely,";
+			helpline[1] = "you're probably due for more error messages, and you";
+			helpline[0] = "might try typing `S' now just to see what is salvageable.";
 		}
 		else
 		{
 			helpptr = 5;
-			helpline[4] = txt("I can't figure out why you would want to use a tab mark");
-			helpline[3] = txt("or \\cr or \\span just now. If something like a right brace");
-			helpline[2] = txt("up above has ended a previous alignment prematurely,");
-			helpline[1] = txt("you're probably due for more error messages, and you");
-			helpline[0] = txt("might try typing `S' now just to see what is salvageable.");
+			helpline[4] = "I can't figure out why you would want to use a tab mark";
+			helpline[3] = "or \\cr or \\span just now. If something like a right brace";
+			helpline[2] = "up above has ended a previous alignment prematurely,";
+			helpline[1] = "you're probably due for more error messages, and you";
+			helpline[0] = "might try typing `S' now just to see what is salvageable.";
 		}
 		error();
 	}
@@ -53,9 +53,9 @@ void alignerror(void)
 			curtok = right_brace*0x01'00+ '}';
 		}
 		helpptr = 3;
-		helpline[2] = txt("I've put in what seems to be necessary to fix");
-		helpline[1] = txt("the current column of the current alignment.");
-		helpline[0] = txt("Try to go on, since this might almost work.");
+		helpline[2] = "I've put in what seems to be necessary to fix";
+		helpline[1] = "the current column of the current alignment.";
+		helpline[0] = "Try to go on, since this might almost work.";
 		inserror();
 	}
 }

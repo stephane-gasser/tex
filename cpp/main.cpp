@@ -84,7 +84,7 @@ int main()
 		termoffset = 0;
 		fileoffset = 0;
 		std::cout << banner << std::endl;
-		if (formatident == 0)
+		if (formatident == "")
 			std::cout << " (no format preloaded)'" << std::endl;
 		else
 		{
@@ -92,10 +92,10 @@ int main()
 			println();
 		}
 		std::cout << std::flush;
-		jobname = 0;
+		jobname = "";
 		nameinprogress = false;
 		logopened = false;
-		outputfilename = 0;
+		outputfilename = "";
 		inputptr = 0;
 		maxinstack = 0;
 		inopen = 0;
@@ -124,9 +124,9 @@ int main()
 			throw std::string();
 		curinput.limitfield = last;
 		First = last+1;
-		if (formatident == 0 || buffer[curinput.locfield] == '&')
+		if (formatident == "" || buffer[curinput.locfield] == '&')
 		{
-			if (formatident)
+			if (formatident != "")
 				Initialize();
 			if (!openfmtfile())
 				throw std::string();

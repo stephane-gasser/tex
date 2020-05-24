@@ -70,7 +70,7 @@ void prefixedcommand(void)
 			printcmdchr(curcmd, curchr);
 			printchar('\''); 
 			helpptr = 1;
-			helpline[0] = txt("I'll pretend you didn't say \\long or \\outer or \\global.");
+			helpline[0] = "I'll pretend you didn't say \\long or \\outer or \\global.";
 			backerror;
 			return;
 		}
@@ -86,7 +86,7 @@ void prefixedcommand(void)
 		printcmdchr(curcmd, curchr);
 		printchar('\'');
 		helpptr = 1;
-		helpline[0] = txt("I'll pretend you didn't say \\long or \\outer here.");
+		helpline[0] = "I'll pretend you didn't say \\long or \\outer here.";
 		error();
 	}
 	if (int_par(global_defs_code))
@@ -219,8 +219,8 @@ void prefixedcommand(void)
 				printnl("! ");
 				print("Missing `to' inserted");
 				helpptr = 2;
-				helpline[1] = txt("You should have said `\\read<number> to \\cs'.");
-				helpline[0] = txt("I'm going to look for the \\cs now.");
+				helpline[1] = "You should have said `\\read<number> to \\cs'.";
+				helpline[0] = "I'm going to look for the \\cs now.";
 				error();
 			}
 			getrtoken();
@@ -365,7 +365,7 @@ void prefixedcommand(void)
 					print("//), should be at most ");
 				printint(n);
 				helpptr = 1;
-				helpline[0] = txt("I'm going to use 0 instead of that illegal code value.");
+				helpline[0] = "I'm going to use 0 instead of that illegal code value.";
 				error;
 				curval = 0;
 			}
@@ -418,8 +418,8 @@ void prefixedcommand(void)
 				print("Improper ");
 				printesc("setbox");
 				helpptr = 2;
-				helpline[1] = txt("Sorry, \\setbox is not allowed after \\halign in a display,");
-				helpline[0] = txt("or between \\accent and an accented character.");
+				helpline[1] = "Sorry, \\setbox is not allowed after \\halign in a display,";
+				helpline[0] = "or between \\accent and an accented character.";
 				error();
 			}
 			break;

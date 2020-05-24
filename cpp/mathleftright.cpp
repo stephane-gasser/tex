@@ -23,7 +23,7 @@ void mathleftright(void)
 			print("Extra ");
 			printesc("right");
 			helpptr = 1;
-			helpline[0] = txt("I'm ignoring a \\right that had no matching \\left.");
+			helpline[0] = "I'm ignoring a \\right that had no matching \\left.";
 			error();
 		}
 		else

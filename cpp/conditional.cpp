@@ -94,7 +94,7 @@ void conditional(void)
 				print("Missing = inserted for ");
 				printcmdchr(if_test, thisif);
 				helpptr = 1;
-				helpline[0] = txt("I was expecting to see `<', `=', or `>'. Didn't.");
+				helpline[0] = "I was expecting to see `<', `=', or `>'. Didn't.";
 				backerror();
 				r = '=';
 			}
@@ -274,7 +274,7 @@ void conditional(void)
 			print("Extra ");
 			printesc("or");
 			helpptr = 1;
-			helpline[0] = txt("I'm ignoring this; it doesn't match any \\if.");
+			helpline[0] = "I'm ignoring this; it doesn't match any \\if.";
 			error();
 		}
 		else 

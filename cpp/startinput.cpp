@@ -18,17 +18,17 @@
 void startinput(void)
 {
 	scanfilename();
-	if (curext == 338) //
-		curext = txt(".tex");
+	if (curext == "")
+		curext = ".tex";
 	packfilename(curname, curarea, curext);
 	while (true)
 	{
 		beginfilereading();
 		if (aopenin(inputfile[curinput.indexfield]))
 			break;
-		if (curarea == 338) //
+		if (curarea == "")
 		{
-			packfilename(curname, txt("TeXinputs:"), curext);
+			packfilename(curname, "TeXinputs:", curext);
 			if (aopenin(inputfile[curinput.indexfield]))
 				break;
 		}
@@ -36,7 +36,7 @@ void startinput(void)
 		promptfilename("input file name", ".tex");
 	}
 	curinput.namefield = amakenamestring(inputfile[curinput.indexfield]);
-	if (jobname == 0)
+	if (jobname == "")
 	{
 		jobname = curname;
 		openlogfile();
@@ -55,7 +55,7 @@ void startinput(void)
 	{
 		strptr--;
 		poolptr = strstart[strptr];
-		curinput.namefield = curname;
+		curinput.namefield = txt(curname);
 	}
 	line = 1;
 	if (inputln(inputfile[curinput.indexfield], false))

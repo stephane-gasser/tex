@@ -19,9 +19,9 @@ void unpackage(void)
 		printnl("! ");
 		print("Incompatible list can't be unboxed");
 		helpptr = 3;
-		helpline[2] = txt("Sorry, Pandora. (You sneaky devil.)");
-		helpline[1] = txt("I refuse to unbox an \\hbox in vertical mode or vice versa.");
-		helpline[0] = txt("And I can't open any boxes in math mode.");
+		helpline[2] = "Sorry, Pandora. (You sneaky devil.)";
+		helpline[1] = "I refuse to unbox an \\hbox in vertical mode or vice versa.";
+		helpline[0] = "And I can't open any boxes in math mode.";
 		error();
 		return;
 	}

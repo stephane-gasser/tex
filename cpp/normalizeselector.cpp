@@ -7,7 +7,7 @@ void normalizeselector(void)
 		selector = term_and_log;
 	else
 	selector = term_only;
-	if (jobname == 0)
+	if (jobname == "")
 		openlogfile();
 	if (interaction == batch_mode)
 		selector--;

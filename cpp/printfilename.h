@@ -1,5 +1,5 @@
 #ifndef PRINTFILENAME_H
 #define PRINTFILENAME_H
 #include "globals.h"
-void printfilename(int n, int  a, int  e);
+void printfilename(const std::string &, const std::string &, const std::string &);
 #endif

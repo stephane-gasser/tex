@@ -54,8 +54,8 @@ void newhyphexceptions(void)
 						printnl("! ");
 						print("Not a letter");
 						helpptr = 2;
-						helpline[1] = txt("Letters in \\hyphenation words must have \\lccode>0.");
-						helpline[0] = txt("Proceed; I'll ignore the character I just read.");
+						helpline[1] = "Letters in \\hyphenation words must have \\lccode>0.";
+						helpline[0] = "Proceed; I'll ignore the character I just read.";
 						error();
 					}
 					else 
@@ -88,16 +88,16 @@ void newhyphexceptions(void)
 					if (hyphcount == hyph_size)
 						overflow("exception dictionary", hyph_size);
 					hyphcount++;
-					while (hyphword[h])
+					while (hyphword[h] != "")
 					{
-						k = hyphword[h];
+						k = txt(hyphword[h]);
 						if (strstart[k+1]-strstart[k] < strstart[s+1]-strstart[s])
 						{
 							q = hyphlist[h];
 							hyphlist[h] = p;
 							p = q;
-							t = hyphword[h];
-							hyphword[h] = s;
+							t = txt(hyphword[h]);
+							hyphword[h] = TXT(s);
 							s = t;
 						}
 						else 
@@ -113,8 +113,8 @@ void newhyphexceptions(void)
 										q = hyphlist[h];
 										hyphlist[h] = p;
 										p = q;
-										t = hyphword[h];
-										hyphword[h] = s;
+										t = txt(hyphword[h]);
+										hyphword[h] = TXT(s);
 										s = t;
 										label45 = true;
 									}
@@ -130,8 +130,8 @@ void newhyphexceptions(void)
 									q = hyphlist[h];
 									hyphlist[h] = p;
 									p = q;
-									t = hyphword[h];
-									hyphword[h] = s;
+									t = txt(hyphword[h]);
+									hyphword[h] = TXT(s);
 									s = t;
 								}
 							}
@@ -140,7 +140,7 @@ void newhyphexceptions(void)
 						else
 							h = hyph_size;
 					}
-					hyphword[h] = s;
+					hyphword[h] = TXT(s);
 					hyphlist[h] = p;
 				}
 				if (curcmd == right_brace)
@@ -154,8 +154,8 @@ void newhyphexceptions(void)
 				printesc("hyphenation");
 				print(" will be flushed");
 				helpptr = 2;
-				helpline[1] = txt("Hyphenation exceptions must contain only letters");
-				helpline[0] = txt("and hyphens. But continue; I'll forgive and forget.");
+				helpline[1] = "Hyphenation exceptions must contain only letters";
+				helpline[0] = "and hyphens. But continue; I'll forgive and forget.";
 				error();
 		}
 		getxtoken();

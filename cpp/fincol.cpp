@@ -72,9 +72,9 @@ bool fincol(void)
 			print("Extra alignment tab has been changed to ");
 			printesc("cr");
 			helpptr = 3;
-			helpline[2] = txt("You have given more \\span or & marks than there were");
-			helpline[1] = txt("in the preamble to the \\halign or \\valign now in progress.");
-			helpline[0] = txt("So I'll assume that you meant to type \\cr instead.");
+			helpline[2] = "You have given more \\span or & marks than there were";
+			helpline[1] = "in the preamble to the \\halign or \\valign now in progress.";
+			helpline[0] = "So I'll assume that you meant to type \\cr instead.";
 			info(curalign+5) = 257;
 			error();
 		}

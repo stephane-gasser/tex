@@ -74,10 +74,10 @@ void checkoutervalidity(void)
 			sprintcs(warningindex);
 			{
 				helpptr = 4;
-				helpline[3] = txt("I suspect you have forgotten a `}', causing me");
-				helpline[2] = txt("to read past where you wanted me to stop.");
-				helpline[1] = txt("I'll try to recover; but if the error is serious,");
-				helpline[0] = txt("you'd better type `E' or `X' now and fix your file.");
+				helpline[3] = "I suspect you have forgotten a `}', causing me";
+				helpline[2] = "to read past where you wanted me to stop.";
+				helpline[1] = "I'll try to recover; but if the error is serious,";
+				helpline[0] = "you'd better type `E' or `X' now and fix your file.";
 			}
 			error();
 		}
@@ -89,13 +89,13 @@ void checkoutervalidity(void)
 			print("; all text was ignored after line ");
 			printint(skipline);
 			helpptr = 3;
-			helpline[2] = txt("A forbidden control sequence occurred in skipped text.");
-			helpline[1] = txt("This kind of error happens when you say `\\if...' and forget");
-			helpline[0] = txt("the matching `\\fi'. I've inserted a `\\fi'; this might work.");
+			helpline[2] = "A forbidden control sequence occurred in skipped text.";
+			helpline[1] = "This kind of error happens when you say `\\if...' and forget";
+			helpline[0] = "the matching `\\fi'. I've inserted a `\\fi'; this might work.";
 			if (curcs)
 				curcs = 0;
 			else
-				helpline[2] = txt("The file ended while I was skipping conditional text.");
+				helpline[2] = "The file ended while I was skipping conditional text.";
 			curtok = frozen_fi+cs_token_flag;
 			inserror();
 		}

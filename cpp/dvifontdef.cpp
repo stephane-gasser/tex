@@ -25,21 +25,21 @@ void dvifontdef(internalfontnumber f)
 		dviswap();
 	dvifour(fontsize[f]);
 	dvifour(fontdsize[f]);
-	dvibuf[dviptr++] = strstart[fontarea[f]+1]-strstart[fontarea[f]];
+	dvibuf[dviptr++] = fontarea[f].size();
 	if (dviptr == dvilimit)
 		dviswap();
-	dvibuf[dviptr++] = strstart[fontname[f]+1]-strstart[fontname[f]];
+	dvibuf[dviptr++] = fontname[f].size();
 	if (dviptr == dvilimit)
 		dviswap();
-	for (auto k = strstart[fontarea[f]]; k < strstart[fontarea[f]+1]; k++)
+	for (auto c: fontarea[f])
 	{
-		dvibuf[dviptr++] = strpool[k];
+		dvibuf[dviptr++] = c;
 		if (dviptr == dvilimit)
 			dviswap();
 	}
-	for (auto k = strstart[fontname[f]]; k < strstart[fontname[f]+1]; k++)
+	for (auto c: fontname[f])
 	{
-		dvibuf[dviptr++] = strpool[k];
+		dvibuf[dviptr++] = c;
 		if (dviptr == dvilimit)
 			dviswap();
 	}

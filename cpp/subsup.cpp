@@ -27,14 +27,14 @@ void subsup(void)
 				printnl("! ");
 				print("Double superscript");
 				helpptr = 1;
-				helpline[0] = txt("I treat `x^1^2' essentially like `x^1{}^2'.");
+				helpline[0] = "I treat `x^1^2' essentially like `x^1{}^2'.";
 			}
 			else
 			{
 				printnl("! ");
 				print("Double subscript");
 				helpptr = 1;
-				helpline[0] = txt("I treat `x_1_2' essentially like `x_1{}_2'.");
+				helpline[0] = "I treat `x_1_2' essentially like `x_1{}_2'.";
 			}
 			error();
 		}

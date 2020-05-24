@@ -14,6 +14,6 @@ void mathlimitswitch(void)
 	printnl("! ");
 	print("Limit controls must follow a math operator");
 	helpptr = 1;
-	helpline[0] = txt("I'm ignoring this misplaced \\limits or \\nolimits command.");
+	helpline[0] = "I'm ignoring this misplaced \\limits or \\nolimits command.";
 	error();
 }

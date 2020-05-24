@@ -23,10 +23,10 @@ void fetch(halfword a)
 		print(std::string(1, char(curc)));
 		printchar(')');
 		helpptr = 4;
-		helpline[3] = txt("Somewhere in the math formula just ended, you used the");
-		helpline[2] = txt("stated character from an undefined font family. For example,");
-		helpline[1] = txt("plain TeX doesn't allow \\it or \\sl in subscripts. Proceed,");
-		helpline[0] = txt("and I'll try to forget that I needed that character.");
+		helpline[3] = "Somewhere in the math formula just ended, you used the";
+		helpline[2] = "stated character from an undefined font family. For example,";
+		helpline[1] = "plain TeX doesn't allow \\it or \\sl in subscripts. Proceed,";
+		helpline[0] = "and I'll try to forget that I needed that character.";
 		error();
 		curi = nullcharacter;
 		link(a) = 0;

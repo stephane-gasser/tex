@@ -52,7 +52,7 @@ void storefmtfile(void)
 		printnl("! ");
 		print("You can't dump inside a group");
 		helpptr = 1;
-		helpline[0] = txt("`{...\\dump}' is a no-no.");
+		helpline[0] = "`{...\\dump}' is a no-no.";
 		if (interaction == error_stop_mode)
 			interaction = scroll_mode;
 		if (logopened)
@@ -62,7 +62,7 @@ void storefmtfile(void)
 	}
 	selector = new_string;
 	print(" (preloaded format=");
-	print(TXT(jobname));
+	print(jobname);
 	printchar(' ');
 	printint(int_par(year_code));
 	printchar('.');
@@ -234,8 +234,8 @@ void storefmtfile(void)
 		writeInt(fontparams[k]);
 		writeInt(hyphenchar[k]);
 		writeInt(skewchar[k]);
-		writeInt(fontname[k]);
-		writeInt(fontarea[k]);
+		writeInt(txt(fontname[k]));
+		writeInt(txt(fontarea[k]));
 		writeInt(fontbc[k]);
 		writeInt(fontec[k]);
 		writeInt(charbase[k]);
@@ -255,7 +255,7 @@ void storefmtfile(void)
 		printesc(TXT(text(font_id_base+k)));
 		printesc("FONT");
 		printchar('=');
-		printfilename(fontname[k], fontarea[k], txt(""));
+		printfilename(fontname[k], fontarea[k], "");
 		if (fontsize[k] != fontdsize[k])
 		{
 			print(" at ");
@@ -271,11 +271,11 @@ void storefmtfile(void)
 	if (fontptr != 1)
 		printchar('s');
 	writeInt(hyphcount);
-	for (k = 0; k <= 307; k++)
-		if (hyphword[k])
+	for (k = 0; k <= hyph_size; k++)
+		if (hyphword[k] != "")
 		{
 			writeInt(k);
-			writeInt(hyphword[k]);
+			writeInt(txt(hyphword[k]));
 			writeInt(hyphlist[k]);
 		}
 	println();
@@ -315,7 +315,7 @@ void storefmtfile(void)
 			writeInt(trieused[k]);
 		}
 	writeInt(interaction);
-	writeInt(formatident);
+	writeInt(txt(formatident));
 	writeInt(69069);
 	int_par(tracing_stats_code) = 0;
 	wclose(fmtfile);

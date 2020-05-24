@@ -13,13 +13,13 @@
 #include "xnoverd.h"
 #include "texte.h"
 
-void notLoadable(halfword u, strnumber nom, strnumber aire, scaled s, bool fileopened)
+void notLoadable(halfword u, const std::string &nom, const std::string &aire, scaled s, bool fileopened)
 {
 	printnl("! ");
 	print("Font ");
 	sprintcs(u);
 	printchar('=');
-	printfilename(nom, aire, txt("")); 
+	printfilename(nom, aire, ""); 
 	if (s >= 0)
 	{
 		print(" at ");
@@ -36,23 +36,23 @@ void notLoadable(halfword u, strnumber nom, strnumber aire, scaled s, bool fileo
 	else
 		print(" not loadable: Metric (TFM) file not found");
 	helpptr = 5;
-	helpline[4] = txt("I wasn't able to read the size data for this font,");
-	helpline[3] = txt("so I will ignore the font specification.");
-	helpline[2] = txt("[Wizards can fix TFM files using TFtoPL/PLtoTF.]");
-	helpline[1] = txt("You might try inserting a different font spec;");
-	helpline[0] = txt("e.g., type `I\\font<same font id>=<substitute font name>'.");
+	helpline[4] = "I wasn't able to read the size data for this font,";
+	helpline[3] = "so I will ignore the font specification.";
+	helpline[2] = "[Wizards can fix TFM files using TFtoPL/PLtoTF.]";
+	helpline[1] = "You might try inserting a different font spec;";
+	helpline[0] = "e.g., type `I\\font<same font id>=<substitute font name>'.";
 	error();
 	if (fileopened)
 		bclose(tfmfile);
 }
 
-internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scaled s)
+internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::string &aire, scaled s)
 {
 	bool fileopened = false;
-	if (aire == 338) //
-		packfilename(nom, txt("TeXfonts:"), txt(".tfm")); 
+	if (aire == "")
+		packfilename(nom, "TeXfonts:", ".tfm");
 	else
-		packfilename(nom, aire, txt(".tfm"));
+		packfilename(nom, aire, ".tfm");
 	if (!bopenin(tfmfile))
 	{
 		notLoadable(u, nom, aire, s, fileopened);
@@ -170,7 +170,7 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 		print("Font ");
 		sprintcs(u);
 		printchar('=');
-		printfilename(nom, aire, 338); //
+		printfilename(nom, aire, "");
 		if (s >= 0)
 		{
 			print(" at ");
@@ -186,10 +186,10 @@ internalfontnumber readfontinfo(halfword u, strnumber nom, strnumber aire, scale
 		print(" not loaded: Not enough room left");
 		{
 		helpptr = 4;
-		helpline[3] = txt("I'm afraid I won't be able to make use of this font,");
-		helpline[2] = txt("because my memory for character-size data is too small.");
-		helpline[1] = txt("If you're really stuck, ask a wizard to enlarge me.");
-		helpline[0] = txt("Or maybe try `I\\font<same font id>=<name of loaded font>'.");
+		helpline[3] = "I'm afraid I won't be able to make use of this font,";
+		helpline[2] = "because my memory for character-size data is too small.";
+		helpline[1] = "If you're really stuck, ask a wizard to enlarge me.";
+		helpline[0] = "Or maybe try `I\\font<same font id>=<name of loaded font>'.";
 		}
 		error();
 		if (fileopened)

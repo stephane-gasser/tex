@@ -12,7 +12,7 @@ void doendv(void)
 	while (inputstack[baseptr].indexfield != 2 && inputstack[baseptr].locfield == 0 && inputstack[baseptr].statefield == 0)
 		baseptr--;
 	if (inputstack[baseptr].indexfield != 2 || inputstack[baseptr].locfield || inputstack[baseptr].statefield)
-		fatalerror(595); //(interwoven alignment preambles are not allowed)
+		fatalerror("(interwoven alignment preambles are not allowed)");
 	if (curgroup == 6)
 	{
 		endgraf();

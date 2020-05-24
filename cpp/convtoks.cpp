@@ -35,7 +35,7 @@ void convtoks(void)
 			scanfontident();
 			break;
 		case 5: 
-			if (jobname == 0)
+			if (jobname == "")
 				openlogfile();
 	}
 	oldsetting = selector;
@@ -59,7 +59,7 @@ void convtoks(void)
 			printmeaning();
 			break;
 		case 4:
-			print(TXT(fontname[curval]));
+			print(fontname[curval]);
 			if (fontsize[curval] != fontdsize[curval])
 			{
 				print(" at ");
@@ -68,7 +68,7 @@ void convtoks(void)
 			}
 			break;
 		case 5: 
-			print(TXT(jobname));
+			print(jobname);
 	}
 	selector = oldsetting;
 	link(garbage) = strtoks(b);

@@ -19,8 +19,8 @@ void overflow(const std::string &s, int n)
 	printint(n);
 	printchar(']');
 	helpptr = 2;
-	helpline[1] = txt("If you really absolutely need more capacity,");
-	helpline[0] = txt("you can ask a wizard to enlarge me.");
+	helpline[1] = "If you really absolutely need more capacity,";
+	helpline[0] = "you can ask a wizard to enlarge me.";
 	if (interaction == error_stop_mode)
 		interaction = scroll_mode;
 	if (logopened)

@@ -33,12 +33,12 @@ void scandelimiter(halfword p, bool r)
 		printnl("! ");
 		print("Missing delimiter (. inserted)");
 		helpptr = 6;
-		helpline[5] = txt("I was expecting to see something like `(' or `\\{' or");
-		helpline[4] = txt("`\\}' here. If you typed, e.g., `{' instead of `\\{', you");
-		helpline[3] = txt("should probably delete the `{' by typing `1' now, so that");
-		helpline[2] = txt("braces don't get unbalanced. Otherwise just proceed.");
-		helpline[1] = txt("Acceptable delimiters are characters whose \\delcode is");
-		helpline[0] = txt("nonnegative, or you can use `\\delimiter <delimiter code>'.");
+		helpline[5] = "I was expecting to see something like `(' or `\\{' or";
+		helpline[4] = "`\\}' here. If you typed, e.g., `{' instead of `\\{', you";
+		helpline[3] = "should probably delete the `{' by typing `1' now, so that";
+		helpline[2] = "braces don't get unbalanced. Otherwise just proceed.";
+		helpline[1] = "Acceptable delimiters are characters whose \\delcode is";
+		helpline[0] = "nonnegative, or you can use `\\delimiter <delimiter code>'.";
 		backerror();
 		curval = 0;
 	}

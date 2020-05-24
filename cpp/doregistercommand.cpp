@@ -45,7 +45,7 @@ void doregistercommand(smallnumber a)
 				print("' after ");
 				printcmdchr(q, 0);
 				helpptr = 1;
-				helpline[0] = txt("I'm forgetting what you said and not changing anything.");
+				helpline[0] = "I'm forgetting what you said and not changing anything.";
 				error();
 				return;
 			}
@@ -150,8 +150,8 @@ void doregistercommand(smallnumber a)
 		printnl("! ");
 		print("Arithmetic overflow");
 		helpptr = 2;
-		helpline[1] = txt("I can't carry out that multiplication or division,");
-		helpline[0] = txt("since the result is out of range.");
+		helpline[1] = "I can't carry out that multiplication or division,";
+		helpline[0] = "since the result is out of range.";
 		if (p >= 2)
 			deleteglueref(curval);
 		error();

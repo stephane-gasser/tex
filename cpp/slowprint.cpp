@@ -10,3 +10,9 @@ void slowprint(int s)
 		for (int j = strstart[s]; j < strstart[s+1]; j++)
 			printchar(strpool[j]);
 }
+
+void slowprint(const std::string &s)
+{
+	for (auto c: s)
+		printchar(c);
+}

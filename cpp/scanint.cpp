@@ -47,8 +47,8 @@ void scanint(void)
 			printnl("! ");
 			print("Improper alphabetic constant");
 			helpptr = 2;
-			helpline[1] = txt("A one-character control sequence belongs after a ` mark.");
-			helpline[0] = txt("So I'm essentially inserting \\0 here.");
+			helpline[1] = "A one-character control sequence belongs after a ` mark.";
+			helpline[0] = "So I'm essentially inserting \\0 here.";
 			curval = '0';
 			backerror();
 		}
@@ -105,8 +105,8 @@ void scanint(void)
 						printnl("! ");
 						print("Number too big");
 						helpptr = 2;
-						helpline[1] = txt("I can only go up to 2147483647='17777777777=\"7FFFFFFF,");
-						helpline[0] = txt("so I'm using that number instead of yours.");
+						helpline[1] = "I can only go up to 2147483647='17777777777=\"7FFFFFFF,";
+						helpline[0] = "so I'm using that number instead of yours.";
 						error();
 						curval = infinity;
 						OKsofar = false;
@@ -121,9 +121,9 @@ void scanint(void)
 				printnl("! ");
 				print("Missing number, treated as zero");
 				helpptr = 3;
-				helpline[2] = txt("A number should have been here; I inserted `0'.");
-				helpline[1] = txt("(If you can't figure out why I needed to see a number,");
-				helpline[0] = txt("look up `weird error' in the index to The TeXbook.)");
+				helpline[2] = "A number should have been here; I inserted `0'.";
+				helpline[1] = "(If you can't figure out why I needed to see a number,";
+				helpline[0] = "look up `weird error' in the index to The TeXbook.)";
 				backerror();
 			}
 			else 

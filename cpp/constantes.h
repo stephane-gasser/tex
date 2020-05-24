@@ -1217,11 +1217,18 @@ enum
 what_lhm(#)==type(#+1) //minimum left fragment, in the range |1..63|
 what_rhm(#)==subtype(#+1) //minimum right fragment, in the range |1..63|
 write_tokens(#) == link(#+1) //reference count of token list to write
-write_stream(#) == info(#+1) //stream number (0 to 17)
-open_name(#) == link(#+1) //string number of file name to open
-open_area(#) == info(#+2) //string number of file area for |open_name|
-open_ext(#) == link(#+2) //string number of file extension for |open_name|
-@ adv_past(#)==@+if subtype(#)=language_node then
+write_stream(#) == info(#+1) //stream number (0 to 17)*/
+
+//open_name(#) == link(#+1) //string number of file name to open
+halfword& open_name(halfword);
+
+//open_area(#) == info(#+2) //string number of file area for |open_name|
+halfword& open_area(halfword);
+
+//open_ext(#) == link(#+2) //string number of file extension for |open_name|
+halfword& open_ext(halfword);
+
+/*@ adv_past(#)==@+if subtype(#)=language_node then
 end_write_token==cs_token_flag+end_write*/
 
 #endif

@@ -102,10 +102,10 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 				printnl("! ");
 				print("Infinite glue shrinkage found in box being split"); 
 				helpptr = 4;
-				helpline[3] = txt("The box you are \\vsplitting contains some infinitely");
-				helpline[2] = txt("shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.");
-				helpline[1] = txt("Such glue doesn't belong there; but you can safely proceed,");
-				helpline[0] = txt("since the offensive shrinkability has been made finite.");
+				helpline[3] = "The box you are \\vsplitting contains some infinitely";
+				helpline[2] = "shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.";
+				helpline[1] = "Such glue doesn't belong there; but you can safely proceed,";
+				helpline[0] = "since the offensive shrinkability has been made finite.";
 				error();
 				r = newspec(q);
 				subtype(r) = 0;

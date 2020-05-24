@@ -87,10 +87,10 @@ void macrocall(void)
 						sprintcs(warningindex);
 						print(" doesn't match its definition");
 						helpptr = 4;
-						helpline[3] = txt("If you say, e.g., `\\def\\a1{...}', then you must always");
-						helpline[2] = txt("put `1' after `\\a', since control sequence names are");
-						helpline[1] = txt("made up of letters only. The macro here has not been");
-						helpline[0] = txt("followed by the required stuff, so I'm ignoring it.");
+						helpline[3] = "If you say, e.g., `\\def\\a1{...}', then you must always";
+						helpline[2] = "put `1' after `\\a', since control sequence names are";
+						helpline[1] = "made up of letters only. The macro here has not been";
+						helpline[0] = "followed by the required stuff, so I'm ignoring it.";
 						error();
 						scannerstatus = savescannerstatus;
 						warningindex = savewarningindex;
@@ -143,9 +143,9 @@ void macrocall(void)
 							sprintcs(warningindex);
 							print(" was complete");
 							helpptr = 3;
-							helpline[2] = txt("I suspect you've forgotten a `}', causing me to apply this");
-							helpline[1] = txt("control sequence to too much text. How can we recover?");
-							helpline[0] = txt("My plan is to forget the whole thing and hope for the best.");
+							helpline[2] = "I suspect you've forgotten a `}', causing me to apply this";
+							helpline[1] = "control sequence to too much text. How can we recover?";
+							helpline[0] = "My plan is to forget the whole thing and hope for the best.";
 							backerror();
 						}
 						pstack[n] = link(temp_head);
@@ -185,9 +185,9 @@ void macrocall(void)
 										sprintcs(warningindex);
 										print(" was complete");
 										helpptr = 3;
-										helpline[2] = txt("I suspect you've forgotten a `}', causing me to apply this"); 
-										helpline[1] = txt("control sequence to too much text. How can we recover?");
-										helpline[0] = txt("My plan is to forget the whole thing and hope for the best.");
+										helpline[2] = "I suspect you've forgotten a `}', causing me to apply this"; 
+										helpline[1] = "control sequence to too much text. How can we recover?";
+										helpline[0] = "My plan is to forget the whole thing and hope for the best.";
 										backerror();
 									}
 									pstack[n] = link(temp_head);
@@ -222,12 +222,12 @@ void macrocall(void)
 						sprintcs(warningindex);
 						print(" has an extra }");
 						helpptr = 6;
-						helpline[5] = txt("I've run across a `}' that doesn't seem to match anything.");
-						helpline[4] = txt("For example, `\\def\\a#1{...}' and `\\a}' would produce");
-						helpline[3] = txt("this error. If you simply proceed now, the `\\par' that");
-						helpline[2] = txt("I've just inserted will cause me to report a runaway");
-						helpline[1] = txt("argument that might be the root of the problem. But if");
-						helpline[0] = txt("your `}' was spurious, just type `2' and it will go away.");
+						helpline[5] = "I've run across a `}' that doesn't seem to match anything.";
+						helpline[4] = "For example, `\\def\\a#1{...}' and `\\a}' would produce";
+						helpline[3] = "this error. If you simply proceed now, the `\\par' that";
+						helpline[2] = "I've just inserted will cause me to report a runaway";
+						helpline[1] = "argument that might be the root of the problem. But if";
+						helpline[0] = "your `}' was spurious, just type `2' and it will go away.";
 						alignstate++;
 						longstate = call;
 						curtok = partoken;

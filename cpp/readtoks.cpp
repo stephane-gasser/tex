@@ -80,7 +80,7 @@ void readtoks(int n, halfword r)
 						print("File ended within ");
 						printesc("read");
 						helpptr = 1;
-						helpline[0] = txt("This \\read has unbalanced braces.");
+						helpline[0] = "This \\read has unbalanced braces.";
 						alignstate = 1000000;
 						error();
 					}

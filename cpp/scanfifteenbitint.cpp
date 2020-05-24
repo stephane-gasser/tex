@@ -13,8 +13,8 @@ void scanfifteenbitint(void)
 		printnl("! ");
 		print("Bad mathchar");
 		helpptr = 2;
-		helpline[1] = txt("A mathchar number must be between 0 and 0x7F'FF.");
-		helpline[0] = txt("I changed this one to zero.");
+		helpline[1] = "A mathchar number must be between 0 and 0x7F'FF.";
+		helpline[0] = "I changed this one to zero.";
 		interror(curval);
 		curval = 0;
 	}

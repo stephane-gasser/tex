@@ -29,7 +29,7 @@ void newfont(smallnumber a)
 	strnumber t;
 	char oldsetting;
 	strnumber flushablestring;
-	if (jobname == 0)
+	if (jobname == "")
 		openlogfile();
 	getrtoken();
 	u = curcs;
@@ -70,8 +70,8 @@ void newfont(smallnumber a)
 			printscaled(s);
 			print("pt), replaced by 10pt");
 			helpptr = 2;
-			helpline[1] = txt("I can only handle fonts at positive sizes that are");
-			helpline[0] = txt("less than 2048pt, so I've changed what you said to 10pt.");
+			helpline[1] = "I can only handle fonts at positive sizes that are";
+			helpline[0] = "less than 2048pt, so I've changed what you said to 10pt.";
 			error();
 			s = 10*0x1'00'00;
 		}
@@ -86,7 +86,7 @@ void newfont(smallnumber a)
 				printnl("! ");
 				print("Illegal magnification has been changed to 1000");
 				helpptr = 1;
-				helpline[0] = txt("The magnification ratio must be between 1 and 0x80'00.");
+				helpline[0] = "The magnification ratio must be between 1 and 0x80'00.";
 				interror(curval);
 				s = -1000;
 			}
@@ -96,9 +96,9 @@ void newfont(smallnumber a)
 	nameinprogress = false;
 	flushablestring = strptr-1;
 	for (f = 1; f <= fontptr; f++)
-		if (streqstr(fontname[f], curname) && streqstr(fontarea[f], curarea))
+		if (streqstr(txt(fontname[f]), txt(curname)) && streqstr(txt(fontarea[f]), txt(curarea)))
 		{
-			if (curname == flushablestring)
+			if (txt(curname) == flushablestring)
 			{
 				strptr = strptr-1;
 				poolptr = strstart[strptr];

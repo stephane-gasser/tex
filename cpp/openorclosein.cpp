@@ -5,6 +5,7 @@
 #include "scanfilename.h"
 #include "packfilename.h"
 #include "aopenin.h"
+#include "texte.h"
 
 void openorclosein(void)
 {
@@ -20,8 +21,8 @@ void openorclosein(void)
 	{
 		scanoptionalequals();
 		scanfilename();
-		if (curext == 338) //
-			curext = 790; //.tex
+		if (curext == "") 
+			curext = ".tex";
 		packfilename(curname, curarea, curext);
 		if (aopenin(readfile[n]))
 			readopen[n] = 1;

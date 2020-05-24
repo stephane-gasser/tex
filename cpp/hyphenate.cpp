@@ -5,6 +5,7 @@
 #include "getnode.h"
 #include "newcharacter.h"
 #include "flushlist.h"
+#include "texte.h"
 
 void hyphenate(void)
 {
@@ -30,7 +31,7 @@ void hyphenate(void)
 	bool skip = false;
 	while (keepIn)
 	{
-		k = hyphword[h];
+		k = txt(hyphword[h]);
 		if (k == 0)
 			break;
 		if (strstart[k+1]-strstart[k] < hn)

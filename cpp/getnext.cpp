@@ -190,8 +190,8 @@ void getnext(void)
 								printnl("! ");
 								print("Text line contains an invalid character");
 								helpptr = 2;
-								helpline[1] = txt("A funny symbol that I can't read has just been input.");
-								helpline[0] = txt("Continue, and I'll forget that it ever happened.");
+								helpline[1] = "A funny symbol that I can't read has just been input.";
+								helpline[0] = "Continue, and I'll forget that it ever happened.";
 								deletionsallowed = false;
 								error();
 								deletionsallowed = true;

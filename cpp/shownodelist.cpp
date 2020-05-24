@@ -20,6 +20,7 @@
 #include "printfilename.h"
 #include "printfamandchar.h"
 #include <cmath>
+#include "texte.h"
 
 void shownodelist(int p)
 {
@@ -146,7 +147,7 @@ void shownodelist(int p)
 						case 0:
 							printwritewhatsit("openout", p);
 							printchar('=');
-							printfilename(link(p+1), info(p+2), link(p+2));
+							printfilename(TXT(open_name(p)), TXT(open_area(p)), TXT(open_ext(p)));
 							break;
 						case 1:
 							printwritewhatsit("write", p);

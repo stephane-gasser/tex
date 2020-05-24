@@ -9,6 +9,6 @@ void muerror(void)
 	printnl("! ");
 	print("Incompatible glue units"); 
 	helpptr = 1;
-	helpline[0] = txt("I'm going to assume that 1mu=1pt when they're mixed.");
+	helpline[0] = "I'm going to assume that 1mu=1pt when they're mixed.";
 	error();
 }

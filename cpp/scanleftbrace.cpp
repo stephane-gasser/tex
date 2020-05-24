@@ -15,10 +15,10 @@ void scanleftbrace(void)
 		printnl("! ");
 		print("Missing { inserted");
 		helpptr = 4;
-		helpline[3] = txt("A left brace was mandatory here, so I've put one in.");
-		helpline[2] = txt("You might want to delete and/or insert some corrections");
-		helpline[1] = txt("so that I will find a matching right brace soon.");
-		helpline[0] = txt("(If you're confused by all this, try typing `I}' now.)");
+		helpline[3] = "A left brace was mandatory here, so I've put one in.";
+		helpline[2] = "You might want to delete and/or insert some corrections";
+		helpline[1] = "so that I will find a matching right brace soon.";
+		helpline[0] = "(If you're confused by all this, try typing `I}' now.)";
 		backerror();
 		curtok = left_brace*0x01'00+'{';
 		curcmd = 1;

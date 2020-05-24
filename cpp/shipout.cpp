@@ -86,9 +86,9 @@ void shipout(halfword p)
 	dviv = 0;
 	curh = dimen_par(h_offset_code);
 	dvif = 0;
-	if (outputfilename == 0)
+	if (outputfilename == "")
 	{
-		if (jobname == 0)
+		if (jobname == "")
 			openlogfile();
 		packjobname(".dvi");
 		while (!bopenout(dvifile))

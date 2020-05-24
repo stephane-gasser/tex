@@ -4,8 +4,8 @@
 
 void packjobname(const std::string &s)
 {
-	curarea = txt("");
-	curext = txt(s);
+	curarea = "";
+	curext = s;
 	curname = jobname;
 	packfilename(curname, curarea, curext);
 }

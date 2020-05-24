@@ -12,6 +12,7 @@
 #include "reportillegalcase.h"
 #include "normmin.h"
 #include "confusion.h"
+#include "texte.h"
 
 void doextension(void)
 {
@@ -23,9 +24,9 @@ void doextension(void)
 			newwritewhatsit(3);
 			scanoptionalequals();
 			scanfilename();
-			link(tail+1) = curname;
-			info(tail+2) = curarea;
-			link(tail+2) = curext;
+			open_name(tail) = txt(curname);
+			open_area(tail) = txt(curarea);
+			open_ext(tail) = txt(curext);
 			break;
 		case 1:
 			k = curcs;

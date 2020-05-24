@@ -22,9 +22,9 @@ void mathfraction(void)
 		printnl("! ");
 		print("Ambiguous; you need another { and }");
 		helpptr = 3;
-		helpline[2] = txt("I'm ignoring this fraction specification, since I don't");
-		helpline[1] = txt("know whether a construction like `x \\over y \\over z'");
-		helpline[0] = txt("means `{x \\over y} \\over z' or `x \\over {y \\over z}'.");
+		helpline[2] = "I'm ignoring this fraction specification, since I don't";
+		helpline[1] = "know whether a construction like `x \\over y \\over z'";
+		helpline[0] = "means `{x \\over y} \\over z' or `x \\over {y \\over z}'.";
 		error();
 	}
 	else

@@ -19,7 +19,7 @@ void offsave(void)
 		print("Extra ");
 		printcmdchr(curcmd, curchr);
 		helpptr = 1;
-		helpline[0] = txt("Things are pretty mixed up, but I think the worst is over.");
+		helpline[0] = "Things are pretty mixed up, but I think the worst is over.";
 		error();
 	}
 	else
@@ -54,11 +54,11 @@ void offsave(void)
 		begintokenlist(link(temp_head), 4);
 		{
 			helpptr = 5;
-			helpline[4] = txt("I've inserted something that you may have forgotten.");
-			helpline[3] = txt("(See the <inserted text> above.)");
-			helpline[2] = txt("With luck, this will get me unwedged. But if you");
-			helpline[1] = txt("really didn't forget anything, try typing `2' now; then");
-			helpline[0] = txt("my insertion and my current dilemma will both disappear.");
+			helpline[4] = "I've inserted something that you may have forgotten.";
+			helpline[3] = "(See the <inserted text> above.)";
+			helpline[2] = "With luck, this will get me unwedged. But if you";
+			helpline[1] = "really didn't forget anything, try typing `2' now; then";
+			helpline[0] = "my insertion and my current dilemma will both disappear.";
 		}
 		error();
 	}

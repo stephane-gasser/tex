@@ -72,9 +72,9 @@ void boxend(int boxcontext)
 						printnl("! ");
 						print("Leaders not followed by proper glue");
 						helpptr = 3;
-						helpline[2] = txt("You should say `\\leaders <box or rule><hskip or vskip>'.");
-						helpline[1] = txt("I found the <box or rule>, but there's no suitable");
-						helpline[0] = txt("<hskip or vskip>, so I'm ignoring these leaders.");
+						helpline[2] = "You should say `\\leaders <box or rule><hskip or vskip>'.";
+						helpline[1] = "I found the <box or rule>, but there's no suitable";
+						helpline[0] = "<hskip or vskip>, so I'm ignoring these leaders.";
 						backerror();
 						flushnodelist(curbox);
 					}

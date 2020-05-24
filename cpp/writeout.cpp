@@ -34,8 +34,8 @@ void writeout(halfword p)
 		printnl("! ");
 		print("Unbalanced write command");
 		helpptr = 2;
-		helpline[1] = txt("On this page there's a \\write with fewer real {'s than }'s.");
-		helpline[0] = txt("I can't handle that very well; good luck.");
+		helpline[1] = "On this page there's a \\write with fewer real {'s than }'s.";
+		helpline[0] = "I can't handle that very well; good luck.";
 		error();
 		do
 			gettoken();

@@ -29,7 +29,7 @@ void alteraux(void)
 				printnl("! ");
 				print("Bad space factor");
 				helpptr = 1;
-				helpline[0] = txt("I allow only values in the range 1..0x7F'FF here.");
+				helpline[0] = "I allow only values in the range 1..0x7F'FF here.";
 				interror(curval);
 			}
 			else

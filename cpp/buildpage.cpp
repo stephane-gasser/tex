@@ -145,9 +145,9 @@ void buildpage(void)
 						printesc("skip");
 						printint(n);
 						helpptr = 3;
-						helpline[2] = txt("The correction glue for page breaking with insertions");
-						helpline[1] = txt("must have finite shrinkability. But you may proceed,");
-						helpline[0] = txt("since the offensive shrinkability has been made finite.");
+						helpline[2] = "The correction glue for page breaking with insertions";
+						helpline[1] = "must have finite shrinkability. But you may proceed,";
+						helpline[0] = "since the offensive shrinkability has been made finite.";
 						error();
 					}
 				}
@@ -258,10 +258,10 @@ void buildpage(void)
 				printnl("! ");
 				print("Infinite glue shrinkage found on current page");
 				helpptr = 4;
-				helpline[3] = txt("The page about to be output contains some infinitely");
-				helpline[2] = txt("shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.");
-				helpline[1] = txt("Such glue doesn't belong there; but you can safely proceed,");
-				helpline[0] = txt("since the offensive shrinkability has been made finite.");
+				helpline[3] = "The page about to be output contains some infinitely";
+				helpline[2] = "shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.";
+				helpline[1] = "Such glue doesn't belong there; but you can safely proceed,";
+				helpline[0] = "since the offensive shrinkability has been made finite.";
 				error();
 				r = newspec(q);
 				subtype(r) = 0;

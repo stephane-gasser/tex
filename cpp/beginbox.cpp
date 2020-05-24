@@ -38,7 +38,7 @@ void beginbox(int boxcontext)
 			{
 				youcant();
 				helpptr = 1;
-				helpline[0] = 1069; //Sorry; this \lastbox will be void.
+				helpline[0] = "Sorry; this \\lastbox will be void.";
 				error();
 			}
 			else 
@@ -46,8 +46,8 @@ void beginbox(int boxcontext)
 				{
 					youcant();
 					helpptr = 2;
-					helpline[1] = 1070; //Sorry...I usually can't take things from the current page.
-					helpline[0] = 1071; //This \lastbox will therefore be void.
+					helpline[1] = "Sorry...I usually can't take things from the current page.";
+					helpline[0] = "This \\lastbox will therefore be void.";
 					error();
 				}
 				else 
@@ -88,8 +88,8 @@ void beginbox(int boxcontext)
 				printnl("! ");
 				print("Missing `to' inserted");
 				helpptr = 2;
-				helpline[1] = txt("I'm working on `\\vsplit<box number> to <dimen>';");
-				helpline[0] = txt("will look for the <dimen> next.");
+				helpline[1] = "I'm working on `\\vsplit<box number> to <dimen>';";
+				helpline[0] = "will look for the <dimen> next.";
 				error();
 			}
 			scandimen(false, false, false);

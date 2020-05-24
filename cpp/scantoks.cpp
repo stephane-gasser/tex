@@ -44,8 +44,8 @@ halfword scantoks(bool macrodef, bool xpand)
 					print("Missing { inserted"); 
 					alignstate++;
 					helpptr = 2;
-					helpline[1] = txt("Where was the left brace? You said something like `\\def\\a}',");
-					helpline[0] = txt("which I'm going to interpret as `\\def\\a{}'.");
+					helpline[1] = "Where was the left brace? You said something like `\\def\\a}',";
+					helpline[0] = "which I'm going to interpret as `\\def\\a{}'.";
 					error();
 					l40 = true;
 					break;
@@ -76,7 +76,7 @@ halfword scantoks(bool macrodef, bool xpand)
 					printnl("! ");
 					print("You already have nine parameters");
 					helpptr = 1;
-					helpline[0] = txt("I'm going to ignore the # sign you just used.");
+					helpline[0] = "I'm going to ignore the # sign you just used.";
 					error();
 				}
 				else
@@ -87,8 +87,8 @@ halfword scantoks(bool macrodef, bool xpand)
 						printnl("! "); 
 						print("Parameters must be numbered consecutively");
 						helpptr = 2;
-						helpline[1] = txt("I've inserted the digit you should have used after the #.");
-						helpline[0] = txt("Type `1' to delete what you did use.");
+						helpline[1] = "I've inserted the digit you should have used after the #.";
+						helpline[0] = "Type `1' to delete what you did use.";
 						backerror();
 					};
 					curtok = s;
@@ -155,9 +155,9 @@ halfword scantoks(bool macrodef, bool xpand)
 							print("Illegal parameter number in definition of "); 
 							sprintcs(warningindex);
 							helpptr = 3;
-							helpline[2] = txt("You meant to type ## instead of #, right?");
-							helpline[1] = txt("Or maybe a } was forgotten somewhere earlier, and things");
-							helpline[0] = txt("are all screwed up? I'm going to assume that you meant ##.");
+							helpline[2] = "You meant to type ## instead of #, right?";
+							helpline[1] = "Or maybe a } was forgotten somewhere earlier, and things";
+							helpline[0] = "are all screwed up? I'm going to assume that you meant ##.";
 							backerror();
 							curtok = s;
 						}

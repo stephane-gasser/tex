@@ -52,7 +52,7 @@ void newpatterns(void)
 								printnl("! ");
 								print("Nonletter");
 								helpptr = 1;
-								helpline[0] = txt("(See Appendix H.)");
+								helpline[0] = "(See Appendix H.)";
 								error();
 							}
 						}
@@ -126,7 +126,7 @@ void newpatterns(void)
 							printnl("! ");
 							print("Duplicate pattern");
 							helpptr = 1;
-							helpline[0] = txt("(See Appendix H.)");
+							helpline[0] = "(See Appendix H.)";
 							error();
 						}
 						trieo[q] = v;
@@ -145,7 +145,7 @@ void newpatterns(void)
 					print("Bad ");
 					printesc("patterns");
 					helpptr = 1;
-					helpline[0] = txt("(See Appendix H.)");
+					helpline[0] = "(See Appendix H.)";
 					error();
 			}
 		}
@@ -156,7 +156,7 @@ void newpatterns(void)
 		print("Too late for ");
 		printesc("patterns");
 		helpptr = 1;
-		helpline[0] = txt("All patterns must be given before typesetting begins.");
+		helpline[0] = "All patterns must be given before typesetting begins.";
 		error();
 		link(garbage) = scantoks(false, false);
 		flushlist(defref);

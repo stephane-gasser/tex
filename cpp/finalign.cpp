@@ -301,8 +301,8 @@ void finalign(void)
 			printnl("! ");
 			print("Missing $$ inserted"); 
 			helpptr = 2;
-			helpline[1] = txt("Displays can use special alignments (like \\eqalignno)");
-			helpline[0] = txt("only if nothing but the alignment itself is between $$'s.");
+			helpline[1] = "Displays can use special alignments (like \\eqalignno)";
+			helpline[0] = "only if nothing but the alignment itself is between $$'s.";
 			backerror();
 		}
 		else
@@ -313,8 +313,8 @@ void finalign(void)
 				printnl("! ");
 				print("Display math should end with $$");
 				helpptr = 2;
-				helpline[1] = txt("The `$' that I just saw supposedly matches a previous `$$'.");
-				helpline[0] = txt("So I shall assume that you typed `$$' both times.");
+				helpline[1] = "The `$' that I just saw supposedly matches a previous `$$'.";
+				helpline[0] = "So I shall assume that you typed `$$' both times.";
 				backerror();
 			}
 		}

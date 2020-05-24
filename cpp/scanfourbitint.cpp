@@ -13,8 +13,8 @@ void scanfourbitint(void)
 		printnl("! ");
 		print("Bad number");
 		helpptr = 2;
-		helpline[1] = txt("Since I expected to read a number between 0 and 15,");
-		helpline[0] = txt("I changed this one to zero.");
+		helpline[1] = "Since I expected to read a number between 0 and 15,";
+		helpline[0] = "I changed this one to zero.";
 		interror(curval);
 		curval = 0;
 	}

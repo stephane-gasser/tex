@@ -3,7 +3,6 @@
 
 #include "globals.h"
 
-void fatalerror(strnumber);
 void fatalerror(const std::string &);
 
 #endif

@@ -846,3 +846,19 @@ bool hash_is_full(void)
 {
 	return hashused == hash_base;
 }
+
+halfword& open_name(halfword p)
+{
+	return link(p+1);
+}
+
+halfword& open_area(halfword p)
+{
+	return info(p+2);
+}
+
+halfword& open_ext(halfword p)
+{
+	return link(p+2);
+}
+

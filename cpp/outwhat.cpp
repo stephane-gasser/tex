@@ -32,8 +32,8 @@ void outwhat(halfword p)
 							curname = link(p+1);
 							curarea = info(p+2);
 							curext = link(p+2);
-							if (curext == 338) //
-								curext = txt(".tex");
+							if (curext == "")
+								curext = ".tex";
 							packfilename(curname, curarea, curext);
 							while (!aopenout(writefile[j]))
 							promptfilename("output file name", ".tex"); 

@@ -6,21 +6,6 @@
 #include "jumpout.h"
 #include "texte.h"
 
-void fatalerror(strnumber s)
-{
-	normalizeselector();
-	printnl("! ");
-	print("Emergency stop");
-	helpptr = 1;
-	helpline[0] = s;
-	if (interaction == error_stop_mode)
-		interaction = scroll_mode;
-	if (logopened)
-		error();
-	history = fatal_error_stop;
-	jumpout();
-}
-
 void fatalerror(const std::string &s)
 {
 	normalizeselector();

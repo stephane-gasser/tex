@@ -22,7 +22,7 @@ void getpreambletoken(void)
 			}
 		}
 		if (curcmd == endv)
-			fatalerror(595); //(interwoven alignment preambles are not allowed)
+			fatalerror("(interwoven alignment preambles are not allowed)");
 		if (curcmd == assign_glue && curchr == 2893)
 		{
 			scanoptionalequals();

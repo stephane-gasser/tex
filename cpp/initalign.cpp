@@ -29,9 +29,9 @@ void initalign(void)
 		printesc("halign");
 		print(" inside $$'s");
 		helpptr = 3;
-		helpline[2] = txt("Displays can use special alignments (like \\eqalignno)");
-		helpline[1] = txt("only if nothing but the alignment itself is between $$'s.");
-		helpline[0] = txt("So I've deleted the formulas that preceded this alignment.");
+		helpline[2] = "Displays can use special alignments (like \\eqalignno)";
+		helpline[1] = "only if nothing but the alignment itself is between $$'s.";
+		helpline[0] = "So I've deleted the formulas that preceded this alignment.";
 		error();
 		flushmath();
 	}
@@ -73,9 +73,9 @@ void initalign(void)
 					printnl("! ");
 					print("Missing # inserted in alignment preamble");
 					helpptr = 3;
-					helpline[2] = txt("There should be exactly one # between &'s, when an");
-					helpline[1] = txt("\\halign or \\valign is being set up. In this case you had");
-					helpline[0] = txt("none, so I've put one in; maybe that will work.");
+					helpline[2] = "There should be exactly one # between &'s, when an";
+					helpline[1] = "\\halign or \\valign is being set up. In this case you had";
+					helpline[0] = "none, so I've put one in; maybe that will work.";
 					backerror();
 					break;
 				}
@@ -104,9 +104,9 @@ void initalign(void)
 				printnl("! ");
 				print("Only one # is allowed per tab");
 				helpptr = 3;
-				helpline[2] = txt("There should be exactly one # between &'s, when an");
-				helpline[1] = txt("\\halign or \\valign is being set up. In this case you had");
-				helpline[0] = txt("more than one, so I'm ignoring all but the first.");
+				helpline[2] = "There should be exactly one # between &'s, when an";
+				helpline[1] = "\\halign or \\valign is being set up. In this case you had";
+				helpline[0] = "more than one, so I'm ignoring all but the first.";
 				error();
 				continue;
 			}

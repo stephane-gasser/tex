@@ -15,8 +15,8 @@
 void openlogfile(void)
 {
 	auto oldsetting = selector;
-	if (jobname == 0)
-		jobname = txt("texput");
+	if (jobname == "")
+		jobname = "texput";
 	packjobname(".log");
 	while (!aopenout(logfile))
 	{

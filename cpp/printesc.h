@@ -3,7 +3,6 @@
 
 #include "globals.h"
 
-//void printesc(strnumber);
 void printesc(const std::string &);
 
 #endif

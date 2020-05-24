@@ -19,8 +19,8 @@ void headforvmode(void)
 			printesc("hrule");
 			print("' here except with leaders");
 			helpptr = 2;
-			helpline[1] = txt("To put a horizontal rule in an hbox or an alignment,");
-			helpline[0] = txt("you should use \\leaders or \\hrulefill (see The TeXbook).");
+			helpline[1] = "To put a horizontal rule in an hbox or an alignment,";
+			helpline[0] = "you should use \\leaders or \\hrulefill (see The TeXbook).";
 			error();
 		}
 	else

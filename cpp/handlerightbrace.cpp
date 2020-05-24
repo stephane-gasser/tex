@@ -42,8 +42,8 @@ void handlerightbrace(void)
 			printnl("! ");
 			print("Too many }'s");
 			helpptr = 2;
-			helpline[1] = txt("You've closed more groups than you opened.");
-			helpline[0] = txt("Such booboos are generally harmless, so keep going.");
+			helpline[1] = "You've closed more groups than you opened.";
+			helpline[0] = "Such booboos are generally harmless, so keep going.";
 			error();
 			break;
 		case 14:
@@ -105,8 +105,8 @@ void handlerightbrace(void)
 				printnl("! ");
 				print("Unbalanced output routine");
 				helpptr = 2;
-				helpline[1] = txt("Your sneaky output routine has problematic {'s and/or }'s.");
-				helpline[0] = txt("I can't handle that very well; good luck.");
+				helpline[1] = "Your sneaky output routine has problematic {'s and/or }'s.";
+				helpline[0] = "I can't handle that very well; good luck.";
 				error();
 				do
 					gettoken();
@@ -124,9 +124,9 @@ void handlerightbrace(void)
 				printesc("box");
 				printint(255); 
 				helpptr = 3;
-				helpline[2] = txt("Your \\output commands should empty \\box255,");
-				helpline[1] = txt("e.g., by saying `\\shipout\\box255'.");
-				helpline[0] = txt("Proceed; I'll discard its present contents.");
+				helpline[2] = "Your \\output commands should empty \\box255,";
+				helpline[1] = "e.g., by saying `\\shipout\\box255'.";
+				helpline[0] = "Proceed; I'll discard its present contents.";
 				boxerror(255);
 			}
 			if (tail != head)
@@ -157,7 +157,7 @@ void handlerightbrace(void)
 			printesc("cr");
 			print(" inserted");
 			helpptr = 1;
-			helpline[0] = txt("I'm guessing that you meant to end an alignment here.");
+			helpline[0] = "I'm guessing that you meant to end an alignment here.";
 			inserror();
 			break;
 		case 7:

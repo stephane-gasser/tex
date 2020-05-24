@@ -21,7 +21,7 @@ void alterprevgraf(void)
 		print(" Bad ");
 		printesc("prevgraf");
 		helpptr = 1;
-		helpline[0] = txt("I allow only nonnegative values here.");
+		helpline[0] = "I allow only nonnegative values here.";
 		interror(curval);
 	}
 	else

@@ -11,6 +11,6 @@ void cserror(void)
 	print("Extra ");
 	printesc("endcsname");
 	helpptr = 1;
-	helpline[0] = txt("I'm ignoring this, since I wasn't doing a \\csname.");
+	helpline[0] = "I'm ignoring this, since I wasn't doing a \\csname.";
 	error();
 }

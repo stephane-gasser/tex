@@ -29,8 +29,8 @@ void scanfontident(void)
 				printnl("! ");
 				print("Missing font identifier");
 				helpptr = 2;
-				helpline[1] = txt("I was looking for a control sequence whose");
-				helpline[0] = txt("current meaning has been defined by \\font.");
+				helpline[1] = "I was looking for a control sequence whose";
+				helpline[0] = "current meaning has been defined by \\font.";
 				backerror();
 				f = 0;
 			}

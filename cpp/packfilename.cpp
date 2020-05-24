@@ -1,33 +1,27 @@
 #include "packfilename.h"
 
-void packfilename(strnumber n, strnumber a, strnumber e)
+void packfilename(const std::string &n, const std::string &a, const std::string &e)
 {
 	int k = 0;
-	for (auto j = strstart[a]; j < strstart[a+1]; j++)
+	for (auto c: a)
 	{
-		auto c = strpool[j];
 		k++;
 		if (k <= filenamesize)
 			nameoffile[k] = xchr[c];
 	}
-	for (auto j = strstart[n]; j <strstart[n+1]; j++)
+	for (auto c: n)
 	{
-		auto c = strpool[j];
 		k++;
 		if (k <= filenamesize)
 			nameoffile[k] = xchr[c];
 	}
-	for (auto j = strstart[e]; j < strstart[e+1]; j++)
+	for (auto c: e)
 	{
-		auto c = strpool[j];
 		k++;
 		if (k <= filenamesize)
 			nameoffile[k] = xchr[c];
 	}
-	if (k <= filenamesize)
-		namelength = k;
-	else
-		namelength = filenamesize;
+	namelength = std::min(k, filenamesize);
 	for (k = namelength+1; k <= filenamesize; k++)
 		nameoffile[k] = ' ';
 }

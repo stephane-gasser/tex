@@ -2,6 +2,7 @@
 #include "youcant.h"
 #include "error.h"
 #include "flushnodelist.h"
+#include "texte.h"
 
 void deletelast(void)
 {
@@ -11,13 +12,13 @@ void deletelast(void)
 		{
 			youcant();
 			helpptr = 2;
-			helpline[1] = 1070; //Sorry...I usually can't take things from the current page.
-			helpline[0] = 1086; //Try `I\vskip-\lastskip' instead.
+			helpline[1] = "Sorry...I usually can't take things from the current page.";
+			helpline[0] = "Try `I\\vskip-\\lastskip' instead.";
 			if (curchr == 11)
-				helpline[0] = 1087; //Try `I\kern-\lastkern' instead.
+				helpline[0] = "Try `I\\kern-\\lastkern' instead.";
 			else 
 				if (curchr != '\n')
-					helpline[0] = 1088; //Perhaps you can make the output routine do it.
+					helpline[0] = "Perhaps you can make the output routine do it.";
 			error();
 		}
 	}

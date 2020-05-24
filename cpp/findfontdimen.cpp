@@ -51,8 +51,8 @@ void findfontdimen(bool writing)
 		printint(fontparams[f]);
 		print(" fontdimen parameters");
 		helpptr = 2;
-		helpline[1] = txt("To increase the number of font parameters, you must");
-		helpline[0] = txt("use \\fontdimen immediately after the \\font is loaded.");
+		helpline[1] = "To increase the number of font parameters, you must";
+		helpline[0] = "use \\fontdimen immediately after the \\font is loaded.";
 		error();
 	}
 }

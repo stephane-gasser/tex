@@ -7,7 +7,7 @@ void endname(void)
 	if (strptr+3 > maxstrings)
 		overflow("number of strings", maxstrings-initstrptr);
 	if (areadelimiter == 0)
-		curarea = 338;
+		curarea = "";
 	else
 	{
 		curarea = strptr;
@@ -16,7 +16,7 @@ void endname(void)
 	}
 	if (extdelimiter == 0)
 	{
-		curext = 338;
+		curext = "";
 		curname = makestring();
 	}
 	else

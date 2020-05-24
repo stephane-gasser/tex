@@ -54,8 +54,8 @@ void fireup(halfword c)
 		printesc("box");
 		print("255 is not void");
 		helpptr = 2;
-		helpline[1] = txt("You shouldn't use \\box255 except in \\output routines.");
-		helpline[0] = txt("Proceed, and I'll discard its present contents.");
+		helpline[1] = "You shouldn't use \\box255 except in \\output routines.";
+		helpline[0] = "Proceed, and I'll discard its present contents.";
 		boxerror(255);
 	}
 	insertpenalties = 0;
@@ -216,9 +216,9 @@ void fireup(halfword c)
 			printint(deadcycles);
 			print(" consecutive dead cycles");
 			helpptr = 3;
-			helpline[2] = txt("I've concluded that your \\output is awry; it never does a");
-			helpline[1] = txt("\\shipout, so I'm shipping \\box255 out myself. Next time");
-			helpline[0] = txt("increase \\maxdeadcycles if you want me to be more patient!");
+			helpline[2] = "I've concluded that your \\output is awry; it never does a";
+			helpline[1] = "\\shipout, so I'm shipping \\box255 out myself. Next time";
+			helpline[0] = "increase \\maxdeadcycles if you want me to be more patient!";
 			error();
 		}
 		else

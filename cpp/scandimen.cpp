@@ -124,7 +124,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 					print("Illegal unit of measure ("); 
 					print("replaced by filll)");
 					helpptr = 1;
-					helpline[0] = txt("I dddon't go any higher than filll.");
+					helpline[0] = "I dddon't go any higher than filll.";
 					error();
 				}
 				else
@@ -190,10 +190,10 @@ void scandimen(bool mu, bool inf, bool shortcut)
 				print("Illegal unit of measure ("); 
 				print("mu inserted)"); 
 				helpptr = 4;
-				helpline[3] = txt("The unit of measurement in math glue must be mu.");
-				helpline[2] = txt("To recover gracefully from this error, it's best to");
-				helpline[1] = txt("delete the erroneous units; e.g., type `2' to delete");
-				helpline[0] = txt("two letters. (See Chapter 27 of The TeXbook.)");
+				helpline[3] = "The unit of measurement in math glue must be mu.";
+				helpline[2] = "To recover gracefully from this error, it's best to";
+				helpline[1] = "delete the erroneous units; e.g., type `2' to delete";
+				helpline[0] = "two letters. (See Chapter 27 of The TeXbook.)";
 				error();
 			}
 			if (curval >= 0x40'00)
@@ -283,12 +283,12 @@ void scandimen(bool mu, bool inf, bool shortcut)
 										print("Illegal unit of measure ("); 
 										print("pt inserted)");
 										helpptr = 6;
-										helpline[5] = txt("Dimensions can be in units of em, ex, in, pt, pc,");
-										helpline[4] = txt("cm, mm, dd, cc, bp, or sp; but yours is a new one!");
-										helpline[3] = txt("I'll assume that you meant to say pt, for printer's points.");
-										helpline[2] = txt("Dimension too large");
-										helpline[1] = txt("I can't work with sizes bigger than about 19 feet.");
-										helpline[0] = txt("Continue and I'll use the largest value I can.");
+										helpline[5] = "Dimensions can be in units of em, ex, in, pt, pc,";
+										helpline[4] = "cm, mm, dd, cc, bp, or sp; but yours is a new one!";
+										helpline[3] = "I'll assume that you meant to say pt, for printer's points.";
+										helpline[2] = "Dimension too large";
+										helpline[1] = "I can't work with sizes bigger than about 19 feet.";
+										helpline[0] = "Continue and I'll use the largest value I can.";
 										error();
 										if (curval >= 0x40'00)
 											aritherror = true;
@@ -317,8 +317,8 @@ void scandimen(bool mu, bool inf, bool shortcut)
 		printnl("! ");
 		print("Dimension too large"); 
 		helpptr = 2;
-		helpline[1] = txt("I can't work with sizes bigger than about 19 feet.");
-		helpline[0] = txt("Continue and I'll use the largest value I can.");
+		helpline[1] = "I can't work with sizes bigger than about 19 feet.";
+		helpline[0] = "Continue and I'll use the largest value I can.";
 		error;
 		curval = max_dimen;
 		aritherror = false;

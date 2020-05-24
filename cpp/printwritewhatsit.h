@@ -3,7 +3,6 @@
 
 #include "globals.h"
 
-//void printwritewhatsit(strnumber s, halfword p);
 void printwritewhatsit(const std::string &, halfword);
 
 #endif

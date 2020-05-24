@@ -33,9 +33,9 @@ void aftermath(void)
 		printnl("! ");
 		print("Math formula deleted: Insufficient symbol fonts");
 		helpptr = 3;
-		helpline[2] = txt("Sorry, but I can't typeset math unless \\textfont 2");
-		helpline[1] = txt("and \\scriptfont 2 and \\scriptscriptfont 2 have all");
-		helpline[0] = txt("The \\fontdimen values needed in math symbol fonts.");
+		helpline[2] = "Sorry, but I can't typeset math unless \\textfont 2";
+		helpline[1] = "and \\scriptfont 2 and \\scriptscriptfont 2 have all";
+		helpline[0] = "The \\fontdimen values needed in math symbol fonts.";
 		error();
 		flushmath();
 		danger = true;
@@ -45,9 +45,9 @@ void aftermath(void)
 		printnl("! ");
 		print("Math formula deleted: Insufficient extension fonts"); 
 		helpptr = 3;
-		helpline[2] = txt("Sorry, but I can't typeset math unless \\textfont 3");
-		helpline[1] = txt("and \\scriptfont 3 and \\scriptscriptfont 3 have all");
-		helpline[0] = txt("the \\fontdimen values needed in math extension fonts.");
+		helpline[2] = "Sorry, but I can't typeset math unless \\textfont 3";
+		helpline[1] = "and \\scriptfont 3 and \\scriptscriptfont 3 have all";
+		helpline[0] = "the \\fontdimen values needed in math extension fonts.";
 		error();
 		flushmath();
 		danger = true;
@@ -61,8 +61,8 @@ void aftermath(void)
 		printnl("! ");
 		print("Display math should end with $$"); 
 		helpptr = 2;
-		helpline[1] = txt("The `$' that I just saw supposedly matches a previous `$$'.");
-		helpline[0] = txt("So I shall assume that you typed `$$' both times.");
+		helpline[1] = "The `$' that I just saw supposedly matches a previous `$$'.";
+		helpline[0] = "So I shall assume that you typed `$$' both times.";
 		backerror();
 		curmlist = p;
 		curstyle = 2;
@@ -79,9 +79,9 @@ void aftermath(void)
 			printnl("! ");
 			print("Math formula deleted: Insufficient symbol fonts");
 			helpptr = 3;
-			helpline[2] = txt("Sorry, but I can't typeset math unless \\textfont 2");
-			helpline[1] = txt("and \\scriptfont 2 and \\scriptscriptfont 2 have all");
-			helpline[0] = txt("the \\fontdimen values needed in math symbol fonts.");
+			helpline[2] = "Sorry, but I can't typeset math unless \\textfont 2";
+			helpline[1] = "and \\scriptfont 2 and \\scriptscriptfont 2 have all";
+			helpline[0] = "the \\fontdimen values needed in math symbol fonts.";
 			error();
 			flushmath();
 			danger = true;
@@ -92,9 +92,9 @@ void aftermath(void)
 				printnl("! "); 
 				print("Math formula deleted: Insufficient extension fonts"); 
 				helpptr = 3;
-				helpline[2] = txt("Sorry, but I can't typeset math unless \\textfont 3");
-				helpline[1] = txt("and \\scriptfont 3 and \\scriptscriptfont 3 have all");
-				helpline[0] = txt("the \\fontdimen values needed in math extension fonts.");
+				helpline[2] = "Sorry, but I can't typeset math unless \\textfont 3";
+				helpline[1] = "and \\scriptfont 3 and \\scriptscriptfont 3 have all";
+				helpline[0] = "the \\fontdimen values needed in math extension fonts.";
 				error();
 				flushmath();
 				danger = true;
@@ -128,8 +128,8 @@ void aftermath(void)
 				printnl("! ");
 				print("Display math should end with $$");
 				helpptr = 2;
-				helpline[1] = txt("The `$' that I just saw supposedly matches a previous `$$'.");
-				helpline[0] = txt("So I shall assume that you typed `$$' both times.");
+				helpline[1] = "The `$' that I just saw supposedly matches a previous `$$'.";
+				helpline[0] = "So I shall assume that you typed `$$' both times.";
 				backerror();
 			}
 		}

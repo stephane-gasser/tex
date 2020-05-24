@@ -18,7 +18,7 @@ bool inputln(std::istream& f, bool bypasseoln)
 		{
 			maxbufstack = last+1;
 			if (maxbufstack == bufsize)
-				if (formatident == 0)
+				if (formatident == "")
 				{
 					std::cout << "Buffer size exceeded!\n";
 					throw std::string();

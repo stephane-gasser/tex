@@ -17,8 +17,8 @@ void mathac(void)
 		printesc("mathaccent");
 		print(" for accents in math mode");
 		helpptr = 2;
-		helpline[1] = txt("I'm changing \\accent to \\mathaccent here; wish me luck.");
-		helpline[0] = txt("(Accents are not the same in formulas as they are in text.)");
+		helpline[1] = "I'm changing \\accent to \\mathaccent here; wish me luck.";
+		helpline[0] = "(Accents are not the same in formulas as they are in text.)";
 		error();
 	}
 	tail_append(getnode(5));

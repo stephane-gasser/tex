@@ -94,8 +94,8 @@ void expand(void)
 					printesc("endcsname");
 					print(" inserted");
 					helpptr = 2;
-					helpline[1] = txt("The control sequence marked <to be read again> should");
-					helpline[0] = txt("not appear between \\csname and \\endcsname.");
+					helpline[1] = "The control sequence marked <to be read again> should";
+					helpline[0] = "not appear between \\csname and \\endcsname.";
 					backerror();
 				}
 				j = First;
@@ -148,7 +148,7 @@ void expand(void)
 						printcmdchr(fi_or_else, curchr); 
 						{
 							helpptr = 1;
-							helpline[0] = txt("I'm ignoring this; it doesn't match any \\if.");
+							helpline[0] = "I'm ignoring this; it doesn't match any \\if.";
 						}
 						error();
 					}
@@ -177,11 +177,11 @@ void expand(void)
 				printnl("! ");
 				print("Undefined control sequence");
 				helpptr = 5;
-				helpline[4] = txt("The control sequence at the end of the top line");
-				helpline[3] = txt("of your error message was never \\def'ed. If you have");
-				helpline[2] = txt("misspelled it (e.g., `\\hobx'), type `I' and the correct");
-				helpline[1] = txt("spelling (e.g., `I\\hbox'). Otherwise just continue,");
-				helpline[0] = txt("and I'll forget about whatever was undefined.");
+				helpline[4] = "The control sequence at the end of the top line";
+				helpline[3] = "of your error message was never \\def'ed. If you have";
+				helpline[2] = "misspelled it (e.g., `\\hobx'), type `I' and the correct";
+				helpline[1] = "spelling (e.g., `I\\hbox'). Otherwise just continue,";
+				helpline[0] = "and I'll forget about whatever was undefined.";
 				error();
 		}
 	}

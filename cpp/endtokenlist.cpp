@@ -23,7 +23,7 @@ void endtokenlist(void)
 			if (alignstate > 500000)
 				alignstate = 0;
 			else
-				fatalerror(595); //(interwoven alignment preambles are not allowed)
+				fatalerror("(interwoven alignment preambles are not allowed)");
 	inputptr--;
 	curinput = inputstack[inputptr];
 	if (interrupt)

@@ -1,4 +1,5 @@
 #include "initialize.h"
+#include "texte.h"
 
 void Initialize(void)
 {
@@ -106,7 +107,7 @@ void Initialize(void)
 	curtail = 0;
 	for (int z = 0; z < 308; z++)
 	{
-		hyphword[z] = 0;
+		hyphword[z] = "";
 		hyphlist[z] = 0;
 	}
 	hyphcount = 0;
@@ -119,7 +120,7 @@ void Initialize(void)
 	insdisc = false;
 	aftertoken = 0;
 	longhelpseen = false;
-	formatident = 0;
+	formatident = "";
 	for (int k = 0; k < 18; k++)
 		writeopen[k] = false;
 	for (int k = 1; k < 20; k++)
@@ -239,11 +240,11 @@ void Initialize(void)
 	hashused = frozen_control_sequence;
 	cscount = 0;
 	eq_type(frozen_dont_expand) = dont_expand;
-	hash[frozen_dont_expand].rh = 502; //notexpanded:
+	text(frozen_dont_expand) = txt("notexpanded:");
 	fontptr = 0;
 	fmemptr = 7;
-	fontname[0] = 800; //nullfont
-	fontarea[0] = 338;
+	fontname[0] = "nullfont";
+	fontarea[0] = "";
 	hyphenchar[0] = 45;
 	skewchar[0] = -1;
 	bcharlabel[0] = 0;
@@ -275,9 +276,9 @@ void Initialize(void)
 	triel[0] = 0;
 	triec[0] = 0;
 	trieptr = 0;
-	hash[frozen_control_sequence].rh = 1189; //inaccessible
-	formatident = 1256; // (INITEX)
-	hash[end_write].rh = 1295; //endwrite
+	text(frozen_control_sequence) = txt("inaccessible");
+	formatident = " (INITEX)";
+	text(end_write) = txt("endwrite");
 	eq_level(end_write) = 1;
 	eq_type(end_write) = outer_call;
 	equiv(end_write) = 0;

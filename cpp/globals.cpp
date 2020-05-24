@@ -68,7 +68,6 @@ bool deletionsallowed;
 bool setboxallowed;
 char history; // 0..3
 char errorcount; // -1..100
-strnumber helpline[6];
 char helpptr; // 0..6
 bool useerrhelp;
 bool OKtointerrupt;
@@ -140,28 +139,20 @@ char readopen[17]; // of 0..2
 halfword condptr;
 char iflimit; // 0..4
 smallnumber curif;
-strnumber curname;
-strnumber curarea;
-strnumber curext;
 poolpointer areadelimiter;
 poolpointer extdelimiter;
 std::string TEXformatdefault; // commence à 1
 bool nameinprogress;
-strnumber jobname;
 bool logopened;
 bytefile dvifile;
-strnumber outputfilename;
-strnumber logname;
 bytefile tfmfile;
 memoryword fontinfo[fontmemsize+1];
 fontindex fmemptr;
 internalfontnumber fontptr;
-fourquarters fontcheck[fontmax+1]	;
+fourquarters fontcheck[fontmax+1];
 scaled fontsize[fontmax+1];
 scaled fontdsize[fontmax+1]; 
 fontindex fontparams[fontmax+1];
-strnumber fontname[fontmax+1];
-strnumber fontarea[fontmax+1];
 eightbits fontbc[fontmax+1];
 eightbits fontec[fontmax+1];
 halfword fontglue[fontmax+1];
@@ -258,7 +249,6 @@ smallnumber hyfdistance[trieopsize+1]; // commence à 1
 smallnumber hyfnum[trieopsize+1]; // commence à 1
 quarterword hyfnext[trieopsize+1]; // commence à 
 map<ASCIIcode, int> opstart; //of 0..trieopsize
-strnumber hyphword[308];
 halfword hyphlist[308];
 hyphpointer hyphcount;
 map<int, int> trieophash; // [-trieopsize..trieopsize] of 0..trieopsize
@@ -298,7 +288,6 @@ bool insdisc;
 halfword curbox;
 halfword aftertoken;
 bool longhelpseen;
-strnumber formatident;
 wordfile fmtfile;
 alphafile writefile[16];
 bool writeopen[18];

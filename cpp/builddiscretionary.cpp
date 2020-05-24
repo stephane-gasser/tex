@@ -28,7 +28,7 @@ void builddiscretionary(void)
 			printnl("! "); 
 			print("Improper discretionary list"); 
 			helpptr = 1;
-			helpline[0] = txt("Discretionary lists must contain only boxes and kerns.");
+			helpline[0] = "Discretionary lists must contain only boxes and kerns.";
 			error();
 			begindiagnostic();
 			printnl("The following discretionary sublist has been deleted:");
@@ -59,8 +59,8 @@ void builddiscretionary(void)
 				print("Illegal math ");
 				printesc("discretionary");
 				helpptr = 2;
-				helpline[1] = txt("Sorry: The third part of a discretionary break must be");
-				helpline[0] = txt("empty, in math formulas. I had to delete your third part.");
+				helpline[1] = "Sorry: The third part of a discretionary break must be";
+				helpline[0] = "empty, in math formulas. I had to delete your third part.";
 				flushnodelist(p);
 				n = 0;
 				error();
@@ -74,8 +74,8 @@ void builddiscretionary(void)
 				printnl("! ");
 				print("Discretionary list is too long");
 				helpptr = 2;
-				helpline[1] = txt("Wow---I never thought anybody would tweak me here.");
-				helpline[0] = txt("You can't seriously need such a huge discretionary list?");
+				helpline[1] = "Wow---I never thought anybody would tweak me here.";
+				helpline[0] = "You can't seriously need such a huge discretionary list?";
 				error();
 			}
 			if (n > 0)

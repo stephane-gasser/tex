@@ -68,8 +68,8 @@ void error(void)
 						alignstate = s4;
 						OKtointerrupt = true;
 						helpptr = 2;
-						helpline[1] = txt("I have just deleted some text, as you asked.");
-						helpline[0] = txt("You can now delete more, or insert, or whatever.");
+						helpline[1] = "I have just deleted some text, as you asked.";
+						helpline[0] = "You can now delete more, or insert, or whatever.";
 						showcontext();
 						return;
 					}
@@ -96,21 +96,21 @@ void error(void)
 						if (helpptr == 0)
 						{
 							helpptr = 2;
-							helpline[1] = txt("Sorry, I don't know how to help in this situation.");
-							helpline[0] = txt("Maybe you should try asking a human?");
+							helpline[1] = "Sorry, I don't know how to help in this situation.";
+							helpline[0] = "Maybe you should try asking a human?";
 						}
 						do
 						{
 							helpptr--;
-							print(TXT(helpline[helpptr]));
+							print(helpline[helpptr]);
 							println();
 						} while (helpptr);
 					}
 					helpptr = 4;
-					helpline[3] = txt("Sorry, I already gave what help I could...");
-					helpline[2] = txt("Maybe you should try asking a human?");
-					helpline[1] = txt("An error might have occurred before I noticed any problems.");
-					helpline[0] = txt("``If all else fails, read the instructions.''");
+					helpline[3] = "Sorry, I already gave what help I could...";
+					helpline[2] = "Maybe you should try asking a human?";
+					helpline[1] = "An error might have occurred before I noticed any problems.";
+					helpline[0] = "``If all else fails, read the instructions.''";
 					continue;
 				case 'I':
 					beginfilereading();
@@ -182,7 +182,7 @@ void error(void)
 		while (helpptr > 0)
 		{
 			helpptr--;
-			printnl(TXT(helpline[helpptr]));
+			printnl(helpline[helpptr]);
 		}
 	println();
 	if (interaction > batch_mode)

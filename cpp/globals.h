@@ -70,7 +70,7 @@ extern bool deletionsallowed;
 extern bool setboxallowed;
 extern char history; // 0..3
 extern char errorcount; // -1..100
-extern strnumber helpline[6];
+inline std::string helpline[6];
 extern char helpptr; // 0..6
 extern bool useerrhelp;
 extern bool OKtointerrupt;
@@ -132,18 +132,18 @@ extern char readopen[17]; // of 0..2
 extern halfword condptr;
 extern char iflimit; // 0..4
 extern smallnumber curif;
-extern strnumber curname;
-extern strnumber curarea;
-extern strnumber curext;
+inline std::string curname;
+inline std::string curarea;
+inline std::string curext;
 extern poolpointer areadelimiter;
 extern poolpointer extdelimiter;
 extern std::string TEXformatdefault; // commence à 1
 extern bool nameinprogress;
-extern strnumber jobname;
+inline std::string jobname;
 extern bool logopened;
 extern bytefile dvifile;
-extern strnumber outputfilename;
-extern strnumber logname;
+inline std::string outputfilename;
+inline std::string logname;
 extern bytefile tfmfile;
 extern memoryword fontinfo[fontmemsize+1];
 extern fontindex fmemptr;
@@ -152,8 +152,8 @@ extern fourquarters fontcheck[fontmax+1];
 extern scaled fontsize[fontmax+1];
 extern scaled fontdsize[fontmax+1]; 
 extern fontindex fontparams[fontmax+1];
-extern strnumber fontname[fontmax+1];
-extern strnumber fontarea[fontmax+1];
+inline std::string fontname[fontmax+1];
+inline std::string fontarea[fontmax+1];
 extern eightbits fontbc[fontmax+1];
 extern eightbits fontec[fontmax+1];
 extern halfword fontglue[fontmax+1];
@@ -250,7 +250,7 @@ extern smallnumber hyfdistance[trieopsize+1]; // commence à 1
 extern smallnumber hyfnum[trieopsize+1]; // commence à 1
 extern quarterword hyfnext[trieopsize+1]; // commence à 
 extern std::map<ASCIIcode, int> opstart; //of 0..trieopsize
-extern strnumber hyphword[308];
+inline std::string hyphword[308];
 extern halfword hyphlist[308];
 extern hyphpointer hyphcount;
 extern std::map<int, int> trieophash; // [-trieopsize..trieopsize] of 0..trieopsize
@@ -290,7 +290,7 @@ extern bool insdisc;
 extern halfword curbox;
 extern halfword aftertoken;
 extern bool longhelpseen;
-extern strnumber formatident;
+inline std::string formatident;
 extern wordfile fmtfile;
 extern alphafile writefile[16];
 extern bool writeopen[18];

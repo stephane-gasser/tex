@@ -3,7 +3,6 @@
 #include "printint.h"
 #include "printchar.h"
 
-//void printwritewhatsit(strnumber s, halfword p)
 void printwritewhatsit(const std::string &s, halfword p)
 {
 	printesc(s);

@@ -25,7 +25,7 @@ void begininsertoradjust(void)
 			printesc("insert");
 			printint(255);
 			helpptr = 1;
-			helpline[0] = txt("I'm changing to \\insert0; box 255 is special.");
+			helpline[0] = "I'm changing to \\insert0; box 255 is special.";
 			error();
 			curval = 0;
 		}

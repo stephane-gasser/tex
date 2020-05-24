@@ -16,7 +16,7 @@
 void finalcleanup(void)
 {
 	smallnumber c = curchr;
-	if (jobname == 0)
+	if (jobname == "")
 		openlogfile();
 	while (inputptr > 0)
 		if (curinput.statefield == 0)

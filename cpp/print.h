@@ -3,7 +3,6 @@
 
 #include "globals.h"
 
-//void print(int);
 void print(const std::string &);
 
 #endif
