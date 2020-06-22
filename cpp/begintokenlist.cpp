@@ -7,41 +7,46 @@
 #include "printesc.h"
 #include "printnl.h"
 #include "printcmdchr.h"
+#include "pushinput.h"
+
+void back_list(halfword p)
+{
+	begintokenlist(p, backed_up);
+}
+
+void ins_list(halfword p)
+{
+	begintokenlist(p, inserted);
+}
 
 void begintokenlist(halfword p, quarterword t)
 {
-	if (inputptr > maxinstack)
-	{
-		maxinstack = inputptr;
-		if (inputptr == stacksize)
-			overflow("input stack size", stacksize);
-	}
-	inputstack[inputptr++] = curinput;
-	curinput.statefield = 0;
-	curinput.startfield = p;
-	curinput.indexfield = t;
-	if (t >= 5)
+	push_input();
+	state = token_list;
+	start = p;
+	index = t;
+	if (t >= macro)
 	{
 		info(p)++;
-		if (t == 5)
-			curinput.limitfield = paramptr;
+		if (t == macro)
+			limit = paramptr;
 		else
 		{
-			curinput.locfield = link(p);
-			if (int_par(tracing_macros_code) > 1)
+			loc = link(p);
+			if (tracing_macros() > 1)
 			{
 				begindiagnostic();
 				printnl("");
 				switch (t)
 				{
-					case 14: 
+					case mark_text: 
 						printesc("mark");
 						break;
-					case 15: 
+					case write_text: 
 						printesc("write");
 						break;
 					default: 
-						printcmdchr(72, t+3407);
+						printcmdchr(assign_toks, t-output_text+output_routine_loc);
 				}
 				print("->");
 				tokenshow(p);
@@ -50,5 +55,5 @@ void begintokenlist(halfword p, quarterword t)
 		}
 	}
 	else
-		curinput.locfield = p;
+		loc = p;
 }

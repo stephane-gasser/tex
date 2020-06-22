@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de openlogfile.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">openlogfile.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="openlogfile_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="openlogfile_8h.html">openlogfile.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="packjobname_8h.html">packjobname.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="aopenout_8h.html">aopenout.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="promptfilename_8h.html">promptfilename.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="amakenamestring_8h.html">amakenamestring.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="slowprint_8h.html">slowprint.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="print_8h.html">print.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printint_8h.html">printint.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printchar_8h.html">printchar.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printtwo_8h.html">printtwo.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printnl_8h.html">printnl.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="println_8h.html">println.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="texte_8h.html">texte.h</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="openlogfile_8h.html#aa093bac5d614a1706a24856de98e0c7d">   15</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="openlogfile_8cpp.html#aa093bac5d614a1706a24856de98e0c7d">openlogfile</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">auto</span> <a class="code" href="globals_8cpp.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a> = <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#a6d6deab05a191173ead34faa0c27e05b">jobname</a> == <span class="stringliteral">&quot;&quot;</span>) </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="globals_8h.html#a6d6deab05a191173ead34faa0c27e05b">jobname</a> = <span class="stringliteral">&quot;texput&quot;</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="packjobname_8cpp.html#ae5634a55cba44f6c252d19587afa16c6">packjobname</a>(<span class="stringliteral">&quot;.log&quot;</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">while</span> (!<a class="code" href="aopenout_8cpp.html#aadf2848bed5ca9fc19571af9884e50a0">aopenout</a>(<a class="code" href="globals_8cpp.html#ab8c39e7bca02aea2427ae010d87bb4b5">logfile</a>))</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> = <a class="code" href="constantes_8h.html#a4722d187bdb19640b74d378bb3f3eac4">term_only</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="promptfilename_8cpp.html#a09b5bedc5ecd13402ffc7784081eef8a">promptfilename</a>(<span class="stringliteral">&quot; transcript file name&quot;</span>, <span class="stringliteral">&quot;.log&quot;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="globals_8h.html#a46b007433010ff55939f40145bbd9c84">logname</a> = <a class="code" href="amakenamestring_8cpp.html#a2b677ddfc7fdca4017dcf9ffc0e2e6da">amakenamestring</a>(<a class="code" href="globals_8cpp.html#ab8c39e7bca02aea2427ae010d87bb4b5">logfile</a>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> = <a class="code" href="constantes_8h.html#a38a3439c491cbc412a44aebe9914aa33">log_only</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="globals_8cpp.html#ac2e4effa98b7dc9b20259bdbd8a7bdc5">logopened</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="globals_8cpp.html#ab8c39e7bca02aea2427ae010d87bb4b5">logfile</a> &lt;&lt; <a class="code" href="constantes_8h.html#a1a0597233669b48beb8c3a2859b075ec">banner</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a>(<a class="code" href="globals_8h.html#a9af829990bbc2420832b189ea07f5b77">formatident</a>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;  &quot;</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a>(<a class="code" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="constantes_8h.html#ac9bba7e7dd0e9137c089937ae415927e">day_code</a>));</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">char</span> months[] = <span class="stringliteral">&quot;JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC&quot;</span>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 3*<a class="code" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="constantes_8h.html#abf7d9e67702048ed7d5d12e878de5ba7">month_code</a>)-2; k&lt;= 3*<a class="code" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="constantes_8h.html#abf7d9e67702048ed7d5d12e878de5ba7">month_code</a>); k++)</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="globals_8cpp.html#ab8c39e7bca02aea2427ae010d87bb4b5">logfile</a> &lt;&lt; months[k];</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a>(<a class="code" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="constantes_8h.html#a3eacf87b2c09e7212caadfe049d55a4f">year_code</a>));</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="printtwo_8cpp.html#ac1dcbf136c131db25ea716e4a37dd96a">printtwo</a>(<a class="code" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="constantes_8h.html#a38cfca9ae0bd3c7f06127794c4ba6f53">time_code</a>)/60);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;:&#39;</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="printtwo_8cpp.html#ac1dcbf136c131db25ea716e4a37dd96a">printtwo</a>(<a class="code" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="constantes_8h.html#a38cfca9ae0bd3c7f06127794c4ba6f53">time_code</a>)%60);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a>[<a class="code" href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a>] = <a class="code" href="globals_8cpp.html#aca74807ce5f069d23b1a6af63ed7d00e">curinput</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;**&quot;</span>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">int</span> l = <a class="code" href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a>[0].<a class="code" href="structinstaterecord.html#a65bbaa1b4574242c54c3f1737d0a7913">limitfield</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a>[l] == <a class="code" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="constantes_8h.html#a304674808f781163bbba4832b02572c1">end_line_char_code</a>))</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        l--;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = 1; k &lt;= l; k++)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<a class="code" href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a>[k]);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a>();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> = <a class="code" href="globals_8cpp.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a>+2;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aglobals_8cpp_html_aca74807ce5f069d23b1a6af63ed7d00e"><div class="ttname"><a href="globals_8cpp.html#aca74807ce5f069d23b1a6af63ed7d00e">curinput</a></div><div class="ttdeci">instaterecord curinput</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00115">globals.cpp:115</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aa56995a66771b46ca1620d77d1872caa"><div class="ttname"><a href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a></div><div class="ttdeci">ASCIIcode buffer[bufsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00047">globals.cpp:47</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a6d6deab05a191173ead34faa0c27e05b"><div class="ttname"><a href="globals_8h.html#a6d6deab05a191173ead34faa0c27e05b">jobname</a></div><div class="ttdeci">std::string jobname</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00140">globals.h:140</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a5144e9be7698585335fc96f2811b5406"><div class="ttname"><a href="globals_8cpp.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a></div><div class="ttdeci">char oldsetting</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00096">globals.cpp:96</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a1a0597233669b48beb8c3a2859b075ec"><div class="ttname"><a href="constantes_8h.html#a1a0597233669b48beb8c3a2859b075ec">banner</a></div><div class="ttdeci">constexpr char banner[]</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00006">constantes.h:6</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a304674808f781163bbba4832b02572c1"><div class="ttname"><a href="constantes_8h.html#a304674808f781163bbba4832b02572c1">end_line_char_code</a></div><div class="ttdeci">constexpr int end_line_char_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00513">constantes.h:513</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a9a13aa7125bf33b3f002c6a9d14ede3d"><div class="ttname"><a href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a></div><div class="ttdeci">unsigned char inputptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00113">globals.cpp:113</a></div></div>
+<div class="ttc" id="aprinttwo_8cpp_html_ac1dcbf136c131db25ea716e4a37dd96a"><div class="ttname"><a href="printtwo_8cpp.html#ac1dcbf136c131db25ea716e4a37dd96a">printtwo</a></div><div class="ttdeci">void printtwo(int n)</div><div class="ttdef"><b>Definition:</b> <a href="printtwo_8cpp_source.html#l00004">printtwo.cpp:4</a></div></div>
+<div class="ttc" id="aamakenamestring_8h_html"><div class="ttname"><a href="amakenamestring_8h.html">amakenamestring.h</a></div></div>
+<div class="ttc" id="aprintln_8h_html"><div class="ttname"><a href="println_8h.html">println.h</a></div></div>
+<div class="ttc" id="aamakenamestring_8cpp_html_a2b677ddfc7fdca4017dcf9ffc0e2e6da"><div class="ttname"><a href="amakenamestring_8cpp.html#a2b677ddfc7fdca4017dcf9ffc0e2e6da">amakenamestring</a></div><div class="ttdeci">std::string amakenamestring(alphafile &amp;f)</div><div class="ttdef"><b>Definition:</b> <a href="amakenamestring_8cpp_source.html#l00004">amakenamestring.cpp:4</a></div></div>
+<div class="ttc" id="apackjobname_8h_html"><div class="ttname"><a href="packjobname_8h.html">packjobname.h</a></div></div>
+<div class="ttc" id="aprintnl_8h_html"><div class="ttname"><a href="printnl_8h.html">printnl.h</a></div></div>
+<div class="ttc" id="aslowprint_8cpp_html_a163fa1f725ed91bdbb220bd85a1fd852"><div class="ttname"><a href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a></div><div class="ttdeci">void slowprint(int s)</div><div class="ttdef"><b>Definition:</b> <a href="slowprint_8cpp_source.html#l00005">slowprint.cpp:5</a></div></div>
+<div class="ttc" id="aaopenout_8cpp_html_aadf2848bed5ca9fc19571af9884e50a0"><div class="ttname"><a href="aopenout_8cpp.html#aadf2848bed5ca9fc19571af9884e50a0">aopenout</a></div><div class="ttdeci">bool aopenout(alphafile &amp;f)</div><div class="ttdef"><b>Definition:</b> <a href="aopenout_8cpp_source.html#l00003">aopenout.cpp:3</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a38cfca9ae0bd3c7f06127794c4ba6f53"><div class="ttname"><a href="constantes_8h.html#a38cfca9ae0bd3c7f06127794c4ba6f53">time_code</a></div><div class="ttdeci">constexpr int time_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00485">constantes.h:485</a></div></div>
+<div class="ttc" id="aprintln_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="println_8cpp_source.html#l00004">println.cpp:4</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a46b007433010ff55939f40145bbd9c84"><div class="ttname"><a href="globals_8h.html#a46b007433010ff55939f40145bbd9c84">logname</a></div><div class="ttdeci">std::string logname</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00144">globals.h:144</a></div></div>
+<div class="ttc" id="aprintint_8h_html"><div class="ttname"><a href="printint_8h.html">printint.h</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a4722d187bdb19640b74d378bb3f3eac4"><div class="ttname"><a href="constantes_8h.html#a4722d187bdb19640b74d378bb3f3eac4">term_only</a></div><div class="ttdeci">constexpr int term_only</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00028">constantes.h:28</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aed2bd6a0a774ec6f59c3b0add5adc8f0"><div class="ttname"><a href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a></div><div class="ttdeci">instaterecord inputstack[stacksize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00112">globals.cpp:112</a></div></div>
+<div class="ttc" id="apromptfilename_8h_html"><div class="ttname"><a href="promptfilename_8h.html">promptfilename.h</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a3eacf87b2c09e7212caadfe049d55a4f"><div class="ttname"><a href="constantes_8h.html#a3eacf87b2c09e7212caadfe049d55a4f">year_code</a></div><div class="ttdeci">constexpr int year_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00488">constantes.h:488</a></div></div>
+<div class="ttc" id="apromptfilename_8cpp_html_a09b5bedc5ecd13402ffc7784081eef8a"><div class="ttname"><a href="promptfilename_8cpp.html#a09b5bedc5ecd13402ffc7784081eef8a">promptfilename</a></div><div class="ttdeci">void promptfilename(const std::string &amp;s, const std::string &amp;e)</div><div class="ttdef"><b>Definition:</b> <a href="promptfilename_8cpp_source.html#l00015">promptfilename.cpp:15</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ae48ac66d20f27df0f237841a57b492a2"><div class="ttname"><a href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a></div><div class="ttdeci">int &amp; int_par(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00079">constantes.cpp:79</a></div></div>
+<div class="ttc" id="astructinstaterecord_html_a65bbaa1b4574242c54c3f1737d0a7913"><div class="ttname"><a href="structinstaterecord.html#a65bbaa1b4574242c54c3f1737d0a7913">instaterecord::limitfield</a></div><div class="ttdeci">halfword limitfield</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00097">tex.h:97</a></div></div>
+<div class="ttc" id="aslowprint_8h_html"><div class="ttname"><a href="slowprint_8h.html">slowprint.h</a></div></div>
+<div class="ttc" id="aopenlogfile_8cpp_html_aa093bac5d614a1706a24856de98e0c7d"><div class="ttname"><a href="openlogfile_8cpp.html#aa093bac5d614a1706a24856de98e0c7d">openlogfile</a></div><div class="ttdeci">void openlogfile(void)</div><div class="ttdef"><b>Definition:</b> <a href="openlogfile_8cpp_source.html#l00015">openlogfile.cpp:15</a></div></div>
+<div class="ttc" id="aaopenout_8h_html"><div class="ttname"><a href="aopenout_8h.html">aopenout.h</a></div></div>
+<div class="ttc" id="atexte_8h_html"><div class="ttname"><a href="texte_8h.html">texte.h</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abf7d9e67702048ed7d5d12e878de5ba7"><div class="ttname"><a href="constantes_8h.html#abf7d9e67702048ed7d5d12e878de5ba7">month_code</a></div><div class="ttdeci">constexpr int month_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00487">constantes.h:487</a></div></div>
+<div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_ac9bba7e7dd0e9137c089937ae415927e"><div class="ttname"><a href="constantes_8h.html#ac9bba7e7dd0e9137c089937ae415927e">day_code</a></div><div class="ttdeci">constexpr int day_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00486">constantes.h:486</a></div></div>
+<div class="ttc" id="aprint_8h_html"><div class="ttname"><a href="print_8h.html">print.h</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a9af829990bbc2420832b189ea07f5b77"><div class="ttname"><a href="globals_8h.html#a9af829990bbc2420832b189ea07f5b77">formatident</a></div><div class="ttdeci">std::string formatident</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00286">globals.h:286</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_ab8c39e7bca02aea2427ae010d87bb4b5"><div class="ttname"><a href="globals_8cpp.html#ab8c39e7bca02aea2427ae010d87bb4b5">logfile</a></div><div class="ttdeci">alphafile logfile</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00058">globals.cpp:58</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_ac2e4effa98b7dc9b20259bdbd8a7bdc5"><div class="ttname"><a href="globals_8cpp.html#ac2e4effa98b7dc9b20259bdbd8a7bdc5">logopened</a></div><div class="ttdeci">bool logopened</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00144">globals.cpp:144</a></div></div>
+<div class="ttc" id="aprintchar_8h_html"><div class="ttname"><a href="printchar_8h.html">printchar.h</a></div></div>
+<div class="ttc" id="aopenlogfile_8h_html"><div class="ttname"><a href="openlogfile_8h.html">openlogfile.h</a></div></div>
+<div class="ttc" id="aprintint_8cpp_html_a3e0bbc492597d05b770a8e0ba03b95ee"><div class="ttname"><a href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a></div><div class="ttdeci">void printint(int n)</div><div class="ttdef"><b>Definition:</b> <a href="printint_8cpp_source.html#l00005">printint.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a38a3439c491cbc412a44aebe9914aa33"><div class="ttname"><a href="constantes_8h.html#a38a3439c491cbc412a44aebe9914aa33">log_only</a></div><div class="ttdeci">constexpr int log_only</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00029">constantes.h:29</a></div></div>
+<div class="ttc" id="apackjobname_8cpp_html_ae5634a55cba44f6c252d19587afa16c6"><div class="ttname"><a href="packjobname_8cpp.html#ae5634a55cba44f6c252d19587afa16c6">packjobname</a></div><div class="ttdeci">void packjobname(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="packjobname_8cpp_source.html#l00005">packjobname.cpp:5</a></div></div>
+<div class="ttc" id="aprinttwo_8h_html"><div class="ttname"><a href="printtwo_8h.html">printtwo.h</a></div></div>
+<div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a4a02011783b79fd4be63e5ee91cb8621"><div class="ttname"><a href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a></div><div class="ttdeci">char selector</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00059">globals.cpp:59</a></div></div>
+<div class="ttc" id="aprintnl_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printnl_8cpp_source.html#l00005">printnl.cpp:5</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

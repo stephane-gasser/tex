@@ -12,10 +12,10 @@ void openorclosein(void)
 	auto c = curchr;
 	scanfourbitint();
 	auto n = curval;
-	if (readopen[n] != 2)
+	if (readopen[n] != closed)
 	{
-	aclose(readfile[n]);
-	readopen[n] = 2;
+		aclose(readfile[n]);
+		readopen[n] = closed;
 	}
 	if (c)
 	{
@@ -23,8 +23,8 @@ void openorclosein(void)
 		scanfilename();
 		if (curext == "") 
 			curext = ".tex";
-		packfilename(curname, curarea, curext);
+		pack_cur_name();
 		if (aopenin(readfile[n]))
-			readopen[n] = 1;
+			readopen[n] = just_open;
 	}
 }

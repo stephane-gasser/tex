@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de printspec.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">printspec.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="printspec_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printspec_8h.html">printspec.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printchar_8h.html">printchar.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="print_8h.html">print.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printglue_8h.html">printglue.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printscaled_8h.html">printscaled.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="texte_8h.html">texte.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="printspec_8h.html#a4ed76f0c06587e673463f26ec4e06975">    8</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="printspec_8cpp.html#a5d5bd239859b86558d63d7463878964f">printspec</a>(<span class="keywordtype">int</span> p, <span class="keyword">const</span> std::string &amp;s)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (p &lt; memmin || p &gt;= <a class="code" href="globals_8cpp.html#a74a81f693ecceeb1d9b283811d1cc814">lomemmax</a>)</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;*&#39;</span>);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="printscaled_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb">printscaled</a>(<a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(p));</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b">txt</a>(s))</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(s);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a>(p))</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot; plus &quot;</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="printglue_8cpp.html#a34307204c30d33e4fb10d02e2447b28e">printglue</a>(<a class="code" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a>(p), <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p), s);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a>(p))</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot; minus &quot;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <a class="code" href="printglue_8cpp.html#a34307204c30d33e4fb10d02e2447b28e">printglue</a>(<a class="code" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a>(p), <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(p), s);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aprintscaled_8h_html"><div class="ttname"><a href="printscaled_8h.html">printscaled.h</a></div></div>
+<div class="ttc" id="aprintscaled_8cpp_html_a8b86d6448cd6f52f6054887f2abd74cb"><div class="ttname"><a href="printscaled_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb">printscaled</a></div><div class="ttdeci">void printscaled(scaled s)</div><div class="ttdef"><b>Definition:</b> <a href="printscaled_8cpp_source.html#l00005">printscaled.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00293">constantes.cpp:293</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a74a81f693ecceeb1d9b283811d1cc814"><div class="ttname"><a href="globals_8cpp.html#a74a81f693ecceeb1d9b283811d1cc814">lomemmax</a></div><div class="ttdeci">halfword lomemmax</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00076">globals.cpp:76</a></div></div>
+<div class="ttc" id="aprintglue_8h_html"><div class="ttname"><a href="printglue_8h.html">printglue.h</a></div></div>
+<div class="ttc" id="aprintspec_8cpp_html_a5d5bd239859b86558d63d7463878964f"><div class="ttname"><a href="printspec_8cpp.html#a5d5bd239859b86558d63d7463878964f">printspec</a></div><div class="ttdeci">void printspec(int p, const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printspec_8cpp_source.html#l00008">printspec.cpp:8</a></div></div>
+<div class="ttc" id="atexte_8h_html"><div class="ttname"><a href="texte_8h.html">texte.h</a></div></div>
+<div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
+<div class="ttc" id="aprint_8h_html"><div class="ttname"><a href="print_8h.html">print.h</a></div></div>
+<div class="ttc" id="aprintglue_8cpp_html_a34307204c30d33e4fb10d02e2447b28e"><div class="ttname"><a href="printglue_8cpp.html#a34307204c30d33e4fb10d02e2447b28e">printglue</a></div><div class="ttdeci">void printglue(scaled d, int order, const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printglue_8cpp_source.html#l00007">printglue.cpp:7</a></div></div>
+<div class="ttc" id="aprintchar_8h_html"><div class="ttname"><a href="printchar_8h.html">printchar.h</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00049">constantes.cpp:49</a></div></div>
+<div class="ttc" id="aprintspec_8h_html"><div class="ttname"><a href="printspec_8h.html">printspec.h</a></div></div>
+<div class="ttc" id="atexte_8cpp_html_a46dac58eb46eaee7b157e59bdef55b1b"><div class="ttname"><a href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b">txt</a></div><div class="ttdeci">int txt(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="texte_8cpp_source.html#l00007">texte.cpp:7</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ae5439b22a7cf88ec2a4523b78d20fec8"><div class="ttname"><a href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a></div><div class="ttdeci">int &amp; shrink(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00323">constantes.cpp:323</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a0ebe134d7199867461456a4ea186d3dc"><div class="ttname"><a href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a></div><div class="ttdeci">int &amp; stretch(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00318">constantes.cpp:318</a></div></div>
+<div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00034">constantes.cpp:34</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

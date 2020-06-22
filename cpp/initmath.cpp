@@ -25,8 +25,8 @@ void initmath(void)
 		}
 		else
 		{
-			linebreak(int_par(display_widow_penalty_code));
-			v = shift_amount(justbox)+2*param(quad_code, cur_font());
+			linebreak(display_widow_penalty());
+			v = shift_amount(justbox)+2*quad(cur_font());
 			w = -max_dimen;
 			p = list_ptr(justbox);
 			while (p)
@@ -116,17 +116,14 @@ void initmath(void)
 			}
 		}
 		if (par_shape_ptr() == 0)
-			if (dimen_par(hang_indent_code) && ((int_par(hang_after_code) >= 0 && prev_graf+2 > int_par(hang_after_code)) || prev_graf+1 < -int_par(hang_after_code)))
+			if (hang_indent() && ((hang_after() >= 0 && prev_graf+2 > hang_after()) || prev_graf+1 < -hang_after()))
 			{
-				l = dimen_par(hsize_code)-abs(dimen_par(hang_indent_code));
-				if (dimen_par(hang_indent_code) > 0)
-					s = dimen_par(hang_indent_code);
-				else
-					s = 0;
+				l = hsize()-abs(hang_indent());
+				s = std::max(hang_indent(), 0);
 			}
 			else
 			{
-				l = dimen_par(hsize_code);
+				l = hsize();
 				s = 0;
 			}
 		else

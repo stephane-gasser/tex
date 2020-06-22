@@ -10,7 +10,7 @@ void makeunder(halfword q)
 	auto p = newkern(3*default_rule_thickness());
 	link(x) = p;
 	link(p) = fractionrule(default_rule_thickness());
-	auto y = vpackage(x, 0, 1, max_dimen);
+	auto y = vpack(x, 0, additional);
 	scaled delta = height(y)+depth(y)+default_rule_thickness();
 	height(y) = height(x);
 	depth(y) = delta-height(y);

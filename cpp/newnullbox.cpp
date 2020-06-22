@@ -3,7 +3,7 @@
 
 halfword newnullbox(void)
 {
-	halfword p = getnode(7);
+	halfword p = getnode(box_node_size);
 	type(p) = hlist_node;
 	subtype(p) = 0;
 	width(p) = 0;
@@ -12,7 +12,7 @@ halfword newnullbox(void)
 	shift_amount(p) = 0;
 	list_ptr(p) = 0;
 	glue_sign(p) = normal;
-	glue_order(p) = 0;
+	glue_order(p) = normal;
 	glue_set(p) = 0.0;
 	return p;
 }

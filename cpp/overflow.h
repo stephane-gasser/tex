@@ -3,6 +3,8 @@
 
 #include "globals.h"
 
-void overflow(const std::string &, int n);
+void overflow(const std::string &, int);
+void str_room(int);
+void check_full_save_stack(void);
 
 #endif

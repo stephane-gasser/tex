@@ -209,7 +209,7 @@ void initprim(void)
 	eqtb[frozen_fi] = eqtb[curval];
 	primitive("or", fi_or_else, or_code); 
 	primitive("else", fi_or_else, else_code); 
-	primitive("nullfont", set_font, 0); 
+	primitive("nullfont", set_font, null_font); 
 	text(frozen_null_font) = txt("nullfont");
 	eqtb[frozen_null_font] = eqtb[curval]; 
 	primitive("span", tab_mark, span_code); 

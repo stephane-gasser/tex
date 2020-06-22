@@ -12,48 +12,47 @@ void shortdisplay(int p)
 		{
 			if (p <= memend)
 			{
-				if (type(p) != fontinshortdisplay)
+				if (font(p) != fontinshortdisplay)
 				{
-					if (type(p) < 0 || type(p) > fontmax)
+					if (font(p) < 0 || font(p) > fontmax)
 						printchar('*');
 					else
-						printesc(TXT(text(frozen_null_font+type(p))));
-						
+						printesc(TXT(font_id_text(p)));
 					printchar(' ');
-					fontinshortdisplay = type(p);
+					fontinshortdisplay = font(p);
 				}
-				print(std::string(1, subtype(p)));
+				printchar(character(p));
 			}
 		}
 		else
 		switch (type(p))
 		{
-			case 0:
-			case 1:
-			case 3:
-			case 8:
-			case 4:
-			case 5:
-			case 13: 
+			case hlist_node:
+			case vlist_node:
+			case ins_node:
+			case whatsit_node:
+			case mark_node:
+			case adjust_node:
+			case unset_node: 
 				print("[]");
 				break;
-			case 2: 
+			case rule_node: 
 				printchar('|');
 				break;
-			case 10: 
-				if (info(p+1))
+			case glue_node: 
+				if (glue_ptr(p) != zero_glue)
 					printchar(' ');
 				break;
-			case 9:
+			case math_node:
 				printchar('$');
 				break;
-			case 6:
-				shortdisplay(link(p+1));
+			case ligature_node:
+				shortdisplay(lig_ptr(p));
 				break;
-			case 7:
-				shortdisplay(info(p+1));
-				shortdisplay(link(p+1));
-				for (int n = subtype(p); n > 0; n--)
+			case disc_node:
+				shortdisplay(pre_break(p));
+				shortdisplay(post_break(p));
+				for (int n = replace_count(p); n > 0; n--)
 					if (link(p))
 						p = link(p);
 		}

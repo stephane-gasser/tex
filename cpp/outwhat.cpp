@@ -34,7 +34,7 @@ void outwhat(halfword p)
 							curext = link(p+2);
 							if (curext == "")
 								curext = ".tex";
-							packfilename(curname, curarea, curext);
+							pack_cur_name();
 							while (!aopenout(writefile[j]))
 							promptfilename("output file name", ".tex"); 
 							writeopen[j] = true;

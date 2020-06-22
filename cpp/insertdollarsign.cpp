@@ -8,7 +8,7 @@
 void insertdollarsign(void)
 {
 	backinput();
-	curtok = 804; //math_shift + '$'
+	curtok = math_shift_token+'$';
 	printnl("! ");
 	print("Missing $ inserted");
 	helpptr = 2;

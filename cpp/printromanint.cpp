@@ -3,33 +3,34 @@
 
 void printromanint(int n)
 {
-	int j = strstart[260];
+	static const std::string s = "m2d5c2l5x2v5i";
+	int j = 0;
 	int v = 1000;
 	while (true)
 	{
 		while (n >= v)
 		{
-			printchar(strpool[j]);
+			printchar(s[j]);
 			n -= v;
 		}
 		if (n <= 0)
 			return;
-		int k = j + 2;
-		int u = v/(strpool[k-1]-'0');
-		if (strpool[k-1] == '2')
+		int k = j+2;
+		int u = v/(s[j+1]-'0');
+		if (s[j+1] == '2')
 		{
 			k += 2;
-			u /= strpool[k-1]-'0';
+			u /= s[j+3]-'0';
 		}
-		if (n + u >= v)
+		if (n+u >= v)
 		{
-			printchar(strpool[k]);
+			printchar(s[k]);
 			n += u;
 		}
 		else
 		{
 			j += 2;
-			v /= strpool[j-1]-'0';
+			v /= s[j-1]-'0';
 		}
 	}
 }

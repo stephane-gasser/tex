@@ -13,24 +13,30 @@
 #include "xnoverd.h"
 #include "texte.h"
 
-void notLoadable(halfword u, const std::string &nom, const std::string &aire, scaled s, bool fileopened)
+static void start_font_error_message(halfword u, scaled s, const std::string &nom, const std::string &aire)
 {
 	printnl("! ");
 	print("Font ");
 	sprintcs(u);
 	printchar('=');
-	printfilename(nom, aire, ""); 
+	printfilename(nom, aire, "");
 	if (s >= 0)
 	{
 		print(" at ");
 		printscaled(s);
 		print("pt");
 	}
-	else if (s != -1000)
-	{
-		print(" scaled ");
-		printint(-s);
-	}
+	else 
+		if (s != -1000)
+		{
+			print(" scaled ");
+			printint(-s);
+		}
+}
+
+static void notLoadable(halfword u, const std::string &nom, const std::string &aire, scaled s, bool fileopened)
+{
+	start_font_error_message(u, s, nom, aire);
 	if (fileopened)
 		print(" not loadable: Bad metric (TFM) file");
 	else
@@ -46,510 +52,272 @@ void notLoadable(halfword u, const std::string &nom, const std::string &aire, sc
 		bclose(tfmfile);
 }
 
-internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::string &aire, scaled s)
+template<class T> static void read_sixteen(T &z)
 {
-	bool fileopened = false;
-	if (aire == "")
-		packfilename(nom, "TeXfonts:", ".tfm");
-	else
-		packfilename(nom, aire, ".tfm");
-	if (!bopenin(tfmfile))
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	fileopened = true;
-	halfword lf = tfmfile.get();
-	if (lf > 127)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	lf = lf*0x1'00+tfmfile.get();
-	halfword lh = tfmfile.get();
-	if (lh > 127)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	lh = lh*0x1'00+tfmfile.get();
-	halfword bc = tfmfile.get();
-	if (bc > 127)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	bc = bc*0x1'00+tfmfile.get();
-	halfword ec = tfmfile.get();
-	if (ec > 127)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	ec = ec*0x1'00+tfmfile.get();
-	if (bc > ec+1 || ec > 255)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	if (bc > 255)
-		bc = 1;
-	ec = 0;
-	halfword nw = tfmfile.get();
-	if (nw > 127)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	nw = nw*0x1'00+tfmfile.get();
-	halfword nh = tfmfile.get();
-	if (nh > 127)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	nh = nh*0x1'00+tfmfile.get();
-	halfword nd = tfmfile.get();
-	if (nd > 127)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	nd = nd*0x1'00+tfmfile.get();
-	halfword ni = tfmfile.get();
-	if (ni > 127)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	ni = ni*0x1'00+tfmfile.get();
-	halfword nl = tfmfile.get();
-	if (nl > 127)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	nl = nl*0x1'00+tfmfile.get();
-	halfword nk = tfmfile.get();
-	if (nk > 127)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	nk = nk*0x1'00+tfmfile.get();
-	halfword ne = tfmfile.get();
-	if (ne > 127)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	ne = ne*0x1'00+tfmfile.get();
-	halfword np = tfmfile.get();
-	if (np > 127)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	np = np*0x1'00+tfmfile.get();
-	if (lf != 6+lh+(ec-bc+1)+nw+nh+nd+ni+nl+nk+ne+np)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	if (nw == 0 || nh == 0 || nd == 0 || ni == 0)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	lf -= 6+lh;
-	if (np < 7)
-		lf += 7-np;
-	if (fontptr == fontmax || fmemptr+lf > fontmemsize)
-	{
-		printnl("! ");
-		print("Font ");
-		sprintcs(u);
-		printchar('=');
-		printfilename(nom, aire, "");
-		if (s >= 0)
-		{
-			print(" at ");
-			printscaled(s);
-			print("pt");
-		}
-		else 
-			if (s != -1000)
-			{
-				print(" scaled ");
-				printint(-s);
-			}
-		print(" not loaded: Not enough room left");
-		{
-		helpptr = 4;
-		helpline[3] = "I'm afraid I won't be able to make use of this font,";
-		helpline[2] = "because my memory for character-size data is too small.";
-		helpline[1] = "If you're really stuck, ask a wizard to enlarge me.";
-		helpline[0] = "Or maybe try `I\\font<same font id>=<name of loaded font>'.";
-		}
-		error();
-		if (fileopened)
-			bclose(tfmfile);
-		return 0;
-	}
-	f = fontptr+1;
-	charbase[f] = fmemptr-bc;
-	widthbase[f] = charbase[f]+ec+1;
-	heightbase[f] = widthbase[f]+nw;
-	depthbase[f] = heightbase[f]+nh;
-	italicbase[f] = depthbase[f]+nd;
-	ligkernbase[f] = italicbase[f]+ni;
-	kernbase[f] = ligkernbase[f]+nl-0x80'00;
-	extenbase[f] = kernbase[f]+0x80'00+nk;
-	parambase[f] = extenbase[f]+ne;
-	if (lh < 2)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	eightbits a, b, c, d;
+	z = tfmfile.get();
+	if (z > 127)
+		throw 1;
+	z <<= 8;
+	z += tfmfile.get();
+}
+
+static fourquarters store_four_quarters(eightbits &a, eightbits &b, eightbits &c, eightbits &d)
+{
 	fourquarters qw;
 	qw.b0 = a = tfmfile.get();
 	qw.b1 = b = tfmfile.get();
 	qw.b2 = c = tfmfile.get();
 	qw.b3 = d = tfmfile.get();
-	fontcheck[f] = qw;
-	scaled z = tfmfile.get();
-	if (z > 127)
+	return qw; 
+}
+
+static void check_byte_range(halfword p, halfword bc, halfword ec)
+{
+	if (p < bc || p > ec)
+		throw 1;
+}
+
+static int current_character_being_worked_on(int k, int bc)
+{
+	return k+bc-fmemptr;
+}
+
+static int store_scaled(scaled z, int beta, int k, int alpha)
+{
+	eightbits a, b, c, d;
+	a = tfmfile.get();
+	b = tfmfile.get();
+	c = tfmfile.get();
+	d = tfmfile.get();
+	scaled sw = (((d*z)>>8+c*z)>>8+b*z)/beta;
+	if (a == 0)
+		return sw;
+	if (a == 255)
+	return sw-alpha;
+	throw 1;
+}
+
+static void check_existence(halfword p, halfword bc, halfword ec, internalfontnumber f)
+{
+	check_byte_range(p, bc, ec);
+	if (skip_byte(char_info(f, p)) <= 0)
+		throw 1;
+}
+
+internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::string &aire, scaled s)
+{
+	bool fileopened = false;
+	try
 	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	z = z*0x1'00+tfmfile.get();
-	z = z*0x1'00+tfmfile.get();
-	z = z*16+tfmfile.get()/16;
-	if (z < 0x1'00'00)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	while (lh > 2)
-	{
-		tfmfile.get();
-		tfmfile.get();
-		tfmfile.get();
-		tfmfile.get();
-		lh--;
-	}
-	fontdsize[f] = z;
-	if (s != -1000)
-		if (s >= 0)
-			z = s;
+		if (aire == "")
+			packfilename(nom, TEX_font_area, ".tfm");
 		else
-			z = xnoverd(z, -s, 1000);
-	fontsize[f] = z;
-	for (int k = fmemptr; k < widthbase[f]; k++)
-	{
-		qw.b0 = a = tfmfile.get();
-		qw.b1 = b = tfmfile.get();
-		qw.b2 = c = tfmfile.get();
-		qw.b3 = d = tfmfile.get();
-		fontinfo[k].qqqq = qw;
-		if (a >= nw || b/16 >= nh || b%16 >= nd || c/4 >= ni)
+			packfilename(nom, aire, ".tfm");
+		if (!bopenin(tfmfile))
+			throw 1;
+		fileopened = true;
+		halfword lf, lh, bc, ec;
+		read_sixteen(lf);
+		read_sixteen(lh);
+		read_sixteen(bc);
+		read_sixteen(ec);
+		if (bc > ec+1 || ec > 255)
+			throw 1;
+		if (bc > 255)
+			bc = 1;
+		ec = 0;
+		halfword nw, nh, nd, ni, nl, nk, ne, np;
+		read_sixteen(nw);
+		read_sixteen(nh);
+		read_sixteen(nd);
+		read_sixteen(ni);
+		read_sixteen(nl);
+		read_sixteen(nk);
+		read_sixteen(ne);
+		read_sixteen(np);
+		if (lf != 6+lh+(ec-bc+1)+nw+nh+nd+ni+nl+nk+ne+np || nw == 0 || nh == 0 || nd == 0 || ni == 0)
+			throw 1;
+		lf -= 6+lh;
+		if (np < 7)
+			lf += 7-np;
+		if (fontptr == fontmax || fmemptr+lf > fontmemsize)
+			throw 0;
+		f = fontptr+1;
+		charbase[f] = fmemptr-bc;
+		widthbase[f] = charbase[f]+ec+1;
+		heightbase[f] = widthbase[f]+nw;
+		depthbase[f] = heightbase[f]+nh;
+		italicbase[f] = depthbase[f]+nd;
+		ligkernbase[f] = italicbase[f]+ni;
+		kernbase[f] = ligkernbase[f]+nl-0x80'00;
+		extenbase[f] = kernbase[f]+0x80'00+nk;
+		parambase[f] = extenbase[f]+ne;
+		if (lh < 2)
+			throw 1;
+		eightbits a, b, c, d;
+		fontcheck[f] = store_four_quarters(a, b, c, d);
+		scaled z;
+		read_sixteen(z);
+		z = z*0x1'00+tfmfile.get();
+		z = z*16+tfmfile.get()/16;
+		if (z < unity)
+			throw 1;
+		while (lh > 2)
 		{
-			notLoadable(u, nom, aire, s, fileopened);
-			return 0;
+			store_four_quarters(a, b, c, d);
+			lh--;
 		}
-		switch (c%4)
-		{
-			case 1: 
-				if (d >= nl)
-				{
-					notLoadable(u, nom, aire, s, fileopened);
-					return 0;
-				}
-				break;
-			case 3: 
-				if (d >= ne)
-				{
-					notLoadable(u, nom, aire, s, fileopened);
-					return 0;
-				}
-				break;
-			case 2:
-				if (d < bc || d > ec)
-				{
-					notLoadable(u, nom, aire, s, fileopened);
-					return 0;
-				}
-				while (d < k+bc-fmemptr)
-				{
-					qw = char_info(f, d);
-					if (qw.b2%4 != 2)
-						break;
-					d = qw.b3;
-					if (d == k+bc-fmemptr)
-					{
-						notLoadable(u, nom, aire, s, fileopened);
-						return 0;
-					}
-				}
-		}
-	}
-	int alpha = 16;
-	while (z >= 8388608)
-	{
-		z /= 2;
-		alpha *= 2;
-	}
-	int beta = 0x1'00/alpha;
-	alpha *= z;
-	for (int k = widthbase[f]; k < ligkernbase[f]; k++)
-	{
-		a = tfmfile.get();
-		b = tfmfile.get();
-		c = tfmfile.get();
-		d = tfmfile.get();
-		scaled sw = ((((d*z)/0x1'00+c*z)/0x1'00)+b*z)/beta;
-		if (a == 0)
-			fontinfo[k].int_ = sw;
-		else 
-			if (a == 255)
-			fontinfo[k].int_ = sw-alpha;
-		else
-		{
-			notLoadable(u, nom, aire, s, fileopened);
-			return 0;
-		}
-	}
-	if (fontinfo[widthbase[f]].int_)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	if (fontinfo[heightbase[f]].int_)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	if (fontinfo[depthbase[f]].int_)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	if (fontinfo[italicbase[f]].int_)
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
-	}
-	int bchlabel = 0x7F'FF;
-	bchar = 256;
-	if (nl > 0)
-	{
-		for (int k = ligkernbase[f]; k < kernbase[f]+0x80'00; k++)
-		{
-			qw.b0 = a = tfmfile.get();
-			qw.b1 = b = tfmfile.get();
-			qw.b2 = c = tfmfile.get();
-			qw.b3 = d = tfmfile.get();
-			fontinfo[k].qqqq = qw;
-			if (a > 128)
-			{
-				if (0x1'00*c+d >= nl)
-				{
-					notLoadable(u, nom, aire, s, fileopened);
-					return 0;
-				}
-				if (a == 255 && k == ligkernbase[f])
-					bchar = b;
-			}
+		fontdsize[f] = z;
+		if (s != -1000)
+			if (s >= 0)
+				z = s;
 			else
+				z = xnoverd(z, -s, 1000);
+		fontsize[f] = z;
+		for (int k = fmemptr; k < widthbase[f]; k++)
+		{
+			fontinfo[k].qqqq = store_four_quarters(a, b, c, d);
+			if (a >= nw || b/16 >= nh || b%16 >= nd || c/4 >= ni)
+				throw 1;
+			switch (c%4)
 			{
-				if (b != bchar)
-				{
-					if (b < bc || b > ec)
+				case lig_tag: 
+					if (d >= nl)
+						throw 1;
+					break;
+				case ext_tag: 
+					if (d >= ne)
+						throw 1;
+					break;
+				case list_tag:
+					check_byte_range(d, bc, ec);
+					while (d < current_character_being_worked_on(k, bc))
 					{
-						notLoadable(u, nom, aire, s, fileopened);
-						return 0;
+						auto qw = char_info(f, d);
+						if (qw.b2%4 != 2)
+							break;
+						d = qw.b3;
+						if (d == current_character_being_worked_on(k, bc))
+							throw 1;
 					}
-					qw = char_info(f, b);
-					if (skip_byte(qw) <= 0)
-					{
-						notLoadable(u, nom, aire, s, fileopened);
-						return 0;
-					}
-				}
-			if (c < 128)
+			}
+		}
+		int alpha = 16;
+		while (z >= 8388608)
+		{
+			z /= 2;
+			alpha *= 2;
+		}
+		int beta = 0x1'00/alpha;
+		alpha *= z;
+		for (int k = widthbase[f]; k < ligkernbase[f]; k++)
+			fontinfo[k].int_ = store_scaled(z, beta, k, alpha);
+		if (fontinfo[widthbase[f]].int_ || fontinfo[heightbase[f]].int_ || fontinfo[depthbase[f]].int_ || fontinfo[italicbase[f]].int_)
+			throw 1;
+		int bchlabel = 0x7F'FF;
+		bchar = 256;
+		if (nl > 0)
+		{
+			for (int k = ligkernbase[f]; k < kernbase[f]+0x80'00; k++)
 			{
-				if (d < bc || d > ec)
+				fontinfo[k].qqqq = store_four_quarters(a, b, c, d);
+				if (a > 128)
 				{
-					notLoadable(u, nom, aire, s, fileopened);
-					return 0;
+					if (0x1'00*c+d >= nl)
+						throw 1;
+					if (a == 255 && k == ligkernbase[f])
+						bchar = b;
 				}
-				qw = char_info(f, d);
-				if (skip_byte(qw) <= 0)
-				{
-					notLoadable(u, nom, aire, s, fileopened);
-					return 0;
-				}
-			}
-			else 
-				if (0x1'00*(c-0x80)+d >= nk)
-				{
-					notLoadable(u, nom, aire, s, fileopened);
-					return 0;
-				}
-			if (a < 128)
-				if (k-ligkernbase[f]+a+1 >= nl)
-				{
-					notLoadable(u, nom, aire, s, fileopened);
-					return 0;
-				}
-			}
-		}
-		if (a == 255)
-			bchlabel = 0x1'00*c+d;
-	}
-	for (int k = kernbase[f]+0x80'00; k < extenbase[f]; k++)
-	{
-		a = tfmfile.get();
-		b = tfmfile.get();
-		c = tfmfile.get();
-		d = tfmfile.get();
-		scaled sw = ((((d*z)/0x1'00+c*z)/0x1'00)+b*z)/beta;
-		if (a == 0)
-			fontinfo[k].int_ = sw;
-		else 
-			if (a == 255)
-				fontinfo[k].int_ = sw-alpha;
-			else
-			{
-				notLoadable(u, nom, aire, s, fileopened);
-				return 0;
-			}
-	}
-	for (int k = extenbase[f]; k < parambase[f]-1; k++)
-	{
-		qw.b0 = a = tfmfile.get();
-		qw.b1 = b = tfmfile.get();
-		qw.b2 = c = tfmfile.get();
-		qw.b3 = d = tfmfile.get();
-		fontinfo[k].qqqq = qw;
-		if (a)
-		{
-			if (a < bc || a > ec)
-			{
-				notLoadable(u, nom, aire, s, fileopened);
-				return 0;
-			}
-			qw = char_info(f, a);
-			if (skip_byte(qw) <= 0)
-			{
-				notLoadable(u, nom, aire, s, fileopened);
-				return 0;
-			}
-		}
-		if (b)
-		{
-			if (b < bc || b > ec)
-			{
-				notLoadable(u, nom, aire, s, fileopened);
-				return 0;
-			}
-			qw = char_info(f, b);
-			if (skip_byte(qw) <= 0)
-			{
-				notLoadable(u, nom, aire, s, fileopened);
-				return 0;
-			}
-		}
-		if (c)
-		{
-			if (c < bc || c > ec)
-			{
-				notLoadable(u, nom, aire, s, fileopened);
-				return 0;
-			}
-			qw = char_info(f, c);
-			if (skip_byte(qw) <= 0)
-			{
-				notLoadable(u, nom, aire, s, fileopened);
-				return 0;
-			}
-		}
-		if (d < bc || d > ec)
-			{
-				notLoadable(u, nom, aire, s, fileopened);
-				return 0;
-			}
-		qw = char_info(f, d);
-		if (skip_byte(qw) <= 0)
-			{
-				notLoadable(u, nom, aire, s, fileopened);
-				return 0;
-			}
-	}
-	for (int k = 1; k <= np; k++)
-		if (k == 1)
-		{
-			scaled sw = tfmfile.get();
-			if (sw > 127)
-				sw -= 0x1'00;
-			sw = sw*0x1'00+tfmfile.get();
-			sw = sw*0x1'00+tfmfile.get();
-			param(0, f) = sw*16+tfmfile.get()/16;
-		}
-		else
-		{
-			a = tfmfile.get();
-			b = tfmfile.get();
-			c = tfmfile.get();
-			d = tfmfile.get();
-			scaled sw = ((((d*z)/0x1'00+c*z)/0x1'00)+b*z)/beta;
-			if (a == 0)
-				param(k-1, f) = sw;
-			else 
-				if (a == 255)
-					param(k-1, f) = sw-alpha;
 				else
 				{
-					notLoadable(u, nom, aire, s, fileopened);
-					return 0;
+					if (b != bchar)
+						check_existence(b, bc, ec, f);
+					if (c < 128)
+						check_existence(d, bc, ec, f);
+					else 
+						if ((c-0x80)<<8+d >= nk)
+							throw 1;
+					if (a < 128 && k-ligkernbase[f]+a+1 >= nl)
+						throw 1;
 				}
+			}
+			if (a == 255)
+				bchlabel = c<<8+d;
 		}
-	if (tfmfile.eof())
-	{
-		notLoadable(u, nom, aire, s, fileopened);
-		return 0;
+		for (int k = kernbase[f]+0x80'00; k < extenbase[f]; k++)
+			fontinfo[k].int_ = store_scaled(z, beta, k, alpha);
+		for (int k = extenbase[f]; k < parambase[f]-1; k++)
+		{
+			fontinfo[k].qqqq = store_four_quarters(a, b, c, d);
+			if (a)
+				check_existence(a, bc, ec, f);
+			if (b)
+				check_existence(b, bc, ec, f);
+			if (c)
+				check_existence(c, bc, ec, f);
+			check_existence(d, bc, ec, f);
+		}
+		for (int k = 1; k <= np; k++)
+			if (k == 1)
+			{
+				scaled sw = tfmfile.get();
+				if (sw > 127)
+					sw -= 0x1'00;
+				sw = sw<<8+tfmfile.get();
+				sw = sw<<8+tfmfile.get();
+				param(0, f) = sw<<4+tfmfile.get()>>4;
+			}
+			else
+				param(k-1, f) = store_scaled(z, beta, k, alpha);
+		if (tfmfile.eof())
+			throw 1;
+		for (int k = np+1; k <= 7; k++)
+			param(k-1, f) = 0;
+		if (np >= 7)
+			fontparams[f] = np;
+		else
+			fontparams[f] = 7;
+		hyphenchar[f] = default_hyphen_char();
+		skewchar[f] = default_skew_char();
+		if (bchlabel < nl)
+			bcharlabel[f] = bchlabel+ligkernbase[f];
+		else
+			bcharlabel[f] = 0;
+		fontbchar[f] = bchar;
+		fontfalsebchar[f] = bchar;
+		if (bchar <= ec && bchar >= bc && skip_byte(char_info(f, bchar)) > 0)
+			fontfalsebchar[f] = non_char;
+		fontname[f] = nom;
+		fontarea[f] = aire;
+		fontbc[f] = bc;
+		fontec[f] = ec;
+		fontglue[f] = 0;
+		parambase[f]--;
+		fmemptr += lf;
+		fontptr = f;
+		if (fileopened)
+			bclose(tfmfile);
+		return f;
 	}
-	for (int k = np+1; k <= 7; k++)
-		param(k-1, f) = 0;
-	if (np >= 7)
-		fontparams[f] = np;
-	else
-		fontparams[f] = 7;
-	hyphenchar[f] = int_par(default_hyphen_char_code);
-	skewchar[f] = int_par(default_skew_char_code);
-	if (bchlabel < nl)
-		bcharlabel[f] = bchlabel+ligkernbase[f];
-	else
-		bcharlabel[f] = 0;
-	fontbchar[f] = bchar;
-	fontfalsebchar[f] = bchar;
-	if (bchar <= ec && bchar >= bc)
+	catch (int e)
 	{
-		qw = char_info(f, bchar);
-		if ((skip_byte(qw) > 0))
-			fontfalsebchar[f] = 256;
+		if (e == 1)
+			notLoadable(u, nom, aire, s, fileopened);
+		else
+		{
+			start_font_error_message(u, s, nom, aire);
+			print(" not loaded: Not enough room left");
+			{
+			helpptr = 4;
+			helpline[3] = "I'm afraid I won't be able to make use of this font,";
+			helpline[2] = "because my memory for character-size data is too small.";
+			helpline[1] = "If you're really stuck, ask a wizard to enlarge me.";
+			helpline[0] = "Or maybe try `I\\font<same font id>=<name of loaded font>'.";
+			}
+			error();
+			if (fileopened)
+				bclose(tfmfile);
+		}
 	}
-	fontname[f] = nom;
-	fontarea[f] = aire;
-	fontbc[f] = bc;
-	fontec[f] = ec;
-	fontglue[f] = 0;
-	parambase[f]--;
-	fmemptr += lf;
-	fontptr = f;
-	if (fileopened)
-		bclose(tfmfile);
-	return f;
+	return null_font;
 }

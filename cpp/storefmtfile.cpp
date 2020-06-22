@@ -21,38 +21,46 @@
 #include "wclose.h"
 #include "texte.h"
 
-void writeInt(twohalves num)
+void dump_hh(twohalves num)
 {
 	fmtfile.write(reinterpret_cast<const char *>(&num), 4);
 }
 
-void writeInt(memoryword num)
+void dump_wd(memoryword num)
 {
 	fmtfile.write(reinterpret_cast<const char *>(&num), 4);
 }
 
-void writeInt(fourquarters num)
+void dump_qqqq(fourquarters num)
 {
 	fmtfile.write(reinterpret_cast<const char *>(&num), 4);
 }
 
-void writeInt(std::uint32_t num)
+void dump_int(std::uint32_t num)
 {
 	fmtfile.write(reinterpret_cast<const char *>(&num), 4);
+}
+
+void dump_four_ASCII(int k)
+{
+	fourquarters w;
+	w.b0 = strpool[k];
+	w.b1 = strpool[k+1];
+	w.b2 = strpool[k+2];
+	w.b3 = strpool[k+3];
+	dump_qqqq(w);
 }
 
 void storefmtfile(void)
 {
 	int j, k, l;
 	halfword p, q;
-	int x;
-	fourquarters w;
 	if (saveptr)
-	{
+	{ 
 		printnl("! ");
-		print("You can't dump inside a group");
+		print("You can't dump_int inside a group");
 		helpptr = 1;
-		helpline[0] = "`{...\\dump}' is a no-no.";
+		helpline[0] = "`{...\\dump_int}' is a no-no.";
 		if (interaction == error_stop_mode)
 			interaction = scroll_mode;
 		if (logopened)
@@ -64,81 +72,69 @@ void storefmtfile(void)
 	print(" (preloaded format=");
 	print(jobname);
 	printchar(' ');
-	printint(int_par(year_code));
+	printint(year());
 	printchar('.');
-	printint(int_par(month_code));
+	printint(month());
 	printchar('.');
-	printint(int_par(day_code));
+	printint(day());
 	printchar(')');
 	if (interaction == batch_mode)
 		selector = log_only;
 	else
 		selector = term_and_log;
-	if (poolptr+1 > poolsize)
-		overflow("pool size", poolsize-initpoolptr);
+	str_room(1);
 	formatident = makestring();
-	packjobname(".fmt");
+	packjobname(format_extension);
 	while (!wopenout(fmtfile))
-		promptfilename("format file name", ".fmt"); 
-	printnl("Beginning to dump on file ");
+		promptfilename("format file name", format_extension); 
+	printnl("Beginning to dump_int on file ");
 	slowprint(wmakenamestring(fmtfile));
-	strptr--;
-	poolptr = strstart[strptr];
+	flush_string();
 	printnl("");
 	slowprint(formatident);
-	writeInt(117275187);
-	writeInt(0);
-	writeInt(mem_top);
-	writeInt(6106);
-	writeInt(hash_prime);
-	writeInt(307);
-	writeInt(poolptr);
-	writeInt(strptr);
+	dump_int(CHECKSUM);
+	dump_int(mem_bot);
+	dump_int(mem_top);
+	dump_int(eqtb_size);
+	dump_int(hash_prime);
+	dump_int(hyph_size);
+	dump_int(poolptr);
+	dump_int(strptr);
 	for (k = 0; k <= strptr; k++)
-		writeInt(strstart[k]);
+		dump_int(strstart[k]);
 	for (k = 0; k+4 < poolptr; k += 4)
-	{
-		w.b0 = strpool[k];
-		w.b1 = strpool[k+1];
-		w.b2 = strpool[k+2];
-		w.b3 = strpool[k+3];
-		writeInt(w);
-	}
+		dump_four_ASCII(k);
 	k = poolptr-4;
-	w.b0 = strpool[k];
-	w.b1 = strpool[k+1];
-	w.b2 = strpool[k+2];
-	w.b3 = strpool[k+3];
-	writeInt(w);
+	dump_four_ASCII(k);
 	println();
 	printint(strptr);
 	print(" strings of total length ");
 	printint(poolptr);
 	sortavail();
 	varused = 0;
-	writeInt(lomemmax);
-	writeInt(rover);
+	dump_int(lomemmax);
+	dump_int(rover);
 	p = 0;
 	q = rover;
-	x = 0;
+	int x = 0;
 	do
 	{
 		for (k = p; k <= q+1; k++)
-			writeInt(mem[k]);
+			dump_wd(mem[k]);
 		x += q+2-p;
-		varused = varused+q-p;
-		p = q+info(q);
-		q = link(q+1);
+		varused += q-p;
+		p = q+node_size(q);
+		q = rlink(q);
 	} while (q != rover);
 	varused += lomemmax-p;
 	dynused = memend+1-himemmin;
 	for (k = p; k <= lomemmax; k++)
-		writeInt(mem[k]);
+		dump_wd(mem[k]);
 	x += lomemmax+1-p;
-	writeInt(himemmin);
-	writeInt(avail);
+	dump_int(himemmin);
+	dump_int(avail);
 	for (k = himemmin; k <= memend; k++)
-		writeInt(mem[k]);
+		dump_wd(mem[k]);
 	x += memend+1-himemmin;
 	p = avail;
 	while (p)
@@ -146,111 +142,111 @@ void storefmtfile(void)
 		dynused--;
 		p = link(p);
 	}
-	writeInt(varused);
-	writeInt(dynused);
+	dump_int(varused);
+	dump_int(dynused);
 	println();
 	printint(x);
-	print(" memory locations dumped; current usage is ");
+	print(" memory locations dump_inted; current usage is ");
 	printint(varused);
 	printchar('&');
 	printint(dynused);
-	k = 1;
+	k = active_base;
 	do
 	{
-		bool label41 = false;
-		for (j = k; j < 5262; j++)
+		bool found1 = false;
+		for (j = k; j < int_base-1; j++)
 			if (equiv(j) == equiv(j+1) && eq_type(j) == eq_type(j+1) && eq_level(j) == eq_level(j+1))
 			{
-				label41 = true;
+				found1 = true;
 				break;
 			}
-		if (label41)
+		if (found1)
 		{
 			j++;
 			l = j;
-			for (;j < 5262; j++)
+			for (;j < int_base-1; j++)
 				if (equiv(j) != equiv(j+1) || eq_type(j) != eq_type(j+1) || eq_level(j) != eq_level(j+1))
 					break;
 		}
 		else
-			l = 5263;
-		writeInt(l-k);
+			l = int_base;
+		dump_int(l-k);
 		for (;k < l; k++)
-			writeInt(eqtb[k]);
+			dump_wd(eqtb[k]);
 		k = j+1;
-		writeInt(k-l);
-	} while (k != 5263);
+		dump_int(k-l);
+	} while (k != int_base);
 	do
 	{
-		bool label42 = false;
-		for (j = k; j < 6106; j++)
+		bool found2 = false;
+		for (j = k; j < eqtb_size; j++)
 			if (eqtb[j].int_ == eqtb[j+1].int_)
 			{
-				label42 = true;
+				found2 = true;
 				break;
 			}
-		if (label42)
+		if (found2)
 		{
 			j++;
 			l = j;
-			for (;j < 6106; j++)
+			for (;j < eqtb_size; j++)
 				if (eqtb[j].int_ != eqtb[j+1].int_)
 					break;
 		}
 		else
-			l = 6107;
-		writeInt(l-k);
+			l = eqtb_size+1;
+		dump_int(l-k);
 		for (;k < l; k++)
-			writeInt(eqtb[k]);
+			dump_wd(eqtb[k]);
 		k = j+1;
-		writeInt(k-l);
-	} while (k <= 6106);
-	writeInt(parloc);
-	writeInt(writeloc);
-	writeInt(hashused);
-	cscount = 2613-hashused;
+		dump_int(k-l);
+	} while (k <= eqtb_size);
+	dump_int(parloc);
+	dump_int(writeloc);
+	dump_int(hashused);
+	cscount = frozen_control_sequence-1-hashused;
 	for (p = hash_base; p <= hashused; p++)
 		if (hash[p].rh)
 		{
-			writeInt(p);
-			writeInt(hash[p]);
+			dump_int(p);
+			dump_hh(hash[p]);
 			cscount++;
 		}
-	for (p = hashused+1; p <= 2880; p++)
-		writeInt(hash[p]);
-	writeInt(cscount);
+	for (p = hashused+1; p < undefined_control_sequence; p++)
+		dump_hh(hash[p]);
+	dump_int(cscount);
 	println();
 	printint(cscount);
 	print(" multiletter control sequences");
-	writeInt(fmemptr);
+	dump_int(fmemptr);
 	for (k = 0; k <fmemptr; k++)
-		writeInt(fontinfo[k]);
-	writeInt(fontptr);
-	for (k = 0; k <= fontptr; k++)
+		dump_wd(fontinfo[k]);
+	dump_int(fontptr);
+	for (k = null_font; k <= fontptr; k++)
 	{
-		writeInt(fontcheck[k]);
-		writeInt(fontsize[k]);
-		writeInt(fontdsize[k]);
-		writeInt(fontparams[k]);
-		writeInt(hyphenchar[k]);
-		writeInt(skewchar[k]);
-		writeInt(txt(fontname[k]));
-		writeInt(txt(fontarea[k]));
-		writeInt(fontbc[k]);
-		writeInt(fontec[k]);
-		writeInt(charbase[k]);
-		writeInt(widthbase[k]);
-		writeInt(heightbase[k]);
-		writeInt(depthbase[k]);
-		writeInt(italicbase[k]);
-		writeInt(ligkernbase[k]);
-		writeInt(kernbase[k]);
-		writeInt(extenbase[k]);
-		writeInt(parambase[k]);
-		writeInt(fontglue[k]);
-		writeInt(bcharlabel[k]);
-		writeInt(fontbchar[k]);
-		writeInt(fontfalsebchar[k]);
+		dump_qqqq(fontcheck[k]);
+		dump_int(fontsize[k]);
+		dump_int(fontdsize[k]);
+		dump_int(fontparams[k]);
+		dump_int(hyphenchar[k]);
+		dump_int(skewchar[k]);
+		dump_int(txt(fontname[k]));
+		dump_int(txt(fontarea[k]));
+		dump_int(fontbc[k]);
+		dump_int(fontec[k]);
+		dump_int(charbase[k]);
+		dump_int(widthbase[k]);
+		dump_int(heightbase[k]);
+		dump_int(depthbase[k]);
+		dump_int(italicbase[k]);
+		dump_int(ligkernbase[k]);
+		dump_int(kernbase[k]);
+		dump_int(extenbase[k]);
+		dump_int(parambase[k]);
+		dump_int(fontglue[k]);
+		dump_int(bcharlabel[k]);
+		dump_int(fontbchar[k]);
+		dump_int(fontfalsebchar[k]);
 		printnl("\\font");
 		printesc(TXT(text(font_id_base+k)));
 		printesc("FONT");
@@ -270,13 +266,13 @@ void storefmtfile(void)
 	print(" preloaded font");
 	if (fontptr != 1)
 		printchar('s');
-	writeInt(hyphcount);
+	dump_int(hyphcount);
 	for (k = 0; k <= hyph_size; k++)
 		if (hyphword[k] != "")
 		{
-			writeInt(k);
-			writeInt(txt(hyphword[k]));
-			writeInt(hyphlist[k]);
+			dump_int(k);
+			dump_int(txt(hyphword[k]));
+			dump_int(hyphlist[k]);
 		}
 	println();
 	printint(hyphcount);
@@ -285,15 +281,15 @@ void storefmtfile(void)
 		printchar('s');
 	if (trienotready)
 		inittrie();
-	writeInt(triemax);
+	dump_int(triemax);
 	for (k = 0; k <= triemax; k++)
-		writeInt(trie[k]);
-	writeInt(trieopptr);
+		dump_hh(trie[k]);
+	dump_int(trieopptr);
 	for (k = 1; k<= trieopptr; k++)
 	{
-		writeInt(hyfdistance[k]);
-		writeInt(hyfnum[k]);
-		writeInt(hyfnext[k]);
+		dump_int(hyfdistance[k]);
+		dump_int(hyfnum[k]);
+		dump_int(hyfnext[k]);
 	}
 	printnl("Hyphenation trie of length ");
 	printint(triemax);
@@ -311,12 +307,12 @@ void storefmtfile(void)
 			printint(trieused[k]);
 			print(" for language ");
 			printint(k);
-			writeInt(k);
-			writeInt(trieused[k]);
+			dump_int(k);
+			dump_int(trieused[k]);
 		}
-	writeInt(interaction);
-	writeInt(txt(formatident));
-	writeInt(69069);
-	int_par(tracing_stats_code) = 0;
+	dump_int(interaction);
+	dump_int(txt(formatident));
+	dump_int(69069);
+	tracing_stats() = 0;
 	wclose(fmtfile);
 }

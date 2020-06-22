@@ -3,7 +3,6 @@
 
 void printcurrentstring(void)
 {
-	auto j = strstart[strptr];
-	while (j < poolptr)
-		printchar(strpool[j++]);
+	for (auto j = strstart[strptr]; j < poolptr; j++)
+		printchar(strpool[j]);
 }

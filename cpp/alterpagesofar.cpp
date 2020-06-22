@@ -6,6 +6,6 @@ void alterpagesofar(void)
 {
 	char c = curchr;
 	scanoptionalequals();
-	scandimen(false, false, false);
+	scan_normal_dimen();
 	pagesofar[c] = curval;
 }

@@ -22,28 +22,19 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case def_code:
 			scancharnum();
 			if (m == math_code_base)
-			{
-				curval = math_code(curval);
-				curvallevel = 0;
-			}
+				scanned_result(math_code(curval), int_val);
 			else 
 				if (m < math_code_base)
-				{
-					curval = equiv(m+curval);
-					curvallevel = 0;
-				}
+					scanned_result(equiv(m+curval), int_val);
 				else
-				{
-					curval = eqtb[m+curval].int_;
-					curvallevel = 0;
-				}
+					scanned_result(eqtb[m+curval].int_, int_val);
 			break;
 		case toks_register:
 		case assign_toks:
 		case def_family:
 		case set_font:
 		case def_font:
-			if (level != 5)
+			if (level != tok_val)
 			{
 				printnl("! ");
 				print("Missing number, treated as zero");
@@ -52,8 +43,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 				helpline[1] = "(If you can't figure out why I needed to see a number,";
 				helpline[0] = "look up `weird error' in the index to The TeXbook.)";
 				backerror();
-				curval = 0;
-				curvallevel = 1;
+				scanned_result(0, dimen_val);
 			}
 			else 
 				if (curcmd <= assign_toks)
@@ -63,32 +53,26 @@ void scansomethinginternal(smallnumber level, bool negative)
 						scaneightbitint;
 						m = toks_base+curval;
 					}
-					curval = equiv(m);
-					curvallevel = 5;
+					scanned_result(equiv(m), tok_val);
 				}
 				else
 				{
 					backinput();
 					scanfontident();
-					curval += frozen_null_font;
-					curvallevel = 4;
+					scanned_result(curval+frozen_null_font, ident_val);
 				}
 			break;
 		case assign_int:
-			curval = eqtb[m].int_;
-			curvallevel = 0;
+			scanned_result(eqtb[m].int_, int_val);
 			break;
 		case assign_dimen:
-			curval = eqtb[m].int_;
-			curvallevel = 1;
+			scanned_result(eqtb[m].int_, dimen_val);
 			break;
 		case assign_glue:
-			curval = equiv(m);
-			curvallevel = 2;
+			scanned_result(equiv(m), glue_val);
 			break;
 		case assign_mu_glue:
-			curval = equiv(m);
-			curvallevel = 3;
+			scanned_result(equiv(m), mu_val);
 			break;
 		case set_aux:
 			if (abs(mode) != m)
@@ -102,165 +86,134 @@ void scansomethinginternal(smallnumber level, bool negative)
 				helpline[1] = "neither of these is meaningful inside \\write. So";
 				helpline[0] = "I'm forgetting what you said and using zero instead.";
 				error();
-				if (level != 5)
-				{
-					curval = 0;
-					curvallevel = 1;
-				}
+				if (level != tok_val)
+					scanned_result(0, dimen_val);
 				else
-				{
-					curval = 0;
-					curvallevel = 0;
-				}
+					scanned_result(0, int_val);
 			}
 			else 
 				if (m == 1)
-				{
-					curval = prev_depth;
-					curvallevel = 1;
-				}
+					scanned_result(prev_depth, dimen_val);
 				else
-				{
-					curval = space_factor;
-					curvallevel = 0;
-				}
+					scanned_result(space_factor, int_val);
 			break;
 		case set_prev_graf:
 			if (mode == 0)
-			{
-				curval = 0;
-				curvallevel = 0;
-			}
+				scanned_result(0, int_val);
 			else
 			{
 				nest[nestptr] = curlist;
 				auto p = nestptr;
 				while (abs(nest[p].modefield) != vmode)
 					p--;
-				curval = nest[p].pgfield;
-				curvallevel = 0;
+				scanned_result(nest[p].pgfield, int_val);
 			}
 			break;
 		case set_page_int:
 			if (m == 0)
-				curval = deadcycles;
+				scanned_result(deadcycles, int_val);
 			else
-				curval = insertpenalties;
-			curvallevel = 0;
+				scanned_result(insertpenalties, int_val);
 			break;
 		case set_page_dimen:
 			if (pagecontents == 0 && !outputactive)
 				if (m == 0)
-					curval = max_dimen;
+					scanned_result(max_dimen, dimen_val);
 				else
-					curval = 0;
+					scanned_result(0, dimen_val);
 			else
-				curval = pagesofar[m];
-			curvallevel = 1;
+				scanned_result(pagesofar[m], dimen_val);
 			break;
 		case set_shape:
 			if (par_shape_ptr() == 0)
-				curval = 0;
+				scanned_result(0, int_val);
 			else
-				curval = info(par_shape_ptr());
-			curvallevel = 0;
+				scanned_result(info(par_shape_ptr()), int_val);
 			break;
 		case set_box_dimen:
 			scaneightbitint();
 			if (box(curval) == 0)
-				curval = 0;
+				scanned_result(0, 1);
 			else
-				curval = mem[box(curval)+m].int_;
-			curvallevel = 1;
+				scanned_result(mem[box(curval)+m].int_, dimen_val);
 		break;
 		case char_given:
 		case math_given:
-			curval = curchr;
-			curvallevel = 0;
+			scanned_result(curchr, 0);
 			break;
 		case assign_font_dimen:
 			findfontdimen(false);
 			fontinfo[fmemptr].int_ = 0;
-			curval = fontinfo[curval].int_;
-			curvallevel = 1;
+			scanned_result(fontinfo[curval].int_, dimen_val);
 			break;
 		case assign_font_int:
 			scanfontident();
 			if (m == 0)
-			{
-				curval = hyphenchar[curval];
-				curvallevel = 0;
-			}
+				scanned_result(hyphenchar[curval], int_val);
 			else
 			{
-				curval = skewchar[curval];
-				curvallevel = 0;
+				scanned_result(skewchar[curval], int_val);
 			};
 			break;
 		case register_:
 			scaneightbitint();
 			switch (m)
 			{
-				case 0: 
-					curval = count(curval);
+				case int_val: 
+					scanned_result(count(curval), m);
 					break;
-				case 1: 
-					curval = dimen(curval);
+				case dimen_val: 
+					scanned_result(dimen(curval), m);
 					break;
-				case 2: 
-					curval = skip(2900);
+				case glue_val: 
+					scanned_result(skip(curval), m);
 					break;
-				case 3: 
-					curval = mu_skip(3156);
+				case mu_val: 
+					scanned_result(mu_skip(curval), m);
 			};
-			curvallevel = m;
 			break;
 		case last_item:
-			if (curchr > 2)
-			{
-				if (curchr == 3)
-					curval = line;
+			if (curchr > glue_val)
+				if (curchr == input_line_no_code)
+					scanned_result(line, 0);
 				else
-					curval = lastbadness;
-				curvallevel = 0;
-			}
+					scanned_result(lastbadness, int_val);
 			else
 			{
-				if (curchr == 2)
-					curval = 0;
-				else
-					curval = 0;
-				curvallevel = curchr;
-				if (tail < himemmin && mode)
+				 if (curchr == glue_val)
+					scanned_result(zero_glue, curchr);
+				  else
+					scanned_result(0, curchr);
+				if (!is_char_node(tail) && mode)
 					switch (curchr)
 					{
-						case 0: 
+						case int_val: 
 							if (type(tail) == penalty_node)
 								curval = penalty(tail);
 							break;
-						case 1: 
+						case dimen_val: 
 							if (type(tail) == kern_node)
 								curval = width(tail);
 							break;
-						case 2: 
+						case glue_val: 
 							if (type(tail) == glue_node)
 							{
 								curval = glue_ptr(tail);
 								if (subtype(tail) == mu_glue)
-									curvallevel = 3;
+									curvallevel = mu_val;
 							}
 					}
 				else 
 					if (mode == vmode && tail == head)
 						switch (curchr)
 						{
-							case 0: 
+							case int_val: 
 								curval = lastpenalty;
 								break;
-							case 1: 
+							case dimen_val: 
 								curval = lastkern;
 								break;
-							case 2: 
+							case glue_val: 
 								if (lastglue != empty_flag)
 									curval = lastglue;
 						}
@@ -275,28 +228,22 @@ void scansomethinginternal(smallnumber level, bool negative)
 			helpptr = 1;
 			helpline[0] = "I'm forgetting what you said and using zero instead.";
 			error();
-			if (level != 5)
-			{
-				curval = 0;
-				curvallevel = 1;
-			}
+			if (level != tok_val)
+				scanned_result(0, dimen_val);
 			else
-			{
-				curval = 0;
-				curvallevel = 0;
-			}
+				scanned_result(0, int_val);
 	};
 	while (curvallevel > level)
 	{
-		if (curvallevel == 2)
+		if (curvallevel == glue_val)
 			curval = width(curval);
 		else 
-			if (curvallevel == 3)
+			if (curvallevel == mu_val)
 			muerror();
 		curvallevel--;
 	}
 	if (negative)
-		if (curvallevel >= 2)
+		if (curvallevel >= glue_val)
 		{
 			curval = newspec(curval);
 			width(curval) = -width(curval);
@@ -306,6 +253,6 @@ void scansomethinginternal(smallnumber level, bool negative)
 		else
 			curval = -curval;
 	else 
-		if (curvallevel >= 2 && curvallevel <= 3)
-			link(curval)++;
+		if (curvallevel >= glue_val && curvallevel <= mu_val)
+			add_glue_ref(curval);
 }

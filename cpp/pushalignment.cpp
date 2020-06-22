@@ -4,11 +4,11 @@
 
 void pushalignment(void)
 {
-	auto p = getnode(5);
+	auto p = getnode(align_stack_node_size);
 	link(p) = alignptr;
 	info(p) = curalign;
-	info(p+1) = link(align_head);
-	link(p+1) = curspan;
+	llink(p) = preamble();
+	rlink(p) = curspan;
 	mem[p+2].int_ = curloop;
 	mem[p+3].int_ = alignstate;
 	info(p+4) = curhead;

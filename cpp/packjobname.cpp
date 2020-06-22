@@ -7,5 +7,5 @@ void packjobname(const std::string &s)
 	curarea = "";
 	curext = s;
 	curname = jobname;
-	packfilename(curname, curarea, curext);
+	pack_cur_name();
 }

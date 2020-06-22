@@ -45,7 +45,7 @@ void makemathaccent(halfword q)
 				}
 			}
 		}
-		auto x = cleanbox(q+1, 2*(curstyle/2)+1);
+		auto x = cleanbox(nucleus(q), cramped_style(curstyle));
 		scaled w = width(x);
 		scaled h = height(x);
 		while (true)
@@ -60,20 +60,20 @@ void makemathaccent(halfword q)
 				break;
 			c = y;
 		}
-		scaled delta = std::min(h,  param(x_height_code, f));
-		if (link(q+2) || link(q+3))
-			if (link(q+1) == 1)
+		scaled delta = std::min(h, x_height(f));
+		if (math_type(supscr(q)) || math_type(subscr(q)))
+			if (math_type(nucleus(q)) == math_char)
 			{
 				flushnodelist(x);
 				x = newnoad();
-				mem[x+1] = mem[q+1];
-				mem[x+2] = mem[q+2];
-				mem[x+3] = mem[q+3];
-				mem[q+2].hh = emptyfield;
-				mem[q+3].hh = emptyfield;
-				link(q+1) = 3;
-				info(q+1) = x;
-				x = cleanbox(q+1, curstyle);
+				mem[nucleus(x)] = mem[nucleus(q)];
+				mem[supscr(x)] = mem[supscr(q)];
+				mem[subscr(x)] = mem[subscr(q)];
+				mem[supscr(x)].hh = emptyfield;
+				mem[subscr(x)].hh = emptyfield;
+				math_type(nucleus(q)) = sub_mlist;
+				info(nucleus(q)) = x;
+				x = cleanbox(nucleus(q), curstyle);
 				delta += height(x)-h;
 				h = height(x);
 			}
@@ -83,7 +83,7 @@ void makemathaccent(halfword q)
 		auto p = newkern(-delta);
 		link(p) = x;
 		link(y) = p;
-		y = vpackage(y, 0, 1, max_dimen);
+		y = vpack(y, 0, additional);
 		width(y) = width(x);
 		if (height(y) < h)
 		{

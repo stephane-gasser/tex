@@ -6,9 +6,9 @@
 
 void printcs(int p)
 {
-	if (p < 514)
-		if (p >= 257)
-			if (p == 513) 
+	if (p < hash_base)
+		if (p >= single_base)
+			if (p == null_cs)
 			{
 				printesc("csname");
 				printesc("endcsname");
@@ -16,15 +16,15 @@ void printcs(int p)
 			}
 			else
 			{
-				printesc(std::string(1, char(p-257)));
-				if (cat_code(p-257) == letter)
+				printesc(std::string(1, char(p-single_base)));
+				if (cat_code(p-single_base) == letter)
 					printchar(' ');
 			}
 		else 
-			if (p < 1)
+			if (p < active_base)
 				printesc("IMPOSSIBLE.");
 			else
-				printchar(p-1);
+				printchar(p-active_base);
 	else 
 		if (p >= undefined_control_sequence)
 			printesc("IMPOSSIBLE.");
@@ -37,3 +37,4 @@ void printcs(int p)
 				printchar(' ');
 			}
 }
+

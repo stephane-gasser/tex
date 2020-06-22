@@ -4,24 +4,18 @@ void packfilename(const std::string &n, const std::string &a, const std::string 
 {
 	int k = 0;
 	for (auto c: a)
-	{
-		k++;
-		if (k <= filenamesize)
-			nameoffile[k] = xchr[c];
-	}
+		append_to_name(k, c);
 	for (auto c: n)
-	{
-		k++;
-		if (k <= filenamesize)
-			nameoffile[k] = xchr[c];
-	}
+		append_to_name(k, c);
 	for (auto c: e)
-	{
-		k++;
-		if (k <= filenamesize)
-			nameoffile[k] = xchr[c];
-	}
+		append_to_name(k, c);
 	namelength = std::min(k, filenamesize);
 	for (k = namelength+1; k <= filenamesize; k++)
 		nameoffile[k] = ' ';
 }
+
+void pack_cur_name(void)
+{
+	packfilename(curname, curarea, curext);
+}
+

@@ -9,7 +9,7 @@ void alterboxdimen(void)
 	scaneightbitint();
 	auto b = curval;
 	scanoptionalequals();
-	scandimen(false, false, false);
+	scan_normal_dimen();
 	if (box(b))
 		mem[box(b)+c].int_ = curval;
 }

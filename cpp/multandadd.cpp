@@ -1,4 +1,5 @@
 #include "multandadd.h"
+#include "xnoverd.h"
 
 scaled multandadd(int n, scaled x, scaled y, scaled maxanswer)
 {
@@ -13,4 +14,19 @@ scaled multandadd(int n, scaled x, scaled y, scaled maxanswer)
 		return n*x+y;
 	aritherror = true;
 	return 0;
+}
+
+scaled nx_plus_y(int n, scaled x, scaled y)
+{
+	return multandadd(n, x, y, max_dimen);
+}
+
+scaled mu_mult(int n, scaled x)
+{
+	return nx_plus_y(n, x, xnoverd(x, f, unity));
+}
+
+scaled mult_integers(int n, scaled x)
+{
+	return multandadd(n, x, 0, infinity);
 }

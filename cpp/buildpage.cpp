@@ -53,12 +53,12 @@ void buildpage(void)
 			case hlist_node: //0
 			case vlist_node: //1
 			case rule_node:  //2
-				if (pagecontents < 2)
+				if (pagecontents < box_there)
 				{
 					if (pagecontents == 0)
-						freezepagespecs(2);
+						freezepagespecs(box_there);
 					else
-						pagecontents = 2;
+						pagecontents = box_there;
 					q = newskipparam(9);
 					if (width(tempptr) > height(p))
 						width(tempptr) -= height(p);
@@ -68,24 +68,24 @@ void buildpage(void)
 					link(contrib_head) = q;
 					continue;
 				}
-				pagesofar[1] += pagesofar[7]+height(p);
-				pagesofar[7] = depth(p);
+				page_total += page_depth+height(p);
+				page_depth = depth(p);
 				break;
 			case whatsit_node: //8
 				break;
 			case glue_node: //10
-				if (pagecontents < 2)
+				if (pagecontents < box_there)
 				{
 					link(contrib_head) = link(p);
 					link(p) = 0;
 					flushnodelist(p);
 					continue;
 				}
-				if (type(pagetail) < 9)
+				if (precedes_break(pagetail))
 					pi = 0;
 				break;
 			case kern_node: //11
-				if (pagecontents < 2)
+				if (pagecontents < box_there)
 				{
 					link(contrib_head) = link(p);
 					link(p) = 0;
@@ -98,7 +98,7 @@ void buildpage(void)
 					pi = 0;
 				break;
 			case penalty_node: //12
-				if (pagecontents < 2)
+				if (pagecontents < box_there)
 				{
 					link(contrib_head) = link(p);
 					link(p) = 0;
@@ -111,33 +111,33 @@ void buildpage(void)
 				break;
 			case ins_node: //3
 				if (pagecontents == 0)
-					freezepagespecs(1);
+					freezepagespecs(inserts_only);
 				n = subtype(p);
 				r = page_ins_head;
 				while (n >= subtype(link(r)))
 					r = link(r);
 				if (subtype(r) != n)
 				{
-					q = getnode(4);
+					q = getnode(page_ins_node_size);
 					link(q) = link(r);
 					link(r) = q;
 					r = q;
 					subtype(r) = n;
-					type(r) = hlist_node;
+					type(r) = inserting;
 					ensurevbox(n);
 					if (box(n) == 0)
 						height(r) = 0;
 					else
 						height(r) = height(box(n))+depth(box(n));
-					info(r+2) = 0;
-					q = skip(2900);
+					best_ins_ptr(r) = 0;
+					q = skip(n);
 					if (count(n) == 1000)
 						h = height(r);
 					else
 						h = xovern(height(r), 1000)*count(n);
-					pagesofar[0] -= h+width(q);
+					page_goal -= h+width(q);
 					pagesofar[2+type(q)] += depth(q);
-					pagesofar[6] += height(q);
+					page_shrink += height(q);
 					if (subtype(q) && height(q))
 					{
 						printnl("! ");
@@ -155,15 +155,15 @@ void buildpage(void)
 					insertpenalties += width(p);
 				else
 				{
-					link(r+2) = p;
-					delta = pagesofar[0]-pagesofar[1]-pagesofar[7]+pagesofar[6];
+					last_ins_ptr(r) = p;
+					delta = page_goal-page_total-page_depth+page_shrink;
 					if (count(n) == 1000)
 						h = height(p);
 					else
 						h = xovern(height(p), 1000)*count(n);
 					if ((h <= 0 || h <= delta) && height(p)+height(r) <= dimen(n))
 					{
-						pagesofar[0] -= h;
+						page_goal -= h;
 						height(r) += height(p);
 					}
 					else
@@ -172,7 +172,7 @@ void buildpage(void)
 							w = max_dimen;
 						else
 						{
-							w = pagesofar[0]-pagesofar[1]-pagesofar[7];
+							w = page_goal-page_total-page_depth;
 							if (count(n) != 1000)
 								w = xovern(w, count(n))*1000;
 						}
@@ -182,12 +182,12 @@ void buildpage(void)
 						height(r) += bestheightplusdepth;
 						if (count(n) != 1000)
 							bestheightplusdepth = xovern(bestheightplusdepth, 1000)*count(n);
-						pagesofar[0] -= bestheightplusdepth;
+						page_goal -= bestheightplusdepth;
 						type(r) = 1;
 						link(r+1) = q;
 						info(r+1) = p;
 						if (q == 0)
-							insertpenalties -= 10000;
+							insertpenalties += eject_penalty;
 						else 
 							if (type(q) == 12)
 								insertpenalties += width(q);
@@ -200,32 +200,32 @@ void buildpage(void)
 		if ((type(p) == glue_node && type(pagetail) < 9) || (type(p) ==  kern_node && type(link(p)) == glue_node) || type(p) == penalty_node)
 			if (pi < 10000)
 			{
-				if (pagesofar[1] < pagesofar[0])
+				if (page_total < page_goal)
 					if (pagesofar[3] || pagesofar[4] || pagesofar[5])
 						b = 0;
 					else
-						b =	badness(pagesofar[0]-pagesofar[1], pagesofar[2]);
+						b =	badness(page_goal-page_total, pagesofar[2]);
 				else 
-					if (pagesofar[1]-pagesofar[0] > pagesofar[6])
+					if (page_total-page_goal > page_shrink)
 						b = max_dimen;
 				else
-						b = badness(pagesofar[1]-pagesofar[0], pagesofar[6]);
+						b = badness(page_total-page_goal, page_shrink);
 				if (b < max_dimen)
-					if (pi <= -10000)
+					if (pi <= eject_penalty)
 						c = pi;
 					else 
-						if (b < 10000)
+						if (b < inf_bad)
 							c = b+pi+insertpenalties;
 						else
-							c = 100000;
+							c = deplorable;
 				else
 					c = b;
 				if (insertpenalties >= 10000)
-					c = max_dimen;
+					c = awful_bad;
 				if (c <= leastpagecost)
 				{
 					bestpagebreak = p;
-					bestsize = pagesofar[0];
+					bestsize = page_goal;
 					leastpagecost = c;
 					r = link(page_ins_head);
 					while (r != page_ins_head)
@@ -234,7 +234,7 @@ void buildpage(void)
 						r = link(r);
 					}
 				}
-				if (c == max_dimen || pi <= -10000)
+				if (c == awful_bad || pi <= eject_penalty)
 				{
 					fireup(p);
 					if (outputactive)
@@ -245,14 +245,14 @@ void buildpage(void)
 		if (type(p) == kern_node)
 		{
 			q = p;
-			pagesofar[1] += pagesofar[7]+width(q);
-			pagesofar[7] = 0;
+			page_total += page_depth+width(q);
+			page_depth = 0;
 		}
 		if (type(p) == glue_node)
 		{
 			q = info(p+1);
 			pagesofar[2+type(q)] += depth(q);
-			pagesofar[6] += height(q);
+			page_shrink += height(q);
 			if (subtype(q) && height(q))
 			{
 				printnl("! ");
@@ -269,13 +269,13 @@ void buildpage(void)
 				info(p+1) = r;
 				q = r;
 			}
-			pagesofar[1] += pagesofar[7]+width(q);
-			pagesofar[7] = 0;
+			page_total += page_depth+width(q);
+			page_depth = 0;
 		}
-		if (pagesofar[7] > pagemaxdepth)
+		if (page_depth > pagemaxdepth)
 		{
-			pagesofar[1] += pagesofar[7]-pagemaxdepth;
-			pagesofar[7] = pagemaxdepth;
+			page_total += page_depth-pagemaxdepth;
+			page_depth = pagemaxdepth;
 		}
 		link(pagetail) = p;
 		pagetail = p;
@@ -285,5 +285,5 @@ void buildpage(void)
 	if (nestptr == 0)
 		tail = contrib_head;
 	else
-		nest[0].tailfield = contrib_head;
+		contrib_tail = contrib_head;
 }

@@ -20,11 +20,7 @@ void vlistout(void)
 	halfword p = list_ptr(thisbox);
 	curs++;
 	if (curs > 0)
-	{
-		dvibuf[dviptr++] = push;
-		if (dviptr == dvilimit)
-			dviswap();
-	}
+		dvi_out(push);
 	if (curs > maxpush)
 		maxpush = curs;
 	int saveloc = dvioffset+dviptr;
@@ -69,25 +65,15 @@ void vlistout(void)
 					ruleht = height(p);
 					ruledp = depth(p);
 					rulewd = width(p);
-					if ((rulewd == null_flag))
+					if (is_running(rulewd))
 						rulewd = width(thisbox);
 					ruleht += ruledp;
 					curv += ruleht;
 					if (ruleht > 0 &&rulewd > 0)
 					{
-						if (curh != dvih)
-						{
-							movement(curh-dvih, 143);
-							dvih = curh;
-						}
-						if (curv != dviv)
-						{
-							movement(curv-dviv, 157);
-							dviv = curv;
-						}
-						dvibuf[dviptr++] = put_rule;
-						if (dviptr == dvilimit)
-							dviswap();
+						synch_h();
+						synch_v();
+						dvi_out(put_rule);
 						dvifour(ruleht);
 						dvifour(rulewd);
 					}
@@ -105,26 +91,14 @@ void vlistout(void)
 							if (type(g) == gorder)
 							{
 								curglue += stretch(g);
-								float gluetemp = glue_set(thisbox)*curglue;
-								if (gluetemp > 1000000000.0)
-									gluetemp = 1000000000.0;
-								else 
-									if (gluetemp < -1000000000.0)
-										gluetemp = -1000000000.0;
-								curg = round(gluetemp);
+								curg = round(vet_glue(glue_set(thisbox)*curglue));
 							}
 						}
 						else 
 							if (subtype(g) == gorder)
 							{
 								curglue -= shrink(g);
-								float gluetemp = glue_set(thisbox)*curglue;
-								if (gluetemp > 1000000000.0)
-									gluetemp = 1000000000.0;
-								else 
-									if (gluetemp < -1000000000.0)
-										gluetemp = -1000000000.0;
-								curg = round(gluetemp);
+								curg = round(vet_glue(glue_set(thisbox)*curglue));
 							}
 					ruleht += curg;
 					if (subtype(p) >= 100)
@@ -134,25 +108,15 @@ void vlistout(void)
 						{
 							rulewd = width(leaderbox);
 							ruledp = 0;
-							if ((rulewd == null_flag))
+							if (is_running(rulewd))
 								rulewd = width(thisbox);
 							ruleht += ruledp;
 							curv += ruleht;
 							if (ruleht > 0 &&rulewd > 0)
 							{
-								if (curh != dvih)
-								{
-									movement(curh-dvih, 143);
-									dvih = curh;
-								}
-								if (curv != dviv)
-								{
-									movement(curv-dviv, 157);
-									dviv = curv;
-								}
-								dvibuf[dviptr++] = put_rule;
-								if (dviptr == dvilimit)
-									dviswap();
+								synch_h();
+								synch_v();
+								dvi_out(put_rule);
 								dvifour(ruleht);
 								dvifour(rulewd);
 							}
@@ -187,18 +151,10 @@ void vlistout(void)
 							while (curv+leaderht <= edge)
 							{
 								curh = leftedge+shift_amount(leaderbox);
-								if (curh != dvih)
-								{
-									movement(curh-dvih, 143);
-									dvih = curh;
-								}
+								synch_h();
 								auto saveh = dvih;
 								curv += height(leaderbox);
-								if (curv != dviv)
-								{
-									movement(curv-dviv, 157);
-									dviv = curv;
-								}
+								synch_v();
 								auto savev = dviv;
 								tempptr = leaderbox;
 								bool outerdoingleaders = doingleaders;

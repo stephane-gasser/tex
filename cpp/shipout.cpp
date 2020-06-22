@@ -23,9 +23,22 @@
 #include <iostream>
 #include "texte.h"
 
+static void ensure_dvi_open(void)
+{
+	if (outputfilename == "")
+	{
+		if (jobname == "")
+			openlogfile();
+		packjobname(".dvi");
+		while (!bopenout(dvifile))
+			promptfilename("file name for output", ".dvi");
+		outputfilename = bmakenamestring(dvifile); 
+	}
+}
+
 void shipout(halfword p)
 {
-	if (int_par(tracing_output_code))
+	if (tracing_output())
 	{
 		printnl("");
 		println();
@@ -47,7 +60,7 @@ void shipout(halfword p)
 			printchar('.');
 	}
 	std::cout << std::flush;
-	if (int_par(tracing_output_code) > 0)
+	if (tracing_output() > 0)
 	{
 		printchar(']');
 		begindiagnostic();
@@ -55,8 +68,8 @@ void shipout(halfword p)
 		enddiagnostic(true);
 	}
 	if (height(p) > max_dimen || depth(p) > max_dimen 
-	 || height(p)+depth(p)+dimen_par(v_offset_code) > max_dimen 
-	 || width(p)+dimen_par(h_offset_code) > max_dimen)
+	 || height(p)+depth(p)+v_offset() > max_dimen 
+	 || width(p)+h_offset() > max_dimen)
 	{
 		printnl("! ");
 		print("Huge page cannot be shipped out");
@@ -64,92 +77,70 @@ void shipout(halfword p)
 		helpline[1] = txt("The page just created is more than 18 feet tall or");
 		helpline[0] = txt("more than 18 feet wide, so I suspect something went wrong.");
 		error();
-		if (int_par(tracing_output_code) <= 0)
+		if (tracing_output() <= 0)
 		{
 			begindiagnostic;
 			printnl("The following box has been deleted:");
 			showbox(p);
 			enddiagnostic(true);
 		}
-		if (int_par(tracing_output_code) <= 0)
+		if (tracing_output() <= 0)
 		printchar(']');
 		deadcycles = 0;
 		std::cout << std::flush;
 		flushnodelist(p);
 		return;
 	}
-	if (height(p)+depth(p)+dimen_par(v_offset_code) > maxv)
-		maxv = height(p)+depth(p)+dimen_par(v_offset_code);
-	if (width(p)+dimen_par(h_offset_code) > maxh)
-		maxh = width(p)+dimen_par(h_offset_code);
+	if (height(p)+depth(p)+v_offset() > maxv)
+		maxv = height(p)+depth(p)+v_offset();
+	if (width(p)+h_offset() > maxh)
+		maxh = width(p)+h_offset();
 	dvih = 0;
 	dviv = 0;
-	curh = dimen_par(h_offset_code);
-	dvif = 0;
-	if (outputfilename == "")
-	{
-		if (jobname == "")
-			openlogfile();
-		packjobname(".dvi");
-		while (!bopenout(dvifile))
-			promptfilename("file name for output", ".dvi");
-		outputfilename = bmakenamestring(dvifile);
-	}
+	curh = h_offset();
+	dvif = null_font;
+	ensure_dvi_open();
 	if (totalpages == 0)
 	{
-		dvibuf[dviptr++] = pre;
-		if (dviptr == dvilimit)
-			dviswap();
-		dvibuf[dviptr++] = id_byte;
-		if (dviptr == dvilimit)
-			dviswap();
+		dvi_out(pre);
+		dvi_out(id_byte);
 		dvifour(25400000);
 		dvifour(473628672);
 		preparemag();
-		dvifour(int_par(mag_code));
+		dvifour(mag());
 		oldsetting = selector;
 		selector = new_string;
 		print(" TeX output ");
-		printint(int_par(year_code));
+		printint(year());
 		printchar('.');
-		printtwo(int_par(month_code));
+		printtwo(month());
 		printchar('.');
-		printtwo(int_par(day_code));
+		printtwo(day());
 		printchar(':');
-		printtwo(int_par(time_code)/60);
-		printtwo(int_par(time_code)%60);
+		printtwo(time()/60);
+		printtwo(time()%60);
 		selector = oldsetting;
-		dvibuf[dviptr++] = poolptr-strstart[strptr];
-		if (dviptr == dvilimit)
-			dviswap();
+		dvi_out(cur_length());
 		for (auto s = strstart[strptr]; s < poolptr; s++)
-		{
-			dvibuf[dviptr++] = strpool[s];
-			if (dviptr == dvilimit)
-				dviswap();
-		}
+			dvi_out(strpool[s]);
 		poolptr = strstart[strptr];
 	}
 	auto pageloc = dvioffset+dviptr;
-	dvibuf[dviptr++] = bop;
-	if (dviptr == dvilimit)
-		dviswap();
+	dvi_out(bop);
 	for (auto k = 0; k < 10; k++)
 		dvifour(count(k));
 	dvifour(lastbop);
 	lastbop = pageloc;
-	curv = height(p)+dimen_par(v_offset_code);
+	curv = height(p)+v_offset();
 	tempptr = p;
 	if (type(p) == vlist_node)
 		vlistout();
 	else
 		hlistout();
-	dvibuf[dviptr++] = eop;
-	if (dviptr == dvilimit)
-		dviswap();
+	dvi_out(eop);
 	totalpages++;
 	curs = -1;
-	if (int_par(tracing_output_code) <= 0)
+	if (tracing_output() <= 0)
 		printchar(']');
 	deadcycles = 0;
 	std::cout << std::flush;

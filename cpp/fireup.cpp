@@ -31,19 +31,19 @@ void fireup(halfword c)
 	halfword savesplittopskip;
 	if (type(bestpagebreak) == penalty_node) //12
 	{
-		geqworddefine(5302, penalty(bestpagebreak));
-		penalty(bestpagebreak) = 10000;
+		geqworddefine(int_base+output_penalty_code, penalty(bestpagebreak));
+		penalty(bestpagebreak) = inf_penalty;
 	}
 	else
-		geqworddefine(5302, 10000);
-	if (curmark[2])
+		geqworddefine(int_base+output_penalty_code, inf_penalty);
+	if (bot_mark)
 	{
-		if (curmark[0])
-			deletetokenref(curmark[0]);
-		curmark[0] = curmark[2];
-		info(curmark[0])++;
-		deletetokenref(curmark[1]);
-		curmark[1] = 0;
+		if (top_mark)
+			deletetokenref(top_mark);
+		top_mark = bot_mark;
+		info(top_mark)++;
+		deletetokenref(first_mark);
+		first_mark = 0;
 	}
 	if (c == bestpagebreak)
 		bestpagebreak = 0;
@@ -60,21 +60,21 @@ void fireup(halfword c)
 	}
 	insertpenalties = 0;
 	savesplittopskip = split_top_skip();
-	if (int_par(holding_inserts_code) <= 0)
+	if (holding_inserts() <= 0)
 	{
 		r = link(page_ins_head);
 		while (r != page_ins_head)
 		{
-			if (info(r+2))
+			if (best_ins_ptr(r))
 			{
 				n = subtype(r);
 				ensurevbox(n);
 				if (box(n) == 0)
 					box(n) = newnullbox();
-				p = box(n)+5;
+				p = box(n)+list_offset;
 				while (link(p))
 					p = link(p);
-				link(r+2) = p;
+				last_ins_ptr(r) = p;
 			}
 			r = link(r);
 		}
@@ -87,47 +87,47 @@ void fireup(halfword c)
 	{
 		if (type(p) == ins_node) //3
 		{
-			if (int_par(holding_inserts_code) <= 0)
+			if (holding_inserts() <= 0)
 			{
 			r = link(page_ins_head);
 			while (subtype(r) != subtype(p))
 				r = link(r);
-			if (info(r+2) == 0)
+			if (best_ins_ptr(r) == 0)
 				wait = true;
 			else
 			{
 				wait = false;
-				s = link(r+2);
-				link(s) = info(p+4);
-				if (info(r+2) == p)
+				s = last_ins_ptr(r);
+				link(s) = ins_ptr(p);
+				if (best_ins_ptr(r) == p)
 				{
-					if (type(r) == vlist_node) //1
-					if (info(r+1) == p && link(r+1))
+					if (type(r) == split_up) //1
+					if (broken_ins(r) == p && broken_ptr(r))
 					{
-						while (link(s) != link(r+1))
+						while (link(s) != broken_ptr(r))
 							s = link(s);
 						link(s) = 0;
-						split_top_skip() = link(p+4);
-						info(p+4) = prunepagetop(link(r+1));
-						if (info(p+4))
+						split_top_skip() = split_top_ptr(p);
+						ins_ptr(p) = prunepagetop(broken_ptr(r));
+						if (ins_ptr(p))
 						{
-							tempptr = vpackage(info(p+4), 0, 1, max_dimen);
+							tempptr = vpack(ins_ptr(p), 0, additional);
 							height(p) = height(tempptr)+depth(tempptr);
-							freenode(tempptr, 7);
+							freenode(tempptr, box_node_size);
 							wait = true;
 						}
 					}
-					info(r+2) = 0;
+					best_ins_ptr(r) = 0;
 					n = subtype(r);
-					tempptr = info(box(n)+5);
-					freenode(box(n), 7);
-					box(n) = vpackage(tempptr, 0, 1, max_dimen);
+					tempptr = list_ptr(box(n));
+					freenode(box(n), box_node_size);
+					box(n) = vpack(tempptr, 0, additional);
 				}
 				else
 				{
 					while (link(s))
 						s = link(s);
-					link(r+2) = s;
+					last_ins_ptr(r) = s;
 				}
 			}
 			link(prevp) = link(p);
@@ -140,23 +140,23 @@ void fireup(halfword c)
 			}
 			else
 			{
-				deleteglueref(link(p+4));
-				freenode(p, 5);
+				deleteglueref(split_top_ptr(p));
+				freenode(p, ins_node_size);
 			}
 			p = prevp;
 			}
 		}
 		else if (type(p) == mark_node) //4
 		{
-			if (curmark[1] == 0)
+			if (first_mark == 0)
 			{
-				curmark[1] = mark_ptr(p);
-				info(curmark[1])++;
+				first_mark = mark_ptr(p);
+				info(first_mark)++;
 			}
-			if (curmark[2])
-				deletetokenref(curmark[2]);
-			curmark[2] = mark_ptr(p);
-			info(curmark[2])++;
+			if (bot_mark)
+				deletetokenref(bot_mark);
+			bot_mark = mark_ptr(p);
+			info(bot_mark)++;
 		}
 		prevp = p;
 		p = link(prevp);
@@ -168,18 +168,18 @@ void fireup(halfword c)
 			if (nestptr == 0)
 				tail = pagetail;
 			else
-				nest[0].tailfield = pagetail;
+				contrib_tail = pagetail;
 		link(pagetail) = link(contrib_head);
 		link(contrib_head) = p;
 		link(prevp) = 0;
 	}
-	savevbadness = int_par(vbadness_code);
-	int_par(vbadness_code) = 10000;
-	savevfuzz = dimen_par(vfuzz_code);
-	dimen_par(vfuzz_code) = max_dimen;
-	box(255) = vpackage(link(page_head), bestsize, 0, pagemaxdepth);
-	int_par(vbadness_code) = savevbadness;
-	dimen_par(vfuzz_code) = savevfuzz;
+	savevbadness = vbadness();
+	vbadness() = inf_bad;
+	savevfuzz = vfuzz();
+	vfuzz() = max_dimen;
+	box(255) = vpackage(link(page_head), bestsize, exactly, pagemaxdepth);
+	vbadness() = savevbadness;
+	vfuzz() = savevfuzz;
 	if (lastglue != empty_flag)
 		deleteglueref(lastglue);
 	pagecontents = 0;
@@ -188,7 +188,7 @@ void fireup(halfword c)
 	lastglue = empty_flag;
 	lastpenalty = 0;
 	lastkern = 0;
-	pagesofar[7] = 0;
+	page_depth = 0;
 	pagemaxdepth = 0;
 	if (q != hold_head)
 	{
@@ -199,17 +199,17 @@ void fireup(halfword c)
 	while (r != page_ins_head)
 	{
 		q = link(r);
-		freenode(r, 4);
+		freenode(r, page_ins_node_size);
 		r = q;
 	}
 	link(page_ins_head) = page_ins_head;
-	if (curmark[0] && curmark[1] == 0)
+	if (top_mark && first_mark == 0)
 	{
-		curmark[1] = curmark[0];
-		info(curmark[0])++;
+		first_mark = top_mark;
+		info(top_mark)++;
 	}
 	if (output_routine())
-		if (deadcycles >= int_par(max_dead_cycles_code))
+		if (deadcycles >= max_dead_cycles())
 		{
 			printnl("! ");
 			print("Output loop---");
@@ -227,7 +227,7 @@ void fireup(halfword c)
 			deadcycles++;
 			pushnest();
 			mode = -vmode;
-			prev_depth = -0x1'00'00*1000;
+			prev_depth = ignore_depth;
 			mode_line = -line;
 			begintokenlist(output_routine(), 6);
 			newsavelevel(8);
@@ -241,7 +241,7 @@ void fireup(halfword c)
 			if (nestptr == 0)
 				tail = pagetail;
 			else
-				nest[0].tailfield = pagetail;
+				contrib_tail = pagetail;
 		else
 			link(pagetail) = link(contrib_head);
 		link(contrib_head) = link(page_head);

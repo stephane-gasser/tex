@@ -17,16 +17,16 @@ void print(const std::string &t)
 				return;
 			}
 			unsigned char S = s[0];
-			if (S == int_par(new_line_char_code) && selector < pseudo)
+			if (S == new_line_char() && selector < pseudo)
 			{
 				println();
 				return;
 			}
-			int nl = int_par(new_line_char_code);
-			int_par(new_line_char_code) = -1;
-			for (int j = strstart[S]; j < strstart[S+1]; j++)
-				printchar(strpool[j]);
-			int_par(new_line_char_code) = nl;
+			int nl = new_line_char();
+			new_line_char() = -1;
+			for (char c: s)
+				printchar(c);
+			new_line_char() = nl;
 			return;
 		}
 	for (char c: s)

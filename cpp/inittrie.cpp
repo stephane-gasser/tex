@@ -33,22 +33,22 @@ void inittrie(void)
 		}
 	for (p = 0; p <= triesize; p++)
 		triehash[p] = 0;
-	triel[0] = compresstrie(triel[0]);
+	trie_root = compresstrie(trie_root);
 	for (p = 0; p <= trieptr; p++)
-		triehash[p] = 0;
+		trie_ref[p] = 0;
 	for (p = 0; p <= 255; p++)
 		triemin[p] = p+1;
-	trie[0].rh = 1;
+	trie_link(0) = 1;
 	triemax = 0;
-	if (triel[0])
+	if (trie_root)
 	{
-		firstfit(triel[0]);
-		triepack(triel[0]);
+		firstfit(trie_root);
+		triepack(trie_root);
 	}
 	h.rh = 0;
 	h.b0 = 0;
 	h.b1 = 0;
-	if (triel[0] == 0)
+	if (trie_root == 0)
 	{
 		for (r = 0; r < 256; r++)
 			trie[r] = h;
@@ -56,15 +56,15 @@ void inittrie(void)
 	}
 	else
 	{
-		triefix(triel[0]);
+		triefix(trie_root);
 		r = 0;
 		do
 		{
-			s = trie[r].rh;
+			s = trie_link(r);
 			trie[r] = h;
 			r = s;
 		} while (r <= triemax);
 	}
-	trie[0].b1 = 63;
+	trie_char(0) = '?';
 	trienotready = false;
 }

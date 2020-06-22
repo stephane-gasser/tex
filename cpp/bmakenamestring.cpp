@@ -1,7 +1,7 @@
 #include "bmakenamestring.h"
 #include "makenamestring.h"
 
-strnumber bmakenamestring(bytefile& f)
+std::string bmakenamestring(bytefile& f)
 {
 	return makenamestring();
 }

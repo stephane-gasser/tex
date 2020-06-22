@@ -7,7 +7,7 @@ void setmathchar(int c)
 {
 	if (c >= 0x80'00)
 	{
-		curcs = curchr+1;
+		curcs = curchr+active_base;
 		curcmd = eq_type(curcs);
 		curchr = equiv(curcs);
 		xtoken();
@@ -16,17 +16,17 @@ void setmathchar(int c)
 	else
 	{
 		auto p = newnoad();
-		link(p+1) = 1;
-		subtype(p+1) = c%0x1'00;
-		type(p+1) = (c/0x1'00)%6;
-		if (c >= 0x70'00)
+		math_type(nucleus(p)) = math_char;
+		character(nucleus(p)) = c%0x1'00;
+		fam(nucleus(p)) = (c>>8)%0x10;
+		if (c >= var_code)
 		{
-			if (int_par(cur_fam_code) >= 0 && int_par(cur_fam_code) < 0x10)
-				type(p+1) = int_par(cur_fam_code);
-			type(p) = 0x10;
+			if (fam_in_range())
+				fam(nucleus(p)) = cur_fam();
+			type(p) = ord_noad;
 		}
 		else
-			type(p) = 0x10+c/0x10'00;
+			type(p) = ord_noad+(c>>12);
 		tail_append(p);
 	}
 }

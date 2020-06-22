@@ -12,12 +12,9 @@ void primitive(ASCIIcode s, quarterword c, halfword o)
 
 void primitive(const std::string &t, quarterword c, halfword o) 
 {
-	strnumber s = txt(t);
-	t.copy(reinterpret_cast<char *>(buffer), bufsize+1);
-	curval = idlookup(0, t.size());
-	strptr--;
-	poolptr = strstart[strptr];
-	text(curval) = s;
+	curval = idlookup(t);
+	flush_string();
+	text(curval) = txt(t);
 	eq_level(curval) = level_one;
 	eq_type(curval) = c;
 	equiv(curval) = o;

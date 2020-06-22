@@ -19,7 +19,7 @@
 #include "globals.h"
 #include "texte.h"
 
-bool isHexDigit(ASCIIcode c)
+bool is_hex(ASCIIcode c)
 {
 	return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f');
 }
@@ -31,10 +31,10 @@ int toHex(ASCIIcode c)
 
 int intFromTwoHexDigit(ASCIIcode c, int pos)
 {
-	if (isHexDigit(c) && pos <= curinput.limitfield)
+	if (is_hex(c) && pos <= limit)
 	{
 		ASCIIcode cc = buffer[pos];
-		if (isHexDigit(cc))
+		if (is_hex(cc))
 			return 16*toHex(c)+toHex(cc);
 	}
 	return -1;
@@ -42,7 +42,7 @@ int intFromTwoHexDigit(ASCIIcode c, int pos)
 
 bool prochainCaractereOK(int pos)
 {
-	return buffer[pos] == curchr && pos < curinput.limitfield && buffer[pos+1] < 128;
+	return buffer[pos] == curchr && pos < limit && buffer[pos+1] < 128;
 }
 
 template<class T> int processBuffer(int k, T &var)
@@ -55,48 +55,47 @@ template<class T> int processBuffer(int k, T &var)
 
 void removeFromEnd(int &k, int d)
 {
-	curinput.limitfield -= d;
+	limit -= d;
 	First -= d;
-	for (;k <= curinput.limitfield; k++)
+	for (;k <= limit; k++)
 		buffer[k] = buffer[k+d];
 }
 
+#define ANY_STATE_PLUS(cmd) mid_line+cmd: case skip_blanks+cmd: case new_line+cmd
+#define ADD_DELIMS_TO(state) state+math_shift: case state+tab_mark: case state+mac_param: case state+sub_mark: case state+letter: case state+other_char 
+
 void getnext(void)
 {
-	bool recommence;
+	bool restart;
 	do 
 	{
-		recommence = false;
+		restart = false;
 		curcs = 0;
-		if (curinput.statefield)
+		if (state != token_list)
 		{
 			bool skip;
 			do
 			{
 				skip = false;
-				if (curinput.locfield <= curinput.limitfield)
+				if (loc <= limit)
 				{
-					curchr = buffer[curinput.locfield];
-					curinput.locfield++;
+					curchr = buffer[loc];
+					loc++;
 					bool superscript2;
 					do
 					{
 						superscript2 = false;
 						curcmd = cat_code(curchr);
-						switch (curinput.statefield+curcmd)
+						switch (state+curcmd)
 						{
-							case mid_line+ignore:
-							case skip_blanks+ignore:
-							case new_line+ignore:
+							case ANY_STATE_PLUS(ignore):
 							case skip_blanks+spacer:
 							case new_line+spacer:
 								skip = true;
 								break;
-							case mid_line+escape:
-							case skip_blanks+escape:
-							case new_line+escape:
-								if (curinput.locfield > curinput.limitfield)
-									curcs = 513;
+							case ANY_STATE_PLUS(escape):
+								if (loc > limit)
+									curcs = null_cs;
 								else
 								{
 									bool superscript, identifiant;
@@ -104,18 +103,18 @@ void getnext(void)
 									{
 										superscript = false;
 										identifiant = false;
-										curchr = buffer[curinput.locfield];
+										curchr = buffer[loc];
 										int cat = cat_code(curchr);
-										int k = curinput.locfield+1;
-										curinput.statefield = (cat == letter || cat == spacer) ? skip_blanks : mid_line;
-										if (cat == letter && k <= curinput.limitfield)
+										int k = loc+1;
+										state = (cat == letter || cat == spacer) ? skip_blanks : mid_line;
+										if (cat == letter && k <= limit)
 										{
 											do
 											{
 												curchr = buffer[k];
 												cat = cat_code(curchr);
 												k++;
-											} while (cat == letter && k <= curinput.limitfield);
+											} while (cat == letter && k <= limit);
 											if (cat == sup_mark && prochainCaractereOK(k))
 											{
 												if (processBuffer(k, buffer[k-1]) == 3)
@@ -131,10 +130,13 @@ void getnext(void)
 											{
 												if (cat != letter)
 													k--;
-												if (k > curinput.locfield+1)
+												if (k > loc+1)
 												{
-													curcs = idlookup(curinput.locfield, k-curinput.locfield);
-													curinput.locfield = k;
+													std::string s;
+													for (int i = loc; i <= k; i++)
+														s += buffer[i];
+													curcs = idlookup(s);
+													loc = k;
 													identifiant = true;
 												}
 											}
@@ -154,8 +156,8 @@ void getnext(void)
 									} while (superscript && !identifiant);
 									if (!identifiant)
 									{
-										curcs = 257+buffer[curinput.locfield];
-										curinput.locfield++;
+										curcs = single_base+buffer[loc];
+										loc++;
 									}
 								}
 								curcmd = eq_type(curcs);
@@ -163,30 +165,24 @@ void getnext(void)
 								if (curcmd >= outer_call)
 									checkoutervalidity();
 								break;
-							case mid_line+active_char:
-							case skip_blanks+active_char:
-							case new_line+active_char:
+							case ANY_STATE_PLUS(active_char):
 								curcs = curchr+1;
 								curcmd = eq_type(curcs);
 								curchr = equiv(curcs);
-								curinput.statefield = mid_line;
+								state = mid_line;
 								if (curcmd >= outer_call)
 									checkoutervalidity();
 								break;
-							case mid_line+sup_mark:
-							case skip_blanks+sup_mark:
-							case new_line+sup_mark:
-								if (prochainCaractereOK(curinput.locfield))
+							case ANY_STATE_PLUS(sup_mark):
+								if (prochainCaractereOK(loc))
 								{
-									curinput.locfield += processBuffer(curinput.locfield, curchr);
+									loc += processBuffer(loc, curchr);
 									superscript2 = true;
 								}
 								else
-									curinput.statefield = mid_line;
+									state = mid_line;
 								break;
-							case mid_line+invalid_char:
-							case skip_blanks+invalid_char:
-							case new_line+invalid_char:
+							case ANY_STATE_PLUS(invalid_char):
 								printnl("! ");
 								print("Text line contains an invalid character");
 								helpptr = 2;
@@ -195,26 +191,24 @@ void getnext(void)
 								deletionsallowed = false;
 								error();
 								deletionsallowed = true;
-								recommence = true;
+								restart = true;
 								break;
 							case mid_line+spacer:
-								curinput.statefield = skip_blanks;
+								state = skip_blanks;
 								curchr = ' ';
 								break;
 							case mid_line+car_ret:
-								curinput.locfield = curinput.limitfield+1;
+								loc = limit+1;
 								curcmd = spacer;
 								curchr = ' ';
 								break;
 							case skip_blanks+car_ret:
-							case mid_line+comment:
-							case skip_blanks+comment:
-							case new_line+comment:
-								curinput.locfield = curinput.limitfield+1;
+							case ANY_STATE_PLUS(comment):
+								loc = limit+1;
 								skip = true;
 								break;
 							case new_line+car_ret:
-								curinput.locfield = curinput.limitfield+1;
+								loc = limit+1;
 								curcs = parloc;
 								curcmd = eq_type(curcs);
 								curchr = equiv(curcs);
@@ -223,41 +217,31 @@ void getnext(void)
 								break;
 							case skip_blanks+left_brace:
 							case new_line+left_brace:
-								curinput.statefield = mid_line;
+								state = mid_line;
 							case mid_line+left_brace:
 								alignstate++;
 								break;
 							case skip_blanks+right_brace:
 							case new_line+right_brace:
-								curinput.statefield = mid_line;
+								state = mid_line;
 							case mid_line+right_brace:
 								alignstate--;
 								break;
-							case skip_blanks+math_shift:
-							case skip_blanks+tab_mark:
-							case skip_blanks+mac_param:
-							case skip_blanks+sub_mark:
-							case skip_blanks+letter:
-							case skip_blanks+other_char:
-							case new_line+math_shift:
-							case new_line+tab_mark:
-							case new_line+mac_param:
-							case new_line+sub_mark:
-							case new_line+letter:
-							case new_line+other_char:
-								curinput.statefield = mid_line;
+							case ADD_DELIMS_TO(skip_blanks):
+							case ADD_DELIMS_TO(new_line):
+								state = mid_line;
 						}
-					} while (superscript2 && !skip && !recommence);
+					} while (superscript2 && !skip && !restart);
 				}
 				else
 				{
-					curinput.statefield = new_line;
-					if (curinput.namefield > 17)
+					state = new_line;
+					if (txt(name) > 17)
 					{
 						line++;
-						First = curinput.startfield;
+						First = start;
 						if (!forceeof)
-							if (inputln(inputfile[curinput.indexfield], true))
+							if (inputln(cur_file(), true))
 								firmuptheline();
 							else
 								forceeof = true;
@@ -269,21 +253,21 @@ void getnext(void)
 							forceeof = false;
 							endfilereading();
 							checkoutervalidity();
-							recommence = true;
+							restart = true;
 						}
-						if (!recommence)
+						if (!restart)
 						{
-							if (int_par(end_line_char_code) < 0 || int_par(end_line_char_code) > 255)
-								curinput.limitfield--;
+							if (end_line_char_inactive())
+								limit--;
 							else
-								buffer[curinput.limitfield] = int_par(end_line_char_code);
-							First = curinput.limitfield+1;
-							curinput.locfield = curinput.startfield;
+								buffer[limit] = end_line_char();
+							First = limit+1;
+							loc = start;
 						}
 					}
 					else
 					{
-						if (curinput.namefield)
+						if (!terminal_input(name))
 						{
 							curcmd = curchr = 0;
 							return;
@@ -291,48 +275,47 @@ void getnext(void)
 						if (inputptr > 0)
 						{
 							endfilereading();
-							recommence = true;
+							restart = true;
 						}
-						if (!recommence)
+						if (!restart)
 						{
 							if (selector < log_only)
 								openlogfile();
 							if (interaction > nonstop_mode)
 							{
-								if (int_par(end_line_char_code) < 0 || int_par(end_line_char_code) > 255)
-									curinput.limitfield++;
-								if (curinput.limitfield == curinput.startfield)
+								if (end_line_char_inactive())
+									limit++;
+								if (limit == start)
 									printnl("(Please type a command or say `\\end')");
 								println();
-								First = curinput.startfield;
+								First = start;
 								printchar('*');
 								terminput();
-								curinput.limitfield = last;
-								if (int_par(end_line_char_code) < 0 || int_par(end_line_char_code) > 255)
-									curinput.limitfield--;
+								limit = last;
+								if (end_line_char_inactive())
+									limit--;
 								else
-									buffer[curinput.limitfield] = int_par(end_line_char_code);
-								First = curinput.limitfield+1;
-								curinput.locfield = curinput.startfield;
+									buffer[limit] = end_line_char();
+								First = limit+1;
+								loc = start;
 							}
 							else
 								fatalerror("*** (job aborted, no legal \end found)");
 						}
 					}
-					if (!recommence)
+					if (!restart)
 					{
-						if (interrupt)
-							pauseforinstructions();
+						check_interrupt();
 						skip = true;
 					}
 				}
-			} while (skip && !recommence);
+			} while (skip && !restart);
 		}
 		else
-			if (curinput.locfield)
+			if (loc)
 			{
-				int t = info(curinput.locfield);
-				curinput.locfield = link(curinput.locfield);
+				int t = info(loc);
+				loc = link(loc);
 				if (t >= cs_token_flag)
 				{
 					curcs = t-cs_token_flag;
@@ -341,14 +324,14 @@ void getnext(void)
 					if (curcmd >= outer_call)
 						if (curcmd == dont_expand)
 						{
-							curcs = info(curinput.locfield)-cs_token_flag;
-							curinput.locfield = 0;
+							curcs = info(loc)-cs_token_flag;
+							loc = 0;
 							curcmd = eq_type(curcs);
 							curchr = equiv(curcs);
 							if (curcmd > max_command)
 							{
 								curcmd = relax;
-								curchr = 257;
+								curchr = no_expand_flag;
 							}
 						}
 						else
@@ -367,28 +350,28 @@ void getnext(void)
 							alignstate--;
 							break;
 						case out_param:
-							begintokenlist(paramstack[curinput.limitfield+curchr-1], 0);
-							recommence = true;
+							begintokenlist(paramstack[limit+curchr-1], 0);
+							restart = true;
 					}
 				}
 			}
 			else
 			{
 				endtokenlist();
-				recommence = true;
+				restart = true;
 			}
-		if (!recommence && curcmd <= out_param && curcmd >= tab_mark && alignstate == 0)
+		if (!restart && curcmd <= out_param && curcmd >= tab_mark && alignstate == 0)
 		{
 			if (scannerstatus == 4 || curalign == 0)
 				fatalerror("(interwoven alignment preambles are not allowed)");
-			curcmd = info(curalign+5);
-			info(curalign+5) = curchr;
+			curcmd = extra_info(curalign);
+			extra_info(curalign) = curchr;
 			if (curcmd == omit)
-				begintokenlist(omit_template, 2);
+				begintokenlist(omit_template, v_template);
 			else
-				begintokenlist(v_part(curalign), 2);
+				begintokenlist(v_part(curalign), v_template);
 			alignstate = 1000000;
-			recommence = true;
+			restart = true;
 		}
-	} while (recommence);
+	} while (restart);
 }

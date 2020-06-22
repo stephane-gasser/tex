@@ -28,7 +28,7 @@ void showwhatever(void)
 			enddiagnostic(true);
 			printnl("! ");
 			print("OK");
-			if (selector == term_and_log && int_par(tracing_online_code) <= 0)
+			if (selector == term_and_log && tracing_online() <= 0)
 				selector = term_only;
 			print(" (see the transcript file)");
 			selector = term_and_log;
@@ -46,7 +46,7 @@ void showwhatever(void)
 			enddiagnostic(true);
 			printnl("! ");
 			print("OK");
-			if (selector == term_and_log && int_par(tracing_online_code) <= 0)
+			if (selector == term_and_log && tracing_online() <= 0)
 				selector = term_only;
 			print(" (see the transcript file)");
 			selector = term_and_log;
@@ -74,7 +74,7 @@ void showwhatever(void)
 		errorcount--;
 	}
 	else 
-		if (int_par(tracing_online_code) > 0)
+		if (tracing_online() > 0)
 		{
 			helpptr = 3;
 			helpline[2] = "This isn't an error message; I'm just \\showing something.";

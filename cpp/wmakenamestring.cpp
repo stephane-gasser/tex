@@ -1,7 +1,7 @@
 #include "wmakenamestring.h"
 #include "makenamestring.h"
 
-strnumber wmakenamestring(wordfile& f)
+std::string wmakenamestring(wordfile& f)
 {
 	return makenamestring();
 }

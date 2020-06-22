@@ -28,6 +28,6 @@ void headforvmode(void)
 		backinput();
 		curtok = partoken;
 		backinput();
-		curinput.indexfield = 4;
+		token_type = inserted;
 	}
 }

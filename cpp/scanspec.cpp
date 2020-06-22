@@ -10,20 +10,20 @@ void scanspec(groupcode c, bool threecodes)
 	if (threecodes)
 		s = savestack[saveptr+0].int_;
 	int speccode;
-	if (scankeyword(841)) //to
+	if (scankeyword("to"))
 	{
-		speccode = 0;
-		scandimen(false, false, false);
+		speccode = exactly;
+		scan_normal_dimen();
 	}
 	else 
-		if (scankeyword(842)) //spread
+		if (scankeyword("spread"))
 		{
-			speccode = 1;
-			scandimen(false, false, false);
+			speccode = additional;
+			scan_normal_dimen();
 		}
 		else
 		{
-			speccode = 1;
+			speccode = additional;
 			curval = 0;
 		}
 	if (threecodes)

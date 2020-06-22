@@ -116,12 +116,12 @@ void initalign(void)
 		}
 		link(p) = getavail();
 		p = link(p);
-		info(p) = frozen_end_template+cs_token_flag;
+		info(p) = end_template_token;
 		v_part(curalign) = link(hold_head);
 	}
-	scannerstatus = 0;
-	newsavelevel(6);
+	scannerstatus = normal;
+	newsavelevel(align_group);
 	if (every_cr())
-		begintokenlist(every_cr(), 13);
+		begintokenlist(every_cr(), every_cr_text);
 	alignpeek();
 }

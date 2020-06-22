@@ -43,12 +43,12 @@ halfword cleanbox(halfword p, smallnumber s)
 	} while (false);
 	halfword x;
 	if (q >= himemmin || q == 0)
-		x = hpack(q, 0, 1);
+		x = hpack(q, 0, additional);
 	else 
 		if (link(q) == 0 && type(q) <= vlist_node && shift_amount(q) == 0)
 			x = q;
 		else
-			x = hpack(q, 0, 1);
+			x = hpack(q, 0, additional);
 	q = link(x+5);
 	if (q >= himemmin)
 	{

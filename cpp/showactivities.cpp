@@ -24,7 +24,7 @@ void showactivities(void)
 		printmode(m);
 		print(" entered at line ");
 		printint(abs(nest[p].mlfield));
-		if (m == hmode && nest[p].pgfield != 8585216)
+		if (m == hmode && nest[p].pgfield != 8585216) //0x830000
 		{
 			print(" (language");
 			printint(nest[p].pgfield%0x1'00'00);
@@ -49,7 +49,7 @@ void showactivities(void)
 					printnl("total height ");
 					printtotals();
 					printnl(" goal height");
-					printscaled(pagesofar[0]);
+					printscaled(page_goal);
 					halfword r = link(page_ins_head);
 					while (r != page_ins_head)
 					{
@@ -72,7 +72,7 @@ void showactivities(void)
 								q = link(q);
 								if (type(q) == ins_node && subtype(q) == subtype(r))
 									t++;
-							} while (q != llink(r));
+							} while (q != broken_ins(r));
 							print(", #");
 							printint(t);
 							print(" might split");

@@ -3,44 +3,19 @@
 #include "dvifour.h"
 
 void dvifontdef(internalfontnumber f)
-
 {
-	dvibuf[dviptr++] = fnt_def1;
-	if (dviptr == dvilimit)
-		dviswap();
-	dvibuf[dviptr++] = f-1;
-	if (dviptr == dvilimit)
-		dviswap();
-	dvibuf[dviptr++] = fontcheck[f].b0;
-	if (dviptr == dvilimit)
-		dviswap();
-	dvibuf[dviptr++] = fontcheck[f].b1;
-	if (dviptr == dvilimit)
-		dviswap();
-	dvibuf[dviptr++] = fontcheck[f].b2;
-	if (dviptr == dvilimit)
-		dviswap();
-	dvibuf[dviptr++] = fontcheck[f].b3;
-	if (dviptr == dvilimit)
-		dviswap();
+	dvi_out(fnt_def1);
+	dvi_out(f-1);
+	dvi_out(fontcheck[f].b0);
+	dvi_out(fontcheck[f].b1);
+	dvi_out(fontcheck[f].b2);
+	dvi_out(fontcheck[f].b3);
 	dvifour(fontsize[f]);
 	dvifour(fontdsize[f]);
-	dvibuf[dviptr++] = fontarea[f].size();
-	if (dviptr == dvilimit)
-		dviswap();
-	dvibuf[dviptr++] = fontname[f].size();
-	if (dviptr == dvilimit)
-		dviswap();
+	dvi_out(fontarea[f].size());
+	dvi_out(fontname[f].size());
 	for (auto c: fontarea[f])
-	{
-		dvibuf[dviptr++] = c;
-		if (dviptr == dvilimit)
-			dviswap();
-	}
+		dvi_out(c);
 	for (auto c: fontname[f])
-	{
-		dvibuf[dviptr++] = c;
-		if (dviptr == dvilimit)
-			dviswap();
-	}
+		dvi_out(c);
 }

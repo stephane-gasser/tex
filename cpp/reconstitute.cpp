@@ -6,6 +6,43 @@
 #include "newligature.h"
 #include "newkern.h"
 
+static void set_cur_r(int j, int n, halfword &curr, halfword &currh, halfword hchar)
+{
+	curr = j < n ? hu[j+1] : bchar;
+	currh = hyf[j]%2 ? hchar : non_char;
+}
+
+static void wrap_lig(bool test, halfword &t)
+{
+	if (ligaturepresent)
+	{
+		halfword p = newligature(hf, curl, link(curq));
+		if (lfthit)
+		{
+			subtype(p) = 2;
+			lfthit = false;
+		}
+		if (test && ligstack == 0)
+		{
+			subtype(p)++;
+			rthit = false;
+		}
+		link(curq) = p;
+		t = p;
+		ligaturepresent = false;
+	}
+}
+
+static void pop_lig_stack(smallnumber &j, halfword &t)
+{
+	if (lig_ptr(ligstack) > 0)
+	{
+		link(t) = lig_ptr(ligstack);
+		t = link(t);
+		j++;
+	}
+}
+
 smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword hchar)
 {
 	halfword p, t;
@@ -35,7 +72,7 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 		}
 	}
 	else 
-		if (curl < 256)
+		if (curl < non_char)
 		{
 			link(t) = getavail();
 			t = link(t);
@@ -43,14 +80,7 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 			subtype(t) = curl;
 		}
 	ligstack = 0;
-	if (j < n)
-		curr = hu[j+1];
-	else
-		curr = bchar;
-	if (hyf[j]%2)
-		currh = hchar;
-	else
-		currh = 256;
+	set_cur_r(j, n, curr, currh, hchar);
 	bool skipLoop;
 	bool recommence;
 	do
@@ -82,112 +112,88 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 			}
 		}
 		if (!skipLoop)
-			if (currh < 256)
-				testchar = currh;
-			else
-				testchar = curr;
+			testchar = currh < non_char ? currh : curr;
 		while (!skipLoop)
 		{
-			if (q.b1 == testchar)
-				if (q.b0 <= 128)
-					if (currh < 256)
+			if (next_char(q) == testchar)
+				if (skip_byte(q) <= stop_flag)
+					if (currh < non_char)
 					{
 						hyphenpassed = j;
-						hchar = 256;
-						currh = 256;
+						hchar = non_char;
+						currh = non_char;
 						recommence = true;
 						break;
 					}
 					else
 					{
-						if (hchar < 256 && hyf[j]%2)
+						if (hchar < non_char && hyf[j]%2)
 						{
 							hyphenpassed = j;
-							hchar = 256;
+							hchar = non_char;
 						}
-						if (q.b2 < 128)
+						if (op_byte(q) < kern_flag)
 						{
-							if (curl == 256)
+							if (curl == non_char)
 								lfthit = true;
 							if (j == n && ligstack == 0)
 								rthit = true;
-							if (interrupt)
-								pauseforinstructions;
-							switch (q.b2)
+							check_interrupt();
+							switch (op_byte(q))
 							{
+								// AB -> CB (symboles =:| et =:|>)
 								case 1:
 								case 5:
-									curl = q.b3;
+									curl = rem_byte(q);
 									ligaturepresent = true;
 									break;
+								// AB -> AC (symboles |=: et |=:>)
 								case 2:
 								case 6:
-									curr = q.b3;
+									curr = rem_byte(q);
 									if (ligstack > 0)
-										subtype(ligstack) = curr;
+										character(ligstack) = curr;
 									else
 									{
 										ligstack = newligitem(curr);
 										if (j == n)
-											bchar = 256;
+											bchar = non_char;
 										else
 										{
 											p = getavail();
-											link(ligstack+1) = p;
-											subtype(p) = hu[j+1];
-											type(p) = hf;
+											lig_ptr(ligstack) = p;
+											character(p) = hu[j+1];
+											font(p) = hf;
 										}
 									}
 									break;
+								// AB -> ACB (symbole |=:|)
 								case 3:
-									curr = q.b3;
+									curr = rem_byte(q);
 									p = ligstack;
 									ligstack = newligitem(curr);
 									link(ligstack) = p;
 									break;
+								// AB -> ACB (symboles |=:|> et |=:|>>)
 								case 7:
 								case 11:
-									if (ligaturepresent)
-									{
-										p = newligature(hf, curl, link(curq));
-										if (lfthit)
-										{
-											subtype(p) = 2;
-											lfthit = false;
-										}
-										link(curq) = p;
-										t = p;
-										ligaturepresent = false;
-									}
+									wrap_lig(false, t);
 									curq = t;
-									curl = q.b3;
+									curl = rem_byte(q);
 									ligaturepresent = true;
 									break;
+								// AB -> C (symbole !=)
 								default:
-									curl = q.b3;
+									curl = rem_byte(q);
 									ligaturepresent = true;
 									if (ligstack > 0)
 									{
-										if (link(ligstack+1) > 0)
-										{
-											link(t) = link(ligstack+1);
-											t = link(t);
-											j++;
-										}
+										pop_lig_stack(j, t);
 										p = ligstack;
 										ligstack = link(p);
 										freenode(p, 2);
 										if (ligstack == 0)
-										{
-											if (j < n)
-												curr = hu[j+1];
-											else
-												curr = bchar;
-											if (hyf[j]%2)
-												currh = hchar;
-											else
-												currh = 256;
-										}
+											set_cur_r(j, n, curr, currh, hchar);
 										else
 											curr = subtype(ligstack);
 									}
@@ -204,17 +210,10 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 											type(t) = hf;
 											subtype(t) = curr;
 											j++;
-											if (j < n)
-												curr = hu[j+1];
-											else
-												curr = bchar;
-											if (hyf[j]%2)
-												currh = hchar;
-											else
-												currh = 256;
+											set_cur_r(j, n, curr, currh, hchar);
 										}
 							}
-							if (q.b2 > 4 && q.b2 != 7)
+							if (op_byte(q) > 4 && op_byte(q) != 7)
 							{
 								skipLoop = true;
 								continue;
@@ -226,7 +225,7 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 						skipLoop = true;
 						continue;
 					}
-			if (q.b0 >= 128)
+			if (skip_byte(q) >= 128)
 				if (currh == 256)
 				{
 					skipLoop = true;
@@ -238,28 +237,12 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 					recommence = true;
 					break;
 				}
-			k += q.b0+1;
+			k += skip_byte(q)+1;
 			q = fontinfo[k].qqqq;
 		}
 		if (recommence)
 			continue;
-		if (ligaturepresent)
-		{
-			p = newligature(hf, curl, link(curq));
-			if (lfthit)
-			{
-				subtype(p) = 2;
-				lfthit = false;
-			}
-			if (rthit && ligstack == 0)
-			{
-				subtype(p)++;
-				rthit = false;
-			}
-			link(curq) = p;
-			t = p;
-			ligaturepresent = false;
-		}
+		wrap_lig(rthit, t);
 		if (w)
 		{
 			link(t) = newkern(w);
@@ -271,30 +254,14 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 			curq = t;
 			curl = subtype(ligstack);
 			ligaturepresent = true;
-			{
-			if (link(ligstack+1) > 0)
-			{
-				link(t) = link(ligstack+1);
-				t = link(t);
-				j++;
-			}
+			pop_lig_stack(j, t);
 			p = ligstack;
 			ligstack = link(p);
 			freenode(p, 2);
 			if (ligstack == 0)
-			{
-				if (j < n)
-					curr = hu[j+1];
-				else
-					curr = bchar;
-				if (hyf[j]%2)
-					currh = hchar;
-				else
-					currh = 256;
-			}
+				set_cur_r(j, n, curr, currh, hchar);
 			else
 				curr = subtype(ligstack);
-			}
 			recommence = true;
 			continue;
 		}

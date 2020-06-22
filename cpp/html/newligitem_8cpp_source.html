@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de newligitem.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">newligitem.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="newligitem_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="newligitem_8h.html">newligitem.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="getnode_8h.html">getnode.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="newligitem_8h.html#a9320dce796d514cc0637cff490c1f18d">    4</a></span>&#160;<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> <a class="code" href="newligitem_8cpp.html#a9320dce796d514cc0637cff490c1f18d">newligitem</a>(<a class="code" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a>(2);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(p) = <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p+1) = 0;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">return</span> p;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="agetnode_8h_html"><div class="ttname"><a href="getnode_8h.html">getnode.h</a></div></div>
+<div class="ttc" id="atex_8h_html_aaef48c5c65cb13f3e50745390b269155"><div class="ttname"><a href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a></div><div class="ttdeci">std::uint8_t quarterword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00045">tex.h:45</a></div></div>
+<div class="ttc" id="anewligitem_8cpp_html_a9320dce796d514cc0637cff490c1f18d"><div class="ttname"><a href="newligitem_8cpp.html#a9320dce796d514cc0637cff490c1f18d">newligitem</a></div><div class="ttdeci">halfword newligitem(quarterword c)</div><div class="ttdef"><b>Definition:</b> <a href="newligitem_8cpp_source.html#l00004">newligitem.cpp:4</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
+<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00049">constantes.cpp:49</a></div></div>
+<div class="ttc" id="anewligitem_8h_html"><div class="ttname"><a href="newligitem_8h.html">newligitem.h</a></div></div>
+<div class="ttc" id="agetnode_8cpp_html_a2baceeb19c0c4b666f0e18bcaff56d8a"><div class="ttname"><a href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a></div><div class="ttdeci">halfword getnode(int s)</div><div class="ttdef"><b>Definition:</b> <a href="getnode_8cpp_source.html#l00004">getnode.cpp:4</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

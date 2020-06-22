@@ -20,50 +20,49 @@ void startinput(void)
 	scanfilename();
 	if (curext == "")
 		curext = ".tex";
-	packfilename(curname, curarea, curext);
+	pack_cur_name();
 	while (true)
 	{
 		beginfilereading();
-		if (aopenin(inputfile[curinput.indexfield]))
+		if (aopenin(cur_file()))
 			break;
 		if (curarea == "")
 		{
-			packfilename(curname, "TeXinputs:", curext);
-			if (aopenin(inputfile[curinput.indexfield]))
+			packfilename(curname, TEX_area, curext);
+			if (aopenin(cur_file()))
 				break;
 		}
 		endfilereading();
 		promptfilename("input file name", ".tex");
 	}
-	curinput.namefield = amakenamestring(inputfile[curinput.indexfield]);
+	name = amakenamestring(cur_file());
 	if (jobname == "")
 	{
 		jobname = curname;
 		openlogfile();
 	}
-	if (termoffset+strstart[curinput.namefield+1]-strstart[curinput.namefield] > maxprintline-2)
+	if (termoffset+name.size() > maxprintline-2)
 		println();
 	else 
 		if (termoffset > 0 || fileoffset > 0)
 		printchar(' ');
 	printchar('(');
 	openparens++;
-	slowprint(curinput.namefield);
+	slowprint(name);
 	std::cout << std::flush;
-	curinput.statefield = 33;
-	if (curinput.namefield == strptr-1)
+	state = new_line;
+	if (name == TXT(strptr-1))
 	{
-		strptr--;
-		poolptr = strstart[strptr];
-		curinput.namefield = txt(curname);
+		flush_string();
+		name = curname;
 	}
 	line = 1;
-	if (inputln(inputfile[curinput.indexfield], false))
+	if (inputln(cur_file(), false))
 		firmuptheline();
-	if ((int_par(end_line_char_code) < 0 || int_par(end_line_char_code) > 255))
-		curinput.limitfield--;
+	if (end_line_char_inactive())
+		limit--;
 	else
-		buffer[curinput.limitfield] = int_par(end_line_char_code);
-	First = curinput.limitfield+1;
-	curinput.locfield = curinput.startfield;
+		buffer[limit] = end_line_char();
+	First = limit+1;
+	loc = start;
 }

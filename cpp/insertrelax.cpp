@@ -7,5 +7,5 @@ void insertrelax(void)
 	backinput();
 	curtok = cs_token_flag+frozen_relax;
 	backinput();
-	curinput.indexfield = 4;
+	token_type = inserted;
 }

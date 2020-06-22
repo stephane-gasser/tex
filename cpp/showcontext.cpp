@@ -6,41 +6,55 @@
 #include "println.h"
 #include "printcs.h"
 #include "showtokenlist.h"
+#include "texte.h"
+
+static void begin_pseudoprint(int l)
+{
+	l = tally;
+	tally = 0;
+	selector = pseudo;
+	trickcount = 1000000;
+}
+
+static void set_trick_count(void)
+{
+	firstcount = tally; 
+	trickcount = tally+1+errorline-halferrorline;
+	if (trickcount < errorline)
+		trickcount = errorline;
+}
 
 void showcontext(void)
 {
 	int l;
 	baseptr = inputptr;
-	inputstack[baseptr] = curinput;
+	inputstack[baseptr] = curinput; 
 	int nn = -1;
 	bool bottomline = false;
 	while (true) 
 	{
 		curinput = inputstack[baseptr];
-		if (curinput.statefield)
-			if (curinput.namefield > 17 || baseptr == 0)
+		if (state)
+			if (txt(name) > 17 || baseptr == 0)
 				bottomline = true;
-		if (baseptr == inputptr || bottomline || nn < int_par(error_context_lines_code))
+		if (baseptr == inputptr || bottomline || nn < error_context_lines())
 		{
-			if (baseptr == inputptr || curinput.statefield || curinput.indexfield != 3 || curinput.locfield)
+			if (baseptr == inputptr || state != token_list || token_type != backed_up || loc)
 			{
 				tally = 0;
 				oldsetting = selector;
-				if (curinput.statefield)
+				if (state)
 				{
-					if (curinput.namefield <= 17)
-						if (curinput.namefield == 0)
-							if (baseptr == 0)
-								printnl("<*>");
-							else
-								printnl("<insert> ");
+					if (txt(name) <= 17)
+						if (terminal_input(name))
+							printnl(baseptr == 0 ? "<*>" : "<insert> ");
 						else
 						{
 							printnl("<read ");
-							if (curinput.namefield == 17)
+							if (txt(name) == 17)
 								printchar('*');
 							else
-								printint(curinput.namefield - 1);
+								printint(txt(name)-1);
 							printchar('>');
 						}
 					else
@@ -49,31 +63,23 @@ void showcontext(void)
 						printint(line);
 					}
 					printchar(' ');
-					l = tally;
-					tally = 0;
-					selector = pseudo;
-					trickcount = 1000000;
+					begin_pseudoprint(l);
 					int j;
-					if (buffer[curinput.limitfield] == int_par(end_line_char_code))
-						j = curinput.limitfield;
+					if (buffer[limit] == end_line_char())
+						j = limit;
 					else
-						j = curinput.limitfield+1;
+						j = limit+1;
 					if (j > 0)
-						for (int i = curinput.startfield; i < j; i++)
+						for (int i = start; i < j; i++)
 						{
-							if (i == curinput.locfield)
-							{
-								firstcount = tally;
-								trickcount = tally + 1 + errorline - halferrorline;
-								if (trickcount < errorline)
-									trickcount = errorline;
-							}
+							if (i == loc)
+								set_trick_count();
 							printchar(buffer[i]);
 						}
 				}
 				else
 				{
-					switch (curinput.indexfield)
+					switch (token_type)
 					{
 						case parameter: 
 							printnl("<argument> ");
@@ -83,7 +89,7 @@ void showcontext(void)
 							printnl("<template> ");
 							break;
 						case backed_up: 
-							if (curinput.locfield == 0)
+							if (loc == 0)
 								printnl("<recently read> ");
 							else
 								printnl("<to be read again> ");
@@ -93,7 +99,7 @@ void showcontext(void)
 							break;
 						case macro:
 							println();
-							printcs(curinput.namefield);
+							printcs(txt(name));
 							break;
 						case output_text: 
 							printnl("<output> ");
@@ -128,23 +134,15 @@ void showcontext(void)
 						default: 
 							printnl("?");
 					}
-					l = tally;
-					tally = 0;
-					selector = pseudo;
-					trickcount = 1000000;
-					if (curinput.indexfield < 5)
-						showtokenlist(curinput.startfield, curinput.locfield, 100000);
+					begin_pseudoprint(l);
+					if (token_type < macro)
+						showtokenlist(start, loc, 100000);
 					else
-						showtokenlist(link(curinput.startfield), curinput.locfield, 100000);
+						showtokenlist(link(start), loc, 100000);
 				}
 				selector = oldsetting;
 				if (trickcount == 1000000)
-				{
-					firstcount = tally;
-					trickcount = tally+1+errorline-halferrorline;
-					if (trickcount < errorline)
-						trickcount = errorline;
-				}
+					set_trick_count();
 				int m;
 				if (tally < trickcount)
 					m = tally - firstcount;
@@ -179,7 +177,7 @@ void showcontext(void)
 			}
 		}
 		else 
-			if (nn == int_par(error_context_lines_code))
+			if (nn == error_context_lines())
 			{
 				printnl("...");
 				nn++;

@@ -25,8 +25,8 @@ bool inputln(std::istream& f, bool bypasseoln)
 				}
 				else
 				{
-					curinput.locfield = First;
-					curinput.limitfield = last-1;
+					loc = First;
+					limit = last-1;
 					overflow("buffer size", bufsize); 
 				}
 		}

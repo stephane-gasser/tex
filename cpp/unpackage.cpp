@@ -25,13 +25,13 @@ void unpackage(void)
 		error();
 		return;
 	}
-	if (c == 1)
-		link(tail) = copynodelist(link(p+5));
+	if (c == copy_code)
+		link(tail) = copynodelist(list_ptr(p));
 	else
 	{
-		link(tail) = link(p+5);
+		link(tail) = list_ptr(p);
 		box(curval) = 0;
-		freenode(p, 7);
+		freenode(p, box_node_size);
 	}
 	while (link(tail))
 		tail = link(tail);

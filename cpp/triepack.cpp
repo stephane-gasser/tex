@@ -7,7 +7,7 @@ void triepack(triepointer p)
 	do
 	{
 		triepointer q = triel[p];
-		if (q > 0 && triehash[q] == 0)
+		if (q > 0 && trie_ref[q] == 0)
 		{
 			firstfit(q);
 			triepack(q);

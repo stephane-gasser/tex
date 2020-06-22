@@ -31,7 +31,7 @@ void begininsertoradjust(void)
 		}
 	}
 	savestack[saveptr++].int_ = curval;
-	newsavelevel(11);
+	newsavelevel(insert_group);
 	scanleftbrace();
 	normalparagraph();
 	pushnest();

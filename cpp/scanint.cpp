@@ -19,29 +19,25 @@ void scanint(void)
 		do
 			getxtoken();
 		while (curcmd == spacer);
-		if (curtok == other_char*0x01'00+'-')
+		if (curtok == other_token+'-')
 		{
 			negative = !negative;
-			curtok = other_char*0x01'00+'+';
+			curtok = other_token+'+';
 		}
-	} while (curtok == other_char*0x01'00+'+');
-	if (curtok == other_char*0x01'00+'`')
+	} while (curtok == other_token+'+');
+	if (curtok == alpha_token)
 	{
 		gettoken();
 		if (curtok < cs_token_flag)
 		{
 			curval = curchr;
-			if (curcmd <= right_brace)
-				if (curcmd == right_brace)
-					alignstate++;
-				else
-					alignstate--;
+			if (curcmd == right_brace)
+				alignstate++;
+			if (curcmd == left_brace)
+				alignstate--;
 		}
 		else 
-			if (curtok < 0x11'00) // cmd < 17
-				curval = curtok-0x10'00;
-			else
-				curval = curtok-0x11'00;
+			curval = curtok-cs_token_flag-(curtok < cs_token_flag+single_base ? active_base : single_base);
 		if (curval > 0xFF)
 		{
 			printnl("! ");
@@ -65,18 +61,18 @@ void scanint(void)
 		else
 		{
 			radix = 10;
-			auto m = 214748364;
-			if (curtok == 3111) //other_char+'\''
+			auto m = 214748364; //0xC'CC'CC'CC
+			if (curtok == octal_token) //other_char+'\''
 			{
 				radix = 8;
 				m = 0x10'00'00'00;
 				getxtoken();
 			}
 			else 
-				if (curtok == 3106) //other_char+'\"'
+				if (curtok == hex_token) //other_char+'\"'
 				{
 					radix = 16;
-					m = 0x08'00'00'00;
+					m = 0x8'00'00'00;
 					getxtoken();
 				};
 			bool vacuous = true;
@@ -84,15 +80,15 @@ void scanint(void)
 			while (true)
 			{
 				int d;
-				if (curtok < 0x0C'00+'0'+radix && curtok >= 0x0C'00+'0' && curtok <= 0x0C'00+'9')
-					d = curtok-0x0C'00-'0'; // 0xc00 = other_char
+				if (curtok < zero_token+radix && curtok >= zero_token && curtok <= zero_token+9)
+					d = curtok-zero_token;
 				else 
 					if (radix == 16)
-						if (curtok <= 0x0B'00+'F' && curtok >= 0x0B'00+'A') //oxb00 = letter
-							d = curtok-0x0B'00-'A'+10;
+						if (curtok <= A_token+5 && curtok >= A_token)
+							d = curtok-A_token+10;
 						else 
-							if (curtok <= 0x0C'00+'F' && curtok >= 0x0C'00+'A') // 0xc00 = other_char
-								d = curtok-0x0C'00-'A'+10;
+							if (curtok <= other_A_token+5 && curtok >= other_A_token)
+								d = curtok-other_A_token+10;
 							else
 								break;
 					else

@@ -38,7 +38,7 @@ void Initialize(void)
 	lastglue = empty_flag;
 	lastpenalty = 0;
 	lastkern = 0;
-	pagesofar[7] = 0;
+	page_depth = 0;
 	pagemaxdepth = 0;
 	for (int k = int_base; k < 6107; k++)
     	xeqlevel[k] = 1;
@@ -53,17 +53,16 @@ void Initialize(void)
 	curboundary = 0;
 	maxsavestack = 0;
 	magset = 0;
-	curmark[0] = 0;
-	curmark[1] = 0;
-	curmark[2] = 0;
-	curmark[3] = 0;
-	curmark[4] = 0;
-	curval = 0;
-	curvallevel = 0;
+	top_mark = 0;
+	first_mark = 0;
+	bot_mark = 0;
+	split_first_mark = 0;
+	split_bot_mark = 0;
+	scanned_result(0, 0);
 	radix = 0;
 	curorder = 0;
 	for (int k = 0; k < 17; k++)
-	    readopen[k] = 2;
+	    readopen[k] = closed;
 	condptr = 0;
 	iflimit = 0;
 	curif = 0;
@@ -151,7 +150,7 @@ void Initialize(void)
 	info(lomemmax) = 0;
 	for (int k = hi_mem_stat_min; k <= mem_top; k++)
 		mem[k] = mem[lomemmax];
-	info(omit_template) = frozen_end_template+cs_token_flag;
+	info(omit_template) = end_template_token;
 	link(end_span) = 256;
 	info(end_span) = 0;
 	type(active) = 1;
@@ -166,7 +165,7 @@ void Initialize(void)
 	memend = mem_top;
 	himemmin = hi_mem_stat_min;
 	varused = 20;
-	dynused = 14;
+	dynused = hi_mem_stat_usage;
 	eq_type(undefined_control_sequence) = undefined_cs;
 	equiv(undefined_control_sequence) = 0;
 	eq_level(undefined_control_sequence) = 0;
@@ -188,7 +187,7 @@ void Initialize(void)
 	eq_level(box_base) = 1;
 	for (int k = box_base+1; k < cur_font_loc; k++)
 		eqtb[k] = eqtb[box_base];
-	equiv(cur_font_loc) = 0;
+	equiv(cur_font_loc) = null_font;
 	eq_type(cur_font_loc) = data;
 	eq_level(cur_font_loc) = 1;
 	for (int k = cur_font_loc+1; k < cat_code_base; k++)
@@ -211,13 +210,13 @@ void Initialize(void)
 	cat_code(127) = invalid_char;
 	cat_code('\0') = ignore;
 	for (int k = '0'; k <= '9'; k++)
-		math_code(k) = k+0x70'00;
+		math_code(k) = k+var_code;
 	for (int k = 'A'; k <= 'Z'; k++)
 	{
 		cat_code(k) = letter;
 		cat_code(k+'a'-'A') = letter;
-		math_code(k) = k+0x71'00;
-		math_code(k+'a'-'A') = k+0x71'00+'a'-'A';
+		math_code(k) = k+var_code+0x1'00;
+		math_code(k+'a'-'A') = k+var_code+0x1'00+'a'-'A';
 		lc_code(k) = k+'a'-'A';
 		lc_code(k+'a'-'A') = k+'a'-'A';
 		uc_code(k) = k;
@@ -226,12 +225,12 @@ void Initialize(void)
 	}
 	for (int k = int_base; k < del_code_base; k++)
 		eqtb[k].int_ = 0;
-	int_par(mag_code) = 1000;
-	int_par(tolerance_code) = 10000;
-	int_par(hang_after_code) = 1;
-	int_par(max_dead_cycles_code) = 25;
-	int_par(escape_char_code) = '\\';
-	int_par(end_line_char_code) = '\r';
+	mag() = 1000;
+	tolerance() = 10000;
+	hang_after() = 1;
+	max_dead_cycles() = 25;
+	escape_char() = '\\';
+	end_line_char() = '\r';
 	for (int k = 0; k < 256; k++)
 		del_code(k) = -1;
 	del_code('.') = 0;
@@ -241,30 +240,30 @@ void Initialize(void)
 	cscount = 0;
 	eq_type(frozen_dont_expand) = dont_expand;
 	text(frozen_dont_expand) = txt("notexpanded:");
-	fontptr = 0;
+	fontptr = null_font;
 	fmemptr = 7;
-	fontname[0] = "nullfont";
-	fontarea[0] = "";
-	hyphenchar[0] = 45;
-	skewchar[0] = -1;
-	bcharlabel[0] = 0;
-	fontbchar[0] = 256;
-	fontfalsebchar[0] = 256;
-	fontbc[0] = 1;
-	fontec[0] = 0;
-	fontsize[0] = 0;
-	fontdsize[0] = 0;
-	charbase[0] = 0;
-	widthbase[0] = 0;
-	heightbase[0] = 0;
-	depthbase[0] = 0;
-	italicbase[0] = 0;
-	ligkernbase[0] = 0;
-	kernbase[0] = 0;
-	extenbase[0] = 0;
-	fontglue[0] = 0;
-	fontparams[0] = 7;
-	parambase[0] = -1;
+	fontname[null_font] = "nullfont";
+	fontarea[null_font] = "";
+	hyphenchar[null_font] = '-';
+	skewchar[null_font] = -1;
+	bcharlabel[null_font] = non_address;
+	fontbchar[null_font] = non_char;
+	fontfalsebchar[null_font] = non_char;
+	fontbc[null_font] = 1;
+	fontec[null_font] = 0;
+	fontsize[null_font] = 0;
+	fontdsize[null_font] = 0;
+	charbase[null_font] = 0;
+	widthbase[null_font] = 0;
+	heightbase[null_font] = 0;
+	depthbase[null_font] = 0;
+	italicbase[null_font] = 0;
+	ligkernbase[null_font] = 0;
+	kernbase[null_font] = 0;
+	extenbase[null_font] = 0;
+	fontglue[null_font] = 0;
+	fontparams[null_font] = 7;
+	parambase[null_font] = -1;
 	for (int k = 0; k < 7; k++)
 		fontinfo[k].int_ = 0;
 	for (int k = -trieopsize; k <= trieopsize; k++)
@@ -273,7 +272,7 @@ void Initialize(void)
 		trieused[k] = 0;
 	trieopptr = 0;
 	trienotready = true;
-	triel[0] = 0;
+	trie_root = 0;
 	triec[0] = 0;
 	trieptr = 0;
 	text(frozen_control_sequence) = txt("inaccessible");

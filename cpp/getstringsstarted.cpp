@@ -2,7 +2,9 @@
 #include "makestring.h"
 #include "aopenin.h"
 #include "aclose.h"
-#include <iostream> 
+#include <iostream>
+#include "texte.h" 
+
 
 bool getstringsstarted(void)
 {
@@ -13,24 +15,24 @@ bool getstringsstarted(void)
 	{
 		if (k < ' ' || k > '~')
 		{
-			strpool[poolptr++] = '^';
-			strpool[poolptr++] = '^';
+			append_char('^');
+			append_char('^');
 			if (k < 64)
-				strpool[poolptr++] = k+64;
+				append_char(k+64);
 			else 
 				if (k < 128)
-					strpool[poolptr++] = k-64;
+					append_char(k-64);
 				else
 				{
 					int l = k/16;
-					strpool[poolptr++] = l < 10 ? l+'0' : l+'a'-10;
+					append_char(l < 10 ? l+'0' : l+'a'-10);
 					l = k%16;
-					strpool[poolptr++] = l < 10 ? l+'0' : l+'a'-10;
+					append_char(l < 10 ? l+'0' : l+'a'-10);
 				}
 		}
 		else
-			strpool[poolptr++] = k;
-		g = makestring();
+			append_char(k);
+		g = txt(makestring());	//makestring();
 	}
 	nameoffile = poolname;
 	if (!aopenin(poolfile))
@@ -97,11 +99,11 @@ bool getstringsstarted(void)
 					m = ' ';
 				else
 					m = poolfile.get();
-				strpool[poolptr++] = xord[m];
+				append_char(xord[m]);
 			}
 			std::string dummy;
 			getline(poolfile, dummy);
-			g = makestring();
+			g = txt(makestring());	//makestring();
 		}
 	} while (!c);
 	aclose(poolfile);

@@ -7,43 +7,24 @@
 
 void specialout(halfword p)
 {
-	if (curh != dvih)
-	{
-		movement(curh-dvih, 143);
-		dvih = curh;
-	}
-	if (curv != dviv)
-	{
-		movement(curv-dviv, 157);
-		dviv = curv;
-	}
+	synch_h();
+	synch_v();
 	auto oldsetting = selector;
 	selector = new_string;
 	showtokenlist(link(link(p+1)), 0, poolsize-poolptr);
 	selector = oldsetting;
-	if (poolptr+1 > poolsize)
-		overflow("pool size", poolsize-initpoolptr); 
-	if (poolptr-strstart[strptr] < 256)
+	str_room(1); 
+	if (cur_length() < 256)
 	{
-		dvibuf[dviptr++] = xxx1;
-		if (dviptr == dvilimit)
-			dviswap();
-		dvibuf[dviptr++] = poolptr-strstart[strptr];
-		if (dviptr == dvilimit)
-			dviswap();
+		dvi_out(xxx1);
+		dvi_out(cur_length());
 	}
 	else
 	{
-		dvibuf[dviptr++] = xxx4;
-		if (dviptr == dvilimit)
-			dviswap();
-		dvifour(poolptr-strstart[strptr]);
+		dvi_out(xxx4);
+		dvifour(cur_length());
 	}
-	for (auto k = strstart[strptr]; k <poolptr; k++)
-	{
-		dvibuf[dviptr++] = strpool[k];
-		if (dviptr == dvilimit)
-			dviswap();
-	}
+	for (auto k = strstart[strptr]; k < poolptr; k++)
+		dvi_out(strpool[k]);
 	poolptr = strstart[strptr];
 }

@@ -4,7 +4,7 @@
 #include "xnoverd.h"
 #include "newglue.h"
 
-void appspace(void)
+void appspace(halfword &mainp, fontindex &maink)
 {
 	halfword q;
 	if (space_factor >= 2000 && xspace_skip())
@@ -20,15 +20,15 @@ void appspace(void)
 			{
 				mainp = newspec(zero_glue);
 				maink = 2+parambase[cur_font()];
-				width(mainp) = param(space_code, cur_font());
-				stretch(mainp) = param(space_stretch_code, cur_font());
-				shrink(mainp) = param(space_shrink_code, cur_font());
+				width(mainp) = space(cur_font());
+				stretch(mainp) = space_stretch(cur_font());
+				shrink(mainp) = space_shrink(cur_font());
 				fontglue[cur_font()] = mainp;
 			}
 		}
 		mainp = newspec(mainp);
 		if (space_factor >= 2000)
-			width(mainp) += param(extra_space_code, cur_font());
+			width(mainp) += extra_space(cur_font());
 		stretch(mainp) = xnoverd(stretch(mainp), space_factor, 1000);
 		shrink(mainp) = xnoverd(shrink(mainp), 1000, space_factor);
 		q = newglue(mainp);

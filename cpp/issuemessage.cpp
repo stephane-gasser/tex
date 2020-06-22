@@ -22,12 +22,11 @@ void issuemessage(void)
 	tokenshow(defref);
 	selector = oldsetting;
 	flushlist(defref);
-	if (poolptr+1 > poolsize)
-		overflow("pool size", poolsize-initpoolptr);
+	str_room(1);
 	auto s = makestring(); 
 	if (c == 0)
 	{
-		if (termoffset+strstart[s+1]-strstart[s] > maxprintline-2)
+		if (termoffset+s.size() > maxprintline-2)
 			println();
 		else 
 			if (termoffset > 0 || fileoffset > 0)
@@ -61,6 +60,5 @@ void issuemessage(void)
 		error();
 		useerrhelp = false;
 	}
-	strptr--;
-	poolptr = strstart[strptr];
+	flush_string();
 }

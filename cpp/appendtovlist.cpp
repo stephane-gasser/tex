@@ -8,7 +8,7 @@ void appendtovlist(halfword b)
 	{
 		scaled d = width(baseline_skip())-prev_depth-height(b);
 		halfword p;
-		if (d < dimen_par(line_skip_limit_code))
+		if (d < line_skip_limit())
 			p = newparamglue(0);
 		else
 		{

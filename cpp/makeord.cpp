@@ -41,18 +41,20 @@ void makeord(halfword q)
 								}
 								else
 								{
-									if (interrupt)
-										pauseforinstructions();
+									check_interrupt();
 									switch (op_byte(curi))
 									{
+										// AB -> CB (symboles =:| et =:|>)
 										case 1:
 										case 5: 
 											subtype(q+1) = rem_byte(curi);
 											break;
+										// AB -> AC (symboles |=: et |=:>)
 										case 2:
 										case 6: 
 											subtype(p+1) = rem_byte(curi);
 											break;
+										// AB -> ACB (symboles |=:|, |=:|> et |=:|>>)
 										case 3:
 										case 7:
 										case 11:
@@ -61,11 +63,12 @@ void makeord(halfword q)
 											type(r+1) = type(q+1);
 											link(q) = r;
 											link(r) = p;
-											if (op_byte(curi) < 11)
+											if (op_byte(curi) < 11) // symboles |=:| et |=:|>
 												link(r+1) = 1;
-											else
-												link(r+1) = 4;
+											else // symbole |=:|>>
+												link(r+1) = 4; 
 											break;
+										// AB -> C (symbole =;)
 										default:
 											link(q) = link(p);
 											subtype(q+1) = rem_byte(curi);

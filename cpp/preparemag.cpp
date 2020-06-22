@@ -8,11 +8,11 @@
 
 void preparemag(void)
 {
-	if (magset > 0 && int_par(mag_code) != magset)
+	if (magset > 0 && mag() != magset)
 	{
 		printnl("! ");
 		print("Incompatible magnification (");
-		printint(int_par(mag_code));
+		printint(mag());
 		print(");");
 		printnl(" the previous value will be retained");
 		helpptr = 2;
@@ -21,14 +21,14 @@ void preparemag(void)
 		interror(magset);
 		geqworddefine(int_base+mag_code, magset);
 	}
-	if (int_par(mag_code) <= 0 || int_par(mag_code) > 0x80'00)
+	if (mag() <= 0 || mag() > 0x80'00)
 	{
 		printnl("! ");
 		print("Illegal magnification has been changed to 1000");
 		helpptr = 1;
 		helpline[0] = "The magnification ratio must be between 1 and 0x80'00.";
-		interror(int_par(mag_code));
+		interror(mag());
 		geqworddefine(int_base+mag_code, 1000);
 	}
-	magset = int_par(mag_code);
+	magset = mag();
 }

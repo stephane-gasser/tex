@@ -94,8 +94,9 @@ typedef char groupcode; // 0..16
 typedef struct
 {
     quarterword statefield, indexfield;
-    halfword startfield, locfield, limitfield, namefield;
-}  instaterecord;
+    halfword startfield, locfield, limitfield;
+    std::string namefield;
+} instaterecord;
 
 typedef char internalfontnumber; //0..fontmax
 typedef int fontindex; // 0..fontmemsize

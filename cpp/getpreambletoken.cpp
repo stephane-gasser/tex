@@ -12,7 +12,7 @@ void getpreambletoken(void)
 	while (true)
 	{
 		gettoken();
-		while (curchr == 256 && curcmd == tab_mark)
+		while (curchr == span_code && curcmd == tab_mark)
 		{
 			gettoken();
 			if (curcmd > max_command)
@@ -23,14 +23,11 @@ void getpreambletoken(void)
 		}
 		if (curcmd == endv)
 			fatalerror("(interwoven alignment preambles are not allowed)");
-		if (curcmd == assign_glue && curchr == 2893)
+		if (curcmd == assign_glue && curchr == glue_base+tab_skip_code)
 		{
 			scanoptionalequals();
-			scanglue(2);
-			if (int_par(global_defs_code) > 0)
-				geqdefine(2893, glue_ref, curval);
-			else
-				eqdefine(2893, glue_ref, curval);
+			scanglue(glue_val);
+			(global_defs() > 0 ? geqdefine : eqdefine)(glue_base+tab_skip_code, glue_ref, curval);
 			continue;
 		}
 		break;

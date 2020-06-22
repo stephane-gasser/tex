@@ -4,28 +4,17 @@
 
 halfword strtoks(poolpointer b)
 {
-	if (poolptr+1 > poolsize)
-		overflow("pool size", poolsize-initpoolptr);
+	str_room(1);
 	halfword p = temp_head;
 	link(p) = 0;
 	for (auto k = b; k < poolptr; k++)
 	{
 		halfword t = strpool[k];
 		if (t == ' ')
-			t = 0x0A'00+' ';
+			t = space_token;
 		else
-			t += 0x0C'00;
-		auto q = avail;
-		if (q == 0)
-			q = getavail();
-		else
-		{
-			avail = link(q);
-			link(q) = 0;
-		}
-		link(p) = q;
-		info(q) = t;
-		p = q;
+			t += other_token;
+		fast_store_new_token(p, t);
 	}
 	poolptr = b;
 	return p;

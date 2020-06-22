@@ -2,34 +2,16 @@
 
 void packbufferedname(smallnumber n, int a, int b)
 {
-	if (n+b-a+5 > filenamesize)
-		b = a+filenamesize-n-5;
+	if (n+b-a+1+format_ext_length > filenamesize)
+		b = a+filenamesize-n-1-format_ext_length;
 	int k = 0;
 	for (int j = 1; j <= n; j++)
-	{
-		c = xord[TEXformatdefault[j]];
-		k++;
-		if (k <= filenamesize)
-			nameoffile[k] = xchr[c];
-	}
+		append_to_name(k,xord[TEXformatdefault[j]]);
 	for (int j = a; j <= b; j++)
-	{
-		c = buffer[j];
-		k++;
-		if (k <= filenamesize)
-			nameoffile[k] = xchr[c];
-	}
-	for (int j = 17; j < 21; j++)
-	{
-		c = xord[TEXformatdefault[j]];
-		k++;
-		if (k <= filenamesize)
-			nameoffile[k] = xchr[c];
-	}
-	if (k <= filenamesize)
-		namelength = k;
-	else
-		namelength = filenamesize;
+		append_to_name(k, buffer[j]);
+	for (int j = format_default_length-format_ext_length+1; j <= format_default_length; j++)
+		append_to_name(k, xord[TEXformatdefault[j]]);
+	namelength = std::min(k, filenamesize);
 	for (k = namelength+1; k <= filenamesize; k++)
 		nameoffile[k] = ' ';
 }

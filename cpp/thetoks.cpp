@@ -12,35 +12,20 @@
 halfword thetoks(void)
 {
 	getxtoken();
-	scansomethinginternal(5, false);
-	if (curvallevel >= 4)
+	scansomethinginternal(tok_val, false);
+	if (curvallevel >= ident_val)
 	{
 		halfword p = temp_head;
 		link(p) = 0;
-		if (curvallevel == 4)
-		{
-			auto q = getavail();
-			link(p) = q;
-			info(q) = cs_token_flag+curval;
-			p = q;
-		}
+		if (curvallevel == ident_val)
+			store_new_token(p, cs_token_flag+curval);
 		else 
 			if (curval)
 			{
 				auto r = link(curval);
 				while (r)
 				{
-					auto q = avail;
-					if (q == 0)
-						q = getavail();
-					else
-					{
-						avail = link(q);
-						link(q) = 0;
-					}
-					link(p) = q;
-					info(q) = info(r);
-					p = q;
+					fast_store_new_token(p, info(r));
 					r = link(r);
 				}
 			}
@@ -51,18 +36,18 @@ halfword thetoks(void)
 	auto b = poolptr;
 	switch (curvallevel)
 	{
-		case 0: 
+		case int_val: 
 			printint(curval);
 			break;
-		case 1:
+		case dimen_val:
 			printscaled(curval);
 			print("pt");
 			break;
-		case 2:
+		case glue_val:
 			printspec(curval, "pt");
 			deleteglueref(curval);
 			break;
-		case 3:
+		case mu_val:
 			printspec(curval, "mu");
 			deleteglueref(curval);
 	}

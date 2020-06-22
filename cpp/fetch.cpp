@@ -12,7 +12,7 @@ void fetch(halfword a)
 {
 	curc = subtype(a);
 	curf = fam_fnt(type(a)+cursize);
-	if (curf == 0)
+	if (curf == null_font)
 	{
 		printnl("! ");
 		print("");
@@ -20,7 +20,7 @@ void fetch(halfword a)
 		printchar(' ');
 		printint(type(a));
 		print(" is undefined (character ");
-		print(std::string(1, char(curc)));
+		printchar(curc);
 		printchar(')');
 		helpptr = 4;
 		helpline[3] = "Somewhere in the math formula just ended, you used the";

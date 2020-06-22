@@ -3,8 +3,8 @@
 
 void deleteglueref(halfword p)
 {
-	if (link(p) == 0)
-		freenode(p, 4);
+	if (glue_ref_count(p) == 0)
+		freenode(p, glue_spec_size);
 	else
 		link(p)--;
 }

@@ -1,0 +1,38 @@
+<map id="makefraction" name="makefraction">
+<area shape="rect" id="node1" title=" " alt="" coords="5,1302,103,1328"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708" title=" " alt="" coords="488,364,576,391"/>
+<area shape="rect" id="node4" href="$cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="189,1226,264,1252"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="769,820,812,847"/>
+<area shape="rect" id="node8" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="503,1327,561,1354"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title=" " alt="" coords="645,1859,700,1886"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title=" " alt="" coords="644,1910,701,1936"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title=" " alt="" coords="642,972,703,999"/>
+<area shape="rect" id="node13" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="649,1479,696,1506"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title=" " alt="" coords="646,1226,699,1252"/>
+<area shape="rect" id="node17" href="$newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="497,1276,567,1303"/>
+<area shape="rect" id="node20" href="$newnullbox_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="489,1732,575,1759"/>
+<area shape="rect" id="node22" href="$constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title=" " alt="" coords="151,2239,303,2266"/>
+<area shape="rect" id="node23" href="$constantes_8cpp.html#a119f55d1dfa1c33234aba5b416349f88" title=" " alt="" coords="365,212,425,239"/>
+<area shape="rect" id="node24" href="$constantes_8cpp.html#a4fcc1be4ed3f5a20f29b7b9a2d38cad4" title=" " alt="" coords="365,263,425,290"/>
+<area shape="rect" id="node25" href="$constantes_8cpp.html#ace2ee2d09feffc44ca4973a6df76ee97" title=" " alt="" coords="361,314,429,340"/>
+<area shape="rect" id="node26" href="$constantes_8cpp.html#a23500e4ebb354f31c210a0aabffd81d7" title=" " alt="" coords="361,10,429,36"/>
+<area shape="rect" id="node27" href="$fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="489,2138,575,2164"/>
+<area shape="rect" id="node28" href="$half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8" title=" " alt="" coords="511,2036,553,2063"/>
+<area shape="rect" id="node29" href="$constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256" title=" " alt="" coords="179,2290,275,2316"/>
+<area shape="rect" id="node30" href="$constantes_8cpp.html#a7e5dde4648198f097fa1bfa7938ded66" title=" " alt="" coords="199,60,254,87"/>
+<area shape="rect" id="node31" href="$constantes_8cpp.html#af114699abb7e5e99f5b187e7dd97a257" title=" " alt="" coords="199,111,254,138"/>
+<area shape="rect" id="node32" href="$constantes_8cpp.html#a57381542573313bc14ac3f30257bf56b" title=" " alt="" coords="199,162,254,188"/>
+<area shape="rect" id="node33" href="$rebox_8cpp.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="368,871,423,898"/>
+<area shape="rect" id="node34" href="$constantes_8cpp.html#ad5b1f1dc7fa85e49de3d8eb8edcc9b35" title=" " alt="" coords="175,2340,278,2367"/>
+<area shape="rect" id="node35" href="$constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790" title=" " alt="" coords="187,2391,266,2418"/>
+<area shape="rect" id="node36" href="$vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="351,1834,440,1860"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041" title=" " alt="" coords="640,212,705,239"/>
+<area shape="rect" id="node5" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="637,922,709,948"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="769,1048,812,1075"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title=" " alt="" coords="624,1682,721,1708"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#af9289b57d2744238aa244ac1f60c85c5" title=" " alt="" coords="489,466,575,492"/>
+<area shape="rect" id="node16" href="$mlisttohlist_8cpp.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="353,1226,438,1252"/>
+<area shape="rect" id="node18" href="$xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="501,1023,563,1050"/>
+<area shape="rect" id="node19" href="$newnoad_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52" title=" " alt="" coords="495,1530,569,1556"/>
+<area shape="rect" id="node21" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title=" " alt="" coords="362,1151,429,1178"/>
+</map>

@@ -4,12 +4,12 @@
 
 void initcol(void)
 {
-	info(curalign+5) = curcmd;
+	extra_info(curalign) = curcmd;
 	if (curcmd == omit)
 		alignstate = 0;
 	else
 	{
 		backinput();
-		begintokenlist(u_part(curalign), 1);
+		begintokenlist(u_part(curalign), u_template);
 	}
 }

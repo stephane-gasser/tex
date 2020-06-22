@@ -13,12 +13,12 @@
 halfword vsplit(eightbits n, scaled h)
 {
 	auto v = box(n);
-	if (curmark[3])
+	if (split_first_mark)
 	{
-		deletetokenref(curmark[3]);
-		curmark[3] = 0;
-		deletetokenref(curmark[4]);
-		curmark[4] = 0;
+		deletetokenref(split_first_mark);
+		split_first_mark = 0;
+		deletetokenref(split_bot_mark);
+		split_bot_mark = 0;
 	}
 	if (v == 0)
 		return 0;
@@ -35,25 +35,25 @@ halfword vsplit(eightbits n, scaled h)
 		error();
 		return 0;
 	}
-	auto q = vertbreak(link(v+5), h, dimen_par(split_max_depth_code));
-	auto p = link(v+5);
+	auto q = vertbreak(list_ptr(v), h, split_max_depth());
+	auto p = list_ptr(v);
 	if (p == q)
-		link(v+5) = 0;
+		list_ptr(v) = 0;
 	else
 		while (true)
 		{
 			if (type(p) == mark_node) //4
-				if (curmark[3] == 0)
+				if (split_first_mark == 0)
 				{
-					curmark[3] = mark_ptr(p);
-					curmark[4] = curmark[3];
-					info(curmark[3]) += 2;
+					split_first_mark = mark_ptr(p);
+					split_bot_mark = split_first_mark;
+					info(split_first_mark) += 2;
 				}
 				else
 				{
-					deletetokenref(curmark[4]);
-					curmark[4] = mark_ptr(p);
-					info(curmark[4])++;
+					deletetokenref(split_bot_mark);
+					split_bot_mark = mark_ptr(p);
+					info(split_bot_mark)++;
 				}
 			if (link(p) == q)
 			{
@@ -63,11 +63,8 @@ halfword vsplit(eightbits n, scaled h)
 			p = link(p);
 		}
 	q = prunepagetop(q);
-	p = link(v+5);
-	freenode(v, 7);
-	if (q == 0)
-		box(n) = 0;
-	else
-		box(n) = vpackage(q, 0, 1, max_dimen);
-	return vpackage(p, h, 0, dimen_par(split_max_depth_code));
+	p = list_ptr(v);
+	freenode(v, box_node_size);
+	box(n) = q == 0 ? 0 : vpack(q, 0, additional);
+	return vpackage(p, h, exactly, split_max_depth());
 }

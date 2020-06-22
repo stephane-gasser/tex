@@ -1,0 +1,19 @@
+<map id="newcharacter" name="newcharacter">
+<area shape="rect" id="node1" title=" " alt="" coords="5,391,105,418"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="162,163,237,190"/>
+<area shape="rect" id="node3" href="$charwarning_8cpp.html#a151b5d2be0ab9cc2e1728e16b5e8927c" title=" " alt="" coords="153,214,245,241"/>
+<area shape="rect" id="node11" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="166,366,233,393"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#afc4130c3e660c696fd60874168fec8d3" title=" " alt="" coords="160,417,239,443"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="165,467,233,494"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="176,518,223,545"/>
+<area shape="rect" id="node4" href="$begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title=" " alt="" coords="567,11,679,38"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title=" " alt="" coords="847,125,908,151"/>
+<area shape="rect" id="node6" href="$enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="293,315,396,342"/>
+<area shape="rect" id="node7" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="453,265,510,291"/>
+<area shape="rect" id="node8" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="599,366,646,393"/>
+<area shape="rect" id="node9" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="727,226,799,253"/>
+<area shape="rect" id="node10" href="$slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="444,163,519,190"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="460,518,503,545"/>
+<area shape="rect" id="node13" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="309,366,380,393"/>
+<area shape="rect" id="node14" href="$runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="309,417,380,443"/>
+</map>

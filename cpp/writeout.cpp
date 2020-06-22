@@ -12,24 +12,26 @@
 #include "flushlist.h"
 #include "texte.h"
 
+constexpr int end_write_token = cs_token_flag+end_write;
+
 void writeout(halfword p)
 {
 	auto q = getavail();
-	info(q) = right_brace*0x1'00+'}';
+	info(q) = right_brace_token+'}';
 	auto r = getavail();
 	link(q) = r;
-	info(r) = cs_token_flag+end_write;
-	begintokenlist(q, 4);
-	begintokenlist(link(p+1), 15);
+	info(r) = end_write_token;
+	ins_list(q);
+	begintokenlist(write_tokens(p), write_text);
 	q = getavail();
-	info(q) = left_brace*0x1'00+'{';
-	begintokenlist(q, 4);
+	info(q) = left_brace_token+'{';
+	ins_list(q);
 	int oldmode = mode;
 	mode = 0;
 	curcs = writeloc;
 	q = scantoks(false, true);
 	gettoken();
-	if (curtok != end_write+cs_token_flag)
+	if (curtok != end_write_token)
 	{
 		printnl("! ");
 		print("Unbalanced write command");
@@ -39,7 +41,7 @@ void writeout(halfword p)
 		error();
 		do
 			gettoken();
-		while (curtok != end_write+cs_token_flag);
+		while (curtok != end_write_token);
 	}
 	;
 	mode = oldmode;

@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de thetoks.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">thetoks.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="thetoks_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="thetoks_8h.html">thetoks.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="getxtoken_8h.html">getxtoken.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="scansomethinginternal_8h.html">scansomethinginternal.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="getavail_8h.html">getavail.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printint_8h.html">printint.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printscaled_8h.html">printscaled.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="print_8h.html">print.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printspec_8h.html">printspec.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="deleteglueref_8h.html">deleteglueref.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="strtoks_8h.html">strtoks.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="thetoks_8h.html#a3d9f2f273381823c25aaf0d9331e4492">   12</a></span>&#160;<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> <a class="code" href="thetoks_8cpp.html#a3d9f2f273381823c25aaf0d9331e4492">thetoks</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115">getxtoken</a>();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa">scansomethinginternal</a>(<a class="code" href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2da3f858a408d925f50967cacb4528dd2c3">tok_val</a>, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#aa2f0c2471665b88d946ed837332f7392">curvallevel</a> &gt;= <a class="code" href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2da2b09fb4816f2d5255656883569859f7b">ident_val</a>)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p = <a class="code" href="constantes_8h.html#a04029b32252386e3a9d0dfefb4821258">temp_head</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = 0;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#aa2f0c2471665b88d946ed837332f7392">curvallevel</a> == <a class="code" href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2da2b09fb4816f2d5255656883569859f7b">ident_val</a>)</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="getavail_8cpp.html#ab66fdad2e7e67fc6932956666eb928ba">store_new_token</a>(p, <a class="code" href="constantes_8h.html#a43ed29a8db87d066c04b1abcfb609b40">cs_token_flag</a>+<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keyword">auto</span> <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a> = <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <span class="keywordflow">while</span> (<a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                    <a class="code" href="getavail_8cpp.html#af3df9f1773f7ae0591d3580af2b1ab6d">fast_store_new_token</a>(p, <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(<a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>));</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                    <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a> = <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordflow">return</span> p;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="globals_8cpp.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a> = <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> = <a class="code" href="constantes_8h.html#a696642e2c8bf5ae9458bef3763a48f87">new_string</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">auto</span> b = <a class="code" href="globals_8cpp.html#adc7927a275454b0cbbfa3b06a11035f5">poolptr</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">switch</span> (<a class="code" href="globals_8cpp.html#aa2f0c2471665b88d946ed837332f7392">curvallevel</a>)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2da23b86cf284434898a08fad68d5c1c11b">int_val</a>: </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <a class="code" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2daca948588b78be7abcd5f302f29a8922d">dimen_val</a>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="printscaled_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb">printscaled</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;pt&quot;</span>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2da3887febabba29447419df26a311aa4c7">glue_val</a>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <a class="code" href="printspec_8cpp.html#a5d5bd239859b86558d63d7463878964f">printspec</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>, <span class="stringliteral">&quot;pt&quot;</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <a class="code" href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d">deleteglueref</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2daf9213f217e279f75de1e4814690e6c76">mu_val</a>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="printspec_8cpp.html#a5d5bd239859b86558d63d7463878964f">printspec</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>, <span class="stringliteral">&quot;mu&quot;</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d">deleteglueref</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> = <a class="code" href="globals_8cpp.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="strtoks_8cpp.html#a0164a29d5025ab7576b0af8c5aa59bae">strtoks</a>(b);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aprintscaled_8h_html"><div class="ttname"><a href="printscaled_8h.html">printscaled.h</a></div></div>
+<div class="ttc" id="agetavail_8cpp_html_ab66fdad2e7e67fc6932956666eb928ba"><div class="ttname"><a href="getavail_8cpp.html#ab66fdad2e7e67fc6932956666eb928ba">store_new_token</a></div><div class="ttdeci">void store_new_token(halfword &amp;p, halfword t)</div><div class="ttdef"><b>Definition:</b> <a href="getavail_8cpp_source.html#l00041">getavail.cpp:41</a></div></div>
+<div class="ttc" id="adeleteglueref_8h_html"><div class="ttname"><a href="deleteglueref_8h.html">deleteglueref.h</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a0411cd49bb5b71852cecd93bcbf0ca2da23b86cf284434898a08fad68d5c1c11b"><div class="ttname"><a href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2da23b86cf284434898a08fad68d5c1c11b">int_val</a></div><div class="ttdeci">@ int_val</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00773">constantes.h:773</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a5144e9be7698585335fc96f2811b5406"><div class="ttname"><a href="globals_8cpp.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a></div><div class="ttdeci">char oldsetting</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00096">globals.cpp:96</a></div></div>
+<div class="ttc" id="astrtoks_8h_html"><div class="ttname"><a href="strtoks_8h.html">strtoks.h</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a696642e2c8bf5ae9458bef3763a48f87"><div class="ttname"><a href="constantes_8h.html#a696642e2c8bf5ae9458bef3763a48f87">new_string</a></div><div class="ttdeci">constexpr int new_string</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00032">constantes.h:32</a></div></div>
+<div class="ttc" id="ascansomethinginternal_8cpp_html_a9fe9753f74e043d09baea2df018d6dfa"><div class="ttname"><a href="scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa">scansomethinginternal</a></div><div class="ttdeci">void scansomethinginternal(smallnumber level, bool negative)</div><div class="ttdef"><b>Definition:</b> <a href="scansomethinginternal_8cpp_source.html#l00017">scansomethinginternal.cpp:17</a></div></div>
+<div class="ttc" id="aprintscaled_8cpp_html_a8b86d6448cd6f52f6054887f2abd74cb"><div class="ttname"><a href="printscaled_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb">printscaled</a></div><div class="ttdeci">void printscaled(scaled s)</div><div class="ttdef"><b>Definition:</b> <a href="printscaled_8cpp_source.html#l00005">printscaled.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a0411cd49bb5b71852cecd93bcbf0ca2da3f858a408d925f50967cacb4528dd2c3"><div class="ttname"><a href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2da3f858a408d925f50967cacb4528dd2c3">tok_val</a></div><div class="ttdeci">@ tok_val</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00778">constantes.h:778</a></div></div>
+<div class="ttc" id="awriteout_8cpp_html_a76be2f40de03334f34eaf465efc0e0e0"><div class="ttname"><a href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a></div><div class="ttdeci">auto r</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00019">writeout.cpp:19</a></div></div>
+<div class="ttc" id="ascansomethinginternal_8h_html"><div class="ttname"><a href="scansomethinginternal_8h.html">scansomethinginternal.h</a></div></div>
+<div class="ttc" id="agetxtoken_8h_html"><div class="ttname"><a href="getxtoken_8h.html">getxtoken.h</a></div></div>
+<div class="ttc" id="astrtoks_8cpp_html_a0164a29d5025ab7576b0af8c5aa59bae"><div class="ttname"><a href="strtoks_8cpp.html#a0164a29d5025ab7576b0af8c5aa59bae">strtoks</a></div><div class="ttdeci">halfword strtoks(poolpointer b)</div><div class="ttdef"><b>Definition:</b> <a href="strtoks_8cpp_source.html#l00005">strtoks.cpp:5</a></div></div>
+<div class="ttc" id="aprintint_8h_html"><div class="ttname"><a href="printint_8h.html">printint.h</a></div></div>
+<div class="ttc" id="agetavail_8h_html"><div class="ttname"><a href="getavail_8h.html">getavail.h</a></div></div>
+<div class="ttc" id="athetoks_8cpp_html_a3d9f2f273381823c25aaf0d9331e4492"><div class="ttname"><a href="thetoks_8cpp.html#a3d9f2f273381823c25aaf0d9331e4492">thetoks</a></div><div class="ttdeci">halfword thetoks(void)</div><div class="ttdef"><b>Definition:</b> <a href="thetoks_8cpp_source.html#l00012">thetoks.cpp:12</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a43ed29a8db87d066c04b1abcfb609b40"><div class="ttname"><a href="constantes_8h.html#a43ed29a8db87d066c04b1abcfb609b40">cs_token_flag</a></div><div class="ttdeci">constexpr int cs_token_flag</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00667">constantes.h:667</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a0411cd49bb5b71852cecd93bcbf0ca2daca948588b78be7abcd5f302f29a8922d"><div class="ttname"><a href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2daca948588b78be7abcd5f302f29a8922d">dimen_val</a></div><div class="ttdeci">@ dimen_val</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00774">constantes.h:774</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a0411cd49bb5b71852cecd93bcbf0ca2da3887febabba29447419df26a311aa4c7"><div class="ttname"><a href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2da3887febabba29447419df26a311aa4c7">glue_val</a></div><div class="ttdeci">@ glue_val</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00775">constantes.h:775</a></div></div>
+<div class="ttc" id="athetoks_8h_html"><div class="ttname"><a href="thetoks_8h.html">thetoks.h</a></div></div>
+<div class="ttc" id="aprintspec_8cpp_html_a5d5bd239859b86558d63d7463878964f"><div class="ttname"><a href="printspec_8cpp.html#a5d5bd239859b86558d63d7463878964f">printspec</a></div><div class="ttdeci">void printspec(int p, const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printspec_8cpp_source.html#l00008">printspec.cpp:8</a></div></div>
+<div class="ttc" id="aprint_8h_html"><div class="ttname"><a href="print_8h.html">print.h</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_adc7927a275454b0cbbfa3b06a11035f5"><div class="ttname"><a href="globals_8cpp.html#adc7927a275454b0cbbfa3b06a11035f5">poolptr</a></div><div class="ttdeci">poolpointer poolptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00053">globals.cpp:53</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a04029b32252386e3a9d0dfefb4821258"><div class="ttname"><a href="constantes_8h.html#a04029b32252386e3a9d0dfefb4821258">temp_head</a></div><div class="ttdeci">constexpr int temp_head</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00195">constantes.h:195</a></div></div>
+<div class="ttc" id="aprintint_8cpp_html_a3e0bbc492597d05b770a8e0ba03b95ee"><div class="ttname"><a href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a></div><div class="ttdeci">void printint(int n)</div><div class="ttdef"><b>Definition:</b> <a href="printint_8cpp_source.html#l00005">printint.cpp:5</a></div></div>
+<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a0411cd49bb5b71852cecd93bcbf0ca2daf9213f217e279f75de1e4814690e6c76"><div class="ttname"><a href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2daf9213f217e279f75de1e4814690e6c76">mu_val</a></div><div class="ttdeci">@ mu_val</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00776">constantes.h:776</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aa2f0c2471665b88d946ed837332f7392"><div class="ttname"><a href="globals_8cpp.html#aa2f0c2471665b88d946ed837332f7392">curvallevel</a></div><div class="ttdeci">char curvallevel</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00132">globals.cpp:132</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00019">constantes.cpp:19</a></div></div>
+<div class="ttc" id="aprintspec_8h_html"><div class="ttname"><a href="printspec_8h.html">printspec.h</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a0411cd49bb5b71852cecd93bcbf0ca2da2b09fb4816f2d5255656883569859f7b"><div class="ttname"><a href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2da2b09fb4816f2d5255656883569859f7b">ident_val</a></div><div class="ttdeci">@ ident_val</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00777">constantes.h:777</a></div></div>
+<div class="ttc" id="agetavail_8cpp_html_af3df9f1773f7ae0591d3580af2b1ab6d"><div class="ttname"><a href="getavail_8cpp.html#af3df9f1773f7ae0591d3580af2b1ab6d">fast_store_new_token</a></div><div class="ttdeci">void fast_store_new_token(halfword &amp;p, halfword t)</div><div class="ttdef"><b>Definition:</b> <a href="getavail_8cpp_source.html#l00050">getavail.cpp:50</a></div></div>
+<div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a4a02011783b79fd4be63e5ee91cb8621"><div class="ttname"><a href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a></div><div class="ttdeci">char selector</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00059">globals.cpp:59</a></div></div>
+<div class="ttc" id="adeleteglueref_8cpp_html_a0e9fe66112a2a6fa95a1570e7ca6082d"><div class="ttname"><a href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d">deleteglueref</a></div><div class="ttdeci">void deleteglueref(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="deleteglueref_8cpp_source.html#l00004">deleteglueref.cpp:4</a></div></div>
+<div class="ttc" id="agetxtoken_8cpp_html_a3237321de3327dcec8b8e81069858115"><div class="ttname"><a href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115">getxtoken</a></div><div class="ttdeci">void getxtoken(void)</div><div class="ttdef"><b>Definition:</b> <a href="getxtoken_8cpp_source.html#l00006">getxtoken.cpp:6</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a3fc97d19e160956f7fa23eb8ded19785"><div class="ttname"><a href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a></div><div class="ttdeci">int curval</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00019">globals.cpp:19</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

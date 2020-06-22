@@ -33,7 +33,7 @@ bool fincol(void)
 	if (alignstate < 500000)
 		fatalerror("(interwoven alignment preambles are not allowed)");
 	p = link(q);
-	if (p == 0 && info(curalign+5) < 257)
+	if (p == 0 && extra_info(curalign) < cr_code)
 		if (curloop)
 		{
 			link(q) = newnullbox();
@@ -75,24 +75,24 @@ bool fincol(void)
 			helpline[2] = "You have given more \\span or & marks than there were";
 			helpline[1] = "in the preamble to the \\halign or \\valign now in progress.";
 			helpline[0] = "So I'll assume that you meant to type \\cr instead.";
-			info(curalign+5) = 257;
+			extra_info(curalign) = cr_code;
 			error();
 		}
-	if (info(curalign+5) != 256)
+	if (extra_info(curalign) != span_code)
 	{
 		unsave();
 		newsavelevel(6);
 		if (mode == -hmode)
 		{
 			adjusttail = curtail;
-			u = hpack(link(head), 0, 1);
+			u = hpack(link(head), 0, additional);
 			w = width(u);
 			curtail = adjusttail;
 			adjusttail = 0;
 		}
 		else
 		{
-			u = vpackage(link(head), 0, 1, 0);
+			u = vpackage(link(head), 0, additional, 0);
 			w = height(u);
 		}
 		n = 0;
@@ -111,7 +111,7 @@ bool fincol(void)
 				q = link(q);
 			if (link(link(q)) > n)
 			{
-				s = getnode(2);
+				s = getnode(span_node_size);
 				info(s) = info(q);
 				link(s) = n;
 				info(q) = s;
@@ -125,7 +125,7 @@ bool fincol(void)
 			if (w > width(curalign))
 				width(curalign) = w;
 		type(u) = unset_node;
-		subtype(u) = n;
+		span_count(u) = n;
 		if (totalstretch[3])
 			o = 3;
 			else 
@@ -153,9 +153,9 @@ bool fincol(void)
 		popnest();
 		link(tail) = u;
 		tail = u;
-		tail_append(newglue(info(link(curalign)+1)));
-		subtype(tail) = 12;
-		if (info(curalign+5) >= 257)
+		tail_append(newglue(glue_ptr(link(curalign))));
+		subtype(tail) = tab_skip_code+1;
+		if (extra_info(curalign) >= cr_code)
 			return true;
 		initspan(p);
 	}

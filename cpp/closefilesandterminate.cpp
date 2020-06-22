@@ -1,11 +1,11 @@
 #include "closefilesandterminate.h"
 #include "aclose.h"
-#include "dviswap.h"
 #include "printnl.h"
 #include "dvifour.h"
 #include "preparemag.h"
 #include "dvifontdef.h"
 #include "writedvi.h"
+#include "dviswap.h"
 #include "slowprint.h"
 #include "print.h"
 #include "printint.h"
@@ -21,16 +21,10 @@ void closefilesandterminate(void)
 	while (curs > -1)
 	{
 		if (curs > 0)
-		{
-			dvibuf[dviptr++] = pop;
-			if (dviptr == dvilimit)
-				dviswap();
-		}
+			dvi_out(pop);
 		else
 		{
-			dvibuf[dviptr++] = eop;
-			if (dviptr == dvilimit)
-				dviswap();
+			dvi_out(eop);
 			totalpages++;
 		}
 		curs--;
@@ -39,45 +33,27 @@ void closefilesandterminate(void)
 		printnl("No pages of output.");
 	else
 	{
-		dvibuf[dviptr++] = post;
-		if (dviptr == dvilimit)
-			dviswap();
+		dvi_out(post);
 		dvifour(lastbop);
 		lastbop = dvioffset+dviptr-5;
 		dvifour(25400000);
 		dvifour(473628672);
 		preparemag();
-		dvifour(int_par(mag_code));
+		dvifour(mag());
 		dvifour(maxv);
 		dvifour(maxh);
-		dvibuf[dviptr++] = maxpush/0x1'00;
-		if (dviptr == dvilimit)
-			dviswap();
-		dvibuf[dviptr++] = maxpush%0x1'00;
-		if (dviptr == dvilimit)
-			dviswap();
-		dvibuf[dviptr++] = (totalpages/0x1'00)%0x1'00;
-		if (dviptr == dvilimit)
-			dviswap();
-		dvibuf[dviptr++] = totalpages%0x1'00;
-		if (dviptr == dvilimit)
-			dviswap();
+		dvi_out(maxpush/0x1'00);
+		dvi_out(maxpush%0x1'00);
+		dvi_out((totalpages/0x1'00)%0x1'00);
+		dvi_out(totalpages%0x1'00);
 		for (;fontptr > 0; fontptr--)
 			if (fontused[fontptr])
 				dvifontdef(fontptr);
-		dvibuf[dviptr++] = post_post;
-		if (dviptr == dvilimit)
-			dviswap();
+		dvi_out(post_post);
 		dvifour(lastbop);
-		dvibuf[dviptr++] = id_byte;
-		if (dviptr == dvilimit)
-			dviswap();
+		dvi_out(id_byte);
 		for (k = 4+(dvibufsize-dviptr)%4; k > 0; k--)
-		{
-			dvibuf[dviptr++] = 223;
-			if (dviptr == dvilimit)
-				dviswap();
-		}
+			dvi_out(223);
 		if (dvilimit == halfbuf)
 			writedvi(halfbuf, dvibufsize-1);
 		if (dviptr > 0)

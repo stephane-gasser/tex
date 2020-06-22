@@ -23,16 +23,16 @@ void beginbox(int boxcontext)
 	eightbits n;
 	switch (curchr)
 	{
-		case 0:
+		case box_code:
 			scaneightbitint();
 			curbox = box(curval);
 			box(curval) = 0;
 			break;
-		case 1:
+		case copy_code:
 			scaneightbitint();
 			curbox = copynodelist(box(curval));
 			break;
-		case 2:
+		case last_box_code:
 			curbox = 0;
 			if (abs(mode) == mmode)
 			{
@@ -80,7 +80,7 @@ void beginbox(int boxcontext)
 							}
 						}
 			break;
-		case 3:
+		case vsplit_code:
 			scaneightbitint();
 			n = curval;
 			if (!scankeyword("to"))
@@ -92,7 +92,7 @@ void beginbox(int boxcontext)
 				helpline[0] = "will look for the <dimen> next.";
 				error();
 			}
-			scandimen(false, false, false);
+			scan_normal_dimen();
 			curbox = vsplit(n, curval);
 			break;
 		default:

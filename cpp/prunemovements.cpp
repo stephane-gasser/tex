@@ -9,7 +9,7 @@ void prunemovements(int l)
 			break;
 		auto p = downptr;
 		downptr = link(p);
-		freenode(p, 3);
+		freenode(p, movement_node_size);
 	}
 	while (rightptr)
 	{
@@ -17,7 +17,7 @@ void prunemovements(int l)
 			break;
 		auto p = rightptr;
 		rightptr = link(p);
-		freenode(p, 3);
+		freenode(p, movement_node_size);
 	}
 }
 

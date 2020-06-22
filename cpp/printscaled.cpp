@@ -9,16 +9,16 @@ void printscaled(scaled s)
 		printchar('-');
 		s = -s;
 	}
-	printint(s/0x1'00'00);
+	printint(s/unity);
 	printchar('.');
-	s = 10*(s%0x1'00'00)+5;
+	s = 10*(s%unity)+5;
 	scaled delta = 10;
 	do
 	{
-		if (delta > 0x1'00'00)
-		s -= 17232;
-		printchar('0'+s/0x1'00'00);
-		s = 10*(s%0x1'00'00);
+		if (delta > unity)
+		s += 0x80'00-50000;
+		printchar('0'+s/unity);
+		s = 10*(s%unity);
 		delta *= 10;
 	} while (s > delta);
 }

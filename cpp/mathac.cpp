@@ -21,18 +21,18 @@ void mathac(void)
 		helpline[0] = "(Accents are not the same in formulas as they are in text.)";
 		error();
 	}
-	tail_append(getnode(5));
-	type(tail) = 28;
-	subtype(tail) = 0;
-	mem[tail+1].hh = emptyfield;
-	mem[tail+3].hh = emptyfield;
-	mem[tail+2].hh = emptyfield;
-	link(tail+4) = 1;
+	tail_append(getnode(accent_noad_size));
+	type(tail) = accent_noad;
+	subtype(tail) = normal;
+	mem[nucleus(tail)].hh = emptyfield;
+	mem[subscr(tail)].hh = emptyfield;
+	mem[supscr(tail)].hh = emptyfield;
+	math_type(accent_chr(tail)) = math_char;
 	scanfifteenbitint();
-	subtype(tail+4) = curval%0x1'00;
-	if (curval >= 0x7000 && int_par(cur_fam_code) >= 0 && int_par(cur_fam_code) < 0x10)
-		type(tail+4) = int_par(cur_fam_code);
+	character(accent_chr(tail)) = curval%0x1'00;
+	if (curval >= var_code && fam_in_range())
+		fam(accent_chr(tail)) = cur_fam();
 	else
-		type(tail+4) = (curval/0x1'00)%0x10;
-	scanmath(tail+1);
+		fam(accent_chr(tail)) = (curval>>8)%0x10;
+	scanmath(nucleus(tail));
 }

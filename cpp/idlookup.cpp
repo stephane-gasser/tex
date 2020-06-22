@@ -1,14 +1,14 @@
 #include "idlookup.h"
-#include "streqbuf.h"
 #include "overflow.h"
 #include "makestring.h"
+#include "texte.h"
 
-halfword idlookup(int j, int l)
+halfword idlookup(const std::string &s)
 {
-	int h = buffer[j];
-	for (halfword k = j+1; k < j+l; k++)
+	int h = 0;
+	for (auto c: s)
 	{
-		h = 2*h+buffer[k];
+		h = 2*h+(unsigned char)c;
 		while (h >= hash_prime)
 			h -= hash_prime;
 	}
@@ -16,8 +16,8 @@ halfword idlookup(int j, int l)
 	while (true)
 	{
 		if (text(p) > 0)
-			if (length(text(p)) == l)
-				if (streqbuf(text(p), j))
+			if (length(text(p)) == s.size())
+				if (TXT(text(p)) == s)
 					return p;
 		if (next(p) == 0)
 		{
@@ -36,17 +36,16 @@ halfword idlookup(int j, int l)
 					next(p) = hashused;
 					p = hashused;
 				}
-				if (poolptr+l > poolsize)
-					overflow("pool size", poolsize-initpoolptr);
-				int d = (poolptr-strstart[strptr]);
-				while (poolptr > strstart[strptr])
+				str_room(s.size());
+				int d = cur_length();
+				while (cur_length() > 0)
 				{
-					poolptr--;
-					strpool[poolptr+l] = strpool[poolptr];
+					flush_char();
+					strpool[poolptr+s.size()] = strpool[poolptr];
 				}
-				for (halfword k = j; k <j+l; k++)
-					strpool[poolptr++] = buffer[k];
-				text(p) = makestring();
+				for (auto c: s)
+					append_char(c);
+				text(p) = txt(makestring());
 				poolptr += d;
 			}
 			return p;

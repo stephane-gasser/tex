@@ -116,17 +116,17 @@ void error(void)
 					beginfilereading();
 					if (last > First + 1)
 					{
-						curinput.locfield = First+1;
+						loc = First+1;
 						buffer[First] = ' ';
 					}
 					else
 					{
 						print("insert>");
 						terminput();
-						curinput.locfield = First;
+						loc = First;
 					}
 					First = last;
-					curinput.limitfield = last - 1;
+					limit = last - 1;
 					return;
 				case 'Q':
 				case 'R':

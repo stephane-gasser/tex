@@ -5,16 +5,15 @@ bool morename(ASCIIcode c)
 {
 	if (c == ' ')
 		return false;
-	if (poolptr+1 > poolsize)
-	overflow("pool size", poolsize-initpoolptr);
-	strpool[poolptr++] = c;
+	str_room(1);
+	append_char(c);
 	if (c == '>' || c == ':')
 	{
-		areadelimiter = poolptr-strstart[strptr];
+		areadelimiter = cur_length();
 		extdelimiter = 0;
 	}
 	else 
 		if (c == '.' && extdelimiter == 0)
-			extdelimiter = poolptr-strstart[strptr];
+			extdelimiter = cur_length();
 	return true;
 }

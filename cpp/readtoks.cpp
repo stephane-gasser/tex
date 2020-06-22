@@ -20,15 +20,12 @@
 
 void readtoks(int n, halfword r)
 {
-	scannerstatus = 2;
+	scannerstatus = defining;
 	warningindex = r;
 	defref = getavail();
-	info(defref) = 0;
+	token_ref_count(defref) = 0;
 	auto p = defref;
-	auto q = getavail();
-	link(p) = q;
-	info(q) = 0x0E'00; //cmd=end_match/comment/stop ?
-	p = q;
+	store_new_token(p, end_match_token);
 	smallnumber m;
 	if (n < 0 || n > 15)
 		m = 16;
@@ -39,8 +36,8 @@ void readtoks(int n, halfword r)
 	do
 	{
 		beginfilereading();
-		curinput.namefield = m+1;
-		if (readopen[m] == 2)
+		name = m+1;
+		if (readopen[m] == closed)
 			if (interaction > nonstop_mode)
 				if (n < 0)
 				{
@@ -59,20 +56,20 @@ void readtoks(int n, halfword r)
 			fatalerror("*** (cannot \read from terminal in nonstop modes)");
 
 		else 
-			if (readopen[m] == 1)
+			if (readopen[m] == just_open)
 				if (inputln(readfile[m], false))
-					readopen[m] = 0;
+					readopen[m] = normal;
 				else
 				{
 					aclose(readfile[m]);
-					readopen[m] = 2;
+					readopen[m] = closed;
 				}
 
 			else
 				if (!inputln(readfile[m], true))
 				{
 					aclose(readfile[m]);
-					readopen[m] = 2;
+					readopen[m] = closed;
 					if (alignstate != 1000000)
 					{
 						runaway();
@@ -85,14 +82,14 @@ void readtoks(int n, halfword r)
 						error();
 					}
 				}
-		curinput.limitfield = last;
-		if (int_par(end_line_char_code) < 0 || int_par(end_line_char_code) > 255)
-			curinput.limitfield--;
+		limit = last;
+		if (end_line_char_inactive())
+			limit--;
 		else
-			buffer[curinput.limitfield] = int_par(end_line_char_code);
-		First = curinput.limitfield+1;
-		curinput.locfield = curinput.startfield;
-		curinput.statefield = 33;
+			buffer[limit] = end_line_char();
+		First = limit+1;
+		loc = start;
+		state = new_line;
 		while (true)
 		{
 			gettoken();

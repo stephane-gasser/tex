@@ -4,7 +4,7 @@
 
 void printchar(ASCIIcode s)
 {
-	if (s == int_par(new_line_char_code))
+	if (s == new_line_char())
 		if (selector < pseudo)
 		{
 			println();

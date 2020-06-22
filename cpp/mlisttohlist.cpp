@@ -25,6 +25,12 @@
 #include "newpenalty.h"
 #include "makeleftright.h"
 
+static void choose_mlist(halfword &p, halfword q, halfword& (*f)(halfword))
+{
+	p = f(q);
+	f(q) = 0;
+}
+
 void mlisttohlist(void)
 {
 	halfword p, x, y, z;
@@ -83,12 +89,12 @@ void mlisttohlist(void)
 				continue;
 			case fraction_noad:
 				makefraction(q);
-				z = hpack(new_hlist(q), 0, 1);
+				z = hpack(new_hlist(q), 0, additional);
 				if (height(z) > maxh)
 					maxh = height(z);
 				if (depth(z) > maxd)
 					maxd = depth(z);
-				freenode(z, 7);
+				freenode(z, box_node_size);
 				r = q;
 				rtype = type(r);
 				q = link(q);
@@ -97,12 +103,12 @@ void mlisttohlist(void)
 				delta = makeop(q);
 				if (subtype(q) == 1)
 				{
-					z = hpack(new_hlist(q), 0, 1);
+					z = hpack(new_hlist(q), 0, additional);
 					if (height(z) > maxh)
 						maxh = height(z);
 					if (depth(z) > maxd)
 						maxd = depth(z);
-					freenode(z, 7);
+					freenode(z, box_node_size);
 					r = q;
 					rtype = type(r);
 					q = link(q);
@@ -132,8 +138,8 @@ void mlisttohlist(void)
 				break;
 			case style_node:
 				curstyle = subtype(q);
-				if (curstyle < 4)
-					cursize = 0;
+				if (curstyle < script_style)
+					cursize = text_size;
 				else
 					cursize = 16*((curstyle-2)/2);
 				curmu = xovern(math_quad(cursize), 18);
@@ -144,20 +150,16 @@ void mlisttohlist(void)
 				switch (curstyle/2)
 				{
 					case 0:
-						p = display_mlist(q);
-						display_mlist(q) = 0;
+						choose_mlist(p, q, display_mlist); 
 						break;
 					case 1:
-						p = text_mlist(q);
-						text_mlist(q) = 0;
+						choose_mlist(p, q, text_mlist);
 						break;
 					case 2:
-						p = script_mlist(q);
-						script_mlist(q) = 0;
+						choose_mlist(p, q, script_mlist);
 						break;
 					case 3:
-						p = script_script_mlist(q);
-						script_script_mlist(q) = 0;
+						choose_mlist(p, q, script_script_mlist);
 				}
 				flushnodelist(display_mlist(q));
 				flushnodelist(text_mlist(q));
@@ -223,18 +225,18 @@ void mlisttohlist(void)
 			default: 
 				confusion("mlist1");
 		}
-		switch (link(q+1))
+		switch (math_type(nucleus(q)))
 		{
-			case 1:
-			case 4:
-				fetch(q+1);
-				if (curi.b0 > 0)
+			case math_char:
+			case math_text_char:
+				fetch(nucleus(q));
+				if (char_exists(curi))
 				{
 					delta = char_italic(curf, curi);
 					p = newcharacter(curf, curc);
-					if (link(q+1) == 4 && param(space_code, curf))
+					if (math_type(nucleus(q)) == math_text_char && space(curf))
 						delta = 0;
-					if (link(q+3) == 0 && delta)
+					if (math_type(subscr(q)) == 0 && delta)
 					{
 						link(p) = newkern(delta);
 						delta = 0;
@@ -246,96 +248,96 @@ void mlisttohlist(void)
 			case 0: 
 				p = 0;
 				break;
-			case 2: 
-				p = info(q+1);
+			case sub_box: 
+				p = info(nucleus(q));
 				break;
-			case 3:
-				curmlist = info(q+1);
+			case sub_mlist:
+				curmlist = info(nucleus(q));
 				savestyle = curstyle;
 				mlistpenalties = false;
-				mlisttohlist;
+				mlisttohlist();
 				curstyle = savestyle;
-				if (curstyle < 4)
-					cursize = 0;
+				if (curstyle < script_style)
+					cursize = text_size;
 				else
-					cursize = 16*((curstyle-2)/2);
+					cursize = 16*((curstyle-text_style)/2);
 				curmu = xovern(math_quad(cursize), 18);
-				p = hpack(link(temp_head), 0, 1);
+				p = hpack(link(temp_head), 0, additional);
 				break;
 			default: 
 				confusion("mlist2");
 		}
 		new_hlist(q) = p;
-		if (link(q+3) || link(q+2))
+		if (math_type(subscr(q)) || math_type(supscr(q)))
 			makescripts(q, delta);
-		z = hpack(new_hlist(q), 0, 1);
+		z = hpack(new_hlist(q), 0, additional);
 		if (height(z) > maxh)
 			maxh = height(z);
 		if (depth(z) > maxd)
 			maxd = depth(z);
-		freenode(z, 7);
+		freenode(z, box_node_size);
 		r = q;
 		rtype = type(r);
 		q = link(q);
 	}
-	if (rtype == 18)
-		type(r) = 16;
+	if (rtype == bin_noad)
+		type(r) = ord_noad;
 	p = temp_head;
 	link(p) = 0;
 	q = mlist;
 	rtype = 0;
 	curstyle = style;
-	if (curstyle < 4)
-		cursize = 0;
+	if (curstyle < script_style)
+		cursize = text_size;
 	else
-		cursize = 16*((curstyle-2)/2);
+		cursize = 16*((curstyle-text_style)/2);
 	curmu = xovern(math_quad(cursize), 18);
 	while (q)
 	{
-		t = 16;
-		s = 4;
-		pen = 10000;
+		t = ord_noad;
+		s = noad_size;
+		pen = inf_penalty;
 		switch (type(q))
 		{
-			case 17:
-			case 20:
-			case 21:
-			case 22:
-			case 23: 
+			case op_noad:
+			case open_noad:
+			case close_noad:
+			case punct_noad:
+			case inner_noad: 
 				t = type(q);
 				break;
-			case 18:
-				t = 18;
-				pen = int_par(bin_op_penalty_code);
+			case bin_noad:
+				t = bin_noad;
+				pen = bin_op_penalty();
 				break;
-			case 19:
-				t = 19;
-				pen = int_par(rel_penalty_code);
+			case rel_noad:
+				t = rel_noad;
+				pen = rel_penalty();
 				break;
-			case 16:
-			case 29:
-			case 27:
-			case 26:
+			case ord_noad:
+			case vcenter_noad:
+			case over_noad:
+			case under_noad:
 				break;
-			case 24: 
-				s = 5;
+			case radical_noad: 
+				s = radical_noad_size;
 				break;
-			case 28:
-				s = 5;
+			case accent_noad:
+				s = accent_noad_size;
 				break;
-			case 25:
-				t = 23;
-				s = 6;
+			case fraction_noad:
+				t = inner_noad;
+				s = fraction_noad_size;
 				break;
-			case 30:
-			case 31: 
+			case left_noad:
+			case right_noad: 
 				t = makeleftright(q, style, maxd, maxh);
 				break;
-			case 14:
+			case style_node:
 				curstyle = type(q);
-				s = 3;
-				if (curstyle < 4)
-					cursize = 0;
+				s = style_node_size;
+				if (curstyle < script_style)
+					cursize = text_size;
 				else
 					cursize = 16*((curstyle-2)/2);
 				curmu = xovern(math_quad(cursize), 18);
@@ -344,15 +346,15 @@ void mlisttohlist(void)
 				freenode(r, s);
 				continue;
 				break;
-			case 8:
-			case 12:
-			case 2:
-			case 7:
-			case 5:
-			case 3:
-			case 4:
-			case 10:
-			case 11:
+			case whatsit_node:
+			case penalty_node:
+			case rule_node:
+			case disc_node:
+			case adjust_node:
+			case ins_node:
+			case mark_node:
+			case glue_node:
+			case kern_node:
 				link(p) = q;
 				p = q;
 				q = link(q);
@@ -363,31 +365,22 @@ void mlisttohlist(void)
 		}
 		if (rtype > 0)
 		{
-			switch (strpool[rtype*8+t+magicoffset])
+			switch (math_spacing[(rtype-ord_noad)*8+t-ord_noad])
 			{
-				case 48: 
+				case '0': 
 					x = 0;
 					break;
-				case 49: 
-					if (curstyle < 4)
-						x = 15;
-					else
-						x = 0;
+				case '1': 
+					x = curstyle < script_style ? thin_mu_skip_code : 0;
 					break;
-				case 50: 
-					x = 15;
+				case '2': 
+					x = thin_mu_skip_code;
 					break;
-				case 51: 
-					if (curstyle < 4)
-						x = 16;
-					else
-						x = 0;
+				case '3': 
+					x = curstyle < script_style ? med_mu_skip_code : 0;
 					break;
-				case 52: 
-					if (curstyle < 4)
-						x = 17;
-					else
-						x = 0;
+				case '4': 
+					x = curstyle < script_style ? thick_mu_skip_code: 0;
 					break;
 				default: 
 					confusion("mlist4");
@@ -396,7 +389,7 @@ void mlisttohlist(void)
 			{
 				y = mathglue(glue_par(x), curmu);
 				z = newglue(y);
-				link(y) = 0;
+				glue_ref_count(y) = 0;
 				link(p) = z;
 				p = z;
 				subtype(z) = x+1;
@@ -409,10 +402,10 @@ void mlisttohlist(void)
 				p = link(p);
 			while (link(p));
 		}
-		if (penalties && link(q) && pen < 10000)
+		if (penalties && link(q) && pen < inf_penalty)
 		{
 			rtype = type(link(q));
-			if (rtype != 12 && rtype != 19)
+			if (rtype != penalty_node && rtype != rel_noad)
 			{
 				z = newpenalty(pen);
 				link(p) = z;

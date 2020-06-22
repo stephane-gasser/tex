@@ -46,13 +46,13 @@ void scanglue(smallnumber level)
 	}
 	auto q = newspec(zero_glue);
 	width(q) = curval;
-	if (scankeyword(730)) //plus
+	if (scankeyword("plus"))
 	{
 		scandimen(mu, true, false);
 		stretch(q) = curval;
 		type(q) = curorder;
 	}
-	if (scankeyword(731)) //minus
+	if (scankeyword("minus"))
 	{
 		scandimen(mu, true, false);
 		shrink(q) = curval;

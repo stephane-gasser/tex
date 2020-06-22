@@ -4,8 +4,8 @@
 
 void showbox(halfword p)
 {  
-	depththreshold = int_par(show_box_depth_code);
-	breadthmax = int_par(show_box_breadth_code);
+	depththreshold = show_box_depth();
+	breadthmax = show_box_breadth();
 	if (breadthmax <= 0)
 		breadthmax = 5;
 	if (poolptr+depththreshold >= poolsize)

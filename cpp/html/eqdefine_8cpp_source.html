@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de eqdefine.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">eqdefine.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="eqdefine_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="eqdefine_8h.html">eqdefine.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="eqdestroy_8h.html">eqdestroy.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="eqsave_8h.html">eqsave.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="eqdefine_8h.html#a3391d0a47960eef3ec27804bb9bb0a15">    5</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="eqdefine_8cpp.html#a3391d0a47960eef3ec27804bb9bb0a15">eqdefine</a>(<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p, <a class="code" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> t, <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> e)</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(p) == <a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a>)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <a class="code" href="eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e">eqdestroy</a>(<a class="code" href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a>[p]);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a> &gt; 1)</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <a class="code" href="eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617">eqsave</a>(p, <a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(p));</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(p) = <a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d">eq_type</a>(p) = t;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a>(p) = e;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aglobals_8cpp_html_a455b41a95f9f40569c9066e2a78a1106"><div class="ttname"><a href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a></div><div class="ttdeci">memoryword eqtb[6107]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00097">globals.cpp:97</a></div></div>
+<div class="ttc" id="aeqsave_8cpp_html_a03e055f6df96e78ec9670bc1b6651617"><div class="ttname"><a href="eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617">eqsave</a></div><div class="ttdeci">void eqsave(halfword p, quarterword l)</div><div class="ttdef"><b>Definition:</b> <a href="eqsave_8cpp_source.html#l00004">eqsave.cpp:4</a></div></div>
+<div class="ttc" id="atex_8h_html_aaef48c5c65cb13f3e50745390b269155"><div class="ttname"><a href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a></div><div class="ttdeci">std::uint8_t quarterword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00045">tex.h:45</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_acb82808d11d8a4270965a5d0c662c9ed"><div class="ttname"><a href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a></div><div class="ttdeci">halfword &amp; equiv(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00109">constantes.cpp:109</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a27378376efbb02517aae5c621db59a74"><div class="ttname"><a href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a></div><div class="ttdeci">quarterword &amp; eq_level(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00099">constantes.cpp:99</a></div></div>
+<div class="ttc" id="aeqdefine_8cpp_html_a3391d0a47960eef3ec27804bb9bb0a15"><div class="ttname"><a href="eqdefine_8cpp.html#a3391d0a47960eef3ec27804bb9bb0a15">eqdefine</a></div><div class="ttdeci">void eqdefine(halfword p, quarterword t, halfword e)</div><div class="ttdef"><b>Definition:</b> <a href="eqdefine_8cpp_source.html#l00005">eqdefine.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a30e61288612879b61525ab34298b794d"><div class="ttname"><a href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d">eq_type</a></div><div class="ttdeci">quarterword &amp; eq_type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00104">constantes.cpp:104</a></div></div>
+<div class="ttc" id="aeqsave_8h_html"><div class="ttname"><a href="eqsave_8h.html">eqsave.h</a></div></div>
+<div class="ttc" id="aeqdefine_8h_html"><div class="ttname"><a href="eqdefine_8h.html">eqdefine.h</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aa4df4dd4a8b0898dfb786074b600c956"><div class="ttname"><a href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a></div><div class="ttdeci">quarterword curlevel</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00105">globals.cpp:105</a></div></div>
+<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
+<div class="ttc" id="aeqdestroy_8cpp_html_a06ca8ddf74d2d157842099a64ecf138e"><div class="ttname"><a href="eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e">eqdestroy</a></div><div class="ttdeci">void eqdestroy(memoryword w)</div><div class="ttdef"><b>Definition:</b> <a href="eqdestroy_8cpp_source.html#l00007">eqdestroy.cpp:7</a></div></div>
+<div class="ttc" id="aeqdestroy_8h_html"><div class="ttname"><a href="eqdestroy_8h.html">eqdestroy.h</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

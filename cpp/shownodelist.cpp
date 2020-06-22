@@ -22,9 +22,16 @@
 #include <cmath>
 #include "texte.h"
 
+static void node_list_display(int p)
+{
+	append_char('.'); 
+	shownodelist(p); 
+	flush_char(); 
+}
+
 void shownodelist(int p)
 {
-	if (poolptr - strstart[strptr] > depththreshold)
+	if (cur_length() > depththreshold)
 	{
 		if (p > 0)
 			print(" []");
@@ -69,10 +76,10 @@ void shownodelist(int p)
 					printscaled(width(p));
 					if (type(p) == unset_node)
 					{
-						if (subtype(p))
+						if (span_count(p))
 						{
 							print(" (");
-							printint(subtype(p)+1);
+							printint(span_count(p)+1);
 							print(" columns)");
 						}
 						if (glue_stretch(p))
@@ -103,10 +110,10 @@ void shownodelist(int p)
 										printchar('>');
 									else
 										print("< -");
-									printglue(20000*0x1'00'00, glue_order(p), 0);
+									printglue(20000*unity, glue_order(p), 0);
 								}
 								else
-									printglue(round(0x1'00'00*g), glue_order(p), 0);
+									printglue(round(unity*g), glue_order(p), 0);
 						}
 						if (shift_amount(p))
 						{
@@ -114,9 +121,7 @@ void shownodelist(int p)
 							printscaled(shift_amount(p));
 						}
 					}
-					strpool[poolptr++] = '.';
-					shownodelist(list_ptr(p));
-					poolptr--;
+					node_list_display(list_ptr(p));
 					break;
 				case rule_node:
 					printesc("rule(");
@@ -137,9 +142,7 @@ void shownodelist(int p)
 					printscaled(depth(p));
 					print("); float cost ");
 					printint(float_cost(p));
-					strpool[poolptr++] = '.';
-					shownodelist(ins_ptr(p));
-					poolptr--;
+					node_list_display(ins_ptr(p));
 					break;
 				case whatsit_node:
 					switch (subtype(p))
@@ -183,10 +186,8 @@ void shownodelist(int p)
 							if (subtype(p) == 102)
 								printchar('x');
 						print("leaders ");
-						printspec(info(p+1), 0);
-						strpool[poolptr++] = '.';
-						shownodelist(link(p+1));
-						poolptr--;
+						printspec(glue_ptr(p), 0);
+						node_list_display(leader_ptr(p));
 					}
 					else
 					{
@@ -213,13 +214,13 @@ void shownodelist(int p)
 						}
 					}
 				case kern_node:
-					if (subtype(p) != 99)
+					if (subtype(p) != mu_glue)
 					{
 						printesc("kern");
-						if (subtype(p))
+						if (subtype(p) != normal)
 							printchar(' ');
 						printscaled(width(p));
-						if (subtype(p) == 2)
+						if (subtype(p) == acc_kern)
 							print(" (for accent)");
 					}
 					else
@@ -231,7 +232,7 @@ void shownodelist(int p)
 					break;
 				case math_node:
 					printesc("math");
-					if (subtype(p) == 0)
+					if (subtype(p) == before)
 						print("on");
 					else
 						print("off");
@@ -263,12 +264,10 @@ void shownodelist(int p)
 						print(" replacing ");
 						printint(subtype(p));
 					}
-					strpool[poolptr++] = '.';
-					shownodelist(info(p+1));
-					poolptr--;
-					strpool[poolptr++] = '|';
-					shownodelist(link(p+1));
-					poolptr--;
+					node_list_display(pre_break(p));
+					append_char('|');
+					shownodelist(post_break(p));
+					flush_char();
 					break;
 				case mark_node:
 					printesc("mark");
@@ -276,27 +275,25 @@ void shownodelist(int p)
 					break;
 				case adjust_node:
 					printesc("vadjust");
-					strpool[poolptr++] = '.';
-					shownodelist(adjust_ptr(p));
-					poolptr--;
+					node_list_display(adjust_ptr(p));
 					break;
 				case style_node: 
 					printstyle(subtype(p));
 					break;
 				case choice_node:
 					printesc("mathchoice");
-					strpool[poolptr++] = 'D';
+					append_char('D');
 					shownodelist(info(p+1));
-					poolptr--;
-					strpool[poolptr++] = 'T';
+					flush_char();
+					append_char('T');
 					shownodelist(link(p+1));
-					poolptr--;
-					strpool[poolptr++] = 'S';
+					flush_char();
+					append_char('S');
 					shownodelist(info(p+2));
-					poolptr--;
-					strpool[poolptr++] = 's';
+					flush_char();
+					append_char('s');
 					shownodelist(link(p+2));
-					poolptr--;
+					flush_char();
 					break;
 				case ord_noad:
 				case op_noad:

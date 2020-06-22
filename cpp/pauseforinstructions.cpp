@@ -4,6 +4,12 @@
 #include "error.h"
 #include "texte.h"
 
+void check_interrupt(void)
+{
+	if (interrupt)
+		pauseforinstructions();
+}
+
 void pauseforinstructions(void)
 {
 	if (OKtointerrupt)

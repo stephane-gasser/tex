@@ -1,7 +1,7 @@
 #include "amakenamestring.h"
 #include "makenamestring.h"
 
-strnumber amakenamestring(alphafile& f)
+std::string amakenamestring(alphafile& f)
 {
 	return makenamestring();
 }

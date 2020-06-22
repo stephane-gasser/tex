@@ -1,512 +1,224 @@
 #include "loadfmtfile.h"
 #include <iostream>
 
-void readInt(twohalves &num)
+void undump_hh(twohalves &num)
 {
 	fmtfile.read(reinterpret_cast<char *>(&num), 4);
 }
 
-void readInt(memoryword &num)
+void undump_wd(memoryword &num)
 {
 	fmtfile.read(reinterpret_cast<char *>(&num), 4);
 }
 
-void readInt(fourquarters &num)
+void undump_qqqq(fourquarters &num)
 {
 	fmtfile.read(reinterpret_cast<char *>(&num), 4);
 }
 
-void readInt(int &num)
+void undump_int(int &num)
 {
 	fmtfile.read(reinterpret_cast<char *>(&num), 4);
 }
 
-bool loadfmtfile(void)
+void badFormatIf(bool b)
 {
-	int j, k;
-	halfword p, q;
+	if (b)
+		throw 1;
+}
+
+void tooSmallIf(bool b, const std::string &s)
+{
+	if (b)
+	{
+		std::cout << "---! Must increase the \n" << s << "\n";
+		throw 1;
+	}
+}
+
+int undump(int min, int max)
+{
 	int x;
+	undump_int(x);
+	badFormatIf(x < min || x > max);
+	return x;
+}
+
+int undump_size(int min, int max, const std::string &s)
+{
+	int x;
+	undump_int(x);
+	badFormatIf(x < min);
+	tooSmallIf(x > max, s);
+	return x;
+}
+
+void undump_four_ASCII(int k)
+{
 	fourquarters w;
-	readInt(x);
-	if (x != 117275187)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;	
-	}
-	readInt(x);
-	if (x != 0)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	readInt(x);
-	if (x != mem_top)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	readInt(x);	
-	if (x != eqtb_size)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	readInt(x);	
-	if (x != hash_prime)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	readInt(x);	
-	if (x != hyph_size)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	readInt(x);	
-	if (x < 0)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	if (x > poolsize)
-	{
-		std::cout << "---! Must increase the \nstring pool size\n";
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		poolptr = x;
-	readInt(x);	
-	if (x < 0)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	if (x > maxstrings)
-	{
-		std::cout << "---! Must increase the \nmax strings\n";
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		strptr = x;
-	for (k = 0; k <= strptr; k++)
-	{
-		readInt(x);	
-		if (x < 0 || x > poolptr)
-		{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-		else
-			strstart[k] = x;
-	}
-	for (k = 0; k+4 < poolptr; k = k+4)
-	{
-		readInt(w);
-		strpool[k] = w.b0;
-		strpool[k+1] = w.b1;
-		strpool[k+2] = w.b2;
-		strpool[k+3] = w.b3;
-	}
-	k = poolptr-4;
-	readInt(w);
+	undump_qqqq(w); 
 	strpool[k] = w.b0;
 	strpool[k+1] = w.b1;
 	strpool[k+2] = w.b2;
 	strpool[k+3] = w.b3;
-	initstrptr = strptr;
-	initpoolptr = poolptr;
-	readInt(x);	
-	if (x < 1019 || x >= hi_mem_stat_min)
+}
+
+bool loadfmtfile(void)
+{
+	try
+	{
+		int j, k;
+		halfword p, q;
+		int x;
+		fourquarters w;
+		undump_int(x);
+		badFormatIf(x != CHECKSUM);
+		undump_int(x);
+		badFormatIf(x != mem_bot);
+		undump_int(x);
+		badFormatIf(x != mem_top);
+		undump_int(x);	
+		badFormatIf(x != eqtb_size);
+		undump_int(x);	
+		badFormatIf(x != hash_prime);
+		undump_int(x);	
+		badFormatIf(x != hyph_size);
+		poolptr = undump_size(0, poolsize, "string pool size");
+		strptr = undump_size(0,  maxstrings, "max strings");
+		for (k = 0; k <= strptr; k++)
+			strstart[k] = undump(0,  poolptr);
+		for (k = 0; k+4 < poolptr; k = k+4)
+			undump_four_ASCII(k);
+		k = poolptr-4;
+		undump_four_ASCII(k);
+		initstrptr = strptr;
+		initpoolptr = poolptr;
+		lomemmax = undump(lo_mem_stat_max+1000, hi_mem_stat_min-1);
+		rover = undump(lo_mem_stat_max+1, lomemmax);
+		p = 0;
+		q = rover;
+		do
+		{
+			for (k = p; k <= q+1; k++)
+				undump_wd(mem[k]);
+			p = q+node_size(q);
+			badFormatIf(p > lomemmax || (q >= rlink(q) && rlink(q) != rover));
+			q = rlink(q);
+		} while (q != rover);
+		for (k = p; k <= lomemmax; k++)
+			undump_wd(mem[k]);
+		if (memmin < mem_bot-2)
+		{
+			p = llink(rover);
+			q = memmin+1;
+			link(memmin) = 0;
+			info(memmin) = 0;
+			rlink(p) = q;
+			llink(rover) = q;
+			rlink(q) = rover;
+			llink(q) = p;
+			link(q) = empty_flag;
+			info(q) = mem_bot-q;
+		}
+		himemmin = undump(lomemmax+1, hi_mem_stat_min);
+		avail = undump(0, mem_top);
+		memend = mem_top;
+		for (k = himemmin; k <= memend; k++)
+			undump_wd(mem[k]);
+		undump_int(varused);
+		undump_int(dynused);
+		k = active_base;
+		do
+		{
+			auto x = undump(1, eqtb_size+1-k);
+			for (j = k; j < k+x; j++)
+				undump_wd(eqtb[j]);
+			k += x;
+			x = undump(0, eqtb_size+1-k);
+			for (j = k; j < k+x; j++)
+				eqtb[j] = eqtb[k-1];
+			k += x;
+		} while (k <= eqtb_size);
+		parloc = undump(hash_base, frozen_control_sequence);
+		partoken = cs_token_flag+parloc;
+		writeloc = undump(hash_base, frozen_control_sequence);
+		hashused = undump(hash_base, frozen_control_sequence);
+		p = null_cs;
+		do
+		{
+			p = undump(p+1, hashused);
+			undump_hh(hash[p]);
+		} while (p != hashused);
+		for (p = hashused+1; p < undefined_control_sequence; p++)
+			undump_hh(hash[p]);
+		undump_int(cscount);
+		fmemptr = undump_size(7, fontmemsize, "font mem size");
+		for (k = 0; k < fmemptr; k++)
+			undump_wd(fontinfo[k]);
+		fontptr = undump_size(0, fontmax, "font max");
+		for (k = null_font; k <= fontptr; k++)
+		{
+			undump_qqqq(fontcheck[k]);
+			undump_int(fontsize[k]);
+			undump_int(fontdsize[k]);
+			fontparams[k] = undump(0, 1<<16-1);
+			undump_int(hyphenchar[k]);
+			undump_int(skewchar[k]);
+			fontname[k] = undump(0, strptr);
+			fontarea[k] = undump(0, strptr);
+			fontbc[k] = undump(0, 255);
+			fontec[k] = undump(0, 255);
+			undump_int(charbase[k]);
+			undump_int(widthbase[k]);
+			undump_int(heightbase[k]);
+			undump_int(depthbase[k]);
+			undump_int(italicbase[k]);
+			undump_int(ligkernbase[k]);
+			undump_int(kernbase[k]);
+			undump_int(extenbase[k]);
+			undump_int(parambase[k]);
+			fontglue[k] = undump(0, lomemmax);
+			bcharlabel[k] = undump(0, fmemptr-1);
+			fontbchar[k] = undump(0, non_char);
+			fontfalsebchar[k] = undump(0, non_char);
+		}
+		hyphcount = undump(0, hyph_size);
+		for (k = 1; k <= hyphcount; k++)
+		{
+			j = undump(0, hyph_size);
+			hyphword[j] = undump(0, strptr);
+			hyphlist[j] = undump(0, 1<<16-1);
+		}
+		triemax = j = undump_size(0, triesize, "trie size");
+		for (k = 0; k <= j; k++)
+			undump_hh(trie[k]);
+		trieopptr = j = undump_size(0, trieopsize, "trie op size");
+		for (k = 1; k <= j; k++)
+		{
+			hyfdistance[k] = undump(0, 63);
+			hyfnum[k] = undump(0, 63);
+			hyfnext[k] = undump(0, 1<<8-1);
+		}
+		for (k = 0; k <= 255; k++)
+			trieused[k] = 0;
+		k = 256;
+		while (j > 0)
+		{
+			k = undump(0, k-1);
+			trieused[k] = undump(1, j);
+			j -= trieused[k];
+			opstart[k] = j;
+		}
+		trienotready = false;
+		interaction = undump(batch_mode, error_stop_mode);
+		formatident = undump(0, strptr);
+		undump_int(x);
+		badFormatIf(x != 69069 || fmtfile.eof());
+		return true;
+	}
+	catch(...)
 	{
 		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
 	}
-	else
-		lomemmax = x;
-	readInt(x);	
-	if (x < 20 || x > lomemmax)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		rover = x;
-	p = 0;
-	q = rover;
-	do
-	{
-		for (k = p; k <= q+1; k++)
-			readInt(mem[k]);
-		p = q+info(q);
-		if (p > lomemmax || (q >= link(q+1) && link(q+1) != rover))
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		q = link(q+1);
-	} while (q != rover);
-	for (k = p; k <= lomemmax; k++)
-		readInt(mem[k]);
-	if (memmin < -2)
-	{
-		p = info(rover+1);
-		q = memmin+1;
-		link(memmin) = 0;
-		info(memmin) = 0;
-		link(p+1) = q;
-		info(rover+1) = q;
-		link(q+1) = rover;
-		info(q+1) = p;
-		link(q) = empty_flag;
-		info(q) = -q;
-	}
-	readInt(x);	
-	if (x < lomemmax+1 || x > hi_mem_stat_min)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		himemmin = x;
-	readInt(x);	
-	if (x < 0 || x > mem_top)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		avail = x;
-	memend = mem_top;
-	for (k = himemmin; k <= memend; k++)
-		readInt(mem[k]);
-	readInt(varused);
-	readInt(dynused);
-	k = 1;
-	do
-	{
-		readInt(x);	
-		if (x < 1 || k+x > 6107)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		for (j = k; j < k+x; j++)
-			readInt(eqtb[j]);
-		k += x;
-		readInt(x);	
-		if (x < 0 || k+x > 6107)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		for (j = k; j < k+x; j++)
-			eqtb[j] = eqtb[k-1];
-		k += x;
-	} while (k <= eqtb_size);
-	readInt(x);	
-	if (x < hash_base || x > frozen_control_sequence)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		parloc = x;
-	partoken = cs_token_flag+parloc;
-	readInt(x);	
-	if (x < hash_base || x > frozen_control_sequence)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		writeloc = x;
-	readInt(x);	
-	if (x < hash_base || x > frozen_control_sequence)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		hashused = x;
-	p = null_cs;
-	do
-	{
-		readInt(x);	
-		if (x < p+1 || x > hashused)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			p = x;
-		readInt(hash[p]);
-	} while (p != hashused);
-	for (p = hashused+1; p < undefined_control_sequence; p++)
-		readInt(hash[p]);
-	readInt(cscount);
-	readInt(x);
-	if (x < 7)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	if (x > fontmemsize)
-	{
-		std::cout << "---! Must increase the \nfont mem size\n";
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		fmemptr = x;
-	for (k = 0; k < fmemptr; k++)
-		readInt(fontinfo[k]);
-	readInt(x);	
-	if (x < 0)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	if (x > fontmax)
-	{
-		std::cout << "---! Must increase the \nfont max\n";
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		fontptr = x;
-	for (k = 0; k <= fontptr; k++)
-	{
-		readInt(fontcheck[k]);
-		readInt(fontsize[k]);
-		readInt(fontdsize[k]);
-		readInt(x);	
-		if (x < 0 || x > empty_flag)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			fontparams[k] = x;
-		readInt(hyphenchar[k]);
-		readInt(skewchar[k]);
-		readInt(x);	
-		if (x < 0 || x > strptr)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			fontname[k] = x;
-		readInt(x);	
-		if (x < 0 || x > strptr)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			fontarea[k] = x;
-		readInt(x);	
-		if (x < 0 || x > 255)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			fontbc[k] = x;
-		readInt(x);	
-		if (x < 0 || x > 255)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			fontec[k] = x;
-		readInt(charbase[k]);
-		readInt(widthbase[k]);
-		readInt(heightbase[k]);
-		readInt(depthbase[k]);
-		readInt(italicbase[k]);
-		readInt(ligkernbase[k]);
-		readInt(kernbase[k]);
-		readInt(extenbase[k]);
-		readInt(parambase[k]);
-		readInt(x);	
-		if (x < 0 || x > lomemmax)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			fontglue[k] = x;
-		readInt(x);	
-		if (x < 0 || x > fmemptr-1)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			bcharlabel[k] = x;
-		readInt(x);	
-		if (x < 0 || x > 256)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			fontbchar[k] = x;
-		readInt(x);	
-		if (x < 0 || x > 256)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			fontfalsebchar[k] = x;
-	}
-	{
-	readInt(x);
-	if (x < 0 || x > 307)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		hyphcount = x;
-	}
-	for (k = 1; k <= hyphcount; k++)
-	{
-		readInt(x);
-		if (x < 0 || x > 307)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			j = x;
-		readInt(x);
-		if (x < 0 || x > strptr)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			hyphword[j] = x;
-		readInt(x);
-		if (x < 0 || x > empty_flag)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			hyphlist[j] = x;
-	}
-	readInt(x);
-	if (x < 0)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	if (x > triesize)
-	{
-		std::cout << "---! Must increase the \ntrie size\n";
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		j = x;
-	triemax = j;
-	for (k = 0; k <= j; k++)
-		readInt(trie[k]);
-	readInt(x);
-	if (x < 0)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	if (x > trieopsize)
-	{
-		std::cout << "---! Must increase the \ntrie op size";
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		j = x;
-	trieopptr = j;
-	for (k = 1; k <= j; k++)
-	{
-		readInt(x);
-		if (x < 0 || x > 63)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			hyfdistance[k] = x;
-		readInt(x);
-		if (x < 0 || x > 63)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			hyfnum[k] = x;
-		readInt(x);
-		if (x < 0 || x > 255)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			hyfnext[k] = x;
-	}
-	for (k = 0; k <= 255; k++)
-		trieused[k] = 0;
-	k = 256;
-	while (j > 0)
-	{
-		readInt(x);
-		if (x < 0 || x > k-1)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		else
-			k = x;
-		readInt(x);
-		if (x < 1 || x > j)
-		{
-			std::cout << "(Fatal format file error; I''m stymied\n";
-			return false;
-		}
-		trieused[k] = x;
-		j -= x;
-		opstart[k] = j;
-	}
-	trienotready = false;
-	readInt(x);
-	if (x < 0 || x > 3)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		interaction = x;
-	readInt(x);
-	if (x < 0 || x > strptr)
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	else
-		formatident = x;
-	readInt(x);
-	if (x != 69069 || fmtfile.eof())
-	{
-		std::cout << "(Fatal format file error; I''m stymied\n";
-		return false;
-	}
-	return true;
+	return false;
 }

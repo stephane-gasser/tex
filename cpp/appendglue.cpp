@@ -7,29 +7,29 @@ void appendglue(void)
 	auto s = curchr;
 	switch (s)
 	{
-		case 0: 
-			curval = 4;
+		case fil_code: 
+			curval = fil_glue;
 			break;
-		case 1: 
-			curval = 8;
+		case fill_code: 
+			curval = fill_glue;
 			break;
-		case 2: 
-			curval = 12;
+		case ss_code: 
+			curval = ss_glue;
 			break;
-		case 3: 
-			curval = 16;
+		case fil_neg_code: 
+			curval = fil_neg_glue;
 			break;
-		case 4: 
-			scanglue(2);
+		case skip_code: 
+			scanglue(glue_val);
 			break;
-		case 5: 
-			scanglue(3);
+		case mskip_code: 
+			scanglue(mu_val);
 	}
 	tail_append(newglue(curval));
-	if (s >= 4)
+	if (s >= skip_code)
 	{
-		link(curval)--;
-		if (s > 4)
-			subtype(tail) = 99;
+		glue_ref_count(curval)--;
+		if (s > skip_code)
+			subtype(tail) = mu_glue;
 	}
 }

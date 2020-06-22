@@ -9,22 +9,22 @@ halfword rebox(halfword b, scaled w)
 	if (width(b) != w && list_ptr(b))
 	{
 		if (type(b) == vlist_node)
-			b = hpack(b, 0, 1);
+			b = hpack(b, 0, additional);
 		halfword p = list_ptr(b);
-		if (p >= himemmin && link(p) == 0)
+		if (is_char_node(p) && link(p) == 0)
 		{
 			internalfontnumber f = type(p);
 			scaled v = char_width(f, char_info(f, subtype(p)));
 			if (v != width(b))
 				link(p) = newkern(width(b)-v);
 		}
-		freenode(b, 7);
-		b = newglue(12);
+		freenode(b, box_node_size);
+		b = newglue(ss_glue);
 		link(b) = p;
 		while (link(p))
 			p = link(p);
-		link(p) = newglue(12);
-		return hpack(b, w, 0);
+		link(p) = newglue(ss_glue);
+		return hpack(b, w, exactly);
 	}
 	width(b) = w;
 	return b;

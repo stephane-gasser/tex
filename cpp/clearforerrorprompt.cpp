@@ -5,7 +5,7 @@
 
 void clearforerrorprompt(void)
 {
-	while (curinput.statefield && curinput.namefield == 0 && inputptr > 0 && curinput.locfield > curinput.limitfield)
+	while (state != token_list && terminal_input(name) && inputptr > 0 && loc > limit)
 		endfilereading();
 	println();
 	std::cin.clear();

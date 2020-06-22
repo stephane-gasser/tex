@@ -1,14 +1,14 @@
 #include "makenamestring.h"
 #include "makestring.h"
 
-strnumber makenamestring(void)
+std::string makenamestring(void)
 {
-	if (poolptr+namelength > poolsize || strptr == maxstrings || poolptr-strstart[strptr] > 0)
-		return 63;
+	if (poolptr+namelength > poolsize || strptr == maxstrings || cur_length() > 0)
+		return "?";
 	else
 	{
 		for (int k = 1; k <= namelength; k++)
-			strpool[poolptr++] = xord[nameoffile[k]];
+			append_char(xord[nameoffile[k]]);
 		return makestring();
 	}
 }

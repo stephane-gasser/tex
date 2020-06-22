@@ -3,18 +3,13 @@
 
 void eqsave(halfword p, quarterword l)
 {
-	if (saveptr > maxsavestack)
-	{
-		maxsavestack = saveptr;
-		if (maxsavestack > savesize-6)
-			overflow("save size", savesize);
-	}
-	if (l == 0)
-		save_type(saveptr) = 1;
+	check_full_save_stack();
+	if (l == level_zero)
+		save_type(saveptr) = restore_zero;
 	else
 	{
 		savestack[saveptr++] = eqtb[p];
-		save_type(saveptr) = 0;
+		save_type(saveptr) = restore_old_value;
 	}
 	save_level(saveptr) = l;
 	save_index(saveptr) = p;

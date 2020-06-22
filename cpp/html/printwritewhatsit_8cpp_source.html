@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de printwritewhatsit.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">printwritewhatsit.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="printwritewhatsit_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printwritewhatsit_8h.html">printwritewhatsit.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printesc_8h.html">printesc.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printint_8h.html">printint.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printchar_8h.html">printchar.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="printwritewhatsit_8h.html#ad3470bfe8f1a2293ee73b768fb7968bd">    6</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="printwritewhatsit_8cpp.html#abbb04fc0017b8cf6bae3e7d1b26feef8">printwritewhatsit</a>(<span class="keyword">const</span> std::string &amp;s, <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p)</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(s);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p+1) &lt; 16)</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a>(<a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p+1));</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p+1) == 16)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;*&#39;</span>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;-&#39;</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aprintesc_8cpp_html_ace069a9f107f557990814241b661ad5f"><div class="ttname"><a href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a></div><div class="ttdeci">void printesc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printesc_8cpp_source.html#l00007">printesc.cpp:7</a></div></div>
+<div class="ttc" id="aprintint_8h_html"><div class="ttname"><a href="printint_8h.html">printint.h</a></div></div>
+<div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
+<div class="ttc" id="aprintchar_8h_html"><div class="ttname"><a href="printchar_8h.html">printchar.h</a></div></div>
+<div class="ttc" id="aprintint_8cpp_html_a3e0bbc492597d05b770a8e0ba03b95ee"><div class="ttname"><a href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a></div><div class="ttdeci">void printint(int n)</div><div class="ttdef"><b>Definition:</b> <a href="printint_8cpp_source.html#l00005">printint.cpp:5</a></div></div>
+<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
+<div class="ttc" id="aprintesc_8h_html"><div class="ttname"><a href="printesc_8h.html">printesc.h</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00019">constantes.cpp:19</a></div></div>
+<div class="ttc" id="aprintwritewhatsit_8cpp_html_abbb04fc0017b8cf6bae3e7d1b26feef8"><div class="ttname"><a href="printwritewhatsit_8cpp.html#abbb04fc0017b8cf6bae3e7d1b26feef8">printwritewhatsit</a></div><div class="ttdeci">void printwritewhatsit(const std::string &amp;s, halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="printwritewhatsit_8cpp_source.html#l00006">printwritewhatsit.cpp:6</a></div></div>
+<div class="ttc" id="aprintwritewhatsit_8h_html"><div class="ttname"><a href="printwritewhatsit_8h.html">printwritewhatsit.h</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

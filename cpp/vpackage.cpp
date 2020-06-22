@@ -36,10 +36,15 @@ static void goto50(halfword r)
 	enddiagnostic(true);
 }
 
+halfword vpack(halfword p, scaled h, smallnumber m)
+{
+	return vpackage(p, h, m, max_dimen);
+}
+
 halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 {
 	lastbadness = 0;
-	auto r = getnode(7);
+	auto r = getnode(box_node_size);
 	type(r) = 1;
 	subtype(r) = 0;
 	shift_amount(r) = 0;
@@ -109,7 +114,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 	}
 	else
 		depth(r) = d;
-	if (m == 1)
+	if (m == additional)
 		h += x;
 	height(r) = h;
 	x = h-x;
@@ -146,7 +151,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 			if (list_ptr(r))
 			{
 				lastbadness = badness(x, totalstretch[0]);
-				if (lastbadness > int_par(vbadness_code))
+				if (lastbadness > vbadness())
 				{
 					println();
 					if (lastbadness > 100)
@@ -185,7 +190,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 			{
 				lastbadness = 1000000;
 				glue_set(r) = 1.0;
-				if (-x-totalshrink[0] > dimen_par(vfuzz_code) || int_par(vbadness_code) < 100)
+				if (-x-totalshrink[0] > vfuzz() || vbadness() < 100)
 				{
 					println();
 					printnl("Overfull \\vbox (");
@@ -198,7 +203,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 				if (o == 0 && list_ptr(r))
 				{
 					lastbadness = badness(-x, totalshrink[0]);
-					if (lastbadness > int_par(vbadness_code))
+					if (lastbadness > vbadness())
 					{
 						println();
 						printnl("Tight \\vbox (badness ");

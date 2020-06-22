@@ -5,17 +5,17 @@
 
 void unsave(void)
 {
-	if (curlevel > 1)
+	if (curlevel > level_one)
 	{
 		curlevel--;
 		while (true)
 		{
 			saveptr--;
-			if (save_type(saveptr) == 3)
+			if (save_type(saveptr) == level_boundary)
 				break;
 			halfword p = save_index(saveptr);
 			quarterword l;
-			if (save_type(saveptr) == 2)
+			if (save_type(saveptr) == insert_token)
 			{
 				halfword t = curtok;
 				curtok = p;
@@ -24,7 +24,7 @@ void unsave(void)
 			}
 			else
 			{
-				if (save_type(saveptr) == 0)
+				if (save_type(saveptr) == restore_old_value)
 				{
 					l = save_level(saveptr);
 					saveptr--;
@@ -32,7 +32,7 @@ void unsave(void)
 				else
 					savestack[saveptr] = eqtb[undefined_control_sequence];
 				if (p < int_base)
-					if (eq_level(p) == 1)
+					if (eq_level(p) == level_one)
 						eqdestroy(savestack[saveptr]);
 					else
 					{
@@ -40,7 +40,7 @@ void unsave(void)
 						eqtb[p] = savestack[saveptr];
 					}
 				else 
-					if (xeqlevel[p] != 1)
+					if (xeqlevel[p] != level_one)
 					{
 						eqtb[p] = savestack[saveptr];
 						xeqlevel[p] = l;

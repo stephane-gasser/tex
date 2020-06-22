@@ -7,6 +7,13 @@
 #include "flushlist.h"
 #include "texte.h"
 
+static void advance_major_tail(halfword &majortail, int &rcount)
+{
+	majortail = link(majortail);
+	rcount++;
+}
+
+
 void hyphenate(void)
 {
 	char i, j, l;
@@ -18,7 +25,6 @@ void hyphenate(void)
 	triepointer z;
 	int v;
 	hyphpointer h;
-	strnumber k;
 	poolpointer u;
 	for (j = 0; j <= hn; j++)
 		hyf[j] = 0;
@@ -26,33 +32,32 @@ void hyphenate(void)
 	hn++;
 	hc[hn] = curlang;
 	for (j = 2; j <= hn; j++)
-	h = (h+h+hc[j])%307;
+	h = (2*h+hc[j])%hyph_size;
 	bool keepIn = true;
 	bool skip = false;
 	while (keepIn)
 	{
-		k = txt(hyphword[h]);
-		if (k == 0)
+		if (hyphword[h] == "")
 			break;
-		if (strstart[k+1]-strstart[k] < hn)
+		if (hyphword[h].size() < hn)
 			break;
-		if (strstart[k+1]-strstart[k] == hn)
+		if (hyphword[h].size() == hn)
 		{
 			j = 1;
-			u = strstart[k];
+			u = 0;
 			do
 			{
-				if (strpool[u] < hc[j])
+				if (hyphword[h][u] < hc[j])
 				{
 					keepIn = false;
 					continue;
 				}
-				if (strpool[u] > hc[j])
+				if (hyphword[h][u] > hc[j])
 				{
 					if (h > 0)
 						h--;
 					else
-						h = 307;
+						h = hyph_size;
 					keepIn = false;
 					continue;
 				}
@@ -72,25 +77,25 @@ void hyphenate(void)
 		if (h > 0)
 			h--;
 		else
-			h = 307;
+			h = hyph_size;
 	}
 	if (!skip)
 	{
 		hn--;
-		if (trie[curlang+1].b1 != curlang)
+		if (trie_char(curlang+1) != curlang)
 			return;
 		hc[0] = 0;
 		hc[hn+1] = 0;
 		hc[hn+2] = 256;
 		for (j = 0; j <= hn-rhyf+1; j++)
 		{
-			z = trie[curlang+1].rh+hc[j];
+			z = trie_link(curlang+1)+hc[j];
 			l = j;
-			while (hc[l] == trie[z].b1)
+			while (hc[l] == trie_char(z))
 			{
-				if (trie[z].b0)
+				if (trie_op(z))
 				{
-					v =	trie[z].b0;
+					v =	trie_op(z);
 					do
 					{
 						v += opstart[curlang];
@@ -101,7 +106,7 @@ void hyphenate(void)
 					} while (v);
 				}
 				l++;
-				z = trie[z].rh+hc[l];
+				z = trie_link(z)+hc[l];
 			}
 		}
 	}
@@ -122,8 +127,8 @@ void hyphenate(void)
 	bchar = hyfbchar;
 	do
 	{
-		if (ha >= himemmin)
-			if (type(ha) != hf)
+		if (is_char_node(ha))
+			if (font(ha) != hf)
 			{
 				s = ha;
 				j = 0;
@@ -136,11 +141,11 @@ void hyphenate(void)
 			{
 				initlist = ha;
 				initlig = false;
-				hu[0] = subtype(ha);
+				hu[0] = character(ha);
 			}
 		else 
-			if (type(ha) == 6)
-				if (type(ha+1) != hf)
+			if (type(ha) == ligature_node)
+				if (font(lig_char(ha)) != hf)
 				{
 					s = ha;
 					j = 0;
@@ -151,20 +156,20 @@ void hyphenate(void)
 				}
 				else
 				{
-					initlist = link(ha+1);
+					initlist = lig_ptr(ha);
 					initlig = true;
 					initlft = subtype(ha) > 1;
-					hu[0] = subtype(ha+1);
+					hu[0] = character(lig_char(ha));
 					if (initlist == 0 && initlft)
 					{
 						hu[0] = 256;
 						initlig = false;
 					}
-					freenode(ha, 2);
+					freenode(ha, small_node_size);
 				}
 			else
 			{
-				if (r < himemmin && type(r) == 6 && subtype(r) > 1)
+				if (!is_char_node(r) && type(r) == ligature_node && subtype(r) > 1)
 				{
 					s = ha;
 					j = 0;
@@ -203,16 +208,13 @@ void hyphenate(void)
 		if (hyphenpassed > 0)
 			do
 			{
-				r = getnode(2);
+				r = getnode(small_node_size);
 				link(r) = link(hold_head);
-				type(r) = 7;
+				type(r) = disc_node;
 				majortail = r;
 				rcount = 0;
 				while (link(majortail) > 0)
-				{
-					majortail = link(majortail);
-					rcount++;
-				}
+					advance_major_tail(majortail, rcount);
 				i = hyphenpassed;
 				hyf[i] = 0;
 				minortail = 0;
@@ -228,11 +230,11 @@ void hyphenate(void)
 				}
 				while (l <= i)
 				{
-					l = reconstitute(l, i, fontbchar[hf], 256)+1;
+					l = reconstitute(l, i, fontbchar[hf], non_char)+1;
 					if (link(hold_head) > 0)
 					{
 						if (minortail == 0)
-							info(r+1) = link(hold_head);
+							pre_break(r) = link(hold_head);
 						else
 							link(minortail) = link(hold_head);
 						minortail = link(hold_head);
@@ -247,7 +249,7 @@ void hyphenate(void)
 					i--;
 				}
 				minortail = 0;
-				link(r+1) = 0;
+				pre_break(r) = 0;
 				cloc = 0;
 				if (bcharlabel[hf])
 				{
@@ -260,7 +262,7 @@ void hyphenate(void)
 				{
 					do
 					{
-						l = reconstitute(l, hn, bchar, 256)+1;
+						l = reconstitute(l, hn, bchar, non_char)+1;
 						if (cloc > 0)
 						{
 							hu[cloc] = c;
@@ -269,7 +271,7 @@ void hyphenate(void)
 						if (link(hold_head) > 0)
 						{
 							if (minortail == 0)
-								link(r+1) = link(hold_head);
+								pre_break(r) = link(hold_head);
 							else
 								link(minortail) = link(hold_head);
 							minortail = link(hold_head);
@@ -279,13 +281,10 @@ void hyphenate(void)
 					} while (l < j);
 					while (l > j)
 					{
-						j = reconstitute(j, hn, bchar, 256)+1;
+						j = reconstitute(j, hn, bchar, non_char)+1;
 						link(majortail) = link(hold_head);
 						while (link(majortail) > 0)
-						{
-							majortail = link(majortail);
-							rcount++;
-						}
+							advance_major_tail(majortail, rcount);
 					}
 				}
 				if (rcount > 127)

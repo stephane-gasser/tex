@@ -2,36 +2,26 @@
 #include "printscaled.h"
 #include "print.h"
 
+static void print_plus(int i, const std::string &s)
+{
+	if (pagesofar[i])
+	{
+		print(" plus ");
+		printscaled(pagesofar[i]);
+		print(s);
+	}
+}
+
 void printtotals(void)
 {
-	printscaled(pagesofar[1]);
-	if (pagesofar[2])
-	{
-		print(" plus ");
-		printscaled(pagesofar[2]);
-		print("");
-	}
-	if (pagesofar[3])
-	{
-		print(" plus ");
-		printscaled(pagesofar[3]);
-		print("fil");
-	}
-	if (pagesofar[4])
-	{
-		print(" plus ");
-		printscaled(pagesofar[4]);
-		print("fill");
-	}
-	if (pagesofar[5])
-	{
-		print(" plus ");
-		printscaled(pagesofar[5]);
-		print("filll");
-	}
-	if (pagesofar[6])
+	printscaled(page_total);
+	print_plus(2, "");
+	print_plus(3, "fil");
+	print_plus(4, "fill");
+	print_plus(5, "filll");
+	if (page_shrink)
 	{
 		print(" minus ");
-		printscaled(pagesofar[6]);
+		printscaled(page_shrink);
 	}
 }

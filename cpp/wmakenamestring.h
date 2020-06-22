@@ -1,5 +1,8 @@
 #ifndef WMAKENAMESTRING_H
 #define WMAKENAMESTRING_H
+
 #include "globals.h"
-strnumber wmakenamestring(wordfile& f);
+
+std::string wmakenamestring(wordfile& f);
+
 #endif

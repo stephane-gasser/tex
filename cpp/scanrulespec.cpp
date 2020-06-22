@@ -15,25 +15,25 @@ halfword scanrulespec(void)
 	}
 	while (true)
 	{
-		if (scankeyword(732)) //width
+		if (scankeyword("width"))
 		{
-			scandimen(false, false, false);
+			scan_normal_dimen();
 			width(q) = curval;
 			continue;
 		}
-		if (scankeyword(733)) //height
+		if (scankeyword("height"))
 		{
-			scandimen(false, false, false);
+			scan_normal_dimen();
 			height(q) = curval;
 			continue;
 		}
-		if (scankeyword(734)) //depth
+		if (scankeyword("depth"))
 		{
-			scandimen(false, false, false);
+			scan_normal_dimen();
 			depth(q) = curval;
 			continue;
 		}
-	break;
+		break;
 	}
 	return q;
 }

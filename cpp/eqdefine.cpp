@@ -1,6 +1,15 @@
 #include "eqdefine.h"
 #include "eqdestroy.h"
 #include "eqsave.h"
+#include "geqdefine.h"
+
+void define(int a, halfword p, quarterword t, halfword e)
+{
+	if (a >= 4)
+		geqdefine(p, t, e);
+	else 
+		eqdefine(p, t, e);
+}
 
 void eqdefine(halfword p, quarterword t, halfword e)
 {

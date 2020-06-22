@@ -3,16 +3,11 @@
 
 void saveforafter(halfword t)
 {
-	if (curlevel > 1)
+	if (curlevel > level_one)
 	{
-		if (saveptr > maxsavestack)
-		{
-			maxsavestack = saveptr;
-			if (maxsavestack > savesize-6)
-				overflow("save size", savesize);
-		}
-		save_type(saveptr) = 2;
-		save_level(saveptr) = 0;
+		check_full_save_stack();
+		save_type(saveptr) = insert_token;
+		save_level(saveptr) = level_zero;
 		save_index(saveptr) = t;
 		saveptr++;
 	}

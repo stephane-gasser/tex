@@ -155,10 +155,10 @@ void trybreak(int pi, smallnumber breaktype)
 						prevprevr = prevr;
 						prevr = q;
 					}
-				if (abs(int_par(adj_demerits_code)) >= max_dimen-minimumdemerits)
+				if (abs(adj_demerits()) >= max_dimen-minimumdemerits)
 					minimumdemerits = 1073741822;
 				else
-					minimumdemerits += abs(int_par(adj_demerits_code));
+					minimumdemerits += abs(adj_demerits());
 				for (fitclass = very_loose_fit; fitclass <= tight_fit; fitclass++)
 				{
 					if (minimaldemerits[fitclass] <= minimumdemerits)
@@ -305,7 +305,7 @@ void trybreak(int pi, smallnumber breaktype)
 			d = 0;
 		else
 		{
-			d = int_par(line_penalty_code)+b;
+			d = line_penalty()+b;
 			if (abs(d) >= 10000)
 				d = 100000000;
 			else
@@ -318,11 +318,11 @@ void trybreak(int pi, smallnumber breaktype)
 						d -= pi*pi;
 			if (breaktype == 1 && type(r) == vlist_node)
 				if (curp)
-					d += int_par(double_hyphen_demerits_code);
+					d += double_hyphen_demerits();
 				else
-				d += int_par(final_hyphen_demerits_code);
+				d += final_hyphen_demerits();
 			if (abs(fitclass-subtype(r)) > 1)
-				d += int_par(adj_demerits_code);
+				d += adj_demerits();
 		}
 		d += depth(r);
 		if (d <= minimaldemerits[fitclass])

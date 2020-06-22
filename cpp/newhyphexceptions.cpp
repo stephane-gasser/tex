@@ -16,18 +16,12 @@ void newhyphexceptions(void)
 {
 	char n, j;
 	hyphpointer h;
-	strnumber k;
-	halfword p, q;
-	strnumber s, t;
+	halfword p;
 	poolpointer u, v;
 	scanleftbrace();
-	if (int_par(cur_fam_code) <= 0)
+	curlang = cur_fam();
+	if (curlang < 0 || curlang > 255)
 		curlang = 0;
-	else 
-		if (int_par(cur_fam_code) > 255)
-			curlang = 0;
-		else
-		curlang = int_par(cur_fam_code);
 	n = 0;
 	p = 0;
 	getxtoken();
@@ -42,7 +36,7 @@ void newhyphexceptions(void)
 				{
 					if (n < 63)
 					{
-						q = getavail();
+						auto q = getavail();
 						link(q) = p;
 						info(q) = n;
 						p = q;
@@ -76,63 +70,49 @@ void newhyphexceptions(void)
 				{
 					n++;
 					hc[n] = curlang;
-					if (poolptr+n > poolsize)
-						overflow("pool size", poolsize-initpoolptr);
+					str_room(n);
 					h = 0;
 					for (j = 1; j <= n; j++)
 					{
 						h = (2*h+hc[j])%hyph_size;
-						strpool[poolptr++] = hc[j];
+						append_char(hc[j]);
 					}
-					s = makestring();
+					auto s = makestring();
 					if (hyphcount == hyph_size)
 						overflow("exception dictionary", hyph_size);
 					hyphcount++;
 					while (hyphword[h] != "")
 					{
-						k = txt(hyphword[h]);
-						if (strstart[k+1]-strstart[k] < strstart[s+1]-strstart[s])
+						if (hyphword[h].size() < s.size())
 						{
-							q = hyphlist[h];
-							hyphlist[h] = p;
-							p = q;
-							t = txt(hyphword[h]);
-							hyphword[h] = TXT(s);
-							s = t;
+							std::swap(hyphlist[h], p);
+							std::swap(hyphword[h], s);
 						}
 						else 
-							if (strstart[k+1]-strstart[k] == strstart[s+1]-strstart[s])
+							if (hyphword[h].size() == s.size())
 							{
-								u = strstart[k];
-								v = strstart[s];
+								u = 0;
+								v = 0;
 								bool label45 = false;
 								do
 								{
-									if (strpool[u] < strpool[v])
+									if (hyphword[h][u] < s[v])
 									{
-										q = hyphlist[h];
-										hyphlist[h] = p;
-										p = q;
-										t = txt(hyphword[h]);
-										hyphword[h] = TXT(s);
-										s = t;
+										std::swap(hyphlist[h], p);
+										std::swap(hyphword[h], s);
 										label45 = true;
 									}
-									if (strpool[u] > strpool[v])
+									if (hyphword[h][u] > s[v])
 										label45 = true;
 									if (label45)
 										break;
 									u++;
 									v++;
-								} while (u != strstart[k+1]);
+								} while (u < hyphword[h].size());
 								if (!label45)
 								{
-									q = hyphlist[h];
-									hyphlist[h] = p;
-									p = q;
-									t = txt(hyphword[h]);
-									hyphword[h] = TXT(s);
-									s = t;
+									std::swap(hyphlist[h], p);
+									std::swap(hyphword[h], s);
 								}
 							}
 						if (h > 0)
@@ -140,7 +120,7 @@ void newhyphexceptions(void)
 						else
 							h = hyph_size;
 					}
-					hyphword[h] = TXT(s);
+					hyphword[h] = s;
 					hyphlist[h] = p;
 				}
 				if (curcmd == right_brace)

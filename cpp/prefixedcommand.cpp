@@ -89,8 +89,8 @@ void prefixedcommand(void)
 		helpline[0] = "I'll pretend you didn't say \\long or \\outer here.";
 		error();
 	}
-	if (int_par(global_defs_code))
-		if (int_par(global_defs_code) < 0)
+	if (global_defs())
+		if (global_defs() < 0)
 		{
 			if (a >= 4)
 				a -= 4;
@@ -101,22 +101,16 @@ void prefixedcommand(void)
 	switch (curcmd)
 	{
 		case set_font: 
-			if (a >= 4)
-				geqdefine(cur_font_loc, data, curchr);
-			else
-				eqdefine(cur_font_loc, data, curchr);
+			define(a, cur_font_loc, data, curchr);
 			break;
 		case def:
-			if (curchr%2 & a < 4 && int_par(global_defs_code) >= 0)
+			if (curchr%2 & a < 4 && global_defs() >= 0)
 				a += 4;
 			e = curchr >= 2;
 			getrtoken();
 			p = curcs;
 			q = scantoks(true, e);
-			if (a >= 4)
-				geqdefine(p, 111+a%4, defref); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
-			else
-				eqdefine(p, 111+a%4, defref); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
+			define(a, p, 111+a%4, defref); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		case let:
 			n = curchr;
@@ -145,69 +139,42 @@ void prefixedcommand(void)
 			}
 			if (curcmd >= call)
 				info(curchr)++;
-			if (a >= 4)
-				geqdefine(p, curcmd, curchr);
-			else
-				eqdefine(p, curcmd, curchr);
+			define(a, p, curcmd, curchr);
 			break;
 		case shorthand_def:
 			n = curchr;
 			getrtoken();
 			p = curcs;
-			if (a >= 4)
-				geqdefine(p, relax, 256);
-			else
-				eqdefine(p, relax, 256);
+			define(a, p, relax, 256);
 			scanoptionalequals();
 			switch (n)
 			{
 				case 0:
 					scancharnum();
-					if (a >= 4)
-						geqdefine(p, char_given, curval);
-					else
-						eqdefine(p, char_given, curval);
+					define(a, p, char_given, curval);
 					break;
 				case 1:
 					scanfifteenbitint();
-					if (a >= 4)
-						geqdefine(p, math_given, curval);
-					else
-						eqdefine(p, math_given, curval);
+					define(a, p, math_given, curval);
 					break;
 				default:
 					scaneightbitint();
 					switch (n)
 					{
 						case 2: 
-							if (a >= 4)
-								geqdefine(p, assign_int, count_base+curval);
-							else
-								eqdefine(p, assign_int, count_base+curval);
+							define(a, p, assign_int, count_base+curval);
 							break;
 						case 3: 
-							if (a >= 4)
-								geqdefine(p, assign_dimen, scaled_base+curval);
-							else
-								eqdefine(p, assign_dimen, scaled_base+curval);
+							define(a, p, assign_dimen, scaled_base+curval);
 							break;
 						case 4: 
-							if (a >= 4)
-								geqdefine(p, assign_glue, skip_base+curval);
-							else
-								eqdefine(p, assign_glue, skip_base+curval);
+							define(a, p, assign_glue, skip_base+curval);
 							break;
 						case 5: 
-							if (a >= 4)
-								geqdefine(p, assign_mu_glue, mu_skip_base+curval);
-							else
-								eqdefine(p, assign_mu_glue, mu_skip_base+curval);
+							define(a, p, assign_mu_glue, mu_skip_base+curval);
 							break;
 						case 6: 
-							if (a >= 4)
-								geqdefine(p, assign_toks, toks_base+curval);
-							else
-								eqdefine(p, assign_toks, toks_base+curval);
+							define(a, p, assign_toks, toks_base+curval);
 					}
 			}
 			break;
@@ -226,10 +193,7 @@ void prefixedcommand(void)
 			getrtoken();
 			p = curcs;
 			readtoks(n, p);
-			if (a >= 4)
-				geqdefine(p, call, curval);
-			else
-				eqdefine(p, call, curval);
+			define(a, p, call, curval);
 			break;
 		case toks_register:
 		case assign_toks:
@@ -257,17 +221,11 @@ void prefixedcommand(void)
 				{
 					q = equiv(curchr);
 					if (q == 0)
-						if (a >= 4)
-							geqdefine(p, undefined_cs, 0);
-						else
-							eqdefine(p, undefined_cs, 0);
+						define(a, p, undefined_cs, 0);
 					else
 					{
 						info(q)++;
-						if (a >= 4)
-							geqdefine(p, call, q);
-						else
-							eqdefine(p, call, q);
+						define(a, p, call, q);
 					}
 					break;
 				}
@@ -277,10 +235,7 @@ void prefixedcommand(void)
 			q = scantoks(false, false);
 			if (link(defref) == 0)
 			{
-				if (a >= 4)
-					geqdefine(p, undefined_cs, 0);
-				else
-					eqdefine(p, undefined_cs, 0);
+				define(a, p, undefined_cs, 0);
 				link(defref) = avail;
 				avail = defref;
 			}
@@ -296,29 +251,20 @@ void prefixedcommand(void)
 					link(q) = link(defref);
 					link(defref) = q;
 				}
-				if (a >= 4)
-					geqdefine(p, call, defref);
-				else
-					eqdefine(p, call, defref);
+				define(a, p, call, defref);
 			}
 			break;
 		case assign_int:
 			p = curchr;
 			scanoptionalequals();
 			scanint();
-			if (a >= 4)
-				geqworddefine(p, curval);
-			else
-				eqworddefine(p, curval);
+			word_define(a, p, curval);
 			break;
 		case assign_dimen:
 			p = curchr;
 			scanoptionalequals();
 			scandimen(false, false, false);
-			if (a >= 4)
-				geqworddefine(p, curval);
-			else
-				eqworddefine(p, curval);
+			word_define(a, p, curval);
 			break;
 		case assign_glue:
 		case assign_mu_glue:
@@ -330,10 +276,7 @@ void prefixedcommand(void)
 			else
 				scanglue(2);
 			trapzeroglue();
-			if (a >= 4)
-				geqdefine(p, glue_ref, curval);
-			else
-				eqdefine(p, glue_ref, curval);
+			define(a, p, glue_ref, curval);
 			break;
 		case def_code:
 			if (curchr == cat_code_base)
@@ -370,21 +313,12 @@ void prefixedcommand(void)
 				curval = 0;
 			}
 			if (p < math_code_base)
-				if (a >= 4)
-					geqdefine(p, data, curval);
-				else
-					eqdefine(p, data, curval);
+				define(a, p, data, curval);
 			else 
 				if (p < del_code_base)
-					if (a >= 4)
-						geqdefine(p, data, curval);
-					else
-						eqdefine(p, data, curval);
+					define(a, p, data, curval);
 				else 
-					if (a >= 4)
-						geqworddefine(p, curval);
-					else
-						eqworddefine(p, curval);
+					word_define(a, p, curval);
 			break;
 		case def_family:
 			p = curchr;
@@ -392,10 +326,7 @@ void prefixedcommand(void)
 			p += curval;
 			scanoptionalequals();
 			scanfontident();
-			if (a >= 4)
-				geqdefine(p, data, curval);
-			else
-				eqdefine(p, data, curval);
+			define(a, p, data, curval);
 			break;
 		case register_:
 		case advance:
@@ -411,7 +342,7 @@ void prefixedcommand(void)
 				n = curval;
 			scanoptionalequals();
 			if (setboxallowed)
-				scanbox(0x40'00'00'00+n);
+				scanbox(box_flag+n);
 			else
 			{
 				printnl("! ");
@@ -450,16 +381,13 @@ void prefixedcommand(void)
 				info(p) = n;
 				for (j = 1; j <= n; j++)
 				{
-					scandimen(false, false, false);
+					scan_normal_dimen();
 					mem[p+2*j-1].int_ = curval;
-					scandimen(false, false, false);
+					scan_normal_dimen();
 					mem[p+2*j].int_ = curval;
 				}
 			}
-			if (a >= 4)
-				geqdefine(par_shape_loc, shape_ref, p);
-			else
-				eqdefine(par_shape_loc, shape_ref, p);
+			define(a, par_shape_loc, shape_ref, p);
 			break;
 		case hyph_data:
 			if (curchr == 1)
@@ -471,7 +399,7 @@ void prefixedcommand(void)
 			findfontdimen(true);
 			k = curval;
 			scanoptionalequals();
-			scandimen(false, false, false);
+			scan_normal_dimen();
 			fontinfo[k].int_ = curval;
 			break;
 		case assign_font_int:

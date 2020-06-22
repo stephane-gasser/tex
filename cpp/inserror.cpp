@@ -6,7 +6,7 @@ void inserror(void)
 {
 	OKtointerrupt = false;
 	backinput();
-	curinput.indexfield = 4;
+	token_type = inserted;
 	OKtointerrupt = true;
 	error();
 }

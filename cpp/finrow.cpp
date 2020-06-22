@@ -11,7 +11,7 @@ void finrow(void)
 	halfword p;
 	if (mode == -hmode)
 	{
-		p = hpack(link(head), 0, 1);
+		p = hpack(link(head), 0, additional);
 		popnest();
 		appendtovlist(p);
 		if (curhead != curtail)
@@ -22,7 +22,7 @@ void finrow(void)
 	}
 	else
 	{
-		p = vpackage(link(head), 0, 1, max_dimen);
+		p = vpack(link(head), 0, additional);
 		popnest();
 		link(tail) = p;
 		tail = p;
@@ -31,7 +31,7 @@ void finrow(void)
 	type(p) = unset_node;
 	glue_stretch(p) = 0;
 	if (every_cr())
-		begintokenlist(every_cr(), 13);
+		begintokenlist(every_cr(), every_cr_text);
 	alignpeek();
 }
 

@@ -14,7 +14,7 @@ void alignerror(void)
 		printnl("! ");
 		print("Misplaced ");
 		printcmdchr(curcmd, curchr);
-		if (curtok == 1062) // tab_mark + '&'
+		if (curtok == tab_token+'&')
 		{
 			helpptr = 6;
 			helpline[5] = "I can't figure out why you would want to use a tab mark";
@@ -43,14 +43,14 @@ void alignerror(void)
 			printnl("! ");
 			print("Missing { inserted");
 			alignstate++;
-			curtok = left_brace*0x01'00+'{'; 
+			curtok = left_brace_token+'{'; 
 		}
 		else
 		{
 			printnl("! ");
 			print("Missing } inserted");
 			alignstate--;
-			curtok = right_brace*0x01'00+ '}';
+			curtok = right_brace_token+ '}';
 		}
 		helpptr = 3;
 		helpline[2] = "I've put in what seems to be necessary to fix";

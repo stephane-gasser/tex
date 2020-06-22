@@ -21,6 +21,17 @@
 #include "error.h"
 #include "texte.h"
 
+static void get_x_token_or_active_char(void)
+{ 
+	getxtoken(); 
+	if (curcmd == relax)
+		if (curchr == no_expand_flag)
+		{
+			curcmd = active_char; 
+			curchr = curtok-cs_token_flag-active_base; 
+		}
+}
+
 void conditional(void)
 {
 
@@ -44,15 +55,10 @@ void conditional(void)
 	{
 		case if_char_code:
 		case if_cat_code:
-			getxtoken();
-			if (curcmd == escape && curchr == 257)
+			get_x_token_or_active_char();
+			if (curcmd > active_char || curchr > 255)
 			{
-				curcmd = active_char;
-				curchr = curtok-0x10'00; //cmd=char_num?
-			}
-			if (curcmd > 13 || curchr > 255)
-			{
-				m = 0;
+				m = relax;
 				n = 256;
 			}
 			else
@@ -60,15 +66,10 @@ void conditional(void)
 				m = curcmd;
 				n = curchr;
 			}
-			getxtoken;
-			if (curcmd == escape && curchr == 257)
-			{
-				curcmd = active_char;
-				curchr = curtok-0x10'00; //cmd=char_num?
-			}
+			get_x_token_or_active_char();
 			if (curcmd > 13 || curchr > 255)
 			{
-				curcmd = 0;
+				curcmd = relax;
 				curchr = 256;
 			}
 			if (thisif == if_char_code)
@@ -81,7 +82,7 @@ void conditional(void)
 			if (thisif == if_int_code)
 				scanint();
 			else
-				scandimen(false, false,	false);
+				scan_normal_dimen();
 			n = curval;
 			do
 				getxtoken();
@@ -101,7 +102,7 @@ void conditional(void)
 			if (thisif == if_int_code)
 				scanint();
 			else
-				scandimen(false, false, false);
+				scan_normal_dimen();
 			switch (r)
 			{
 				case '<': 
@@ -193,7 +194,7 @@ void conditional(void)
 		case if_case_code:
 			scanint();
 			n = curval;
-			if (int_par(tracing_commands_code) > 1)
+			if (tracing_commands() > 1)
 			{
 				begindiagnostic();
 				print("{case ");
@@ -236,7 +237,7 @@ void conditional(void)
 			changeiflimit(4, savecondptr);
 			return;
 	}
-	if (int_par(tracing_commands_code) > 1)
+	if (tracing_commands() > 1)
 	{
 		begindiagnostic();
 		if (b)

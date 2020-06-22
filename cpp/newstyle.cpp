@@ -3,7 +3,7 @@
 
 halfword newstyle(smallnumber s)
 {
-	auto p = getnode(3);
+	auto p = getnode(style_node_size);
 	type(p) = style_node;
 	subtype(p) = s;
 	width(p) = 0;

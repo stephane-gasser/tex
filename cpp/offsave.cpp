@@ -12,46 +12,44 @@
 
 void offsave(void)
 {
-	halfword p;
-	if (curgroup == 0)
+	if (curgroup == bottom_level)
 	{
 		printnl("! ");
 		print("Extra ");
 		printcmdchr(curcmd, curchr);
 		helpptr = 1;
 		helpline[0] = "Things are pretty mixed up, but I think the worst is over.";
-		error();
 	}
 	else
 	{
 		backinput();
-		p = getavail();
+		auto p = getavail();
 		link(temp_head) = p;
 		printnl("! ");
 		print("Missing ");
 		switch (curgroup)
 		{
-			case 14:
-				info(p) = frozen_end_group+cs_token_flag;
+			case semi_simple_group:
+				info(p) = cs_token_flag+frozen_end_group;
 				printesc("endgroup");
 				break;
-			case 15:
-				info(p) = math_shift*0x01'FF+'$';
+			case math_shift_group:
+				info(p) = math_shift_token+'$';
 				printchar('$');
 				break;
-			case 16:
-				info(p) = frozen_right+cs_token_flag;
+			case math_left_group:
+				info(p) = cs_token_flag+frozen_right;
 				link(p) = getavail();
 				p = link(p);
-				info(p) = other_char*0x01'FF+'.';
+				info(p) = other_token+'.';
 				printesc("right.");
 				break;
 			default:
-				info(p) = right_brace*0x01'00+'}';
+				info(p) = right_brace_token+'}';
 				printchar('}');
 		}
 		print(" inserted");
-		begintokenlist(link(temp_head), 4);
+		ins_list(link(temp_head));
 		{
 			helpptr = 5;
 			helpline[4] = "I've inserted something that you may have forgotten.";
@@ -60,6 +58,6 @@ void offsave(void)
 			helpline[1] = "really didn't forget anything, try typing `2' now; then";
 			helpline[0] = "my insertion and my current dilemma will both disappear.";
 		}
-		error();
 	}
+	error();
 }

@@ -5,34 +5,34 @@
 
 bool openfmtfile(void)
 {
-	auto j = curinput.locfield;
-	if (buffer[curinput.locfield] == '&')
+	auto j = loc;
+	if (buffer[loc] == '&')
 	{
-		curinput.locfield++;
-		j = curinput.locfield;
+		loc++;
+		j = loc;
 		buffer[last] = ' ';
 		while (buffer[j] != ' ')
 			j++;
-		packbufferedname(0, curinput.locfield, j-1);
+		packbufferedname(0, loc, j-1);
 		if (wopenin(fmtfile))
 		{
-			curinput.locfield = j;
+			loc = j;
 			return true;
 		}
-		packbufferedname(11, curinput.locfield, j-1);
+		packbufferedname(format_area_length, loc, j-1);
 		if (wopenin(fmtfile))
 		{
-			curinput.locfield = j;
+			loc = j;
 			return true;
 		}
 		std::cout << "Sorry, I can't find that format;\n will try PLAIN.\n" << std::flush;
 	}
-	packbufferedname(16, 1, 0);
+	packbufferedname(format_default_length-format_ext_length, 1, 0);
 	if (!wopenin(fmtfile))
 	{
 		std::cout << "I can't find the PLAIN format file!\n";
 		return false;
 	}
-	curinput.locfield = j;
+	loc = j;
 	return true;
 }

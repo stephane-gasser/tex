@@ -1,0 +1,11 @@
+<map id="cleanbox.h" name="cleanbox.h">
+<area shape="rect" id="node1" title=" " alt="" coords="511,5,596,32"/>
+<area shape="rect" id="node2" href="$cleanbox_8cpp.html" title=" " alt="" coords="5,80,104,107"/>
+<area shape="rect" id="node3" href="$makefraction_8cpp.html" title=" " alt="" coords="128,80,251,107"/>
+<area shape="rect" id="node4" href="$makemathaccent_8cpp.html" title=" " alt="" coords="275,80,421,107"/>
+<area shape="rect" id="node5" href="$makeop_8cpp.html" title=" " alt="" coords="445,80,539,107"/>
+<area shape="rect" id="node6" href="$makeover_8cpp.html" title=" " alt="" coords="563,80,666,107"/>
+<area shape="rect" id="node7" href="$makeradical_8cpp.html" title=" " alt="" coords="691,80,808,107"/>
+<area shape="rect" id="node8" href="$makescripts_8cpp.html" title=" " alt="" coords="831,80,950,107"/>
+<area shape="rect" id="node9" href="$makeunder_8cpp.html" title=" " alt="" coords="974,80,1085,107"/>
+</map>

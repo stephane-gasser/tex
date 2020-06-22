@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de slowprint.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">slowprint.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="slowprint_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="slowprint_8h.html">slowprint.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printchar_8h.html">printchar.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="slowprint_8h.html#a5f773eb7690be00f5227895740fcc8dc">    5</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a>(<span class="keywordtype">int</span> s)</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">if</span> (s &gt;= <a class="code" href="globals_8cpp.html#a21dcaa2eb3344777d3382ee7deafdaa8">strptr</a> || s &lt; 256)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(s);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = <a class="code" href="globals_8cpp.html#aa41969e93458f53144be18ee53f1f2b9">strstart</a>[s]; j &lt; <a class="code" href="globals_8cpp.html#aa41969e93458f53144be18ee53f1f2b9">strstart</a>[s+1]; j++)</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<a class="code" href="globals_8cpp.html#a9a39497b5850d8ef84842b542afb8124">strpool</a>[j]);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="slowprint_8h.html#a7c3f66d5a1fa669d17b66650b41b6bf4">   14</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a>(<span class="keyword">const</span> std::string &amp;s)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>: s)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aslowprint_8cpp_html_a163fa1f725ed91bdbb220bd85a1fd852"><div class="ttname"><a href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a></div><div class="ttdeci">void slowprint(int s)</div><div class="ttdef"><b>Definition:</b> <a href="slowprint_8cpp_source.html#l00005">slowprint.cpp:5</a></div></div>
+<div class="ttc" id="aslowprint_8h_html"><div class="ttname"><a href="slowprint_8h.html">slowprint.h</a></div></div>
+<div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
+<div class="ttc" id="aprintchar_8h_html"><div class="ttname"><a href="printchar_8h.html">printchar.h</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a9a39497b5850d8ef84842b542afb8124"><div class="ttname"><a href="globals_8cpp.html#a9a39497b5850d8ef84842b542afb8124">strpool</a></div><div class="ttdeci">packedASCIIcode strpool[poolsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00051">globals.cpp:51</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aa41969e93458f53144be18ee53f1f2b9"><div class="ttname"><a href="globals_8cpp.html#aa41969e93458f53144be18ee53f1f2b9">strstart</a></div><div class="ttdeci">poolpointer strstart[maxstrings+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00052">globals.cpp:52</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a21dcaa2eb3344777d3382ee7deafdaa8"><div class="ttname"><a href="globals_8cpp.html#a21dcaa2eb3344777d3382ee7deafdaa8">strptr</a></div><div class="ttdeci">strnumber strptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00054">globals.cpp:54</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

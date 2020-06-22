@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de makeover.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">makeover.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="makeover_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="makeover_8h.html">makeover.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="cleanbox_8h.html">cleanbox.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="overbar_8h.html">overbar.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df">    5</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="makeover_8cpp.html#a156674c83d6a15f5959b89cfa8a223df">makeover</a>(<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>)</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>)) = <a class="code" href="overbar_8cpp.html#a5b487c0636abe1d8f8766696d91829d6">overbar</a>(<a class="code" href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d">cleanbox</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>), 2*(<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a>/2)+1), 3*<a class="code" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a>(), <a class="code" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a>());</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#a4df3e896622a68b2bf54c6f13da25730">math_type</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>)) = <a class="code" href="constantes_8h.html#a089777cfda864891c3f7cc7ee8c762ab">sub_box</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aconstantes_8h_html_a089777cfda864891c3f7cc7ee8c762ab"><div class="ttname"><a href="constantes_8h.html#a089777cfda864891c3f7cc7ee8c762ab">sub_box</a></div><div class="ttdeci">constexpr int sub_box</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00970">constantes.h:970</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a4df3e896622a68b2bf54c6f13da25730"><div class="ttname"><a href="constantes_8cpp.html#a4df3e896622a68b2bf54c6f13da25730">math_type</a></div><div class="ttdeci">halfword &amp; math_type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00009">constantes.cpp:9</a></div></div>
+<div class="ttc" id="awriteout_8cpp_html_a099b3b060154898840f0ebdfb46ec78f"><div class="ttname"><a href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a></div><div class="ttdeci">q</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00024">writeout.cpp:24</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a9242983f21f2b16d36d1fd5f955b185e"><div class="ttname"><a href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a></div><div class="ttdeci">halfword nucleus(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00461">constantes.cpp:461</a></div></div>
+<div class="ttc" id="aoverbar_8h_html"><div class="ttname"><a href="overbar_8h.html">overbar.h</a></div></div>
+<div class="ttc" id="amakeover_8cpp_html_a156674c83d6a15f5959b89cfa8a223df"><div class="ttname"><a href="makeover_8cpp.html#a156674c83d6a15f5959b89cfa8a223df">makeover</a></div><div class="ttdeci">void makeover(halfword q)</div><div class="ttdef"><b>Definition:</b> <a href="makeover_8cpp_source.html#l00005">makeover.cpp:5</a></div></div>
+<div class="ttc" id="amakeover_8h_html"><div class="ttname"><a href="makeover_8h.html">makeover.h</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a6a7b1f013c94afa2d1a5b5fd7243f852"><div class="ttname"><a href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a></div><div class="ttdeci">smallnumber curstyle</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00192">globals.cpp:192</a></div></div>
+<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00019">constantes.cpp:19</a></div></div>
+<div class="ttc" id="acleanbox_8cpp_html_ab0ffad1299c4a1f5fe44e836a184518d"><div class="ttname"><a href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d">cleanbox</a></div><div class="ttdeci">halfword cleanbox(halfword p, smallnumber s)</div><div class="ttdef"><b>Definition:</b> <a href="cleanbox_8cpp_source.html#l00009">cleanbox.cpp:9</a></div></div>
+<div class="ttc" id="aoverbar_8cpp_html_a5b487c0636abe1d8f8766696d91829d6"><div class="ttname"><a href="overbar_8cpp.html#a5b487c0636abe1d8f8766696d91829d6">overbar</a></div><div class="ttdeci">halfword overbar(halfword b, scaled k, scaled t)</div><div class="ttdef"><b>Definition:</b> <a href="overbar_8cpp_source.html#l00006">overbar.cpp:6</a></div></div>
+<div class="ttc" id="acleanbox_8h_html"><div class="ttname"><a href="cleanbox_8h.html">cleanbox.h</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a2de34adfc920d4404fe640b371ff91a6"><div class="ttname"><a href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a></div><div class="ttdeci">int default_rule_thickness(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00572">constantes.cpp:572</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -12,8 +12,8 @@ void makefraction(halfword q)
 {
 	if (thickness(q) == default_code)
 		thickness(q) = default_rule_thickness();
-	auto x = cleanbox(q+2, curstyle+2-2*(curstyle/6));
-	auto z = cleanbox(q+3, 2*(curstyle/2)+3-2*(curstyle/6));
+	auto x = cleanbox(q+2, num_style(curstyle));
+	auto z = cleanbox(q+3, denom_style(curstyle));
 	if (width(x) < width(z))
 		x = rebox(x, width(z));
 	else
@@ -90,5 +90,5 @@ void makefraction(halfword q)
 	link(x) = v;
 	z = vardelimiter(right_delimiter(q), cursize, delta);
 	link(v) = z;
-	thickness(q) = hpack(x, 0, 1);
+	thickness(q) = hpack(x, 0, additional);
 }

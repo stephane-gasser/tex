@@ -12,7 +12,7 @@ void shiftcase(void)
 	while (p)
 	{
 		t = info(p);
-		if (t < 4352) //0x1100
+		if (t < cs_token_flag+single_base)
 		{
 			c = t%0x1'00;
 			if (equiv(b+c))
@@ -20,7 +20,7 @@ void shiftcase(void)
 		}
 		p = link(p);
 	}
-	begintokenlist(link(defref), 3);
+	back_list(link(defref));
 	link(defref) = avail;
 	avail = defref;
 }

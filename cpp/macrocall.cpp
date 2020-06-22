@@ -1,6 +1,7 @@
 #include "macrocall.h"
 #include "begindiagnostic.h"
 #include "print.h"
+#include "printchar.h"
 #include "println.h"
 #include "printcs.h"
 #include "printnl.h"
@@ -30,7 +31,7 @@ void macrocall(void)
 	halfword refcount = curchr;
 	halfword r = link(refcount);
 	smallnumber n = 0;
-	if (int_par(tracing_macros_code) > 0)
+	if (tracing_macros() > 0)
 	{
 		begindiagnostic();
 		println();
@@ -39,25 +40,24 @@ void macrocall(void)
 		enddiagnostic(false);
 	}
 	ASCIIcode matchchr;
-	if (info(r) != 0x0E'00) 
+	if (info(r) != end_match_token) 
 	{
-		scannerstatus = 3;
+		scannerstatus = matching;
 		halfword unbalance = 0;
 		longstate = type(curcs);
 		if (longstate >= outer_call)
 			longstate -= 2;
-
 		do
 		{
 			link(temp_head) = 0;
 			halfword s;
 			halfword p;
 			halfword m;
-			if (info(r) > 0x0D'FF || info(r) < 0x0D'00)
+			if (info(r) > match_token+255 || info(r) < match_token)
 				s = 0;
 			else
 			{
-				matchchr = info(r)-0x0D'00;
+				matchchr = info(r)-match_token;
 				s = link(r);
 				r = s;
 				p = temp_head;
@@ -70,9 +70,9 @@ void macrocall(void)
 				if (curtok = info(r))
 				{
 					r = link(r);
-					if (info(r) >= 0x0D'00 && info(r) <= 0x0E'00)
+					if (info(r) >= match_token && info(r) <= end_match_token)
 					{
-						if (curtok < 0x02'00) // cmd < right_brace
+						if (curtok < left_brace_limit) // cmd < right_brace
 							alignstate--;
 						break;
 					}
@@ -156,8 +156,8 @@ void macrocall(void)
 						warningindex = savewarningindex;
 						return;
 					}
-				if (curtok < 0x03'00) // cmd <= right_bracce
-					if (curtok < 0x02'00) // cmd < right_brace
+				if (curtok < right_brace_limit)
+					if (curtok < left_brace_limit)
 					{
 						unbalance = 1;
 						while (true)
@@ -198,8 +198,8 @@ void macrocall(void)
 									warningindex = savewarningindex;
 									return;
 								}
-							if (curtok < 0x03'00) // cmd <= right_brace
-								if (curtok < 0x02'00) // cmd < right_brace
+							if (curtok < right_brace_limit)
+								if (curtok < left_brace_limit)
 									unbalance++;
 								else
 								{
@@ -236,8 +236,8 @@ void macrocall(void)
 					}
 				else
 				{
-					if (curtok == spacer*0x01'00+' ')
-						if (info(r) <= 0x0E'00 && info(r) >= 0x0D'00) // cmd == 13
+					if (curtok == space_token)
+						if (info(r) <= end_match_token && info(r) >= match_token)
 							continue;
 					auto q = getavail();
 					link(p) = q;
@@ -245,13 +245,13 @@ void macrocall(void)
 					p = q;
 				}
 				m++;
-				if (info(r) > 0x0E'00 || info(r) < 0x0D'00) // cmd != 13
+				if (info(r) > end_match_token || info(r) < match_token)
 					continue;
 				break;
 			}
 			if (s)
 			{
-				if (m == 1 && info(p) < 0x03'00 && p != temp_head)
+				if (m == 1 && info(p) < right_brace_limit && p != temp_head)
 				{
 					link(rbraceptr) = 0;
 					link(p) = avail;
@@ -264,23 +264,24 @@ void macrocall(void)
 				else
 					pstack[n] = link(temp_head);
 				n++;
-				if (int_par(tracing_macros_code) > 0)
+				if (tracing_macros() > 0)
 				{
 					begindiagnostic();
-					printnl(std::string(1, char(matchchr)));
+					printchar(matchchr);
+					printnl("");
 					printint(n);
 					print("<-");
 					showtokenlist(pstack[n-1], 0, 1000);
 					enddiagnostic(false);
 				}
 			}
-		} while (info(r) != 0x0E'00); // cmd = end_match
+		} while (info(r) != end_match_token); 
 	}
-	while (curinput.statefield == 0 && curinput.locfield == 0 && curinput.indexfield != 2)
+	while (state == 0 && loc == 0 && index != 2)
 		endtokenlist();
-	begintokenlist(refcount, 5);
-	curinput.namefield = warningindex;
-	curinput.locfield = link(r);
+	begintokenlist(refcount, macro);
+	name = warningindex;
+	loc = link(r);
 	if (n > 0)
 	{
 		if (paramptr+n > maxparamstack)

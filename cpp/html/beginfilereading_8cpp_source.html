@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de beginfilereading.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">beginfilereading.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="beginfilereading_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="beginfilereading_8h.html">beginfilereading.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="overflow_8h.html">overflow.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="beginfilereading_8h.html#af501832c4c8d2d3ee398905b7857c4b1">    4</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1">beginfilereading</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a67445053138489f68dabbe88b4de32cb">inopen</a> == <a class="code" href="tex_8h.html#aa08c7e7d59120a83c89df464b17cd8e7">maxinopen</a>)</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <a class="code" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;text input levels&quot;</span>, <a class="code" href="tex_8h.html#aa08c7e7d59120a83c89df464b17cd8e7">maxinopen</a>); </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a> == <a class="code" href="tex_8h.html#a3c19872b662f2621c857e49fe9300c74">bufsize</a>)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;buffer size&quot;</span>, <a class="code" href="tex_8h.html#a3c19872b662f2621c857e49fe9300c74">bufsize</a>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="globals_8cpp.html#a67445053138489f68dabbe88b4de32cb">inopen</a>++;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a> &gt; <a class="code" href="globals_8cpp.html#a99382355db03a8ad53dfb8ed731430d7">maxinstack</a>)</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="globals_8cpp.html#a99382355db03a8ad53dfb8ed731430d7">maxinstack</a> = <a class="code" href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a> == <a class="code" href="tex_8h.html#aef84b926ad92462cf53893425ec70e87">stacksize</a>)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;input stack size&quot;</span>, <a class="code" href="tex_8h.html#aef84b926ad92462cf53893425ec70e87">stacksize</a>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a>[<a class="code" href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a>] = <a class="code" href="globals_8cpp.html#aca74807ce5f069d23b1a6af63ed7d00e">curinput</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a>++;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="constantes_8cpp.html#aafc334c89924a8b2f5e1a32c52e80045">index</a> = <a class="code" href="globals_8cpp.html#a67445053138489f68dabbe88b4de32cb">inopen</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="globals_8cpp.html#a64a671304160f03a9658a3850562c79d">linestack</a>[<a class="code" href="constantes_8cpp.html#aafc334c89924a8b2f5e1a32c52e80045">index</a>] = <a class="code" href="globals_8cpp.html#a41ebd28ef1d7c6ade45642cb6acc1039">line</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a> = <a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="constantes_8cpp.html#a902b4928286612d69880d4d792924804">state</a> = <a class="code" href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06ca477f46933a8d4f468ee66159a703a60c">mid_line</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="constantes_8cpp.html#ade95d1e83389e3e6b2095c8b149d1fc2">name</a> = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aglobals_8cpp_html_aca74807ce5f069d23b1a6af63ed7d00e"><div class="ttname"><a href="globals_8cpp.html#aca74807ce5f069d23b1a6af63ed7d00e">curinput</a></div><div class="ttdeci">instaterecord curinput</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00115">globals.cpp:115</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ade95d1e83389e3e6b2095c8b149d1fc2"><div class="ttname"><a href="constantes_8cpp.html#ade95d1e83389e3e6b2095c8b149d1fc2">name</a></div><div class="ttdeci">std::string &amp; name</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00908">constantes.cpp:908</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a64a671304160f03a9658a3850562c79d"><div class="ttname"><a href="globals_8cpp.html#a64a671304160f03a9658a3850562c79d">linestack</a></div><div class="ttdeci">int linestack[maxinopen+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00119">globals.cpp:119</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a9a13aa7125bf33b3f002c6a9d14ede3d"><div class="ttname"><a href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a></div><div class="ttdeci">unsigned char inputptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00113">globals.cpp:113</a></div></div>
+<div class="ttc" id="aoverflow_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00012">overflow.cpp:12</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a99382355db03a8ad53dfb8ed731430d7"><div class="ttname"><a href="globals_8cpp.html#a99382355db03a8ad53dfb8ed731430d7">maxinstack</a></div><div class="ttdeci">unsigned char maxinstack</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00114">globals.cpp:114</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aed2bd6a0a774ec6f59c3b0add5adc8f0"><div class="ttname"><a href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a></div><div class="ttdeci">instaterecord inputstack[stacksize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00112">globals.cpp:112</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a96e97edb510aa677a07ef606c639c8a0"><div class="ttname"><a href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a></div><div class="ttdeci">halfword &amp; start</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00906">constantes.cpp:906</a></div></div>
+<div class="ttc" id="atex_8h_html_aef84b926ad92462cf53893425ec70e87"><div class="ttname"><a href="tex_8h.html#aef84b926ad92462cf53893425ec70e87">stacksize</a></div><div class="ttdeci">constexpr int stacksize</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00015">tex.h:15</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aafc334c89924a8b2f5e1a32c52e80045"><div class="ttname"><a href="constantes_8cpp.html#aafc334c89924a8b2f5e1a32c52e80045">index</a></div><div class="ttdeci">quarterword &amp; index</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00905">constantes.cpp:905</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a41ebd28ef1d7c6ade45642cb6acc1039"><div class="ttname"><a href="globals_8cpp.html#a41ebd28ef1d7c6ade45642cb6acc1039">line</a></div><div class="ttdeci">int line</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00016">globals.cpp:16</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a902b4928286612d69880d4d792924804"><div class="ttname"><a href="constantes_8cpp.html#a902b4928286612d69880d4d792924804">state</a></div><div class="ttdeci">quarterword &amp; state</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00904">constantes.cpp:904</a></div></div>
+<div class="ttc" id="atex_8h_html_aa08c7e7d59120a83c89df464b17cd8e7"><div class="ttname"><a href="tex_8h.html#aa08c7e7d59120a83c89df464b17cd8e7">maxinopen</a></div><div class="ttdeci">constexpr int maxinopen</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00016">tex.h:16</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a10a3fcd824154f6545a843a16ebf7abb"><div class="ttname"><a href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a></div><div class="ttdeci">int First</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00048">globals.cpp:48</a></div></div>
+<div class="ttc" id="atex_8h_html_a3c19872b662f2621c857e49fe9300c74"><div class="ttname"><a href="tex_8h.html#a3c19872b662f2621c857e49fe9300c74">bufsize</a></div><div class="ttdeci">constexpr int bufsize</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00011">tex.h:11</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_adc29c2ff13d900c2f185ee95427fb06ca477f46933a8d4f468ee66159a703a60c"><div class="ttname"><a href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06ca477f46933a8d4f468ee66159a703a60c">mid_line</a></div><div class="ttdeci">@ mid_line</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00703">constantes.h:703</a></div></div>
+<div class="ttc" id="abeginfilereading_8cpp_html_af501832c4c8d2d3ee398905b7857c4b1"><div class="ttname"><a href="beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1">beginfilereading</a></div><div class="ttdeci">void beginfilereading(void)</div><div class="ttdef"><b>Definition:</b> <a href="beginfilereading_8cpp_source.html#l00004">beginfilereading.cpp:4</a></div></div>
+<div class="ttc" id="abeginfilereading_8h_html"><div class="ttname"><a href="beginfilereading_8h.html">beginfilereading.h</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a67445053138489f68dabbe88b4de32cb"><div class="ttname"><a href="globals_8cpp.html#a67445053138489f68dabbe88b4de32cb">inopen</a></div><div class="ttdeci">char inopen</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00116">globals.cpp:116</a></div></div>
+<div class="ttc" id="aoverflow_8h_html"><div class="ttname"><a href="overflow_8h.html">overflow.h</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

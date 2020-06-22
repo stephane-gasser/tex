@@ -14,10 +14,10 @@ bool initterminal(void)
 			std::cout << "! End of file on the terminal... why?'";
 			return false;
 		}
-		curinput.locfield = First;
-		while (curinput.locfield < last && buffer[curinput.locfield] == ' ')
-			curinput.locfield++;
-		if (curinput.locfield < last)
+		loc = First;
+		while (loc < last && buffer[loc] == ' ')
+			loc++;
+		if (loc < last)
 			return true;
 		std::cout << "Please type the name of your input file.\n";
 	}

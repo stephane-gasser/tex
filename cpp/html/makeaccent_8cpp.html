@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX: Référence du fichier makeaccent.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier makeaccent.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="makeaccent_8h_source.html">makeaccent.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="scancharnum_8h_source.html">scancharnum.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="newcharacter_8h_source.html">newcharacter.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="doassignments_8h_source.html">doassignments.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="backinput_8h_source.html">backinput.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="hpack_8h_source.html">hpack.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="newkern_8h_source.html">newkern.h</a>&quot;</code><br />
+<code>#include &lt;cmath&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de makeaccent.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="makeaccent_8cpp__incl.png" border="0" usemap="#makeaccent_8cpp" alt=""/></div>
+<map name="makeaccent_8cpp" id="makeaccent_8cpp">
+<area shape="rect" title=" " alt="" coords="469,5,587,32"/>
+<area shape="rect" href="makeaccent_8h.html" title=" " alt="" coords="5,80,109,107"/>
+<area shape="rect" href="scancharnum_8h.html" title=" " alt="" coords="134,80,245,107"/>
+<area shape="rect" href="newcharacter_8h.html" title=" " alt="" coords="269,80,379,107"/>
+<area shape="rect" href="doassignments_8h.html" title=" " alt="" coords="403,80,525,107"/>
+<area shape="rect" href="backinput_8h.html" title=" " alt="" coords="549,80,638,107"/>
+<area shape="rect" href="hpack_8h.html" title=" " alt="" coords="662,80,730,107"/>
+<area shape="rect" href="newkern_8h.html" title=" " alt="" coords="755,80,837,107"/>
+<area shape="rect" title=" " alt="" coords="861,80,920,107"/>
+<area shape="rect" href="globals_8h.html" title=" " alt="" coords="427,155,501,181"/>
+</map>
+</div>
+</div>
+<p><a href="makeaccent_8cpp_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a73af5b938a9ef086ac006e237d6e7d7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="makeaccent_8cpp.html#a73af5b938a9ef086ac006e237d6e7d7f">makeaccent</a> (void)</td></tr>
+<tr class="separator:a73af5b938a9ef086ac006e237d6e7d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a73af5b938a9ef086ac006e237d6e7d7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73af5b938a9ef086ac006e237d6e7d7f">&#9670;&nbsp;</a></span>makeaccent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void makeaccent </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="makeaccent_8cpp_source.html#l00010">10</a> du fichier <a class="el" href="makeaccent_8cpp_source.html">makeaccent.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">float</span> s, t;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> a, h, x, w, delta;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="structfourquarters.html">fourquarters</a> i;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="scancharnum_8cpp.html#ad73fd96a347109ca82a676f233224e60">scancharnum</a>();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="tex_8h.html#a31e60baff034e87efe01cbf977b72a39">internalfontnumber</a> <a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a> = <a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="newcharacter_8cpp.html#a6e07886dd6173debb4827256ca3327df">newcharacter</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">if</span> (p)</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        x = <a class="code" href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f">param</a>(<a class="code" href="constantes_8h.html#abb9f80a2890b1f4db15e788b245d8433">x_height_code</a>, <a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        s = <a class="code" href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f">param</a>(<a class="code" href="constantes_8h.html#a03f3222ba27f0a66a1c39637398fc5b2">slant_code</a>, <a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>)/float(<a class="code" href="constantes_8h.html#ac9c615a219b0c2977e7e676eb10d2505">unity</a>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        a = <a class="code" href="constantes_8cpp.html#afed1a10a514734f89ab8691850baa84f">char_width</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, <a class="code" href="constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac">char_info</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, <a class="code" href="constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de">character</a>(p)));</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="doassignments_8cpp.html#a600d75e92c3a991d8672e091303a8b40">doassignments</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> = 0;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a> = <a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#abe86d7e87db84834bb92f1c18e847492">letter</a> || <a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a8a5eb778156370e1f03ac8e1aca88013">other_char</a> || <a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#af6898c8bbdc7aefd0c02439c02b58beb">char_given</a>)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> = <a class="code" href="newcharacter_8cpp.html#a6e07886dd6173debb4827256ca3327df">newcharacter</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, <a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#afaa3be1bd83001b9ea5e5f209b0c39a9">char_num</a>)</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <a class="code" href="scancharnum_8cpp.html#ad73fd96a347109ca82a676f233224e60">scancharnum</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> = <a class="code" href="newcharacter_8cpp.html#a6e07886dd6173debb4827256ca3327df">newcharacter</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <a class="code" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            t = <a class="code" href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f">param</a>(<a class="code" href="constantes_8h.html#a03f3222ba27f0a66a1c39637398fc5b2">slant_code</a>, <a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>)/float(<a class="code" href="constantes_8h.html#ac9c615a219b0c2977e7e676eb10d2505">unity</a>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            i = <a class="code" href="constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac">char_info</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, <a class="code" href="constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de">character</a>(<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>));</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            w = <a class="code" href="constantes_8cpp.html#afed1a10a514734f89ab8691850baa84f">char_width</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, i);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            h = <a class="code" href="constantes_8cpp.html#a1ec2443f186d8e26a9c3e7a8184f367f">char_height</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, i);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keywordflow">if</span> (h != x)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                p = <a class="code" href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497">hpack</a>(p, 0, 1);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                <a class="code" href="constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab">shift_amount</a>(p) = x-h;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            delta = round((w-a)/2.0+h*t-x*s);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a> = <a class="code" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>(delta);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(<a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>) = 2;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="constantes_8h.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) = <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>) = p;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <a class="code" href="constantes_8h.html#a6b51a86c79527801129f34713d6fc01e">tail</a> = <a class="code" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>(-a-delta);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(<a class="code" href="constantes_8h.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) = 2;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = <a class="code" href="constantes_8h.html#a6b51a86c79527801129f34713d6fc01e">tail</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            p = <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a>(p);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a> = 1000;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="makeaccent_8cpp_a73af5b938a9ef086ac006e237d6e7d7f_cgraph.png" border="0" usemap="#makeaccent_8cpp_a73af5b938a9ef086ac006e237d6e7d7f_cgraph" alt=""/></div>
+<map name="makeaccent_8cpp_a73af5b938a9ef086ac006e237d6e7d7f_cgraph" id="makeaccent_8cpp_a73af5b938a9ef086ac006e237d6e7d7f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,981,99,1008"/>
+<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="488,461,567,488"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="793,1069,835,1096"/>
+<area shape="rect" href="constantes_8cpp.html#a1ec2443f186d8e26a9c3e7a8184f367f" title=" " alt="" coords="483,2488,572,2515"/>
+<area shape="rect" href="constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="490,816,565,843"/>
+<area shape="rect" href="constantes_8cpp.html#afed1a10a514734f89ab8691850baa84f" title=" " alt="" coords="485,2539,570,2565"/>
+<area shape="rect" href="constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title=" " alt="" coords="489,2589,565,2616"/>
+<area shape="rect" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039" title=" " alt="" coords="333,576,403,603"/>
+<area shape="rect" href="doassignments_8cpp.html#a600d75e92c3a991d8672e091303a8b40" title=" " alt="" coords="147,284,257,311"/>
+<area shape="rect" href="scancharnum_8cpp.html#ad73fd96a347109ca82a676f233224e60" title=" " alt="" coords="764,2159,864,2185"/>
+<area shape="rect" href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="339,1779,397,1805"/>
+<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="636,993,704,1020"/>
+<area shape="rect" href="constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title=" " alt="" coords="479,2640,576,2667"/>
+<area shape="rect" href="newcharacter_8cpp.html#a6e07886dd6173debb4827256ca3327df" title=" " alt="" coords="318,816,418,843"/>
+<area shape="rect" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="492,1120,563,1147"/>
+<area shape="rect" href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f" title=" " alt="" coords="173,2741,231,2768"/>
+<area shape="rect" href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="158,740,246,767"/>
+<area shape="rect" href="endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="624,461,716,488"/>
+<area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="637,563,703,589"/>
+<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="779,1019,849,1045"/>
+<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="793,1120,835,1147"/>
+<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="1021,2159,1068,2185"/>
+<area shape="rect" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="912,1323,973,1349"/>
+<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="914,2108,971,2135"/>
+<area shape="rect" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title=" " alt="" coords="1116,867,1177,893"/>
+<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="1118,2235,1175,2261"/>
+<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title=" " alt="" coords="501,563,554,589"/>
+<area shape="rect" href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="488,5,567,32"/>
+<area shape="rect" href="prefixedcommand_8cpp.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="305,284,431,311"/>
+<area shape="rect" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="636,1120,704,1147"/>
+<area shape="rect" href="constantes_8cpp.html#a9b1a0fe0853bd25a8d74737dfe51ed77" title=" " alt="" coords="488,2083,567,2109"/>
+<area shape="rect" href="badness_8cpp.html#af030be7eeb32202d38457203594ed062" title=" " alt="" coords="492,2133,563,2160"/>
+<area shape="rect" href="constantes_8cpp.html#a437b9b007bc70934fccbda61d264cf35" title=" " alt="" coords="484,2285,571,2312"/>
+<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title=" " alt="" coords="643,1525,697,1552"/>
+<area shape="rect" href="constantes_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd" title=" " alt="" coords="486,2336,569,2363"/>
+<area shape="rect" href="freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="634,1171,706,1197"/>
+<area shape="rect" href="constantes_8cpp.html#a29957fb6e1765b7267f0323079b8a9a4" title=" " alt="" coords="486,968,569,995"/>
+<area shape="rect" href="constantes_8cpp.html#af888f3d6cb7409feb487fcc70631671e" title=" " alt="" coords="492,1576,563,1603"/>
+<area shape="rect" href="constantes_8cpp.html#a541d64f748c1fd959bd0c9a9b0d4e06f" title=" " alt="" coords="483,1627,571,1653"/>
+<area shape="rect" href="constantes_8cpp.html#a05f8e0f2f0457601538099ef8afd013a" title=" " alt="" coords="489,1880,566,1907"/>
+<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="647,1475,693,1501"/>
+<area shape="rect" href="hpack_8cpp.html#aca1b4ef43cf99ba30e2d0bc481431dce" title=" " alt="" coords="497,2184,558,2211"/>
+<area shape="rect" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title=" " alt="" coords="639,1576,701,1603"/>
+<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title=" " alt="" coords="641,1373,699,1400"/>
+<area shape="rect" href="constantes_8cpp.html#ad058da1b3e7e4027797ff16b1e5a6c32" title=" " alt="" coords="494,1677,561,1704"/>
+<area shape="rect" href="newrule_8cpp.html#adde749bc3235334488b223590d8e4a87" title=" " alt="" coords="494,1424,561,1451"/>
+<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title=" " alt="" coords="643,1424,697,1451"/>
+<area shape="rect" href="printscaled_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb" title=" " alt="" coords="771,1323,857,1349"/>
+<area shape="rect" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title=" " alt="" coords="499,1728,556,1755"/>
+<area shape="rect" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc" title=" " alt="" coords="496,1779,559,1805"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="makeaccent_8cpp_a73af5b938a9ef086ac006e237d6e7d7f_icgraph.png" border="0" usemap="#makeaccent_8cpp_a73af5b938a9ef086ac006e237d6e7d7f_icgraph" alt=""/></div>
+<map name="makeaccent_8cpp_a73af5b938a9ef086ac006e237d6e7d7f_icgraph" id="makeaccent_8cpp_a73af5b938a9ef086ac006e237d6e7d7f_icgraph">
+<area shape="rect" title=" " alt="" coords="143,5,236,32"/>
+<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,5,95,32"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<div class="ttc" id="awriteout_8cpp_html_a099b3b060154898840f0ebdfb46ec78f"><div class="ttname"><a href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a></div><div class="ttdeci">q</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00024">writeout.cpp:24</a></div></div>
+<div class="ttc" id="ascancharnum_8cpp_html_ad73fd96a347109ca82a676f233224e60"><div class="ttname"><a href="scancharnum_8cpp.html#ad73fd96a347109ca82a676f233224e60">scancharnum</a></div><div class="ttdeci">void scancharnum(void)</div><div class="ttdef"><b>Definition:</b> <a href="scancharnum_8cpp_source.html#l00008">scancharnum.cpp:8</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a03f3222ba27f0a66a1c39637398fc5b2"><div class="ttname"><a href="constantes_8h.html#a03f3222ba27f0a66a1c39637398fc5b2">slant_code</a></div><div class="ttdeci">constexpr int slant_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00852">constantes.h:852</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_acee72cc7eac7224c7335fd7da8b4d54a"><div class="ttname"><a href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a></div><div class="ttdeci">quarterword f</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aa6b58ad4e3518a10030f9b811da3a41f"><div class="ttname"><a href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f">param</a></div><div class="ttdeci">int &amp; param(smallnumber p, internalfontnumber f)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00557">constantes.cpp:557</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a4128dbc20823d10a2626cb9cdf4d6cd4"><div class="ttname"><a href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a></div><div class="ttdeci">halfword curchr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00109">globals.cpp:109</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a35ad8cf1209527546283eddbd84437de"><div class="ttname"><a href="constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de">character</a></div><div class="ttdeci">quarterword &amp; character(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00059">constantes.cpp:59</a></div></div>
+<div class="ttc" id="awriteout_8cpp_html_a76be2f40de03334f34eaf465efc0e0e0"><div class="ttname"><a href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a></div><div class="ttdeci">auto r</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00019">writeout.cpp:19</a></div></div>
+<div class="ttc" id="anewcharacter_8cpp_html_a6e07886dd6173debb4827256ca3327df"><div class="ttname"><a href="newcharacter_8cpp.html#a6e07886dd6173debb4827256ca3327df">newcharacter</a></div><div class="ttdeci">halfword newcharacter(internalfontnumber f, eightbits c)</div><div class="ttdef"><b>Definition:</b> <a href="newcharacter_8cpp_source.html#l00005">newcharacter.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="constantes_8h.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00092">globals.cpp:92</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a0472a8839991d28cfa74dd6602fe4d3e"><div class="ttname"><a href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a></div><div class="ttdeci">halfword &amp; space_factor</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00087">globals.cpp:87</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_abfa740d034cf0b8f72d93eb12cd445ab"><div class="ttname"><a href="constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab">shift_amount</a></div><div class="ttdeci">int &amp; shift_amount(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00313">constantes.cpp:313</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_af6898c8bbdc7aefd0c02439c02b58beb"><div class="ttname"><a href="constantes_8h.html#af6898c8bbdc7aefd0c02439c02b58beb">char_given</a></div><div class="ttdeci">constexpr int char_given</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00293">constantes.h:293</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abe86d7e87db84834bb92f1c18e847492"><div class="ttname"><a href="constantes_8h.html#abe86d7e87db84834bb92f1c18e847492">letter</a></div><div class="ttdeci">constexpr int letter</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00229">constantes.h:229</a></div></div>
+<div class="ttc" id="abackinput_8cpp_html_afd6e40e89c0d293c90a471cef22e934a"><div class="ttname"><a href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a></div><div class="ttdeci">void backinput(void)</div><div class="ttdef"><b>Definition:</b> <a href="backinput_8cpp_source.html#l00006">backinput.cpp:6</a></div></div>
+<div class="ttc" id="ahpack_8cpp_html_ad7ca7a1c0695329834e990548241b497"><div class="ttname"><a href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497">hpack</a></div><div class="ttdeci">halfword hpack(halfword p, scaled w, smallnumber m)</div><div class="ttdef"><b>Definition:</b> <a href="hpack_8cpp_source.html#l00044">hpack.cpp:44</a></div></div>
+<div class="ttc" id="adoassignments_8cpp_html_a600d75e92c3a991d8672e091303a8b40"><div class="ttname"><a href="doassignments_8cpp.html#a600d75e92c3a991d8672e091303a8b40">doassignments</a></div><div class="ttdeci">void doassignments(void)</div><div class="ttdef"><b>Definition:</b> <a href="doassignments_8cpp_source.html#l00005">doassignments.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a8a5eb778156370e1f03ac8e1aca88013"><div class="ttname"><a href="constantes_8h.html#a8a5eb778156370e1f03ac8e1aca88013">other_char</a></div><div class="ttdeci">constexpr int other_char</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00230">constantes.h:230</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
+<div class="ttc" id="atex_8h_html_a76970135ed45e872cd47aff06bc1dd33"><div class="ttname"><a href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a></div><div class="ttdeci">int scaled</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00041">tex.h:41</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_afaa3be1bd83001b9ea5e5f209b0c39a9"><div class="ttname"><a href="constantes_8h.html#afaa3be1bd83001b9ea5e5f209b0c39a9">char_num</a></div><div class="ttdeci">constexpr int char_num</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00240">constantes.h:240</a></div></div>
+<div class="ttc" id="anewkern_8cpp_html_af78e07183c617d97a350cc11c9c18d37"><div class="ttname"><a href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a></div><div class="ttdeci">halfword newkern(scaled w)</div><div class="ttdef"><b>Definition:</b> <a href="newkern_8cpp_source.html#l00004">newkern.cpp:4</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aca760671a22142e0e59d362c04885039"><div class="ttname"><a href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a></div><div class="ttdeci">halfword &amp; cur_font(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00140">constantes.cpp:140</a></div></div>
+<div class="ttc" id="atex_8h_html_a31e60baff034e87efe01cbf977b72a39"><div class="ttname"><a href="tex_8h.html#a31e60baff034e87efe01cbf977b72a39">internalfontnumber</a></div><div class="ttdeci">char internalfontnumber</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00101">tex.h:101</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_adb17223ad60c9ffc709eb43e2f309055"><div class="ttname"><a href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a></div><div class="ttdeci">eightbits curcmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00108">globals.cpp:108</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abb9f80a2890b1f4db15e788b245d8433"><div class="ttname"><a href="constantes_8h.html#abb9f80a2890b1f4db15e788b245d8433">x_height_code</a></div><div class="ttdeci">constexpr int x_height_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00856">constantes.h:856</a></div></div>
+<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00049">constantes.cpp:49</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a375b29365eb2744579e4bf4518e6aaac"><div class="ttname"><a href="constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac">char_info</a></div><div class="ttdeci">fourquarters char_info(internalfontnumber f, smallnumber q)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00562">constantes.cpp:562</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_ac9c615a219b0c2977e7e676eb10d2505"><div class="ttname"><a href="constantes_8h.html#ac9c615a219b0c2977e7e676eb10d2505">unity</a></div><div class="ttdeci">constexpr int unity</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00043">constantes.h:43</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a1ec2443f186d8e26a9c3e7a8184f367f"><div class="ttname"><a href="constantes_8cpp.html#a1ec2443f186d8e26a9c3e7a8184f367f">char_height</a></div><div class="ttdeci">int char_height(internalfontnumber f, fourquarters i)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00552">constantes.cpp:552</a></div></div>
+<div class="ttc" id="astructfourquarters_html"><div class="ttname"><a href="structfourquarters.html">fourquarters</a></div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00062">tex.h:62</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_afed1a10a514734f89ab8691850baa84f"><div class="ttname"><a href="constantes_8cpp.html#afed1a10a514734f89ab8691850baa84f">char_width</a></div><div class="ttdeci">int char_width(internalfontnumber f, fourquarters i)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00547">constantes.cpp:547</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a3fc97d19e160956f7fa23eb8ded19785"><div class="ttname"><a href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a></div><div class="ttdeci">int curval</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00019">globals.cpp:19</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a79c6dd981ca9096a229688c57fc324ca"><div class="ttname"><a href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a></div><div class="ttdeci">void tail_append(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00267">constantes.cpp:267</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

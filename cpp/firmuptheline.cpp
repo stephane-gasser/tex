@@ -6,21 +6,20 @@
 
 void firmuptheline(void)
 {
-	curinput.limitfield = last;
-	if (int_par(pausing_code) > 0 && interaction > nonstop_mode)
+	limit = last;
+	if (pausing() > 0 && interaction > nonstop_mode)
+	{
+		println();
+		for (int k = start; k < limit; k++)
+			printchar(buffer[k]);
+		First = limit;
+		print("=>");
+		terminput();
+		if (last > First)
 		{
-			println();
-			if (curinput.startfield < curinput.limitfield)
-				for (int k = curinput.startfield; k < curinput.limitfield; k++)
-					printchar(buffer[k]);
-			First = curinput.limitfield;
-			print("=>");
-			terminput();
-			if (last > First)
-			{
-				for (int k = First; k < last; k++)
-					buffer[k+curinput.startfield-First] = buffer[k];
-				curinput.limitfield = curinput.startfield+last-First;
-			}
+			for (int k = First; k < last; k++)
+				buffer[k+start-First] = buffer[k];
+			limit = start+last-First;
 		}
+	}
 }

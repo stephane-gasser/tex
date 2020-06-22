@@ -1,10 +1,10 @@
 #include "popalignment.h"
 #include "freenode.h"
+#include "getavail.h"
 
 void popalignment(void)
 {
-	link(curhead) = avail;
-	avail = curhead;
+	free_avail(curhead);
 	auto p = alignptr;
 	curtail = link(p+4);
 	curhead = info(p+4);
@@ -14,5 +14,5 @@ void popalignment(void)
 	preamble() = llink(p);
 	curalign = info(p);
 	alignptr = link(p);
-	freenode(p, 5);
+	freenode(p, align_stack_node_size);
 }

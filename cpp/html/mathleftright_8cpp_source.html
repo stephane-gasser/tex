@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de mathleftright.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">mathleftright.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="mathleftright_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="mathleftright_8h.html">mathleftright.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="scandelimiter_8h.html">scandelimiter.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printnl_8h.html">printnl.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="print_8h.html">print.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printesc_8h.html">printesc.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="error_8h.html">error.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="offsave_8h.html">offsave.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="newnoad_8h.html">newnoad.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="pushmath_8h.html">pushmath.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="unsave_8h.html">unsave.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="finmlist_8h.html">finmlist.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="texte_8h.html">texte.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552">   14</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="mathleftright_8cpp.html#ae57bcde06a5ae7558dbb7f17a0724552">mathleftright</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="tex_8h.html#aebffb996625158f539ca50fcf7d4628b">smallnumber</a> t = <a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">if</span> (t == 31 &amp;&amp; <a class="code" href="globals_8cpp.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a> != 16)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a> == 15)</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="scandelimiter_8cpp.html#a2e0bf53d32035b3ef5225b37ca94dacc">scandelimiter</a>(<a class="code" href="constantes_8h.html#a93b60aff65ed08dae1aae0b864e2b87a">garbage</a>, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <a class="code" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;! &quot;</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;Extra &quot;</span>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(<span class="stringliteral">&quot;right&quot;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 1;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;I&#39;m ignoring a \\right that had no matching \\left.&quot;</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b">offsave</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keyword">auto</span> p = <a class="code" href="newnoad_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52">newnoad</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = t;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="scandelimiter_8cpp.html#a2e0bf53d32035b3ef5225b37ca94dacc">scandelimiter</a>(p+1, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">if</span> (t == 30)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <a class="code" href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012">pushmath</a>(16);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="constantes_8h.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a>) = p;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <a class="code" href="constantes_8h.html#a6b51a86c79527801129f34713d6fc01e">tail</a> = p;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            p = <a class="code" href="finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af">finmlist</a>(p);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <a class="code" href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc">unsave</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <a class="code" href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a>(<a class="code" href="newnoad_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52">newnoad</a>());</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(<a class="code" href="constantes_8h.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) = 23;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="constantes_8h.html#a6b51a86c79527801129f34713d6fc01e">tail</a>+1) = 3;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(<a class="code" href="constantes_8h.html#a6b51a86c79527801129f34713d6fc01e">tail</a>+1) = p;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aoffsave_8h_html"><div class="ttname"><a href="offsave_8h.html">offsave.h</a></div></div>
+<div class="ttc" id="aunsave_8cpp_html_a107d881e47e06a5ebd5fd6332f972bcc"><div class="ttname"><a href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc">unsave</a></div><div class="ttdeci">void unsave(void)</div><div class="ttdef"><b>Definition:</b> <a href="unsave_8cpp_source.html#l00006">unsave.cpp:6</a></div></div>
+<div class="ttc" id="apushmath_8cpp_html_aba90df5553aea9707087be473eddb012"><div class="ttname"><a href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012">pushmath</a></div><div class="ttdeci">void pushmath(groupcode c)</div><div class="ttdef"><b>Definition:</b> <a href="pushmath_8cpp_source.html#l00005">pushmath.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aa5839c674f8a4ff6fd198113fb1b2d40"><div class="ttname"><a href="constantes_8h.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a></div><div class="ttdeci">halfword &amp; head</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00091">globals.cpp:91</a></div></div>
+<div class="ttc" id="ascandelimiter_8cpp_html_a2e0bf53d32035b3ef5225b37ca94dacc"><div class="ttname"><a href="scandelimiter_8cpp.html#a2e0bf53d32035b3ef5225b37ca94dacc">scandelimiter</a></div><div class="ttdeci">void scandelimiter(halfword p, bool r)</div><div class="ttdef"><b>Definition:</b> <a href="scandelimiter_8cpp_source.html#l00009">scandelimiter.cpp:9</a></div></div>
+<div class="ttc" id="aglobals_8h_html_ae1c0d92ce2fe057255c7badbbb0615b0"><div class="ttname"><a href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a></div><div class="ttdeci">std::string helpline[6]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00071">globals.h:71</a></div></div>
+<div class="ttc" id="afinmlist_8cpp_html_af4215f599c5ab41d37100fb19ee858af"><div class="ttname"><a href="finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af">finmlist</a></div><div class="ttdeci">halfword finmlist(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="finmlist_8cpp_source.html#l00005">finmlist.cpp:5</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a4128dbc20823d10a2626cb9cdf4d6cd4"><div class="ttname"><a href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a></div><div class="ttdeci">halfword curchr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00109">globals.cpp:109</a></div></div>
+<div class="ttc" id="aprintesc_8cpp_html_ace069a9f107f557990814241b661ad5f"><div class="ttname"><a href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a></div><div class="ttdeci">void printesc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printesc_8cpp_source.html#l00007">printesc.cpp:7</a></div></div>
+<div class="ttc" id="aprintnl_8h_html"><div class="ttname"><a href="printnl_8h.html">printnl.h</a></div></div>
+<div class="ttc" id="atex_8h_html_aebffb996625158f539ca50fcf7d4628b"><div class="ttname"><a href="tex_8h.html#aebffb996625158f539ca50fcf7d4628b">smallnumber</a></div><div class="ttdeci">unsigned char smallnumber</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00043">tex.h:43</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="constantes_8h.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00092">globals.cpp:92</a></div></div>
+<div class="ttc" id="aunsave_8h_html"><div class="ttname"><a href="unsave_8h.html">unsave.h</a></div></div>
+<div class="ttc" id="apushmath_8h_html"><div class="ttname"><a href="pushmath_8h.html">pushmath.h</a></div></div>
+<div class="ttc" id="anewnoad_8cpp_html_a7d8404f21a8d8195c82810f73b0e8a52"><div class="ttname"><a href="newnoad_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52">newnoad</a></div><div class="ttdeci">halfword newnoad(void)</div><div class="ttdef"><b>Definition:</b> <a href="newnoad_8cpp_source.html#l00004">newnoad.cpp:4</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a85c0624f93ed5c5e8c722316dad139af"><div class="ttname"><a href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a></div><div class="ttdeci">char helpptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00069">globals.cpp:69</a></div></div>
+<div class="ttc" id="amathleftright_8h_html"><div class="ttname"><a href="mathleftright_8h.html">mathleftright.h</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a85ef1f882d9456051bd7b436978858d0"><div class="ttname"><a href="globals_8cpp.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a></div><div class="ttdeci">groupcode curgroup</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00106">globals.cpp:106</a></div></div>
+<div class="ttc" id="anewnoad_8h_html"><div class="ttname"><a href="newnoad_8h.html">newnoad.h</a></div></div>
+<div class="ttc" id="atexte_8h_html"><div class="ttname"><a href="texte_8h.html">texte.h</a></div></div>
+<div class="ttc" id="amathleftright_8cpp_html_ae57bcde06a5ae7558dbb7f17a0724552"><div class="ttname"><a href="mathleftright_8cpp.html#ae57bcde06a5ae7558dbb7f17a0724552">mathleftright</a></div><div class="ttdeci">void mathleftright(void)</div><div class="ttdef"><b>Definition:</b> <a href="mathleftright_8cpp_source.html#l00014">mathleftright.cpp:14</a></div></div>
+<div class="ttc" id="aerror_8h_html"><div class="ttname"><a href="error_8h.html">error.h</a></div></div>
+<div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00019">error.cpp:19</a></div></div>
+<div class="ttc" id="aprint_8h_html"><div class="ttname"><a href="print_8h.html">print.h</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
+<div class="ttc" id="ascandelimiter_8h_html"><div class="ttname"><a href="scandelimiter_8h.html">scandelimiter.h</a></div></div>
+<div class="ttc" id="aprintesc_8h_html"><div class="ttname"><a href="printesc_8h.html">printesc.h</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00019">constantes.cpp:19</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a93b60aff65ed08dae1aae0b864e2b87a"><div class="ttname"><a href="constantes_8h.html#a93b60aff65ed08dae1aae0b864e2b87a">garbage</a></div><div class="ttdeci">constexpr int garbage</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00204">constantes.h:204</a></div></div>
+<div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
+<div class="ttc" id="aoffsave_8cpp_html_a63378f93afc7d8ca66b9fe6f6f3d920b"><div class="ttname"><a href="offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b">offsave</a></div><div class="ttdeci">void offsave(void)</div><div class="ttdef"><b>Definition:</b> <a href="offsave_8cpp_source.html#l00013">offsave.cpp:13</a></div></div>
+<div class="ttc" id="afinmlist_8h_html"><div class="ttname"><a href="finmlist_8h.html">finmlist.h</a></div></div>
+<div class="ttc" id="aprintnl_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printnl_8cpp_source.html#l00005">printnl.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00034">constantes.cpp:34</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a79c6dd981ca9096a229688c57fc324ca"><div class="ttname"><a href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a></div><div class="ttdeci">void tail_append(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00267">constantes.cpp:267</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

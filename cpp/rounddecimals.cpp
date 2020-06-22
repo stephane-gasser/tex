@@ -6,7 +6,7 @@ scaled rounddecimals(smallnumber k)
 	while (k > 0)
 	{
 		k--;
-		a = (a+dig[k]*131072)/10; // 131'072 = 0x2'00'00
+		a = (a+dig[k]*two)/10;
 	}
 	return (a+1)/2;
 }

@@ -7,7 +7,7 @@ void indentinhmode(void)
 	if (curchr > 0)
 	{
 		auto p = newnullbox();
-		width(p) = dimen_par(par_indent_code);
+		width(p) = par_indent();
 		if (abs(mode) == hmode)
 			space_factor = 1000;
 		else

@@ -3,13 +3,8 @@
 
 void newsavelevel(groupcode c)
 {
-	if (saveptr > maxsavestack)
-	{
-		maxsavestack = saveptr;
-		if (maxsavestack > savesize-6)
-			overflow("save size", savesize);
-	}
-	save_type(saveptr) = 3;
+	check_full_save_stack();
+	save_type(saveptr) = level_boundary;
 	save_level(saveptr) = curgroup;
 	save_index(saveptr) = curboundary;
 	if (curlevel == 255)

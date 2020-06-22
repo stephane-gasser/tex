@@ -18,21 +18,21 @@ void firstfit(triepointer p)
 			{
 				triemax++;
 				trietaken[triemax] = false;
-				trie[triemax].rh = triemax+1;
-				trie[triemax].lh = triemax-1;
+				trie_link(triemax) = triemax+1;
+				trie_back(triemax) = triemax-1;
 			} while (triemax != h+256);
 		}
 		if (trietaken[h])
 		{
-			z = trie[z].rh;
+			z = trie_link(z);
 			continue;
 		}
 		q = trier[p];
 		while (q > 0)
 		{
-			if (trie[h+triec[q]].rh == 0)
+			if (trie_link(h+triec[q]) == 0)
 			{
-				z = trie[z].rh;
+				z = trie_link(z);
 				continue;
 			}
 			q = trier[q];
@@ -40,16 +40,16 @@ void firstfit(triepointer p)
 		break;
 	}
 	trietaken[h] = true;
-	triehash[p] = h;
+	trie_ref[p] = h;
 	q = p;
 	do
 	{
 		z = h+triec[q];
-		l = trie[z].lh;
-		r = trie[z].rh;
-		trie[r].lh = l;
-		trie[l].rh = r;
-		trie[z].rh = 0;
+		l = trie_back(z);
+		r = trie_link(z);
+		trie_back(r) = l;
+		trie_link(l) = r;
+		trie_link(z) = 0;
 		if (l < 256)
 		{
 			if (z < 256)

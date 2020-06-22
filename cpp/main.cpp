@@ -113,18 +113,18 @@ int main()
 		scannerstatus = 0;
 		warningindex = 0;
 		First = 1;
-		curinput.statefield = 33;
-		curinput.startfield = 1;
-		curinput.indexfield = 0;
+		state = new_line;
+		start = 1;
+		index = 0;
 		line = 0;
-		curinput.namefield = 0;
+		name = "";
 		forceeof = false;
 		alignstate = 1000000;
 		if (!initterminal())
 			throw std::string();
-		curinput.limitfield = last;
+		limit = last;
 		First = last+1;
-		if (formatident == "" || buffer[curinput.locfield] == '&')
+		if (formatident == "" || buffer[loc] == '&')
 		{
 			if (formatident != "")
 				Initialize();
@@ -136,20 +136,19 @@ int main()
 				throw std::string();
 			}
 			wclose(fmtfile);
-			while (curinput.locfield < curinput.limitfield && buffer[curinput.locfield] == ' ')
-				curinput.locfield++;
+			while (loc < limit && buffer[loc] == ' ')
+				loc++;
 		}
-		if (int_par(end_line_char_code) < 0 || int_par(end_line_char_code) > 255)
-			curinput.limitfield--;
+		if (end_line_char_inactive())
+			limit--;
 		else
-			buffer[curinput.limitfield] = int_par(end_line_char_code);
+			buffer[limit] = end_line_char();
 		fixdateandtime();
-		magicoffset = strstart[891]-9*16;
 		if (interaction == batch_mode)
 			selector = no_print;
 		else
 			selector = term_only;
-		if (curinput.locfield < curinput.limitfield && cat_code(buffer[curinput.locfield]))
+		if (loc < limit && cat_code(buffer[loc]))
 			startinput();
 		history = spotless;
 		maincontrol();

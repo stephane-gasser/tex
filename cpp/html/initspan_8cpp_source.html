@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de initspan.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">initspan.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="initspan_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="initspan_8h.html">initspan.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="pushnest_8h.html">pushnest.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="normalparagraph_8h.html">normalparagraph.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="initspan_8h.html#a1c347985717caccf5068d06b952b2a47">    5</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="initspan_8cpp.html#a1c347985717caccf5068d06b952b2a47">initspan</a>(<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p)</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309">pushnest</a>();</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8h.html#a7efa36ab31730808a677766db6df868e">mode</a> == -<a class="code" href="constantes_8h.html#ab55437cf0d44ea737dd4c2547bee6b01">hmode</a>)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a> = 1000;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="constantes_8h.html#af63f4ef8550dae22c18f3db782753fe8">prev_depth</a> = -0x1<span class="stringliteral">&#39;00&#39;</span>00*1000;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9">normalparagraph</a>();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    }</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="globals_8cpp.html#a82b243bae7dc55e7ae1716dc6432042e">curspan</a> = p;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aconstantes_8h_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="constantes_8h.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00090">globals.cpp:90</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_af63f4ef8550dae22c18f3db782753fe8"><div class="ttname"><a href="constantes_8h.html#af63f4ef8550dae22c18f3db782753fe8">prev_depth</a></div><div class="ttdeci">int &amp; prev_depth</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00086">globals.cpp:86</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a0472a8839991d28cfa74dd6602fe4d3e"><div class="ttname"><a href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a></div><div class="ttdeci">halfword &amp; space_factor</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00087">globals.cpp:87</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a82b243bae7dc55e7ae1716dc6432042e"><div class="ttname"><a href="globals_8cpp.html#a82b243bae7dc55e7ae1716dc6432042e">curspan</a></div><div class="ttdeci">halfword curspan</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00200">globals.cpp:200</a></div></div>
+<div class="ttc" id="ainitspan_8h_html"><div class="ttname"><a href="initspan_8h.html">initspan.h</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_ab55437cf0d44ea737dd4c2547bee6b01"><div class="ttname"><a href="constantes_8h.html#ab55437cf0d44ea737dd4c2547bee6b01">hmode</a></div><div class="ttdeci">constexpr int hmode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00350">constantes.h:350</a></div></div>
+<div class="ttc" id="anormalparagraph_8h_html"><div class="ttname"><a href="normalparagraph_8h.html">normalparagraph.h</a></div></div>
+<div class="ttc" id="anormalparagraph_8cpp_html_ab732d4db0ce00747da0bdb0fff3c7af9"><div class="ttname"><a href="normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9">normalparagraph</a></div><div class="ttdeci">void normalparagraph(void)</div><div class="ttdef"><b>Definition:</b> <a href="normalparagraph_8cpp_source.html#l00005">normalparagraph.cpp:5</a></div></div>
+<div class="ttc" id="ainitspan_8cpp_html_a1c347985717caccf5068d06b952b2a47"><div class="ttname"><a href="initspan_8cpp.html#a1c347985717caccf5068d06b952b2a47">initspan</a></div><div class="ttdeci">void initspan(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="initspan_8cpp_source.html#l00005">initspan.cpp:5</a></div></div>
+<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
+<div class="ttc" id="apushnest_8h_html"><div class="ttname"><a href="pushnest_8h.html">pushnest.h</a></div></div>
+<div class="ttc" id="apushnest_8cpp_html_a67fd485afd94f32c6e7f6dcea9e6b309"><div class="ttname"><a href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309">pushnest</a></div><div class="ttdeci">void pushnest(void)</div><div class="ttdef"><b>Definition:</b> <a href="pushnest_8cpp_source.html#l00005">pushnest.cpp:5</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -15,7 +15,7 @@
 void openlogfile(void)
 {
 	auto oldsetting = selector;
-	if (jobname == "")
+	if (jobname == "") 
 		jobname = "texput";
 	packjobname(".log");
 	while (!aopenout(logfile))
@@ -29,21 +29,21 @@ void openlogfile(void)
 	logfile << banner;
 	slowprint(formatident);
 	print("  ");
-	printint(int_par(day_code));
+	printint(day());
 	printchar(' ');
 	char months[] = "JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC";
-	for (int k = 3*int_par(month_code)-2; k<= 3*int_par(month_code); k++)
+	for (int k = 3*month()-2; k<= 3*month(); k++)
 		logfile << months[k];
 	printchar(' ');
-	printint(int_par(year_code));
+	printint(year());
 	printchar(' ');
-	printtwo(int_par(time_code)/60);
+	printtwo(time()/60);
 	printchar(':');
-	printtwo(int_par(time_code)%60);
+	printtwo(time()%60);
 	inputstack[inputptr] = curinput;
 	printnl("**");
 	int l = inputstack[0].limitfield;
-	if (buffer[l] == int_par(end_line_char_code))
+	if (buffer[l] == end_line_char())
 		l--;
 	for (int k = 1; k <= l; k++)
 		printchar(buffer[k]);

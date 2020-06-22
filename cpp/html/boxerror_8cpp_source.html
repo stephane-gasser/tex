@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de boxerror.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">boxerror.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="boxerror_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="boxerror_8h.html">boxerror.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="error_8h.html">error.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="begindiagnostic_8h.html">begindiagnostic.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printnl_8h.html">printnl.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="showbox_8h.html">showbox.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="enddiagnostic_8h.html">enddiagnostic.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="flushnodelist_8h.html">flushnodelist.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="boxerror_8h.html#a0bbccd15aae646ece75f2703dda44c2e">    9</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="boxerror_8cpp.html#a0bbccd15aae646ece75f2703dda44c2e">boxerror</a>(<a class="code" href="tex_8h.html#a4092e9c8e6872fc0b04466609ad2875c">eightbits</a> n)</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67">begindiagnostic</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;The following box has been deleted:&quot;</span>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="showbox_8cpp.html#acfcccfc29ec7e8b9f139156810549ced">showbox</a>(<a class="code" href="constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90">box</a>(n));</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825">enddiagnostic</a>(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="flushnodelist_8cpp.html#ac21b7321bdce857532739166ad281729">flushnodelist</a>(<a class="code" href="constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90">box</a>(n));</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90">box</a>(n) = 0;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aflushnodelist_8cpp_html_ac21b7321bdce857532739166ad281729"><div class="ttname"><a href="flushnodelist_8cpp.html#ac21b7321bdce857532739166ad281729">flushnodelist</a></div><div class="ttdeci">void flushnodelist(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="flushnodelist_8cpp_source.html#l00007">flushnodelist.cpp:7</a></div></div>
+<div class="ttc" id="aflushnodelist_8h_html"><div class="ttname"><a href="flushnodelist_8h.html">flushnodelist.h</a></div></div>
+<div class="ttc" id="aboxerror_8cpp_html_a0bbccd15aae646ece75f2703dda44c2e"><div class="ttname"><a href="boxerror_8cpp.html#a0bbccd15aae646ece75f2703dda44c2e">boxerror</a></div><div class="ttdeci">void boxerror(eightbits n)</div><div class="ttdef"><b>Definition:</b> <a href="boxerror_8cpp_source.html#l00009">boxerror.cpp:9</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a1a8d96395f07ed201dbe429302697b90"><div class="ttname"><a href="constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90">box</a></div><div class="ttdeci">halfword &amp; box(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00134">constantes.cpp:134</a></div></div>
+<div class="ttc" id="aprintnl_8h_html"><div class="ttname"><a href="printnl_8h.html">printnl.h</a></div></div>
+<div class="ttc" id="aenddiagnostic_8h_html"><div class="ttname"><a href="enddiagnostic_8h.html">enddiagnostic.h</a></div></div>
+<div class="ttc" id="ashowbox_8h_html"><div class="ttname"><a href="showbox_8h.html">showbox.h</a></div></div>
+<div class="ttc" id="aerror_8h_html"><div class="ttname"><a href="error_8h.html">error.h</a></div></div>
+<div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00019">error.cpp:19</a></div></div>
+<div class="ttc" id="abegindiagnostic_8h_html"><div class="ttname"><a href="begindiagnostic_8h.html">begindiagnostic.h</a></div></div>
+<div class="ttc" id="aboxerror_8h_html"><div class="ttname"><a href="boxerror_8h.html">boxerror.h</a></div></div>
+<div class="ttc" id="abegindiagnostic_8cpp_html_ae7f34298980b60c63ccdee9eb0225d67"><div class="ttname"><a href="begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67">begindiagnostic</a></div><div class="ttdeci">void begindiagnostic(void)</div><div class="ttdef"><b>Definition:</b> <a href="begindiagnostic_8cpp_source.html#l00003">begindiagnostic.cpp:3</a></div></div>
+<div class="ttc" id="atex_8h_html_a4092e9c8e6872fc0b04466609ad2875c"><div class="ttname"><a href="tex_8h.html#a4092e9c8e6872fc0b04466609ad2875c">eightbits</a></div><div class="ttdeci">unsigned char eightbits</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00035">tex.h:35</a></div></div>
+<div class="ttc" id="aenddiagnostic_8cpp_html_a77750f94de523bc7cb10b205e7bb9825"><div class="ttname"><a href="enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825">enddiagnostic</a></div><div class="ttdeci">void enddiagnostic(bool blankline)</div><div class="ttdef"><b>Definition:</b> <a href="enddiagnostic_8cpp_source.html#l00005">enddiagnostic.cpp:5</a></div></div>
+<div class="ttc" id="aprintnl_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printnl_8cpp_source.html#l00005">printnl.cpp:5</a></div></div>
+<div class="ttc" id="ashowbox_8cpp_html_acfcccfc29ec7e8b9f139156810549ced"><div class="ttname"><a href="showbox_8cpp.html#acfcccfc29ec7e8b9f139156810549ced">showbox</a></div><div class="ttdeci">void showbox(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="showbox_8cpp_source.html#l00005">showbox.cpp:5</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

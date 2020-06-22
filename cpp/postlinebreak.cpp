@@ -137,13 +137,13 @@ void postlinebreak(int finalwidowpenalty)
 		adjusttail = 0;
 		if (curline+1 != bestline)
 		{
-			pen = int_par(inter_line_penalty_code);
+			pen = inter_line_penalty();
 			if (curline == prev_graf+1)
-				pen += int_par(club_penalty_code);
+				pen += club_penalty();
 			if (curline+2 == bestline)
 				pen += finalwidowpenalty;
 			if (discbreak)
-				pen += int_par(broken_penalty_code);
+				pen += broken_penalty();
 			if (pen)
 			{
 				r = newpenalty(pen);

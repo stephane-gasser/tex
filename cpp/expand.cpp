@@ -34,7 +34,7 @@ void expand(void)
 	halfword backupbackup = link(backup_head);
 	if (curcmd < call)
 	{
-		if (int_par(tracing_commands_code) > 1)
+		if (tracing_commands() > 1)
 			showcurcmdchr();
 		halfword t;
 		smallnumber savescannerstatus;
@@ -44,7 +44,7 @@ void expand(void)
 		{
 			case top_bot_mark:
 				if (curmark[curchr])
-					begintokenlist(curmark[curchr], 14);
+					begintokenlist(curmark[curchr], mark_text);
 				break;
 			case expand_after:
 				gettoken();
@@ -68,9 +68,9 @@ void expand(void)
 				{
 					p = getavail();
 					info(p) = frozen_dont_expand+cs_token_flag;
-					link(p) = curinput.locfield;
-					curinput.startfield = p;
-					curinput.locfield = p;
+					link(p) = loc;
+					start = p;
+					loc = p;
 				}
 				break;
 			case cs_name:
@@ -114,7 +114,10 @@ void expand(void)
 				if (j > First+1)
 				{
 					nonewcontrolsequence = false;
-					curcs = idlookup(First, j-First);
+					std::string s;
+					for (int i = First; i <= j; i++)
+						s += buffer[i];
+					curcs = idlookup(s);
 					nonewcontrolsequence = true;
 				}
 				else 
@@ -193,8 +196,7 @@ void expand(void)
 			curtok = frozen_endv+cs_token_flag; 
 			backinput();
 		}
-	curval = cvbackup;
-	curvallevel = cvlbackup;
+	scanned_result(cvbackup, cvlbackup);
 	radix = radixbackup;
 	curorder = cobackup;
 	link(backup_head) = backupbackup;

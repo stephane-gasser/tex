@@ -3,7 +3,7 @@
 
 halfword newrule(void)
 {
-	auto p = getnode(4);
+	auto p = getnode(rule_node_size);
 	type(p) = rule_node;
 	subtype(p) = 0;
 	width(p) = null_flag;

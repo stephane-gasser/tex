@@ -19,16 +19,16 @@ void checkoutervalidity(void)
 		deletionsallowed = false;
 		if (curcs)
 		{
-			if (curinput.statefield == 0 || curinput.namefield < 1 || curinput.namefield > 17)
+			if (state == token_list || txt(name) < 1 || txt(name) > 17)
 			{
 				auto p = getavail();
 				info(p) = cs_token_flag+curcs;
-				begintokenlist(p, 3);
+				back_list(p);
 			}
 			curcmd = spacer;
 			curchr = ' ';
 		}
-		if (scannerstatus > 1)
+		if (scannerstatus > skipping)
 		{
 			runaway();
 			if (curcs == 0)
@@ -47,29 +47,29 @@ void checkoutervalidity(void)
 			decltype(p) q;
 			switch (scannerstatus)
 			{
-				case 2:
+				case defining:
 					print("definition");
-					info(p) = right_brace*0x01'00+'}';
+					info(p) = right_brace_token+'}';
 					break;
-				case 3:
+				case matching:
 					print("use");
 					info(p) = partoken;
 					longstate = outer_call;
 					break;
-				case 4:
+				case aligning:
 					print("preamble");
-					info(p) = right_brace*0x01'00+'}';
+					info(p) = right_brace_token+'}';
 					q = p;
 					p = getavail();
 					link(p) = q;
 					info(p) = frozen_cr+cs_token_flag;
 					alignstate = -1000000;
 					break;
-				case 5:
+				case absorbing:
 					print("text");
-					info(p) = right_brace*0x01'00+'}';
+					info(p) = right_brace_token+'}';
 			}
-			begintokenlist(p, 4);
+			ins_list(p);
 			print(" of ");
 			sprintcs(warningindex);
 			{

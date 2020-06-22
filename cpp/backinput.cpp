@@ -2,27 +2,22 @@
 #include "endtokenlist.h"
 #include "getavail.h"
 #include "overflow.h"
+#include "pushinput.h"
 
 void backinput(void)
 {
-	while (curinput.statefield == 0 && curinput.locfield == 0 && curinput.indexfield != 2)
+	while (state == token_list && loc == 0 && token_type != v_template)
 		endtokenlist();
 	auto p = getavail();
 	info(p) = curtok;
-	if (curtok < 768) // curcmd <= 2
-		if (curtok < 512) // curcmd <= 1
+	if (curtok < right_brace_limit)
+		if (curtok < left_brace_limit)
 			alignstate--;
 		else
 			alignstate++;
-	if (inputptr > maxinstack)
-	{
-		maxinstack = inputptr;
-		if (inputptr == stacksize)
-			overflow("input stack size", stacksize); 
-	}
-	inputstack[inputptr++] = curinput;
-	curinput.statefield = 0;
-	curinput.startfield = p;
-	curinput.indexfield = 3;
-	curinput.locfield = p;
+	push_input();
+	state = token_list;
+	start = p;
+	token_type = backed_up;
+	loc = p;
 }

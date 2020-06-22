@@ -5,12 +5,12 @@
 
 void mathradical(void)
 {
-	tail_append(getnode(5));
-	type(tail) = 24;
-	subtype(tail) = 0;
-	mem[tail+1].hh = emptyfield;
-	mem[tail+3].hh = emptyfield;
-	mem[tail+2].hh = emptyfield;
-	scandelimiter(tail+4, true);
-	scanmath(tail+1);
+	tail_append(getnode(radical_noad_size));
+	type(tail) = radical_noad;
+	subtype(tail) = normal;
+	mem[nucleus(tail)].hh = emptyfield;
+	mem[subscr(tail)].hh = emptyfield;
+	mem[supscr(tail)].hh = emptyfield;
+	scandelimiter(left_delimiter(tail), true);
+	scanmath(nucleus(tail));
 }

@@ -21,13 +21,9 @@ void newpatterns(void)
 	ASCIIcode c;
 	if (trienotready)
 	{
-		if (int_par(cur_fam_code) <= 0)
-			curlang = 0;
-		else 
-			if (int_par(cur_fam_code) > 255)
+		curlang = cur_fam();
+		if (curlang <= 0 || curlang > 255)
 				curlang = 0;
-			else
-				curlang = int_par(cur_fam_code);
 		scanleftbrace();
 		k = 0;
 		hyf[0] = 0;

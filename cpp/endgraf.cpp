@@ -10,7 +10,7 @@ void endgraf(void)
 		if (head == tail)
 			popnest();
 		else
-			linebreak(int_par(widow_penalty_code));
+			linebreak(widow_penalty());
 		normalparagraph();
 		errorcount = 0;
 	}

@@ -18,7 +18,7 @@ void mathfraction(void)
 			scandelimiter(garbage, false);
 		}
 		if (c%delimited_code == 0)
-			scandimen(false, false, false);
+			scan_normal_dimen();
 		printnl("! ");
 		print("Ambiguous; you need another { and }");
 		helpptr = 3;
@@ -29,7 +29,7 @@ void mathfraction(void)
 	}
 	else
 	{
-		incompleat_noad = getnode(6);
+		incompleat_noad = getnode(fraction_noad_size);
 		type(incompleat_noad) = fraction_noad;
 		subtype(incompleat_noad) = normal;
 		link(numerator(incompleat_noad)) = 3;
@@ -39,15 +39,15 @@ void mathfraction(void)
 		mem[right_delimiter(incompleat_noad)].qqqq = nulldelimiter;
 		link(head) = 0;
 		tail = head;
-		if (c >= 3)
+		if (c >= delimited_code)
 		{
 			scandelimiter(left_delimiter(incompleat_noad), false);
 			scandelimiter(right_delimiter(incompleat_noad), false);
 		}
-		switch (c%3)
+		switch (c%delimited_code)
 		{
 			case above_code:
-				scandimen(false, false, false);
+				scan_normal_dimen();
 				thickness(incompleat_noad) = curval;
 				break;
 			case over_code: 

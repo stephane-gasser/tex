@@ -1,11 +1,16 @@
 #include "freezepagespecs.h"
 
+static void set_page_so_far_zero(int i)
+{
+	pagesofar[i] = 0;
+}
+
 void freezepagespecs(smallnumber s)
 {
 	pagecontents = s;
-	pagesofar[0] = dimen_par(hsize_code);
-	pagemaxdepth = dimen_par(vsize_code);
+	page_goal = hsize();
+	pagemaxdepth = vsize();
 	for (int i = 1; i <= 7; i++)
-		pagesofar[i] = 0;
+		set_page_so_far_zero(i);
 	leastpagecost = max_dimen;
 }

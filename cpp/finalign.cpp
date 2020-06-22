@@ -38,7 +38,7 @@ void finalign(void)
 		confusion("align0"); 
 	unsave();
 	if (nest[nestptr-1].modefield == mmode)
-		o = dimen_par(display_indent_code);
+		o = display_indent();
 	else
 		o = 0;
 	q = link(preamble());
@@ -47,7 +47,7 @@ void finalign(void)
 		flushlist(u_part(q));
 		flushlist(v_part(q));
 		p = link(link(q));
-		if (width(q) == null_flag)
+		if (is_running(width(q)))
 		{
 			width(q) = 0;
 			r = link(q);
@@ -86,13 +86,13 @@ void finalign(void)
 				{
 					if (width(r) > width(info(s)+1))
 						width(info(s)+1) = width(r);
-					freenode(r, 2);
+					freenode(r, span_node_size);
 				}
 				r = u;
 			} while (r != end_span);
 		}
 		type(q) = unset_node;
-		subtype(q) = 0;
+		span_count(q) = 0;
 		height(q) = 0;
 		depth(q) = 0;
 		glue_order(q) = 0;
@@ -105,10 +105,10 @@ void finalign(void)
 	packbeginline = -mode_line;
 	if (mode == -vmode)
 	{
-		rulesave = dimen_par(overfull_rule_code);
-		dimen_par(overfull_rule_code) = 0;
+		rulesave = overfull_rule();
+		overfull_rule() = 0;
 		p = hpack(preamble(), savestack[saveptr+1].int_, savestack[saveptr].int_);
-		dimen_par(overfull_rule_code) = rulesave;
+		overfull_rule() = rulesave;
 	}
 	else
 	{
@@ -119,7 +119,7 @@ void finalign(void)
 			width(q) = 0;
 			q = link(link(q));
 		} while (q);
-		p = vpackage(preamble(), savestack[saveptr+1].int_, savestack[saveptr+0].int_, max_dimen);
+		p = vpack(preamble(), savestack[saveptr+1].int_, savestack[saveptr+0].int_);
 		q = link(preamble());
 		do
 		{
@@ -154,7 +154,7 @@ void finalign(void)
 				s = link(list_ptr(p));
 				do
 				{
-					n = subtype(r);
+					n = span_count(r);
 					t = width(s);
 					w = t;
 					u = hold_head;
@@ -268,17 +268,17 @@ void finalign(void)
 			else 
 				if (type(q) == rule_node)
 				{
-					if ((width(q) == null_flag))
+					if (is_running(width(q)))
 						width(q) = width(p);
-					if ((height(q) == null_flag))
+					if (is_running(height(q)))
 						height(q) = height(p);
-					if ((depth(q) == null_flag))
+					if (is_running(depth(q)))
 						depth(q) = depth(p);
 					if (o)
 					{
 						r = link(q);
 						link(q) = 0;
-						q = hpack(q, 0, 1);
+						q = hpack(q, 0, additional);
 						shift_amount(q) = o;
 						link(q) = r;
 						link(s) = q;
@@ -319,12 +319,12 @@ void finalign(void)
 			}
 		}
 		popnest();
-		tail_append(newpenalty(int_par(pre_display_penalty_code)));
+		tail_append(newpenalty(pre_display_penalty()));
 		tail_append(newparamglue(3));
 		link(tail) = p;
 		if (p)
 			tail = q;
-		tail_append(newpenalty(int_par(post_display_penalty_code)));
+		tail_append(newpenalty(post_display_penalty()));
 		tail_append(newparamglue(4));
 		aux = auxsave;
 		resumeafterdisplay();

@@ -54,20 +54,20 @@ void scanmath(halfword p)
 				break;
 			case delim_num:
 				scantwentysevenbitint();
-				c = curval/0x10'00;
+				c = curval>>12;
 				break;
 			default:
 				backinput();
 				scanleftbrace();
 				savestack[saveptr++].int_ = p;
-				pushmath(9);
+				pushmath(math_group);
 				return;
 		}
 	} while (label21);
-	link(p) = 1;
-	subtype(p) = c%0x1'00;
-	if (c >= 0x7000 && int_par(cur_fam_code) >= 0 && int_par(cur_fam_code) < 0x10)
-		type(p) = int_par(cur_fam_code);
+	math_type(p) = math_char;
+	character(p) = c%0x1'00;
+	if (c >= var_code && fam_in_range())
+		fam(p) = cur_fam();
 	else
-		type(p) = (c/0x1'00)%0x10;
+		fam(p) = (c>>8)%0x10;
 }

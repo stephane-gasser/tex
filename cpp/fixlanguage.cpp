@@ -4,20 +4,15 @@
 
 void fixlanguage(void)
 {
-	ASCIIcode l;
-	if (int_par(language_code) <= 0)
-		l = 0;
-	else 
-		if (int_par(language_code) > 255)
+	ASCIIcode l = language();
+	if (l <= 0 || l > 255)
 			l = 0;
-		else
-			l = int_par(language_code);
 	if (l != clang)
 	{
-		newwhatsit(4, 2);
-		link(tail+1) = l;
+		newwhatsit(language_node, small_node_size);
+		what_lang(tail) = l;
 		clang = l;
-		type(tail+1) = normmin(int_par(left_hyphen_min_code));
-		subtype(tail+1) = normmin(int_par(right_hyphen_min_code));
+		what_lhm(tail) = normmin(left_hyphen_min());
+		what_rhm(tail) = normmin(right_hyphen_min());
 	}
 }

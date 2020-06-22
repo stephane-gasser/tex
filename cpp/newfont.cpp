@@ -2,6 +2,7 @@
 #include "openlogfile.h"
 #include "getrtoken.h"
 #include "print.h"
+#include "printchar.h"
 #include "overflow.h"
 #include "makestring.h"
 #include "geqdefine.h"
@@ -13,7 +14,6 @@
 #include "scanint.h"
 #include "printnl.h"
 #include "interror.h"
-#include "streqstr.h"
 #include "printscaled.h"
 #include "error.h"
 #include "xnoverd.h"
@@ -26,42 +26,37 @@ void newfont(smallnumber a)
 	halfword u;
 	scaled s;
 	internalfontnumber f;
-	strnumber t;
+	std::string t;
 	char oldsetting;
-	strnumber flushablestring;
 	if (jobname == "")
 		openlogfile();
 	getrtoken();
 	u = curcs;
-	if (u >= 514)
-		t = hash[u].rh;
+	if (u >= hash_base)
+		t = TXT(text(u));
 	else 
-		if (u >= 257)
-			if (u == 513)
-				t = 1218;
+		if (u >= single_base)
+			if (u == txt("char"))
+				t = "FONT";
 			else
-				t = u-257;
+				t = std::string(1, char(u-single_base));
 		else
 		{
 			oldsetting = selector;
 			selector = new_string;
 			print("FONT");
-			print(std::string(1, char(u-1)));
+			printchar(u-1);
 			selector = oldsetting;
-			if (poolptr+1 > poolsize)
-				overflow("pool size", poolsize-initpoolptr);
+			str_room(1);
 			t = makestring();
 		}
-	if (a >= 4)
-		geqdefine(u, 87, 0);
-	else
-		eqdefine(u, 87, 0);
+	define(a, u, set_font, null_font);
 	scanoptionalequals();
 	scanfilename();
 	nameinprogress = true;
 	if (scankeyword("at"))
 	{
-		scandimen(false, false, false);
+		scan_normal_dimen();
 		s = curval;
 		if (s <= 0 || s >= 134217728)
 		{
@@ -94,14 +89,13 @@ void newfont(smallnumber a)
 		else
 			s = -1000;
 	nameinprogress = false;
-	flushablestring = strptr-1;
+	auto flushablestring = TXT(strptr-1);
 	for (f = 1; f <= fontptr; f++)
-		if (streqstr(txt(fontname[f]), txt(curname)) && streqstr(txt(fontarea[f]), txt(curarea)))
+		if (fontname[f] == curname && fontarea[f] == curarea)
 		{
-			if (txt(curname) == flushablestring)
+			if (curname == flushablestring)
 			{
-				strptr = strptr-1;
-				poolptr = strstart[strptr];
+				flush_string();
 				curname = fontname[f];
 			}
 			if (s > 0)
@@ -117,5 +111,5 @@ void newfont(smallnumber a)
 		f = readfontinfo(u, curname, curarea, s);
 	equiv(u) = f;
 	eqtb[frozen_null_font+f] = eqtb[u];
-	hash[frozen_null_font+f].rh = t;
+	text(frozen_null_font+f) = txt(t);
 }

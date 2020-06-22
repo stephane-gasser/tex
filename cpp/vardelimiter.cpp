@@ -7,7 +7,7 @@
 
 halfword vardelimiter(halfword d, smallnumber s, scaled v)
 {
-	internalfontnumber f = 0;
+	internalfontnumber f = null_font;
 	scaled w = 0;
 	bool largeattempt = false;
 	smallnumber z = small_fam(d);
@@ -23,7 +23,7 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 			{
 				z -= 16;
 				g = fam_fnt(z);
-				if (g)
+				if (g != null_font)
 				{
 					auto y = x;
 					if (y >= fontbc[g] && y <= fontec[g])
@@ -75,7 +75,7 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 		}
 	}
 	halfword b;
-	if (f)
+	if (f != null_font)
 		if (char_tag(q) == ext_tag)
 		{
 			b = newnullbox();
@@ -128,7 +128,7 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 	else
 	{
 		b = newnullbox();
-		width(b) = dimen_par(null_delimiter_space_code);
+		width(b) = null_delimiter_space();
 	}
 	shift_amount(b) = half(height(b)-depth(b))-axis_height(s);
 	return b;

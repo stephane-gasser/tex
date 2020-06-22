@@ -33,7 +33,7 @@ static void goto50(halfword r)
 		printint(line);
 	}
 	println();
-	fontinshortdisplay = 0;
+	fontinshortdisplay = null_font;
 	shortdisplay(list_ptr(r));
 	println();
 	begindiagnostic();
@@ -44,7 +44,7 @@ static void goto50(halfword r)
 halfword hpack(halfword p, scaled w, smallnumber m)
 {
 	lastbadness = 0;
-	auto r = getnode(7);
+	auto r = getnode(box_node_size);
 	type(r) = 0;
 	subtype(r) = 0;
 	glue_shrink(r) = 0;
@@ -65,7 +65,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 	{
 		scaled s;
 		glueord o;
-		while (p >= himemmin)
+		while (is_char_node(p))
 		{
 			f = type(p);
 			auto i = char_info(f, character(p));
@@ -156,7 +156,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 		link(adjusttail) = 0;
 	height(r) = h;
 	depth(r) = d;
-	if (m == 1)
+	if (m == additional)
 		w += x;
 	width(r) = w;
 	x = w-x;
@@ -192,7 +192,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 			if (o == 0 && list_ptr(r))
 			{
 				lastbadness = badness(x, totalstretch[0]);
-				if (lastbadness > int_par(hbadness_code))
+				if (lastbadness > hbadness())
 				{
 					println();
 					if (lastbadness > 100)
@@ -231,14 +231,14 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 			{
 				lastbadness = 1000000;
 				glue_set(r) = 1.0;
-				if (-x-totalshrink[0] > dimen_par(hfuzz_code) || int_par(hbadness_code) < 100)
+				if (-x-totalshrink[0] > hfuzz() || hbadness() < 100)
 				{
-					if (dimen_par(overfull_rule_code) > 0 && -x-totalshrink[0] > dimen_par(hfuzz_code))
+					if (overfull_rule() > 0 && -x-totalshrink[0] > hfuzz())
 					{
 						while (link(q))
 							q = link(q);
 						link(q) = newrule();
-						width(link(q)) = dimen_par(overfull_rule_code);
+						width(link(q)) = overfull_rule();
 					}
 					println();
 					printnl("Overfull \\hbox (");
@@ -252,7 +252,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 					if (list_ptr(r))
 					{
 						lastbadness = badness(-x, totalshrink[0]);
-						if (lastbadness > int_par(hbadness_code))
+						if (lastbadness > hbadness())
 						{
 							println();
 							printnl("Tight \\hbox (badness ");

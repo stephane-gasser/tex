@@ -3,7 +3,6 @@
 
 #include "globals.h"
 
-bool scankeyword(strnumber );
 bool scankeyword(const std::string &);
 
 #endif

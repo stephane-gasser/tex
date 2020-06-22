@@ -1,6 +1,13 @@
 #include "dviswap.h"
 #include "writedvi.h"
 
+void dvi_out(eightbits e)
+{
+	dvibuf[dviptr++] = e;
+	if (dviptr == dvilimit)
+		dviswap();
+}
+
 void dviswap(void)
 {
 	if (dvilimit == dvibufsize)

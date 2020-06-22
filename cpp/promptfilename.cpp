@@ -51,5 +51,5 @@ void promptfilename(const std::string &s, const std::string &e)
 	endname();
 	if (curext == "")
 		curext = e;
-	packfilename(curname, curarea, curext);
+	pack_cur_name();
 }

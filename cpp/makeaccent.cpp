@@ -18,8 +18,8 @@ void makeaccent(void)
 	auto p = newcharacter(f, curval);
 	if (p)
 	{
-		x = param(x_height_code, f);
-		s = param(slant_code, f)/float(unity);
+		x = x_height(f);
+		s = slant(f)/float(unity);
 		a = char_width(f, char_info(f, character(p)));
 		doassignments();
 		halfword q = 0;
@@ -36,22 +36,22 @@ void makeaccent(void)
 				backinput();
 		if (q)
 		{
-			t = param(slant_code, f)/float(unity);
+			t = slant(f)/float(unity);
 			i = char_info(f, character(q));
 			w = char_width(f, i);
 			h = char_height(f, i);
 			if (h != x)
 			{
-				p = hpack(p, 0, 1);
+				p = hpack(p, 0, additional);
 				shift_amount(p) = x-h;
 			}
 			delta = round((w-a)/2.0+h*t-x*s);
 			r = newkern(delta);
-			subtype(r) = 2;
+			subtype(r) = acc_kern;
 			link(tail) = r;
 			link(r) = p;
 			tail = newkern(-a-delta);
-			subtype(tail) = 2;
+			subtype(tail) = acc_kern;
 			link(p) = tail;
 			p = q;
 		}

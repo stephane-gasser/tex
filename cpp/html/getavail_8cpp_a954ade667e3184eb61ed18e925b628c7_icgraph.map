@@ -1,0 +1,44 @@
+<map id="getavail" name="getavail">
+<area shape="rect" id="node1" title=" " alt="" coords="880,1402,947,1429"/>
+<area shape="rect" id="node2" href="$backinput_8h.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="732,742,811,769"/>
+<area shape="rect" id="node6" href="$expand_8h.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="408,1418,472,1445"/>
+<area shape="rect" id="node7" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="210,1457,285,1483"/>
+<area shape="rect" id="node9" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,1527,131,1554"/>
+<area shape="rect" id="node10" href="$initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="407,1021,473,1047"/>
+<area shape="rect" id="node11" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="401,1274,479,1301"/>
+<area shape="rect" id="node17" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="413,210,467,237"/>
+<area shape="rect" id="node20" href="$checkoutervalidity_8h.html#a6bca3c8986cc82099dde339cf36de911" title=" " alt="" coords="377,615,503,642"/>
+<area shape="rect" id="node25" href="$offsave_8h.html#a63378f93afc7d8ca66b9fe6f6f3d920b" title=" " alt="" coords="581,7,646,34"/>
+<area shape="rect" id="node28" href="$scankeyword_8h.html#a0b4a13a205b8c0a47dc755f3314ec3ee" title=" " alt="" coords="564,1629,663,1655"/>
+<area shape="rect" id="node32" href="$charbox_8h.html#a86c2c46fc0276e96f2b7744e731ee4a1" title=" " alt="" coords="737,1402,805,1429"/>
+<area shape="rect" id="node33" href="$copynodelist_8h.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="724,1477,819,1503"/>
+<area shape="rect" id="node34" href="$getavail_8h.html#a3b8c51140a2912d4fa1c7f4fab8519be" title=" " alt="" coords="720,1527,823,1554"/>
+<area shape="rect" id="node35" href="$newcharacter_8h.html#a6e07886dd6173debb4827256ca3327df" title=" " alt="" coords="721,109,821,135"/>
+<area shape="rect" id="node36" href="$newhyphexceptions_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="179,1755,316,1782"/>
+<area shape="rect" id="node37" href="$pushalignment_8h.html#a8cbbbca3e5d7c4a3d2fe9a5687b567d9" title=" " alt="" coords="718,1122,825,1149"/>
+<area shape="rect" id="node38" href="$pushnest_8h.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="576,311,651,338"/>
+<area shape="rect" id="node39" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="577,1831,649,1858"/>
+<area shape="rect" id="node40" href="$reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="726,1831,817,1858"/>
+<area shape="rect" id="node41" href="$getavail_8h.html#a01f78bfd71c9da3f92fe36113586da50" title=" " alt="" coords="711,1730,832,1757"/>
+<area shape="rect" id="node42" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="737,1933,805,1959"/>
+<area shape="rect" id="node3" href="$alignerror_8h.html#a96f36a6afe751cbfd07b095782045b7d" title=" " alt="" coords="403,514,477,541"/>
+<area shape="rect" id="node4" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="203,489,292,515"/>
+<area shape="rect" id="node5" href="$backerror_8h.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title=" " alt="" coords="575,1223,651,1250"/>
+<area shape="rect" id="node8" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="22,1097,114,1123"/>
+<area shape="rect" id="node12" href="$scanint_8h.html#a625555ea8e7846b221c64b2c56e0e886" title=" " alt="" coords="215,1097,279,1123"/>
+<area shape="rect" id="node13" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="364,1071,516,1098"/>
+<area shape="rect" id="node14" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="381,413,499,439"/>
+<area shape="rect" id="node15" href="$headforvmode_8h.html#a3128641e5b4a7dd454caf724178c4023" title=" " alt="" coords="388,58,492,85"/>
+<area shape="rect" id="node16" href="$initcol_8h.html#a1c3a2eedfb749e57cf833cc140fbe403" title=" " alt="" coords="585,210,641,237"/>
+<area shape="rect" id="node18" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="406,717,474,743"/>
+<area shape="rect" id="node19" href="$inserror_8h.html#a78ba8096cd55b7c51db15c721de975b2" title=" " alt="" coords="581,565,646,591"/>
+<area shape="rect" id="node21" href="$insertdollarsign_8h.html#a77aab94f9ce883d5a1d5995c4a7e8430" title=" " alt="" coords="385,463,495,490"/>
+<area shape="rect" id="node22" href="$insertrelax_8h.html#a3c1d60d7781e5b1b3733906b0cb43129" title=" " alt="" coords="572,919,655,946"/>
+<area shape="rect" id="node23" href="$itsallover_8h.html#a328c29eeaa688dcd15cc3534c1b078bc" title=" " alt="" coords="576,767,651,794"/>
+<area shape="rect" id="node24" href="$makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="567,109,660,135"/>
+<area shape="rect" id="node26" href="$resumeafterdisplay_8h.html#a5e20dcff03a0b655888f77fb621b21d4" title=" " alt="" coords="374,311,506,338"/>
+<area shape="rect" id="node27" href="$scanfilename_8h.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="198,818,297,845"/>
+<area shape="rect" id="node29" href="$scanmath_8h.html#a08e430fac951f380f2e3441e2c8c4fa4" title=" " alt="" coords="574,615,653,642"/>
+<area shape="rect" id="node30" href="$scanoptionalequals_8h.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="181,1325,314,1351"/>
+<area shape="rect" id="node31" href="$unsave_8h.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="581,261,645,287"/>
+</map>

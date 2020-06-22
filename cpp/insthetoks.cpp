@@ -5,5 +5,5 @@
 void insthetoks(void)
 {
 	link(garbage) = thetoks();
-	begintokenlist(link(temp_head), 4);
+	ins_list(link(temp_head));
 }

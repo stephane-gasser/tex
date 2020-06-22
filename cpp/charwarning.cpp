@@ -1,4 +1,5 @@
 #include "charwarning.h"
+#include "printchar.h"
 #include "print.h"
 #include "begindiagnostic.h"
 #include "printnl.h"
@@ -8,11 +9,11 @@
 
 void charwarning(internalfontnumber f, eightbits c)
 {
-	if (int_par(tracing_lost_chars_code) > 0)
+	if (tracing_lost_chars() > 0)
 	{
 		begindiagnostic();
 		printnl("Missing character: There is no ");
-		print(std::string(1, char(c)));
+		printchar(c);
 		print(" in font ");
 		slowprint(fontname[f]);
 		printchar('!');

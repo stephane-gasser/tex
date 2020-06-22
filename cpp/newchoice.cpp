@@ -3,12 +3,12 @@
 
 halfword newchoice(void)
 {
-	auto p = getnode(3);
+	auto p = getnode(style_node_size);
 	type(p) = choice_node;
 	subtype(p) = 0;
-	info(p+1) = 0;
-	link(p+1) = 0;
-	info(p+2) = 0;
-	link(p+2) = 0;
+	display_mlist(p) = 0;
+	text_mlist(p) = 0;
+	script_mlist(p) = 0;
+	script_script_mlist(p) = 0;
 	return p;
 }

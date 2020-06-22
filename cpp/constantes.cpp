@@ -21,12 +21,27 @@ halfword& info(halfword p)
 	return mem[p].hh.lh;
 }
 
+halfword& extra_info(halfword p)
+{
+	return info(p+list_offset);
+}
+
+halfword& token_ref_count(halfword p)
+{
+	return mem[p].hh.lh;
+}
+
 halfword& node_size(halfword p)
 {
 	return mem[p].hh.lh;
 }
 
 quarterword& type(halfword p)
+{
+	return mem[p].hh.b0;
+}
+
+quarterword& fam(halfword p)
 {
 	return mem[p].hh.b0;
 }
@@ -41,7 +56,17 @@ quarterword& stretch_order(halfword p)
 	return mem[p].hh.b0;
 }
 
+quarterword& span_count(halfword p)
+{
+	return mem[p].hh.b1;
+}
+
 quarterword& subtype(halfword p)
+{
+	return mem[p].hh.b1;
+}
+
+quarterword& replace_count(halfword p)
 {
 	return mem[p].hh.b1;
 }
@@ -265,9 +290,19 @@ float &glue_set(halfword p)
 	return mem[p+glue_offset].gr;
 }
 
+quarterword& what_rhm(halfword p)
+{
+	return subtype(p+1);
+}
+
 quarterword& glue_order(halfword p)
 {
 	return subtype(p+list_offset);
+}
+
+quarterword& what_lhm(halfword p)
+{
+	return type(p+1);
 }
 
 quarterword& glue_sign(halfword p)
@@ -362,7 +397,23 @@ halfword& pre_break(halfword p)
 	return info(p+1);
 }
 
+
+halfword& what_lang(halfword p)
+{
+	return link(p+1);
+}
+
+halfword& broken_ins(halfword p)
+{
+	return info(p+1);
+}
+
 halfword& rlink(halfword p)
+{
+	return link(p+1);
+}
+
+halfword& broken_ptr(halfword p)
 {
 	return link(p+1);
 }
@@ -391,6 +442,11 @@ halfword& glue_ptr(halfword p)
 int& float_cost(halfword p)
 {
 	return mem[p+1].int_;
+}
+
+halfword& best_ins_ptr(halfword p)
+{
+	return info(p+2);
 }
 
 halfword& ins_ptr(halfword p)
@@ -499,9 +555,18 @@ halfword& lig_ptr(halfword p)
 	return link(lig_char(p));
 }
 
+halfword& write_stream(halfword p)
+{
+	return info(p+1);
+}
 halfword& display_mlist(halfword p)
 {
 	return info(p+1);
+}
+
+halfword& write_tokens(halfword p)
+{
+	return link(p+1);
 }
 
 halfword& text_mlist(halfword p)
@@ -512,6 +577,11 @@ halfword& text_mlist(halfword p)
 halfword& script_mlist(halfword p)
 {
 	return info(p+2);
+}
+
+halfword& last_ins_ptr(halfword p)
+{
+	return link(p+2);
 }
 
 halfword& script_script_mlist(halfword p)
@@ -860,5 +930,517 @@ halfword& open_area(halfword p)
 halfword& open_ext(halfword p)
 {
 	return link(p+2);
+}
+
+void flush_string(void)
+{
+	strptr--;
+	poolptr = strstart[strptr];
+}
+
+void append_char(ASCIIcode c)
+{
+	strpool[poolptr++] = c;
+}
+
+
+int cur_length(void)
+{
+	return poolptr-strstart[strptr];
+}
+
+void flush_char(void)
+{
+	poolptr--;
+}
+
+halfword& font_id_text(halfword p)
+{
+	return text(font_id_base+p);
+}
+
+halfword &loc = curinput.locfield;
+
+quarterword &state = curinput.statefield;
+quarterword &index = curinput.indexfield;
+halfword &start = curinput.startfield;
+halfword &limit = curinput.limitfield;
+std::string &name = curinput.namefield;
+scaled &act_width = activewidth[1];
+
+bool is_running(int d)
+{
+	return d == null_flag;
+}
+
+scaled &page_goal = pagesofar[0];
+scaled &page_total = pagesofar[1];
+scaled &page_shrink = pagesofar[6];
+scaled &page_depth = pagesofar[7];
+
+int pretolerance(void)
+{
+	return int_par(pretolerance_code);
+}
+
+int& tolerance(void)
+{
+	return int_par(tolerance_code);
+}
+
+int line_penalty(void)
+{
+	return int_par(line_penalty_code);
+}
+
+int pre_display_penalty(void)
+{
+	return int_par(pre_display_penalty_code);
+}
+
+int post_display_penalty(void)
+{
+	return int_par(post_display_penalty_code);
+}
+
+int floating_penalty(void)
+{
+	return int_par(floating_penalty_code);
+}
+
+int widow_penalty(void)
+{
+	return int_par(widow_penalty_code);
+}
+
+int hyphen_penalty(void)
+{
+	return int_par(hyphen_penalty_code);
+}
+
+int ex_hyphen_penalty(void)
+{
+	return int_par(ex_hyphen_penalty_code);
+}
+
+int bin_op_penalty(void)
+{
+	return int_par(bin_op_penalty_code);
+}
+
+int rel_penalty(void)
+{
+	return int_par(rel_penalty_code);
+}
+
+int broken_penalty(void)
+{
+	return int_par(broken_penalty_code);
+}
+	
+int club_penalty(void)
+{
+	return int_par(club_penalty_code);
+}
+
+int inter_line_penalty(void)
+{
+	return int_par(inter_line_penalty_code);
+}
+
+
+int display_widow_penalty(void)
+{
+	return int_par(display_widow_penalty_code);
+}
+
+int double_hyphen_demerits(void)
+{
+	return int_par(double_hyphen_demerits_code);
+}
+
+int final_hyphen_demerits(void)
+{
+	return int_par(final_hyphen_demerits_code);
+}
+
+int adj_demerits(void)
+{
+	return int_par(adj_demerits_code);
+}
+
+int& mag(void)
+{
+	return int_par(mag_code);
+}
+
+int delimiter_factor(void)
+{
+	return int_par(delimiter_factor_code);
+}
+
+int looseness(void)
+{
+	return int_par(looseness_code);
+}
+
+int& time(void)
+{
+	return int_par(time_code);
+}
+
+int& day(void)
+{
+	return int_par(day_code);
+}
+
+int& month(void)
+{
+	return int_par(month_code);
+}
+
+int& year(void)
+{
+	return int_par(year_code);
+}
+
+
+int show_box_breadth(void)
+{
+	return int_par(show_box_breadth_code);
+}
+
+int show_box_depth(void)
+{
+	return int_par(show_box_depth_code);
+}
+
+int hbadness(void)
+{
+	return int_par(hbadness_code);
+}
+
+int& vbadness(void)
+{
+	return int_par(vbadness_code);
+}
+
+int pausing(void)
+{
+	return int_par(pausing_code);
+}
+
+int tracing_commands(void)
+{
+	return int_par(tracing_commands_code);
+}
+
+int tracing_online(void)
+{
+	return int_par(tracing_online_code);
+}
+
+int tracing_macros(void)
+{
+	return int_par(tracing_macros_code);
+}
+
+int uc_hyph(void)
+{
+	return int_par(uc_hyph_code);
+}
+
+int tracing_lost_chars(void)
+{
+	return int_par(tracing_lost_chars_code);
+}
+
+int holding_inserts(void)
+{
+	return int_par(holding_inserts_code);
+}
+
+int& max_dead_cycles(void)
+{
+	return int_par(max_dead_cycles_code);
+}
+
+int left_hyphen_min(void)
+{
+	return int_par(left_hyphen_min_code);
+}
+
+int right_hyphen_min(void)
+{
+	return int_par(right_hyphen_min_code);
+}
+
+int language(void)
+{
+	return int_par(language_code);
+}
+
+int& end_line_char(void)
+{
+	return int_par(end_line_char_code);
+}
+
+int global_defs(void)
+{
+	return int_par(global_defs_code);
+}
+
+int& hang_after(void)
+{
+	return int_par(hang_after_code);
+}
+
+int& escape_char(void)
+{
+	return int_par(escape_char_code);
+}
+
+int cur_fam(void)
+{
+	return int_par(cur_fam_code);
+}
+
+int& new_line_char(void)
+{
+	return int_par(new_line_char_code);
+}
+
+int default_hyphen_char(void)
+{
+	return int_par(default_hyphen_char_code);
+}
+
+int default_skew_char(void)
+{
+	return int_par(default_skew_char_code);
+}
+
+int error_context_lines(void)
+{
+	return int_par(error_context_lines_code);
+}
+
+int& tracing_stats(void)
+{
+	return int_par(tracing_stats_code);
+}
+
+int tracing_output(void)
+{
+	return int_par(tracing_output_code);
+}
+
+int math_surround(void)
+{
+	return dimen_par(math_surround_code);
+}
+
+int pre_display_size(void)
+{
+	return dimen_par(pre_display_size_code);
+}
+
+int display_width(void)
+{
+	return dimen_par(display_width_code);
+}
+
+int display_indent(void)
+{
+	return dimen_par(display_indent_code);
+}
+
+int& overfull_rule(void)
+{
+	return dimen_par(overfull_rule_code);
+}
+
+int line_skip_limit(void)
+{
+	return dimen_par(line_skip_limit_code);
+}
+
+int& vfuzz(void)
+{
+	return dimen_par(vfuzz_code);
+}
+
+int hsize(void)
+{
+	return dimen_par(hsize_code);
+}
+
+int vsize(void)
+{
+	return dimen_par(vsize_code);
+}
+
+
+int split_max_depth(void)
+{
+	return dimen_par(split_max_depth_code);
+}
+
+int hfuzz(void)
+{
+	return dimen_par(hfuzz_code);
+}
+
+int hang_indent(void)
+{
+	return dimen_par(hang_indent_code);
+}
+
+int par_indent(void)
+{
+	return dimen_par(par_indent_code);
+}
+
+int delimiter_shortfall(void)
+{
+	return dimen_par(delimiter_shortfall_code);
+}
+
+int script_space(void)
+{
+	return dimen_par(script_space_code);
+}
+
+int emergency_stretch(void)
+{
+	return dimen_par(emergency_stretch_code);
+}
+
+int h_offset(void)
+{
+	return dimen_par(h_offset_code);
+}
+
+int v_offset(void)
+{
+	return dimen_par(v_offset_code);
+}
+
+int null_delimiter_space(void)
+{
+	return dimen_par(null_delimiter_space_code);
+}
+
+int box_max_depth(void)
+{
+	return dimen_par(box_max_depth_code);
+}
+
+alphafile& cur_file(void)
+{
+	return inputfile[index];
+}
+
+halfword &top_mark = curmark[top_mark_code];;
+halfword &first_mark = curmark[first_mark_code];
+halfword &bot_mark = curmark[bot_mark_code];
+halfword &split_first_mark = curmark[split_first_mark_code];
+halfword &split_bot_mark = curmark[split_bot_mark_code];
+
+void scanned_result(int c, char l)
+{
+	curval = c;
+	curvallevel = l;
+}
+
+
+void append_to_name(int &k, char c)
+{
+	k++;
+	if (k <= filenamesize)
+		nameoffile[k] = xchr[c];
+}
+
+int& slant(internalfontnumber f)
+{
+	return param(slant_code, f);
+}
+
+int& space(internalfontnumber f)
+{
+	return param(space_code, f);
+}
+
+int& space_stretch(internalfontnumber f)
+{
+	return param(space_stretch_code, f);
+}
+
+int& space_shrink(internalfontnumber f)
+{
+	return param(space_shrink_code, f);
+}
+
+int& x_height(internalfontnumber f)
+{
+	return param(x_height_code, f);
+}
+
+int& quad(internalfontnumber f)
+{
+	return param(quad_code, f);
+}
+
+int& extra_space(internalfontnumber f)
+{
+	return param(extra_space_code, f);
+}
+
+constexpr float billion = 1000000000.;
+
+float vet_glue(float g)
+{
+	float gluetemp = g;
+	if (gluetemp > billion)
+		return billion;
+	if (gluetemp < -billion)
+		return -billion;
+	return g;
+}
+
+halfword& trie_link(halfword p)
+{
+	return trie[p].rh;
+}
+
+halfword& trie_back(halfword p)
+{
+	return trie[p].lh;
+}
+
+quarterword& trie_char(halfword p)
+{
+	return trie[p].b1;
+}
+
+quarterword& trie_op(halfword p)
+{
+	return trie[p].b0;
+}
+
+triepointer &trie_root = triel[0];
+triepointer *trie_ref = triehash;
+
+void set_cur_lang(void)
+{
+	curlang = (language() <= 0 || language() > 255) ? 0 : language(); 
+}
+
+
+halfword &contrib_tail = nest[0].tailfield;
+
+bool fam_in_range(void)
+{
+	return  cur_fam() >= 0 && cur_fam() < 16;
 }
 

@@ -16,15 +16,9 @@ void resumeafterdisplay(void)
 	pushnest();
 	mode = hmode;
 	space_factor = 1000;
-	if (int_par(language_code) <= 0)
-		curlang = 0;
-	else 
-		if (int_par(language_code) > 255)
-			curlang = 0;
-		else
-		curlang = int_par(language_code);
+	set_cur_lang();
 	clang = curlang;
-	prev_graf = (normmin(int_par(left_hyphen_min_code))*64+normmin(int_par(right_hyphen_min_code)))*0x1'00'00+curlang;
+	prev_graf = (normmin(left_hyphen_min())*64+normmin(right_hyphen_min()))*0x1'00'00+curlang;
 	getxtoken();
 	if (curcmd != spacer)
 		backinput();

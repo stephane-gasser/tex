@@ -20,32 +20,32 @@ void doextension(void)
 	halfword p, q, r;
 	switch (curchr)
 	{
-		case 0:
-			newwritewhatsit(3);
+		case open_node:
+			newwritewhatsit(open_node_size);
 			scanoptionalequals();
 			scanfilename();
 			open_name(tail) = txt(curname);
 			open_area(tail) = txt(curarea);
 			open_ext(tail) = txt(curext);
 			break;
-		case 1:
+		case write_node:
 			k = curcs;
-			newwritewhatsit(2);
+			newwritewhatsit(write_node_size);
 			curcs = k;
 			p = scantoks(false, false);
-			link(tail+1) = defref;
+			write_tokens(tail) = defref;
 			break;
-		case 2:
-			newwritewhatsit(2);
-			link(tail+1) = 0;
+		case close_node:
+			newwritewhatsit(write_node_size);
+			write_tokens(tail) = 0;
 			break;
-		case 3:
-			newwhatsit(3, 2);
-			info(tail+1) = 0;
+		case special_node:
+			newwhatsit(special_node, write_node_size);
+			write_stream(tail) = 0;
 			p = scantoks(false, true);
-			link(tail+1) = defref;
+			write_tokens(tail) = defref;
 			break;
-		case 4:
+		case immediate_code:
 			getxtoken();
 			if (curcmd == extension && curchr <= 2)
 			{
@@ -59,12 +59,12 @@ void doextension(void)
 			else
 				backinput();
 			break;
-		case 5:
+		case set_language_code:
 			if (abs(mode) != hmode)
 				reportillegalcase();
 			else
 			{
-				newwhatsit(4, 2);
+				newwhatsit(language_node, small_node_size);
 				scanint();
 				if (curval <= 0)
 					clang = 0;
@@ -73,9 +73,9 @@ void doextension(void)
 						clang = 0;
 					else
 						clang = curval;
-				link(tail+1) = clang;
-				type(tail+1) = normmin(int_par(left_hyphen_min_code));
-				subtype(tail+1) = normmin(int_par(right_hyphen_min_code));
+				what_lang(tail) = clang;
+				what_lhm(tail) = normmin(left_hyphen_min());
+				what_rhm(tail) = normmin(right_hyphen_min());
 			}
 			break;
 		default: 

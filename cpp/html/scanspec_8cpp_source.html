@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de scanspec.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">scanspec.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="scanspec_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="scanspec_8h.html">scanspec.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="scandimen_8h.html">scandimen.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="scankeyword_8h.html">scankeyword.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="newsavelevel_8h.html">newsavelevel.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="scanleftbrace_8h.html">scanleftbrace.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="scanspec_8h.html#ac8cb2374dcb9af6d4553bbff3533adf1">    7</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="scanspec_8cpp.html#ac8cb2374dcb9af6d4553bbff3533adf1">scanspec</a>(<a class="code" href="tex_8h.html#a0ec16c400565c6116800a29aa391e610">groupcode</a> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>, <span class="keywordtype">bool</span> threecodes)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">int</span> s;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (threecodes)</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        s = <a class="code" href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a>[<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>+0].<a class="code" href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">int</span> speccode;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240">scankeyword</a>(<span class="stringliteral">&quot;to&quot;</span>))</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        speccode = 0;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="scandimen_8cpp.html#a3c004908d1f7f180e6234e54aed1c021">scandimen</a>(<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240">scankeyword</a>(<span class="stringliteral">&quot;spread&quot;</span>))</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            speccode = 1;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <a class="code" href="scandimen_8cpp.html#a3c004908d1f7f180e6234e54aed1c021">scandimen</a>(<span class="keyword">false</span>, <span class="keyword">false</span>, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            speccode = 1;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = 0;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">if</span> (threecodes)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a>[<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>++].<a class="code" href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a> = s;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a>[<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>].<a class="code" href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a> = speccode;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a>[<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>].<a class="code" href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a> = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a> += 2;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a>(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="anewsavelevel_8cpp_html_afad44a60dc27690826030e3d7bfe80a0"><div class="ttname"><a href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a></div><div class="ttdeci">void newsavelevel(groupcode c)</div><div class="ttdef"><b>Definition:</b> <a href="newsavelevel_8cpp_source.html#l00004">newsavelevel.cpp:4</a></div></div>
+<div class="ttc" id="ascandimen_8h_html"><div class="ttname"><a href="scandimen_8h.html">scandimen.h</a></div></div>
+<div class="ttc" id="atex_8h_html_a0ec16c400565c6116800a29aa391e610"><div class="ttname"><a href="tex_8h.html#a0ec16c400565c6116800a29aa391e610">groupcode</a></div><div class="ttdeci">char groupcode</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00092">tex.h:92</a></div></div>
+<div class="ttc" id="ascanspec_8h_html"><div class="ttname"><a href="scanspec_8h.html">scanspec.h</a></div></div>
+<div class="ttc" id="ascanspec_8cpp_html_ac8cb2374dcb9af6d4553bbff3533adf1"><div class="ttname"><a href="scanspec_8cpp.html#ac8cb2374dcb9af6d4553bbff3533adf1">scanspec</a></div><div class="ttdeci">void scanspec(groupcode c, bool threecodes)</div><div class="ttdef"><b>Definition:</b> <a href="scanspec_8cpp_source.html#l00007">scanspec.cpp:7</a></div></div>
+<div class="ttc" id="ascankeyword_8cpp_html_a514cdc68b010264d20e363f694fec240"><div class="ttname"><a href="scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240">scankeyword</a></div><div class="ttdeci">bool scankeyword(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="scankeyword_8cpp_source.html#l00009">scankeyword.cpp:9</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a67efc5cbda00d9fe23a1c6d931742de5"><div class="ttname"><a href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a></div><div class="ttdeci">memoryword savestack[savesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00102">globals.cpp:102</a></div></div>
+<div class="ttc" id="astructmemoryword_html_a4d5c9735ea2e99d2d3aed088c2fa3f0d"><div class="ttname"><a href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">memoryword::int_</a></div><div class="ttdeci">std::int32_t int_</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00074">tex.h:74</a></div></div>
+<div class="ttc" id="ascanleftbrace_8h_html"><div class="ttname"><a href="scanleftbrace_8h.html">scanleftbrace.h</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
+<div class="ttc" id="anewsavelevel_8h_html"><div class="ttname"><a href="newsavelevel_8h.html">newsavelevel.h</a></div></div>
+<div class="ttc" id="ascandimen_8cpp_html_a3c004908d1f7f180e6234e54aed1c021"><div class="ttname"><a href="scandimen_8cpp.html#a3c004908d1f7f180e6234e54aed1c021">scandimen</a></div><div class="ttdeci">void scandimen(bool mu, bool inf, bool shortcut)</div><div class="ttdef"><b>Definition:</b> <a href="scandimen_8cpp_source.html#l00021">scandimen.cpp:21</a></div></div>
+<div class="ttc" id="ascanleftbrace_8cpp_html_a055cc2de58a83eda8aeb70e218e5fb1c"><div class="ttname"><a href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a></div><div class="ttdeci">void scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="scanleftbrace_8cpp_source.html#l00008">scanleftbrace.cpp:8</a></div></div>
+<div class="ttc" id="ascankeyword_8h_html"><div class="ttname"><a href="scankeyword_8h.html">scankeyword.h</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00103">globals.cpp:103</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a3fc97d19e160956f7fa23eb8ded19785"><div class="ttname"><a href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a></div><div class="ttdeci">int curval</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00019">globals.cpp:19</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

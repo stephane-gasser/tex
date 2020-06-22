@@ -3,29 +3,28 @@
 #include "deletetokenref.h"
 #include "fatalerror.h"
 #include "pauseforinstructions.h"
+#include "popinput.h"
 
 void endtokenlist(void)
 {
-	if (curinput.indexfield >= 3)
+	if (token_type >= backed_up)
 	{
-		if (curinput.indexfield <= 4)
-			flushlist(curinput.startfield);
+		if (token_type <= inserted)
+			flushlist(start);
 		else
 		{
-			deletetokenref(curinput.startfield);
-			if (curinput.indexfield == 5)
-				for (;paramptr > curinput.limitfield; paramptr--)
+			deletetokenref(start);
+			if (token_type == macro)
+				for (;paramptr > limit; paramptr--)
 					flushlist(paramstack[paramptr]);
 		}
 	}
 	else 
-		if (curinput.indexfield == 1)
+		if (token_type == u_template)
 			if (alignstate > 500000)
 				alignstate = 0;
 			else
 				fatalerror("(interwoven alignment preambles are not allowed)");
-	inputptr--;
-	curinput = inputstack[inputptr];
-	if (interrupt)
-		pauseforinstructions();
+	pop_input();
+	check_interrupt();
 }

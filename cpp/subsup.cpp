@@ -6,12 +6,17 @@
 #include "scanmath.h"
 #include "texte.h"
 
+static bool scripts_allowed(halfword tail)
+{
+	return type(tail) >= ord_noad && type(tail) < left_noad;
+}
+
 void subsup(void)
 {
 	smallnumber t = 0;
 	halfword p = 0;
 	if (tail != head)
-		if (type(tail) >= 16 && type(tail) < 30)
+		if (scripts_allowed(tail))
 		{
 			p = tail+2+curcmd-sup_mark;
 			t = link(p);

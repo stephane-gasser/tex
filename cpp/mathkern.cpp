@@ -14,7 +14,7 @@ void mathkern(halfword p, scaled m)
 			n--;
 			f += unity;
 		}
-		width(p) = multandadd(n, width(p), xnoverd(width(p), f, unity), max_dimen);
+		width(p) = mu_mult(n, width(p));
 		subtype(p) = 1;
 	}
 }

@@ -35,10 +35,10 @@ void handlerightbrace(void)
 	int f;
 	switch (curgroup)
 	{
-		case 1: 
+		case simple_group: 
 			unsave();
 			break;
-		case 0:
+		case bottom_level:
 			printnl("! ");
 			print("Too many }'s");
 			helpptr = 2;
@@ -46,39 +46,39 @@ void handlerightbrace(void)
 			helpline[0] = "Such booboos are generally harmless, so keep going.";
 			error();
 			break;
-		case 14:
-		case 15:
-		case 16: 
+		case semi_simple_group:
+		case math_shift_group:
+		case math_left_group: 
 			extrarightbrace();
 			break;
-		case 2: 
+		case hbox_group: 
 			package(0);
 			break;
-		case 3:
+		case adjusted_hbox_group:
 			adjusttail = adjust_head;
 			package(0);
 			break;
-		case 4:
+		case vbox_group:
 			endgraf();
 			package(0);
 			break;
-		case 5:
+		case vtop_group:
 			endgraf();
 			package(4);
 			break;
-		case 11:
+		case insert_group:
 			endgraf();
 			q = split_top_skip();
 			link(q)++;
-			d = dimen_par(split_max_depth_code);
-			f = int_par(floating_penalty_code);
+			d = split_max_depth();
+			f = floating_penalty();
 			unsave();
 			saveptr--;
-			p = vpackage(link(head), 0, 1, max_dimen);
+			p = vpack(link(head), 0, additional);
 			popnest();
 			if (saved(0) < 255)
 			{
-				tail_append(getnode(5));
+				tail_append(getnode(ins_node_size));
 				type(tail) = ins_node; //3
 				subtype(tail) = saved(0);
 				height(tail) = height(p)+depth(p);
@@ -89,18 +89,18 @@ void handlerightbrace(void)
 			}
 			else
 			{
-				tail_append(getnode(2));
+				tail_append(getnode(small_node_size));
 				type(tail) = adjust_node; //5
 				type(tail) = 0;
 				adjust_ptr(tail) = list_ptr(p);
 				deleteglueref(q);
 			}
-			freenode(p, 7);
+			freenode(p, box_node_size);
 			if (nestptr == 0)
 				buildpage();
 			break;
-		case 8:
-			if ((curinput.locfield || curinput.indexfield != 6) && curinput.indexfield != 3)
+		case output_group:
+			if (loc || (token_type != output_text && token_type != backed_up))
 			{
 				printnl("! ");
 				print("Unbalanced output routine");
@@ -110,7 +110,7 @@ void handlerightbrace(void)
 				error();
 				do
 					gettoken();
-				while (curinput.locfield);
+				while (loc);
 			}
 			endtokenlist();
 			endgraf();
@@ -137,7 +137,7 @@ void handlerightbrace(void)
 			if (link(page_head))
 			{
 				if (link(contrib_head) == 0)
-					nest[0].tailfield = pagetail;
+					contrib_tail = pagetail;
 				link(pagetail) = link(contrib_head);
 				link(contrib_head) = link(page_head);
 				link(page_head) = 0;
@@ -146,10 +146,10 @@ void handlerightbrace(void)
 			popnest();
 			buildpage();
 			break;
-		case 10: 
+		case disc_group: 
 			builddiscretionary;
 			break;
-		case 6:
+		case align_group:
 			backinput();
 			curtok = cs_token_flag+frozen_cr;
 			printnl("! ");
@@ -160,29 +160,29 @@ void handlerightbrace(void)
 			helpline[0] = "I'm guessing that you meant to end an alignment here.";
 			inserror();
 			break;
-		case 7:
+		case no_align_group:
 			endgraf();
 			unsave();
 			alignpeek();
 			break;
-		case 12:
+		case vcenter_group:
 			endgraf();
 			unsave();
 			saveptr -= 2;
-			p = vpackage(link(head), saved(1), saved(0), max_dimen);
+			p = vpack(link(head), saved(1), saved(0));
 			popnest();
 			tail_append(newnoad());
-			type(tail) = 29;
-			link(tail+1) = 2;
-			info(tail+1) = p;
+			type(tail) = vcenter_noad;
+			math_type(nucleus(tail)) = sub_box;
+			info(nucleus(tail)) = p;
 			break;
-		case 13: 
+		case math_choice_group: 
 			buildchoices();
 			break;
-		case 9:
+		case math_group:
 			unsave();
 			saveptr--;
-			link(saved(0)) = 3;
+			math_type(saved(0)) = sub_mlist;
 			p = finmlist(0);
 			info(saved(0)) = p;
 			if (p && link(p) == 0)
@@ -191,19 +191,19 @@ void handlerightbrace(void)
 					if (math_type(subscr(p)) == 0 && math_type(supscr(p)) == 0)
 					{
 						mem[saved(0)] = mem[nucleus(p)];
-						freenode(p, 4);
+						freenode(p, noad_size);
 					}
 				}
 				else 
 					if (type(p) == accent_noad)
-						if (saved(0) == tail+1)
+						if (saved(0) == nucleus(tail))
 							if (type(tail) == ord_noad)
 							{
 								q = head;
 								while (link(q) != tail)
 									q = link(q);
 								link(q) = p;
-								freenode(tail, 4);
+								freenode(tail, noad_size);
 								tail = p;
 							}
 			break;

@@ -22,40 +22,37 @@ void flushnodelist(halfword p)
 				case vlist_node:
 				case unset_node:
 					flushnodelist(list_ptr(p));
-					freenode(p, 7);
+					freenode(p, box_node_size);
 					break;
 				case rule_node:
-					freenode(p, 4);
+					freenode(p, rule_node_size);
 					break;
 				case ins_node:
 					flushnodelist(ins_ptr(p));
 					deleteglueref(ins_ptr(p));
-					freenode(p, 5);
+					freenode(p, ins_node_size);
 					break;
 				case whatsit_node:
 					switch (subtype(p))
 					{
-						case 0:
-							freenode(p, 3);
+						case open_node:
+							freenode(p, open_node_size);
 							break;
-						case 1:
-						case 3:
-							deletetokenref(link(p+1));
-							freenode(p, 2);
+						case write_node:
+						case special_node:
+							deletetokenref(write_tokens(p));
+							freenode(p, write_node_size);
 							break;
-						case 2:
-						case 4: 
-							freenode(p, 2);
+						case close_node:
+						case language_node: 
+							freenode(p, small_node_size);
 							break;
 						default: 
 							confusion("ext3");
 					}
 					break;
 				case glue_node:
-					if (glue_ref_count(glue_ptr(p)) == 0)
-						freenode(glue_ptr(p), 4);
-					else
-						glue_ref_count(glue_ptr(p))--;
+					deleteglueref(glue_ptr(p));
 					if (leader_ptr(p))
 						flushnodelist(leader_ptr(p));
 					freenode(p, 2);
@@ -83,14 +80,14 @@ void flushnodelist(halfword p)
 					freenode(p, 2);
 					break;
 				case style_node:
-					freenode(p, 3);
+					freenode(p, style_node_size);
 					break;
 				case choice_node:
 					flushnodelist(display_mlist(p));
 					flushnodelist(text_mlist(p));
 					flushnodelist(script_mlist(p));
 					flushnodelist(script_script_mlist(p));
-					freenode(p, 3);
+					freenode(p, style_node_size);
 					break;
 				case ord_noad:
 				case op_noad:
@@ -112,18 +109,18 @@ void flushnodelist(halfword p)
 					if (math_type(subscr(p)) >= sub_box)
 						flushnodelist(info(subscr(p)));
 					if (type(p) == radical_noad || type(p) == accent_noad)
-						freenode(p, 5);
+						freenode(p, radical_noad_size);
 					else
-						freenode(p, 4);
+						freenode(p, noad_size);
 					break;
 				case left_noad:
 				case right_noad:
-					freenode(p, 4);
+					freenode(p, noad_size);
 					break;
 				case fraction_noad:
 					flushnodelist(info(numerator(p)));
 					flushnodelist(info(denominator(p)));
-					freenode(p, 6);
+					freenode(p, fraction_noad_size);
 					break;
 				default: 
 					confusion("flushing"); 

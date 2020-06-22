@@ -11,5 +11,5 @@ halfword overbar(halfword b, scaled k, scaled  t)
 	link(q) = p;
 	p = newkern(t);
 	link(p) = q;
-	return vpackage(p, 0, 1, max_dimen);
+	return vpack(p, 0, additional);
 }

@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de doendv.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">doendv.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="doendv_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="doendv_8h.html">doendv.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="fatalerror_8h.html">fatalerror.h</a>&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="endgraf_8h.html">endgraf.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="fincol_8h.html">fincol.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="finrow_8h.html">finrow.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="offsave_8h.html">offsave.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="doendv_8h.html#adbabc406ff0a986dc23c2ad8d5bc9008">    8</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="doendv_8cpp.html#adbabc406ff0a986dc23c2ad8d5bc9008">doendv</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="globals_8cpp.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a> = <a class="code" href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a>[<a class="code" href="globals_8cpp.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a>] = <a class="code" href="globals_8cpp.html#aca74807ce5f069d23b1a6af63ed7d00e">curinput</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">while</span> (<a class="code" href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a>[<a class="code" href="globals_8cpp.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a>].indexfield != 2 &amp;&amp; <a class="code" href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a>[<a class="code" href="globals_8cpp.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a>].locfield == 0 &amp;&amp; <a class="code" href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a>[<a class="code" href="globals_8cpp.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a>].statefield == 0)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="globals_8cpp.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a>--;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a>[<a class="code" href="globals_8cpp.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a>].indexfield != 2 || <a class="code" href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a>[<a class="code" href="globals_8cpp.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a>].locfield || <a class="code" href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a>[<a class="code" href="globals_8cpp.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a>].statefield)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b">fatalerror</a>(<span class="stringliteral">&quot;(interwoven alignment preambles are not allowed)&quot;</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a> == 6)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="endgraf_8cpp.html#abee47be02d4d2b4c7bdb494f59a5a8bc">endgraf</a>();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="fincol_8cpp.html#a29c35f087117cb0d94d2369d1737e7c4">fincol</a>())</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="finrow_8cpp.html#a0dfcdcfca243b8bc38a56bc5f8675d21">finrow</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b">offsave</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aoffsave_8h_html"><div class="ttname"><a href="offsave_8h.html">offsave.h</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aca74807ce5f069d23b1a6af63ed7d00e"><div class="ttname"><a href="globals_8cpp.html#aca74807ce5f069d23b1a6af63ed7d00e">curinput</a></div><div class="ttdeci">instaterecord curinput</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00115">globals.cpp:115</a></div></div>
+<div class="ttc" id="afatalerror_8cpp_html_a3104c2391b36a315ae82b5ad0b67fa6b"><div class="ttname"><a href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b">fatalerror</a></div><div class="ttdeci">void fatalerror(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="fatalerror_8cpp_source.html#l00009">fatalerror.cpp:9</a></div></div>
+<div class="ttc" id="afincol_8cpp_html_a29c35f087117cb0d94d2369d1737e7c4"><div class="ttname"><a href="fincol_8cpp.html#a29c35f087117cb0d94d2369d1737e7c4">fincol</a></div><div class="ttdeci">bool fincol(void)</div><div class="ttdef"><b>Definition:</b> <a href="fincol_8cpp_source.html#l00022">fincol.cpp:22</a></div></div>
+<div class="ttc" id="afatalerror_8h_html"><div class="ttname"><a href="fatalerror_8h.html">fatalerror.h</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a9a13aa7125bf33b3f002c6a9d14ede3d"><div class="ttname"><a href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a></div><div class="ttdeci">unsigned char inputptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00113">globals.cpp:113</a></div></div>
+<div class="ttc" id="adoendv_8h_html"><div class="ttname"><a href="doendv_8h.html">doendv.h</a></div></div>
+<div class="ttc" id="adoendv_8cpp_html_adbabc406ff0a986dc23c2ad8d5bc9008"><div class="ttname"><a href="doendv_8cpp.html#adbabc406ff0a986dc23c2ad8d5bc9008">doendv</a></div><div class="ttdeci">void doendv(void)</div><div class="ttdef"><b>Definition:</b> <a href="doendv_8cpp_source.html#l00008">doendv.cpp:8</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aed2bd6a0a774ec6f59c3b0add5adc8f0"><div class="ttname"><a href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a></div><div class="ttdeci">instaterecord inputstack[stacksize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00112">globals.cpp:112</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a85ef1f882d9456051bd7b436978858d0"><div class="ttname"><a href="globals_8cpp.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a></div><div class="ttdeci">groupcode curgroup</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00106">globals.cpp:106</a></div></div>
+<div class="ttc" id="afinrow_8cpp_html_a0dfcdcfca243b8bc38a56bc5f8675d21"><div class="ttname"><a href="finrow_8cpp.html#a0dfcdcfca243b8bc38a56bc5f8675d21">finrow</a></div><div class="ttdeci">void finrow(void)</div><div class="ttdef"><b>Definition:</b> <a href="finrow_8cpp_source.html#l00009">finrow.cpp:9</a></div></div>
+<div class="ttc" id="aendgraf_8h_html"><div class="ttname"><a href="endgraf_8h.html">endgraf.h</a></div></div>
+<div class="ttc" id="afincol_8h_html"><div class="ttname"><a href="fincol_8h.html">fincol.h</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_af1ef163efc9d771f4a9f7f61c269cc97"><div class="ttname"><a href="globals_8cpp.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a></div><div class="ttdeci">unsigned char baseptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00125">globals.cpp:125</a></div></div>
+<div class="ttc" id="afinrow_8h_html"><div class="ttname"><a href="finrow_8h.html">finrow.h</a></div></div>
+<div class="ttc" id="aendgraf_8cpp_html_abee47be02d4d2b4c7bdb494f59a5a8bc"><div class="ttname"><a href="endgraf_8cpp.html#abee47be02d4d2b4c7bdb494f59a5a8bc">endgraf</a></div><div class="ttdeci">void endgraf(void)</div><div class="ttdef"><b>Definition:</b> <a href="endgraf_8cpp_source.html#l00006">endgraf.cpp:6</a></div></div>
+<div class="ttc" id="aoffsave_8cpp_html_a63378f93afc7d8ca66b9fe6f6f3d920b"><div class="ttname"><a href="offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b">offsave</a></div><div class="ttdeci">void offsave(void)</div><div class="ttdef"><b>Definition:</b> <a href="offsave_8cpp_source.html#l00013">offsave.cpp:13</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -1,6 +1,7 @@
 #include "endname.h"
 #include "overflow.h"
 #include "makestring.h"
+#include "texte.h"
 
 void endname(void)
 {
@@ -10,7 +11,7 @@ void endname(void)
 		curarea = "";
 	else
 	{
-		curarea = strptr;
+		curarea = TXT(strptr);
 		strstart[1+strptr] = strstart[strptr]+areadelimiter;
 		strptr++;
 	}
@@ -21,7 +22,7 @@ void endname(void)
 	}
 	else
 	{
-		curname = strptr;
+		curname = TXT(strptr);
 		strstart[1+strptr++] = strstart[strptr]+extdelimiter-areadelimiter-1;
 		curext = makestring();
 	}

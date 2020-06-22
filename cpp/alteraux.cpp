@@ -16,20 +16,20 @@ void alteraux(void)
 	{
 		halfword c = curchr;
 		scanoptionalequals();
-		if (c == 1)
+		if (c == vmode)
 		{
-			scandimen(false, false, false);
+			scan_normal_dimen();
 			prev_depth = curval;
 		}
 		else
 		{
 			scanint();
-			if (curval <= 0 || curval > 0x7F'FF)
+			if (curval <= 0 || curval > 32767)
 			{
 				printnl("! ");
 				print("Bad space factor");
 				helpptr = 1;
-				helpline[0] = "I allow only values in the range 1..0x7F'FF here.";
+				helpline[0] = "I allow only values in the range 1..32767 here.";
 				interror(curval);
 			}
 			else

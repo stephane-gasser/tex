@@ -9,38 +9,38 @@
 
 scaled makeop(halfword q)
 {
-	if (subtype(q) == 0 && curstyle < 2)
-		subtype(q) = 1;
+	if (subtype(q) == normal && curstyle < text_style)
+		subtype(q) = limits;
 	scaled delta;
-	if (link(q+1) == 1)
+	if (math_type(nucleus(q)) == math_char)
 	{
-		fetch(q+1);
-		if (curstyle < 2 && char_tag(curi) == list_tag)
+		fetch(nucleus(q));
+		if (curstyle < text_style && char_tag(curi) == list_tag)
 		{
 			auto c = rem_byte(curi);
 			auto i = char_info(curf, c);
-			if (i.b0 > 0)
+			if (char_exists(i))
 			{
 				curc = c;
 				curi = i;
-				subtype(q+1) = c;
+				character(nucleus(q)) = c;
 			}
 		}
 		delta = char_italic(curf, curi);
-		auto x = cleanbox(q+1, curstyle);
-		if (link(q+3) && subtype(q) != 1)
+		auto x = cleanbox(nucleus(q), curstyle);
+		if (math_type(subscr(q)) && subtype(q) != limits)
 		width(x) -= delta;
 		shift_amount(x) = half(height(x)-depth(x))-axis_height(cursize);
-		link(q+1) = 2;
-		info(q+1) = x;
+		math_type(nucleus(q)) = sub_box;
+		info(nucleus(q)) = x;
 	}
 	else
 		delta = 0;
-	if (subtype(q) == 1)
+	if (subtype(q) == limits)
 	{
-		auto x = cleanbox(q+2, 2*(curstyle/4)+4+curstyle%2);
-		auto y = cleanbox(q+1, curstyle);
-		auto z = cleanbox(q+3, 2*(curstyle/4)+5);
+		auto x = cleanbox(supscr(q), sup_style(curstyle));
+		auto y = cleanbox(nucleus(q), curstyle);
+		auto z = cleanbox(subscr(q), sub_style(curstyle));
 		auto v = newnullbox();
 		type(v) = vlist_node;
 		width(v) = std::max(std::max(width(x), width(y)), width(z));
@@ -51,10 +51,10 @@ scaled makeop(halfword q)
 		shift_amount(z) = -shift_amount(x);
 		height(v) = height(y);
 		depth(v) = depth(y);
-		if (link(q+2) == 0)
+		if (math_type(supscr(q)) == 0)
 		{
-			freenode(x, 7);
-			link(v+5) = y;
+			freenode(x, box_node_size);
+			list_ptr(v) = y;
 		}
 		else
 		{
@@ -69,8 +69,8 @@ scaled makeop(halfword q)
 			list_ptr(v) = p;
 			height(v) += mathex(big_op_spacing5())+height(x)+depth(x)+shiftup;
 		}
-		if (link(q+3) == 0)
-			freenode(z, 7);
+		if (math_type(subscr(q)) == 0)
+			freenode(z, box_node_size);
 		else
 		{
 			scaled shiftdown = big_op_spacing4()-height(z);

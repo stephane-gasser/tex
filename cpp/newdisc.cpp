@@ -5,8 +5,8 @@ halfword newdisc(void)
 {
 	auto p = getnode(2);
 	type(p) = disc_node;
-	subtype(p) = 0;
-	info(p+1) = 0;
-	link(p+1) = 0;
+	replace_count(p) = 0;
+	pre_break(p) = 0;
+	post_break(p) = 0;
 	return p;
 }

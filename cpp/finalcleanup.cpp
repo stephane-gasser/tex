@@ -19,21 +19,21 @@ void finalcleanup(void)
 	if (jobname == "")
 		openlogfile();
 	while (inputptr > 0)
-		if (curinput.statefield == 0)
+		if (state == token_list)
 			endtokenlist();
 		else
-		endfilereading();
+			endfilereading();
 	while (openparens > 0)
 	{
 		print(" )");
 		openparens--;
 	}
-	if (curlevel > 1)
+	if (curlevel > level_one)
 	{
 		printnl("(");
 		printesc("end occurred ");
 		print("inside a group at level ");
-		printint(curlevel-1);
+		printint(curlevel-level_one);
 		printchar(')');
 	}
 	while (condptr)
@@ -52,9 +52,9 @@ void finalcleanup(void)
 		curif = subtype(condptr);
 		tempptr = condptr;
 		condptr = link(condptr);
-		freenode(tempptr, 2);
+		freenode(tempptr, if_node_size);
 	}
-	if (history && (history == warning_issued || interaction < error_stop_mode) && selector == 19)
+	if (history && (history == warning_issued || interaction < error_stop_mode) && selector == term_and_log)
 	{
 		selector = term_only;
 		printnl("(see the transcript file for additional information)");
@@ -62,7 +62,7 @@ void finalcleanup(void)
 	}
 	if (c == 1)
 	{
-		for (c = 0; c <= 4; c++)
+		for (c = top_mark_code; c <= split_bot_mark_code; c++)
 		if (curmark[c])
 			deletetokenref(curmark[c]);
 		if (lastglue != empty_flag)

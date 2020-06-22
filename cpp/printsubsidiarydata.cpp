@@ -7,14 +7,14 @@
 
 void printsubsidiarydata(halfword p, ASCIIcode c)
 {
-	if (poolptr-strstart[strptr] >= depththreshold)
+	if (cur_length() >= depththreshold)
 	{
 		if (link(p))
 			print(" []");
 	}
 	else
 	{
-		strpool[poolptr++] = c;
+		append_char(c);
 		tempptr = p;
 		switch (link(p))
 		{

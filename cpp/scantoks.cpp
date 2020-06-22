@@ -16,28 +16,22 @@
 
 halfword scantoks(bool macrodef, bool xpand)
 {
-	if (macrodef)
-		scannerstatus = 2;
-	else
-		scannerstatus = 5;
+	scannerstatus = macrodef ? defining : absorbing;
 	warningindex = curcs;
 	defref = getavail();
-	info(defref) = 0;
+	token_ref_count(defref) = 0;
 	auto p = defref;
 	halfword hashbrace = 0;
-	halfword t = other_char*0x01'FF+'0';
+	halfword t = zero_token;
 	bool l40 = false;
 	if (macrodef)
 	{
 		while (true)
 		{
 			gettoken();
-			if (curtok < 768)
+			if (curtok < right_brace_limit)
 			{
-				auto q = getavail();
-				link(p) = q;
-				info(q) = 0x0E'00; //cmd=end_match/comment/stop ?
-				p = q;
+				store_new_token(p, end_match_token);
 				if (curcmd == right_brace)
 				{
 					printnl("! ");
@@ -54,24 +48,16 @@ halfword scantoks(bool macrodef, bool xpand)
 			}
 			if (curcmd == mac_param)
 			{
-				auto s = 0x0D'00+curchr; // cmd = active_char/par_end/match?
+				auto s = match_token+curchr;
 				gettoken();
 				if (curcmd == left_brace)
 				{
 					hashbrace = curtok;
-					{
-						auto q = getavail();
-						link(p) = q;
-						info(q) = curtok;
-						p = q;
-					}
-					auto q = getavail();
-					link(p) = q;
-					info(q) = 0x0E'00; //cmd=end_match/comment/stop ?
-					p = q;
+					store_new_token(p, curtok);
+					store_new_token(p, end_match_token);
 					break;
 				}
-				if (t == other_char*0x01'00+'9')
+				if (t == zero_token+9)
 				{
 					printnl("! ");
 					print("You already have nine parameters");
@@ -94,10 +80,7 @@ halfword scantoks(bool macrodef, bool xpand)
 					curtok = s;
 				}
 			}
-			auto q = getavail();
-			link(p) = q;
-			info(q) = curtok;
-			p = q;
+			store_new_token(p, curtok);
 		}
 	}
 	else
@@ -130,7 +113,7 @@ halfword scantoks(bool macrodef, bool xpand)
 		}
 		else
 			gettoken();
-		if (curtok < 768) // cmd <= right_brace
+		if (curtok < right_brace_limit) 
 			if (curcmd < right_brace)
 				unbalance++;
 			else
@@ -149,7 +132,7 @@ halfword scantoks(bool macrodef, bool xpand)
 					else
 						gettoken();
 					if (curcmd != mac_param)
-						if (curtok <= other_char*0x01'00+'0' || curtok > t) 
+						if (curtok <= zero_token || curtok > t) 
 						{
 							printnl("! ");
 							print("Illegal parameter number in definition of "); 
@@ -162,20 +145,12 @@ halfword scantoks(bool macrodef, bool xpand)
 							curtok = s;
 						}
 						else
-							curtok = out_param*0x01'00+curchr-'0';
+							curtok = out_param_token-'0'+curchr;
 				}
-		auto q = getavail();
-		link(p) = q;
-		info(q) = curtok;
-		p = q;
+		store_new_token(p, curtok);
 	}
 	scannerstatus = 0;
 	if (hashbrace)
-	{
-		auto q = getavail();
-		link(p) = q;
-		info(q) = hashbrace;
-		p = q;
-	}
+		store_new_token(p, hashbrace);
 	return p;
 }

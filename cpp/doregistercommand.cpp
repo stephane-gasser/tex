@@ -54,16 +54,16 @@ void doregistercommand(smallnumber a)
 		scaneightbitint();
 		switch (p)
 		{
-			case 0: 
+			case int_val: 
 				l = curval+count_base;
 				break;
-			case 1: 
+			case dimen_val: 
 				l = curval+scaled_base;
 				break;
-			case 2: 
+			case glue_val: 
 				l = curval+skip_base;
 				break;
-			case 3: 
+			case mu_val: 
 				l = curval+mu_skip_base;
 				break;
 		}
@@ -74,12 +74,12 @@ void doregistercommand(smallnumber a)
 		if (scankeyword("by"))
 			aritherror = false;
 	if (q < multiply)
-		if (p < 2)
+		if (p < glue_val)
 		{
-			if (p == 0)
+			if (p == int_val)
 				scanint();
 			else
-				scandimen(false, false, false);
+				scan_normal_dimen();
 			if (q == advance)
 				curval += eqtb[l].int_;
 		}
@@ -118,12 +118,12 @@ void doregistercommand(smallnumber a)
 	else
 	{
 		scanint();
-		if (p < 2)
+		if (p < glue_val)
 			if (q == multiply)
-				if (p == 0)
-					curval = multandadd(eqtb[l].int_, curval, 0, infinity);
+				if (p == int_val)
+					curval = mult_integers(eqtb[l].int_, curval);
 				else
-					curval = multandadd(eqtb[l].int_, curval, 0, max_dimen);
+					curval = nx_plus_y(eqtb[l].int_, curval, 0);
 			else
 				curval = xovern(eqtb[l].int_, curval);
 		else
@@ -132,9 +132,9 @@ void doregistercommand(smallnumber a)
 			r = newspec(s);
 			if (q == multiply)
 			{
-				width(r) = multandadd(width(s), curval, 0, max_dimen);
-				depth(r) = multandadd(depth(s), curval, 0, max_dimen);
-				height(r) = multandadd(height(s), curval, 0, max_dimen);
+				width(r) = nx_plus_y(width(s), curval, 0);
+				depth(r) = nx_plus_y(depth(s), curval, 0);
+				height(r) = nx_plus_y(height(s), curval, 0);;
 			}
 			else
 			{
@@ -158,16 +158,10 @@ void doregistercommand(smallnumber a)
 		return;
 	}
 	if (p < 2)
-		if (a >= 4)
-			geqworddefine(l, curval);
-		else
-		eqworddefine(l, curval);
+		word_define(a, l, curval);
 	else
 	{
 		trapzeroglue();
-		if (a >= 4)
-			geqdefine(l, glue_ref, curval);
-		else
-			eqdefine(l, glue_ref, curval);
+		define(a, l, glue_ref, curval);
 	}
 }

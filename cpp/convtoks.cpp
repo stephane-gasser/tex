@@ -72,6 +72,6 @@ void convtoks(void)
 	}
 	selector = oldsetting;
 	link(garbage) = strtoks(b);
-	begintokenlist(link(temp_head), 4);
+	ins_list(link(temp_head));
 }
 

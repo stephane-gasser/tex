@@ -7,7 +7,7 @@
 void newwritewhatsit(smallnumber w)
 {
 	newwhatsit(curchr, w);
-	if (w != 2)
+	if (w != write_node_size)
 		scanfourbitint();
 	else
 	{
@@ -18,5 +18,5 @@ void newwritewhatsit(smallnumber w)
 			if (curval > 15)
 				curval = 16;
 	}
-	info(tail+1) = curval;
+	write_stream(tail) = curval;
 }

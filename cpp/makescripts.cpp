@@ -9,29 +9,25 @@ void makescripts(halfword q, scaled delta)
 {
 	halfword p = new_hlist(q);
 	scaled shiftup, shiftdown;
-	if (p >= himemmin)
+	if (is_char_node(p))
 	{
 		shiftup = 0;
 		shiftdown = 0;
 	}
 	else
 	{
-		auto z = hpack(p, 0, 1);
-		smallnumber t;
-		if (curstyle < 4)
-			t = 16;
-		else
-			t = 32;
+		auto z = hpack(p, 0, additional);
+		smallnumber t = curstyle < script_style ? script_size : script_script_size;
 		shiftup = height(z)-sup_drop(t);
 		shiftdown = depth(z)+sub_drop(t);
-		freenode(z, 7);
+		freenode(z, box_node_size);
 	}
 	scaled clr;
 	halfword x;
-	if (link(q+2) == 0)
+	if (math_type(supscr(q)) == 0)
 	{
-		x = cleanbox(q+3, 2*(curstyle/4)+5);
-		width(x) += dimen_par(script_space_code);
+		x = cleanbox(subscr(q), sub_style(curstyle));
+		width(x) += script_space();
 		if (shiftdown < sub1(cursize))
 			shiftdown = sub1(cursize);
 		clr = height(x)-(math_x_height(cursize)*4)/5;
@@ -41,8 +37,8 @@ void makescripts(halfword q, scaled delta)
 	}
 	else
 	{
-		x = cleanbox(q+2, 2*(curstyle/4)+4+(curstyle%2));
-		width(x) += dimen_par(script_space_code);
+		x = cleanbox(supscr(q), sup_style(curstyle));
+		width(x) += script_space();
 		if (curstyle%2)
 			clr = sup3(cursize);
 		else 
@@ -55,12 +51,12 @@ void makescripts(halfword q, scaled delta)
 		clr = depth(x)+abs(math_x_height(cursize))/4;
 		if (shiftup < clr)
 			shiftup = clr;
-		if (link(q+3) == 0)
+		if (math_type(subscr(q)) == 0)
 			shift_amount(x) = -shiftup;
 		else
 		{
-			auto y = cleanbox(q+3, 2*(curstyle/4)+5);
-			width(y) += dimen_par(script_space_code);
+			auto y = cleanbox(subscr(q), sub_style(curstyle));
+			width(y) += script_space();
 			if (shiftdown < sub2(cursize))
 				shiftdown = sub2(cursize);
 			clr = 4*default_rule_thickness()-(shiftup-depth(x)-(height(y)-shiftdown));
@@ -78,7 +74,7 @@ void makescripts(halfword q, scaled delta)
 			p = newkern(shiftup-depth(x)-(height(y)-shiftdown));
 			link(x) = p;
 			link(p) = y;
-			x = vpackage(x, 0, 1, max_dimen);
+			x = vpack(x, 0, additional);
 			shift_amount(x) = shiftdown;
 		}
 	}

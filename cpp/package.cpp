@@ -7,7 +7,7 @@
 
 void package(smallnumber c)
 {
-	scaled d = dimen_par(box_max_depth_code);
+	scaled d = box_max_depth();
 	unsave();
 	saveptr -= 3;
 	if (mode == -hmode)

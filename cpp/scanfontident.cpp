@@ -32,7 +32,7 @@ void scanfontident(void)
 				helpline[1] = "I was looking for a control sequence whose";
 				helpline[0] = "current meaning has been defined by \\font.";
 				backerror();
-				f = 0;
+				f = null_font;
 			}
 	curval = f;
 }
