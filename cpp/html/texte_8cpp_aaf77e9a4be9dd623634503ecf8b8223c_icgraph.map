@@ -1,30 +1,29 @@
 <map id="TXT" name="TXT">
-<area shape="rect" id="node1" title=" " alt="" coords="787,625,833,652"/>
-<area shape="rect" id="node2" href="$endname_8h.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="473,144,548,171"/>
+<area shape="rect" id="node1" title=" " alt="" coords="827,499,873,525"/>
+<area shape="rect" id="node2" href="$endname_8h.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="493,195,568,221"/>
 <area shape="rect" id="node4" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="11,144,87,171"/>
-<area shape="rect" id="node5" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="5,245,92,272"/>
-<area shape="rect" id="node7" href="$newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="161,93,229,120"/>
-<area shape="rect" id="node8" href="$findfontdimen_8h.html#a3a1391088579b75ddb821a1f66a01b42" title=" " alt="" coords="631,853,731,880"/>
-<area shape="rect" id="node9" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="475,245,546,272"/>
-<area shape="rect" id="node10" href="$makestring_8h.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="638,195,725,221"/>
-<area shape="rect" id="node11" href="$printcs_8h.html#a1eea587c43c9698daa4d66337f6d0df7" title=" " alt="" coords="651,372,712,399"/>
-<area shape="rect" id="node15" href="$printfamandchar_8h.html#aa6409404a31c8fc95de19bfb6b24ae46" title=" " alt="" coords="624,955,739,981"/>
-<area shape="rect" id="node17" href="$shownodelist_8h.html#a603d6d2969ceffbb5ac7b8c8bc74828b" title=" " alt="" coords="299,1005,397,1032"/>
-<area shape="rect" id="node18" href="$printfontandchar_8h.html#aca2106b26ce9e669e0bbf5dd9ff92655" title=" " alt="" coords="624,1019,739,1045"/>
-<area shape="rect" id="node19" href="$shortdisplay_8h.html#afebf67a21261724239f16b40c3c553d2" title=" " alt="" coords="635,1107,727,1133"/>
-<area shape="rect" id="node21" href="$sprintcs_8h.html#acaba209547fb584d215825d4ee808645" title=" " alt="" coords="647,625,715,652"/>
-<area shape="rect" id="node3" href="$promptfilename_8h.html#a30c405cf60000fe656870957636a4d91" title=" " alt="" coords="140,195,251,221"/>
-<area shape="rect" id="node6" href="$scanfilename_8h.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="299,144,397,171"/>
-<area shape="rect" id="node12" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="309,397,387,424"/>
-<area shape="rect" id="node13" href="$showcontext_8h.html#a08865d4e55bc6116a39dbd5679041e61" title=" " alt="" coords="300,296,396,323"/>
-<area shape="rect" id="node14" href="$showtokenlist_8h.html#a1aa048aa010568fbb179bdda96bd684c" title=" " alt="" coords="459,347,562,373"/>
-<area shape="rect" id="node16" href="$printsubsidiarydata_8h.html#af45caf75d31615582d95acb41d8d97d3" title=" " alt="" coords="445,1005,576,1032"/>
-<area shape="rect" id="node20" href="$hpack_8cpp.html#aca1b4ef43cf99ba30e2d0bc481431dce" title=" " alt="" coords="480,1157,541,1184"/>
-<area shape="rect" id="node22" href="$checkoutervalidity_8h.html#a6bca3c8986cc82099dde339cf36de911" title=" " alt="" coords="447,549,574,576"/>
-<area shape="rect" id="node23" href="$convtoks_8h.html#a0f6f2a8ccaad133ad4b9cf4f67f214b1" title=" " alt="" coords="473,600,548,627"/>
-<area shape="rect" id="node24" href="$readfontinfo_8cpp.html#a9a35da54d5c657ba76a4411e883f57c9" title=" " alt="" coords="465,651,557,677"/>
-<area shape="rect" id="node25" href="$readfontinfo_8h.html#af923ea1b9fc83c4c6a610d50e43c599d" title=" " alt="" coords="303,727,393,753"/>
-<area shape="rect" id="node26" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="475,701,547,728"/>
-<area shape="rect" id="node27" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="473,752,548,779"/>
-<area shape="rect" id="node28" href="$showwhatever_8h.html#a99b4dadf3c1abee06e9da950c3c704a5" title=" " alt="" coords="457,499,564,525"/>
+<area shape="rect" id="node5" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="5,347,92,373"/>
+<area shape="rect" id="node7" href="$newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="161,245,229,272"/>
+<area shape="rect" id="node8" href="$findfontdimen_8h.html#a3a1391088579b75ddb821a1f66a01b42" title=" " alt="" coords="671,651,771,677"/>
+<area shape="rect" id="node9" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="495,397,566,424"/>
+<area shape="rect" id="node10" href="$makestring_8h.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="678,347,765,373"/>
+<area shape="rect" id="node11" href="$printcs_8h.html#a1eea587c43c9698daa4d66337f6d0df7" title=" " alt="" coords="691,119,752,145"/>
+<area shape="rect" id="node15" href="$printfamandchar_8h.html#aa6409404a31c8fc95de19bfb6b24ae46" title=" " alt="" coords="664,904,779,931"/>
+<area shape="rect" id="node17" href="$shownodelist_8h.html#a603d6d2969ceffbb5ac7b8c8bc74828b" title=" " alt="" coords="299,955,397,981"/>
+<area shape="rect" id="node18" href="$printfontandchar_8h.html#aca2106b26ce9e669e0bbf5dd9ff92655" title=" " alt="" coords="664,777,779,804"/>
+<area shape="rect" id="node19" href="$shortdisplay_8h.html#afebf67a21261724239f16b40c3c553d2" title=" " alt="" coords="675,1005,767,1032"/>
+<area shape="rect" id="node21" href="$sprintcs_8h.html#acaba209547fb584d215825d4ee808645" title=" " alt="" coords="687,600,755,627"/>
+<area shape="rect" id="node3" href="$promptfilename_8h.html#a30c405cf60000fe656870957636a4d91" title=" " alt="" coords="140,144,251,171"/>
+<area shape="rect" id="node6" href="$scanfilename_8h.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="299,195,397,221"/>
+<area shape="rect" id="node12" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="309,93,387,120"/>
+<area shape="rect" id="node13" href="$showcontext_8h.html#a08865d4e55bc6116a39dbd5679041e61" title=" " alt="" coords="300,43,396,69"/>
+<area shape="rect" id="node14" href="$showtokenlist_8h.html#a1aa048aa010568fbb179bdda96bd684c" title=" " alt="" coords="479,93,582,120"/>
+<area shape="rect" id="node16" href="$printsubsidiarydata_8h.html#af45caf75d31615582d95acb41d8d97d3" title=" " alt="" coords="465,955,596,981"/>
+<area shape="rect" id="node20" href="$hpack_8cpp.html#aca1b4ef43cf99ba30e2d0bc481431dce" title=" " alt="" coords="500,1056,561,1083"/>
+<area shape="rect" id="node22" href="$checkoutervalidity_8h.html#a6bca3c8986cc82099dde339cf36de911" title=" " alt="" coords="467,651,594,677"/>
+<area shape="rect" id="node23" href="$convtoks_8h.html#a0f6f2a8ccaad133ad4b9cf4f67f214b1" title=" " alt="" coords="493,701,568,728"/>
+<area shape="rect" id="node24" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="495,752,567,779"/>
+<area shape="rect" id="node25" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="493,803,568,829"/>
+<area shape="rect" id="node26" href="$showwhatever_8h.html#a99b4dadf3c1abee06e9da950c3c704a5" title=" " alt="" coords="477,549,584,576"/>
+<area shape="rect" id="node27" href="$readfontinfo_8cpp.html#a69dd6a8f679156d5933d5762659a4279" title=" " alt="" coords="445,600,616,627"/>
 </map>

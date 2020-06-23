@@ -1,6 +1,8 @@
 #include "initialize.h"
 #include "texte.h"
 
+static halfword& uc_code(halfword p) { return equiv(uc_code_base+p); }
+
 void Initialize(void)
 {
 	for (int i = 0; i < 32; i++)

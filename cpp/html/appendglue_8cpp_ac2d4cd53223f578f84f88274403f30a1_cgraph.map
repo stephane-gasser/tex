@@ -1,12 +1,13 @@
 <map id="appendglue" name="appendglue">
-<area shape="rect" id="node1" title=" " alt="" coords="5,208,93,235"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="404,81,447,108"/>
-<area shape="rect" id="node3" href="$newglue_8cpp.html#a42d1502b38c0f25378f1d603fa359f72" title=" " alt="" coords="150,208,221,235"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="283,309,351,336"/>
-<area shape="rect" id="node8" href="$scanglue_8cpp.html#a1b433217a906738e1453ff227c67a090" title=" " alt="" coords="148,347,223,373"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="141,5,229,32"/>
-<area shape="rect" id="node4" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="283,157,351,184"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="404,208,447,235"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="293,208,340,235"/>
-<area shape="rect" id="node9" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="277,360,356,387"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,185,93,212"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#ab2def9ced9c196d76adb71f31b4f8619" title=" " alt="" coords="141,84,248,110"/>
+<area shape="rect" id="node3" href="$newglue_8cpp.html#a42d1502b38c0f25378f1d603fa359f72" title=" " alt="" coords="159,134,230,161"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="301,185,369,212"/>
+<area shape="rect" id="node9" href="$scanglue_8cpp.html#a1b433217a906738e1453ff227c67a090" title=" " alt="" coords="157,236,232,262"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="151,286,239,313"/>
+<area shape="rect" id="node4" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="301,33,369,60"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="423,8,465,34"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="423,84,465,110"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="312,134,359,161"/>
+<area shape="rect" id="node10" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="296,236,375,262"/>
 </map>

@@ -83,6 +83,10 @@ Graphe des dépendances par inclusion de freezepagespecs.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
+<tr class="memitem:abeac03095bf405626700cd79f2723c1d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freezepagespecs_8cpp.html#abeac03095bf405626700cd79f2723c1d">vsize</a> (void)</td></tr>
+<tr class="separator:abeac03095bf405626700cd79f2723c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae19ded57c43720a2dcd0b2efaa43083b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freezepagespecs_8cpp.html#ae19ded57c43720a2dcd0b2efaa43083b">set_page_so_far_zero</a> (int i)</td></tr>
+<tr class="separator:ae19ded57c43720a2dcd0b2efaa43083b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2aa1093216c5bb54bcd0b746aa225f33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="freezepagespecs_8cpp.html#a2aa1093216c5bb54bcd0b746aa225f33">freezepagespecs</a> (<a class="el" href="tex_8h.html#aebffb996625158f539ca50fcf7d4628b">smallnumber</a> s)</td></tr>
 <tr class="separator:a2aa1093216c5bb54bcd0b746aa225f33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -103,22 +107,26 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="freezepagespecs_8cpp_source.html#l00003">3</a> du fichier <a class="el" href="freezepagespecs_8cpp_source.html">freezepagespecs.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <a class="code" href="globals_8cpp.html#aae2a13aa6428277a3bcfb653ffdc4768">pagecontents</a> = s;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="globals_8cpp.html#a19f0a38a7e1be2cefd5f55d77e115136">pagesofar</a>[0] = <a class="code" href="constantes_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd">dimen_par</a>(<a class="code" href="constantes_8h.html#a1a6ad033217ae043dbf2ec40f5a1261d">hsize_code</a>);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="globals_8cpp.html#a0ff5642644350de6308fd939213fc8cc">pagemaxdepth</a> = <a class="code" href="constantes_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd">dimen_par</a>(<a class="code" href="constantes_8h.html#a2def53f6f01dc4b9cca95746e5543906">vsize_code</a>);</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 7; i++)</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="globals_8cpp.html#a19f0a38a7e1be2cefd5f55d77e115136">pagesofar</a>[i] = 0;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="globals_8cpp.html#a196a640decb10a305fef5aa90d44ab7b">leastpagecost</a> = <a class="code" href="constantes_8h.html#abcc4ba792437d61a312c485d4074bdc3">max_dimen</a>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="freezepagespecs_8cpp_source.html#l00010">10</a> du fichier <a class="el" href="freezepagespecs_8cpp_source.html">freezepagespecs.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="globals_8cpp.html#aae2a13aa6428277a3bcfb653ffdc4768">pagecontents</a> = s;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="constantes_8cpp.html#a6cb7be0e3bce5df2f160191222222ed5">page_goal</a> = <a class="code" href="parametres_8h.html#a45cc0a02877c99457cd993ff3f374e05">hsize</a>();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="globals_8cpp.html#a0ff5642644350de6308fd939213fc8cc">pagemaxdepth</a> = <a class="code" href="freezepagespecs_8cpp.html#abeac03095bf405626700cd79f2723c1d">vsize</a>();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 1; i &lt;= 7; i++)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="freezepagespecs_8cpp.html#ae19ded57c43720a2dcd0b2efaa43083b">set_page_so_far_zero</a>(i);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="globals_8cpp.html#a196a640decb10a305fef5aa90d44ab7b">leastpagecost</a> = <a class="code" href="constantes_8h.html#abcc4ba792437d61a312c485d4074bdc3">max_dimen</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="freezepagespecs_8cpp_a2aa1093216c5bb54bcd0b746aa225f33_cgraph.png" border="0" usemap="#freezepagespecs_8cpp_a2aa1093216c5bb54bcd0b746aa225f33_cgraph" alt=""/></div>
 <map name="freezepagespecs_8cpp_a2aa1093216c5bb54bcd0b746aa225f33_cgraph" id="freezepagespecs_8cpp_a2aa1093216c5bb54bcd0b746aa225f33_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,127,32"/>
-<area shape="rect" href="constantes_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd" title=" " alt="" coords="175,5,257,32"/>
+<area shape="rect" title=" " alt="" coords="5,56,127,83"/>
+<area shape="rect" href="parametres_8h.html#a45cc0a02877c99457cd993ff3f374e05" title=" " alt="" coords="223,5,277,32"/>
+<area shape="rect" href="freezepagespecs_8cpp.html#ae19ded57c43720a2dcd0b2efaa43083b" title=" " alt="" coords="175,56,325,83"/>
+<area shape="rect" href="freezepagespecs_8cpp.html#abeac03095bf405626700cd79f2723c1d" title=" " alt="" coords="223,107,277,133"/>
+<area shape="rect" href="parametres_8h.html#acfaa61c71f30fc29cb6be5c1ee5ad595" title="dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity" alt="" coords="373,5,456,32"/>
+<area shape="rect" href="parametres_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd" title="dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity" alt="" coords="373,107,456,133"/>
 </map>
 </div>
 <div class="dynheader">
@@ -126,15 +134,105 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="freezepagespecs_8cpp_a2aa1093216c5bb54bcd0b746aa225f33_icgraph.png" border="0" usemap="#freezepagespecs_8cpp_a2aa1093216c5bb54bcd0b746aa225f33_icgraph" alt=""/></div>
 <map name="freezepagespecs_8cpp_a2aa1093216c5bb54bcd0b746aa225f33_icgraph" id="freezepagespecs_8cpp_a2aa1093216c5bb54bcd0b746aa225f33_icgraph">
-<area shape="rect" title=" " alt="" coords="448,157,569,184"/>
-<area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="323,157,400,184"/>
+<area shape="rect" title=" " alt="" coords="448,183,569,209"/>
+<area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="323,183,400,209"/>
 <area shape="rect" href="appendpenalty_8h.html#a82e3f6f58b17cb079cbca728f3c09d8b" title=" " alt="" coords="155,5,262,32"/>
-<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,107,95,133"/>
-<area shape="rect" href="finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="19,284,81,311"/>
+<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,132,95,159"/>
+<area shape="rect" href="finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="19,335,81,361"/>
 <area shape="rect" href="handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="150,107,267,133"/>
 <area shape="rect" href="initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="175,157,243,184"/>
-<area shape="rect" href="newgraf_8h.html#a32eeb6c6a88201e95a9a86b0c110dc4c" title=" " alt="" coords="175,208,243,235"/>
-<area shape="rect" href="resumeafterdisplay_8h.html#a5e20dcff03a0b655888f77fb621b21d4" title=" " alt="" coords="143,309,275,336"/>
+<area shape="rect" href="itsallover_8h.html#a328c29eeaa688dcd15cc3534c1b078bc" title=" " alt="" coords="171,208,246,235"/>
+<area shape="rect" href="newgraf_8h.html#a32eeb6c6a88201e95a9a86b0c110dc4c" title=" " alt="" coords="175,259,243,285"/>
+<area shape="rect" href="resumeafterdisplay_8h.html#a5e20dcff03a0b655888f77fb621b21d4" title=" " alt="" coords="143,360,275,387"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae19ded57c43720a2dcd0b2efaa43083b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae19ded57c43720a2dcd0b2efaa43083b">&#9670;&nbsp;</a></span>set_page_so_far_zero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void set_page_so_far_zero </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="freezepagespecs_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="freezepagespecs_8cpp_source.html">freezepagespecs.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="globals_8cpp.html#a19f0a38a7e1be2cefd5f55d77e115136">pagesofar</a>[i] = 0;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="freezepagespecs_8cpp_ae19ded57c43720a2dcd0b2efaa43083b_icgraph.png" border="0" usemap="#freezepagespecs_8cpp_ae19ded57c43720a2dcd0b2efaa43083b_icgraph" alt=""/></div>
+<map name="freezepagespecs_8cpp_ae19ded57c43720a2dcd0b2efaa43083b_icgraph" id="freezepagespecs_8cpp_ae19ded57c43720a2dcd0b2efaa43083b_icgraph">
+<area shape="rect" title=" " alt="" coords="300,5,451,32"/>
+<area shape="rect" href="freezepagespecs_8h.html#a2aa1093216c5bb54bcd0b746aa225f33" title=" " alt="" coords="131,5,252,32"/>
+<area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="5,5,83,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abeac03095bf405626700cd79f2723c1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abeac03095bf405626700cd79f2723c1d">&#9670;&nbsp;</a></span>vsize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int vsize </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="freezepagespecs_8cpp_source.html#l00003">3</a> du fichier <a class="el" href="freezepagespecs_8cpp_source.html">freezepagespecs.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="parametres_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd">dimen_par</a>(<a class="code" href="parametres_8h.html#ac205be2172292384dd687b5471a87edda73dfe07c0ea50e6ca0b02b547ce331b2">vsize_code</a>); }</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="freezepagespecs_8cpp_abeac03095bf405626700cd79f2723c1d_cgraph.png" border="0" usemap="#freezepagespecs_8cpp_abeac03095bf405626700cd79f2723c1d_cgraph" alt=""/></div>
+<map name="freezepagespecs_8cpp_abeac03095bf405626700cd79f2723c1d_cgraph" id="freezepagespecs_8cpp_abeac03095bf405626700cd79f2723c1d_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,59,32"/>
+<area shape="rect" href="parametres_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd" title="dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity" alt="" coords="107,5,189,32"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="freezepagespecs_8cpp_abeac03095bf405626700cd79f2723c1d_icgraph.png" border="0" usemap="#freezepagespecs_8cpp_abeac03095bf405626700cd79f2723c1d_icgraph" alt=""/></div>
+<map name="freezepagespecs_8cpp_abeac03095bf405626700cd79f2723c1d_icgraph" id="freezepagespecs_8cpp_abeac03095bf405626700cd79f2723c1d_icgraph">
+<area shape="rect" title=" " alt="" coords="300,5,353,32"/>
+<area shape="rect" href="freezepagespecs_8h.html#a2aa1093216c5bb54bcd0b746aa225f33" title=" " alt="" coords="131,5,252,32"/>
+<area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="5,5,83,32"/>
 </map>
 </div>
 
@@ -142,13 +240,16 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="aglobals_8cpp_html_a0ff5642644350de6308fd939213fc8cc"><div class="ttname"><a href="globals_8cpp.html#a0ff5642644350de6308fd939213fc8cc">pagemaxdepth</a></div><div class="ttdeci">scaled pagemaxdepth</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00270">globals.cpp:270</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a807b9366bac84595b5ae2b086ae99cfd"><div class="ttname"><a href="constantes_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd">dimen_par</a></div><div class="ttdeci">int &amp; dimen_par(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00256">constantes.cpp:256</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aae2a13aa6428277a3bcfb653ffdc4768"><div class="ttname"><a href="globals_8cpp.html#aae2a13aa6428277a3bcfb653ffdc4768">pagecontents</a></div><div class="ttdeci">char pagecontents</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00269">globals.cpp:269</a></div></div>
+<div class="ttc" id="afreezepagespecs_8cpp_html_ae19ded57c43720a2dcd0b2efaa43083b"><div class="ttname"><a href="freezepagespecs_8cpp.html#ae19ded57c43720a2dcd0b2efaa43083b">set_page_so_far_zero</a></div><div class="ttdeci">static void set_page_so_far_zero(int i)</div><div class="ttdef"><b>Definition:</b> <a href="freezepagespecs_8cpp_source.html#l00005">freezepagespecs.cpp:5</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a19f0a38a7e1be2cefd5f55d77e115136"><div class="ttname"><a href="globals_8cpp.html#a19f0a38a7e1be2cefd5f55d77e115136">pagesofar</a></div><div class="ttdeci">scaled pagesofar[8]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00273">globals.cpp:273</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a2def53f6f01dc4b9cca95746e5543906"><div class="ttname"><a href="constantes_8h.html#a2def53f6f01dc4b9cca95746e5543906">vsize_code</a></div><div class="ttdeci">constexpr int vsize_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00586">constantes.h:586</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_abcc4ba792437d61a312c485d4074bdc3"><div class="ttname"><a href="constantes_8h.html#abcc4ba792437d61a312c485d4074bdc3">max_dimen</a></div><div class="ttdeci">constexpr int max_dimen</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00785">constantes.h:785</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abcc4ba792437d61a312c485d4074bdc3"><div class="ttname"><a href="constantes_8h.html#abcc4ba792437d61a312c485d4074bdc3">max_dimen</a></div><div class="ttdeci">constexpr int max_dimen</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00651">constantes.h:651</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a6cb7be0e3bce5df2f160191222222ed5"><div class="ttname"><a href="constantes_8cpp.html#a6cb7be0e3bce5df2f160191222222ed5">page_goal</a></div><div class="ttdeci">scaled &amp; page_goal</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00193">constantes.cpp:193</a></div></div>
+<div class="ttc" id="afreezepagespecs_8cpp_html_abeac03095bf405626700cd79f2723c1d"><div class="ttname"><a href="freezepagespecs_8cpp.html#abeac03095bf405626700cd79f2723c1d">vsize</a></div><div class="ttdeci">static int vsize(void)</div><div class="ttdef"><b>Definition:</b> <a href="freezepagespecs_8cpp_source.html#l00003">freezepagespecs.cpp:3</a></div></div>
+<div class="ttc" id="aparametres_8h_html_a45cc0a02877c99457cd993ff3f374e05"><div class="ttname"><a href="parametres_8h.html#a45cc0a02877c99457cd993ff3f374e05">hsize</a></div><div class="ttdeci">int hsize(void)</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8h_source.html#l00151">parametres.h:151</a></div></div>
+<div class="ttc" id="aparametres_8h_html_ac205be2172292384dd687b5471a87edda73dfe07c0ea50e6ca0b02b547ce331b2"><div class="ttname"><a href="parametres_8h.html#ac205be2172292384dd687b5471a87edda73dfe07c0ea50e6ca0b02b547ce331b2">vsize_code</a></div><div class="ttdeci">@ vsize_code</div><div class="ttdoc">page height in vertical mode</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8h_source.html#l00095">parametres.h:95</a></div></div>
+<div class="ttc" id="aparametres_8cpp_html_a807b9366bac84595b5ae2b086ae99cfd"><div class="ttname"><a href="parametres_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd">dimen_par</a></div><div class="ttdeci">int &amp; dimen_par(halfword p)</div><div class="ttdoc">dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8cpp_source.html#l00007">parametres.cpp:7</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a196a640decb10a305fef5aa90d44ab7b"><div class="ttname"><a href="globals_8cpp.html#a196a640decb10a305fef5aa90d44ab7b">leastpagecost</a></div><div class="ttdeci">int leastpagecost</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00037">globals.cpp:37</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a1a6ad033217ae043dbf2ec40f5a1261d"><div class="ttname"><a href="constantes_8h.html#a1a6ad033217ae043dbf2ec40f5a1261d">hsize_code</a></div><div class="ttdeci">constexpr int hsize_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00585">constantes.h:585</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

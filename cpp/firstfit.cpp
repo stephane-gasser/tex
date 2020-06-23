@@ -1,6 +1,8 @@
 #include "firstfit.h"
 #include "overflow.h"
 
+static halfword& trie_back(halfword p) { return trie[p].lh; }
+
 void firstfit(triepointer p)
 {
 	triepointer h, z, q, l, r;

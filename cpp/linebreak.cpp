@@ -26,6 +26,17 @@ static void kern_break(bool autobreaking)
 	act_width += width(curp);
 }
 
+static void store_background(void)
+{
+	for (int i = 1; i <= 6; i++)
+		activewidth[i] = background[i];
+}
+
+static int emergency_stretch(void) { return dimen_par(emergency_stretch_code); }
+static int hyphen_penalty(void) { return int_par(hyphen_penalty_code); }
+static int pretolerance(void) { return int_par(pretolerance_code); }
+static int uc_hyph(void) { return int_par(uc_hyph_code); }
+
 void linebreak(int finalwidowpenalty)
 {
 	bool autobreaking;

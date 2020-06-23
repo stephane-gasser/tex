@@ -155,11 +155,11 @@ Fonctions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p) = s;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = <a class="code" href="constantes_8h.html#a70fc2360565b0672382c2634537811c1">empty_flag</a>;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> = <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(<a class="code" href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a>+1);</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p+1) = <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> q = <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(<a class="code" href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a>+1);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p+1) = q;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p+1) = <a class="code" href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a>;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(<a class="code" href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a>+1) = p;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>+1) = p;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q+1) = p;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
@@ -176,62 +176,64 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="freenode_8h_a3c9c1ec42afdd2ebe5e5b67a90021848_icgraph.png" border="0" usemap="#freenode_8h_a3c9c1ec42afdd2ebe5e5b67a90021848_icgraph" alt=""/></div>
 <map name="freenode_8h_a3c9c1ec42afdd2ebe5e5b67a90021848_icgraph" id="freenode_8h_a3c9c1ec42afdd2ebe5e5b67a90021848_icgraph">
-<area shape="rect" title=" " alt="" coords="816,1274,888,1301"/>
-<area shape="rect" href="aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="5,1705,83,1732"/>
-<area shape="rect" href="cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="493,1654,567,1681"/>
-<area shape="rect" href="mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="147,1705,232,1732"/>
-<area shape="rect" href="makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="330,2060,398,2086"/>
-<area shape="rect" href="makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="317,1604,411,1630"/>
-<area shape="rect" href="deleteglueref_8h.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="650,769,746,796"/>
-<area shape="rect" href="finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="158,1224,221,1250"/>
-<area shape="rect" href="handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="131,896,248,922"/>
-<area shape="rect" href="eqdestroy_8h.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="325,1249,403,1276"/>
-<area shape="rect" href="finalcleanup_8h.html#abdaa31c6a83743b7ffe417c4889aceaf" title=" " alt="" coords="485,364,575,390"/>
-<area shape="rect" href="linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="152,769,227,796"/>
-<area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="503,972,557,998"/>
-<area shape="rect" href="flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="483,1148,577,1174"/>
-<area shape="rect" href="hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="323,338,405,365"/>
-<area shape="rect" href="vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="337,237,391,264"/>
-<area shape="rect" href="hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="669,1730,727,1757"/>
-<area shape="rect" href="rebox_8h.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="503,2060,557,2086"/>
-<area shape="rect" href="maincontrol_8cpp.html#a1c4fbceeb0a6504e980d70aea5dc2ad9" title=" " alt="" coords="628,1604,768,1630"/>
-<area shape="rect" href="makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="662,2161,734,2188"/>
-<area shape="rect" href="popalignment_8h.html#a951a22530fb4fa2e9fb5f586c47ec2c8" title=" " alt="" coords="649,1300,747,1326"/>
-<area shape="rect" href="prunemovements_8h.html#a66c63c052a413a8bc2127d5584832f68" title=" " alt="" coords="637,2224,759,2250"/>
-<area shape="rect" href="reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="653,313,743,340"/>
-<area shape="rect" href="trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="663,60,733,86"/>
-<area shape="rect" href="unpackage_8h.html#afc396691da2ad50b5d31c5b03c876f48" title=" " alt="" coords="655,2274,741,2301"/>
-<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="315,1857,413,1884"/>
-<area shape="rect" href="makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="303,1553,425,1580"/>
-<area shape="rect" href="makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="325,1705,403,1732"/>
-<area shape="rect" href="makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="318,1806,410,1833"/>
-<area shape="rect" href="makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="321,1756,407,1782"/>
-<area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="325,972,403,998"/>
-<area shape="rect" href="doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="296,617,432,644"/>
-<area shape="rect" href="findfontdimen_8h.html#a3a1391088579b75ddb821a1f66a01b42" title=" " alt="" coords="480,516,580,542"/>
-<area shape="rect" href="finiteshrink_8h.html#a44e34bae9b7e036aec3f59c776c36c1c" title=" " alt="" coords="487,769,573,796"/>
-<area shape="rect" href="postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="315,870,413,897"/>
-<area shape="rect" href="thetoks_8h.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="497,718,563,745"/>
-<area shape="rect" href="trapzeroglue_8h.html#a26dc1cd3915de61dda98edd1589c6158" title=" " alt="" coords="483,566,577,593"/>
-<area shape="rect" href="vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="492,617,568,644"/>
-<area shape="rect" href="fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="503,1857,557,1884"/>
-<area shape="rect" href="finrow_8h.html#a0dfcdcfca243b8bc38a56bc5f8675d21" title=" " alt="" coords="501,1908,559,1934"/>
-<area shape="rect" href="makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="483,1958,577,1985"/>
-<area shape="rect" href="package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="329,1452,399,1478"/>
-<area shape="rect" href="hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="498,2236,562,2262"/>
-<area shape="rect" href="vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="332,2236,396,2262"/>
+<area shape="rect" title=" " alt="" coords="969,1105,1041,1131"/>
+<area shape="rect" href="aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="151,503,228,530"/>
+<area shape="rect" href="cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="646,363,721,390"/>
+<area shape="rect" href="mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="300,389,385,415"/>
+<area shape="rect" href="makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="483,110,551,137"/>
+<area shape="rect" href="makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="471,161,564,187"/>
+<area shape="rect" href="deleteglueref_8h.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="803,1527,899,1554"/>
+<area shape="rect" href="finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="311,1097,374,1123"/>
+<area shape="rect" href="handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="284,1350,401,1377"/>
+<area shape="rect" href="eqdestroy_8h.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="478,1147,557,1174"/>
+<area shape="rect" href="finalcleanup_8h.html#abdaa31c6a83743b7ffe417c4889aceaf" title=" " alt="" coords="638,2009,729,2035"/>
+<area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="656,1350,711,1377"/>
+<area shape="rect" href="flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="636,1198,731,1225"/>
+<area shape="rect" href="hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="476,2161,559,2187"/>
+<area shape="rect" href="linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="305,2110,380,2137"/>
+<area shape="rect" href="vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="491,1857,544,1883"/>
+<area shape="rect" href="hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="823,591,880,618"/>
+<area shape="rect" href="rebox_8h.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="656,211,711,238"/>
+<area shape="rect" href="maincontrol_8cpp.html#a1c4fbceeb0a6504e980d70aea5dc2ad9" title=" " alt="" coords="781,2313,921,2339"/>
+<area shape="rect" href="makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="815,59,887,86"/>
+<area shape="rect" href="popalignment_8h.html#a951a22530fb4fa2e9fb5f586c47ec2c8" title=" " alt="" coords="802,1022,901,1049"/>
+<area shape="rect" href="prunemovements_8h.html#a66c63c052a413a8bc2127d5584832f68" title=" " alt="" coords="790,2363,913,2390"/>
+<area shape="rect" href="reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="806,2211,897,2238"/>
+<area shape="rect" href="trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="649,2262,718,2289"/>
+<area shape="rect" href="unpackage_8h.html#afc396691da2ad50b5d31c5b03c876f48" title=" " alt="" coords="147,843,232,870"/>
+<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,843,95,870"/>
+<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="469,211,566,238"/>
+<area shape="rect" href="makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="456,566,579,593"/>
+<area shape="rect" href="makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="478,262,557,289"/>
+<area shape="rect" href="makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="471,414,563,441"/>
+<area shape="rect" href="makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="474,313,561,339"/>
+<area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="479,1350,556,1377"/>
+<area shape="rect" href="doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="449,1806,585,1833"/>
+<area shape="rect" href="findfontdimen_8h.html#a3a1391088579b75ddb821a1f66a01b42" title=" " alt="" coords="633,1705,733,1731"/>
+<area shape="rect" href="finiteshrink_8h.html#a44e34bae9b7e036aec3f59c776c36c1c" title=" " alt="" coords="641,1755,726,1782"/>
+<area shape="rect" href="postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="468,1477,567,1503"/>
+<area shape="rect" href="scandimen_8h.html#ad330bbbb06884a41f26209e039c103fa" title=" " alt="" coords="641,1451,726,1478"/>
+<area shape="rect" href="thetoks_8h.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="651,1502,716,1529"/>
+<area shape="rect" href="trapzeroglue_8h.html#a26dc1cd3915de61dda98edd1589c6158" title=" " alt="" coords="637,1806,730,1833"/>
+<area shape="rect" href="vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="645,1654,721,1681"/>
+<area shape="rect" href="fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="657,617,710,643"/>
+<area shape="rect" href="finrow_8h.html#a0dfcdcfca243b8bc38a56bc5f8675d21" title=" " alt="" coords="655,667,712,694"/>
+<area shape="rect" href="makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="143,755,236,782"/>
+<area shape="rect" href="package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="482,1097,553,1123"/>
+<area shape="rect" href="hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="651,2413,715,2439"/>
+<area shape="rect" href="vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="485,2413,549,2439"/>
+<area shape="rect" href="linebreak_8cpp.html#a7c6cf5fe8506c32f31be9ec53a4d994e" title=" " alt="" coords="474,2211,561,2238"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="awriteout_8cpp_html_a099b3b060154898840f0ebdfb46ec78f"><div class="ttname"><a href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a></div><div class="ttdeci">q</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00024">writeout.cpp:24</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00019">constantes.cpp:19</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00007">constantes.cpp:7</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa428ec3ffbafd3eb1d48e687652aeee0"><div class="ttname"><a href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a></div><div class="ttdeci">halfword rover</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00080">globals.cpp:80</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a70fc2360565b0672382c2634537811c1"><div class="ttname"><a href="constantes_8h.html#a70fc2360565b0672382c2634537811c1">empty_flag</a></div><div class="ttdeci">constexpr int empty_flag</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00062">constantes.h:62</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a70fc2360565b0672382c2634537811c1"><div class="ttname"><a href="constantes_8h.html#a70fc2360565b0672382c2634537811c1">empty_flag</a></div><div class="ttdeci">constexpr int empty_flag</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00084">constantes.h:84</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

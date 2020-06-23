@@ -3,6 +3,9 @@
 #include "makestring.h"
 #include "texte.h"
 
+static bool hash_is_full(void) { return hashused == hash_base; }
+static halfword& next(halfword p) { return hash[p].lh; }
+
 halfword idlookup(const std::string &s)
 {
 	int h = 0;

@@ -8,6 +8,9 @@
 #include "buildpage.h"
 #include "backinput.h"
 
+static int display_widow_penalty(void) { return int_par(display_widow_penalty_code); }
+static halfword& every_display(void) { return equiv(every_display_loc); }
+
 void initmath(void)
 {
 	scaled w, l, s;

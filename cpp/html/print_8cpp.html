@@ -118,22 +118,22 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">if</span> (s.size() == 1)</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> &gt; <a class="code" href="constantes_8h.html#af0c9e56f9053530b23e247fcc548d1ff">pseudo</a>)</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> &gt; <a class="code" href="constantes_8h.html#a06fc87d81c62e9abb8790b6e5713c55babc565696ee7289e7bc5730262a667062">pseudo</a>)</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            {</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(s[0]);</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            }</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> S = s[0];</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keywordflow">if</span> (S == <a class="code" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="constantes_8h.html#a0d268248149f33f38c62ce42d85e99ce">new_line_char_code</a>) &amp;&amp; <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> &lt; <a class="code" href="constantes_8h.html#af0c9e56f9053530b23e247fcc548d1ff">pseudo</a>)</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keywordflow">if</span> (S == <a class="code" href="parametres_8h.html#a92aab912d4164b91a30449bc19bb1593">new_line_char</a>() &amp;&amp; <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> &lt; <a class="code" href="constantes_8h.html#a06fc87d81c62e9abb8790b6e5713c55babc565696ee7289e7bc5730262a667062">pseudo</a>)</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            {</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <a class="code" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a>();</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            }</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordtype">int</span> nl = <a class="code" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="constantes_8h.html#a0d268248149f33f38c62ce42d85e99ce">new_line_char_code</a>);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="constantes_8h.html#a0d268248149f33f38c62ce42d85e99ce">new_line_char_code</a>) = -1;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordtype">int</span> nl = <a class="code" href="parametres_8h.html#a92aab912d4164b91a30449bc19bb1593">new_line_char</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="parametres_8h.html#a92aab912d4164b91a30449bc19bb1593">new_line_char</a>() = -1;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">char</span> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>: s)</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <a class="code" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="constantes_8h.html#a0d268248149f33f38c62ce42d85e99ce">new_line_char_code</a>) = nl;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <a class="code" href="parametres_8h.html#a92aab912d4164b91a30449bc19bb1593">new_line_char</a>() = nl;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">char</span> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>: s)</div>
@@ -145,20 +145,20 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="center"><img src="print_8cpp_aba0e405ae93b2ffc6fa80e2e1f7662eb_cgraph.png" border="0" usemap="#print_8cpp_aba0e405ae93b2ffc6fa80e2e1f7662eb_cgraph" alt=""/></div>
 <map name="print_8cpp_aba0e405ae93b2ffc6fa80e2e1f7662eb_cgraph" id="print_8cpp_aba0e405ae93b2ffc6fa80e2e1f7662eb_cgraph">
 <area shape="rect" title=" " alt="" coords="5,56,52,83"/>
-<area shape="rect" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title=" " alt="" coords="220,5,281,32"/>
+<area shape="rect" href="parametres_8h.html#a92aab912d4164b91a30449bc19bb1593" title=" " alt="" coords="220,5,325,32"/>
 <area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="100,31,172,57"/>
-<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="222,56,279,83"/>
+<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="244,56,301,83"/>
 <area shape="rect" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="117,132,155,159"/>
+<area shape="rect" href="parametres_8h.html#ac3ce40331affce50f87879ed1cfe5a98" title="an integer parameter" alt="" coords="373,5,435,32"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
+<div class="ttc" id="aconstantes_8h_html_a06fc87d81c62e9abb8790b6e5713c55babc565696ee7289e7bc5730262a667062"><div class="ttname"><a href="constantes_8h.html#a06fc87d81c62e9abb8790b6e5713c55babc565696ee7289e7bc5730262a667062">pseudo</a></div><div class="ttdeci">@ pseudo</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00058">constantes.h:58</a></div></div>
 <div class="ttc" id="aprintln_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="println_8cpp_source.html#l00004">println.cpp:4</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ae48ac66d20f27df0f237841a57b492a2"><div class="ttname"><a href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a></div><div class="ttdeci">int &amp; int_par(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00079">constantes.cpp:79</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a0d268248149f33f38c62ce42d85e99ce"><div class="ttname"><a href="constantes_8h.html#a0d268248149f33f38c62ce42d85e99ce">new_line_char_code</a></div><div class="ttdeci">constexpr int new_line_char_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00514">constantes.h:514</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_af0c9e56f9053530b23e247fcc548d1ff"><div class="ttname"><a href="constantes_8h.html#af0c9e56f9053530b23e247fcc548d1ff">pseudo</a></div><div class="ttdeci">constexpr int pseudo</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00031">constantes.h:31</a></div></div>
+<div class="ttc" id="aparametres_8h_html_a92aab912d4164b91a30449bc19bb1593"><div class="ttname"><a href="parametres_8h.html#a92aab912d4164b91a30449bc19bb1593">new_line_char</a></div><div class="ttdeci">int &amp; new_line_char(void)</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8h_source.html#l00138">parametres.h:138</a></div></div>
 <div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
 <div class="ttc" id="atexte_8cpp_html_a46dac58eb46eaee7b157e59bdef55b1b"><div class="ttname"><a href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b">txt</a></div><div class="ttdeci">int txt(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="texte_8cpp_source.html#l00007">texte.cpp:7</a></div></div>

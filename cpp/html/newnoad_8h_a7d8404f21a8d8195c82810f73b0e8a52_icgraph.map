@@ -1,13 +1,13 @@
 <map id="newnoad" name="newnoad">
-<area shape="rect" id="node1" title=" " alt="" coords="475,385,549,412"/>
+<area shape="rect" id="node1" title=" " alt="" coords="475,335,549,361"/>
 <area shape="rect" id="node2" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="331,208,405,235"/>
 <area shape="rect" id="node5" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="139,5,261,32"/>
-<area shape="rect" id="node11" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="309,309,427,336"/>
+<area shape="rect" id="node11" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="309,259,427,285"/>
 <area shape="rect" id="node12" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="155,411,245,437"/>
-<area shape="rect" id="node13" href="$indentinhmode_8h.html#a5016a6f79ae901c498a9d0c6981d9db6" title=" " alt="" coords="315,411,421,437"/>
-<area shape="rect" id="node14" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="332,461,404,488"/>
-<area shape="rect" id="node15" href="$mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="321,512,415,539"/>
-<area shape="rect" id="node16" href="$subsup_8h.html#a77899a1472c2f93b1001ccbbbee9986e" title=" " alt="" coords="336,563,400,589"/>
+<area shape="rect" id="node13" href="$indentinhmode_8h.html#a5016a6f79ae901c498a9d0c6981d9db6" title=" " alt="" coords="315,360,421,387"/>
+<area shape="rect" id="node14" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="332,512,404,539"/>
+<area shape="rect" id="node15" href="$mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="321,411,415,437"/>
+<area shape="rect" id="node16" href="$subsup_8h.html#a77899a1472c2f93b1001ccbbbee9986e" title=" " alt="" coords="336,461,400,488"/>
 <area shape="rect" id="node3" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="151,56,249,83"/>
 <area shape="rect" id="node6" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="166,107,234,133"/>
 <area shape="rect" id="node7" href="$makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="161,157,239,184"/>

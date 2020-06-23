@@ -19,6 +19,10 @@
 #include "resumeafterdisplay.h"
 #include "texte.h"
 
+static int display_width(void) { return dimen_par(display_width_code); }
+static int math_surround(void) { return dimen_par(math_surround_code); }
+static int pre_display_size(void) { return dimen_par(pre_display_size_code); }
+
 void aftermath(void)
 {
 	bool l;

@@ -122,7 +122,7 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="globals_8h.html#a1ed6c5a40195002f72f6c0c23ce23db0">curarea</a> = <span class="stringliteral">&quot;&quot;</span>;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="globals_8h.html#a29bceb54418448847dd5c6a2cabe599a">curext</a> = s;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="globals_8h.html#a4541c14514e0bacb55525c4e1d51e06a">curname</a> = <a class="code" href="globals_8h.html#a6d6deab05a191173ead34faa0c27e05b">jobname</a>;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="packfilename_8cpp.html#a424dc8c98f4a7c5563f5bf7d5b87a821">packfilename</a>(<a class="code" href="globals_8h.html#a4541c14514e0bacb55525c4e1d51e06a">curname</a>, <a class="code" href="globals_8h.html#a1ed6c5a40195002f72f6c0c23ce23db0">curarea</a>, <a class="code" href="globals_8h.html#a29bceb54418448847dd5c6a2cabe599a">curext</a>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="packfilename_8cpp.html#a7a0ce63c987a64219951e8be9c9494c3">pack_cur_name</a>();</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
@@ -130,7 +130,8 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="center"><img src="packjobname_8h_a16f419655568b8fa26e452873e809093_cgraph.png" border="0" usemap="#packjobname_8h_a16f419655568b8fa26e452873e809093_cgraph" alt=""/></div>
 <map name="packjobname_8h_a16f419655568b8fa26e452873e809093_cgraph" id="packjobname_8h_a16f419655568b8fa26e452873e809093_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,104,32"/>
-<area shape="rect" href="packfilename_8cpp.html#a424dc8c98f4a7c5563f5bf7d5b87a821" title=" " alt="" coords="152,5,251,32"/>
+<area shape="rect" href="packfilename_8cpp.html#a7a0ce63c987a64219951e8be9c9494c3" title=" " alt="" coords="152,5,267,32"/>
+<area shape="rect" href="packfilename_8cpp.html#a424dc8c98f4a7c5563f5bf7d5b87a821" title=" " alt="" coords="315,5,413,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -138,16 +139,17 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="packjobname_8h_a16f419655568b8fa26e452873e809093_icgraph.png" border="0" usemap="#packjobname_8h_a16f419655568b8fa26e452873e809093_icgraph" alt=""/></div>
 <map name="packjobname_8h_a16f419655568b8fa26e452873e809093_icgraph" id="packjobname_8h_a16f419655568b8fa26e452873e809093_icgraph">
-<area shape="rect" title=" " alt="" coords="312,157,411,184"/>
-<area shape="rect" href="openlogfile_8h.html#aa093bac5d614a1706a24856de98e0c7d" title=" " alt="" coords="179,157,263,184"/>
-<area shape="rect" href="shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="35,309,99,336"/>
-<area shape="rect" href="storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="177,56,264,83"/>
-<area shape="rect" href="convtoks_8h.html#a0f6f2a8ccaad133ad4b9cf4f67f214b1" title=" " alt="" coords="30,56,105,83"/>
-<area shape="rect" href="finalcleanup_8h.html#abdaa31c6a83743b7ffe417c4889aceaf" title=" " alt="" coords="22,5,113,32"/>
-<area shape="rect" href="getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="35,107,100,133"/>
-<area shape="rect" href="newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="33,157,101,184"/>
-<area shape="rect" href="normalizeselector_8h.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="5,208,129,235"/>
-<area shape="rect" href="startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="29,259,105,285"/>
+<area shape="rect" title=" " alt="" coords="424,56,523,83"/>
+<area shape="rect" href="shipout_8cpp.html#ac80aeb2b1578e5bea65e5e56d95a8f61" title=" " alt="" coords="119,5,239,32"/>
+<area shape="rect" href="openlogfile_8h.html#aa093bac5d614a1706a24856de98e0c7d" title=" " alt="" coords="291,132,375,159"/>
+<area shape="rect" href="storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="289,56,376,83"/>
+<area shape="rect" href="shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="5,5,69,32"/>
+<area shape="rect" href="convtoks_8h.html#a0f6f2a8ccaad133ad4b9cf4f67f214b1" title=" " alt="" coords="142,157,217,184"/>
+<area shape="rect" href="finalcleanup_8h.html#abdaa31c6a83743b7ffe417c4889aceaf" title=" " alt="" coords="134,56,225,83"/>
+<area shape="rect" href="getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="147,208,212,235"/>
+<area shape="rect" href="newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="145,259,213,285"/>
+<area shape="rect" href="normalizeselector_8h.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="117,309,241,336"/>
+<area shape="rect" href="startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="141,107,217,133"/>
 </map>
 </div>
 
@@ -156,8 +158,8 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><!-- contents -->
 <div class="ttc" id="aglobals_8h_html_a1ed6c5a40195002f72f6c0c23ce23db0"><div class="ttname"><a href="globals_8h.html#a1ed6c5a40195002f72f6c0c23ce23db0">curarea</a></div><div class="ttdeci">std::string curarea</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00134">globals.h:134</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a6d6deab05a191173ead34faa0c27e05b"><div class="ttname"><a href="globals_8h.html#a6d6deab05a191173ead34faa0c27e05b">jobname</a></div><div class="ttdeci">std::string jobname</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00140">globals.h:140</a></div></div>
+<div class="ttc" id="apackfilename_8cpp_html_a7a0ce63c987a64219951e8be9c9494c3"><div class="ttname"><a href="packfilename_8cpp.html#a7a0ce63c987a64219951e8be9c9494c3">pack_cur_name</a></div><div class="ttdeci">void pack_cur_name(void)</div><div class="ttdef"><b>Definition:</b> <a href="packfilename_8cpp_source.html#l00017">packfilename.cpp:17</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a29bceb54418448847dd5c6a2cabe599a"><div class="ttname"><a href="globals_8h.html#a29bceb54418448847dd5c6a2cabe599a">curext</a></div><div class="ttdeci">std::string curext</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00135">globals.h:135</a></div></div>
-<div class="ttc" id="apackfilename_8cpp_html_a424dc8c98f4a7c5563f5bf7d5b87a821"><div class="ttname"><a href="packfilename_8cpp.html#a424dc8c98f4a7c5563f5bf7d5b87a821">packfilename</a></div><div class="ttdeci">void packfilename(const std::string &amp;n, const std::string &amp;a, const std::string &amp;e)</div><div class="ttdef"><b>Definition:</b> <a href="packfilename_8cpp_source.html#l00003">packfilename.cpp:3</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a4541c14514e0bacb55525c4e1d51e06a"><div class="ttname"><a href="globals_8h.html#a4541c14514e0bacb55525c4e1d51e06a">curname</a></div><div class="ttdeci">std::string curname</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00133">globals.h:133</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

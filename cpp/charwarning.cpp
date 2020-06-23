@@ -7,6 +7,8 @@
 #include "printchar.h"
 #include "enddiagnostic.h"
 
+static int tracing_lost_chars(void) { return int_par(tracing_lost_chars_code); }
+
 void charwarning(internalfontnumber f, eightbits c)
 {
 	if (tracing_lost_chars() > 0)

@@ -1,10 +1,11 @@
 <map id="printskipparam" name="printskipparam">
-<area shape="rect" id="node1" title=" " alt="" coords="5,129,112,156"/>
-<area shape="rect" id="node2" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="290,180,337,207"/>
-<area shape="rect" id="node7" href="$printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="160,79,228,105"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title=" " alt="" coords="519,79,580,105"/>
-<area shape="rect" id="node4" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="399,79,471,105"/>
-<area shape="rect" id="node5" href="$println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="521,180,578,207"/>
-<area shape="rect" id="node6" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="415,129,454,156"/>
-<area shape="rect" id="node8" href="$slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="276,28,351,55"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,103,112,129"/>
+<area shape="rect" id="node2" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="301,128,347,155"/>
+<area shape="rect" id="node7" href="$printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="160,77,228,104"/>
+<area shape="rect" id="node3" href="$parametres_8h.html#a92aab912d4164b91a30449bc19bb1593" title=" " alt="" coords="540,116,645,143"/>
+<area shape="rect" id="node4" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="420,27,492,53"/>
+<area shape="rect" id="node5" href="$println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="564,40,621,67"/>
+<area shape="rect" id="node6" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="437,179,475,205"/>
+<area shape="rect" id="node8" href="$parametres_8h.html#aa5cf2e1f5b1929eaa700495b1c9209fb" title=" " alt="" coords="276,77,372,104"/>
+<area shape="rect" id="node9" href="$slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="287,27,361,53"/>
 </map>

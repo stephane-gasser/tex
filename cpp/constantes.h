@@ -2,6 +2,7 @@
 #define CONSTANTES_H
 
 #include "tex.h"
+#include "parametres.h"
 
 constexpr int CHECKSUM = 117275187;
 constexpr char banner[] ="This is TeX, Version 3.14159265"; //printed when \TeX\ starts
@@ -13,12 +14,39 @@ constexpr int hash_prime = 1777; //a prime number equal to about 85\pct! of |has
 constexpr int hyph_size = 307; //another prime; the number of \hyphenation exceptions
 
 extern halfword &loc; //loc==cur_input.loc_field //location of first unread character in |buffer|
+extern memoryword& aux; //aux==cur_list.aux_field //auxiliary data about the current list
+extern int& prev_depth; //prev_depth==aux.sc //the name of |aux| in vertical mode
+extern halfword& space_factor; //space_factor==aux.hh.lh //part of |aux| in horizontal mode
+extern halfword& clang; //clang==aux.hh.rh //the other part of |aux| in horizontal mode  
+extern int& incompleat_noad; //incompleat_noad==aux.int //the name of |aux| in math mode*/
+extern int& mode; //mode==cur_list.mode_field //current mode
+extern halfword& head; //head==cur_list.head_field //header node of current list
+extern halfword& tail; //tail==cur_list.tail_field //final node on current list
+extern int& prev_graf; //prev_graf==cur_list.pg_field //number of paragraph lines accumulated
+extern int& mode_line; //mode_line==cur_list.ml_field //source file line number at beginning of list
+extern quarterword &state; //==cur_input.state_field //current scanner state
+extern quarterword &index; //==cur_input.index_field //reference for buffer information
+extern halfword &start; //==cur_input.start_field //starting position in |buffer|
+extern halfword &limit; //==cur_input.limit_field //end of current line in |buffer|
+extern std::string &name; //==cur_input.name_field //name of the current file
+extern halfword &top_mark; //==cur_mark[top_mark_code]
+extern halfword &first_mark; //==cur_mark[first_mark_code]
+extern halfword &bot_mark; //==cur_mark[bot_mark_code]
+extern halfword &split_first_mark; //==cur_mark[split_first_mark_code]
+extern halfword &split_bot_mark; //==cur_mark[split_bot_mark_code]
+extern scaled &act_width; //act_width==active_width[1] //length from first active node to current node
+extern triepointer &trie_root; //trie_root==trie_l[0] //root of the linked trie
+extern triepointer *trie_ref; //trie_ref==trie_hash //where linked trie families go into |trie|
+extern scaled &page_goal; //desired height of information on page being built
+extern scaled &page_total; //height of the current page
+extern scaled &page_shrink; //shrinkability of the current page
+extern scaled &page_depth; //depth of the current page
+extern halfword &contrib_tail; //contrib_tail==nest[0].tail_field //tail of the contribution list
 
 int length(halfword); //length(#)==(str_start[#+1]-str_start[#]) //the number of characters
 int cur_length(void); //cur_length == (pool_ptr - str_start[str_ptr])
 void append_char(ASCIIcode); // append_char(#) == //put |ASCII_code| \# at the end of |str_pool| begin str_pool[pool_ptr]:=si(#); incr(pool_ptr);end
 void flush_char(void); //flush_char == decr(pool_ptr) //forget the last character in the pool
-
 void flush_string(void); //flush_string==begin decr(str_ptr); pool_ptr:=str_start[str_ptr];
 
 enum
@@ -51,16 +79,6 @@ constexpr int unity = 1<<16; //== @'200000 //$2^//16$, represents 1.00000
 constexpr int two = 1<<17; //@'400000 //$2^//17$, represents 2.00000
 constexpr int inf_bad = 10000; //infinitely bad value
 
-extern memoryword& aux; //aux==cur_list.aux_field //auxiliary data about the current list
-extern int& prev_depth; //prev_depth==aux.sc //the name of |aux| in vertical mode
-extern halfword& space_factor; //space_factor==aux.hh.lh //part of |aux| in horizontal mode
-extern halfword& clang; //clang==aux.hh.rh //the other part of |aux| in horizontal mode  
-extern int& incompleat_noad; //incompleat_noad==aux.int //the name of |aux| in math mode*/
-extern int& mode; //mode==cur_list.mode_field //current mode
-extern halfword& head; //head==cur_list.head_field //header node of current list
-extern halfword& tail; //tail==cur_list.tail_field //final node on current list
-extern int& prev_graf; //prev_graf==cur_list.pg_field //number of paragraph lines accumulated
-extern int& mode_line; //mode_line==cur_list.ml_field //source file line number at beginning of list
 void tail_append(halfword); //tail_append(#)==begin link(tail):=#; tail:=link(tail);
 
 constexpr int empty_flag = 65535; // == max_halfword //the |link| of an empty variable-size node
@@ -96,7 +114,8 @@ enum
 	noad_size = 4, //number of words in a normal noad
 	accent_noad_size = 5, //number of |mem| words in an accent noad
 	radical_noad_size = 5, //number of |mem| words in a radical noad
-	fraction_noad_size = 6 //number of |mem| words in a fraction noad
+	fraction_noad_size = 6, //number of |mem| words in a fraction noad
+	glue_spec_size = 4 //number of words to allocate for a glue specification
 };
 
 enum
@@ -116,7 +135,23 @@ enum
 	penalty_node = 12, //|type| of a penalty node
 	unset_node = 13, //|type| for an unset node
 	style_node = 14, //unset_node+1 //|type| of a style node
-	choice_node = 15 //unset_node+2 //|type| of a choice node
+	choice_node = 15, //unset_node+2 //|type| of a choice node
+	ord_noad = 16, //unset_node+3 //|type| of a noad classified Ord
+	op_noad = 17, //ord_noad+1 //|type| of a noad classified Op
+	bin_noad = 18, //ord_noad+2 //|type| of a noad classified Bin
+	rel_noad = 19,//ord_noad+3 //|type| of a noad classified Rel
+	open_noad = 20, //ord_noad+4 //|type| of a noad classified Ope
+	close_noad = 21, //ord_noad+5 //|type| of a noad classified Clo
+	punct_noad = 22, //ord_noad+6 //|type| of a noad classified Pun
+	inner_noad = 23, //ord_noad+7 //|type| of a noad classified Inn
+	radical_noad = 24, //inner_noad+1 //|type| of a noad for square roots
+	fraction_noad = 25, //radical_noad+1 //|type| of a noad for generalized fractions
+	under_noad = 26, //fraction_noad+1 //|type| of a noad for underlining
+	over_noad = 27, // under_noad+1 //|type| of a noad for overlining
+	accent_noad = 28, //over_noad+1 //|type| of a noad for accented subformulas
+	vcenter_noad = 29, //accent_noad+1 //|type| of a noad for \vcenter
+	left_noad = 30, //vcenter_noad+1 //|type| of a noad for \left
+	right_noad = 31 //left_noad+1 //|type| of a noad for \right
 };
 
 enum
@@ -162,38 +197,54 @@ halfword& post_break(halfword); //post_break==rlink //text that follows a discre
 
 enum
 {
+	// math
 	before = 0, //|subtype| for math node that introduces a formula
-	after = 1 //|subtype| for math node that winds up a formula
-};
-
-inline bool precedes_break(halfword p) { return type(p) <math_node; } //precedes_break(#)==(type(#)<math_node)
-
-constexpr int cond_math_glue = 98; //special |subtype| to suppress glue in the next node
-constexpr int mu_glue = 99; //|subtype| for math glue
-
-enum
-{
+	after = 1, //|subtype| for math node that winds up a formula
+	// kern
+	explicit_ = 1, //|subtype| of kern nodes from \kern and \/
+	acc_kern = 2, //|subtype| of kern nodes from accents
+	// op_noad
+	limits = 1, //|subtype| of |op_noad| whose scripts are to be above, below
+	no_limits = 2, //|subtype| of |op_noad| whose scripts are to be normal
+	// style
+	display_style = 0, //|subtype| for \displaystyle
+	text_style = 2, //|subtype| for \textstyle
+	script_style = 4, //|subtype| for \scriptstyle
+	script_script_style = 6, //|subtype| for \scriptscriptstyle
+	// glue
+	cond_math_glue = 98, //special |subtype| to suppress glue in the next node
+	mu_glue = 99, //|subtype| for math glue
+	// whatsits
+	open_node = 0, //|subtype| in whatsits that represent files to \openout
+	write_node = 1, //|subtype| in whatsits that represent things to \write
+	close_node = 2, //|subtype| in whatsits that represent streams to \closeout
+	special_node = 3, //|subtype| in whatsits that represent \special things
+	language_node = 4, //|subtype| in whatsits that change the current language
+	immediate_code = 4, //command modifier for \immediate
+	set_language_code = 5, //command modifier for \setlanguage
+	// leaders
 	a_leaders = 100, //|subtype| for aligned leaders
 	c_leaders = 101, //|subtype| for centered leaders
 	x_leaders = 102, //|subtype| for expanded leaders
 };
 
+inline bool precedes_break(halfword p) { return type(p) <math_node; } //precedes_break(#)==(type(#)<math_node)
+
 halfword& glue_ptr(halfword); //glue_ptr==llink //pointer to a glue specification
 halfword& leader_ptr(halfword); //leader_ptr==rlink //pointer to box or rule node for leaders
-
-constexpr int glue_spec_size = 4; //number of words to allocate for a glue specification*/
-
 halfword& glue_ref_count(halfword); //glue_ref_count(#) == link(#) //reference count of a glue specification
 int& stretch(halfword); //stretch(#) == mem[#+2].sc //the stretchability of this glob of glue
 int& shrink(halfword); //shrink(#) == mem[#+3].sc //the shrinkability of this glob of glue
 quarterword& stretch_order(halfword);//stretch_order == type //order of infinity for stretching
 quarterword& shrink_order(halfword); //shrink_order == subtype //order of infinity for shrinking
 
-constexpr int fil = 1; //first-order infinity
-constexpr int fill = 2; //second-order infinity
-constexpr int filll = 3; //third-order infinity
-constexpr int explicit_ = 1; //|subtype| of kern nodes from \kern and \/
-constexpr int acc_kern = 2; //|subtype| of kern nodes from accents
+enum
+{
+	fil = 1, //first-order infinity
+	fill = 2, //second-order infinity
+	filll = 3 //third-order infinity
+};
+
 constexpr int inf_penalty = 10000; //inf_bad //``infinite'' penalty value
 constexpr int eject_penalty = -10000; //-inf_penalty //``negatively infinite'' penalty value
 
@@ -212,160 +263,168 @@ enum
 };
 
 constexpr int lo_mem_stat_max = 19; //=fil_neg_glue+glue_spec_size-1 //largest statically
-constexpr int page_ins_head = 30000; //mem_top //list of insertion data for current page
-constexpr int contrib_head = 29999; //mem_top-1 //vlist of items not yet on current page
-constexpr int page_head = 29998; //mem_top-2 //vlist for current page
-constexpr int temp_head = 29997; //mem_top-3 //head of a temporary list of some kind
-constexpr int hold_head = 29996; //mem_top-4 //head of a temporary list of another kind
-constexpr int adjust_head = 29995; //mem_top-5 //head of adjustment list returned by |hpack|
-constexpr int active = 29993; //mem_top-7 //head of active list in |line_break|, needs two words
-constexpr int align_head = 29992; //mem_top-8 //head of preamble list for alignments
-constexpr int end_span = 29991; //mem_top-9 //tail of spanned-width lists
-constexpr int omit_template = 29990; //mem_top-10 //a constant token list
-constexpr int null_list = 29989; //mem_top-11 //permanently empty list
-constexpr int lig_trick = 29988; //mem_top-12 //a ligature masquerading as a |char_node|
-constexpr int garbage = 29988; //mem_top-12 //used for scrap information
-constexpr int backup_head = 29987; //mem_top-13 //head of token list built by |scan_keyword|
-constexpr int hi_mem_stat_min = 29987; //mem_top-13 //smallest statically allocated word in
+
+enum
+{
+	page_ins_head = 30000, //mem_top //list of insertion data for current page
+	contrib_head = 29999, //mem_top-1 //vlist of items not yet on current page
+	page_head = 29998, //mem_top-2 //vlist for current page
+	temp_head = 29997, //mem_top-3 //head of a temporary list of some kind
+	hold_head = 29996, //mem_top-4 //head of a temporary list of another kind
+	adjust_head = 29995, //mem_top-5 //head of adjustment list returned by |hpack|
+	active = 29993, //mem_top-7 //head of active list in |line_break|, needs two words
+	align_head = 29992, //mem_top-8 //head of preamble list for alignments
+	end_span = 29991, //mem_top-9 //tail of spanned-width lists
+	omit_template = 29990, //mem_top-10 //a constant token list
+	null_list = 29989, //mem_top-11 //permanently empty list
+	lig_trick = 29988, //mem_top-12 //a ligature masquerading as a |char_node|
+	garbage = 29988, //mem_top-12 //used for scrap information
+	backup_head = 29987, //mem_top-13 //head of token list built by |scan_keyword|
+	hi_mem_stat_min = 29987 //mem_top-13 //smallest statically allocated word in
+};
+
 constexpr int hi_mem_stat_usage = 14; //the number of one-word nodes always present
 
 halfword& token_ref_count(halfword); //token_ref_count(#) == info(#) //reference count preceding a token list
 inline void add_glue_ref(halfword p) { glue_ref_count(p)++; } //new reference to a glue spec*/
 
-constexpr int escape = 0; //escape delimiter (called \.\\ in //\sl The \TeX book\/)
-constexpr int relax = 0; //do nothing ( \relax )
-constexpr int left_brace = 1; //beginning of a group ( \.\// )
-constexpr int right_brace = 2; //ending of a group ( \.\ )
-constexpr int math_shift = 3; //mathematics shift character ( \.\$ )
-constexpr int tab_mark = 4; //alignment delimiter ( \.\&, \span )
-constexpr int car_ret = 5; //end of line ( |carriage_return|, \cr, \crcr )
-constexpr int out_param = 5;  //output a macro parameter
-constexpr int mac_param = 6; //macro parameter symbol ( \.\# )
-constexpr int sup_mark = 7; //superscript ( \.//\char'136 )
-constexpr int sub_mark = 8; //subscript ( \.//\char'137 )
-constexpr int ignore = 9; //characters to ignore ( \.//\^\^@@ )
-constexpr int endv = 9; //end of \<v_j> list in alignment template*/
-constexpr int spacer = 10; //characters equivalent to blank space ( \.//\  )
-constexpr int letter = 11; //characters regarded as letters ( \.//A..Z, \.//a..z )
-constexpr int other_char = 12; //none of the special character types
-constexpr int active_char = 13; //characters that invoke macros ( \.//\char`\~ )
-constexpr int par_end = 13; //end of paragraph ( \par )
-constexpr int match = 13; //match a macro parameter
-constexpr int comment = 14; //characters that introduce comments ( \.\% )
-constexpr int end_match = 14; //end of parameters to macro
-constexpr int stop = 14; //end of job ( \end, \dump )*/
-constexpr int invalid_char = 15; //characters that shouldn't appear ( \.//\^\^? )
-constexpr int delim_num = 15; //specify delimiter numerically ( \delimiter )
-constexpr int max_char_code = 15; //largest catcode for individual characters
-constexpr int char_num = 16; //character specified numerically ( \char )
-constexpr int math_char_num = 17; //explicit math code ( \mathchar )
-constexpr int mark = 18; //mark definition ( \mark )
-constexpr int xray = 19; //peek inside of \TeX\ ( \show, \showbox, etc.~)
-constexpr int make_box = 20; //make a box ( \box, \copy, \hbox, etc.~)
-constexpr int hmove = 21; //horizontal motion ( \moveleft, \moveright )
-constexpr int vmove = 22; //vertical motion ( \raise, \lower )
-constexpr int un_hbox = 23; //unglue a box ( \unhbox, \unhcopy )
-constexpr int un_vbox = 24; //unglue a box ( \unvbox, \unvcopy )
-constexpr int remove_item = 25; //nullify last item ( \unpenalty,
-constexpr int hskip = 26; //horizontal glue ( \hskip, \hfil, etc.~)
-constexpr int vskip = 27; //vertical glue ( \vskip, \vfil, etc.~)
-constexpr int mskip = 28; //math glue ( \mskip )
-constexpr int kern = 29; //fixed space ( \kern)*/
-constexpr int mkern = 30; //math kern ( \mkern )
-constexpr int leader_ship = 31; //use a box ( \shipout, \leaders, etc.~)
-constexpr int halign = 32; //horizontal table alignment ( \halign )
-constexpr int valign = 33; //vertical table alignment ( \valign )
-constexpr int no_align = 34; //temporary escape from alignment ( \noalign )
-constexpr int vrule = 35; //vertical rule ( \vrule )
-constexpr int hrule = 36; //horizontal rule ( \hrule )
-constexpr int insert = 37; //vlist inserted in box ( \insert )
-constexpr int vadjust = 38; //vlist inserted in enclosing paragraph ( \vadjust )*/
-constexpr int ignore_spaces = 39; //gobble |spacer| tokens ( \ignorespaces )
-constexpr int after_assignment = 40; //save till assignment is done ( \afterassignment )
-constexpr int after_group = 41; //save till group is done ( \aftergroup )
-constexpr int break_penalty = 42; //additional badness ( \penalty )
-constexpr int start_par = 43; //begin paragraph ( \indent, \noindent )
-constexpr int ital_corr = 44; //italic correction ( \/ )
-constexpr int accent = 45; //attach accent in text ( \accent )*/
-constexpr int math_accent = 46; //attach accent in math ( \mathaccent )
-constexpr int discretionary = 47; //discretionary texts ( \-, \discretionary )
-constexpr int eq_no = 48; //equation number ( \eqno, \leqno )
-constexpr int left_right = 49; //variable delimiter ( \left, \right )
-constexpr int math_comp = 50; //component of formula ( \mathbin, etc.~)
-constexpr int limit_switch = 51; //diddle limit conventions ( \displaylimits, etc.~)
-constexpr int above = 52; //generalized fraction ( \above, \atop, etc.~)
-constexpr int math_style = 53; //style specification ( \displaystyle, etc.~)
-constexpr int math_choice = 54; //choice specification ( \mathchoice )
-constexpr int non_script = 55; //conditional math glue ( \nonscript )
-constexpr int vcenter = 56; //vertically center a vbox ( \vcenter )
-constexpr int case_shift = 57; //force specific case ( \lowercase, \uppercase~)
-constexpr int message = 58; //send to user ( \message, \errmessage )*/
-constexpr int extension = 59; //extensions to \TeX\ ( \write, \special, etc.~)
-constexpr int in_stream = 60; //files for reading ( \openin, \closein )
-constexpr int begin_group = 61; //begin local grouping ( \begingroup )
-constexpr int end_group = 62; //end local grouping ( \endgroup )
-constexpr int omit = 63; //omit alignment template ( \omit )
-constexpr int ex_space = 64; //explicit space ( \\  )
-constexpr int no_boundary = 65; //suppress boundary ligatures ( \noboundary )
-constexpr int radical = 66; //square root and similar signs ( \radical )
-constexpr int end_cs_name = 67; //end control sequence ( \endcsname )
-constexpr int min_internal = 68; //the smallest code that can follow \the*/
-constexpr int char_given = 68; //character code defined by \chardef
-constexpr int math_given = 69; //math code defined by \mathchardef
-constexpr int last_item = 70; //most recent item ( \lastpenalty,
-constexpr int max_non_prefixed_command = 70; //largest command code that can't be \global*/
-constexpr int toks_register = 71; //token list register ( \toks )
-constexpr int assign_toks = 72; //special token list ( \output, \everypar, etc.~)
-constexpr int assign_int = 73; //user-defined integer ( \tolerance, \day, etc.~)
-constexpr int assign_dimen = 74; //user-defined length ( \hsize, etc.~)
-constexpr int assign_glue = 75; //user-defined glue ( \baselineskip, etc.~)
-constexpr int assign_mu_glue = 76; //user-defined muglue ( \thinmuskip, etc.~)
-constexpr int assign_font_dimen = 77; //user-defined font dimension ( \fontdimen )
-constexpr int assign_font_int = 78; //user-defined font integer ( \hyphenchar,*/
-constexpr int set_aux = 79; //specify state info ( \spacefactor, \prevdepth )
-constexpr int set_prev_graf = 80; //specify state info ( \prevgraf )
-constexpr int set_page_dimen = 81; //specify state info ( \pagegoal, etc.~)
-constexpr int set_page_int = 82; //specify state info ( \deadcycles,
-constexpr int set_box_dimen = 83; //change dimension of box ( \wd, \ht, \dp )
-constexpr int set_shape = 84; //specify fancy paragraph shape ( \parshape )
-constexpr int def_code = 85; //define a character code ( \catcode, etc.~)
-constexpr int def_family = 86; //declare math fonts ( \textfont, etc.~)
-constexpr int set_font = 87; //set current font ( font identifiers )
-constexpr int def_font = 88; //define a font file ( \font )
-constexpr int register_ = 89; //internal register ( \count, \dimen, etc.~)
-constexpr int max_internal = 89; //the largest code that can follow \the
-constexpr int advance = 90; //advance a register or parameter ( \advance )
-constexpr int multiply = 91; //multiply a register or parameter ( \multiply )
-constexpr int divide = 92; //divide a register or parameter ( \divide )
-constexpr int prefix = 93; //qualify a definition ( \global, \long, \outer )
-constexpr int let = 94; //assign a command code ( \let, \futurelet )
-constexpr int shorthand_def = 95; //code definition ( \chardef, \countdef, etc.~)
-constexpr int read_to_cs = 96; //read into a control sequence ( \read )
-constexpr int def = 97; //macro definition ( \def, \gdef, \xdef, \edef )
-constexpr int set_box = 98; //set a box ( \setbox )
-constexpr int hyph_data = 99; //hyphenation data ( \hyphenation, \patterns )
-constexpr int set_interaction = 100; //define level of interaction ( \batchmode, etc.~)*/
-constexpr int max_command = 100; //the largest command code seen at |big_switch|
-constexpr int undefined_cs = 101; //=max_command+1 //initial state of most |eq_type| fields
-constexpr int expand_after = 102; // max_command+2 //special expansion ( \expandafter )
-constexpr int no_expand = 103; //max_command+3 //special nonexpansion ( \noexpand )
-constexpr int input = 104; //max_command+4 //input a source file ( \input, \endinput )
-constexpr int if_test = 105; //max_command+5 //conditional text ( \if, \ifcase, etc.~)
-constexpr int fi_or_else = 106; //max_command+6 //delimiters for conditionals ( \else, etc.~)
-constexpr int cs_name = 107; //max_command+7 //make a control sequence from tokens ( \csname )
-constexpr int convert = 108; // max_command+8 //convert to text ( \number, \string, etc.~)
-constexpr int the = 109; // max_command+9 //expand an internal quantity ( \the )
-constexpr int top_bot_mark = 110; //max_command+10 //inserted mark ( \topmark, etc.~)
-constexpr int call = 111; //max_command+11 //non-long, non-outer control sequence
-constexpr int long_call = 112; //max_command+12 //long, non-outer control sequence
-constexpr int outer_call = 113; //max_command+13 //non-long, outer control sequence
-constexpr int long_outer_call = 114; //max_command+14 //long, outer control sequence
-constexpr int end_template = 115; //max_command+15 //end of an alignment template
-constexpr int dont_expand = 116; //max_command+16 //the following token was marked by \noexpand
-constexpr int glue_ref = 117; //max_command+17 //the equivalent points to a glue specification
-constexpr int shape_ref = 118; //max_command+18 //the equivalent points to a parshape specification
-constexpr int box_ref = 119; //max_command+19 //the equivalent points to a box node, or is |null|
-constexpr int data = 120; //max_command+20 //the equivalent is simply a halfword number
+enum
+{
+	escape = 0, //escape delimiter (called \.\\ in //\sl The \TeX book\/)
+	relax = 0, //do nothing ( \relax )
+	left_brace = 1, //beginning of a group ( \.\// )
+	right_brace = 2, //ending of a group ( \.\ )
+	math_shift = 3, //mathematics shift character ( \.\$ )
+	tab_mark = 4, //alignment delimiter ( \.\&, \span )
+	car_ret = 5, //end of line ( |carriage_return|, \cr, \crcr )
+	out_param = 5, //output a macro parameter
+	mac_param = 6, //macro parameter symbol ( \.\# )
+	sup_mark = 7, //superscript ( \.//\char'136 )
+	sub_mark = 8, //subscript ( \.//\char'137 )
+	ignore = 9, //characters to ignore ( \.//\^\^@@ )
+	endv = 9, //end of \<v_j> list in alignment template*/
+	spacer = 10, //characters equivalent to blank space ( \.//\  )
+	letter = 11, //characters regarded as letters ( \.//A..Z, \.//a..z )
+	other_char = 12, //none of the special character types
+	active_char = 13, //characters that invoke macros ( \.//\char`\~ )
+	par_end = 13, //end of paragraph ( \par )
+	match = 13, //match a macro parameter
+	comment = 14, //characters that introduce comments ( \.\% )
+	end_match = 14, //end of parameters to macro
+	stop = 14, //end of job ( \end, \dump )*/
+	invalid_char = 15, //characters that shouldn't appear ( \.//\^\^? )
+	delim_num = 15, //specify delimiter numerically ( \delimiter )
+	max_char_code = 15, //largest catcode for individual characters
+	char_num = 16, //character specified numerically ( \char )
+	math_char_num = 17, //explicit math code ( \mathchar )
+	mark = 18, //mark definition ( \mark )
+	xray = 19, //peek inside of \TeX\ ( \show, \showbox, etc.~)
+	make_box = 20, //make a box ( \box, \copy, \hbox, etc.~)
+	hmove = 21, //horizontal motion ( \moveleft, \moveright )
+	vmove = 22, //vertical motion ( \raise, \lower )
+	un_hbox = 23, //unglue a box ( \unhbox, \unhcopy )
+	un_vbox = 24, //unglue a box ( \unvbox, \unvcopy )
+	remove_item = 25, //nullify last item ( \unpenalty,
+	hskip = 26, //horizontal glue ( \hskip, \hfil, etc.~)
+	vskip = 27, //vertical glue ( \vskip, \vfil, etc.~)
+	mskip = 28, //math glue ( \mskip )
+	kern = 29, //fixed space ( \kern)*/
+	mkern = 30, //math kern ( \mkern )
+	leader_ship = 31, //use a box ( \shipout, \leaders, etc.~)
+	halign = 32, //horizontal table alignment ( \halign )
+	valign = 33, //vertical table alignment ( \valign )
+	no_align = 34, //temporary escape from alignment ( \noalign )
+	vrule = 35, //vertical rule ( \vrule )
+	hrule = 36, //horizontal rule ( \hrule )
+	insert = 37, //vlist inserted in box ( \insert )
+	vadjust = 38, //vlist inserted in enclosing paragraph ( \vadjust )*/
+	ignore_spaces = 39, //gobble |spacer| tokens ( \ignorespaces )
+	after_assignment = 40, //save till assignment is done ( \afterassignment )
+	after_group = 41, //save till group is done ( \aftergroup )
+	break_penalty = 42, //additional badness ( \penalty )
+	start_par = 43, //begin paragraph ( \indent, \noindent )
+	ital_corr = 44, //italic correction ( \/ )
+	accent = 45, //attach accent in text ( \accent )*/
+	math_accent = 46, //attach accent in math ( \mathaccent )
+	discretionary = 47, //discretionary texts ( \-, \discretionary )
+	eq_no = 48, //equation number ( \eqno, \leqno )
+	left_right = 49, //variable delimiter ( \left, \right )
+	math_comp = 50, //component of formula ( \mathbin, etc.~)
+	limit_switch = 51, //diddle limit conventions ( \displaylimits, etc.~)
+	above = 52, //generalized fraction ( \above, \atop, etc.~)
+	math_style = 53, //style specification ( \displaystyle, etc.~)
+	math_choice = 54, //choice specification ( \mathchoice )
+	non_script = 55, //conditional math glue ( \nonscript )
+	vcenter = 56, //vertically center a vbox ( \vcenter )
+	case_shift = 57, //force specific case ( \lowercase, \uppercase~)
+	message = 58, //send to user ( \message, \errmessage )*/
+	extension = 59, //extensions to \TeX\ ( \write, \special, etc.~)
+	in_stream = 60, //files for reading ( \openin, \closein )
+	begin_group = 61, //begin local grouping ( \begingroup )
+	end_group = 62, //end local grouping ( \endgroup )
+	omit = 63, //omit alignment template ( \omit )
+	ex_space = 64, //explicit space ( \\  )
+	no_boundary = 65, //suppress boundary ligatures ( \noboundary )
+	radical = 66, //square root and similar signs ( \radical )
+	end_cs_name = 67, //end control sequence ( \endcsname )
+	min_internal = 68, //the smallest code that can follow \the*/
+	char_given = 68, //character code defined by \chardef
+	math_given = 69, //math code defined by \mathchardef
+	last_item = 70, //most recent item ( \lastpenalty,
+	max_non_prefixed_command = 70, //largest command code that can't be \global*/
+	toks_register = 71, //token list register ( \toks )
+	assign_toks = 72, //special token list ( \output, \everypar, etc.~)
+	assign_int = 73, //user-defined integer ( \tolerance, \day, etc.~)
+	assign_dimen = 74, //user-defined length ( \hsize, etc.~)
+	assign_glue = 75, //user-defined glue ( \baselineskip, etc.~)
+	assign_mu_glue = 76, //user-defined muglue ( \thinmuskip, etc.~)
+	assign_font_dimen = 77, //user-defined font dimension ( \fontdimen )
+	assign_font_int = 78, //user-defined font integer ( \hyphenchar,*/
+	set_aux = 79, //specify state info ( \spacefactor, \prevdepth )
+	set_prev_graf = 80, //specify state info ( \prevgraf )
+	set_page_dimen = 81, //specify state info ( \pagegoal, etc.~)
+	set_page_int = 82, //specify state info ( \deadcycles,
+	set_box_dimen = 83, //change dimension of box ( \wd, \ht, \dp )
+	set_shape = 84, //specify fancy paragraph shape ( \parshape )
+	def_code = 85, //define a character code ( \catcode, etc.~)
+	def_family = 86, //declare math fonts ( \textfont, etc.~)
+	set_font = 87, //set current font ( font identifiers )
+	def_font = 88, //define a font file ( \font )
+	register_ = 89, //internal register ( \count, \dimen, etc.~)
+	max_internal = 89, //the largest code that can follow \the
+	advance = 90, //advance a register or parameter ( \advance )
+	multiply = 91, //multiply a register or parameter ( \multiply )
+	divide = 92, //divide a register or parameter ( \divide )
+	prefix = 93, //qualify a definition ( \global, \long, \outer )
+	let = 94, //assign a command code ( \let, \futurelet )
+	shorthand_def = 95, //code definition ( \chardef, \countdef, etc.~)
+	read_to_cs = 96, //read into a control sequence ( \read )
+	def = 97, //macro definition ( \def, \gdef, \xdef, \edef )
+	set_box = 98, //set a box ( \setbox )
+	hyph_data = 99, //hyphenation data ( \hyphenation, \patterns )
+	set_interaction = 100, //define level of interaction ( \batchmode, etc.~)*/
+	max_command = 100, //the largest command code seen at |big_switch|
+		undefined_cs = 101, //=max_command+1 //initial state of most |eq_type| fields
+		expand_after = 102, // max_command+2 //special expansion ( \expandafter )
+		no_expand = 103, //max_command+3 //special nonexpansion ( \noexpand )
+		input = 104, //max_command+4 //input a source file ( \input, \endinput )
+		if_test = 105, //max_command+5 //conditional text ( \if, \ifcase, etc.~)
+		fi_or_else = 106, //max_command+6 //delimiters for conditionals ( \else, etc.~)
+		cs_name = 107, //max_command+7 //make a control sequence from tokens ( \csname )
+		convert = 108, // max_command+8 //convert to text ( \number, \string, etc.~)
+		the = 109, // max_command+9 //expand an internal quantity ( \the )
+		top_bot_mark = 110, //max_command+10 //inserted mark ( \topmark, etc.~)
+		call = 111, //max_command+11 //non-long, non-outer control sequence
+		long_call = 112, //max_command+12 //long, non-outer control sequence
+		outer_call = 113, //max_command+13 //non-long, outer control sequence
+		long_outer_call = 114, //max_command+14 //long, outer control sequence
+		end_template = 115, //max_command+15 //end of an alignment template
+		dont_expand = 116, //max_command+16 //the following token was marked by \noexpand
+		glue_ref = 117, //max_command+17 //the equivalent points to a glue specification
+		shape_ref = 118, //max_command+18 //the equivalent points to a parshape specification
+		box_ref = 119, //max_command+19 //the equivalent points to a box node, or is |null|
+		data = 120 //max_command+20 //the equivalent is simply a halfword number
+};
 
 enum
 {
@@ -433,49 +492,13 @@ enum
 	count_base = 5318, //int_base+int_pars //256 user \count registers
 	del_code_base = 5574, //count_base+256 //256 delimiter code mappings
 	dimen_base = 5830, //del_code_base+256 //beginning of region 6
+	scaled_base = 5851, //dimen_base+dimen_pars
+	eqtb_size = 6106, // scaled_base+255; //largest subscript of |eqtb|
 };
-
-enum
-{
-	line_skip_code = 0, //interline glue if |baseline_skip| is infeasible
-	baseline_skip_code = 1, //desired glue between baselines
-	par_skip_code = 2, //extra glue just above a paragraph
-	above_display_skip_code = 3, //extra glue just above displayed math
-	below_display_skip_code = 4, //extra glue just below displayed math
-	above_display_short_skip_code = 5,
-	below_display_short_skip_code = 6,
-	left_skip_code = 7, //glue at left of justified lines
-	right_skip_code = 8, //glue at right of justified lines
-	top_skip_code = 9, //glue at top of main pages
-	split_top_skip_code = 10, //glue at top of split pages
-	tab_skip_code = 11, //glue between aligned entries*/
-	space_skip_code = 12, //glue between words (if not |zero_glue|)
-	xspace_skip_code = 13, //glue after sentences (if not |zero_glue|)
-	par_fill_skip_code = 14, //glue on last line of paragraph
-	thin_mu_skip_code = 15, //thin space in math formula
-	med_mu_skip_code = 16, //medium space in math formula
-	thick_mu_skip_code = 17 //thick space in math formula
-};
-
-constexpr int glue_pars = 18; //total number of glue parameters
 
 halfword& skip(halfword); //skip(#)==equiv(skip_base+#) //|mem| location of glue specification
-halfword& mu_skip(halfword); //mu_skip(#)==equiv(mu_skip_base+#) //|mem| location of math glue spec
-halfword& glue_par(halfword); //glue_par(#)==equiv(glue_base+#) //|mem| location of glue specification
-halfword& baseline_skip(void); //baseline_skip==glue_par(baseline_skip_code)
-halfword& left_skip(void); //left_skip==glue_par(left_skip_code)
-halfword& right_skip(void); //right_skip==glue_par(right_skip_code)
-halfword& split_top_skip(void); //split_top_skip==glue_par(split_top_skip_code)
-halfword& space_skip(void); //space_skip==glue_par(space_skip_code)
-halfword& xspace_skip(void); //xspace_skip==glue_par(xspace_skip_code)
 halfword& par_shape_ptr(void); //par_shape_ptr==equiv(par_shape_loc)
-halfword& output_routine(void); //output_routine==equiv(output_routine_loc)
-halfword& every_par(void); //every_par==equiv(every_par_loc)
 halfword& every_math(void); //every_math==equiv(every_math_loc)
-halfword& every_display(void); //every_display==equiv(every_display_loc)
-halfword& every_hbox(void); //every_hbox==equiv(every_hbox_loc)
-halfword& every_vbox(void); //every_vbox==equiv(every_vbox_loc)
-halfword& every_job(void); //every_job==equiv(every_job_loc)
 halfword& every_cr(void); //every_cr==equiv(every_cr_loc)
 halfword& err_help(void); //err_help==equiv(err_help_loc)
 halfword& box(halfword); //box(#)==equiv(box_base+#)
@@ -483,179 +506,18 @@ halfword& cur_font(void); //cur_font==equiv(cur_font_loc)
 halfword& fam_fnt(halfword); //fam_fnt(#)==equiv(math_font_base+#)
 halfword& cat_code(halfword); //cat_code(#)==equiv(cat_code_base+#)
 halfword& lc_code(halfword p); //lc_code(#)==equiv(lc_code_base+#)
-halfword& uc_code(halfword p); //uc_code(#)==equiv(uc_code_base+#)
 halfword& sf_code(halfword p); //sf_code(#)==equiv(sf_code_base+#)
 halfword& math_code(halfword p); //math_code(#)==equiv(math_code_base+#)
 
 constexpr int null_font = 0; //font_base
-constexpr int var_code = 28672; //=@'70000 //math code meaning ``use the current family''*/
-constexpr int pretolerance_code = 0; //badness tolerance before hyphenation
-constexpr int tolerance_code = 1; //badness tolerance after hyphenation
-constexpr int line_penalty_code = 2; //added to the badness of every line
-constexpr int hyphen_penalty_code = 3; //penalty for break after discretionary hyphen
-constexpr int ex_hyphen_penalty_code = 4; //penalty for break after explicit hyphen
-constexpr int club_penalty_code = 5; //penalty for creating a club line
-constexpr int widow_penalty_code = 6; //penalty for creating a widow line
-constexpr int display_widow_penalty_code = 7; //ditto, just before a display
-constexpr int broken_penalty_code = 8; //penalty for breaking a page at a broken line
-constexpr int bin_op_penalty_code = 9; //penalty for breaking after a binary operation
-constexpr int rel_penalty_code = 10; //penalty for breaking after a relation
-constexpr int pre_display_penalty_code = 11;
-constexpr int post_display_penalty_code = 12;
-constexpr int inter_line_penalty_code = 13; //additional penalty between lines
-constexpr int double_hyphen_demerits_code = 14; //demerits for double hyphen break
-constexpr int final_hyphen_demerits_code = 15; //demerits for final hyphen break
-constexpr int adj_demerits_code = 16; //demerits for adjacent incompatible lines
-constexpr int mag_code = 17; //magnification ratio
-constexpr int delimiter_factor_code = 18; //ratio for variable-size delimiters
-constexpr int looseness_code = 19; //change in number of lines for a paragraph
-constexpr int time_code = 20; //current time of day
-constexpr int day_code = 21; //current day of the month
-constexpr int month_code = 22; //current month of the year
-constexpr int year_code = 23; //current year of our Lord
-constexpr int show_box_breadth_code = 24; //nodes per level in |show_box|
-constexpr int show_box_depth_code = 25; //maximum level in |show_box|
-constexpr int hbadness_code = 26; //hboxes exceeding this badness will be shown by |hpack|
-constexpr int vbadness_code = 27; //vboxes exceeding this badness will be shown by |vpack|
-constexpr int pausing_code = 28; //pause after each line is read from a file
-constexpr int tracing_online_code = 29; //show diagnostic output on terminal
-constexpr int tracing_macros_code = 30; //show macros as they are being expanded
-constexpr int tracing_stats_code = 31; //show memory usage if \TeX\ knows it
-constexpr int tracing_paragraphs_code = 32; //show line-break calculations
-constexpr int tracing_pages_code = 33; //show page-break calculations
-constexpr int tracing_output_code = 34; //show boxes when they are shipped out
-constexpr int tracing_lost_chars_code = 35; //show characters that aren't in the font
-constexpr int tracing_commands_code = 36; //show command codes at |big_switch|
-constexpr int tracing_restores_code = 37; //show equivalents when they are restored
-constexpr int uc_hyph_code = 38; //hyphenate words beginning with a capital letter
-constexpr int output_penalty_code = 39; //penalty found at current page break
-constexpr int max_dead_cycles_code = 40; //bound on consecutive dead cycles of output
-constexpr int hang_after_code = 41; //hanging indentation changes after this many lines
-constexpr int floating_penalty_code = 42; //penalty for insertions heldover after a split
-constexpr int global_defs_code = 43; //override \global specifications
-constexpr int cur_fam_code = 44; //current family
-constexpr int escape_char_code = 45; //escape character for token output
-constexpr int default_hyphen_char_code = 46; //value of \hyphenchar when a font is loaded
-constexpr int default_skew_char_code = 47; //value of \skewchar when a font is loaded
-constexpr int end_line_char_code = 48; //character placed at the right end of the buffer
-constexpr int new_line_char_code = 49; //character that prints as |print_ln|
-constexpr int language_code = 50; //current hyphenation table
-constexpr int left_hyphen_min_code = 51; //minimum left hyphenation fragment size
-constexpr int right_hyphen_min_code = 52; //minimum right hyphenation fragment size
-constexpr int holding_inserts_code = 53; //do not remove insertion nodes from \box255
-constexpr int error_context_lines_code = 54; //maximum intermediate line pairs shown
-constexpr int int_pars = 55; //total number of integer parameters
+constexpr int var_code = 28672; //=@'70000 //math code meaning ``use the current family''
 
 int& del_code(halfword p); //del_code(#)==eqtb[del_code_base+#].int
 int& count(halfword p); //count(#)==eqtb[count_base+#].int
-int& int_par(halfword); //int_par(#)==eqtb[int_base+#].int //an integer parameter
-int pretolerance(void); //pretolerance==int_par(pretolerance_code)
-int& tolerance(void); //tolerance==int_par(tolerance_code)
-int line_penalty(void); //line_penalty==int_par(line_penalty_code)
-int hyphen_penalty(void); //hyphen_penalty==int_par(hyphen_penalty_code)
-int ex_hyphen_penalty(void); //ex_hyphen_penalty==int_par(ex_hyphen_penalty_code)
-int widow_penalty(void); //widow_penalty==int_par(widow_penalty_code)
-int display_widow_penalty(void); //display_widow_penalty==int_par(display_widow_penalty_code)
-int bin_op_penalty(void);//bin_op_penalty==int_par(bin_op_penalty_code)
-int rel_penalty(void);//rel_penalty==int_par(rel_penalty_code)
-int pre_display_penalty(void); //pre_display_penalty==int_par(pre_display_penalty_code)
-int post_display_penalty(void); //post_display_penalty==int_par(post_display_penalty_code)
-int broken_penalty(void); //broken_penalty==int_par(broken_penalty_code)
-int club_penalty(void); //club_penalty==int_par(club_penalty_code)
-int inter_line_penalty(void); //inter_line_penalty==int_par(inter_line_penalty_code)
-int double_hyphen_demerits(void); //double_hyphen_demerits==int_par(double_hyphen_demerits_code)
-int final_hyphen_demerits(void); //final_hyphen_demerits==int_par(final_hyphen_demerits_code)
-int adj_demerits(void); //adj_demerits==int_par(adj_demerits_code)
-int& mag(void); //mag==int_par(mag_code)
-int delimiter_factor(void); //delimiter_factor==int_par(delimiter_factor_code)
-int looseness(void); //looseness==int_par(looseness_code)
-int& time(void); //time==int_par(time_code)
-int& day(void); //day==int_par(day_code)
-int& month(void); //month==int_par(month_code)
-int& year(void); //year==int_par(year_code)
-int show_box_breadth(void); //show_box_breadth==int_par(show_box_breadth_code)
-int show_box_depth(void); //show_box_depth==int_par(show_box_depth_code)
-int hbadness(void); //hbadness==int_par(hbadness_code)
-int& vbadness(void); //vbadness==int_par(vbadness_code)
-int pausing(void); //pausing==int_par(pausing_code)
-int tracing_online(void); //tracing_online==int_par(tracing_online_code)
-int tracing_macros(void); //tracing_macros==int_par(tracing_macros_code)
-int tracing_commands(void); //tracing_commands==int_par(tracing_commands_code)
-int tracing_lost_chars(void); //tracing_lost_chars==int_par(tracing_lost_chars_code)
-int uc_hyph(void); //uc_hyph==int_par(uc_hyph_code)
-int& max_dead_cycles(void); //max_dead_cycles==int_par(max_dead_cycles_code)
-int& hang_after(void); //hang_after==int_par(hang_after_code)
-int floating_penalty(void); //floating_penalty==int_par(floating_penalty_code)
-int global_defs(void); //global_defs==int_par(global_defs_code)
-int cur_fam(void); //cur_fam==int_par(cur_fam_code)
-int& escape_char(void); //escape_char==int_par(escape_char_code)
-int default_hyphen_char(void); //default_hyphen_char==int_par(default_hyphen_char_code)
-int default_skew_char(void); //default_skew_char==int_par(default_skew_char_code)
-int& end_line_char(void); //end_line_char==int_par(end_line_char_code)
-int& new_line_char(void); //new_line_char==int_par(new_line_char_code)
-int language(void); //language==int_par(language_code)
-int left_hyphen_min(void); //left_hyphen_min==int_par(left_hyphen_min_code)
-int right_hyphen_min(void); //right_hyphen_min==int_par(right_hyphen_min_code)
-int error_context_lines(void); //error_context_lines==int_par(error_context_lines_code)
-int holding_inserts(void); //holding_inserts==int_par(holding_inserts_code)
-int& tracing_stats(void); //tracing_stats==int_par(tracing_stats_code)
-int tracing_output(void); //tracing_output==int_par(tracing_output_code)
 
-enum
-{
-	par_indent_code = 0, //indentation of paragraphs
-	math_surround_code = 1, //space around math in text
-	line_skip_limit_code = 2, //threshold for |line_skip| instead of |baseline_skip|
-	hsize_code = 3, //line width in horizontal mode
-	vsize_code = 4, //page height in vertical mode
-	max_depth_code = 5, //maximum depth of boxes on main pages
-	split_max_depth_code = 6, //maximum depth of boxes on split pages
-	box_max_depth_code = 7, //maximum depth of explicit vboxes
-	hfuzz_code = 8, //tolerance for overfull hbox messages
-	vfuzz_code = 9, //tolerance for overfull vbox messages
-	delimiter_shortfall_code = 10, //maximum amount uncovered by variable delimiters
-	null_delimiter_space_code = 11, //blank space in null delimiters
-	script_space_code = 12, //extra space after subscript or superscript
-	pre_display_size_code = 13, //length of text preceding a display
-	display_width_code = 14, //length of line for displayed equation
-	display_indent_code = 15, //indentation of line for displayed equation
-	overfull_rule_code = 16, //width of rule that identifies overfull hboxes
-	hang_indent_code = 17, //amount of hanging indentation
-	h_offset_code = 18, //amount of horizontal offset when shipping pages out
-	v_offset_code = 19, //amount of vertical offset when shipping pages out
-	emergency_stretch_code = 20 //reduces badnesses on final pass of line-breaking
-};
-
-constexpr int dimen_pars = 21; //total number of dimension parameters
-constexpr int scaled_base = 5851; //dimen_base+dimen_pars;
-constexpr int eqtb_size = 6106; // scaled_base+255; //largest subscript of |eqtb|
 
 int& dimen(halfword); //dimen(#)==eqtb[scaled_base+#].sc
-int& dimen_par(halfword); //dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity
-int par_indent(void); //par_indent==dimen_par(par_indent_code)
-int math_surround(void); //math_surround==dimen_par(math_surround_code)
-int line_skip_limit(void); //line_skip_limit==dimen_par(line_skip_limit_code)
-int hsize(void); //hsize==dimen_par(hsize_code)
-int vsize(void); //vsize==dimen_par(vsize_code)
-int split_max_depth(void); //split_max_depth==dimen_par(split_max_depth_code)
-int box_max_depth(void); //box_max_depth==dimen_par(box_max_depth_code)
-int hfuzz(void); //hfuzz==dimen_par(hfuzz_code)
-int& vfuzz(void); //vfuzz==dimen_par(vfuzz_code)
-int delimiter_shortfall(void); //delimiter_shortfall==dimen_par(delimiter_shortfall_code)
-int null_delimiter_space(void); //null_delimiter_space==dimen_par(null_delimiter_space_code)
-int script_space(void); //script_space==dimen_par(script_space_code)
-int pre_display_size(void); //pre_display_size==dimen_par(pre_display_size_code)
-int display_width(void); //display_width==dimen_par(display_width_code)
-int display_indent(void); //display_indent==dimen_par(display_indent_code)
-int& overfull_rule(void); //overfull_rule==dimen_par(overfull_rule_code)
-int hang_indent(void); //hang_indent==dimen_par(hang_indent_code)
-int h_offset(void); //h_offset==dimen_par(h_offset_code)
-int v_offset(void); //v_offset==dimen_par(v_offset_code)
-int emergency_stretch(void); //emergency_stretch==dimen_par(emergency_stretch_code)
-halfword& next(halfword); //next(#) == hash[#].lh //link for coalesced lists
 halfword& text(halfword); //text(#) == hash[#].rh //string number for control sequence name
-bool hash_is_full(void); //hash_is_full == (hash_used=hash_base) //test if all positions are occupied
-halfword& font_id_text(halfword); //font_id_text(#) == text(font_id_base+#) //a frozen font identifier's name
 quarterword& save_type(halfword); //save_type(#)==save_stack[#].hh.b0 //classifies a |save_stack| entry
 quarterword& save_level(halfword); //save_level(#)==save_stack[#].hh.b1
 halfword& save_index(halfword); //save_index(#)==save_stack[#].hh.rh
@@ -695,33 +557,27 @@ constexpr int cs_token_flag = 4095; //==@'7777 //amount added to the |eqtb| loca
 
 enum
 {
-	out_param_token = 0x100*out_param, //@'2400 //$2^8\cdot|out_param|$
-	math_shift_token = 0x100*math_shift, //@'1400 //$2^8\cdot|math_shift|$
-	tab_token = 0x100*tab_mark, //@'2000 //$2^8\cdot|tab_mark|$
-	space_token = 0x100*spacer+' ', // @'5040 //$2^8\cdot|spacer|+|" "|$
-	left_brace_token = 0x100*left_brace, //@'0400 //$2^8\cdot|left_brace|$
-	right_brace_token = 0x100*right_brace, //@'1000 //$2^8\cdot|right_brace|$
-	other_token = 0x100*other_char, //@'6000 //$2^8\cdot|other_char|$
-	zero_token = other_token+'0',//other_token+"0" //zero, the smallest digit
-	right_brace_limit = 0x100*(right_brace+1), //@'1400 //$2^8\cdot(|right_brace|+1)$
-	left_brace_limit = 0x100*(left_brace+1), //@'1000 //$2^8\cdot(|left_brace|+1)$
-	match_token = 0x100*match,//@'6400 //$2^8\cdot|match|$
-	end_match_token = 0x100*end_match, // @'7000 //$2^8\cdot|end_match|$
-	octal_token = other_token+'\'', //apostrophe, indicates an octal constant
-	hex_token = other_token+'\"', //double quote, indicates a hex constant
-	alpha_token = other_token+'`', //reverse apostrophe, precedes alpha constants
-	point_token = other_token+'.', //decimal point
-	continental_point_token = other_token+',', //decimal point, Eurostyle
-	letter_token = 0x100*letter, //@'5400 //$2^8\cdot|letter|$
-	A_token = letter_token+'A', //the smallest special hex digit
-	other_A_token = other_token+'A' //special hex digit of type |other_char|
+	out_param_token = out_param<<8, //@'2400 //$2^8\cdot|out_param|$
+	math_shift_token = math_shift<<8, //@'1400 //$2^8\cdot|math_shift|$
+	tab_token = tab_mark<<8, //@'2000 //$2^8\cdot|tab_mark|$
+	space_token = (spacer<<8)+' ', // @'5040 //$2^8\cdot|spacer|+|" "|$
+	left_brace_token = left_brace<<8, //@'0400 //$2^8\cdot|left_brace|$
+	right_brace_token = right_brace<<8, //@'1000 //$2^8\cdot|right_brace|$
+	other_token = other_char<<8, //@'6000 //$2^8\cdot|other_char|$
+		zero_token = other_token+'0',//other_token+"0" //zero, the smallest digit
+		octal_token = other_token+'\'', //apostrophe, indicates an octal constant
+		hex_token = other_token+'\"', //double quote, indicates a hex constant
+		alpha_token = other_token+'`', //reverse apostrophe, precedes alpha constants
+		point_token = other_token+'.', //decimal point
+		continental_point_token = other_token+',', //decimal point, Eurostyle
+		other_A_token = other_token+'A', //special hex digit of type |other_char|
+	right_brace_limit = (right_brace+1)<<8, //@'1400 //$2^8\cdot(|right_brace|+1)$
+	left_brace_limit = (left_brace+1)<<8, //@'1000 //$2^8\cdot(|left_brace|+1)$
+	match_token = match<<8,//@'6400 //$2^8\cdot|match|$
+	end_match_token = end_match<<8, // @'7000 //$2^8\cdot|end_match|$
+	letter_token = letter<<8, //@'5400 //$2^8\cdot|letter|$
+		A_token = letter_token+'A' //the smallest special hex digit
 };
-
-extern quarterword &state; //==cur_input.state_field //current scanner state
-extern quarterword &index; //==cur_input.index_field //reference for buffer information
-extern halfword &start; //==cur_input.start_field //starting position in |buffer|
-extern halfword &limit; //==cur_input.limit_field //end of current line in |buffer|
-extern std::string &name; //==cur_input.name_field //name of the current file
 
 enum
 {
@@ -778,12 +634,6 @@ enum
 	split_bot_mark_code = 4 //the last mark found by \vsplit
 };
 
-extern halfword &top_mark; //==cur_mark[top_mark_code]
-extern halfword &first_mark; //==cur_mark[first_mark_code]
-extern halfword &bot_mark; //==cur_mark[bot_mark_code]
-extern halfword &split_first_mark; //==cur_mark[split_first_mark_code]
-extern halfword &split_bot_mark; //==cur_mark[split_bot_mark_code]
-
 enum 
 {
 	int_val = 0, //integer values
@@ -814,28 +664,36 @@ enum
 	closed = 2 //not open, or at end of file
 };
 
-constexpr int if_char_code = 0; // `\if' 
-constexpr int if_cat_code = 1; // `\ifcat' 
-constexpr int if_int_code = 2; // `\ifnum' 
-constexpr int if_dim_code = 3; // `\ifdim' 
-constexpr int if_odd_code = 4; // `\ifodd' 
-constexpr int if_vmode_code = 5; // `\ifvmode' 
-constexpr int if_hmode_code = 6; // `\ifhmode' 
-constexpr int if_mmode_code = 7; // `\ifmmode' 
-constexpr int if_inner_code = 8; // `\ifinner' 
-constexpr int if_void_code = 9; // `\ifvoid' 
-constexpr int if_hbox_code = 10; // `\ifhbox' 
-constexpr int if_vbox_code = 11; // `\ifvbox' 
-constexpr int ifx_code = 12; // `\ifx' 
-constexpr int if_eof_code = 13; // `\ifeof' 
-constexpr int if_true_code = 14; // `\iftrue' 
-constexpr int if_false_code = 15; // `\iffalse' 
-constexpr int if_case_code = 16; // `\ifcase' 
+enum
+{
+	if_char_code = 0, // `\if' 
+	if_cat_code = 1, // `\ifcat' 
+	if_int_code = 2, // `\ifnum' 
+	if_dim_code = 3, // `\ifdim' 
+	if_odd_code = 4, // `\ifodd' 
+	if_vmode_code = 5, // `\ifvmode' 
+	if_hmode_code = 6, // `\ifhmode' 
+	if_mmode_code = 7, // `\ifmmode' 
+	if_inner_code = 8, // `\ifinner' 
+	if_void_code = 9, // `\ifvoid' 
+	if_hbox_code = 10, // `\ifhbox' 
+	if_vbox_code = 11, // `\ifvbox' 
+	ifx_code = 12, // `\ifx' 
+	if_eof_code = 13, // `\ifeof' 
+	if_true_code = 14, // `\iftrue' 
+	if_false_code = 15, // `\iffalse' 
+	if_case_code = 16 // `\ifcase' 
+};
+
 int& if_line_field(halfword); //if_line_field(#)==mem[#+1].int
-constexpr int if_code = 1; //code for \if... being evaluated
-constexpr int fi_code = 2; //code for \fi
-constexpr int else_code = 3; //code for \else
-constexpr int or_code = 4; //code for \or
+enum
+{
+	if_code = 1, //code for \if... being evaluated
+	fi_code = 2, //code for \fi
+	else_code = 3, //code for \else
+	or_code = 4, //code for \or
+};
+
 const std::string TEX_area = "TeXinputs:";
 const std::string TEX_font_area = "TeXfonts:";
 
@@ -859,17 +717,18 @@ quarterword skip_byte(fourquarters); // skip_byte(#)==#.b0
 quarterword next_char(fourquarters); //next_char(#)==#.b1
 quarterword op_byte(fourquarters); //op_byte(#)==#.b2
 quarterword rem_byte(fourquarters); //rem_byte(#)==#.b3
-quarterword ext_top(fourquarters); //ext_top(#)==#.b0 //|top| piece in a recipe
-quarterword ext_mid(fourquarters); //ext_mid(#)==#.b1 //|mid| pie1ce in a recipe
-quarterword ext_bot(fourquarters); //ext_bot(#)==#.b2 //|bot| piece in a recipe
-quarterword ext_rep(fourquarters); //ext_rep(#)==#.b3 //|rep| piece in a recipe
-constexpr int slant_code = 1;
-constexpr int space_code = 2;
-constexpr int space_stretch_code = 3;
-constexpr int space_shrink_code = 4;
-constexpr int x_height_code = 5;
-constexpr int quad_code = 6;
-constexpr int extra_space_code = 7;
+
+enum
+{
+	slant_code = 1,
+	space_code = 2,
+	space_stretch_code = 3,
+	space_shrink_code = 4,
+	x_height_code = 5,
+	quad_code = 6,
+	extra_space_code = 7
+};
+
 constexpr int non_char = 256; //==qi(256) //a |halfword| code that can't match a real character
 constexpr int non_address = 0; //a spurious |bchar_label|
 
@@ -884,13 +743,11 @@ int char_kern(internalfontnumber, fourquarters); //char_kern(#)==font_info[kern_
 int lig_kern_start(internalfontnumber, fourquarters); //lig_kern_start(#)==lig_kern_base[#]+rem_byte //beginning of lig/kern program
 int lig_kern_restart(internalfontnumber, fourquarters); //lig_kern_restart(#)==lig_kern_base[#]+lig_kern_restart_end //lig_kern_restart_end(#)==256*op_byte(#)+rem_byte(#)+0x80'00-kern_base_offset
 int& param(smallnumber, internalfontnumber); //param(#)==font_info[#+param_end //param_end(#)==param_base[#]].sc
-int& slant(internalfontnumber); //slant==param(slant_code) //slant to the right, per unit distance upward
 int& space(internalfontnumber); //space==param(space_code) //normal space between words
 int& space_stretch(internalfontnumber); //space_stretch==param(space_stretch_code) //stretch between words
 int& space_shrink(internalfontnumber); //space_shrink==param(space_shrink_code) //shrink between words
 int& x_height(internalfontnumber); //x_height==param(x_height_code) //one ex
 int& quad(internalfontnumber); //quad==param(quad_code) //one em
-int& extra_space(internalfontnumber); //extra_space==param(extra_space_code) //additional space at end of sentence
 
 enum
 {
@@ -955,20 +812,8 @@ enum
 	math_text_char=4 //|math_type| when italic correction is dubious
 };
 
-constexpr int ord_noad = 16; //unset_node+3 //|type| of a noad classified Ord
-constexpr int op_noad = 17; //ord_noad+1 //|type| of a noad classified Op
-constexpr int bin_noad = 18; //ord_noad+2 //|type| of a noad classified Bin
-constexpr int rel_noad = 19;//ord_noad+3 //|type| of a noad classified Rel
-constexpr int open_noad = 20; //ord_noad+4 //|type| of a noad classified Ope
-constexpr int close_noad = 21; //ord_noad+5 //|type| of a noad classified Clo
-constexpr int punct_noad = 22; //ord_noad+6 //|type| of a noad classified Pun
-constexpr int inner_noad = 23; //ord_noad+7 //|type| of a noad classified Inn
-constexpr int limits = 1; //|subtype| of |op_noad| whose scripts are to be above, below
-constexpr int no_limits = 2; //|subtype| of |op_noad| whose scripts are to be normal
 halfword left_delimiter(halfword); //left_delimiter(#)==#+4 //first delimiter field of a noad
 halfword right_delimiter(halfword); //right_delimiter(#)==#+5 //second delimiter field of a fraction noad
-constexpr int radical_noad = 24; //inner_noad+1 //|type| of a noad for square roots
-constexpr int fraction_noad = 25; //radical_noad+1 //|type| of a noad for generalized fractions
 quarterword& small_fam(halfword); //small_fam(#)==mem[#].qqqq.b0 //|fam| for ``small'' delimiter
 quarterword& small_char(halfword);//small_char(#)==mem[#].qqqq.b1 //|character| for ``small'' delimiter
 quarterword& large_fam(halfword); //large_fam(#)==mem[#].qqqq.b2 //|fam| for ``large'' delimiter
@@ -977,22 +822,8 @@ int& thickness(halfword); //thickness==width //|thickness| field in a fraction n
 constexpr int default_code = 1073741824;//==@'10000000000 //denotes |default_rule_thickness|
 halfword numerator(halfword); //numerator==supscr //|numerator| field in a fraction noad
 halfword denominator(halfword); //denominator==subscr //|denominator| field in a fraction noad
-constexpr int under_noad = 26; //fraction_noad+1 //|type| of a noad for underlining
-constexpr int over_noad = 27; // under_noad+1 //|type| of a noad for overlining
-constexpr int accent_noad = 28; //over_noad+1 //|type| of a noad for accented subformulas
 halfword accent_chr(halfword); //accent_chr(#)==#+4 //the |accent_chr| field of an accent noad
-constexpr int vcenter_noad = 29; //accent_noad+1 //|type| of a noad for \vcenter
-constexpr int left_noad = 30; //vcenter_noad+1 //|type| of a noad for \left
-constexpr int right_noad = 31; //left_noad+1 //|type| of a noad for \right
 halfword delimiter(halfword); //delimiter==nucleus //|delimiter| field in left and right noads
-
-enum
-{
-	display_style = 0, //|subtype| for \displaystyle
-	text_style = 2, //|subtype| for \textstyle
-	script_style = 4, //|subtype| for \scriptstyle
-	script_script_style = 6 //|subtype| for \scriptscriptstyle
-};
 
 halfword& display_mlist(halfword); //display_mlist(#)==info(#+1) //mlist to be used in display style
 halfword& text_mlist(halfword); //text_mlist(#)==link(#+1) //mlist to be used in text style
@@ -1009,20 +840,6 @@ enum
 int mathsy(smallnumber, smallnumber); //mathsy(#)==font_info[#+param_base[mathsy_end //mathsy_end(#)==fam_fnt(2+#)]].sc
 int math_x_height(smallnumber); //math_x_height==mathsy(5) //height of `\.x'
 int math_quad(smallnumber); //math_quad==mathsy(6) //\.//18mu
-int num1(smallnumber); //num1==mathsy(8) //numerator shift-up in display styles
-int num2(smallnumber); //num2==mathsy(9) //numerator shift-up in non-display, non-\atop
-int num3(smallnumber); //num3==mathsy(10) //numerator shift-up in non-display \atop
-int denom1(smallnumber); //denom1==mathsy(11) //denominator shift-down in display styles
-int denom2(smallnumber); //denom2==mathsy(12) //denominator shift-down in non-display styles
-int sup1(smallnumber); //sup1==mathsy(13) //superscript shift-up in uncramped display style
-int sup2(smallnumber);//sup2==mathsy(14) //superscript shift-up in uncramped non-display
-int sup3(smallnumber);//sup3==mathsy(15) //superscript shift-up in cramped styles
-int sub1(smallnumber);//sub1==mathsy(16) //subscript shift-down if superscript is absent
-int sub2(smallnumber);//sub2==mathsy(17) //subscript shift-down if superscript is present
-int sup_drop(smallnumber); //sup_drop==mathsy(18) //superscript baseline below top of large box
-int sub_drop(smallnumber); //sub_drop==mathsy(19) //subscript baseline below bottom of large box
-int delim1(smallnumber); //delim1==mathsy(20) //size of \atopwithdelims delimiters
-int delim2(smallnumber); //delim2==mathsy(21) //size of \atopwithdelims delimiters in non-displays
 int axis_height(smallnumber); //axis_height==mathsy(22) //height of fraction lines above the baseline
 
 constexpr int total_mathsy_params = 22;
@@ -1030,19 +847,12 @@ constexpr int total_mathex_params = 13;
 
 int mathex(smallnumber); //mathex(#)==font_info[#+param_base[fam_fnt(3+cur_size)]].sc
 int default_rule_thickness(void); //default_rule_thickness==mathex(8) //thickness of \over bars
-int big_op_spacing1(void); //big_op_spacing1==mathex(9) //minimum clearance above a displayed op
-int big_op_spacing2(void); //big_op_spacing2==mathex(10) //minimum clearance below a displayed op
-int big_op_spacing3(void); //big_op_spacing3==mathex(11) //minimum baselineskip above displayed op
-int big_op_spacing4(void); //big_op_spacing4==mathex(12) //minimum baselineskip below displayed op
-int big_op_spacing5(void); //big_op_spacing5==mathex(13) //padding above and below displayed limits
 
 constexpr int cramped = 1; //add this to an uncramped style if you want to cramp it
 
 inline int cramped_style(int c) { return 2*(c/2)+cramped; } //cramp the style
 inline int sub_style(int c) { return 2*(c/4)+script_style+cramped; } //smaller and cramped
 inline int sup_style(int c) { return 2*(c/4)+script_style+c%2; } //smaller
-inline int num_style(int c) { return c+2-2*(c/6); } //smaller unless already script-script
-inline int denom_style(int c) { return 2*(c/2)+cramped+2-2*(c/6); } //smaller, cramped
 
 int& new_hlist(halfword); //new_hlist(#)==mem[nucleus(#)].int //the translation of an mlist
 
@@ -1070,34 +880,14 @@ int& total_demerits(halfword); //total_demerits(#)==mem[#+2].int //the quantity 
 constexpr int unhyphenated = 0; //the |type| of a normal active break node
 constexpr int hyphenated = 1; //the |type| of an active node that breaks at a |disc_node|
 constexpr int delta_node = 2; //|type| field in a delta node
-
-void copy_to_cur_active(void); //copy_to_cur_active(#)==cur_active_width[#]:=active_width[#]
-void update_width(halfword); //update_width(#)==cur_active_width[#]:=cur_active_width[#]+mem[r+#].sc
-
 constexpr int awful_bad = 1073741823; //=@'7777777777 //more than a billion demerits
 constexpr int deplorable = 100000; //more than |inf_bad|, but less than |awful_bad|
 
-void set_break_width_to_background(void); //set_break_width_to_background(#)==break_width[#]:=background[#]
-void convert_to_break_width(halfword prev_r); // convert_to_break_width(#)==@|mem[prev_r+#].sc:=mem[prev_r+#].sc  -cur_active_width[#]+break_width[#]
-void store_break_width(void); // store_break_width(#)==active_width[#]:=break_width[#]
-void new_delta_to_break_width(halfword); //new_delta_to_break_width(#)==@|mem[q+#].sc:=break_width[#]-cur_active_width[#]
-void new_delta_from_break_width(halfword); //new_delta_from_break_width(#)==@|mem[q+#].sc:= cur_active_width[#]-break_width[#]
-void combine_two_deltas(halfword, halfword); //combine_two_deltas(#)==@|mem[prev_r+#].sc:=mem[prev_r+#].sc+mem[r+#].sc
-void downdate_width(halfword); //downdate_width(#)==@|cur_active_width[#]:=cur_active_width[#]-mem[prev_r+#].sc
-void update_active(halfword); //update_active(#)==active_width[#]:=active_width[#]+mem[r+#].sc
-void store_background(void); //store_background(#)==active_width[#]:=background[#]
-
-extern scaled &act_width; //act_width==active_width[1] //length from first active node to current node
-
 halfword& trie_link(halfword); //@ trie_link(#)==trie[#].rh //``downward'' link in a trie
-halfword& trie_back(halfword); //trie_back(#)==trie[#].lh //backward links in |trie| holes
 quarterword& trie_char(halfword); //trie_char(#)==trie[#].b1 //character matched at this trie location
 quarterword& trie_op(halfword); //trie_op(#)==trie[#].b0 //program for hyphenation at this trie location
 
 void set_cur_lang(void); //set_cur_lang==if language<=0 then cur_lang:=0
-
-extern triepointer &trie_root; //trie_root==trie_l[0] //root of the linked trie
-extern triepointer *trie_ref; //trie_ref==trie_hash //where linked trie families go into |trie|
 
 enum
 {
@@ -1108,16 +898,9 @@ enum
 
 constexpr int split_up = 1; //an overflowed insertion class
 
-halfword& broken_ptr(halfword);//broken_ptr(#)==link(#+1)
 halfword& broken_ins(halfword p); //broken_ins(#)==info(#+1) //this insertion might break at |broken_ptr|
 halfword& last_ins_ptr(halfword p); //last_ins_ptr(#)==link(#+2) //the most recent insertion for this |subtype|
 halfword& best_ins_ptr(halfword); //best_ins_ptr(#)==info(#+2) //the optimum most recent insertion
-
-extern scaled &page_goal; //desired height of information on page being built
-extern scaled &page_total; //height of the current page
-extern scaled &page_shrink; //shrinkability of the current page
-extern scaled &page_depth; //depth of the current page
-extern halfword &contrib_tail; //contrib_tail==nest[0].tail_field //tail of the contribution list
 
 enum
 {
@@ -1174,17 +957,6 @@ enum
 	show_lists = 3 // \showlists
 };
  
-enum
-{
-	open_node = 0, //|subtype| in whatsits that represent files to \openout
-	write_node = 1, //|subtype| in whatsits that represent things to \write
-	close_node = 2, //|subtype| in whatsits that represent streams to \closeout
-	special_node = 3, //|subtype| in whatsits that represent \special things
-	language_node = 4, //|subtype| in whatsits that change the current language
-	immediate_code = 4, //command modifier for \immediate
-	set_language_code = 5 //command modifier for \setlanguage
-};
-
 halfword& what_lang(halfword); //what_lang(#)==link(#+1) //language number, in the range |0..255|
 quarterword& what_lhm(halfword); //what_lhm(#)==type(#+1) //minimum left fragment, in the range |1..63|
 quarterword& what_rhm(halfword); //what_rhm(#)==subtype(#+1) //minimum right fragment, in the range |1..63|*/
@@ -1193,6 +965,8 @@ halfword& write_stream(halfword); //write_stream(#) == info(#+1) //stream number
 halfword& open_name(halfword); //open_name(#) == link(#+1) //string number of file name to open
 halfword& open_area(halfword); //open_area(#) == info(#+2) //string number of file area for |open_name|
 halfword& open_ext(halfword); //open_ext(#) == link(#+2) //string number of file extension for |open_name|
+
+halfword& every_vbox(void); //every_vbox==equiv(every_vbox_loc)
 
 ///// ailleurs
 
@@ -1276,5 +1050,54 @@ wrapup(#)==if cur_l<non_char then*/
 /*any_mode(#)==vmode+#,hmode+#,mmode+# //for mode-independent commands => maincontrol.cpp
 non_math(#)==vmode+#,hmode+#*/
 /*end_write_token==cs_token_flag+end_write => writeout.cpp */
+//void copy_to_cur_active(void); //copy_to_cur_active(#)==cur_active_width[#]:=active_width[#] => trybreak
+//void update_width(halfword); //update_width(#)==cur_active_width[#]:=cur_active_width[#]+mem[r+#].sc => trybreak
+// void set_break_width_to_background(void); //set_break_width_to_background(#)==break_width[#]:=background[#] => trybreak
+//void convert_to_break_width(halfword prev_r); // convert_to_break_width(#)==@|mem[prev_r+#].sc:=mem[prev_r+#].sc  -cur_active_width[#]+break_width[#]  => trybreak
+//void store_break_width(void); // store_break_width(#)==active_width[#]:=break_width[#] => trybreak
+/*void new_delta_to_break_width(halfword); //new_delta_to_break_width(#)==@|mem[q+#].sc:=break_width[#]-cur_active_width[#] => trybreak
+void new_delta_from_break_width(halfword); //new_delta_from_break_width(#)==@|mem[q+#].sc:= cur_active_width[#]-break_width[#]
+void combine_two_deltas(halfword, halfword); //combine_two_deltas(#)==@|mem[prev_r+#].sc:=mem[prev_r+#].sc+mem[r+#].sc
+void downdate_width(halfword); //downdate_width(#)==@|cur_active_width[#]:=cur_active_width[#]-mem[prev_r+#].sc
+void update_active(halfword); //update_active(#)==active_width[#]:=active_width[#]+mem[r+#].sc */
+//void store_background(void); //store_background(#)==active_width[#]:=background[#] => linebreak.cpp
+/*int big_op_spacing1(void); //big_op_spacing1==mathex(9) //minimum clearance above a displayed op => makeop.cpp
+int big_op_spacing2(void); //big_op_spacing2==mathex(10) //minimum clearance below a displayed op
+int big_op_spacing3(void); //big_op_spacing3==mathex(11) //minimum baselineskip above displayed op
+int big_op_spacing4(void); //big_op_spacing4==mathex(12) //minimum baselineskip below displayed op
+int big_op_spacing5(void); //big_op_spacing5==mathex(13) //padding above and below displayed limits*/
+// halfword& broken_ptr(halfword);//broken_ptr(#)==link(#+1) => fireup.cpp
+/*int delim1(smallnumber); //delim1==mathsy(20) //size of \atopwithdelims delimiters => makefraction.cpp
+int delim2(smallnumber); //delim2==mathsy(21) //size of \atopwithdelims delimiters in non-displays*/
+/*int denom1(smallnumber); //denom1==mathsy(11) //denominator shift-down in display styles => makefraction.cpp
+int denom2(smallnumber); //denom2==mathsy(12) //denominator shift-down in non-display styles*/
+//halfword& every_display(void); //every_display==equiv(every_display_loc) => initmath.cpp
+//halfword& every_hbox(void); //every_hbox==equiv(every_hbox_loc) => beginbox.cpp
+//halfword& every_job(void); //every_job==equiv(every_job_loc) => maincontrol.cpp
+//halfword& every_par(void); //every_par==equiv(every_par_loc) => newgraf.cpp
+/*quarterword ext_bot(fourquarters); //ext_bot(#)==#.b2 //|bot| piece in a recipe => vardelimiter.cpp
+quarterword ext_top(fourquarters); //ext_top(#)==#.b0 //|top| piece in a recipe
+quarterword ext_mid(fourquarters); //ext_mid(#)==#.b1 //|mid| pie1ce in a recipe
+quarterword ext_rep(fourquarters); //ext_rep(#)==#.b3 //|rep| piece in a recipe*/
+//int& extra_space(internalfontnumber); //extra_space==param(extra_space_code) //additional space at end of sentence => appspace.cpp
+//halfword& font_id_text(halfword); //font_id_text(#) == text(font_id_base+#) //a frozen font identifier's name => shortdisplay.cpp
+//bool hash_is_full(void); //hash_is_full == (hash_used=hash_base) //test if all positions are occupied => idlookup.cpp
+//halfword& mu_skip(halfword); //mu_skip(#)==equiv(mu_skip_base+#) //|mem| location of math glue spec => scansomethingoriginal.cpp
+//halfword& next(halfword); //next(#) == hash[#].lh //link for coalesced lists => idlookup.cpp
+/*int num1(smallnumber); //num1==mathsy(8) //numerator shift-up in display styles => makefraction.cpp
+int num2(smallnumber); //num2==mathsy(9) //numerator shift-up in non-display, non-\atop
+int num3(smallnumber); //num3==mathsy(10) //numerator shift-up in non-display \atop*/
+//halfword& output_routine(void); //output_routine==equiv(output_routine_loc) => fireup.cpp
+//int& slant(internalfontnumber); //slant==param(slant_code) //slant to the right, per unit distance upward => makeaccent.cpp
+/*int sub1(smallnumber);//sub1==mathsy(16) //subscript shift-down if superscript is absent  => makescripts.cpp
+int sub2(smallnumber);//sub2==mathsy(17) //subscript shift-down if superscript is present
+int sub_drop(smallnumber); //sub_drop==mathsy(19) //subscript baseline below bottom of large box
+int sup1(smallnumber); //sup1==mathsy(13) //superscript shift-up in uncramped display style
+int sup2(smallnumber);//sup2==mathsy(14) //superscript shift-up in uncramped non-display
+int sup3(smallnumber);//sup3==mathsy(15) //superscript shift-up in cramped styles
+int sup_drop(smallnumber); //sup_drop==mathsy(18) //superscript baseline below top of large box */
+//halfword& trie_back(halfword); //trie_back(#)==trie[#].lh //backward links in |trie| holes => firstfit.cpp
+//halfword& uc_code(halfword p); //uc_code(#)==equiv(uc_code_base+#) => initialize.cpp
+
 
 #endif

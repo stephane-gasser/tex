@@ -121,15 +121,28 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordflow">while</span> (k &gt; 0)</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    {</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        k--;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        a = (a+<a class="code" href="globals_8cpp.html#a9639880975e2588cfef88f2e956e025a">dig</a>[k]*131072)/10; <span class="comment">// 131&#39;072 = 0x2&#39;00&#39;00</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        a = (a+<a class="code" href="globals_8cpp.html#a9639880975e2588cfef88f2e956e025a">dig</a>[k]*<a class="code" href="constantes_8h.html#a6861761c8115bf45da45c54326fc00bd">two</a>)/10;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    }</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">return</span> (a+1)/2;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
-</div><!-- fragment -->
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="rounddecimals_8h_ab9486c5801fee6279d00594937f45e24_icgraph.png" border="0" usemap="#rounddecimals_8h_ab9486c5801fee6279d00594937f45e24_icgraph" alt=""/></div>
+<map name="rounddecimals_8h_ab9486c5801fee6279d00594937f45e24_icgraph" id="rounddecimals_8h_ab9486c5801fee6279d00594937f45e24_icgraph">
+<area shape="rect" title=" " alt="" coords="325,56,432,83"/>
+<area shape="rect" href="scandimen_8h.html#ad330bbbb06884a41f26209e039c103fa" title=" " alt="" coords="192,56,277,83"/>
+<area shape="rect" href="appendkern_8h.html#a870fe4fa70ab429b719483e494297777" title=" " alt="" coords="30,5,119,32"/>
+<area shape="rect" href="prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="12,56,137,83"/>
+<area shape="rect" href="scandimen_8h.html#ad74509e6ed252b5c56f10a22dda9342b" title=" " alt="" coords="5,107,144,133"/>
+</map>
+</div>
+
 </div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="aglobals_8cpp_html_a9639880975e2588cfef88f2e956e025a"><div class="ttname"><a href="globals_8cpp.html#a9639880975e2588cfef88f2e956e025a">dig</a></div><div class="ttdeci">char dig[23]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00060">globals.cpp:60</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a6861761c8115bf45da45c54326fc00bd"><div class="ttname"><a href="constantes_8h.html#a6861761c8115bf45da45c54326fc00bd">two</a></div><div class="ttdeci">constexpr int two</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00079">constantes.h:79</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

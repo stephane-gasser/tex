@@ -5,6 +5,15 @@
 #include "newkern.h"
 #include "vpackage.h"
 
+static int script_space(void) { return dimen_par(script_space_code); }
+static int sub1(smallnumber c) { return mathsy(16, c); }
+static int sub2(smallnumber c) { return mathsy(17, c); }
+static int sub_drop(smallnumber c) { return mathsy(19, c); }
+static int sup_drop(smallnumber c) { return mathsy(18, c); }
+static int sup1(smallnumber c) { return mathsy(13, c); }
+static int sup2(smallnumber c) { return mathsy(14, c); }
+static int sup3(smallnumber c) { return mathsy(15, c); }
+
 void makescripts(halfword q, scaled delta)
 {
 	halfword p = new_hlist(q);

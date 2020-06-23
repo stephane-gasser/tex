@@ -136,47 +136,30 @@ Fonctions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>(k);</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = b;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">auto</span> <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> = <a class="code" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6">fractionrule</a>(t);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>) = p;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6">fractionrule</a>(t);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q) = p;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    p = <a class="code" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>(t);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="vpackage_8cpp.html#a67d4c487177aa349f7595ddb33aa9534">vpackage</a>(p, 0, 1, <a class="code" href="constantes_8h.html#abcc4ba792437d61a312c485d4074bdc3">max_dimen</a>);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = q;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665">vpack</a>(p, 0, <a class="code" href="constantes_8h.html#a0944a4353780132eeab7b06e3e42291da24e4e46a51132d023783361532a48c4b">additional</a>);</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="overbar_8h_a5b487c0636abe1d8f8766696d91829d6_cgraph.png" border="0" usemap="#overbar_8h_a5b487c0636abe1d8f8766696d91829d6_cgraph" alt=""/></div>
 <map name="overbar_8h_a5b487c0636abe1d8f8766696d91829d6_cgraph" id="overbar_8h_a5b487c0636abe1d8f8766696d91829d6_cgraph">
-<area shape="rect" title=" " alt="" coords="5,190,71,216"/>
-<area shape="rect" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="119,170,205,196"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="538,328,581,355"/>
-<area shape="rect" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="257,303,328,330"/>
-<area shape="rect" href="vpackage_8cpp.html#a67d4c487177aa349f7595ddb33aa9534" title=" " alt="" coords="253,835,332,862"/>
-<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title=" " alt="" coords="401,50,456,76"/>
-<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title=" " alt="" coords="400,202,457,228"/>
-<area shape="rect" href="newrule_8cpp.html#adde749bc3235334488b223590d8e4a87" title=" " alt="" coords="259,151,326,178"/>
-<area shape="rect" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="395,252,463,279"/>
-<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="525,416,593,443"/>
-<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="536,543,583,570"/>
-<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title=" " alt="" coords="402,354,455,380"/>
-<area shape="rect" href="badness_8cpp.html#af030be7eeb32202d38457203594ed062" title=" " alt="" coords="393,1266,464,1292"/>
-<area shape="rect" href="confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="389,1367,468,1394"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="641,1266,688,1292"/>
-<area shape="rect" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title=" " alt="" coords="736,1254,797,1280"/>
-<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="738,1330,795,1356"/>
-<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="531,1418,588,1444"/>
-<area shape="rect" href="constantes_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd" title=" " alt="" coords="387,810,470,836"/>
-<area shape="rect" href="constantes_8cpp.html#a29957fb6e1765b7267f0323079b8a9a4" title=" " alt="" coords="387,556,470,583"/>
-<area shape="rect" href="constantes_8cpp.html#afdd839d64f5055eb2e3870458ebe6d39" title=" " alt="" coords="395,860,463,887"/>
-<area shape="rect" href="constantes_8cpp.html#af888f3d6cb7409feb487fcc70631671e" title=" " alt="" coords="393,911,464,938"/>
-<area shape="rect" href="constantes_8cpp.html#a05f8e0f2f0457601538099ef8afd013a" title=" " alt="" coords="390,708,467,735"/>
-<area shape="rect" href="vpackage_8cpp.html#aca1b4ef43cf99ba30e2d0bc481431dce" title=" " alt="" coords="398,1316,459,1343"/>
-<area shape="rect" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="529,1215,590,1242"/>
-<area shape="rect" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title=" " alt="" coords="398,506,459,532"/>
-<area shape="rect" href="printscaled_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb" title=" " alt="" coords="386,1215,471,1242"/>
-<area shape="rect" href="constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title=" " alt="" coords="380,1012,477,1039"/>
-<area shape="rect" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title=" " alt="" coords="400,1063,457,1090"/>
-<area shape="rect" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc" title=" " alt="" coords="397,1114,460,1140"/>
+<area shape="rect" title=" " alt="" coords="5,183,71,210"/>
+<area shape="rect" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="119,87,205,114"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="496,232,539,259"/>
+<area shape="rect" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="257,232,328,259"/>
+<area shape="rect" href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title=" " alt="" coords="133,144,191,171"/>
+<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title=" " alt="" coords="387,30,441,56"/>
+<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title=" " alt="" coords="385,80,443,107"/>
+<area shape="rect" href="newrule_8cpp.html#adde749bc3235334488b223590d8e4a87" title=" " alt="" coords="259,182,326,208"/>
+<area shape="rect" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="380,232,448,259"/>
+<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="380,131,448,158"/>
+<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="391,182,437,208"/>
+<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title=" " alt="" coords="387,283,441,310"/>
+<area shape="rect" href="vpackage_8cpp.html#a67d4c487177aa349f7595ddb33aa9534" title=" " alt="" coords="253,131,332,158"/>
 </map>
 </div>
 <div class="dynheader">
@@ -194,12 +177,11 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="awriteout_8cpp_html_a099b3b060154898840f0ebdfb46ec78f"><div class="ttname"><a href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a></div><div class="ttdeci">q</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00024">writeout.cpp:24</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a0944a4353780132eeab7b06e3e42291da24e4e46a51132d023783361532a48c4b"><div class="ttname"><a href="constantes_8h.html#a0944a4353780132eeab7b06e3e42291da24e4e46a51132d023783361532a48c4b">additional</a></div><div class="ttdeci">@ additional</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00799">constantes.h:799</a></div></div>
+<div class="ttc" id="avpackage_8cpp_html_a9f1d86e5c299878041fb0f88d75d3665"><div class="ttname"><a href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665">vpack</a></div><div class="ttdeci">halfword vpack(halfword p, scaled h, smallnumber m)</div><div class="ttdef"><b>Definition:</b> <a href="vpackage_8cpp_source.html#l00039">vpackage.cpp:39</a></div></div>
 <div class="ttc" id="afractionrule_8cpp_html_aca27d6d4d1ded04c4038c9bca7f136f6"><div class="ttname"><a href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6">fractionrule</a></div><div class="ttdeci">halfword fractionrule(scaled t)</div><div class="ttdef"><b>Definition:</b> <a href="fractionrule_8cpp_source.html#l00004">fractionrule.cpp:4</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_abcc4ba792437d61a312c485d4074bdc3"><div class="ttname"><a href="constantes_8h.html#abcc4ba792437d61a312c485d4074bdc3">max_dimen</a></div><div class="ttdeci">constexpr int max_dimen</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00785">constantes.h:785</a></div></div>
 <div class="ttc" id="anewkern_8cpp_html_af78e07183c617d97a350cc11c9c18d37"><div class="ttname"><a href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a></div><div class="ttdeci">halfword newkern(scaled w)</div><div class="ttdef"><b>Definition:</b> <a href="newkern_8cpp_source.html#l00004">newkern.cpp:4</a></div></div>
-<div class="ttc" id="avpackage_8cpp_html_a67d4c487177aa349f7595ddb33aa9534"><div class="ttname"><a href="vpackage_8cpp.html#a67d4c487177aa349f7595ddb33aa9534">vpackage</a></div><div class="ttdeci">halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)</div><div class="ttdef"><b>Definition:</b> <a href="vpackage_8cpp_source.html#l00039">vpackage.cpp:39</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

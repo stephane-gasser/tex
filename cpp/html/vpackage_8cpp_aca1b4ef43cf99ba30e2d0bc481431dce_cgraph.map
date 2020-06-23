@@ -1,14 +1,16 @@
 <map id="goto50" name="goto50">
-<area shape="rect" id="node1" title=" " alt="" coords="5,183,67,209"/>
-<area shape="rect" id="node2" href="$begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title=" " alt="" coords="635,549,747,576"/>
-<area shape="rect" id="node4" href="$enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="237,93,340,120"/>
-<area shape="rect" id="node5" href="$println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="797,144,854,171"/>
-<area shape="rect" id="node7" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="519,232,565,259"/>
-<area shape="rect" id="node9" href="$printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="388,411,449,437"/>
-<area shape="rect" id="node11" href="$showbox_8cpp.html#acfcccfc29ec7e8b9f139156810549ced" title=" " alt="" coords="115,259,189,285"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title=" " alt="" coords="795,448,856,475"/>
-<area shape="rect" id="node6" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="390,93,447,120"/>
-<area shape="rect" id="node8" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="655,372,727,399"/>
-<area shape="rect" id="node10" href="$printthedigs_8cpp.html#ae7d872b8f9c93b81f079a7d1aaa1d43a" title=" " alt="" coords="497,397,587,424"/>
-<area shape="rect" id="node12" href="$shownodelist_8cpp.html#a603d6d2969ceffbb5ac7b8c8bc74828b" title=" " alt="" coords="239,296,338,323"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,159,67,185"/>
+<area shape="rect" id="node2" href="$begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title=" " alt="" coords="115,5,227,32"/>
+<area shape="rect" id="node4" href="$enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="289,133,391,160"/>
+<area shape="rect" id="node5" href="$println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="820,208,877,235"/>
+<area shape="rect" id="node7" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="584,208,631,235"/>
+<area shape="rect" id="node9" href="$printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="453,309,515,336"/>
+<area shape="rect" id="node11" href="$showbox_8cpp.html#acfcccfc29ec7e8b9f139156810549ced" title=" " alt="" coords="133,336,208,363"/>
+<area shape="rect" id="node3" href="$parametres_8h.html#ad64b5865361b4a66a2e034f995f8dc24" title=" " alt="" coords="289,5,391,32"/>
+<area shape="rect" id="node6" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="455,157,513,184"/>
+<area shape="rect" id="node8" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="700,259,772,285"/>
+<area shape="rect" id="node10" href="$printthedigs_8cpp.html#ae7d872b8f9c93b81f079a7d1aaa1d43a" title=" " alt="" coords="563,309,652,336"/>
+<area shape="rect" id="node12" href="$showbox_8cpp.html#af095a39219867cefc1cdd1b67eb533ea" title=" " alt="" coords="275,285,405,312"/>
+<area shape="rect" id="node13" href="$showbox_8cpp.html#a6ed823de34a4e8218dcd5691254c834b" title=" " alt="" coords="280,336,400,363"/>
+<area shape="rect" id="node14" href="$shownodelist_8cpp.html#a603d6d2969ceffbb5ac7b8c8bc74828b" title=" " alt="" coords="291,411,389,437"/>
 </map>

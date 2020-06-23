@@ -13,6 +13,9 @@
 #include "badness.h"
 #include "newrule.h"
 
+static int hbadness(void) { return int_par(hbadness_code); }
+static int hfuzz(void) { return dimen_par(hfuzz_code); }
+
 static void goto50(halfword r)
 {
 	if (outputactive)

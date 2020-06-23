@@ -129,13 +129,13 @@ Fonctions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="keywordflow">if</span> (p)</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    {</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a> = p, <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> r = p, q;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="keywordflow">do</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> = <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a> = <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        } <span class="keywordflow">while</span> (<a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>) = <a class="code" href="globals_8cpp.html#ab3b400e9bd4ea0d68b12f2920999933a">avail</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            q = r;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            r = <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(r);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        } <span class="keywordflow">while</span> (r);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q) = <a class="code" href="globals_8cpp.html#ab3b400e9bd4ea0d68b12f2920999933a">avail</a>;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="globals_8cpp.html#ab3b400e9bd4ea0d68b12f2920999933a">avail</a> = p;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    }</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
@@ -153,29 +153,28 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="flushlist_8h_ab1fa9ce35cc927b9620ecb5ed0dbc63a_icgraph.png" border="0" usemap="#flushlist_8h_ab1fa9ce35cc927b9620ecb5ed0dbc63a_icgraph" alt=""/></div>
 <map name="flushlist_8h_ab1fa9ce35cc927b9620ecb5ed0dbc63a_icgraph" id="flushlist_8h_ab1fa9ce35cc927b9620ecb5ed0dbc63a_icgraph">
-<area shape="rect" title=" " alt="" coords="441,421,508,448"/>
-<area shape="rect" href="deletetokenref_8h.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="288,195,392,221"/>
-<area shape="rect" href="endtokenlist_8h.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="145,43,237,69"/>
+<area shape="rect" title=" " alt="" coords="441,447,508,473"/>
+<area shape="rect" href="deletetokenref_8h.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="288,245,392,272"/>
+<area shape="rect" href="endtokenlist_8h.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="145,93,237,120"/>
 <area shape="rect" href="macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="11,5,90,32"/>
-<area shape="rect" href="finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="19,333,82,360"/>
-<area shape="rect" href="hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="9,396,92,423"/>
-<area shape="rect" href="issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="287,472,393,499"/>
-<area shape="rect" href="newpatterns_8h.html#a1356e8c74d8485cbd0e20c09f2c25886" title=" " alt="" coords="293,523,387,549"/>
-<area shape="rect" href="scankeyword_8h.html#a0b4a13a205b8c0a47dc755f3314ec3ee" title=" " alt="" coords="291,573,389,600"/>
-<area shape="rect" href="showwhatever_8h.html#a99b4dadf3c1abee06e9da950c3c704a5" title=" " alt="" coords="287,624,393,651"/>
-<area shape="rect" href="finalcleanup_8h.html#abdaa31c6a83743b7ffe417c4889aceaf" title=" " alt="" coords="5,68,96,95"/>
-<area shape="rect" href="eqdestroy_8h.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="11,264,90,291"/>
-<area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="164,144,219,171"/>
+<area shape="rect" href="writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="17,68,85,95"/>
+<area shape="rect" href="finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="19,345,82,372"/>
+<area shape="rect" href="hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="9,447,92,473"/>
+<area shape="rect" href="issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="287,523,393,549"/>
+<area shape="rect" href="newpatterns_8h.html#a1356e8c74d8485cbd0e20c09f2c25886" title=" " alt="" coords="293,573,387,600"/>
+<area shape="rect" href="scankeyword_8h.html#a0b4a13a205b8c0a47dc755f3314ec3ee" title=" " alt="" coords="291,624,389,651"/>
+<area shape="rect" href="showwhatever_8h.html#a99b4dadf3c1abee06e9da950c3c704a5" title=" " alt="" coords="287,675,393,701"/>
+<area shape="rect" href="finalcleanup_8h.html#abdaa31c6a83743b7ffe417c4889aceaf" title=" " alt="" coords="5,144,96,171"/>
+<area shape="rect" href="eqdestroy_8h.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="11,269,90,296"/>
+<area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="164,371,219,397"/>
 <area shape="rect" href="flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="144,320,239,347"/>
-<area shape="rect" href="vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="165,195,218,221"/>
+<area shape="rect" href="vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="165,144,218,171"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="awriteout_8cpp_html_a099b3b060154898840f0ebdfb46ec78f"><div class="ttname"><a href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a></div><div class="ttdeci">q</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00024">writeout.cpp:24</a></div></div>
-<div class="ttc" id="awriteout_8cpp_html_a76be2f40de03334f34eaf465efc0e0e0"><div class="ttname"><a href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a></div><div class="ttdeci">auto r</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00019">writeout.cpp:19</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_ab3b400e9bd4ea0d68b12f2920999933a"><div class="ttname"><a href="globals_8cpp.html#ab3b400e9bd4ea0d68b12f2920999933a">avail</a></div><div class="ttdeci">halfword avail</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00078">globals.cpp:78</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>

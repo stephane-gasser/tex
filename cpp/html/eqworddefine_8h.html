@@ -99,12 +99,14 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a5448e0fa38a2e448814fd99fccdc0b7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eqworddefine_8h.html#a5448e0fa38a2e448814fd99fccdc0b7f">eqworddefine</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p, int w)</td></tr>
-<tr class="separator:a5448e0fa38a2e448814fd99fccdc0b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb9ada4ad25b8952045f620d99afa7d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eqworddefine_8h.html#adb9ada4ad25b8952045f620d99afa7d3">eqworddefine</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>, int)</td></tr>
+<tr class="separator:adb9ada4ad25b8952045f620d99afa7d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c3d6699306f4bffaf9ca32b140e609b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eqworddefine_8h.html#a7c3d6699306f4bffaf9ca32b140e609b">word_define</a> (int, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>, int)</td></tr>
+<tr class="separator:a7c3d6699306f4bffaf9ca32b140e609b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a5448e0fa38a2e448814fd99fccdc0b7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5448e0fa38a2e448814fd99fccdc0b7f">&#9670;&nbsp;</a></span>eqworddefine()</h2>
+<a id="adb9ada4ad25b8952045f620d99afa7d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb9ada4ad25b8952045f620d99afa7d3">&#9670;&nbsp;</a></span>eqworddefine()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -113,13 +115,13 @@ Fonctions</h2></td></tr>
           <td class="memname">void eqworddefine </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>w</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -129,45 +131,109 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="eqworddefine_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="eqworddefine_8cpp_source.html">eqworddefine.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9">xeqlevel</a>[p] != <a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a>)</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <a class="code" href="eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617">eqsave</a>(p, <a class="code" href="globals_8cpp.html#a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9">xeqlevel</a>[p]);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="globals_8cpp.html#a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9">xeqlevel</a>[p] = <a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a>;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    }</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a>[p].<a class="code" href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a> = w;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="eqworddefine_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="eqworddefine_8cpp_source.html">eqworddefine.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9">xeqlevel</a>[p] != <a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a>)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    {</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617">eqsave</a>(p, <a class="code" href="globals_8cpp.html#a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9">xeqlevel</a>[p]);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="globals_8cpp.html#a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9">xeqlevel</a>[p] = <a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    }</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a>[p].<a class="code" href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a> = w;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="eqworddefine_8h_a5448e0fa38a2e448814fd99fccdc0b7f_cgraph.png" border="0" usemap="#eqworddefine_8h_a5448e0fa38a2e448814fd99fccdc0b7f_cgraph" alt=""/></div>
-<map name="eqworddefine_8h_a5448e0fa38a2e448814fd99fccdc0b7f_cgraph" id="eqworddefine_8h_a5448e0fa38a2e448814fd99fccdc0b7f_cgraph">
+<div class="center"><img src="eqworddefine_8h_adb9ada4ad25b8952045f620d99afa7d3_cgraph.png" border="0" usemap="#eqworddefine_8h_adb9ada4ad25b8952045f620d99afa7d3_cgraph" alt=""/></div>
+<map name="eqworddefine_8h_adb9ada4ad25b8952045f620d99afa7d3_cgraph" id="eqworddefine_8h_adb9ada4ad25b8952045f620d99afa7d3_cgraph">
 <area shape="rect" title=" " alt="" coords="5,81,104,108"/>
 <area shape="rect" href="eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="152,81,216,108"/>
-<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="273,5,343,32"/>
-<area shape="rect" href="constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0" title=" " alt="" coords="264,56,352,83"/>
-<area shape="rect" href="constantes_8cpp.html#adb784dc2516689c3d42c5664f04eafd4" title=" " alt="" coords="266,107,350,133"/>
-<area shape="rect" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11" title=" " alt="" coords="267,157,349,184"/>
+<area shape="rect" href="overflow_8cpp.html#a63c87df7fc9c2697a41f1824e984ff28" title=" " alt="" coords="264,5,419,32"/>
+<area shape="rect" href="constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0" title=" " alt="" coords="297,56,385,83"/>
+<area shape="rect" href="constantes_8cpp.html#adb784dc2516689c3d42c5664f04eafd4" title=" " alt="" coords="299,107,383,133"/>
+<area shape="rect" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11" title=" " alt="" coords="300,157,383,184"/>
 </map>
 </div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="eqworddefine_8h_a5448e0fa38a2e448814fd99fccdc0b7f_icgraph.png" border="0" usemap="#eqworddefine_8h_a5448e0fa38a2e448814fd99fccdc0b7f_icgraph" alt=""/></div>
-<map name="eqworddefine_8h_a5448e0fa38a2e448814fd99fccdc0b7f_icgraph" id="eqworddefine_8h_a5448e0fa38a2e448814fd99fccdc0b7f_icgraph">
-<area shape="rect" title=" " alt="" coords="505,107,604,133"/>
-<area shape="rect" href="doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="321,5,457,32"/>
-<area shape="rect" href="prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="145,5,271,32"/>
-<area shape="rect" href="initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="355,107,423,133"/>
-<area shape="rect" href="normalparagraph_8h.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="330,208,449,235"/>
-<area shape="rect" href="starteqno_8h.html#a40e390a210c4e1831cf647cefaca8244" title=" " alt="" coords="351,335,427,361"/>
-<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,208,95,235"/>
-<area shape="rect" href="alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="169,157,247,184"/>
-<area shape="rect" href="begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="143,208,273,235"/>
-<area shape="rect" href="endgraf_8h.html#abee47be02d4d2b4c7bdb494f59a5a8bc" title=" " alt="" coords="175,259,241,285"/>
-<area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="181,309,235,336"/>
-<area shape="rect" href="initspan_8h.html#a1c347985717caccf5068d06b952b2a47" title=" " alt="" coords="175,360,241,387"/>
+<div class="center"><img src="eqworddefine_8h_adb9ada4ad25b8952045f620d99afa7d3_icgraph.png" border="0" usemap="#eqworddefine_8h_adb9ada4ad25b8952045f620d99afa7d3_icgraph" alt=""/></div>
+<map name="eqworddefine_8h_adb9ada4ad25b8952045f620d99afa7d3_icgraph" id="eqworddefine_8h_adb9ada4ad25b8952045f620d99afa7d3_icgraph">
+<area shape="rect" title=" " alt="" coords="645,239,744,266"/>
+<area shape="rect" href="initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="355,36,423,63"/>
+<area shape="rect" href="normalparagraph_8h.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="330,163,449,190"/>
+<area shape="rect" href="starteqno_8h.html#a40e390a210c4e1831cf647cefaca8244" title=" " alt="" coords="513,264,589,291"/>
+<area shape="rect" href="eqworddefine_8h.html#a7c3d6699306f4bffaf9ca32b140e609b" title=" " alt="" coords="505,366,597,392"/>
+<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,138,95,164"/>
+<area shape="rect" href="alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="169,62,247,88"/>
+<area shape="rect" href="begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="143,112,273,139"/>
+<area shape="rect" href="endgraf_8h.html#abee47be02d4d2b4c7bdb494f59a5a8bc" title=" " alt="" coords="175,163,241,190"/>
+<area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="181,214,235,240"/>
+<area shape="rect" href="initspan_8h.html#a1c347985717caccf5068d06b952b2a47" title=" " alt="" coords="175,264,241,291"/>
+<area shape="rect" href="doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="321,366,457,392"/>
+<area shape="rect" href="prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="145,366,271,392"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7c3d6699306f4bffaf9ca32b140e609b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c3d6699306f4bffaf9ca32b140e609b">&#9670;&nbsp;</a></span>word_define()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void word_define </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="eqworddefine_8cpp_source.html#l00015">15</a> du fichier <a class="el" href="eqworddefine_8cpp_source.html">eqworddefine.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">if</span> (a &gt;= 4)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="geqworddefine_8cpp.html#a159f7881894ccff280dcdd1fb31c77bf">geqworddefine</a>(p, w);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="eqworddefine_8cpp.html#a5448e0fa38a2e448814fd99fccdc0b7f">eqworddefine</a>(p, w);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="eqworddefine_8h_a7c3d6699306f4bffaf9ca32b140e609b_cgraph.png" border="0" usemap="#eqworddefine_8h_a7c3d6699306f4bffaf9ca32b140e609b_cgraph" alt=""/></div>
+<map name="eqworddefine_8h_a7c3d6699306f4bffaf9ca32b140e609b_cgraph" id="eqworddefine_8h_a7c3d6699306f4bffaf9ca32b140e609b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,97,57"/>
+<area shape="rect" href="eqworddefine_8cpp.html#a5448e0fa38a2e448814fd99fccdc0b7f" title=" " alt="" coords="149,5,248,32"/>
+<area shape="rect" href="geqworddefine_8cpp.html#a159f7881894ccff280dcdd1fb31c77bf" title=" " alt="" coords="145,56,252,83"/>
+<area shape="rect" href="eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="300,5,364,32"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="eqworddefine_8h_a7c3d6699306f4bffaf9ca32b140e609b_icgraph.png" border="0" usemap="#eqworddefine_8h_a7c3d6699306f4bffaf9ca32b140e609b_icgraph" alt=""/></div>
+<map name="eqworddefine_8h_a7c3d6699306f4bffaf9ca32b140e609b_icgraph" id="eqworddefine_8h_a7c3d6699306f4bffaf9ca32b140e609b_icgraph">
+<area shape="rect" title=" " alt="" coords="363,31,455,57"/>
+<area shape="rect" href="doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="179,5,315,32"/>
+<area shape="rect" href="prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,31,131,57"/>
 </map>
 </div>
 
@@ -179,6 +245,8 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="astructmemoryword_html_a4d5c9735ea2e99d2d3aed088c2fa3f0d"><div class="ttname"><a href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">memoryword::int_</a></div><div class="ttdeci">std::int32_t int_</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00074">tex.h:74</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa4df4dd4a8b0898dfb786074b600c956"><div class="ttname"><a href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a></div><div class="ttdeci">quarterword curlevel</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00105">globals.cpp:105</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9"><div class="ttname"><a href="globals_8cpp.html#a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9">xeqlevel</a></div><div class="ttdeci">quarterword xeqlevel[6107]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00098">globals.cpp:98</a></div></div>
+<div class="ttc" id="ageqworddefine_8cpp_html_a159f7881894ccff280dcdd1fb31c77bf"><div class="ttname"><a href="geqworddefine_8cpp.html#a159f7881894ccff280dcdd1fb31c77bf">geqworddefine</a></div><div class="ttdeci">void geqworddefine(halfword p, int w)</div><div class="ttdef"><b>Definition:</b> <a href="geqworddefine_8cpp_source.html#l00003">geqworddefine.cpp:3</a></div></div>
+<div class="ttc" id="aeqworddefine_8cpp_html_a5448e0fa38a2e448814fd99fccdc0b7f"><div class="ttname"><a href="eqworddefine_8cpp.html#a5448e0fa38a2e448814fd99fccdc0b7f">eqworddefine</a></div><div class="ttdeci">void eqworddefine(halfword p, int w)</div><div class="ttdef"><b>Definition:</b> <a href="eqworddefine_8cpp_source.html#l00005">eqworddefine.cpp:5</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

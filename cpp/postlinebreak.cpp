@@ -7,6 +7,10 @@
 #include "newpenalty.h"
 #include "confusion.h"
 
+static int broken_penalty(void) { return int_par(broken_penalty_code); }
+static int club_penalty(void) { return int_par(club_penalty_code); }
+static int inter_line_penalty(void) { return int_par(inter_line_penalty_code); }
+
 void postlinebreak(int finalwidowpenalty)
 {
 	halfword q, r, s;

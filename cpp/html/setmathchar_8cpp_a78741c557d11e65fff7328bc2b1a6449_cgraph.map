@@ -1,5 +1,11 @@
 <map id="setmathchar" name="setmathchar">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,100,57"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title=" " alt="" coords="148,5,209,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="155,56,202,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,100,130"/>
+<area shape="rect" id="node2" href="$parametres_8h.html#a07535a18a8328a1c21de6acc81e23278" title=" " alt="" coords="296,28,365,54"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a87e88894a437d840ce25774eff7d1010" title=" " alt="" coords="176,28,220,54"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#aa8ac4bb40ad503916456979c1a5a287e" title=" " alt="" coords="148,78,248,105"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title=" " alt="" coords="165,129,231,156"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="154,180,242,206"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="175,230,221,257"/>
+<area shape="rect" id="node3" href="$parametres_8h.html#ac3ce40331affce50f87879ed1cfe5a98" title="an integer parameter" alt="" coords="413,28,475,54"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="309,180,352,206"/>
 </map>

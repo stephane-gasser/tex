@@ -5,6 +5,12 @@
 #include "charbox.h"
 #include "half.h"
 
+static quarterword ext_bot(fourquarters q) { return q.b2; }
+static quarterword ext_top(fourquarters q) { return q.b0; }
+static quarterword ext_mid(fourquarters q) { return q.b1; }
+static quarterword ext_rep(fourquarters q) { return q.b3; }
+static int null_delimiter_space(void) { return dimen_par(null_delimiter_space_code); }
+
 halfword vardelimiter(halfword d, smallnumber s, scaled v)
 {
 	internalfontnumber f = null_font;

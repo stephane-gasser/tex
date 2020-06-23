@@ -3,10 +3,11 @@ var indexSectionsWithContent =
   0: "abcdefghijklmnopqrstuvwxyz",
   1: "filmt",
   2: "abcdefghijlmnoprstuvwxy",
-  3: "abcdefghijlmnoprstuvwxy",
-  4: "abcdefghijklmnopqrstuvwxyz",
+  3: "abcdefghijklmnopqrstuvwxy",
+  4: "abcdefghijklmnopqrstuvwx",
   5: "abdefghinpqstw",
-  6: "abcdefghijlmnoprstuvwxz"
+  6: "abcdefghijklmnopqrstuvwxyz",
+  7: "an"
 };
 
 var indexSectionNames =
@@ -17,7 +18,8 @@ var indexSectionNames =
   3: "functions",
   4: "variables",
   5: "typedefs",
-  6: "enumvalues"
+  6: "enumvalues",
+  7: "defines"
 };
 
 var indexSectionLabels =
@@ -28,6 +30,7 @@ var indexSectionLabels =
   3: "Fonctions",
   4: "Variables",
   5: "Définitions de type",
-  6: "Valeurs énumérées"
+  6: "Valeurs énumérées",
+  7: "Macros"
 };
 

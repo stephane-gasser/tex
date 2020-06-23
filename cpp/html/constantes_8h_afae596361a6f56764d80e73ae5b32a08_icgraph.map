@@ -1,12 +1,12 @@
 <map id="math_code" name="math_code">
-<area shape="rect" id="node1" title=" " alt="" coords="343,81,429,108"/>
-<area shape="rect" id="node2" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="183,5,254,32"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,31,95,57"/>
-<area shape="rect" id="node4" href="$scanmath_8h.html#a08e430fac951f380f2e3441e2c8c4fa4" title=" " alt="" coords="179,107,258,133"/>
-<area shape="rect" id="node8" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="143,233,295,260"/>
-<area shape="rect" id="node5" href="$mathac_8h.html#a9b15be3a9cc9ba63e0b8cdbf650bba92" title=" " alt="" coords="17,81,83,108"/>
-<area shape="rect" id="node6" href="$mathradical_8h.html#a6e86e5d001c758710d7dd35221efb5a6" title=" " alt="" coords="5,132,95,159"/>
-<area shape="rect" id="node7" href="$subsup_8h.html#a77899a1472c2f93b1001ccbbbee9986e" title=" " alt="" coords="18,183,82,209"/>
-<area shape="rect" id="node9" href="$scanint_8h.html#a625555ea8e7846b221c64b2c56e0e886" title=" " alt="" coords="18,233,82,260"/>
-<area shape="rect" id="node10" href="$thetoks_8h.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="17,284,83,311"/>
+<area shape="rect" id="node1" title=" " alt="" coords="480,107,567,133"/>
+<area shape="rect" id="node2" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="321,5,391,32"/>
+<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,132,95,159"/>
+<area shape="rect" id="node4" href="$scanmath_8h.html#a08e430fac951f380f2e3441e2c8c4fa4" title=" " alt="" coords="317,132,395,159"/>
+<area shape="rect" id="node7" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="280,284,432,311"/>
+<area shape="rect" id="node5" href="$mathradical_8h.html#a6e86e5d001c758710d7dd35221efb5a6" title=" " alt="" coords="143,157,232,184"/>
+<area shape="rect" id="node6" href="$subsup_8h.html#a77899a1472c2f93b1001ccbbbee9986e" title=" " alt="" coords="155,208,219,235"/>
+<area shape="rect" id="node8" href="$scandimen_8h.html#ad330bbbb06884a41f26209e039c103fa" title=" " alt="" coords="7,284,93,311"/>
+<area shape="rect" id="node9" href="$scanint_8h.html#a625555ea8e7846b221c64b2c56e0e886" title=" " alt="" coords="155,309,219,336"/>
+<area shape="rect" id="node10" href="$thetoks_8h.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="155,360,220,387"/>
 </map>

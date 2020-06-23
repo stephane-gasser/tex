@@ -1,10 +1,13 @@
 <map id="scantoks" name="scantoks">
-<area shape="rect" id="node1" title=" " alt="" coords="333,156,408,183"/>
-<area shape="rect" id="node2" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="186,29,278,56"/>
-<area shape="rect" id="node3" href="$issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="179,80,285,107"/>
-<area shape="rect" id="node4" href="$makemark_8h.html#a7ce350cb1567ad847f571cfcd9ec4118" title=" " alt="" coords="191,131,273,157"/>
-<area shape="rect" id="node6" href="$newpatterns_8h.html#a1356e8c74d8485cbd0e20c09f2c25886" title=" " alt="" coords="185,181,279,208"/>
-<area shape="rect" id="node7" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,207,131,233"/>
-<area shape="rect" id="node8" href="$shiftcase_8h.html#a466876aa5b16eb9d7556fd65d3479f6e" title=" " alt="" coords="195,283,269,309"/>
-<area shape="rect" id="node5" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="23,131,113,157"/>
+<area shape="rect" id="node1" title=" " alt="" coords="629,146,704,172"/>
+<area shape="rect" id="node2" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="150,158,242,184"/>
+<area shape="rect" id="node4" href="$issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="143,6,249,32"/>
+<area shape="rect" id="node5" href="$makemark_8h.html#a7ce350cb1567ad847f571cfcd9ec4118" title=" " alt="" coords="311,51,394,78"/>
+<area shape="rect" id="node6" href="$newpatterns_8h.html#a1356e8c74d8485cbd0e20c09f2c25886" title=" " alt="" coords="472,146,565,172"/>
+<area shape="rect" id="node7" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="456,247,581,274"/>
+<area shape="rect" id="node9" href="$shiftcase_8h.html#a466876aa5b16eb9d7556fd65d3479f6e" title=" " alt="" coords="159,342,233,368"/>
+<area shape="rect" id="node10" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="485,95,553,122"/>
+<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,158,95,184"/>
+<area shape="rect" id="node8" href="$doassignments_8h.html#a600d75e92c3a991d8672e091303a8b40" title=" " alt="" coords="297,240,408,267"/>
+<area shape="rect" id="node11" href="$outwhat_8h.html#a1137c5a00a506a80eadbe8aa55c400f5" title=" " alt="" coords="319,114,387,140"/>
 </map>

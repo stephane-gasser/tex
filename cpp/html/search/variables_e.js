@@ -1,23 +1,9 @@
 var searchData=
 [
-  ['oktointerrupt_3930',['OKtointerrupt',['../globals_8cpp.html#ab9098e7a67c7b99e8d4e6bf73b595a46',1,'OKtointerrupt():&#160;globals.cpp'],['../globals_8h.html#ab9098e7a67c7b99e8d4e6bf73b595a46',1,'OKtointerrupt():&#160;globals.cpp']]],
-  ['oldsetting_3931',['oldsetting',['../globals_8cpp.html#a5144e9be7698585335fc96f2811b5406',1,'oldsetting():&#160;globals.cpp'],['../globals_8h.html#a5144e9be7698585335fc96f2811b5406',1,'oldsetting():&#160;globals.cpp']]],
-  ['omit_3932',['omit',['../constantes_8h.html#aa03c5c39e2fe6ea469af522386bd386d',1,'constantes.h']]],
-  ['omit_5ftemplate_3933',['omit_template',['../constantes_8h.html#a08657db5e177375a159242a796b86cd0',1,'constantes.h']]],
-  ['op_5fnoad_3934',['op_noad',['../constantes_8h.html#a1e59e80f958e67a754fea0120467043b',1,'constantes.h']]],
-  ['open_5fnoad_3935',['open_noad',['../constantes_8h.html#ad845ceece5cf8563a105957b7fc4951e',1,'constantes.h']]],
-  ['openparens_3936',['openparens',['../globals_8cpp.html#a65665e248ec39eae47d82b3b4998684e',1,'openparens():&#160;globals.cpp'],['../globals_8h.html#a65665e248ec39eae47d82b3b4998684e',1,'openparens():&#160;globals.cpp']]],
-  ['opstart_3937',['opstart',['../globals_8cpp.html#ae3d06f4ec597dba51fce0e07eb168079',1,'opstart():&#160;globals.cpp'],['../globals_8h.html#a256d9ae122c5be5eda570656362ee2c7',1,'opstart():&#160;globals.cpp']]],
-  ['or_5fcode_3938',['or_code',['../constantes_8h.html#a61aa5c3c3eff7be2880934bc637d7f25',1,'constantes.h']]],
-  ['ord_5fnoad_3939',['ord_noad',['../constantes_8h.html#aa18add4cd35fa595374322ac53d02a94',1,'constantes.h']]],
-  ['other_5fchar_3940',['other_char',['../constantes_8h.html#a8a5eb778156370e1f03ac8e1aca88013',1,'constantes.h']]],
-  ['out_5fparam_3941',['out_param',['../constantes_8h.html#a9dd9e190539e154ea828a1f44b49e5d0',1,'constantes.h']]],
-  ['outer_5fcall_3942',['outer_call',['../constantes_8h.html#ac8dfd265db2e96685f89795d604853c9',1,'constantes.h']]],
-  ['output_5fpenalty_5fcode_3943',['output_penalty_code',['../constantes_8h.html#af0fe199042e298420bb35c4e0f16e3ee',1,'constantes.h']]],
-  ['output_5froutine_5floc_3944',['output_routine_loc',['../constantes_8h.html#a62bf36e098c4393e1217ab2f718393c1',1,'constantes.h']]],
-  ['outputactive_3945',['outputactive',['../globals_8cpp.html#a17302b8a9123daadacd6bfcff56ebe70',1,'outputactive():&#160;globals.cpp'],['../globals_8h.html#a17302b8a9123daadacd6bfcff56ebe70',1,'outputactive():&#160;globals.cpp']]],
-  ['outputfilename_3946',['outputfilename',['../globals_8h.html#a88e713a26c4b3005abc3a9e9f8f9b609',1,'globals.h']]],
-  ['over_5fcode_3947',['over_code',['../constantes_8h.html#a810929c0f2236c98a5fddb5dfb666e01',1,'constantes.h']]],
-  ['over_5fnoad_3948',['over_noad',['../constantes_8h.html#a603325089357a26cf771ce21b2f36e9f',1,'constantes.h']]],
-  ['overfull_5frule_5fcode_3949',['overfull_rule_code',['../constantes_8h.html#a3f710d4d22603aaef5389641cceada36',1,'constantes.h']]]
+  ['oktointerrupt_4106',['OKtointerrupt',['../globals_8cpp.html#ab9098e7a67c7b99e8d4e6bf73b595a46',1,'OKtointerrupt():&#160;globals.cpp'],['../globals_8h.html#ab9098e7a67c7b99e8d4e6bf73b595a46',1,'OKtointerrupt():&#160;globals.cpp']]],
+  ['oldsetting_4107',['oldsetting',['../globals_8cpp.html#a5144e9be7698585335fc96f2811b5406',1,'oldsetting():&#160;globals.cpp'],['../globals_8h.html#a5144e9be7698585335fc96f2811b5406',1,'oldsetting():&#160;globals.cpp']]],
+  ['openparens_4108',['openparens',['../globals_8cpp.html#a65665e248ec39eae47d82b3b4998684e',1,'openparens():&#160;globals.cpp'],['../globals_8h.html#a65665e248ec39eae47d82b3b4998684e',1,'openparens():&#160;globals.cpp']]],
+  ['opstart_4109',['opstart',['../globals_8cpp.html#ae3d06f4ec597dba51fce0e07eb168079',1,'opstart():&#160;globals.cpp'],['../globals_8h.html#a256d9ae122c5be5eda570656362ee2c7',1,'opstart():&#160;globals.cpp']]],
+  ['outputactive_4110',['outputactive',['../globals_8cpp.html#a17302b8a9123daadacd6bfcff56ebe70',1,'outputactive():&#160;globals.cpp'],['../globals_8h.html#a17302b8a9123daadacd6bfcff56ebe70',1,'outputactive():&#160;globals.cpp']]],
+  ['outputfilename_4111',['outputfilename',['../globals_8h.html#a88e713a26c4b3005abc3a9e9f8f9b609',1,'globals.h']]]
 ];

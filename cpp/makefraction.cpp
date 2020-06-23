@@ -8,6 +8,16 @@
 #include "vardelimiter.h"
 #include "hpack.h"
 
+static int delim1(smallnumber c) { return mathsy(20, c); }
+static int delim2(smallnumber c) { return mathsy(21, c); }
+static int denom1(smallnumber c) { return mathsy(11, c); }
+static int denom2(smallnumber c) { return mathsy(12, c); }
+static int num1(smallnumber c) { return mathsy(8, c); }
+static int num2(smallnumber c) { return mathsy(9, c); }
+static int num3(smallnumber c) { return mathsy(10, c); }
+static int denom_style(int c) { return 2*(c/2)+cramped+2-2*(c/6); } //!< smaller, cramped
+inline int num_style(int c) { return c+2-2*(c/6); } //!< smaller unless already script-script
+
 void makefraction(halfword q)
 {
 	if (thickness(q) == default_code)

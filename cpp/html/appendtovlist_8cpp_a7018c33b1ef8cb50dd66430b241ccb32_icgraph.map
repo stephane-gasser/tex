@@ -1,8 +1,9 @@
 <map id="appendtovlist" name="appendtovlist">
-<area shape="rect" id="node1" title=" " alt="" coords="275,56,373,83"/>
-<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="139,5,216,32"/>
-<area shape="rect" id="node3" href="$finrow_8h.html#a0dfcdcfca243b8bc38a56bc5f8675d21" title=" " alt="" coords="149,56,206,83"/>
-<area shape="rect" id="node5" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="128,107,227,133"/>
-<area shape="rect" id="node4" href="$doendv_8h.html#adbabc406ff0a986dc23c2ad8d5bc9008" title=" " alt="" coords="11,56,75,83"/>
-<area shape="rect" id="node6" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,107,80,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="415,56,513,83"/>
+<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="143,5,220,32"/>
+<area shape="rect" id="node4" href="$finrow_8h.html#a0dfcdcfca243b8bc38a56bc5f8675d21" title=" " alt="" coords="289,56,346,83"/>
+<area shape="rect" id="node6" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="268,107,367,133"/>
+<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,31,95,57"/>
+<area shape="rect" id="node5" href="$doendv_8h.html#adbabc406ff0a986dc23c2ad8d5bc9008" title=" " alt="" coords="149,56,213,83"/>
+<area shape="rect" id="node7" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="144,107,219,133"/>
 </map>

@@ -1,8 +1,9 @@
 <map id="geqworddefine.h" name="geqworddefine.h">
-<area shape="rect" id="node1" title=" " alt="" coords="301,5,418,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="383,5,501,32"/>
 <area shape="rect" id="node2" href="$doregistercommand_8cpp.html" title=" " alt="" coords="5,80,167,107"/>
-<area shape="rect" id="node3" href="$fireup_8cpp.html" title=" " alt="" coords="191,80,269,107"/>
-<area shape="rect" id="node4" href="$geqworddefine_8cpp.html" title=" " alt="" coords="294,80,425,107"/>
-<area shape="rect" id="node5" href="$prefixedcommand_8cpp.html" title=" " alt="" coords="449,80,600,107"/>
-<area shape="rect" id="node6" href="$preparemag_8cpp.html" title=" " alt="" coords="625,80,739,107"/>
+<area shape="rect" id="node3" href="$eqworddefine_8cpp.html" title=" " alt="" coords="191,80,315,107"/>
+<area shape="rect" id="node4" href="$fireup_8cpp.html" title=" " alt="" coords="339,80,417,107"/>
+<area shape="rect" id="node5" href="$geqworddefine_8cpp.html" title=" " alt="" coords="442,80,573,107"/>
+<area shape="rect" id="node6" href="$prefixedcommand_8cpp.html" title=" " alt="" coords="597,80,748,107"/>
+<area shape="rect" id="node7" href="$preparemag_8cpp.html" title=" " alt="" coords="773,80,887,107"/>
 </map>

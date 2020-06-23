@@ -4,6 +4,8 @@
 #include "printesc.h"
 #include "texte.h"
 
+static halfword& font_id_text(halfword p) { return text(font_id_base+p); }
+
 void shortdisplay(int p)
 {
 	while (p > memmin)

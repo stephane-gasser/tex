@@ -2,6 +2,9 @@
 #include "shownodelist.h"
 #include "println.h"
 
+static int show_box_breadth(void) { return int_par(show_box_breadth_code); }
+static int show_box_depth(void) { return int_par(show_box_depth_code); }
+
 void showbox(halfword p)
 {  
 	depththreshold = show_box_depth();

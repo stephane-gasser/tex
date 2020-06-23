@@ -1,13 +1,16 @@
 <map id="normalparagraph" name="normalparagraph">
-<area shape="rect" id="node1" title=" " alt="" coords="5,157,124,184"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd" title=" " alt="" coords="183,56,265,83"/>
-<area shape="rect" id="node3" href="$eqdefine_8cpp.html#a3391d0a47960eef3ec27804bb9bb0a15" title=" " alt="" coords="189,107,259,133"/>
-<area shape="rect" id="node9" href="$eqworddefine_8cpp.html#a5448e0fa38a2e448814fd99fccdc0b7f" title=" " alt="" coords="175,157,273,184"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title=" " alt="" coords="193,259,255,285"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#acd8e2010495121e1bcaa7765b0cacdfc" title=" " alt="" coords="172,208,276,235"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="328,5,399,32"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a30e61288612879b61525ab34298b794d" title=" " alt="" coords="329,56,397,83"/>
-<area shape="rect" id="node6" href="$eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="324,107,403,133"/>
-<area shape="rect" id="node7" href="$eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="331,157,395,184"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title=" " alt="" coords="337,208,390,235"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,233,124,260"/>
+<area shape="rect" id="node2" href="$eqdefine_8cpp.html#a3391d0a47960eef3ec27804bb9bb0a15" title=" " alt="" coords="189,107,259,133"/>
+<area shape="rect" id="node8" href="$eqworddefine_8cpp.html#a5448e0fa38a2e448814fd99fccdc0b7f" title=" " alt="" coords="175,157,273,184"/>
+<area shape="rect" id="node9" href="$parametres_8h.html#a80b4ce22c8d7953b8d9d69c5b1868232" title=" " alt="" coords="183,259,265,285"/>
+<area shape="rect" id="node11" href="$parametres_8h.html#aa87a7f865a9c4a7d5d00c022fc6df36e" title=" " alt="" coords="178,360,270,387"/>
+<area shape="rect" id="node13" href="$parametres_8h.html#a5c11bf6d52f10a4dead1d46df79e27a6" title=" " alt="" coords="183,309,265,336"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#acd8e2010495121e1bcaa7765b0cacdfc" title=" " alt="" coords="172,208,276,235"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="330,5,401,32"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a30e61288612879b61525ab34298b794d" title=" " alt="" coords="331,56,399,83"/>
+<area shape="rect" id="node5" href="$eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="326,107,405,133"/>
+<area shape="rect" id="node6" href="$eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="333,157,397,184"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title=" " alt="" coords="339,208,392,235"/>
+<area shape="rect" id="node10" href="$parametres_8h.html#ac3ce40331affce50f87879ed1cfe5a98" title="an integer parameter" alt="" coords="335,284,396,311"/>
+<area shape="rect" id="node12" href="$parametres_8h.html#acfaa61c71f30fc29cb6be5c1ee5ad595" title="dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity" alt="" coords="324,360,407,387"/>
 </map>

@@ -31,6 +31,9 @@ static void choose_mlist(halfword &p, halfword q, halfword& (*f)(halfword))
 	f(q) = 0;
 }
 
+static int bin_op_penalty(void) { return int_par(bin_op_penalty_code); }
+static int rel_penalty(void) { return int_par(rel_penalty_code); }
+
 void mlisttohlist(void)
 {
 	halfword p, x, y, z;

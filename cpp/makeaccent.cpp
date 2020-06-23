@@ -7,6 +7,8 @@
 #include "newkern.h"
 #include <cmath>
 
+static int& slant(internalfontnumber f) { return param(slant_code, f); }
+
 void makeaccent(void)
 {
 	float s, t;

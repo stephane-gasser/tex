@@ -1,7 +1,8 @@
 <map id="text_mlist" name="text_mlist">
-<area shape="rect" id="node1" title=" " alt="" coords="452,612,531,639"/>
+<area shape="rect" id="node1" title=" " alt="" coords="452,789,531,816"/>
 <area shape="rect" id="node2" href="$flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="309,409,404,436"/>
 <area shape="rect" id="node14" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,637,91,664"/>
+<area shape="rect" id="node18" href="$newchoice_8h.html#a6cb7977fae87b2f4f45a5cfb7c184809" title=" " alt="" coords="315,840,399,867"/>
 <area shape="rect" id="node3" href="$boxerror_8h.html#a0bbccd15aae646ece75f2703dda44c2e" title=" " alt="" coords="165,5,235,32"/>
 <area shape="rect" id="node4" href="$builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2" title=" " alt="" coords="139,56,261,83"/>
 <area shape="rect" id="node5" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="161,107,239,133"/>
@@ -16,4 +17,5 @@
 <area shape="rect" id="node15" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="151,536,249,563"/>
 <area shape="rect" id="node16" href="$prunepagetop_8h.html#afd81d1b3f22735dc6e67ad0266cf0e89" title=" " alt="" coords="150,688,250,715"/>
 <area shape="rect" id="node17" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="168,739,232,765"/>
+<area shape="rect" id="node19" href="$appendchoices_8h.html#a8f7ed45d5a9980b4d2dd4739091bedff" title=" " alt="" coords="145,840,255,867"/>
 </map>

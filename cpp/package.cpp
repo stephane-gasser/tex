@@ -5,6 +5,8 @@
 #include "popnest.h"
 #include "boxend.h"
 
+static int box_max_depth(void) { return dimen_par(box_max_depth_code); }
+
 void package(smallnumber c)
 {
 	scaled d = box_max_depth();

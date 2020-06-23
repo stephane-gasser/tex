@@ -7,6 +7,13 @@
 #include "freenode.h"
 #include "newkern.h"
 
+static int big_op_spacing1(void) { return mathex(9); }
+static int big_op_spacing2(void) { return mathex(10); }
+static int big_op_spacing3(void) { return mathex(11); }
+static int big_op_spacing4(void) { return mathex(12); }
+static int big_op_spacing5(void) { return mathex(13); }
+
+
 scaled makeop(halfword q)
 {
 	if (subtype(q) == normal && curstyle < text_style)

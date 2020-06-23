@@ -100,10 +100,80 @@ Graphe des dépendances par inclusion de overflow.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
+<tr class="memitem:a570e0c3ba4fd6dec0e3e83fbb09d04e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a> (int n)</td></tr>
+<tr class="separator:a570e0c3ba4fd6dec0e3e83fbb09d04e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bca71d1f000d89550daacde5c539d5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a> (const std::string &amp;s, int n)</td></tr>
 <tr class="separator:a9bca71d1f000d89550daacde5c539d5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63c87df7fc9c2697a41f1824e984ff28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="overflow_8cpp.html#a63c87df7fc9c2697a41f1824e984ff28">check_full_save_stack</a> (void)</td></tr>
+<tr class="separator:a63c87df7fc9c2697a41f1824e984ff28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a63c87df7fc9c2697a41f1824e984ff28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63c87df7fc9c2697a41f1824e984ff28">&#9670;&nbsp;</a></span>check_full_save_stack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void check_full_save_stack </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="overflow_8cpp_source.html#l00038">38</a> du fichier <a class="el" href="overflow_8cpp_source.html">overflow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a> &gt; <a class="code" href="globals_8cpp.html#a5ece84ab93a4020fd88922f894a642bd">maxsavestack</a>)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="globals_8cpp.html#a5ece84ab93a4020fd88922f894a642bd">maxsavestack</a> = <a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a5ece84ab93a4020fd88922f894a642bd">maxsavestack</a>&gt; <a class="code" href="tex_8h.html#a0851bb8aafb5048d795782a1027dbdd7">savesize</a>-6) </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <a class="code" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;save size&quot;</span>,<a class="code" href="tex_8h.html#a0851bb8aafb5048d795782a1027dbdd7">savesize</a>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="overflow_8cpp_a63c87df7fc9c2697a41f1824e984ff28_cgraph.png" border="0" usemap="#overflow_8cpp_a63c87df7fc9c2697a41f1824e984ff28_cgraph" alt=""/></div>
+<map name="overflow_8cpp_a63c87df7fc9c2697a41f1824e984ff28_cgraph" id="overflow_8cpp_a63c87df7fc9c2697a41f1824e984ff28_cgraph">
+<area shape="rect" title=" " alt="" coords="5,208,160,235"/>
+<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="208,208,279,235"/>
+<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="365,144,413,171"/>
+<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="499,5,567,32"/>
+<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="615,183,661,209"/>
+<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="709,132,781,159"/>
+<area shape="rect" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="502,56,563,83"/>
+<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="504,208,561,235"/>
+<area shape="rect" href="normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="327,360,451,387"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="overflow_8cpp_a63c87df7fc9c2697a41f1824e984ff28_icgraph.png" border="0" usemap="#overflow_8cpp_a63c87df7fc9c2697a41f1824e984ff28_icgraph" alt=""/></div>
+<map name="overflow_8cpp_a63c87df7fc9c2697a41f1824e984ff28_icgraph" id="overflow_8cpp_a63c87df7fc9c2697a41f1824e984ff28_icgraph">
+<area shape="rect" title=" " alt="" coords="641,309,796,336"/>
+<area shape="rect" href="eqsave_8h.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="511,56,575,83"/>
+<area shape="rect" href="newsavelevel_8h.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="492,309,593,336"/>
+<area shape="rect" href="saveforafter_8h.html#aae407f09853a167eea959b30dda12a67" title=" " alt="" coords="163,512,253,539"/>
+<area shape="rect" href="eqdefine_8h.html#a4f9657182abb3c8c499ccd689be3f647" title=" " alt="" coords="347,5,418,32"/>
+<area shape="rect" href="eqworddefine_8h.html#adb9ada4ad25b8952045f620d99afa7d3" title=" " alt="" coords="333,56,432,83"/>
+<area shape="rect" href="alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="344,259,421,285"/>
+<area shape="rect" href="initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="175,284,241,311"/>
+<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,360,95,387"/>
+<area shape="rect" href="begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="143,411,273,437"/>
+<area shape="rect" href="builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2" title=" " alt="" coords="321,461,444,488"/>
+<area shape="rect" href="fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="356,512,409,539"/>
+<area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="355,107,410,133"/>
+<area shape="rect" href="pushmath_8h.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="343,157,422,184"/>
+<area shape="rect" href="scanspec_8h.html#ac8cb2374dcb9af6d4553bbff3533adf1" title=" " alt="" coords="343,208,422,235"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a9bca71d1f000d89550daacde5c539d5d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9bca71d1f000d89550daacde5c539d5d">&#9670;&nbsp;</a></span>overflow()</h2>
 
@@ -130,25 +200,25 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="overflow_8cpp_source.html#l00012">12</a> du fichier <a class="el" href="overflow_8cpp_source.html">overflow.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5">normalizeselector</a>();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;! &quot;</span>); </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;TeX capacity exceeded, sorry [&quot;</span>);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(s);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;=&#39;</span>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a>(n);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;]&#39;</span>);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 2;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[1] = <span class="stringliteral">&quot;If you really absolutely need more capacity,&quot;</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;you can ask a wizard to enlarge me.&quot;</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a> == <a class="code" href="constantes_8h.html#a1a4a13dd6599416b84a72bd72e1d78d2">error_stop_mode</a>)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a> = <a class="code" href="constantes_8h.html#a8e76be314ebd16c140d7d79e56b3e4aa">scroll_mode</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#ac2e4effa98b7dc9b20259bdbd8a7bdc5">logopened</a>)</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="globals_8cpp.html#ab5d92e4cca25128ab62895809b500972">history</a> = <a class="code" href="constantes_8h.html#ab2b161911132e6ab1fc3ffcd5d329076">fatal_error_stop</a>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e">jumpout</a>();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="overflow_8cpp_source.html#l00018">18</a> du fichier <a class="el" href="overflow_8cpp_source.html">overflow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5">normalizeselector</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;! &quot;</span>); </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;TeX capacity exceeded, sorry [&quot;</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(s);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;=&#39;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a>(n);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;]&#39;</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 2;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[1] = <span class="stringliteral">&quot;If you really absolutely need more capacity,&quot;</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;you can ask a wizard to enlarge me.&quot;</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a> == <a class="code" href="constantes_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a8b6e5947264532204d9fe39c29db0631">error_stop_mode</a>)</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a> = <a class="code" href="constantes_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ae429dc15ce11ca55980a82ac82b0309c">scroll_mode</a>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#ac2e4effa98b7dc9b20259bdbd8a7bdc5">logopened</a>)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="globals_8cpp.html#ab5d92e4cca25128ab62895809b500972">history</a> = <a class="code" href="constantes_8h.html#a99fb83031ce9923c84392b4e92f956b5a847000ebc3e036c9740102b4d9ec0732">fatal_error_stop</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e">jumpout</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
@@ -178,74 +248,112 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="overflow_8cpp_a9bca71d1f000d89550daacde5c539d5d_icgraph.png" border="0" usemap="#overflow_8cpp_a9bca71d1f000d89550daacde5c539d5d_icgraph" alt=""/></div>
 <map name="overflow_8cpp_a9bca71d1f000d89550daacde5c539d5d_icgraph" id="overflow_8cpp_a9bca71d1f000d89550daacde5c539d5d_icgraph">
-<area shape="rect" title=" " alt="" coords="1027,1728,1097,1755"/>
-<area shape="rect" href="backinput_8h.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="711,968,789,995"/>
-<area shape="rect" href="expand_8h.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="388,1373,452,1400"/>
-<area shape="rect" href="macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="381,436,459,463"/>
-<area shape="rect" href="findfontdimen_8h.html#a3a1391088579b75ddb821a1f66a01b42" title=" " alt="" coords="205,1373,305,1400"/>
-<area shape="rect" href="newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="221,1728,289,1755"/>
-<area shape="rect" href="beginfilereading_8h.html#af501832c4c8d2d3ee398905b7857c4b1" title=" " alt="" coords="867,1348,979,1375"/>
-<area shape="rect" href="begintokenlist_8h.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="699,284,801,311"/>
-<area shape="rect" href="endname_8h.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="713,1779,787,1805"/>
-<area shape="rect" href="eqsave_8h.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="891,1525,955,1552"/>
-<area shape="rect" href="firstfit_8h.html#a9ec7e5f14730f1045a0cafbb2b259e2f" title=" " alt="" coords="895,1576,950,1603"/>
-<area shape="rect" href="getavail_8h.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="889,1399,956,1425"/>
-<area shape="rect" href="newhyphexceptions_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="681,1981,819,2008"/>
-<area shape="rect" href="pushnest_8h.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="713,487,787,513"/>
-<area shape="rect" href="idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="715,1880,785,1907"/>
-<area shape="rect" href="inputln_8h.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="893,1829,953,1856"/>
-<area shape="rect" href="issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="697,2032,803,2059"/>
-<area shape="rect" href="makestring_8h.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="879,1931,966,1957"/>
-<area shape="rect" href="storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="707,2083,793,2109"/>
-<area shape="rect" href="morename_8h.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="709,1728,791,1755"/>
-<area shape="rect" href="newpatterns_8h.html#a1356e8c74d8485cbd0e20c09f2c25886" title=" " alt="" coords="703,2133,797,2160"/>
-<area shape="rect" href="newsavelevel_8h.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="369,5,471,32"/>
-<area shape="rect" href="newtrieop_8h.html#a8023c9c96a124c4d7a09141cb18a452f" title=" " alt="" coords="883,2133,962,2160"/>
-<area shape="rect" href="saveforafter_8h.html#aae407f09853a167eea959b30dda12a67" title=" " alt="" coords="877,2235,968,2261"/>
-<area shape="rect" href="specialout_8h.html#aa0e252049df8a1e42832dadc540f2899" title=" " alt="" coords="882,2285,963,2312"/>
-<area shape="rect" href="strtoks_8h.html#a0164a29d5025ab7576b0af8c5aa59bae" title=" " alt="" coords="891,2336,954,2363"/>
-<area shape="rect" href="alignerror_8h.html#a96f36a6afe751cbfd07b095782045b7d" title=" " alt="" coords="383,1019,457,1045"/>
-<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="211,563,300,589"/>
-<area shape="rect" href="backerror_8h.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title=" " alt="" coords="546,1171,622,1197"/>
-<area shape="rect" href="prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="19,1652,144,1679"/>
-<area shape="rect" href="scanint_8h.html#a625555ea8e7846b221c64b2c56e0e886" title=" " alt="" coords="388,1299,452,1325"/>
-<area shape="rect" href="doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="209,1551,301,1577"/>
-<area shape="rect" href="scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="5,1196,157,1223"/>
-<area shape="rect" href="handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="361,968,479,995"/>
-<area shape="rect" href="headforvmode_8h.html#a3128641e5b4a7dd454caf724178c4023" title=" " alt="" coords="368,360,472,387"/>
-<area shape="rect" href="initcol_8h.html#a1c3a2eedfb749e57cf833cc140fbe403" title=" " alt="" coords="556,259,612,285"/>
-<area shape="rect" href="initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="550,309,618,336"/>
-<area shape="rect" href="inserror_8h.html#a78ba8096cd55b7c51db15c721de975b2" title=" " alt="" coords="551,968,617,995"/>
-<area shape="rect" href="insertdollarsign_8h.html#a77aab94f9ce883d5a1d5995c4a7e8430" title=" " alt="" coords="365,917,475,944"/>
-<area shape="rect" href="insertrelax_8h.html#a3c1d60d7781e5b1b3733906b0cb43129" title=" " alt="" coords="543,765,625,792"/>
-<area shape="rect" href="itsallover_8h.html#a328c29eeaa688dcd15cc3534c1b078bc" title=" " alt="" coords="383,512,457,539"/>
-<area shape="rect" href="makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="537,563,631,589"/>
-<area shape="rect" href="offsave_8h.html#a63378f93afc7d8ca66b9fe6f6f3d920b" title=" " alt="" coords="551,157,617,184"/>
-<area shape="rect" href="resumeafterdisplay_8h.html#a5e20dcff03a0b655888f77fb621b21d4" title=" " alt="" coords="354,816,486,843"/>
-<area shape="rect" href="scanfilename_8h.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="535,1728,633,1755"/>
-<area shape="rect" href="scankeyword_8h.html#a0b4a13a205b8c0a47dc755f3314ec3ee" title=" " alt="" coords="535,1627,633,1653"/>
-<area shape="rect" href="scanmath_8h.html#a08e430fac951f380f2e3441e2c8c4fa4" title=" " alt="" coords="545,664,623,691"/>
-<area shape="rect" href="scanoptionalequals_8h.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="353,1627,487,1653"/>
-<area shape="rect" href="unsave_8h.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="552,867,616,893"/>
+<area shape="rect" title=" " alt="" coords="680,453,751,480"/>
+<area shape="rect" href="beginfilereading_8h.html#af501832c4c8d2d3ee398905b7857c4b1" title=" " alt="" coords="317,340,429,367"/>
+<area shape="rect" href="findfontdimen_8h.html#a3a1391088579b75ddb821a1f66a01b42" title=" " alt="" coords="24,187,124,213"/>
+<area shape="rect" href="macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="35,313,113,340"/>
+<area shape="rect" href="newhyphexceptions_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="5,769,143,796"/>
+<area shape="rect" href="newpatterns_8h.html#a1356e8c74d8485cbd0e20c09f2c25886" title=" " alt="" coords="27,73,121,100"/>
+<area shape="rect" href="overflow_8h.html#a63c87df7fc9c2697a41f1824e984ff28" title=" " alt="" coords="477,225,632,252"/>
+<area shape="rect" href="newsavelevel_8h.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="323,187,424,213"/>
+<area shape="rect" href="endname_8h.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="336,719,411,745"/>
+<area shape="rect" href="expand_8h.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="341,465,405,492"/>
+<area shape="rect" href="firstfit_8h.html#a9ec7e5f14730f1045a0cafbb2b259e2f" title=" " alt="" coords="527,479,582,505"/>
+<area shape="rect" href="getavail_8h.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="521,580,588,607"/>
+<area shape="rect" href="pushnest_8h.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="336,668,411,695"/>
+<area shape="rect" href="idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="338,820,409,847"/>
+<area shape="rect" href="inputln_8h.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="343,391,403,417"/>
+<area shape="rect" href="makestring_8h.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="511,732,598,759"/>
+<area shape="rect" href="newtrieop_8h.html#a8023c9c96a124c4d7a09141cb18a452f" title=" " alt="" coords="191,23,269,49"/>
+<area shape="rect" href="pushinput_8h.html#a6c38405ba74f1488201842d119ceef96" title=" " alt="" coords="512,377,597,404"/>
+<area shape="rect" href="overflow_8h.html#a660e4de544f7296aa4e385a3122e298e" title=" " alt="" coords="518,833,591,860"/>
+<area shape="rect" href="error_8h.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="206,313,254,340"/>
+<area shape="rect" href="readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="38,415,110,441"/>
+<area shape="rect" href="startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="192,415,268,441"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a570e0c3ba4fd6dec0e3e83fbb09d04e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a570e0c3ba4fd6dec0e3e83fbb09d04e7">&#9670;&nbsp;</a></span>str_room()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void str_room </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="overflow_8cpp_source.html#l00012">12</a> du fichier <a class="el" href="overflow_8cpp_source.html">overflow.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adc7927a275454b0cbbfa3b06a11035f5">poolptr</a>+n &gt; <a class="code" href="tex_8h.html#a058c603969af37168b3eb0a8bdc5f551">poolsize</a>)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;      <a class="code" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;pool size&quot;</span>, <a class="code" href="tex_8h.html#a058c603969af37168b3eb0a8bdc5f551">poolsize</a>-<a class="code" href="globals_8cpp.html#ae0f3f1041706f4a198a3b0b7c0c6c905">initpoolptr</a>); </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="overflow_8cpp_a570e0c3ba4fd6dec0e3e83fbb09d04e7_cgraph.png" border="0" usemap="#overflow_8cpp_a570e0c3ba4fd6dec0e3e83fbb09d04e7_cgraph" alt=""/></div>
+<map name="overflow_8cpp_a570e0c3ba4fd6dec0e3e83fbb09d04e7_cgraph" id="overflow_8cpp_a570e0c3ba4fd6dec0e3e83fbb09d04e7_cgraph">
+<area shape="rect" title=" " alt="" coords="5,208,79,235"/>
+<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="127,208,197,235"/>
+<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="283,144,331,171"/>
+<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="417,5,485,32"/>
+<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="533,183,580,209"/>
+<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="628,132,700,159"/>
+<area shape="rect" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="421,56,482,83"/>
+<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="423,208,480,235"/>
+<area shape="rect" href="normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="245,360,369,387"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="overflow_8cpp_a570e0c3ba4fd6dec0e3e83fbb09d04e7_icgraph.png" border="0" usemap="#overflow_8cpp_a570e0c3ba4fd6dec0e3e83fbb09d04e7_icgraph" alt=""/></div>
+<map name="overflow_8cpp_a570e0c3ba4fd6dec0e3e83fbb09d04e7_icgraph" id="overflow_8cpp_a570e0c3ba4fd6dec0e3e83fbb09d04e7_icgraph">
+<area shape="rect" title=" " alt="" coords="309,208,383,235"/>
+<area shape="rect" href="idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="157,31,228,57"/>
+<area shape="rect" href="issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="139,81,246,108"/>
+<area shape="rect" href="morename_8h.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="151,132,234,159"/>
+<area shape="rect" href="newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="159,183,227,209"/>
+<area shape="rect" href="newhyphexceptions_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="124,233,261,260"/>
+<area shape="rect" href="specialout_8h.html#aa0e252049df8a1e42832dadc540f2899" title=" " alt="" coords="152,284,233,311"/>
+<area shape="rect" href="storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="149,335,236,361"/>
+<area shape="rect" href="strtoks_8h.html#a0164a29d5025ab7576b0af8c5aa59bae" title=" " alt="" coords="161,385,224,412"/>
+<area shape="rect" href="getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="8,5,73,32"/>
+<area shape="rect" href="primitive_8h.html#afd390c212945223fe7892dc9e61dcc3d" title=" " alt="" coords="5,56,76,83"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
+<div class="ttc" id="aconstantes_8h_html_a99fb83031ce9923c84392b4e92f956b5a847000ebc3e036c9740102b4d9ec0732"><div class="ttname"><a href="constantes_8h.html#a99fb83031ce9923c84392b4e92f956b5a847000ebc3e036c9740102b4d9ec0732">fatal_error_stop</a></div><div class="ttdeci">@ fatal_error_stop</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00075">constantes.h:75</a></div></div>
 <div class="ttc" id="anormalizeselector_8cpp_html_a1d7f85ee04947a7fe6ffa54bbe4ed2a5"><div class="ttname"><a href="normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5">normalizeselector</a></div><div class="ttdeci">void normalizeselector(void)</div><div class="ttdef"><b>Definition:</b> <a href="normalizeselector_8cpp_source.html#l00004">normalizeselector.cpp:4</a></div></div>
+<div class="ttc" id="atex_8h_html_a0851bb8aafb5048d795782a1027dbdd7"><div class="ttname"><a href="tex_8h.html#a0851bb8aafb5048d795782a1027dbdd7">savesize</a></div><div class="ttdeci">constexpr int savesize</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00024">tex.h:24</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a0489286d29b84691df49ff88e8487b1a"><div class="ttname"><a href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a></div><div class="ttdeci">char interaction</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00064">globals.cpp:64</a></div></div>
 <div class="ttc" id="aglobals_8h_html_ae1c0d92ce2fe057255c7badbbb0615b0"><div class="ttname"><a href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a></div><div class="ttdeci">std::string helpline[6]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00071">globals.h:71</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_ab2b161911132e6ab1fc3ffcd5d329076"><div class="ttname"><a href="constantes_8h.html#ab2b161911132e6ab1fc3ffcd5d329076">fatal_error_stop</a></div><div class="ttdeci">constexpr int fatal_error_stop</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00041">constantes.h:41</a></div></div>
+<div class="ttc" id="aoverflow_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00018">overflow.cpp:18</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_adf764cbdea00d65edcd07bb9953ad2b7a8b6e5947264532204d9fe39c29db0631"><div class="ttname"><a href="constantes_8h.html#adf764cbdea00d65edcd07bb9953ad2b7a8b6e5947264532204d9fe39c29db0631">error_stop_mode</a></div><div class="ttdeci">@ error_stop_mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00067">constantes.h:67</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_ab5d92e4cca25128ab62895809b500972"><div class="ttname"><a href="globals_8cpp.html#ab5d92e4cca25128ab62895809b500972">history</a></div><div class="ttdeci">char history</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00067">globals.cpp:67</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a85c0624f93ed5c5e8c722316dad139af"><div class="ttname"><a href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a></div><div class="ttdeci">char helpptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00069">globals.cpp:69</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_adf764cbdea00d65edcd07bb9953ad2b7ae429dc15ce11ca55980a82ac82b0309c"><div class="ttname"><a href="constantes_8h.html#adf764cbdea00d65edcd07bb9953ad2b7ae429dc15ce11ca55980a82ac82b0309c">scroll_mode</a></div><div class="ttdeci">@ scroll_mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00066">constantes.h:66</a></div></div>
 <div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
 <div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00019">error.cpp:19</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a1a4a13dd6599416b84a72bd72e1d78d2"><div class="ttname"><a href="constantes_8h.html#a1a4a13dd6599416b84a72bd72e1d78d2">error_stop_mode</a></div><div class="ttdeci">constexpr int error_stop_mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00037">constantes.h:37</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_adc7927a275454b0cbbfa3b06a11035f5"><div class="ttname"><a href="globals_8cpp.html#adc7927a275454b0cbbfa3b06a11035f5">poolptr</a></div><div class="ttdeci">poolpointer poolptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00053">globals.cpp:53</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_ac2e4effa98b7dc9b20259bdbd8a7bdc5"><div class="ttname"><a href="globals_8cpp.html#ac2e4effa98b7dc9b20259bdbd8a7bdc5">logopened</a></div><div class="ttdeci">bool logopened</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00144">globals.cpp:144</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a8e76be314ebd16c140d7d79e56b3e4aa"><div class="ttname"><a href="constantes_8h.html#a8e76be314ebd16c140d7d79e56b3e4aa">scroll_mode</a></div><div class="ttdeci">constexpr int scroll_mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00036">constantes.h:36</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a5ece84ab93a4020fd88922f894a642bd"><div class="ttname"><a href="globals_8cpp.html#a5ece84ab93a4020fd88922f894a642bd">maxsavestack</a></div><div class="ttdeci">int maxsavestack</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00104">globals.cpp:104</a></div></div>
+<div class="ttc" id="atex_8h_html_a058c603969af37168b3eb0a8bdc5f551"><div class="ttname"><a href="tex_8h.html#a058c603969af37168b3eb0a8bdc5f551">poolsize</a></div><div class="ttdeci">constexpr int poolsize</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00023">tex.h:23</a></div></div>
 <div class="ttc" id="aprintint_8cpp_html_a3e0bbc492597d05b770a8e0ba03b95ee"><div class="ttname"><a href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a></div><div class="ttdeci">void printint(int n)</div><div class="ttdef"><b>Definition:</b> <a href="printint_8cpp_source.html#l00005">printint.cpp:5</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_ae0f3f1041706f4a198a3b0b7c0c6c905"><div class="ttname"><a href="globals_8cpp.html#ae0f3f1041706f4a198a3b0b7c0c6c905">initpoolptr</a></div><div class="ttdeci">poolpointer initpoolptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00055">globals.cpp:55</a></div></div>
 <div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00103">globals.cpp:103</a></div></div>
 <div class="ttc" id="aprintnl_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printnl_8cpp_source.html#l00005">printnl.cpp:5</a></div></div>
 <div class="ttc" id="ajumpout_8cpp_html_adeb1545ae01b6cbf0a224dc6a207876e"><div class="ttname"><a href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e">jumpout</a></div><div class="ttdeci">void jumpout(void)</div><div class="ttdef"><b>Definition:</b> <a href="jumpout_8cpp_source.html#l00003">jumpout.cpp:3</a></div></div>
 <!-- start footer part -->

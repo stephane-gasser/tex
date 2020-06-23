@@ -1,6 +1,9 @@
 #include "makeleftright.h"
 #include "vardelimiter.h"
 
+static int delimiter_factor(void) { return int_par(delimiter_factor_code); }
+static int delimiter_shortfall(void) { return dimen_par(delimiter_shortfall_code); }
+
 smallnumber makeleftright(halfword q, smallnumber style, scaled maxd, scaled  maxh)
 {
 	if (style < 4)

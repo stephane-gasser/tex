@@ -91,6 +91,10 @@ Graphe des dépendances par inclusion de appspace.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
+<tr class="memitem:ab93755269dcb3e9e521d7b8d050eee12"><td class="memItemLeft" align="right" valign="top">static int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="appspace_8cpp.html#ab93755269dcb3e9e521d7b8d050eee12">extra_space</a> (<a class="el" href="tex_8h.html#a31e60baff034e87efe01cbf977b72a39">internalfontnumber</a> <a class="el" href="globals_8h.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>)</td></tr>
+<tr class="separator:ab93755269dcb3e9e521d7b8d050eee12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af864696f1ddeca037bf4dde4b9bc8065"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="appspace_8cpp.html#af864696f1ddeca037bf4dde4b9bc8065">xspace_skip</a> (void)</td></tr>
+<tr class="separator:af864696f1ddeca037bf4dde4b9bc8065"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c707281d9750ee2873ef686c1bdd82e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="appspace_8cpp.html#a9c707281d9750ee2873ef686c1bdd82e">appspace</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> &amp;<a class="el" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>, <a class="el" href="tex_8h.html#a211c0ac76a462ccc0920c71e4792db6d">fontindex</a> &amp;<a class="el" href="maincontrol_8cpp.html#a81d1b865b1f8342a5df3554bda0fc0c9">maink</a>)</td></tr>
 <tr class="separator:a9c707281d9750ee2873ef686c1bdd82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -121,63 +125,68 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="appspace_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="appspace_8cpp_source.html">appspace.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a> &gt;= 2000 &amp;&amp; <a class="code" href="constantes_8cpp.html#a55a5074316047ffbb5e4b6eee78f732d">xspace_skip</a>())</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> = <a class="code" href="newparamglue_8cpp.html#af03d944ebde3715a26223523628b2376">newparamglue</a>(13);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aa3d9194e9119c03c6c231ea50c0c494a">space_skip</a>())</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a> = <a class="code" href="constantes_8cpp.html#aa3d9194e9119c03c6c231ea50c0c494a">space_skip</a>();</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a> = <a class="code" href="globals_8cpp.html#a75699ebe1245075a1c75e286ba0f43a1">fontglue</a>[<a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>()];</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a> == 0)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a> = <a class="code" href="newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865">newspec</a>(<a class="code" href="constantes_8h.html#a02879de1039ebbaac129d4062e194b9f">zero_glue</a>);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <a class="code" href="maincontrol_8cpp.html#a81d1b865b1f8342a5df3554bda0fc0c9">maink</a> = 2+<a class="code" href="globals_8cpp.html#a1d5e409d051ce75abba4a9afdb7cc7f4">parambase</a>[<a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>()];</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) = <a class="code" href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f">param</a>(<a class="code" href="constantes_8h.html#af695bb8bf43ecac27c54822211962473">space_code</a>, <a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>());</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <a class="code" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) = <a class="code" href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f">param</a>(<a class="code" href="constantes_8h.html#a4bc6d0a5a7b6734516cec38bce809132">space_stretch_code</a>, <a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>());</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <a class="code" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) = <a class="code" href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f">param</a>(<a class="code" href="constantes_8h.html#aab58f046ef444b36063ee402c104442f">space_shrink_code</a>, <a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>());</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <a class="code" href="globals_8cpp.html#a75699ebe1245075a1c75e286ba0f43a1">fontglue</a>[<a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>()] = <a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            }</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a> = <a class="code" href="newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865">newspec</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a> &gt;= 2000)</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) += <a class="code" href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f">param</a>(<a class="code" href="constantes_8h.html#af239a4baf75c2fbaaab3cae37e4ee18c">extra_space_code</a>, <a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>());</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) = <a class="code" href="xnoverd_8cpp.html#a52ee334cb1cd3de8b42c93c6a8a22cd8">xnoverd</a>(<a class="code" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>), <a class="code" href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a>, 1000);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) = <a class="code" href="xnoverd_8cpp.html#a52ee334cb1cd3de8b42c93c6a8a22cd8">xnoverd</a>(<a class="code" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>), 1000, <a class="code" href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> = <a class="code" href="newglue_8cpp.html#a42d1502b38c0f25378f1d603fa359f72">newglue</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) = 0;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a>(<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="appspace_8cpp_source.html#l00010">10</a> du fichier <a class="el" href="appspace_8cpp_source.html">appspace.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> q;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a> &gt;= 2000 &amp;&amp; <a class="code" href="appspace_8cpp.html#af864696f1ddeca037bf4dde4b9bc8065">xspace_skip</a>())</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        q = <a class="code" href="newparamglue_8cpp.html#af03d944ebde3715a26223523628b2376">newparamglue</a>(13);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="parametres_8h.html#aa3d9194e9119c03c6c231ea50c0c494a">space_skip</a>())</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a> = <a class="code" href="parametres_8h.html#aa3d9194e9119c03c6c231ea50c0c494a">space_skip</a>();</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a> = <a class="code" href="globals_8cpp.html#a75699ebe1245075a1c75e286ba0f43a1">fontglue</a>[<a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>()];</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a> == 0)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a> = <a class="code" href="newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865">newspec</a>(<a class="code" href="constantes_8h.html#ab04a0655cd1e3bcac5e8f48c18df1a57ac7a4272a14dca1c36077242d285f8352">zero_glue</a>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <a class="code" href="maincontrol_8cpp.html#a81d1b865b1f8342a5df3554bda0fc0c9">maink</a> = 2+<a class="code" href="globals_8cpp.html#a1d5e409d051ce75abba4a9afdb7cc7f4">parambase</a>[<a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>()];</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) = <a class="code" href="constantes_8cpp.html#ab698043008cf6c9bc6b69f9922080d32">space</a>(<a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>());</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) = <a class="code" href="constantes_8cpp.html#a636692c3745b7b4a8713130cdb739c66">space_stretch</a>(<a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>());</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <a class="code" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) = <a class="code" href="constantes_8cpp.html#ac5ca327fb829b3914bd662916d1545c3">space_shrink</a>(<a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>());</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <a class="code" href="globals_8cpp.html#a75699ebe1245075a1c75e286ba0f43a1">fontglue</a>[<a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>()] = <a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            }</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a> = <a class="code" href="newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865">newspec</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a> &gt;= 2000)</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) += <a class="code" href="appspace_8cpp.html#ab93755269dcb3e9e521d7b8d050eee12">extra_space</a>(<a class="code" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a>());</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) = <a class="code" href="xnoverd_8cpp.html#a52ee334cb1cd3de8b42c93c6a8a22cd8">xnoverd</a>(<a class="code" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>), <a class="code" href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a>, 1000);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) = <a class="code" href="xnoverd_8cpp.html#a52ee334cb1cd3de8b42c93c6a8a22cd8">xnoverd</a>(<a class="code" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>), 1000, <a class="code" href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        q = <a class="code" href="newglue_8cpp.html#a42d1502b38c0f25378f1d603fa359f72">newglue</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a>) = 0;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a>(q);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="appspace_8cpp_a9c707281d9750ee2873ef686c1bdd82e_cgraph.png" border="0" usemap="#appspace_8cpp_a9c707281d9750ee2873ef686c1bdd82e_cgraph" alt=""/></div>
 <map name="appspace_8cpp_a9c707281d9750ee2873ef686c1bdd82e_cgraph" id="appspace_8cpp_a9c707281d9750ee2873ef686c1bdd82e_cgraph">
-<area shape="rect" title=" " alt="" coords="5,356,84,383"/>
-<area shape="rect" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039" title=" " alt="" coords="296,5,365,32"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="428,436,471,463"/>
-<area shape="rect" href="newglue_8cpp.html#a42d1502b38c0f25378f1d603fa359f72" title=" " alt="" coords="150,255,221,281"/>
-<area shape="rect" href="newparamglue_8cpp.html#af03d944ebde3715a26223523628b2376" title=" " alt="" coords="132,204,239,231"/>
-<area shape="rect" href="newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="148,407,223,433"/>
-<area shape="rect" href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f" title=" " alt="" coords="156,305,215,332"/>
-<area shape="rect" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title=" " alt="" coords="157,356,214,383"/>
-<area shape="rect" href="constantes_8cpp.html#aa3d9194e9119c03c6c231ea50c0c494a" title=" " alt="" coords="141,128,229,155"/>
-<area shape="rect" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc" title=" " alt="" coords="154,457,217,484"/>
-<area shape="rect" href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="287,512,375,539"/>
-<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title=" " alt="" coords="159,559,212,585"/>
-<area shape="rect" href="xnoverd_8cpp.html#a52ee334cb1cd3de8b42c93c6a8a22cd8" title=" " alt="" coords="151,609,219,636"/>
-<area shape="rect" href="constantes_8cpp.html#a55a5074316047ffbb5e4b6eee78f732d" title=" " alt="" coords="138,65,233,92"/>
-<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title=" " alt="" coords="423,31,476,57"/>
+<area shape="rect" title=" " alt="" coords="5,487,84,513"/>
+<area shape="rect" href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039" title=" " alt="" coords="296,56,365,83"/>
+<area shape="rect" href="appspace_8cpp.html#ab93755269dcb3e9e521d7b8d050eee12" title=" " alt="" coords="139,512,232,539"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="428,284,471,311"/>
+<area shape="rect" href="newglue_8cpp.html#a42d1502b38c0f25378f1d603fa359f72" title=" " alt="" coords="150,461,221,488"/>
+<area shape="rect" href="newparamglue_8cpp.html#af03d944ebde3715a26223523628b2376" title=" " alt="" coords="132,411,239,437"/>
+<area shape="rect" href="newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="148,360,223,387"/>
+<area shape="rect" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title=" " alt="" coords="157,715,214,741"/>
+<area shape="rect" href="constantes_8cpp.html#ab698043008cf6c9bc6b69f9922080d32" title=" " alt="" coords="157,563,214,589"/>
+<area shape="rect" href="constantes_8cpp.html#ac5ca327fb829b3914bd662916d1545c3" title=" " alt="" coords="136,613,235,640"/>
+<area shape="rect" href="parametres_8h.html#aa3d9194e9119c03c6c231ea50c0c494a" title=" " alt="" coords="141,5,229,32"/>
+<area shape="rect" href="constantes_8cpp.html#a636692c3745b7b4a8713130cdb739c66" title=" " alt="" coords="133,664,237,691"/>
+<area shape="rect" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc" title=" " alt="" coords="154,765,217,792"/>
+<area shape="rect" href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="287,157,375,184"/>
+<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title=" " alt="" coords="159,816,212,843"/>
+<area shape="rect" href="xnoverd_8cpp.html#a52ee334cb1cd3de8b42c93c6a8a22cd8" title=" " alt="" coords="151,867,219,893"/>
+<area shape="rect" href="appspace_8cpp.html#af864696f1ddeca037bf4dde4b9bc8065" title=" " alt="" coords="138,107,233,133"/>
+<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title=" " alt="" coords="423,56,476,83"/>
+<area shape="rect" href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f" title=" " alt="" coords="301,664,360,691"/>
 <area shape="rect" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="297,360,365,387"/>
-<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="428,309,471,336"/>
-<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="297,208,365,235"/>
-<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="307,259,354,285"/>
-<area shape="rect" href="constantes_8cpp.html#a0c534032188829d3f6273b3d90e3c64c" title=" " alt="" coords="295,56,366,83"/>
+<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="428,411,471,437"/>
+<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="297,512,365,539"/>
+<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="307,461,354,488"/>
+<area shape="rect" href="parametres_8cpp.html#a0c534032188829d3f6273b3d90e3c64c" title="|mem| location of glue specification" alt="" coords="295,107,366,133"/>
+<area shape="rect" href="parametres_8h.html#ae40c3da6e30def508e65708378959618" title="|mem| location of glue specification" alt="" coords="295,5,366,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -192,32 +201,132 @@ Voici le graphe des appelants de cette fonction :</div>
 
 </div>
 </div>
+<a id="ab93755269dcb3e9e521d7b8d050eee12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab93755269dcb3e9e521d7b8d050eee12">&#9670;&nbsp;</a></span>extra_space()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int&amp; extra_space </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#a31e60baff034e87efe01cbf977b72a39">internalfontnumber</a>&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="appspace_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="appspace_8cpp_source.html">appspace.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f">param</a>(<a class="code" href="constantes_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a73a4f8b97a30030e9a4d1e055fccecb8">extra_space_code</a>, <a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>); }</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="appspace_8cpp_ab93755269dcb3e9e521d7b8d050eee12_cgraph.png" border="0" usemap="#appspace_8cpp_ab93755269dcb3e9e521d7b8d050eee12_cgraph" alt=""/></div>
+<map name="appspace_8cpp_ab93755269dcb3e9e521d7b8d050eee12_cgraph" id="appspace_8cpp_ab93755269dcb3e9e521d7b8d050eee12_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,99,32"/>
+<area shape="rect" href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f" title=" " alt="" coords="147,5,205,32"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="appspace_8cpp_ab93755269dcb3e9e521d7b8d050eee12_icgraph.png" border="0" usemap="#appspace_8cpp_ab93755269dcb3e9e521d7b8d050eee12_icgraph" alt=""/></div>
+<map name="appspace_8cpp_ab93755269dcb3e9e521d7b8d050eee12_icgraph" id="appspace_8cpp_ab93755269dcb3e9e521d7b8d050eee12_icgraph">
+<area shape="rect" title=" " alt="" coords="269,5,363,32"/>
+<area shape="rect" href="appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title=" " alt="" coords="143,5,221,32"/>
+<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,5,95,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af864696f1ddeca037bf4dde4b9bc8065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af864696f1ddeca037bf4dde4b9bc8065">&#9670;&nbsp;</a></span>xspace_skip()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&amp; xspace_skip </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="appspace_8cpp_source.html#l00008">8</a> du fichier <a class="el" href="appspace_8cpp_source.html">appspace.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="parametres_8cpp.html#a0c534032188829d3f6273b3d90e3c64c">glue_par</a>(<a class="code" href="parametres_8h.html#a394b3903fbf00ba2b6243f60689a5a5fa7bbec18e247a1fcbb1e94c5894c06003">xspace_skip_code</a>); }</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="appspace_8cpp_af864696f1ddeca037bf4dde4b9bc8065_cgraph.png" border="0" usemap="#appspace_8cpp_af864696f1ddeca037bf4dde4b9bc8065_cgraph" alt=""/></div>
+<map name="appspace_8cpp_af864696f1ddeca037bf4dde4b9bc8065_cgraph" id="appspace_8cpp_af864696f1ddeca037bf4dde4b9bc8065_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,100,32"/>
+<area shape="rect" href="parametres_8cpp.html#a0c534032188829d3f6273b3d90e3c64c" title="|mem| location of glue specification" alt="" coords="148,5,219,32"/>
+<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title=" " alt="" coords="267,5,320,32"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="appspace_8cpp_af864696f1ddeca037bf4dde4b9bc8065_icgraph.png" border="0" usemap="#appspace_8cpp_af864696f1ddeca037bf4dde4b9bc8065_icgraph" alt=""/></div>
+<map name="appspace_8cpp_af864696f1ddeca037bf4dde4b9bc8065_icgraph" id="appspace_8cpp_af864696f1ddeca037bf4dde4b9bc8065_icgraph">
+<area shape="rect" title=" " alt="" coords="269,5,364,32"/>
+<area shape="rect" href="appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title=" " alt="" coords="143,5,221,32"/>
+<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,5,95,32"/>
+</map>
+</div>
+
+</div>
+</div>
 </div><!-- contents -->
-<div class="ttc" id="awriteout_8cpp_html_a099b3b060154898840f0ebdfb46ec78f"><div class="ttname"><a href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a></div><div class="ttdeci">q</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00024">writeout.cpp:24</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_af239a4baf75c2fbaaab3cae37e4ee18c"><div class="ttname"><a href="constantes_8h.html#af239a4baf75c2fbaaab3cae37e4ee18c">extra_space_code</a></div><div class="ttdeci">constexpr int extra_space_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00858">constantes.h:858</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ab698043008cf6c9bc6b69f9922080d32"><div class="ttname"><a href="constantes_8cpp.html#ab698043008cf6c9bc6b69f9922080d32">space</a></div><div class="ttdeci">int &amp; space(internalfontnumber f)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00134">constantes.cpp:134</a></div></div>
+<div class="ttc" id="aappspace_8cpp_html_af864696f1ddeca037bf4dde4b9bc8065"><div class="ttname"><a href="appspace_8cpp.html#af864696f1ddeca037bf4dde4b9bc8065">xspace_skip</a></div><div class="ttdeci">static halfword &amp; xspace_skip(void)</div><div class="ttdef"><b>Definition:</b> <a href="appspace_8cpp_source.html#l00008">appspace.cpp:8</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a73a4f8b97a30030e9a4d1e055fccecb8"><div class="ttname"><a href="constantes_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a73a4f8b97a30030e9a4d1e055fccecb8">extra_space_code</a></div><div class="ttdeci">@ extra_space_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00729">constantes.h:729</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a636692c3745b7b4a8713130cdb739c66"><div class="ttname"><a href="constantes_8cpp.html#a636692c3745b7b4a8713130cdb739c66">space_stretch</a></div><div class="ttdeci">int &amp; space_stretch(internalfontnumber f)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00135">constantes.cpp:135</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_acee72cc7eac7224c7335fd7da8b4d54a"><div class="ttname"><a href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a></div><div class="ttdeci">quarterword f</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a1d5e409d051ce75abba4a9afdb7cc7f4"><div class="ttname"><a href="globals_8cpp.html#a1d5e409d051ce75abba4a9afdb7cc7f4">parambase</a></div><div class="ttdeci">int parambase[fontmax+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00171">globals.cpp:171</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aa6b58ad4e3518a10030f9b811da3a41f"><div class="ttname"><a href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f">param</a></div><div class="ttdeci">int &amp; param(smallnumber p, internalfontnumber f)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00557">constantes.cpp:557</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00293">constantes.cpp:293</a></div></div>
+<div class="ttc" id="aparametres_8h_html_aa3d9194e9119c03c6c231ea50c0c494a"><div class="ttname"><a href="parametres_8h.html#aa3d9194e9119c03c6c231ea50c0c494a">space_skip</a></div><div class="ttdeci">halfword &amp; space_skip(void)</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8h_source.html#l00145">parametres.h:145</a></div></div>
+<div class="ttc" id="aparametres_8h_html_a394b3903fbf00ba2b6243f60689a5a5fa7bbec18e247a1fcbb1e94c5894c06003"><div class="ttname"><a href="parametres_8h.html#a394b3903fbf00ba2b6243f60689a5a5fa7bbec18e247a1fcbb1e94c5894c06003">xspace_skip_code</a></div><div class="ttdeci">@ xspace_skip_code</div><div class="ttdoc">glue after sentences (if not |zero_glue|)</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8h_source.html#l00082">parametres.h:82</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aa6b58ad4e3518a10030f9b811da3a41f"><div class="ttname"><a href="constantes_8cpp.html#aa6b58ad4e3518a10030f9b811da3a41f">param</a></div><div class="ttdeci">int &amp; param(smallnumber p, internalfontnumber f)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00106">constantes.cpp:106</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00048">constantes.cpp:48</a></div></div>
+<div class="ttc" id="aparametres_8cpp_html_a0c534032188829d3f6273b3d90e3c64c"><div class="ttname"><a href="parametres_8cpp.html#a0c534032188829d3f6273b3d90e3c64c">glue_par</a></div><div class="ttdeci">halfword &amp; glue_par(halfword p)</div><div class="ttdoc">|mem| location of glue specification</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8cpp_source.html#l00006">parametres.cpp:6</a></div></div>
 <div class="ttc" id="axnoverd_8cpp_html_a52ee334cb1cd3de8b42c93c6a8a22cd8"><div class="ttname"><a href="xnoverd_8cpp.html#a52ee334cb1cd3de8b42c93c6a8a22cd8">xnoverd</a></div><div class="ttdeci">scaled xnoverd(scaled x, int n, int d)</div><div class="ttdef"><b>Definition:</b> <a href="xnoverd_8cpp_source.html#l00003">xnoverd.cpp:3</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ac5ca327fb829b3914bd662916d1545c3"><div class="ttname"><a href="constantes_8cpp.html#ac5ca327fb829b3914bd662916d1545c3">space_shrink</a></div><div class="ttdeci">int &amp; space_shrink(internalfontnumber f)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00136">constantes.cpp:136</a></div></div>
+<div class="ttc" id="aappspace_8cpp_html_ab93755269dcb3e9e521d7b8d050eee12"><div class="ttname"><a href="appspace_8cpp.html#ab93755269dcb3e9e521d7b8d050eee12">extra_space</a></div><div class="ttdeci">static int &amp; extra_space(internalfontnumber f)</div><div class="ttdef"><b>Definition:</b> <a href="appspace_8cpp_source.html#l00007">appspace.cpp:7</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a0472a8839991d28cfa74dd6602fe4d3e"><div class="ttname"><a href="constantes_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a></div><div class="ttdeci">halfword &amp; space_factor</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00087">globals.cpp:87</a></div></div>
 <div class="ttc" id="amaincontrol_8cpp_html_a81d1b865b1f8342a5df3554bda0fc0c9"><div class="ttname"><a href="maincontrol_8cpp.html#a81d1b865b1f8342a5df3554bda0fc0c9">maink</a></div><div class="ttdeci">static fontindex maink</div><div class="ttdoc">index into |font_info|</div><div class="ttdef"><b>Definition:</b> <a href="maincontrol_8cpp_source.html#l00085">maincontrol.cpp:85</a></div></div>
 <div class="ttc" id="anewparamglue_8cpp_html_af03d944ebde3715a26223523628b2376"><div class="ttname"><a href="newparamglue_8cpp.html#af03d944ebde3715a26223523628b2376">newparamglue</a></div><div class="ttdeci">halfword newparamglue(smallnumber n)</div><div class="ttdef"><b>Definition:</b> <a href="newparamglue_8cpp_source.html#l00004">newparamglue.cpp:4</a></div></div>
 <div class="ttc" id="amaincontrol_8cpp_html_ac4dcb8bcff41de2b07b20cc94b3f12c8"><div class="ttname"><a href="maincontrol_8cpp.html#ac4dcb8bcff41de2b07b20cc94b3f12c8">mainp</a></div><div class="ttdeci">static halfword mainp</div><div class="ttdoc">temporary register for list manipulation</div><div class="ttdef"><b>Definition:</b> <a href="maincontrol_8cpp_source.html#l00088">maincontrol.cpp:88</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aa3d9194e9119c03c6c231ea50c0c494a"><div class="ttname"><a href="constantes_8cpp.html#aa3d9194e9119c03c6c231ea50c0c494a">space_skip</a></div><div class="ttdeci">halfword &amp; space_skip(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00216">constantes.cpp:216</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_ab04a0655cd1e3bcac5e8f48c18df1a57ac7a4272a14dca1c36077242d285f8352"><div class="ttname"><a href="constantes_8h.html#ab04a0655cd1e3bcac5e8f48c18df1a57ac7a4272a14dca1c36077242d285f8352">zero_glue</a></div><div class="ttdeci">@ zero_glue</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00258">constantes.h:258</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a75699ebe1245075a1c75e286ba0f43a1"><div class="ttname"><a href="globals_8cpp.html#a75699ebe1245075a1c75e286ba0f43a1">fontglue</a></div><div class="ttdeci">halfword fontglue[fontmax+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00156">globals.cpp:156</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aca760671a22142e0e59d362c04885039"><div class="ttname"><a href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a></div><div class="ttdeci">halfword &amp; cur_font(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00140">constantes.cpp:140</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aca760671a22142e0e59d362c04885039"><div class="ttname"><a href="constantes_8cpp.html#aca760671a22142e0e59d362c04885039">cur_font</a></div><div class="ttdeci">halfword &amp; cur_font(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00031">constantes.cpp:31</a></div></div>
 <div class="ttc" id="anewspec_8cpp_html_a4955c32e0e2232a371f5907fc7c0b865"><div class="ttname"><a href="newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865">newspec</a></div><div class="ttdeci">halfword newspec(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="newspec_8cpp_source.html#l00004">newspec.cpp:4</a></div></div>
 <div class="ttc" id="anewglue_8cpp_html_a42d1502b38c0f25378f1d603fa359f72"><div class="ttname"><a href="newglue_8cpp.html#a42d1502b38c0f25378f1d603fa359f72">newglue</a></div><div class="ttdeci">halfword newglue(halfword q)</div><div class="ttdef"><b>Definition:</b> <a href="newglue_8cpp_source.html#l00004">newglue.cpp:4</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_af695bb8bf43ecac27c54822211962473"><div class="ttname"><a href="constantes_8h.html#af695bb8bf43ecac27c54822211962473">space_code</a></div><div class="ttdeci">constexpr int space_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00853">constantes.h:853</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a02879de1039ebbaac129d4062e194b9f"><div class="ttname"><a href="constantes_8h.html#a02879de1039ebbaac129d4062e194b9f">zero_glue</a></div><div class="ttdeci">constexpr int zero_glue</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00186">constantes.h:186</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a4bc6d0a5a7b6734516cec38bce809132"><div class="ttname"><a href="constantes_8h.html#a4bc6d0a5a7b6734516cec38bce809132">space_stretch_code</a></div><div class="ttdeci">constexpr int space_stretch_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00854">constantes.h:854</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a55a5074316047ffbb5e4b6eee78f732d"><div class="ttname"><a href="constantes_8cpp.html#a55a5074316047ffbb5e4b6eee78f732d">xspace_skip</a></div><div class="ttdeci">halfword &amp; xspace_skip(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00221">constantes.cpp:221</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ae5439b22a7cf88ec2a4523b78d20fec8"><div class="ttname"><a href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a></div><div class="ttdeci">int &amp; shrink(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00323">constantes.cpp:323</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a0ebe134d7199867461456a4ea186d3dc"><div class="ttname"><a href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a></div><div class="ttdeci">int &amp; stretch(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00318">constantes.cpp:318</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_aab58f046ef444b36063ee402c104442f"><div class="ttname"><a href="constantes_8h.html#aab58f046ef444b36063ee402c104442f">space_shrink_code</a></div><div class="ttdeci">constexpr int space_shrink_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00855">constantes.h:855</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a79c6dd981ca9096a229688c57fc324ca"><div class="ttname"><a href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a></div><div class="ttdeci">void tail_append(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00267">constantes.cpp:267</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ae5439b22a7cf88ec2a4523b78d20fec8"><div class="ttname"><a href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a></div><div class="ttdeci">int &amp; shrink(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00054">constantes.cpp:54</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a0ebe134d7199867461456a4ea186d3dc"><div class="ttname"><a href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a></div><div class="ttdeci">int &amp; stretch(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00053">constantes.cpp:53</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a79c6dd981ca9096a229688c57fc324ca"><div class="ttname"><a href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a></div><div class="ttdeci">void tail_append(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00150">constantes.cpp:150</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

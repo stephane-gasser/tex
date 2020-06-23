@@ -2,6 +2,9 @@
 #include "newparamglue.h"
 #include "newskipparam.h"
 
+static halfword& baseline_skip(void) { return glue_par(baseline_skip_code); }
+static int line_skip_limit(void) { return dimen_par(line_skip_limit_code); }
+
 void appendtovlist(halfword b)
 {
 	if (prev_depth > ignore_depth)

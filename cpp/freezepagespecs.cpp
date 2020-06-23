@@ -1,5 +1,7 @@
 #include "freezepagespecs.h"
 
+static int vsize(void) { return dimen_par(vsize_code); }
+
 static void set_page_so_far_zero(int i)
 {
 	pagesofar[i] = 0;

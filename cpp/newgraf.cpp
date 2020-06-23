@@ -6,6 +6,8 @@
 #include "begintokenlist.h"
 #include "buildpage.h"
 
+static halfword& every_par(void) { return equiv(every_par_loc); }
+
 void newgraf(bool indented)
 {
 	prev_graf = 0;

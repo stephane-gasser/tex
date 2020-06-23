@@ -107,9 +107,9 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="newnoad_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="newnoad_8cpp_source.html">newnoad.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a>(4);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="constantes_8h.html#aa18add4cd35fa595374322ac53d02a94">ord_noad</a>;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(p) = 0;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a>(<a class="code" href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a5c4559802bfce9f96f65227fc6840cb6">noad_size</a>);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06ca5378ed6eac008c6ab2d5256cbfc6d2ed">ord_noad</a>;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(p) = <a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635aebc81705969b8c5ae986b0b2ec08d1d5">normal</a>;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="globals_8cpp.html#a5038b616b1201aeb12a176eb4b4513a8">mem</a>[p+1].<a class="code" href="structmemoryword.html#a5eafefa08094b518efdf6ac6463cbf00">hh</a> = <a class="code" href="globals_8cpp.html#a089894697e1175acc6c6fe2fe533b85b">emptyfield</a>;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="globals_8cpp.html#a5038b616b1201aeb12a176eb4b4513a8">mem</a>[p+3].<a class="code" href="structmemoryword.html#a5eafefa08094b518efdf6ac6463cbf00">hh</a> = <a class="code" href="globals_8cpp.html#a089894697e1175acc6c6fe2fe533b85b">emptyfield</a>;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="globals_8cpp.html#a5038b616b1201aeb12a176eb4b4513a8">mem</a>[p+2].<a class="code" href="structmemoryword.html#a5eafefa08094b518efdf6ac6463cbf00">hh</a> = <a class="code" href="globals_8cpp.html#a089894697e1175acc6c6fe2fe533b85b">emptyfield</a>;</div>
@@ -133,15 +133,15 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="newnoad_8cpp_a7d8404f21a8d8195c82810f73b0e8a52_icgraph.png" border="0" usemap="#newnoad_8cpp_a7d8404f21a8d8195c82810f73b0e8a52_icgraph" alt=""/></div>
 <map name="newnoad_8cpp_a7d8404f21a8d8195c82810f73b0e8a52_icgraph" id="newnoad_8cpp_a7d8404f21a8d8195c82810f73b0e8a52_icgraph">
-<area shape="rect" title=" " alt="" coords="475,385,549,412"/>
+<area shape="rect" title=" " alt="" coords="475,335,549,361"/>
 <area shape="rect" href="cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="331,208,405,235"/>
 <area shape="rect" href="makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="139,5,261,32"/>
-<area shape="rect" href="handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="309,309,427,336"/>
+<area shape="rect" href="handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="309,259,427,285"/>
 <area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="155,411,245,437"/>
-<area shape="rect" href="indentinhmode_8h.html#a5016a6f79ae901c498a9d0c6981d9db6" title=" " alt="" coords="315,411,421,437"/>
-<area shape="rect" href="makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="332,461,404,488"/>
-<area shape="rect" href="mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="321,512,415,539"/>
-<area shape="rect" href="subsup_8h.html#a77899a1472c2f93b1001ccbbbee9986e" title=" " alt="" coords="336,563,400,589"/>
+<area shape="rect" href="indentinhmode_8h.html#a5016a6f79ae901c498a9d0c6981d9db6" title=" " alt="" coords="315,360,421,387"/>
+<area shape="rect" href="makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="332,512,404,539"/>
+<area shape="rect" href="mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="321,411,415,437"/>
+<area shape="rect" href="subsup_8h.html#a77899a1472c2f93b1001ccbbbee9986e" title=" " alt="" coords="336,461,400,488"/>
 <area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="151,56,249,83"/>
 <area shape="rect" href="makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="166,107,234,133"/>
 <area shape="rect" href="makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="161,157,239,184"/>
@@ -157,11 +157,13 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><!-- contents -->
 <div class="ttc" id="astructmemoryword_html_a5eafefa08094b518efdf6ac6463cbf00"><div class="ttname"><a href="structmemoryword.html#a5eafefa08094b518efdf6ac6463cbf00">memoryword::hh</a></div><div class="ttdeci">twohalves hh</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00076">tex.h:76</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a089894697e1175acc6c6fe2fe533b85b"><div class="ttname"><a href="globals_8cpp.html#a089894697e1175acc6c6fe2fe533b85b">emptyfield</a></div><div class="ttdeci">twohalves emptyfield</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00189">globals.cpp:189</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_aa18add4cd35fa595374322ac53d02a94"><div class="ttname"><a href="constantes_8h.html#aa18add4cd35fa595374322ac53d02a94">ord_noad</a></div><div class="ttdeci">constexpr int ord_noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00973">constantes.h:973</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_adc29c2ff13d900c2f185ee95427fb06ca5378ed6eac008c6ab2d5256cbfc6d2ed"><div class="ttname"><a href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06ca5378ed6eac008c6ab2d5256cbfc6d2ed">ord_noad</a></div><div class="ttdeci">@ ord_noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00139">constantes.h:139</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a5038b616b1201aeb12a176eb4b4513a8"><div class="ttname"><a href="globals_8cpp.html#a5038b616b1201aeb12a176eb4b4513a8">mem</a></div><div class="ttdeci">memoryword mem[memmax+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00075">globals.cpp:75</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00049">constantes.cpp:49</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abc6126af1d45847bc59afa0aa3216b04a5c4559802bfce9f96f65227fc6840cb6"><div class="ttname"><a href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a5c4559802bfce9f96f65227fc6840cb6">noad_size</a></div><div class="ttdeci">@ noad_size</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00114">constantes.h:114</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a726ca809ffd3d67ab4b8476646f26635aebc81705969b8c5ae986b0b2ec08d1d5"><div class="ttname"><a href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635aebc81705969b8c5ae986b0b2ec08d1d5">normal</a></div><div class="ttdeci">@ normal</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00176">constantes.h:176</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
 <div class="ttc" id="agetnode_8cpp_html_a2baceeb19c0c4b666f0e18bcaff56d8a"><div class="ttname"><a href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a></div><div class="ttdeci">halfword getnode(int s)</div><div class="ttdef"><b>Definition:</b> <a href="getnode_8cpp_source.html#l00004">getnode.cpp:4</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00034">constantes.cpp:34</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

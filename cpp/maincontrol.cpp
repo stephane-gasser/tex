@@ -87,6 +87,8 @@ static fourquarters maini; //!<character information bytes for |cur_l|
 static fourquarters mainj; //!<ligature/kern command
 static halfword mainp; //!<temporary register for list manipulation
 
+static halfword& every_job(void) { return equiv(every_job_loc); }
+
 static void pack_lig(bool z)
 {
 	mainp = newligature(mainf, curl, link(curq));

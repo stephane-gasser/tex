@@ -3,6 +3,8 @@
 #include "linebreak.h"
 #include "normalparagraph.h"
 
+static int widow_penalty(void) { return int_par(widow_penalty_code); }
+
 void endgraf(void)
 {
 	if (mode == hmode)

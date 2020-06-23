@@ -28,6 +28,8 @@
 #include "confusion.h"
 #include "texte.h"
 
+static int floating_penalty(void) { return int_par(floating_penalty_code); }
+
 void handlerightbrace(void)
 {
 	halfword p, q;

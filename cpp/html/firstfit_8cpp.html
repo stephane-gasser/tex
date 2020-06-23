@@ -85,6 +85,8 @@ Graphe des dépendances par inclusion de firstfit.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
+<tr class="memitem:a10142a48205da70cd0fa6afd599e3dc1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="firstfit_8cpp.html#a10142a48205da70cd0fa6afd599e3dc1">trie_back</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p)</td></tr>
+<tr class="separator:a10142a48205da70cd0fa6afd599e3dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ec7e5f14730f1045a0cafbb2b259e2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="firstfit_8cpp.html#a9ec7e5f14730f1045a0cafbb2b259e2f">firstfit</a> (<a class="el" href="tex_8h.html#ac9a4e1c22ae0a18dedf4e77268641793">triepointer</a> p)</td></tr>
 <tr class="separator:a9ec7e5f14730f1045a0cafbb2b259e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -105,84 +107,86 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="firstfit_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="firstfit_8cpp_source.html">firstfit.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="tex_8h.html#ac9a4e1c22ae0a18dedf4e77268641793">triepointer</a> h, z, <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>, l, <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordtype">int</span> ll;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="tex_8h.html#ad605392b72600cf4fe8b3cc0abf40c54">ASCIIcode</a> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> = <a class="code" href="globals_8cpp.html#ada1c4f4bc47129cb27c92e8f0cc879b9">triec</a>[p];</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    z = <a class="code" href="globals_8cpp.html#add48da8b5158f673ad926a8c44a55323">triemin</a>[<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>];</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        h = z-<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a> &lt; h+256)</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="tex_8h.html#a617310b2e4954282654633ff592e7f26">triesize</a> &lt;= h+256)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                <a class="code" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;pattern memory&quot;</span>, <a class="code" href="tex_8h.html#a617310b2e4954282654633ff592e7f26">triesize</a>);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordflow">do</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>++;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                <a class="code" href="globals_8cpp.html#a68fcdb5ab01dd0d0914f80d819e61f56">trietaken</a>[<a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>] = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <a class="code" href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a>[<a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>].<a class="code" href="structtwohalves.html#a1d430948fd7010f5924087b8f3661eed">rh</a> = <a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>+1;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <a class="code" href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a>[<a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>].<a class="code" href="structtwohalves.html#a92806e7239fdd8181190d0ec817bdb0a">lh</a> = <a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>-1;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            } <span class="keywordflow">while</span> (<a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a> != h+256);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a68fcdb5ab01dd0d0914f80d819e61f56">trietaken</a>[h])</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            z = <a class="code" href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a>[z].<a class="code" href="structtwohalves.html#a1d430948fd7010f5924087b8f3661eed">rh</a>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> = <a class="code" href="globals_8cpp.html#af9374bce631e7c1829db752c1ac7ed4f">trier</a>[p];</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">while</span> (<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> &gt; 0)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a>[h+<a class="code" href="globals_8cpp.html#ada1c4f4bc47129cb27c92e8f0cc879b9">triec</a>[<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>]].rh == 0)</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                z = <a class="code" href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a>[z].<a class="code" href="structtwohalves.html#a1d430948fd7010f5924087b8f3661eed">rh</a>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> = <a class="code" href="globals_8cpp.html#af9374bce631e7c1829db752c1ac7ed4f">trier</a>[<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>];</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="globals_8cpp.html#a68fcdb5ab01dd0d0914f80d819e61f56">trietaken</a>[h] = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="globals_8cpp.html#a890c17bcc1f0739c42030d63c4a68960">triehash</a>[p] = h;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> = p;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">do</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        z = h+<a class="code" href="globals_8cpp.html#ada1c4f4bc47129cb27c92e8f0cc879b9">triec</a>[<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>];</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        l = <a class="code" href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a>[z].<a class="code" href="structtwohalves.html#a92806e7239fdd8181190d0ec817bdb0a">lh</a>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a> = <a class="code" href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a>[z].<a class="code" href="structtwohalves.html#a1d430948fd7010f5924087b8f3661eed">rh</a>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a>[<a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>].<a class="code" href="structtwohalves.html#a92806e7239fdd8181190d0ec817bdb0a">lh</a> = l;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a>[l].<a class="code" href="structtwohalves.html#a1d430948fd7010f5924087b8f3661eed">rh</a> = <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a>[z].<a class="code" href="structtwohalves.html#a1d430948fd7010f5924087b8f3661eed">rh</a> = 0;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordflow">if</span> (l &lt; 256)</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">if</span> (z &lt; 256)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                ll = z;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                ll = 256;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">do</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                <a class="code" href="globals_8cpp.html#add48da8b5158f673ad926a8c44a55323">triemin</a>[l] = <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                l++;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            } <span class="keywordflow">while</span> (l == ll);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a> = <a class="code" href="globals_8cpp.html#af9374bce631e7c1829db752c1ac7ed4f">trier</a>[<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>];</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    } <span class="keywordflow">while</span> (<a class="code" href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a>);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="firstfit_8cpp_source.html#l00006">6</a> du fichier <a class="el" href="firstfit_8cpp_source.html">firstfit.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="tex_8h.html#ac9a4e1c22ae0a18dedf4e77268641793">triepointer</a> h, z, q, l, r;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">int</span> ll;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="tex_8h.html#ad605392b72600cf4fe8b3cc0abf40c54">ASCIIcode</a> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> = <a class="code" href="globals_8cpp.html#ada1c4f4bc47129cb27c92e8f0cc879b9">triec</a>[p];</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    z = <a class="code" href="globals_8cpp.html#add48da8b5158f673ad926a8c44a55323">triemin</a>[<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>];</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        h = z-<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a> &lt; h+256)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="tex_8h.html#a617310b2e4954282654633ff592e7f26">triesize</a> &lt;= h+256)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                <a class="code" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;pattern memory&quot;</span>, <a class="code" href="tex_8h.html#a617310b2e4954282654633ff592e7f26">triesize</a>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <span class="keywordflow">do</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>++;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <a class="code" href="globals_8cpp.html#a68fcdb5ab01dd0d0914f80d819e61f56">trietaken</a>[<a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>] = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <a class="code" href="constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64">trie_link</a>(<a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>) = <a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>+1;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <a class="code" href="firstfit_8cpp.html#a10142a48205da70cd0fa6afd599e3dc1">trie_back</a>(<a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>) = <a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>-1;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            } <span class="keywordflow">while</span> (<a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a> != h+256);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a68fcdb5ab01dd0d0914f80d819e61f56">trietaken</a>[h])</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            z = <a class="code" href="constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64">trie_link</a>(z);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        q = <a class="code" href="globals_8cpp.html#af9374bce631e7c1829db752c1ac7ed4f">trier</a>[p];</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">while</span> (q &gt; 0)</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64">trie_link</a>(h+<a class="code" href="globals_8cpp.html#ada1c4f4bc47129cb27c92e8f0cc879b9">triec</a>[q]) == 0)</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                z = <a class="code" href="constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64">trie_link</a>(z);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            q = <a class="code" href="globals_8cpp.html#af9374bce631e7c1829db752c1ac7ed4f">trier</a>[q];</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="globals_8cpp.html#a68fcdb5ab01dd0d0914f80d819e61f56">trietaken</a>[h] = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="constantes_8cpp.html#a9cc1b7a73f8ec24d47fb87f99c221848">trie_ref</a>[p] = h;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    q = p;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">do</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        z = h+<a class="code" href="globals_8cpp.html#ada1c4f4bc47129cb27c92e8f0cc879b9">triec</a>[q];</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        l = <a class="code" href="firstfit_8cpp.html#a10142a48205da70cd0fa6afd599e3dc1">trie_back</a>(z);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        r = <a class="code" href="constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64">trie_link</a>(z);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="firstfit_8cpp.html#a10142a48205da70cd0fa6afd599e3dc1">trie_back</a>(r) = l;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64">trie_link</a>(l) = r;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64">trie_link</a>(z) = 0;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">if</span> (l &lt; 256)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">if</span> (z &lt; 256)</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                ll = z;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                ll = 256;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordflow">do</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                <a class="code" href="globals_8cpp.html#add48da8b5158f673ad926a8c44a55323">triemin</a>[l] = r;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                l++;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            } <span class="keywordflow">while</span> (l == ll);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        q = <a class="code" href="globals_8cpp.html#af9374bce631e7c1829db752c1ac7ed4f">trier</a>[q];</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    } <span class="keywordflow">while</span> (q);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="firstfit_8cpp_a9ec7e5f14730f1045a0cafbb2b259e2f_cgraph.png" border="0" usemap="#firstfit_8cpp_a9ec7e5f14730f1045a0cafbb2b259e2f_cgraph" alt=""/></div>
 <map name="firstfit_8cpp_a9ec7e5f14730f1045a0cafbb2b259e2f_cgraph" id="firstfit_8cpp_a9ec7e5f14730f1045a0cafbb2b259e2f_cgraph">
-<area shape="rect" title=" " alt="" coords="5,208,60,235"/>
-<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="108,208,179,235"/>
-<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="265,144,313,171"/>
-<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="399,5,467,32"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="515,183,561,209"/>
-<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="609,132,681,159"/>
-<area shape="rect" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="402,56,463,83"/>
-<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="404,208,461,235"/>
-<area shape="rect" href="normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="227,360,351,387"/>
+<area shape="rect" title=" " alt="" coords="5,259,60,285"/>
+<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="110,208,181,235"/>
+<area shape="rect" href="firstfit_8cpp.html#a10142a48205da70cd0fa6afd599e3dc1" title=" " alt="" coords="108,259,183,285"/>
+<area shape="rect" href="constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64" title=" " alt="" coords="112,309,179,336"/>
+<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="269,144,317,171"/>
+<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="403,5,471,32"/>
+<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="519,183,565,209"/>
+<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="613,132,685,159"/>
+<area shape="rect" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="406,56,467,83"/>
+<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="408,208,465,235"/>
+<area shape="rect" href="normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="231,360,355,387"/>
 </map>
 </div>
 <div class="dynheader">
@@ -200,22 +204,61 @@ Voici le graphe des appelants de cette fonction :</div>
 
 </div>
 </div>
+<a id="a10142a48205da70cd0fa6afd599e3dc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10142a48205da70cd0fa6afd599e3dc1">&#9670;&nbsp;</a></span>trie_back()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&amp; trie_back </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="firstfit_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="firstfit_8cpp_source.html">firstfit.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a>[p].<a class="code" href="structtwohalves.html#a92806e7239fdd8181190d0ec817bdb0a">lh</a>; }</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="firstfit_8cpp_a10142a48205da70cd0fa6afd599e3dc1_icgraph.png" border="0" usemap="#firstfit_8cpp_a10142a48205da70cd0fa6afd599e3dc1_icgraph" alt=""/></div>
+<map name="firstfit_8cpp_a10142a48205da70cd0fa6afd599e3dc1_icgraph" id="firstfit_8cpp_a10142a48205da70cd0fa6afd599e3dc1_icgraph">
+<area shape="rect" title=" " alt="" coords="329,6,404,33"/>
+<area shape="rect" href="firstfit_8h.html#a9ec7e5f14730f1045a0cafbb2b259e2f" title=" " alt="" coords="227,6,281,33"/>
+<area shape="rect" href="inittrie_8h.html#a4953f312f016c82145ae48b0d39341bd" title=" " alt="" coords="5,6,63,33"/>
+<area shape="rect" href="triepack_8h.html#abdca283a7ecad2abcf198d2819b0f535" title=" " alt="" coords="111,44,179,70"/>
+</map>
+</div>
+
+</div>
+</div>
 </div><!-- contents -->
-<div class="ttc" id="awriteout_8cpp_html_a099b3b060154898840f0ebdfb46ec78f"><div class="ttname"><a href="writeout_8cpp.html#a099b3b060154898840f0ebdfb46ec78f">q</a></div><div class="ttdeci">q</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00024">writeout.cpp:24</a></div></div>
 <div class="ttc" id="atex_8h_html_ac9a4e1c22ae0a18dedf4e77268641793"><div class="ttname"><a href="tex_8h.html#ac9a4e1c22ae0a18dedf4e77268641793">triepointer</a></div><div class="ttdeci">int triepointer</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00104">tex.h:104</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_af9374bce631e7c1829db752c1ac7ed4f"><div class="ttname"><a href="globals_8cpp.html#af9374bce631e7c1829db752c1ac7ed4f">trier</a></div><div class="ttdeci">triepointer trier[triesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00260">globals.cpp:260</a></div></div>
-<div class="ttc" id="aoverflow_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00012">overflow.cpp:12</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a1d191a9073ecc9e4ea7c3ca504e46a64"><div class="ttname"><a href="constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64">trie_link</a></div><div class="ttdeci">halfword &amp; trie_link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00139">constantes.cpp:139</a></div></div>
+<div class="ttc" id="aoverflow_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00018">overflow.cpp:18</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a68fcdb5ab01dd0d0914f80d819e61f56"><div class="ttname"><a href="globals_8cpp.html#a68fcdb5ab01dd0d0914f80d819e61f56">trietaken</a></div><div class="ttdeci">bool trietaken[triesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00263">globals.cpp:263</a></div></div>
-<div class="ttc" id="awriteout_8cpp_html_a76be2f40de03334f34eaf465efc0e0e0"><div class="ttname"><a href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a></div><div class="ttdeci">auto r</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00019">writeout.cpp:19</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_add48da8b5158f673ad926a8c44a55323"><div class="ttname"><a href="globals_8cpp.html#add48da8b5158f673ad926a8c44a55323">triemin</a></div><div class="ttdeci">map&lt; ASCIIcode, triepointer &gt; triemin</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00264">globals.cpp:264</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a4fde541381bcc34b9c3d264762b04d0d"><div class="ttname"><a href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a></div><div class="ttdeci">twohalves trie[triesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00245">globals.cpp:245</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a9cc1b7a73f8ec24d47fb87f99c221848"><div class="ttname"><a href="constantes_8cpp.html#a9cc1b7a73f8ec24d47fb87f99c221848">trie_ref</a></div><div class="ttdeci">triepointer * trie_ref</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00203">constantes.cpp:203</a></div></div>
 <div class="ttc" id="atex_8h_html_a617310b2e4954282654633ff592e7f26"><div class="ttname"><a href="tex_8h.html#a617310b2e4954282654633ff592e7f26">triesize</a></div><div class="ttdeci">constexpr int triesize</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00025">tex.h:25</a></div></div>
 <div class="ttc" id="astructtwohalves_html_a92806e7239fdd8181190d0ec817bdb0a"><div class="ttname"><a href="structtwohalves.html#a92806e7239fdd8181190d0ec817bdb0a">twohalves::lh</a></div><div class="ttdeci">std::uint16_t lh</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00053">tex.h:53</a></div></div>
 <div class="ttc" id="atex_8h_html_ad605392b72600cf4fe8b3cc0abf40c54"><div class="ttname"><a href="tex_8h.html#ad605392b72600cf4fe8b3cc0abf40c54">ASCIIcode</a></div><div class="ttdeci">unsigned char ASCIIcode</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00034">tex.h:34</a></div></div>
-<div class="ttc" id="astructtwohalves_html_a1d430948fd7010f5924087b8f3661eed"><div class="ttname"><a href="structtwohalves.html#a1d430948fd7010f5924087b8f3661eed">twohalves::rh</a></div><div class="ttdeci">std::uint16_t rh</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00050">tex.h:50</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a890c17bcc1f0739c42030d63c4a68960"><div class="ttname"><a href="globals_8cpp.html#a890c17bcc1f0739c42030d63c4a68960">triehash</a></div><div class="ttdeci">triepointer triehash[triesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00262">globals.cpp:262</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_af8db1371c3944bab305a526c2e531458"><div class="ttname"><a href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a></div><div class="ttdeci">triepointer triemax</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00265">globals.cpp:265</a></div></div>
+<div class="ttc" id="afirstfit_8cpp_html_a10142a48205da70cd0fa6afd599e3dc1"><div class="ttname"><a href="firstfit_8cpp.html#a10142a48205da70cd0fa6afd599e3dc1">trie_back</a></div><div class="ttdeci">static halfword &amp; trie_back(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="firstfit_8cpp_source.html#l00004">firstfit.cpp:4</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_ada1c4f4bc47129cb27c92e8f0cc879b9"><div class="ttname"><a href="globals_8cpp.html#ada1c4f4bc47129cb27c92e8f0cc879b9">triec</a></div><div class="ttdeci">packedASCIIcode triec[triesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00257">globals.cpp:257</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

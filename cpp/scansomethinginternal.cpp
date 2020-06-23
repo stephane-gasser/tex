@@ -14,6 +14,8 @@
 #include "newspec.h"
 #include "texte.h"
 
+static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
+
 void scansomethinginternal(smallnumber level, bool negative)
 {
 	halfword m = curchr;

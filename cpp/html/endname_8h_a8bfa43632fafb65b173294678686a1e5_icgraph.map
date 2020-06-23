@@ -1,10 +1,10 @@
 <map id="endname" name="endname">
-<area shape="rect" id="node1" title=" " alt="" coords="423,157,497,184"/>
-<area shape="rect" id="node2" href="$promptfilename_8h.html#a30c405cf60000fe656870957636a4d91" title=" " alt="" coords="264,107,375,133"/>
-<area shape="rect" id="node8" href="$scanfilename_8h.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="270,183,369,209"/>
-<area shape="rect" id="node3" href="$openlogfile_8h.html#aa093bac5d614a1706a24856de98e0c7d" title=" " alt="" coords="131,31,215,57"/>
-<area shape="rect" id="node4" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="11,5,75,32"/>
-<area shape="rect" id="node5" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="5,81,81,108"/>
-<area shape="rect" id="node6" href="$outwhat_8h.html#a1137c5a00a506a80eadbe8aa55c400f5" title=" " alt="" coords="139,132,207,159"/>
-<area shape="rect" id="node7" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="129,183,216,209"/>
+<area shape="rect" id="node1" title=" " alt="" coords="467,159,541,186"/>
+<area shape="rect" id="node2" href="$promptfilename_8h.html#a30c405cf60000fe656870957636a4d91" title=" " alt="" coords="308,109,419,135"/>
+<area shape="rect" id="node8" href="$scanfilename_8h.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="314,185,413,211"/>
+<area shape="rect" id="node3" href="$shipout_8cpp.html#ac80aeb2b1578e5bea65e5e56d95a8f61" title=" " alt="" coords="5,7,125,34"/>
+<area shape="rect" id="node4" href="$openlogfile_8h.html#aa093bac5d614a1706a24856de98e0c7d" title=" " alt="" coords="175,33,259,59"/>
+<area shape="rect" id="node5" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="27,83,103,110"/>
+<area shape="rect" id="node6" href="$outwhat_8h.html#a1137c5a00a506a80eadbe8aa55c400f5" title=" " alt="" coords="183,134,251,161"/>
+<area shape="rect" id="node7" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="173,185,260,211"/>
 </map>

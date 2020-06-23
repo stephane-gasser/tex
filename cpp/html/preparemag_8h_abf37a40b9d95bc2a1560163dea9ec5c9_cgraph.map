@@ -1,11 +1,12 @@
 <map id="preparemag" name="preparemag">
-<area shape="rect" id="node1" title=" " alt="" coords="5,132,96,159"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,284,96,311"/>
 <area shape="rect" id="node2" href="$geqworddefine_8cpp.html#a159f7881894ccff280dcdd1fb31c77bf" title=" " alt="" coords="144,5,251,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title=" " alt="" coords="719,208,780,235"/>
-<area shape="rect" id="node4" href="$interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="166,284,229,311"/>
-<area shape="rect" id="node6" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="504,208,551,235"/>
-<area shape="rect" id="node8" href="$printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="395,411,456,437"/>
-<area shape="rect" id="node9" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="397,208,454,235"/>
-<area shape="rect" id="node5" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="299,284,347,311"/>
-<area shape="rect" id="node7" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="599,309,671,336"/>
+<area shape="rect" id="node3" href="$interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="166,233,229,260"/>
+<area shape="rect" id="node5" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="517,309,564,336"/>
+<area shape="rect" id="node7" href="$printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="408,107,469,133"/>
+<area shape="rect" id="node8" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="410,360,467,387"/>
+<area shape="rect" id="node9" href="$parametres_8h.html#aa530a2fab0c0a26bbc70cb273b4a22d2" title=" " alt="" coords="174,461,221,488"/>
+<area shape="rect" id="node4" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="305,233,353,260"/>
+<area shape="rect" id="node6" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="612,183,684,209"/>
+<area shape="rect" id="node10" href="$parametres_8h.html#ac3ce40331affce50f87879ed1cfe5a98" title="an integer parameter" alt="" coords="299,461,360,488"/>
 </map>

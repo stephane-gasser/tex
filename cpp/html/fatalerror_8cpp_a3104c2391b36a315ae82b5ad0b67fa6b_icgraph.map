@@ -1,16 +1,17 @@
 <map id="fatalerror" name="fatalerror">
-<area shape="rect" id="node1" title=" " alt="" coords="640,233,713,260"/>
+<area shape="rect" id="node1" title=" " alt="" coords="640,284,713,311"/>
 <area shape="rect" id="node2" href="$doendv_8h.html#adbabc406ff0a986dc23c2ad8d5bc9008" title=" " alt="" coords="331,5,395,32"/>
-<area shape="rect" id="node4" href="$endtokenlist_8h.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="483,157,575,184"/>
-<area shape="rect" id="node9" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="331,259,396,285"/>
-<area shape="rect" id="node10" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="503,81,556,108"/>
-<area shape="rect" id="node11" href="$getpreambletoken_8h.html#a82620351bee57bb56f4d0a9181f6af98" title=" " alt="" coords="467,411,592,437"/>
-<area shape="rect" id="node12" href="$promptfilename_8h.html#a30c405cf60000fe656870957636a4d91" title=" " alt="" coords="308,309,419,336"/>
-<area shape="rect" id="node13" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="327,360,399,387"/>
-<area shape="rect" id="node14" href="$terminput_8h.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="491,259,567,285"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,56,95,83"/>
-<area shape="rect" id="node5" href="$backinput_8h.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="324,107,403,133"/>
-<area shape="rect" id="node6" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="143,56,260,83"/>
-<area shape="rect" id="node7" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="162,157,241,184"/>
-<area shape="rect" id="node8" href="$finalcleanup_8h.html#abdaa31c6a83743b7ffe417c4889aceaf" title=" " alt="" coords="318,208,409,235"/>
+<area shape="rect" id="node4" href="$endtokenlist_8h.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="483,208,575,235"/>
+<area shape="rect" id="node9" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="331,309,396,336"/>
+<area shape="rect" id="node11" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="503,31,556,57"/>
+<area shape="rect" id="node12" href="$getpreambletoken_8h.html#a82620351bee57bb56f4d0a9181f6af98" title=" " alt="" coords="467,461,592,488"/>
+<area shape="rect" id="node13" href="$promptfilename_8h.html#a30c405cf60000fe656870957636a4d91" title=" " alt="" coords="308,360,419,387"/>
+<area shape="rect" id="node14" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="327,411,399,437"/>
+<area shape="rect" id="node15" href="$terminput_8h.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="491,309,567,336"/>
+<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,95,95,121"/>
+<area shape="rect" id="node5" href="$backinput_8h.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="324,208,403,235"/>
+<area shape="rect" id="node6" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="143,95,260,121"/>
+<area shape="rect" id="node7" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="162,233,241,260"/>
+<area shape="rect" id="node8" href="$finalcleanup_8h.html#abdaa31c6a83743b7ffe417c4889aceaf" title=" " alt="" coords="318,107,409,133"/>
+<area shape="rect" id="node10" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="329,157,397,184"/>
 </map>

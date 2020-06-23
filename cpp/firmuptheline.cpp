@@ -4,6 +4,8 @@
 #include "printchar.h"
 #include "terminput.h"
 
+static int pausing(void) { return int_par(pausing_code); }
+
 void firmuptheline(void)
 {
 	limit = last;

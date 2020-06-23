@@ -15,6 +15,8 @@
 #include "boxend.h"
 #include "texte.h"
 
+static halfword& every_hbox(void) { return equiv(every_hbox_loc); }
+
 void beginbox(int boxcontext)
 {
 	halfword p, q;

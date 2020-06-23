@@ -24,6 +24,8 @@ static void set_trick_count(void)
 		trickcount = errorline;
 }
 
+static int error_context_lines(void) { return int_par(error_context_lines_code); }
+
 void showcontext(void)
 {
 	int l;

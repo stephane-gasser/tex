@@ -68,26 +68,26 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="charwarning_8h_source.html">charwarning.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="printchar_8h_source.html">printchar.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="print_8h_source.html">print.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="begindiagnostic_8h_source.html">begindiagnostic.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="printnl_8h_source.html">printnl.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="slowprint_8h_source.html">slowprint.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="printchar_8h_source.html">printchar.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="enddiagnostic_8h_source.html">enddiagnostic.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de charwarning.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="charwarning_8cpp__incl.png" border="0" usemap="#charwarning_8cpp" alt=""/></div>
 <map name="charwarning_8cpp" id="charwarning_8cpp">
-<area shape="rect" title=" " alt="" coords="338,5,455,32"/>
+<area shape="rect" title=" " alt="" coords="325,5,442,32"/>
 <area shape="rect" href="charwarning_8h.html" title=" " alt="" coords="5,80,108,107"/>
-<area shape="rect" href="print_8h.html" title=" " alt="" coords="133,80,191,107"/>
-<area shape="rect" href="begindiagnostic_8h.html" title=" " alt="" coords="215,80,338,107"/>
-<area shape="rect" href="printnl_8h.html" title=" " alt="" coords="363,80,431,107"/>
-<area shape="rect" href="slowprint_8h.html" title=" " alt="" coords="455,80,541,107"/>
-<area shape="rect" href="printchar_8h.html" title=" " alt="" coords="565,80,647,107"/>
+<area shape="rect" href="printchar_8h.html" title=" " alt="" coords="133,80,215,107"/>
+<area shape="rect" href="print_8h.html" title=" " alt="" coords="239,80,298,107"/>
+<area shape="rect" href="begindiagnostic_8h.html" title=" " alt="" coords="322,80,445,107"/>
+<area shape="rect" href="printnl_8h.html" title=" " alt="" coords="469,80,537,107"/>
+<area shape="rect" href="slowprint_8h.html" title=" " alt="" coords="562,80,647,107"/>
 <area shape="rect" href="enddiagnostic_8h.html" title=" " alt="" coords="672,80,785,107"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="359,155,434,181"/>
+<area shape="rect" href="globals_8h.html" title=" " alt="" coords="346,155,421,181"/>
 </map>
 </div>
 </div>
@@ -95,6 +95,8 @@ Graphe des dépendances par inclusion de charwarning.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
+<tr class="memitem:a3a992e82816e5d1ab70b855c06ad86a1"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1">tracing_lost_chars</a> (void)</td></tr>
+<tr class="separator:a3a992e82816e5d1ab70b855c06ad86a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a151b5d2be0ab9cc2e1728e16b5e8927c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="charwarning_8cpp.html#a151b5d2be0ab9cc2e1728e16b5e8927c">charwarning</a> (<a class="el" href="tex_8h.html#a31e60baff034e87efe01cbf977b72a39">internalfontnumber</a> <a class="el" href="globals_8h.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, <a class="el" href="tex_8h.html#a4092e9c8e6872fc0b04466609ad2875c">eightbits</a> <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
 <tr class="separator:a151b5d2be0ab9cc2e1728e16b5e8927c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -125,33 +127,35 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="charwarning_8cpp_source.html#l00009">9</a> du fichier <a class="el" href="charwarning_8cpp_source.html">charwarning.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="constantes_8h.html#a6ddc16e9415f3561a9509a8d43b79ccb">tracing_lost_chars_code</a>) &gt; 0)</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67">begindiagnostic</a>();</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;Missing character: There is no &quot;</span>);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(std::string(1, <span class="keywordtype">char</span>(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>)));</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot; in font &quot;</span>);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a>(<a class="code" href="globals_8h.html#a110d751f8e36424b17054d7114cb169a">fontname</a>[<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>]);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;!&#39;</span>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825">enddiagnostic</a>(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="charwarning_8cpp_source.html#l00012">12</a> du fichier <a class="el" href="charwarning_8cpp_source.html">charwarning.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1">tracing_lost_chars</a>() &gt; 0)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67">begindiagnostic</a>();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;Missing character: There is no &quot;</span>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot; in font &quot;</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a>(<a class="code" href="globals_8h.html#a110d751f8e36424b17054d7114cb169a">fontname</a>[<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>]);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;!&#39;</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825">enddiagnostic</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="charwarning_8cpp_a151b5d2be0ab9cc2e1728e16b5e8927c_cgraph.png" border="0" usemap="#charwarning_8cpp_a151b5d2be0ab9cc2e1728e16b5e8927c_cgraph" alt=""/></div>
 <map name="charwarning_8cpp_a151b5d2be0ab9cc2e1728e16b5e8927c_cgraph" id="charwarning_8cpp_a151b5d2be0ab9cc2e1728e16b5e8927c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,144,97,171"/>
-<area shape="rect" href="begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title=" " alt="" coords="296,43,408,69"/>
-<area shape="rect" href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title=" " alt="" coords="699,68,760,95"/>
-<area shape="rect" href="enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="145,296,248,323"/>
-<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="323,245,381,272"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="470,195,517,221"/>
-<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="579,93,651,120"/>
-<area shape="rect" href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="456,144,531,171"/>
-<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="701,220,758,247"/>
+<area shape="rect" title=" " alt="" coords="5,157,97,184"/>
+<area shape="rect" href="begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title=" " alt="" coords="153,5,265,32"/>
+<area shape="rect" href="enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="158,56,261,83"/>
+<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="344,107,401,133"/>
+<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="486,157,533,184"/>
+<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="595,208,667,235"/>
+<area shape="rect" href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="472,259,547,285"/>
+<area shape="rect" href="charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1" title=" " alt="" coords="145,309,273,336"/>
+<area shape="rect" href="parametres_8h.html#ad64b5865361b4a66a2e034f995f8dc24" title=" " alt="" coords="321,5,424,32"/>
+<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="715,132,772,159"/>
+<area shape="rect" href="parametres_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title="an integer parameter" alt="" coords="342,309,403,336"/>
 </map>
 </div>
 <div class="dynheader">
@@ -176,16 +180,67 @@ Voici le graphe des appelants de cette fonction :</div>
 
 </div>
 </div>
+<a id="a3a992e82816e5d1ab70b855c06ad86a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a992e82816e5d1ab70b855c06ad86a1">&#9670;&nbsp;</a></span>tracing_lost_chars()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int tracing_lost_chars </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="charwarning_8cpp_source.html#l00010">10</a> du fichier <a class="el" href="charwarning_8cpp_source.html">charwarning.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="parametres_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="parametres_8h.html#afa231099d07583c3ed0981e0bb665f55a57c33551becc5326c9f6a5f246cb1dfd">tracing_lost_chars_code</a>); }</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="charwarning_8cpp_a3a992e82816e5d1ab70b855c06ad86a1_cgraph.png" border="0" usemap="#charwarning_8cpp_a3a992e82816e5d1ab70b855c06ad86a1_cgraph" alt=""/></div>
+<map name="charwarning_8cpp_a3a992e82816e5d1ab70b855c06ad86a1_cgraph" id="charwarning_8cpp_a3a992e82816e5d1ab70b855c06ad86a1_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,133,32"/>
+<area shape="rect" href="parametres_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title="an integer parameter" alt="" coords="181,5,243,32"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="charwarning_8cpp_a3a992e82816e5d1ab70b855c06ad86a1_icgraph.png" border="0" usemap="#charwarning_8cpp_a3a992e82816e5d1ab70b855c06ad86a1_icgraph" alt=""/></div>
+<map name="charwarning_8cpp_a3a992e82816e5d1ab70b855c06ad86a1_icgraph" id="charwarning_8cpp_a3a992e82816e5d1ab70b855c06ad86a1_icgraph">
+<area shape="rect" title=" " alt="" coords="328,56,456,83"/>
+<area shape="rect" href="charwarning_8h.html#a151b5d2be0ab9cc2e1728e16b5e8927c" title=" " alt="" coords="188,56,280,83"/>
+<area shape="rect" href="fetch_8h.html#aee1d069ba584076de270d547f3ddfc71" title=" " alt="" coords="47,5,98,32"/>
+<area shape="rect" href="maincontrol_8cpp.html#aee41666bb43f68ce58fd3f71c7781cd8" title=" " alt="" coords="5,56,140,83"/>
+<area shape="rect" href="newcharacter_8h.html#a6e07886dd6173debb4827256ca3327df" title=" " alt="" coords="23,107,123,133"/>
+</map>
+</div>
+
+</div>
+</div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_a6ddc16e9415f3561a9509a8d43b79ccb"><div class="ttname"><a href="constantes_8h.html#a6ddc16e9415f3561a9509a8d43b79ccb">tracing_lost_chars_code</a></div><div class="ttdeci">constexpr int tracing_lost_chars_code</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00500">constantes.h:500</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_acee72cc7eac7224c7335fd7da8b4d54a"><div class="ttname"><a href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a></div><div class="ttdeci">quarterword f</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
 <div class="ttc" id="aslowprint_8cpp_html_a163fa1f725ed91bdbb220bd85a1fd852"><div class="ttname"><a href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a></div><div class="ttdeci">void slowprint(int s)</div><div class="ttdef"><b>Definition:</b> <a href="slowprint_8cpp_source.html#l00005">slowprint.cpp:5</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ae48ac66d20f27df0f237841a57b492a2"><div class="ttname"><a href="constantes_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a></div><div class="ttdeci">int &amp; int_par(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00079">constantes.cpp:79</a></div></div>
+<div class="ttc" id="acharwarning_8cpp_html_a3a992e82816e5d1ab70b855c06ad86a1"><div class="ttname"><a href="charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1">tracing_lost_chars</a></div><div class="ttdeci">static int tracing_lost_chars(void)</div><div class="ttdef"><b>Definition:</b> <a href="charwarning_8cpp_source.html#l00010">charwarning.cpp:10</a></div></div>
+<div class="ttc" id="aparametres_8h_html_afa231099d07583c3ed0981e0bb665f55a57c33551becc5326c9f6a5f246cb1dfd"><div class="ttname"><a href="parametres_8h.html#afa231099d07583c3ed0981e0bb665f55a57c33551becc5326c9f6a5f246cb1dfd">tracing_lost_chars_code</a></div><div class="ttdeci">@ tracing_lost_chars_code</div><div class="ttdoc">show characters that aren't in the font</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8h_source.html#l00045">parametres.h:45</a></div></div>
 <div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a110d751f8e36424b17054d7114cb169a"><div class="ttname"><a href="globals_8h.html#a110d751f8e36424b17054d7114cb169a">fontname</a></div><div class="ttdeci">std::string fontname[fontmax+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00153">globals.h:153</a></div></div>
 <div class="ttc" id="abegindiagnostic_8cpp_html_ae7f34298980b60c63ccdee9eb0225d67"><div class="ttname"><a href="begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67">begindiagnostic</a></div><div class="ttdeci">void begindiagnostic(void)</div><div class="ttdef"><b>Definition:</b> <a href="begindiagnostic_8cpp_source.html#l00003">begindiagnostic.cpp:3</a></div></div>
 <div class="ttc" id="aenddiagnostic_8cpp_html_a77750f94de523bc7cb10b205e7bb9825"><div class="ttname"><a href="enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825">enddiagnostic</a></div><div class="ttdeci">void enddiagnostic(bool blankline)</div><div class="ttdef"><b>Definition:</b> <a href="enddiagnostic_8cpp_source.html#l00005">enddiagnostic.cpp:5</a></div></div>
+<div class="ttc" id="aparametres_8cpp_html_ae48ac66d20f27df0f237841a57b492a2"><div class="ttname"><a href="parametres_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a></div><div class="ttdeci">int &amp; int_par(halfword p)</div><div class="ttdoc">an integer parameter</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8cpp_source.html#l00005">parametres.cpp:5</a></div></div>
 <div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
 <div class="ttc" id="aprintnl_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printnl_8cpp_source.html#l00005">printnl.cpp:5</a></div></div>
 <!-- start footer part -->

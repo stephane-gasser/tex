@@ -101,33 +101,41 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a3391d0a47960eef3ec27804bb9bb0a15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eqdefine_8h.html#a3391d0a47960eef3ec27804bb9bb0a15">eqdefine</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p, <a class="el" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> t, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> e)</td></tr>
-<tr class="separator:a3391d0a47960eef3ec27804bb9bb0a15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeae006372a12c71aa237d12cdfd5e394"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eqdefine_8h.html#aeae006372a12c71aa237d12cdfd5e394">define</a> (int a, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>, <a class="el" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a>, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>)</td></tr>
+<tr class="separator:aeae006372a12c71aa237d12cdfd5e394"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f9657182abb3c8c499ccd689be3f647"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="eqdefine_8h.html#a4f9657182abb3c8c499ccd689be3f647">eqdefine</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>, <a class="el" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a>, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>)</td></tr>
+<tr class="separator:a4f9657182abb3c8c499ccd689be3f647"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a3391d0a47960eef3ec27804bb9bb0a15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3391d0a47960eef3ec27804bb9bb0a15">&#9670;&nbsp;</a></span>eqdefine()</h2>
+<a id="aeae006372a12c71aa237d12cdfd5e394"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeae006372a12c71aa237d12cdfd5e394">&#9670;&nbsp;</a></span>define()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void eqdefine </td>
+          <td class="memname">void define </td>
           <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a>&#160;</td>
-          <td class="paramname"><em>t</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
-          <td class="paramname"><em>e</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -137,57 +145,128 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="eqdefine_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="eqdefine_8cpp_source.html">eqdefine.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(p) == <a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a>)</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <a class="code" href="eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e">eqdestroy</a>(<a class="code" href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a>[p]);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">else</span> </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a> &gt; 1)</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <a class="code" href="eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617">eqsave</a>(p, <a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(p));</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(p) = <a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d">eq_type</a>(p) = t;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a>(p) = e;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="eqdefine_8cpp_source.html#l00006">6</a> du fichier <a class="el" href="eqdefine_8cpp_source.html">eqdefine.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (a &gt;= 4)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="geqdefine_8cpp.html#ae3b1e53099c16062397fd40c3a959099">geqdefine</a>(p, t, e);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="eqdefine_8cpp.html#a3391d0a47960eef3ec27804bb9bb0a15">eqdefine</a>(p, t, e);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="eqdefine_8h_a3391d0a47960eef3ec27804bb9bb0a15_cgraph.png" border="0" usemap="#eqdefine_8h_a3391d0a47960eef3ec27804bb9bb0a15_cgraph" alt=""/></div>
-<map name="eqdefine_8h_a3391d0a47960eef3ec27804bb9bb0a15_cgraph" id="eqdefine_8h_a3391d0a47960eef3ec27804bb9bb0a15_cgraph">
-<area shape="rect" title=" " alt="" coords="5,190,76,216"/>
-<area shape="rect" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="128,88,199,115"/>
-<area shape="rect" href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d" title=" " alt="" coords="129,139,197,166"/>
-<area shape="rect" href="eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="124,190,203,216"/>
-<area shape="rect" href="eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="131,316,195,343"/>
-<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title=" " alt="" coords="137,367,190,394"/>
-<area shape="rect" href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="397,38,493,64"/>
-<area shape="rect" href="freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="545,63,617,90"/>
-<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="665,164,708,191"/>
-<area shape="rect" href="deletetokenref_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="393,190,497,216"/>
-<area shape="rect" href="flushnodelist_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="251,139,345,166"/>
-<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="263,342,333,368"/>
-<area shape="rect" href="constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0" title=" " alt="" coords="254,392,342,419"/>
-<area shape="rect" href="constantes_8cpp.html#adb784dc2516689c3d42c5664f04eafd4" title=" " alt="" coords="256,443,340,470"/>
-<area shape="rect" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11" title=" " alt="" coords="257,291,339,318"/>
+<div class="center"><img src="eqdefine_8h_aeae006372a12c71aa237d12cdfd5e394_cgraph.png" border="0" usemap="#eqdefine_8h_aeae006372a12c71aa237d12cdfd5e394_cgraph" alt=""/></div>
+<map name="eqdefine_8h_aeae006372a12c71aa237d12cdfd5e394_cgraph" id="eqdefine_8h_aeae006372a12c71aa237d12cdfd5e394_cgraph">
+<area shape="rect" title=" " alt="" coords="5,183,63,209"/>
+<area shape="rect" href="eqdefine_8cpp.html#a3391d0a47960eef3ec27804bb9bb0a15" title=" " alt="" coords="115,132,185,159"/>
+<area shape="rect" href="geqdefine_8cpp.html#ae3b1e53099c16062397fd40c3a959099" title=" " alt="" coords="111,208,189,235"/>
+<area shape="rect" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="241,5,312,32"/>
+<area shape="rect" href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d" title=" " alt="" coords="243,56,311,83"/>
+<area shape="rect" href="eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="237,208,316,235"/>
+<area shape="rect" href="eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="245,107,309,133"/>
+<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title=" " alt="" coords="250,157,303,184"/>
+<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="243,309,311,336"/>
+<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="253,259,300,285"/>
 </map>
 </div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="eqdefine_8h_a3391d0a47960eef3ec27804bb9bb0a15_icgraph.png" border="0" usemap="#eqdefine_8h_a3391d0a47960eef3ec27804bb9bb0a15_icgraph" alt=""/></div>
-<map name="eqdefine_8h_a3391d0a47960eef3ec27804bb9bb0a15_icgraph" id="eqdefine_8h_a3391d0a47960eef3ec27804bb9bb0a15_icgraph">
-<area shape="rect" title=" " alt="" coords="679,107,749,133"/>
-<area shape="rect" href="doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="495,5,631,32"/>
-<area shape="rect" href="prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="321,56,447,83"/>
-<area shape="rect" href="getpreambletoken_8h.html#a82620351bee57bb56f4d0a9181f6af98" title=" " alt="" coords="500,157,625,184"/>
-<area shape="rect" href="newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="529,107,597,133"/>
-<area shape="rect" href="normalparagraph_8h.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="503,284,622,311"/>
-<area shape="rect" href="initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="175,183,241,209"/>
+<div class="center"><img src="eqdefine_8h_aeae006372a12c71aa237d12cdfd5e394_icgraph.png" border="0" usemap="#eqdefine_8h_aeae006372a12c71aa237d12cdfd5e394_icgraph" alt=""/></div>
+<map name="eqdefine_8h_aeae006372a12c71aa237d12cdfd5e394_icgraph" id="eqdefine_8h_aeae006372a12c71aa237d12cdfd5e394_icgraph">
+<area shape="rect" title=" " alt="" coords="363,56,420,83"/>
+<area shape="rect" href="doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="179,5,315,32"/>
+<area shape="rect" href="prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,31,131,57"/>
+<area shape="rect" href="newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="213,107,281,133"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4f9657182abb3c8c499ccd689be3f647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f9657182abb3c8c499ccd689be3f647">&#9670;&nbsp;</a></span>eqdefine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void eqdefine </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="eqdefine_8cpp_source.html#l00014">14</a> du fichier <a class="el" href="eqdefine_8cpp_source.html">eqdefine.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(p) == <a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a>)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e">eqdestroy</a>(<a class="code" href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a>[p]);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a> &gt; 1)</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617">eqsave</a>(p, <a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(p));</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(p) = <a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d">eq_type</a>(p) = t;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a>(p) = e;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="eqdefine_8h_a4f9657182abb3c8c499ccd689be3f647_cgraph.png" border="0" usemap="#eqdefine_8h_a4f9657182abb3c8c499ccd689be3f647_cgraph" alt=""/></div>
+<map name="eqdefine_8h_a4f9657182abb3c8c499ccd689be3f647_cgraph" id="eqdefine_8h_a4f9657182abb3c8c499ccd689be3f647_cgraph">
+<area shape="rect" title=" " alt="" coords="5,199,76,225"/>
+<area shape="rect" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="128,97,199,124"/>
+<area shape="rect" href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d" title=" " alt="" coords="129,148,197,175"/>
+<area shape="rect" href="eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="124,199,203,225"/>
+<area shape="rect" href="eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="131,325,195,352"/>
+<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title=" " alt="" coords="137,376,190,403"/>
+<area shape="rect" href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="457,47,553,73"/>
+<area shape="rect" href="freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="605,72,677,99"/>
+<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="725,173,768,200"/>
+<area shape="rect" href="deletetokenref_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="453,199,557,225"/>
+<area shape="rect" href="flushnodelist_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="281,148,375,175"/>
+<area shape="rect" href="overflow_8cpp.html#a63c87df7fc9c2697a41f1824e984ff28" title=" " alt="" coords="251,351,405,377"/>
+<area shape="rect" href="constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0" title=" " alt="" coords="284,401,372,428"/>
+<area shape="rect" href="constantes_8cpp.html#adb784dc2516689c3d42c5664f04eafd4" title=" " alt="" coords="286,452,370,479"/>
+<area shape="rect" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11" title=" " alt="" coords="287,300,369,327"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="eqdefine_8h_a4f9657182abb3c8c499ccd689be3f647_icgraph.png" border="0" usemap="#eqdefine_8h_a4f9657182abb3c8c499ccd689be3f647_icgraph" alt=""/></div>
+<map name="eqdefine_8h_a4f9657182abb3c8c499ccd689be3f647_icgraph" id="eqdefine_8h_a4f9657182abb3c8c499ccd689be3f647_icgraph">
+<area shape="rect" title=" " alt="" coords="679,157,749,184"/>
+<area shape="rect" href="eqdefine_8h.html#aeae006372a12c71aa237d12cdfd5e394" title=" " alt="" coords="539,81,597,108"/>
+<area shape="rect" href="getpreambletoken_8h.html#a82620351bee57bb56f4d0a9181f6af98" title=" " alt="" coords="505,157,631,184"/>
+<area shape="rect" href="normalparagraph_8h.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="509,309,627,336"/>
+<area shape="rect" href="doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="321,5,457,32"/>
+<area shape="rect" href="prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="145,56,271,83"/>
+<area shape="rect" href="newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="355,107,423,133"/>
 <area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,259,95,285"/>
-<area shape="rect" href="alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="345,183,423,209"/>
-<area shape="rect" href="begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="143,284,273,311"/>
-<area shape="rect" href="endgraf_8h.html#abee47be02d4d2b4c7bdb494f59a5a8bc" title=" " alt="" coords="175,335,241,361"/>
-<area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="357,385,411,412"/>
-<area shape="rect" href="initspan_8h.html#a1c347985717caccf5068d06b952b2a47" title=" " alt="" coords="351,436,417,463"/>
+<area shape="rect" href="initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="175,208,241,235"/>
+<area shape="rect" href="alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="351,208,428,235"/>
+<area shape="rect" href="begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="143,309,273,336"/>
+<area shape="rect" href="endgraf_8h.html#abee47be02d4d2b4c7bdb494f59a5a8bc" title=" " alt="" coords="175,360,241,387"/>
+<area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="362,411,417,437"/>
+<area shape="rect" href="initspan_8h.html#a1c347985717caccf5068d06b952b2a47" title=" " alt="" coords="356,461,423,488"/>
 </map>
 </div>
 
@@ -196,9 +275,11 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><!-- contents -->
 <div class="ttc" id="aglobals_8cpp_html_a455b41a95f9f40569c9066e2a78a1106"><div class="ttname"><a href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a></div><div class="ttdeci">memoryword eqtb[6107]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00097">globals.cpp:97</a></div></div>
 <div class="ttc" id="aeqsave_8cpp_html_a03e055f6df96e78ec9670bc1b6651617"><div class="ttname"><a href="eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617">eqsave</a></div><div class="ttdeci">void eqsave(halfword p, quarterword l)</div><div class="ttdef"><b>Definition:</b> <a href="eqsave_8cpp_source.html#l00004">eqsave.cpp:4</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_acb82808d11d8a4270965a5d0c662c9ed"><div class="ttname"><a href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a></div><div class="ttdeci">halfword &amp; equiv(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00109">constantes.cpp:109</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a27378376efbb02517aae5c621db59a74"><div class="ttname"><a href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a></div><div class="ttdeci">quarterword &amp; eq_level(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00099">constantes.cpp:99</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a30e61288612879b61525ab34298b794d"><div class="ttname"><a href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d">eq_type</a></div><div class="ttdeci">quarterword &amp; eq_type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00104">constantes.cpp:104</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_acb82808d11d8a4270965a5d0c662c9ed"><div class="ttname"><a href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a></div><div class="ttdeci">halfword &amp; equiv(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00027">constantes.cpp:27</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a27378376efbb02517aae5c621db59a74"><div class="ttname"><a href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a></div><div class="ttdeci">quarterword &amp; eq_level(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00025">constantes.cpp:25</a></div></div>
+<div class="ttc" id="ageqdefine_8cpp_html_ae3b1e53099c16062397fd40c3a959099"><div class="ttname"><a href="geqdefine_8cpp.html#ae3b1e53099c16062397fd40c3a959099">geqdefine</a></div><div class="ttdeci">void geqdefine(halfword p, quarterword t, halfword e)</div><div class="ttdef"><b>Definition:</b> <a href="geqdefine_8cpp_source.html#l00004">geqdefine.cpp:4</a></div></div>
+<div class="ttc" id="aeqdefine_8cpp_html_a3391d0a47960eef3ec27804bb9bb0a15"><div class="ttname"><a href="eqdefine_8cpp.html#a3391d0a47960eef3ec27804bb9bb0a15">eqdefine</a></div><div class="ttdeci">void eqdefine(halfword p, quarterword t, halfword e)</div><div class="ttdef"><b>Definition:</b> <a href="eqdefine_8cpp_source.html#l00014">eqdefine.cpp:14</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a30e61288612879b61525ab34298b794d"><div class="ttname"><a href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d">eq_type</a></div><div class="ttdeci">quarterword &amp; eq_type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00026">constantes.cpp:26</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa4df4dd4a8b0898dfb786074b600c956"><div class="ttname"><a href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a></div><div class="ttdeci">quarterword curlevel</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00105">globals.cpp:105</a></div></div>
 <div class="ttc" id="aeqdestroy_8cpp_html_a06ca8ddf74d2d157842099a64ecf138e"><div class="ttname"><a href="eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e">eqdestroy</a></div><div class="ttdeci">void eqdestroy(memoryword w)</div><div class="ttdef"><b>Definition:</b> <a href="eqdestroy_8cpp_source.html#l00007">eqdestroy.cpp:7</a></div></div>
 <!-- start footer part -->

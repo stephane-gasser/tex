@@ -1,10 +1,10 @@
 <map id="newcharacter" name="newcharacter">
-<area shape="rect" id="node1" title=" " alt="" coords="284,56,384,83"/>
-<area shape="rect" id="node2" href="$hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="148,5,231,32"/>
-<area shape="rect" id="node4" href="$makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="143,56,236,83"/>
-<area shape="rect" id="node6" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="147,131,232,157"/>
-<area shape="rect" id="node3" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="13,5,87,32"/>
-<area shape="rect" id="node5" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,56,95,83"/>
-<area shape="rect" id="node7" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="11,119,89,145"/>
-<area shape="rect" id="node8" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="13,169,87,196"/>
+<area shape="rect" id="node1" title=" " alt="" coords="409,56,509,83"/>
+<area shape="rect" id="node2" href="$hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="273,5,356,32"/>
+<area shape="rect" id="node4" href="$makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="268,56,361,83"/>
+<area shape="rect" id="node6" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="272,131,357,157"/>
+<area shape="rect" id="node3" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="144,5,219,32"/>
+<area shape="rect" id="node5" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,81,95,108"/>
+<area shape="rect" id="node7" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="143,107,220,133"/>
+<area shape="rect" id="node8" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="144,157,219,184"/>
 </map>

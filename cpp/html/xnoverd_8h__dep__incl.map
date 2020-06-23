@@ -1,10 +1,11 @@
 <map id="xnoverd.h" name="xnoverd.h">
-<area shape="rect" id="node1" title=" " alt="" coords="389,5,468,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="464,5,543,32"/>
 <area shape="rect" id="node2" href="$appspace_8cpp.html" title=" " alt="" coords="5,80,108,107"/>
 <area shape="rect" id="node3" href="$mathglue_8cpp.html" title=" " alt="" coords="132,80,232,107"/>
 <area shape="rect" id="node4" href="$mathkern_8cpp.html" title=" " alt="" coords="257,80,358,107"/>
-<area shape="rect" id="node5" href="$newfont_8cpp.html" title=" " alt="" coords="382,80,475,107"/>
-<area shape="rect" id="node6" href="$readfontinfo_8cpp.html" title=" " alt="" coords="499,80,614,107"/>
-<area shape="rect" id="node7" href="$scandimen_8cpp.html" title=" " alt="" coords="639,80,749,107"/>
-<area shape="rect" id="node8" href="$xnoverd_8cpp.html" title=" " alt="" coords="774,80,867,107"/>
+<area shape="rect" id="node5" href="$multandadd_8cpp.html" title=" " alt="" coords="382,80,497,107"/>
+<area shape="rect" id="node6" href="$newfont_8cpp.html" title=" " alt="" coords="521,80,614,107"/>
+<area shape="rect" id="node7" href="$readfontinfo_8cpp.html" title=" " alt="" coords="638,80,753,107"/>
+<area shape="rect" id="node8" href="$scandimen_8cpp.html" title=" " alt="" coords="777,80,888,107"/>
+<area shape="rect" id="node9" href="$xnoverd_8cpp.html" title=" " alt="" coords="913,80,1006,107"/>
 </map>

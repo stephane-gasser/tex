@@ -119,54 +119,53 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">if</span> (s &lt;= 0)</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="keywordflow">return</span> 10000;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a> = (t &lt;= 7230584) ? (t*297)/s : (s &gt;= 1663497) ? t/(s/297) : t;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a> &gt; 1290)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">int</span> r = (t &lt;= 7230584) ? (t*297)/s : (s &gt;= 1663497) ? t/(s/297) : t;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (r &gt; 1290)</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keywordflow">return</span> 10000;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">return</span> (<a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>*<a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>*<a class="code" href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a>+131072)/262144;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">return</span> (r*r*r+131072)/262144;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="badness_8cpp_af030be7eeb32202d38457203594ed062_icgraph.png" border="0" usemap="#badness_8cpp_af030be7eeb32202d38457203594ed062_icgraph" alt=""/></div>
 <map name="badness_8cpp_af030be7eeb32202d38457203594ed062_icgraph" id="badness_8cpp_af030be7eeb32202d38457203594ed062_icgraph">
-<area shape="rect" title=" " alt="" coords="767,892,837,919"/>
-<area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="345,853,423,880"/>
-<area shape="rect" href="hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="651,360,708,387"/>
-<area shape="rect" href="trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="645,892,714,919"/>
-<area shape="rect" href="vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="641,1044,717,1071"/>
-<area shape="rect" href="vpackage_8h.html#a67d4c487177aa349f7595ddb33aa9534" title=" " alt="" coords="640,765,719,792"/>
-<area shape="rect" href="appendpenalty_8h.html#a82e3f6f58b17cb079cbca728f3c09d8b" title=" " alt="" coords="155,689,262,716"/>
-<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,664,95,691"/>
-<area shape="rect" href="finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="19,917,81,944"/>
-<area shape="rect" href="handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="150,588,267,615"/>
-<area shape="rect" href="initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="175,639,243,665"/>
-<area shape="rect" href="newgraf_8h.html#a32eeb6c6a88201e95a9a86b0c110dc4c" title=" " alt="" coords="175,791,243,817"/>
-<area shape="rect" href="resumeafterdisplay_8h.html#a5e20dcff03a0b655888f77fb621b21d4" title=" " alt="" coords="143,841,275,868"/>
-<area shape="rect" href="aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="11,233,89,260"/>
-<area shape="rect" href="cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="505,284,580,311"/>
-<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="335,132,433,159"/>
-<area shape="rect" href="mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="166,233,251,260"/>
-<area shape="rect" href="makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="338,335,430,361"/>
-<area shape="rect" href="makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="337,183,431,209"/>
-<area shape="rect" href="fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="516,537,569,564"/>
-<area shape="rect" href="finrow_8h.html#a0dfcdcfca243b8bc38a56bc5f8675d21" title=" " alt="" coords="514,588,571,615"/>
-<area shape="rect" href="makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="162,487,255,513"/>
-<area shape="rect" href="package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="507,740,578,767"/>
-<area shape="rect" href="postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="493,436,592,463"/>
-<area shape="rect" href="rebox_8h.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="515,81,570,108"/>
-<area shape="rect" href="makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="323,284,445,311"/>
-<area shape="rect" href="makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="341,385,427,412"/>
-<area shape="rect" href="linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="347,803,421,829"/>
-<area shape="rect" href="vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="516,1044,569,1071"/>
-<area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="515,943,570,969"/>
-<area shape="rect" href="overbar_8h.html#a5b487c0636abe1d8f8766696d91829d6" title=" " alt="" coords="510,689,575,716"/>
+<area shape="rect" title=" " alt="" coords="1020,157,1091,184"/>
+<area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="487,171,565,197"/>
+<area shape="rect" href="hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="779,740,836,767"/>
+<area shape="rect" href="trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="773,56,842,83"/>
+<area shape="rect" href="vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="769,157,845,184"/>
+<area shape="rect" href="vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="893,284,972,311"/>
+<area shape="rect" href="appendpenalty_8h.html#a82e3f6f58b17cb079cbca728f3c09d8b" title=" " alt="" coords="143,120,249,147"/>
+<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,196,95,223"/>
+<area shape="rect" href="finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="165,335,227,361"/>
+<area shape="rect" href="handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="305,424,422,451"/>
+<area shape="rect" href="initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="329,19,397,45"/>
+<area shape="rect" href="itsallover_8h.html#a328c29eeaa688dcd15cc3534c1b078bc" title=" " alt="" coords="159,171,233,197"/>
+<area shape="rect" href="newgraf_8h.html#a32eeb6c6a88201e95a9a86b0c110dc4c" title=" " alt="" coords="329,221,397,248"/>
+<area shape="rect" href="resumeafterdisplay_8h.html#a5e20dcff03a0b655888f77fb621b21d4" title=" " alt="" coords="297,323,429,349"/>
+<area shape="rect" href="aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="157,708,235,735"/>
+<area shape="rect" href="cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="635,917,709,944"/>
+<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="477,968,575,995"/>
+<area shape="rect" href="mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="321,841,406,868"/>
+<area shape="rect" href="makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="480,867,572,893"/>
+<area shape="rect" href="makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="479,816,573,843"/>
+<area shape="rect" href="fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="645,512,699,539"/>
+<area shape="rect" href="finrow_8h.html#a0dfcdcfca243b8bc38a56bc5f8675d21" title=" " alt="" coords="643,461,701,488"/>
+<area shape="rect" href="makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="149,575,243,601"/>
+<area shape="rect" href="package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="637,563,707,589"/>
+<area shape="rect" href="postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="623,613,721,640"/>
+<area shape="rect" href="rebox_8h.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="645,968,699,995"/>
+<area shape="rect" href="linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="489,44,563,71"/>
+<area shape="rect" href="linebreak_8cpp.html#a7c6cf5fe8506c32f31be9ec53a4d994e" title=" " alt="" coords="629,5,715,32"/>
+<area shape="rect" href="vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="645,208,699,235"/>
+<area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="645,259,699,285"/>
+<area shape="rect" href="vpackage_8h.html#a206cf29986058df07ca90d49bb7ce152" title=" " alt="" coords="779,309,836,336"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="awriteout_8cpp_html_a76be2f40de03334f34eaf465efc0e0e0"><div class="ttname"><a href="writeout_8cpp.html#a76be2f40de03334f34eaf465efc0e0e0">r</a></div><div class="ttdeci">auto r</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00019">writeout.cpp:19</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

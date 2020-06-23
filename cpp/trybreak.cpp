@@ -4,6 +4,71 @@
 #include "badness.h"
 #include "freenode.h"
 
+static void copy_to_cur_active(void) 
+{
+	for (int i = 1; i < 6; i++)
+		curactivewidth[i] = activewidth[i];
+}
+
+static void update_width(halfword r)
+{
+	for (int i = 1; i < 6; i++)
+		curactivewidth[i] += mem[r+i].int_;
+}
+
+static void set_break_width_to_background(void)
+{
+	for (int i = 1; i < 6; i++)
+		breakwidth[i] = background[i];
+}
+
+static void convert_to_break_width(halfword prev_r)
+{
+	for (int i = 1; i < 6; i++)
+		mem[prev_r+i].int_ += -curactivewidth[i]+breakwidth[i];
+}
+
+static void store_break_width(void)
+{
+	for (int i = 1; i < 6; i++)
+		activewidth[i] = breakwidth[i];
+}
+
+static void new_delta_to_break_width(halfword q)
+{
+	for (int i = 1; i < 6; i++)
+		mem[q+i].int_ = breakwidth[i]-curactivewidth[i];
+}
+
+static void new_delta_from_break_width(halfword q)
+{
+	for (int i = 1; i < 6; i++)
+		mem[q+i].int_ = curactivewidth[i]-breakwidth[i];
+}
+
+static void combine_two_deltas(halfword prev_r, halfword r)
+{
+	for (int i = 1; i < 6; i++)
+		mem[prev_r+i].int_ += mem[r+i].int_;
+}
+
+static void downdate_width(halfword prev_r)
+{
+	for (int i = 1; i < 6; i++)
+		curactivewidth[i] -= mem[prev_r+i].int_;
+}
+
+static void update_active(halfword r)
+{
+	for (int i = 1; i < 6; i++)
+		activewidth[i] += mem[r+i].int_;
+}
+
+static int adj_demerits(void) { return int_par(adj_demerits_code); }
+static int double_hyphen_demerits(void) { return int_par(double_hyphen_demerits_code); }
+static int final_hyphen_demerits(void) { return int_par(final_hyphen_demerits_code); }
+static int line_penalty(void) { return int_par(line_penalty_code); }
+
 void trybreak(int pi, smallnumber breaktype)
 {
 	halfword r, prevr, oldl;
