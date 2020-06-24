@@ -1,11 +1,13 @@
-SRC = $(wildcard *.cpp)
-OBJ = $(SRC:.cpp=.o)
+SRC_DIR := src
+OBJ_DIR := obj
+SRC_FILES := $(wildcard $(SRC_DIR)/*.cpp)
+OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
-myTeX: $(OBJ)
+myTeX: $(OBJ_FILES)
 	g++ -std=c++17 -o $@ $^
 
-%.o: %.cpp
-	g++ -std=c++17 -c $<
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	g++ -Iinc -std=c++17 -c $< -o $@
 
 clean:
-	rm -rf *.o
+	rm -rf obj/*.o
