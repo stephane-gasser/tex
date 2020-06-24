@@ -36,6 +36,7 @@ static void goto50(halfword r)
 	enddiagnostic(true);
 }
 
+//! special case of unconstrained depth
 halfword vpack(halfword p, scaled h, smallnumber m)
 {
 	return vpackage(p, h, m, max_dimen);

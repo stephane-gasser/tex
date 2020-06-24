@@ -3,6 +3,9 @@
 #include "scankeyword.h"
 #include "scandimen.h"
 
+constexpr int default_rule = 26214; //0.4\thinspace pt
+
+
 halfword scanrulespec(void)
 {
 	auto q = newrule();

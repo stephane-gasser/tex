@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -155,13 +162,13 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(<span class="stringliteral">&quot;CLOBBERED.&quot;</span>);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p) &gt;= <a class="code" href="constantes_8h.html#a43ed29a8db87d066c04b1abcfb609b40">cs_token_flag</a>)</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="printcs_8cpp.html#a1eea587c43c9698daa4d66337f6d0df7">printcs</a>(<a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p)-<a class="code" href="constantes_8h.html#a43ed29a8db87d066c04b1abcfb609b40">cs_token_flag</a>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p) &gt;= <a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a>)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="printcs_8cpp.html#a1eea587c43c9698daa4d66337f6d0df7">printcs</a>(<a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p)-<a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a>);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordtype">int</span> m = <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p)/0x1<span class="stringliteral">&#39;00;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordtype">int</span> m = <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p)/0x1<span class="stringliteral">&#39;00;</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="stringliteral">            int c = info(p)%0x1&#39;</span>00;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p) &lt; 0)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p) &lt; 0)</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(<span class="stringliteral">&quot;BAD.&quot;</span>);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordflow">switch</span> (m)</div>
@@ -216,19 +223,18 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="showtokenlist_8h_a1aa048aa010568fbb179bdda96bd684c_cgraph.png" border="0" usemap="#showtokenlist_8h_a1aa048aa010568fbb179bdda96bd684c_cgraph" alt=""/></div>
 <map name="showtokenlist_8h_a1aa048aa010568fbb179bdda96bd684c_cgraph" id="showtokenlist_8h_a1aa048aa010568fbb179bdda96bd684c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,132,108,159"/>
-<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="165,5,208,32"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="165,56,208,83"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="279,93,326,120"/>
-<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="388,195,460,221"/>
-<area shape="rect" href="printcs_8cpp.html#a1eea587c43c9698daa4d66337f6d0df7" title=" " alt="" coords="156,233,217,260"/>
-<area shape="rect" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="269,144,337,171"/>
-<area shape="rect" href="parametres_8h.html#a92aab912d4164b91a30449bc19bb1593" title=" " alt="" coords="508,68,613,95"/>
-<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="532,144,589,171"/>
-<area shape="rect" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="405,144,443,171"/>
-<area shape="rect" href="constantes_8cpp.html#ab70b4a53caf71f4da20a6f8a0c65ff20" title=" " alt="" coords="265,245,340,272"/>
-<area shape="rect" href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0" title=" " alt="" coords="281,296,325,323"/>
-<area shape="rect" href="texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="279,195,326,221"/>
+<area shape="rect" title=" " alt="" coords="5,107,108,133"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="165,5,208,32"/>
+<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="279,43,326,69"/>
+<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="388,144,460,171"/>
+<area shape="rect" href="printcs_8cpp.html#a1eea587c43c9698daa4d66337f6d0df7" title=" " alt="" coords="156,183,217,209"/>
+<area shape="rect" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="269,93,337,120"/>
+<area shape="rect" href="parametres_8h.html#a92aab912d4164b91a30449bc19bb1593" title=" " alt="" coords="508,17,613,44"/>
+<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="532,93,589,120"/>
+<area shape="rect" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="405,93,443,120"/>
+<area shape="rect" href="constantes_8cpp.html#ab70b4a53caf71f4da20a6f8a0c65ff20" title=" " alt="" coords="265,195,340,221"/>
+<area shape="rect" href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0" title="string number for control sequence name" alt="" coords="281,245,325,272"/>
+<area shape="rect" href="texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="279,144,326,171"/>
 </map>
 </div>
 <div class="dynheader">
@@ -263,19 +269,19 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="aglobals_8cpp_html_ac4b15f9477fc35d8c88e34fed4912186"><div class="ttname"><a href="globals_8cpp.html#ac4b15f9477fc35d8c88e34fed4912186">firstcount</a></div><div class="ttdeci">int firstcount</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00008">globals.cpp:8</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00570">constantes.h:570</a></div></div>
 <div class="ttc" id="aprintesc_8cpp_html_ace069a9f107f557990814241b661ad5f"><div class="ttname"><a href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a></div><div class="ttdeci">void printesc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printesc_8cpp_source.html#l00007">printesc.cpp:7</a></div></div>
 <div class="ttc" id="aprintcs_8cpp_html_a1eea587c43c9698daa4d66337f6d0df7"><div class="ttname"><a href="printcs_8cpp.html#a1eea587c43c9698daa4d66337f6d0df7">printcs</a></div><div class="ttdeci">void printcs(int p)</div><div class="ttdef"><b>Definition:</b> <a href="printcs_8cpp_source.html#l00007">printcs.cpp:7</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a43ed29a8db87d066c04b1abcfb609b40"><div class="ttname"><a href="constantes_8h.html#a43ed29a8db87d066c04b1abcfb609b40">cs_token_flag</a></div><div class="ttdeci">constexpr int cs_token_flag</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00556">constantes.h:556</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a5216b41f505a31550689ef98b9f6465f"><div class="ttname"><a href="globals_8cpp.html#a5216b41f505a31550689ef98b9f6465f">tally</a></div><div class="ttdeci">int tally</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00006">globals.cpp:6</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a3352ac6cf37faec3418a10ea40dd34f6"><div class="ttname"><a href="globals_8cpp.html#a3352ac6cf37faec3418a10ea40dd34f6">memend</a></div><div class="ttdeci">halfword memend</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00079">globals.cpp:79</a></div></div>
 <div class="ttc" id="atex_8h_html_a1378e31947b703505a474569517851c1"><div class="ttname"><a href="tex_8h.html#a1378e31947b703505a474569517851c1">halferrorline</a></div><div class="ttdeci">constexpr int halferrorline</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00013">tex.h:13</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a5d76b81b0ad4c19007a781d4edb8181fa8382990150c1cad5a49285b51f27fbeb"><div class="ttname"><a href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a></div><div class="ttdeci">@ cs_token_flag</div><div class="ttdoc">amount added to the eqtb location in a token that stands for a control sequence; is a multiple of 256...</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00611">constantes.h:611</a></div></div>
 <div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a15b07090f718e4745985db8a20187c9d"><div class="ttname"><a href="globals_8cpp.html#a15b07090f718e4745985db8a20187c9d">trickcount</a></div><div class="ttdeci">int trickcount</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00007">globals.cpp:7</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="atex_8h_html_abc935ea8e046e9e96b4637344c5a3edf"><div class="ttname"><a href="tex_8h.html#abc935ea8e046e9e96b4637344c5a3edf">errorline</a></div><div class="ttdeci">constexpr int errorline</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00012">tex.h:12</a></div></div>
 <div class="ttc" id="atex_8h_html_ad605392b72600cf4fe8b3cc0abf40c54"><div class="ttname"><a href="tex_8h.html#ad605392b72600cf4fe8b3cc0abf40c54">ASCIIcode</a></div><div class="ttdeci">unsigned char ASCIIcode</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00034">tex.h:34</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00007">constantes.cpp:7</a></div></div>
 <div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

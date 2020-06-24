@@ -2,6 +2,24 @@
 #include "primitive.h"
 #include "texte.h"
 
+enum
+{
+	number_code = 0, // //command code for \number
+	roman_numeral_code = 1, //command code for \romannumeral
+	string_code = 2, //command code for \string
+	meaning_code = 3, //command code for \meaning
+	font_name_code = 4, //command code for \fontname
+	job_name_code = 5 //command code for \jobname
+};
+
+enum
+{
+	if_code = 1, //code for \if... being evaluated
+	fi_code = 2, //code for \fi
+	else_code = 3, //code for \else
+	or_code = 4, //code for \or
+};
+
 void initprim(void)
 {
 	nonewcontrolsequence = false;

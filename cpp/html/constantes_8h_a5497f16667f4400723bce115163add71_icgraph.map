@@ -1,5 +1,5 @@
 <map id="nucleus" name="nucleus">
-<area shape="rect" id="node1" title=" " alt="" coords="624,467,691,493"/>
+<area shape="rect" id="node1" title="the nucleus field of a noad" alt="" coords="624,467,691,493"/>
 <area shape="rect" id="node2" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="490,391,565,417"/>
 <area shape="rect" id="node4" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="159,315,244,341"/>
 <area shape="rect" id="node5" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="308,543,431,569"/>
@@ -13,7 +13,7 @@
 <area shape="rect" id="node28" href="$makevcenter_8h.html#a6e5d002d0820c0eb0efc867f638396aa" title=" " alt="" coords="479,251,576,277"/>
 <area shape="rect" id="node29" href="$mathac_8h.html#a9b15be3a9cc9ba63e0b8cdbf650bba92" title=" " alt="" coords="169,828,234,855"/>
 <area shape="rect" id="node30" href="$mathradical_8h.html#a6e86e5d001c758710d7dd35221efb5a6" title=" " alt="" coords="483,593,572,620"/>
-<area shape="rect" id="node31" href="$constantes_8h.html#a0129b73f23f35eca6b18766768c5ed8a" title=" " alt="" coords="489,137,566,164"/>
+<area shape="rect" id="node31" href="$constantes_8h.html#a0129b73f23f35eca6b18766768c5ed8a" title="the translation of an mlist" alt="" coords="489,137,566,164"/>
 <area shape="rect" id="node32" href="$shownodelist_8h.html#a603d6d2969ceffbb5ac7b8c8bc74828b" title=" " alt="" coords="320,137,419,164"/>
 <area shape="rect" id="node33" href="$setmathchar_8h.html#a78741c557d11e65fff7328bc2b1a6449" title=" " alt="" coords="480,669,575,696"/>
 <area shape="rect" id="node3" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="321,340,418,367"/>

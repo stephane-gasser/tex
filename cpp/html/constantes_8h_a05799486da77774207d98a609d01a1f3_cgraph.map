@@ -1,5 +1,5 @@
 <map id="lig_ptr" name="lig_ptr">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,63,57"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#ad058da1b3e7e4027797ff16b1e5a6c32" title=" " alt="" coords="111,5,177,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="123,56,165,83"/>
+<area shape="rect" id="node1" title="the list of characters" alt="" coords="5,31,63,57"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#ad058da1b3e7e4027797ff16b1e5a6c32" title="the word where the ligature is to be found" alt="" coords="111,5,177,32"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="123,56,165,83"/>
 </map>

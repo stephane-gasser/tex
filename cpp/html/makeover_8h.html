@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -117,32 +124,29 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="makeover_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="makeover_8cpp_source.html">makeover.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(q)) = <a class="code" href="overbar_8cpp.html#a5b487c0636abe1d8f8766696d91829d6">overbar</a>(<a class="code" href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d">cleanbox</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(q), <a class="code" href="constantes_8h.html#ab557be9b970d378196522a830cacb640">cramped_style</a>(<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a>)), 3*<a class="code" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a>(), <a class="code" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a>());</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#a4df3e896622a68b2bf54c6f13da25730">math_type</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(q)) = <a class="code" href="constantes_8h.html#a4790f45dcc812c1b00184a2edccdddf5a0c13aecbc52b9c70e06e3da154cf4a37">sub_box</a>;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(q)) = <a class="code" href="overbar_8cpp.html#a5b487c0636abe1d8f8766696d91829d6">overbar</a>(<a class="code" href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d">cleanbox</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(q), cramped_style(<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a>)), 3*<a class="code" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a>(), <a class="code" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a>());</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8h.html#acfd168283e0375316338c74b2d61186f">math_type</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(q)) = <a class="code" href="constantes_8h.html#acfd168283e0375316338c74b2d61186fa0c13aecbc52b9c70e06e3da154cf4a37">sub_box</a>;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="makeover_8h_a156674c83d6a15f5959b89cfa8a223df_cgraph.png" border="0" usemap="#makeover_8h_a156674c83d6a15f5959b89cfa8a223df_cgraph" alt=""/></div>
 <map name="makeover_8h_a156674c83d6a15f5959b89cfa8a223df_cgraph" id="makeover_8h_a156674c83d6a15f5959b89cfa8a223df_cgraph">
-<area shape="rect" title=" " alt="" coords="5,841,84,868"/>
-<area shape="rect" href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="171,461,245,488"/>
-<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="745,563,788,589"/>
-<area shape="rect" href="constantes_8cpp.html#a4df3e896622a68b2bf54c6f13da25730" title=" " alt="" coords="467,765,550,792"/>
-<area shape="rect" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title=" " alt="" coords="475,715,542,741"/>
-<area shape="rect" href="constantes_8h.html#ab557be9b970d378196522a830cacb640" title=" " alt="" coords="155,892,261,919"/>
-<area shape="rect" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title=" " alt="" coords="132,943,284,969"/>
-<area shape="rect" href="overbar_8cpp.html#a5b487c0636abe1d8f8766696d91829d6" title=" " alt="" coords="342,5,407,32"/>
-<area shape="rect" href="freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="613,512,685,539"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="745,360,788,387"/>
-<area shape="rect" href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="480,360,537,387"/>
-<area shape="rect" href="constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title=" " alt="" coords="600,107,697,133"/>
-<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="625,208,672,235"/>
-<area shape="rect" href="constantes_8cpp.html#af9289b57d2744238aa244ac1f60c85c5" title=" " alt="" coords="465,613,552,640"/>
-<area shape="rect" href="mlisttohlist_8cpp.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="332,536,417,563"/>
-<area shape="rect" href="xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="478,259,539,285"/>
-<area shape="rect" href="newnoad_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52" title=" " alt="" coords="337,157,412,184"/>
-<area shape="rect" href="newnullbox_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="465,107,552,133"/>
+<area shape="rect" title=" " alt="" coords="5,343,84,370"/>
+<area shape="rect" href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="171,318,245,344"/>
+<area shape="rect" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="475,622,542,648"/>
+<area shape="rect" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="132,368,284,395"/>
+<area shape="rect" href="overbar_8cpp.html#a5b487c0636abe1d8f8766696d91829d6" title=" " alt="" coords="342,14,407,40"/>
+<area shape="rect" href="freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="613,520,685,547"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="745,368,788,395"/>
+<area shape="rect" href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="480,368,537,395"/>
+<area shape="rect" href="constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title="repositioning distance, in sp" alt="" coords="600,166,697,192"/>
+<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="625,267,672,294"/>
+<area shape="rect" href="constantes_8cpp.html#af9289b57d2744238aa244ac1f60c85c5" title="18mu" alt="" coords="465,318,552,344"/>
+<area shape="rect" href="mlisttohlist_8cpp.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="332,446,417,472"/>
+<area shape="rect" href="xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="478,571,539,598"/>
+<area shape="rect" href="newnoad_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52" title=" " alt="" coords="337,216,412,243"/>
+<area shape="rect" href="newnullbox_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="465,166,552,192"/>
 </map>
 </div>
 <div class="dynheader">
@@ -160,15 +164,14 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8cpp_html_a4df3e896622a68b2bf54c6f13da25730"><div class="ttname"><a href="constantes_8cpp.html#a4df3e896622a68b2bf54c6f13da25730">math_type</a></div><div class="ttdeci">halfword &amp; math_type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00005">constantes.cpp:5</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a9242983f21f2b16d36d1fd5f955b185e"><div class="ttname"><a href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a></div><div class="ttdeci">halfword nucleus(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00084">constantes.cpp:84</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_ab557be9b970d378196522a830cacb640"><div class="ttname"><a href="constantes_8h.html#ab557be9b970d378196522a830cacb640">cramped_style</a></div><div class="ttdeci">int cramped_style(int c)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00853">constantes.h:853</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a9242983f21f2b16d36d1fd5f955b185e"><div class="ttname"><a href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a></div><div class="ttdeci">halfword nucleus(halfword p)</div><div class="ttdoc">the nucleus field of a noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00084">constantes.cpp:84</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00570">constantes.h:570</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_acfd168283e0375316338c74b2d61186f"><div class="ttname"><a href="constantes_8h.html#acfd168283e0375316338c74b2d61186f">math_type</a></div><div class="ttdeci">math_type</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00586">constantes.h:586</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a6a7b1f013c94afa2d1a5b5fd7243f852"><div class="ttname"><a href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a></div><div class="ttdeci">smallnumber curstyle</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00192">globals.cpp:192</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00007">constantes.cpp:7</a></div></div>
 <div class="ttc" id="acleanbox_8cpp_html_ab0ffad1299c4a1f5fe44e836a184518d"><div class="ttname"><a href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d">cleanbox</a></div><div class="ttdeci">halfword cleanbox(halfword p, smallnumber s)</div><div class="ttdef"><b>Definition:</b> <a href="cleanbox_8cpp_source.html#l00009">cleanbox.cpp:9</a></div></div>
 <div class="ttc" id="aoverbar_8cpp_html_a5b487c0636abe1d8f8766696d91829d6"><div class="ttname"><a href="overbar_8cpp.html#a5b487c0636abe1d8f8766696d91829d6">overbar</a></div><div class="ttdeci">halfword overbar(halfword b, scaled k, scaled t)</div><div class="ttdef"><b>Definition:</b> <a href="overbar_8cpp_source.html#l00006">overbar.cpp:6</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a4790f45dcc812c1b00184a2edccdddf5a0c13aecbc52b9c70e06e3da154cf4a37"><div class="ttname"><a href="constantes_8h.html#a4790f45dcc812c1b00184a2edccdddf5a0c13aecbc52b9c70e06e3da154cf4a37">sub_box</a></div><div class="ttdeci">@ sub_box</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00810">constantes.h:810</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a2de34adfc920d4404fe640b371ff91a6"><div class="ttname"><a href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a></div><div class="ttdeci">int default_rule_thickness(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00109">constantes.cpp:109</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_acfd168283e0375316338c74b2d61186fa0c13aecbc52b9c70e06e3da154cf4a37"><div class="ttname"><a href="constantes_8h.html#acfd168283e0375316338c74b2d61186fa0c13aecbc52b9c70e06e3da154cf4a37">sub_box</a></div><div class="ttdeci">@ sub_box</div><div class="ttdoc">math_type when the attribute is a box</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00589">constantes.h:589</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a2de34adfc920d4404fe640b371ff91a6"><div class="ttname"><a href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a></div><div class="ttdeci">int default_rule_thickness(void)</div><div class="ttdoc">thickness of \over bars</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00109">constantes.cpp:109</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

@@ -8,14 +8,11 @@
 #include "deleteglueref.h"
 #include "texte.h"
 
-scaled *active_height = active_height;
+scaled *active_height = active_height; //!< new name for the six distance variables
+scaled &cur_height = active_height[1]; //!< the natural height
 
-scaled &cur_height = active_height[1];
-
-static void set_height_zero(int i)
-{
-	active_height[i] = 0;
-}
+//! initialize the height to zero
+static void set_height_zero(int i) { active_height[i] = 0; }
 
 halfword vertbreak(halfword p, scaled h, scaled d)
 {

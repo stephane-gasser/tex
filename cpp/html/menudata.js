@@ -109,6 +109,7 @@ var menudata={children:[
 {text:"w",url:"globals_vars_w.html#index_w"},
 {text:"x",url:"globals_vars_x.html#index_x"}]},
 {text:"Définitions de type",url:"globals_type.html"},
+{text:"Énumérations",url:"globals_enum.html"},
 {text:"Valeurs énumérées",url:"globals_eval.html",children:[
 {text:"a",url:"globals_eval.html#index_a"},
 {text:"b",url:"globals_eval_b.html#index_b"},

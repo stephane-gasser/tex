@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -107,20 +114,19 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="deletetokenref_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="deletetokenref_8cpp_source.html">deletetokenref.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p) == 0)</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p) == 0)</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <a class="code" href="flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a">flushlist</a>(p);</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p)--;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p)--;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="deletetokenref_8cpp_a3c55e9084d0faf34ec2828d0bcf247cc_cgraph.png" border="0" usemap="#deletetokenref_8cpp_a3c55e9084d0faf34ec2828d0bcf247cc_cgraph" alt=""/></div>
 <map name="deletetokenref_8cpp_a3c55e9084d0faf34ec2828d0bcf247cc_cgraph" id="deletetokenref_8cpp_a3c55e9084d0faf34ec2828d0bcf247cc_cgraph">
-<area shape="rect" title=" " alt="" coords="5,31,109,57"/>
+<area shape="rect" title=" " alt="" coords="5,5,109,32"/>
 <area shape="rect" href="flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a" title=" " alt="" coords="157,5,224,32"/>
-<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="169,56,212,83"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="272,5,315,32"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="272,5,315,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -146,8 +152,8 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
+<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00570">constantes.h:570</a></div></div>
 <div class="ttc" id="aflushlist_8cpp_html_ab1fa9ce35cc927b9620ecb5ed0dbc63a"><div class="ttname"><a href="flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a">flushlist</a></div><div class="ttdeci">void flushlist(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="flushlist_8cpp_source.html#l00003">flushlist.cpp:3</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00007">constantes.cpp:7</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

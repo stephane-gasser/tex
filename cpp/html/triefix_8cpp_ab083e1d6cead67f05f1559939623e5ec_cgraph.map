@@ -1,6 +1,6 @@
 <map id="triefix" name="triefix">
 <area shape="rect" id="node1" title=" " alt="" coords="5,56,60,83"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#acd16bad116dfba77da241a238860460d" title=" " alt="" coords="108,5,180,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64" title=" " alt="" coords="111,56,177,83"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a090160939c3e4007822472d896310f18" title=" " alt="" coords="113,107,175,133"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#acd16bad116dfba77da241a238860460d" title="character matched at this trie location" alt="" coords="108,5,180,32"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64" title="`‘downward’&#39; link in a trie" alt="" coords="111,56,177,83"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a090160939c3e4007822472d896310f18" title="program for hyphenation at this trie location" alt="" coords="113,107,175,133"/>
 </map>

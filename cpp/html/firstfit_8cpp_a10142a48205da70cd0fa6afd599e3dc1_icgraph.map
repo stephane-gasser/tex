@@ -1,5 +1,5 @@
 <map id="trie_back" name="trie_back">
-<area shape="rect" id="node1" title=" " alt="" coords="329,6,404,33"/>
+<area shape="rect" id="node1" title="backward links in |trie| holes" alt="" coords="329,6,404,33"/>
 <area shape="rect" id="node2" href="$firstfit_8h.html#a9ec7e5f14730f1045a0cafbb2b259e2f" title=" " alt="" coords="227,6,281,33"/>
 <area shape="rect" id="node3" href="$inittrie_8h.html#a4953f312f016c82145ae48b0d39341bd" title=" " alt="" coords="5,6,63,33"/>
 <area shape="rect" id="node4" href="$triepack_8h.html#abdca283a7ecad2abcf198d2819b0f535" title=" " alt="" coords="111,44,179,70"/>

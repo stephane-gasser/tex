@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -116,55 +123,55 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="scanrulespec_8cpp_source.html#l00006">6</a> du fichier <a class="el" href="scanrulespec_8cpp_source.html">scanrulespec.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="newrule_8cpp.html#adde749bc3235334488b223590d8e4a87">newrule</a>();</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da0780d8b97717f535821e47096d23ae24">vrule</a>)</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(q) = <a class="code" href="constantes_8h.html#a0bcc274c3940327ccf1b9654199c8193">default_rule</a>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(q) = <a class="code" href="constantes_8h.html#a0bcc274c3940327ccf1b9654199c8193">default_rule</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(q) = 0;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    }</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240">scankeyword</a>(<span class="stringliteral">&quot;width&quot;</span>))</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b">scan_normal_dimen</a>();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(q) = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240">scankeyword</a>(<span class="stringliteral">&quot;height&quot;</span>))</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b">scan_normal_dimen</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(q) = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        }</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240">scankeyword</a>(<span class="stringliteral">&quot;depth&quot;</span>))</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <a class="code" href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b">scan_normal_dimen</a>();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(q) = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">return</span> q;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="scanrulespec_8cpp_source.html#l00009">9</a> du fichier <a class="el" href="scanrulespec_8cpp_source.html">scanrulespec.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="newrule_8cpp.html#adde749bc3235334488b223590d8e4a87">newrule</a>();</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da0780d8b97717f535821e47096d23ae24">vrule</a>)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(q) = <a class="code" href="scanrulespec_8cpp.html#a0bcc274c3940327ccf1b9654199c8193">default_rule</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(q) = <a class="code" href="scanrulespec_8cpp.html#a0bcc274c3940327ccf1b9654199c8193">default_rule</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(q) = 0;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240">scankeyword</a>(<span class="stringliteral">&quot;width&quot;</span>))</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <a class="code" href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b">scan_normal_dimen</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(q) = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240">scankeyword</a>(<span class="stringliteral">&quot;height&quot;</span>))</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <a class="code" href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b">scan_normal_dimen</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(q) = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240">scankeyword</a>(<span class="stringliteral">&quot;depth&quot;</span>))</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <a class="code" href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b">scan_normal_dimen</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(q) = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        }</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">return</span> q;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="scanrulespec_8h_a2d518d56141a74bf817981d6be68d2d2_cgraph.png" border="0" usemap="#scanrulespec_8h_a2d518d56141a74bf817981d6be68d2d2_cgraph" alt=""/></div>
 <map name="scanrulespec_8h_a2d518d56141a74bf817981d6be68d2d2_cgraph" id="scanrulespec_8h_a2d518d56141a74bf817981d6be68d2d2_cgraph">
 <area shape="rect" title=" " alt="" coords="5,113,104,139"/>
-<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title=" " alt="" coords="354,37,409,63"/>
-<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title=" " alt="" coords="353,87,410,114"/>
+<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="354,37,409,63"/>
+<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="353,87,410,114"/>
 <area shape="rect" href="newrule_8cpp.html#adde749bc3235334488b223590d8e4a87" title=" " alt="" coords="188,138,255,165"/>
-<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title=" " alt="" coords="495,138,548,165"/>
+<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="495,138,548,165"/>
 <area shape="rect" href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b" title=" " alt="" coords="152,265,291,291"/>
 <area shape="rect" href="scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240" title=" " alt="" coords="472,378,571,405"/>
 <area shape="rect" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="347,189,415,215"/>
-<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="347,239,415,266"/>
-<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="498,315,545,342"/>
+<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="347,239,415,266"/>
+<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="498,315,545,342"/>
 <area shape="rect" href="scandimen_8cpp.html#a3c004908d1f7f180e6234e54aed1c021" title=" " alt="" coords="339,341,424,367"/>
 </map>
 </div>
@@ -182,14 +189,14 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="anewrule_8cpp_html_adde749bc3235334488b223590d8e4a87"><div class="ttname"><a href="newrule_8cpp.html#adde749bc3235334488b223590d8e4a87">newrule</a></div><div class="ttdeci">halfword newrule(void)</div><div class="ttdef"><b>Definition:</b> <a href="newrule_8cpp_source.html#l00004">newrule.cpp:4</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a4df565ae653d5dfdd476957e92b6a61c"><div class="ttname"><a href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a></div><div class="ttdeci">int &amp; depth(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00050">constantes.cpp:50</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00048">constantes.cpp:48</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a4df565ae653d5dfdd476957e92b6a61c"><div class="ttname"><a href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a></div><div class="ttdeci">int &amp; depth(halfword p)</div><div class="ttdoc">depth of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00050">constantes.cpp:50</a></div></div>
+<div class="ttc" id="ascanrulespec_8cpp_html_a0bcc274c3940327ccf1b9654199c8193"><div class="ttname"><a href="scanrulespec_8cpp.html#a0bcc274c3940327ccf1b9654199c8193">default_rule</a></div><div class="ttdeci">constexpr int default_rule</div><div class="ttdef"><b>Definition:</b> <a href="scanrulespec_8cpp_source.html#l00006">scanrulespec.cpp:6</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdoc">width of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00048">constantes.cpp:48</a></div></div>
 <div class="ttc" id="ascankeyword_8cpp_html_a514cdc68b010264d20e363f694fec240"><div class="ttname"><a href="scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240">scankeyword</a></div><div class="ttdeci">bool scankeyword(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="scankeyword_8cpp_source.html#l00009">scankeyword.cpp:9</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aaf95f6a6992031770009c02b8d2b4071"><div class="ttname"><a href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a></div><div class="ttdeci">int &amp; height(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00051">constantes.cpp:51</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_abc5c98fcc1211af2b80116dd6e0a035da0780d8b97717f535821e47096d23ae24"><div class="ttname"><a href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da0780d8b97717f535821e47096d23ae24">vrule</a></div><div class="ttdeci">@ vrule</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00337">constantes.h:337</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aaf95f6a6992031770009c02b8d2b4071"><div class="ttname"><a href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a></div><div class="ttdeci">int &amp; height(halfword p)</div><div class="ttdoc">height of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00051">constantes.cpp:51</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abc5c98fcc1211af2b80116dd6e0a035da0780d8b97717f535821e47096d23ae24"><div class="ttname"><a href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da0780d8b97717f535821e47096d23ae24">vrule</a></div><div class="ttdeci">@ vrule</div><div class="ttdoc">vertical rule ( \vrule )</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00237">constantes.h:237</a></div></div>
 <div class="ttc" id="ascandimen_8cpp_html_ad74509e6ed252b5c56f10a22dda9342b"><div class="ttname"><a href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b">scan_normal_dimen</a></div><div class="ttdeci">void scan_normal_dimen(void)</div><div class="ttdef"><b>Definition:</b> <a href="scandimen_8cpp_source.html#l00309">scandimen.cpp:309</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_adb17223ad60c9ffc709eb43e2f309055"><div class="ttname"><a href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a></div><div class="ttdeci">eightbits curcmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00108">globals.cpp:108</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a0bcc274c3940327ccf1b9654199c8193"><div class="ttname"><a href="constantes_8h.html#a0bcc274c3940327ccf1b9654199c8193">default_rule</a></div><div class="ttdeci">constexpr int default_rule</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00653">constantes.h:653</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a3fc97d19e160956f7fa23eb8ded19785"><div class="ttname"><a href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a></div><div class="ttdeci">int curval</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00019">globals.cpp:19</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

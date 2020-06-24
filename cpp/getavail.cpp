@@ -55,6 +55,7 @@ void fast_store_new_token(halfword &p, halfword t)
 	p = q;
 }
 
+//! single-word node liberation 
 void free_avail(halfword p)
 {
 	link(p) = avail; 

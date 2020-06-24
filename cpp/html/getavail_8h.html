@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -127,6 +134,7 @@ Fonctions</h2></td></tr>
 <tr class="memitem:aef5cb91776a22ca05de7e7cd788b90a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getavail_8h.html#aef5cb91776a22ca05de7e7cd788b90a9">fast_store_new_token</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> &amp;, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>)</td></tr>
 <tr class="separator:aef5cb91776a22ca05de7e7cd788b90a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c8ffa5118fc93634a79d190620f8523"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="getavail_8h.html#a7c8ffa5118fc93634a79d190620f8523">free_avail</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>)</td></tr>
+<tr class="memdesc:a7c8ffa5118fc93634a79d190620f8523"><td class="mdescLeft">&#160;</td><td class="mdescRight">single-word node liberation  <a href="getavail_8h.html#a7c8ffa5118fc93634a79d190620f8523">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a7c8ffa5118fc93634a79d190620f8523"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
@@ -165,7 +173,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <map name="getavail_8h_a3b8c51140a2912d4fa1c7f4fab8519be_cgraph" id="getavail_8h_a3b8c51140a2912d4fa1c7f4fab8519be_cgraph">
 <area shape="rect" title=" " alt="" coords="5,102,108,128"/>
 <area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="156,51,223,78"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="389,76,432,103"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="389,76,432,103"/>
 <area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="271,26,341,52"/>
 <area shape="rect" href="runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="271,76,341,103"/>
 </map>
@@ -219,7 +227,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="getavail_8cpp.html#a3b8c51140a2912d4fa1c7f4fab8519be">fast_get_avail</a>();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = q; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(q) = t;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(q) = t;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    p = q;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
@@ -227,10 +235,9 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="getavail_8h_aef5cb91776a22ca05de7e7cd788b90a9_cgraph.png" border="0" usemap="#getavail_8h_aef5cb91776a22ca05de7e7cd788b90a9_cgraph" alt=""/></div>
 <map name="getavail_8h_aef5cb91776a22ca05de7e7cd788b90a9_cgraph" id="getavail_8h_aef5cb91776a22ca05de7e7cd788b90a9_cgraph">
-<area shape="rect" title=" " alt="" coords="5,107,156,133"/>
+<area shape="rect" title=" " alt="" coords="5,81,156,108"/>
 <area shape="rect" href="getavail_8cpp.html#a3b8c51140a2912d4fa1c7f4fab8519be" title=" " alt="" coords="204,56,307,83"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="469,56,512,83"/>
-<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="234,157,277,184"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="469,56,512,83"/>
 <area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="355,5,421,32"/>
 </map>
 </div>
@@ -264,18 +271,20 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="getavail_8cpp_source.html#l00058">58</a> du fichier <a class="el" href="getavail_8cpp_source.html">getavail.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = <a class="code" href="globals_8cpp.html#ab3b400e9bd4ea0d68b12f2920999933a">avail</a>; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="globals_8cpp.html#ab3b400e9bd4ea0d68b12f2920999933a">avail</a> = p;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
+<p>single-word node liberation </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="getavail_8cpp_source.html#l00059">59</a> du fichier <a class="el" href="getavail_8cpp_source.html">getavail.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;{</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = <a class="code" href="globals_8cpp.html#ab3b400e9bd4ea0d68b12f2920999933a">avail</a>; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="globals_8cpp.html#ab3b400e9bd4ea0d68b12f2920999933a">avail</a> = p;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="getavail_8h_a7c8ffa5118fc93634a79d190620f8523_cgraph.png" border="0" usemap="#getavail_8h_a7c8ffa5118fc93634a79d190620f8523_cgraph" alt=""/></div>
 <map name="getavail_8h_a7c8ffa5118fc93634a79d190620f8523_cgraph" id="getavail_8h_a7c8ffa5118fc93634a79d190620f8523_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,84,32"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="132,5,175,32"/>
+<area shape="rect" title="single&#45;word node liberation" alt="" coords="5,5,84,32"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="132,5,175,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -283,7 +292,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="getavail_8h_a7c8ffa5118fc93634a79d190620f8523_icgraph.png" border="0" usemap="#getavail_8h_a7c8ffa5118fc93634a79d190620f8523_icgraph" alt=""/></div>
 <map name="getavail_8h_a7c8ffa5118fc93634a79d190620f8523_icgraph" id="getavail_8h_a7c8ffa5118fc93634a79d190620f8523_icgraph">
-<area shape="rect" title=" " alt="" coords="375,107,453,133"/>
+<area shape="rect" title="single&#45;word node liberation" alt="" coords="375,107,453,133"/>
 <area shape="rect" href="maincontrol_8cpp.html#aee41666bb43f68ce58fd3f71c7781cd8" title=" " alt="" coords="192,56,327,83"/>
 <area shape="rect" href="popalignment_8h.html#a951a22530fb4fa2e9fb5f586c47ec2c8" title=" " alt="" coords="210,107,309,133"/>
 <area shape="rect" href="scandimen_8h.html#ad330bbbb06884a41f26209e039c103fa" title=" " alt="" coords="217,183,302,209"/>
@@ -340,7 +349,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="center"><img src="getavail_8h_a954ade667e3184eb61ed18e925b628c7_cgraph.png" border="0" usemap="#getavail_8h_a954ade667e3184eb61ed18e925b628c7_cgraph" alt=""/></div>
 <map name="getavail_8h_a954ade667e3184eb61ed18e925b628c7_cgraph" id="getavail_8h_a954ade667e3184eb61ed18e925b628c7_cgraph">
 <area shape="rect" title=" " alt="" coords="5,377,72,403"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="423,453,466,479"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="423,453,466,479"/>
 <area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="120,174,191,201"/>
 <area shape="rect" href="runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="265,377,336,403"/>
 <area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="277,149,325,175"/>
@@ -443,7 +452,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7">getavail</a>(); </div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = q; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(q) = t;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(q) = t;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    p = q;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
@@ -451,10 +460,9 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="getavail_8h_a01f78bfd71c9da3f92fe36113586da50_cgraph.png" border="0" usemap="#getavail_8h_a01f78bfd71c9da3f92fe36113586da50_cgraph" alt=""/></div>
 <map name="getavail_8h_a01f78bfd71c9da3f92fe36113586da50_cgraph" id="getavail_8h_a01f78bfd71c9da3f92fe36113586da50_cgraph">
-<area shape="rect" title=" " alt="" coords="5,127,127,154"/>
+<area shape="rect" title=" " alt="" coords="5,102,127,128"/>
 <area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="175,51,241,78"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="408,76,451,103"/>
-<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="187,178,229,204"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="408,76,451,103"/>
 <area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="289,26,360,52"/>
 <area shape="rect" href="runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="289,76,360,103"/>
 </map>
@@ -484,17 +492,17 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="atex_8h_html_a4d80dc1c318f88a198f2813c45f8f8ee"><div class="ttname"><a href="tex_8h.html#a4d80dc1c318f88a198f2813c45f8f8ee">memmax</a></div><div class="ttdeci">constexpr int memmax</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00009">tex.h:9</a></div></div>
-<div class="ttc" id="aoverflow_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00018">overflow.cpp:18</a></div></div>
+<div class="ttc" id="aoverflow_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00019">overflow.cpp:19</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00570">constantes.h:570</a></div></div>
 <div class="ttc" id="atex_8h_html_a99842d321de8903f2f6f15cbbc21aef4"><div class="ttname"><a href="tex_8h.html#a99842d321de8903f2f6f15cbbc21aef4">memmin</a></div><div class="ttdeci">constexpr int memmin</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00010">tex.h:10</a></div></div>
 <div class="ttc" id="agetavail_8cpp_html_a954ade667e3184eb61ed18e925b628c7"><div class="ttname"><a href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7">getavail</a></div><div class="ttdeci">halfword getavail(void)</div><div class="ttdef"><b>Definition:</b> <a href="getavail_8cpp_source.html#l00005">getavail.cpp:5</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a74a81f693ecceeb1d9b283811d1cc814"><div class="ttname"><a href="globals_8cpp.html#a74a81f693ecceeb1d9b283811d1cc814">lomemmax</a></div><div class="ttdeci">halfword lomemmax</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00076">globals.cpp:76</a></div></div>
 <div class="ttc" id="agetavail_8cpp_html_a3b8c51140a2912d4fa1c7f4fab8519be"><div class="ttname"><a href="getavail_8cpp.html#a3b8c51140a2912d4fa1c7f4fab8519be">fast_get_avail</a></div><div class="ttdeci">halfword fast_get_avail(void)</div><div class="ttdef"><b>Definition:</b> <a href="getavail_8cpp_source.html#l00027">getavail.cpp:27</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a3352ac6cf37faec3418a10ea40dd34f6"><div class="ttname"><a href="globals_8cpp.html#a3352ac6cf37faec3418a10ea40dd34f6">memend</a></div><div class="ttdeci">halfword memend</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00079">globals.cpp:79</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_ab3b400e9bd4ea0d68b12f2920999933a"><div class="ttname"><a href="globals_8cpp.html#ab3b400e9bd4ea0d68b12f2920999933a">avail</a></div><div class="ttdeci">halfword avail</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00078">globals.cpp:78</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="arunaway_8cpp_html_ac542a0034fbac204b2532deac2e1e414"><div class="ttname"><a href="runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414">runaway</a></div><div class="ttdeci">void runaway(void)</div><div class="ttdef"><b>Definition:</b> <a href="runaway_8cpp_source.html#l00008">runaway.cpp:8</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00007">constantes.cpp:7</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a0bf0906aa735ca8c56823902bc3a6b9a"><div class="ttname"><a href="globals_8cpp.html#a0bf0906aa735ca8c56823902bc3a6b9a">himemmin</a></div><div class="ttdeci">halfword himemmin</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00077">globals.cpp:77</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

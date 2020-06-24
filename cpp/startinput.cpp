@@ -15,6 +15,8 @@
 #include <iostream>
 #include "texte.h"
 
+constexpr char TEX_area[] = "TeXinputs:";
+
 void startinput(void)
 {
 	scanfilename();

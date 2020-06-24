@@ -3,6 +3,13 @@
 #include "dviswap.h"
 #include "dvifour.h"
 
+enum
+{
+	none_seen = 0, //no |y_here| or |z_here| nodes have been encountered yet
+	y_seen = 6, //we have seen |y_here| but not |z_here|
+	z_seen = 12 //we have seen |z_here| but not |y_here|
+};
+
 void movement(scaled w, eightbits o)
 {
 	auto q = getnode(movement_node_size);

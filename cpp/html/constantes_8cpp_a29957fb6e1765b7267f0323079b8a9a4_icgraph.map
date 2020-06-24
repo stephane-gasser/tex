@@ -1,5 +1,5 @@
 <map id="glue_order" name="glue_order">
-<area shape="rect" id="node1" title=" " alt="" coords="873,1045,956,1071"/>
+<area shape="rect" id="node1" title="applicable order of infinity" alt="" coords="873,1045,956,1071"/>
 <area shape="rect" id="node2" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="427,791,490,818"/>
 <area shape="rect" id="node7" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="432,994,485,1021"/>
 <area shape="rect" id="node8" href="$hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="744,1197,808,1223"/>
@@ -34,6 +34,6 @@
 <area shape="rect" id="node32" href="$shownodelist_8cpp.html#a02076a38f9aefdba6b671f0163d39e55" title=" " alt="" coords="556,1373,679,1399"/>
 <area shape="rect" id="node33" href="$showbox_8h.html#acfcccfc29ec7e8b9f139156810549ced" title=" " alt="" coords="580,1322,655,1349"/>
 <area shape="rect" id="node34" href="$showinfo_8h.html#a7a96b738fe42ca12c27ab45665093a35" title=" " alt="" coords="580,1423,655,1450"/>
-<area shape="rect" id="node36" href="$vpackage_8h.html#a206cf29986058df07ca90d49bb7ce152" title=" " alt="" coords="589,842,646,869"/>
+<area shape="rect" id="node36" href="$vpackage_8h.html#a206cf29986058df07ca90d49bb7ce152" title="special case of unconstrained depth" alt="" coords="589,842,646,869"/>
 <area shape="rect" id="node37" href="$vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="432,1095,485,1122"/>
 </map>

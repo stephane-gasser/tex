@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -126,8 +133,8 @@ Voici le graphe d'appel pour cette fonction :</div>
 <map name="endfilereading_8cpp_a305fe4c17f929987d609b10d7bbd4d96_cgraph" id="endfilereading_8cpp_a305fe4c17f929987d609b10d7bbd4d96_cgraph">
 <area shape="rect" title=" " alt="" coords="5,81,108,108"/>
 <area shape="rect" href="aclose_8cpp.html#a941887a5a97d9f9b08b2a153321d6816" title=" " alt="" coords="165,5,225,32"/>
-<area shape="rect" href="constantes_8cpp.html#a7a51c990049bf6c6c9007274271b0681" title=" " alt="" coords="163,56,227,83"/>
-<area shape="rect" href="popinput_8cpp.html#a11f9cb6e99b230bd401dc895f52812cb" title=" " alt="" coords="156,107,235,133"/>
+<area shape="rect" href="constantes_8cpp.html#a7a51c990049bf6c6c9007274271b0681" title="the current alpha_file variable" alt="" coords="163,56,227,83"/>
+<area shape="rect" href="popinput_8cpp.html#a11f9cb6e99b230bd401dc895f52812cb" title="leave an input level, re&#45;enter the old" alt="" coords="156,107,235,133"/>
 <area shape="rect" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="176,157,215,184"/>
 </map>
 </div>
@@ -149,15 +156,15 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8cpp_html_ade95d1e83389e3e6b2095c8b149d1fc2"><div class="ttname"><a href="constantes_8cpp.html#ade95d1e83389e3e6b2095c8b149d1fc2">name</a></div><div class="ttdeci">std::string &amp; name</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00191">constantes.cpp:191</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ade95d1e83389e3e6b2095c8b149d1fc2"><div class="ttname"><a href="constantes_8cpp.html#ade95d1e83389e3e6b2095c8b149d1fc2">name</a></div><div class="ttdeci">std::string &amp; name</div><div class="ttdoc">name of the current file</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00190">constantes.cpp:190</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a64a671304160f03a9658a3850562c79d"><div class="ttname"><a href="globals_8cpp.html#a64a671304160f03a9658a3850562c79d">linestack</a></div><div class="ttdeci">int linestack[maxinopen+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00119">globals.cpp:119</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a7a51c990049bf6c6c9007274271b0681"><div class="ttname"><a href="constantes_8cpp.html#a7a51c990049bf6c6c9007274271b0681">cur_file</a></div><div class="ttdeci">alphafile &amp; cur_file(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00133">constantes.cpp:133</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a96e97edb510aa677a07ef606c639c8a0"><div class="ttname"><a href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a></div><div class="ttdeci">halfword &amp; start</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00189">constantes.cpp:189</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aafc334c89924a8b2f5e1a32c52e80045"><div class="ttname"><a href="constantes_8cpp.html#aafc334c89924a8b2f5e1a32c52e80045">index</a></div><div class="ttdeci">quarterword &amp; index</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00188">constantes.cpp:188</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a7a51c990049bf6c6c9007274271b0681"><div class="ttname"><a href="constantes_8cpp.html#a7a51c990049bf6c6c9007274271b0681">cur_file</a></div><div class="ttdeci">alphafile &amp; cur_file(void)</div><div class="ttdoc">the current alpha_file variable</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00133">constantes.cpp:133</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a96e97edb510aa677a07ef606c639c8a0"><div class="ttname"><a href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a></div><div class="ttdeci">halfword &amp; start</div><div class="ttdoc">starting position in buffer</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00188">constantes.cpp:188</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aafc334c89924a8b2f5e1a32c52e80045"><div class="ttname"><a href="constantes_8cpp.html#aafc334c89924a8b2f5e1a32c52e80045">index</a></div><div class="ttdeci">quarterword &amp; index</div><div class="ttdoc">reference for buffer information</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00187">constantes.cpp:187</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a41ebd28ef1d7c6ade45642cb6acc1039"><div class="ttname"><a href="globals_8cpp.html#a41ebd28ef1d7c6ade45642cb6acc1039">line</a></div><div class="ttdeci">int line</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00016">globals.cpp:16</a></div></div>
 <div class="ttc" id="aaclose_8cpp_html_a941887a5a97d9f9b08b2a153321d6816"><div class="ttname"><a href="aclose_8cpp.html#a941887a5a97d9f9b08b2a153321d6816">aclose</a></div><div class="ttdeci">void aclose(alphafile &amp;f)</div><div class="ttdef"><b>Definition:</b> <a href="aclose_8cpp_source.html#l00003">aclose.cpp:3</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a10a3fcd824154f6545a843a16ebf7abb"><div class="ttname"><a href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a></div><div class="ttdeci">int First</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00048">globals.cpp:48</a></div></div>
-<div class="ttc" id="apopinput_8cpp_html_a11f9cb6e99b230bd401dc895f52812cb"><div class="ttname"><a href="popinput_8cpp.html#a11f9cb6e99b230bd401dc895f52812cb">pop_input</a></div><div class="ttdeci">void pop_input(void)</div><div class="ttdef"><b>Definition:</b> <a href="popinput_8cpp_source.html#l00003">popinput.cpp:3</a></div></div>
+<div class="ttc" id="apopinput_8cpp_html_a11f9cb6e99b230bd401dc895f52812cb"><div class="ttname"><a href="popinput_8cpp.html#a11f9cb6e99b230bd401dc895f52812cb">pop_input</a></div><div class="ttdeci">void pop_input(void)</div><div class="ttdoc">leave an input level, re-enter the old</div><div class="ttdef"><b>Definition:</b> <a href="popinput_8cpp_source.html#l00004">popinput.cpp:4</a></div></div>
 <div class="ttc" id="atexte_8cpp_html_a46dac58eb46eaee7b157e59bdef55b1b"><div class="ttname"><a href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b">txt</a></div><div class="ttdeci">int txt(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="texte_8cpp_source.html#l00007">texte.cpp:7</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a67445053138489f68dabbe88b4de32cb"><div class="ttname"><a href="globals_8cpp.html#a67445053138489f68dabbe88b4de32cb">inopen</a></div><div class="ttdeci">char inopen</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00116">globals.cpp:116</a></div></div>
 <!-- start footer part -->

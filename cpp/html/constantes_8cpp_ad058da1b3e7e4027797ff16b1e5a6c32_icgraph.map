@@ -1,12 +1,12 @@
 <map id="lig_char" name="lig_char">
-<area shape="rect" id="node1" title=" " alt="" coords="835,256,901,283"/>
+<area shape="rect" id="node1" title="the word where the ligature is to be found" alt="" coords="835,256,901,283"/>
 <area shape="rect" id="node2" href="$copynodelist_8h.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="549,117,644,144"/>
 <area shape="rect" id="node5" href="$hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="719,1368,783,1395"/>
 <area shape="rect" id="node8" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="722,900,779,927"/>
 <area shape="rect" id="node21" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="123,471,197,497"/>
 <area shape="rect" id="node22" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="5,232,73,259"/>
 <area shape="rect" id="node24" href="$hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="248,471,331,497"/>
-<area shape="rect" id="node25" href="$constantes_8h.html#a05799486da77774207d98a609d01a1f3" title=" " alt="" coords="722,344,779,371"/>
+<area shape="rect" id="node25" href="$constantes_8h.html#a05799486da77774207d98a609d01a1f3" title="the list of characters" alt="" coords="722,344,779,371"/>
 <area shape="rect" id="node32" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="715,1128,787,1155"/>
 <area shape="rect" id="node3" href="$beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title=" " alt="" coords="392,93,467,120"/>
 <area shape="rect" id="node4" href="$unpackage_8h.html#afc396691da2ad50b5d31c5b03c876f48" title=" " alt="" coords="387,144,472,171"/>

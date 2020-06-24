@@ -3,7 +3,10 @@
 #include "makestring.h"
 #include "texte.h"
 
+//! test if all positions are occupied
 static bool hash_is_full(void) { return hashused == hash_base; }
+
+//! link for coalesced lists
 static halfword& next(halfword p) { return hash[p].lh; }
 
 halfword idlookup(const std::string &s)

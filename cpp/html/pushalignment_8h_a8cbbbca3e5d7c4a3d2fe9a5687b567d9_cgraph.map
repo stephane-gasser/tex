@@ -1,12 +1,12 @@
 <map id="pushalignment" name="pushalignment">
-<area shape="rect" id="node1" title=" " alt="" coords="5,230,112,257"/>
-<area shape="rect" id="node2" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="161,53,227,79"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="399,154,441,181"/>
-<area shape="rect" id="node6" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="160,179,228,206"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="292,230,335,257"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#a1d478b50b817866786b1bc1dc81a08b0" title=" " alt="" coords="171,281,217,307"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#a83972007a929029d4cb84d153fa33a70" title=" " alt="" coords="276,293,351,319"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title=" " alt="" coords="171,382,217,409"/>
-<area shape="rect" id="node4" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="278,27,349,54"/>
-<area shape="rect" id="node5" href="$runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="278,78,349,105"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,205,112,231"/>
+<area shape="rect" id="node2" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="164,53,231,79"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="401,154,444,181"/>
+<area shape="rect" id="node6" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="284,179,352,206"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a1d478b50b817866786b1bc1dc81a08b0" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="175,230,220,257"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#a83972007a929029d4cb84d153fa33a70" title="the current preamble list" alt="" coords="160,281,235,307"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="174,331,221,358"/>
+<area shape="rect" id="node4" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="283,27,353,54"/>
+<area shape="rect" id="node5" href="$runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="283,78,353,105"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title="the info field of a memory word" alt="" coords="297,230,339,257"/>
 </map>

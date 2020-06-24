@@ -1,5 +1,5 @@
 <map id="mark_ptr" name="mark_ptr">
-<area shape="rect" id="node1" title=" " alt="" coords="913,790,987,817"/>
+<area shape="rect" id="node1" title="head of the token list for a mark" alt="" coords="913,790,987,817"/>
 <area shape="rect" id="node2" href="$copynodelist_8h.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="283,713,377,740"/>
 <area shape="rect" id="node6" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="303,588,357,614"/>
 <area shape="rect" id="node9" href="$flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="610,385,705,412"/>

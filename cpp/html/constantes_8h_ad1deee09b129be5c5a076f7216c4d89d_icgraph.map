@@ -1,5 +1,5 @@
 <map id="shrink" name="shrink">
-<area shape="rect" id="node1" title=" " alt="" coords="1188,502,1245,529"/>
+<area shape="rect" id="node1" title="the shrinkability of this glob of glue" alt="" coords="1188,502,1245,529"/>
 <area shape="rect" id="node2" href="$maincontrol_8cpp.html#ab7f7983b788abb1c635c1bd67f967894" title=" " alt="" coords="284,299,436,326"/>
 <area shape="rect" id="node4" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title=" " alt="" coords="321,350,399,377"/>
 <area shape="rect" id="node5" href="$linebreak_8cpp.html#abe07bda0bdd114e23a3709425a227dd0" title=" " alt="" coords="1004,502,1124,529"/>
@@ -41,5 +41,5 @@
 <area shape="rect" id="node36" href="$scanint_8h.html#a625555ea8e7846b221c64b2c56e0e886" title=" " alt="" coords="859,22,923,49"/>
 <area shape="rect" id="node39" href="$linebreak_8cpp.html#a7c6cf5fe8506c32f31be9ec53a4d994e" title=" " alt="" coords="682,603,769,630"/>
 <area shape="rect" id="node41" href="$vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="520,857,573,883"/>
-<area shape="rect" id="node43" href="$vpackage_8h.html#a206cf29986058df07ca90d49bb7ce152" title=" " alt="" coords="697,907,754,934"/>
+<area shape="rect" id="node43" href="$vpackage_8h.html#a206cf29986058df07ca90d49bb7ce152" title="special case of unconstrained depth" alt="" coords="697,907,754,934"/>
 </map>

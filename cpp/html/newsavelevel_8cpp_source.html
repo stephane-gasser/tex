@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -71,7 +78,7 @@ $(function() {
 <div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="newsavelevel_8h.html#afad44a60dc27690826030e3d7bfe80a0">    4</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a>(<a class="code" href="tex_8h.html#a0ec16c400565c6116800a29aa391e610">groupcode</a> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="overflow_8cpp.html#a63c87df7fc9c2697a41f1824e984ff28">check_full_save_stack</a>();</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11">save_type</a>(<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>) = <a class="code" href="constantes_8h.html#aba01db17f4a2bfbc3db60dc172972a25a6c9dc36d3bb454bbb8d00f4b1dc1bcde">level_boundary</a>;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11">save_type</a>(<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>) = <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea6c9dc36d3bb454bbb8d00f4b1dc1bcde">level_boundary</a>;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#adb784dc2516689c3d42c5664f04eafd4">save_level</a>(<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>) = <a class="code" href="globals_8cpp.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a>;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0">save_index</a>(<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>) = <a class="code" href="globals_8cpp.html#a82b857037925f195b9b07678689b7ce1">curboundary</a>;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a> == 255)</div>
@@ -83,9 +90,8 @@ $(function() {
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="anewsavelevel_8cpp_html_afad44a60dc27690826030e3d7bfe80a0"><div class="ttname"><a href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a></div><div class="ttdeci">void newsavelevel(groupcode c)</div><div class="ttdef"><b>Definition:</b> <a href="newsavelevel_8cpp_source.html#l00004">newsavelevel.cpp:4</a></div></div>
-<div class="ttc" id="aoverflow_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00018">overflow.cpp:18</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_aba01db17f4a2bfbc3db60dc172972a25a6c9dc36d3bb454bbb8d00f4b1dc1bcde"><div class="ttname"><a href="constantes_8h.html#aba01db17f4a2bfbc3db60dc172972a25a6c9dc36d3bb454bbb8d00f4b1dc1bcde">level_boundary</a></div><div class="ttdeci">@ level_boundary</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00530">constantes.h:530</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a05dc1039285ea49749b7b9424d5fab11"><div class="ttname"><a href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11">save_type</a></div><div class="ttdeci">quarterword &amp; save_type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00022">constantes.cpp:22</a></div></div>
+<div class="ttc" id="aoverflow_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00019">overflow.cpp:19</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a05dc1039285ea49749b7b9424d5fab11"><div class="ttname"><a href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11">save_type</a></div><div class="ttdeci">quarterword &amp; save_type(halfword p)</div><div class="ttdoc">classifies a save_stack entry</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00022">constantes.cpp:22</a></div></div>
 <div class="ttc" id="atex_8h_html_a0ec16c400565c6116800a29aa391e610"><div class="ttname"><a href="tex_8h.html#a0ec16c400565c6116800a29aa391e610">groupcode</a></div><div class="ttdeci">char groupcode</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00092">tex.h:92</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a82b857037925f195b9b07678689b7ce1"><div class="ttname"><a href="globals_8cpp.html#a82b857037925f195b9b07678689b7ce1">curboundary</a></div><div class="ttdeci">int curboundary</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00107">globals.cpp:107</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a85ef1f882d9456051bd7b436978858d0"><div class="ttname"><a href="globals_8cpp.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a></div><div class="ttdeci">groupcode curgroup</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00106">globals.cpp:106</a></div></div>
@@ -93,10 +99,11 @@ $(function() {
 <div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
 <div class="ttc" id="anewsavelevel_8h_html"><div class="ttname"><a href="newsavelevel_8h.html">newsavelevel.h</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa4df4dd4a8b0898dfb786074b600c956"><div class="ttname"><a href="globals_8cpp.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a></div><div class="ttdeci">quarterword curlevel</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00105">globals.cpp:105</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ea6c9dc36d3bb454bbb8d00f4b1dc1bcde"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea6c9dc36d3bb454bbb8d00f4b1dc1bcde">level_boundary</a></div><div class="ttdeci">@ level_boundary</div><div class="ttdoc">save_type corresponding to beginning of group</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00341">constantes.h:341</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a3b314939ca1ee5da9d022b3f0e2536f0"><div class="ttname"><a href="constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0">save_index</a></div><div class="ttdeci">halfword &amp; save_index(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00024">constantes.cpp:24</a></div></div>
 <div class="ttc" id="aoverflow_8h_html"><div class="ttname"><a href="overflow_8h.html">overflow.h</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00103">globals.cpp:103</a></div></div>
-<div class="ttc" id="aoverflow_8cpp_html_a63c87df7fc9c2697a41f1824e984ff28"><div class="ttname"><a href="overflow_8cpp.html#a63c87df7fc9c2697a41f1824e984ff28">check_full_save_stack</a></div><div class="ttdeci">void check_full_save_stack(void)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00038">overflow.cpp:38</a></div></div>
+<div class="ttc" id="aoverflow_8cpp_html_a63c87df7fc9c2697a41f1824e984ff28"><div class="ttname"><a href="overflow_8cpp.html#a63c87df7fc9c2697a41f1824e984ff28">check_full_save_stack</a></div><div class="ttdeci">void check_full_save_stack(void)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00039">overflow.cpp:39</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

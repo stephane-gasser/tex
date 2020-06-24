@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -75,23 +82,23 @@ $(function() {
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(p) = n+1;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p+1) = 0;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="parametres_8cpp.html#a0c534032188829d3f6273b3d90e3c64c">glue_par</a>(n);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p+1) = q;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p+1) = q;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q)++;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">return</span> p;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="agetnode_8h_html"><div class="ttname"><a href="getnode_8h.html">getnode.h</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_adc29c2ff13d900c2f185ee95427fb06cac10730825af91f4d3848a5d8f273466a"><div class="ttname"><a href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06cac10730825af91f4d3848a5d8f273466a">glue_node</a></div><div class="ttdeci">@ glue_node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00133">constantes.h:133</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_adc29c2ff13d900c2f185ee95427fb06cac10730825af91f4d3848a5d8f273466a"><div class="ttname"><a href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06cac10730825af91f4d3848a5d8f273466a">glue_node</a></div><div class="ttdeci">@ glue_node</div><div class="ttdoc">type of node that points to a glue specification</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00078">constantes.h:78</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00570">constantes.h:570</a></div></div>
 <div class="ttc" id="aparametres_8cpp_html_a0c534032188829d3f6273b3d90e3c64c"><div class="ttname"><a href="parametres_8cpp.html#a0c534032188829d3f6273b3d90e3c64c">glue_par</a></div><div class="ttdeci">halfword &amp; glue_par(halfword p)</div><div class="ttdoc">|mem| location of glue specification</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8cpp_source.html#l00006">parametres.cpp:6</a></div></div>
 <div class="ttc" id="atex_8h_html_aebffb996625158f539ca50fcf7d4628b"><div class="ttname"><a href="tex_8h.html#aebffb996625158f539ca50fcf7d4628b">smallnumber</a></div><div class="ttdeci">unsigned char smallnumber</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00043">tex.h:43</a></div></div>
 <div class="ttc" id="anewparamglue_8cpp_html_af03d944ebde3715a26223523628b2376"><div class="ttname"><a href="newparamglue_8cpp.html#af03d944ebde3715a26223523628b2376">newparamglue</a></div><div class="ttdeci">halfword newparamglue(smallnumber n)</div><div class="ttdef"><b>Definition:</b> <a href="newparamglue_8cpp_source.html#l00004">newparamglue.cpp:4</a></div></div>
 <div class="ttc" id="anewparamglue_8h_html"><div class="ttname"><a href="newparamglue_8h.html">newparamglue.h</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00007">constantes.cpp:7</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
 <div class="ttc" id="agetnode_8cpp_html_a2baceeb19c0c4b666f0e18bcaff56d8a"><div class="ttname"><a href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a></div><div class="ttdeci">halfword getnode(int s)</div><div class="ttdef"><b>Definition:</b> <a href="getnode_8cpp_source.html#l00004">getnode.cpp:4</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

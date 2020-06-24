@@ -89,6 +89,7 @@ static halfword mainp; //!<temporary register for list manipulation
 
 static halfword& every_job(void) { return equiv(every_job_loc); }
 
+//! the parameter is either |rt_hit| or |false|
 static void pack_lig(bool z)
 {
 	mainp = newligature(mainf, curl, link(curq));
@@ -444,6 +445,7 @@ static void main_loop(void)
 	}
 }
 
+//! for mode-independent commands
 #define ANY_MODE(cmd) vmode+cmd: case hmode+cmd: case mmode+cmd
 #define NON_MATH(cmd) vmode+cmd: case hmode+cmd
 

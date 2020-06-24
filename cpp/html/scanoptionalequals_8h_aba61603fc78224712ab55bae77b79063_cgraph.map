@@ -1,12 +1,11 @@
 <map id="scanoptionalequals" name="scanoptionalequals">
-<area shape="rect" id="node1" title=" " alt="" coords="5,207,139,233"/>
-<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="440,208,519,235"/>
-<area shape="rect" id="node7" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="187,181,265,208"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,139,108"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="440,107,519,133"/>
+<area shape="rect" id="node6" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="187,107,265,133"/>
 <area shape="rect" id="node3" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="567,56,659,83"/>
-<area shape="rect" id="node4" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="579,259,646,285"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="591,132,634,159"/>
-<area shape="rect" id="node6" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title=" " alt="" coords="570,208,655,235"/>
-<area shape="rect" id="node8" href="$expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="321,181,385,208"/>
-<area shape="rect" id="node9" href="$getnext_8cpp.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="447,5,512,32"/>
-<area shape="rect" id="node10" href="$macrocall_8cpp.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="313,107,392,133"/>
+<area shape="rect" id="node4" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="579,157,646,184"/>
+<area shape="rect" id="node5" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="570,107,655,133"/>
+<area shape="rect" id="node7" href="$expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="321,181,385,208"/>
+<area shape="rect" id="node8" href="$getnext_8cpp.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="447,5,512,32"/>
+<area shape="rect" id="node9" href="$macrocall_8cpp.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="313,107,392,133"/>
 </map>

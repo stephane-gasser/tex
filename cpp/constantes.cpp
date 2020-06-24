@@ -140,9 +140,7 @@ halfword& trie_link(halfword p) { return trie[p].rh; }
 quarterword& trie_char(halfword p) { return trie[p].b1; }
 quarterword& trie_op(halfword p) { return trie[p].b0; }
 halfword& every_vbox(void) { return equiv(every_vbox_loc); }
-
 bool fam_in_range(void) { return cur_fam() >= 0 && cur_fam() < 16; }
-
 void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : language(); }
 void append_char(ASCIIcode c) { strpool[poolptr++] = c; }
 void flush_char(void) { poolptr--; }
@@ -194,7 +192,7 @@ scaled &page_goal = pagesofar[0];
 scaled &page_total = pagesofar[1];
 scaled &page_shrink = pagesofar[6];
 scaled &page_depth = pagesofar[7];
-halfword &top_mark = curmark[top_mark_code];;
+halfword &top_mark = curmark[top_mark_code];
 halfword &first_mark = curmark[first_mark_code];
 halfword &bot_mark = curmark[bot_mark_code];
 halfword &split_first_mark = curmark[split_first_mark_code];

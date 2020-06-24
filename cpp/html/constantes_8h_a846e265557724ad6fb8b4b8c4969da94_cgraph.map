@@ -1,4 +1,4 @@
 <map id="script_mlist" name="script_mlist">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,95,32"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="143,5,185,32"/>
+<area shape="rect" id="node1" title="mlist to be used in script style" alt="" coords="5,5,95,32"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title="the info field of a memory word" alt="" coords="143,5,185,32"/>
 </map>

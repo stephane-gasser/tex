@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -73,15 +80,16 @@ $(function() {
 <div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="printwritewhatsit_8h.html#ad3470bfe8f1a2293ee73b768fb7968bd">    6</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="printwritewhatsit_8cpp.html#abbb04fc0017b8cf6bae3e7d1b26feef8">printwritewhatsit</a>(<span class="keyword">const</span> std::string &amp;s, <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p)</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(s);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p+1) &lt; 16)</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a>(<a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p+1));</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p+1) &lt; 16)</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a>(<a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p+1));</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">else</span> </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p+1) == 16)</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p+1) == 16)</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;*&#39;</span>);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;-&#39;</span>);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00570">constantes.h:570</a></div></div>
 <div class="ttc" id="aprintesc_8cpp_html_ace069a9f107f557990814241b661ad5f"><div class="ttname"><a href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a></div><div class="ttdeci">void printesc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printesc_8cpp_source.html#l00007">printesc.cpp:7</a></div></div>
 <div class="ttc" id="aprintint_8h_html"><div class="ttname"><a href="printint_8h.html">printint.h</a></div></div>
 <div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
@@ -89,7 +97,6 @@ $(function() {
 <div class="ttc" id="aprintint_8cpp_html_a3e0bbc492597d05b770a8e0ba03b95ee"><div class="ttname"><a href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee">printint</a></div><div class="ttdeci">void printint(int n)</div><div class="ttdef"><b>Definition:</b> <a href="printint_8cpp_source.html#l00005">printint.cpp:5</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
 <div class="ttc" id="aprintesc_8h_html"><div class="ttname"><a href="printesc_8h.html">printesc.h</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00007">constantes.cpp:7</a></div></div>
 <div class="ttc" id="aprintwritewhatsit_8cpp_html_abbb04fc0017b8cf6bae3e7d1b26feef8"><div class="ttname"><a href="printwritewhatsit_8cpp.html#abbb04fc0017b8cf6bae3e7d1b26feef8">printwritewhatsit</a></div><div class="ttdeci">void printwritewhatsit(const std::string &amp;s, halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="printwritewhatsit_8cpp_source.html#l00006">printwritewhatsit.cpp:6</a></div></div>
 <div class="ttc" id="aprintwritewhatsit_8h_html"><div class="ttname"><a href="printwritewhatsit_8h.html">printwritewhatsit.h</a></div></div>
 <!-- start footer part -->

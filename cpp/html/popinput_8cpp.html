@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -84,6 +91,7 @@ Graphe des dépendances par inclusion de popinput.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
 <tr class="memitem:a11f9cb6e99b230bd401dc895f52812cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="popinput_8cpp.html#a11f9cb6e99b230bd401dc895f52812cb">pop_input</a> (void)</td></tr>
+<tr class="memdesc:a11f9cb6e99b230bd401dc895f52812cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">leave an input level, re-enter the old  <a href="popinput_8cpp.html#a11f9cb6e99b230bd401dc895f52812cb">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a11f9cb6e99b230bd401dc895f52812cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
@@ -103,16 +111,18 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="popinput_8cpp_source.html#l00003">3</a> du fichier <a class="el" href="popinput_8cpp_source.html">popinput.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{  </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <a class="code" href="globals_8cpp.html#aca74807ce5f069d23b1a6af63ed7d00e">curinput</a> = <a class="code" href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a>[--<a class="code" href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a>]; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;}</div>
+<p>leave an input level, re-enter the old </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="popinput_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="popinput_8cpp_source.html">popinput.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{  </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="globals_8cpp.html#aca74807ce5f069d23b1a6af63ed7d00e">curinput</a> = <a class="code" href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a>[--<a class="code" href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a>]; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="popinput_8cpp_a11f9cb6e99b230bd401dc895f52812cb_icgraph.png" border="0" usemap="#popinput_8cpp_a11f9cb6e99b230bd401dc895f52812cb_icgraph" alt=""/></div>
 <map name="popinput_8cpp_a11f9cb6e99b230bd401dc895f52812cb_icgraph" id="popinput_8cpp_a11f9cb6e99b230bd401dc895f52812cb_icgraph">
-<area shape="rect" title=" " alt="" coords="335,81,413,108"/>
+<area shape="rect" title="leave an input level, re&#45;enter the old" alt="" coords="335,81,413,108"/>
 <area shape="rect" href="endfilereading_8h.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="184,107,287,133"/>
 <area shape="rect" href="endtokenlist_8h.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="189,56,281,83"/>
 <area shape="rect" href="clearforerrorprompt_8h.html#a282ee6bcdd54bf75b357628da499c970" title=" " alt="" coords="5,107,136,133"/>

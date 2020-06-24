@@ -1,13 +1,13 @@
 <map id="scanrulespec" name="scanrulespec">
 <area shape="rect" id="node1" title=" " alt="" coords="5,113,104,139"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title=" " alt="" coords="354,37,409,63"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title=" " alt="" coords="353,87,410,114"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="354,37,409,63"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="353,87,410,114"/>
 <area shape="rect" id="node4" href="$newrule_8cpp.html#adde749bc3235334488b223590d8e4a87" title=" " alt="" coords="188,138,255,165"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title=" " alt="" coords="495,138,548,165"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="495,138,548,165"/>
 <area shape="rect" id="node9" href="$scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b" title=" " alt="" coords="152,265,291,291"/>
 <area shape="rect" id="node11" href="$scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240" title=" " alt="" coords="472,378,571,405"/>
 <area shape="rect" id="node5" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="347,189,415,215"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="347,239,415,266"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="498,315,545,342"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="347,239,415,266"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="498,315,545,342"/>
 <area shape="rect" id="node10" href="$scandimen_8cpp.html#a3c004908d1f7f180e6234e54aed1c021" title=" " alt="" coords="339,341,424,367"/>
 </map>

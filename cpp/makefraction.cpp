@@ -8,15 +8,32 @@
 #include "vardelimiter.h"
 #include "hpack.h"
 
-static int delim1(smallnumber c) { return mathsy(20, c); }
-static int delim2(smallnumber c) { return mathsy(21, c); }
-static int denom1(smallnumber c) { return mathsy(11, c); }
-static int denom2(smallnumber c) { return mathsy(12, c); }
+//! numerator shift-up in display styles
 static int num1(smallnumber c) { return mathsy(8, c); }
+
+//! numerator shift-up in non-display, non-\atop
 static int num2(smallnumber c) { return mathsy(9, c); }
+
+//! numerator shift-up in non-display \atop
 static int num3(smallnumber c) { return mathsy(10, c); }
-static int denom_style(int c) { return 2*(c/2)+cramped+2-2*(c/6); } //!< smaller, cramped
-inline int num_style(int c) { return c+2-2*(c/6); } //!< smaller unless already script-script
+
+//! denominator shift-down in display styles
+static int denom1(smallnumber c) { return mathsy(11, c); }
+
+//! denominator shift-down in non-display styles
+static int denom2(smallnumber c) { return mathsy(12, c); }
+
+//! size of \atopwithdelims delimiters
+static int delim1(smallnumber c) { return mathsy(20, c); }
+
+//! size of \atopwithdelims delimiters in non-displays
+static int delim2(smallnumber c) { return mathsy(21, c); }
+
+//! smaller, cramped
+static int denom_style(int c) { return 2*(c/2)+cramped+2-2*(c/6); } 
+
+//! smaller unless already script-script
+inline int num_style(int c) { return c+2-2*(c/6); } 
 
 void makefraction(halfword q)
 {

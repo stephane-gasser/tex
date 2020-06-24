@@ -11,8 +11,8 @@
 <area shape="rect" id="node28" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title=" " alt="" coords="449,982,513,1009"/>
 <area shape="rect" id="node29" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="180,1441,227,1467"/>
 <area shape="rect" id="node3" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="961,25,1033,51"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="1111,25,1154,51"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#ab2def9ced9c196d76adb71f31b4f8619" title=" " alt="" coords="944,75,1051,102"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="1111,25,1154,51"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#ab2def9ced9c196d76adb71f31b4f8619" title="reference count of a glue specification" alt="" coords="944,75,1051,102"/>
 <area shape="rect" id="node7" href="$beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title=" " alt="" coords="784,683,896,710"/>
 <area shape="rect" id="node9" href="$jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="1099,633,1167,659"/>
 <area shape="rect" id="node11" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="1368,379,1440,406"/>
@@ -25,7 +25,7 @@
 <area shape="rect" id="node21" href="$terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="1215,531,1291,558"/>
 <area shape="rect" id="node23" href="$backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title=" " alt="" coords="563,837,639,863"/>
 <area shape="rect" id="node24" href="$constantes_8cpp.html#aca760671a22142e0e59d362c04885039" title=" " alt="" coords="317,1238,386,1265"/>
-<area shape="rect" id="node25" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title=" " alt="" coords="455,1289,508,1315"/>
+<area shape="rect" id="node25" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="455,1289,508,1315"/>
 <area shape="rect" id="node26" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="561,1090,640,1117"/>
 <area shape="rect" id="node27" href="$scanfourbitint_8cpp.html#a44ab07c8d4889fe956cbff3d73cf58d3" title=" " alt="" coords="301,1137,401,1163"/>
 </map>

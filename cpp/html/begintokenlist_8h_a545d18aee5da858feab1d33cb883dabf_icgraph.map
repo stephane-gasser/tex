@@ -1,6 +1,6 @@
 <map id="begintokenlist" name="begintokenlist">
 <area shape="rect" id="node1" title=" " alt="" coords="444,465,547,491"/>
-<area shape="rect" id="node2" href="$begintokenlist_8h.html#a3d77d6707343b4f5442f33c94fc16d60" title=" " alt="" coords="319,287,394,314"/>
+<area shape="rect" id="node2" href="$begintokenlist_8h.html#a3d77d6707343b4f5442f33c94fc16d60" title="backs up a simple token list" alt="" coords="319,287,394,314"/>
 <area shape="rect" id="node4" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="17,110,83,137"/>
 <area shape="rect" id="node6" href="$expand_8h.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="325,615,389,642"/>
 <area shape="rect" id="node7" href="$finrow_8h.html#a0dfcdcfca243b8bc38a56bc5f8675d21" title=" " alt="" coords="328,666,385,693"/>
@@ -9,7 +9,7 @@
 <area shape="rect" id="node10" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,414,95,441"/>
 <area shape="rect" id="node11" href="$initcol_8h.html#a1c3a2eedfb749e57cf833cc140fbe403" title=" " alt="" coords="329,767,385,794"/>
 <area shape="rect" id="node12" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="172,389,240,415"/>
-<area shape="rect" id="node13" href="$begintokenlist_8h.html#a98290ac05979d6e19cd2f3fb4b3f5261" title=" " alt="" coords="325,161,388,187"/>
+<area shape="rect" id="node13" href="$begintokenlist_8h.html#a98290ac05979d6e19cd2f3fb4b3f5261" title="inserts a simple token list" alt="" coords="325,161,388,187"/>
 <area shape="rect" id="node17" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="172,186,240,213"/>
 <area shape="rect" id="node18" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="317,818,396,845"/>
 <area shape="rect" id="node19" href="$newgraf_8h.html#a32eeb6c6a88201e95a9a86b0c110dc4c" title=" " alt="" coords="172,439,240,466"/>

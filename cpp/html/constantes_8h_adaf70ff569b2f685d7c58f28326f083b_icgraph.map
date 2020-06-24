@@ -1,6 +1,6 @@
 <map id="token_ref_count" name="token_ref_count">
-<area shape="rect" id="node1" title=" " alt="" coords="331,80,445,107"/>
-<area shape="rect" id="node2" href="$copynodelist_8cpp.html#a89ae7acd8685445259b9a30804110f36" title=" " alt="" coords="179,29,283,56"/>
+<area shape="rect" id="node1" title="reference count preceding a token list" alt="" coords="331,80,445,107"/>
+<area shape="rect" id="node2" href="$copynodelist_8cpp.html#a89ae7acd8685445259b9a30804110f36" title="new reference to a token list" alt="" coords="179,29,283,56"/>
 <area shape="rect" id="node4" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="195,80,267,107"/>
 <area shape="rect" id="node6" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="193,231,268,257"/>
 <area shape="rect" id="node3" href="$copynodelist_8h.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="21,29,115,56"/>

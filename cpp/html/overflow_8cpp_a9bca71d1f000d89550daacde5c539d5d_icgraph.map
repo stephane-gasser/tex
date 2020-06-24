@@ -16,8 +16,8 @@
 <area shape="rect" id="node18" href="$inputln_8h.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="343,391,403,417"/>
 <area shape="rect" id="node19" href="$makestring_8h.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="511,732,598,759"/>
 <area shape="rect" id="node20" href="$newtrieop_8h.html#a8023c9c96a124c4d7a09141cb18a452f" title=" " alt="" coords="191,23,269,49"/>
-<area shape="rect" id="node21" href="$pushinput_8h.html#a6c38405ba74f1488201842d119ceef96" title=" " alt="" coords="512,377,597,404"/>
-<area shape="rect" id="node22" href="$overflow_8h.html#a660e4de544f7296aa4e385a3122e298e" title=" " alt="" coords="518,833,591,860"/>
+<area shape="rect" id="node21" href="$pushinput_8h.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="512,377,597,404"/>
+<area shape="rect" id="node22" href="$overflow_8h.html#a660e4de544f7296aa4e385a3122e298e" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="518,833,591,860"/>
 <area shape="rect" id="node3" href="$error_8h.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="206,313,254,340"/>
 <area shape="rect" id="node8" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="38,415,110,441"/>
 <area shape="rect" id="node9" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="192,415,268,441"/>

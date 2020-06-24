@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -126,12 +133,12 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a>(1); </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6">cur_length</a>() &lt; 256)</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="dviswap_8cpp.html#a4d3e8098d40415fa85a1bb2c79343f63">dvi_out</a>(<a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa04d9f5c334507e2c661d456e356d7b5f">xxx1</a>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="dviswap_8cpp.html#a4d3e8098d40415fa85a1bb2c79343f63">dvi_out</a>(<a class="code" href="constantes_8h.html#ae4d5251432e1a9e6803c0240cc492e18a04d9f5c334507e2c661d456e356d7b5f">xxx1</a>);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="dviswap_8cpp.html#a4d3e8098d40415fa85a1bb2c79343f63">dvi_out</a>(<a class="code" href="constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6">cur_length</a>());</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="dviswap_8cpp.html#a4d3e8098d40415fa85a1bb2c79343f63">dvi_out</a>(<a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa70774dd484a055cfd8b756cac43de112">xxx4</a>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="dviswap_8cpp.html#a4d3e8098d40415fa85a1bb2c79343f63">dvi_out</a>(<a class="code" href="constantes_8h.html#ae4d5251432e1a9e6803c0240cc492e18a70774dd484a055cfd8b756cac43de112">xxx4</a>);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="dvifour_8cpp.html#a9a26950da85b284d7c63f4071d482f14">dvifour</a>(<a class="code" href="constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6">cur_length</a>());</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> k = <a class="code" href="globals_8cpp.html#aa41969e93458f53144be18ee53f1f2b9">strstart</a>[<a class="code" href="globals_8cpp.html#a21dcaa2eb3344777d3382ee7deafdaa8">strptr</a>]; k &lt; <a class="code" href="globals_8cpp.html#adc7927a275454b0cbbfa3b06a11035f5">poolptr</a>; k++)</div>
@@ -147,18 +154,17 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="rect" href="constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6" title=" " alt="" coords="145,5,227,32"/>
 <area shape="rect" href="dviswap_8cpp.html#a4d3e8098d40415fa85a1bb2c79343f63" title=" " alt="" coords="289,56,353,83"/>
 <area shape="rect" href="dvifour_8cpp.html#a9a26950da85b284d7c63f4071d482f14" title=" " alt="" coords="155,107,217,133"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="299,107,342,133"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="299,107,342,133"/>
 <area shape="rect" href="showtokenlist_8cpp.html#a1aa048aa010568fbb179bdda96bd684c" title=" " alt="" coords="135,208,237,235"/>
-<area shape="rect" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title=" " alt="" coords="149,259,223,285"/>
+<area shape="rect" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="149,259,223,285"/>
 <area shape="rect" href="movement_8cpp.html#a387f370c790b0d1fd76ddc3c2faee3bd" title=" " alt="" coords="151,309,221,336"/>
 <area shape="rect" href="movement_8cpp.html#acf0daf3f4ad468bc8ae8eedc1817b29a" title=" " alt="" coords="151,360,221,387"/>
 <area shape="rect" href="dviswap_8cpp.html#a590f8af5b9c3c5259b7b86e58bc8b399" title=" " alt="" coords="404,56,475,83"/>
-<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="299,309,342,336"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="416,360,463,387"/>
+<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="416,309,463,336"/>
 <area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="523,259,595,285"/>
 <area shape="rect" href="printcs_8cpp.html#a1eea587c43c9698daa4d66337f6d0df7" title=" " alt="" coords="290,208,351,235"/>
 <area shape="rect" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="405,259,473,285"/>
-<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="285,411,356,437"/>
+<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="285,360,356,387"/>
 </map>
 </div>
 <div class="dynheader">
@@ -177,20 +183,20 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba6dcf190788c4e48ce270a3d5c6b1740b"><div class="ttname"><a href="constantes_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba6dcf190788c4e48ce270a3d5c6b1740b">new_string</a></div><div class="ttdeci">@ new_string</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00059">constantes.h:59</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a06fc87d81c62e9abb8790b6e5713c55ba6dcf190788c4e48ce270a3d5c6b1740b"><div class="ttname"><a href="constantes_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba6dcf190788c4e48ce270a3d5c6b1740b">new_string</a></div><div class="ttdeci">@ new_string</div><div class="ttdoc">printing is deflected to the string pool</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00023">constantes.h:23</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a5144e9be7698585335fc96f2811b5406"><div class="ttname"><a href="globals_8cpp.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a></div><div class="ttdeci">char oldsetting</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00096">globals.cpp:96</a></div></div>
 <div class="ttc" id="advifour_8cpp_html_a9a26950da85b284d7c63f4071d482f14"><div class="ttname"><a href="dvifour_8cpp.html#a9a26950da85b284d7c63f4071d482f14">dvifour</a></div><div class="ttdeci">void dvifour(int x)</div><div class="ttdef"><b>Definition:</b> <a href="dvifour_8cpp_source.html#l00004">dvifour.cpp:4</a></div></div>
-<div class="ttc" id="aoverflow_8cpp_html_a570e0c3ba4fd6dec0e3e83fbb09d04e7"><div class="ttname"><a href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a></div><div class="ttdeci">void str_room(int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00012">overflow.cpp:12</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a5d76b81b0ad4c19007a781d4edb8181fa70774dd484a055cfd8b756cac43de112"><div class="ttname"><a href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa70774dd484a055cfd8b756cac43de112">xxx4</a></div><div class="ttdeci">@ xxx4</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00766">constantes.h:766</a></div></div>
+<div class="ttc" id="aoverflow_8cpp_html_a570e0c3ba4fd6dec0e3e83fbb09d04e7"><div class="ttname"><a href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a></div><div class="ttdeci">void str_room(int n)</div><div class="ttdoc">make sure that the pool hasn't overflowed</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00013">overflow.cpp:13</a></div></div>
 <div class="ttc" id="ashowtokenlist_8cpp_html_a1aa048aa010568fbb179bdda96bd684c"><div class="ttname"><a href="showtokenlist_8cpp.html#a1aa048aa010568fbb179bdda96bd684c">showtokenlist</a></div><div class="ttdeci">void showtokenlist(int p, int q, int l)</div><div class="ttdef"><b>Definition:</b> <a href="showtokenlist_8cpp_source.html#l00007">showtokenlist.cpp:7</a></div></div>
-<div class="ttc" id="amovement_8cpp_html_a387f370c790b0d1fd76ddc3c2faee3bd"><div class="ttname"><a href="movement_8cpp.html#a387f370c790b0d1fd76ddc3c2faee3bd">synch_h</a></div><div class="ttdeci">void synch_h(void)</div><div class="ttdef"><b>Definition:</b> <a href="movement_8cpp_source.html#l00162">movement.cpp:162</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a5d76b81b0ad4c19007a781d4edb8181fa04d9f5c334507e2c661d456e356d7b5f"><div class="ttname"><a href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa04d9f5c334507e2c661d456e356d7b5f">xxx1</a></div><div class="ttdeci">@ xxx1</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00765">constantes.h:765</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
+<div class="ttc" id="amovement_8cpp_html_a387f370c790b0d1fd76ddc3c2faee3bd"><div class="ttname"><a href="movement_8cpp.html#a387f370c790b0d1fd76ddc3c2faee3bd">synch_h</a></div><div class="ttdeci">void synch_h(void)</div><div class="ttdef"><b>Definition:</b> <a href="movement_8cpp_source.html#l00169">movement.cpp:169</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_adc7927a275454b0cbbfa3b06a11035f5"><div class="ttname"><a href="globals_8cpp.html#adc7927a275454b0cbbfa3b06a11035f5">poolptr</a></div><div class="ttdeci">poolpointer poolptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00053">globals.cpp:53</a></div></div>
-<div class="ttc" id="amovement_8cpp_html_acf0daf3f4ad468bc8ae8eedc1817b29a"><div class="ttname"><a href="movement_8cpp.html#acf0daf3f4ad468bc8ae8eedc1817b29a">synch_v</a></div><div class="ttdeci">void synch_v(void)</div><div class="ttdef"><b>Definition:</b> <a href="movement_8cpp_source.html#l00171">movement.cpp:171</a></div></div>
+<div class="ttc" id="amovement_8cpp_html_acf0daf3f4ad468bc8ae8eedc1817b29a"><div class="ttname"><a href="movement_8cpp.html#acf0daf3f4ad468bc8ae8eedc1817b29a">synch_v</a></div><div class="ttdeci">void synch_v(void)</div><div class="ttdef"><b>Definition:</b> <a href="movement_8cpp_source.html#l00178">movement.cpp:178</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_ae4d5251432e1a9e6803c0240cc492e18a04d9f5c334507e2c661d456e356d7b5f"><div class="ttname"><a href="constantes_8h.html#ae4d5251432e1a9e6803c0240cc492e18a04d9f5c334507e2c661d456e356d7b5f">xxx1</a></div><div class="ttdeci">@ xxx1</div><div class="ttdoc">extension to DVI primitives</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00562">constantes.h:562</a></div></div>
 <div class="ttc" id="atex_8h_html_a058c603969af37168b3eb0a8bdc5f551"><div class="ttname"><a href="tex_8h.html#a058c603969af37168b3eb0a8bdc5f551">poolsize</a></div><div class="ttdeci">constexpr int poolsize</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00023">tex.h:23</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a9a39497b5850d8ef84842b542afb8124"><div class="ttname"><a href="globals_8cpp.html#a9a39497b5850d8ef84842b542afb8124">strpool</a></div><div class="ttdeci">packedASCIIcode strpool[poolsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00051">globals.cpp:51</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aa4c3887078a0917e85a82b9a6b3cb8a6"><div class="ttname"><a href="constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6">cur_length</a></div><div class="ttdeci">int cur_length(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00131">constantes.cpp:131</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_ae4d5251432e1a9e6803c0240cc492e18a70774dd484a055cfd8b756cac43de112"><div class="ttname"><a href="constantes_8h.html#ae4d5251432e1a9e6803c0240cc492e18a70774dd484a055cfd8b756cac43de112">xxx4</a></div><div class="ttdeci">@ xxx4</div><div class="ttdoc">potentially long extension to DVI primitives</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00563">constantes.h:563</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa41969e93458f53144be18ee53f1f2b9"><div class="ttname"><a href="globals_8cpp.html#aa41969e93458f53144be18ee53f1f2b9">strstart</a></div><div class="ttdeci">poolpointer strstart[maxstrings+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00052">globals.cpp:52</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a21dcaa2eb3344777d3382ee7deafdaa8"><div class="ttname"><a href="globals_8cpp.html#a21dcaa2eb3344777d3382ee7deafdaa8">strptr</a></div><div class="ttdeci">strnumber strptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00054">globals.cpp:54</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a4a02011783b79fd4be63e5ee91cb8621"><div class="ttname"><a href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a></div><div class="ttdeci">char selector</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00059">globals.cpp:59</a></div></div>

@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -84,7 +91,7 @@ $(function() {
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">case</span> 2:</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="globals_8cpp.html#a29ee6410b72adc29af0a6fca16884a76">doingleaders</a>)</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                <a class="code" href="tex_8h.html#aebffb996625158f539ca50fcf7d4628b">smallnumber</a> j = <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p+1);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                <a class="code" href="tex_8h.html#aebffb996625158f539ca50fcf7d4628b">smallnumber</a> j = <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p+1);</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(p) == 1)</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                    <a class="code" href="writeout_8cpp.html#af4ea630b8dd30f3aba2b94725891a4af">writeout</a>(p);</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="keywordflow">else</span></div>
@@ -97,7 +104,7 @@ $(function() {
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                        <span class="keywordflow">if</span> (j &lt; 16)</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                        {</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                            <a class="code" href="globals_8h.html#a4541c14514e0bacb55525c4e1d51e06a">curname</a> = <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p+1);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                            <a class="code" href="globals_8h.html#a1ed6c5a40195002f72f6c0c23ce23db0">curarea</a> = <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p+2);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                            <a class="code" href="globals_8h.html#a1ed6c5a40195002f72f6c0c23ce23db0">curarea</a> = <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p+2);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                            <a class="code" href="globals_8h.html#a29bceb54418448847dd5c6a2cabe599a">curext</a> = <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p+2);</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                            <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#a29bceb54418448847dd5c6a2cabe599a">curext</a> == <span class="stringliteral">&quot;&quot;</span>)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                                <a class="code" href="globals_8h.html#a29bceb54418448847dd5c6a2cabe599a">curext</a> = <span class="stringliteral">&quot;.tex&quot;</span>;</div>
@@ -121,6 +128,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aglobals_8h_html_a1ed6c5a40195002f72f6c0c23ce23db0"><div class="ttname"><a href="globals_8h.html#a1ed6c5a40195002f72f6c0c23ce23db0">curarea</a></div><div class="ttdeci">std::string curarea</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00134">globals.h:134</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_ae5e2bc0c438a2cdf21be5b0115dc29b2"><div class="ttname"><a href="globals_8cpp.html#ae5e2bc0c438a2cdf21be5b0115dc29b2">writefile</a></div><div class="ttdeci">alphafile writefile[16]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00285">globals.cpp:285</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00570">constantes.h:570</a></div></div>
 <div class="ttc" id="awriteout_8cpp_html_af4ea630b8dd30f3aba2b94725891a4af"><div class="ttname"><a href="writeout_8cpp.html#af4ea630b8dd30f3aba2b94725891a4af">writeout</a></div><div class="ttdeci">void writeout(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="writeout_8cpp_source.html#l00017">writeout.cpp:17</a></div></div>
 <div class="ttc" id="apackfilename_8cpp_html_a7a0ce63c987a64219951e8be9c9494c3"><div class="ttname"><a href="packfilename_8cpp.html#a7a0ce63c987a64219951e8be9c9494c3">pack_cur_name</a></div><div class="ttdeci">void pack_cur_name(void)</div><div class="ttdef"><b>Definition:</b> <a href="packfilename_8cpp_source.html#l00017">packfilename.cpp:17</a></div></div>
 <div class="ttc" id="atex_8h_html_aebffb996625158f539ca50fcf7d4628b"><div class="ttname"><a href="tex_8h.html#aebffb996625158f539ca50fcf7d4628b">smallnumber</a></div><div class="ttdeci">unsigned char smallnumber</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00043">tex.h:43</a></div></div>
@@ -135,15 +143,14 @@ $(function() {
 <div class="ttc" id="aconfusion_8h_html"><div class="ttname"><a href="confusion_8h.html">confusion.h</a></div></div>
 <div class="ttc" id="aaclose_8cpp_html_a941887a5a97d9f9b08b2a153321d6816"><div class="ttname"><a href="aclose_8cpp.html#a941887a5a97d9f9b08b2a153321d6816">aclose</a></div><div class="ttdeci">void aclose(alphafile &amp;f)</div><div class="ttdef"><b>Definition:</b> <a href="aclose_8cpp_source.html#l00003">aclose.cpp:3</a></div></div>
 <div class="ttc" id="apackfilename_8h_html"><div class="ttname"><a href="packfilename_8h.html">packfilename.h</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_af8d2b55b67ef266db9cf610c25e9b9c2"><div class="ttname"><a href="globals_8cpp.html#af8d2b55b67ef266db9cf610c25e9b9c2">writeopen</a></div><div class="ttdeci">bool writeopen[18]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00286">globals.cpp:286</a></div></div>
 <div class="ttc" id="aconfusion_8cpp_html_ac5ea395839fed78d642282ef1e945ada"><div class="ttname"><a href="confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada">confusion</a></div><div class="ttdeci">void confusion(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="confusion_8cpp_source.html#l00010">confusion.cpp:10</a></div></div>
 <div class="ttc" id="aoutwhat_8cpp_html_a1137c5a00a506a80eadbe8aa55c400f5"><div class="ttname"><a href="outwhat_8cpp.html#a1137c5a00a506a80eadbe8aa55c400f5">outwhat</a></div><div class="ttdeci">void outwhat(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="outwhat_8cpp_source.html#l00011">outwhat.cpp:11</a></div></div>
 <div class="ttc" id="aoutwhat_8h_html"><div class="ttname"><a href="outwhat_8h.html">outwhat.h</a></div></div>
 <div class="ttc" id="aaclose_8h_html"><div class="ttname"><a href="aclose_8h.html">aclose.h</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00007">constantes.cpp:7</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a4541c14514e0bacb55525c4e1d51e06a"><div class="ttname"><a href="globals_8h.html#a4541c14514e0bacb55525c4e1d51e06a">curname</a></div><div class="ttdeci">std::string curname</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00133">globals.h:133</a></div></div>
 <div class="ttc" id="aspecialout_8h_html"><div class="ttname"><a href="specialout_8h.html">specialout.h</a></div></div>
 <div class="ttc" id="awriteout_8h_html"><div class="ttname"><a href="writeout_8h.html">writeout.h</a></div></div>

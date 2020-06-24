@@ -1,12 +1,12 @@
 <map id="mathex" name="mathex">
 <area shape="rect" id="node1" title=" " alt="" coords="351,157,416,184"/>
-<area shape="rect" id="node2" href="$makeop_8cpp.html#a2edec5b47fdfdd577afa281bba6d2c25" title=" " alt="" coords="167,5,286,32"/>
+<area shape="rect" id="node2" href="$makeop_8cpp.html#a2edec5b47fdfdd577afa281bba6d2c25" title="minimum clearance above a displayed op" alt="" coords="167,5,286,32"/>
 <area shape="rect" id="node3" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="20,132,88,159"/>
-<area shape="rect" id="node4" href="$makeop_8cpp.html#a5cf655b4dc77e009be198f177c323359" title=" " alt="" coords="167,107,286,133"/>
-<area shape="rect" id="node5" href="$makeop_8cpp.html#ac6580ddbaaf6607c23bb0f110930d0a8" title=" " alt="" coords="167,157,286,184"/>
-<area shape="rect" id="node6" href="$makeop_8cpp.html#a23938f54fb8bf748e253e78187f52f69" title=" " alt="" coords="167,208,286,235"/>
-<area shape="rect" id="node7" href="$makeop_8cpp.html#a1cd304e0beb3d406a22ecd95dc16371d" title=" " alt="" coords="167,259,286,285"/>
-<area shape="rect" id="node8" href="$constantes_8h.html#a2de34adfc920d4404fe640b371ff91a6" title=" " alt="" coords="151,309,303,336"/>
+<area shape="rect" id="node4" href="$makeop_8cpp.html#a5cf655b4dc77e009be198f177c323359" title="minimum clearance below a displayed op" alt="" coords="167,107,286,133"/>
+<area shape="rect" id="node5" href="$makeop_8cpp.html#ac6580ddbaaf6607c23bb0f110930d0a8" title="minimum baselineskip above displayed op" alt="" coords="167,157,286,184"/>
+<area shape="rect" id="node6" href="$makeop_8cpp.html#a23938f54fb8bf748e253e78187f52f69" title="minimum baselineskip below displayed op" alt="" coords="167,208,286,235"/>
+<area shape="rect" id="node7" href="$makeop_8cpp.html#a1cd304e0beb3d406a22ecd95dc16371d" title="padding above and below displayed limits" alt="" coords="167,259,286,285"/>
+<area shape="rect" id="node8" href="$constantes_8h.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="151,309,303,336"/>
 <area shape="rect" id="node9" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,208,103,235"/>
 <area shape="rect" id="node10" href="$makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="15,259,93,285"/>
 <area shape="rect" id="node11" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="8,309,100,336"/>

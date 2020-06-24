@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -69,22 +76,22 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="freenode_8h.html#a3c9c1ec42afdd2ebe5e5b67a90021848">    3</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848">freenode</a>(<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p, <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> s)</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;{</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p) = s;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = <a class="code" href="constantes_8h.html#a70fc2360565b0672382c2634537811c1">empty_flag</a>;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> q = <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(<a class="code" href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a>+1);</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(p+1) = q;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p) = s;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = <a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa4a7b4328cb067545ebc5696e8469ecaa">empty_flag</a>;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> q = <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a>+1);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p+1) = q;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p+1) = <a class="code" href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a>;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a>(<a class="code" href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a>+1) = p;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a>+1) = p;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q+1) = p;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00570">constantes.h:570</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a5d76b81b0ad4c19007a781d4edb8181fa4a7b4328cb067545ebc5696e8469ecaa"><div class="ttname"><a href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa4a7b4328cb067545ebc5696e8469ecaa">empty_flag</a></div><div class="ttdeci">@ empty_flag</div><div class="ttdoc">the link of an empty variable-size node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00610">constantes.h:610</a></div></div>
 <div class="ttc" id="afreenode_8h_html"><div class="ttname"><a href="freenode_8h.html">freenode.h</a></div></div>
 <div class="ttc" id="afreenode_8cpp_html_a3c9c1ec42afdd2ebe5e5b67a90021848"><div class="ttname"><a href="freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848">freenode</a></div><div class="ttdeci">void freenode(halfword p, halfword s)</div><div class="ttdef"><b>Definition:</b> <a href="freenode_8cpp_source.html#l00003">freenode.cpp:3</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aef52059b87160e917aa21f8a4dd1316b"><div class="ttname"><a href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b">info</a></div><div class="ttdeci">halfword &amp; info(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00007">constantes.cpp:7</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa428ec3ffbafd3eb1d48e687652aeee0"><div class="ttname"><a href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a></div><div class="ttdeci">halfword rover</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00080">globals.cpp:80</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a70fc2360565b0672382c2634537811c1"><div class="ttname"><a href="constantes_8h.html#a70fc2360565b0672382c2634537811c1">empty_flag</a></div><div class="ttdeci">constexpr int empty_flag</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00084">constantes.h:84</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -96,7 +103,6 @@ Fonctions</h2></td></tr>
 <tr class="memdesc:a0c534032188829d3f6273b3d90e3c64c"><td class="mdescLeft">&#160;</td><td class="mdescRight">|mem| location of glue specification  <a href="parametres_8cpp.html#a0c534032188829d3f6273b3d90e3c64c">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a0c534032188829d3f6273b3d90e3c64c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a807b9366bac84595b5ae2b086ae99cfd"><td class="memItemLeft" align="right" valign="top">int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parametres_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd">dimen_par</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p)</td></tr>
-<tr class="memdesc:a807b9366bac84595b5ae2b086ae99cfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity  <a href="parametres_8cpp.html#a807b9366bac84595b5ae2b086ae99cfd">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a807b9366bac84595b5ae2b086ae99cfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
@@ -116,19 +122,17 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity </p>
-
 <p class="definition">Définition à la ligne <a class="el" href="parametres_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="parametres_8cpp_source.html">parametres.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a>[<a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da36af6707b4007df471ba3193e9342949">dimen_base</a>+p].<a class="code" href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a>[<a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea36af6707b4007df471ba3193e9342949">dimen_base</a>+p].<a class="code" href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a>; }</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="parametres_8cpp_a807b9366bac84595b5ae2b086ae99cfd_icgraph.png" border="0" usemap="#parametres_8cpp_a807b9366bac84595b5ae2b086ae99cfd_icgraph" alt=""/></div>
 <map name="parametres_8cpp_a807b9366bac84595b5ae2b086ae99cfd_icgraph" id="parametres_8cpp_a807b9366bac84595b5ae2b086ae99cfd_icgraph">
-<area shape="rect" title="dimen_par(#)==eqtb[dimen_base+#].sc //a scaled quantity" alt="" coords="673,588,756,615"/>
+<area shape="rect" title=" " alt="" coords="673,588,756,615"/>
 <area shape="rect" href="package_8cpp.html#a27ef186baf8a9533d64774bf9d0f9391" title=" " alt="" coords="319,56,434,83"/>
 <area shape="rect" href="makeleftright_8cpp.html#a576a6c3bd7c3cc2db83a43e8c85669f7" title=" " alt="" coords="493,1019,617,1045"/>
-<area shape="rect" href="parametres_8h.html#ae3332745e28db670b8c807fafd5f5bea" title=" " alt="" coords="324,664,429,691"/>
+<area shape="rect" href="parametres_8h.html#ae3332745e28db670b8c807fafd5f5bea" title="a scaled quantity" alt="" coords="324,664,429,691"/>
 <area shape="rect" href="aftermath_8cpp.html#acb75da7aba0e8ecc8244da164268fa98" title=" " alt="" coords="326,867,427,893"/>
 <area shape="rect" href="linebreak_8cpp.html#a12f77ff13ba18ab5565c21eb469dff7b" title=" " alt="" coords="489,407,622,433"/>
 <area shape="rect" href="shipout_8cpp.html#a9d1f71ad9fb71ec5b0a410793f737c96" title=" " alt="" coords="521,211,590,237"/>
@@ -190,14 +194,14 @@ Voici le graphe des appelants de cette fonction :</div>
 <p>|mem| location of glue specification </p>
 
 <p class="definition">Définition à la ligne <a class="el" href="parametres_8cpp_source.html#l00006">6</a> du fichier <a class="el" href="parametres_8cpp_source.html">parametres.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a>(<a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4daa396b9f11695015f472bc89881b38a6c">glue_base</a>+p); }</div>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a>(<a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fceaa396b9f11695015f472bc89881b38a6c">glue_base</a>+p); }</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="parametres_8cpp_a0c534032188829d3f6273b3d90e3c64c_cgraph.png" border="0" usemap="#parametres_8cpp_a0c534032188829d3f6273b3d90e3c64c_cgraph" alt=""/></div>
 <map name="parametres_8cpp_a0c534032188829d3f6273b3d90e3c64c_cgraph" id="parametres_8cpp_a0c534032188829d3f6273b3d90e3c64c_cgraph">
 <area shape="rect" title="|mem| location of glue specification" alt="" coords="5,5,76,32"/>
-<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title=" " alt="" coords="124,5,177,32"/>
+<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="124,5,177,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -253,17 +257,17 @@ Voici le graphe des appelants de cette fonction :</div>
 <p>an integer parameter </p>
 
 <p class="definition">Définition à la ligne <a class="el" href="parametres_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="parametres_8cpp_source.html">parametres.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a>[<a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da31e6589083490a19cfe51bd6b3c492a7">int_base</a>+p].<a class="code" href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a>[<a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea31e6589083490a19cfe51bd6b3c492a7">int_base</a>+p].<a class="code" href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a>; }</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4daa396b9f11695015f472bc89881b38a6c"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4daa396b9f11695015f472bc89881b38a6c">glue_base</a></div><div class="ttdeci">@ glue_base</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00468">constantes.h:468</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a455b41a95f9f40569c9066e2a78a1106"><div class="ttname"><a href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a></div><div class="ttdeci">memoryword eqtb[6107]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00097">globals.cpp:97</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_acb82808d11d8a4270965a5d0c662c9ed"><div class="ttname"><a href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a></div><div class="ttdeci">halfword &amp; equiv(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00027">constantes.cpp:27</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea36af6707b4007df471ba3193e9342949"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea36af6707b4007df471ba3193e9342949">dimen_base</a></div><div class="ttdeci">@ dimen_base</div><div class="ttdoc">beginning of region 6</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00417">constantes.h:417</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea31e6589083490a19cfe51bd6b3c492a7"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea31e6589083490a19cfe51bd6b3c492a7">int_base</a></div><div class="ttdeci">@ int_base</div><div class="ttdoc">beginning of region 5</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00414">constantes.h:414</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_acb82808d11d8a4270965a5d0c662c9ed"><div class="ttname"><a href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a></div><div class="ttdeci">halfword &amp; equiv(halfword p)</div><div class="ttdoc">equivalent value</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00027">constantes.cpp:27</a></div></div>
 <div class="ttc" id="astructmemoryword_html_a4d5c9735ea2e99d2d3aed088c2fa3f0d"><div class="ttname"><a href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">memoryword::int_</a></div><div class="ttdeci">std::int32_t int_</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00074">tex.h:74</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4da36af6707b4007df471ba3193e9342949"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da36af6707b4007df471ba3193e9342949">dimen_base</a></div><div class="ttdeci">@ dimen_base</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00494">constantes.h:494</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4da31e6589083490a19cfe51bd6b3c492a7"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da31e6589083490a19cfe51bd6b3c492a7">int_base</a></div><div class="ttdeci">@ int_base</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00491">constantes.h:491</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fceaa396b9f11695015f472bc89881b38a6c"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fceaa396b9f11695015f472bc89881b38a6c">glue_base</a></div><div class="ttdeci">@ glue_base</div><div class="ttdoc">beginning of region 3</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00391">constantes.h:391</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

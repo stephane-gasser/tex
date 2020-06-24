@@ -1,7 +1,6 @@
 <map id="fast_store_new_token" name="fast_store_new_token">
-<area shape="rect" id="node1" title=" " alt="" coords="5,107,156,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,156,108"/>
 <area shape="rect" id="node2" href="$getavail_8cpp.html#a3b8c51140a2912d4fa1c7f4fab8519be" title=" " alt="" coords="204,56,307,83"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="469,56,512,83"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="234,157,277,184"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="469,56,512,83"/>
 <area shape="rect" id="node3" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="355,5,421,32"/>
 </map>

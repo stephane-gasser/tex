@@ -6,13 +6,27 @@
 #include "vpackage.h"
 
 static int script_space(void) { return dimen_par(script_space_code); }
-static int sub1(smallnumber c) { return mathsy(16, c); }
-static int sub2(smallnumber c) { return mathsy(17, c); }
-static int sub_drop(smallnumber c) { return mathsy(19, c); }
-static int sup_drop(smallnumber c) { return mathsy(18, c); }
+
+//! superscript shift-up in uncramped display style
 static int sup1(smallnumber c) { return mathsy(13, c); }
+
+//! superscript shift-up in uncramped non-display
 static int sup2(smallnumber c) { return mathsy(14, c); }
+
+//! superscript shift-up in cramped styles
 static int sup3(smallnumber c) { return mathsy(15, c); }
+
+//! subscript shift-down if superscript is absent
+static int sub1(smallnumber c) { return mathsy(16, c); }
+
+//! subscript shift-down if superscript is present
+static int sub2(smallnumber c) { return mathsy(17, c); }
+
+//! superscript baseline below top of large box
+static int sup_drop(smallnumber c) { return mathsy(18, c); }
+
+//! subscript baseline below bottom of large box
+static int sub_drop(smallnumber c) { return mathsy(19, c); }
 
 void makescripts(halfword q, scaled delta)
 {

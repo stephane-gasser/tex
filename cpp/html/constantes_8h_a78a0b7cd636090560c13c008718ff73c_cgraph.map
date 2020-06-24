@@ -1,4 +1,4 @@
 <map id="list_ptr" name="list_ptr">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,67,32"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="115,5,157,32"/>
+<area shape="rect" id="node1" title="beginning of the list inside the box" alt="" coords="5,5,67,32"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="115,5,157,32"/>
 </map>

@@ -1,9 +1,8 @@
 <map id="newmath" name="newmath">
-<area shape="rect" id="node1" title=" " alt="" coords="5,107,80,133"/>
-<area shape="rect" id="node2" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="128,31,196,57"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="128,81,196,108"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="139,132,185,159"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title=" " alt="" coords="135,183,189,209"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="244,5,287,32"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="244,56,287,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,80,108"/>
+<area shape="rect" id="node2" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="128,5,196,32"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="128,56,196,83"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="139,107,185,133"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="135,157,189,184"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="244,5,287,32"/>
 </map>

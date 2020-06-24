@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -95,12 +102,12 @@ $(function() {
 <div class="ttc" id="atex_8h_html_a31e60baff034e87efe01cbf977b72a39"><div class="ttname"><a href="tex_8h.html#a31e60baff034e87efe01cbf977b72a39">internalfontnumber</a></div><div class="ttdeci">char internalfontnumber</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00101">tex.h:101</a></div></div>
 <div class="ttc" id="atex_8h_html_a4092e9c8e6872fc0b04466609ad2875c"><div class="ttname"><a href="tex_8h.html#a4092e9c8e6872fc0b04466609ad2875c">eightbits</a></div><div class="ttdeci">unsigned char eightbits</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00035">tex.h:35</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a375b29365eb2744579e4bf4518e6aaac"><div class="ttname"><a href="constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac">char_info</a></div><div class="ttdeci">fourquarters char_info(internalfontnumber f, smallnumber q)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00107">constantes.cpp:107</a></div></div>
 <div class="ttc" id="acharwarning_8h_html"><div class="ttname"><a href="charwarning_8h.html">charwarning.h</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a412f2a93a7f7d574d5f8f3d61cc98449"><div class="ttname"><a href="globals_8cpp.html#a412f2a93a7f7d574d5f8f3d61cc98449">fontbc</a></div><div class="ttdeci">eightbits fontbc[fontmax+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00154">globals.cpp:154</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_afc4130c3e660c696fd60874168fec8d3"><div class="ttname"><a href="constantes_8cpp.html#afc4130c3e660c696fd60874168fec8d3">skip_byte</a></div><div class="ttdeci">quarterword skip_byte(fourquarters q)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00119">constantes.cpp:119</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

@@ -4,26 +4,26 @@
 <area shape="rect" id="node4" href="$enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="289,157,391,184"/>
 <area shape="rect" id="node5" href="$println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="864,208,921,235"/>
 <area shape="rect" id="node7" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="621,208,668,235"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title=" " alt="" coords="469,1171,530,1197"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="469,1171,530,1197"/>
 <area shape="rect" id="node11" href="$printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="469,309,530,336"/>
 <area shape="rect" id="node13" href="$shortdisplay_8cpp.html#afebf67a21261724239f16b40c3c553d2" title=" " alt="" coords="453,639,545,665"/>
 <area shape="rect" id="node25" href="$showbox_8cpp.html#acfcccfc29ec7e8b9f139156810549ced" title=" " alt="" coords="133,792,208,819"/>
 <area shape="rect" id="node3" href="$parametres_8h.html#ad64b5865361b4a66a2e034f995f8dc24" title=" " alt="" coords="289,5,391,32"/>
 <area shape="rect" id="node6" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="471,157,528,184"/>
 <area shape="rect" id="node8" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="744,309,816,336"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="759,1019,801,1045"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="759,1019,801,1045"/>
 <area shape="rect" id="node12" href="$printthedigs_8cpp.html#ae7d872b8f9c93b81f079a7d1aaa1d43a" title=" " alt="" coords="600,309,689,336"/>
-<area shape="rect" id="node14" href="$constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title=" " alt="" coords="607,512,683,539"/>
-<area shape="rect" id="node15" href="$constantes_8cpp.html#a2537c13195b22342fd09b94a05323a04" title=" " alt="" coords="623,563,667,589"/>
-<area shape="rect" id="node16" href="$shortdisplay_8cpp.html#a5cb3277bcad679a466a4b8eb8d606947" title=" " alt="" coords="599,613,690,640"/>
-<area shape="rect" id="node17" href="$constantes_8cpp.html#afdd839d64f5055eb2e3870458ebe6d39" title=" " alt="" coords="611,917,679,944"/>
-<area shape="rect" id="node18" href="$constantes_8cpp.html#a70439cd64a1f5a3242e5510c755e3ac3" title=" " alt="" coords="616,715,673,741"/>
-<area shape="rect" id="node19" href="$constantes_8cpp.html#aac88a33bd50777ec79e93f77fdc0fe5a" title=" " alt="" coords="601,1019,688,1045"/>
-<area shape="rect" id="node20" href="$constantes_8cpp.html#a65e055dfd7fea1ac8c6c735f76e87825" title=" " alt="" coords="605,765,684,792"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title="the character code in a char_node" alt="" coords="607,512,683,539"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#a2537c13195b22342fd09b94a05323a04" title="the font code in a char_node" alt="" coords="623,563,667,589"/>
+<area shape="rect" id="node16" href="$shortdisplay_8cpp.html#a5cb3277bcad679a466a4b8eb8d606947" title="a frozen font identifier&#39;s name" alt="" coords="599,613,690,640"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#afdd839d64f5055eb2e3870458ebe6d39" title="pointer to a glue specification" alt="" coords="611,917,679,944"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#a70439cd64a1f5a3242e5510c755e3ac3" title="the list of characters" alt="" coords="616,715,673,741"/>
+<area shape="rect" id="node19" href="$constantes_8cpp.html#aac88a33bd50777ec79e93f77fdc0fe5a" title="text that follows a discretionary break" alt="" coords="601,1019,688,1045"/>
+<area shape="rect" id="node20" href="$constantes_8cpp.html#a65e055dfd7fea1ac8c6c735f76e87825" title="text that precedes a discretionary break" alt="" coords="605,765,684,792"/>
 <area shape="rect" id="node21" href="$printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="611,360,679,387"/>
-<area shape="rect" id="node22" href="$constantes_8cpp.html#a91c27ff4451197a1974a2bb653477cf6" title=" " alt="" coords="593,461,696,488"/>
+<area shape="rect" id="node22" href="$constantes_8cpp.html#a91c27ff4451197a1974a2bb653477cf6" title="how many subsequent nodes to replace" alt="" coords="593,461,696,488"/>
 <area shape="rect" id="node23" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="621,816,668,843"/>
-<area shape="rect" id="node24" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="621,867,668,893"/>
+<area shape="rect" id="node24" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="621,867,668,893"/>
 <area shape="rect" id="node26" href="$showbox_8cpp.html#af095a39219867cefc1cdd1b67eb533ea" title=" " alt="" coords="275,741,405,768"/>
 <area shape="rect" id="node27" href="$showbox_8cpp.html#a6ed823de34a4e8218dcd5691254c834b" title=" " alt="" coords="280,792,400,819"/>
 <area shape="rect" id="node28" href="$shownodelist_8cpp.html#a603d6d2969ceffbb5ac7b8c8bc74828b" title=" " alt="" coords="291,867,389,893"/>

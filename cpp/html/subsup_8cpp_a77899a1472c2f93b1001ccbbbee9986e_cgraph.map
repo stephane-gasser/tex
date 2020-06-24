@@ -3,7 +3,7 @@
 <area shape="rect" id="node2" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="149,372,197,398"/>
 <area shape="rect" id="node9" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="575,169,621,196"/>
 <area shape="rect" id="node14" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="446,169,503,196"/>
-<area shape="rect" id="node16" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="453,752,496,778"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="453,752,496,778"/>
 <area shape="rect" id="node18" href="$newnoad_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52" title=" " alt="" coords="136,841,211,868"/>
 <area shape="rect" id="node22" href="$scanmath_8cpp.html#a08e430fac951f380f2e3441e2c8c4fa4" title=" " alt="" coords="134,1056,213,1082"/>
 <area shape="rect" id="node28" href="$subsup_8cpp.html#a4671f7fea21b945378a05e6a5b30f455" title=" " alt="" coords="117,904,229,930"/>
@@ -21,10 +21,10 @@
 <area shape="rect" id="node15" href="$showcontext_8cpp.html#a08865d4e55bc6116a39dbd5679041e61" title=" " alt="" coords="285,220,381,246"/>
 <area shape="rect" id="node17" href="$terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="560,574,636,601"/>
 <area shape="rect" id="node19" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="299,828,367,854"/>
-<area shape="rect" id="node20" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="299,878,367,905"/>
-<area shape="rect" id="node21" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="310,929,357,956"/>
+<area shape="rect" id="node20" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="299,878,367,905"/>
+<area shape="rect" id="node21" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="310,929,357,956"/>
 <area shape="rect" id="node23" href="$parametres_8h.html#a07535a18a8328a1c21de6acc81e23278" title=" " alt="" coords="440,1005,509,1032"/>
-<area shape="rect" id="node24" href="$constantes_8cpp.html#a87e88894a437d840ce25774eff7d1010" title=" " alt="" coords="311,1081,355,1108"/>
+<area shape="rect" id="node24" href="$constantes_8cpp.html#a87e88894a437d840ce25774eff7d1010" title="a quarterword in mem" alt="" coords="311,1081,355,1108"/>
 <area shape="rect" id="node25" href="$constantes_8cpp.html#aa8ac4bb40ad503916456979c1a5a287e" title=" " alt="" coords="283,1030,383,1057"/>
 <area shape="rect" id="node26" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="294,1132,373,1158"/>
 <area shape="rect" id="node27" href="$constantes_8cpp.html#afae596361a6f56764d80e73ae5b32a08" title=" " alt="" coords="290,1182,377,1209"/>

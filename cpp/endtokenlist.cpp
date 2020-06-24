@@ -15,7 +15,7 @@ void endtokenlist(void)
 		{
 			deletetokenref(start);
 			if (token_type == macro)
-				for (;paramptr > limit; paramptr--)
+				for (;paramptr > param_start; paramptr--)
 					flushlist(paramstack[paramptr]);
 		}
 	}

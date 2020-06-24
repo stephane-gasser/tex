@@ -1,6 +1,6 @@
 <map id="getavail" name="getavail">
 <area shape="rect" id="node1" title=" " alt="" coords="5,377,72,403"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="423,453,466,479"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="423,453,466,479"/>
 <area shape="rect" id="node3" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="120,174,191,201"/>
 <area shape="rect" id="node11" href="$runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="265,377,336,403"/>
 <area shape="rect" id="node4" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="277,149,325,175"/>

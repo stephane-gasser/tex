@@ -4,8 +4,8 @@
 <area shape="rect" id="node4" href="$boxerror_8cpp.html#a0bbccd15aae646ece75f2703dda44c2e" title=" " alt="" coords="143,208,212,235"/>
 <area shape="rect" id="node7" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="420,259,477,285"/>
 <area shape="rect" id="node8" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="525,309,572,336"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="425,409,472,436"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title=" " alt="" coords="422,5,475,32"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="425,409,472,436"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="422,5,475,32"/>
 <area shape="rect" id="node5" href="$begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title=" " alt="" coords="260,208,372,235"/>
 <area shape="rect" id="node6" href="$enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="265,157,367,184"/>
 <area shape="rect" id="node9" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="292,309,340,336"/>

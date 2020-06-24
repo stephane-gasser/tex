@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -122,9 +129,9 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a>(<a class="code" href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a9fc3124f9a609fe0f40c4b329abf0732">rule_node_size</a>);</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06ca4843d30c07f93e78341777a80da30eb5">rule_node</a>;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(p) = 0;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(p) = <a class="code" href="constantes_8h.html#af65b1a067903c9edb0e05af86355efa3">null_flag</a>;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(p) = <a class="code" href="constantes_8h.html#af65b1a067903c9edb0e05af86355efa3">null_flag</a>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(p) = <a class="code" href="constantes_8h.html#af65b1a067903c9edb0e05af86355efa3">null_flag</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(p) = <a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa4b5d5f1a1f83b9928410e3e7e35e5dd3">null_flag</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(p) = <a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa4b5d5f1a1f83b9928410e3e7e35e5dd3">null_flag</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(p) = <a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa4b5d5f1a1f83b9928410e3e7e35e5dd3">null_flag</a>;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">return</span> p;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
@@ -133,14 +140,13 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="center"><img src="newrule_8h_adde749bc3235334488b223590d8e4a87_cgraph.png" border="0" usemap="#newrule_8h_adde749bc3235334488b223590d8e4a87_cgraph" alt=""/></div>
 <map name="newrule_8h_adde749bc3235334488b223590d8e4a87_cgraph" id="newrule_8h_adde749bc3235334488b223590d8e4a87_cgraph">
 <area shape="rect" title=" " alt="" coords="5,132,72,159"/>
-<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title=" " alt="" coords="127,5,181,32"/>
+<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="127,5,181,32"/>
 <area shape="rect" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="120,56,188,83"/>
-<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title=" " alt="" coords="125,107,183,133"/>
-<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="120,157,188,184"/>
-<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="131,208,177,235"/>
-<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title=" " alt="" coords="127,259,181,285"/>
-<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="236,31,279,57"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="236,81,279,108"/>
+<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="125,107,183,133"/>
+<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="120,157,188,184"/>
+<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="131,208,177,235"/>
+<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="127,259,181,285"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="236,56,279,83"/>
 </map>
 </div>
 <div class="dynheader">
@@ -174,15 +180,15 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_abc6126af1d45847bc59afa0aa3216b04a9fc3124f9a609fe0f40c4b329abf0732"><div class="ttname"><a href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a9fc3124f9a609fe0f40c4b329abf0732">rule_node_size</a></div><div class="ttdeci">@ rule_node_size</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00101">constantes.h:101</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a4df565ae653d5dfdd476957e92b6a61c"><div class="ttname"><a href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a></div><div class="ttdeci">int &amp; depth(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00050">constantes.cpp:50</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00048">constantes.cpp:48</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aaf95f6a6992031770009c02b8d2b4071"><div class="ttname"><a href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a></div><div class="ttdeci">int &amp; height(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00051">constantes.cpp:51</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_af65b1a067903c9edb0e05af86355efa3"><div class="ttname"><a href="constantes_8h.html#af65b1a067903c9edb0e05af86355efa3">null_flag</a></div><div class="ttdeci">constexpr int null_flag</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00183">constantes.h:183</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_adc29c2ff13d900c2f185ee95427fb06ca4843d30c07f93e78341777a80da30eb5"><div class="ttname"><a href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06ca4843d30c07f93e78341777a80da30eb5">rule_node</a></div><div class="ttdeci">@ rule_node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00125">constantes.h:125</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abc6126af1d45847bc59afa0aa3216b04a9fc3124f9a609fe0f40c4b329abf0732"><div class="ttname"><a href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a9fc3124f9a609fe0f40c4b329abf0732">rule_node_size</a></div><div class="ttdeci">@ rule_node_size</div><div class="ttdoc">number of words to allocate for a rule node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00046">constantes.h:46</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a4df565ae653d5dfdd476957e92b6a61c"><div class="ttname"><a href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a></div><div class="ttdeci">int &amp; depth(halfword p)</div><div class="ttdoc">depth of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00050">constantes.cpp:50</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdoc">width of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00048">constantes.cpp:48</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a5d76b81b0ad4c19007a781d4edb8181fa4b5d5f1a1f83b9928410e3e7e35e5dd3"><div class="ttname"><a href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa4b5d5f1a1f83b9928410e3e7e35e5dd3">null_flag</a></div><div class="ttdeci">@ null_flag</div><div class="ttdoc">, signifies a missing item</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00615">constantes.h:615</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aaf95f6a6992031770009c02b8d2b4071"><div class="ttname"><a href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a></div><div class="ttdeci">int &amp; height(halfword p)</div><div class="ttdoc">height of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00051">constantes.cpp:51</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_adc29c2ff13d900c2f185ee95427fb06ca4843d30c07f93e78341777a80da30eb5"><div class="ttname"><a href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06ca4843d30c07f93e78341777a80da30eb5">rule_node</a></div><div class="ttdeci">@ rule_node</div><div class="ttdoc">type of rule nodes</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00070">constantes.h:70</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
 <div class="ttc" id="agetnode_8cpp_html_a2baceeb19c0c4b666f0e18bcaff56d8a"><div class="ttname"><a href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a></div><div class="ttdeci">halfword getnode(int s)</div><div class="ttdef"><b>Definition:</b> <a href="getnode_8cpp_source.html#l00004">getnode.cpp:4</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

@@ -21,6 +21,8 @@
 #include "wclose.h"
 #include "texte.h"
 
+constexpr char format_extension[] = ".fmt"; //!< the extension, as a WEB constant
+
 static void dump_hh(twohalves num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
 static void dump_wd(memoryword num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
 static void dump_qqqq(fourquarters num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }

@@ -25,6 +25,8 @@
 #include "newpenalty.h"
 #include "makeleftright.h"
 
+constexpr char math_spacing[] = "0234000122*4000133**3**344*0400400*000000234000111*1111112341011";
+
 static void choose_mlist(halfword &p, halfword q, halfword& (*f)(halfword))
 {
 	p = f(q);
@@ -37,7 +39,6 @@ static int rel_penalty(void) { return int_par(rel_penalty_code); }
 void mlisttohlist(void)
 {
 	halfword p, x, y, z;
-	int pen;
 	scaled delta;
 	smallnumber s, t, savestyle;
 	auto mlist = curmlist;
@@ -48,10 +49,7 @@ void mlisttohlist(void)
 	smallnumber rtype = 17;
 	scaled maxh = 0;
 	scaled maxd = 0;
-	if (curstyle < 4)
-		cursize = 0;
-	else
-		cursize = 16*((curstyle-2)/2);
+	cursize = curstyle < 4 ? 0 : 16*((curstyle-2)/2);
 	curmu = xovern(math_quad(cursize), 18);
 	while (q)
 	{
@@ -299,7 +297,7 @@ void mlisttohlist(void)
 	{
 		t = ord_noad;
 		s = noad_size;
-		pen = inf_penalty;
+		int pen = inf_penalty;
 		switch (type(q))
 		{
 			case op_noad:

@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -82,7 +89,7 @@ $(function() {
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                <a class="code" href="macrocall_8cpp.html#a7b207fba9cb90450eb7a52f1147231ab">macrocall</a>();</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                <a class="code" href="globals_8cpp.html#a303953f8763671b5625ecee1991417ea">curcs</a> = <a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da491599f54eec7e1417005301d5e366f6">frozen_endv</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                <a class="code" href="globals_8cpp.html#a303953f8763671b5625ecee1991417ea">curcs</a> = <a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea491599f54eec7e1417005301d5e366f6">frozen_endv</a>;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> = <a class="code" href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da1ab39bc750d3bf0ee5d0214b3b267636">ignore</a>;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            }</div>
@@ -95,22 +102,22 @@ $(function() {
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="stringliteral">        curtok = cs_token_flag+curcs;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="stringliteral">}</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4da491599f54eec7e1417005301d5e366f6"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da491599f54eec7e1417005301d5e366f6">frozen_endv</a></div><div class="ttdeci">@ frozen_endv</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00461">constantes.h:461</a></div></div>
 <div class="ttc" id="agetnext_8h_html"><div class="ttname"><a href="getnext_8h.html">getnext.h</a></div></div>
 <div class="ttc" id="aexpand_8cpp_html_abf4ef81214404f9ab64830d5820ea301"><div class="ttname"><a href="expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301">expand</a></div><div class="ttdeci">void expand(void)</div><div class="ttdef"><b>Definition:</b> <a href="expand_8cpp_source.html#l00028">expand.cpp:28</a></div></div>
 <div class="ttc" id="amacrocall_8h_html"><div class="ttname"><a href="macrocall_8h.html">macrocall.h</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_abc5c98fcc1211af2b80116dd6e0a035da1ab39bc750d3bf0ee5d0214b3b267636"><div class="ttname"><a href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da1ab39bc750d3bf0ee5d0214b3b267636">ignore</a></div><div class="ttdeci">@ ignore</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00304">constantes.h:304</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abc5c98fcc1211af2b80116dd6e0a035da1ab39bc750d3bf0ee5d0214b3b267636"><div class="ttname"><a href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da1ab39bc750d3bf0ee5d0214b3b267636">ignore</a></div><div class="ttdeci">@ ignore</div><div class="ttdoc">characters to ignore</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00204">constantes.h:204</a></div></div>
 <div class="ttc" id="agetxtoken_8h_html"><div class="ttname"><a href="getxtoken_8h.html">getxtoken.h</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea491599f54eec7e1417005301d5e366f6"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea491599f54eec7e1417005301d5e366f6">frozen_endv</a></div><div class="ttdeci">@ frozen_endv</div><div class="ttdoc">second permanent ‘\endtemplate’</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00384">constantes.h:384</a></div></div>
 <div class="ttc" id="agetnext_8cpp_html_a18d0a6eddff65d623650e09b4c866f11"><div class="ttname"><a href="getnext_8cpp.html#a18d0a6eddff65d623650e09b4c866f11">getnext</a></div><div class="ttdeci">void getnext(void)</div><div class="ttdef"><b>Definition:</b> <a href="getnext_8cpp_source.html#l00067">getnext.cpp:67</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_af5b7cfb45f653f0dc9ba05c338cc8a8e"><div class="ttname"><a href="globals_8cpp.html#af5b7cfb45f653f0dc9ba05c338cc8a8e">curtok</a></div><div class="ttdeci">halfword curtok</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00111">globals.cpp:111</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_abc5c98fcc1211af2b80116dd6e0a035da98ab4979bd774d191f9a4642f9df392f"><div class="ttname"><a href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da98ab4979bd774d191f9a4642f9df392f">call</a></div><div class="ttdeci">@ call</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00417">constantes.h:417</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abc5c98fcc1211af2b80116dd6e0a035da98ab4979bd774d191f9a4642f9df392f"><div class="ttname"><a href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da98ab4979bd774d191f9a4642f9df392f">call</a></div><div class="ttdeci">@ call</div><div class="ttdoc">max_command+11 //!&lt; non-long, non-outer control sequence</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00317">constantes.h:317</a></div></div>
 <div class="ttc" id="amacrocall_8cpp_html_a7b207fba9cb90450eb7a52f1147231ab"><div class="ttname"><a href="macrocall_8cpp.html#a7b207fba9cb90450eb7a52f1147231ab">macrocall</a></div><div class="ttdeci">void macrocall(void)</div><div class="ttdef"><b>Definition:</b> <a href="macrocall_8cpp_source.html#l00026">macrocall.cpp:26</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a303953f8763671b5625ecee1991417ea"><div class="ttname"><a href="globals_8cpp.html#a303953f8763671b5625ecee1991417ea">curcs</a></div><div class="ttdeci">halfword curcs</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00110">globals.cpp:110</a></div></div>
 <div class="ttc" id="aexpand_8h_html"><div class="ttname"><a href="expand_8h.html">expand.h</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_abc5c98fcc1211af2b80116dd6e0a035da27a355a48ab1af84eadbd934ae3e5415"><div class="ttname"><a href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da27a355a48ab1af84eadbd934ae3e5415">max_command</a></div><div class="ttdeci">@ max_command</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00406">constantes.h:406</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abc5c98fcc1211af2b80116dd6e0a035da27a355a48ab1af84eadbd934ae3e5415"><div class="ttname"><a href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da27a355a48ab1af84eadbd934ae3e5415">max_command</a></div><div class="ttdeci">@ max_command</div><div class="ttdoc">the largest command code seen at big_switch</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00306">constantes.h:306</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_adb17223ad60c9ffc709eb43e2f309055"><div class="ttname"><a href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a></div><div class="ttdeci">eightbits curcmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00108">globals.cpp:108</a></div></div>
 <div class="ttc" id="agetxtoken_8cpp_html_a3237321de3327dcec8b8e81069858115"><div class="ttname"><a href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115">getxtoken</a></div><div class="ttdeci">void getxtoken(void)</div><div class="ttdef"><b>Definition:</b> <a href="getxtoken_8cpp_source.html#l00006">getxtoken.cpp:6</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_abc5c98fcc1211af2b80116dd6e0a035da0017634b11943fc850f487a839a1be18"><div class="ttname"><a href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da0017634b11943fc850f487a839a1be18">end_template</a></div><div class="ttdeci">@ end_template</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00421">constantes.h:421</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abc5c98fcc1211af2b80116dd6e0a035da0017634b11943fc850f487a839a1be18"><div class="ttname"><a href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da0017634b11943fc850f487a839a1be18">end_template</a></div><div class="ttdeci">@ end_template</div><div class="ttdoc">max_command+15 //!&lt; end of an alignment template</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00321">constantes.h:321</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

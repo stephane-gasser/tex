@@ -1,4 +1,4 @@
 <map id="display_mlist" name="display_mlist">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,104,32"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="152,5,195,32"/>
+<area shape="rect" id="node1" title="mlist to be used in display style" alt="" coords="5,5,104,32"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title="the info field of a memory word" alt="" coords="152,5,195,32"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="location" name="location">
-<area shape="rect" id="node1" title=" " alt="" coords="400,55,467,81"/>
+<area shape="rect" id="node1" title="DVI byte number for a movement command." alt="" coords="400,55,467,81"/>
 <area shape="rect" id="node2" href="$movement_8h.html#a20866aa1f5e095a472254bcf4c6d5e03" title=" " alt="" coords="249,29,332,56"/>
 <area shape="rect" id="node5" href="$prunemovements_8h.html#a66c63c052a413a8bc2127d5584832f68" title=" " alt="" coords="229,80,352,107"/>
 <area shape="rect" id="node3" href="$vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="117,29,181,56"/>

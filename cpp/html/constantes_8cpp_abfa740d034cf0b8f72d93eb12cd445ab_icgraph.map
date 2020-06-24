@@ -1,5 +1,5 @@
 <map id="shift_amount" name="shift_amount">
-<area shape="rect" id="node1" title=" " alt="" coords="1057,873,1155,900"/>
+<area shape="rect" id="node1" title="repositioning distance, in sp" alt="" coords="1057,873,1155,900"/>
 <area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="143,639,220,665"/>
 <area shape="rect" id="node4" href="$beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title=" " alt="" coords="284,1475,359,1501"/>
 <area shape="rect" id="node6" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="605,411,680,437"/>
@@ -39,6 +39,6 @@
 <area shape="rect" id="node37" href="$shownodelist_8cpp.html#a02076a38f9aefdba6b671f0163d39e55" title=" " alt="" coords="740,1955,863,1981"/>
 <area shape="rect" id="node38" href="$showbox_8h.html#acfcccfc29ec7e8b9f139156810549ced" title=" " alt="" coords="764,1904,839,1931"/>
 <area shape="rect" id="node39" href="$showinfo_8h.html#a7a96b738fe42ca12c27ab45665093a35" title=" " alt="" coords="764,2005,839,2032"/>
-<area shape="rect" id="node41" href="$vpackage_8h.html#a206cf29986058df07ca90d49bb7ce152" title=" " alt="" coords="614,1019,671,1045"/>
+<area shape="rect" id="node41" href="$vpackage_8h.html#a206cf29986058df07ca90d49bb7ce152" title="special case of unconstrained depth" alt="" coords="614,1019,671,1045"/>
 <area shape="rect" id="node42" href="$vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="457,1069,511,1096"/>
 </map>

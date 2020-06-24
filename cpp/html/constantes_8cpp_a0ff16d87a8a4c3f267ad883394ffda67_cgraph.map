@@ -1,4 +1,4 @@
 <map id="rlink" name="rlink">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,52,32"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="100,5,143,32"/>
+<area shape="rect" id="node1" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="5,5,52,32"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="100,5,143,32"/>
 </map>

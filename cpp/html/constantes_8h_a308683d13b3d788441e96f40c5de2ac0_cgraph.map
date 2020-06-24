@@ -1,4 +1,4 @@
 <map id="glue_ptr" name="glue_ptr">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,73,32"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="121,5,164,32"/>
+<area shape="rect" id="node1" title="pointer to a glue specification" alt="" coords="5,5,73,32"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title="the info field of a memory word" alt="" coords="121,5,164,32"/>
 </map>

@@ -13,6 +13,8 @@
 #include "xnoverd.h"
 #include "texte.h"
 
+constexpr char TEX_font_area[] = "TeXfonts:";
+
 static int default_skew_char(void) { return int_par(default_skew_char_code); }
 
 static void start_font_error_message(halfword u, scaled s, const std::string &nom, const std::string &aire)

@@ -1,5 +1,5 @@
 <map id="glue_ptr" name="glue_ptr">
-<area shape="rect" id="node1" title=" " alt="" coords="796,916,864,943"/>
+<area shape="rect" id="node1" title="pointer to a glue specification" alt="" coords="796,916,864,943"/>
 <area shape="rect" id="node2" href="$copynodelist_8h.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="625,29,719,56"/>
 <area shape="rect" id="node5" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="460,232,513,259"/>
 <area shape="rect" id="node7" href="$flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="625,764,719,791"/>
@@ -36,5 +36,5 @@
 <area shape="rect" id="node31" href="$hpack_8cpp.html#aca1b4ef43cf99ba30e2d0bc481431dce" title=" " alt="" coords="456,1499,517,1525"/>
 <area shape="rect" id="node34" href="$linebreak_8cpp.html#a7c6cf5fe8506c32f31be9ec53a4d994e" title=" " alt="" coords="443,1245,530,1272"/>
 <area shape="rect" id="node37" href="$package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="451,131,522,157"/>
-<area shape="rect" id="node38" href="$vpackage_8h.html#a206cf29986058df07ca90d49bb7ce152" title=" " alt="" coords="458,181,515,208"/>
+<area shape="rect" id="node38" href="$vpackage_8h.html#a206cf29986058df07ca90d49bb7ce152" title="special case of unconstrained depth" alt="" coords="458,181,515,208"/>
 </map>

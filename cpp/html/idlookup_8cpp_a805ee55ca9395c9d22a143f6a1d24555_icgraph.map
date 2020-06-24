@@ -1,5 +1,5 @@
 <map id="hash_is_full" name="hash_is_full">
-<area shape="rect" id="node1" title=" " alt="" coords="243,31,333,57"/>
+<area shape="rect" id="node1" title="test if all positions are occupied" alt="" coords="243,31,333,57"/>
 <area shape="rect" id="node2" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="124,31,195,57"/>
 <area shape="rect" id="node3" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="8,5,73,32"/>
 <area shape="rect" id="node4" href="$primitive_8h.html#afd390c212945223fe7892dc9e61dcc3d" title=" " alt="" coords="5,56,76,83"/>

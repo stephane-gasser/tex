@@ -4,6 +4,7 @@
 #include "printesc.h"
 #include "texte.h"
 
+//! a frozen font identifier's name
 static halfword& font_id_text(halfword p) { return text(font_id_base+p); }
 
 void shortdisplay(int p)

@@ -9,11 +9,13 @@
 #include "printcmdchr.h"
 #include "pushinput.h"
 
+//! backs up a simple token list
 void back_list(halfword p)
 {
 	begintokenlist(p, backed_up);
 }
 
+//! inserts a simple token list
 void ins_list(halfword p)
 {
 	begintokenlist(p, inserted);
@@ -29,7 +31,7 @@ void begintokenlist(halfword p, quarterword t)
 	{
 		info(p)++;
 		if (t == macro)
-			limit = paramptr;
+			param_start = paramptr;
 		else
 		{
 			loc = link(p);

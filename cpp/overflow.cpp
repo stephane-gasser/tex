@@ -9,7 +9,8 @@
 #include "jumpout.h"
 #include "texte.h"
 
-void str_room(int n) //make sure that the pool hasn't overflowed
+//! make sure that the pool hasn't overflowed
+void str_room(int n) 
 {
   if (poolptr+n > poolsize)
 	  overflow("pool size", poolsize-initpoolptr); 

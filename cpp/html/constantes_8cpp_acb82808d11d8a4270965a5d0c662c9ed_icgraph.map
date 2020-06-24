@@ -1,5 +1,5 @@
 <map id="equiv" name="equiv">
-<area shape="rect" id="node1" title=" " alt="" coords="997,1348,1051,1375"/>
+<area shape="rect" id="node1" title="equivalent value" alt="" coords="997,1348,1051,1375"/>
 <area shape="rect" id="node2" href="$constantes_8h.html#aba7c5bf8c3e657c9b1fb0125e7c1ca13" title=" " alt="" coords="883,284,926,311"/>
 <area shape="rect" id="node11" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="460,1323,612,1349"/>
 <area shape="rect" id="node15" href="$constantes_8h.html#a86341c8706240b4a2c964359cd763c64" title=" " alt="" coords="867,867,942,893"/>
@@ -24,12 +24,12 @@
 <area shape="rect" id="node40" href="$initprim_8h.html#a00fac4d433de0ce408e745ad03051386" title=" " alt="" coords="704,1893,768,1920"/>
 <area shape="rect" id="node41" href="$constantes_8h.html#a8bf0c89280513a147dbbe155ebdd1d01" title=" " alt="" coords="871,1728,938,1755"/>
 <area shape="rect" id="node42" href="$constantes_8h.html#afae596361a6f56764d80e73ae5b32a08" title=" " alt="" coords="861,1323,948,1349"/>
-<area shape="rect" id="node43" href="$scansomethinginternal_8cpp.html#acb27d8065547b0637c8bcd521dc7b46d" title=" " alt="" coords="701,1817,771,1844"/>
+<area shape="rect" id="node43" href="$scansomethinginternal_8cpp.html#acb27d8065547b0637c8bcd521dc7b46d" title="|mem| location of math glue spec" alt="" coords="701,1817,771,1844"/>
 <area shape="rect" id="node44" href="$fireup_8cpp.html#af673c8575b43040fb7fcaa5aef2c6ddb" title=" " alt="" coords="484,411,588,437"/>
 <area shape="rect" id="node45" href="$constantes_8h.html#acd8e2010495121e1bcaa7765b0cacdfc" title=" " alt="" coords="684,2083,788,2109"/>
 <area shape="rect" id="node46" href="$primitive_8h.html#a88b1d9a40bbdf4a3363b49915010d754" title=" " alt="" coords="869,1931,940,1957"/>
 <area shape="rect" id="node47" href="$constantes_8h.html#ac18a1e91e843cbd7c002f6d03c11f0a8" title=" " alt="" coords="871,1779,939,1805"/>
-<area shape="rect" id="node48" href="$constantes_8h.html#a67dce7fd75188327ea86097a58a2767d" title=" " alt="" coords="881,765,928,792"/>
+<area shape="rect" id="node48" href="$constantes_8h.html#a67dce7fd75188327ea86097a58a2767d" title="mem location of glue specification" alt="" coords="881,765,928,792"/>
 <area shape="rect" id="node49" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="861,2083,948,2109"/>
 <area shape="rect" id="node50" href="$initialize_8cpp.html#a6c3f3ca0a64283c8f08b4a209261da17" title=" " alt="" coords="869,1677,940,1704"/>
 <area shape="rect" id="node3" href="$alterboxdimen_8h.html#aec4ac244d278e8fa4798d020849c628f" title=" " alt="" coords="685,5,787,32"/>

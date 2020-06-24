@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -107,36 +114,35 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="insertrelax_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="insertrelax_8cpp_source.html">insertrelax.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="globals_8cpp.html#af5b7cfb45f653f0dc9ba05c338cc8a8e">curtok</a> = <a class="code" href="constantes_8h.html#a43ed29a8db87d066c04b1abcfb609b40">cs_token_flag</a>+<a class="code" href="globals_8cpp.html#a303953f8763671b5625ecee1991417ea">curcs</a>;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="globals_8cpp.html#af5b7cfb45f653f0dc9ba05c338cc8a8e">curtok</a> = <a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a>+<a class="code" href="globals_8cpp.html#a303953f8763671b5625ecee1991417ea">curcs</a>;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a>();</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="globals_8cpp.html#af5b7cfb45f653f0dc9ba05c338cc8a8e">curtok</a> = <a class="code" href="constantes_8h.html#a43ed29a8db87d066c04b1abcfb609b40">cs_token_flag</a>+<a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da7ca3149995f3bbf47435509ba5699a1c">frozen_relax</a>;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="globals_8cpp.html#af5b7cfb45f653f0dc9ba05c338cc8a8e">curtok</a> = <a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a>+<a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea7ca3149995f3bbf47435509ba5699a1c">frozen_relax</a>;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a>();</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="constantes_8h.html#afa73c55e885c804f2c1062b64827f9d9">token_type</a> = <a class="code" href="constantes_8h.html#adb49720dc49f7d4e4cf9adbf2948e409a88c7ff5381a6ecc763d7d1c843e17765">inserted</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a> = <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765">inserted</a>;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="insertrelax_8cpp_a3c1d60d7781e5b1b3733906b0cb43129_cgraph.png" border="0" usemap="#insertrelax_8cpp_a3c1d60d7781e5b1b3733906b0cb43129_cgraph" alt=""/></div>
 <map name="insertrelax_8cpp_a3c1d60d7781e5b1b3733906b0cb43129_cgraph" id="insertrelax_8cpp_a3c1d60d7781e5b1b3733906b0cb43129_cgraph">
-<area shape="rect" title=" " alt="" coords="5,81,88,108"/>
-<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="136,81,215,108"/>
+<area shape="rect" title=" " alt="" coords="5,56,88,83"/>
+<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="136,56,215,83"/>
 <area shape="rect" href="endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="263,5,355,32"/>
 <area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="275,56,342,83"/>
-<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="287,107,330,133"/>
-<area shape="rect" href="pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title=" " alt="" coords="266,157,351,184"/>
+<area shape="rect" href="pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="266,107,351,133"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_a43ed29a8db87d066c04b1abcfb609b40"><div class="ttname"><a href="constantes_8h.html#a43ed29a8db87d066c04b1abcfb609b40">cs_token_flag</a></div><div class="ttdeci">constexpr int cs_token_flag</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00556">constantes.h:556</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0d"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a></div><div class="ttdeci">token_type</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00464">constantes.h:464</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea7ca3149995f3bbf47435509ba5699a1c"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea7ca3149995f3bbf47435509ba5699a1c">frozen_relax</a></div><div class="ttdeci">@ frozen_relax</div><div class="ttdoc">permanent ‘\relax’</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00385">constantes.h:385</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_af5b7cfb45f653f0dc9ba05c338cc8a8e"><div class="ttname"><a href="globals_8cpp.html#af5b7cfb45f653f0dc9ba05c338cc8a8e">curtok</a></div><div class="ttdeci">halfword curtok</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00111">globals.cpp:111</a></div></div>
 <div class="ttc" id="abackinput_8cpp_html_afd6e40e89c0d293c90a471cef22e934a"><div class="ttname"><a href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a></div><div class="ttdeci">void backinput(void)</div><div class="ttdef"><b>Definition:</b> <a href="backinput_8cpp_source.html#l00007">backinput.cpp:7</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a5d76b81b0ad4c19007a781d4edb8181fa8382990150c1cad5a49285b51f27fbeb"><div class="ttname"><a href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a></div><div class="ttdeci">@ cs_token_flag</div><div class="ttdoc">amount added to the eqtb location in a token that stands for a control sequence; is a multiple of 256...</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00611">constantes.h:611</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a303953f8763671b5625ecee1991417ea"><div class="ttname"><a href="globals_8cpp.html#a303953f8763671b5625ecee1991417ea">curcs</a></div><div class="ttdeci">halfword curcs</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00110">globals.cpp:110</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_afa73c55e885c804f2c1062b64827f9d9"><div class="ttname"><a href="constantes_8h.html#afa73c55e885c804f2c1062b64827f9d9">token_type</a></div><div class="ttdeci">quarterword &amp; token_type</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00602">constantes.h:602</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4da7ca3149995f3bbf47435509ba5699a1c"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da7ca3149995f3bbf47435509ba5699a1c">frozen_relax</a></div><div class="ttdeci">@ frozen_relax</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00462">constantes.h:462</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_adb49720dc49f7d4e4cf9adbf2948e409a88c7ff5381a6ecc763d7d1c843e17765"><div class="ttname"><a href="constantes_8h.html#adb49720dc49f7d4e4cf9adbf2948e409a88c7ff5381a6ecc763d7d1c843e17765">inserted</a></div><div class="ttdeci">@ inserted</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00611">constantes.h:611</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765">inserted</a></div><div class="ttdeci">@ inserted</div><div class="ttdoc">token_type code for inserted texts</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00470">constantes.h:470</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

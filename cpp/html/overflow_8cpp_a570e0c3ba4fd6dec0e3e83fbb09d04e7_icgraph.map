@@ -1,5 +1,5 @@
 <map id="str_room" name="str_room">
-<area shape="rect" id="node1" title=" " alt="" coords="309,208,383,235"/>
+<area shape="rect" id="node1" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="309,208,383,235"/>
 <area shape="rect" id="node2" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="157,31,228,57"/>
 <area shape="rect" id="node5" href="$issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="139,81,246,108"/>
 <area shape="rect" id="node6" href="$morename_8h.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="151,132,234,159"/>

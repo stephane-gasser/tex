@@ -1,18 +1,17 @@
 <map id="insthetoks" name="insthetoks">
-<area shape="rect" id="node1" title=" " alt="" coords="5,356,88,383"/>
-<area shape="rect" id="node2" href="$begintokenlist_8cpp.html#a5f4232bf5579ef4981db33096414bc2a" title=" " alt="" coords="137,356,200,383"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="657,153,700,180"/>
-<area shape="rect" id="node7" href="$thetoks_8cpp.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="136,407,201,433"/>
-<area shape="rect" id="node3" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="274,356,377,383"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="657,356,700,383"/>
-<area shape="rect" id="node6" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="501,457,548,484"/>
-<area shape="rect" id="node8" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="477,103,573,129"/>
-<area shape="rect" id="node9" href="$getavail_8cpp.html#af3df9f1773f7ae0591d3580af2b1ab6d" title=" " alt="" coords="449,204,600,231"/>
-<area shape="rect" id="node10" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="286,711,365,737"/>
-<area shape="rect" id="node11" href="$printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="648,635,709,661"/>
-<area shape="rect" id="node12" href="$printscaled_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb" title=" " alt="" coords="482,609,567,636"/>
-<area shape="rect" id="node13" href="$printspec_8cpp.html#a5d5bd239859b86558d63d7463878964f" title=" " alt="" coords="288,559,363,585"/>
-<area shape="rect" id="node14" href="$scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="249,407,401,433"/>
-<area shape="rect" id="node15" href="$getavail_8cpp.html#ab66fdad2e7e67fc6932956666eb928ba" title=" " alt="" coords="464,255,585,281"/>
-<area shape="rect" id="node16" href="$strtoks_8cpp.html#a0164a29d5025ab7576b0af8c5aa59bae" title=" " alt="" coords="294,204,357,231"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,259,88,286"/>
+<area shape="rect" id="node2" href="$begintokenlist_8cpp.html#a5f4232bf5579ef4981db33096414bc2a" title="inserts a simple token list" alt="" coords="137,411,200,438"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="657,133,700,159"/>
+<area shape="rect" id="node6" href="$thetoks_8cpp.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="136,259,201,286"/>
+<area shape="rect" id="node3" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="274,513,377,539"/>
+<area shape="rect" id="node5" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="501,423,548,450"/>
+<area shape="rect" id="node7" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="477,259,573,286"/>
+<area shape="rect" id="node8" href="$getavail_8cpp.html#af3df9f1773f7ae0591d3580af2b1ab6d" title=" " alt="" coords="449,31,600,58"/>
+<area shape="rect" id="node9" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="286,158,365,185"/>
+<area shape="rect" id="node10" href="$printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="648,462,709,489"/>
+<area shape="rect" id="node11" href="$printscaled_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb" title=" " alt="" coords="482,361,567,387"/>
+<area shape="rect" id="node12" href="$printspec_8cpp.html#a5d5bd239859b86558d63d7463878964f" title=" " alt="" coords="288,361,363,387"/>
+<area shape="rect" id="node13" href="$scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="249,411,401,438"/>
+<area shape="rect" id="node14" href="$getavail_8cpp.html#ab66fdad2e7e67fc6932956666eb928ba" title=" " alt="" coords="464,133,585,159"/>
+<area shape="rect" id="node15" href="$strtoks_8cpp.html#a0164a29d5025ab7576b0af8c5aa59bae" title=" " alt="" coords="294,57,357,83"/>
 </map>

@@ -1,22 +1,22 @@
 <map id="mathsy" name="mathsy">
 <area shape="rect" id="node1" title=" " alt="" coords="853,600,919,627"/>
-<area shape="rect" id="node2" href="$constantes_8h.html#a34925b0cdd88c509ec27c46b83221bc9" title=" " alt="" coords="717,119,805,145"/>
-<area shape="rect" id="node13" href="$makefraction_8cpp.html#aa11384405a33d56ab36323ac96ef6212" title=" " alt="" coords="595,245,655,272"/>
-<area shape="rect" id="node14" href="$makefraction_8cpp.html#a67416fc26eb077ebd47a05861d2cbe07" title=" " alt="" coords="595,296,655,323"/>
-<area shape="rect" id="node15" href="$makefraction_8cpp.html#a4ac14495bd218aec4f21fffa2819c0c1" title=" " alt="" coords="727,347,795,373"/>
-<area shape="rect" id="node16" href="$makefraction_8cpp.html#aaa40b41ea32d3797e3a862cf6846a748" title=" " alt="" coords="727,397,795,424"/>
-<area shape="rect" id="node17" href="$constantes_8h.html#a16231e40bcd71e79a9f5763401c9c0a1" title=" " alt="" coords="440,461,527,488"/>
-<area shape="rect" id="node18" href="$constantes_8h.html#a40ed1a665d5b581777edffd9809f447c" title=" " alt="" coords="147,651,253,677"/>
-<area shape="rect" id="node19" href="$makefraction_8cpp.html#a3ea41372309803809bca11d1b59b2adf" title=" " alt="" coords="734,448,789,475"/>
-<area shape="rect" id="node20" href="$makefraction_8cpp.html#adcc39b9880840fedaf9a6e1ea7ac317b" title=" " alt="" coords="734,499,789,525"/>
-<area shape="rect" id="node21" href="$makefraction_8cpp.html#ad7ce77df82b3831e97e57ec16070eb36" title=" " alt="" coords="734,549,789,576"/>
-<area shape="rect" id="node22" href="$makescripts_8cpp.html#a3e7c1f647fd3751e002ea20a85e0133a" title=" " alt="" coords="319,701,369,728"/>
-<area shape="rect" id="node23" href="$makescripts_8cpp.html#a259e4a2941f0a35549d141dd183d7735" title=" " alt="" coords="599,752,650,779"/>
-<area shape="rect" id="node24" href="$makescripts_8cpp.html#a73b3892301b39e579f6f17ea5d4cfcad" title=" " alt="" coords="307,803,381,829"/>
-<area shape="rect" id="node25" href="$makescripts_8cpp.html#a6d344a8c145cf8effd74ebd31f071998" title=" " alt="" coords="599,853,650,880"/>
-<area shape="rect" id="node26" href="$makescripts_8cpp.html#a3655d49def7485670a663a94cecfabec" title=" " alt="" coords="458,904,509,931"/>
-<area shape="rect" id="node27" href="$makescripts_8cpp.html#aebcdba0c79bcabd1d5e3afd14f376a1f" title=" " alt="" coords="319,955,369,981"/>
-<area shape="rect" id="node28" href="$makescripts_8cpp.html#ade3d9a349d7d403d9966bd2b38cd3022" title=" " alt="" coords="163,1005,237,1032"/>
+<area shape="rect" id="node2" href="$constantes_8h.html#a34925b0cdd88c509ec27c46b83221bc9" title="height of fraction lines above the baseline" alt="" coords="717,119,805,145"/>
+<area shape="rect" id="node13" href="$makefraction_8cpp.html#aa11384405a33d56ab36323ac96ef6212" title="size of \atopwithdelims delimiters" alt="" coords="595,245,655,272"/>
+<area shape="rect" id="node14" href="$makefraction_8cpp.html#a67416fc26eb077ebd47a05861d2cbe07" title="size of \atopwithdelims delimiters in non&#45;displays" alt="" coords="595,296,655,323"/>
+<area shape="rect" id="node15" href="$makefraction_8cpp.html#a4ac14495bd218aec4f21fffa2819c0c1" title="denominator shift&#45;down in display styles" alt="" coords="727,347,795,373"/>
+<area shape="rect" id="node16" href="$makefraction_8cpp.html#aaa40b41ea32d3797e3a862cf6846a748" title="denominator shift&#45;down in non&#45;display styles" alt="" coords="727,397,795,424"/>
+<area shape="rect" id="node17" href="$constantes_8h.html#a16231e40bcd71e79a9f5763401c9c0a1" title="18mu" alt="" coords="440,461,527,488"/>
+<area shape="rect" id="node18" href="$constantes_8h.html#a40ed1a665d5b581777edffd9809f447c" title="height of ‘x’" alt="" coords="147,651,253,677"/>
+<area shape="rect" id="node19" href="$makefraction_8cpp.html#a3ea41372309803809bca11d1b59b2adf" title="numerator shift&#45;up in display styles" alt="" coords="734,448,789,475"/>
+<area shape="rect" id="node20" href="$makefraction_8cpp.html#adcc39b9880840fedaf9a6e1ea7ac317b" title="numerator shift&#45;up in non&#45;display, non&#45;\atop" alt="" coords="734,499,789,525"/>
+<area shape="rect" id="node21" href="$makefraction_8cpp.html#ad7ce77df82b3831e97e57ec16070eb36" title="numerator shift&#45;up in non&#45;display \atop" alt="" coords="734,549,789,576"/>
+<area shape="rect" id="node22" href="$makescripts_8cpp.html#a3e7c1f647fd3751e002ea20a85e0133a" title="subscript shift&#45;down if superscript is absent" alt="" coords="319,701,369,728"/>
+<area shape="rect" id="node23" href="$makescripts_8cpp.html#a259e4a2941f0a35549d141dd183d7735" title="subscript shift&#45;down if superscript is present" alt="" coords="599,752,650,779"/>
+<area shape="rect" id="node24" href="$makescripts_8cpp.html#a73b3892301b39e579f6f17ea5d4cfcad" title="subscript baseline below bottom of large box" alt="" coords="307,803,381,829"/>
+<area shape="rect" id="node25" href="$makescripts_8cpp.html#a6d344a8c145cf8effd74ebd31f071998" title="superscript shift&#45;up in uncramped display style" alt="" coords="599,853,650,880"/>
+<area shape="rect" id="node26" href="$makescripts_8cpp.html#a3655d49def7485670a663a94cecfabec" title="superscript shift&#45;up in uncramped non&#45;display" alt="" coords="458,904,509,931"/>
+<area shape="rect" id="node27" href="$makescripts_8cpp.html#aebcdba0c79bcabd1d5e3afd14f376a1f" title="superscript shift&#45;up in cramped styles" alt="" coords="319,955,369,981"/>
+<area shape="rect" id="node28" href="$makescripts_8cpp.html#ade3d9a349d7d403d9966bd2b38cd3022" title="superscript baseline below top of large box" alt="" coords="163,1005,237,1032"/>
 <area shape="rect" id="node3" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="435,347,532,373"/>
 <area shape="rect" id="node7" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="18,284,86,311"/>
 <area shape="rect" id="node10" href="$makeleftright_8h.html#a76b4391a42af986372484ba3094dcb8a" title=" " alt="" coords="435,144,532,171"/>

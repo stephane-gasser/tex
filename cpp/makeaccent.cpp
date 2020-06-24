@@ -7,6 +7,7 @@
 #include "newkern.h"
 #include <cmath>
 
+//! slant to the right, per unit distance upward
 static int& slant(internalfontnumber f) { return param(slant_code, f); }
 
 void makeaccent(void)

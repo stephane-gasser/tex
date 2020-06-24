@@ -1,5 +1,4 @@
 <map id="getnode" name="getnode">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,73,57"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="121,5,164,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="121,56,164,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,73,32"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="121,5,164,32"/>
 </map>

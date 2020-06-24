@@ -1,9 +1,8 @@
 <map id="newwhatsit" name="newwhatsit">
 <area shape="rect" id="node1" title=" " alt="" coords="5,81,93,108"/>
 <area shape="rect" id="node2" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="151,5,219,32"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title=" " alt="" coords="151,56,219,83"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="141,107,229,133"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title=" " alt="" coords="162,157,209,184"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title=" " alt="" coords="277,5,320,32"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title=" " alt="" coords="277,81,320,108"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="151,56,219,83"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="141,107,229,133"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="162,157,209,184"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="277,56,320,83"/>
 </map>

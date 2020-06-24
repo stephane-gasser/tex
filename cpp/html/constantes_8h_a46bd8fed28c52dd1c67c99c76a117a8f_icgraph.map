@@ -1,5 +1,5 @@
 <map id="append_char" name="append_char">
-<area shape="rect" id="node1" title=" " alt="" coords="337,183,433,209"/>
+<area shape="rect" id="node1" title="put ASCII_code # at the end of str_pool" alt="" coords="337,183,433,209"/>
 <area shape="rect" id="node2" href="$getstringsstarted_8h.html#ae46a3d749632a4a2cb1ff358d9d14557" title=" " alt="" coords="161,5,280,32"/>
 <area shape="rect" id="node3" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="185,56,256,83"/>
 <area shape="rect" id="node6" href="$makenamestring_8h.html#a9e64257b3f687e0775273d7598d0e0cb" title=" " alt="" coords="161,107,280,133"/>
