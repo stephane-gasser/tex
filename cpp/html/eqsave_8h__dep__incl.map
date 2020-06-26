@@ -1,6 +1,6 @@
-<map id="eqsave.h" name="eqsave.h">
-<area shape="rect" id="node1" title=" " alt="" coords="133,5,208,32"/>
-<area shape="rect" id="node2" href="$eqdefine_8cpp.html" title=" " alt="" coords="5,80,101,107"/>
-<area shape="rect" id="node3" href="$eqsave_8cpp.html" title=" " alt="" coords="126,80,215,107"/>
-<area shape="rect" id="node4" href="$eqworddefine_8cpp.html" title=" " alt="" coords="239,80,363,107"/>
+<map id="inc/eqsave.h" name="inc/eqsave.h">
+<area shape="rect" id="node1" title=" " alt="" coords="155,5,251,32"/>
+<area shape="rect" id="node2" href="$eqdefine_8cpp.html" title=" " alt="" coords="5,80,124,107"/>
+<area shape="rect" id="node3" href="$eqsave_8cpp.html" title=" " alt="" coords="148,80,259,107"/>
+<area shape="rect" id="node4" href="$eqworddefine_8cpp.html" title=" " alt="" coords="283,80,430,107"/>
 </map>

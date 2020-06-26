@@ -7,24 +7,24 @@
 void buildchoices(void)
 {
 	unsave();
-	auto p = finmlist(0);
+	auto p = finmlist(0); // the current mlist
 	switch (savestack[saveptr-1].int_)
 	{
 		case 0: 
-			info(tail+1) = p;
+			display_mlist(tail) = p;
 			break;
 		case 1: 
-			link(tail+1) = p;
+			text_mlist(tail) = p;
 			break;
 		case 2: 
-			info(tail+2) = p;
+			script_mlist(tail) = p;
 			break;
 		case 3:
-			link(tail+2) = p;
+			script_script_mlist(tail) = p;
 			saveptr--;
 			return;
 	}
 	savestack[saveptr-1].int_++;
-	pushmath(13);
+	pushmath(math_choice_group);
 	scanleftbrace();
 }

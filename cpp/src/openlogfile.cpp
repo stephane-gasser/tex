@@ -1,15 +1,9 @@
 #include "openlogfile.h"
 #include "packjobname.h"
-#include "aopenout.h"
+#include "fichier.h"
 #include "promptfilename.h"
 #include "amakenamestring.h"
-#include "slowprint.h"
-#include "print.h"
-#include "printint.h"
-#include "printchar.h"
-#include "printtwo.h"
-#include "printnl.h"
-#include "println.h"
+#include "impression.h"
 #include "texte.h"
 
 void openlogfile(void)

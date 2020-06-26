@@ -1,8 +1,8 @@
-<map id="scanfontident.h" name="scanfontident.h">
-<area shape="rect" id="node1" title=" " alt="" coords="300,5,411,32"/>
-<area shape="rect" id="node2" href="$convtoks_8cpp.html" title=" " alt="" coords="5,80,105,107"/>
-<area shape="rect" id="node3" href="$findfontdimen_8cpp.html" title=" " alt="" coords="130,80,255,107"/>
-<area shape="rect" id="node4" href="$prefixedcommand_8cpp.html" title=" " alt="" coords="280,80,431,107"/>
-<area shape="rect" id="node5" href="$scanfontident_8cpp.html" title=" " alt="" coords="455,80,581,107"/>
-<area shape="rect" id="node6" href="$scansomethinginternal_8cpp.html" title=" " alt="" coords="605,80,783,107"/>
+<map id="inc/scanfontident.h" name="inc/scanfontident.h">
+<area shape="rect" id="node1" title=" " alt="" coords="343,5,475,32"/>
+<area shape="rect" id="node2" href="$convtoks_8cpp.html" title=" " alt="" coords="5,80,128,107"/>
+<area shape="rect" id="node3" href="$findfontdimen_8cpp.html" title=" " alt="" coords="152,80,299,107"/>
+<area shape="rect" id="node4" href="$prefixedcommand_8cpp.html" title=" " alt="" coords="323,80,495,107"/>
+<area shape="rect" id="node5" href="$scanfontident_8cpp.html" title=" " alt="" coords="520,80,667,107"/>
+<area shape="rect" id="node6" href="$scansomethinginternal_8cpp.html" title=" " alt="" coords="691,80,890,107"/>
 </map>

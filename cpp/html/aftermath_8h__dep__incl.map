@@ -1,5 +1,5 @@
-<map id="aftermath.h" name="aftermath.h">
-<area shape="rect" id="node1" title=" " alt="" coords="79,5,167,32"/>
-<area shape="rect" id="node2" href="$aftermath_8cpp.html" title=" " alt="" coords="5,80,108,107"/>
-<area shape="rect" id="node3" href="$maincontrol_8cpp.html" title=" " alt="" coords="133,80,247,107"/>
+<map id="inc/aftermath.h" name="inc/aftermath.h">
+<area shape="rect" id="node1" title=" " alt="" coords="90,5,199,32"/>
+<area shape="rect" id="node2" href="$aftermath_8cpp.html" title=" " alt="" coords="5,80,129,107"/>
+<area shape="rect" id="node3" href="$maincontrol_8cpp.html" title=" " alt="" coords="154,80,290,107"/>
 </map>

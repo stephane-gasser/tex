@@ -1,9 +1,7 @@
 #include "fireup.h"
 #include "geqworddefine.h"
 #include "deletetokenref.h"
-#include "printnl.h"
-#include "print.h"
-#include "printesc.h"
+#include "impression.h"
 #include "ensurevbox.h"
 #include "boxerror.h"
 #include "newnullbox.h"
@@ -11,7 +9,6 @@
 #include "vpackage.h"
 #include "freenode.h"
 #include "deleteglueref.h"
-#include "printint.h"
 #include "error.h"
 #include "pushnest.h"
 #include "begintokenlist.h"
@@ -53,10 +50,7 @@ void fireup(halfword c)
 		bestpagebreak = 0;
 	if (box(255))
 	{
-		printnl("! ");
-		print(""); 
-		printesc("box");
-		print("255 is not void");
+		print_err(esc("box")+"255 is not void");
 		helpptr = 2;
 		helpline[1] = "You shouldn't use \\box255 except in \\output routines.";
 		helpline[0] = "Proceed, and I'll discard its present contents.";
@@ -215,10 +209,7 @@ void fireup(halfword c)
 	if (output_routine())
 		if (deadcycles >= max_dead_cycles())
 		{
-			printnl("! ");
-			print("Output loop---");
-			printint(deadcycles);
-			print(" consecutive dead cycles");
+			print_err("Output loop---"+std::to_string(deadcycles)+" consecutive dead cycles");
 			helpptr = 3;
 			helpline[2] = "I've concluded that your \\output is awry; it never does a";
 			helpline[1] = "\\shipout, so I'm shipping \\box255 out myself. Next time";

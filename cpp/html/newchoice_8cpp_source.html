@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>myTeX:  Fichier source de newchoice.cpp</title>
+<title>myTeX:  Fichier source de src/newchoice.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -52,7 +52,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -67,6 +66,11 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">newchoice.cpp</div>  </div>
@@ -77,8 +81,8 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="newchoice_8h.html#a6cb7977fae87b2f4f45a5cfb7c184809">    4</a></span>&#160;<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> <a class="code" href="newchoice_8cpp.html#a6cb7977fae87b2f4f45a5cfb7c184809">newchoice</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a>(<a class="code" href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04accce29b408040bf993733d4d8987b394">style_node_size</a>);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06cac2d76841f1dcf423386f74ae4c221071">choice_node</a>;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a>(<a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635accce29b408040bf993733d4d8987b394">style_node_size</a>);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2dac2d76841f1dcf423386f74ae4c221071">choice_node</a>;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(p) = 0;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#a4da40ddb2b5a65de1d2bba8128eb3167">display_mlist</a>(p) = 0;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="constantes_8cpp.html#a159b73dc022ab907a96c51c0f881f8c7">text_mlist</a>(p) = 0;</div>
@@ -91,13 +95,13 @@ $(function() {
 <div class="ttc" id="aconstantes_8cpp_html_a76f175f6541923e8ba102ee0dc79eb5c"><div class="ttname"><a href="constantes_8cpp.html#a76f175f6541923e8ba102ee0dc79eb5c">script_mlist</a></div><div class="ttdeci">halfword &amp; script_mlist(halfword p)</div><div class="ttdoc">mlist to be used in script style</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00098">constantes.cpp:98</a></div></div>
 <div class="ttc" id="anewchoice_8cpp_html_a6cb7977fae87b2f4f45a5cfb7c184809"><div class="ttname"><a href="newchoice_8cpp.html#a6cb7977fae87b2f4f45a5cfb7c184809">newchoice</a></div><div class="ttdeci">halfword newchoice(void)</div><div class="ttdef"><b>Definition:</b> <a href="newchoice_8cpp_source.html#l00004">newchoice.cpp:4</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a4da40ddb2b5a65de1d2bba8128eb3167"><div class="ttname"><a href="constantes_8cpp.html#a4da40ddb2b5a65de1d2bba8128eb3167">display_mlist</a></div><div class="ttdeci">halfword &amp; display_mlist(halfword p)</div><div class="ttdoc">mlist to be used in display style</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00095">constantes.cpp:95</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_abc6126af1d45847bc59afa0aa3216b04accce29b408040bf993733d4d8987b394"><div class="ttname"><a href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04accce29b408040bf993733d4d8987b394">style_node_size</a></div><div class="ttdeci">@ style_node_size</div><div class="ttdoc">number of words in a style node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00050">constantes.h:50</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a159b73dc022ab907a96c51c0f881f8c7"><div class="ttname"><a href="constantes_8cpp.html#a159b73dc022ab907a96c51c0f881f8c7">text_mlist</a></div><div class="ttdeci">halfword &amp; text_mlist(halfword p)</div><div class="ttdoc">mlist to be used in text style</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00097">constantes.cpp:97</a></div></div>
 <div class="ttc" id="anewchoice_8h_html"><div class="ttname"><a href="newchoice_8h.html">newchoice.h</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_adc29c2ff13d900c2f185ee95427fb06cac2d76841f1dcf423386f74ae4c221071"><div class="ttname"><a href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06cac2d76841f1dcf423386f74ae4c221071">choice_node</a></div><div class="ttdeci">@ choice_node</div><div class="ttdoc">type of a choice node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00083">constantes.h:83</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a9cbfeb716eeea05a09ed2ee0460d8f82"><div class="ttname"><a href="constantes_8cpp.html#a9cbfeb716eeea05a09ed2ee0460d8f82">script_script_mlist</a></div><div class="ttdeci">halfword &amp; script_script_mlist(halfword p)</div><div class="ttdoc">mlist to be used in scriptscript style</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00100">constantes.cpp:100</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a726ca809ffd3d67ab4b8476646f26635accce29b408040bf993733d4d8987b394"><div class="ttname"><a href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635accce29b408040bf993733d4d8987b394">style_node_size</a></div><div class="ttdeci">@ style_node_size</div><div class="ttdoc">number of words in a style node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00050">constantes.h:50</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a0411cd49bb5b71852cecd93bcbf0ca2dac2d76841f1dcf423386f74ae4c221071"><div class="ttname"><a href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2dac2d76841f1dcf423386f74ae4c221071">choice_node</a></div><div class="ttdeci">@ choice_node</div><div class="ttdoc">type of a choice node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00083">constantes.h:83</a></div></div>
 <div class="ttc" id="agetnode_8cpp_html_a2baceeb19c0c4b666f0e18bcaff56d8a"><div class="ttname"><a href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a></div><div class="ttdeci">halfword getnode(int s)</div><div class="ttdef"><b>Definition:</b> <a href="getnode_8cpp_source.html#l00004">getnode.cpp:4</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
 <!-- start footer part -->

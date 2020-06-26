@@ -1,14 +1,11 @@
 #include "getnext.h"
 #include "checkoutervalidity.h"
-#include "printnl.h"
-#include "println.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "terminput.h"
 #include "fatalerror.h"
 #include "endfilereading.h"
 #include "openlogfile.h"
-#include "printchar.h"
 #include "inputln.h"
 #include <iostream>
 #include "firmuptheline.h"
@@ -16,7 +13,6 @@
 #include "begintokenlist.h"
 #include "endtokenlist.h"
 #include "idlookup.h"
-#include "globals.h"
 #include "texte.h"
 
 bool is_hex(ASCIIcode c)
@@ -183,8 +179,7 @@ void getnext(void)
 									state = mid_line;
 								break;
 							case ANY_STATE_PLUS(invalid_char):
-								printnl("! ");
-								print("Text line contains an invalid character");
+								print_err("Text line contains an invalid character");
 								helpptr = 2;
 								helpline[1] = "A funny symbol that I can't read has just been input.";
 								helpline[0] = "Continue, and I'll forget that it ever happened.";

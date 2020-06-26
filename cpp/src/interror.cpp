@@ -1,7 +1,5 @@
 #include "interror.h"
-#include "print.h"
-#include "printint.h"
-#include "printchar.h"
+#include "impression.h"
 #include "error.h"
 
 void interror(int n)

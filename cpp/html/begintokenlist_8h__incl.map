@@ -1,7 +1,7 @@
-<map id="begintokenlist.h" name="begintokenlist.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,119,32"/>
-<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="25,80,99,107"/>
-<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="54,229,105,256"/>
-<area shape="rect" id="node4" title=" " alt="" coords="39,155,85,181"/>
-<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="109,155,207,181"/>
+<map id="inc/begintokenlist.h" name="inc/begintokenlist.h">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="35,80,110,107"/>
+<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="65,229,115,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="49,155,96,181"/>
+<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="120,155,217,181"/>
 </map>

@@ -1,10 +1,9 @@
 #include "openorclosein.h"
 #include "scanfourbitint.h"
-#include "aclose.h"
 #include "scanoptionalequals.h"
 #include "scanfilename.h"
 #include "packfilename.h"
-#include "aopenin.h"
+#include "fichier.h"
 #include "texte.h"
 
 void openorclosein(void)

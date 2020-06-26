@@ -2,8 +2,7 @@
 #include "getxtoken.h"
 #include "beginbox.h"
 #include "boxend.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "backerror.h"
 #include "scanrulespec.h"
 #include "texte.h"
@@ -23,8 +22,7 @@ void scanbox(int boxcontext)
 		}
 		else
 		{
-			printnl("! ");
-			print("A <box> was supposed to be here");
+			print_err("A <box> was supposed to be here");
 			helpptr = 3;
 			helpline[2] = "I was expecting to see \\hbox or \\vbox or \\copy or \\box or";
 			helpline[1] = "something like that. So you might find something missing in";

@@ -1,24 +1,20 @@
 #include "extrarightbrace.h"
-#include "printnl.h"
-#include "print.h"
-#include "printchar.h"
+#include "impression.h"
 #include "error.h"
-#include "printesc.h"
 #include "texte.h"
 
 void extrarightbrace(void)
 {
-	printnl("! ");
-	print("Extra }, or forgotten ");
+	print_err("Extra }, or forgotten ");
 	switch (curgroup)
 	{
-		case 14: 
+		case semi_simple_group: 
 			printesc("endgroup");
 			break;
-		case 15: 
+		case math_shift_group: 
 			printchar('$');
 			break;
-		case 16: 
+		case math_left_group: 
 			printesc("right");
 	}
 	helpptr = 5;

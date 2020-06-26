@@ -5,9 +5,7 @@
 #include "backinput.h"
 #include "getavail.h"
 #include "getxtoken.h"
-#include "printnl.h"
-#include "print.h"
-#include "printesc.h"
+#include "impression.h"
 #include "backerror.h"
 #include "overflow.h"
 #include "idlookup.h"
@@ -17,7 +15,6 @@
 #include "insthetoks.h"
 #include "conditional.h"
 #include "insertrelax.h"
-#include "printcmdchr.h"
 #include "error.h"
 #include "passtext.h"
 #include "freenode.h"
@@ -89,10 +86,7 @@ void expand(void)
 				} while (curcs == 0);
 				if (curcmd != 67)
 				{
-					printnl("! ");
-					print("Missing ");
-					printesc("endcsname");
-					print(" inserted");
+					print_err("Missing "+esc("endcsname")+" inserted");
 					helpptr = 2;
 					helpline[1] = "The control sequence marked <to be read again> should";
 					helpline[0] = "not appear between \\csname and \\endcsname.";
@@ -146,8 +140,7 @@ void expand(void)
 						insertrelax();
 					else
 					{
-						printnl("! ");
-						print("Extra ");
+						print_err("Extra ");
 						printcmdchr(fi_or_else, curchr); 
 						{
 							helpptr = 1;
@@ -177,8 +170,7 @@ void expand(void)
 						startinput();
 				break;
 			default:
-				printnl("! ");
-				print("Undefined control sequence");
+				print_err("Undefined control sequence");
 				helpptr = 5;
 				helpline[4] = "The control sequence at the end of the top line";
 				helpline[3] = "of your error message was never \\def'ed. If you have";

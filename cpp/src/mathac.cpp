@@ -1,7 +1,5 @@
 #include "mathac.h"
-#include "printnl.h"
-#include "print.h"
-#include "printesc.h"
+#include "impression.h"
 #include "error.h"
 #include "getnode.h"
 #include "scanfifteenbitint.h"
@@ -12,10 +10,7 @@ void mathac(void)
 {
 	if (curcmd == accent)
 	{
-		printnl("! ");
-		print("Please use ");
-		printesc("mathaccent");
-		print(" for accents in math mode");
+		print_err("Please use "+esc("mathaccent")+" for accents in math mode");
 		helpptr = 2;
 		helpline[1] = "I'm changing \\accent to \\mathaccent here; wish me luck.";
 		helpline[0] = "(Accents are not the same in formulas as they are in text.)";

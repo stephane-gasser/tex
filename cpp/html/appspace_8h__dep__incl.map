@@ -1,5 +1,5 @@
-<map id="appspace.h" name="appspace.h">
-<area shape="rect" id="node1" title=" " alt="" coords="79,5,168,32"/>
-<area shape="rect" id="node2" href="$appspace_8cpp.html" title=" " alt="" coords="5,80,108,107"/>
-<area shape="rect" id="node3" href="$maincontrol_8cpp.html" title=" " alt="" coords="133,80,247,107"/>
+<map id="inc/appspace.h" name="inc/appspace.h">
+<area shape="rect" id="node1" title=" " alt="" coords="90,5,201,32"/>
+<area shape="rect" id="node2" href="$appspace_8cpp.html" title=" " alt="" coords="5,80,131,107"/>
+<area shape="rect" id="node3" href="$maincontrol_8cpp.html" title=" " alt="" coords="155,80,291,107"/>
 </map>

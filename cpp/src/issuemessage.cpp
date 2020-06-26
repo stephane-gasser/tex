@@ -2,11 +2,7 @@
 #include "flushlist.h"
 #include "tokenshow.h"
 #include "overflow.h"
-#include "println.h"
-#include "printchar.h"
-#include "slowprint.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "scantoks.h"
 #include "makestring.h"
@@ -36,8 +32,7 @@ void issuemessage(void)
 	}
 	else
 	{
-		printnl("! ");
-		print("");
+		print_err("");
 		slowprint(s);
 		if (err_help())
 			useerrhelp = true;

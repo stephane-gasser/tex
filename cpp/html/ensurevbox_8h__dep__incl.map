@@ -1,6 +1,6 @@
-<map id="ensurevbox.h" name="ensurevbox.h">
-<area shape="rect" id="node1" title=" " alt="" coords="140,5,240,32"/>
-<area shape="rect" id="node2" href="$buildpage_8cpp.html" title=" " alt="" coords="5,80,108,107"/>
-<area shape="rect" id="node3" href="$ensurevbox_8cpp.html" title=" " alt="" coords="133,80,247,107"/>
-<area shape="rect" id="node4" href="$fireup_8cpp.html" title=" " alt="" coords="272,80,351,107"/>
+<map id="inc/ensurevbox.h" name="inc/ensurevbox.h">
+<area shape="rect" id="node1" title=" " alt="" coords="161,5,283,32"/>
+<area shape="rect" id="node2" href="$buildpage_8cpp.html" title=" " alt="" coords="5,80,129,107"/>
+<area shape="rect" id="node3" href="$ensurevbox_8cpp.html" title=" " alt="" coords="154,80,290,107"/>
+<area shape="rect" id="node4" href="$fireup_8cpp.html" title=" " alt="" coords="314,80,415,107"/>
 </map>

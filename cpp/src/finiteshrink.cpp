@@ -1,6 +1,5 @@
 #include "finiteshrink.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "newspec.h"
 #include "error.h"
 #include "deleteglueref.h"
@@ -12,8 +11,7 @@ halfword finiteshrink(halfword p)
 	if (noshrinkerroryet)
 	{
 		noshrinkerroryet = false;
-		printnl("! ");
-		print("Infinite glue shrinkage found in a paragraph");
+		print_err("Infinite glue shrinkage found in a paragraph");
 		helpptr = 5;
 		helpline[4] = "The paragraph just ended includes some glue that has";
 		helpline[3] = "infinite shrinkability, e.g., `\\hskip 0pt minus 1fil'.";

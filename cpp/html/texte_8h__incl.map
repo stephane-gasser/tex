@@ -1,4 +1,4 @@
-<map id="texte.h" name="texte.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,68,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="9,80,64,107"/>
+<map id="inc/texte.h" name="inc/texte.h">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,88,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="19,80,74,107"/>
 </map>

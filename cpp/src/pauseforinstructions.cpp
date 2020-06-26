@@ -1,6 +1,5 @@
 #include "pauseforinstructions.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "texte.h"
 
@@ -17,8 +16,7 @@ void pauseforinstructions(void)
 		interaction = error_stop_mode;
 		if (selector == log_only || selector == no_print)
 			selector++;
-		printnl("! ");
-		print("Interruption");
+		print_err("Interruption");
 		helpptr = 3;
 		helpline[2] = "You rang?";
 		helpline[1] = "Try to insert some instructions for me (e.g.,`I\\showlists'),";

@@ -4,8 +4,7 @@
 #include "youcant.h"
 #include "error.h"
 #include "scankeyword.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "vsplit.h"
 #include "scandimen.h"
 #include "normalparagraph.h"
@@ -17,24 +16,30 @@
 
 static halfword& every_hbox(void) { return equiv(every_hbox_loc); }
 
+//! Now that we can see what eventually happens to boxes, we can consider
+//! the first steps in their creation. The \a begin_box routine is called when
+//! \a box_context is a context specification, \a cur_chr specifies the type of
+//! box desired, and <em> cur_cmd=make_box </em>.
 void beginbox(int boxcontext)
 {
-	halfword p, q;
-	quarterword m;
-	halfword k;
-	eightbits n;
+	halfword p, q; // run through the current list
+	quarterword m; // the length of a replacement list
+	halfword k; // 0 or vmode or hmode
+	eightbits n; // a box number
 	switch (curchr)
 	{
 		case box_code:
 			scaneightbitint();
 			curbox = box(curval);
-			box(curval) = 0;
+			box(curval) = 0; // the box becomes void, at the same level
 			break;
 		case copy_code:
 			scaneightbitint();
 			curbox = copynodelist(box(curval));
 			break;
 		case last_box_code:
+			// If the current list ends with a box node, delete it from 
+			// the list and make |cur_box| point to it; otherwise set |cur_box:=null|
 			curbox = 0;
 			if (abs(mode) == mmode)
 			{
@@ -87,8 +92,7 @@ void beginbox(int boxcontext)
 			n = curval;
 			if (!scankeyword("to"))
 			{
-				printnl("! ");
-				print("Missing `to' inserted");
+				print_err("Missing `to' inserted");
 				helpptr = 2;
 				helpline[1] = "I'm working on `\\vsplit<box number> to <dimen>';";
 				helpline[0] = "will look for the <dimen> next.";
@@ -132,5 +136,5 @@ void beginbox(int boxcontext)
 			}
 			return;
 	}
-	boxend(boxcontext);
+	boxend(boxcontext); //in simple cases, we use the box immediately
 }

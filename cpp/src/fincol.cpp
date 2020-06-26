@@ -4,9 +4,7 @@
 #include "getavail.h"
 #include "newnullbox.h"
 #include "newglue.h"
-#include "printnl.h"
-#include "print.h"
-#include "printesc.h"
+#include "impression.h"
 #include "error.h"
 #include "unsave.h"
 #include "newsavelevel.h"
@@ -68,9 +66,7 @@ bool fincol(void)
 		}
 		else
 		{
-			printnl("! ");
-			print("Extra alignment tab has been changed to ");
-			printesc("cr");
+			print_err("Extra alignment tab has been changed to "+esc("cr"));
 			helpptr = 3;
 			helpline[2] = "You have given more \\span or & marks than there were";
 			helpline[1] = "in the preamble to the \\halign or \\valign now in progress.";

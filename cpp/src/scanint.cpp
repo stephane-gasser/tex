@@ -1,19 +1,24 @@
 #include "scanint.h"
 #include "getxtoken.h"
 #include "gettoken.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "backerror.h"
 #include "backinput.h"
 #include "scansomethinginternal.h"
 #include "error.h"
 #include "texte.h"
 
+//! Sets \a curval to an integer.
+//! The \a scan_int routine is used also to scan the integer part of a 
+//! fraction; for example, the `3' in `3.14159' will be found by 
+//! \a scan_int. The \a scan_dimen routine assumes that <em> cur_tok=point_token </em>
+//! after the integer part of such a fraction has been scanned by \a scan_int, 
+//! and that the decimal point has been backed up to be scanned again. 
 void scanint(void)
 {
 	radix = 0;
-	bool OKsofar = true;
-	bool negative = false;
+	bool OKsofar = true; // has an error message been issued?
+	bool negative = false; // should the answer be negated?
 	do
 	{
 		do
@@ -40,8 +45,7 @@ void scanint(void)
 			curval = curtok-cs_token_flag-(curtok < cs_token_flag+single_base ? active_base : single_base);
 		if (curval > 0xFF)
 		{
-			printnl("! ");
-			print("Improper alphabetic constant");
+			print_err("Improper alphabetic constant");
 			helpptr = 2;
 			helpline[1] = "A one-character control sequence belongs after a ` mark.";
 			helpline[0] = "So I'm essentially inserting \\0 here.";
@@ -79,7 +83,7 @@ void scanint(void)
 			curval = 0;
 			while (true)
 			{
-				int d;
+				int d; //the digit just scanned
 				if (curtok < zero_token+radix && curtok >= zero_token && curtok <= zero_token+9)
 					d = curtok-zero_token;
 				else 
@@ -93,13 +97,12 @@ void scanint(void)
 								break;
 					else
 						break;
-				vacuous = false;
+				vacuous = false; // has no digits appeared?
 				if (curval >= m && (curval > m || d > 7 || radix != 10))
 				{
 					if (OKsofar)
 					{
-						printnl("! ");
-						print("Number too big");
+						print_err("Number too big");
 						helpptr = 2;
 						helpline[1] = "I can only go up to 2147483647='17777777777=\"7FFFFFFF,";
 						helpline[0] = "so I'm using that number instead of yours.";
@@ -114,8 +117,7 @@ void scanint(void)
 			}
 			if (vacuous)
 			{
-				printnl("! ");
-				print("Missing number, treated as zero");
+				print_err("Missing number, treated as zero");
 				helpptr = 3;
 				helpline[2] = "A number should have been here; I inserted `0'.";
 				helpline[1] = "(If you can't figure out why I needed to see a number,";

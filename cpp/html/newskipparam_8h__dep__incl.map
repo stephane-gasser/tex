@@ -1,7 +1,7 @@
-<map id="newskipparam.h" name="newskipparam.h">
-<area shape="rect" id="node1" title=" " alt="" coords="217,5,334,32"/>
-<area shape="rect" id="node2" href="$appendtovlist_8cpp.html" title=" " alt="" coords="5,80,129,107"/>
-<area shape="rect" id="node3" href="$buildpage_8cpp.html" title=" " alt="" coords="153,80,256,107"/>
-<area shape="rect" id="node4" href="$newskipparam_8cpp.html" title=" " alt="" coords="281,80,411,107"/>
-<area shape="rect" id="node5" href="$prunepagetop_8cpp.html" title=" " alt="" coords="435,80,561,107"/>
+<map id="inc/newskipparam.h" name="inc/newskipparam.h">
+<area shape="rect" id="node1" title=" " alt="" coords="251,5,389,32"/>
+<area shape="rect" id="node2" href="$appendtovlist_8cpp.html" title=" " alt="" coords="5,80,152,107"/>
+<area shape="rect" id="node3" href="$buildpage_8cpp.html" title=" " alt="" coords="177,80,301,107"/>
+<area shape="rect" id="node4" href="$newskipparam_8cpp.html" title=" " alt="" coords="325,80,478,107"/>
+<area shape="rect" id="node5" href="$prunepagetop_8cpp.html" title=" " alt="" coords="503,80,649,107"/>
 </map>

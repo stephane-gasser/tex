@@ -1,11 +1,14 @@
 #include "getstringsstarted.h"
 #include "makestring.h"
-#include "aopenin.h"
-#include "aclose.h"
+#include "fichier.h"
 #include <iostream>
 #include "texte.h" 
 
+constexpr int stringvacancies = 8000;
+constexpr char poolname[] = "tex.pool";
 
+//! Initializes the string pool,
+//! but returns |false| if something goes wrong.
 bool getstringsstarted(void)
 {
 	poolptr = 0;
@@ -32,7 +35,7 @@ bool getstringsstarted(void)
 		}
 		else
 			append_char(k);
-		g = txt(makestring());	//makestring();
+		makestring();
 	}
 	nameoffile = poolname;
 	if (!aopenin(poolfile))
@@ -50,11 +53,12 @@ bool getstringsstarted(void)
 			aclose(poolfile);
 			return false;
 		}
+		//characters input from \a pool_file
 		char m = poolfile.get();
 		char n = poolfile.get();
 		if (m == '*') // checksum
 		{
-			int a = 0;
+			int a = 0; // accumulator for check sum
 			int k = 1;
 			while (true)
 			{
@@ -103,7 +107,7 @@ bool getstringsstarted(void)
 			}
 			std::string dummy;
 			getline(poolfile, dummy);
-			g = txt(makestring());	//makestring();
+			makestring();
 		}
 	} while (!c);
 	aclose(poolfile);

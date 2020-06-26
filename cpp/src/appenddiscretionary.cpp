@@ -12,12 +12,12 @@ void appenddiscretionary(void)
 	{
 		int c = hyphenchar[cur_font()];
 		if (c >= 0 && c < 0x1'00)
-			info(tail+1) = newcharacter(cur_font(), c);
+			pre_break(tail) = newcharacter(cur_font(), c);
 	}
 	else
 	{
 		savestack[saveptr++].int_ = 0;
-		newsavelevel(10);
+		newsavelevel(disc_group);
 		scanleftbrace();
 		pushnest();
 		mode = -hmode;

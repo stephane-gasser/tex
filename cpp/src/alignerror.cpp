@@ -1,7 +1,5 @@
 #include "alignerror.h"
-#include "printnl.h"
-#include "print.h"
-#include "printcmdchr.h"
+#include "impression.h"
 #include "error.h"
 #include "backinput.h"
 #include "inserror.h"
@@ -11,8 +9,7 @@ void alignerror(void)
 {
 	if (abs(alignstate) > 2)
 	{
-		printnl("! ");
-		print("Misplaced ");
+		print_err("Misplaced ");
 		printcmdchr(curcmd, curchr);
 		if (curtok == tab_token+'&')
 		{
@@ -40,15 +37,13 @@ void alignerror(void)
 		backinput();
 		if (alignstate < 0)
 		{
-			printnl("! ");
-			print("Missing { inserted");
+			print_err("Missing { inserted");
 			alignstate++;
 			curtok = left_brace_token+'{'; 
 		}
 		else
 		{
-			printnl("! ");
-			print("Missing } inserted");
+			print_err("Missing } inserted");
 			alignstate--;
 			curtok = right_brace_token+ '}';
 		}

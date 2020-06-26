@@ -1,10 +1,6 @@
 #include "overflow.h"
 #include "normalizeselector.h"
-#include "printchar.h"
-#include "printnl.h"
-#include "print.h"
-#include "print.h"
-#include "printint.h"
+#include "impression.h"
 #include "error.h"
 #include "jumpout.h"
 #include "texte.h"
@@ -19,12 +15,7 @@ void str_room(int n)
 void overflow(const std::string &s, int n)
 {
 	normalizeselector();
-	printnl("! "); 
-	print("TeX capacity exceeded, sorry [");
-	print(s);
-	printchar('=');
-	printint(n);
-	printchar(']');
+	print_err("TeX capacity exceeded, sorry ["+s+"="+std::to_string(n)+"]");
 	helpptr = 2;
 	helpline[1] = "If you really absolutely need more capacity,";
 	helpline[0] = "you can ask a wizard to enlarge me.";

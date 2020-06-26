@@ -1,15 +1,8 @@
 #include "readfontinfo.h"
-#include "printnl.h"
-#include "print.h"
-#include "sprintcs.h"
-#include "printchar.h"
-#include "printfilename.h"
-#include "printscaled.h"
-#include "printint.h"
+#include "impression.h"
 #include "error.h"
-#include "bclose.h"
 #include "packfilename.h"
-#include "bopenin.h"
+#include "fichier.h"
 #include "xnoverd.h"
 #include "texte.h"
 
@@ -19,8 +12,7 @@ static int default_skew_char(void) { return int_par(default_skew_char_code); }
 
 static void start_font_error_message(halfword u, scaled s, const std::string &nom, const std::string &aire)
 {
-	printnl("! ");
-	print("Font ");
+	print_err("Font ");
 	sprintcs(u);
 	printchar('=');
 	printfilename(nom, aire, "");

@@ -1,8 +1,8 @@
-<map id="normmin.h" name="normmin.h">
-<area shape="rect" id="node1" title=" " alt="" coords="291,5,373,32"/>
-<area shape="rect" id="node2" href="$doextension_8cpp.html" title=" " alt="" coords="5,80,123,107"/>
-<area shape="rect" id="node3" href="$fixlanguage_8cpp.html" title=" " alt="" coords="147,80,261,107"/>
-<area shape="rect" id="node4" href="$newgraf_8cpp.html" title=" " alt="" coords="285,80,379,107"/>
-<area shape="rect" id="node5" href="$normmin_8cpp.html" title=" " alt="" coords="403,80,501,107"/>
-<area shape="rect" id="node6" href="$resumeafterdisplay_8cpp.html" title=" " alt="" coords="525,80,680,107"/>
+<map id="inc/normmin.h" name="inc/normmin.h">
+<area shape="rect" id="node1" title=" " alt="" coords="333,5,437,32"/>
+<area shape="rect" id="node2" href="$doextension_8cpp.html" title=" " alt="" coords="5,80,144,107"/>
+<area shape="rect" id="node3" href="$fixlanguage_8cpp.html" title=" " alt="" coords="169,80,303,107"/>
+<area shape="rect" id="node4" href="$newgraf_8cpp.html" title=" " alt="" coords="328,80,443,107"/>
+<area shape="rect" id="node5" href="$normmin_8cpp.html" title=" " alt="" coords="467,80,586,107"/>
+<area shape="rect" id="node6" href="$resumeafterdisplay_8cpp.html" title=" " alt="" coords="610,80,787,107"/>
 </map>

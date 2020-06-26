@@ -1,8 +1,7 @@
 #include "mathfraction.h"
 #include "scandelimiter.h"
 #include "scandimen.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "getnode.h"
 #include "texte.h"
@@ -19,8 +18,7 @@ void mathfraction(void)
 		}
 		if (c%delimited_code == 0)
 			scan_normal_dimen();
-		printnl("! ");
-		print("Ambiguous; you need another { and }");
+		print_err("Ambiguous; you need another { and }");
 		helpptr = 3;
 		helpline[2] = "I'm ignoring this fraction specification, since I don't";
 		helpline[1] = "know whether a construction like `x \\over y \\over z'";

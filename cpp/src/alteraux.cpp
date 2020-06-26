@@ -3,8 +3,7 @@
 #include "scanoptionalequals.h"
 #include "scandimen.h"
 #include "scanint.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "interror.h"
 #include "texte.h"
 
@@ -26,8 +25,7 @@ void alteraux(void)
 			scanint();
 			if (curval <= 0 || curval > 32767)
 			{
-				printnl("! ");
-				print("Bad space factor");
+				print_err("Bad space factor");
 				helpptr = 1;
 				helpline[0] = "I allow only values in the range 1..32767 here.";
 				interror(curval);

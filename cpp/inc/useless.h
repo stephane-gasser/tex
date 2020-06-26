@@ -168,5 +168,6 @@ bad_fmt=6666 //go here if the format file is unacceptable*/
 /*too_small(#)==begin wake_up_terminal;
 breakpoint=888 //place where a breakpoint is desirable*/
 //@ adv_past(#)==@+if subtype(#)=language_node then
+//typedef unsigned int nonnegativeinteger; //0..2147483647
 
 

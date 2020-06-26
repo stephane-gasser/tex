@@ -2,17 +2,11 @@
 #include "beginfilereading.h"
 #include "getavail.h"
 #include "terminput.h"
-#include "print.h"
-#include "printchar.h"
-#include "println.h"
-#include "sprintcs.h"
-#include "print.h"
+#include "impression.h"
 #include "fatalerror.h"
 #include "inputln.h"
-#include "aclose.h"
+#include "fichier.h"
 #include "runaway.h"
-#include "printnl.h"
-#include "printesc.h"
 #include "gettoken.h"
 #include "error.h"
 #include "endfilereading.h"
@@ -26,11 +20,7 @@ void readtoks(int n, halfword r)
 	token_ref_count(defref) = 0;
 	auto p = defref;
 	store_new_token(p, end_match_token);
-	smallnumber m;
-	if (n < 0 || n > 15)
-		m = 16;
-	else
-		m = n;
+	smallnumber m = (n < 0 || n > 15) ? 16 : n;
 	auto s = alignstate;
 	alignstate = 1000000;
 	do
@@ -73,9 +63,7 @@ void readtoks(int n, halfword r)
 					if (alignstate != 1000000)
 					{
 						runaway();
-						printnl("! ");
-						print("File ended within ");
-						printesc("read");
+						print_err("File ended within "+esc("read"));
 						helpptr = 1;
 						helpline[0] = "This \\read has unbalanced braces.";
 						alignstate = 1000000;

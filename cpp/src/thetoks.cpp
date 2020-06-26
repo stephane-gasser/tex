@@ -2,10 +2,7 @@
 #include "getxtoken.h"
 #include "scansomethinginternal.h"
 #include "getavail.h"
-#include "printint.h"
-#include "printscaled.h"
-#include "print.h"
-#include "printspec.h"
+#include "impression.h"
 #include "deleteglueref.h"
 #include "strtoks.h"
 

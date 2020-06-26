@@ -1,7 +1,7 @@
-<map id="printmode.h" name="printmode.h">
-<area shape="rect" id="node1" title=" " alt="" coords="232,5,323,32"/>
-<area shape="rect" id="node2" href="$printmode_8cpp.html" title=" " alt="" coords="5,80,109,107"/>
-<area shape="rect" id="node3" href="$showactivities_8cpp.html" title=" " alt="" coords="133,80,264,107"/>
-<area shape="rect" id="node4" href="$showcurcmdchr_8cpp.html" title=" " alt="" coords="288,80,427,107"/>
-<area shape="rect" id="node5" href="$youcant_8cpp.html" title=" " alt="" coords="451,80,544,107"/>
+<map id="inc/printmode.h" name="inc/printmode.h">
+<area shape="rect" id="node1" title=" " alt="" coords="267,5,377,32"/>
+<area shape="rect" id="node2" href="$printmode_8cpp.html" title=" " alt="" coords="5,80,132,107"/>
+<area shape="rect" id="node3" href="$showactivities_8cpp.html" title=" " alt="" coords="157,80,309,107"/>
+<area shape="rect" id="node4" href="$showcurcmdchr_8cpp.html" title=" " alt="" coords="333,80,493,107"/>
+<area shape="rect" id="node5" href="$youcant_8cpp.html" title=" " alt="" coords="517,80,631,107"/>
 </map>

@@ -1,5 +1,5 @@
 #include "endfilereading.h"
-#include "aclose.h"
+#include "fichier.h"
 #include "texte.h"
 #include "popinput.h"
 

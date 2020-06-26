@@ -1,7 +1,5 @@
 #include "promptfilename.h"
-#include "printnl.h"
-#include "print.h"
-#include "printfilename.h"
+#include "impression.h"
 #include "showcontext.h"
 #include "fatalerror.h"
 #include "terminput.h"
@@ -16,15 +14,9 @@ void promptfilename(const std::string &s, const std::string &e)
 {
 	if (interaction == scroll_mode)
 		if (s == "input file name")
-		{
-			printnl("! ");
-			print("I can't find file `");
-		}
+			print_err("I can't find file `");
 		else
-		{
-			printnl("! ");
-			print("I can't write on file `");
-		};
+			print_err("I can't write on file `");
 	printfilename(curname, curarea, curext);
 	print("'.");
 	if (e == ".tex")

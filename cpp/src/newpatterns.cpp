@@ -1,12 +1,10 @@
 #include "newpatterns.h"
 #include "scanleftbrace.h"
 #include "getxtoken.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "newtrieop.h"
 #include "overflow.h"
-#include "printesc.h"
 #include "scantoks.h"
 #include "flushlist.h"
 #include "texte.h"
@@ -45,8 +43,7 @@ void newpatterns(void)
 							curchr = lc_code(curchr);
 							if (curchr == 0)
 							{
-								printnl("! ");
-								print("Nonletter");
+								print_err("Nonletter");
 								helpptr = 1;
 								helpline[0] = "(See Appendix H.)";
 								error();
@@ -119,8 +116,7 @@ void newpatterns(void)
 						}
 						if (trieo[q])
 						{
-							printnl("! ");
-							print("Duplicate pattern");
+							print_err("Duplicate pattern");
 							helpptr = 1;
 							helpline[0] = "(See Appendix H.)";
 							error();
@@ -137,9 +133,7 @@ void newpatterns(void)
 					digitsensed = false;
 					break;
 				default:
-					printnl("! ");
-					print("Bad ");
-					printesc("patterns");
+					print_err("Bad "+esc("patterns"));
 					helpptr = 1;
 					helpline[0] = "(See Appendix H.)";
 					error();
@@ -148,9 +142,7 @@ void newpatterns(void)
 	}
 	else
 	{
-		printnl("! ");
-		print("Too late for ");
-		printesc("patterns");
+		print_err("Too late for "+esc("patterns"));
 		helpptr = 1;
 		helpline[0] = "All patterns must be given before typesetting begins.";
 		error();

@@ -2,13 +2,11 @@
 #include "scanleftbrace.h"
 #include "getxtoken.h"
 #include "getavail.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "scancharnum.h"
 #include "overflow.h"
 #include "makestring.h"
-#include "printesc.h"
 #include "error.h"
 #include "texte.h"
 
@@ -45,8 +43,7 @@ void newhyphexceptions(void)
 				else 
 					if (lc_code(curchr) == 0)
 					{
-						printnl("! ");
-						print("Not a letter");
+						print_err("Not a letter");
 						helpptr = 2;
 						helpline[1] = "Letters in \\hyphenation words must have \\lccode>0.";
 						helpline[0] = "Proceed; I'll ignore the character I just read.";
@@ -129,10 +126,7 @@ void newhyphexceptions(void)
 				p = 0;
 				break;
 			default:
-				printnl("! ");
-				print("Improper ");
-				printesc("hyphenation");
-				print(" will be flushed");
+				print_err("Improper "+esc("hyphenation")+" will be flushed");
 				helpptr = 2;
 				helpline[1] = "Hyphenation exceptions must contain only letters";
 				helpline[0] = "and hyphens. But continue; I'll forgive and forget.";

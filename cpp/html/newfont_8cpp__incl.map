@@ -1,5 +1,5 @@
-<map id="newfont.cpp" name="newfont.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="1151,5,1245,32"/>
+<map id="src/newfont.cpp" name="src/newfont.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="1141,5,1255,32"/>
 <area shape="rect" id="node2" href="$newfont_8h.html" title=" " alt="" coords="5,80,84,107"/>
 <area shape="rect" id="node4" href="$openlogfile_8h.html" title=" " alt="" coords="108,80,203,107"/>
 <area shape="rect" id="node5" href="$getrtoken_8h.html" title=" " alt="" coords="227,80,313,107"/>

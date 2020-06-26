@@ -11,10 +11,9 @@
 #include "flushnodelist.h"
 #include "popalignment.h"
 #include "popnest.h"
-#include "printnl.h"
+#include "impression.h"
 #include "doassignments.h"
 #include "backerror.h"
-#include "print.h"
 #include "getxtoken.h"
 #include "resumeafterdisplay.h"
 #include "buildpage.h"
@@ -298,8 +297,7 @@ void finalign(void)
 		doassignments();
 		if (curcmd != math_shift)
 		{
-			printnl("! ");
-			print("Missing $$ inserted"); 
+			print_err("Missing $$ inserted"); 
 			helpptr = 2;
 			helpline[1] = "Displays can use special alignments (like \\eqalignno)";
 			helpline[0] = "only if nothing but the alignment itself is between $$'s.";
@@ -310,8 +308,7 @@ void finalign(void)
 			getxtoken();
 			if (curcmd != math_shift)
 			{
-				printnl("! ");
-				print("Display math should end with $$");
+				print_err("Display math should end with $$");
 				helpptr = 2;
 				helpline[1] = "The `$' that I just saw supposedly matches a previous `$$'.";
 				helpline[0] = "So I shall assume that you typed `$$' both times.";

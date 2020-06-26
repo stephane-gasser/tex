@@ -1,7 +1,7 @@
-<map id="muerror.h" name="muerror.h">
-<area shape="rect" id="node1" title=" " alt="" coords="202,5,278,32"/>
-<area shape="rect" id="node2" href="$muerror_8cpp.html" title=" " alt="" coords="5,80,96,107"/>
-<area shape="rect" id="node3" href="$scandimen_8cpp.html" title=" " alt="" coords="121,80,231,107"/>
-<area shape="rect" id="node4" href="$scanglue_8cpp.html" title=" " alt="" coords="256,80,355,107"/>
-<area shape="rect" id="node5" href="$scansomethinginternal_8cpp.html" title=" " alt="" coords="379,80,557,107"/>
+<map id="inc/muerror.h" name="inc/muerror.h">
+<area shape="rect" id="node1" title=" " alt="" coords="234,5,331,32"/>
+<area shape="rect" id="node2" href="$muerror_8cpp.html" title=" " alt="" coords="5,80,117,107"/>
+<area shape="rect" id="node3" href="$scandimen_8cpp.html" title=" " alt="" coords="142,80,274,107"/>
+<area shape="rect" id="node4" href="$scanglue_8cpp.html" title=" " alt="" coords="298,80,419,107"/>
+<area shape="rect" id="node5" href="$scansomethinginternal_8cpp.html" title=" " alt="" coords="443,80,642,107"/>
 </map>

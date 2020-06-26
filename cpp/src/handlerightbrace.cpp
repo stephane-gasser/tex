@@ -1,7 +1,6 @@
 #include "handlerightbrace.h"
 #include "unsave.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "extrarightbrace.h"
 #include "package.h"
@@ -14,8 +13,6 @@
 #include "buildpage.h"
 #include "gettoken.h"
 #include "endtokenlist.h"
-#include "printesc.h"
-#include "printint.h"
 #include "boxerror.h"
 #include "buildpage.h"
 #include "builddiscretionary.h"
@@ -41,8 +38,7 @@ void handlerightbrace(void)
 			unsave();
 			break;
 		case bottom_level:
-			printnl("! ");
-			print("Too many }'s");
+			print_err("Too many }'s");
 			helpptr = 2;
 			helpline[1] = "You've closed more groups than you opened.";
 			helpline[0] = "Such booboos are generally harmless, so keep going.";
@@ -104,8 +100,7 @@ void handlerightbrace(void)
 		case output_group:
 			if (loc || (token_type != output_text && token_type != backed_up))
 			{
-				printnl("! ");
-				print("Unbalanced output routine");
+				print_err("Unbalanced output routine");
 				helpptr = 2;
 				helpline[1] = "Your sneaky output routine has problematic {'s and/or }'s.";
 				helpline[0] = "I can't handle that very well; good luck.";
@@ -121,8 +116,7 @@ void handlerightbrace(void)
 			insertpenalties = 0;
 			if (box(255))
 			{
-				printnl("! ");
-				print("Output routine didn't use all of ");
+				print_err("Output routine didn't use all of ");
 				printesc("box");
 				printint(255); 
 				helpptr = 3;
@@ -154,10 +148,7 @@ void handlerightbrace(void)
 		case align_group:
 			backinput();
 			curtok = cs_token_flag+frozen_cr;
-			printnl("! ");
-			print("Missing ");
-			printesc("cr");
-			print(" inserted");
+			print_err("Missing "+esc("cr")+" inserted");
 			helpptr = 1;
 			helpline[0] = "I'm guessing that you meant to end an alignment here.";
 			inserror();

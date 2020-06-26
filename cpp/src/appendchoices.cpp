@@ -7,6 +7,6 @@ void appendchoices(void)
 {
 	tail_append(newchoice());
 	savestack[saveptr++].int_ = 0;
-	pushmath(13);
+	pushmath(math_choice_group);
 	scanleftbrace();
 }

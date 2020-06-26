@@ -1,10 +1,6 @@
 #include "charwarning.h"
-#include "printchar.h"
-#include "print.h"
+#include "impression.h"
 #include "begindiagnostic.h"
-#include "printnl.h"
-#include "slowprint.h"
-#include "printchar.h"
 #include "enddiagnostic.h"
 
 static int tracing_lost_chars(void) { return int_par(tracing_lost_chars_code); }

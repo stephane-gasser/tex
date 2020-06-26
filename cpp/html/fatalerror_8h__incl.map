@@ -1,7 +1,7 @@
-<map id="fatalerror.h" name="fatalerror.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,88,32"/>
-<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="9,80,84,107"/>
-<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="39,229,89,256"/>
-<area shape="rect" id="node4" title=" " alt="" coords="23,155,70,181"/>
-<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="94,155,191,181"/>
+<map id="inc/fatalerror.h" name="inc/fatalerror.h">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,109,32"/>
+<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="20,80,95,107"/>
+<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="49,229,100,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="34,155,81,181"/>
+<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="105,155,202,181"/>
 </map>

@@ -1,5 +1,5 @@
-<map id="primitive.h" name="primitive.h">
-<area shape="rect" id="node1" title=" " alt="" coords="67,5,150,32"/>
-<area shape="rect" id="node2" href="$initprim_8cpp.html" title=" " alt="" coords="5,80,95,107"/>
-<area shape="rect" id="node3" href="$primitive_8cpp.html" title=" " alt="" coords="119,80,215,107"/>
+<map id="inc/primitive.h" name="inc/primitive.h">
+<area shape="rect" id="node1" title=" " alt="" coords="79,5,181,32"/>
+<area shape="rect" id="node2" href="$initprim_8cpp.html" title=" " alt="" coords="5,80,116,107"/>
+<area shape="rect" id="node3" href="$primitive_8cpp.html" title=" " alt="" coords="140,80,259,107"/>
 </map>

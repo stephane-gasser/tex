@@ -1,9 +1,5 @@
 #include "vpackage.h"
-#include "print.h"
-#include "printint.h"
-#include "println.h"
-#include "printscaled.h"
-#include "printnl.h"
+#include "impression.h"
 #include "shortdisplay.h"
 #include "begindiagnostic.h"
 #include "showbox.h"
@@ -12,7 +8,6 @@
 #include "getnode.h"
 #include "freenode.h"
 #include "badness.h"
-/*#include "newrule.h"*/
 
 static void goto50(halfword r)
 {

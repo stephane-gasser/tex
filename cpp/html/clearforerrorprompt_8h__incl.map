@@ -1,7 +1,7 @@
-<map id="clearforerrorprompt.h" name="clearforerrorprompt.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,148,32"/>
-<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="39,80,114,107"/>
-<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="69,229,119,256"/>
-<area shape="rect" id="node4" title=" " alt="" coords="53,155,100,181"/>
-<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="124,155,221,181"/>
+<map id="inc/clearforerrorprompt.h" name="inc/clearforerrorprompt.h">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,168,32"/>
+<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="49,80,124,107"/>
+<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="79,229,129,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="63,155,110,181"/>
+<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="134,155,231,181"/>
 </map>

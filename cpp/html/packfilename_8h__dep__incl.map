@@ -1,10 +1,10 @@
-<map id="packfilename.h" name="packfilename.h">
-<area shape="rect" id="node1" title=" " alt="" coords="429,5,540,32"/>
-<area shape="rect" id="node2" href="$openorclosein_8cpp.html" title=" " alt="" coords="5,80,132,107"/>
-<area shape="rect" id="node3" href="$outwhat_8cpp.html" title=" " alt="" coords="157,80,250,107"/>
-<area shape="rect" id="node4" href="$packfilename_8cpp.html" title=" " alt="" coords="275,80,399,107"/>
-<area shape="rect" id="node5" href="$packjobname_8cpp.html" title=" " alt="" coords="423,80,547,107"/>
-<area shape="rect" id="node6" href="$promptfilename_8cpp.html" title=" " alt="" coords="571,80,707,107"/>
-<area shape="rect" id="node7" href="$readfontinfo_8cpp.html" title=" " alt="" coords="731,80,846,107"/>
-<area shape="rect" id="node8" href="$startinput_8cpp.html" title=" " alt="" coords="870,80,971,107"/>
+<map id="inc/packfilename.h" name="inc/packfilename.h">
+<area shape="rect" id="node1" title=" " alt="" coords="496,5,627,32"/>
+<area shape="rect" id="node2" href="$openorclosein_8cpp.html" title=" " alt="" coords="5,80,155,107"/>
+<area shape="rect" id="node3" href="$outwhat_8cpp.html" title=" " alt="" coords="179,80,293,107"/>
+<area shape="rect" id="node4" href="$packfilename_8cpp.html" title=" " alt="" coords="317,80,464,107"/>
+<area shape="rect" id="node5" href="$packjobname_8cpp.html" title=" " alt="" coords="488,80,635,107"/>
+<area shape="rect" id="node6" href="$promptfilename_8cpp.html" title=" " alt="" coords="659,80,818,107"/>
+<area shape="rect" id="node7" href="$readfontinfo_8cpp.html" title=" " alt="" coords="842,80,979,107"/>
+<area shape="rect" id="node8" href="$startinput_8cpp.html" title=" " alt="" coords="1004,80,1127,107"/>
 </map>

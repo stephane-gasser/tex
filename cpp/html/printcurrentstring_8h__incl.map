@@ -1,7 +1,7 @@
-<map id="printcurrentstring.h" name="printcurrentstring.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,136,32"/>
-<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="33,80,108,107"/>
-<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="63,229,113,256"/>
-<area shape="rect" id="node4" title=" " alt="" coords="47,155,94,181"/>
-<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="118,155,215,181"/>
+<map id="inc/printcurrentstring.h" name="inc/printcurrentstring.h">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,156,32"/>
+<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="43,80,118,107"/>
+<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="73,229,123,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="57,155,104,181"/>
+<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="128,155,225,181"/>
 </map>

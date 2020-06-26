@@ -1,14 +1,11 @@
 #include "scansomethinginternal.h"
 #include "scancharnum.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "backerror.h"
 #include "scaneightbitint.h"
 #include "backinput.h"
 #include "scanfontident.h"
 #include "findfontdimen.h"
-#include "printcmdchr.h"
-#include "printesc.h"
 #include "error.h"
 #include "muerror.h"
 #include "newspec.h"
@@ -39,8 +36,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case def_font:
 			if (level != tok_val)
 			{
-				printnl("! ");
-				print("Missing number, treated as zero");
+				print_err("Missing number, treated as zero");
 				helpptr = 3;
 				helpline[2] = "A number should have been here; I inserted `0'.";
 				helpline[1] = "(If you can't figure out why I needed to see a number,";
@@ -80,8 +76,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case set_aux:
 			if (abs(mode) != m)
 			{
-				printnl("! ");
-				print("Improper ");
+				print_err("Improper ");
 				printcmdchr(set_aux, m);
 				helpptr = 4;
 				helpline[3] = "You can refer to \\spacefactor only in horizontal mode;";
@@ -223,11 +218,9 @@ void scansomethinginternal(smallnumber level, bool negative)
 			}
 			break;
 		default:
-			printnl("! ");
-			print("You can't use `");
+			print_err("You can't use `");
 			printcmdchr(curcmd, curchr);
-			print("' after ");
-			printesc("the");
+			print("' after "+esc("the"));
 			helpptr = 1;
 			helpline[0] = "I'm forgetting what you said and using zero instead.";
 			error();

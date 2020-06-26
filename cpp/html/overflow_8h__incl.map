@@ -1,7 +1,7 @@
-<map id="overflow.h" name="overflow.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,85,32"/>
-<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="8,80,83,107"/>
-<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="37,229,88,256"/>
-<area shape="rect" id="node4" title=" " alt="" coords="22,155,69,181"/>
-<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="93,155,190,181"/>
+<map id="inc/overflow.h" name="inc/overflow.h">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,107,32"/>
+<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="19,80,93,107"/>
+<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="48,229,99,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="33,155,79,181"/>
+<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="103,155,201,181"/>
 </map>

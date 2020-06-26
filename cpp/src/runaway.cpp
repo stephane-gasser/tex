@@ -1,9 +1,6 @@
 #include "runaway.h"
 #include "showtokenlist.h"
-#include "print.h"
-#include "printnl.h"
-#include "printchar.h"
-#include "println.h"
+#include "impression.h"
 
 void runaway(void)
 {

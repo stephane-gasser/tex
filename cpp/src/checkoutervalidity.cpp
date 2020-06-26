@@ -1,13 +1,8 @@
 #include "checkoutervalidity.h"
-#include "print.h"
-#include "printcmdchr.h"
-#include "printcs.h"
-#include "printint.h"
+#include "impression.h"
 #include "inserror.h"
-#include "printnl.h"
 #include "getavail.h"
 #include "begintokenlist.h"
-#include "sprintcs.h"
 #include "runaway.h"
 #include "error.h"
 #include "texte.h"
@@ -32,15 +27,11 @@ void checkoutervalidity(void)
 		{
 			runaway();
 			if (curcs == 0)
-			{
-				printnl("! ");
-				print("File ended");
-			}
+				print_err("File ended");
 			else
 			{
 				curcs = 0;
-				printnl("! ");
-				print("Forbidden control sequence found");
+				print_err("Forbidden control sequence found");
 			}
 			print(" while scanning ");
 			auto p = getavail();
@@ -83,8 +74,7 @@ void checkoutervalidity(void)
 		}
 		else
 		{
-			printnl("! ");
-			print("Incomplete ");
+			print_err("Incomplete ");
 			printcmdchr(if_test, curif);
 			print("; all text was ignored after line ");
 			printint(skipline);

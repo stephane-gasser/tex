@@ -1,8 +1,7 @@
 #include "scandelimiter.h"
 #include "scantwentysevenbitint.h"
 #include "getxtoken.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "backerror.h"
 #include "texte.h"
 
@@ -30,8 +29,7 @@ void scandelimiter(halfword p, bool r)
 	}
 	if (curval < 0)
 	{
-		printnl("! ");
-		print("Missing delimiter (. inserted)");
+		print_err("Missing delimiter (. inserted)");
 		helpptr = 6;
 		helpline[5] = "I was expecting to see something like `(' or `\\{' or";
 		helpline[4] = "`\\}' here. If you typed, e.g., `{' instead of `\\{', you";

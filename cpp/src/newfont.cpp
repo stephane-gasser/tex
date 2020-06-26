@@ -1,8 +1,7 @@
 #include "newfont.h"
 #include "openlogfile.h"
 #include "getrtoken.h"
-#include "print.h"
-#include "printchar.h"
+#include "impression.h"
 #include "overflow.h"
 #include "makestring.h"
 #include "geqdefine.h"
@@ -12,9 +11,7 @@
 #include "scankeyword.h"
 #include "scandimen.h"
 #include "scanint.h"
-#include "printnl.h"
 #include "interror.h"
-#include "printscaled.h"
 #include "error.h"
 #include "xnoverd.h"
 #include "readfontinfo.h"
@@ -60,8 +57,7 @@ void newfont(smallnumber a)
 		s = curval;
 		if (s <= 0 || s >= 134217728)
 		{
-			printnl("! ");
-			print("Improper `at' size (");
+			print_err("Improper `at' size (");
 			printscaled(s);
 			print("pt), replaced by 10pt");
 			helpptr = 2;
@@ -78,8 +74,7 @@ void newfont(smallnumber a)
 			s = -curval;
 			if (curval <= 0 || curval > 0x80'00)
 			{
-				printnl("! ");
-				print("Illegal magnification has been changed to 1000");
+				print_err("Illegal magnification has been changed to 1000");
 				helpptr = 1;
 				helpline[0] = "The magnification ratio must be between 1 and 0x80'00.";
 				interror(curval);

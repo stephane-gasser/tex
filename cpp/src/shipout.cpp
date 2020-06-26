@@ -1,14 +1,9 @@
 #include "shipout.h"
-#include "printnl.h"
-#include "println.h"
+#include "impression.h"
 #include "error.h"
-#include "bopenout.h"
+#include "fichier.h"
 #include "preparemag.h"
 #include "bmakenamestring.h"
-#include "print.h"
-#include "printtwo.h"
-#include "printint.h"
-#include "printchar.h"
 #include "begindiagnostic.h"
 #include "enddiagnostic.h"
 #include "showbox.h"
@@ -75,8 +70,7 @@ void shipout(halfword p)
 	 || height(p)+depth(p)+v_offset() > max_dimen 
 	 || width(p)+h_offset() > max_dimen)
 	{
-		printnl("! ");
-		print("Huge page cannot be shipped out");
+		print_err("Huge page cannot be shipped out");
 		helpptr = 2;
 		helpline[1] = txt("The page just created is more than 18 feet tall or");
 		helpline[0] = txt("more than 18 feet wide, so I suspect something went wrong.");

@@ -1,23 +1,23 @@
-<map id="begintokenlist.h" name="begintokenlist.h">
-<area shape="rect" id="node1" title=" " alt="" coords="1170,5,1283,32"/>
-<area shape="rect" id="node2" href="$beginbox_8cpp.html" title=" " alt="" coords="5,80,104,107"/>
-<area shape="rect" id="node3" href="$begintokenlist_8cpp.html" title=" " alt="" coords="129,80,255,107"/>
-<area shape="rect" id="node4" href="$checkoutervalidity_8cpp.html" title=" " alt="" coords="279,80,430,107"/>
-<area shape="rect" id="node5" href="$convtoks_8cpp.html" title=" " alt="" coords="454,80,554,107"/>
-<area shape="rect" id="node6" href="$expand_8cpp.html" title=" " alt="" coords="578,80,667,107"/>
-<area shape="rect" id="node7" href="$finrow_8cpp.html" title=" " alt="" coords="692,80,772,107"/>
-<area shape="rect" id="node8" href="$fireup_8cpp.html" title=" " alt="" coords="797,80,875,107"/>
-<area shape="rect" id="node9" href="$getnext_8cpp.html" title=" " alt="" coords="900,80,991,107"/>
-<area shape="rect" id="node10" href="$initalign_8cpp.html" title=" " alt="" coords="1015,80,1105,107"/>
-<area shape="rect" id="node11" href="$initcol_8cpp.html" title=" " alt="" coords="1130,80,1211,107"/>
-<area shape="rect" id="node12" href="$initmath_8cpp.html" title=" " alt="" coords="1236,80,1329,107"/>
-<area shape="rect" id="node13" href="$insthetoks_8cpp.html" title=" " alt="" coords="1353,80,1460,107"/>
-<area shape="rect" id="node14" href="$macrocall_8cpp.html" title=" " alt="" coords="1485,80,1587,107"/>
-<area shape="rect" id="node15" href="$maincontrol_8cpp.html" title=" " alt="" coords="1612,80,1727,107"/>
-<area shape="rect" id="node16" href="$newgraf_8cpp.html" title=" " alt="" coords="1751,80,1844,107"/>
-<area shape="rect" id="node17" href="$offsave_8cpp.html" title=" " alt="" coords="1868,80,1959,107"/>
-<area shape="rect" id="node18" href="$scankeyword_8cpp.html" title=" " alt="" coords="1983,80,2107,107"/>
-<area shape="rect" id="node19" href="$shiftcase_8cpp.html" title=" " alt="" coords="2131,80,2231,107"/>
-<area shape="rect" id="node20" href="$starteqno_8cpp.html" title=" " alt="" coords="2256,80,2357,107"/>
-<area shape="rect" id="node21" href="$writeout_8cpp.html" title=" " alt="" coords="2381,80,2475,107"/>
+<map id="inc/begintokenlist.h" name="inc/begintokenlist.h">
+<area shape="rect" id="node1" title=" " alt="" coords="1381,5,1516,32"/>
+<area shape="rect" id="node2" href="$beginbox_8cpp.html" title=" " alt="" coords="5,80,127,107"/>
+<area shape="rect" id="node3" href="$begintokenlist_8cpp.html" title=" " alt="" coords="151,80,301,107"/>
+<area shape="rect" id="node4" href="$checkoutervalidity_8cpp.html" title=" " alt="" coords="325,80,497,107"/>
+<area shape="rect" id="node5" href="$convtoks_8cpp.html" title=" " alt="" coords="522,80,645,107"/>
+<area shape="rect" id="node6" href="$expand_8cpp.html" title=" " alt="" coords="669,80,780,107"/>
+<area shape="rect" id="node7" href="$finrow_8cpp.html" title=" " alt="" coords="804,80,907,107"/>
+<area shape="rect" id="node8" href="$fireup_8cpp.html" title=" " alt="" coords="931,80,1033,107"/>
+<area shape="rect" id="node9" href="$getnext_8cpp.html" title=" " alt="" coords="1057,80,1169,107"/>
+<area shape="rect" id="node10" href="$initalign_8cpp.html" title=" " alt="" coords="1193,80,1307,107"/>
+<area shape="rect" id="node11" href="$initcol_8cpp.html" title=" " alt="" coords="1331,80,1433,107"/>
+<area shape="rect" id="node12" href="$initmath_8cpp.html" title=" " alt="" coords="1458,80,1573,107"/>
+<area shape="rect" id="node13" href="$insthetoks_8cpp.html" title=" " alt="" coords="1597,80,1727,107"/>
+<area shape="rect" id="node14" href="$macrocall_8cpp.html" title=" " alt="" coords="1751,80,1877,107"/>
+<area shape="rect" id="node15" href="$maincontrol_8cpp.html" title=" " alt="" coords="1901,80,2037,107"/>
+<area shape="rect" id="node16" href="$newgraf_8cpp.html" title=" " alt="" coords="2061,80,2175,107"/>
+<area shape="rect" id="node17" href="$offsave_8cpp.html" title=" " alt="" coords="2199,80,2311,107"/>
+<area shape="rect" id="node18" href="$scankeyword_8cpp.html" title=" " alt="" coords="2335,80,2482,107"/>
+<area shape="rect" id="node19" href="$shiftcase_8cpp.html" title=" " alt="" coords="2506,80,2629,107"/>
+<area shape="rect" id="node20" href="$starteqno_8cpp.html" title=" " alt="" coords="2653,80,2775,107"/>
+<area shape="rect" id="node21" href="$writeout_8cpp.html" title=" " alt="" coords="2799,80,2914,107"/>
 </map>

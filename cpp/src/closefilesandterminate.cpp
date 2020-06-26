@@ -1,16 +1,11 @@
 #include "closefilesandterminate.h"
-#include "aclose.h"
-#include "printnl.h"
+#include "impression.h"
 #include "dvifour.h"
 #include "preparemag.h"
 #include "dvifontdef.h"
 #include "writedvi.h"
 #include "dviswap.h"
-#include "slowprint.h"
-#include "print.h"
-#include "printint.h"
-#include "printchar.h"
-#include "bclose.h"
+#include "fichier.h"
 
 void closefilesandterminate(void)
 {

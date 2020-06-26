@@ -3,10 +3,7 @@
 #include "scanfontident.h"
 #include "deleteglueref.h"
 #include "overflow.h"
-#include "printnl.h"
-#include "print.h"
-#include "printesc.h"
-#include "printint.h"
+#include "impression.h"
 #include "error.h"
 #include "texte.h"
 
@@ -44,12 +41,7 @@ void findfontdimen(bool writing)
 	}
 	if (curval == fmemptr)
 	{
-		printnl("! "); 
-		print("Font ");
-		printesc(TXT(hash[font_id_base+f].rh));
-		print(" has only "); 
-		printint(fontparams[f]);
-		print(" fontdimen parameters");
+		print_err("Font "+esc(TXT(hash[font_id_base+f].rh))+" has only "+std::to_string(fontparams[f])+" fontdimen parameters");
 		helpptr = 2;
 		helpline[1] = "To increase the number of font parameters, you must";
 		helpline[0] = "use \\fontdimen immediately after the \\font is loaded.";

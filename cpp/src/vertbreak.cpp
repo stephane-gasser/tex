@@ -1,8 +1,7 @@
 #include "vertbreak.h"
 #include "confusion.h"
 #include "badness.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "newspec.h"
 #include "deleteglueref.h"
@@ -105,8 +104,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 			active_height[6] += shrink(q);
 			if (shrink_order(q) && shrink(q))
 			{
-				printnl("! ");
-				print("Infinite glue shrinkage found in box being split"); 
+				print_err("Infinite glue shrinkage found in box being split"); 
 				helpptr = 4;
 				helpline[3] = "The box you are \\vsplitting contains some infinitely";
 				helpline[2] = "shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.";

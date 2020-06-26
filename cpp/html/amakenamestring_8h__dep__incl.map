@@ -1,6 +1,6 @@
-<map id="amakenamestring.h" name="amakenamestring.h">
-<area shape="rect" id="node1" title=" " alt="" coords="167,5,303,32"/>
-<area shape="rect" id="node2" href="$amakenamestring_8cpp.html" title=" " alt="" coords="5,80,156,107"/>
-<area shape="rect" id="node3" href="$openlogfile_8cpp.html" title=" " alt="" coords="181,80,290,107"/>
-<area shape="rect" id="node4" href="$startinput_8cpp.html" title=" " alt="" coords="314,80,415,107"/>
+<map id="inc/amakenamestring.h" name="inc/amakenamestring.h">
+<area shape="rect" id="node1" title=" " alt="" coords="189,5,346,32"/>
+<area shape="rect" id="node2" href="$amakenamestring_8cpp.html" title=" " alt="" coords="5,80,177,107"/>
+<area shape="rect" id="node3" href="$openlogfile_8cpp.html" title=" " alt="" coords="202,80,333,107"/>
+<area shape="rect" id="node4" href="$startinput_8cpp.html" title=" " alt="" coords="357,80,479,107"/>
 </map>

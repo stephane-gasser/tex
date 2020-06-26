@@ -1,5 +1,5 @@
-<map id="alterinteger.cpp" name="alterinteger.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="142,5,253,32"/>
+<map id="src/alterinteger.cpp" name="src/alterinteger.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="131,5,263,32"/>
 <area shape="rect" id="node2" href="$alterinteger_8h.html" title=" " alt="" coords="5,80,101,107"/>
 <area shape="rect" id="node4" href="$scanoptionalequals_8h.html" title=" " alt="" coords="125,80,269,107"/>
 <area shape="rect" id="node5" href="$scanint_8h.html" title=" " alt="" coords="293,80,368,107"/>

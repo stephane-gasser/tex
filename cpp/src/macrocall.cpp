@@ -1,18 +1,12 @@
 #include "macrocall.h"
 #include "begindiagnostic.h"
-#include "print.h"
-#include "printchar.h"
-#include "println.h"
-#include "printcs.h"
-#include "printnl.h"
+#include "impression.h"
 #include "gettoken.h"
-#include "sprintcs.h"
 #include "getavail.h"
 #include "runaway.h"
 #include "flushlist.h"
 #include "backinput.h"
 #include "backerror.h"
-#include "printint.h"
 #include "endtokenlist.h"
 #include "begintokenlist.h"
 #include "tokenshow.h"
@@ -82,8 +76,7 @@ void macrocall(void)
 				if (s != r)
 					if (s == 0)
 					{
-						printnl("! ");
-						print("Use of ");
+						print_err("Use of ");
 						sprintcs(warningindex);
 						print(" doesn't match its definition");
 						helpptr = 4;

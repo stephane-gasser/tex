@@ -1,7 +1,7 @@
-<map id="normalizeselector.h" name="normalizeselector.h">
-<area shape="rect" id="node1" title=" " alt="" coords="187,5,321,32"/>
-<area shape="rect" id="node2" href="$confusion_8cpp.html" title=" " alt="" coords="5,80,108,107"/>
-<area shape="rect" id="node3" href="$fatalerror_8cpp.html" title=" " alt="" coords="132,80,229,107"/>
-<area shape="rect" id="node4" href="$normalizeselector_8cpp.html" title=" " alt="" coords="253,80,401,107"/>
-<area shape="rect" id="node5" href="$overflow_8cpp.html" title=" " alt="" coords="425,80,520,107"/>
+<map id="inc/normalizeselector.h" name="inc/normalizeselector.h">
+<area shape="rect" id="node1" title=" " alt="" coords="221,5,376,32"/>
+<area shape="rect" id="node2" href="$confusion_8cpp.html" title=" " alt="" coords="5,80,131,107"/>
+<area shape="rect" id="node3" href="$fatalerror_8cpp.html" title=" " alt="" coords="155,80,274,107"/>
+<area shape="rect" id="node4" href="$normalizeselector_8cpp.html" title=" " alt="" coords="299,80,469,107"/>
+<area shape="rect" id="node5" href="$overflow_8cpp.html" title=" " alt="" coords="494,80,610,107"/>
 </map>

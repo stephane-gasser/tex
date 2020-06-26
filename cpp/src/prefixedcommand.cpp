@@ -1,11 +1,7 @@
 #include "prefixedcommand.h"
 #include "getxtoken.h"
-#include "printnl.h"
-#include "print.h"
-#include "printcmdchr.h"
-#include "printchar.h"
+#include "impression.h"
 #include "backerror.h"
-#include "printesc.h"
 #include "error.h"
 #include "getrtoken.h"
 #include "geqdefine.h"
@@ -29,7 +25,6 @@
 #include "scancharnum.h"
 #include "scanfourbitint.h"
 #include "scanfontident.h"
-#include "printint.h"
 #include "doregistercommand.h"
 #include "scanbox.h"
 #include "alteraux.h"
@@ -65,8 +60,7 @@ void prefixedcommand(void)
 		while (curcmd == spacer || curcmd == escape);
 		if (curcmd <= max_non_prefixed_command)
 		{
-			printnl("! ");
-			print("You can't use a prefix with `");
+			print_err("You can't use a prefix with `");
 			printcmdchr(curcmd, curchr);
 			printchar('\''); 
 			helpptr = 1;
@@ -77,12 +71,7 @@ void prefixedcommand(void)
 	}
 	if (curcmd != def && a%4)
 	{
-		printnl("! ");
-		print("You can't use `");
-		printesc("long");
-		print("' or `");
-		printesc("outer");
-		print("' with `");
+		print_err("You can't use `"+esc("long")+"' or `"+esc("outer")+"' with `");
 		printcmdchr(curcmd, curchr);
 		printchar('\'');
 		helpptr = 1;
@@ -183,8 +172,7 @@ void prefixedcommand(void)
 			n = curval;
 			if (!scankeyword("to")) 
 			{
-				printnl("! ");
-				print("Missing `to' inserted");
+				print_err("Missing `to' inserted");
 				helpptr = 2;
 				helpline[1] = "You should have said `\\read<number> to \\cs'.";
 				helpline[0] = "I'm going to look for the \\cs now.";
@@ -299,8 +287,7 @@ void prefixedcommand(void)
 			scanint();
 			if ((curval < 0 && p < del_code_base) || curval > n)
 			{
-				printnl("! ");
-				print("Invalid code (");
+				print_err("Invalid code (");
 				printint(curval);
 				if (p < del_code_base)
 					print("), should be in the range 0..");
@@ -345,9 +332,7 @@ void prefixedcommand(void)
 				scanbox(box_flag+n);
 			else
 			{
-				printnl("! ");
-				print("Improper ");
-				printesc("setbox");
+				print_err("Improper "+esc("setbox"));
 				helpptr = 2;
 				helpline[1] = "Sorry, \\setbox is not allowed after \\halign in a display,";
 				helpline[0] = "or between \\accent and an accented character.";

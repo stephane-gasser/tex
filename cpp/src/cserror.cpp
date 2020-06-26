@@ -1,15 +1,11 @@
 #include "cserror.h"
-#include "printnl.h"
-#include "print.h"
-#include "printesc.h"
+#include "impression.h"
 #include "error.h"
 #include "texte.h"
 
 void cserror(void)
 {
-	printnl("! ");
-	print("Extra ");
-	printesc("endcsname");
+	print_err("Extra "+esc("endcsname"));
 	helpptr = 1;
 	helpline[0] = "I'm ignoring this, since I wasn't doing a \\csname.";
 	error();

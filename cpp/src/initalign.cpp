@@ -1,7 +1,5 @@
 #include "initalign.h"
-#include "printnl.h"
-#include "print.h"
-#include "printesc.h"
+#include "impression.h"
 #include "error.h"
 #include "flushmath.h"
 #include "scanspec.h"
@@ -24,10 +22,7 @@ void initalign(void)
 	alignstate = -1000000;
 	if (mode == mmode && (tail != head || incompleat_noad))
 	{
-		printnl("! ");
-		print("Improper ");
-		printesc("halign");
-		print(" inside $$'s");
+		print_err("Improper "+esc("halign")+" inside $$'s");
 		helpptr = 3;
 		helpline[2] = "Displays can use special alignments (like \\eqalignno)";
 		helpline[1] = "only if nothing but the alignment itself is between $$'s.";
@@ -70,8 +65,7 @@ void initalign(void)
 					curloop = curalign;
 				else
 				{
-					printnl("! ");
-					print("Missing # inserted in alignment preamble");
+					print_err("Missing # inserted in alignment preamble");
 					helpptr = 3;
 					helpline[2] = "There should be exactly one # between &'s, when an";
 					helpline[1] = "\\halign or \\valign is being set up. In this case you had";
@@ -101,8 +95,7 @@ void initalign(void)
 				break;
 			if (curcmd == mac_param)
 			{
-				printnl("! ");
-				print("Only one # is allowed per tab");
+				print_err("Only one # is allowed per tab");
 				helpptr = 3;
 				helpline[2] = "There should be exactly one # between &'s, when an";
 				helpline[1] = "\\halign or \\valign is being set up. In this case you had";

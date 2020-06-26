@@ -1,7 +1,7 @@
-<map id="appenditaliccorrection.h" name="appenditaliccorrection.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,164,32"/>
-<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="47,80,122,107"/>
-<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="77,229,127,256"/>
-<area shape="rect" id="node4" title=" " alt="" coords="61,155,108,181"/>
-<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="132,155,229,181"/>
+<map id="inc/appenditaliccorrection.h" name="inc/appenditaliccorrection.h">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,185,32"/>
+<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="58,80,133,107"/>
+<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="87,229,138,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="72,155,119,181"/>
+<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="143,155,240,181"/>
 </map>

@@ -1,6 +1,6 @@
-<map id="printthedigs.h" name="printthedigs.h">
-<area shape="rect" id="node1" title=" " alt="" coords="117,5,217,32"/>
-<area shape="rect" id="node2" href="$printhex_8cpp.html" title=" " alt="" coords="5,80,99,107"/>
-<area shape="rect" id="node3" href="$printint_8cpp.html" title=" " alt="" coords="123,80,210,107"/>
-<area shape="rect" id="node4" href="$printthedigs_8cpp.html" title=" " alt="" coords="235,80,349,107"/>
+<map id="inc/printthedigs.h" name="inc/printthedigs.h">
+<area shape="rect" id="node1" title=" " alt="" coords="138,5,259,32"/>
+<area shape="rect" id="node2" href="$printhex_8cpp.html" title=" " alt="" coords="5,80,120,107"/>
+<area shape="rect" id="node3" href="$printint_8cpp.html" title=" " alt="" coords="145,80,253,107"/>
+<area shape="rect" id="node4" href="$printthedigs_8cpp.html" title=" " alt="" coords="277,80,413,107"/>
 </map>

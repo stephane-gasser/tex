@@ -9,8 +9,7 @@
 #include "getavail.h"
 #include "rounddecimals.h"
 #include "scankeyword.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "xnoverd.h"
 #include "multandadd.h"
 #include "error.h"
@@ -119,9 +118,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 				while (scankeyword("l")) 
 				if (curorder == 3)
 				{
-					printnl("! ");
-					print("Illegal unit of measure ("); 
-					print("replaced by filll)");
+					print_err("Illegal unit of measure (replaced by filll)");
 					helpptr = 1;
 					helpline[0] = "I dddon't go any higher than filll.";
 					error();
@@ -185,9 +182,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 		{
 			if (!scankeyword("mu"))
 			{
-				printnl("! ");
-				print("Illegal unit of measure ("); 
-				print("mu inserted)"); 
+				print_err("Illegal unit of measure (mu inserted)"); 
 				helpptr = 4;
 				helpline[3] = "The unit of measurement in math glue must be mu.";
 				helpline[2] = "To recover gracefully from this error, it's best to";
@@ -258,9 +253,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 									}
 									else
 									{
-										printnl("! "); 
-										print("Illegal unit of measure ("); 
-										print("pt inserted)");
+										print_err("Illegal unit of measure (pt inserted)");
 										helpptr = 6;
 										helpline[5] = "Dimensions can be in units of em, ex, in, pt, pc,";
 										helpline[4] = "cm, mm, dd, cc, bp, or sp; but yours is a new one!";
@@ -293,8 +286,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 	} 
 	if (aritherror || abs(curval) >= 0x40'00'00'00)
 	{
-		printnl("! ");
-		print("Dimension too large"); 
+		print_err("Dimension too large"); 
 		helpptr = 2;
 		helpline[1] = "I can't work with sizes bigger than about 19 feet.";
 		helpline[0] = "Continue and I'll use the largest value I can.";

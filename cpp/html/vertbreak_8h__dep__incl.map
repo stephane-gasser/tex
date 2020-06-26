@@ -1,6 +1,6 @@
-<map id="vertbreak.h" name="vertbreak.h">
-<area shape="rect" id="node1" title=" " alt="" coords="140,5,227,32"/>
-<area shape="rect" id="node2" href="$buildpage_8cpp.html" title=" " alt="" coords="5,80,108,107"/>
-<area shape="rect" id="node3" href="$vertbreak_8cpp.html" title=" " alt="" coords="133,80,234,107"/>
-<area shape="rect" id="node4" href="$vsplit_8cpp.html" title=" " alt="" coords="259,80,337,107"/>
+<map id="inc/vertbreak.h" name="inc/vertbreak.h">
+<area shape="rect" id="node1" title=" " alt="" coords="161,5,269,32"/>
+<area shape="rect" id="node2" href="$buildpage_8cpp.html" title=" " alt="" coords="5,80,129,107"/>
+<area shape="rect" id="node3" href="$vertbreak_8cpp.html" title=" " alt="" coords="154,80,277,107"/>
+<area shape="rect" id="node4" href="$vsplit_8cpp.html" title=" " alt="" coords="301,80,401,107"/>
 </map>

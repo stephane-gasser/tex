@@ -3,12 +3,6 @@
 #include "getnode.h"
 #include "confusion.h"
 
-//! new reference to a token list
-static void add_token_ref(halfword p)
-{
-	token_ref_count(p)++;
-}
-
 halfword copynodelist(halfword p)
 {
 	auto h = getavail();

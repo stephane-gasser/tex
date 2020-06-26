@@ -1,9 +1,5 @@
 #include "fetch.h"
-#include "printnl.h"
-#include "print.h"
-#include "printsize.h"
-#include "printchar.h"
-#include "printint.h"
+#include "impression.h"
 #include "error.h"
 #include "charwarning.h"
 #include "texte.h"
@@ -14,8 +10,7 @@ void fetch(halfword a)
 	curf = fam_fnt(type(a)+cursize);
 	if (curf == null_font)
 	{
-		printnl("! ");
-		print("");
+		print_err("");
 		printsize(cursize);
 		printchar(' ');
 		printint(type(a));

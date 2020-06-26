@@ -6,8 +6,7 @@
 #include "geqdefine.h"
 #include "getxtoken.h"
 #include "appendglue.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "backerror.h"
 #include "flushnodelist.h"
 #include "shipout.h"
@@ -15,8 +14,8 @@
 
 void boxend(int boxcontext)
 {
-	halfword p;
-	if (boxcontext < 0x40'00'00'00)
+	halfword p; //\a ord_noad for new box in math mode
+	if (boxcontext < box_flag)
 	{
 		if (curbox)
 		{
@@ -49,36 +48,36 @@ void boxend(int boxcontext)
 		}
 	}
 	else 
-		if (boxcontext < 0x40'00'02'00)
-			if (boxcontext < 0x40'00'01'00)
-				eqdefine(boxcontext-0x40'00'00'00+box_base, 119, curbox);
+		if (boxcontext < ship_out_flag)
+			// Store (c) \a cur_box in a box register
+			if (boxcontext < box_flag+256)
+				eqdefine(boxcontext-box_flag+box_base, box_ref, curbox);
 			else
-				geqdefine(boxcontext-0x40'00'01'00+box_base, 119, curbox);
+				geqdefine(boxcontext-box_flag-256+box_base, box_ref, curbox);
 		else 
-			if (curbox)
-				if (boxcontext > 0x40'00'02'00)
+			if (curbox && boxcontext > ship_out_flag)
+			// Append a new leader node that uses \a cur_box
+			{
+				do
+					getxtoken();
+				while (curcmd == spacer || curcmd == escape);
+				if ((curcmd == hskip && abs(mode) != vmode) || (curcmd == vskip && abs(mode) == vmode))
 				{
-					do
-						getxtoken();
-					while (curcmd == spacer || curcmd == escape);
-					if ((curcmd == hskip && abs(mode) != vmode) || (curcmd == vskip && abs(mode) == vmode))
-					{
-						appendglue();
-						subtype(tail) = boxcontext-0x40'00'02'00+99;
-						link(tail+1) = curbox;
-					}
-					else
-					{
-						printnl("! ");
-						print("Leaders not followed by proper glue");
-						helpptr = 3;
-						helpline[2] = "You should say `\\leaders <box or rule><hskip or vskip>'.";
-						helpline[1] = "I found the <box or rule>, but there's no suitable";
-						helpline[0] = "<hskip or vskip>, so I'm ignoring these leaders.";
-						backerror();
-						flushnodelist(curbox);
-					}
+					appendglue();
+					subtype(tail) = boxcontext-(leader_flag-a_leaders);
+					leader_ptr(tail) = curbox;
 				}
+				else
+				{
+					print_err("Leaders not followed by proper glue");
+					helpptr = 3;
+					helpline[2] = "You should say `\\leaders <box or rule><hskip or vskip>'.";
+					helpline[1] = "I found the <box or rule>, but there's no suitable";
+					helpline[0] = "<hskip or vskip>, so I'm ignoring these leaders.";
+					backerror();
+					flushnodelist(curbox);
+				}
+			}
 
 	else
 	shipout(curbox);

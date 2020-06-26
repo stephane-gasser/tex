@@ -1,14 +1,12 @@
 #include "builddiscretionary.h"
 #include "unsave.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "begindiagnostic.h"
 #include "error.h"
 #include "showbox.h"
 #include "enddiagnostic.h"
 #include "flushnodelist.h"
 #include "popnest.h"
-#include "printesc.h"
 #include "flushnodelist.h"
 #include "newsavelevel.h"
 #include "scanleftbrace.h"
@@ -18,15 +16,16 @@
 void builddiscretionary(void)
 {
 	unsave();
+	// Prune the current list, if necessary, until it contains only |char_node|, |kern_node|, |hlist_node|, |vlist_node|, |rule_node|,
+	//  and |ligature_node| items; set |n| to the length of the list, and set |q| to the list's tail
 	auto q = head;
 	auto p = link(q);
 	int n = 0;
 	while (p)
 	{
-		if (p < himemmin && type(p) > 2 && type(p) != kern_node && type(p) != ligature_node)
+		if (!is_char_node(p) && type(p) > rule_node && type(p) != kern_node && type(p) != ligature_node)
 		{
-			printnl("! "); 
-			print("Improper discretionary list"); 
+			print_err("Improper discretionary list"); 
 			helpptr = 1;
 			helpline[0] = "Discretionary lists must contain only boxes and kerns.";
 			error();
@@ -47,16 +46,15 @@ void builddiscretionary(void)
 	switch (savestack[saveptr-1].int_)
 	{
 		case 0: 
-			info(tail+1) = p;
+			pre_break(tail) = p;
 			break;
 		case 1: 
-			link(tail+1) = p;
+			post_break(tail) = p;
 			break;
-		case 2:
+		case 2: //Attach list |p| to the current list, and record its length; then finish up and |return|
 			if (n > 0 && abs(mode) == mmode)
 			{
-				printnl("! "); 
-				print("Illegal math ");
+				print_err("Illegal math ");
 				printesc("discretionary");
 				helpptr = 2;
 				helpline[1] = "Sorry: The third part of a discretionary break must be";
@@ -71,8 +69,7 @@ void builddiscretionary(void)
 				subtype(tail) = n;
 			else
 			{
-				printnl("! ");
-				print("Discretionary list is too long");
+				print_err("Discretionary list is too long");
 				helpptr = 2;
 				helpline[1] = "Wow---I never thought anybody would tweak me here.";
 				helpline[0] = "You can't seriously need such a huge discretionary list?";

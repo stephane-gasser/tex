@@ -6,10 +6,7 @@
 #include "getnode.h"
 #include "ensurevbox.h"
 #include "xovern.h"
-#include "printnl.h"
-#include "print.h"
-#include "printesc.h"
-#include "printint.h"
+#include "impression.h"
 #include "error.h"
 #include "xovern.h"
 #include "vertbreak.h"
@@ -19,6 +16,7 @@
 #include "newspec.h"
 #include "texte.h"
 
+//! Append contributions to the current page.
 void buildpage(void)
 {
 	halfword p, q, r;
@@ -140,8 +138,7 @@ void buildpage(void)
 					page_shrink += height(q);
 					if (subtype(q) && height(q))
 					{
-						printnl("! ");
-						print("Infinite glue shrinkage inserted from ");
+						print_err("Infinite glue shrinkage inserted from ");
 						printesc("skip");
 						printint(n);
 						helpptr = 3;
@@ -255,8 +252,7 @@ void buildpage(void)
 			page_shrink += height(q);
 			if (subtype(q) && height(q))
 			{
-				printnl("! ");
-				print("Infinite glue shrinkage found on current page");
+				print_err("Infinite glue shrinkage found on current page");
 				helpptr = 4;
 				helpline[3] = "The page about to be output contains some infinitely";
 				helpline[2] = "shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.";

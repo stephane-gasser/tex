@@ -1,7 +1,5 @@
 #include "preparemag.h"
-#include "printnl.h"
-#include "print.h"
-#include "printint.h"
+#include "impression.h"
 #include "interror.h"
 #include "geqworddefine.h"
 #include "texte.h"
@@ -10,10 +8,7 @@ void preparemag(void)
 {
 	if (magset > 0 && mag() != magset)
 	{
-		printnl("! ");
-		print("Incompatible magnification (");
-		printint(mag());
-		print(");");
+		print_err("Incompatible magnification ("+std::to_string(mag())+");");
 		printnl(" the previous value will be retained");
 		helpptr = 2;
 		helpline[1] = "I can handle only one magnification ratio per job. So I've";
@@ -23,8 +18,7 @@ void preparemag(void)
 	}
 	if (mag() <= 0 || mag() > 0x80'00)
 	{
-		printnl("! ");
-		print("Illegal magnification has been changed to 1000");
+		print_err("Illegal magnification has been changed to 1000");
 		helpptr = 1;
 		helpline[0] = "The magnification ratio must be between 1 and 0x80'00.";
 		interror(mag());

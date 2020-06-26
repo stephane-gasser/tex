@@ -1,5 +1,5 @@
-<map id="maincontrol.h" name="maincontrol.h">
-<area shape="rect" id="node1" title=" " alt="" coords="51,5,151,32"/>
-<area shape="rect" id="node2" href="$main_8cpp.html" title=" " alt="" coords="5,80,80,107"/>
-<area shape="rect" id="node3" href="$maincontrol_8cpp.html" title=" " alt="" coords="104,80,219,107"/>
+<map id="inc/maincontrol.h" name="inc/maincontrol.h">
+<area shape="rect" id="node1" title=" " alt="" coords="64,5,185,32"/>
+<area shape="rect" id="node2" href="$main_8cpp.html" title=" " alt="" coords="5,80,103,107"/>
+<area shape="rect" id="node3" href="$maincontrol_8cpp.html" title=" " alt="" coords="127,80,263,107"/>
 </map>

@@ -1,5 +1,5 @@
-<map id="charbox.cpp" name="charbox.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="111,5,205,32"/>
+<map id="src/charbox.cpp" name="src/charbox.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="101,5,215,32"/>
 <area shape="rect" id="node2" href="$charbox_8h.html" title=" " alt="" coords="5,80,84,107"/>
 <area shape="rect" id="node4" href="$newnullbox_8h.html" title=" " alt="" coords="109,80,207,107"/>
 <area shape="rect" id="node5" href="$getavail_8h.html" title=" " alt="" coords="232,80,311,107"/>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>myTeX: Référence du fichier printcs.cpp</title>
+<title>myTeX: Référence du fichier src/printcs.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,6 +66,10 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
@@ -82,9 +86,9 @@ $(function() {
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de printcs.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="printcs_8cpp__incl.png" border="0" usemap="#printcs_8cpp" alt=""/></div>
-<map name="printcs_8cpp" id="printcs_8cpp">
-<area shape="rect" title=" " alt="" coords="203,5,290,32"/>
+<div class="center"><img src="printcs_8cpp__incl.png" border="0" usemap="#src_2printcs_8cpp" alt=""/></div>
+<map name="src_2printcs_8cpp" id="src_2printcs_8cpp">
+<area shape="rect" title=" " alt="" coords="193,5,301,32"/>
 <area shape="rect" href="printcs_8h.html" title=" " alt="" coords="5,80,77,107"/>
 <area shape="rect" href="printesc_8h.html" title=" " alt="" coords="102,80,181,107"/>
 <area shape="rect" href="printchar_8h.html" title=" " alt="" coords="205,80,288,107"/>
@@ -121,9 +125,9 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="printcs_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="printcs_8cpp_source.html">printcs.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">if</span> (p &lt; <a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea56f77b2122961eb876c05a23050e9318">hash_base</a>)</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordflow">if</span> (p &gt;= <a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea43b2dfafc3857b4bb9cc704b08f12392">single_base</a>)</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <span class="keywordflow">if</span> (p == <a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fceaf9c8a49144eff683292fe09dac65f22d">null_cs</a>)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">if</span> (p &lt; <a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a56f77b2122961eb876c05a23050e9318">hash_base</a>)</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordflow">if</span> (p &gt;= <a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a43b2dfafc3857b4bb9cc704b08f12392">single_base</a>)</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <span class="keywordflow">if</span> (p == <a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960af9c8a49144eff683292fe09dac65f22d">null_cs</a>)</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            {</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(<span class="stringliteral">&quot;csname&quot;</span>);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(<span class="stringliteral">&quot;endcsname&quot;</span>);</div>
@@ -131,17 +135,17 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            }</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(std::string(1, <span class="keywordtype">char</span>(p-<a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea43b2dfafc3857b4bb9cc704b08f12392">single_base</a>)));</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#ab70b4a53caf71f4da20a6f8a0c65ff20">cat_code</a>(p-<a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea43b2dfafc3857b4bb9cc704b08f12392">single_base</a>) == <a class="code" href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da948109da48f9e86ea059d0ef4632edda">letter</a>)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(std::string(1, <span class="keywordtype">char</span>(p-<a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a43b2dfafc3857b4bb9cc704b08f12392">single_base</a>)));</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#ab70b4a53caf71f4da20a6f8a0c65ff20">cat_code</a>(p-<a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a43b2dfafc3857b4bb9cc704b08f12392">single_base</a>) == <a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da948109da48f9e86ea059d0ef4632edda">letter</a>)</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                    <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39; &#39;</span>);</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            }</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">else</span> </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">if</span> (p &lt; <a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea8b628151288f8cb057bbb7cc53de3848">active_base</a>)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">if</span> (p &lt; <a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a8b628151288f8cb057bbb7cc53de3848">active_base</a>)</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(<span class="stringliteral">&quot;IMPOSSIBLE.&quot;</span>);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(p-<a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea8b628151288f8cb057bbb7cc53de3848">active_base</a>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(p-<a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a8b628151288f8cb057bbb7cc53de3848">active_base</a>);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">else</span> </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">if</span> (p &gt;= <a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fceaa909f3691545f26c1c43da24581088b2">undefined_control_sequence</a>)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">if</span> (p &gt;= <a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960aa909f3691545f26c1c43da24581088b2">undefined_control_sequence</a>)</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(<span class="stringliteral">&quot;IMPOSSIBLE.&quot;</span>);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">else</span> </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0">text</a>(p) &lt; 0 || <a class="code" href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0">text</a>(p) &gt;= <a class="code" href="globals_8cpp.html#a21dcaa2eb3344777d3382ee7deafdaa8">strptr</a>)</div>
@@ -193,19 +197,19 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea43b2dfafc3857b4bb9cc704b08f12392"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea43b2dfafc3857b4bb9cc704b08f12392">single_base</a></div><div class="ttdeci">@ single_base</div><div class="ttdoc">equivalents of one-character control sequences</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00374">constantes.h:374</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960af9c8a49144eff683292fe09dac65f22d"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960af9c8a49144eff683292fe09dac65f22d">null_cs</a></div><div class="ttdeci">@ null_cs</div><div class="ttdoc">equivalent of \csname\endcsname</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00374">constantes.h:374</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960aa909f3691545f26c1c43da24581088b2"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960aa909f3691545f26c1c43da24581088b2">undefined_control_sequence</a></div><div class="ttdeci">@ undefined_control_sequence</div><div class="ttdoc">dummy location</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00389">constantes.h:389</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_ab70b4a53caf71f4da20a6f8a0c65ff20"><div class="ttname"><a href="constantes_8cpp.html#ab70b4a53caf71f4da20a6f8a0c65ff20">cat_code</a></div><div class="ttdeci">halfword &amp; cat_code(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00021">constantes.cpp:21</a></div></div>
 <div class="ttc" id="aprintesc_8cpp_html_ace069a9f107f557990814241b661ad5f"><div class="ttname"><a href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a></div><div class="ttdeci">void printesc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printesc_8cpp_source.html#l00007">printesc.cpp:7</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fceaf9c8a49144eff683292fe09dac65f22d"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fceaf9c8a49144eff683292fe09dac65f22d">null_cs</a></div><div class="ttdeci">@ null_cs</div><div class="ttdoc">equivalent of \csname\endcsname</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00375">constantes.h:375</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fceaa909f3691545f26c1c43da24581088b2"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fceaa909f3691545f26c1c43da24581088b2">undefined_control_sequence</a></div><div class="ttdeci">@ undefined_control_sequence</div><div class="ttdoc">dummy location</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00390">constantes.h:390</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4da948109da48f9e86ea059d0ef4632edda"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da948109da48f9e86ea059d0ef4632edda">letter</a></div><div class="ttdeci">@ letter</div><div class="ttdoc">characters regarded as letters ( A..Z, a..z )</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00206">constantes.h:206</a></div></div>
 <div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
 <div class="ttc" id="atexte_8cpp_html_aaf77e9a4be9dd623634503ecf8b8223c"><div class="ttname"><a href="texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c">TXT</a></div><div class="ttdeci">std::string TXT(int i)</div><div class="ttdef"><b>Definition:</b> <a href="texte_8cpp_source.html#l01061">texte.cpp:1061</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea8b628151288f8cb057bbb7cc53de3848"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea8b628151288f8cb057bbb7cc53de3848">active_base</a></div><div class="ttdeci">@ active_base</div><div class="ttdoc">beginning of region 1, for active character equivalents</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00373">constantes.h:373</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_ac04939951c709f3d90ac4e9f6a6ff3b0"><div class="ttname"><a href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0">text</a></div><div class="ttdeci">halfword &amp; text(halfword p)</div><div class="ttdoc">string number for control sequence name</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00126">constantes.cpp:126</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960a43b2dfafc3857b4bb9cc704b08f12392"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a43b2dfafc3857b4bb9cc704b08f12392">single_base</a></div><div class="ttdeci">@ single_base</div><div class="ttdoc">equivalents of one-character control sequences</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00373">constantes.h:373</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a6de07defa89031626954e09d4394ff81"><div class="ttname"><a href="globals_8cpp.html#a6de07defa89031626954e09d4394ff81">hash</a></div><div class="ttdeci">twohalves hash[2881]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00099">globals.cpp:99</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea56f77b2122961eb876c05a23050e9318"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea56f77b2122961eb876c05a23050e9318">hash_base</a></div><div class="ttdeci">@ hash_base</div><div class="ttdoc">beginning of region 2, for the hash table</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00376">constantes.h:376</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960a56f77b2122961eb876c05a23050e9318"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a56f77b2122961eb876c05a23050e9318">hash_base</a></div><div class="ttdeci">@ hash_base</div><div class="ttdoc">beginning of region 2, for the hash table</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00375">constantes.h:375</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a21dcaa2eb3344777d3382ee7deafdaa8"><div class="ttname"><a href="globals_8cpp.html#a21dcaa2eb3344777d3382ee7deafdaa8">strptr</a></div><div class="ttdeci">strnumber strptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00054">globals.cpp:54</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_abc5c98fcc1211af2b80116dd6e0a035da948109da48f9e86ea059d0ef4632edda"><div class="ttname"><a href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035da948109da48f9e86ea059d0ef4632edda">letter</a></div><div class="ttdeci">@ letter</div><div class="ttdoc">characters regarded as letters ( A..Z, a..z )</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00207">constantes.h:207</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960a8b628151288f8cb057bbb7cc53de3848"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a8b628151288f8cb057bbb7cc53de3848">active_base</a></div><div class="ttdeci">@ active_base</div><div class="ttdoc">beginning of region 1, for active character equivalents</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00372">constantes.h:372</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

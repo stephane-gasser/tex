@@ -1,7 +1,7 @@
-<map id="shortdisplay.h" name="shortdisplay.h">
-<area shape="rect" id="node1" title=" " alt="" coords="189,5,291,32"/>
-<area shape="rect" id="node2" href="$hpack_8cpp.html" title=" " alt="" coords="5,80,88,107"/>
-<area shape="rect" id="node3" href="$shortdisplay_8cpp.html" title=" " alt="" coords="112,80,227,107"/>
-<area shape="rect" id="node4" href="$shownodelist_8cpp.html" title=" " alt="" coords="251,80,373,107"/>
-<area shape="rect" id="node5" href="$vpackage_8cpp.html" title=" " alt="" coords="398,80,501,107"/>
+<map id="inc/shortdisplay.h" name="inc/shortdisplay.h">
+<area shape="rect" id="node1" title=" " alt="" coords="224,5,347,32"/>
+<area shape="rect" id="node2" href="$hpack_8cpp.html" title=" " alt="" coords="5,80,109,107"/>
+<area shape="rect" id="node3" href="$shortdisplay_8cpp.html" title=" " alt="" coords="134,80,271,107"/>
+<area shape="rect" id="node4" href="$shownodelist_8cpp.html" title=" " alt="" coords="295,80,441,107"/>
+<area shape="rect" id="node5" href="$vpackage_8cpp.html" title=" " alt="" coords="465,80,591,107"/>
 </map>

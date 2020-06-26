@@ -1,7 +1,7 @@
-<map id="specialout.h" name="specialout.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,97,32"/>
-<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="14,80,89,107"/>
-<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="43,229,94,256"/>
-<area shape="rect" id="node4" title=" " alt="" coords="28,155,75,181"/>
-<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="99,155,196,181"/>
+<map id="inc/specialout.h" name="inc/specialout.h">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,119,32"/>
+<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="25,80,99,107"/>
+<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="54,229,105,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="39,155,85,181"/>
+<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="109,155,207,181"/>
 </map>

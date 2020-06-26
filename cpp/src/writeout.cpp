@@ -3,9 +3,7 @@
 #include "begintokenlist.h"
 #include "scantoks.h"
 #include "gettoken.h"
-#include "printnl.h"
-#include "println.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "endtokenlist.h"
 #include "tokenshow.h"
@@ -33,8 +31,7 @@ void writeout(halfword p)
 	gettoken();
 	if (curtok != end_write_token)
 	{
-		printnl("! ");
-		print("Unbalanced write command");
+		print_err("Unbalanced write command");
 		helpptr = 2;
 		helpline[1] = "On this page there's a \\write with fewer real {'s than }'s.";
 		helpline[0] = "I can't handle that very well; good luck.";

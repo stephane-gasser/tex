@@ -1,7 +1,7 @@
-<map id="charbox.h" name="charbox.h">
-<area shape="rect" id="node1" title=" " alt="" coords="235,5,314,32"/>
-<area shape="rect" id="node2" href="$charbox_8cpp.html" title=" " alt="" coords="5,80,99,107"/>
-<area shape="rect" id="node3" href="$makemathaccent_8cpp.html" title=" " alt="" coords="123,80,269,107"/>
-<area shape="rect" id="node4" href="$stackintobox_8cpp.html" title=" " alt="" coords="294,80,415,107"/>
-<area shape="rect" id="node5" href="$vardelimiter_8cpp.html" title=" " alt="" coords="439,80,553,107"/>
+<map id="inc/charbox.h" name="inc/charbox.h">
+<area shape="rect" id="node1" title=" " alt="" coords="269,5,369,32"/>
+<area shape="rect" id="node2" href="$charbox_8cpp.html" title=" " alt="" coords="5,80,120,107"/>
+<area shape="rect" id="node3" href="$makemathaccent_8cpp.html" title=" " alt="" coords="145,80,314,107"/>
+<area shape="rect" id="node4" href="$stackintobox_8cpp.html" title=" " alt="" coords="338,80,481,107"/>
+<area shape="rect" id="node5" href="$vardelimiter_8cpp.html" title=" " alt="" coords="505,80,639,107"/>
 </map>

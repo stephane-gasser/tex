@@ -1,24 +1,15 @@
 #include "storefmtfile.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "jumpout.h"
-#include "printchar.h"
-#include "printint.h"
 #include "overflow.h"
 #include "makestring.h"
 #include "packjobname.h"
-#include "wopenout.h"
 #include "promptfilename.h"
 #include "wmakenamestring.h"
-#include "slowprint.h"
-#include "println.h"
 #include "sortavail.h"
-#include "printesc.h"
-#include "printfilename.h"
-#include "printscaled.h"
 #include "inittrie.h"
-#include "wclose.h"
+#include "fichier.h"
 #include "texte.h"
 
 constexpr char format_extension[] = ".fmt"; //!< the extension, as a WEB constant
@@ -45,8 +36,7 @@ void storefmtfile(void)
 	halfword p, q;
 	if (saveptr)
 	{ 
-		printnl("! ");
-		print("You can't dump_int inside a group");
+		print_err("You can't dump_int inside a group");
 		helpptr = 1;
 		helpline[0] = "`{...\\dump_int}' is a no-no.";
 		if (interaction == error_stop_mode)
@@ -57,15 +47,7 @@ void storefmtfile(void)
 		jumpout();
 	}
 	selector = new_string;
-	print(" (preloaded format=");
-	print(jobname);
-	printchar(' ');
-	printint(year());
-	printchar('.');
-	printint(month());
-	printchar('.');
-	printint(day());
-	printchar(')');
+	print(" (preloaded format="+jobname+" "+std::to_string(year())+"."+std::to_string(month())+"."+std::to_string(day())+")");
 	if (interaction == batch_mode)
 		selector = log_only;
 	else

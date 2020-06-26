@@ -1,7 +1,6 @@
 #include "getrtoken.h"
 #include "gettoken.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "backinput.h"
 #include "inserror.h"
 #include "texte.h"
@@ -12,11 +11,10 @@ void getrtoken(void)
 	{
 		do
 			gettoken();
-		while (curtok == spacer*0x01'00+' ');
+		while (curtok == space_token);
 		if (curcs == 0 || curcs > frozen_control_sequence)
 		{
-			printnl("! ");
-			print("Missing control sequence inserted");
+			print_err("Missing control sequence inserted");
 			helpptr = 5;
 			helpline[4] = "Please don't say `\\def cs{...}', say `\\def\\cs{...}'.";
 			helpline[3] = "I've inserted an inaccessible control sequence so that your";

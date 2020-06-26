@@ -1,9 +1,6 @@
 #include "begininsertoradjust.h"
 #include "scaneightbitint.h"
-#include "printnl.h"
-#include "print.h"
-#include "printesc.h"
-#include "printint.h"
+#include "impression.h"
 #include "error.h"
 #include "newsavelevel.h"
 #include "scanleftbrace.h"
@@ -20,10 +17,7 @@ void begininsertoradjust(void)
 		scaneightbitint();
 		if (curval == 255)
 		{
-			printnl("! ");
-			print("You can't ");
-			printesc("insert");
-			printint(255);
+			print_err("You can't "+esc("insert")+"255");
 			helpptr = 1;
 			helpline[0] = "I'm changing to \\insert0; box 255 is special.";
 			error();

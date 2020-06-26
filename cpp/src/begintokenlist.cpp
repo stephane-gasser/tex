@@ -3,23 +3,14 @@
 #include "begindiagnostic.h"
 #include "enddiagnostic.h"
 #include "tokenshow.h"
-#include "print.h"
-#include "printesc.h"
-#include "printnl.h"
-#include "printcmdchr.h"
+#include "impression.h"
 #include "pushinput.h"
 
 //! backs up a simple token list
-void back_list(halfword p)
-{
-	begintokenlist(p, backed_up);
-}
+void back_list(halfword p) { begintokenlist(p, backed_up); }
 
 //! inserts a simple token list
-void ins_list(halfword p)
-{
-	begintokenlist(p, inserted);
-}
+void ins_list(halfword p) { begintokenlist(p, inserted); }
 
 void begintokenlist(halfword p, quarterword t)
 {
@@ -27,9 +18,9 @@ void begintokenlist(halfword p, quarterword t)
 	state = token_list;
 	start = p;
 	index = t;
-	if (t >= macro)
+	if (t >= macro) //the token list starts with a reference count
 	{
-		info(p)++;
+		add_token_ref(p);
 		if (t == macro)
 			param_start = paramptr;
 		else

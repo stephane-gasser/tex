@@ -1,8 +1,6 @@
 #include "doregistercommand.h"
 #include "getxtoken.h"
-#include "printnl.h"
-#include "print.h"
-#include "printcmdchr.h"
+#include "impression.h"
 #include "error.h"
 #include "scaneightbitint.h"
 #include "scanoptionalequals.h"
@@ -39,8 +37,7 @@ void doregistercommand(smallnumber a)
 			}
 			if (curcmd != register_)
 			{
-				printnl("! ");
-				print("You can't use `"); 
+				print_err("You can't use `"); 
 				printcmdchr(curcmd, curchr);
 				print("' after ");
 				printcmdchr(q, 0);
@@ -147,8 +144,7 @@ void doregistercommand(smallnumber a)
 	}
 	if (aritherror)
 	{
-		printnl("! ");
-		print("Arithmetic overflow");
+		print_err("Arithmetic overflow");
 		helpptr = 2;
 		helpline[1] = "I can't carry out that multiplication or division,";
 		helpline[0] = "since the result is out of range.";

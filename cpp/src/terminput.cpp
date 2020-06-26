@@ -1,7 +1,6 @@
 #include "terminput.h"
 #include "inputln.h"
-#include "printchar.h"
-#include "println.h"
+#include "impression.h"
 #include "fatalerror.h"
 #include <iostream>
 

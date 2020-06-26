@@ -1,7 +1,7 @@
-<map id="closefilesandterminate.h" name="closefilesandterminate.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,168,32"/>
-<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="49,80,124,107"/>
-<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="79,229,129,256"/>
-<area shape="rect" id="node4" title=" " alt="" coords="63,155,110,181"/>
-<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="134,155,231,181"/>
+<map id="inc/closefilesandterminate.h" name="inc/closefilesandterminate.h">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,189,32"/>
+<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="60,80,135,107"/>
+<area shape="rect" id="node3" href="$tex_8h.html" title=" " alt="" coords="89,229,140,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="74,155,121,181"/>
+<area shape="rect" id="node5" href="$constantes_8h.html" title=" " alt="" coords="145,155,242,181"/>
 </map>

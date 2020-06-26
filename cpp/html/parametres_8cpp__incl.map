@@ -1,5 +1,5 @@
-<map id="parametres.cpp" name="parametres.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="44,5,156,32"/>
+<map id="src/parametres.cpp" name="src/parametres.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="33,5,167,32"/>
 <area shape="rect" id="node2" href="$tex_8h.html" title=" " alt="" coords="13,229,64,256"/>
 <area shape="rect" id="node4" href="$globals_8h.html" title=" " alt="" coords="63,80,137,107"/>
 <area shape="rect" id="node7" href="$parametres_8h.html" title=" " alt="" coords="189,229,288,256"/>

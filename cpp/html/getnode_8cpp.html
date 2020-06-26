@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>myTeX: Référence du fichier getnode.cpp</title>
+<title>myTeX: Référence du fichier src/getnode.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,6 +66,10 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
@@ -79,9 +83,9 @@ $(function() {
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de getnode.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="getnode_8cpp__incl.png" border="0" usemap="#getnode_8cpp" alt=""/></div>
-<map name="getnode_8cpp" id="getnode_8cpp">
-<area shape="rect" title=" " alt="" coords="50,5,143,32"/>
+<div class="center"><img src="getnode_8cpp__incl.png" border="0" usemap="#src_2getnode_8cpp" alt=""/></div>
+<map name="src_2getnode_8cpp" id="src_2getnode_8cpp">
+<area shape="rect" title=" " alt="" coords="39,5,154,32"/>
 <area shape="rect" href="getnode_8h.html" title=" " alt="" coords="5,80,84,107"/>
 <area shape="rect" href="overflow_8h.html" title=" " alt="" coords="109,80,189,107"/>
 <area shape="rect" href="globals_8h.html" title=" " alt="" coords="59,155,134,181"/>
@@ -123,7 +127,7 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">do</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        { </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> q = p+<a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <span class="keywordflow">while</span> (<a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q) == <a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa4a7b4328cb067545ebc5696e8469ecaa">empty_flag</a>)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <span class="keywordflow">while</span> (<a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q) == <a class="code" href="constantes_8h.html#a0944a4353780132eeab7b06e3e42291da4a7b4328cb067545ebc5696e8469ecaa">empty_flag</a>)</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            {</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                <span class="keyword">auto</span> t = <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q+1);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                <span class="keywordflow">if</span> (q == <a class="code" href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a>)</div>
@@ -253,11 +257,11 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00570">constantes.h:570</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a5d76b81b0ad4c19007a781d4edb8181fa4a7b4328cb067545ebc5696e8469ecaa"><div class="ttname"><a href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa4a7b4328cb067545ebc5696e8469ecaa">empty_flag</a></div><div class="ttdeci">@ empty_flag</div><div class="ttdoc">the link of an empty variable-size node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00610">constantes.h:610</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00569">constantes.h:569</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa428ec3ffbafd3eb1d48e687652aeee0"><div class="ttname"><a href="globals_8cpp.html#aa428ec3ffbafd3eb1d48e687652aeee0">rover</a></div><div class="ttdeci">halfword rover</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00080">globals.cpp:80</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a0944a4353780132eeab7b06e3e42291da4a7b4328cb067545ebc5696e8469ecaa"><div class="ttname"><a href="constantes_8h.html#a0944a4353780132eeab7b06e3e42291da4a7b4328cb067545ebc5696e8469ecaa">empty_flag</a></div><div class="ttdeci">@ empty_flag</div><div class="ttdoc">the link of an empty variable-size node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00609">constantes.h:609</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

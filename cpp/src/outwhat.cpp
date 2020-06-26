@@ -1,8 +1,7 @@
 #include "outwhat.h"
 #include "writeout.h"
 #include "packfilename.h"
-#include "aclose.h"
-#include "aopenout.h"
+#include "fichier.h"
 #include "promptfilename.h"
 #include "specialout.h"
 #include "confusion.h"
@@ -12,9 +11,9 @@ void outwhat(halfword p)
 {
 	switch (subtype(p))
 	{
-		case 0:
-		case 1:
-		case 2:
+		case open_node:
+		case write_node:
+		case close_node:
 			if (!doingleaders)
 			{
 				smallnumber j = info(p+1);
@@ -42,10 +41,10 @@ void outwhat(halfword p)
 				}
 			}
 			break;
-		case 3: 
+		case special_node: 
 			specialout(p);
 			break;
-		case 4:
+		case language_node:
 			break;
 		default:
 			confusion("ext4");

@@ -15,6 +15,24 @@ constexpr int hyph_size = 307; //!<  another prime; the number of \\hyphenation 
 
 enum
 {
+	number_code = 0, // //command code for \number
+	roman_numeral_code = 1, //command code for \romannumeral
+	string_code = 2, //command code for \string
+	meaning_code = 3, //command code for \meaning
+	font_name_code = 4, //command code for \fontname
+	job_name_code = 5 //command code for \jobname
+};
+
+enum
+{
+	if_code = 1, //code for \if... being evaluated
+	fi_code = 2, //code for \fi
+	else_code = 3, //code for \else
+	or_code = 4, //code for \or
+};
+
+enum
+{
 	no_print = 16, //!< \a selector setting that makes data disappear
 	term_only = 17, //!<  printing is destined for the terminal only
 	log_only = 18, //!<  printing is destined for the transcript file only
@@ -895,5 +913,7 @@ inline bool end_line_char_inactive() { return end_line_char() < 0 || end_line_ch
 inline int cramped_style(int c) { return 2*(c/2)+cramped; } //!< cramp the style
 inline int sub_style(int c) { return 2*(c/4)+script_style+cramped; } //!< smaller and cramped
 inline int sup_style(int c) { return 2*(c/4)+script_style+c%2; } //!< smaller
+inline void add_token_ref(halfword p) { token_ref_count(p)++; } //!< new reference to a token list
+
 
 #endif

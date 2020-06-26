@@ -1,12 +1,8 @@
 #include "offsave.h"
-#include "printnl.h"
-#include "printcmdchr.h"
-#include "print.h"
+#include "impression.h"
 #include "backinput.h"
 #include "error.h"
-#include "printesc.h"
 #include "getavail.h"
-#include "printchar.h"
 #include "begintokenlist.h"
 #include "texte.h"
 
@@ -14,8 +10,7 @@ void offsave(void)
 {
 	if (curgroup == bottom_level)
 	{
-		printnl("! ");
-		print("Extra ");
+		print_err("Extra ");
 		printcmdchr(curcmd, curchr);
 		helpptr = 1;
 		helpline[0] = "Things are pretty mixed up, but I think the worst is over.";
@@ -25,8 +20,7 @@ void offsave(void)
 		backinput();
 		auto p = getavail();
 		link(temp_head) = p;
-		printnl("! ");
-		print("Missing ");
+		print_err("Missing ");
 		switch (curgroup)
 		{
 			case semi_simple_group:

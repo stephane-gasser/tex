@@ -5,7 +5,7 @@
 void appendkern(void)
 {
 	auto s = curchr;
-	scandimen(s == 99, false, false);
+	scandimen(s == mu_glue, false, false);
 	tail_append(newkern(curval));
 	subtype(tail) = s;
 }

@@ -19,28 +19,26 @@ constexpr int fontmemsize = 20000;
 constexpr int paramsize = 60;
 constexpr int nestsize = 40;
 constexpr int maxstrings = 3000;
-constexpr int stringvacancies = 8000;
 constexpr int poolsize = 32000;
 constexpr int savesize = 600;
 constexpr int triesize = 8000;
 constexpr int trieopsize = 500;
 constexpr int dvibufsize = 800;
 constexpr int filenamesize = 40;
-constexpr char poolname[] = "tex.pool";
 
 ///////////////////////////////////////////////////////////////////////////////
 // types
 ///////////////////////////////////////////////////////////////////////////////
-typedef unsigned char ASCIIcode; // 0..255
-typedef unsigned char eightbits; // 0..255
+typedef std::uint8_t ASCIIcode; // 0..255
+typedef std::uint8_t eightbits; // 0..255
 typedef std::fstream alphafile; // file of char
 typedef std::fstream bytefile; // file of eightbits
+typedef std::fstream wordfile; // file of memoryword
 typedef int poolpointer; // 0..poolsize
 typedef int strnumber; // 0..maxstrings
-typedef unsigned char packedASCIIcode; // 0..255
+typedef std::uint8_t packedASCIIcode; // 0..255
 typedef int scaled;
-typedef unsigned int nonnegativeinteger; //0..2147483647
-typedef unsigned char smallnumber; // 0..63
+typedef std::uint8_t smallnumber; // 0..63
 typedef float glueratio;
 typedef std::uint8_t quarterword; // 0..255
 typedef std::uint16_t halfword; // 0..0xFF'FF
@@ -67,18 +65,14 @@ typedef struct
 	std::uint8_t b3;
 } fourquarters;
 
-typedef struct
+typedef union
 {
-	union
-	{
-		std::int32_t int_;
-		float gr;
-		twohalves hh;
-		fourquarters qqqq;
-	};
+	std::int32_t int_;
+	float gr;
+	twohalves hh;
+	fourquarters qqqq;
 } memoryword;
 
-typedef std::fstream wordfile; // file of memoryword
 typedef char glueord; //0..3
 
 typedef struct

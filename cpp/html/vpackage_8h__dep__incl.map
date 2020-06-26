@@ -1,15 +1,15 @@
-<map id="vpackage.h" name="vpackage.h">
-<area shape="rect" id="node1" title=" " alt="" coords="703,5,793,32"/>
-<area shape="rect" id="node2" href="$finalign_8cpp.html" title=" " alt="" coords="5,80,93,107"/>
-<area shape="rect" id="node3" href="$fincol_8cpp.html" title=" " alt="" coords="118,80,197,107"/>
-<area shape="rect" id="node4" href="$finrow_8cpp.html" title=" " alt="" coords="221,80,301,107"/>
-<area shape="rect" id="node5" href="$fireup_8cpp.html" title=" " alt="" coords="326,80,405,107"/>
-<area shape="rect" id="node6" href="$handlerightbrace_8cpp.html" title=" " alt="" coords="429,80,571,107"/>
-<area shape="rect" id="node7" href="$makemathaccent_8cpp.html" title=" " alt="" coords="596,80,743,107"/>
-<area shape="rect" id="node8" href="$makescripts_8cpp.html" title=" " alt="" coords="767,80,886,107"/>
-<area shape="rect" id="node9" href="$makeunder_8cpp.html" title=" " alt="" coords="910,80,1021,107"/>
-<area shape="rect" id="node10" href="$overbar_8cpp.html" title=" " alt="" coords="1045,80,1134,107"/>
-<area shape="rect" id="node11" href="$package_8cpp.html" title=" " alt="" coords="1159,80,1255,107"/>
-<area shape="rect" id="node12" href="$vpackage_8cpp.html" title=" " alt="" coords="1279,80,1382,107"/>
-<area shape="rect" id="node13" href="$vsplit_8cpp.html" title=" " alt="" coords="1406,80,1485,107"/>
+<map id="inc/vpackage.h" name="inc/vpackage.h">
+<area shape="rect" id="node1" title=" " alt="" coords="824,5,935,32"/>
+<area shape="rect" id="node2" href="$finalign_8cpp.html" title=" " alt="" coords="5,80,116,107"/>
+<area shape="rect" id="node3" href="$fincol_8cpp.html" title=" " alt="" coords="140,80,240,107"/>
+<area shape="rect" id="node4" href="$finrow_8cpp.html" title=" " alt="" coords="264,80,367,107"/>
+<area shape="rect" id="node5" href="$fireup_8cpp.html" title=" " alt="" coords="391,80,493,107"/>
+<area shape="rect" id="node6" href="$handlerightbrace_8cpp.html" title=" " alt="" coords="517,80,681,107"/>
+<area shape="rect" id="node7" href="$makemathaccent_8cpp.html" title=" " alt="" coords="705,80,875,107"/>
+<area shape="rect" id="node8" href="$makescripts_8cpp.html" title=" " alt="" coords="899,80,1039,107"/>
+<area shape="rect" id="node9" href="$makeunder_8cpp.html" title=" " alt="" coords="1063,80,1195,107"/>
+<area shape="rect" id="node10" href="$overbar_8cpp.html" title=" " alt="" coords="1219,80,1329,107"/>
+<area shape="rect" id="node11" href="$package_8cpp.html" title=" " alt="" coords="1353,80,1472,107"/>
+<area shape="rect" id="node12" href="$vpackage_8cpp.html" title=" " alt="" coords="1497,80,1622,107"/>
+<area shape="rect" id="node13" href="$vsplit_8cpp.html" title=" " alt="" coords="1647,80,1747,107"/>
 </map>

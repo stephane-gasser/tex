@@ -1,7 +1,5 @@
 #include "firmuptheline.h"
-#include "println.h"
-#include "print.h"
-#include "printchar.h"
+#include "impression.h"
 #include "terminput.h"
 
 static int pausing(void) { return int_par(pausing_code); }

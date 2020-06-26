@@ -1,9 +1,9 @@
-<map id="eqworddefine.h" name="eqworddefine.h">
-<area shape="rect" id="node1" title=" " alt="" coords="401,5,512,32"/>
-<area shape="rect" id="node2" href="$doregistercommand_8cpp.html" title=" " alt="" coords="5,80,167,107"/>
-<area shape="rect" id="node3" href="$eqworddefine_8cpp.html" title=" " alt="" coords="191,80,315,107"/>
-<area shape="rect" id="node4" href="$initmath_8cpp.html" title=" " alt="" coords="339,80,433,107"/>
-<area shape="rect" id="node5" href="$normalparagraph_8cpp.html" title=" " alt="" coords="457,80,600,107"/>
-<area shape="rect" id="node6" href="$prefixedcommand_8cpp.html" title=" " alt="" coords="624,80,775,107"/>
-<area shape="rect" id="node7" href="$starteqno_8cpp.html" title=" " alt="" coords="799,80,901,107"/>
+<map id="inc/eqworddefine.h" name="inc/eqworddefine.h">
+<area shape="rect" id="node1" title=" " alt="" coords="457,5,587,32"/>
+<area shape="rect" id="node2" href="$doregistercommand_8cpp.html" title=" " alt="" coords="5,80,188,107"/>
+<area shape="rect" id="node3" href="$eqworddefine_8cpp.html" title=" " alt="" coords="213,80,359,107"/>
+<area shape="rect" id="node4" href="$initmath_8cpp.html" title=" " alt="" coords="383,80,498,107"/>
+<area shape="rect" id="node5" href="$normalparagraph_8cpp.html" title=" " alt="" coords="522,80,687,107"/>
+<area shape="rect" id="node6" href="$prefixedcommand_8cpp.html" title=" " alt="" coords="712,80,884,107"/>
+<area shape="rect" id="node7" href="$starteqno_8cpp.html" title=" " alt="" coords="909,80,1031,107"/>
 </map>

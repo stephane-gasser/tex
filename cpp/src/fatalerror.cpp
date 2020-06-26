@@ -1,7 +1,6 @@
 #include "fatalerror.h"
 #include "normalizeselector.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "jumpout.h"
 #include "texte.h"
@@ -9,10 +8,9 @@
 void fatalerror(const std::string &s)
 {
 	normalizeselector();
-	printnl("! ");
-	print("Emergency stop");
+	print_err("Emergency stop");
 	helpptr = 1;
-	helpline[0] = txt(s);
+	helpline[0] = s;
 	if (interaction == error_stop_mode)
 		interaction = scroll_mode;
 	if (logopened)

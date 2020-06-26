@@ -1,7 +1,5 @@
 #include "vsplit.h"
-#include "printnl.h"
-#include "print.h"
-#include "printesc.h"
+#include "impression.h"
 #include "error.h"
 #include "vertbreak.h"
 #include "deletetokenref.h"
@@ -24,11 +22,7 @@ halfword vsplit(eightbits n, scaled h)
 		return 0;
 	if (type(v) != 1)
 	{
-		printnl("! ");
-		print("");
-		printesc("vsplit");
-		print(" needs a ");
-		printesc("vbox");
+		print_err(esc("vsplit")+" needs a "+esc("vbox"));
 		helpptr = 2;
 		helpline[1] = "The box you are trying to split is an \\hbox.";
 		helpline[0] = "I can't split such a box, so I'll leave it alone.";

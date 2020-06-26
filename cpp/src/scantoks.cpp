@@ -1,8 +1,7 @@
 #include "scantoks.h"
 #include "getavail.h"
 #include "gettoken.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "backerror.h"
 #include "scanleftbrace.h"
@@ -11,7 +10,6 @@
 #include "thetoks.h"
 #include "xtoken.h"
 #include "getxtoken.h"
-#include "sprintcs.h"
 #include "texte.h"
 
 halfword scantoks(bool macrodef, bool xpand)
@@ -34,8 +32,7 @@ halfword scantoks(bool macrodef, bool xpand)
 				store_new_token(p, end_match_token);
 				if (curcmd == right_brace)
 				{
-					printnl("! ");
-					print("Missing { inserted"); 
+					print_err("Missing { inserted"); 
 					alignstate++;
 					helpptr = 2;
 					helpline[1] = "Where was the left brace? You said something like `\\def\\a}',";
@@ -59,8 +56,7 @@ halfword scantoks(bool macrodef, bool xpand)
 				}
 				if (t == zero_token+9)
 				{
-					printnl("! ");
-					print("You already have nine parameters");
+					print_err("You already have nine parameters");
 					helpptr = 1;
 					helpline[0] = "I'm going to ignore the # sign you just used.";
 					error();
@@ -70,8 +66,7 @@ halfword scantoks(bool macrodef, bool xpand)
 					t++;
 					if (curtok != t)
 					{
-						printnl("! "); 
-						print("Parameters must be numbered consecutively");
+						print_err("Parameters must be numbered consecutively");
 						helpptr = 2;
 						helpline[1] = "I've inserted the digit you should have used after the #.";
 						helpline[0] = "Type `1' to delete what you did use.";
@@ -134,8 +129,7 @@ halfword scantoks(bool macrodef, bool xpand)
 					if (curcmd != mac_param)
 						if (curtok <= zero_token || curtok > t) 
 						{
-							printnl("! ");
-							print("Illegal parameter number in definition of "); 
+							print_err("Illegal parameter number in definition of "); 
 							sprintcs(warningindex);
 							helpptr = 3;
 							helpline[2] = "You meant to type ## instead of #, right?";

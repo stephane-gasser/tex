@@ -1,7 +1,6 @@
 #include "subsup.h"
 #include "newnoad.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "scanmath.h"
 #include "texte.h"
@@ -29,15 +28,13 @@ void subsup(void)
 		{
 			if (curcmd == sup_mark)
 			{
-				printnl("! ");
-				print("Double superscript");
+				print_err("Double superscript");
 				helpptr = 1;
 				helpline[0] = "I treat `x^1^2' essentially like `x^1{}^2'.";
 			}
 			else
 			{
-				printnl("! ");
-				print("Double subscript");
+				print_err("Double subscript");
 				helpptr = 1;
 				helpline[0] = "I treat `x_1_2' essentially like `x_1{}_2'.";
 			}

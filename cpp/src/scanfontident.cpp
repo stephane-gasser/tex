@@ -1,8 +1,7 @@
 #include "scanfontident.h"
 #include "getxtoken.h"
 #include "scanfourbitint.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "backerror.h"
 #include "texte.h"
 
@@ -26,8 +25,7 @@ void scanfontident(void)
 			}
 			else
 			{
-				printnl("! ");
-				print("Missing font identifier");
+				print_err("Missing font identifier");
 				helpptr = 2;
 				helpline[1] = "I was looking for a control sequence whose";
 				helpline[0] = "current meaning has been defined by \\font.";

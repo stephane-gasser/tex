@@ -1,5 +1,5 @@
 #include "openfmtfile.h"
-#include "wopenin.h"
+#include "fichier.h"
 #include "packbufferedname.h"
 #include <iostream>
 

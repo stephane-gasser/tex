@@ -12,7 +12,7 @@
 <area shape="rect" id="node14" href="$openlogfile_8cpp.html#aa093bac5d614a1706a24856de98e0c7d" title=" " alt="" coords="623,259,707,285"/>
 <area shape="rect" id="node15" href="$printscaled_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb" title=" " alt="" coords="875,107,960,133"/>
 <area shape="rect" id="node16" href="$scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b" title=" " alt="" coords="121,613,260,640"/>
-<area shape="rect" id="node20" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title=" " alt="" coords="476,563,540,589"/>
+<area shape="rect" id="node20" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="476,563,540,589"/>
 <area shape="rect" id="node21" href="$scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240" title=" " alt="" coords="459,765,557,792"/>
 <area shape="rect" id="node22" href="$scanfilename_8cpp.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="141,1069,240,1096"/>
 <area shape="rect" id="node26" href="$overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="471,1069,545,1096"/>

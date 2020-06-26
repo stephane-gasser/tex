@@ -3,21 +3,16 @@
 #include "getxtoken.h"
 #include "scanint.h"
 #include "scandimen.h"
-#include "printnl.h"
-#include "print.h"
-#include "printcmdchr.h"
+#include "impression.h"
 #include "backerror.h"
 #include "scaneightbitint.h"
 #include "getnext.h"
 #include "scanfourbitint.h"
 #include "begindiagnostic.h"
-#include "printint.h"
-#include "printchar.h"
 #include "enddiagnostic.h"
 #include "freenode.h"
 #include "passtext.h"
 #include "changeiflimit.h"
-#include "printesc.h"
 #include "error.h"
 #include "texte.h"
 
@@ -91,8 +86,7 @@ void conditional(void)
 				r = curtok-0x0C'00;
 			else
 			{
-				printnl("! ");
-				print("Missing = inserted for ");
+				print_err("Missing = inserted for ");
 				printcmdchr(if_test, thisif);
 				helpptr = 1;
 				helpline[0] = "I was expecting to see `<', `=', or `>'. Didn't.";
@@ -271,9 +265,7 @@ void conditional(void)
 					iflimit = 2;
 				return;
 			}
-			printnl("! "); 
-			print("Extra ");
-			printesc("or");
+			print_err("Extra "+esc("or"));
 			helpptr = 1;
 			helpline[0] = "I'm ignoring this; it doesn't match any \\if.";
 			error();

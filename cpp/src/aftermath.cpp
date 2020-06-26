@@ -1,6 +1,5 @@
 #include "aftermath.h"
-#include "printnl.h"
-#include "print.h"
+#include "impression.h"
 #include "error.h"
 #include "flushmath.h"
 #include "getxtoken.h"
@@ -26,21 +25,22 @@ static int pre_display_size(void) { return dimen_par(pre_display_size_code); }
 constexpr int total_mathsy_params = 22;
 constexpr int total_mathex_params = 13;
 
+//! Action procedure for use in maincontrol()
 void aftermath(void)
 {
-	bool l;
-	int m;
-	halfword p, a, b;
+	bool l; // `\\leqno' instead of `\\eqno'
+	int m; // \a mmode or \a -mmode
+	halfword a; // box containing equation number
+	halfword p, b;
 	scaled w, z, e, q, d, s;
 	smallnumber g1, g2;
 	halfword r, t;
-	bool danger = false;
+	bool danger = false; // not enough symbol fonts are present
 	if (fontparams[fam_fnt(2+text_size)] < total_mathsy_params 
 	 || fontparams[fam_fnt(2+script_size)] < total_mathsy_params 
 	 || fontparams[fam_fnt(2+script_script_size)] < total_mathsy_params)
 	{
-		printnl("! ");
-		print("Math formula deleted: Insufficient symbol fonts");
+		print_err("Math formula deleted: Insufficient symbol fonts");
 		helpptr = 3;
 		helpline[2] = "Sorry, but I can't typeset math unless \\textfont 2";
 		helpline[1] = "and \\scriptfont 2 and \\scriptscriptfont 2 have all";
@@ -54,8 +54,7 @@ void aftermath(void)
 		 || fontparams[fam_fnt(3+script_size)] < total_mathex_params
 		 || fontparams[fam_fnt(3+script_script_size)] < total_mathex_params)
 		{
-			printnl("! ");
-			print("Math formula deleted: Insufficient extension fonts"); 
+			print_err("Math formula deleted: Insufficient extension fonts"); 
 			helpptr = 3;
 			helpline[2] = "Sorry, but I can't typeset math unless \\textfont 3";
 			helpline[1] = "and \\scriptfont 3 and \\scriptscriptfont 3 have all";
@@ -70,8 +69,7 @@ void aftermath(void)
 	if (mode == -m)
 	{
 		getxtoken();
-		printnl("! ");
-		print("Display math should end with $$"); 
+		print_err("Display math should end with $$"); 
 		helpptr = 2;
 		helpline[1] = "The `$' that I just saw supposedly matches a previous `$$'.";
 		helpline[0] = "So I shall assume that you typed `$$' both times.";
@@ -90,8 +88,7 @@ void aftermath(void)
 		 || fontparams[fam_fnt(2+script_size)] < total_mathsy_params 
 		 || fontparams[fam_fnt(2+script_script_size)] < total_mathsy_params)
 		{
-			printnl("! ");
-			print("Math formula deleted: Insufficient symbol fonts");
+			print_err("Math formula deleted: Insufficient symbol fonts");
 			helpptr = 3;
 			helpline[2] = "Sorry, but I can't typeset math unless \\textfont 2";
 			helpline[1] = "and \\scriptfont 2 and \\scriptscriptfont 2 have all";
@@ -105,8 +102,7 @@ void aftermath(void)
 			 || fontparams[fam_fnt(3+script_size)] < total_mathex_params
 			 || fontparams[fam_fnt(3+script_script_size)] < total_mathex_params)
 			{
-				printnl("! "); 
-				print("Math formula deleted: Insufficient extension fonts"); 
+				print_err("Math formula deleted: Insufficient extension fonts"); 
 				helpptr = 3;
 				helpline[2] = "Sorry, but I can't typeset math unless \\textfont 3";
 				helpline[1] = "and \\scriptfont 3 and \\scriptscriptfont 3 have all";
@@ -141,8 +137,7 @@ void aftermath(void)
 			getxtoken();
 			if (curcmd != math_shift)
 			{
-				printnl("! ");
-				print("Display math should end with $$");
+				print_err("Display math should end with $$");
 				helpptr = 2;
 				helpline[1] = "The `$' that I just saw supposedly matches a previous `$$'.";
 				helpline[0] = "So I shall assume that you typed `$$' both times.";
@@ -156,7 +151,7 @@ void aftermath(void)
 		p = link(temp_head);
 		adjusttail = adjust_head;
 		b = hpack(p, 0, additional);
-		p = link(b+5);
+		p = list_ptr(b);
 		t = adjusttail;
 		adjusttail = 0;
 		w = width(b);
