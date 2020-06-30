@@ -76,8 +76,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case set_aux:
 			if (abs(mode) != m)
 			{
-				print_err("Improper ");
-				printcmdchr(set_aux, m);
+				print_err("Improper "+cmdchr(set_aux, m));
 				helpptr = 4;
 				helpline[3] = "You can refer to \\spacefactor only in horizontal mode;";
 				helpline[2] = "you can refer to \\prevdepth only in vertical mode; and";
@@ -218,9 +217,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 			}
 			break;
 		default:
-			print_err("You can't use `");
-			printcmdchr(curcmd, curchr);
-			print("' after "+esc("the"));
+			print_err("You can't use `"+cmdchr(curcmd, curchr)+"' after "+esc("the"));
 			helpptr = 1;
 			helpline[0] = "I'm forgetting what you said and using zero instead.";
 			error();

@@ -9,7 +9,7 @@
 <area shape="rect" id="node37" href="$constantes_8h.html#a87c7b076494bb627bda701d6ca9eb648" title="shrink between words" alt="" coords="512,170,611,197"/>
 <area shape="rect" id="node38" href="$constantes_8h.html#aa8d716bd37a39f6f7c941f352d3b4f28" title="stretch between words" alt="" coords="509,119,613,146"/>
 <area shape="rect" id="node39" href="$constantes_8h.html#a70886c5e70f0d68cdcd19ba50de701aa" title="one ex" alt="" coords="526,1361,597,1387"/>
-<area shape="rect" id="node3" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title=" " alt="" coords="346,43,425,70"/>
+<area shape="rect" id="node3" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="346,43,425,70"/>
 <area shape="rect" id="node5" href="$makeop_8cpp.html#a2edec5b47fdfdd577afa281bba6d2c25" title="minimum clearance above a displayed op" alt="" coords="326,246,445,273"/>
 <area shape="rect" id="node6" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="166,373,234,399"/>
 <area shape="rect" id="node8" href="$makeop_8cpp.html#a5cf655b4dc77e009be198f177c323359" title="minimum clearance below a displayed op" alt="" coords="326,297,445,323"/>

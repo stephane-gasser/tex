@@ -10,8 +10,7 @@ void offsave(void)
 {
 	if (curgroup == bottom_level)
 	{
-		print_err("Extra ");
-		printcmdchr(curcmd, curchr);
+		print_err("Extra "+cmdchr(curcmd, curchr));
 		helpptr = 1;
 		helpline[0] = "Things are pretty mixed up, but I think the worst is over.";
 	}
@@ -20,29 +19,27 @@ void offsave(void)
 		backinput();
 		auto p = getavail();
 		link(temp_head) = p;
-		print_err("Missing ");
 		switch (curgroup)
 		{
 			case semi_simple_group:
 				info(p) = cs_token_flag+frozen_end_group;
-				printesc("endgroup");
+				print_err("Missing "+esc("endgroup")+" inserted");
 				break;
 			case math_shift_group:
 				info(p) = math_shift_token+'$';
-				printchar('$');
+				print_err("Missing $ inserted");
 				break;
 			case math_left_group:
 				info(p) = cs_token_flag+frozen_right;
 				link(p) = getavail();
 				p = link(p);
 				info(p) = other_token+'.';
-				printesc("right.");
+				print_err("Missing right. inserted");
 				break;
 			default:
 				info(p) = right_brace_token+'}';
-				printchar('}');
+				print_err("Missing } inserted");
 		}
-		print(" inserted");
 		ins_list(link(temp_head));
 		{
 			helpptr = 5;

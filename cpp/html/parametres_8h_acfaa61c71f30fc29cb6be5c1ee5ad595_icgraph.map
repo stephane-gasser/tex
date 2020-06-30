@@ -23,7 +23,7 @@
 <area shape="rect" id="node3" href="$package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="184,107,255,133"/>
 <area shape="rect" id="node4" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="5,56,123,83"/>
 <area shape="rect" id="node6" href="$makeleftright_8h.html#a76b4391a42af986372484ba3094dcb8a" title=" " alt="" coords="171,993,268,1020"/>
-<area shape="rect" id="node8" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="181,740,258,767"/>
+<area shape="rect" id="node8" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="181,740,258,767"/>
 <area shape="rect" id="node9" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="188,613,251,640"/>
 <area shape="rect" id="node12" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="339,360,414,387"/>
 <area shape="rect" id="node13" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="185,360,253,387"/>
@@ -34,7 +34,7 @@
 <area shape="rect" id="node21" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="173,867,266,893"/>
 <area shape="rect" id="node23" href="$freezepagespecs_8h.html#a2aa1093216c5bb54bcd0b746aa225f33" title=" " alt="" coords="316,512,437,539"/>
 <area shape="rect" id="node24" href="$itsallover_8h.html#a328c29eeaa688dcd15cc3534c1b078bc" title=" " alt="" coords="339,461,414,488"/>
-<area shape="rect" id="node26" href="$appendtovlist_8h.html#a7018c33b1ef8cb50dd66430b241ccb32" title=" " alt="" coords="327,715,426,741"/>
+<area shape="rect" id="node26" href="$appendtovlist_8h.html#a7018c33b1ef8cb50dd66430b241ccb32" title="When a box is being appended to the current vertical list, the baselineskip calculation is handled by..." alt="" coords="327,715,426,741"/>
 <area shape="rect" id="node29" href="$vardelimiter_8h.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="332,968,421,995"/>
 <area shape="rect" id="node32" href="$indentinhmode_8h.html#a5016a6f79ae901c498a9d0c6981d9db6" title=" " alt="" coords="323,1120,430,1147"/>
 <area shape="rect" id="node33" href="$newgraf_8h.html#a32eeb6c6a88201e95a9a86b0c110dc4c" title=" " alt="" coords="343,1069,411,1096"/>

@@ -6,7 +6,7 @@
 <area shape="rect" id="node48" href="$overflow_8h.html#a6b6f568963b00004024cfd8cfa86c296" title=" " alt="" coords="970,2357,1041,2384"/>
 <area shape="rect" id="node49" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="962,2408,1049,2435"/>
 <area shape="rect" id="node50" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="1121,1825,1172,1852"/>
-<area shape="rect" id="node3" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="311,864,388,891"/>
+<area shape="rect" id="node3" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="311,864,388,891"/>
 <area shape="rect" id="node4" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="13,687,75,713"/>
 <area shape="rect" id="node5" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="138,1445,255,1472"/>
 <area shape="rect" id="node6" href="$resumeafterdisplay_8h.html#a5e20dcff03a0b655888f77fb621b21d4" title=" " alt="" coords="131,864,263,891"/>
@@ -27,14 +27,14 @@
 <area shape="rect" id="node27" href="$unsave_8h.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="794,1067,858,1093"/>
 <area shape="rect" id="node28" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="788,864,864,891"/>
 <area shape="rect" id="node29" href="$vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="787,763,865,789"/>
-<area shape="rect" id="node7" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="5,1408,83,1435"/>
-<area shape="rect" id="node10" href="$beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title=" " alt="" coords="616,1623,691,1649"/>
-<area shape="rect" id="node15" href="$boxerror_8h.html#a0bbccd15aae646ece75f2703dda44c2e" title=" " alt="" coords="619,915,688,941"/>
+<area shape="rect" id="node7" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="5,1408,83,1435"/>
+<area shape="rect" id="node10" href="$beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="616,1623,691,1649"/>
+<area shape="rect" id="node15" href="$boxerror_8h.html#a0bbccd15aae646ece75f2703dda44c2e" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="619,915,688,941"/>
 <area shape="rect" id="node17" href="$builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2" title=" " alt="" coords="592,1067,715,1093"/>
 <area shape="rect" id="node18" href="$deletelast_8h.html#adf27bd30a3970cc321bd31cf0109e8b4" title=" " alt="" coords="614,1344,693,1371"/>
 <area shape="rect" id="node16" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="463,864,517,891"/>
 <area shape="rect" id="node31" href="$alignerror_8h.html#a96f36a6afe751cbfd07b095782045b7d" title=" " alt="" coords="789,1952,863,1979"/>
-<area shape="rect" id="node32" href="$backerror_8h.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title=" " alt="" coords="967,1851,1043,1877"/>
+<area shape="rect" id="node32" href="$backerror_8h.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="967,1851,1043,1877"/>
 <area shape="rect" id="node33" href="$initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="793,1901,859,1928"/>
 <area shape="rect" id="node34" href="$begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="940,2155,1071,2181"/>
 <area shape="rect" id="node35" href="$checkoutervalidity_8h.html#a6bca3c8986cc82099dde339cf36de911" title=" " alt="" coords="763,2053,889,2080"/>

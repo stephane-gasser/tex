@@ -10,10 +10,8 @@ void firmuptheline(void)
 	if (pausing() > 0 && interaction > nonstop_mode)
 	{
 		println();
-		for (int k = start; k < limit; k++)
-			printchar(buffer[k]);
+		print(std::string(buffer+start, buffer+limit)+"=>");
 		First = limit;
-		print("=>");
 		terminput();
 		if (last > First)
 		{

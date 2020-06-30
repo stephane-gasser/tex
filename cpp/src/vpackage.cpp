@@ -1,9 +1,5 @@
 #include "vpackage.h"
 #include "impression.h"
-#include "shortdisplay.h"
-#include "begindiagnostic.h"
-#include "showbox.h"
-#include "enddiagnostic.h"
 #include "confusion.h"
 #include "getnode.h"
 #include "freenode.h"
@@ -16,14 +12,10 @@ static void goto50(halfword r)
 	else
 	{
 		if (packbeginline)
-		{
-			print(") in alignment at lines ");
-			printint(abs(packbeginline));
-			print("--");
-		}
+			print(") in alignment at lines "+std::to_string(abs(packbeginline))+"--");
 		else
 			print(") detected at line ");
-		printint(line);
+		print(std::to_string(line));
 		println();
 	}
 	begindiagnostic();
@@ -150,12 +142,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 				if (lastbadness > vbadness())
 				{
 					println();
-					if (lastbadness > 100)
-						printnl("Underfull");
-					else
-						printnl("Loose");
-					print("\\vbox (badness ");
-					printint(lastbadness);
+					printnl(std::string(lastbadness > 100 ? "Underfull": "Loose")+"\\vbox (badness "+std::to_string(lastbadness));
 					goto50(r);
 				}
 			}
@@ -189,9 +176,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 				if (-x-totalshrink[0] > vfuzz() || vbadness() < 100)
 				{
 					println();
-					printnl("Overfull \\vbox (");
-					printscaled(-x-totalshrink[0]);
-					print("pt too high");
+					printnl("Overfull \\vbox ("+asScaled(-x-totalshrink[0])+"pt too high");
 					goto50(r);
 				}
 			}
@@ -202,8 +187,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 					if (lastbadness > vbadness())
 					{
 						println();
-						printnl("Tight \\vbox (badness ");
-						printint(lastbadness);
+						printnl("Tight \\vbox (badness "+std::to_string(lastbadness));
 						goto50(r);
 					}
 				}

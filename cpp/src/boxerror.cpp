@@ -1,9 +1,6 @@
 #include "boxerror.h"
 #include "error.h"
-#include "begindiagnostic.h"
 #include "impression.h"
-#include "showbox.h"
-#include "enddiagnostic.h"
 #include "flushnodelist.h"
 
 //! At certain times box 255 is supposed to be void (i.e., |null|),

@@ -1,10 +1,9 @@
 <map id="src/ensurevbox.cpp" name="src/ensurevbox.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="183,5,319,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="157,5,293,32"/>
 <area shape="rect" id="node2" href="$ensurevbox_8h.html" title=" " alt="" coords="5,80,105,107"/>
-<area shape="rect" id="node4" href="$printnl_8h.html" title=" " alt="" coords="129,80,197,107"/>
-<area shape="rect" id="node5" href="$print_8h.html" title=" " alt="" coords="222,80,281,107"/>
-<area shape="rect" id="node6" href="$boxerror_8h.html" title=" " alt="" coords="305,80,384,107"/>
-<area shape="rect" id="node7" href="$texte_8h.html" title=" " alt="" coords="408,80,471,107"/>
-<area shape="rect" id="node3" href="$globals_8h.html" title=" " alt="" coords="170,155,245,181"/>
-<area shape="rect" id="node8" title=" " alt="" coords="412,155,467,181"/>
+<area shape="rect" id="node4" href="$impression_8h.html" title=" " alt="" coords="233,80,329,107"/>
+<area shape="rect" id="node6" href="$boxerror_8h.html" title=" " alt="" coords="129,80,208,107"/>
+<area shape="rect" id="node7" href="$texte_8h.html" title=" " alt="" coords="353,80,416,107"/>
+<area shape="rect" id="node3" href="$globals_8h.html" title=" " alt="" coords="131,155,206,181"/>
+<area shape="rect" id="node5" title=" " alt="" coords="305,155,360,181"/>
 </map>

@@ -126,36 +126,36 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="cserror_8cpp_source.html#l00008">8</a> du fichier <a class="el" href="cserror_8cpp_source.html">cserror.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;! &quot;</span>);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;Extra &quot;</span>);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(<span class="stringliteral">&quot;endcsname&quot;</span>);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 1;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;I&#39;m ignoring this, since I wasn&#39;t doing a \\csname.&quot;</span>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="cserror_8cpp_source.html#l00006">6</a> du fichier <a class="el" href="cserror_8cpp_source.html">cserror.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a>(<span class="stringliteral">&quot;Extra &quot;</span>+<a class="code" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a>(<span class="stringliteral">&quot;endcsname&quot;</span>));</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 1;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;I&#39;m ignoring this, since I wasn&#39;t doing a \\csname.&quot;</span>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="cserror_8h_a7f00f6e29637c0b93f180e4432db6fb5_cgraph.png" border="0" usemap="#cserror_8h_a7f00f6e29637c0b93f180e4432db6fb5_cgraph" alt=""/></div>
 <map name="cserror_8h_a7f00f6e29637c0b93f180e4432db6fb5_cgraph" id="cserror_8h_a7f00f6e29637c0b93f180e4432db6fb5_cgraph">
-<area shape="rect" title=" " alt="" coords="5,119,68,146"/>
-<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="116,296,164,323"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="509,246,556,272"/>
-<area shape="rect" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="234,600,302,627"/>
-<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="381,195,438,222"/>
-<area shape="rect" href="beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title=" " alt="" coords="212,144,324,171"/>
-<area shape="rect" href="clearforerrorprompt_8cpp.html#a282ee6bcdd54bf75b357628da499c970" title=" " alt="" coords="619,94,749,120"/>
-<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="797,246,855,272"/>
-<area shape="rect" href="gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="232,195,304,222"/>
-<area shape="rect" href="giveerrhelp_8cpp.html#a78490fe79fcaae6767240cc8e0fe0fbd" title=" " alt="" coords="225,296,311,323"/>
-<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="234,448,302,475"/>
-<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="648,474,720,500"/>
-<area shape="rect" href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="372,499,447,526"/>
-<area shape="rect" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="379,448,440,475"/>
-<area shape="rect" href="showcontext_8cpp.html#a08865d4e55bc6116a39dbd5679041e61" title=" " alt="" coords="220,347,316,374"/>
-<area shape="rect" href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="495,651,571,678"/>
+<area shape="rect" title=" " alt="" coords="5,385,68,412"/>
+<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="127,335,175,361"/>
+<area shape="rect" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="129,385,172,412"/>
+<area shape="rect" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="116,436,185,463"/>
+<area shape="rect" href="beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="233,5,345,32"/>
+<area shape="rect" href="clearforerrorprompt_8cpp.html#a282ee6bcdd54bf75b357628da499c970" title=" " alt="" coords="517,107,648,133"/>
+<area shape="rect" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="696,183,753,209"/>
+<area shape="rect" href="gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="253,512,325,539"/>
+<area shape="rect" href="giveerrhelp_8cpp.html#a78490fe79fcaae6767240cc8e0fe0fbd" title=" " alt="" coords="247,563,332,589"/>
+<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="255,613,323,640"/>
+<area shape="rect" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="408,208,455,235"/>
+<area shape="rect" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="547,284,619,311"/>
+<area shape="rect" href="impression_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="255,360,323,387"/>
+<area shape="rect" href="impression_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="394,411,469,437"/>
+<area shape="rect" href="impression_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="401,309,462,336"/>
+<area shape="rect" href="impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="261,157,318,184"/>
+<area shape="rect" href="impression_8cpp.html#a08865d4e55bc6116a39dbd5679041e61" title=" " alt="" coords="241,664,337,691"/>
+<area shape="rect" href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="393,461,469,488"/>
 </map>
 </div>
 <div class="dynheader">
@@ -172,11 +172,10 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="aglobals_8h_html_ae1c0d92ce2fe057255c7badbbb0615b0"><div class="ttname"><a href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a></div><div class="ttdeci">std::string helpline[6]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00071">globals.h:71</a></div></div>
-<div class="ttc" id="aprintesc_8cpp_html_ace069a9f107f557990814241b661ad5f"><div class="ttname"><a href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a></div><div class="ttdeci">void printesc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printesc_8cpp_source.html#l00007">printesc.cpp:7</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a85c0624f93ed5c5e8c722316dad139af"><div class="ttname"><a href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a></div><div class="ttdeci">char helpptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00069">globals.cpp:69</a></div></div>
-<div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00019">error.cpp:19</a></div></div>
-<div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
-<div class="ttc" id="aprintnl_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printnl_8cpp_source.html#l00005">printnl.cpp:5</a></div></div>
+<div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00013">error.cpp:13</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01010">impression.cpp:1010</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a27f6b6c256d6682247b1fbdd82d30194"><div class="ttname"><a href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a></div><div class="ttdeci">void print_err(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01759">impression.cpp:1759</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

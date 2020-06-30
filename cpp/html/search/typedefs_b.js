@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['scaled_4233',['scaled',['../tex_8h.html#a76970135ed45e872cd47aff06bc1dd33',1,'tex.h']]],
-  ['smallnumber_4234',['smallnumber',['../tex_8h.html#aebffb996625158f539ca50fcf7d4628b',1,'tex.h']]],
-  ['strnumber_4235',['strnumber',['../tex_8h.html#a02eb87a19c89f2e712fc3001d5e2745c',1,'tex.h']]]
+  ['triepointer_4026',['triepointer',['../tex_8h.html#ac9a4e1c22ae0a18dedf4e77268641793',1,'tex.h']]]
 ];

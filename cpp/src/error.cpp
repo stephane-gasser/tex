@@ -2,7 +2,6 @@
 #include "impression.h"
 #include "jumpout.h"
 #include "giveerrhelp.h"
-#include "showcontext.h"
 #include "clearforerrorprompt.h"
 #include "terminput.h"
 #include "gettoken.h"
@@ -14,7 +13,7 @@ void error(void)
 {
 	if (history < error_message_issued)
 		history = error_message_issued;
-	printchar('.');
+	print(".");
 	showcontext();
 	if (interaction == error_stop_mode)
 		while (true)
@@ -73,8 +72,7 @@ void error(void)
 					{
 						printnl("You want to edit file ");
 						slowprint(inputstack[baseptr].namefield);
-						print(" at line ");
-						printint(line);
+						print(" at line "+std::to_string(line));
 						interaction = scroll_mode;
 						jumpout();
 					}
@@ -131,14 +129,14 @@ void error(void)
 					switch (c)
 					{
 						case 'Q':
-							printesc("batchmode");
+							print(esc("batchmode"));
 							selector--;
 						  	break;
 						case 'R': 
-							printesc("nonstopmode");
+							print(esc("nonstopmode"));
 							break;
 						case 'S':
-							printesc("scrollmode");
+							print(esc("scrollmode"));
 					}
 					print(" ...");
 					println();

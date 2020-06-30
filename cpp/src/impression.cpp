@@ -8,38 +8,10 @@
 #include "thetoks.h"
 #include "flushlist.h"
 #include "error.h"
+#include "primitive.h"
+#include <sstream>
 
-void print(const std::string &t)
-{
-	std::string s = t;
-	if (txt(s) == 0)
-		s = "???";
-	else
-		if (s.size() == 1)
-		{
-			if (selector > pseudo)
-			{
-				printchar(s[0]);
-				return;
-			}
-			unsigned char S = s[0];
-			if (S == new_line_char() && selector < pseudo)
-			{
-				println();
-				return;
-			}
-			int nl = new_line_char();
-			new_line_char() = -1;
-			for (char c: s)
-				printchar(c);
-			new_line_char() = nl;
-			return;
-		}
-	for (char c: s)
-		printchar(c);
-}
-
-void printchar(ASCIIcode s)
+static void printchar(ASCIIcode s)
 {
 	if (s == new_line_char())
 		if (selector < pseudo)
@@ -96,899 +68,180 @@ void printchar(ASCIIcode s)
 	tally++;
 }
 
-static void chr_cmd(const std::string &s, halfword chrcode)
+static std::string chr_cmd(const std::string &s, halfword chrcode)
 {
-	print(s);
-	printchar(chrcode);
+	return s+char(chrcode);
 }
 
-void printcmdchr(quarterword cmd, halfword chrcode)
+static std::string hex(int t)
 {
+  std::ostringstream oss;
+  oss << "\"" << std::hex << t;
+  return oss.str();
+}
+
+void print(const std::string &t)
+{
+	std::string s = t;
+	if (txt(s) == 0)
+		s = "???";
+	else
+		if (s.size() == 1)
+		{
+			if (selector > pseudo)
+			{
+				printchar(s[0]);
+				return;
+			}
+			unsigned char S = s[0];
+			if (S == new_line_char() && selector < pseudo)
+			{
+				println();
+				return;
+			}
+			int nl = new_line_char();
+			new_line_char() = -1;
+			for (char c: s)
+				printchar(c);
+			new_line_char() = nl;
+			return;
+		}
+	for (char c: s)
+		printchar(c);
+}
+
+std::string cmdchr(quarterword cmd, halfword chrcode)
+{
+	static std::map<quarterword, std::string> echap;
+	static std::map<quarterword, std::string> caract;
+	if (!echap.size())
+	{
+		echap[long_call] = "long macro";
+		echap[outer_call] = "outer macro";
+		echap[long_outer_call] = "long"+esc("outer macro");
+		echap[end_template] = "outer endtemplate";
+		caract[left_brace] = "begin-group character ";
+		caract[right_brace] = "end-group character ";
+		caract[math_shift] = "math shift character ";
+		caract[mac_param] = "macro parameter character ";
+		caract[sup_mark] = "superscript character ";
+		caract[sub_mark] = "subscript character ";
+		caract[spacer] = "blank space ";
+		caract[letter] = "the letter ";
+		caract[other_char] = "the character ";
+		caract[tab_mark] = "alignment tab character ";
+	}
+	if (primName.find(cmd) != primName.end())
+	{
+		int n = curchr;
+		switch (cmd)
+		{
+			case assign_glue:
+			case assign_mu_glue:
+				n -= glue_base;
+				break;
+			case assign_int:
+				n -= int_base;
+				break;
+			case assign_dimen:
+				n -= dimen_base;
+				break;
+			case def_family:
+				n -= math_font_base;
+		}
+		if (primName[cmd].find(n) != primName[cmd].end())
+			return esc(primName[cmd][n]);
+	}
 	switch (cmd)
 	{
-		case left_brace:
-			chr_cmd("begin-group character ", chrcode);
-			break;
-		case right_brace:
-			chr_cmd("end-group character ", chrcode);
-			break;
-		case math_shift:
-			chr_cmd("math shift character ", chrcode);
-			break;
-		case mac_param:
-			chr_cmd("macro parameter character ", chrcode);
-			break;
-		case sup_mark:
-			chr_cmd("superscript character ", chrcode);
-			break;
-		case sub_mark:
-			chr_cmd("subscript character ", chrcode);
-			break;
-		case endv: 
-			print("end of alignment template");
-			break;
-		case spacer:
-			chr_cmd("blank space ", chrcode);
-			break;
-		case letter:
-			chr_cmd("the letter ", chrcode);
-			break;
-		case other_char:
-			chr_cmd("the character ", chrcode);
-			break;
+		case long_call: 
+		case outer_call: 
+		case long_outer_call:
+		case end_template: 
+			return esc(echap[cmd]);
 		case assign_glue:
-		case assign_mu_glue: 
 			if (chrcode < skip_base)
-				printskipparam(chrcode-glue_base);
-			else 
-				if (chrcode < mu_skip_base)
-				{
-					printesc("skip");
-					printint(chrcode-skip_base);
-				}
-				else
-				{
-					printesc("muskip");
-					printint(chrcode-mu_skip_base);
-				}
-			break;
-		case assign_toks: 
-			if (chrcode >= toks_base)
-			{
-				printesc("toks");
-				printint(chrcode-toks_base);
-			}
-			else
-				switch (chrcode)
-				{
-					case output_routine_loc: 
-						printesc("output");
-						break;
-					case every_par_loc: 
-						printesc("everypar");
-						break;
-					case every_math_loc: 
-						printesc("everymath");
-						break;
-					case every_display_loc: 
-						printesc("everydisplay");
-						break;
-					case every_hbox_loc: 
-						printesc("everyhbox");
-						break;
-					case every_vbox_loc: 
-						printesc("everyvbox");
-						break;
-					case every_job_loc: 
-						printesc("everyjob");
-						break;
-					case every_cr_loc: 
-						printesc("everycr");
-						break;
-					default: 
-						printesc("errhelp");
-				}
-			break;
+				return "[unknown glue parameter!]";
+			return esc("skip")+std::to_string(chrcode-skip_base);
+		case assign_mu_glue:
+			if (chrcode < mu_skip_base)
+				return "[unknown glue parameter!]";
+			return esc("muskip")+std::to_string(chrcode-mu_skip_base);
+		case assign_toks:
+			return esc("toks")+std::to_string(chrcode-toks_base);
 		case assign_int: 
 			if (chrcode < count_base)
-				printparam(chrcode-int_base);
-			else
-			{
-				printesc("count");
-				printint(chrcode-count_base);
-			}
-			break;
-		case assign_dimen: 
+				return "[unknown integer parameter!]";
+			return esc("count")+std::to_string(chrcode-count_base);
+		case assign_dimen:
 			if (chrcode < scaled_base)
-				printlengthparam(chrcode-dimen_base);
-			else
-			{
-				printesc("dimen");
-				printint(chrcode-scaled_base);
-			}
-			break;
-		case accent: 
-			printesc("accent");
-			break;
-		case advance: 
-			printesc("advance");
-			break;
-		case after_assignment: 
-			printesc("afterassignment");
-			break;
-		case after_group: 
-			printesc("aftergroup");
-			break;
-		case assign_font_dimen: 
-			printesc("fontdimen");
-			break;
-		case begin_group: 
-			printesc("begingroup");
-			break;
-		case break_penalty: 
-			printesc("penalty");
-			break;
-		case char_num: 
-			printesc("char");
-			break;
-		case cs_name: 
-			printesc("csname");
-			break;
-		case def_font: 
-			printesc("font");
-			break;
-		case delim_num: 
-			printesc("delimiter");
-			break;
-		case divide: 
-			printesc("divide");
-			break;
-		case end_cs_name: 
-			printesc("endcsname");
-			break;
-		case end_group: 
-			printesc("endgroup");
-			break;
-		case ex_space: 
-			printesc(" ");
-			break;
-		case expand_after: 
-			printesc("expandafter");
-			break;
-		case halign: 
-			printesc("halign");
-			break;
-		case hrule: 
-			printesc("hrule");
-			break;
-		case ignore_spaces: 
-			printesc("ignorespaces");
-			break;
-		case insert: 
-			printesc("insert");
-			break;
-		case ital_corr: 
-			printesc("/");
-			break;
-		case mark: 
-			printesc("mark");
-			break;
-		case math_accent: 
-			printesc("mathaccent");
-			break;
-		case math_char_num: 
-			printesc("mathchar");
-			break;
-		case math_choice: 
-			printesc("mathchoice");
-			break;
-		case multiply: 
-			printesc("multiply");
-			break;
-		case no_align: 
-			printesc("noalign");
-			break;
-		case no_boundary: 
-			printesc("noboundary");
-			break;
-		case no_expand: 
-			printesc("noexpand");
-			break;
-		case non_script: 
-			printesc("nonscript");
-			break;
-		case omit: 
-			printesc("omit");
-			break;
-		case radical: 
-			printesc("radical");
-			break;
-		case read_to_cs: 
-			printesc("read");
-			break;
-		case relax: 
-			printesc("relax");
-			break;
-		case set_box: 
-			printesc("setbox");
-			break;
-		case set_prev_graf: 
-			printesc("prevgraf");
-			break;
-		case set_shape: 
-			printesc("parshape");
-			break;
-		case the: 
-			printesc("the");
-			break;
-		case toks_register: 
-			printesc("toks");
-			break;
-		case vadjust: 
-			printesc("vadjust");
-			break;
-		case valign: 
-			printesc("valign");
-			break;
-		case vcenter: 
-			printesc("vcenter");
-			break;
-		case vrule: 
-			printesc("vrule");
-			break;
-		case par_end: 
-			printesc("par");
-			break;
-		case input: 
-			if (chrcode == 0)
-				printesc("input");
-			else
-				printesc("endinput");
-			break;
-		case top_bot_mark: 
-			switch (chrcode)
-			{
-				case first_mark_code: 
-					printesc("firstmark");
-					break;
-				case bot_mark_code: 
-					printesc("botmark");
-					break;
-				case split_first_mark_code: 
-					printesc("splitfirstmark");
-					break;
-				case split_bot_mark_code: 
-					printesc("splitbotmark");
-					break;
-				default: 
-					printesc("topmark");
-			}
-			break;
-		case register_: 
-			if (chrcode == int_val)
-				printesc("count");
-			else 
-				if (chrcode == dimen_val)
-					printesc("dimen");
-				else 
-					if (chrcode == glue_val)
-						printesc("skip");
-					else
-						printesc("muskip");
-			break;
-		case set_aux: 
-			if (chrcode == vmode)
-				printesc("prevdepth");
-			else
-				printesc("spacefactor");
-			break;
-		case set_page_int: 
-			if (chrcode == 0)
-				printesc("deadcycles");
-			else
-				printesc("insertpenalties");
-			break;
-		case set_box_dimen: 
-			if (chrcode == width_offset)
-				printesc("wd");
-			else 
-				if (chrcode == height_offset)
-					printesc("ht");
-				else
-					printesc("dp");
-			break;
-		case last_item: 
-			switch (chrcode)
-			{
-				case int_val: 
-					printesc("lastpenalty");
-					break;
-				case dimen_val: 
-					printesc("lastkern");
-					break;
-				case glue_val: 
-					printesc("lastskip");
-					break;
-				case input_line_no_code: 
-					printesc("inputlineno");
-					break;
-				default: 
-					printesc("badness");
-			}
-			break;
-		case convert: 
-			switch (chrcode)
-			{
-				case number_code: 
-					printesc("number");
-					break;
-				case roman_numeral_code: 
-					printesc("romannumeral");
-					break;
-				case string_code: 
-					printesc("string");
-					break;
-				case meaning_code: 
-					printesc("meaning");
-					break;
-				case font_name_code: 
-					printesc("fontname");
-					break;
-				default: 
-					printesc("jobname");
-			}
-			break;
-		case if_test: 
-			switch (chrcode)
-			{
-				case if_cat_code: 
-					printesc("ifcat");
-					break;
-				case if_int_code: 
-					printesc("ifnum");
-					break;
-				case if_dim_code: 
-					printesc("ifdim");
-					break;
-				case if_odd_code: 
-					printesc("ifodd");
-					break;
-				case if_vmode_code: 
-					printesc("ifvmode");
-					break;
-				case if_hmode_code: 
-					printesc("ifhmode");
-					break;
-				case if_mmode_code: 
-					printesc("ifmmode");
-					break;
-				case if_inner_code: 
-					printesc("ifinner");
-					break;
-				case if_void_code: 
-					printesc("ifvoid");
-					break;
-				case if_hbox_code: 
-					printesc("ifhbox");
-					break;
-				case if_vbox_code: 
-					printesc("ifvbox");
-					break;
-				case ifx_code: 
-					printesc("ifx");
-					break;
-				case if_eof_code: 
-					printesc("ifeof");
-					break;
-				case if_true_code: 
-					printesc("iftrue");
-					break;
-				case if_false_code: 
-					printesc("iffalse");
-					break;
-				case if_case_code: 
-					printesc("ifcase");
-					break;
-			default: 
-				printesc("if");
-			}
-			break;
-		case fi_or_else: 
-			if (chrcode == fi_code)
-				printesc("fi");
-			else 
-				if (chrcode == or_code)
-					printesc("or");
-				else
-					printesc("else");
-			break;
-		case tab_mark: 
-			if (chrcode == span_code)
-				printesc("span");
-			else
-				chr_cmd("alignment tab character ", chrcode);
-			break;
-		case car_ret: 
-			if (chrcode == cr_code)
-				printesc("cr");
-			else
-				printesc("crcr");
-			break;
-		case set_page_dimen: 
-			switch (chrcode)
-			{
-				case 0: 
-					printesc("pagegoal");
-					break;
-				case 1: 
-					printesc("pagetotal");
-					break;
-				case 2: 
-					printesc("pagestretch");
-					break;
-				case 3: 
-					printesc("pagefilstretch");
-					break;
-				case 4: 
-					printesc("pagefillstretch");
-					break;
-				case 5: 
-					printesc("pagefilllstretch");
-					break;
-				case 6: 
-					printesc("pageshrink");
-					break;
-				default: 
-					printesc("pagedepth");
-			}
-			break;
-		case stop: 
-			if (chrcode == 1)
-				printesc("dump");
-			else
-				printesc("end");
-			break;
-		case hskip: 
-			switch (chrcode)
-			{
-				case skip_code: 
-					printesc("hskip");
-					break;
-				case fil_code: 
-					printesc("hfil");
-					break;
-				case fill_code: 
-					printesc("hfill");
-					break;
-				case ss_code: 
-					printesc("hss");
-					break;
-				default: 
-					printesc("hfilneg");
-			}
-			break;
-		case vskip: 
-			switch (chrcode)
-			{
-				case skip_code: 
-					printesc("vskip");
-					break;
-				case fil_code: 
-					printesc("vfil");
-					break;
-				case fill_code: 
-					printesc("vfill");
-					break;
-				case ss_code: 
-					printesc("vss");
-					break;
-				default: 
-					printesc("vfilneg");
-			}
-			break;
-		case mskip: 
-			printesc("mskip");
-			break;
-		case kern: 
-			printesc("kern");
-			break;
-		case mkern: 
-			printesc("mkern");
-			break;
-		case hmove: 
-			if (chrcode == 1)
-				printesc("moveleft");
-			else
-				printesc("moveright");
-			break;
-		case vmove: 
-			if (chrcode == 1)
-				printesc("raise");
-			else
-				printesc("lower");
-			break;
-		case make_box: 
-			switch (chrcode)
-			{
-				case box_code: 
-					printesc("box");
-					break;
-				case copy_code: 
-					printesc("copy");
-					break;
-				case last_box_code: 
-					printesc("lastbox");
-					break;
-				case vsplit_code: 
-					printesc("vsplit");
-					break;
-				case vtop_code: 
-					printesc("vtop");
-					break;
-				case vtop_code+vmode: 
-					printesc("vbox");
-					break;
-				default: 
-					printesc("hbox");
-			}
-			break;
-		case leader_ship: 
-			if (chrcode == a_leaders)
-				printesc("leaders");
-			else 
-				if (chrcode == c_leaders)
-					printesc("cleaders");
-				else 
-					if (chrcode == x_leaders)
-						printesc("xleaders");
-					else
-						printesc("shipout");
-			break;
-		case start_par: 
-			if (chrcode == 0)
-				printesc("noindent");
-			else
-				printesc("indent");
-			break;
-		case remove_item: 
-			if (chrcode == glue_node)
-				printesc("unskip");
-				else 
-					if (chrcode == kern_node)
-						printesc("unkern");
-					else
-						printesc("unpenalty");
-			break;
-		case un_hbox: 
-			if (chrcode == copy_code)
-				printesc("unhcopy");
-			else
-				printesc("unhbox");
-			break;
-		case un_vbox: 
-			if (chrcode == copy_code)
-				printesc("unvcopy");
-			else
-			printesc("unvbox");
-			break;
-		case discretionary: 
-			if (chrcode == 1)
-				printesc("-");
-			else
-				printesc("discretionary");
-			break;
-		case eq_no: 
-			if (chrcode == 1)
-				printesc("leqno");
-			else
-				printesc("eqno");
-			break;
-		case math_comp: 
-			switch (chrcode)
-			{
-				case ord_noad: 
-					printesc("mathord");
-					break;
-				case op_noad: 
-					printesc("mathop");
-					break;
-				case bin_noad: 
-					printesc("mathbin");
-					break;
-				case rel_noad: 
-					printesc("mathrel");
-					break;
-				case open_noad: 
-					printesc("mathopen");
-					break;
-				case close_noad: 
-					printesc("mathclose");
-					break;
-				case punct_noad: 
-					printesc("mathpunct");
-					break;
-				case inner_noad: 
-					printesc("mathinner");
-					break;
-				case under_noad: 
-					printesc("underline");
-					break;
-				default: 
-					printesc("overline");
-			}
-			break;
-		case limit_switch: 
-			if (chrcode == limits)
-			printesc("limits");
-			else 
-				if (chrcode == no_limits)
-					printesc("nolimits");
-				else
-				printesc("displaylimits");
-			break;
-		case math_style: 
-			printstyle(chrcode);
-			break;
-		case above: 
-			switch (chrcode)
-			{
-				case over_code: 
-					printesc("over");
-					break;
-				case atop_code: 
-					printesc("atop");
-					break;
-				case delimited_code+above_code: 
-					printesc("abovewithdelims");
-					break;
-				case delimited_code+over_code: 
-					printesc("overwithdelims");
-					break;
-				case delimited_code+atop_code: 
-					printesc("atopwithdelims");
-					break;
-				default: 
-					printesc("above");
-			}
-			break;
-		case left_right: 
-			if (chrcode == left_noad)
-				printesc("left");
-			else
-				printesc("right");
-			break;
-		case prefix: 
-			if (chrcode == 1)
-				printesc("long");
-			else 
-				if (chrcode == 2)
-					printesc("outer");
-				else
-					printesc("global");
-		case def: 
-			if (chrcode == 0)
-				printesc("def");
-			else 
-				if (chrcode == 1)
-					printesc("gdef");
-				else 
-					if (chrcode == 2)
-						printesc("edef");
-					else
-						printesc("xdef");
-			break;
-		case let: 
-			if (chrcode != normal)
-				printesc("futurelet");
-			else
-				printesc("let");
-			break;
-		case shorthand_def: 
-			switch (chrcode)
-			{
-				case char_def_code: 
-					printesc("chardef");
-					break;
-				case math_char_def_code: 
-					printesc("mathchardef");
-					break;
-				case count_def_code: 
-					printesc("countdef");
-					break;
-				case dimen_def_code: 
-					printesc("dimendef");
-					break;
-				case skip_def_code: 
-					printesc("skipdef");
-					break;
-				case mu_skip_def_code: 
-					printesc("muskipdef");
-					break;
-				default: printesc("toksdef");
-			}
-			break;
+				return "[unknown dimen parameter!]";
+			return esc("dimen")+std::to_string(chrcode-scaled_base);
 		case char_given:
-			printesc("char");
-			printhex(chrcode);
-			break;
+			return esc("char")+hex(chrcode);
 		case math_given:
-			printesc("mathchar");
-			printhex(chrcode);
-			break;
-		case def_code: 
-			if (chrcode == cat_code_base)
-				printesc("catcode");
-			else 
-				if (chrcode == math_code_base)
-					printesc("mathcode");
-				else 
-					if (chrcode == lc_code_base)
-						printesc("lccode");
-					else 
-						if (chrcode == uc_code_base)
-							printesc("uccode");
-						else 
-							if (chrcode == sf_code_base)
-								printesc("sfcode");
-							else
-								printesc("delcode");
-			break;
-		case def_family: 
-			printsize(chrcode-math_font_base);
-			break;
-		case hyph_data: 
-			if (chrcode == 1)
-				printesc("patterns");
-			else
-				printesc("hyphenation");
-			break;
-		case assign_font_int: 
-			if (chrcode == 0)
-				printesc("hyphenchar");
-			else
-				printesc("skewchar");
-			break;
+			return esc("mathchar")+hex(chrcode); 
 		case set_font:
-			print("select font ");
-			slowprint(fontname[chrcode]);
-			if (fontsize[chrcode] != fontdsize[chrcode])
-			{
-				print(" at ");
-				printscaled(fontsize[chrcode]);
-				print("pt");
-			}
-			break;
-		case set_interaction: 
-			switch (chrcode)
-			{
-				case batch_mode: 
-					printesc("batchmode");
-					break;
-				case nonstop_mode: 
-					printesc("nonstopmode");
-					break;
-				case scroll_mode: 
-					printesc("scrollmode");
-					break;
-				default: 
-					printesc("errorstopmode");
-			}
-			break;
-		case in_stream: 
-			if (chrcode == 0)
-				printesc("closein");
-			else
-				printesc("openin");
-			break;
-		case message: 
-			if (chrcode == 0)
-				printesc("message");
-			else
-				printesc("errmessage");
-			break;
-		case case_shift: 
-			if (chrcode == lc_code_base)
-				printesc("lowercase");
-			else
-				printesc("uppercase");
-			break;
-		case xray: 
-			switch (chrcode)
-			{
-				case show_box_code: 
-					printesc("showbox");
-					break;
-				case show_the_code: 
-					printesc("showthe");
-					break;
-				case show_lists: 
-					printesc("showlists");
-					break;
-				default: 
-					printesc("show");
-			}
-			break;
-		case undefined_cs: 
-			print("undefined");
-			break;
-		case call: 
-			print("macro");
-			break;
-		case long_call: 
-			printesc("long macro");
-			break;
-		case outer_call: 
-			printesc("outer macro");
-			break;
-		case long_outer_call:
-			printesc("long");
-			printesc("outer macro");
-			break;
-		case end_template: 
-			printesc("outer endtemplate");
-			break;
+			return "select font "+fontname[chrcode]+(fontsize[chrcode] == fontdsize[chrcode] ? "" : " at "+std::to_string(double(fontsize[chrcode])/unity)+"pt");
+		case tab_mark:
+		case left_brace:
+		case right_brace:
+		case math_shift:
+		case mac_param:
+		case sup_mark:
+		case sub_mark:
+		case spacer:
+		case letter:
+		case other_char:
+			return chr_cmd(caract[cmd], chrcode);
+		case math_style:
+			return "Unknown style!";
 		case extension: 
-			switch (chrcode)
-			{
-				case open_node: 
-					printesc("openout");
-					break;
-				case write_node: 
-					printesc("write");
-					break;
-				case close_node: 
-					printesc("closeout");
-					break;
-				case special_node: 
-					printesc("special");
-					break;
-				case immediate_code: 
-					printesc("immediate");
-					break;
-				case set_language_code: 
-					printesc("setlanguage");
-					break;
-				default: 
-					print("[unknown extension!]");
-			}
-			break;
-		default: 
-			print("[unknown command code!]");
+			return "[unknown extension!]";
+		case endv:
+			return "end of alignment template";
+		case undefined_cs:
+			return "undefined";
+		case call: 
+			return "macro";
 	}
+	return "[unknown command code!]";
 }
 
-void printcs(int p)
+std::string cs(int p)
 {
 	if (p < hash_base)
+	{
 		if (p >= single_base)
+		{
 			if (p == null_cs)
-			{
-				printesc("csname");
-				printesc("endcsname");
-				printchar(' ');
-			}
-			else
-			{
-				printesc(std::string(1, char(p-single_base)));
-				if (cat_code(p-single_base) == letter)
-					printchar(' ');
-			}
-		else 
-			if (p < active_base)
-				printesc("IMPOSSIBLE.");
-			else
-				printchar(p-active_base);
-	else 
-		if (p >= undefined_control_sequence)
-			printesc("IMPOSSIBLE.");
-		else 
-			if (text(p) < 0 || text(p) >= strptr)
-				printesc("NONEXISTENT.");
-			else
-			{
-				printesc(TXT(hash[p].rh));
-				printchar(' ');
-			}
+				return esc("csname")+esc("endcsname")+" ";
+			return esc(std::string(1, p-single_base))+(cat_code(p-single_base) == letter ? " " : "");
+		}
+		if (p < active_base)
+			return esc("IMPOSSIBLE.");
+		return std::string(1, p-active_base);
+	}
+	if (p >= undefined_control_sequence)
+		return esc("IMPOSSIBLE.");
+	if (text(p) < 0 || text(p) >= strptr)
+		return esc("NONEXISTENT.");
+	return esc(TXT(hash[p].rh))+" ";
+}
+
+std::string scs(halfword p)
+{
+	if (p < hash_base)
+	{
+		if (p >= single_base)
+		{
+			if (p >= null_cs)
+				return esc("csname")+esc("endcsname");
+			return esc(std::string(1, p-single_base));
+		}
+		return std::string(1, p-active_base);
+	}
+	return esc(TXT(text(p)));
 }
 
 void printcurrentstring(void)
@@ -1001,31 +254,20 @@ void printdelimiter(halfword p)
 {
 	int a = (mem[p].qqqq.b0<<8)+mem[p].qqqq.b1;
 	a = (a<<12)+(mem[p].qqqq.b2<<8)+mem[p].qqqq.b3;
-	if (a < 0)
-		printint(a);
-	else
-		printhex(a);
+	print(a < 0 ? std::to_string(a) : hex(a));
 }
 
 std::string esc(const std::string &s) 
 {
-	return "\\"+s;
-}
-
-void printesc(const std::string &s)
-{
 	auto &c = escape_char();
 	if (c >= 0 && c < 256)
-		printchar(c);
-	slowprint(txt(s));
+		return char(c)+s;
+	return s;
 }
 
 void printfamandchar(halfword p)
 {
-	printesc("fam");
-	printint(type(p));
-	printchar(' ');
-	print(TXT(subtype(p)));
+	print(esc("fam")+std::to_string(type(p))+" "+TXT(subtype(p)));
 }
 
 void printfilename(const std::string &n, const std::string &a, const std::string &e)
@@ -1038,152 +280,26 @@ void printfilename(const std::string &n, const std::string &a, const std::string
 void printfontandchar(int p)
 {
 	if (p > memend)
-		printesc("CLOBBERED.");
+		print(esc("CLOBBERED."));
 	else
 	{
 		if (type(p) < 0 || type(p) > fontmax)
-		printchar('*');
+			printchar('*');
 		else
-		printesc(TXT(text(frozen_null_font+type(p))));
-		printesc("FONT");
-		printchar(' ');
-		print(TXT(subtype(p)));
+			print(esc(TXT(text(frozen_null_font+type(p)))));
+		print(esc("FONT")+" "+TXT(subtype(p)));
 	}
 }
 
-void printglue(scaled d, int order, const std::string &s)
+static std::string glue(scaled d, int order, const std::string &s)
 {
-	printscaled(d);
 	if (order < 0 || order > 3)
-		print("foul");
-	else 
-		if (order > 0)
-		{
-			print("fil");
-			for (;order > 1; order--)
-				printchar('l');
-		}
-		else 
-			if (txt(s))
-				print(s);
-}
-
-void printhex(int n)
-{
-	int k = 0;
-	printchar('"');
-	do
-	{
-		dig[k] = n%16;
-		n /= 16;
-		k++;
-	}
-	while (n);
-	printthedigs(k);
-}
-
-void printint(int n)
-{
-	int k = 0;
-	if (n < 0) // nombre négatif
-	{
-		printchar('-');
-		if (n > -100000000) // taille raisonnable
-			n = -n;
-		else // nombre super négatif => probablement une manip de vieux briscard en 32 bits [inutile]
-		{
-			int m = -1-n;
-			n = m/10; // (-1-n)/10
-			m = m%10+1; // (-1-n)%10+1
-			k = 1;
-			if (m < 10)
-				dig[0] = m;
-			else
-			{
-				dig[0] = 0;
-				n++;
-			}
-		}
-	}
-	do
-	{
-		dig[k] = n%10;
-		n /= 10;
-		k++;
-	} while (n);
-	printthedigs(k);
-}
-
-void printlengthparam(int n)
-{
-	switch (n)
-	{
-		case par_indent_code:
-			printesc("parindent");
-			break;
-		case math_surround_code:
-			printesc("mathsurround");
-			break;
-		case line_skip_limit_code:
-			printesc("lineskiplimit");
-			break;
-		case hsize_code:
-			printesc("hsize");
-			break;
-		case vsize_code:
-			printesc("vsize");
-			break;
-		case max_depth_code:
-			printesc("maxdepth");
-			break;
-		case split_max_depth_code:
-			printesc("splitmaxdepth");
-			break;
-		case box_max_depth_code:
-			printesc("boxmaxdepth");
-			break;
-		case hfuzz_code:
-			printesc("hfuzz");
-			break;
-		case vfuzz_code:
-			printesc("vfuzz");
-			break;
-		case delimiter_shortfall_code:
-			printesc("delimitershortfall");
-			break;
-		case null_delimiter_space_code:
-			printesc("nulldelimiterspace");
-			break;
-		case script_space_code:
-			printesc("scriptspace");
-			break;
-		case pre_display_size_code:
-			printesc("predisplaysize");
-			break;
-		case display_width_code:
-			printesc("displaywidth");
-			break;
-		case display_indent_code:
-			printesc("displayindent");
-			break;
-		case overfull_rule_code:
-			printesc("overfullrule");
-			break;
-		case hang_indent_code:
-			printesc("hangindent");
-			break;
-		case h_offset_code:
-			printesc("hoffset");
-			break;
-		case v_offset_code:
-			printesc("voffset");
-			break;
-		case emergency_stretch_code:
-			printesc("emergencystretch");
-			break;
-		default:
-			print("[unknown dimen parameter!]");
-	}
+		return asScaled(d)+"foul";
+	if (order > 0)
+		return asScaled(d)+"fi"+std::string(order, 'l');
+	if (txt(s))
+		return s;
+	return "";
 }
 
 void println(void)
@@ -1217,7 +333,7 @@ void printmark(int p)
 {
 	printchar('{');
 	if (p < himemmin || p > memend)
-		printesc("CLOBBERED.");
+		print(esc("CLOBBERED."));
 	else
 		showtokenlist(link(p), 0, maxprintline-10);
 	printchar('}');
@@ -1225,7 +341,7 @@ void printmark(int p)
 
 void printmeaning(void)
 {
-	printcmdchr(curcmd, curchr);
+	print(cmdchr(curcmd, curchr));
 	if (curcmd >= call)
 	{
 		printchar(':');
@@ -1268,7 +384,7 @@ void printmode(int m)
 					print("restricted horizontal");
 					break;
 				case 2: 
-				print("math");
+					print("math");
 			}
 	print(" mode");
 }
@@ -1280,179 +396,6 @@ void printnl(const std::string &s)
 	print(s);
 }
 
-void printparam(int n)
-{
-	switch (n)
-	{
-		case pretolerance_code:
-			printesc("pretolerance");
-			break;
-		case tolerance_code:
-			printesc("tolerance");
-			break;
-		case line_penalty_code:
-			printesc("linepenalty");
-			break;
-		case hyphen_penalty_code:
-			printesc("hyphenpenalty");
-			break;
-		case ex_hyphen_penalty_code:
-			printesc("exhyphenpenalty");
-			break;
-		case club_penalty_code:
-			printesc("clubpenalty");
-			break;
-		case widow_penalty_code:
-			printesc("widowpenalty");
-			break;
-		case display_widow_penalty_code:
-			printesc("displaywidowpenalty");
-			break;
-		case broken_penalty_code:
-			printesc("brokenpenalty");
-			break;
-		case bin_op_penalty_code:
-			printesc("binoppenalty");
-			break;
-		case rel_penalty_code:
-			printesc("relpenalty");
-			break;
-		case pre_display_penalty_code:
-			printesc("predisplaypenalty");
-			break;
-		case post_display_penalty_code:
-			printesc("postdisplaypenalty");
-			break;
-		case inter_line_penalty_code:
-			printesc("interlinepenalty");
-			break;
-		case double_hyphen_demerits_code:
-			printesc("doublehyphendemerits");
-			break;
-		case final_hyphen_demerits_code:
-			printesc("finalhyphendemerits");
-			break;
-		case adj_demerits_code:
-			printesc("adjdemerits");
-			break;
-		case mag_code:
-			printesc("mag");
-			break;
-		case delimiter_factor_code:
-			printesc("delimiterfactor");
-			break;
-		case looseness_code:
-			printesc("looseness");
-			break;
-		case time_code:
-			printesc("time");
-			break;
-		case day_code:
-			printesc("day");
-			break;
-		case month_code:
-			printesc("month");
-			break;
-		case year_code:
-			printesc("year");
-			break;
-		case show_box_breadth_code:
-			printesc("showboxbreadth");
-			break;
-		case show_box_depth_code:
-			printesc("showboxdepth");
-			break;
-		case hbadness_code:
-			printesc("hbadness");
-			break;
-		case vbadness_code:
-			printesc("vbadness");
-			break;
-		case pausing_code:
-			printesc("pausing");
-			break;
-		case tracing_online_code:
-			printesc("tracingonline");
-			break;
-		case tracing_macros_code:
-			printesc("tracingmacros");
-			break;
-		case tracing_stats_code:
-			printesc("tracingstats");
-			break;
-		case tracing_paragraphs_code:
-			printesc("tracingparagraphs");
-			break;
-		case tracing_pages_code:
-			printesc("tracingpages");
-			break;
-		case tracing_output_code:
-			printesc("tracingoutput");
-			break;
-		case tracing_lost_chars_code:
-			printesc("tracinglostchars");
-			break;
-		case tracing_commands_code:
-			printesc("tracingcommands");
-			break;
-		case tracing_restores_code:
-			printesc("tracingrestores");
-			break;
-		case uc_hyph_code:
-			printesc("uchyph");
-			break;
-		case output_penalty_code:
-			printesc("outputpenalty");
-			break;
-		case max_dead_cycles_code:
-			printesc("maxdeadcycles");
-			break;
-		case hang_after_code:
-			printesc("hangafter");
-			break;
-		case floating_penalty_code:
-			printesc("floatingpenalty");
-			break;
-		case global_defs_code:
-			printesc("globaldefs");
-			break;
-		case cur_fam_code:
-			printesc("fam");
-			break;
-		case escape_char_code:
-			printesc("escapechar");
-			break;
-		case default_hyphen_char_code:
-			printesc("defaulthyphenchar");
-			break;
-		case default_skew_char_code:
-			printesc("defaultskewchar");
-			break;
-		case end_line_char_code:
-			printesc("endlinechar");
-			break;
-		case new_line_char_code:
-			printesc("newlinechar");
-			break;
-		case language_code:
-			printesc("language");
-			break;
-		case left_hyphen_min_code:
-			printesc("lefthyphenmin");
-			break;
-		case right_hyphen_min_code:
-			printesc("righthyphenmin");
-			break;
-		case holding_inserts_code:
-			printesc("holdinginserts");
-			break;
-		case error_context_lines_code:
-			printesc("errorcontextlines");
-			break;
-		default:
-			print("[unknown integer parameter!]");
-	}
-}
 
 void printromanint(int n)
 {
@@ -1493,102 +436,12 @@ void printruledimen(scaled d)
 	if (is_running(d))
 		printchar('*');
 	else
-		printscaled(d);
+		print(asScaled(d));
 }
 
-void printscaled(scaled s)
+std::string asScaled(scaled s)
 {
-	if (s < 0)
-	{
-		printchar('-');
-		s = -s;
-	}
-	printint(s/unity);
-	printchar('.');
-	s = 10*(s%unity)+5;
-	scaled delta = 10;
-	do
-	{
-		if (delta > unity)
-		s += 0x80'00-50000;
-		printchar('0'+s/unity);
-		s = 10*(s%unity);
-		delta *= 10;
-	} while (s > delta);
-}
-
-void printsize(int s)
-{
-	if (s == 0)
-		printesc("textfont");
-	else 
-		if (s == 16)
-			printesc("scriptfont");
-		else
-			printesc("scriptscriptfont");
-}
-
-void printskipparam(int n)
-{
-	switch (n)
-	{
-		case line_skip_code: 
-			printesc("lineskip");
-			break;
-		case baseline_skip_code: 
-			printesc("baselineskip");
-			break;
-		case par_skip_code: 
-			printesc("parskip");
-			break;
-		case above_display_skip_code: 
-			printesc("abovedisplayskip");
-			break;
-		case below_display_skip_code: 
-			printesc("belowdisplayskip");
-			break;
-		case above_display_short_skip_code: 
-			printesc("abovedisplayshortskip");
-			break;
-		case below_display_short_skip_code: 
-			printesc("belowdisplayshortskip");
-			break;
-		case left_skip_code: 
-			printesc("leftskip");
-			break;
-		case right_skip_code: 
-			printesc("rightskip");
-			break;
-		case top_skip_code: 
-			printesc("topskip");
-			break;
-		case split_top_skip_code: 
-			printesc("splittopskip");
-			break;
-		case tab_skip_code: 
-			printesc("tabskip");
-			break;
-		case space_skip_code: 
-			printesc("spaceskip");
-			break;
-		case xspace_skip_code: 
-			printesc("xspaceskip");
-			break;
-		case par_fill_skip_code: 
-			printesc("parfillskip");
-			break;
-		case thin_mu_skip_code: 
-			printesc("thinmuskip");
-			break;
-		case med_mu_skip_code: 
-			printesc("medmuskip");
-			break;
-		case thick_mu_skip_code: 
-			printesc("thickmuskip");
-			break;
-		default: 
-			print("[unknown glue parameter!]");
-	}
+	return std::to_string(double(s)/unity);
 }
 
 void printspec(int p, const std::string &s)
@@ -1597,40 +450,13 @@ void printspec(int p, const std::string &s)
 		printchar('*');
 	else
 	{
-		printscaled(width(p));
-		if (txt(s))
+		print(asScaled(width(p)));
+		if (s != "")
 			print(s);
 		if (stretch(p))
-		{
-			print(" plus ");
-			printglue(stretch(p), type(p), s);
-		}
+			print(" plus "+glue(stretch(p), type(p), s));
 		if (shrink(p))
-		{
-			print(" minus ");
-			printglue(shrink(p), subtype(p), s);
-		}
-	}
-}
-
-void printstyle(int c)
-{
-	switch (c/2)
-	{
-		case 0: 
-			printesc("displaystyle");
-			break;
-		case 1: 
-			printesc("textstyle");
-			break;
-		case 2: 
-			printesc("scriptstyle");
-			break;
-		case 3:
-			printesc("scriptscriptstyle");
-			break;
-		default:
-			print("Unknown style!");
+			print(" minus "+glue(shrink(p), subtype(p), s));
 	}
 }
 
@@ -1669,42 +495,6 @@ void printsubsidiarydata(halfword p, ASCIIcode c)
 	}
 }
 
-void printthedigs(eightbits k)
-{
-	while (k > 0)
-	{
-		k--;
-		if (dig[k] < 10)
-			printchar('0'+dig[k]);
-		else
-			printchar('A'+dig[k]-10);
-	}
-}
-
-static void print_plus(int i, const std::string &s)
-{
-	if (pagesofar[i])
-	{
-		print(" plus ");
-		printscaled(pagesofar[i]);
-		print(s);
-	}
-}
-
-void printtotals(void)
-{
-	printscaled(page_total);
-	print_plus(2, "");
-	print_plus(3, "fil");
-	print_plus(4, "fill");
-	print_plus(5, "filll");
-	if (page_shrink)
-	{
-		print(" minus ");
-		printscaled(page_shrink);
-	}
-}
-
 void printtwo(int n)
 {
 	n = abs(n)%100;
@@ -1714,14 +504,7 @@ void printtwo(int n)
 
 void printwritewhatsit(const std::string &s, halfword p)
 {
-	printesc(s);
-	if (write_stream(p) < 16)
-		printint(write_stream(p));
-	else 
-		if (write_stream(p) == 16)
-			printchar('*');
-		else
-			printchar('-');
+	print(esc(s)+(write_stream(p) < 16 ? std::to_string(write_stream(p)) :write_stream(p) == 16 ? "*" : "-"));
 }
 
 void slowprint(int s)
@@ -1739,27 +522,9 @@ void slowprint(const std::string &s)
 		printchar(c);
 }
 
-void sprintcs(halfword p)
-{
-	if (p < hash_base)
-		if (p < single_base)
-			printchar(p-active_base);
-		else 
-			if (p < null_cs)
-				printesc(std::string(1, char(p-single_base)));
-			else
-			{
-				printesc("csname");
-				printesc("endcsname");
-			}
-	else
-		printesc(TXT(text(p)));
-}
-
 void print_err(const std::string &s)
 {
-	printnl("! ");
-	print(s);
+	printnl("! "+s);
 }
 
 void showtokenlist(int p, int  q, int l)
@@ -1778,17 +543,17 @@ void showtokenlist(int p, int  q, int l)
 		}
 		if (p < himemmin || p > memend)
 		{
-			printesc("CLOBBERED.");
+			print(esc("CLOBBERED."));
 			return;
 		}
 		if (info(p) >= cs_token_flag)
-			printcs(info(p)-cs_token_flag);
+			print(cs(info(p)-cs_token_flag));
 		else
 		{
 			int m = info(p)/0x1'00;
 			int c = info(p)%0x1'00;
 			if (info(p) < 0)
-				printesc("BAD.");
+				print(esc("BAD."));
 			else
 				switch (m)
 				{
@@ -1829,13 +594,13 @@ void showtokenlist(int p, int  q, int l)
 						print("->");
 						break;
 					default:
-			  			printesc("BAD.");
+			  			print(esc("BAD."));
 				}
 		}
 		p = link(p);
 	}
 	if (p)
-		printesc("ETC.");
+		print(esc("ETC."));
 }
 
 void tokenshow(halfword p)
@@ -1860,7 +625,7 @@ void shortdisplay(int p)
 					if (font(p) < 0 || font(p) > fontmax)
 						printchar('*');
 					else
-						printesc(TXT(font_id_text(p)));
+						print(esc(TXT(font_id_text(p))));
 					printchar(' ');
 					fontinshortdisplay = font(p);
 				}
@@ -1943,36 +708,21 @@ void shownodelist(int p)
 				case vlist_node:
 				case unset_node:
 					if (type(p) == hlist_node)
-						printesc("h");
+						print(esc("hbox"));
 					else 
 						if (type(p) == vlist_node)
-							printesc("v");
+							print(esc("vbox"));
 						else
-							printesc("unset");
-					print("box(");
-					printscaled(height(p));
-					printchar('+');
-					printscaled(depth(p));
-					print(")x");
-					printscaled(width(p));
+							print(esc("unsetbox"));
+					print("("+asScaled(height(p))+"+"+asScaled(depth(p))+")x"+asScaled(width(p)));
 					if (type(p) == unset_node)
 					{
 						if (span_count(p))
-						{
-							print(" (");
-							printint(span_count(p)+1);
-							print(" columns)");
-						}
+							print(" ("+std::to_string(span_count(p)+1)+" columns)");
 						if (glue_stretch(p))
-						{
-							print(", stretch ");
-							printglue(glue_stretch(p), glue_order(p), 0);
-						}
+							print(", stretch "+glue(glue_stretch(p), glue_order(p), ""));
 						if (glue_shrink(p))
-						{
-							print(", shrink ");
-							printglue(glue_shrink(p), glue_sign(p), 0);
-						}
+							print(", shrink "+glue(glue_shrink(p), glue_sign(p), ""));
 					}
 					else
 					{
@@ -1991,21 +741,18 @@ void shownodelist(int p)
 										printchar('>');
 									else
 										print("< -");
-									printglue(20000*unity, glue_order(p), 0);
+									print(glue(20000*unity, glue_order(p), ""));
 								}
 								else
-									printglue(round(unity*g), glue_order(p), 0);
+									print(glue(round(unity*g), glue_order(p), ""));
 						}
 						if (shift_amount(p))
-						{
-							print(", shifted ");
-							printscaled(shift_amount(p));
-						}
+							print(", shifted "+asScaled(shift_amount(p)));
 					}
 					node_list_display(list_ptr(p));
 					break;
 				case rule_node:
-					printesc("rule(");
+					print(esc("rule")+"(");
 					printruledimen(width(p));
 					printchar('+');
 					printruledimen(depth(p));
@@ -2013,16 +760,9 @@ void shownodelist(int p)
 					printruledimen(width(p));
 					break;
 				case ins_node:
-					printesc("insert");
-					printint(subtype(p));
-					print(", natural size ");
-					printscaled(height(p));
-					print("; split(");
+					print(esc("insert")+std::to_string(subtype(p))+", natural size "+asScaled(height(p))+"; split(");
 					printspec(split_top_ptr(p), 0);
-					printchar(',');
-					printscaled(depth(p));
-					print("); float cost ");
-					printint(float_cost(p));
+					print(","+asScaled(depth(p))+"); float cost "+std::to_string(float_cost(p)));
 					node_list_display(ins_ptr(p));
 					break;
 				case whatsit_node:
@@ -2041,87 +781,78 @@ void shownodelist(int p)
 							printwritewhatsit("closeout", p); 
 							break;
 						case 3:
-							printesc("special");
+							print(esc("special"));
 							printmark(link(p+1));
 							break;
 						case 4:
-							printesc("setlanguage");
-							printint(link(p+1));
-							print(" (hyphenmin"); 
-							printint(type(p+1));
-							printchar(',');
-							printint(subtype(p+1));
-							printchar(')');
+							print(esc("setlanguage")+std::to_string(what_lang(p))+" (hyphenmin"+std::to_string(what_lhm(p))+","+std::to_string(what_rhm(p))+")");
 							break;
 						default: 
 							print("whatsit?");
 					}
 					break;
 				case glue_node:
-					if (subtype(p) >= 100)
+					if (subtype(p) >= a_leaders)
 					{
-						printesc("");
-						if (subtype(p) == 101)
-							printchar('c');
-						else 
-							if (subtype(p) == 102)
-								printchar('x');
-						print("leaders ");
+						print(esc(subtype(p) == c_leaders ? "cleaders" : subtype(p) == x_leaders ? "xleaders" : "leaders "));
 						printspec(glue_ptr(p), 0);
 						node_list_display(leader_ptr(p));
 					}
 					else
 					{
-						printesc("glue");
-						if (subtype(p))
+						print(esc("glue"));
+						if (subtype(p) != normal)
 						{
 							printchar('(');
-							if (subtype(p) < 98)
-								printskipparam(subtype(p)-1);
+							if (subtype(p) < cond_math_glue)
+							{
+								int n = subtype(p)-1;
+								if (primName[assign_glue].find(n) != primName[assign_glue].end())
+										print(esc(primName[assign_glue][n]));
+									else 
+										if (primName[assign_mu_glue].find(n) != primName[assign_mu_glue].end())
+											print(esc(primName[assign_mu_glue][n]));
+										else
+											print("[unknown glue parameter!]");
+							
+							}
 							else 
-								if (subtype(p) == 98)
-								printesc("nonscript");
+								if (subtype(p) == cond_math_glue)
+								print(esc("nonscript"));
 							else
-								printesc("mskip");
+								print(esc("mskip"));
 							printchar(')');
 						}
-						if (subtype(p) != 98)
+						if (subtype(p) != cond_math_glue)
 						{
 							printchar(' ');
-							if (subtype(p) < 98)
-								printspec(info(p+1), 0);
+							if (subtype(p) < cond_math_glue)
+								printspec(glue_ptr(p), 0);
 							else
-								printspec(info(p+1), "mu");
+								printspec(glue_ptr(p), "mu");
 						}
 					}
 				case kern_node:
 					if (subtype(p) != mu_glue)
 					{
-						printesc("kern");
+						print(esc("kern"));
 						if (subtype(p) != normal)
 							printchar(' ');
-						printscaled(width(p));
+						print(asScaled(width(p)));
 						if (subtype(p) == acc_kern)
 							print(" (for accent)");
 					}
 					else
-					{
-						printesc("mkern");
-						printscaled(width(p));
-						print("mu");
-					}
+						print(esc("mkern")+asScaled(width(p))+"mu");
 					break;
 				case math_node:
-					printesc("math");
+					print(esc("math"));
 					if (subtype(p) == before)
 						print("on");
 					else
 						print("off");
 					if (width(p))
-					{
-						print(", surrounded ");
-						printscaled(width(p));
-					}
+						print(", surrounded "+asScaled(width(p)));
 					break;
 				case ligature_node:
 					printfontandchar(p+1);
@@ -2135,15 +866,13 @@ void shownodelist(int p)
 					printchar(')');
 					break;
 				case penalty_node:
-					printesc("penalty ");
-					printint(penalty(p));
+					print(esc("penalty ")+std::to_string(penalty(p)));
 					break;
 				case disc_node:
-					printesc("discretionary");
+					print(esc("discretionary"));
 					if (subtype(p) > 0)
 					{
-						print(" replacing ");
-						printint(subtype(p));
+						print(" replacing "+std::to_string(subtype(p)));
 					}
 					node_list_display(pre_break(p));
 					append_char('|');
@@ -2151,29 +880,32 @@ void shownodelist(int p)
 					flush_char();
 					break;
 				case mark_node:
-					printesc("mark");
+					print(esc("mark"));
 					printmark(mark_ptr(p));
 					break;
 				case adjust_node:
-					printesc("vadjust");
+					print(esc("vadjust"));
 					node_list_display(adjust_ptr(p));
 					break;
 				case style_node: 
-					printstyle(subtype(p));
+					if (primName[math_style].find(subtype(p)) != primName[math_style].end())
+						print(esc(primName[math_style][subtype(p)]));
+					else
+						print("Unknown style!");
 					break;
 				case choice_node:
-					printesc("mathchoice");
+					print(esc("mathchoice"));
 					append_char('D');
-					shownodelist(info(p+1));
+					shownodelist(display_mlist(p));
 					flush_char();
 					append_char('T');
-					shownodelist(link(p+1));
+					shownodelist(text_mlist(p));
 					flush_char();
 					append_char('S');
-					shownodelist(info(p+2));
+					shownodelist(script_mlist(p));
 					flush_char();
 					append_char('s');
-					shownodelist(link(p+2));
+					shownodelist(script_script_mlist(p));
 					flush_char();
 					break;
 				case ord_noad:
@@ -2194,70 +926,70 @@ void shownodelist(int p)
 					switch (type(p))
 					{
 						case ord_noad: 
-							printesc("mathord");
+							print(esc("mathord"));
 							break;
 						case op_noad: 
-							printesc("mathop");
+							print(esc("mathop"));
 							break;
 						case bin_noad: 
-							printesc("mathbin");
+							print(esc("mathbin"));
 							break;
 						case rel_noad: 
-							printesc("mathrel");
+							print(esc("mathrel"));
 							break;
 						case open_noad: 
-							printesc("mathopen");
+							print(esc("mathopen"));
 							break;
 						case close_noad: 
-							printesc("mathclose");
+							print(esc("mathclose"));
 							break;
 						case punct_noad: 
-							printesc("mathpunct");
+							print(esc("mathpunct"));
 							break;
 						case inner_noad: 
-							printesc("mathinner");
+							print(esc("mathinner"));
 							break;
 						case over_noad: 
-							printesc("overline");
+							print(esc("overline"));
 							break;
 						case under_noad: 
-							printesc("underline");
+							print(esc("underline"));
 							break;
 						case vcenter_noad: 
-							printesc("vcenter");
+							print(esc("vcenter"));
 							break;
 						case radical_noad:
-							printesc("radical");
+							print(esc("radical"));
 							printdelimiter(left_delimiter(4));
 							break;
 						case accent_noad:
-							printesc("accent");
+							print(esc("accent"));
 							printfamandchar(accent_chr(p));
 							break;
 						case left_noad:
-							printesc("left");
+							print(esc("left"));
 							printdelimiter(delimiter(p));
 							break;
 						case right_noad:
-							printesc("right");
+							print(esc("right"));
 							printdelimiter(delimiter(p));
 					}
 					if (subtype(p))
 						if (subtype(p) == limits)
-							printesc("limits");
+							print(esc("limits"));
 						else
-							printesc("nolimits");
+							print(esc("nolimits"));
 					if (type(p) < left_noad)
 						printsubsidiarydata(nucleus(p), '.');
 					printsubsidiarydata(supscr(p), '^');
 					printsubsidiarydata(subscr(p), '_');
 					break;
 				case fraction_noad:
-					printesc("fraction, thickness ");
+					print(esc("fraction, thickness "));
 					if (new_hlist(p) == default_code)
 						print("= default");
 					else
-						printscaled(new_hlist(p));
+						print(asScaled(new_hlist(p)));
 					if (small_fam(left_delimiter(p))
 					 || small_char(left_delimiter(p))
 					 || large_fam(left_delimiter(p))
@@ -2347,19 +1079,9 @@ void showcontext(void)
 						if (terminal_input(name))
 							printnl(baseptr == 0 ? "<*>" : "<insert> ");
 						else
-						{
-							printnl("<read ");
-							if (txt(name) == 17)
-								printchar('*');
-							else
-								printint(txt(name)-1);
-							printchar('>');
-						}
+							printnl("<read "+ (txt(name) == 17 ? "*" : std::to_string((txt(name)-1)))+">");
 					else
-					{
-						printnl("l.");
-						printint(line);
-					}
+						printnl("l."+std::to_string(line));
 					printchar(' ');
 					begin_pseudoprint(l);
 					int j;
@@ -2397,7 +1119,7 @@ void showcontext(void)
 							break;
 						case macro:
 							println();
-							printcs(txt(name));
+							print(cs(txt(name)));
 							break;
 						case output_text: 
 							printnl("<output> ");
@@ -2515,11 +1237,17 @@ void showcurcmdchr(void)
 	{
 		printmode(mode);
 		print(": ");
-		shownmode = mode;
 	}
-	printcmdchr(curcmd, curchr);
-	printchar('}');
+	shownmode = mode;
+	print(cmdchr(curcmd, curchr)+"}");
 	enddiagnostic(false);
+}
+
+static std::string plus(int i, const std::string &s)
+{
+	if (pagesofar[i])
+		return " plus "+asScaled(pagesofar[i])+s;
+	return "";
 }
 
 void showactivities(void)
@@ -2533,18 +1261,9 @@ void showactivities(void)
 		memoryword a = nest[p].auxfield;
 		printnl("### ");
 		printmode(m);
-		print(" entered at line ");
-		printint(abs(nest[p].mlfield));
+		print(" entered at line "+std::to_string(abs(nest[p].mlfield)));
 		if (m == hmode && nest[p].pgfield != 8585216) //0x830000
-		{
-			print(" (language");
-			printint(nest[p].pgfield%0x1'00'00);
-			print(":hyphenmin");
-			printint(nest[p].pgfield/4194304);
-			printchar(',');
-			printint((nest[p].pgfield/0x1'00'00)%64);
-			printchar(')');
-		}
+			print(" (language"+std::to_string(nest[p].pgfield%0x1'00'00)+":hyphenmin"+std::to_string(nest[p].pgfield/4194304)+","+std::to_string((nest[p].pgfield/0x1'00'00)%64)+")");
 		if (nest[p].mlfield < 0)
 			print(" (\\output routine)");
 		if (p == 0)
@@ -2557,36 +1276,25 @@ void showactivities(void)
 				showbox(link(page_head));
 				if (pagecontents > 0)
 				{
-					printnl("total height ");
-					printtotals();
+					printnl("total height "+asScaled(page_total)+plus(2, "")+plus(3, "fil")+plus(4, "fill")+plus(5, "filll")+(page_shrink ? " minus "+asScaled(page_shrink) : ""));
 					printnl(" goal height");
-					printscaled(page_goal);
+					print(asScaled(page_goal));
 					halfword r = link(page_ins_head);
 					while (r != page_ins_head)
 					{
 						println();
-						printesc("insert");
-						int t = subtype(r);
-						printint(t);
-						print(" adds ");
-						if (count(t) == 1000)
-							t = height(r);
-						else
-							t = xovern(height(r), 1000)*count(t);
-						printscaled(t);
+						print(esc("insert")+std::to_string(subtype(r))+" adds "+asScaled(count(subtype(r)) == 1000 ? height(r) : xovern(height(r), 1000)*count(subtype(r))));
 						if (type(r) == vlist_node)
 						{
 							halfword q = page_head;
-							t = 0;
+							int t = 0;
 							do
 							{
 								q = link(q);
 								if (type(q) == ins_node && subtype(q) == subtype(r))
 									t++;
 							} while (q != broken_ins(r));
-							print(", #");
-							printint(t);
-							print(" might split");
+							print(", #"+std::to_string(t)+" might split");
 						}
 						r = link(r);
 					}
@@ -2600,28 +1308,14 @@ void showactivities(void)
 		switch (abs(m)/101)
 		{
 			case 0:
-				printnl("prevdepth ");
-				if (a.int_ <= -0x1'00'00*1000)
-					print("ignored");
-				else
-					printscaled(a.int_);
+				printnl("prevdepth "+(a.int_ <= ignore_depth ? "ignored" : asScaled(a.int_)));
 				if (nest[p].pgfield)
-				{
-					print(", prevgraf ");
-					printint(nest[p].pgfield);
-					print(" line");
-					if (nest[p].pgfield != 1)
-						printchar('s');
-				}
+					print(", prevgraf "+std::to_string(nest[p].pgfield)+" line"+(nest[p].pgfield == 1 ?"" : "s"));
 				break;
 			case 1:
-				printnl("spacefactor ");
-				printint(a.hh.lh);
+				printnl("spacefactor "+std::to_string(a.hh.lh));
 				if (m > 0 && a.hh.rh > 0)
-				{
-					print(", current language ");
-					printint(a.hh.rh);
-				}
+					print(", current language "+std::to_string(a.hh.rh));
 				break;
 			case 2: 
 				if (a.int_)
@@ -2650,9 +1344,7 @@ void showwhatever(void)
 		case show_box_code:
 			scaneightbitint();
 			begindiagnostic();
-			printnl("> \\box");
-			printint(curval);
-			printchar('='); 
+			printnl("> \\box"+std::to_string(curval)+"="); 
 			if (box(curval) == 0)
 				print("void");
 			else
@@ -2666,12 +1358,7 @@ void showwhatever(void)
 			break;
 		case show_code:
 			gettoken();
-			printnl("> ");
-			if (curcs)
-			{
-				sprintcs(curcs);
-				printchar('=');
-			}
+			printnl("> "+(curcs ? scs(curcs)+"=" : ""));
 			printmeaning();
 			break;
 		default:

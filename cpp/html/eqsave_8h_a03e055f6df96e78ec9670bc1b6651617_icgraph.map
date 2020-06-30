@@ -1,11 +1,12 @@
 <map id="eqsave" name="eqsave">
-<area shape="rect" id="node1" title=" " alt="" coords="325,132,389,159"/>
-<area shape="rect" id="node2" href="$eqdefine_8h.html#a4f9657182abb3c8c499ccd689be3f647" title=" " alt="" coords="193,81,263,108"/>
-<area shape="rect" id="node6" href="$eqworddefine_8h.html#adb9ada4ad25b8952045f620d99afa7d3" title=" " alt="" coords="179,157,277,184"/>
-<area shape="rect" id="node3" href="$eqdefine_8h.html#aeae006372a12c71aa237d12cdfd5e394" title=" " alt="" coords="39,5,97,32"/>
-<area shape="rect" id="node4" href="$getpreambletoken_8h.html#a82620351bee57bb56f4d0a9181f6af98" title=" " alt="" coords="5,56,131,83"/>
-<area shape="rect" id="node5" href="$normalparagraph_8h.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="9,107,127,133"/>
-<area shape="rect" id="node7" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="34,157,102,184"/>
-<area shape="rect" id="node8" href="$starteqno_8h.html#a40e390a210c4e1831cf647cefaca8244" title=" " alt="" coords="30,208,106,235"/>
-<area shape="rect" id="node9" href="$eqworddefine_8h.html#a7c3d6699306f4bffaf9ca32b140e609b" title=" " alt="" coords="22,259,114,285"/>
+<area shape="rect" id="node1" title=" " alt="" coords="325,157,389,184"/>
+<area shape="rect" id="node2" href="$eqdefine_8h.html#a4f9657182abb3c8c499ccd689be3f647" title=" " alt="" coords="193,107,263,133"/>
+<area shape="rect" id="node7" href="$eqworddefine_8h.html#adb9ada4ad25b8952045f620d99afa7d3" title=" " alt="" coords="179,208,277,235"/>
+<area shape="rect" id="node3" href="$boxend_8h.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="36,5,100,32"/>
+<area shape="rect" id="node4" href="$eqdefine_8h.html#aeae006372a12c71aa237d12cdfd5e394" title=" " alt="" coords="39,56,97,83"/>
+<area shape="rect" id="node5" href="$getpreambletoken_8h.html#a82620351bee57bb56f4d0a9181f6af98" title=" " alt="" coords="5,107,131,133"/>
+<area shape="rect" id="node6" href="$normalparagraph_8h.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="9,157,127,184"/>
+<area shape="rect" id="node8" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="34,208,102,235"/>
+<area shape="rect" id="node9" href="$starteqno_8h.html#a40e390a210c4e1831cf647cefaca8244" title=" " alt="" coords="30,259,106,285"/>
+<area shape="rect" id="node10" href="$eqworddefine_8h.html#a7c3d6699306f4bffaf9ca32b140e609b" title=" " alt="" coords="22,309,114,336"/>
 </map>

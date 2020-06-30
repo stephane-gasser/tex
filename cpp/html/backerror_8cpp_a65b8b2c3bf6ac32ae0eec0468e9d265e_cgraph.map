@@ -1,6 +1,6 @@
 <map id="backerror" name="backerror">
-<area shape="rect" id="node1" title=" " alt="" coords="5,81,81,108"/>
-<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="129,56,208,83"/>
+<area shape="rect" id="node1" title="Back up one token and call error." alt="" coords="5,81,81,108"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="129,56,208,83"/>
 <area shape="rect" id="node6" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="145,107,193,133"/>
 <area shape="rect" id="node3" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="256,5,348,32"/>
 <area shape="rect" id="node4" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="269,56,335,83"/>

@@ -1,10 +1,7 @@
 #include "builddiscretionary.h"
 #include "unsave.h"
 #include "impression.h"
-#include "begindiagnostic.h"
 #include "error.h"
-#include "showbox.h"
-#include "enddiagnostic.h"
 #include "flushnodelist.h"
 #include "popnest.h"
 #include "flushnodelist.h"
@@ -54,8 +51,7 @@ void builddiscretionary(void)
 		case 2: //Attach list |p| to the current list, and record its length; then finish up and |return|
 			if (n > 0 && abs(mode) == mmode)
 			{
-				print_err("Illegal math ");
-				printesc("discretionary");
+				print_err("Illegal math "+esc("discretionary"));
 				helpptr = 2;
 				helpline[1] = "Sorry: The third part of a discretionary break must be";
 				helpline[0] = "empty, in math formulas. I had to delete your third part.";

@@ -1,7 +1,5 @@
 <map id="broken_ins" name="broken_ins">
-<area shape="rect" id="node1" title="this insertion might break at broken_ptr" alt="" coords="313,31,399,57"/>
-<area shape="rect" id="node2" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="185,5,240,32"/>
-<area shape="rect" id="node4" href="$showactivities_8h.html#af65ad32dc39ed04ec95346db7ab1f259" title=" " alt="" coords="160,56,265,83"/>
-<area shape="rect" id="node3" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="20,5,97,32"/>
-<area shape="rect" id="node5" href="$showwhatever_8h.html#a99b4dadf3c1abee06e9da950c3c704a5" title=" " alt="" coords="5,56,112,83"/>
+<area shape="rect" id="node1" title="this insertion might break at broken_ptr" alt="" coords="233,5,319,32"/>
+<area shape="rect" id="node2" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="131,5,185,32"/>
+<area shape="rect" id="node3" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="5,5,83,32"/>
 </map>

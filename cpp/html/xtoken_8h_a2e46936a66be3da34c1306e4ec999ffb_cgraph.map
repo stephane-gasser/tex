@@ -1,18 +1,17 @@
 <map id="xtoken" name="xtoken">
-<area shape="rect" id="node1" title=" " alt="" coords="5,485,67,512"/>
-<area shape="rect" id="node2" href="$expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="115,359,179,385"/>
-<area shape="rect" id="node13" href="$getnext_8cpp.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="413,511,479,537"/>
-<area shape="rect" id="node3" href="$backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title=" " alt="" coords="255,207,331,233"/>
-<area shape="rect" id="node4" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="407,257,485,284"/>
-<area shape="rect" id="node5" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="551,308,618,335"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="720,460,763,487"/>
-<area shape="rect" id="node7" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="706,359,777,385"/>
-<area shape="rect" id="node8" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="952,384,999,411"/>
-<area shape="rect" id="node9" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="847,409,904,436"/>
-<area shape="rect" id="node10" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="533,612,636,639"/>
-<area shape="rect" id="node11" href="$printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="707,713,775,740"/>
-<area shape="rect" id="node12" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="257,511,329,537"/>
-<area shape="rect" id="node14" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="253,460,332,487"/>
-<area shape="rect" id="node15" href="$showcurcmdchr_8cpp.html#a663c42b205477b7748f1324b1a526f70" title=" " alt="" coords="684,308,799,335"/>
-<area shape="rect" id="node16" href="$parametres_8h.html#afd293e731aa5f183146f50f71405e79c" title=" " alt="" coords="227,55,359,81"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,479,67,506"/>
+<area shape="rect" id="node2" href="$expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="115,327,179,354"/>
+<area shape="rect" id="node12" href="$getnext_8cpp.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="413,429,479,455"/>
+<area shape="rect" id="node3" href="$backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="255,99,331,126"/>
+<area shape="rect" id="node4" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="407,201,485,227"/>
+<area shape="rect" id="node5" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="551,245,618,271"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="698,309,741,335"/>
+<area shape="rect" id="node7" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="684,233,755,259"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="803,233,872,259"/>
+<area shape="rect" id="node9" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="533,403,636,430"/>
+<area shape="rect" id="node10" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="271,403,314,430"/>
+<area shape="rect" id="node11" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="257,454,329,481"/>
+<area shape="rect" id="node13" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="253,353,332,379"/>
+<area shape="rect" id="node14" href="$impression_8cpp.html#a663c42b205477b7748f1324b1a526f70" title=" " alt="" coords="235,505,350,531"/>
+<area shape="rect" id="node15" href="$parametres_8h.html#afd293e731aa5f183146f50f71405e79c" title=" " alt="" coords="227,150,359,177"/>
 </map>

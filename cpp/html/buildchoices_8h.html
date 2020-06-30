@@ -129,25 +129,25 @@ Fonctions</h2></td></tr>
 <p class="definition">Définition à la ligne <a class="el" href="buildchoices_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="buildchoices_8cpp_source.html">buildchoices.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc">unsave</a>();</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af">finmlist</a>(0);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af">finmlist</a>(0); <span class="comment">// the current mlist</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">switch</span> (<a class="code" href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a>[<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>-1].int_)</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">case</span> 0: </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>+1) = p;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <a class="code" href="constantes_8cpp.html#a4da40ddb2b5a65de1d2bba8128eb3167">display_mlist</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) = p;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">case</span> 1: </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>+1) = p;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="constantes_8cpp.html#a159b73dc022ab907a96c51c0f881f8c7">text_mlist</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) = p;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">case</span> 2: </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>+2) = p;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="constantes_8cpp.html#a76f175f6541923e8ba102ee0dc79eb5c">script_mlist</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) = p;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">case</span> 3:</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>+2) = p;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <a class="code" href="constantes_8cpp.html#a9cbfeb716eeea05a09ed2ee0460d8f82">script_script_mlist</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) = p;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>--;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a>[<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>-1].<a class="code" href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a>++;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012">pushmath</a>(13);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a>[<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>-1].<a class="code" href="unionmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a>++;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012">pushmath</a>(<a class="code" href="constantes_8h.html#a80155586fa275b28773c9b203f52cabaa477f1d7d5d9635a216d4eda6885a0d3d">math_choice_group</a>);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a>();</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
@@ -155,27 +155,31 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="buildchoices_8h_a5f00c14009de038a4c2dc9c2fd9f8e99_cgraph.png" border="0" usemap="#buildchoices_8h_a5f00c14009de038a4c2dc9c2fd9f8e99_cgraph" alt=""/></div>
 <map name="buildchoices_8h_a5f00c14009de038a4c2dc9c2fd9f8e99_cgraph" id="buildchoices_8h_a5f00c14009de038a4c2dc9c2fd9f8e99_cgraph">
-<area shape="rect" title=" " alt="" coords="5,563,100,589"/>
-<area shape="rect" href="finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af" title=" " alt="" coords="166,664,230,691"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="468,765,511,792"/>
-<area shape="rect" href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="159,563,237,589"/>
-<area shape="rect" href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="148,107,248,133"/>
-<area shape="rect" href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="166,385,230,412"/>
-<area shape="rect" href="confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="307,411,386,437"/>
-<area shape="rect" href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="313,765,381,792"/>
-<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="323,715,370,741"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="581,185,628,212"/>
-<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="461,185,518,212"/>
-<area shape="rect" href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="296,512,397,539"/>
-<area shape="rect" href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="309,613,384,640"/>
-<area shape="rect" href="constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0" title=" " alt="" coords="445,400,533,427"/>
-<area shape="rect" href="constantes_8cpp.html#adb784dc2516689c3d42c5664f04eafd4" title=" " alt="" coords="447,461,531,488"/>
-<area shape="rect" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11" title="classifies a save_stack entry" alt="" coords="448,537,531,564"/>
-<area shape="rect" href="backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title=" " alt="" coords="309,107,385,133"/>
-<area shape="rect" href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="307,5,386,32"/>
-<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="450,116,529,143"/>
-<area shape="rect" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="311,309,382,336"/>
-<area shape="rect" href="eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="307,360,386,387"/>
+<area shape="rect" title=" " alt="" coords="5,284,100,311"/>
+<area shape="rect" href="constantes_8cpp.html#a4da40ddb2b5a65de1d2bba8128eb3167" title="mlist to be used in display style" alt="" coords="163,12,261,39"/>
+<area shape="rect" href="finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af" title=" " alt="" coords="180,461,244,488"/>
+<area shape="rect" href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="173,309,251,336"/>
+<area shape="rect" href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="162,132,262,159"/>
+<area shape="rect" href="constantes_8cpp.html#a76f175f6541923e8ba102ee0dc79eb5c" title="mlist to be used in script style" alt="" coords="167,69,257,96"/>
+<area shape="rect" href="constantes_8cpp.html#a9cbfeb716eeea05a09ed2ee0460d8f82" title="mlist to be used in scriptscript style" alt="" coords="148,639,276,665"/>
+<area shape="rect" href="constantes_8cpp.html#a159b73dc022ab907a96c51c0f881f8c7" title="mlist to be used in text style" alt="" coords="173,563,251,589"/>
+<area shape="rect" href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="343,259,407,285"/>
+<area shape="rect" href="constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title="the info field of a memory word" alt="" coords="353,5,396,32"/>
+<area shape="rect" href="confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="478,461,557,488"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="496,588,539,615"/>
+<area shape="rect" href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="341,563,409,589"/>
+<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="351,512,398,539"/>
+<area shape="rect" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="609,284,679,311"/>
+<area shape="rect" href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="324,360,425,387"/>
+<area shape="rect" href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="337,309,412,336"/>
+<area shape="rect" href="constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0" title=" " alt="" coords="473,411,561,437"/>
+<area shape="rect" href="constantes_8cpp.html#adb784dc2516689c3d42c5664f04eafd4" title=" " alt="" coords="475,309,559,336"/>
+<area shape="rect" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11" title="classifies a save_stack entry" alt="" coords="476,360,559,387"/>
+<area shape="rect" href="backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="337,157,413,184"/>
+<area shape="rect" href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="335,56,414,83"/>
+<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="478,157,557,184"/>
+<area shape="rect" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="482,259,553,285"/>
+<area shape="rect" href="eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="478,208,557,235"/>
 </map>
 </div>
 <div class="dynheader">
@@ -194,13 +198,16 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><!-- contents -->
 <div class="ttc" id="aunsave_8cpp_html_a107d881e47e06a5ebd5fd6332f972bcc"><div class="ttname"><a href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc">unsave</a></div><div class="ttdeci">void unsave(void)</div><div class="ttdef"><b>Definition:</b> <a href="unsave_8cpp_source.html#l00006">unsave.cpp:6</a></div></div>
 <div class="ttc" id="apushmath_8cpp_html_aba90df5553aea9707087be473eddb012"><div class="ttname"><a href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012">pushmath</a></div><div class="ttdeci">void pushmath(groupcode c)</div><div class="ttdef"><b>Definition:</b> <a href="pushmath_8cpp_source.html#l00005">pushmath.cpp:5</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00569">constantes.h:569</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a76f175f6541923e8ba102ee0dc79eb5c"><div class="ttname"><a href="constantes_8cpp.html#a76f175f6541923e8ba102ee0dc79eb5c">script_mlist</a></div><div class="ttdeci">halfword &amp; script_mlist(halfword p)</div><div class="ttdoc">mlist to be used in script style</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00098">constantes.cpp:98</a></div></div>
+<div class="ttc" id="aunionmemoryword_html_a4d5c9735ea2e99d2d3aed088c2fa3f0d"><div class="ttname"><a href="unionmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">memoryword::int_</a></div><div class="ttdeci">std::int32_t int_</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00070">tex.h:70</a></div></div>
 <div class="ttc" id="afinmlist_8cpp_html_af4215f599c5ab41d37100fb19ee858af"><div class="ttname"><a href="finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af">finmlist</a></div><div class="ttdeci">halfword finmlist(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="finmlist_8cpp_source.html#l00005">finmlist.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a4da40ddb2b5a65de1d2bba8128eb3167"><div class="ttname"><a href="constantes_8cpp.html#a4da40ddb2b5a65de1d2bba8128eb3167">display_mlist</a></div><div class="ttdeci">halfword &amp; display_mlist(halfword p)</div><div class="ttdoc">mlist to be used in display style</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00095">constantes.cpp:95</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a80155586fa275b28773c9b203f52cabaa477f1d7d5d9635a216d4eda6885a0d3d"><div class="ttname"><a href="constantes_8h.html#a80155586fa275b28773c9b203f52cabaa477f1d7d5d9635a216d4eda6885a0d3d">math_choice_group</a></div><div class="ttdeci">@ math_choice_group</div><div class="ttdoc">code for ‘\mathchoice\grp\grp\grp\grp’</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00376">constantes.h:376</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00092">globals.cpp:92</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a67efc5cbda00d9fe23a1c6d931742de5"><div class="ttname"><a href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a></div><div class="ttdeci">memoryword savestack[savesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00102">globals.cpp:102</a></div></div>
-<div class="ttc" id="astructmemoryword_html_a4d5c9735ea2e99d2d3aed088c2fa3f0d"><div class="ttname"><a href="structmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">memoryword::int_</a></div><div class="ttdeci">std::int32_t int_</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00074">tex.h:74</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
-<div class="ttc" id="ascanleftbrace_8cpp_html_a055cc2de58a83eda8aeb70e218e5fb1c"><div class="ttname"><a href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a></div><div class="ttdeci">void scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="scanleftbrace_8cpp_source.html#l00008">scanleftbrace.cpp:8</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a159b73dc022ab907a96c51c0f881f8c7"><div class="ttname"><a href="constantes_8cpp.html#a159b73dc022ab907a96c51c0f881f8c7">text_mlist</a></div><div class="ttdeci">halfword &amp; text_mlist(halfword p)</div><div class="ttdoc">mlist to be used in text style</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00097">constantes.cpp:97</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a9cbfeb716eeea05a09ed2ee0460d8f82"><div class="ttname"><a href="constantes_8cpp.html#a9cbfeb716eeea05a09ed2ee0460d8f82">script_script_mlist</a></div><div class="ttdeci">halfword &amp; script_script_mlist(halfword p)</div><div class="ttdoc">mlist to be used in scriptscript style</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00100">constantes.cpp:100</a></div></div>
+<div class="ttc" id="ascanleftbrace_8cpp_html_a055cc2de58a83eda8aeb70e218e5fb1c"><div class="ttname"><a href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a></div><div class="ttdeci">void scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="scanleftbrace_8cpp_source.html#l00007">scanleftbrace.cpp:7</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00103">globals.cpp:103</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

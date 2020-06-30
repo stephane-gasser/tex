@@ -1,52 +1,52 @@
 <map id="makeaccent" name="makeaccent">
-<area shape="rect" id="node1" title=" " alt="" coords="5,1817,99,1844"/>
-<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="489,44,568,71"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="769,1095,811,1121"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a1ec2443f186d8e26a9c3e7a8184f367f" title=" " alt="" coords="323,247,413,273"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="331,2020,405,2047"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#afed1a10a514734f89ab8691850baa84f" title=" " alt="" coords="325,297,411,324"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title="the character code in a char_node" alt="" coords="330,348,406,375"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#aca760671a22142e0e59d362c04885039" title=" " alt="" coords="167,69,237,96"/>
-<area shape="rect" id="node13" href="$doassignments_8cpp.html#a600d75e92c3a991d8672e091303a8b40" title=" " alt="" coords="147,145,257,172"/>
-<area shape="rect" id="node20" href="$scancharnum_8cpp.html#ad73fd96a347109ca82a676f233224e60" title=" " alt="" coords="479,297,579,324"/>
-<area shape="rect" id="node21" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="173,1083,231,1109"/>
-<area shape="rect" id="node29" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="495,1817,563,1844"/>
-<area shape="rect" id="node43" href="$constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title="repositioning distance, in sp" alt="" coords="319,1817,417,1844"/>
-<area shape="rect" id="node46" href="$newcharacter_8cpp.html#a6e07886dd6173debb4827256ca3327df" title=" " alt="" coords="152,2071,252,2097"/>
-<area shape="rect" id="node47" href="$newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="333,1868,403,1895"/>
-<area shape="rect" id="node48" href="$makeaccent_8cpp.html#a63b9a63da4a64ca0890875e6675be923" title="slant to the right, per unit distance upward" alt="" coords="177,2121,227,2148"/>
-<area shape="rect" id="node49" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="629,1804,717,1831"/>
-<area shape="rect" id="node50" href="$constantes_8cpp.html#ab2d9c9325d21845c069bedfc1de282e5" title="one ex" alt="" coords="167,2223,237,2249"/>
-<area shape="rect" id="node3" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="627,69,719,96"/>
-<area shape="rect" id="node4" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="639,652,706,679"/>
-<area shape="rect" id="node6" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="630,19,715,45"/>
-<area shape="rect" id="node12" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="502,95,555,121"/>
-<area shape="rect" id="node14" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="489,145,568,172"/>
-<area shape="rect" id="node15" href="$prefixedcommand_8cpp.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="305,145,431,172"/>
-<area shape="rect" id="node16" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="767,424,813,451"/>
-<area shape="rect" id="node18" href="$printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="498,703,559,729"/>
-<area shape="rect" id="node19" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="644,348,701,375"/>
-<area shape="rect" id="node17" href="$println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="861,463,919,489"/>
-<area shape="rect" id="node22" href="$constantes_8cpp.html#a9b1a0fe0853bd25a8d74737dfe51ed77" title="vertical list to be moved out of horizontal list" alt="" coords="329,855,407,881"/>
-<area shape="rect" id="node23" href="$badness_8cpp.html#af030be7eeb32202d38457203594ed062" title=" " alt="" coords="333,905,403,932"/>
-<area shape="rect" id="node24" href="$constantes_8cpp.html#a437b9b007bc70934fccbda61d264cf35" title=" " alt="" coords="325,956,411,983"/>
-<area shape="rect" id="node25" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="501,1108,556,1135"/>
-<area shape="rect" id="node26" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="637,1373,709,1400"/>
-<area shape="rect" id="node27" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="495,1184,563,1211"/>
-<area shape="rect" id="node28" href="$constantes_8cpp.html#a29957fb6e1765b7267f0323079b8a9a4" title="applicable order of infinity" alt="" coords="327,1716,409,1743"/>
-<area shape="rect" id="node30" href="$constantes_8cpp.html#af888f3d6cb7409feb487fcc70631671e" title=" " alt="" coords="333,1311,403,1337"/>
-<area shape="rect" id="node31" href="$constantes_8cpp.html#a541d64f748c1fd959bd0c9a9b0d4e06f" title="total shrink in an unset node" alt="" coords="324,1361,412,1388"/>
-<area shape="rect" id="node32" href="$constantes_8cpp.html#a05f8e0f2f0457601538099ef8afd013a" title="stretching or shrinking" alt="" coords="329,1412,407,1439"/>
-<area shape="rect" id="node33" href="$hpack_8cpp.html#aca1b4ef43cf99ba30e2d0bc481431dce" title=" " alt="" coords="337,804,399,831"/>
-<area shape="rect" id="node34" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="498,1007,559,1033"/>
-<area shape="rect" id="node35" href="$hpack_8cpp.html#a30c46cce32d20b749942f8532892c8f8" title=" " alt="" coords="329,1463,407,1489"/>
-<area shape="rect" id="node36" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="500,1235,557,1261"/>
-<area shape="rect" id="node37" href="$hpack_8cpp.html#a5f65ba9d42b87835898938869d07c413" title=" " alt="" coords="341,1513,395,1540"/>
-<area shape="rect" id="node38" href="$constantes_8cpp.html#aa0355678d828c2e2f836409b82366625" title=" " alt="" coords="319,1564,417,1591"/>
-<area shape="rect" id="node39" href="$constantes_8cpp.html#ad058da1b3e7e4027797ff16b1e5a6c32" title="the word where the ligature is to be found" alt="" coords="335,1615,401,1641"/>
-<area shape="rect" id="node40" href="$newrule_8cpp.html#adde749bc3235334488b223590d8e4a87" title=" " alt="" coords="335,1209,401,1236"/>
-<area shape="rect" id="node41" href="$parametres_8h.html#a0356f52d64c938319c41ba7b4efaaeb7" title=" " alt="" coords="322,500,414,527"/>
-<area shape="rect" id="node42" href="$printscaled_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb" title=" " alt="" coords="325,753,411,780"/>
-<area shape="rect" id="node44" href="$constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title="the shrinkability of this glob of glue" alt="" coords="339,601,397,628"/>
-<area shape="rect" id="node45" href="$constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc" title="the stretchability of this glob of glue" alt="" coords="337,652,399,679"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,484,99,511"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="489,79,568,105"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="767,560,809,587"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a1ec2443f186d8e26a9c3e7a8184f367f" title=" " alt="" coords="323,383,413,409"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="331,2055,405,2081"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#afed1a10a514734f89ab8691850baa84f" title=" " alt="" coords="325,433,411,460"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title="the character code in a char_node" alt="" coords="330,484,406,511"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#aca760671a22142e0e59d362c04885039" title=" " alt="" coords="167,155,237,181"/>
+<area shape="rect" id="node13" href="$doassignments_8cpp.html#a600d75e92c3a991d8672e091303a8b40" title=" " alt="" coords="147,231,257,257"/>
+<area shape="rect" id="node19" href="$scancharnum_8cpp.html#ad73fd96a347109ca82a676f233224e60" title=" " alt="" coords="479,332,579,359"/>
+<area shape="rect" id="node20" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="173,1168,231,1195"/>
+<area shape="rect" id="node28" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="495,1497,563,1524"/>
+<area shape="rect" id="node43" href="$constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title="repositioning distance, in sp" alt="" coords="319,1953,417,1980"/>
+<area shape="rect" id="node46" href="$newcharacter_8cpp.html#a6e07886dd6173debb4827256ca3327df" title=" " alt="" coords="152,2055,252,2081"/>
+<area shape="rect" id="node47" href="$newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="333,2004,403,2031"/>
+<area shape="rect" id="node48" href="$makeaccent_8cpp.html#a63b9a63da4a64ca0890875e6675be923" title="slant to the right, per unit distance upward" alt="" coords="177,2105,227,2132"/>
+<area shape="rect" id="node49" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="629,28,717,55"/>
+<area shape="rect" id="node50" href="$constantes_8cpp.html#ab2d9c9325d21845c069bedfc1de282e5" title="one ex" alt="" coords="167,2257,237,2284"/>
+<area shape="rect" id="node3" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="627,129,719,156"/>
+<area shape="rect" id="node4" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="639,231,706,257"/>
+<area shape="rect" id="node6" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="630,79,715,105"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="502,129,555,156"/>
+<area shape="rect" id="node14" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="489,180,568,207"/>
+<area shape="rect" id="node15" href="$prefixedcommand_8cpp.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="305,231,431,257"/>
+<area shape="rect" id="node16" href="$impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="505,864,552,891"/>
+<area shape="rect" id="node18" href="$impression_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="498,611,559,637"/>
+<area shape="rect" id="node17" href="$impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="644,1244,701,1271"/>
+<area shape="rect" id="node21" href="$constantes_8cpp.html#a9b1a0fe0853bd25a8d74737dfe51ed77" title="vertical list to be moved out of horizontal list" alt="" coords="329,737,407,764"/>
+<area shape="rect" id="node22" href="$badness_8cpp.html#af030be7eeb32202d38457203594ed062" title="Compute badness, given &#160;t &gt;= 0" alt="" coords="333,788,403,815"/>
+<area shape="rect" id="node23" href="$constantes_8cpp.html#a437b9b007bc70934fccbda61d264cf35" title=" " alt="" coords="325,839,411,865"/>
+<area shape="rect" id="node24" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="501,965,556,992"/>
+<area shape="rect" id="node25" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="637,1295,709,1321"/>
+<area shape="rect" id="node26" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="495,1117,563,1144"/>
+<area shape="rect" id="node27" href="$constantes_8cpp.html#a29957fb6e1765b7267f0323079b8a9a4" title="applicable order of infinity" alt="" coords="327,1295,409,1321"/>
+<area shape="rect" id="node29" href="$constantes_8cpp.html#af888f3d6cb7409feb487fcc70631671e" title=" " alt="" coords="333,1041,403,1068"/>
+<area shape="rect" id="node30" href="$constantes_8cpp.html#a541d64f748c1fd959bd0c9a9b0d4e06f" title="total shrink in an unset node" alt="" coords="324,1396,412,1423"/>
+<area shape="rect" id="node31" href="$constantes_8cpp.html#a05f8e0f2f0457601538099ef8afd013a" title="stretching or shrinking" alt="" coords="329,1447,407,1473"/>
+<area shape="rect" id="node32" href="$hpack_8cpp.html#aca1b4ef43cf99ba30e2d0bc481431dce" title=" " alt="" coords="337,889,399,916"/>
+<area shape="rect" id="node33" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="498,1016,559,1043"/>
+<area shape="rect" id="node34" href="$hpack_8cpp.html#a30c46cce32d20b749942f8532892c8f8" title=" " alt="" coords="329,1497,407,1524"/>
+<area shape="rect" id="node35" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="500,1447,557,1473"/>
+<area shape="rect" id="node36" href="$hpack_8cpp.html#a5f65ba9d42b87835898938869d07c413" title=" " alt="" coords="341,1548,395,1575"/>
+<area shape="rect" id="node37" href="$constantes_8cpp.html#aa0355678d828c2e2f836409b82366625" title=" " alt="" coords="319,1599,417,1625"/>
+<area shape="rect" id="node38" href="$constantes_8cpp.html#ad058da1b3e7e4027797ff16b1e5a6c32" title="the word where the ligature is to be found" alt="" coords="335,1649,401,1676"/>
+<area shape="rect" id="node39" href="$newrule_8cpp.html#adde749bc3235334488b223590d8e4a87" title=" " alt="" coords="335,991,401,1017"/>
+<area shape="rect" id="node40" href="$parametres_8h.html#a0356f52d64c938319c41ba7b4efaaeb7" title=" " alt="" coords="322,1751,414,1777"/>
+<area shape="rect" id="node41" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="339,1801,397,1828"/>
+<area shape="rect" id="node42" href="$impression_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb" title=" " alt="" coords="325,585,411,612"/>
+<area shape="rect" id="node44" href="$constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title="the shrinkability of this glob of glue" alt="" coords="339,1903,397,1929"/>
+<area shape="rect" id="node45" href="$constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc" title="the stretchability of this glob of glue" alt="" coords="337,535,399,561"/>
 </map>

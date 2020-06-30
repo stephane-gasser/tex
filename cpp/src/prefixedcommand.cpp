@@ -60,9 +60,7 @@ void prefixedcommand(void)
 		while (curcmd == spacer || curcmd == escape);
 		if (curcmd <= max_non_prefixed_command)
 		{
-			print_err("You can't use a prefix with `");
-			printcmdchr(curcmd, curchr);
-			printchar('\''); 
+			print_err("You can't use a prefix with `"+cmdchr(curcmd, curchr)+"\'"); 
 			helpptr = 1;
 			helpline[0] = "I'll pretend you didn't say \\long or \\outer or \\global.";
 			backerror;
@@ -71,9 +69,7 @@ void prefixedcommand(void)
 	}
 	if (curcmd != def && a%4)
 	{
-		print_err("You can't use `"+esc("long")+"' or `"+esc("outer")+"' with `");
-		printcmdchr(curcmd, curchr);
-		printchar('\'');
+		print_err("You can't use `"+esc("long")+"' or `"+esc("outer")+"' with `"+cmdchr(curcmd, curchr)+"\'");
 		helpptr = 1;
 		helpline[0] = "I'll pretend you didn't say \\long or \\outer here.";
 		error();
@@ -287,13 +283,7 @@ void prefixedcommand(void)
 			scanint();
 			if ((curval < 0 && p < del_code_base) || curval > n)
 			{
-				print_err("Invalid code (");
-				printint(curval);
-				if (p < del_code_base)
-					print("), should be in the range 0..");
-				else
-					print("//), should be at most ");
-				printint(n);
+				print_err("Invalid code ("+std::to_string(curval)+(p < del_code_base ? "), should be in the range 0.." : "//), should be at most ")+std::to_string(n));
 				helpptr = 1;
 				helpline[0] = "I'm going to use 0 instead of that illegal code value.";
 				error;
@@ -323,10 +313,9 @@ void prefixedcommand(void)
 			break;
 		case set_box:
 			scaneightbitint();
+			n = curval;
 			if (a >= 4)
-				n = 0x1'00+curval;
-			else
-				n = curval;
+				n += 1<<8;
 			scanoptionalequals();
 			if (setboxallowed)
 				scanbox(box_flag+n);

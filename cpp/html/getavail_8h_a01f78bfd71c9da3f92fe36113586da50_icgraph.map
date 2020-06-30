@@ -1,8 +1,8 @@
 <map id="store_new_token" name="store_new_token">
-<area shape="rect" id="node1" title=" " alt="" coords="453,165,575,192"/>
-<area shape="rect" id="node2" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="333,84,405,111"/>
-<area shape="rect" id="node4" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="195,165,269,192"/>
-<area shape="rect" id="node11" href="$thetoks_8h.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="337,216,402,243"/>
+<area shape="rect" id="node1" title=" " alt="" coords="429,156,551,183"/>
+<area shape="rect" id="node2" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="309,80,381,107"/>
+<area shape="rect" id="node4" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="183,156,257,183"/>
+<area shape="rect" id="node11" href="$thetoks_8h.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="313,207,378,233"/>
 <area shape="rect" id="node3" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,5,131,32"/>
 <area shape="rect" id="node5" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="22,80,114,107"/>
 <area shape="rect" id="node6" href="$issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="15,131,121,157"/>
@@ -10,6 +10,5 @@
 <area shape="rect" id="node8" href="$newpatterns_8h.html#a1356e8c74d8485cbd0e20c09f2c25886" title=" " alt="" coords="21,232,115,259"/>
 <area shape="rect" id="node9" href="$shiftcase_8h.html#a466876aa5b16eb9d7556fd65d3479f6e" title=" " alt="" coords="31,283,105,309"/>
 <area shape="rect" id="node10" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="34,333,102,360"/>
-<area shape="rect" id="node12" href="$insthetoks_8h.html#a08da93c2237ebca5e24d745d9ea3f10b" title=" " alt="" coords="191,216,273,243"/>
-<area shape="rect" id="node13" href="$showwhatever_8h.html#a99b4dadf3c1abee06e9da950c3c704a5" title=" " alt="" coords="179,267,285,293"/>
+<area shape="rect" id="node12" href="$insthetoks_8h.html#a08da93c2237ebca5e24d745d9ea3f10b" title=" " alt="" coords="179,207,261,233"/>
 </map>

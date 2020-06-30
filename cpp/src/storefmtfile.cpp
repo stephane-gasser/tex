@@ -77,9 +77,7 @@ void storefmtfile(void)
 	k = poolptr-4;
 	dump_four_ASCII(k);
 	println();
-	printint(strptr);
-	print(" strings of total length ");
-	printint(poolptr);
+	print(std::to_string(strptr)+" strings of total length "+std::to_string(poolptr));
 	sortavail();
 	varused = 0;
 	dump_int(lomemmax);
@@ -115,11 +113,7 @@ void storefmtfile(void)
 	dump_int(varused);
 	dump_int(dynused);
 	println();
-	printint(x);
-	print(" memory locations dump_inted; current usage is ");
-	printint(varused);
-	printchar('&');
-	printint(dynused);
+	print(std::to_string(x)+" memory locations dump_inted; current usage is "+std::to_string(varused)+"&"+std::to_string(dynused));
 	k = active_base;
 	do
 	{
@@ -186,8 +180,7 @@ void storefmtfile(void)
 		dump_hh(hash[p]);
 	dump_int(cscount);
 	println();
-	printint(cscount);
-	print(" multiletter control sequences");
+	print(std::to_string(cscount)+" multiletter control sequences");
 	dump_int(fmemptr);
 	for (k = 0; k <fmemptr; k++)
 		dump_wd(fontinfo[k]);
@@ -218,24 +211,13 @@ void storefmtfile(void)
 		dump_int(fontbchar[k]);
 		dump_int(fontfalsebchar[k]);
 		printnl("\\font");
-		printesc(TXT(text(font_id_base+k)));
-		printesc("FONT");
-		printchar('=');
+		print(esc(TXT(text(font_id_base+k)))+esc("FONT")+"=");
 		printfilename(fontname[k], fontarea[k], "");
 		if (fontsize[k] != fontdsize[k])
-		{
-			print(" at ");
-			printscaled(fontsize[k]);
-			print("pt");
-		}
+			print(" at "+asScaled(fontsize[k])+"pt");
 	}
 	println();
-	printint(fmemptr-7);
-	print(" words of font info for ");
-	printint(fontptr-0);
-	print(" preloaded font");
-	if (fontptr != 1)
-		printchar('s');
+	print(std::to_string(fmemptr-7)+" words of font info for "+std::to_string(fontptr)+" preloaded font"+(fontptr == 1 ? "" : "s"));
 	dump_int(hyphcount);
 	for (k = 0; k <= hyph_size; k++)
 		if (hyphword[k] != "")
@@ -245,10 +227,7 @@ void storefmtfile(void)
 			dump_int(hyphlist[k]);
 		}
 	println();
-	printint(hyphcount);
-	print(" hyphenation exception");
-	if (hyphcount != 1)
-		printchar('s');
+	print(std::to_string(hyphcount)+" hyphenation exception"+(hyphcount == 1 ? "" : "s"));
 	if (trienotready)
 		inittrie();
 	dump_int(triemax);
@@ -261,22 +240,11 @@ void storefmtfile(void)
 		dump_int(hyfnum[k]);
 		dump_int(hyfnext[k]);
 	}
-	printnl("Hyphenation trie of length ");
-	printint(triemax);
-	print(" has ");
-	printint(trieopptr);
-	print(" op");
-	if (trieopptr != 1)
-		printchar('s');
-	print(" out of ");
-	printint(trieopsize);
+	printnl("Hyphenation trie of length "+std::to_string(triemax)+" has "+std::to_string(trieopptr)+" op"+(trieopptr == 1 ? "" : "s")+" out of "+std::to_string(trieopsize));
 	for (k = 255; k > -1; k--)
 		if (trieused[k] > 0)
 		{
-			printnl("    ");
-			printint(trieused[k]);
-			print(" for language ");
-			printint(k);
+			printnl("    "+std::to_string(trieused[k])+" for language "+std::to_string(k));
 			dump_int(k);
 			dump_int(trieused[k]);
 		}

@@ -1,5 +1,5 @@
 <map id="appspace" name="appspace">
-<area shape="rect" id="node1" title=" " alt="" coords="5,436,84,463"/>
+<area shape="rect" id="node1" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="5,436,84,463"/>
 <area shape="rect" id="node2" href="$constantes_8cpp.html#aca760671a22142e0e59d362c04885039" title=" " alt="" coords="296,5,365,32"/>
 <area shape="rect" id="node4" href="$appspace_8cpp.html#ab93755269dcb3e9e521d7b8d050eee12" title="additional space at end of sentence" alt="" coords="139,461,232,488"/>
 <area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="428,385,471,412"/>

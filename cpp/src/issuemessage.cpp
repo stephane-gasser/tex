@@ -1,6 +1,5 @@
 #include "issuemessage.h"
 #include "flushlist.h"
-#include "tokenshow.h"
 #include "overflow.h"
 #include "impression.h"
 #include "error.h"
@@ -26,7 +25,7 @@ void issuemessage(void)
 			println();
 		else 
 			if (termoffset > 0 || fileoffset > 0)
-			printchar(' ');
+			print(" ");
 		slowprint(s);
 		std::cout << std::flush;
 	}

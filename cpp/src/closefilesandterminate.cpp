@@ -55,14 +55,7 @@ void closefilesandterminate(void)
 			writedvi(0, dviptr-1);
 		printnl("Output written on ");
 		slowprint(outputfilename);
-		print("// (");
-		printint(totalpages);
-		print(" page");
-		if (totalpages != 1)
-			printchar('s');
-		print(", "); 
-		printint(dvioffset+dviptr);
-		print(" bytes).");
+		print("// ("+std::to_string(totalpages)+" page"+(totalpages == 1 ? "" : "s")+", "+std::to_string(dvioffset+dviptr)+" bytes).");
 		bclose(dvifile);
 	}
 	if (logopened)
@@ -74,7 +67,7 @@ void closefilesandterminate(void)
 		{
 			printnl("Transcript written on ");
 			slowprint(logname);
-			printchar('.');
+			print(".");
 		}
 	}
 }

@@ -79,8 +79,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="finiteshrink_8h_source.html">finiteshrink.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="printnl_8h_source.html">printnl.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="print_8h_source.html">print.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="impression_8h_source.html">impression.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="newspec_8h_source.html">newspec.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="error_8h_source.html">error.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="deleteglueref_8h_source.html">deleteglueref.h</a>&quot;</code><br />
@@ -90,16 +89,15 @@ Graphe des dépendances par inclusion de finiteshrink.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="finiteshrink_8cpp__incl.png" border="0" usemap="#src_2finiteshrink_8cpp" alt=""/></div>
 <map name="src_2finiteshrink_8cpp" id="src_2finiteshrink_8cpp">
-<area shape="rect" title=" " alt="" coords="278,5,410,32"/>
+<area shape="rect" title=" " alt="" coords="251,5,383,32"/>
 <area shape="rect" href="finiteshrink_8h.html" title=" " alt="" coords="5,80,101,107"/>
-<area shape="rect" href="printnl_8h.html" title=" " alt="" coords="126,80,194,107"/>
-<area shape="rect" href="print_8h.html" title=" " alt="" coords="219,80,277,107"/>
-<area shape="rect" href="newspec_8h.html" title=" " alt="" coords="301,80,387,107"/>
-<area shape="rect" href="error_8h.html" title=" " alt="" coords="411,80,469,107"/>
-<area shape="rect" href="deleteglueref_8h.html" title=" " alt="" coords="493,80,600,107"/>
-<area shape="rect" href="texte_8h.html" title=" " alt="" coords="625,80,687,107"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="259,155,333,181"/>
-<area shape="rect" title=" " alt="" coords="629,155,683,181"/>
+<area shape="rect" href="impression_8h.html" title=" " alt="" coords="448,80,544,107"/>
+<area shape="rect" href="newspec_8h.html" title=" " alt="" coords="125,80,211,107"/>
+<area shape="rect" href="error_8h.html" title=" " alt="" coords="235,80,293,107"/>
+<area shape="rect" href="deleteglueref_8h.html" title=" " alt="" coords="317,80,424,107"/>
+<area shape="rect" href="texte_8h.html" title=" " alt="" coords="569,80,631,107"/>
+<area shape="rect" href="globals_8h.html" title=" " alt="" coords="227,155,301,181"/>
+<area shape="rect" title=" " alt="" coords="521,155,575,181"/>
 </map>
 </div>
 </div>
@@ -127,55 +125,55 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="finiteshrink_8cpp_source.html#l00009">9</a> du fichier <a class="el" href="finiteshrink_8cpp_source.html">finiteshrink.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> q;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a72aea523759ae6ef1d056a5c466301ae">noshrinkerroryet</a>)</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="globals_8cpp.html#a72aea523759ae6ef1d056a5c466301ae">noshrinkerroryet</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;! &quot;</span>);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;Infinite glue shrinkage found in a paragraph&quot;</span>);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 5;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[4] = <span class="stringliteral">&quot;The paragraph just ended includes some glue that has&quot;</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[3] = <span class="stringliteral">&quot;infinite shrinkability, e.g., `\\hskip 0pt minus 1fil&#39;.&quot;</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[2] = <span class="stringliteral">&quot;Such glue doesn&#39;t belong there---it allows a paragraph&quot;</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[1] = <span class="stringliteral">&quot;of any length to fit on one line. But it&#39;s safe to proceed,&quot;</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;since the offensive shrinkability has been made finite.&quot;</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    }</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    q = <a class="code" href="newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865">newspec</a>(p);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(q) = 0;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d">deleteglueref</a>(p);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">return</span> q;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="finiteshrink_8cpp_source.html#l00008">8</a> du fichier <a class="el" href="finiteshrink_8cpp_source.html">finiteshrink.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> q;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a72aea523759ae6ef1d056a5c466301ae">noshrinkerroryet</a>)</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="globals_8cpp.html#a72aea523759ae6ef1d056a5c466301ae">noshrinkerroryet</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a>(<span class="stringliteral">&quot;Infinite glue shrinkage found in a paragraph&quot;</span>);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 5;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[4] = <span class="stringliteral">&quot;The paragraph just ended includes some glue that has&quot;</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[3] = <span class="stringliteral">&quot;infinite shrinkability, e.g., `\\hskip 0pt minus 1fil&#39;.&quot;</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[2] = <span class="stringliteral">&quot;Such glue doesn&#39;t belong there---it allows a paragraph&quot;</span>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[1] = <span class="stringliteral">&quot;of any length to fit on one line. But it&#39;s safe to proceed,&quot;</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;since the offensive shrinkability has been made finite.&quot;</span>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    q = <a class="code" href="newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865">newspec</a>(p);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(q) = 0;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d">deleteglueref</a>(p);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">return</span> q;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="finiteshrink_8cpp_a44e34bae9b7e036aec3f59c776c36c1c_cgraph.png" border="0" usemap="#finiteshrink_8cpp_a44e34bae9b7e036aec3f59c776c36c1c_cgraph" alt=""/></div>
 <map name="finiteshrink_8cpp_a44e34bae9b7e036aec3f59c776c36c1c_cgraph" id="finiteshrink_8cpp_a44e34bae9b7e036aec3f59c776c36c1c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,284,91,311"/>
+<area shape="rect" title=" " alt="" coords="5,537,91,564"/>
 <area shape="rect" href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="139,81,235,108"/>
-<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="163,639,211,665"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="580,424,627,451"/>
-<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="451,360,509,387"/>
+<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="163,537,211,564"/>
 <area shape="rect" href="newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="149,208,224,235"/>
-<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="153,689,221,716"/>
-<area shape="rect" href="freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="303,56,375,83"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="459,157,501,184"/>
+<area shape="rect" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="152,588,221,615"/>
+<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="153,639,221,665"/>
+<area shape="rect" href="freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="303,107,375,133"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="459,132,502,159"/>
 <area shape="rect" href="constantes_8cpp.html#ab2def9ced9c196d76adb71f31b4f8619" title="reference count of a glue specification" alt="" coords="285,5,392,32"/>
-<area shape="rect" href="beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title=" " alt="" coords="283,461,395,488"/>
-<area shape="rect" href="clearforerrorprompt_8cpp.html#a282ee6bcdd54bf75b357628da499c970" title=" " alt="" coords="689,917,820,944"/>
-<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="868,664,925,691"/>
-<area shape="rect" href="gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="303,664,375,691"/>
-<area shape="rect" href="giveerrhelp_8cpp.html#a78490fe79fcaae6767240cc8e0fe0fbd" title=" " alt="" coords="296,715,381,741"/>
-<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="305,765,373,792"/>
-<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="719,664,791,691"/>
-<area shape="rect" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="305,613,373,640"/>
-<area shape="rect" href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="443,765,517,792"/>
-<area shape="rect" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="449,715,511,741"/>
-<area shape="rect" href="showcontext_8cpp.html#a08865d4e55bc6116a39dbd5679041e61" title=" " alt="" coords="291,411,387,437"/>
-<area shape="rect" href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="565,816,641,843"/>
-<area shape="rect" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="305,208,373,235"/>
+<area shape="rect" href="beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="283,512,395,539"/>
+<area shape="rect" href="clearforerrorprompt_8cpp.html#a282ee6bcdd54bf75b357628da499c970" title=" " alt="" coords="567,284,697,311"/>
+<area shape="rect" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="745,436,803,463"/>
+<area shape="rect" href="gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="303,563,375,589"/>
+<area shape="rect" href="giveerrhelp_8cpp.html#a78490fe79fcaae6767240cc8e0fe0fbd" title=" " alt="" coords="296,613,381,640"/>
+<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="305,664,373,691"/>
+<area shape="rect" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="457,461,504,488"/>
+<area shape="rect" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="596,639,668,665"/>
+<area shape="rect" href="impression_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="305,765,373,792"/>
+<area shape="rect" href="impression_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="443,715,518,741"/>
+<area shape="rect" href="impression_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="450,816,511,843"/>
+<area shape="rect" href="impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="310,360,367,387"/>
+<area shape="rect" href="impression_8cpp.html#a08865d4e55bc6116a39dbd5679041e61" title=" " alt="" coords="291,461,387,488"/>
+<area shape="rect" href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="443,411,519,437"/>
+<area shape="rect" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="305,157,373,184"/>
 </map>
 </div>
 <div class="dynheader">
@@ -195,12 +193,11 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aglobals_8cpp_html_a72aea523759ae6ef1d056a5c466301ae"><div class="ttname"><a href="globals_8cpp.html#a72aea523759ae6ef1d056a5c466301ae">noshrinkerroryet</a></div><div class="ttdeci">bool noshrinkerroryet</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00212">globals.cpp:212</a></div></div>
 <div class="ttc" id="aglobals_8h_html_ae1c0d92ce2fe057255c7badbbb0615b0"><div class="ttname"><a href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a></div><div class="ttdeci">std::string helpline[6]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00071">globals.h:71</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a85c0624f93ed5c5e8c722316dad139af"><div class="ttname"><a href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a></div><div class="ttdeci">char helpptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00069">globals.cpp:69</a></div></div>
-<div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00019">error.cpp:19</a></div></div>
+<div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00013">error.cpp:13</a></div></div>
 <div class="ttc" id="anewspec_8cpp_html_a4955c32e0e2232a371f5907fc7c0b865"><div class="ttname"><a href="newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865">newspec</a></div><div class="ttdeci">halfword newspec(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="newspec_8cpp_source.html#l00004">newspec.cpp:4</a></div></div>
-<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
+<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00044">tex.h:44</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
-<div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
-<div class="ttc" id="aprintnl_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printnl_8cpp_source.html#l00005">printnl.cpp:5</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a27f6b6c256d6682247b1fbdd82d30194"><div class="ttname"><a href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a></div><div class="ttdeci">void print_err(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01759">impression.cpp:1759</a></div></div>
 <div class="ttc" id="adeleteglueref_8cpp_html_a0e9fe66112a2a6fa95a1570e7ca6082d"><div class="ttname"><a href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d">deleteglueref</a></div><div class="ttdeci">void deleteglueref(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="deleteglueref_8cpp_source.html#l00004">deleteglueref.cpp:4</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

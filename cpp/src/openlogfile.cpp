@@ -22,25 +22,20 @@ void openlogfile(void)
 	logopened = true;
 	logfile << banner;
 	slowprint(formatident);
-	print("  ");
-	printint(day());
-	printchar(' ');
+	print("  "+std::to_string(day())+" ");
 	char months[] = "JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC";
 	for (int k = 3*month()-2; k<= 3*month(); k++)
 		logfile << months[k];
-	printchar(' ');
-	printint(year());
-	printchar(' ');
+	print(" "+std::to_string(year())+" ");
 	printtwo(time()/60);
-	printchar(':');
+	print(":");
 	printtwo(time()%60);
 	inputstack[inputptr] = curinput;
 	printnl("**");
 	int l = inputstack[0].limitfield;
 	if (buffer[l] == end_line_char())
 		l--;
-	for (int k = 1; k <= l; k++)
-		printchar(buffer[k]);
+	print(std::string(buffer+1, buffer+l+1));
 	println();
 	selector = oldsetting+2;
 }

@@ -24,25 +24,10 @@ void finalcleanup(void)
 		openparens--;
 	}
 	if (curlevel > level_one)
-	{
-		printnl("(");
-		printesc("end occurred ");
-		print("inside a group at level ");
-		printint(curlevel-level_one);
-		printchar(')');
-	}
+		printnl("("+esc("end")+" occurred inside a group at level "+std::to_string(curlevel-level_one)+")");
 	while (condptr)
 	{
-		printnl("(");
-		printesc("end occurred ");
-		print("when ");
-		printcmdchr(if_test, curif);
-		if (ifline)
-		{
-			print(" on line ");
-			printint(ifline);
-		}
-		print(" was incomplete)");
+		printnl("("+esc("end")+" occurred when "+cmdchr(if_test, curif)+(ifline ? " on line "+std::to_string(ifline) : "")+" was incomplete)");
 		ifline = if_line_field(condptr);
 		curif = subtype(condptr);
 		tempptr = condptr;

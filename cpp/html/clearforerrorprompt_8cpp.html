@@ -79,7 +79,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="clearforerrorprompt_8h_source.html">clearforerrorprompt.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="println_8h_source.html">println.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="impression_8h_source.html">impression.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="endfilereading_8h_source.html">endfilereading.h</a>&quot;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -87,12 +87,13 @@ Graphe des dépendances par inclusion de clearforerrorprompt.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="clearforerrorprompt_8cpp__incl.png" border="0" usemap="#src_2clearforerrorprompt_8cpp" alt=""/></div>
 <map name="src_2clearforerrorprompt_8cpp" id="src_2clearforerrorprompt_8cpp">
-<area shape="rect" title=" " alt="" coords="174,5,353,32"/>
+<area shape="rect" title=" " alt="" coords="203,5,382,32"/>
 <area shape="rect" href="clearforerrorprompt_8h.html" title=" " alt="" coords="5,80,148,107"/>
-<area shape="rect" href="println_8h.html" title=" " alt="" coords="172,80,240,107"/>
-<area shape="rect" href="endfilereading_8h.html" title=" " alt="" coords="264,80,377,107"/>
-<area shape="rect" title=" " alt="" coords="402,80,474,107"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="169,155,243,181"/>
+<area shape="rect" href="impression_8h.html" title=" " alt="" coords="310,80,406,107"/>
+<area shape="rect" href="endfilereading_8h.html" title=" " alt="" coords="172,80,285,107"/>
+<area shape="rect" title=" " alt="" coords="430,80,502,107"/>
+<area shape="rect" href="globals_8h.html" title=" " alt="" coords="191,155,266,181"/>
+<area shape="rect" title=" " alt="" coords="331,155,385,181"/>
 </map>
 </div>
 </div>
@@ -124,7 +125,7 @@ Fonctions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">while</span> (<a class="code" href="constantes_8cpp.html#a902b4928286612d69880d4d792924804">state</a> != <a class="code" href="constantes_8h.html#aae05225933a42f81e7c4a9fb286596f9a07e7bd1dd1449b71dd55b32bed878701">token_list</a> &amp;&amp; terminal_input(<a class="code" href="constantes_8cpp.html#ade95d1e83389e3e6b2095c8b149d1fc2">name</a>) &amp;&amp; <a class="code" href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a> &gt; 0 &amp;&amp; <a class="code" href="constantes_8cpp.html#a6f95e0997ad54677f04a9ad712fc69d3">loc</a> &gt; <a class="code" href="constantes_8cpp.html#a2133531068086bcea56a9ef0d11732e4">limit</a>)</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96">endfilereading</a>();</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a>();</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a>();</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    std::cin.clear();</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
@@ -134,8 +135,8 @@ Voici le graphe d'appel pour cette fonction :</div>
 <map name="clearforerrorprompt_8cpp_a282ee6bcdd54bf75b357628da499c970_cgraph" id="clearforerrorprompt_8cpp_a282ee6bcdd54bf75b357628da499c970_cgraph">
 <area shape="rect" title=" " alt="" coords="5,107,136,133"/>
 <area shape="rect" href="endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="184,81,287,108"/>
-<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="207,132,264,159"/>
-<area shape="rect" href="aclose_8cpp.html#a941887a5a97d9f9b08b2a153321d6816" title=" " alt="" coords="344,5,404,32"/>
+<area shape="rect" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="207,132,264,159"/>
+<area shape="rect" href="fichiers_8cpp.html#a941887a5a97d9f9b08b2a153321d6816" title="Close a text file." alt="" coords="344,5,404,32"/>
 <area shape="rect" href="constantes_8cpp.html#a7a51c990049bf6c6c9007274271b0681" title="the current alpha_file variable" alt="" coords="342,56,406,83"/>
 <area shape="rect" href="popinput_8cpp.html#a11f9cb6e99b230bd401dc895f52812cb" title="leave an input level, re&#45;enter the old" alt="" coords="335,107,413,133"/>
 <area shape="rect" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="355,157,393,184"/>
@@ -148,9 +149,9 @@ Voici le graphe des appelants de cette fonction :</div>
 <map name="clearforerrorprompt_8cpp_a282ee6bcdd54bf75b357628da499c970_icgraph" id="clearforerrorprompt_8cpp_a282ee6bcdd54bf75b357628da499c970_icgraph">
 <area shape="rect" title=" " alt="" coords="1164,1238,1295,1265"/>
 <area shape="rect" href="error_8h.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="1068,1238,1116,1265"/>
-<area shape="rect" href="aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="726,149,803,175"/>
+<area shape="rect" href="aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="726,149,803,175"/>
 <area shape="rect" href="alignerror_8h.html#a96f36a6afe751cbfd07b095782045b7d" title=" " alt="" coords="727,858,802,885"/>
-<area shape="rect" href="backerror_8h.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title=" " alt="" coords="913,301,989,327"/>
+<area shape="rect" href="backerror_8h.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="913,301,989,327"/>
 <area shape="rect" href="initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="731,199,798,226"/>
 <area shape="rect" href="macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="725,807,804,834"/>
 <area shape="rect" href="prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,123,131,150"/>
@@ -160,11 +161,11 @@ Voici le graphe des appelants de cette fonction :</div>
 <area shape="rect" href="scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="312,351,464,378"/>
 <area shape="rect" href="scandimen_8h.html#ad330bbbb06884a41f26209e039c103fa" title=" " alt="" coords="179,301,264,327"/>
 <area shape="rect" href="newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="546,402,614,429"/>
-<area shape="rect" href="beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title=" " alt="" coords="913,655,988,682"/>
+<area shape="rect" href="beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="913,655,988,682"/>
 <area shape="rect" href="begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="885,706,1016,733"/>
-<area shape="rect" href="boxerror_8h.html#a0bbccd15aae646ece75f2703dda44c2e" title=" " alt="" coords="916,1061,985,1087"/>
+<area shape="rect" href="boxerror_8h.html#a0bbccd15aae646ece75f2703dda44c2e" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="916,1061,985,1087"/>
 <area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="737,1010,792,1037"/>
-<area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="541,1010,619,1037"/>
+<area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="541,1010,619,1037"/>
 <area shape="rect" href="handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="329,1010,447,1037"/>
 <area shape="rect" href="builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2" title=" " alt="" coords="519,807,641,834"/>
 <area shape="rect" href="checkoutervalidity_8h.html#a6bca3c8986cc82099dde339cf36de911" title=" " alt="" coords="701,1213,828,1239"/>
@@ -204,10 +205,10 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><!-- contents -->
 <div class="ttc" id="aconstantes_8cpp_html_ade95d1e83389e3e6b2095c8b149d1fc2"><div class="ttname"><a href="constantes_8cpp.html#ade95d1e83389e3e6b2095c8b149d1fc2">name</a></div><div class="ttdeci">std::string &amp; name</div><div class="ttdoc">name of the current file</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00189">constantes.cpp:189</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a9a13aa7125bf33b3f002c6a9d14ede3d"><div class="ttname"><a href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a></div><div class="ttdeci">unsigned char inputptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00113">globals.cpp:113</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_aae05225933a42f81e7c4a9fb286596f9a07e7bd1dd1449b71dd55b32bed878701"><div class="ttname"><a href="constantes_8h.html#aae05225933a42f81e7c4a9fb286596f9a07e7bd1dd1449b71dd55b32bed878701">token_list</a></div><div class="ttdeci">@ token_list</div><div class="ttdoc">state code when scanning a token list</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00447">constantes.h:447</a></div></div>
-<div class="ttc" id="aprintln_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="println_8cpp_source.html#l00004">println.cpp:4</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aae05225933a42f81e7c4a9fb286596f9a07e7bd1dd1449b71dd55b32bed878701"><div class="ttname"><a href="constantes_8h.html#aae05225933a42f81e7c4a9fb286596f9a07e7bd1dd1449b71dd55b32bed878701">token_list</a></div><div class="ttdeci">@ token_list</div><div class="ttdoc">state code when scanning a token list</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00465">constantes.h:465</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a6f95e0997ad54677f04a9ad712fc69d3"><div class="ttname"><a href="constantes_8cpp.html#a6f95e0997ad54677f04a9ad712fc69d3">loc</a></div><div class="ttdeci">halfword &amp; loc</div><div class="ttdoc">location of first unread character in buffer</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00184">constantes.cpp:184</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a902b4928286612d69880d4d792924804"><div class="ttname"><a href="constantes_8cpp.html#a902b4928286612d69880d4d792924804">state</a></div><div class="ttdeci">quarterword &amp; state</div><div class="ttdoc">current scanner state</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00185">constantes.cpp:185</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01189">impression.cpp:1189</a></div></div>
 <div class="ttc" id="aendfilereading_8cpp_html_a305fe4c17f929987d609b10d7bbd4d96"><div class="ttname"><a href="endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96">endfilereading</a></div><div class="ttdeci">void endfilereading(void)</div><div class="ttdef"><b>Definition:</b> <a href="endfilereading_8cpp_source.html#l00006">endfilereading.cpp:6</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a2133531068086bcea56a9ef0d11732e4"><div class="ttname"><a href="constantes_8cpp.html#a2133531068086bcea56a9ef0d11732e4">limit</a></div><div class="ttdeci">halfword &amp; limit</div><div class="ttdoc">end of current line in buffer</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00188">constantes.cpp:188</a></div></div>
 <!-- start footer part -->

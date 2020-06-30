@@ -1,16 +1,17 @@
 <map id="headforvmode" name="headforvmode">
-<area shape="rect" id="node1" title=" " alt="" coords="5,487,109,513"/>
-<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="277,56,355,83"/>
-<area shape="rect" id="node7" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="292,613,340,640"/>
-<area shape="rect" id="node8" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="549,487,596,513"/>
-<area shape="rect" id="node10" href="$printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="421,385,489,412"/>
-<area shape="rect" id="node11" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="427,512,484,539"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,411,109,437"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="277,56,355,83"/>
+<area shape="rect" id="node7" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="292,461,340,488"/>
+<area shape="rect" id="node11" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="169,512,211,539"/>
 <area shape="rect" id="node12" href="$offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b" title=" " alt="" coords="157,309,223,336"/>
+<area shape="rect" id="node14" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="281,512,351,539"/>
 <area shape="rect" id="node3" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="409,5,501,32"/>
-<area shape="rect" id="node4" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="422,157,489,184"/>
+<area shape="rect" id="node4" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="422,107,489,133"/>
 <area shape="rect" id="node6" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="413,56,498,83"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="551,183,594,209"/>
-<area shape="rect" id="node9" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="644,385,716,412"/>
-<area shape="rect" id="node13" href="$begintokenlist_8cpp.html#a5f4232bf5579ef4981db33096414bc2a" title="inserts a simple token list" alt="" coords="285,360,347,387"/>
-<area shape="rect" id="node14" href="$printcmdchr_8cpp.html#ab8f6990e9aa8ffdacd856de74aa40314" title=" " alt="" coords="271,259,361,285"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="564,157,607,184"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="432,411,479,437"/>
+<area shape="rect" id="node9" href="$impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="549,385,621,412"/>
+<area shape="rect" id="node10" href="$impression_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="421,360,489,387"/>
+<area shape="rect" id="node13" href="$begintokenlist_8cpp.html#a5f4232bf5579ef4981db33096414bc2a" title="inserts a simple token list" alt="" coords="285,157,347,184"/>
+<area shape="rect" id="node15" href="$impression_8cpp.html#ab8f6990e9aa8ffdacd856de74aa40314" title=" " alt="" coords="271,360,361,387"/>
 </map>

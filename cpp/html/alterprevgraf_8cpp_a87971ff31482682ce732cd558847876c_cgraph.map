@@ -1,17 +1,17 @@
 <map id="alterprevgraf" name="alterprevgraf">
-<area shape="rect" id="node1" title=" " alt="" coords="5,296,100,323"/>
-<area shape="rect" id="node2" href="$interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="536,93,599,120"/>
-<area shape="rect" id="node5" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="900,195,947,221"/>
-<area shape="rect" id="node7" href="$printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="782,499,850,525"/>
-<area shape="rect" id="node9" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="787,245,845,272"/>
-<area shape="rect" id="node10" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="183,473,247,500"/>
-<area shape="rect" id="node15" href="$scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="148,676,281,703"/>
-<area shape="rect" id="node3" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="669,397,717,424"/>
-<area shape="rect" id="node6" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="995,195,1067,221"/>
-<area shape="rect" id="node8" href="$printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="785,93,847,120"/>
-<area shape="rect" id="node4" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="780,448,852,475"/>
-<area shape="rect" id="node11" href="$backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title=" " alt="" coords="529,549,605,576"/>
-<area shape="rect" id="node12" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="653,625,732,652"/>
-<area shape="rect" id="node13" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="366,676,445,703"/>
-<area shape="rect" id="node14" href="$scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="329,473,481,500"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,100,133"/>
+<area shape="rect" id="node2" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="546,56,589,83"/>
+<area shape="rect" id="node3" href="$interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="536,5,599,32"/>
+<area shape="rect" id="node9" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="533,107,602,133"/>
+<area shape="rect" id="node10" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="183,284,247,311"/>
+<area shape="rect" id="node15" href="$scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="148,512,281,539"/>
+<area shape="rect" id="node4" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="669,208,717,235"/>
+<area shape="rect" id="node6" href="$impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="793,107,839,133"/>
+<area shape="rect" id="node7" href="$impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="900,132,972,159"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="785,157,847,184"/>
+<area shape="rect" id="node5" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="780,360,852,387"/>
+<area shape="rect" id="node11" href="$backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="529,309,605,336"/>
+<area shape="rect" id="node12" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="653,385,732,412"/>
+<area shape="rect" id="node13" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="366,512,445,539"/>
+<area shape="rect" id="node14" href="$scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="329,208,481,235"/>
 </map>

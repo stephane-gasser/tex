@@ -1,5 +1,4 @@
 #include "expand.h"
-#include "showcurcmdchr.h"
 #include "begintokenlist.h"
 #include "gettoken.h"
 #include "backinput.h"
@@ -140,12 +139,9 @@ void expand(void)
 						insertrelax();
 					else
 					{
-						print_err("Extra ");
-						printcmdchr(fi_or_else, curchr); 
-						{
-							helpptr = 1;
-							helpline[0] = "I'm ignoring this; it doesn't match any \\if.";
-						}
+						print_err("Extra "+cmdchr(fi_or_else, curchr)); 
+						helpptr = 1;
+						helpline[0] = "I'm ignoring this; it doesn't match any \\if.";
 						error();
 					}
 				else

@@ -9,8 +9,7 @@ void alignerror(void)
 {
 	if (abs(alignstate) > 2)
 	{
-		print_err("Misplaced ");
-		printcmdchr(curcmd, curchr);
+		print_err("Misplaced "+cmdchr(curcmd, curchr));
 		if (curtok == tab_token+'&')
 		{
 			helpptr = 6;

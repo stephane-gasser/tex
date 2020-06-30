@@ -1,19 +1,18 @@
 <map id="openorclosein" name="openorclosein">
 <area shape="rect" id="node1" title=" " alt="" coords="5,132,108,159"/>
-<area shape="rect" id="node2" href="$aclose_8cpp.html#a941887a5a97d9f9b08b2a153321d6816" title=" " alt="" coords="183,5,243,32"/>
-<area shape="rect" id="node3" href="$aopenin_8cpp.html#ab59d265f11c411e7d0a1a3ccf4b97bb0" title=" " alt="" coords="180,56,247,83"/>
+<area shape="rect" id="node2" href="$fichiers_8cpp.html#a941887a5a97d9f9b08b2a153321d6816" title="Close a text file." alt="" coords="183,5,243,32"/>
+<area shape="rect" id="node3" href="$fichiers_8cpp.html#ab59d265f11c411e7d0a1a3ccf4b97bb0" title="Open a text file for input." alt="" coords="180,56,247,83"/>
 <area shape="rect" id="node4" href="$packfilename_8cpp.html#a7a0ce63c987a64219951e8be9c9494c3" title=" " alt="" coords="156,107,271,133"/>
 <area shape="rect" id="node6" href="$scanfilename_8cpp.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="336,157,435,184"/>
-<area shape="rect" id="node12" href="$scanfourbitint_8cpp.html#a44ab07c8d4889fe956cbff3d73cf58d3" title=" " alt="" coords="163,309,263,336"/>
-<area shape="rect" id="node17" href="$scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="319,208,452,235"/>
+<area shape="rect" id="node12" href="$scanfourbitint_8cpp.html#a44ab07c8d4889fe956cbff3d73cf58d3" title=" " alt="" coords="163,284,263,311"/>
+<area shape="rect" id="node16" href="$scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="319,208,452,235"/>
 <area shape="rect" id="node5" href="$packfilename_8cpp.html#a424dc8c98f4a7c5563f5bf7d5b87a821" title=" " alt="" coords="336,107,435,133"/>
-<area shape="rect" id="node7" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="503,208,582,235"/>
-<area shape="rect" id="node8" href="$beginname_8cpp.html#a2b6351e3b3fd066643f3468b43b7cab9" title=" " alt="" coords="500,5,585,32"/>
-<area shape="rect" id="node9" href="$endname_8cpp.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="505,56,580,83"/>
-<area shape="rect" id="node10" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="503,157,582,184"/>
-<area shape="rect" id="node11" href="$morename_8cpp.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="501,107,584,133"/>
-<area shape="rect" id="node13" href="$interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="354,411,417,437"/>
-<area shape="rect" id="node14" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="633,335,680,361"/>
-<area shape="rect" id="node15" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="514,309,571,336"/>
-<area shape="rect" id="node16" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="353,259,417,285"/>
+<area shape="rect" id="node7" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="503,259,582,285"/>
+<area shape="rect" id="node8" href="$beginname_8cpp.html#a2b6351e3b3fd066643f3468b43b7cab9" title=" " alt="" coords="500,107,585,133"/>
+<area shape="rect" id="node9" href="$endname_8cpp.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="505,157,580,184"/>
+<area shape="rect" id="node10" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="503,208,582,235"/>
+<area shape="rect" id="node11" href="$morename_8cpp.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="501,56,584,83"/>
+<area shape="rect" id="node13" href="$interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="354,259,417,285"/>
+<area shape="rect" id="node14" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="508,335,577,361"/>
+<area shape="rect" id="node15" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="353,309,417,336"/>
 </map>

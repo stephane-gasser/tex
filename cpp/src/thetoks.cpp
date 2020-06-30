@@ -34,11 +34,10 @@ halfword thetoks(void)
 	switch (curvallevel)
 	{
 		case int_val: 
-			printint(curval);
+			print(std::to_string(curval));
 			break;
 		case dimen_val:
-			printscaled(curval);
-			print("pt");
+			print(asScaled(curval)+"pt");
 			break;
 		case glue_val:
 			printspec(curval, "pt");

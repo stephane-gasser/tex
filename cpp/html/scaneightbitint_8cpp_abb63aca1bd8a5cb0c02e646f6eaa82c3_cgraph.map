@@ -1,15 +1,15 @@
 <map id="scaneightbitint" name="scaneightbitint">
-<area shape="rect" id="node1" title=" " alt="" coords="5,352,112,379"/>
-<area shape="rect" id="node2" href="$interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="479,74,541,100"/>
-<area shape="rect" id="node5" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="843,251,889,278"/>
-<area shape="rect" id="node8" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="730,200,787,227"/>
-<area shape="rect" id="node9" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="160,352,224,379"/>
-<area shape="rect" id="node3" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="611,226,659,252"/>
-<area shape="rect" id="node6" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="937,74,1009,100"/>
-<area shape="rect" id="node7" href="$printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="728,23,789,50"/>
-<area shape="rect" id="node4" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="723,580,795,607"/>
-<area shape="rect" id="node10" href="$backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title=" " alt="" coords="472,276,548,303"/>
-<area shape="rect" id="node11" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="596,378,675,404"/>
-<area shape="rect" id="node12" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="309,226,387,252"/>
-<area shape="rect" id="node13" href="$scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="272,428,424,455"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,257,112,283"/>
+<area shape="rect" id="node2" href="$interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="479,29,541,55"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="475,383,545,410"/>
+<area shape="rect" id="node9" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="160,282,224,309"/>
+<area shape="rect" id="node3" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="611,130,659,157"/>
+<area shape="rect" id="node5" href="$impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="735,130,782,157"/>
+<area shape="rect" id="node6" href="$impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="843,54,915,81"/>
+<area shape="rect" id="node7" href="$impression_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="728,29,789,55"/>
+<area shape="rect" id="node4" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="723,333,795,359"/>
+<area shape="rect" id="node10" href="$backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="472,181,548,207"/>
+<area shape="rect" id="node11" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="596,231,675,258"/>
+<area shape="rect" id="node12" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="309,333,387,359"/>
+<area shape="rect" id="node13" href="$scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="272,231,424,258"/>
 </map>

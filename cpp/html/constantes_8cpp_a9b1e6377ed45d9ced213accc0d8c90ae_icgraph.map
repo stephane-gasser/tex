@@ -1,9 +1,5 @@
 <map id="open_name" name="open_name">
-<area shape="rect" id="node1" title="string number of file name to open" alt="" coords="323,67,412,93"/>
-<area shape="rect" id="node2" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="179,29,271,56"/>
-<area shape="rect" id="node4" href="$shownodelist_8h.html#a603d6d2969ceffbb5ac7b8c8bc74828b" title=" " alt="" coords="176,104,275,131"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="22,29,111,56"/>
-<area shape="rect" id="node5" href="$shownodelist_8cpp.html#a02076a38f9aefdba6b671f0163d39e55" title=" " alt="" coords="5,92,128,119"/>
-<area shape="rect" id="node6" href="$showbox_8h.html#acfcccfc29ec7e8b9f139156810549ced" title=" " alt="" coords="29,143,104,169"/>
-<area shape="rect" id="node7" href="$showinfo_8h.html#a7a96b738fe42ca12c27ab45665093a35" title=" " alt="" coords="29,193,104,220"/>
+<area shape="rect" id="node1" title="string number of file name to open" alt="" coords="283,29,372,56"/>
+<area shape="rect" id="node2" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="143,29,235,56"/>
+<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,29,95,56"/>
 </map>

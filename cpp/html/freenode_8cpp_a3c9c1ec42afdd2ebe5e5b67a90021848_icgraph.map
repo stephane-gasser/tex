@@ -1,6 +1,6 @@
 <map id="freenode" name="freenode">
 <area shape="rect" id="node1" title=" " alt="" coords="969,1105,1041,1131"/>
-<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="151,503,228,530"/>
+<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="151,503,228,530"/>
 <area shape="rect" id="node4" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="646,363,721,390"/>
 <area shape="rect" id="node6" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="300,389,385,415"/>
 <area shape="rect" id="node8" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="483,110,551,137"/>
@@ -30,7 +30,7 @@
 <area shape="rect" id="node9" href="$makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="478,262,557,289"/>
 <area shape="rect" id="node10" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="471,414,563,441"/>
 <area shape="rect" id="node12" href="$makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="474,313,561,339"/>
-<area shape="rect" id="node14" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="479,1350,556,1377"/>
+<area shape="rect" id="node14" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="479,1350,556,1377"/>
 <area shape="rect" id="node17" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="449,1806,585,1833"/>
 <area shape="rect" id="node20" href="$findfontdimen_8h.html#a3a1391088579b75ddb821a1f66a01b42" title=" " alt="" coords="633,1705,733,1731"/>
 <area shape="rect" id="node21" href="$finiteshrink_8h.html#a44e34bae9b7e036aec3f59c776c36c1c" title=" " alt="" coords="641,1755,726,1782"/>

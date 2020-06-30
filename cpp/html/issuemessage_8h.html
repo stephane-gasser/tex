@@ -126,96 +126,96 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="issuemessage_8cpp_source.html#l00016">16</a> du fichier <a class="el" href="issuemessage_8cpp_source.html">issuemessage.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">auto</span> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> = <a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea6f861343ebb9c29354eada4f17ab6422">garbage</a>) = <a class="code" href="scantoks_8cpp.html#ae3260f4b061a4d0e2c525058ca531fcb">scantoks</a>(<span class="keyword">false</span>, <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">auto</span> <a class="code" href="globals_8cpp.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a> = <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> = <a class="code" href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a6dcf190788c4e48ce270a3d5c6b1740b">new_string</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="tokenshow_8cpp.html#abcbc975eea05ad7486f6a5067215f064">tokenshow</a>(<a class="code" href="globals_8cpp.html#a9e156322fce2bdb7b505a69e306cb286">defref</a>);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> = <a class="code" href="globals_8cpp.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a">flushlist</a>(<a class="code" href="globals_8cpp.html#a9e156322fce2bdb7b505a69e306cb286">defref</a>);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a>(1);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">auto</span> s = <a class="code" href="makestring_8cpp.html#af2a73a1ccd1ca6f04bcb36868d97d2e4">makestring</a>(); </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> == 0)</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a80da2d8616bf844c40be541d5f76e724">termoffset</a>+s.size() &gt; <a class="code" href="tex_8h.html#a56c0ed4df8537e45d986ab396ea91bad">maxprintline</a>-2)</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a>();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">else</span> </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a80da2d8616bf844c40be541d5f76e724">termoffset</a> &gt; 0 || <a class="code" href="globals_8cpp.html#afaa15c19e2283dc12b63e29721c795d0">fileoffset</a> &gt; 0)</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39; &#39;</span>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a>(s);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        std::cout &lt;&lt; std::flush;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;! &quot;</span>);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a>(s);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598">err_help</a>())</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="globals_8cpp.html#a431400406085427c06eefbf1f215daf8">useerrhelp</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">else</span> </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#ad0af25917312abc3269993210ffd8300">longhelpseen</a>)</div>
+<p class="definition">Définition à la ligne <a class="el" href="issuemessage_8cpp_source.html#l00012">12</a> du fichier <a class="el" href="issuemessage_8cpp_source.html">issuemessage.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">auto</span> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> = <a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea6f861343ebb9c29354eada4f17ab6422">garbage</a>) = <a class="code" href="scantoks_8cpp.html#ae3260f4b061a4d0e2c525058ca531fcb">scantoks</a>(<span class="keyword">false</span>, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">auto</span> <a class="code" href="globals_8cpp.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a> = <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> = <a class="code" href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a6dcf190788c4e48ce270a3d5c6b1740b">new_string</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="impression_8cpp.html#abcbc975eea05ad7486f6a5067215f064">tokenshow</a>(<a class="code" href="globals_8cpp.html#a9e156322fce2bdb7b505a69e306cb286">defref</a>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a> = <a class="code" href="globals_8cpp.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a">flushlist</a>(<a class="code" href="globals_8cpp.html#a9e156322fce2bdb7b505a69e306cb286">defref</a>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a>(1);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">auto</span> s = <a class="code" href="makestring_8cpp.html#af2a73a1ccd1ca6f04bcb36868d97d2e4">makestring</a>(); </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> == 0)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a80da2d8616bf844c40be541d5f76e724">termoffset</a>+s.size() &gt; <a class="code" href="tex_8h.html#a56c0ed4df8537e45d986ab396ea91bad">maxprintline</a>-2)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a80da2d8616bf844c40be541d5f76e724">termoffset</a> &gt; 0 || <a class="code" href="globals_8cpp.html#afaa15c19e2283dc12b63e29721c795d0">fileoffset</a> &gt; 0)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <a class="code" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39; &#39;</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="impression_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a>(s);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        std::cout &lt;&lt; std::flush;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a>(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="impression_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a>(s);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598">err_help</a>())</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <a class="code" href="globals_8cpp.html#a431400406085427c06eefbf1f215daf8">useerrhelp</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#ad0af25917312abc3269993210ffd8300">longhelpseen</a>)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 1;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;(That was another \\errmessage.)&quot;</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 1;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;(That was another \\errmessage.)&quot;</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            }</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a> &lt; <a class="code" href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06ca8b6e5947264532204d9fe39c29db0631">error_stop_mode</a>)</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                    <a class="code" href="globals_8cpp.html#ad0af25917312abc3269993210ffd8300">longhelpseen</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 4;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[3] = <span class="stringliteral">&quot;This error message was generated by an \\errmessage&quot;</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[2] = <span class="stringliteral">&quot;command, so I can&#39;t give any explicit help.&quot;</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[1] = <span class="stringliteral">&quot;Pretend that you&#39;re Hercule Poirot: Examine all clues,&quot;</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;and deduce the truth by order and method.&quot;</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="globals_8cpp.html#a431400406085427c06eefbf1f215daf8">useerrhelp</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="constantes_8cpp.html#a365fc2db0bbb423d6744bf74872c9cbe">flush_string</a>();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a> &lt; <a class="code" href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06ca8b6e5947264532204d9fe39c29db0631">error_stop_mode</a>)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    <a class="code" href="globals_8cpp.html#ad0af25917312abc3269993210ffd8300">longhelpseen</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 4;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[3] = <span class="stringliteral">&quot;This error message was generated by an \\errmessage&quot;</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[2] = <span class="stringliteral">&quot;command, so I can&#39;t give any explicit help.&quot;</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[1] = <span class="stringliteral">&quot;Pretend that you&#39;re Hercule Poirot: Examine all clues,&quot;</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;and deduce the truth by order and method.&quot;</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="globals_8cpp.html#a431400406085427c06eefbf1f215daf8">useerrhelp</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="constantes_8cpp.html#a365fc2db0bbb423d6744bf74872c9cbe">flush_string</a>();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="issuemessage_8h_adaee46b89a83ea6193bbda500242f65c_cgraph.png" border="0" usemap="#issuemessage_8h_adaee46b89a83ea6193bbda500242f65c_cgraph" alt=""/></div>
 <map name="issuemessage_8h_adaee46b89a83ea6193bbda500242f65c_cgraph" id="issuemessage_8h_adaee46b89a83ea6193bbda500242f65c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,1233,112,1260"/>
-<area shape="rect" href="constantes_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598" title=" " alt="" coords="1067,1284,1135,1311"/>
-<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="787,1436,835,1463"/>
-<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="1605,1411,1663,1437"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="1207,688,1249,715"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="1349,980,1395,1007"/>
-<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="1485,1613,1557,1640"/>
-<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="1199,409,1257,436"/>
-<area shape="rect" href="tokenshow_8cpp.html#abcbc975eea05ad7486f6a5067215f064" title=" " alt="" coords="1059,663,1144,689"/>
-<area shape="rect" href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="1064,1892,1139,1919"/>
-<area shape="rect" href="constantes_8cpp.html#a365fc2db0bbb423d6744bf74872c9cbe" title=" " alt="" coords="160,1613,249,1640"/>
-<area shape="rect" href="flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a" title=" " alt="" coords="321,245,388,272"/>
-<area shape="rect" href="makestring_8cpp.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="161,1993,248,2020"/>
-<area shape="rect" href="scantoks_8cpp.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="167,992,242,1019"/>
-<area shape="rect" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="168,2095,241,2121"/>
-<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="1201,1297,1255,1324"/>
-<area shape="rect" href="beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title=" " alt="" coords="893,1385,1005,1412"/>
-<area shape="rect" href="clearforerrorprompt_8cpp.html#a282ee6bcdd54bf75b357628da499c970" title=" " alt="" coords="1307,1892,1437,1919"/>
-<area shape="rect" href="gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="913,1233,985,1260"/>
-<area shape="rect" href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="1334,1411,1410,1437"/>
-<area shape="rect" href="giveerrhelp_8cpp.html#a78490fe79fcaae6767240cc8e0fe0fbd" title=" " alt="" coords="907,1132,992,1159"/>
-<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="915,1335,983,1361"/>
-<area shape="rect" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="915,1892,983,1919"/>
-<area shape="rect" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="1197,1613,1259,1640"/>
-<area shape="rect" href="showcontext_8cpp.html#a08865d4e55bc6116a39dbd5679041e61" title=" " alt="" coords="1053,1500,1149,1527"/>
-<area shape="rect" href="getnext_8cpp.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="1069,1095,1134,1121"/>
-<area shape="rect" href="backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title=" " alt="" coords="631,1157,707,1184"/>
-<area shape="rect" href="expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="478,1005,542,1032"/>
-<area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="778,625,845,652"/>
-<area shape="rect" href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="629,904,708,931"/>
-<area shape="rect" href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="460,752,560,779"/>
-<area shape="rect" href="sprintcs_8cpp.html#acaba209547fb584d215825d4ee808645" title=" " alt="" coords="777,1892,845,1919"/>
-<area shape="rect" href="getavail_8cpp.html#ab66fdad2e7e67fc6932956666eb928ba" title=" " alt="" coords="608,651,729,677"/>
-<area shape="rect" href="thetoks_8cpp.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="477,853,543,880"/>
-<area shape="rect" href="constantes_8cpp.html#af755b301592c71df76696d1a360984de" title="reference count preceding a token list" alt="" coords="297,1271,412,1297"/>
-<area shape="rect" href="xtoken_8cpp.html#a2e46936a66be3da34c1306e4ec999ffb" title=" " alt="" coords="324,1043,385,1069"/>
+<area shape="rect" title=" " alt="" coords="5,1461,112,1488"/>
+<area shape="rect" href="constantes_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598" title=" " alt="" coords="1061,195,1129,221"/>
+<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="787,651,835,677"/>
+<area shape="rect" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="1601,727,1659,753"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="1199,1487,1241,1513"/>
+<area shape="rect" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="1185,1208,1255,1235"/>
+<area shape="rect" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="1481,549,1553,576"/>
+<area shape="rect" href="impression_8cpp.html#abcbc975eea05ad7486f6a5067215f064" title=" " alt="" coords="1052,144,1137,171"/>
+<area shape="rect" href="impression_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="1057,448,1132,475"/>
+<area shape="rect" href="constantes_8cpp.html#a365fc2db0bbb423d6744bf74872c9cbe" title=" " alt="" coords="160,1765,249,1792"/>
+<area shape="rect" href="flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a" title=" " alt="" coords="777,1664,844,1691"/>
+<area shape="rect" href="makestring_8cpp.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="161,1816,248,1843"/>
+<area shape="rect" href="scantoks_8cpp.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="167,1183,242,1209"/>
+<area shape="rect" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="168,1867,241,1893"/>
+<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="1193,296,1247,323"/>
+<area shape="rect" href="beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="892,651,1004,677"/>
+<area shape="rect" href="clearforerrorprompt_8cpp.html#a282ee6bcdd54bf75b357628da499c970" title=" " alt="" coords="1303,119,1433,145"/>
+<area shape="rect" href="gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="912,1107,984,1133"/>
+<area shape="rect" href="impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="1191,853,1249,880"/>
+<area shape="rect" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="1345,701,1391,728"/>
+<area shape="rect" href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="1330,752,1406,779"/>
+<area shape="rect" href="giveerrhelp_8cpp.html#a78490fe79fcaae6767240cc8e0fe0fbd" title=" " alt="" coords="905,144,991,171"/>
+<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="914,701,982,728"/>
+<area shape="rect" href="impression_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="914,499,982,525"/>
+<area shape="rect" href="impression_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="917,347,979,373"/>
+<area shape="rect" href="impression_8cpp.html#a08865d4e55bc6116a39dbd5679041e61" title=" " alt="" coords="900,600,996,627"/>
+<area shape="rect" href="getnext_8cpp.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="1062,955,1127,981"/>
+<area shape="rect" href="backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="631,752,707,779"/>
+<area shape="rect" href="expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="478,1131,542,1157"/>
+<area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="777,1461,844,1488"/>
+<area shape="rect" href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="629,1005,708,1032"/>
+<area shape="rect" href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="460,879,560,905"/>
+<area shape="rect" href="impression_8cpp.html#acaba209547fb584d215825d4ee808645" title=" " alt="" coords="321,1309,389,1336"/>
+<area shape="rect" href="getavail_8cpp.html#ab66fdad2e7e67fc6932956666eb928ba" title=" " alt="" coords="608,1512,729,1539"/>
+<area shape="rect" href="thetoks_8cpp.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="477,955,543,981"/>
+<area shape="rect" href="constantes_8cpp.html#af755b301592c71df76696d1a360984de" title="reference count preceding a token list" alt="" coords="297,1360,412,1387"/>
+<area shape="rect" href="xtoken_8cpp.html#a2e46936a66be3da34c1306e4ec999ffb" title=" " alt="" coords="324,1107,385,1133"/>
 </map>
 </div>
 <div class="dynheader">
@@ -231,36 +231,35 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_abc6126af1d45847bc59afa0aa3216b04a6dcf190788c4e48ce270a3d5c6b1740b"><div class="ttname"><a href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a6dcf190788c4e48ce270a3d5c6b1740b">new_string</a></div><div class="ttdeci">@ new_string</div><div class="ttdoc">printing is deflected to the string pool</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00023">constantes.h:23</a></div></div>
-<div class="ttc" id="ascantoks_8cpp_html_ae3260f4b061a4d0e2c525058ca531fcb"><div class="ttname"><a href="scantoks_8cpp.html#ae3260f4b061a4d0e2c525058ca531fcb">scantoks</a></div><div class="ttdeci">halfword scantoks(bool macrodef, bool xpand)</div><div class="ttdef"><b>Definition:</b> <a href="scantoks_8cpp_source.html#l00017">scantoks.cpp:17</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abc6126af1d45847bc59afa0aa3216b04a6dcf190788c4e48ce270a3d5c6b1740b"><div class="ttname"><a href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a6dcf190788c4e48ce270a3d5c6b1740b">new_string</a></div><div class="ttdeci">@ new_string</div><div class="ttdoc">printing is deflected to the string pool</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00041">constantes.h:41</a></div></div>
+<div class="ttc" id="ascantoks_8cpp_html_ae3260f4b061a4d0e2c525058ca531fcb"><div class="ttname"><a href="scantoks_8cpp.html#ae3260f4b061a4d0e2c525058ca531fcb">scantoks</a></div><div class="ttdeci">halfword scantoks(bool macrodef, bool xpand)</div><div class="ttdef"><b>Definition:</b> <a href="scantoks_8cpp_source.html#l00015">scantoks.cpp:15</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a5144e9be7698585335fc96f2811b5406"><div class="ttname"><a href="globals_8cpp.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a></div><div class="ttdeci">char oldsetting</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00096">globals.cpp:96</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a0489286d29b84691df49ff88e8487b1a"><div class="ttname"><a href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a></div><div class="ttdeci">char interaction</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00064">globals.cpp:64</a></div></div>
 <div class="ttc" id="aglobals_8h_html_ae1c0d92ce2fe057255c7badbbb0615b0"><div class="ttname"><a href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a></div><div class="ttdeci">std::string helpline[6]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00071">globals.h:71</a></div></div>
-<div class="ttc" id="aoverflow_8cpp_html_a570e0c3ba4fd6dec0e3e83fbb09d04e7"><div class="ttname"><a href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a></div><div class="ttdeci">void str_room(int n)</div><div class="ttdoc">make sure that the pool hasn't overflowed</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00013">overflow.cpp:13</a></div></div>
+<div class="ttc" id="aoverflow_8cpp_html_a570e0c3ba4fd6dec0e3e83fbb09d04e7"><div class="ttname"><a href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a></div><div class="ttdeci">void str_room(int n)</div><div class="ttdoc">make sure that the pool hasn't overflowed</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00009">overflow.cpp:9</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a4128dbc20823d10a2626cb9cdf4d6cd4"><div class="ttname"><a href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a></div><div class="ttdeci">halfword curchr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00109">globals.cpp:109</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_ad0af25917312abc3269993210ffd8300"><div class="ttname"><a href="globals_8cpp.html#ad0af25917312abc3269993210ffd8300">longhelpseen</a></div><div class="ttdeci">bool longhelpseen</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00283">globals.cpp:283</a></div></div>
-<div class="ttc" id="aslowprint_8cpp_html_a163fa1f725ed91bdbb220bd85a1fd852"><div class="ttname"><a href="slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a></div><div class="ttdeci">void slowprint(int s)</div><div class="ttdef"><b>Definition:</b> <a href="slowprint_8cpp_source.html#l00005">slowprint.cpp:5</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_afaa15c19e2283dc12b63e29721c795d0"><div class="ttname"><a href="globals_8cpp.html#afaa15c19e2283dc12b63e29721c795d0">fileoffset</a></div><div class="ttdeci">char fileoffset</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00062">globals.cpp:62</a></div></div>
-<div class="ttc" id="aprintln_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="println_8cpp_source.html#l00004">println.cpp:4</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ea6f861343ebb9c29354eada4f17ab6422"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea6f861343ebb9c29354eada4f17ab6422">garbage</a></div><div class="ttdeci">@ garbage</div><div class="ttdoc">used for scrap information</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00183">constantes.h:183</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ea6f861343ebb9c29354eada4f17ab6422"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea6f861343ebb9c29354eada4f17ab6422">garbage</a></div><div class="ttdeci">@ garbage</div><div class="ttdoc">used for scrap information</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00201">constantes.h:201</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a2715dcea36ae0bf1f96b9d1b10923598"><div class="ttname"><a href="constantes_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598">err_help</a></div><div class="ttdeci">halfword &amp; err_help(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00035">constantes.cpp:35</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a80da2d8616bf844c40be541d5f76e724"><div class="ttname"><a href="globals_8cpp.html#a80da2d8616bf844c40be541d5f76e724">termoffset</a></div><div class="ttdeci">char termoffset</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00061">globals.cpp:61</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a85c0624f93ed5c5e8c722316dad139af"><div class="ttname"><a href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a></div><div class="ttdeci">char helpptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00069">globals.cpp:69</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a9e156322fce2bdb7b505a69e306cb286"><div class="ttname"><a href="globals_8cpp.html#a9e156322fce2bdb7b505a69e306cb286">defref</a></div><div class="ttdeci">halfword defref</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00122">globals.cpp:122</a></div></div>
-<div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
-<div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00019">error.cpp:19</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01189">impression.cpp:1189</a></div></div>
+<div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00013">error.cpp:13</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a163fa1f725ed91bdbb220bd85a1fd852"><div class="ttname"><a href="impression_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852">slowprint</a></div><div class="ttdeci">void slowprint(int s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01727">impression.cpp:1727</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_abcbc975eea05ad7486f6a5067215f064"><div class="ttname"><a href="impression_8cpp.html#abcbc975eea05ad7486f6a5067215f064">tokenshow</a></div><div class="ttdeci">void tokenshow(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01841">impression.cpp:1841</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
-<div class="ttc" id="atokenshow_8cpp_html_abcbc975eea05ad7486f6a5067215f064"><div class="ttname"><a href="tokenshow_8cpp.html#abcbc975eea05ad7486f6a5067215f064">tokenshow</a></div><div class="ttdeci">void tokenshow(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="tokenshow_8cpp_source.html#l00004">tokenshow.cpp:4</a></div></div>
 <div class="ttc" id="aflushlist_8cpp_html_ab1fa9ce35cc927b9620ecb5ed0dbc63a"><div class="ttname"><a href="flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a">flushlist</a></div><div class="ttdeci">void flushlist(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="flushlist_8cpp_source.html#l00003">flushlist.cpp:3</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a431400406085427c06eefbf1f215daf8"><div class="ttname"><a href="globals_8cpp.html#a431400406085427c06eefbf1f215daf8">useerrhelp</a></div><div class="ttdeci">bool useerrhelp</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00070">globals.cpp:70</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a365fc2db0bbb423d6744bf74872c9cbe"><div class="ttname"><a href="constantes_8cpp.html#a365fc2db0bbb423d6744bf74872c9cbe">flush_string</a></div><div class="ttdeci">void flush_string(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00154">constantes.cpp:154</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00042">impression.cpp:42</a></div></div>
 <div class="ttc" id="amakestring_8cpp_html_af2a73a1ccd1ca6f04bcb36868d97d2e4"><div class="ttname"><a href="makestring_8cpp.html#af2a73a1ccd1ca6f04bcb36868d97d2e4">makestring</a></div><div class="ttdeci">std::string makestring(void)</div><div class="ttdef"><b>Definition:</b> <a href="makestring_8cpp_source.html#l00005">makestring.cpp:5</a></div></div>
 <div class="ttc" id="atex_8h_html_a56c0ed4df8537e45d986ab396ea91bad"><div class="ttname"><a href="tex_8h.html#a56c0ed4df8537e45d986ab396ea91bad">maxprintline</a></div><div class="ttdeci">constexpr int maxprintline</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00014">tex.h:14</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_adc29c2ff13d900c2f185ee95427fb06ca8b6e5947264532204d9fe39c29db0631"><div class="ttname"><a href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06ca8b6e5947264532204d9fe39c29db0631">error_stop_mode</a></div><div class="ttdeci">@ error_stop_mode</div><div class="ttdoc">stops at every opportunity to interact</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00031">constantes.h:31</a></div></div>
-<div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_adc29c2ff13d900c2f185ee95427fb06ca8b6e5947264532204d9fe39c29db0631"><div class="ttname"><a href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06ca8b6e5947264532204d9fe39c29db0631">error_stop_mode</a></div><div class="ttdeci">@ error_stop_mode</div><div class="ttdoc">stops at every opportunity to interact</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00049">constantes.h:49</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a27f6b6c256d6682247b1fbdd82d30194"><div class="ttname"><a href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a></div><div class="ttdeci">void print_err(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01759">impression.cpp:1759</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a4a02011783b79fd4be63e5ee91cb8621"><div class="ttname"><a href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a></div><div class="ttdeci">char selector</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00059">globals.cpp:59</a></div></div>
-<div class="ttc" id="aprintnl_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printnl_8cpp_source.html#l00005">printnl.cpp:5</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

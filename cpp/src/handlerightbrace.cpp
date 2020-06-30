@@ -116,9 +116,7 @@ void handlerightbrace(void)
 			insertpenalties = 0;
 			if (box(255))
 			{
-				print_err("Output routine didn't use all of ");
-				printesc("box");
-				printint(255); 
+				print_err("Output routine didn't use all of "+esc("box255")); 
 				helpptr = 3;
 				helpline[2] = "Your \\output commands should empty \\box255,";
 				helpline[1] = "e.g., by saying `\\shipout\\box255'.";

@@ -1,16 +1,13 @@
 <map id="font" name="font">
-<area shape="rect" id="node1" title="the font code in a char_node" alt="" coords="721,210,765,236"/>
-<area shape="rect" id="node2" href="$appenditaliccorrection_8h.html#afb675d8990e6a5ffb4ea8c78e8d929a0" title=" " alt="" coords="143,260,291,287"/>
-<area shape="rect" id="node4" href="$hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="367,184,450,211"/>
-<area shape="rect" id="node5" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="179,159,254,186"/>
-<area shape="rect" id="node6" href="$maincontrol_8cpp.html#ac9adf23e9668c60e307d353478aec787" title=" " alt="" coords="176,32,257,59"/>
-<area shape="rect" id="node7" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="527,83,673,110"/>
-<area shape="rect" id="node10" href="$readfontinfo_8h.html#af923ea1b9fc83c4c6a610d50e43c599d" title=" " alt="" coords="555,286,645,312"/>
-<area shape="rect" id="node11" href="$reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="555,235,645,262"/>
-<area shape="rect" id="node12" href="$shortdisplay_8h.html#afebf67a21261724239f16b40c3c553d2" title=" " alt="" coords="554,411,646,438"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,147,95,174"/>
-<area shape="rect" id="node8" href="$maincontrol_8cpp.html#aee41666bb43f68ce58fd3f71c7781cd8" title=" " alt="" coords="341,32,476,59"/>
-<area shape="rect" id="node9" href="$maincontrol_8cpp.html#a1c4fbceeb0a6504e980d70aea5dc2ad9" title=" " alt="" coords="339,83,479,110"/>
-<area shape="rect" id="node13" href="$hpack_8cpp.html#aca1b4ef43cf99ba30e2d0bc481431dce" title=" " alt="" coords="378,399,439,426"/>
-<area shape="rect" id="node14" href="$shownodelist_8h.html#a603d6d2969ceffbb5ac7b8c8bc74828b" title=" " alt="" coords="359,474,458,500"/>
+<area shape="rect" id="node1" title="the font code in a char_node" alt="" coords="721,154,765,181"/>
+<area shape="rect" id="node2" href="$appenditaliccorrection_8h.html#afb675d8990e6a5ffb4ea8c78e8d929a0" title=" " alt="" coords="143,281,291,308"/>
+<area shape="rect" id="node4" href="$hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="367,53,450,80"/>
+<area shape="rect" id="node5" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="179,28,254,54"/>
+<area shape="rect" id="node6" href="$maincontrol_8cpp.html#ac9adf23e9668c60e307d353478aec787" title=" " alt="" coords="176,205,257,232"/>
+<area shape="rect" id="node7" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="527,205,673,232"/>
+<area shape="rect" id="node10" href="$readfontinfo_8h.html#af923ea1b9fc83c4c6a610d50e43c599d" title=" " alt="" coords="555,256,645,282"/>
+<area shape="rect" id="node11" href="$reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="555,104,645,130"/>
+<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,256,95,282"/>
+<area shape="rect" id="node8" href="$maincontrol_8cpp.html#aee41666bb43f68ce58fd3f71c7781cd8" title=" " alt="" coords="341,205,476,232"/>
+<area shape="rect" id="node9" href="$maincontrol_8cpp.html#a1c4fbceeb0a6504e980d70aea5dc2ad9" title=" " alt="" coords="339,256,479,282"/>
 </map>

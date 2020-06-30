@@ -1,5 +1,4 @@
 #include "macrocall.h"
-#include "begindiagnostic.h"
 #include "impression.h"
 #include "gettoken.h"
 #include "getavail.h"
@@ -9,11 +8,8 @@
 #include "backerror.h"
 #include "endtokenlist.h"
 #include "begintokenlist.h"
-#include "tokenshow.h"
 #include "error.h"
 #include "inserror.h"
-#include "showtokenlist.h"
-#include "enddiagnostic.h"
 #include "overflow.h"
 #include "texte.h"
 
@@ -29,7 +25,7 @@ void macrocall(void)
 	{
 		begindiagnostic();
 		println();
-		printcs(warningindex);
+		print(cs(warningindex));
 		tokenshow(refcount);
 		enddiagnostic(false);
 	}
@@ -76,9 +72,7 @@ void macrocall(void)
 				if (s != r)
 					if (s == 0)
 					{
-						print_err("Use of ");
-						sprintcs(warningindex);
-						print(" doesn't match its definition");
+						print_err("Use of "+scs(warningindex)+" doesn't match its definition");
 						helpptr = 4;
 						helpline[3] = "If you say, e.g., `\\def\\a1{...}', then you must always";
 						helpline[2] = "put `1' after `\\a', since control sequence names are";
@@ -132,9 +126,7 @@ void macrocall(void)
 						{
 							runaway();
 							printnl("! ");
-							print("Paragraph ended before ");
-							sprintcs(warningindex);
-							print(" was complete");
+							print("Paragraph ended before "+scs(warningindex)+" was complete");
 							helpptr = 3;
 							helpline[2] = "I suspect you've forgotten a `}', causing me to apply this";
 							helpline[1] = "control sequence to too much text. How can we recover?";
@@ -174,9 +166,7 @@ void macrocall(void)
 									{
 										runaway();
 										printnl("! ");
-										print("Paragraph ended before ");
-										sprintcs(warningindex);
-										print(" was complete");
+										print("Paragraph ended before "+scs(warningindex)+" was complete");
 										helpptr = 3;
 										helpline[2] = "I suspect you've forgotten a `}', causing me to apply this"; 
 										helpline[1] = "control sequence to too much text. How can we recover?";
@@ -211,9 +201,7 @@ void macrocall(void)
 					{
 						backinput();
 						printnl("! ");
-						print("Argument of ");
-						sprintcs(warningindex);
-						print(" has an extra }");
+						print("Argument of "+scs(warningindex)+" has an extra }");
 						helpptr = 6;
 						helpline[5] = "I've run across a `}' that doesn't seem to match anything.";
 						helpline[4] = "For example, `\\def\\a#1{...}' and `\\a}' would produce";
@@ -260,10 +248,8 @@ void macrocall(void)
 				if (tracing_macros() > 0)
 				{
 					begindiagnostic();
-					printchar(matchchr);
-					printnl("");
-					printint(n);
-					print("<-");
+					print(std::string(1, matchchr));
+					printnl(std::to_string(n)+"<-");
 					showtokenlist(pstack[n-1], 0, 1000);
 					enddiagnostic(false);
 				}

@@ -1,13 +1,14 @@
 <map id="charwarning" name="charwarning">
 <area shape="rect" id="node1" title=" " alt="" coords="5,157,97,184"/>
-<area shape="rect" id="node2" href="$begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title=" " alt="" coords="153,5,265,32"/>
-<area shape="rect" id="node4" href="$enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="158,56,261,83"/>
-<area shape="rect" id="node6" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="344,107,401,133"/>
-<area shape="rect" id="node7" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="486,157,533,184"/>
-<area shape="rect" id="node8" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="595,208,667,235"/>
-<area shape="rect" id="node9" href="$slowprint_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="472,259,547,285"/>
-<area shape="rect" id="node10" href="$charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1" title=" " alt="" coords="145,309,273,336"/>
-<area shape="rect" id="node3" href="$parametres_8h.html#ad64b5865361b4a66a2e034f995f8dc24" title=" " alt="" coords="321,5,424,32"/>
-<area shape="rect" id="node5" href="$println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="715,132,772,159"/>
-<area shape="rect" id="node11" href="$parametres_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title="an integer parameter" alt="" coords="342,309,403,336"/>
+<area shape="rect" id="node2" href="$impression_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title="Prepare to do some tracing." alt="" coords="153,5,265,32"/>
+<area shape="rect" id="node3" href="$impression_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="158,56,261,83"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="329,157,375,184"/>
+<area shape="rect" id="node6" href="$impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="431,56,503,83"/>
+<area shape="rect" id="node9" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="181,208,238,235"/>
+<area shape="rect" id="node10" href="$impression_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="172,259,247,285"/>
+<area shape="rect" id="node11" href="$charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1" title=" " alt="" coords="145,309,273,336"/>
+<area shape="rect" id="node5" href="$parametres_8h.html#a92aab912d4164b91a30449bc19bb1593" title=" " alt="" coords="551,107,656,133"/>
+<area shape="rect" id="node7" href="$impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="575,208,632,235"/>
+<area shape="rect" id="node8" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="447,107,486,133"/>
+<area shape="rect" id="node12" href="$parametres_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title="an integer parameter" alt="" coords="321,309,383,336"/>
 </map>

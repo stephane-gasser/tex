@@ -1,13 +1,11 @@
 <map id="terminput" name="terminput">
-<area shape="rect" id="node1" title=" " alt="" coords="5,271,81,297"/>
-<area shape="rect" id="node2" href="$fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="129,195,203,221"/>
-<area shape="rect" id="node6" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="633,397,705,424"/>
-<area shape="rect" id="node7" href="$println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="753,296,811,323"/>
-<area shape="rect" id="node11" href="$inputln_8cpp.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="136,321,196,348"/>
-<area shape="rect" id="node3" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="289,296,337,323"/>
-<area shape="rect" id="node4" href="$jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="423,195,491,221"/>
-<area shape="rect" id="node5" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="539,245,585,272"/>
-<area shape="rect" id="node8" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="650,144,689,171"/>
-<area shape="rect" id="node9" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="428,245,485,272"/>
-<area shape="rect" id="node10" href="$normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="251,43,375,69"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,136,81,163"/>
+<area shape="rect" id="node2" href="$fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="129,85,203,112"/>
+<area shape="rect" id="node5" href="$impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="423,237,495,264"/>
+<area shape="rect" id="node6" href="$impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="543,187,600,213"/>
+<area shape="rect" id="node9" href="$inputln_8cpp.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="136,187,196,213"/>
+<area shape="rect" id="node3" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="289,187,337,213"/>
+<area shape="rect" id="node4" href="$jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="425,136,493,163"/>
+<area shape="rect" id="node7" href="$normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="251,35,375,61"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="278,85,347,112"/>
 </map>

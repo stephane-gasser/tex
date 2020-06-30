@@ -4,9 +4,6 @@
 #include "fichier.h"
 #include "preparemag.h"
 #include "bmakenamestring.h"
-#include "begindiagnostic.h"
-#include "enddiagnostic.h"
-#include "showbox.h"
 #include "flushnodelist.h"
 #include "openlogfile.h"
 #include "packjobname.h"
@@ -47,21 +44,21 @@ void shipout(halfword p)
 		println();
 	else 
 		if (termoffset > 0 || fileoffset > 0)
-		printchar(' ');
-	printchar('[');
+		print(" ");
+	print("[");
 	int j = 9;
 	while (count(j) == 0 && j > 0)
 		j--;
 	for (int k = 0; k <= j; k++)
 	{
-		printint(count(k));
+		print(std::to_string(count(k)));
 		if (k < j)
-			printchar('.');
+			print(".");
 	}
 	std::cout << std::flush;
 	if (tracing_output() > 0)
 	{
-		printchar(']');
+		print("]");
 		begindiagnostic();
 		showbox(p);
 		enddiagnostic(true);
@@ -83,7 +80,7 @@ void shipout(halfword p)
 			enddiagnostic(true);
 		}
 		if (tracing_output() <= 0)
-		printchar(']');
+		print("]");
 		deadcycles = 0;
 		std::cout << std::flush;
 		flushnodelist(p);
@@ -108,13 +105,11 @@ void shipout(halfword p)
 		dvifour(mag());
 		oldsetting = selector;
 		selector = new_string;
-		print(" TeX output ");
-		printint(year());
-		printchar('.');
+		print(" TeX output "+std::to_string(year())+".");
 		printtwo(month());
-		printchar('.');
+		print(".");
 		printtwo(day());
-		printchar(':');
+		print(":");
 		printtwo(time()/60);
 		printtwo(time()%60);
 		selector = oldsetting;
@@ -139,7 +134,7 @@ void shipout(halfword p)
 	totalpages++;
 	curs = -1;
 	if (tracing_output() <= 0)
-		printchar(']');
+		print("]");
 	deadcycles = 0;
 	std::cout << std::flush;
 	flushnodelist(p);

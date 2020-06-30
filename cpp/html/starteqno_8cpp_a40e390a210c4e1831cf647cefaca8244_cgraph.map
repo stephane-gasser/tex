@@ -1,21 +1,21 @@
 <map id="starteqno" name="starteqno">
-<area shape="rect" id="node1" title=" " alt="" coords="5,515,81,541"/>
-<area shape="rect" id="node2" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="129,236,232,263"/>
-<area shape="rect" id="node13" href="$eqworddefine_8cpp.html#a5448e0fa38a2e448814fd99fccdc0b7f" title=" " alt="" coords="131,489,230,516"/>
-<area shape="rect" id="node15" href="$constantes_8cpp.html#a8876b599eada2030e47cb5132ea2f567" title=" " alt="" coords="135,540,226,567"/>
-<area shape="rect" id="node17" href="$pushmath_8cpp.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="141,591,220,617"/>
-<area shape="rect" id="node3" href="$begindiagnostic_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title=" " alt="" coords="280,185,392,212"/>
-<area shape="rect" id="node4" href="$enddiagnostic_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="285,388,387,415"/>
-<area shape="rect" id="node5" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="445,388,503,415"/>
-<area shape="rect" id="node6" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="556,337,603,364"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="453,261,495,288"/>
-<area shape="rect" id="node8" href="$printcmdchr_8cpp.html#ab8f6990e9aa8ffdacd856de74aa40314" title=" " alt="" coords="291,84,381,111"/>
-<area shape="rect" id="node9" href="$printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="440,40,508,67"/>
-<area shape="rect" id="node10" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="293,33,379,60"/>
-<area shape="rect" id="node11" href="$tokenshow_8cpp.html#abcbc975eea05ad7486f6a5067215f064" title=" " alt="" coords="293,236,379,263"/>
-<area shape="rect" id="node12" href="$parametres_8h.html#a3031faaf45fa3af8e62335eaab553572" title=" " alt="" coords="281,135,391,161"/>
-<area shape="rect" id="node14" href="$eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="304,489,368,516"/>
-<area shape="rect" id="node16" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="309,540,363,567"/>
-<area shape="rect" id="node18" href="$newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="285,591,387,617"/>
-<area shape="rect" id="node19" href="$pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="299,641,373,668"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,537,81,564"/>
+<area shape="rect" id="node2" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="129,259,232,285"/>
+<area shape="rect" id="node13" href="$eqworddefine_8cpp.html#a5448e0fa38a2e448814fd99fccdc0b7f" title=" " alt="" coords="131,512,230,539"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#a8876b599eada2030e47cb5132ea2f567" title=" " alt="" coords="135,563,226,589"/>
+<area shape="rect" id="node17" href="$pushmath_8cpp.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="141,613,220,640"/>
+<area shape="rect" id="node3" href="$impression_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title="Prepare to do some tracing." alt="" coords="280,5,392,32"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="285,56,387,83"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="315,107,357,133"/>
+<area shape="rect" id="node6" href="$impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="451,208,497,235"/>
+<area shape="rect" id="node7" href="$impression_8cpp.html#ab8f6990e9aa8ffdacd856de74aa40314" title=" " alt="" coords="291,259,381,285"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="440,284,508,311"/>
+<area shape="rect" id="node9" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="307,208,365,235"/>
+<area shape="rect" id="node10" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="293,360,379,387"/>
+<area shape="rect" id="node11" href="$impression_8cpp.html#abcbc975eea05ad7486f6a5067215f064" title=" " alt="" coords="293,411,379,437"/>
+<area shape="rect" id="node12" href="$parametres_8h.html#a3031faaf45fa3af8e62335eaab553572" title=" " alt="" coords="281,461,391,488"/>
+<area shape="rect" id="node14" href="$eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="304,512,368,539"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="309,563,363,589"/>
+<area shape="rect" id="node18" href="$newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="285,613,387,640"/>
+<area shape="rect" id="node19" href="$pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="299,664,373,691"/>
 </map>

@@ -1,35 +1,36 @@
 <map id="nucleus" name="nucleus">
-<area shape="rect" id="node1" title="the nucleus field of a noad" alt="" coords="624,467,691,493"/>
-<area shape="rect" id="node2" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="490,391,565,417"/>
-<area shape="rect" id="node4" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="159,315,244,341"/>
-<area shape="rect" id="node5" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="308,543,431,569"/>
-<area shape="rect" id="node6" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="335,63,403,89"/>
-<area shape="rect" id="node7" href="$makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="330,492,409,519"/>
-<area shape="rect" id="node8" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="323,289,415,316"/>
-<area shape="rect" id="node10" href="$makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="326,441,413,468"/>
-<area shape="rect" id="node11" href="$flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="480,1075,575,1101"/>
-<area shape="rect" id="node13" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="143,1353,260,1380"/>
-<area shape="rect" id="node27" href="$indentinhmode_8h.html#a5016a6f79ae901c498a9d0c6981d9db6" title=" " alt="" coords="148,752,255,779"/>
-<area shape="rect" id="node28" href="$makevcenter_8h.html#a6e5d002d0820c0eb0efc867f638396aa" title=" " alt="" coords="479,251,576,277"/>
-<area shape="rect" id="node29" href="$mathac_8h.html#a9b15be3a9cc9ba63e0b8cdbf650bba92" title=" " alt="" coords="169,828,234,855"/>
-<area shape="rect" id="node30" href="$mathradical_8h.html#a6e86e5d001c758710d7dd35221efb5a6" title=" " alt="" coords="483,593,572,620"/>
-<area shape="rect" id="node31" href="$constantes_8h.html#a0129b73f23f35eca6b18766768c5ed8a" title="the translation of an mlist" alt="" coords="489,137,566,164"/>
-<area shape="rect" id="node32" href="$shownodelist_8h.html#a603d6d2969ceffbb5ac7b8c8bc74828b" title=" " alt="" coords="320,137,419,164"/>
-<area shape="rect" id="node33" href="$setmathchar_8h.html#a78741c557d11e65fff7328bc2b1a6449" title=" " alt="" coords="480,669,575,696"/>
-<area shape="rect" id="node3" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="321,340,418,367"/>
-<area shape="rect" id="node9" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="323,188,416,215"/>
-<area shape="rect" id="node12" href="$boxerror_8h.html#a0bbccd15aae646ece75f2703dda44c2e" title=" " alt="" coords="335,1404,404,1431"/>
-<area shape="rect" id="node15" href="$builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2" title=" " alt="" coords="308,1353,431,1380"/>
-<area shape="rect" id="node16" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="331,1303,408,1329"/>
-<area shape="rect" id="node17" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="170,1213,233,1240"/>
-<area shape="rect" id="node18" href="$deletelast_8h.html#adf27bd30a3970cc321bd31cf0109e8b4" title=" " alt="" coords="162,891,241,917"/>
-<area shape="rect" id="node19" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="155,1441,247,1468"/>
-<area shape="rect" id="node20" href="$eqdestroy_8h.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="330,1151,409,1177"/>
-<area shape="rect" id="node21" href="$flushmath_8h.html#a1772b477ad136aede8aa56b92b4d67ef" title=" " alt="" coords="330,1252,409,1279"/>
-<area shape="rect" id="node22" href="$hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="328,999,411,1025"/>
-<area shape="rect" id="node23" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="164,999,239,1025"/>
-<area shape="rect" id="node24" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="320,948,419,975"/>
-<area shape="rect" id="node25" href="$prunepagetop_8h.html#afd81d1b3f22735dc6e67ad0266cf0e89" title=" " alt="" coords="319,847,419,873"/>
-<area shape="rect" id="node26" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="337,1049,401,1076"/>
-<area shape="rect" id="node14" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,860,95,887"/>
+<area shape="rect" id="node1" title="the nucleus field of a noad" alt="" coords="624,477,691,503"/>
+<area shape="rect" id="node2" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="490,249,565,275"/>
+<area shape="rect" id="node4" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="159,274,244,301"/>
+<area shape="rect" id="node5" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="308,451,431,478"/>
+<area shape="rect" id="node6" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="335,299,403,326"/>
+<area shape="rect" id="node7" href="$makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="330,46,409,73"/>
+<area shape="rect" id="node8" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="323,97,415,123"/>
+<area shape="rect" id="node10" href="$makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="326,249,413,275"/>
+<area shape="rect" id="node11" href="$flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="480,1009,575,1035"/>
+<area shape="rect" id="node14" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="143,806,260,833"/>
+<area shape="rect" id="node28" href="$indentinhmode_8h.html#a5016a6f79ae901c498a9d0c6981d9db6" title=" " alt="" coords="148,1465,255,1491"/>
+<area shape="rect" id="node29" href="$makevcenter_8h.html#a6e5d002d0820c0eb0efc867f638396aa" title=" " alt="" coords="479,9,576,35"/>
+<area shape="rect" id="node30" href="$mathac_8h.html#a9b15be3a9cc9ba63e0b8cdbf650bba92" title=" " alt="" coords="169,1515,234,1542"/>
+<area shape="rect" id="node31" href="$mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="480,1566,575,1593"/>
+<area shape="rect" id="node32" href="$mathradical_8h.html#a6e86e5d001c758710d7dd35221efb5a6" title=" " alt="" coords="483,553,572,579"/>
+<area shape="rect" id="node33" href="$constantes_8h.html#a0129b73f23f35eca6b18766768c5ed8a" title="the translation of an mlist" alt="" coords="489,401,566,427"/>
+<area shape="rect" id="node34" href="$setmathchar_8h.html#a78741c557d11e65fff7328bc2b1a6449" title=" " alt="" coords="480,629,575,655"/>
+<area shape="rect" id="node3" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="321,198,418,225"/>
+<area shape="rect" id="node9" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="323,350,416,377"/>
+<area shape="rect" id="node12" href="$boxend_8h.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="169,1262,233,1289"/>
+<area shape="rect" id="node13" href="$boxerror_8h.html#a0bbccd15aae646ece75f2703dda44c2e" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="335,806,404,833"/>
+<area shape="rect" id="node16" href="$builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2" title=" " alt="" coords="308,755,431,782"/>
+<area shape="rect" id="node17" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="331,1009,408,1035"/>
+<area shape="rect" id="node18" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="170,1173,233,1199"/>
+<area shape="rect" id="node19" href="$deletelast_8h.html#adf27bd30a3970cc321bd31cf0109e8b4" title=" " alt="" coords="162,1339,241,1366"/>
+<area shape="rect" id="node20" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="155,1414,247,1441"/>
+<area shape="rect" id="node21" href="$eqdestroy_8h.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="330,1110,409,1137"/>
+<area shape="rect" id="node22" href="$flushmath_8h.html#a1772b477ad136aede8aa56b92b4d67ef" title=" " alt="" coords="330,1161,409,1187"/>
+<area shape="rect" id="node23" href="$hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="328,958,411,985"/>
+<area shape="rect" id="node24" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="164,907,239,934"/>
+<area shape="rect" id="node25" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="320,907,419,934"/>
+<area shape="rect" id="node26" href="$prunepagetop_8h.html#afd81d1b3f22735dc6e67ad0266cf0e89" title=" " alt="" coords="319,1059,419,1086"/>
+<area shape="rect" id="node27" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="337,1262,401,1289"/>
+<area shape="rect" id="node15" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,1339,95,1366"/>
 </map>

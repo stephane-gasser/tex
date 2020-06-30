@@ -83,8 +83,7 @@ $(function() {
 <code>#include &quot;<a class="el" href="scanoptionalequals_8h_source.html">scanoptionalequals.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="scandimen_8h_source.html">scandimen.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="scanint_8h_source.html">scanint.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="printnl_8h_source.html">printnl.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="print_8h_source.html">print.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="impression_8h_source.html">impression.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="interror_8h_source.html">interror.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="texte_8h_source.html">texte.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -92,18 +91,17 @@ Graphe des dépendances par inclusion de alteraux.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="alteraux_8cpp__incl.png" border="0" usemap="#src_2alteraux_8cpp" alt=""/></div>
 <map name="src_2alteraux_8cpp" id="src_2alteraux_8cpp">
-<area shape="rect" title=" " alt="" coords="527,5,642,32"/>
+<area shape="rect" title=" " alt="" coords="473,5,587,32"/>
 <area shape="rect" href="alteraux_8h.html" title=" " alt="" coords="5,80,84,107"/>
 <area shape="rect" href="reportillegalcase_8h.html" title=" " alt="" coords="108,80,235,107"/>
 <area shape="rect" href="scanoptionalequals_8h.html" title=" " alt="" coords="259,80,403,107"/>
 <area shape="rect" href="scandimen_8h.html" title=" " alt="" coords="427,80,523,107"/>
 <area shape="rect" href="scanint_8h.html" title=" " alt="" coords="547,80,622,107"/>
-<area shape="rect" href="printnl_8h.html" title=" " alt="" coords="647,80,715,107"/>
-<area shape="rect" href="print_8h.html" title=" " alt="" coords="739,80,798,107"/>
-<area shape="rect" href="interror_8h.html" title=" " alt="" coords="822,80,894,107"/>
-<area shape="rect" href="texte_8h.html" title=" " alt="" coords="919,80,981,107"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="493,155,567,181"/>
-<area shape="rect" title=" " alt="" coords="923,155,977,181"/>
+<area shape="rect" href="impression_8h.html" title=" " alt="" coords="742,80,838,107"/>
+<area shape="rect" href="interror_8h.html" title=" " alt="" coords="646,80,718,107"/>
+<area shape="rect" href="texte_8h.html" title=" " alt="" coords="863,80,925,107"/>
+<area shape="rect" href="globals_8h.html" title=" " alt="" coords="438,155,513,181"/>
+<area shape="rect" title=" " alt="" coords="815,155,869,181"/>
 </map>
 </div>
 </div>
@@ -131,77 +129,75 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="alteraux_8cpp_source.html#l00011">11</a> du fichier <a class="el" href="alteraux_8cpp_source.html">alteraux.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a> != abs(<a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a>))</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="reportillegalcase_8cpp.html#a74a9219c03db22d322bbaeda3bb72225">reportillegalcase</a>();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> = <a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063">scanoptionalequals</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> == <a class="code" href="constantes_8h.html#aba01db17f4a2bfbc3db60dc172972a25a0298d8eb356f2993dbef77b5ec25e6fb">vmode</a>)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b">scan_normal_dimen</a>();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <a class="code" href="globals_8cpp.html#af63f4ef8550dae22c18f3db782753fe8">prev_depth</a> = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886">scanint</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordflow">if</span> (curval &lt;= 0 || curval &gt; 32767)</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <a class="code" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;! &quot;</span>);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;Bad space factor&quot;</span>);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 1;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;I allow only values in the range 1..32767 here.&quot;</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                <a class="code" href="interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67">interror</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            }</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <a class="code" href="globals_8cpp.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a> = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="alteraux_8cpp_source.html#l00010">10</a> du fichier <a class="el" href="alteraux_8cpp_source.html">alteraux.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a> != abs(<a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a>))</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="reportillegalcase_8cpp.html#a74a9219c03db22d322bbaeda3bb72225">reportillegalcase</a>();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> = <a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063">scanoptionalequals</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> == <a class="code" href="constantes_8h.html#aba01db17f4a2bfbc3db60dc172972a25a0298d8eb356f2993dbef77b5ec25e6fb">vmode</a>)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b">scan_normal_dimen</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="globals_8cpp.html#af63f4ef8550dae22c18f3db782753fe8">prev_depth</a> = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <a class="code" href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886">scanint</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keywordflow">if</span> (curval &lt;= 0 || curval &gt; 32767)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <a class="code" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a>(<span class="stringliteral">&quot;Bad space factor&quot;</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 1;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;I allow only values in the range 1..32767 here.&quot;</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <a class="code" href="interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67">interror</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            <a class="code" href="globals_8cpp.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a> = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="alteraux_8cpp_acfad1d6cfee9f950e11457f647f80c02_cgraph.png" border="0" usemap="#alteraux_8cpp_acfad1d6cfee9f950e11457f647f80c02_cgraph" alt=""/></div>
 <map name="alteraux_8cpp_acfad1d6cfee9f950e11457f647f80c02_cgraph" id="alteraux_8cpp_acfad1d6cfee9f950e11457f647f80c02_cgraph">
-<area shape="rect" title=" " alt="" coords="5,324,73,350"/>
-<area shape="rect" href="interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="477,109,539,136"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="859,249,905,276"/>
-<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="751,274,809,301"/>
-<area shape="rect" href="reportillegalcase_8cpp.html#a74a9219c03db22d322bbaeda3bb72225" title=" " alt="" coords="450,160,566,186"/>
-<area shape="rect" href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b" title=" " alt="" coords="121,374,260,401"/>
-<area shape="rect" href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="476,362,540,389"/>
-<area shape="rect" href="scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="441,464,575,490"/>
-<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="638,160,686,186"/>
-<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="953,46,1025,73"/>
-<area shape="rect" href="printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="749,21,811,48"/>
-<area shape="rect" href="youcant_8cpp.html#a1dd4d1dfb7c61463e09bd88c8b8f4207" title=" " alt="" coords="628,210,696,237"/>
-<area shape="rect" href="scandimen_8cpp.html#a3c004908d1f7f180e6234e54aed1c021" title=" " alt="" coords="308,374,393,401"/>
-<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="623,464,701,490"/>
-<area shape="rect" href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="623,514,701,541"/>
+<area shape="rect" title=" " alt="" coords="5,258,73,284"/>
+<area shape="rect" href="interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="507,30,570,56"/>
+<area shape="rect" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="658,258,727,284"/>
+<area shape="rect" href="reportillegalcase_8cpp.html#a74a9219c03db22d322bbaeda3bb72225" title=" " alt="" coords="308,182,424,208"/>
+<area shape="rect" href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b" title=" " alt="" coords="121,283,260,310"/>
+<area shape="rect" href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="507,334,571,360"/>
+<area shape="rect" href="scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="472,435,605,462"/>
+<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="669,131,717,158"/>
+<area shape="rect" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="787,131,834,158"/>
+<area shape="rect" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="889,55,961,82"/>
+<area shape="rect" href="impression_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="780,30,841,56"/>
+<area shape="rect" href="youcant_8cpp.html#a1dd4d1dfb7c61463e09bd88c8b8f4207" title=" " alt="" coords="505,182,573,208"/>
+<area shape="rect" href="scandimen_8cpp.html#a3c004908d1f7f180e6234e54aed1c021" title=" " alt="" coords="323,283,409,310"/>
+<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="653,384,732,411"/>
+<area shape="rect" href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="653,435,732,462"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_aba01db17f4a2bfbc3db60dc172972a25a0298d8eb356f2993dbef77b5ec25e6fb"><div class="ttname"><a href="constantes_8h.html#aba01db17f4a2bfbc3db60dc172972a25a0298d8eb356f2993dbef77b5ec25e6fb">vmode</a></div><div class="ttdeci">@ vmode</div><div class="ttdoc">vertical mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00330">constantes.h:330</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aba01db17f4a2bfbc3db60dc172972a25a0298d8eb356f2993dbef77b5ec25e6fb"><div class="ttname"><a href="constantes_8h.html#aba01db17f4a2bfbc3db60dc172972a25a0298d8eb356f2993dbef77b5ec25e6fb">vmode</a></div><div class="ttdeci">@ vmode</div><div class="ttdoc">vertical mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00348">constantes.h:348</a></div></div>
 <div class="ttc" id="aglobals_8h_html_ae1c0d92ce2fe057255c7badbbb0615b0"><div class="ttname"><a href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a></div><div class="ttdeci">std::string helpline[6]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00071">globals.h:71</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a4128dbc20823d10a2626cb9cdf4d6cd4"><div class="ttname"><a href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a></div><div class="ttdeci">halfword curchr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00109">globals.cpp:109</a></div></div>
 <div class="ttc" id="areportillegalcase_8cpp_html_a74a9219c03db22d322bbaeda3bb72225"><div class="ttname"><a href="reportillegalcase_8cpp.html#a74a9219c03db22d322bbaeda3bb72225">reportillegalcase</a></div><div class="ttdeci">void reportillegalcase(void)</div><div class="ttdef"><b>Definition:</b> <a href="reportillegalcase_8cpp_source.html#l00006">reportillegalcase.cpp:6</a></div></div>
-<div class="ttc" id="ascanint_8cpp_html_a625555ea8e7846b221c64b2c56e0e886"><div class="ttname"><a href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886">scanint</a></div><div class="ttdeci">void scanint(void)</div><div class="ttdoc">Sets curval to an integer.</div><div class="ttdef"><b>Definition:</b> <a href="scanint_8cpp_source.html#l00019">scanint.cpp:19</a></div></div>
+<div class="ttc" id="ascanint_8cpp_html_a625555ea8e7846b221c64b2c56e0e886"><div class="ttname"><a href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886">scanint</a></div><div class="ttdeci">void scanint(void)</div><div class="ttdoc">Sets curval to an integer.</div><div class="ttdef"><b>Definition:</b> <a href="scanint_8cpp_source.html#l00017">scanint.cpp:17</a></div></div>
 <div class="ttc" id="ascanoptionalequals_8cpp_html_aba61603fc78224712ab55bae77b79063"><div class="ttname"><a href="scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063">scanoptionalequals</a></div><div class="ttdeci">void scanoptionalequals(void)</div><div class="ttdef"><b>Definition:</b> <a href="scanoptionalequals_8cpp_source.html#l00005">scanoptionalequals.cpp:5</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_af63f4ef8550dae22c18f3db782753fe8"><div class="ttname"><a href="globals_8cpp.html#af63f4ef8550dae22c18f3db782753fe8">prev_depth</a></div><div class="ttdeci">int &amp; prev_depth</div><div class="ttdoc">the name of aux in vertical mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00086">globals.cpp:86</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a85c0624f93ed5c5e8c722316dad139af"><div class="ttname"><a href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a></div><div class="ttdeci">char helpptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00069">globals.cpp:69</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a0472a8839991d28cfa74dd6602fe4d3e"><div class="ttname"><a href="globals_8cpp.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a></div><div class="ttdeci">halfword &amp; space_factor</div><div class="ttdoc">part of aux in horizontal mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00087">globals.cpp:87</a></div></div>
-<div class="ttc" id="ainterror_8cpp_html_a52a3c9863ed2b03820053c8eb5f2ba67"><div class="ttname"><a href="interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67">interror</a></div><div class="ttdeci">void interror(int n)</div><div class="ttdef"><b>Definition:</b> <a href="interror_8cpp_source.html#l00007">interror.cpp:7</a></div></div>
+<div class="ttc" id="ainterror_8cpp_html_a52a3c9863ed2b03820053c8eb5f2ba67"><div class="ttname"><a href="interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67">interror</a></div><div class="ttdeci">void interror(int n)</div><div class="ttdef"><b>Definition:</b> <a href="interror_8cpp_source.html#l00005">interror.cpp:5</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00090">globals.cpp:90</a></div></div>
-<div class="ttc" id="ascandimen_8cpp_html_ad74509e6ed252b5c56f10a22dda9342b"><div class="ttname"><a href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b">scan_normal_dimen</a></div><div class="ttdeci">void scan_normal_dimen(void)</div><div class="ttdef"><b>Definition:</b> <a href="scandimen_8cpp_source.html#l00309">scandimen.cpp:309</a></div></div>
-<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
-<div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
-<div class="ttc" id="aprintnl_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printnl_8cpp_source.html#l00005">printnl.cpp:5</a></div></div>
+<div class="ttc" id="ascandimen_8cpp_html_ad74509e6ed252b5c56f10a22dda9342b"><div class="ttname"><a href="scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b">scan_normal_dimen</a></div><div class="ttdeci">void scan_normal_dimen(void)</div><div class="ttdef"><b>Definition:</b> <a href="scandimen_8cpp_source.html#l00301">scandimen.cpp:301</a></div></div>
+<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00044">tex.h:44</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a27f6b6c256d6682247b1fbdd82d30194"><div class="ttname"><a href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a></div><div class="ttdeci">void print_err(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01759">impression.cpp:1759</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a3fc97d19e160956f7fa23eb8ded19785"><div class="ttname"><a href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a></div><div class="ttdeci">int curval</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00019">globals.cpp:19</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

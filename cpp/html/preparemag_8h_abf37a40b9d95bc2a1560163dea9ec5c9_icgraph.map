@@ -1,10 +1,11 @@
 <map id="preparemag" name="preparemag">
-<area shape="rect" id="node1" title=" " alt="" coords="392,69,483,96"/>
-<area shape="rect" id="node2" href="$closefilesandterminate_8h.html#afeea3b8d09112570a258cce09bd0aade" title=" " alt="" coords="192,19,344,45"/>
-<area shape="rect" id="node3" href="$scandimen_8h.html#ad330bbbb06884a41f26209e039c103fa" title=" " alt="" coords="225,69,311,96"/>
-<area shape="rect" id="node7" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="236,132,300,159"/>
+<area shape="rect" id="node1" title=" " alt="" coords="392,81,483,108"/>
+<area shape="rect" id="node2" href="$closefilesandterminate_8h.html#afeea3b8d09112570a258cce09bd0aade" title=" " alt="" coords="192,31,344,57"/>
+<area shape="rect" id="node3" href="$scandimen_8h.html#ad330bbbb06884a41f26209e039c103fa" title=" " alt="" coords="225,81,311,108"/>
+<area shape="rect" id="node7" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="236,157,300,184"/>
 <area shape="rect" id="node4" href="$appendkern_8h.html#a870fe4fa70ab429b719483e494297777" title=" " alt="" coords="30,5,119,32"/>
 <area shape="rect" id="node5" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="12,56,137,83"/>
 <area shape="rect" id="node6" href="$scandimen_8h.html#ad74509e6ed252b5c56f10a22dda9342b" title=" " alt="" coords="5,107,144,133"/>
-<area shape="rect" id="node8" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="47,157,102,184"/>
+<area shape="rect" id="node8" href="$boxend_8h.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="43,157,107,184"/>
+<area shape="rect" id="node9" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="47,208,102,235"/>
 </map>

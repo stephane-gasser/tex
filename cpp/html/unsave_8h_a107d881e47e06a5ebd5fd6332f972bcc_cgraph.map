@@ -1,23 +1,21 @@
 <map id="unsave" name="unsave">
 <area shape="rect" id="node1" title=" " alt="" coords="5,271,69,297"/>
-<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="122,81,201,108"/>
-<area shape="rect" id="node7" href="$confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="409,207,487,233"/>
-<area shape="rect" id="node14" href="$constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="126,220,197,247"/>
-<area shape="rect" id="node15" href="$eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="122,271,201,297"/>
-<area shape="rect" id="node19" href="$constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0" title=" " alt="" coords="117,321,205,348"/>
-<area shape="rect" id="node20" href="$constantes_8cpp.html#adb784dc2516689c3d42c5664f04eafd4" title=" " alt="" coords="119,372,203,399"/>
-<area shape="rect" id="node21" href="$constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11" title="classifies a save_stack entry" alt="" coords="120,423,203,449"/>
-<area shape="rect" id="node3" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="255,56,347,83"/>
-<area shape="rect" id="node5" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="267,107,334,133"/>
-<area shape="rect" id="node6" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="258,5,343,32"/>
-<area shape="rect" id="node4" href="$deletetokenref_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="396,156,500,183"/>
-<area shape="rect" id="node8" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="586,207,634,233"/>
-<area shape="rect" id="node9" href="$jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="720,105,788,132"/>
-<area shape="rect" id="node10" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="836,232,883,259"/>
-<area shape="rect" id="node11" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="931,156,1003,183"/>
-<area shape="rect" id="node12" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="725,257,783,284"/>
-<area shape="rect" id="node13" href="$normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="548,105,672,132"/>
-<area shape="rect" id="node16" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="400,333,496,360"/>
-<area shape="rect" id="node17" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="574,359,646,385"/>
-<area shape="rect" id="node18" href="$flushnodelist_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="253,283,348,309"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="122,81,201,108"/>
+<area shape="rect" id="node7" href="$confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="409,232,487,259"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="126,220,197,247"/>
+<area shape="rect" id="node13" href="$eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="122,271,201,297"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0" title=" " alt="" coords="117,321,205,348"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#adb784dc2516689c3d42c5664f04eafd4" title=" " alt="" coords="119,372,203,399"/>
+<area shape="rect" id="node19" href="$constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11" title="classifies a save_stack entry" alt="" coords="120,423,203,449"/>
+<area shape="rect" id="node3" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="255,5,347,32"/>
+<area shape="rect" id="node5" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="267,56,334,83"/>
+<area shape="rect" id="node6" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="258,107,343,133"/>
+<area shape="rect" id="node4" href="$deletetokenref_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="396,181,500,208"/>
+<area shape="rect" id="node8" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="586,131,634,157"/>
+<area shape="rect" id="node9" href="$jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="720,207,788,233"/>
+<area shape="rect" id="node10" href="$normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="548,181,672,208"/>
+<area shape="rect" id="node11" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="575,232,645,259"/>
+<area shape="rect" id="node14" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="400,333,496,360"/>
+<area shape="rect" id="node15" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="574,333,646,360"/>
+<area shape="rect" id="node16" href="$flushnodelist_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="253,283,348,309"/>
 </map>

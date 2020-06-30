@@ -129,35 +129,33 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="scanfifteenbitint_8cpp_source.html#l00008">8</a> du fichier <a class="el" href="scanfifteenbitint_8cpp_source.html">scanfifteenbitint.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886">scanint</a>();</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">if</span> (curval &lt; 0 || curval &gt; 0x7F<span class="stringliteral">&#39;FF)</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="stringliteral">    {</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="stringliteral">        printnl(&quot;! &quot;);</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="stringliteral">        print(&quot;Bad mathchar&quot;);</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="stringliteral">        helpptr = 2;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="stringliteral">        helpline[1] = &quot;A mathchar number must be between 0 and 0x7F&#39;</span>FF.<span class="stringliteral">&quot;;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="stringliteral">        helpline[0] = &quot;</span>I changed <span class="keyword">this</span> one to zero.<span class="stringliteral">&quot;;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral">        interror(curval);</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">        curval = 0;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">    }</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">}</span></div>
+<p class="definition">Définition à la ligne <a class="el" href="scanfifteenbitint_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="scanfifteenbitint_8cpp_source.html">scanfifteenbitint.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886">scanint</a>();</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (curval &lt; 0 || curval &gt; 0x7F<span class="stringliteral">&#39;FF)</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="stringliteral">    {</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="stringliteral">        print_err(&quot;Bad mathchar&quot;);</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="stringliteral">        helpptr = 2;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="stringliteral">        helpline[1] = &quot;A mathchar number must be between 0 and 0x7F&#39;</span>FF.<span class="stringliteral">&quot;;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="stringliteral">        helpline[0] = &quot;</span>I changed <span class="keyword">this</span> one to zero.<span class="stringliteral">&quot;;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="stringliteral">        interror(curval);</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="stringliteral">        curval = 0;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral">    }</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">}</span></div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="scanfifteenbitint_8h_ab737481de2e16e910f5c33ad5ff07ea2_cgraph.png" border="0" usemap="#scanfifteenbitint_8h_ab737481de2e16e910f5c33ad5ff07ea2_cgraph" alt=""/></div>
 <map name="scanfifteenbitint_8h_ab737481de2e16e910f5c33ad5ff07ea2_cgraph" id="scanfifteenbitint_8h_ab737481de2e16e910f5c33ad5ff07ea2_cgraph">
-<area shape="rect" title=" " alt="" coords="5,169,120,196"/>
-<area shape="rect" href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="168,169,232,196"/>
-<area shape="rect" href="backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title=" " alt="" coords="480,144,556,171"/>
-<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="604,144,683,171"/>
-<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="619,296,667,323"/>
-<area shape="rect" href="gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="731,119,803,145"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="851,271,897,297"/>
-<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="738,347,795,373"/>
-<area shape="rect" href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="317,499,395,525"/>
-<area shape="rect" href="scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="280,220,432,247"/>
+<area shape="rect" title=" " alt="" coords="5,107,120,133"/>
+<area shape="rect" href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="168,107,232,133"/>
+<area shape="rect" href="backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="480,107,556,133"/>
+<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="604,56,683,83"/>
+<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="619,132,667,159"/>
+<area shape="rect" href="gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="731,56,803,83"/>
+<area shape="rect" href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="317,157,395,184"/>
+<area shape="rect" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="483,208,553,235"/>
+<area shape="rect" href="scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="280,107,432,133"/>
 </map>
 </div>
 <div class="dynheader">
@@ -176,7 +174,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="ascanint_8cpp_html_a625555ea8e7846b221c64b2c56e0e886"><div class="ttname"><a href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886">scanint</a></div><div class="ttdeci">void scanint(void)</div><div class="ttdoc">Sets curval to an integer.</div><div class="ttdef"><b>Definition:</b> <a href="scanint_8cpp_source.html#l00019">scanint.cpp:19</a></div></div>
+<div class="ttc" id="ascanint_8cpp_html_a625555ea8e7846b221c64b2c56e0e886"><div class="ttname"><a href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886">scanint</a></div><div class="ttdeci">void scanint(void)</div><div class="ttdoc">Sets curval to an integer.</div><div class="ttdef"><b>Definition:</b> <a href="scanint_8cpp_source.html#l00017">scanint.cpp:17</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

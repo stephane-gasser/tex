@@ -42,7 +42,7 @@ void newfont(smallnumber a)
 			oldsetting = selector;
 			selector = new_string;
 			print("FONT");
-			printchar(u-1);
+			print(std::string(1, u-1));
 			selector = oldsetting;
 			str_room(1);
 			t = makestring();
@@ -57,9 +57,7 @@ void newfont(smallnumber a)
 		s = curval;
 		if (s <= 0 || s >= 134217728)
 		{
-			print_err("Improper `at' size (");
-			printscaled(s);
-			print("pt), replaced by 10pt");
+			print_err("Improper `at' size ("+asScaled(s)+"pt), replaced by 10pt");
 			helpptr = 2;
 			helpline[1] = "I can only handle fonts at positive sizes that are";
 			helpline[0] = "less than 2048pt, so I've changed what you said to 10pt.";

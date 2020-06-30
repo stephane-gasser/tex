@@ -79,22 +79,19 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="firmuptheline_8h_source.html">firmuptheline.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="println_8h_source.html">println.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="print_8h_source.html">print.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="printchar_8h_source.html">printchar.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="impression_8h_source.html">impression.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="terminput_8h_source.html">terminput.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de firmuptheline.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="firmuptheline_8cpp__incl.png" border="0" usemap="#src_2firmuptheline_8cpp" alt=""/></div>
 <map name="src_2firmuptheline_8cpp" id="src_2firmuptheline_8cpp">
-<area shape="rect" title=" " alt="" coords="187,5,330,32"/>
+<area shape="rect" title=" " alt="" coords="109,5,251,32"/>
 <area shape="rect" href="firmuptheline_8h.html" title=" " alt="" coords="5,80,112,107"/>
-<area shape="rect" href="println_8h.html" title=" " alt="" coords="137,80,205,107"/>
-<area shape="rect" href="print_8h.html" title=" " alt="" coords="229,80,288,107"/>
-<area shape="rect" href="printchar_8h.html" title=" " alt="" coords="312,80,395,107"/>
-<area shape="rect" href="terminput_8h.html" title=" " alt="" coords="419,80,506,107"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="221,155,296,181"/>
+<area shape="rect" href="impression_8h.html" title=" " alt="" coords="248,80,344,107"/>
+<area shape="rect" href="terminput_8h.html" title=" " alt="" coords="137,80,223,107"/>
+<area shape="rect" href="globals_8h.html" title=" " alt="" coords="143,155,217,181"/>
+<area shape="rect" title=" " alt="" coords="269,155,323,181"/>
 </map>
 </div>
 </div>
@@ -124,41 +121,41 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="firmuptheline_8cpp_source.html#l00009">9</a> du fichier <a class="el" href="firmuptheline_8cpp_source.html">firmuptheline.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#a2133531068086bcea56a9ef0d11732e4">limit</a> = <a class="code" href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="firmuptheline_8cpp.html#a0dcc0be983190a037b7526e232537975">pausing</a>() &gt; 0 &amp;&amp; <a class="code" href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a> &gt; <a class="code" href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06caa2908760ef9d65aed35f7aa8625a1ca9">nonstop_mode</a>)</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a>();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = <a class="code" href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a>; k &lt; <a class="code" href="constantes_8cpp.html#a2133531068086bcea56a9ef0d11732e4">limit</a>; k++)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<a class="code" href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a>[k]);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a> = <a class="code" href="constantes_8cpp.html#a2133531068086bcea56a9ef0d11732e4">limit</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;=&gt;&quot;</span>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9">terminput</a>();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a> &gt; <a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>)</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = <a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>; k &lt; <a class="code" href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a>; k++)</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <a class="code" href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a>[k+<a class="code" href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a>-<a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>] = <a class="code" href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a>[k];</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <a class="code" href="constantes_8cpp.html#a2133531068086bcea56a9ef0d11732e4">limit</a> = <a class="code" href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a>+<a class="code" href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a>-<a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="firmuptheline_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="firmuptheline_8cpp_source.html">firmuptheline.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#a2133531068086bcea56a9ef0d11732e4">limit</a> = <a class="code" href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="firmuptheline_8cpp.html#a0dcc0be983190a037b7526e232537975">pausing</a>() &gt; 0 &amp;&amp; <a class="code" href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a> &gt; <a class="code" href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06caa2908760ef9d65aed35f7aa8625a1ca9">nonstop_mode</a>)</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = <a class="code" href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a>; k &lt; <a class="code" href="constantes_8cpp.html#a2133531068086bcea56a9ef0d11732e4">limit</a>; k++)</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <a class="code" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<a class="code" href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a>[k]);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a> = <a class="code" href="constantes_8cpp.html#a2133531068086bcea56a9ef0d11732e4">limit</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;=&gt;&quot;</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9">terminput</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a> &gt; <a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = <a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>; k &lt; <a class="code" href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a>; k++)</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <a class="code" href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a>[k+<a class="code" href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a>-<a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>] = <a class="code" href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a>[k];</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <a class="code" href="constantes_8cpp.html#a2133531068086bcea56a9ef0d11732e4">limit</a> = <a class="code" href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a>+<a class="code" href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a>-<a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    }</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="firmuptheline_8cpp_ad2887480bd69067d27bbd8db4c59342a_cgraph.png" border="0" usemap="#firmuptheline_8cpp_ad2887480bd69067d27bbd8db4c59342a_cgraph" alt=""/></div>
 <map name="firmuptheline_8cpp_ad2887480bd69067d27bbd8db4c59342a_cgraph" id="firmuptheline_8cpp_ad2887480bd69067d27bbd8db4c59342a_cgraph">
-<area shape="rect" title=" " alt="" coords="5,157,101,184"/>
-<area shape="rect" href="firmuptheline_8cpp.html#a0dcc0be983190a037b7526e232537975" title=" " alt="" coords="154,5,221,32"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="395,183,441,209"/>
-<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="489,107,561,133"/>
-<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="633,233,691,260"/>
-<area shape="rect" href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="149,208,225,235"/>
+<area shape="rect" title=" " alt="" coords="5,208,101,235"/>
+<area shape="rect" href="firmuptheline_8cpp.html#a0dcc0be983190a037b7526e232537975" title=" " alt="" coords="154,56,221,83"/>
+<area shape="rect" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="164,157,211,184"/>
+<area shape="rect" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="274,208,346,235"/>
+<area shape="rect" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="419,233,476,260"/>
+<area shape="rect" href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="149,309,225,336"/>
 <area shape="rect" href="parametres_8cpp.html#ae48ac66d20f27df0f237841a57b492a2" title="an integer parameter" alt="" coords="279,5,341,32"/>
-<area shape="rect" href="parametres_8h.html#a92aab912d4164b91a30449bc19bb1593" title=" " alt="" coords="609,132,715,159"/>
-<area shape="rect" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="506,259,545,285"/>
-<area shape="rect" href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="273,259,347,285"/>
-<area shape="rect" href="inputln_8cpp.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="280,208,340,235"/>
+<area shape="rect" href="parametres_8h.html#a92aab912d4164b91a30449bc19bb1593" title=" " alt="" coords="395,145,500,172"/>
+<area shape="rect" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="291,56,329,83"/>
+<area shape="rect" href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="273,360,347,387"/>
+<area shape="rect" href="inputln_8cpp.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="280,411,340,437"/>
 </map>
 </div>
 <div class="dynheader">
@@ -204,8 +201,8 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="firmuptheline_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="firmuptheline_8cpp_source.html">firmuptheline.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="parametres_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="parametres_8h.html#a1f9aebf1de3ebbf4283a4dcf73308562a7861cf4b96c9e5bb424d8cdd5d1a0224">pausing_code</a>); }</div>
+<p class="definition">Définition à la ligne <a class="el" href="firmuptheline_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="firmuptheline_8cpp_source.html">firmuptheline.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="parametres_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a>(<a class="code" href="parametres_8h.html#a1f9aebf1de3ebbf4283a4dcf73308562a7861cf4b96c9e5bb424d8cdd5d1a0224">pausing_code</a>); }</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
@@ -230,20 +227,20 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aterminput_8cpp_html_aacbc6794f9371128ce624765a5915df9"><div class="ttname"><a href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9">terminput</a></div><div class="ttdeci">void terminput(void)</div><div class="ttdef"><b>Definition:</b> <a href="terminput_8cpp_source.html#l00008">terminput.cpp:8</a></div></div>
+<div class="ttc" id="aterminput_8cpp_html_aacbc6794f9371128ce624765a5915df9"><div class="ttname"><a href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9">terminput</a></div><div class="ttdeci">void terminput(void)</div><div class="ttdef"><b>Definition:</b> <a href="terminput_8cpp_source.html#l00007">terminput.cpp:7</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa56995a66771b46ca1620d77d1872caa"><div class="ttname"><a href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a></div><div class="ttdeci">ASCIIcode buffer[bufsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00047">globals.cpp:47</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a0489286d29b84691df49ff88e8487b1a"><div class="ttname"><a href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a></div><div class="ttdeci">char interaction</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00064">globals.cpp:64</a></div></div>
-<div class="ttc" id="afirmuptheline_8cpp_html_a0dcc0be983190a037b7526e232537975"><div class="ttname"><a href="firmuptheline_8cpp.html#a0dcc0be983190a037b7526e232537975">pausing</a></div><div class="ttdeci">static int pausing(void)</div><div class="ttdef"><b>Definition:</b> <a href="firmuptheline_8cpp_source.html#l00007">firmuptheline.cpp:7</a></div></div>
+<div class="ttc" id="afirmuptheline_8cpp_html_a0dcc0be983190a037b7526e232537975"><div class="ttname"><a href="firmuptheline_8cpp.html#a0dcc0be983190a037b7526e232537975">pausing</a></div><div class="ttdeci">static int pausing(void)</div><div class="ttdef"><b>Definition:</b> <a href="firmuptheline_8cpp_source.html#l00005">firmuptheline.cpp:5</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00012">impression.cpp:12</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a72e27dee31b1c4c6a504fbed29542d97"><div class="ttname"><a href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a></div><div class="ttdeci">int last</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00049">globals.cpp:49</a></div></div>
 <div class="ttc" id="aparametres_8h_html_a1f9aebf1de3ebbf4283a4dcf73308562a7861cf4b96c9e5bb424d8cdd5d1a0224"><div class="ttname"><a href="parametres_8h.html#a1f9aebf1de3ebbf4283a4dcf73308562a7861cf4b96c9e5bb424d8cdd5d1a0224">pausing_code</a></div><div class="ttdeci">@ pausing_code</div><div class="ttdoc">pause after each line is read from a file</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8h_source.html#l00038">parametres.h:38</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_adc29c2ff13d900c2f185ee95427fb06caa2908760ef9d65aed35f7aa8625a1ca9"><div class="ttname"><a href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06caa2908760ef9d65aed35f7aa8625a1ca9">nonstop_mode</a></div><div class="ttdeci">@ nonstop_mode</div><div class="ttdoc">omits all stops</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00029">constantes.h:29</a></div></div>
-<div class="ttc" id="aprintln_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="println_8cpp_source.html#l00004">println.cpp:4</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_adc29c2ff13d900c2f185ee95427fb06caa2908760ef9d65aed35f7aa8625a1ca9"><div class="ttname"><a href="constantes_8h.html#adc29c2ff13d900c2f185ee95427fb06caa2908760ef9d65aed35f7aa8625a1ca9">nonstop_mode</a></div><div class="ttdeci">@ nonstop_mode</div><div class="ttdoc">omits all stops</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00047">constantes.h:47</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a96e97edb510aa677a07ef606c639c8a0"><div class="ttname"><a href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a></div><div class="ttdeci">halfword &amp; start</div><div class="ttdoc">starting position in buffer</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00187">constantes.cpp:187</a></div></div>
-<div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01189">impression.cpp:1189</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a10a3fcd824154f6545a843a16ebf7abb"><div class="ttname"><a href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a></div><div class="ttdeci">int First</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00048">globals.cpp:48</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00042">impression.cpp:42</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a2133531068086bcea56a9ef0d11732e4"><div class="ttname"><a href="constantes_8cpp.html#a2133531068086bcea56a9ef0d11732e4">limit</a></div><div class="ttdeci">halfword &amp; limit</div><div class="ttdoc">end of current line in buffer</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00188">constantes.cpp:188</a></div></div>
 <div class="ttc" id="aparametres_8cpp_html_ae48ac66d20f27df0f237841a57b492a2"><div class="ttname"><a href="parametres_8cpp.html#ae48ac66d20f27df0f237841a57b492a2">int_par</a></div><div class="ttdeci">int &amp; int_par(halfword p)</div><div class="ttdoc">an integer parameter</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8cpp_source.html#l00005">parametres.cpp:5</a></div></div>
-<div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

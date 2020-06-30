@@ -5,17 +5,16 @@
 
 void extrarightbrace(void)
 {
-	print_err("Extra }, or forgotten ");
 	switch (curgroup)
 	{
 		case semi_simple_group: 
-			printesc("endgroup");
+			print_err("Extra }, or forgotten "+esc("endgroup"));
 			break;
 		case math_shift_group: 
-			printchar('$');
+			print_err("Extra }, or forgotten $");
 			break;
 		case math_left_group: 
-			printesc("right");
+			print_err("Extra }, or forgotten "+esc("right"));
 	}
 	helpptr = 5;
 	helpline[4] = "I've deleted a group-closing symbol because it seems to be";

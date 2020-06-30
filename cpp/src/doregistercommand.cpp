@@ -37,10 +37,7 @@ void doregistercommand(smallnumber a)
 			}
 			if (curcmd != register_)
 			{
-				print_err("You can't use `"); 
-				printcmdchr(curcmd, curchr);
-				print("' after ");
-				printcmdchr(q, 0);
+				print_err("You can't use `"+cmdchr(curcmd, curchr)+"' after "+cmdchr(q, 0));
 				helpptr = 1;
 				helpline[0] = "I'm forgetting what you said and not changing anything.";
 				error();

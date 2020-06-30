@@ -3,7 +3,7 @@
 <area shape="rect" id="node2" href="$endname_8h.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="347,85,422,111"/>
 <area shape="rect" id="node4" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="5,135,92,162"/>
 <area shape="rect" id="node6" href="$newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="15,9,83,35"/>
-<area shape="rect" id="node7" href="$getstringsstarted_8h.html#ae46a3d749632a4a2cb1ff358d9d14557" title=" " alt="" coords="325,186,444,213"/>
+<area shape="rect" id="node7" href="$getstringsstarted_8h.html#ae46a3d749632a4a2cb1ff358d9d14557" title="Initializes the string pool, but returns |false| if something goes wrong." alt="" coords="325,186,444,213"/>
 <area shape="rect" id="node8" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="349,237,420,263"/>
 <area shape="rect" id="node9" href="$issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="331,287,438,314"/>
 <area shape="rect" id="node10" href="$makenamestring_8h.html#a9e64257b3f687e0775273d7598d0e0cb" title=" " alt="" coords="325,338,444,365"/>

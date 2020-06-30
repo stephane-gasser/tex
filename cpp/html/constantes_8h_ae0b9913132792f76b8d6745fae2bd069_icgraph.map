@@ -1,13 +1,9 @@
 <map id="left_delimiter" name="left_delimiter">
-<area shape="rect" id="node1" title="first delimiter field of a noad" alt="" coords="323,107,419,133"/>
-<area shape="rect" id="node2" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="177,5,274,32"/>
-<area shape="rect" id="node4" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="179,56,271,83"/>
-<area shape="rect" id="node5" href="$mathfraction_8h.html#ae722ded3e27c35cc7ee227575882b405" title=" " alt="" coords="178,107,273,133"/>
-<area shape="rect" id="node7" href="$mathradical_8h.html#a6e86e5d001c758710d7dd35221efb5a6" title=" " alt="" coords="181,157,270,184"/>
-<area shape="rect" id="node8" href="$shownodelist_8h.html#a603d6d2969ceffbb5ac7b8c8bc74828b" title=" " alt="" coords="176,232,275,259"/>
-<area shape="rect" id="node3" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="24,31,109,57"/>
-<area shape="rect" id="node6" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="22,125,111,152"/>
-<area shape="rect" id="node9" href="$shownodelist_8cpp.html#a02076a38f9aefdba6b671f0163d39e55" title=" " alt="" coords="5,195,128,221"/>
-<area shape="rect" id="node10" href="$showbox_8h.html#acfcccfc29ec7e8b9f139156810549ced" title=" " alt="" coords="29,245,104,272"/>
-<area shape="rect" id="node11" href="$showinfo_8h.html#a7a96b738fe42ca12c27ab45665093a35" title=" " alt="" coords="29,296,104,323"/>
+<area shape="rect" id="node1" title="first delimiter field of a noad" alt="" coords="288,81,384,108"/>
+<area shape="rect" id="node2" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="143,5,240,32"/>
+<area shape="rect" id="node4" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="145,56,237,83"/>
+<area shape="rect" id="node5" href="$mathfraction_8h.html#ae722ded3e27c35cc7ee227575882b405" title=" " alt="" coords="144,107,239,133"/>
+<area shape="rect" id="node7" href="$mathradical_8h.html#a6e86e5d001c758710d7dd35221efb5a6" title=" " alt="" coords="147,157,236,184"/>
+<area shape="rect" id="node3" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="7,44,93,71"/>
+<area shape="rect" id="node6" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,120,95,147"/>
 </map>

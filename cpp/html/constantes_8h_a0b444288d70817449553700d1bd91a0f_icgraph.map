@@ -1,12 +1,8 @@
 <map id="glue_stretch" name="glue_stretch">
-<area shape="rect" id="node1" title="total stretch in an unset node" alt="" coords="540,81,633,108"/>
-<area shape="rect" id="node2" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="411,5,474,32"/>
+<area shape="rect" id="node1" title="total stretch in an unset node" alt="" coords="459,56,552,83"/>
+<area shape="rect" id="node2" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="348,5,411,32"/>
 <area shape="rect" id="node4" href="$finrow_8h.html#a0dfcdcfca243b8bc38a56bc5f8675d21" title=" " alt="" coords="117,56,175,83"/>
-<area shape="rect" id="node6" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="119,107,173,133"/>
-<area shape="rect" id="node7" href="$shownodelist_8h.html#a603d6d2969ceffbb5ac7b8c8bc74828b" title=" " alt="" coords="393,181,492,208"/>
-<area shape="rect" id="node3" href="$alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="245,5,323,32"/>
+<area shape="rect" id="node6" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="235,107,288,133"/>
+<area shape="rect" id="node3" href="$alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="223,5,300,32"/>
 <area shape="rect" id="node5" href="$doendv_8h.html#adbabc406ff0a986dc23c2ad8d5bc9008" title=" " alt="" coords="5,81,69,108"/>
-<area shape="rect" id="node8" href="$shownodelist_8cpp.html#a02076a38f9aefdba6b671f0163d39e55" title=" " alt="" coords="223,169,345,196"/>
-<area shape="rect" id="node9" href="$showbox_8h.html#acfcccfc29ec7e8b9f139156810549ced" title=" " alt="" coords="247,220,321,247"/>
-<area shape="rect" id="node10" href="$showinfo_8h.html#a7a96b738fe42ca12c27ab45665093a35" title=" " alt="" coords="247,271,321,297"/>
 </map>

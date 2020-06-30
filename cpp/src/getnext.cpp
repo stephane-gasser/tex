@@ -242,7 +242,7 @@ void getnext(void)
 								forceeof = true;
 						if (forceeof)
 						{
-							printchar(')');
+							print(")");
 							openparens--;
 							std::cout << std::flush;
 							forceeof = false;
@@ -284,7 +284,7 @@ void getnext(void)
 									printnl("(Please type a command or say `\\end')");
 								println();
 								First = start;
-								printchar('*');
+								print("*");
 								terminput();
 								limit = last;
 								if (end_line_char_inactive())

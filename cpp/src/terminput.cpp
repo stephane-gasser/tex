@@ -11,9 +11,8 @@ void terminput(void)
 		fatalerror("End of file on the terminal!");
 	termoffset = 0;
 	selector--;
-	if (last != First)
-		for (int k = First; k < last; k++)
-			printchar(buffer[k]);
+	if (last > First)
+		print(std::string(buffer+First, buffer+last));
 	println();
 	selector++;
 }

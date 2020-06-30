@@ -12,22 +12,13 @@ static int default_skew_char(void) { return int_par(default_skew_char_code); }
 
 static void start_font_error_message(halfword u, scaled s, const std::string &nom, const std::string &aire)
 {
-	print_err("Font ");
-	sprintcs(u);
-	printchar('=');
+	print_err("Font "+scs(u)+"=");
 	printfilename(nom, aire, "");
 	if (s >= 0)
-	{
-		print(" at ");
-		printscaled(s);
-		print("pt");
-	}
+		print(" at "+asScaled(s)+"pt");
 	else 
 		if (s != -1000)
-		{
-			print(" scaled ");
-			printint(-s);
-		}
+			print(" scaled "+std::to_string(-s));
 }
 
 static void notLoadable(halfword u, const std::string &nom, const std::string &aire, scaled s, bool fileopened)

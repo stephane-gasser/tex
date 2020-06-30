@@ -45,8 +45,8 @@ void startinput(void)
 		println();
 	else 
 		if (termoffset > 0 || fileoffset > 0)
-		printchar(' ');
-	printchar('(');
+		print(" ");
+	print("(");
 	openparens++;
 	slowprint(name);
 	std::cout << std::flush;

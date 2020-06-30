@@ -8,8 +8,6 @@
 #include "scaneightbitint.h"
 #include "getnext.h"
 #include "scanfourbitint.h"
-#include "begindiagnostic.h"
-#include "enddiagnostic.h"
 #include "freenode.h"
 #include "passtext.h"
 #include "changeiflimit.h"
@@ -86,8 +84,7 @@ void conditional(void)
 				r = curtok-0x0C'00;
 			else
 			{
-				print_err("Missing = inserted for ");
-				printcmdchr(if_test, thisif);
+				print_err("Missing = inserted for "+cmdchr(if_test, thisif));
 				helpptr = 1;
 				helpline[0] = "I was expecting to see `<', `=', or `>'. Didn't.";
 				backerror();
@@ -191,9 +188,7 @@ void conditional(void)
 			if (tracing_commands() > 1)
 			{
 				begindiagnostic();
-				print("{case ");
-				printint(n);
-				printchar('}');
+				print("{case "+std::to_string(n)+"}");
 				enddiagnostic(false);
 			}
 			while (n)

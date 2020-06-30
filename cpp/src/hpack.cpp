@@ -1,9 +1,5 @@
 #include "hpack.h"
 #include "impression.h"
-#include "shortdisplay.h"
-#include "begindiagnostic.h"
-#include "showbox.h"
-#include "enddiagnostic.h"
 #include "getnode.h"
 #include "freenode.h"
 #include "badness.h"
@@ -17,20 +13,10 @@ static void goto50(halfword r)
 	if (outputactive)
 		print(") has occurred while \\output is active");
 	else
-	{
 		if (packbeginline)
-		{
-			if (packbeginline > 0)
-				print(") in paragraph at lines ");
-			else
-				print(") in alignment at lines ");
-			printint(abs(packbeginline));
-			print("--");
-		}
+			print(") in "+std::string(packbeginline > 0 ? "paragraph" : "alignment")+" at lines "+std::to_string(abs(packbeginline))+"--"+std::to_string(line));
 		else
-			print(") detected at line");
-		printint(line);
-	}
+			print(") detected at line"+std::to_string(line));
 	println();
 	fontinshortdisplay = null_font;
 	shortdisplay(list_ptr(r));
@@ -194,12 +180,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 				if (lastbadness > hbadness())
 				{
 					println();
-					if (lastbadness > 100)
-						printnl("Underfull");
-					else
-					printnl("Loose");
-					print(" \\hbox (badness ");
-					printint(lastbadness);
+					printnl(std::string(lastbadness > 100 ? "Underfull" : "Loose")+" \\hbox (badness "+std::to_string(lastbadness));
 					goto50(r);
 				}
 			}
@@ -240,9 +221,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 						width(link(q)) = overfull_rule();
 					}
 					println();
-					printnl("Overfull \\hbox (");
-					printscaled(-x-totalshrink[0]);
-					print("pt too wide");
+					printnl("Overfull \\hbox ("+asScaled(-x-totalshrink[0])+"pt too wide");
 					goto50(r);
 				}
 			}
@@ -254,8 +233,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 						if (lastbadness > hbadness())
 						{
 							println();
-							printnl("Tight \\hbox (badness ");
-							printint(lastbadness);
+							printnl("Tight \\hbox (badness "+std::to_string(lastbadness));
 							goto50(r);
 						}
 					}

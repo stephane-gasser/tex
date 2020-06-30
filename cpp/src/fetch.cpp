@@ -3,6 +3,7 @@
 #include "error.h"
 #include "charwarning.h"
 #include "texte.h"
+#include "primitive.h"
 
 void fetch(halfword a)
 {
@@ -10,13 +11,7 @@ void fetch(halfword a)
 	curf = fam_fnt(type(a)+cursize);
 	if (curf == null_font)
 	{
-		print_err("");
-		printsize(cursize);
-		printchar(' ');
-		printint(type(a));
-		print(" is undefined (character ");
-		printchar(curc);
-		printchar(')');
+		print_err(esc(primName[def_family][cursize])+" "+std::to_string(type(a))+" is undefined (character "+char(curc)+")");
 		helpptr = 4;
 		helpline[3] = "Somewhere in the math formula just ended, you used the";
 		helpline[2] = "stated character from an undefined font family. For example,";

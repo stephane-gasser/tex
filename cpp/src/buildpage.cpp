@@ -138,9 +138,7 @@ void buildpage(void)
 					page_shrink += height(q);
 					if (subtype(q) && height(q))
 					{
-						print_err("Infinite glue shrinkage inserted from ");
-						printesc("skip");
-						printint(n);
+						print_err("Infinite glue shrinkage inserted from "+esc("skip")+std::to_string(n));
 						helpptr = 3;
 						helpline[2] = "The correction glue for page breaking with insertions";
 						helpline[1] = "must have finite shrinkability. But you may proceed,";

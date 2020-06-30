@@ -37,9 +37,8 @@ void readtoks(int n, halfword r)
 				else
 				{
 					println();
-					sprintcs(r);
-					printchar('=');
-					terminput;
+					print(scs(r)+"=");
+					terminput();
 					n = -1;
 				}
 		else

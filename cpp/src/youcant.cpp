@@ -3,8 +3,6 @@
 
 void youcant(void)
 {
-	print_err("You can't use `");
-	printcmdchr(curcmd, curchr);
-	print("' in ");
+	print_err("You can't use `"+cmdchr(curcmd, curchr)+"' in ");
 	printmode(mode);
 }

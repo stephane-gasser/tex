@@ -4,8 +4,6 @@
 
 void interror(int n)
 {
-	print(" (");
-	printint(n);
-	printchar(')');
+	print(" ("+std::to_string(n)+")");
 	error();
 }

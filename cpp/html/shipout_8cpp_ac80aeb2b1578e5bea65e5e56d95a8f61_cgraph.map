@@ -1,7 +1,7 @@
 <map id="ensure_dvi_open" name="ensure_dvi_open">
 <area shape="rect" id="node1" title=" " alt="" coords="5,107,125,133"/>
 <area shape="rect" id="node2" href="$bmakenamestring_8cpp.html#a2761dd3088e7d5000f1c54f72f5eb838" title=" " alt="" coords="173,5,299,32"/>
-<area shape="rect" id="node4" href="$bopenout_8cpp.html#a82c075d17e38ec81dbbda1ff43670518" title=" " alt="" coords="199,56,273,83"/>
+<area shape="rect" id="node4" href="$fichiers_8cpp.html#a82c075d17e38ec81dbbda1ff43670518" title="Open a binary file for output." alt="" coords="199,56,273,83"/>
 <area shape="rect" id="node5" href="$openlogfile_8cpp.html#aa093bac5d614a1706a24856de98e0c7d" title=" " alt="" coords="194,157,278,184"/>
 <area shape="rect" id="node6" href="$packjobname_8cpp.html#ae5634a55cba44f6c252d19587afa16c6" title=" " alt="" coords="357,119,455,145"/>
 <area shape="rect" id="node7" href="$promptfilename_8cpp.html#a09b5bedc5ecd13402ffc7784081eef8a" title=" " alt="" coords="351,183,461,209"/>

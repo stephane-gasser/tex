@@ -38,28 +38,19 @@ void convtoks(void)
 	switch (c)
 	{
 		case 0: 
-			printint(curval);
+			print(std::to_string(curval));
 			break;
 		case 1: 
 			printromanint(curval);
 			break;
 		case 2: 
-			if (curcs)
-				sprintcs(curcs);
-			else
-				printchar(curchr);
+			print(curcs ? scs(curcs) : std::string(1, curchr));
 			break;
 		case 3: 
 			printmeaning();
 			break;
 		case 4:
-			print(fontname[curval]);
-			if (fontsize[curval] != fontdsize[curval])
-			{
-				print(" at ");
-				printscaled(fontsize[curval]);
-				print("pt");
-			}
+			print(fontname[curval]+(fontsize[curval] != fontdsize[curval] ? " at "+asScaled(fontsize[curval])+"pt" : ""));
 			break;
 		case 5: 
 			print(jobname);

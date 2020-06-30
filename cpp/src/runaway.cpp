@@ -1,5 +1,4 @@
 #include "runaway.h"
-#include "showtokenlist.h"
 #include "impression.h"
 
 void runaway(void)
@@ -26,7 +25,7 @@ void runaway(void)
 				print("text");
 				p = defref;
 		}
-		printchar('?');
+		print("?");
 		println();
 		showtokenlist(link(p), 0, errorline-10);
 	}

@@ -1,13 +1,10 @@
 <map id="getavail" name="getavail">
-<area shape="rect" id="node1" title=" " alt="" coords="5,377,72,403"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="423,453,466,479"/>
-<area shape="rect" id="node3" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="120,174,191,201"/>
-<area shape="rect" id="node11" href="$runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="265,377,336,403"/>
-<area shape="rect" id="node4" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="277,149,325,175"/>
-<area shape="rect" id="node5" href="$jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="411,199,479,226"/>
-<area shape="rect" id="node6" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="527,250,573,277"/>
-<area shape="rect" id="node7" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="621,98,693,125"/>
-<area shape="rect" id="node8" href="$printint_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="414,47,475,74"/>
-<area shape="rect" id="node9" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="416,250,473,277"/>
-<area shape="rect" id="node10" href="$normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="239,47,363,74"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,72,83"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="279,5,322,32"/>
+<area shape="rect" id="node3" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="120,107,191,133"/>
+<area shape="rect" id="node8" href="$runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="120,56,191,83"/>
+<area shape="rect" id="node4" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="277,56,325,83"/>
+<area shape="rect" id="node5" href="$jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="411,81,479,108"/>
+<area shape="rect" id="node6" href="$normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="239,157,363,184"/>
+<area shape="rect" id="node7" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="266,208,335,235"/>
 </map>

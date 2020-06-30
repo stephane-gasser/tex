@@ -1,52 +1,52 @@
 <map id="doextension" name="doextension">
-<area shape="rect" id="node1" title=" " alt="" coords="5,1375,97,1402"/>
-<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="521,108,600,135"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="841,615,884,642"/>
-<area shape="rect" id="node8" href="$confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="345,1426,423,1452"/>
-<area shape="rect" id="node13" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="979,1730,1018,1756"/>
-<area shape="rect" id="node16" href="$flushnodelist_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="160,767,255,794"/>
-<area shape="rect" id="node31" href="$constantes_8cpp.html#a177ed5e89b8c5da61476a30ad8d3384b" title="reference count of token list to write" alt="" coords="336,1172,432,1199"/>
-<area shape="rect" id="node32" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="521,159,600,186"/>
-<area shape="rect" id="node33" href="$parametres_8h.html#a26f198c381967e7bcc507a080c7062f3" title=" " alt="" coords="149,1730,266,1756"/>
-<area shape="rect" id="node34" href="$newwhatsit_8cpp.html#a1261952612c9c3237400b8b77065f964" title=" " alt="" coords="340,1476,428,1503"/>
-<area shape="rect" id="node35" href="$newwritewhatsit_8cpp.html#ad3cbbd2a868a1a14f4e212db0053c0a3" title=" " alt="" coords="149,1476,265,1503"/>
-<area shape="rect" id="node36" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="352,1527,416,1554"/>
-<area shape="rect" id="node37" href="$constantes_8cpp.html#a555c50d862b9b6fa68704c4277d8ff36" title="stream number (0 to 17)" alt="" coords="335,1578,433,1604"/>
-<area shape="rect" id="node38" href="$normmin_8cpp.html#af805df9a180597e0b529dfec14c1dd7a" title=" " alt="" coords="171,1780,243,1807"/>
-<area shape="rect" id="node39" href="$constantes_8cpp.html#abb80aa4c5261fe7de19b43bacb971589" title="string number of file area for open_name" alt="" coords="166,1831,249,1858"/>
-<area shape="rect" id="node40" href="$constantes_8cpp.html#ac181bafc02293b2e0c53747b6f28b416" title="string number of file extension for open_name" alt="" coords="523,311,598,338"/>
-<area shape="rect" id="node41" href="$constantes_8cpp.html#a9b1e6377ed45d9ced213accc0d8c90ae" title="string number of file name to open" alt="" coords="672,1071,761,1098"/>
-<area shape="rect" id="node42" href="$outwhat_8cpp.html#a1137c5a00a506a80eadbe8aa55c400f5" title=" " alt="" coords="173,1324,241,1351"/>
-<area shape="rect" id="node43" href="$reportillegalcase_8cpp.html#a74a9219c03db22d322bbaeda3bb72225" title=" " alt="" coords="149,1628,265,1655"/>
-<area shape="rect" id="node44" href="$parametres_8h.html#a2fc0c04efd473c3bbe785f4f12c22ab9" title=" " alt="" coords="145,1882,269,1908"/>
-<area shape="rect" id="node45" href="$scanfilename_8cpp.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="335,58,433,84"/>
-<area shape="rect" id="node46" href="$scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="317,108,451,135"/>
-<area shape="rect" id="node47" href="$scantoks_8cpp.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="347,1324,421,1351"/>
-<area shape="rect" id="node48" href="$constantes_8cpp.html#a33d8f944ea440e7b549bba9c8d59b7fc" title="language number, in the range 0..255" alt="" coords="520,260,601,287"/>
-<area shape="rect" id="node49" href="$constantes_8cpp.html#ab0ad9017d47db7dbdd4a56de61cf1ab4" title="minimum left fragment, in the range 1..63" alt="" coords="168,1932,247,1959"/>
-<area shape="rect" id="node50" href="$constantes_8cpp.html#a3a9a841425d1132288c369576f00edb1" title="minimum right fragment, in the range 1..63" alt="" coords="168,1983,247,2010"/>
-<area shape="rect" id="node3" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="671,159,763,186"/>
-<area shape="rect" id="node5" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="683,463,750,490"/>
-<area shape="rect" id="node7" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="674,108,759,135"/>
-<area shape="rect" id="node4" href="$deletetokenref_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="811,184,915,211"/>
-<area shape="rect" id="node9" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="537,1628,585,1655"/>
-<area shape="rect" id="node10" href="$jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="683,1527,751,1554"/>
-<area shape="rect" id="node11" href="$print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="839,1628,886,1655"/>
-<area shape="rect" id="node12" href="$printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="963,1578,1035,1604"/>
-<area shape="rect" id="node14" href="$printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="688,1679,745,1706"/>
-<area shape="rect" id="node15" href="$normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="499,1375,623,1402"/>
-<area shape="rect" id="node17" href="$constantes_8cpp.html#a9b1a0fe0853bd25a8d74737dfe51ed77" title="vertical list to be moved out of horizontal list" alt="" coords="345,767,423,794"/>
-<area shape="rect" id="node18" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="336,514,432,540"/>
-<area shape="rect" id="node19" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="525,463,597,490"/>
-<area shape="rect" id="node20" href="$constantes_8cpp.html#a71611c1f90a6379e7e1ecc5c27a886d4" title="denominator field in a fraction noad" alt="" coords="337,818,431,844"/>
-<area shape="rect" id="node21" href="$constantes_8cpp.html#a4da40ddb2b5a65de1d2bba8128eb3167" title="mlist to be used in display style" alt="" coords="335,868,433,895"/>
-<area shape="rect" id="node22" href="$constantes_8cpp.html#afdd839d64f5055eb2e3870458ebe6d39" title="pointer to a glue specification" alt="" coords="350,919,418,946"/>
-<area shape="rect" id="node23" href="$constantes_8cpp.html#ae0ed24bf553e8dc5306f6f0a1b0b258c" title="the vertical list to be inserted" alt="" coords="353,970,415,996"/>
-<area shape="rect" id="node24" href="$constantes_8cpp.html#a38c34c03d5564efb2b857a562fa4de70" title="pointer to box or rule node for leaders" alt="" coords="677,362,756,388"/>
-<area shape="rect" id="node25" href="$constantes_8cpp.html#a70439cd64a1f5a3242e5510c755e3ac3" title="the list of characters" alt="" coords="532,412,589,439"/>
-<area shape="rect" id="node26" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="686,615,747,642"/>
-<area shape="rect" id="node27" href="$constantes_8cpp.html#a34ccce0f3beee6b21f6c62506bb33dd4" title="head of the token list for a mark" alt="" coords="347,1020,421,1047"/>
-<area shape="rect" id="node28" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="351,666,417,692"/>
-<area shape="rect" id="node29" href="$constantes_8cpp.html#a020cf18aa03f370b9b08654d818610af" title="numerator field in a fraction noad" alt="" coords="344,716,424,743"/>
-<area shape="rect" id="node30" href="$constantes_8cpp.html#aac88a33bd50777ec79e93f77fdc0fe5a" title="text that follows a discretionary break" alt="" coords="517,666,604,692"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,1358,97,1384"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="509,1712,587,1739"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="848,902,891,928"/>
+<area shape="rect" id="node8" href="$confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="509,1307,587,1334"/>
+<area shape="rect" id="node13" href="$flushnodelist_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="337,699,431,726"/>
+<area shape="rect" id="node30" href="$constantes_8cpp.html#a177ed5e89b8c5da61476a30ad8d3384b" title="reference count of token list to write" alt="" coords="500,91,596,118"/>
+<area shape="rect" id="node31" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="509,1662,587,1688"/>
+<area shape="rect" id="node32" href="$parametres_8h.html#a26f198c381967e7bcc507a080c7062f3" title=" " alt="" coords="149,1054,266,1080"/>
+<area shape="rect" id="node33" href="$newwhatsit_8cpp.html#a1261952612c9c3237400b8b77065f964" title=" " alt="" coords="340,1206,428,1232"/>
+<area shape="rect" id="node34" href="$newwritewhatsit_8cpp.html#ad3cbbd2a868a1a14f4e212db0053c0a3" title=" " alt="" coords="149,1256,265,1283"/>
+<area shape="rect" id="node35" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="352,1510,416,1536"/>
+<area shape="rect" id="node36" href="$constantes_8cpp.html#a555c50d862b9b6fa68704c4277d8ff36" title="stream number (0 to 17)" alt="" coords="335,1256,433,1283"/>
+<area shape="rect" id="node37" href="$normmin_8cpp.html#af805df9a180597e0b529dfec14c1dd7a" title=" " alt="" coords="171,1307,243,1334"/>
+<area shape="rect" id="node38" href="$constantes_8cpp.html#abb80aa4c5261fe7de19b43bacb971589" title="string number of file area for open_name" alt="" coords="166,1358,249,1384"/>
+<area shape="rect" id="node39" href="$constantes_8cpp.html#ac181bafc02293b2e0c53747b6f28b416" title="string number of file extension for open_name" alt="" coords="670,40,745,67"/>
+<area shape="rect" id="node40" href="$constantes_8cpp.html#a9b1e6377ed45d9ced213accc0d8c90ae" title="string number of file name to open" alt="" coords="663,142,752,168"/>
+<area shape="rect" id="node41" href="$outwhat_8cpp.html#a1137c5a00a506a80eadbe8aa55c400f5" title=" " alt="" coords="350,1155,418,1182"/>
+<area shape="rect" id="node42" href="$reportillegalcase_8cpp.html#a74a9219c03db22d322bbaeda3bb72225" title=" " alt="" coords="326,1586,442,1612"/>
+<area shape="rect" id="node43" href="$parametres_8h.html#a2fc0c04efd473c3bbe785f4f12c22ab9" title=" " alt="" coords="145,1611,269,1638"/>
+<area shape="rect" id="node44" href="$scanfilename_8cpp.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="335,1763,433,1790"/>
+<area shape="rect" id="node45" href="$scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="317,1712,451,1739"/>
+<area shape="rect" id="node46" href="$scantoks_8cpp.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="347,1459,421,1486"/>
+<area shape="rect" id="node47" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="188,1814,227,1840"/>
+<area shape="rect" id="node48" href="$constantes_8cpp.html#a33d8f944ea440e7b549bba9c8d59b7fc" title="language number, in the range 0..255" alt="" coords="167,483,248,510"/>
+<area shape="rect" id="node49" href="$constantes_8cpp.html#ab0ad9017d47db7dbdd4a56de61cf1ab4" title="minimum left fragment, in the range 1..63" alt="" coords="168,1915,247,1942"/>
+<area shape="rect" id="node50" href="$constantes_8cpp.html#a3a9a841425d1132288c369576f00edb1" title="minimum right fragment, in the range 1..63" alt="" coords="168,1966,247,1992"/>
+<area shape="rect" id="node3" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="661,1712,753,1739"/>
+<area shape="rect" id="node5" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="674,1510,741,1536"/>
+<area shape="rect" id="node7" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="665,1662,750,1688"/>
+<area shape="rect" id="node4" href="$deletetokenref_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="817,1611,921,1638"/>
+<area shape="rect" id="node9" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="683,1459,731,1486"/>
+<area shape="rect" id="node10" href="$jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="835,1408,903,1435"/>
+<area shape="rect" id="node11" href="$normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="645,1307,769,1334"/>
+<area shape="rect" id="node12" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="673,1408,742,1435"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#a9b1a0fe0853bd25a8d74737dfe51ed77" title="vertical list to be moved out of horizontal list" alt="" coords="509,750,587,776"/>
+<area shape="rect" id="node15" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="500,699,596,726"/>
+<area shape="rect" id="node16" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="671,800,743,827"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#a71611c1f90a6379e7e1ecc5c27a886d4" title="denominator field in a fraction noad" alt="" coords="501,243,595,270"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#a4da40ddb2b5a65de1d2bba8128eb3167" title="mlist to be used in display style" alt="" coords="499,294,597,320"/>
+<area shape="rect" id="node19" href="$constantes_8cpp.html#afdd839d64f5055eb2e3870458ebe6d39" title="pointer to a glue specification" alt="" coords="514,344,582,371"/>
+<area shape="rect" id="node20" href="$constantes_8cpp.html#ae0ed24bf553e8dc5306f6f0a1b0b258c" title="the vertical list to be inserted" alt="" coords="517,395,579,422"/>
+<area shape="rect" id="node21" href="$constantes_8cpp.html#a38c34c03d5564efb2b857a562fa4de70" title="pointer to box or rule node for leaders" alt="" coords="668,851,747,878"/>
+<area shape="rect" id="node22" href="$constantes_8cpp.html#a70439cd64a1f5a3242e5510c755e3ac3" title="the list of characters" alt="" coords="679,902,736,928"/>
+<area shape="rect" id="node23" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="677,952,738,979"/>
+<area shape="rect" id="node24" href="$constantes_8cpp.html#a34ccce0f3beee6b21f6c62506bb33dd4" title="head of the token list for a mark" alt="" coords="511,446,585,472"/>
+<area shape="rect" id="node25" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="515,496,581,523"/>
+<area shape="rect" id="node26" href="$constantes_8cpp.html#a020cf18aa03f370b9b08654d818610af" title="numerator field in a fraction noad" alt="" coords="508,547,588,574"/>
+<area shape="rect" id="node27" href="$constantes_8cpp.html#aac88a33bd50777ec79e93f77fdc0fe5a" title="text that follows a discretionary break" alt="" coords="664,1003,751,1030"/>
+<area shape="rect" id="node28" href="$constantes_8cpp.html#a65e055dfd7fea1ac8c6c735f76e87825" title="text that precedes a discretionary break" alt="" coords="509,598,587,624"/>
+<area shape="rect" id="node29" href="$constantes_8cpp.html#a76f175f6541923e8ba102ee0dc79eb5c" title="mlist to be used in script style" alt="" coords="503,648,593,675"/>
 </map>

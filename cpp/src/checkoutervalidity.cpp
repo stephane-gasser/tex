@@ -61,8 +61,7 @@ void checkoutervalidity(void)
 					info(p) = right_brace_token+'}';
 			}
 			ins_list(p);
-			print(" of ");
-			sprintcs(warningindex);
+			print(" of "+scs(warningindex));
 			{
 				helpptr = 4;
 				helpline[3] = "I suspect you have forgotten a `}', causing me";
@@ -74,10 +73,7 @@ void checkoutervalidity(void)
 		}
 		else
 		{
-			print_err("Incomplete ");
-			printcmdchr(if_test, curif);
-			print("; all text was ignored after line ");
-			printint(skipline);
+			print_err("Incomplete "+cmdchr(if_test, curif)+"; all text was ignored after line "+std::to_string(skipline));
 			helpptr = 3;
 			helpline[2] = "A forbidden control sequence occurred in skipped text.";
 			helpline[1] = "This kind of error happens when you say `\\if...' and forget";

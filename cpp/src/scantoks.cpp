@@ -129,8 +129,7 @@ halfword scantoks(bool macrodef, bool xpand)
 					if (curcmd != mac_param)
 						if (curtok <= zero_token || curtok > t) 
 						{
-							print_err("Illegal parameter number in definition of "); 
-							sprintcs(warningindex);
+							print_err("Illegal parameter number in definition of "+scs(warningindex));
 							helpptr = 3;
 							helpline[2] = "You meant to type ## instead of #, right?";
 							helpline[1] = "Or maybe a } was forgotten somewhere earlier, and things";

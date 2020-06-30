@@ -15,7 +15,6 @@
 #include "begintokenlist.h"
 #include "backinput.h"
 #include "pauseforinstructions.h"
-#include "showcurcmdchr.h"
 #include "appspace.h"
 #include "reportillegalcase.h"
 #include "newligitem.h"
@@ -77,7 +76,7 @@
 #include "saveforafter.h"
 #include "issuemessage.h"
 #include "openorclosein.h"
-#include "showwhatever.h"
+#include "impression.h"
 #include "shiftcase.h"
 #include "doextension.h"
 

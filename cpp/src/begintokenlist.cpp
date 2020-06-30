@@ -1,8 +1,5 @@
 #include "begintokenlist.h"
 #include "overflow.h"
-#include "begindiagnostic.h"
-#include "enddiagnostic.h"
-#include "tokenshow.h"
 #include "impression.h"
 #include "pushinput.h"
 
@@ -29,17 +26,16 @@ void begintokenlist(halfword p, quarterword t)
 			if (tracing_macros() > 1)
 			{
 				begindiagnostic();
-				printnl("");
 				switch (t)
 				{
 					case mark_text: 
-						printesc("mark");
+						printnl(esc("mark"));
 						break;
 					case write_text: 
-						printesc("write");
+						printnl(esc("write"));
 						break;
 					default: 
-						printcmdchr(assign_toks, t-output_text+output_routine_loc);
+						printnl(cmdchr(assign_toks, t-output_text+output_routine_loc));
 				}
 				print("->");
 				tokenshow(p);

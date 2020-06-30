@@ -1,5 +1,6 @@
 <map id="ensure_dvi_open" name="ensure_dvi_open">
-<area shape="rect" id="node1" title=" " alt="" coords="220,5,340,32"/>
-<area shape="rect" id="node2" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="108,5,172,32"/>
-<area shape="rect" id="node3" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="5,5,60,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="229,31,349,57"/>
+<area shape="rect" id="node2" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="117,31,181,57"/>
+<area shape="rect" id="node3" href="$boxend_8h.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="5,5,69,32"/>
+<area shape="rect" id="node4" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="10,56,65,83"/>
 </map>

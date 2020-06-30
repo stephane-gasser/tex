@@ -80,9 +80,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="headforvmode_8h_source.html">headforvmode.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="offsave_8h_source.html">offsave.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="printnl_8h_source.html">printnl.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="printesc_8h_source.html">printesc.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="print_8h_source.html">print.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="impression_8h_source.html">impression.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="error_8h_source.html">error.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="backinput_8h_source.html">backinput.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="texte_8h_source.html">texte.h</a>&quot;</code><br />
@@ -91,17 +89,15 @@ Graphe des dépendances par inclusion de headforvmode.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="headforvmode_8cpp__incl.png" border="0" usemap="#src_2headforvmode_8cpp" alt=""/></div>
 <map name="src_2headforvmode_8cpp" id="src_2headforvmode_8cpp">
-<area shape="rect" title=" " alt="" coords="347,5,498,32"/>
+<area shape="rect" title=" " alt="" coords="249,5,399,32"/>
 <area shape="rect" href="headforvmode_8h.html" title=" " alt="" coords="5,80,120,107"/>
 <area shape="rect" href="offsave_8h.html" title=" " alt="" coords="145,80,221,107"/>
-<area shape="rect" href="printnl_8h.html" title=" " alt="" coords="245,80,313,107"/>
-<area shape="rect" href="printesc_8h.html" title=" " alt="" coords="337,80,415,107"/>
-<area shape="rect" href="print_8h.html" title=" " alt="" coords="440,80,499,107"/>
-<area shape="rect" href="error_8h.html" title=" " alt="" coords="523,80,581,107"/>
-<area shape="rect" href="backinput_8h.html" title=" " alt="" coords="606,80,695,107"/>
-<area shape="rect" href="texte_8h.html" title=" " alt="" coords="719,80,782,107"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="339,155,413,181"/>
-<area shape="rect" title=" " alt="" coords="723,155,778,181"/>
+<area shape="rect" href="impression_8h.html" title=" " alt="" coords="443,80,539,107"/>
+<area shape="rect" href="error_8h.html" title=" " alt="" coords="245,80,304,107"/>
+<area shape="rect" href="backinput_8h.html" title=" " alt="" coords="329,80,418,107"/>
+<area shape="rect" href="texte_8h.html" title=" " alt="" coords="563,80,626,107"/>
+<area shape="rect" href="globals_8h.html" title=" " alt="" coords="237,155,312,181"/>
+<area shape="rect" title=" " alt="" coords="515,155,570,181"/>
 </map>
 </div>
 </div>
@@ -129,49 +125,47 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="headforvmode_8cpp_source.html#l00010">10</a> du fichier <a class="el" href="headforvmode_8cpp_source.html">headforvmode.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a> &lt; 0)</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> != <a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4dafe6a140d553f467cc2a5796f8872be3e">hrule</a>)</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <a class="code" href="offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b">offsave</a>();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;! &quot;</span>);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;You can&#39;t use `&quot;</span>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <a class="code" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a>(<span class="stringliteral">&quot;hrule&quot;</span>);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;&#39; here except with leaders&quot;</span>);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 2;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[1] = <span class="stringliteral">&quot;To put a horizontal rule in an hbox or an alignment,&quot;</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;you should use \\leaders or \\hrulefill (see The TeXbook).&quot;</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="globals_8cpp.html#af5b7cfb45f653f0dc9ba05c338cc8a8e">curtok</a> = <a class="code" href="globals_8cpp.html#ad71fb1a89a66630a9f7f39aca6f63432">partoken</a>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a>();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a> = <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765">inserted</a>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="headforvmode_8cpp_source.html#l00008">8</a> du fichier <a class="el" href="headforvmode_8cpp_source.html">headforvmode.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a> &lt; 0)</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> != <a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4dafe6a140d553f467cc2a5796f8872be3e">hrule</a>)</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <a class="code" href="offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b">offsave</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <a class="code" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a>(<span class="stringliteral">&quot;You can&#39;t use `&quot;</span>+<a class="code" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a>(<span class="stringliteral">&quot;hrule&quot;</span>)+<span class="stringliteral">&quot;&#39; here except with leaders&quot;</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 2;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[1] = <span class="stringliteral">&quot;To put a horizontal rule in an hbox or an alignment,&quot;</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;you should use \\leaders or \\hrulefill (see The TeXbook).&quot;</span>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        }</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="globals_8cpp.html#af5b7cfb45f653f0dc9ba05c338cc8a8e">curtok</a> = <a class="code" href="globals_8cpp.html#ad71fb1a89a66630a9f7f39aca6f63432">partoken</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a> = <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765">inserted</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="headforvmode_8cpp_a3128641e5b4a7dd454caf724178c4023_cgraph.png" border="0" usemap="#headforvmode_8cpp_a3128641e5b4a7dd454caf724178c4023_cgraph" alt=""/></div>
 <map name="headforvmode_8cpp_a3128641e5b4a7dd454caf724178c4023_cgraph" id="headforvmode_8cpp_a3128641e5b4a7dd454caf724178c4023_cgraph">
-<area shape="rect" title=" " alt="" coords="5,487,109,513"/>
-<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title=" " alt="" coords="277,56,355,83"/>
-<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="292,613,340,640"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="549,487,596,513"/>
-<area shape="rect" href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="421,385,489,412"/>
-<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="427,512,484,539"/>
+<area shape="rect" title=" " alt="" coords="5,411,109,437"/>
+<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="277,56,355,83"/>
+<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="292,461,340,488"/>
+<area shape="rect" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="169,512,211,539"/>
 <area shape="rect" href="offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b" title=" " alt="" coords="157,309,223,336"/>
+<area shape="rect" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="281,512,351,539"/>
 <area shape="rect" href="endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="409,5,501,32"/>
-<area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="422,157,489,184"/>
+<area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="422,107,489,133"/>
 <area shape="rect" href="pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="413,56,498,83"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="551,183,594,209"/>
-<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="644,385,716,412"/>
-<area shape="rect" href="begintokenlist_8cpp.html#a5f4232bf5579ef4981db33096414bc2a" title="inserts a simple token list" alt="" coords="285,360,347,387"/>
-<area shape="rect" href="printcmdchr_8cpp.html#ab8f6990e9aa8ffdacd856de74aa40314" title=" " alt="" coords="271,259,361,285"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="564,157,607,184"/>
+<area shape="rect" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="432,411,479,437"/>
+<area shape="rect" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="549,385,621,412"/>
+<area shape="rect" href="impression_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="421,360,489,387"/>
+<area shape="rect" href="begintokenlist_8cpp.html#a5f4232bf5579ef4981db33096414bc2a" title="inserts a simple token list" alt="" coords="285,157,347,184"/>
+<area shape="rect" href="impression_8cpp.html#ab8f6990e9aa8ffdacd856de74aa40314" title=" " alt="" coords="271,360,361,387"/>
 </map>
 </div>
 <div class="dynheader">
@@ -187,20 +181,19 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0d"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a></div><div class="ttdeci">token_type</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00463">constantes.h:463</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0d"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a></div><div class="ttdeci">token_type</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00481">constantes.h:481</a></div></div>
 <div class="ttc" id="aglobals_8h_html_ae1c0d92ce2fe057255c7badbbb0615b0"><div class="ttname"><a href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a></div><div class="ttdeci">std::string helpline[6]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00071">globals.h:71</a></div></div>
-<div class="ttc" id="aprintesc_8cpp_html_ace069a9f107f557990814241b661ad5f"><div class="ttname"><a href="printesc_8cpp.html#ace069a9f107f557990814241b661ad5f">printesc</a></div><div class="ttdeci">void printesc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printesc_8cpp_source.html#l00007">printesc.cpp:7</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4dafe6a140d553f467cc2a5796f8872be3e"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4dafe6a140d553f467cc2a5796f8872be3e">hrule</a></div><div class="ttdeci">@ hrule</div><div class="ttdoc">horizontal rule ( \hrule )</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00237">constantes.h:237</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4dafe6a140d553f467cc2a5796f8872be3e"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4dafe6a140d553f467cc2a5796f8872be3e">hrule</a></div><div class="ttdeci">@ hrule</div><div class="ttdoc">horizontal rule ( \hrule )</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00255">constantes.h:255</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_af5b7cfb45f653f0dc9ba05c338cc8a8e"><div class="ttname"><a href="globals_8cpp.html#af5b7cfb45f653f0dc9ba05c338cc8a8e">curtok</a></div><div class="ttdeci">halfword curtok</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00111">globals.cpp:111</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a85c0624f93ed5c5e8c722316dad139af"><div class="ttname"><a href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a></div><div class="ttdeci">char helpptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00069">globals.cpp:69</a></div></div>
-<div class="ttc" id="abackinput_8cpp_html_afd6e40e89c0d293c90a471cef22e934a"><div class="ttname"><a href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a></div><div class="ttdeci">void backinput(void)</div><div class="ttdef"><b>Definition:</b> <a href="backinput_8cpp_source.html#l00007">backinput.cpp:7</a></div></div>
-<div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00019">error.cpp:19</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765">inserted</a></div><div class="ttdeci">@ inserted</div><div class="ttdoc">token_type code for inserted texts</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00469">constantes.h:469</a></div></div>
+<div class="ttc" id="abackinput_8cpp_html_afd6e40e89c0d293c90a471cef22e934a"><div class="ttname"><a href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a></div><div class="ttdeci">void backinput(void)</div><div class="ttdoc">Undoes one token of input.</div><div class="ttdef"><b>Definition:</b> <a href="backinput_8cpp_source.html#l00014">backinput.cpp:14</a></div></div>
+<div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00013">error.cpp:13</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765">inserted</a></div><div class="ttdeci">@ inserted</div><div class="ttdoc">token_type code for inserted texts</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00487">constantes.h:487</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00090">globals.cpp:90</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_adb17223ad60c9ffc709eb43e2f309055"><div class="ttname"><a href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a></div><div class="ttdeci">eightbits curcmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00108">globals.cpp:108</a></div></div>
-<div class="ttc" id="aprint_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="print_8cpp_source.html#l00006">print.cpp:6</a></div></div>
-<div class="ttc" id="aoffsave_8cpp_html_a63378f93afc7d8ca66b9fe6f6f3d920b"><div class="ttname"><a href="offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b">offsave</a></div><div class="ttdeci">void offsave(void)</div><div class="ttdef"><b>Definition:</b> <a href="offsave_8cpp_source.html#l00013">offsave.cpp:13</a></div></div>
-<div class="ttc" id="aprintnl_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="printnl_8cpp_source.html#l00005">printnl.cpp:5</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01010">impression.cpp:1010</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a27f6b6c256d6682247b1fbdd82d30194"><div class="ttname"><a href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a></div><div class="ttdeci">void print_err(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01759">impression.cpp:1759</a></div></div>
+<div class="ttc" id="aoffsave_8cpp_html_a63378f93afc7d8ca66b9fe6f6f3d920b"><div class="ttname"><a href="offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b">offsave</a></div><div class="ttdeci">void offsave(void)</div><div class="ttdef"><b>Definition:</b> <a href="offsave_8cpp_source.html#l00009">offsave.cpp:9</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_ad71fb1a89a66630a9f7f39aca6f63432"><div class="ttname"><a href="globals_8cpp.html#ad71fb1a89a66630a9f7f39aca6f63432">partoken</a></div><div class="ttdeci">halfword partoken</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00127">globals.cpp:127</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

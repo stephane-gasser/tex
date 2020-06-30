@@ -130,35 +130,33 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="terminput_8cpp_source.html#l00008">8</a> du fichier <a class="el" href="terminput_8cpp_source.html">terminput.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    std::cout &lt;&lt; std::flush;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="inputln_8cpp.html#a573557735f9381745c6510fc8729c35b">inputln</a>(std::cin, <span class="keyword">true</span>))</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b">fatalerror</a>(<span class="stringliteral">&quot;End of file on the terminal!&quot;</span>);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="globals_8cpp.html#a80da2d8616bf844c40be541d5f76e724">termoffset</a> = 0;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a>--;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a> != <a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = <a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>; k &lt; <a class="code" href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a>; k++)</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<a class="code" href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a>[k]);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a>++;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="terminput_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="terminput_8cpp_source.html">terminput.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    std::cout &lt;&lt; std::flush;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="inputln_8cpp.html#a573557735f9381745c6510fc8729c35b">inputln</a>(std::cin, <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b">fatalerror</a>(<span class="stringliteral">&quot;End of file on the terminal!&quot;</span>);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="globals_8cpp.html#a80da2d8616bf844c40be541d5f76e724">termoffset</a> = 0;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a>--;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a> != <a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> k = <a class="code" href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a>; k &lt; <a class="code" href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a>; k++)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <a class="code" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<a class="code" href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a>[k]);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a>++;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="terminput_8h_aacbc6794f9371128ce624765a5915df9_cgraph.png" border="0" usemap="#terminput_8h_aacbc6794f9371128ce624765a5915df9_cgraph" alt=""/></div>
 <map name="terminput_8h_aacbc6794f9371128ce624765a5915df9_cgraph" id="terminput_8h_aacbc6794f9371128ce624765a5915df9_cgraph">
-<area shape="rect" title=" " alt="" coords="5,119,81,145"/>
-<area shape="rect" href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="129,169,203,196"/>
-<area shape="rect" href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="633,144,705,171"/>
-<area shape="rect" href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="753,195,811,221"/>
-<area shape="rect" href="inputln_8cpp.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="136,220,196,247"/>
-<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="289,195,337,221"/>
-<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="423,93,491,120"/>
-<area shape="rect" href="print_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="539,271,585,297"/>
-<area shape="rect" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="650,296,689,323"/>
-<area shape="rect" href="printnl_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="428,347,485,373"/>
-<area shape="rect" href="normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="251,144,375,171"/>
+<area shape="rect" title=" " alt="" coords="5,210,81,237"/>
+<area shape="rect" href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="129,83,203,110"/>
+<area shape="rect" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="423,159,495,186"/>
+<area shape="rect" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="543,159,600,186"/>
+<area shape="rect" href="inputln_8cpp.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="136,286,196,313"/>
+<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="289,33,337,59"/>
+<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="425,7,493,34"/>
+<area shape="rect" href="normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="251,83,375,110"/>
+<area shape="rect" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="278,134,347,161"/>
 </map>
 </div>
 <div class="dynheader">
@@ -172,17 +170,17 @@ Voici le graphe des appelants de cette fonction :</div>
 <area shape="rect" href="promptfilename_8h.html#a30c405cf60000fe656870957636a4d91" title=" " alt="" coords="357,2387,468,2414"/>
 <area shape="rect" href="readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="377,2286,449,2313"/>
 <area shape="rect" href="firmuptheline_8h.html#ad2887480bd69067d27bbd8db4c59342a" title=" " alt="" coords="716,2438,812,2465"/>
-<area shape="rect" href="aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="374,513,451,539"/>
+<area shape="rect" href="aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="374,513,451,539"/>
 <area shape="rect" href="alignerror_8h.html#a96f36a6afe751cbfd07b095782045b7d" title=" " alt="" coords="375,969,450,995"/>
-<area shape="rect" href="backerror_8h.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title=" " alt="" coords="561,614,637,641"/>
+<area shape="rect" href="backerror_8h.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="561,614,637,641"/>
 <area shape="rect" href="initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="379,563,446,590"/>
 <area shape="rect" href="macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="373,867,452,894"/>
 <area shape="rect" href="prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="171,1273,296,1299"/>
-<area shape="rect" href="beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title=" " alt="" coords="561,1121,636,1147"/>
+<area shape="rect" href="beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="561,1121,636,1147"/>
 <area shape="rect" href="begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="533,1171,664,1198"/>
-<area shape="rect" href="boxerror_8h.html#a0bbccd15aae646ece75f2703dda44c2e" title=" " alt="" coords="564,209,633,235"/>
+<area shape="rect" href="boxerror_8h.html#a0bbccd15aae646ece75f2703dda44c2e" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="564,209,633,235"/>
 <area shape="rect" href="fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="385,158,440,185"/>
-<area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title=" " alt="" coords="195,158,272,185"/>
+<area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="195,158,272,185"/>
 <area shape="rect" href="handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="5,310,123,337"/>
 <area shape="rect" href="builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2" title=" " alt="" coords="172,310,295,337"/>
 <area shape="rect" href="checkoutervalidity_8h.html#a6bca3c8986cc82099dde339cf36de911" title=" " alt="" coords="349,1425,476,1451"/>
@@ -222,13 +220,13 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="afatalerror_8cpp_html_a3104c2391b36a315ae82b5ad0b67fa6b"><div class="ttname"><a href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b">fatalerror</a></div><div class="ttdeci">void fatalerror(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="fatalerror_8cpp_source.html#l00009">fatalerror.cpp:9</a></div></div>
+<div class="ttc" id="afatalerror_8cpp_html_a3104c2391b36a315ae82b5ad0b67fa6b"><div class="ttname"><a href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b">fatalerror</a></div><div class="ttdeci">void fatalerror(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="fatalerror_8cpp_source.html#l00008">fatalerror.cpp:8</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa56995a66771b46ca1620d77d1872caa"><div class="ttname"><a href="globals_8cpp.html#aa56995a66771b46ca1620d77d1872caa">buffer</a></div><div class="ttdeci">ASCIIcode buffer[bufsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00047">globals.cpp:47</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a72e27dee31b1c4c6a504fbed29542d97"><div class="ttname"><a href="globals_8cpp.html#a72e27dee31b1c4c6a504fbed29542d97">last</a></div><div class="ttdeci">int last</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00049">globals.cpp:49</a></div></div>
-<div class="ttc" id="aprintln_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="println_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="println_8cpp_source.html#l00004">println.cpp:4</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a80da2d8616bf844c40be541d5f76e724"><div class="ttname"><a href="globals_8cpp.html#a80da2d8616bf844c40be541d5f76e724">termoffset</a></div><div class="ttdeci">char termoffset</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00061">globals.cpp:61</a></div></div>
-<div class="ttc" id="aprintchar_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="printchar_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="printchar_8cpp_source.html#l00005">printchar.cpp:5</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01189">impression.cpp:1189</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a10a3fcd824154f6545a843a16ebf7abb"><div class="ttname"><a href="globals_8cpp.html#a10a3fcd824154f6545a843a16ebf7abb">First</a></div><div class="ttdeci">int First</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00048">globals.cpp:48</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00042">impression.cpp:42</a></div></div>
 <div class="ttc" id="ainputln_8cpp_html_a573557735f9381745c6510fc8729c35b"><div class="ttname"><a href="inputln_8cpp.html#a573557735f9381745c6510fc8729c35b">inputln</a></div><div class="ttdeci">bool inputln(std::istream &amp;f, bool bypasseoln)</div><div class="ttdef"><b>Definition:</b> <a href="inputln_8cpp_source.html#l00005">inputln.cpp:5</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a4a02011783b79fd4be63e5ee91cb8621"><div class="ttname"><a href="globals_8cpp.html#a4a02011783b79fd4be63e5ee91cb8621">selector</a></div><div class="ttdeci">char selector</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00059">globals.cpp:59</a></div></div>
 <!-- start footer part -->

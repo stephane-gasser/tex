@@ -1,9 +1,9 @@
 <map id="space" name="space">
 <area shape="rect" id="node1" title="normal space between words" alt="" coords="476,56,533,83"/>
 <area shape="rect" id="node2" href="$maincontrol_8cpp.html#ab7f7983b788abb1c635c1bd67f967894" title=" " alt="" coords="143,5,295,32"/>
-<area shape="rect" id="node4" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title=" " alt="" coords="346,56,425,83"/>
+<area shape="rect" id="node4" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="346,56,425,83"/>
 <area shape="rect" id="node5" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="343,131,428,157"/>
 <area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,56,95,83"/>
-<area shape="rect" id="node6" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title=" " alt="" coords="180,107,257,133"/>
+<area shape="rect" id="node6" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="180,107,257,133"/>
 <area shape="rect" id="node7" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="181,157,256,184"/>
 </map>

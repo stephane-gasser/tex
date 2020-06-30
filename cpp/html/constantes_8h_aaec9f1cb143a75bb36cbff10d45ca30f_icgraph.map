@@ -1,8 +1,6 @@
 <map id="flush_char" name="flush_char">
-<area shape="rect" id="node1" title="forget the last character in the pool" alt="" coords="323,119,405,145"/>
-<area shape="rect" id="node2" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="178,56,249,83"/>
-<area shape="rect" id="node5" href="$shownodelist_8cpp.html#a02076a38f9aefdba6b671f0163d39e55" title=" " alt="" coords="152,119,275,145"/>
-<area shape="rect" id="node6" href="$shownodelist_8h.html#a603d6d2969ceffbb5ac7b8c8bc74828b" title=" " alt="" coords="5,131,104,157"/>
-<area shape="rect" id="node3" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="22,5,87,32"/>
-<area shape="rect" id="node4" href="$primitive_8h.html#afd390c212945223fe7892dc9e61dcc3d" title=" " alt="" coords="19,56,90,83"/>
+<area shape="rect" id="node1" title="forget the last character in the pool" alt="" coords="243,31,325,57"/>
+<area shape="rect" id="node2" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="124,31,195,57"/>
+<area shape="rect" id="node3" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="8,5,73,32"/>
+<area shape="rect" id="node4" href="$primitive_8h.html#afd390c212945223fe7892dc9e61dcc3d" title=" " alt="" coords="5,56,76,83"/>
 </map>

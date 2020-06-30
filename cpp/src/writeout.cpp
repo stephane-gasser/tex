@@ -6,7 +6,6 @@
 #include "impression.h"
 #include "error.h"
 #include "endtokenlist.h"
-#include "tokenshow.h"
 #include "flushlist.h"
 #include "texte.h"
 

@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de inc/impression.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">impression.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="impression_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef IMPRESSION</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define IMPRESSION</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="globals_8h.html">globals.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#ae0d44f4dd2f3383a089cb888958fe7a0">print</a>(<span class="keyword">const</span> std::string &amp;);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a06f36370c580f69a321192ec9b3e629c">print_err</a>(<span class="keyword">const</span> std::string &amp;);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#ad364b38052809b2a9523548013ef0054">printchar</a>(<a class="code" href="tex_8h.html#ab83428f90f6421c7dad8f3aea11430b3">ASCIIcode</a>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a64b864902efab3da0ba5fdc27f0902f0">printcmdchr</a>(<a class="code" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a>, <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a80379c6cd497e05646e9aed046240f54">printcs</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a5a0425c4eae7c260660d39a0806e78c8">printcurrentstring</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a31d249fe374fdb4f37a7612c64e8346f">printdelimiter</a>(<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a86717ec052b221853f257e58047e9782">printesc</a>(<span class="keyword">const</span> std::string &amp;);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;std::string <a class="code" href="impression_8h.html#a3952397c21e615086b56b58c3ee7d05d">esc</a>(<span class="keyword">const</span> std::string &amp;);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a7cdc561fabc88e0ac43e4ff3da4ead94">printfamandchar</a>(<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a24b027c244281761db3a2c91135271aa">printfilename</a>(<span class="keyword">const</span> std::string &amp;, <span class="keyword">const</span> std::string &amp;, <span class="keyword">const</span> std::string &amp;);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#aa7d3f5c8b32bcf92ffa58ae1e3a5fa87">printfontandchar</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a91916432ccdd559dcd370f75cb4d8bf7">printglue</a>(<a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>, <span class="keywordtype">int</span>, <span class="keyword">const</span> std::string &amp;);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a5539d109f535a5620ed562f6972e0480">printhex</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#ae639eefb78cd37a48233694dd6271d45">printint</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a97451188cd20f1738f734ece7d999b21">printlengthparam</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#ac52ac3c4e4f907c35038591b801f7191">println</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a2044a4cc6b61ee8325c411a9193adcdb">printmark</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#acf0c9c3bbbed787d0f48cca0f5ee37a0">printmeaning</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a81c532d2ea56e6e550b6e5534bd9f225">printmode</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#aa9c9e761e92adc388f8b0171221145b4">printnl</a>(<span class="keyword">const</span> std::string &amp;);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#aafbbf2f05042974cc678acd2f093faa7">printparam</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a3d67a47496f5a5c7dfe518c954083d85">printromanint</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a950115b6ef2fa9f73e75209143985bf0">printruledimen</a>(<a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#aad097a114bc81e6b2fe3f413879d4c9e">printscaled</a>(<a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a8271a05281a2aff040fc48e00561f715">printsize</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a453f16db6cdfa50c8d7107187a1554cf">printskipparam</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a4ed76f0c06587e673463f26ec4e06975">printspec</a>(<span class="keywordtype">int</span>, <span class="keyword">const</span> std::string &amp;);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a692b20f382432e21f254fa594fc68553">printstyle</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a495a7e0016011b0341c289d214fdf64e">printsubsidiarydata</a>(<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>, <a class="code" href="tex_8h.html#ab83428f90f6421c7dad8f3aea11430b3">ASCIIcode</a>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#ad69f9886ba55ca8b5e4009a74d6e360c">printthedigs</a>(<a class="code" href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#af17f95f6680985b35a21c14e7e83fb93">printtotals</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a1f45095f1a7b1b16451c9b85a1ac8bda">printtwo</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#ad3470bfe8f1a2293ee73b768fb7968bd">printwritewhatsit</a>(<span class="keyword">const</span> std::string &amp;, <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a5f773eb7690be00f5227895740fcc8dc">slowprint</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a5f773eb7690be00f5227895740fcc8dc">slowprint</a>(<span class="keyword">const</span> std::string &amp;);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#ab6a92d464f670abc733b69df5d15bbc9">sprintcs</a>(<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#aa57ca3cfb6196a2f907d119c6da4796e">showtokenlist</a>(<span class="keywordtype">int</span>, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a2eeb444c6246cd2f7a3dd085ead3d716">tokenshow</a>(<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#ad176dee9f7196a9aac3ae4b87ca71412">shortdisplay</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a7a96b738fe42ca12c27ab45665093a35">showinfo</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a24b216c7308569daf028d78f0b6634c0">shownodelist</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#aca40f462cc8fab808b233af708a60971">showbox</a>(<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a08865d4e55bc6116a39dbd5679041e61">showcontext</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#ae7f34298980b60c63ccdee9eb0225d67">begindiagnostic</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a8f47014822cd9c39c260c29ed7d508a9">enddiagnostic</a>(<span class="keywordtype">bool</span>);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a663c42b205477b7748f1324b1a526f70">showcurcmdchr</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#af65ad32dc39ed04ec95346db7ab1f259">showactivities</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> <a class="code" href="impression_8h.html#a99b4dadf3c1abee06e9da950c3c704a5">showwhatever</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aimpression_8h_html_a81c532d2ea56e6e550b6e5534bd9f225"><div class="ttname"><a href="impression_8h.html#a81c532d2ea56e6e550b6e5534bd9f225">printmode</a></div><div class="ttdeci">void printmode(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01244">impression.cpp:1244</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a86717ec052b221853f257e58047e9782"><div class="ttname"><a href="impression_8h.html#a86717ec052b221853f257e58047e9782">printesc</a></div><div class="ttdeci">void printesc(const std::string &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01015">impression.cpp:1015</a></div></div>
+<div class="ttc" id="atex_8h_html_ab83428f90f6421c7dad8f3aea11430b3"><div class="ttname"><a href="tex_8h.html#ab83428f90f6421c7dad8f3aea11430b3">ASCIIcode</a></div><div class="ttdeci">std::uint8_t ASCIIcode</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00032">tex.h:32</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a453f16db6cdfa50c8d7107187a1554cf"><div class="ttname"><a href="impression_8h.html#a453f16db6cdfa50c8d7107187a1554cf">printskipparam</a></div><div class="ttdeci">void printskipparam(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01531">impression.cpp:1531</a></div></div>
+<div class="ttc" id="aimpression_8h_html_ab6a92d464f670abc733b69df5d15bbc9"><div class="ttname"><a href="impression_8h.html#ab6a92d464f670abc733b69df5d15bbc9">sprintcs</a></div><div class="ttdeci">void sprintcs(halfword)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01742">impression.cpp:1742</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a64b864902efab3da0ba5fdc27f0902f0"><div class="ttname"><a href="impression_8h.html#a64b864902efab3da0ba5fdc27f0902f0">printcmdchr</a></div><div class="ttdeci">void printcmdchr(quarterword, halfword)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00105">impression.cpp:105</a></div></div>
+<div class="ttc" id="atex_8h_html_aaef48c5c65cb13f3e50745390b269155"><div class="ttname"><a href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a></div><div class="ttdeci">std::uint8_t quarterword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00043">tex.h:43</a></div></div>
+<div class="ttc" id="aimpression_8h_html_ad3470bfe8f1a2293ee73b768fb7968bd"><div class="ttname"><a href="impression_8h.html#ad3470bfe8f1a2293ee73b768fb7968bd">printwritewhatsit</a></div><div class="ttdeci">void printwritewhatsit(const std::string &amp;, halfword)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01715">impression.cpp:1715</a></div></div>
+<div class="ttc" id="aimpression_8h_html_ae0d44f4dd2f3383a089cb888958fe7a0"><div class="ttname"><a href="impression_8h.html#ae0d44f4dd2f3383a089cb888958fe7a0">print</a></div><div class="ttdeci">void print(const std::string &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00012">impression.cpp:12</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a3d67a47496f5a5c7dfe518c954083d85"><div class="ttname"><a href="impression_8h.html#a3d67a47496f5a5c7dfe518c954083d85">printromanint</a></div><div class="ttdeci">void printromanint(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01457">impression.cpp:1457</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a5539d109f535a5620ed562f6972e0480"><div class="ttname"><a href="impression_8h.html#a5539d109f535a5620ed562f6972e0480">printhex</a></div><div class="ttdeci">void printhex(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01071">impression.cpp:1071</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a80379c6cd497e05646e9aed046240f54"><div class="ttname"><a href="impression_8h.html#a80379c6cd497e05646e9aed046240f54">printcs</a></div><div class="ttdeci">void printcs(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00960">impression.cpp:960</a></div></div>
+<div class="ttc" id="aimpression_8h_html_acf0c9c3bbbed787d0f48cca0f5ee37a0"><div class="ttname"><a href="impression_8h.html#acf0c9c3bbbed787d0f48cca0f5ee37a0">printmeaning</a></div><div class="ttdeci">void printmeaning(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01226">impression.cpp:1226</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a97451188cd20f1738f734ece7d999b21"><div class="ttname"><a href="impression_8h.html#a97451188cd20f1738f734ece7d999b21">printlengthparam</a></div><div class="ttdeci">void printlengthparam(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01117">impression.cpp:1117</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a91916432ccdd559dcd370f75cb4d8bf7"><div class="ttname"><a href="impression_8h.html#a91916432ccdd559dcd370f75cb4d8bf7">printglue</a></div><div class="ttdeci">void printglue(scaled, int, const std::string &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01054">impression.cpp:1054</a></div></div>
+<div class="ttc" id="aimpression_8h_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="impression_8h.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01189">impression.cpp:1189</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a5f773eb7690be00f5227895740fcc8dc"><div class="ttname"><a href="impression_8h.html#a5f773eb7690be00f5227895740fcc8dc">slowprint</a></div><div class="ttdeci">void slowprint(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01727">impression.cpp:1727</a></div></div>
+<div class="ttc" id="aimpression_8h_html_af65ad32dc39ed04ec95346db7ab1f259"><div class="ttname"><a href="impression_8h.html#af65ad32dc39ed04ec95346db7ab1f259">showactivities</a></div><div class="ttdeci">void showactivities(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l02525">impression.cpp:2525</a></div></div>
+<div class="ttc" id="aimpression_8h_html_ad364b38052809b2a9523548013ef0054"><div class="ttname"><a href="impression_8h.html#ad364b38052809b2a9523548013ef0054">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00042">impression.cpp:42</a></div></div>
+<div class="ttc" id="aimpression_8h_html_ad176dee9f7196a9aac3ae4b87ca71412"><div class="ttname"><a href="impression_8h.html#ad176dee9f7196a9aac3ae4b87ca71412">shortdisplay</a></div><div class="ttdeci">void shortdisplay(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01850">impression.cpp:1850</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a2eeb444c6246cd2f7a3dd085ead3d716"><div class="ttname"><a href="impression_8h.html#a2eeb444c6246cd2f7a3dd085ead3d716">tokenshow</a></div><div class="ttdeci">void tokenshow(halfword)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01841">impression.cpp:1841</a></div></div>
+<div class="ttc" id="aimpression_8h_html_aa7d3f5c8b32bcf92ffa58ae1e3a5fa87"><div class="ttname"><a href="impression_8h.html#aa7d3f5c8b32bcf92ffa58ae1e3a5fa87">printfontandchar</a></div><div class="ttdeci">void printfontandchar(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01038">impression.cpp:1038</a></div></div>
+<div class="ttc" id="aimpression_8h_html_af17f95f6680985b35a21c14e7e83fb93"><div class="ttname"><a href="impression_8h.html#af17f95f6680985b35a21c14e7e83fb93">printtotals</a></div><div class="ttdeci">void printtotals(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01694">impression.cpp:1694</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a1f45095f1a7b1b16451c9b85a1ac8bda"><div class="ttname"><a href="impression_8h.html#a1f45095f1a7b1b16451c9b85a1ac8bda">printtwo</a></div><div class="ttdeci">void printtwo(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01708">impression.cpp:1708</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a4ed76f0c06587e673463f26ec4e06975"><div class="ttname"><a href="impression_8h.html#a4ed76f0c06587e673463f26ec4e06975">printspec</a></div><div class="ttdeci">void printspec(int, const std::string &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01594">impression.cpp:1594</a></div></div>
+<div class="ttc" id="aimpression_8h_html_aafbbf2f05042974cc678acd2f093faa7"><div class="ttname"><a href="impression_8h.html#aafbbf2f05042974cc678acd2f093faa7">printparam</a></div><div class="ttdeci">void printparam(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01283">impression.cpp:1283</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a7cdc561fabc88e0ac43e4ff3da4ead94"><div class="ttname"><a href="impression_8h.html#a7cdc561fabc88e0ac43e4ff3da4ead94">printfamandchar</a></div><div class="ttdeci">void printfamandchar(halfword)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01023">impression.cpp:1023</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a24b027c244281761db3a2c91135271aa"><div class="ttname"><a href="impression_8h.html#a24b027c244281761db3a2c91135271aa">printfilename</a></div><div class="ttdeci">void printfilename(const std::string &amp;, const std::string &amp;, const std::string &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01031">impression.cpp:1031</a></div></div>
+<div class="ttc" id="aglobals_8h_html"><div class="ttname"><a href="globals_8h.html">globals.h</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a692b20f382432e21f254fa594fc68553"><div class="ttname"><a href="impression_8h.html#a692b20f382432e21f254fa594fc68553">printstyle</a></div><div class="ttdeci">void printstyle(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01616">impression.cpp:1616</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a7a96b738fe42ca12c27ab45665093a35"><div class="ttname"><a href="impression_8h.html#a7a96b738fe42ca12c27ab45665093a35">showinfo</a></div><div class="ttdeci">void showinfo(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l02287">impression.cpp:2287</a></div></div>
+<div class="ttc" id="aimpression_8h_html_aca40f462cc8fab808b233af708a60971"><div class="ttname"><a href="impression_8h.html#aca40f462cc8fab808b233af708a60971">showbox</a></div><div class="ttdeci">void showbox(halfword)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l02295">impression.cpp:2295</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a8271a05281a2aff040fc48e00561f715"><div class="ttname"><a href="impression_8h.html#a8271a05281a2aff040fc48e00561f715">printsize</a></div><div class="ttdeci">void printsize(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01520">impression.cpp:1520</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a663c42b205477b7748f1324b1a526f70"><div class="ttname"><a href="impression_8h.html#a663c42b205477b7748f1324b1a526f70">showcurcmdchr</a></div><div class="ttdeci">void showcurcmdchr(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l02510">impression.cpp:2510</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a8f47014822cd9c39c260c29ed7d508a9"><div class="ttname"><a href="impression_8h.html#a8f47014822cd9c39c260c29ed7d508a9">enddiagnostic</a></div><div class="ttdeci">void enddiagnostic(bool)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l02490">impression.cpp:2490</a></div></div>
+<div class="ttc" id="aimpression_8h_html_ae7f34298980b60c63ccdee9eb0225d67"><div class="ttname"><a href="impression_8h.html#ae7f34298980b60c63ccdee9eb0225d67">begindiagnostic</a></div><div class="ttdeci">void begindiagnostic(void)</div><div class="ttdoc">Prepare to do some tracing.</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l02499">impression.cpp:2499</a></div></div>
+<div class="ttc" id="atex_8h_html_a76970135ed45e872cd47aff06bc1dd33"><div class="ttname"><a href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a></div><div class="ttdeci">int scaled</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00040">tex.h:40</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a3952397c21e615086b56b58c3ee7d05d"><div class="ttname"><a href="impression_8h.html#a3952397c21e615086b56b58c3ee7d05d">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01010">impression.cpp:1010</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a495a7e0016011b0341c289d214fdf64e"><div class="ttname"><a href="impression_8h.html#a495a7e0016011b0341c289d214fdf64e">printsubsidiarydata</a></div><div class="ttdeci">void printsubsidiarydata(halfword, ASCIIcode)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01637">impression.cpp:1637</a></div></div>
+<div class="ttc" id="atex_8h_html_abc49fad02b91822e61ddf562d8fa9c27"><div class="ttname"><a href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a></div><div class="ttdeci">std::uint8_t eightbits</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00033">tex.h:33</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a06f36370c580f69a321192ec9b3e629c"><div class="ttname"><a href="impression_8h.html#a06f36370c580f69a321192ec9b3e629c">print_err</a></div><div class="ttdeci">void print_err(const std::string &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01759">impression.cpp:1759</a></div></div>
+<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00044">tex.h:44</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a31d249fe374fdb4f37a7612c64e8346f"><div class="ttname"><a href="impression_8h.html#a31d249fe374fdb4f37a7612c64e8346f">printdelimiter</a></div><div class="ttdeci">void printdelimiter(halfword)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01000">impression.cpp:1000</a></div></div>
+<div class="ttc" id="aimpression_8h_html_ae639eefb78cd37a48233694dd6271d45"><div class="ttname"><a href="impression_8h.html#ae639eefb78cd37a48233694dd6271d45">printint</a></div><div class="ttdeci">void printint(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01085">impression.cpp:1085</a></div></div>
+<div class="ttc" id="aimpression_8h_html_aa57ca3cfb6196a2f907d119c6da4796e"><div class="ttname"><a href="impression_8h.html#aa57ca3cfb6196a2f907d119c6da4796e">showtokenlist</a></div><div class="ttdeci">void showtokenlist(int, int, int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01765">impression.cpp:1765</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a24b216c7308569daf028d78f0b6634c0"><div class="ttname"><a href="impression_8h.html#a24b216c7308569daf028d78f0b6634c0">shownodelist</a></div><div class="ttdeci">void shownodelist(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01913">impression.cpp:1913</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a08865d4e55bc6116a39dbd5679041e61"><div class="ttname"><a href="impression_8h.html#a08865d4e55bc6116a39dbd5679041e61">showcontext</a></div><div class="ttdeci">void showcontext(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l02325">impression.cpp:2325</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a5a0425c4eae7c260660d39a0806e78c8"><div class="ttname"><a href="impression_8h.html#a5a0425c4eae7c260660d39a0806e78c8">printcurrentstring</a></div><div class="ttdeci">void printcurrentstring(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00994">impression.cpp:994</a></div></div>
+<div class="ttc" id="aimpression_8h_html_aad097a114bc81e6b2fe3f413879d4c9e"><div class="ttname"><a href="impression_8h.html#aad097a114bc81e6b2fe3f413879d4c9e">printscaled</a></div><div class="ttdeci">void printscaled(scaled)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01499">impression.cpp:1499</a></div></div>
+<div class="ttc" id="aimpression_8h_html_ad69f9886ba55ca8b5e4009a74d6e360c"><div class="ttname"><a href="impression_8h.html#ad69f9886ba55ca8b5e4009a74d6e360c">printthedigs</a></div><div class="ttdeci">void printthedigs(eightbits)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01672">impression.cpp:1672</a></div></div>
+<div class="ttc" id="aimpression_8h_html_aa9c9e761e92adc388f8b0171221145b4"><div class="ttname"><a href="impression_8h.html#aa9c9e761e92adc388f8b0171221145b4">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01276">impression.cpp:1276</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a99b4dadf3c1abee06e9da950c3c704a5"><div class="ttname"><a href="impression_8h.html#a99b4dadf3c1abee06e9da950c3c704a5">showwhatever</a></div><div class="ttdeci">void showwhatever(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l02636">impression.cpp:2636</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a950115b6ef2fa9f73e75209143985bf0"><div class="ttname"><a href="impression_8h.html#a950115b6ef2fa9f73e75209143985bf0">printruledimen</a></div><div class="ttdeci">void printruledimen(scaled)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01491">impression.cpp:1491</a></div></div>
+<div class="ttc" id="aimpression_8h_html_a2044a4cc6b61ee8325c411a9193adcdb"><div class="ttname"><a href="impression_8h.html#a2044a4cc6b61ee8325c411a9193adcdb">printmark</a></div><div class="ttdeci">void printmark(int)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01216">impression.cpp:1216</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

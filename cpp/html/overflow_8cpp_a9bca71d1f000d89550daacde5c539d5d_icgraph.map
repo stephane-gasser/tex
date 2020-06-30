@@ -1,6 +1,6 @@
 <map id="overflow" name="overflow">
 <area shape="rect" id="node1" title=" " alt="" coords="680,453,751,480"/>
-<area shape="rect" id="node2" href="$beginfilereading_8h.html#af501832c4c8d2d3ee398905b7857c4b1" title=" " alt="" coords="317,340,429,367"/>
+<area shape="rect" id="node2" href="$beginfilereading_8h.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="317,340,429,367"/>
 <area shape="rect" id="node4" href="$findfontdimen_8h.html#a3a1391088579b75ddb821a1f66a01b42" title=" " alt="" coords="24,187,124,213"/>
 <area shape="rect" id="node5" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="35,313,113,340"/>
 <area shape="rect" id="node6" href="$newhyphexceptions_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="5,769,143,796"/>
