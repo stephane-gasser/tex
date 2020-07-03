@@ -37,9 +37,8 @@ void begintokenlist(halfword p, quarterword t)
 					default: 
 						printnl(cmdchr(assign_toks, t-output_text+output_routine_loc));
 				}
-				print("->");
-				tokenshow(p);
-				enddiagnostic(false);
+				print("->"+tokenshow(p));
+				print(enddiagnostic(false));
 			}
 		}
 	}

@@ -14,18 +14,14 @@ void issuemessage(void)
 	link(garbage) = scantoks(false, true);
 	auto oldsetting = selector;
 	selector = new_string;
-	tokenshow(defref);
+	print(tokenshow(defref));
 	selector = oldsetting;
 	flushlist(defref);
 	str_room(1);
 	auto s = makestring(); 
 	if (c == 0)
 	{
-		if (termoffset+s.size() > maxprintline-2)
-			println();
-		else 
-			if (termoffset > 0 || fileoffset > 0)
-			print(" ");
+		print(termoffset+s.size() > maxprintline-2 ? "\n": termoffset > 0 || fileoffset > 0 ? " " : "");
 		slowprint(s);
 		std::cout << std::flush;
 	}

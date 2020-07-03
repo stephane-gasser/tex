@@ -13,8 +13,7 @@ void error(void)
 {
 	if (history < error_message_issued)
 		history = error_message_issued;
-	print(".");
-	showcontext();
+	print("."+showcontext());
 	if (interaction == error_stop_mode)
 		while (true)
 		{
@@ -63,7 +62,7 @@ void error(void)
 						helpptr = 2;
 						helpline[1] = "I have just deleted some text, as you asked.";
 						helpline[0] = "You can now delete more, or insert, or whatever.";
-						showcontext();
+						print(showcontext());
 						return;
 					}
 					break;
@@ -138,8 +137,7 @@ void error(void)
 						case 'S':
 							print(esc("scrollmode"));
 					}
-					print(" ...");
-					println();
+					print(" ...\n");
 					std::cout << std::flush;
 					return;
 				case 'X':

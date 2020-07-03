@@ -52,8 +52,7 @@ void writeout(halfword p)
 			selector = log_only;
 		printnl(""); 
 	}
-	tokenshow(defref);
-	println();
+	print(tokenshow(defref)+"\n");
 	flushlist(defref);
 	selector = oldsetting;
 }

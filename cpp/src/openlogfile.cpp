@@ -26,16 +26,12 @@ void openlogfile(void)
 	char months[] = "JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC";
 	for (int k = 3*month()-2; k<= 3*month(); k++)
 		logfile << months[k];
-	print(" "+std::to_string(year())+" ");
-	printtwo(time()/60);
-	print(":");
-	printtwo(time()%60);
+	print(" "+std::to_string(year())+" "+twoDigits(time()/60)+":"+twoDigits(time()%60));
 	inputstack[inputptr] = curinput;
 	printnl("**");
 	int l = inputstack[0].limitfield;
 	if (buffer[l] == end_line_char())
 		l--;
-	print(std::string(buffer+1, buffer+l+1));
-	println();
+	print(std::string(buffer+1, buffer+l+1)+"\n");
 	selector = oldsetting+2;
 }

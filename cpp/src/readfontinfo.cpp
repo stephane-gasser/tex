@@ -12,8 +12,7 @@ static int default_skew_char(void) { return int_par(default_skew_char_code); }
 
 static void start_font_error_message(halfword u, scaled s, const std::string &nom, const std::string &aire)
 {
-	print_err("Font "+scs(u)+"=");
-	printfilename(nom, aire, "");
+	print_err("Font "+scs(u)+"="+asFilename(nom, aire, ""));
 	if (s >= 0)
 		print(" at "+asScaled(s)+"pt");
 	else 

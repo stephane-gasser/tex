@@ -9,8 +9,7 @@ void firmuptheline(void)
 	limit = last;
 	if (pausing() > 0 && interaction > nonstop_mode)
 	{
-		println();
-		print(std::string(buffer+start, buffer+limit)+"=>");
+		print("\n"+std::string(buffer+start, buffer+limit)+"=>");
 		First = limit;
 		terminput();
 		if (last > First)

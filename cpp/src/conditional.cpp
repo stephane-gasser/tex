@@ -189,7 +189,7 @@ void conditional(void)
 			{
 				begindiagnostic();
 				print("{case "+std::to_string(n)+"}");
-				enddiagnostic(false);
+				print(enddiagnostic(false));
 			}
 			while (n)
 			{
@@ -233,7 +233,7 @@ void conditional(void)
 			print("{true}");
 		else
 			print("{false}");
-		enddiagnostic(false);
+		print(enddiagnostic(false));
 	}
 	if (b)
 	{

@@ -11,7 +11,7 @@ void specialout(halfword p)
 	synch_v();
 	auto oldsetting = selector;
 	selector = new_string;
-	showtokenlist(link(link(p+1)), 0, poolsize-poolptr);
+	print(tokenlist(link(write_tokens(p)), 0, poolsize-poolptr));
 	selector = oldsetting;
 	str_room(1); 
 	if (cur_length() < 256)

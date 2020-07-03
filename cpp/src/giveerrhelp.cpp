@@ -3,5 +3,5 @@
 
 void giveerrhelp(void)
 {
-	tokenshow(err_help());
+	print(tokenshow(err_help()));
 }

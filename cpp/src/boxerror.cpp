@@ -11,9 +11,8 @@ void boxerror(eightbits n)
 {
 	error();
 	begindiagnostic();
-	printnl("The following box has been deleted:");
-	showbox(box(n));
-	enddiagnostic(true);
+	printnl("The following box has been deleted:"+showbox(box(n)));
+	print(enddiagnostic(true));
 	flushnodelist(box(n));
 	box(n) = 0;
 }

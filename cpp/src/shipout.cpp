@@ -35,16 +35,7 @@ static void ensure_dvi_open(void)
 void shipout(halfword p)
 {
 	if (tracing_output())
-	{
-		printnl("");
-		println();
-		print("Completed box being shipped out");
-	}
-	if (termoffset > maxprintline-9)
-		println();
-	else 
-		if (termoffset > 0 || fileoffset > 0)
-		print(" ");
+		printnl("\nCompleted box being shipped out"+std::string(termoffset > maxprintline-9 ? "\n" : termoffset > 0 || fileoffset > 0 ? " " : ""));
 	print("[");
 	int j = 9;
 	while (count(j) == 0 && j > 0)
@@ -60,8 +51,8 @@ void shipout(halfword p)
 	{
 		print("]");
 		begindiagnostic();
-		showbox(p);
-		enddiagnostic(true);
+		print(showbox(p));
+		print(enddiagnostic(true));
 	}
 	if (height(p) > max_dimen || depth(p) > max_dimen 
 	 || height(p)+depth(p)+v_offset() > max_dimen 
@@ -74,10 +65,9 @@ void shipout(halfword p)
 		error();
 		if (tracing_output() <= 0)
 		{
-			begindiagnostic;
-			printnl("The following box has been deleted:");
-			showbox(p);
-			enddiagnostic(true);
+			begindiagnostic();
+			printnl("The following box has been deleted:"+showbox(p));
+			print(enddiagnostic(true));
 		}
 		if (tracing_output() <= 0)
 		print("]");
@@ -105,13 +95,7 @@ void shipout(halfword p)
 		dvifour(mag());
 		oldsetting = selector;
 		selector = new_string;
-		print(" TeX output "+std::to_string(year())+".");
-		printtwo(month());
-		print(".");
-		printtwo(day());
-		print(":");
-		printtwo(time()/60);
-		printtwo(time()%60);
+		print(" TeX output "+std::to_string(year())+"."+twoDigits(month())+"."+twoDigits(day())+":"+twoDigits(time()/60)+twoDigits(time()%60));
 		selector = oldsetting;
 		dvi_out(cur_length());
 		for (auto s = strstart[strptr]; s < poolptr; s++)

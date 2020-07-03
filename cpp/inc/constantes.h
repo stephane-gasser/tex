@@ -31,7 +31,7 @@ enum
 	or_code = 4, //code for \or
 };
 
-enum
+enum selector
 {
 	no_print = 16, //!< \a selector setting that makes data disappear
 	term_only = 17, //!<  printing is destined for the terminal only

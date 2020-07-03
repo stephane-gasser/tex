@@ -11,6 +11,6 @@ void charwarning(internalfontnumber f, eightbits c)
 		printnl("Missing character: There is no "+std::string(1, c)+" in font ");
 		slowprint(fontname[f]);
 		print("!");
-		enddiagnostic(false);
+		print(enddiagnostic(false));
 	}
 }

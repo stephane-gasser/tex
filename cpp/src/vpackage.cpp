@@ -15,12 +15,11 @@ static void goto50(halfword r)
 			print(") in alignment at lines "+std::to_string(abs(packbeginline))+"--");
 		else
 			print(") detected at line ");
-		print(std::to_string(line));
-		println();
+		print(std::to_string(line)+"\n");
 	}
 	begindiagnostic();
-	showbox(r);
-	enddiagnostic(true);
+	print(showbox(r));
+	print(enddiagnostic(true));
 }
 
 //! special case of unconstrained depth
@@ -141,8 +140,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 				lastbadness = badness(x, totalstretch[0]);
 				if (lastbadness > vbadness())
 				{
-					println();
-					printnl(std::string(lastbadness > 100 ? "Underfull": "Loose")+"\\vbox (badness "+std::to_string(lastbadness));
+					print("\n"+std::string(lastbadness > 100 ? "Underfull": "Loose")+"\\vbox (badness "+std::to_string(lastbadness));
 					goto50(r);
 				}
 			}
@@ -175,8 +173,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 				glue_set(r) = 1.0;
 				if (-x-totalshrink[0] > vfuzz() || vbadness() < 100)
 				{
-					println();
-					printnl("Overfull \\vbox ("+asScaled(-x-totalshrink[0])+"pt too high");
+					print("\nOverfull \\vbox ("+asScaled(-x-totalshrink[0])+"pt too high");
 					goto50(r);
 				}
 			}
@@ -186,8 +183,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 					lastbadness = badness(-x, totalshrink[0]);
 					if (lastbadness > vbadness())
 					{
-						println();
-						printnl("Tight \\vbox (badness "+std::to_string(lastbadness));
+						print("\nTight \\vbox (badness "+std::to_string(lastbadness));
 						goto50(r);
 					}
 				}

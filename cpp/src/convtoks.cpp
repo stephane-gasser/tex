@@ -14,21 +14,21 @@ void convtoks(void)
 	smallnumber savescannerstatus;
 	switch (c)
 	{
-		case 0:
-		case 1: 
+		case number_code:
+		case roman_numeral_code: 
 			scanint();
 			break;
-		case 2:
-		case 3:
+		case string_code:
+		case meaning_code:
 			savescannerstatus = scannerstatus;
 			scannerstatus = 0;
 			gettoken();
 			scannerstatus = savescannerstatus;
 			break;
-		case 4: 
+		case font_name_code: 
 			scanfontident();
 			break;
-		case 5: 
+		case job_name_code: 
 			if (jobname == "")
 				openlogfile();
 	}
@@ -37,22 +37,22 @@ void convtoks(void)
 	auto b = poolptr;
 	switch (c)
 	{
-		case 0: 
+		case number_code: 
 			print(std::to_string(curval));
 			break;
-		case 1: 
-			printromanint(curval);
+		case roman_numeral_code: 
+			print(romanint(curval));
 			break;
-		case 2: 
+		case string_code: 
 			print(curcs ? scs(curcs) : std::string(1, curchr));
 			break;
-		case 3: 
-			printmeaning();
+		case meaning_code: 
+			print(meaning());
 			break;
-		case 4:
+		case font_name_code:
 			print(fontname[curval]+(fontsize[curval] != fontdsize[curval] ? " at "+asScaled(fontsize[curval])+"pt" : ""));
 			break;
-		case 5: 
+		case job_name_code: 
 			print(jobname);
 	}
 	selector = oldsetting;

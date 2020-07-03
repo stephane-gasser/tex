@@ -40,11 +40,11 @@ halfword thetoks(void)
 			print(asScaled(curval)+"pt");
 			break;
 		case glue_val:
-			printspec(curval, "pt");
+			print(asSpec(curval, "pt"));
 			deleteglueref(curval);
 			break;
 		case mu_val:
-			printspec(curval, "mu");
+			print(asSpec(curval, "mu"));
 			deleteglueref(curval);
 	}
 	selector = oldsetting;

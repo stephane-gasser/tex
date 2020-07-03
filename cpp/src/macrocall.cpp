@@ -24,10 +24,8 @@ void macrocall(void)
 	if (tracing_macros() > 0)
 	{
 		begindiagnostic();
-		println();
-		print(cs(warningindex));
-		tokenshow(refcount);
-		enddiagnostic(false);
+		print("\n"+cs(warningindex)+tokenshow(refcount));
+		print(enddiagnostic(false));
 	}
 	ASCIIcode matchchr;
 	if (info(r) != end_match_token) 
@@ -249,9 +247,8 @@ void macrocall(void)
 				{
 					begindiagnostic();
 					print(std::string(1, matchchr));
-					printnl(std::to_string(n)+"<-");
-					showtokenlist(pstack[n-1], 0, 1000);
-					enddiagnostic(false);
+					printnl(std::to_string(n)+"<-"+tokenlist(pstack[n-1], 0, 1000));
+					print(enddiagnostic(false));
 				}
 			}
 		} while (info(r) != end_match_token); 

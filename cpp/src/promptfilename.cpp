@@ -12,16 +12,10 @@
 void promptfilename(const std::string &s, const std::string &e)
 {
 	if (interaction == scroll_mode)
-		if (s == "input file name")
-			print_err("I can't find file `");
-		else
-			print_err("I can't write on file `");
-	printfilename(curname, curarea, curext);
-	print("'.");
+	print_err(s == "input file name" ? "I can't find file `" : "I can't write on file `"+asFilename(curname, curarea, curext)+"'.");
 	if (e == ".tex")
-		showcontext();
-	printnl("Please type another ");
-	print(s);
+		print(showcontext());
+	printnl("Please type another "+s);
 	if (interaction < scroll_mode)
 		fatalerror("*** (job aborted, file error in nonstop mode)");
 	std::cin.clear();

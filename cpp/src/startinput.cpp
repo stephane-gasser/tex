@@ -41,12 +41,7 @@ void startinput(void)
 		jobname = curname;
 		openlogfile();
 	}
-	if (termoffset+name.size() > maxprintline-2)
-		println();
-	else 
-		if (termoffset > 0 || fileoffset > 0)
-		print(" ");
-	print("(");
+	print(std::string(termoffset+name.size() > maxprintline-2 ? "\n" : termoffset > 0 || fileoffset > 0 ? " " : "")+"(");
 	openparens++;
 	slowprint(name);
 	std::cout << std::flush;

@@ -19,11 +19,10 @@ static void goto50(halfword r)
 			print(") detected at line"+std::to_string(line));
 	println();
 	fontinshortdisplay = null_font;
-	shortdisplay(list_ptr(r));
-	println();
+	print(shortdisplay(list_ptr(r))+"\n");
 	begindiagnostic();
-	showbox(r);
-	enddiagnostic(true);
+	print(showbox(r));
+	print(enddiagnostic(true));
 }
 
 halfword hpack(halfword p, scaled w, smallnumber m)
@@ -220,8 +219,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 						link(q) = newrule();
 						width(link(q)) = overfull_rule();
 					}
-					println();
-					printnl("Overfull \\hbox ("+asScaled(-x-totalshrink[0])+"pt too wide");
+					print("\nOverfull \\hbox ("+asScaled(-x-totalshrink[0])+"pt too wide");
 					goto50(r);
 				}
 			}
@@ -232,8 +230,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 						lastbadness = badness(-x, totalshrink[0]);
 						if (lastbadness > hbadness())
 						{
-							println();
-							printnl("Tight \\hbox (badness "+std::to_string(lastbadness));
+							print("\nTight \\hbox (badness "+std::to_string(lastbadness));
 							goto50(r);
 						}
 					}

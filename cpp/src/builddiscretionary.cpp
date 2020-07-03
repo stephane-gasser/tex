@@ -27,9 +27,8 @@ void builddiscretionary(void)
 			helpline[0] = "Discretionary lists must contain only boxes and kerns.";
 			error();
 			begindiagnostic();
-			printnl("The following discretionary sublist has been deleted:");
-			showbox(p);
-			enddiagnostic(true);
+			printnl("The following discretionary sublist has been deleted:"+showbox(p));
+			print(enddiagnostic(true));
 			flushnodelist(p);
 			link(q) = 0;
 			break;

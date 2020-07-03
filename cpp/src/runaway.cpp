@@ -25,8 +25,6 @@ void runaway(void)
 				print("text");
 				p = defref;
 		}
-		print("?");
-		println();
-		showtokenlist(link(p), 0, errorline-10);
+		print("?\n"+tokenlist(link(p), 0, errorline-10));
 	}
 }

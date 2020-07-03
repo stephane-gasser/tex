@@ -1,5 +1,5 @@
 #include "storefmtfile.h"
-#include "impression.h"
+#include "impression.h" 
 #include "error.h"
 #include "jumpout.h"
 #include "overflow.h"
@@ -76,8 +76,7 @@ void storefmtfile(void)
 		dump_four_ASCII(k);
 	k = poolptr-4;
 	dump_four_ASCII(k);
-	println();
-	print(std::to_string(strptr)+" strings of total length "+std::to_string(poolptr));
+	print("\n"+std::to_string(strptr)+" strings of total length "+std::to_string(poolptr));
 	sortavail();
 	varused = 0;
 	dump_int(lomemmax);
@@ -112,8 +111,7 @@ void storefmtfile(void)
 	}
 	dump_int(varused);
 	dump_int(dynused);
-	println();
-	print(std::to_string(x)+" memory locations dump_inted; current usage is "+std::to_string(varused)+"&"+std::to_string(dynused));
+	print("\n"+std::to_string(x)+" memory locations dump_inted; current usage is "+std::to_string(varused)+"&"+std::to_string(dynused));
 	k = active_base;
 	do
 	{
@@ -211,8 +209,7 @@ void storefmtfile(void)
 		dump_int(fontbchar[k]);
 		dump_int(fontfalsebchar[k]);
 		printnl("\\font");
-		print(esc(TXT(text(font_id_base+k)))+esc("FONT")+"=");
-		printfilename(fontname[k], fontarea[k], "");
+		print(esc(TXT(text(font_id_base+k)))+esc("FONT")+"="+asFilename(fontname[k], fontarea[k], ""));
 		if (fontsize[k] != fontdsize[k])
 			print(" at "+asScaled(fontsize[k])+"pt");
 	}
