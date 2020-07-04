@@ -283,7 +283,7 @@ static std::string fontandchar(int p)
 	return esc(TXT(text(frozen_null_font+type(p))))+esc("FONT")+" "+TXT(subtype(p));
 }
 
-static std::string glue(scaled d, int order, const std::string &s)
+static std::string glue(scaled d, int order, const std::string &s = "")
 {
 	if (order < 0 || order > 3)
 		return asScaled(d)+"foul";
@@ -364,16 +364,16 @@ std::string romanint(int n)
 	constexpr char s[] = "m2d5c2l5x2v5i";
 	int j = 0;
 	int v = 1000;
-	std::string output;
+	std::ostringstream oss;
 	while (true)
 	{
 		while (n >= v)
 		{
-			output += s[j];
+			oss << s[j];
 			n -= v;
 		}
 		if (n <= 0)
-			return output;
+			return oss.str();
 		int k = j+2;
 		int u = v/(s[j+1]-'0');
 		if (s[j+1] == '2')
@@ -383,7 +383,7 @@ std::string romanint(int n)
 		}
 		if (n+u >= v)
 		{
-			output += s[k];
+			oss << s[k];
 			n += u;
 		}
 		else
@@ -392,7 +392,7 @@ std::string romanint(int n)
 			v /= s[j-1]-'0';
 		}
 	}
-	return output;
+	return oss.str();
 }
 
 static std::string ruledimen(scaled d)
@@ -429,23 +429,23 @@ static std::string subsidiarydata(halfword p, ASCIIcode c)
 	}
 	append_char(c);
 	tempptr = p;
-	std::string output;
+	std::ostringstream oss;
 	switch (math_type(p))
 	{
 		case math_char:
-			output = "\n"+currentstring()+famandchar(p);
+			oss << "\n" << currentstring() << famandchar(p);
 			break;
 		case sub_box: 
-			output = showinfo();
+			oss << showinfo();
 			break;
 		case sub_mlist: 
 			if (info(p) == 0)
-				output = "\n"+currentstring()+"{}";
+				oss << "\n" << currentstring() << "{}";
 			else
-				output = showinfo();
+				oss << showinfo();
 	}
 	poolptr--;
-	return output;
+	return oss.str();
 }
 
 std::string twoDigits(int n)
@@ -478,7 +478,7 @@ void print_err(const std::string &s)
 
 std::string tokenlist(int p, int q, int l)
 {
-	std::string output;
+	std::ostringstream oss;
 	ASCIIcode matchchr = '#';
 	ASCIIcode n = '0';
 	tally = 0;
@@ -492,15 +492,15 @@ std::string tokenlist(int p, int q, int l)
 				trickcount = errorline;
 		}
 		if (p < himemmin || p > memend)
-			return output+esc("CLOBBERED.");
+			return oss.str()+esc("CLOBBERED.");
 		if (info(p) >= cs_token_flag)
-			output += cs(info(p)-cs_token_flag);
+			oss << cs(info(p)-cs_token_flag);
 		else
 		{
 			int m = info(p)/0x1'00;
 			int c = info(p)%0x1'00;
 			if (info(p) < 0)
-				output += esc("BAD.");
+				oss << esc("BAD.");
 			else
 				switch (m)
 				{
@@ -513,37 +513,35 @@ std::string tokenlist(int p, int q, int l)
 					case spacer:
 					case letter:
 					case other_char: 
-						output += char(c);
+						oss << char(c);
 						break;
 					case mac_param:
-						output += char(c);
-						output += char(c);
+						oss << char(c) << char(c);
 						break;
 					case out_param:
-						output += char(matchchr);
+						oss << char(matchchr);
 						if (c > 9)
-							return output+char('!');
-						output += char(c+'0');
+							return oss.str()+char('!');
+						oss << c;
 						break;
 					case match:
 						matchchr = c;
-						output += char(c);
-						output += char(++n);
+						oss << char(c) << char(++n);
 						if (n > '9')
-							return output;
+							return oss.str();
 						break;
 					case end_match: 
-						output += "->";
+						oss << "->";
 						break;
 					default:
-			  			output += esc("BAD.");
+			  			oss << esc("BAD.");
 				}
 		}
 		p = link(p);
 	}
 	if (p)
-		output += esc("ETC.");
-	return output;
+		oss << esc("ETC.");
+	return oss.str();
 }
 
 std::string tokenshow(halfword p)
@@ -558,7 +556,7 @@ static halfword& font_id_text(halfword p) { return text(font_id_base+p); }
 
 std::string shortdisplay(int p)
 {
-	std::string output;
+	std::ostringstream oss;
 	while (p > memmin)
 	{
 		if (p >= himemmin)
@@ -568,13 +566,12 @@ std::string shortdisplay(int p)
 				if (font(p) != fontinshortdisplay)
 				{
 					if (font(p) < 0 || font(p) > fontmax)
-						output += "*";
+						oss << "* ";
 					else
-						output += esc(TXT(font_id_text(p)));
-					output += " ";
+						oss << esc(TXT(font_id_text(p))) << " ";
 					fontinshortdisplay = font(p);
 				}
-				output += character(p);
+				oss << character(p);
 			}
 		}
 		else
@@ -587,31 +584,30 @@ std::string shortdisplay(int p)
 				case mark_node:
 				case adjust_node:
 				case unset_node: 
-					output += "[]";
+					oss << "[]";
 					break;
 				case rule_node: 
-					output += "|";
+					oss << "|";
 					break;
 				case glue_node: 
 					if (glue_ptr(p) != zero_glue)
-						output += " ";
+						oss << " ";
 					break;
 				case math_node:
-					output += "$";
+					oss << "$";
 					break;
 				case ligature_node:
-					output += shortdisplay(lig_ptr(p));
+					oss << shortdisplay(lig_ptr(p));
 					break;
 				case disc_node:
-					output += shortdisplay(pre_break(p));
-					output += shortdisplay(post_break(p));
+					oss << shortdisplay(pre_break(p)) << shortdisplay(post_break(p));
 					for (int n = replace_count(p); n > 0; n--)
 						if (link(p))
 							p = link(p);
 			}
 		p = link(p);
 	}
-	return output;
+	return oss.str();
 }
 
 static std::string shownodelist(int p);
@@ -633,17 +629,17 @@ static std::string shownodelist(int p)
 		return "";
 	}
 	int n = 0;
-	std::string output;
+	std::ostringstream oss;
 	while (p > memmin)
 	{
-		output += "\n"+currentstring();
+		oss << "\n" << currentstring();
 		if (p > memend)
-			return output+"Bad link, display aborted.";
+			return oss.str()+"Bad link, display aborted.";
 		n++;
 		if (n > breadthmax)
-			return output+"etc.";
+			return oss.str()+"etc.";
 		if (is_char_node(p))
-			output += fontandchar(p);
+			oss << fontandchar(p);
 		else
 			switch (type(p))
 			{
@@ -651,193 +647,186 @@ static std::string shownodelist(int p)
 				case vlist_node:
 				case unset_node:
 					if (type(p) == hlist_node)
-						output += esc("hbox");
+						oss << esc("hbox");
 					else 
 						if (type(p) == vlist_node)
-							output += esc("vbox");
+							oss << esc("vbox");
 						else
-							output += esc("unsetbox");
-					output += "("+asScaled(height(p))+"+"+asScaled(depth(p))+")x"+asScaled(width(p));
+							oss << esc("unsetbox");
+					oss << "(" << asScaled(height(p)) << "+" << asScaled(depth(p)) << ")x" << asScaled(width(p));
 					if (type(p) == unset_node)
 					{
 						if (span_count(p))
-							output += " ("+std::to_string(span_count(p)+1)+" columns)";
+							oss << " (" << span_count(p)+1 << " columns)";
 						if (glue_stretch(p))
-							output += ", stretch "+glue(glue_stretch(p), glue_order(p), "");
+							oss << ", stretch " << glue(glue_stretch(p), glue_order(p));
 						if (glue_shrink(p))
-							output += ", shrink "+glue(glue_shrink(p), glue_sign(p), "");
+							oss << ", shrink " << glue(glue_shrink(p), glue_sign(p));
 					}
 					else
 					{
 						g = glue_set(p);
 						if (g && glue_sign(p))
 						{
-							output += ", glue set ";
+							oss << ", glue set ";
 							if (glue_sign(p) == shrinking)
-								output += "- ";
+								oss << "- ";
 							if (!std::isfinite(glue_set(p)))
-								output += "?.?";
+								oss << "?.?";
 							else 
 								if (abs(g) > 20000.0)
 								{
 									if (g > 0.0)
-										output += ">";
+										oss << ">";
 									else
-										output += "< -";
-									output += glue(20000*unity, glue_order(p), "");
+										oss << "< -";
+									oss << glue(20000*unity, glue_order(p));
 								}
 								else
-									output += glue(round(unity*g), glue_order(p), "");
+									oss << glue(round(unity*g), glue_order(p));
 						}
 						if (shift_amount(p))
-							output += ", shifted "+asScaled(shift_amount(p));
+							oss << ", shifted " << asScaled(shift_amount(p));
 					}
 					node_list_display(list_ptr(p));
 					break;
 				case rule_node:
-					output += esc("rule")+"("+ruledimen(width(p))+"+"+ruledimen(depth(p))+")x"+ruledimen(width(p));
+					oss << esc("rule") << "(" << ruledimen(width(p)) << "+" << ruledimen(depth(p)) << ")x" << ruledimen(width(p));
 					break;
 				case ins_node:
-					output += esc("insert")+std::to_string(subtype(p))+", natural size "+asScaled(height(p))+"; split(";
-					output += asSpec(split_top_ptr(p), "")+","+asScaled(depth(p))+"); float cost "+std::to_string(float_cost(p));
-					output += node_list_display(ins_ptr(p));
+					oss << esc("insert") << subtype(p) << ", natural size " << asScaled(height(p)) << "; split("
+						<< asSpec(split_top_ptr(p), "") << "," << asScaled(depth(p)) << "); float cost " << float_cost(p)
+						<< node_list_display(ins_ptr(p));
 					break;
 				case whatsit_node:
 					switch (subtype(p))
 					{
 						case 0:
-							output += writewhatsit("openout", p);
-							output += "=";
-							output += asFilename(TXT(open_name(p)), TXT(open_area(p)), TXT(open_ext(p)));
+							oss << writewhatsit("openout", p) << "=" << asFilename(TXT(open_name(p)), TXT(open_area(p)), TXT(open_ext(p)));
 							break;
 						case 1:
-							output += writewhatsit("write", p);
-							output += asMark(write_tokens(p));
+							oss << writewhatsit("write", p) << asMark(write_tokens(p));
 							break;
 						case 2: 
-							output += writewhatsit("closeout", p); 
+							oss << writewhatsit("closeout", p); 
 							break;
 						case 3:
-							output += esc("special")+asMark(write_tokens(p));
+							oss << esc("special") << asMark(write_tokens(p));
 							break;
 						case 4:
-							output += esc("setlanguage")+std::to_string(what_lang(p))+" (hyphenmin"+std::to_string(what_lhm(p))+","+std::to_string(what_rhm(p))+")";
+							oss << esc("setlanguage") <<what_lang(p) << " (hyphenmin" << what_lhm(p) << "," << what_rhm(p) << ")";
 							break;
 						default: 
-							output += "whatsit?";
+							oss << "whatsit?";
 					}
 					break;
 				case glue_node:
 					if (subtype(p) >= a_leaders)
-					{
-						output += esc(subtype(p) == c_leaders ? "cleaders" : subtype(p) == x_leaders ? "xleaders" : "leaders ");
-						output += asSpec(glue_ptr(p), "");
-						output += node_list_display(leader_ptr(p));
-					}
+						oss << esc(subtype(p) == c_leaders ? "cleaders" : subtype(p) == x_leaders ? "xleaders" : "leaders ") 
+							<< asSpec(glue_ptr(p), "") << node_list_display(leader_ptr(p));
 					else
 					{
-						output += esc("glue");
+						oss << esc("glue");
 						if (subtype(p) != normal)
 						{
-							output += "(";
+							oss << "(";
 							if (subtype(p) < cond_math_glue)
 							{
 								int n = subtype(p)-1;
 								if (primName[assign_glue].find(n) != primName[assign_glue].end())
-										output += esc(primName[assign_glue][n]);
+										oss << esc(primName[assign_glue][n]);
 									else 
 										if (primName[assign_mu_glue].find(n) != primName[assign_mu_glue].end())
-											output += esc(primName[assign_mu_glue][n]);
+											oss << esc(primName[assign_mu_glue][n]);
 										else
-											output += "[unknown glue parameter!]";
+											oss << "[unknown glue parameter!]";
 							
 							}
 							else 
 								if (subtype(p) == cond_math_glue)
-								output += esc("nonscript");
+								oss << esc("nonscript");
 							else
-								output += esc("mskip");
-							output += ")";
+								oss << esc("mskip");
+							oss << ")";
 						}
 						if (subtype(p) != cond_math_glue)
 						{
-							output += " ";
+							oss << " ";
 							if (subtype(p) < cond_math_glue)
-								output += asSpec(glue_ptr(p), "");
+								oss << asSpec(glue_ptr(p), "");
 							else
-								output += asSpec(glue_ptr(p), "mu");
+								oss << asSpec(glue_ptr(p), "mu");
 						}
 					}
 				case kern_node:
 					if (subtype(p) != mu_glue)
 					{
-						output += esc("kern");
+						oss << esc("kern");
 						if (subtype(p) != normal)
-							output += " ";
-						output += asScaled(width(p));
+							oss << " ";
+						oss << asScaled(width(p));
 						if (subtype(p) == acc_kern)
-							output += " (for accent)";
+							oss << " (for accent)";
 					}
 					else
-						output += esc("mkern")+asScaled(width(p))+"mu";
+						oss << esc("mkern") << asScaled(width(p)) << "mu";
 					break;
 				case math_node:
-					output += esc("math");
+					oss << esc("math");
 					if (subtype(p) == before)
-						output += "on";
+						oss << "on";
 					else
-						output += "off";
+						oss << "off";
 					if (width(p))
-						output += ", surrounded "+asScaled(width(p));
+						oss << ", surrounded " << asScaled(width(p));
 					break;
 				case ligature_node:
-					output += fontandchar(lig_char(p))+" (ligature ";
+					oss << fontandchar(lig_char(p)) << " (ligature ";
 					if (subtype(p) > 1)
-						output += "|";
+						oss << "|";
 					fontinshortdisplay = font(lig_char(p));
-					output += shortdisplay(lig_char(p));
+					oss << shortdisplay(lig_char(p));
 					if (subtype(p)%2)
-						output += "|";
-					output += ")";
+						oss << "|";
+					oss << ")";
 					break;
 				case penalty_node:
-					output += esc("penalty ")+std::to_string(penalty(p));
+					oss << esc("penalty ") << penalty(p);
 					break;
 				case disc_node:
-					output += esc("discretionary");
+					oss << esc("discretionary");
 					if (subtype(p) > 0)
-						output += " replacing "+std::to_string(subtype(p));
-					output += node_list_display(pre_break(p));
+						oss << " replacing " <<subtype(p);
+					oss << node_list_display(pre_break(p));
 					append_char('|');
-					output += shownodelist(post_break(p));
+					oss << shownodelist(post_break(p));
 					flush_char();
 					break;
 				case mark_node:
-					output += esc("mark")+asMark(mark_ptr(p));
+					oss << esc("mark") << asMark(mark_ptr(p));
 					break;
 				case adjust_node:
-					output += esc("vadjust");
-					output += node_list_display(adjust_ptr(p));
+					oss << esc("vadjust") << node_list_display(adjust_ptr(p));
 					break;
 				case style_node: 
 					if (primName[math_style].find(subtype(p)) != primName[math_style].end())
-						output += esc(primName[math_style][subtype(p)]);
+						oss << esc(primName[math_style][subtype(p)]);
 					else
-						output += "Unknown style!";
+						oss << "Unknown style!";
 					break;
 				case choice_node:
-					output += esc("mathchoice");
+					oss << esc("mathchoice");
 					append_char('D');
-					output += shownodelist(display_mlist(p));
+					oss << shownodelist(display_mlist(p));
 					flush_char();
 					append_char('T');
-					output += shownodelist(text_mlist(p));
+					oss << shownodelist(text_mlist(p));
 					flush_char();
 					append_char('S');
-					output += shownodelist(script_mlist(p));
+					oss << shownodelist(script_mlist(p));
 					flush_char();
 					append_char('s');
-					output += shownodelist(script_script_mlist(p));
+					oss << shownodelist(script_script_mlist(p));
 					flush_char();
 					break;
 				case ord_noad:
@@ -858,81 +847,81 @@ static std::string shownodelist(int p)
 					switch (type(p))
 					{
 						case ord_noad: 
-							output += esc("mathord");
+							oss << esc("mathord");
 							break;
 						case op_noad: 
-							output += esc("mathop");
+							oss << esc("mathop");
 							break;
 						case bin_noad: 
-							output += esc("mathbin");
+							oss << esc("mathbin");
 							break;
 						case rel_noad: 
-							output += esc("mathrel");
+							oss << esc("mathrel");
 							break;
 						case open_noad: 
-							output += esc("mathopen");
+							oss << esc("mathopen");
 							break;
 						case close_noad: 
-							output += esc("mathclose");
+							oss << esc("mathclose");
 							break;
 						case punct_noad: 
-							output += esc("mathpunct");
+							oss << esc("mathpunct");
 							break;
 						case inner_noad: 
-							output += esc("mathinner");
+							oss << esc("mathinner");
 							break;
 						case over_noad: 
-							output += esc("overline");
+							oss << esc("overline");
 							break;
 						case under_noad: 
-							output += esc("underline");
+							oss << esc("underline");
 							break;
 						case vcenter_noad: 
-							output += esc("vcenter");
+							oss << esc("vcenter");
 							break;
 						case radical_noad:
-							output += esc("radical")+asDelimiter(left_delimiter(4));
+							oss << esc("radical") << asDelimiter(left_delimiter(p));
 							break;
 						case accent_noad:
-							output += esc("accent")+famandchar(accent_chr(p));
+							oss << esc("accent") << famandchar(accent_chr(p));
 							break;
 						case left_noad:
-							output += esc("left")+asDelimiter(delimiter(p));
+							oss << esc("left") << asDelimiter(delimiter(p));
 							break;
 						case right_noad:
-							output += esc("right")+asDelimiter(delimiter(p));
+							oss << esc("right") << asDelimiter(delimiter(p));
 					}
 					if (subtype(p))
 						if (subtype(p) == limits)
-							output += esc("limits");
+							oss << esc("limits");
 						else
-							output += esc("nolimits");
+							oss << esc("nolimits");
 					if (type(p) < left_noad)
-						output += subsidiarydata(nucleus(p), '.');
-					output += subsidiarydata(supscr(p), '^');
-					output += subsidiarydata(subscr(p), '_');
+						oss << subsidiarydata(nucleus(p), '.');
+					oss << subsidiarydata(supscr(p), '^');
+					oss << subsidiarydata(subscr(p), '_');
 					break;
 				case fraction_noad:
-					output += esc("fraction, thickness ")+(new_hlist(p) == default_code ? "= default": asScaled(new_hlist(p)));
+					oss << esc("fraction, thickness ") << (new_hlist(p) == default_code ? "= default": asScaled(new_hlist(p)));
 					if (small_fam(left_delimiter(p))
 					 || small_char(left_delimiter(p))
 					 || large_fam(left_delimiter(p))
 					 || large_char(left_delimiter(p)))
-						output += ", left-delimiter "+asDelimiter(left_delimiter(p));
+						oss << ", left-delimiter " << asDelimiter(left_delimiter(p));
 					if (small_fam(right_delimiter(p))
 					 || small_char(right_delimiter(p))
 					 || large_fam(right_delimiter(p))
 					 || large_char(right_delimiter(p)))
-						output += ", right-delimiter "+asDelimiter(right_delimiter(p));
-					output += subsidiarydata(numerator(p), '\\');
-					output += subsidiarydata(denominator(p), '/');
+						oss << ", right-delimiter " << asDelimiter(right_delimiter(p));
+					oss << subsidiarydata(numerator(p), '\\');
+					oss << subsidiarydata(denominator(p), '/');
 					break;
 				default: 
-					output += "Unknown node type!";
+					oss << "Unknown node type!";
 			}
 		p = link(p);
 	}
-	return output;
+	return oss.str();
 }
 
 static std::string showinfo(void)
@@ -979,7 +968,7 @@ std::string showcontext(void)
 	inputstack[baseptr] = curinput; 
 	int nn = -1;
 	bool bottomline = false;
-	std::string output;
+	std::ostringstream oss;
 	while (true) 
 	{
 		curinput = inputstack[baseptr];
@@ -996,12 +985,11 @@ std::string showcontext(void)
 				{
 					if (txt(name) <= 17)
 						if (terminal_input(name))
-							output += baseptr == 0 ? "\r<*>" : "\r<insert> ";
+							oss << (baseptr == 0 ? "\r<*> " : "\r<insert>  ");
 						else
-							output += "\r<read "+(txt(name) == 17 ? "*" : std::to_string((txt(name)-1)))+">";
+							oss << ("\r<read "+(txt(name) == 17 ? "*" : std::to_string((txt(name)-1)))+"> ");
 					else
-						output += "\rl."+std::to_string(line);
-					output += " ";
+						oss << "\rl."+std::to_string(line) << " ";
 					begin_pseudoprint(l);
 					int j;
 					if (buffer[limit] == end_line_char())
@@ -1013,7 +1001,7 @@ std::string showcontext(void)
 						{
 							if (i == loc)
 								set_trick_count();
-							output += buffer[i];
+							oss << buffer[i];
 						}
 				}
 				else
@@ -1021,59 +1009,59 @@ std::string showcontext(void)
 					switch (token_type)
 					{
 						case parameter: 
-							output += "\r<argument> ";
+							oss << "\r<argument> ";
 							break;
 						case u_template:
 						case v_template:
-							output += "\r<template> ";
+							oss << "\r<template> ";
 							break;
 						case backed_up: 
 							if (loc == 0)
-								output += "\r<recently read> ";
+								oss << "\r<recently read> ";
 							else
-								output += "\r<to be read again> ";
+								oss << "\r<to be read again> ";
 							break;
 						case inserted: 
-							output += "\r<inserted text> ";
+							oss << "\r<inserted text> ";
 							break;
 						case macro:
-							output += "\n"+cs(txt(name));
+							oss << "\n" << cs(txt(name));
 							break;
 						case output_text: 
-							output += "\r<output> ";
+							oss << "\r<output> ";
 							break;
 						case every_par_text: 
-							output += "\r<everypar> ";
+							oss << "\r<everypar> ";
 							break;
 						case every_math_text: 
-							output += "\r<everymath> ";
+							oss << "\r<everymath> ";
 							break;
 						case every_display_text: 
-							output += "\r<everydisplay> ";
+							oss << "\r<everydisplay> ";
 							break;
 						case every_hbox_text: 
-							output += "\r<everyhbox> ";
+							oss << "\r<everyhbox> ";
 							break;
 						case every_vbox_text: 
-							output += "\r<everyvbox> ";
+							oss << "\r<everyvbox> ";
 							break;
 						case every_job_text: 
-							output += "\r<everyjob> ";
+							oss << "\r<everyjob> ";
 							break;
 						case every_cr_text: 
-							output += "\r<everycr> ";
+							oss << "\r<everycr> ";
 							break;
 						case mark_text: 
-							output += "\r<mark> ";
+							oss << "\r<mark> ";
 							break;
 						case write_text: 
-							output += "\r<write> ";
+							oss << "\r<write> ";
 							break;
 						default: 
-							output += "\r?";
+							oss << "\r?";
 					}
 					begin_pseudoprint(l);
-					output += token_type < macro ? tokenlist(start, loc, 100000): tokenlist(link(start), loc, 100000);
+					oss << (token_type < macro ? tokenlist(start, loc, 100000): tokenlist(link(start), loc, 100000));
 				}
 				selector = oldsetting;
 				if (trickcount == 1000000)
@@ -1091,30 +1079,30 @@ std::string showcontext(void)
 				}
 				else
 				{
-					output +="...";
+					oss <<"...";
 					p = l+firstcount-halferrorline+3;
 					n = halferrorline;
 				}
 				for (int q = p; q < firstcount; q++)
-					output += trickbuf[q%errorline];
-				output += "\n";
+					oss << trickbuf[q%errorline];
+				oss << "\n";
 				for (int q = 0; q < n; q++)
-					output += " ";
+					oss << " ";
 				if (m + n <= errorline)
 					p = firstcount+m;
 				else
 					p = firstcount+errorline-n-3;
 				for (int q = firstcount; q < p; q++)
-					output += trickbuf[q%errorline];
+					oss << trickbuf[q%errorline];
 				if (m+n > errorline)
-					output += "...";
+					oss << "...";
 				nn++;
 			}
 		}
 		else 
 			if (nn == error_context_lines())
 			{
-				output += "\r...";
+				oss << "\r...";
 				nn++;
 			}
 		if (bottomline)
@@ -1122,16 +1110,16 @@ std::string showcontext(void)
 		baseptr--;
 	}
 	curinput = inputstack[inputptr];
-	return output;
+	return oss.str();
 }
 
 std::string enddiagnostic(bool blankline)
 {
-	std::string output = "";
+	std::ostringstream oss;
 	if (blankline)
-		output += "\n";
+		oss << "\n";
 	selector = oldsetting;
-	return output;
+	return oss.str();
 }
 
 //! Prepare to do some tracing
@@ -1161,11 +1149,10 @@ static std::string plus(int i, const std::string &s)
 	return "";
 }
 
-void showactivities(void)
+static void showactivities(void)
 {
 	nest[nestptr] = curlist;
-	printnl("");
-	println();
+	printnl("\n");
 	for (int p = nestptr; p >= 0; p--)
 	{
 		int m = nest[p].modefield;

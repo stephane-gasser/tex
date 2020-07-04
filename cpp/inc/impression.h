@@ -29,7 +29,6 @@ void slowprint(int);
 void slowprint(const std::string &);
 void begindiagnostic(void);
 void showcurcmdchr(void);
-void showactivities(void);
 void showwhatever(void);
 
 #endif
