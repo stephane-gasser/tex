@@ -79,19 +79,15 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="runaway_8h_source.html">runaway.h</a>&quot;</code><br />
-<code>#include &quot;showtokenlist.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="impression_8h_source.html">impression.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de runaway.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="runaway_8cpp__incl.png" border="0" usemap="#src_2runaway_8cpp" alt=""/></div>
 <map name="src_2runaway_8cpp" id="src_2runaway_8cpp">
-<area shape="rect" title=" " alt="" coords="109,5,225,32"/>
+<area shape="rect" title=" " alt="" coords="43,5,159,32"/>
 <area shape="rect" href="runaway_8h.html" title=" " alt="" coords="5,80,85,107"/>
-<area shape="rect" title=" " alt="" coords="110,80,223,107"/>
-<area shape="rect" href="impression_8h.html" title=" " alt="" coords="248,80,344,107"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="89,155,164,181"/>
-<area shape="rect" title=" " alt="" coords="269,155,323,181"/>
+<area shape="rect" href="impression_8h.html" title=" " alt="" coords="109,80,205,107"/>
 </map>
 </div>
 </div>
@@ -119,49 +115,43 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="runaway_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="runaway_8cpp_source.html">runaway.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#aba4cd3158cc93b94a677ff572b05ebc1">scannerstatus</a> &gt; <a class="code" href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aa07916451d857ffa47fc91dd8d5fdee36">skipping</a>)</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;Runaway &quot;</span>);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keywordflow">switch</span> (<a class="code" href="globals_8cpp.html#aba4cd3158cc93b94a677ff572b05ebc1">scannerstatus</a>)</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aaef05a61bed4d6962d3df1371ff480e0a">defining</a>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                <a class="code" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;definition&quot;</span>);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                p = <a class="code" href="globals_8cpp.html#a9e156322fce2bdb7b505a69e306cb286">defref</a>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aad2eaae863ffd4daf0e6c256e14a8419e">matching</a>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                <a class="code" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;argument&quot;</span>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                p = <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea2cd3c8a389d4f06ac700cff9a2fdb5d6">temp_head</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aad40e6ad0d26a3a86caf643d58ba1b5c0">aligning</a>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <a class="code" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;preamble&quot;</span>);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                p = <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea59b8c6da3f80e8caf487a1138148a0e2">hold_head</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aaac870e3bd4a52542cd2fd9de8482c36c">absorbing</a>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <a class="code" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;text&quot;</span>);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                p = <a class="code" href="globals_8cpp.html#a9e156322fce2bdb7b505a69e306cb286">defref</a>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a>(<span class="charliteral">&#39;?&#39;</span>);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a>();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="impression_8cpp.html#a1aa048aa010568fbb179bdda96bd684c">showtokenlist</a>(<a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p), 0, <a class="code" href="tex_8h.html#abc935ea8e046e9e96b4637344c5a3edf">errorline</a>-10);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="runaway_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="runaway_8cpp_source.html">runaway.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#aba4cd3158cc93b94a677ff572b05ebc1">scannerstatus</a> &gt; <a class="code" href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aa07916451d857ffa47fc91dd8d5fdee36">skipping</a>)</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <a class="code" href="impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a>(<span class="stringliteral">&quot;Runaway &quot;</span>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordflow">switch</span> (<a class="code" href="globals_8cpp.html#aba4cd3158cc93b94a677ff572b05ebc1">scannerstatus</a>)</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aaef05a61bed4d6962d3df1371ff480e0a">defining</a>:</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                <a class="code" href="impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9">print</a>(<span class="stringliteral">&quot;definition&quot;</span>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                p = <a class="code" href="globals_8cpp.html#a9e156322fce2bdb7b505a69e306cb286">defref</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aad2eaae863ffd4daf0e6c256e14a8419e">matching</a>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                <a class="code" href="impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9">print</a>(<span class="stringliteral">&quot;argument&quot;</span>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                p = <a class="code" href="constantes_8h.html#ac36f475ca5b446f4fde4c9b90bec77c8a2cd3c8a389d4f06ac700cff9a2fdb5d6">temp_head</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aad40e6ad0d26a3a86caf643d58ba1b5c0">aligning</a>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <a class="code" href="impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9">print</a>(<span class="stringliteral">&quot;preamble&quot;</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                p = <a class="code" href="constantes_8h.html#ac36f475ca5b446f4fde4c9b90bec77c8a59b8c6da3f80e8caf487a1138148a0e2">hold_head</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aaac870e3bd4a52542cd2fd9de8482c36c">absorbing</a>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <a class="code" href="impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9">print</a>(<span class="stringliteral">&quot;text&quot;</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                p = <a class="code" href="globals_8cpp.html#a9e156322fce2bdb7b505a69e306cb286">defref</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9">print</a>(<span class="stringliteral">&quot;?\n&quot;</span>+<a class="code" href="impression_8cpp.html#a5f145598c2e272be764bdc5078d738f0">tokenlist</a>(<a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p), 0, <a class="code" href="tex_8h.html#abc935ea8e046e9e96b4637344c5a3edf">errorline</a>-10));</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="runaway_8cpp_ac542a0034fbac204b2532deac2e1e414_cgraph.png" border="0" usemap="#runaway_8cpp_ac542a0034fbac204b2532deac2e1e414_cgraph" alt=""/></div>
 <map name="runaway_8cpp_ac542a0034fbac204b2532deac2e1e414_cgraph" id="runaway_8cpp_ac542a0034fbac204b2532deac2e1e414_cgraph">
-<area shape="rect" title=" " alt="" coords="5,157,76,184"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="154,31,197,57"/>
-<area shape="rect" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="275,132,321,159"/>
-<area shape="rect" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="369,5,441,32"/>
-<area shape="rect" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="513,183,571,209"/>
-<area shape="rect" href="impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="147,183,204,209"/>
-<area shape="rect" href="impression_8cpp.html#a1aa048aa010568fbb179bdda96bd684c" title=" " alt="" coords="124,309,227,336"/>
-<area shape="rect" href="parametres_8h.html#a92aab912d4164b91a30449bc19bb1593" title=" " alt="" coords="489,31,595,57"/>
-<area shape="rect" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="386,107,425,133"/>
+<area shape="rect" title=" " alt="" coords="5,48,76,75"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="245,11,287,37"/>
+<area shape="rect" href="impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="243,87,289,113"/>
+<area shape="rect" href="impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="131,124,188,151"/>
+<area shape="rect" href="impression_8cpp.html#a5f145598c2e272be764bdc5078d738f0" title=" " alt="" coords="124,23,195,49"/>
 </map>
 </div>
 <div class="dynheader">
@@ -169,35 +159,32 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="runaway_8cpp_ac542a0034fbac204b2532deac2e1e414_icgraph.png" border="0" usemap="#runaway_8cpp_ac542a0034fbac204b2532deac2e1e414_icgraph" alt=""/></div>
 <map name="runaway_8cpp_ac542a0034fbac204b2532deac2e1e414_icgraph" id="runaway_8cpp_ac542a0034fbac204b2532deac2e1e414_icgraph">
-<area shape="rect" title=" " alt="" coords="408,68,479,95"/>
-<area shape="rect" href="checkoutervalidity_8h.html#a6bca3c8986cc82099dde339cf36de911" title=" " alt="" coords="119,5,245,32"/>
-<area shape="rect" href="getavail_8h.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="293,43,360,69"/>
-<area shape="rect" href="macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="143,68,221,95"/>
-<area shape="rect" href="readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="146,131,218,157"/>
-<area shape="rect" href="getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="5,5,71,32"/>
+<area shape="rect" title=" " alt="" coords="295,68,365,95"/>
+<area shape="rect" href="checkoutervalidity_8h.html#a6bca3c8986cc82099dde339cf36de911" title=" " alt="" coords="5,5,132,32"/>
+<area shape="rect" href="getavail_8h.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="180,43,247,69"/>
+<area shape="rect" href="macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="29,68,108,95"/>
+<area shape="rect" href="readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="33,131,105,157"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aimpression_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00012">impression.cpp:12</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_ab3861f4cf087b5c29d2e1c2d6f31f5b9"><div class="ttname"><a href="impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9">print</a></div><div class="ttdeci">void print(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00089">impression.cpp:89</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a6307f48f7dcd2c23cd67638dbab23a9aaef05a61bed4d6962d3df1371ff480e0a"><div class="ttname"><a href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aaef05a61bed4d6962d3df1371ff480e0a">defining</a></div><div class="ttdeci">@ defining</div><div class="ttdoc">scanner_status when reading a macro definition</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00475">constantes.h:475</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a6307f48f7dcd2c23cd67638dbab23a9aad40e6ad0d26a3a86caf643d58ba1b5c0"><div class="ttname"><a href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aad40e6ad0d26a3a86caf643d58ba1b5c0">aligning</a></div><div class="ttdeci">@ aligning</div><div class="ttdoc">scanner_status when reading an alignment preamble</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00477">constantes.h:477</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01276">impression.cpp:1276</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00355">impression.cpp:355</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aba4cd3158cc93b94a677ff572b05ebc1"><div class="ttname"><a href="globals_8cpp.html#aba4cd3158cc93b94a677ff572b05ebc1">scannerstatus</a></div><div class="ttdeci">char scannerstatus</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00120">globals.cpp:120</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ea59b8c6da3f80e8caf487a1138148a0e2"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea59b8c6da3f80e8caf487a1138148a0e2">hold_head</a></div><div class="ttdeci">@ hold_head</div><div class="ttdoc">head of a temporary list of another kind</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00193">constantes.h:193</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_ac36f475ca5b446f4fde4c9b90bec77c8a59b8c6da3f80e8caf487a1138148a0e2"><div class="ttname"><a href="constantes_8h.html#ac36f475ca5b446f4fde4c9b90bec77c8a59b8c6da3f80e8caf487a1138148a0e2">hold_head</a></div><div class="ttdeci">@ hold_head</div><div class="ttdoc">head of a temporary list of another kind</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00193">constantes.h:193</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a6307f48f7dcd2c23cd67638dbab23a9aaac870e3bd4a52542cd2fd9de8482c36c"><div class="ttname"><a href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aaac870e3bd4a52542cd2fd9de8482c36c">absorbing</a></div><div class="ttdeci">@ absorbing</div><div class="ttdoc">scanner_status when reading a balanced text</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00478">constantes.h:478</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ea2cd3c8a389d4f06ac700cff9a2fdb5d6"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea2cd3c8a389d4f06ac700cff9a2fdb5d6">temp_head</a></div><div class="ttdeci">@ temp_head</div><div class="ttdoc">head of a temporary list of some kind</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00192">constantes.h:192</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a9e156322fce2bdb7b505a69e306cb286"><div class="ttname"><a href="globals_8cpp.html#a9e156322fce2bdb7b505a69e306cb286">defref</a></div><div class="ttdeci">halfword defref</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00122">globals.cpp:122</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01189">impression.cpp:1189</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_ac36f475ca5b446f4fde4c9b90bec77c8a2cd3c8a389d4f06ac700cff9a2fdb5d6"><div class="ttname"><a href="constantes_8h.html#ac36f475ca5b446f4fde4c9b90bec77c8a2cd3c8a389d4f06ac700cff9a2fdb5d6">temp_head</a></div><div class="ttdeci">@ temp_head</div><div class="ttdoc">head of a temporary list of some kind</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00192">constantes.h:192</a></div></div>
 <div class="ttc" id="atex_8h_html_abc935ea8e046e9e96b4637344c5a3edf"><div class="ttname"><a href="tex_8h.html#abc935ea8e046e9e96b4637344c5a3edf">errorline</a></div><div class="ttdeci">constexpr int errorline</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00012">tex.h:12</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a1aa048aa010568fbb179bdda96bd684c"><div class="ttname"><a href="impression_8cpp.html#a1aa048aa010568fbb179bdda96bd684c">showtokenlist</a></div><div class="ttdeci">void showtokenlist(int p, int q, int l)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01765">impression.cpp:1765</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00044">tex.h:44</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a6307f48f7dcd2c23cd67638dbab23a9aad2eaae863ffd4daf0e6c256e14a8419e"><div class="ttname"><a href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aad2eaae863ffd4daf0e6c256e14a8419e">matching</a></div><div class="ttdeci">@ matching</div><div class="ttdoc">scanner_status when reading macro arguments</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00476">constantes.h:476</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_aafadfe8083da1050b2adfd63ead4a034"><div class="ttname"><a href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034">printchar</a></div><div class="ttdeci">void printchar(ASCIIcode s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00042">impression.cpp:42</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a6307f48f7dcd2c23cd67638dbab23a9aa07916451d857ffa47fc91dd8d5fdee36"><div class="ttname"><a href="constantes_8h.html#a6307f48f7dcd2c23cd67638dbab23a9aa07916451d857ffa47fc91dd8d5fdee36">skipping</a></div><div class="ttdeci">@ skipping</div><div class="ttdoc">scanner_status when passing conditional text</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00474">constantes.h:474</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a5f145598c2e272be764bdc5078d738f0"><div class="ttname"><a href="impression_8cpp.html#a5f145598c2e272be764bdc5078d738f0">tokenlist</a></div><div class="ttdeci">std::string tokenlist(int p, int q, int l)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00475">impression.cpp:475</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

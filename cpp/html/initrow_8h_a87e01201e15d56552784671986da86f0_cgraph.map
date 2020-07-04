@@ -1,12 +1,9 @@
 <map id="initrow" name="initrow">
-<area shape="rect" id="node1" title=" " alt="" coords="5,157,65,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,65,159"/>
 <area shape="rect" id="node2" href="$initspan_8cpp.html#a1c347985717caccf5068d06b952b2a47" title=" " alt="" coords="124,5,191,32"/>
-<area shape="rect" id="node4" href="$pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="271,56,346,83"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="416,183,459,209"/>
-<area shape="rect" id="node6" href="$newglue_8cpp.html#a42d1502b38c0f25378f1d603fa359f72" title=" " alt="" coords="122,208,193,235"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="275,309,343,336"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="113,347,201,373"/>
-<area shape="rect" id="node3" href="$normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="249,5,368,32"/>
-<area shape="rect" id="node7" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="275,208,343,235"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="285,259,332,285"/>
+<area shape="rect" id="node3" href="$pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="249,31,324,57"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="265,157,308,184"/>
+<area shape="rect" id="node5" href="$newglue_8cpp.html#a42d1502b38c0f25378f1d603fa359f72" title=" " alt="" coords="122,208,193,235"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="253,233,321,260"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="113,157,201,184"/>
 </map>

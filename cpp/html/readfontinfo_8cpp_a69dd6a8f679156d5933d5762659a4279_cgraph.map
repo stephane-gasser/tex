@@ -1,15 +1,8 @@
 <map id="start_font_error_message" name="start_font_error_message">
-<area shape="rect" id="node1" title=" " alt="" coords="5,183,176,209"/>
-<area shape="rect" id="node2" href="$impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="382,31,429,57"/>
-<area shape="rect" id="node4" href="$impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="499,132,571,159"/>
-<area shape="rect" id="node7" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="237,233,307,260"/>
-<area shape="rect" id="node8" href="$impression_8cpp.html#a559da3b8344a65bc5ef98146356ab12d" title=" " alt="" coords="224,284,320,311"/>
-<area shape="rect" id="node10" href="$impression_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="375,183,436,209"/>
-<area shape="rect" id="node12" href="$impression_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb" title=" " alt="" coords="229,132,315,159"/>
-<area shape="rect" id="node13" href="$impression_8cpp.html#acaba209547fb584d215825d4ee808645" title=" " alt="" coords="238,335,306,361"/>
-<area shape="rect" id="node3" href="$parametres_8h.html#a92aab912d4164b91a30449bc19bb1593" title=" " alt="" coords="628,5,733,32"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="652,107,709,133"/>
-<area shape="rect" id="node6" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="516,81,555,108"/>
-<area shape="rect" id="node9" href="$impression_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="368,284,443,311"/>
-<area shape="rect" id="node11" href="$impression_8cpp.html#ae7d872b8f9c93b81f079a7d1aaa1d43a" title=" " alt="" coords="491,183,580,209"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,176,133"/>
+<area shape="rect" id="node2" href="$impression_8cpp.html#a0aab991d51193c009fd6bb6c720abb2f" title=" " alt="" coords="224,5,313,32"/>
+<area shape="rect" id="node3" href="$impression_8cpp.html#a31a15345027ce954e1ff8fa40f149d17" title=" " alt="" coords="231,56,307,83"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="245,107,292,133"/>
+<area shape="rect" id="node5" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="234,157,303,184"/>
+<area shape="rect" id="node6" href="$impression_8cpp.html#af7cfdbcf9e3fceeef51678778974091c" title=" " alt="" coords="247,208,290,235"/>
 </map>

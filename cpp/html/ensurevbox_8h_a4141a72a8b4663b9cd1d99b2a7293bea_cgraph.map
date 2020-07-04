@@ -1,14 +1,7 @@
 <map id="ensurevbox" name="ensurevbox">
-<area shape="rect" id="node1" title=" " alt="" coords="5,296,95,323"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="295,5,337,32"/>
-<area shape="rect" id="node4" href="$boxerror_8cpp.html#a0bbccd15aae646ece75f2703dda44c2e" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="143,183,212,209"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="425,333,472,360"/>
-<area shape="rect" id="node12" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="143,435,212,461"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="422,5,475,32"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title="Prepare to do some tracing." alt="" coords="260,56,372,83"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="265,107,367,133"/>
-<area shape="rect" id="node7" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="292,157,340,184"/>
-<area shape="rect" id="node8" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="420,183,477,209"/>
-<area shape="rect" id="node9" href="$flushnodelist_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="269,283,363,309"/>
-<area shape="rect" id="node11" href="$impression_8cpp.html#acfcccfc29ec7e8b9f139156810549ced" title=" " alt="" coords="279,333,353,360"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,95,83"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="260,5,303,32"/>
+<area shape="rect" id="node3" href="$boxerror_8cpp.html#a0bbccd15aae646ece75f2703dda44c2e" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="143,31,212,57"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="143,81,212,108"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="154,132,201,159"/>
 </map>

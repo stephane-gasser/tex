@@ -1,14 +1,9 @@
 <map id="deletetokenref" name="deletetokenref">
-<area shape="rect" id="node1" title=" " alt="" coords="452,288,556,315"/>
-<area shape="rect" id="node2" href="$endtokenlist_8h.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="311,136,403,163"/>
-<area shape="rect" id="node6" href="$finalcleanup_8h.html#abdaa31c6a83743b7ffe417c4889aceaf" title=" " alt="" coords="171,238,261,264"/>
-<area shape="rect" id="node9" href="$eqdestroy_8h.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="177,326,255,352"/>
-<area shape="rect" id="node10" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="329,314,384,340"/>
-<area shape="rect" id="node11" href="$flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="309,388,404,415"/>
-<area shape="rect" id="node12" href="$vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="330,439,383,466"/>
-<area shape="rect" id="node3" href="$backinput_8h.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="177,35,255,62"/>
-<area shape="rect" id="node4" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="5,10,123,36"/>
-<area shape="rect" id="node5" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="25,60,103,87"/>
-<area shape="rect" id="node7" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="183,136,249,163"/>
-<area shape="rect" id="node8" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="182,187,250,214"/>
+<area shape="rect" id="node1" title=" " alt="" coords="287,132,391,159"/>
+<area shape="rect" id="node2" href="$endtokenlist_8h.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="145,5,237,32"/>
+<area shape="rect" id="node3" href="$finalcleanup_8h.html#abdaa31c6a83743b7ffe417c4889aceaf" title=" " alt="" coords="5,31,96,57"/>
+<area shape="rect" id="node4" href="$eqdestroy_8h.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="11,144,90,171"/>
+<area shape="rect" id="node5" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="164,157,219,184"/>
+<area shape="rect" id="node6" href="$flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="144,232,239,259"/>
+<area shape="rect" id="node7" href="$vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="165,283,218,309"/>
 </map>

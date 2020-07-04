@@ -1,6 +1,4 @@
 <map id="doregistercommand" name="doregistercommand">
-<area shape="rect" id="node1" title=" " alt="" coords="337,31,473,57"/>
-<area shape="rect" id="node2" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="164,31,289,57"/>
-<area shape="rect" id="node3" href="$doassignments_8h.html#a600d75e92c3a991d8672e091303a8b40" title=" " alt="" coords="5,5,116,32"/>
-<area shape="rect" id="node4" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="16,56,105,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="179,5,315,32"/>
+<area shape="rect" id="node2" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,5,131,32"/>
 </map>

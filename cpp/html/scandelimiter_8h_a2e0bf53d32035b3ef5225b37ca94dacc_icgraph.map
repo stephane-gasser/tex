@@ -1,7 +1,6 @@
 <map id="scandelimiter" name="scandelimiter">
-<area shape="rect" id="node1" title=" " alt="" coords="285,56,384,83"/>
-<area shape="rect" id="node2" href="$mathfraction_8h.html#ae722ded3e27c35cc7ee227575882b405" title=" " alt="" coords="143,5,237,32"/>
-<area shape="rect" id="node4" href="$mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="143,56,237,83"/>
-<area shape="rect" id="node5" href="$mathradical_8h.html#a6e86e5d001c758710d7dd35221efb5a6" title=" " alt="" coords="145,107,235,133"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,56,95,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="148,56,247,83"/>
+<area shape="rect" id="node2" href="$mathfraction_8h.html#ae722ded3e27c35cc7ee227575882b405" title=" " alt="" coords="5,5,100,32"/>
+<area shape="rect" id="node3" href="$mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="5,56,100,83"/>
+<area shape="rect" id="node4" href="$mathradical_8h.html#a6e86e5d001c758710d7dd35221efb5a6" title=" " alt="" coords="8,107,97,133"/>
 </map>

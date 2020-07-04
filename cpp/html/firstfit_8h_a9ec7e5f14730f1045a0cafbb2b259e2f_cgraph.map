@@ -1,10 +1,6 @@
 <map id="firstfit" name="firstfit">
-<area shape="rect" id="node1" title=" " alt="" coords="5,132,60,159"/>
-<area shape="rect" id="node2" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="110,81,181,108"/>
-<area shape="rect" id="node7" href="$firstfit_8cpp.html#a10142a48205da70cd0fa6afd599e3dc1" title="backward links in |trie| holes" alt="" coords="108,132,183,159"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64" title="`‘downward’&#39; link in a trie" alt="" coords="112,183,179,209"/>
-<area shape="rect" id="node3" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="269,5,317,32"/>
-<area shape="rect" id="node4" href="$jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="403,31,471,57"/>
-<area shape="rect" id="node5" href="$normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="231,107,355,133"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="258,157,327,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,60,83"/>
+<area shape="rect" id="node2" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="110,5,181,32"/>
+<area shape="rect" id="node3" href="$firstfit_8cpp.html#a10142a48205da70cd0fa6afd599e3dc1" title="backward links in |trie| holes" alt="" coords="108,56,183,83"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64" title="`‘downward’&#39; link in a trie" alt="" coords="112,107,179,133"/>
 </map>

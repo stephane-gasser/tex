@@ -1,30 +1,11 @@
 <map id="getpreambletoken" name="getpreambletoken">
-<area shape="rect" id="node1" title=" " alt="" coords="5,537,131,564"/>
-<area shape="rect" id="node2" href="$eqdefine_8cpp.html#a3391d0a47960eef3ec27804bb9bb0a15" title=" " alt="" coords="210,132,281,159"/>
-<area shape="rect" id="node8" href="$expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="213,639,277,665"/>
-<area shape="rect" id="node17" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="390,968,462,995"/>
-<area shape="rect" id="node22" href="$fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="691,1031,764,1057"/>
-<area shape="rect" id="node23" href="$geqdefine_8cpp.html#ae3b1e53099c16062397fd40c3a959099" title=" " alt="" coords="206,259,285,285"/>
-<area shape="rect" id="node26" href="$parametres_8h.html#a1c1f84e52a0e31ce5f71c708fdb0c40e" title=" " alt="" coords="201,892,289,919"/>
-<area shape="rect" id="node27" href="$scanglue_8cpp.html#a1b433217a906738e1453ff227c67a090" title=" " alt="" coords="208,499,283,525"/>
-<area shape="rect" id="node28" href="$scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="179,411,312,437"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="391,56,461,83"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a30e61288612879b61525ab34298b794d" title="command code for equivalent" alt="" coords="392,107,460,133"/>
-<area shape="rect" id="node5" href="$eqdestroy_8cpp.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="387,157,465,184"/>
-<area shape="rect" id="node6" href="$eqsave_8cpp.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="394,5,458,32"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="399,208,453,235"/>
-<area shape="rect" id="node9" href="$backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="388,512,464,539"/>
-<area shape="rect" id="node10" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="552,537,631,564"/>
-<area shape="rect" id="node11" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="694,613,761,640"/>
-<area shape="rect" id="node12" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="826,664,869,691"/>
-<area shape="rect" id="node13" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="812,613,883,640"/>
-<area shape="rect" id="node14" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="931,867,1000,893"/>
-<area shape="rect" id="node15" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="540,664,643,691"/>
-<area shape="rect" id="node16" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="405,715,447,741"/>
-<area shape="rect" id="node18" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="387,411,465,437"/>
-<area shape="rect" id="node19" href="$impression_8cpp.html#a663c42b205477b7748f1324b1a526f70" title=" " alt="" coords="369,765,483,792"/>
-<area shape="rect" id="node20" href="$parametres_8h.html#afd293e731aa5f183146f50f71405e79c" title=" " alt="" coords="360,917,492,944"/>
-<area shape="rect" id="node21" href="$parametres_8h.html#ac3ce40331affce50f87879ed1cfe5a98" title="an integer parameter" alt="" coords="561,968,622,995"/>
-<area shape="rect" id="node24" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="392,259,460,285"/>
-<area shape="rect" id="node25" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="403,309,449,336"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,207,131,233"/>
+<area shape="rect" id="node2" href="$eqdefine_8cpp.html#a3391d0a47960eef3ec27804bb9bb0a15" title=" " alt="" coords="210,5,281,32"/>
+<area shape="rect" id="node3" href="$expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="213,80,277,107"/>
+<area shape="rect" id="node4" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="360,105,432,132"/>
+<area shape="rect" id="node5" href="$fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="209,181,282,208"/>
+<area shape="rect" id="node6" href="$geqdefine_8cpp.html#ae3b1e53099c16062397fd40c3a959099" title=" " alt="" coords="206,232,285,259"/>
+<area shape="rect" id="node7" href="$parametres_8h.html#a1c1f84e52a0e31ce5f71c708fdb0c40e" title=" " alt="" coords="201,283,289,309"/>
+<area shape="rect" id="node8" href="$scanglue_8cpp.html#a1b433217a906738e1453ff227c67a090" title=" " alt="" coords="208,333,283,360"/>
+<area shape="rect" id="node9" href="$scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="179,384,312,411"/>
 </map>

@@ -73,7 +73,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Fonctions</a>  </div>
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">Référence du fichier primitive.cpp</div>  </div>
 </div><!--header-->
@@ -90,8 +91,6 @@ Graphe des dépendances par inclusion de primitive.cpp:</div>
 <area shape="rect" href="primitive_8h.html" title=" " alt="" coords="5,80,88,107"/>
 <area shape="rect" href="idlookup_8h.html" title=" " alt="" coords="113,80,194,107"/>
 <area shape="rect" href="texte_8h.html" title=" " alt="" coords="218,80,281,107"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="63,155,137,181"/>
-<area shape="rect" title=" " alt="" coords="222,155,277,181"/>
 </map>
 </div>
 </div>
@@ -103,6 +102,11 @@ Fonctions</h2></td></tr>
 <tr class="separator:a9269fb6f721e1ba70ac5c61402f78386"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a6323c81f89ec8204dc69f19ddad2e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="primitive_8cpp.html#a1a6323c81f89ec8204dc69f19ddad2e7">primitive</a> (const std::string &amp;t, <a class="el" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> o)</td></tr>
 <tr class="separator:a1a6323c81f89ec8204dc69f19ddad2e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a91b549c5f0d3e080ea08e8b90d5fe09f"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a>, std::map&lt; <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>, std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="primitive_8cpp.html#a91b549c5f0d3e080ea08e8b90d5fe09f">primName</a></td></tr>
+<tr class="separator:a91b549c5f0d3e080ea08e8b90d5fe09f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
 <a id="a9269fb6f721e1ba70ac5c61402f78386"></a>
@@ -137,13 +141,14 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="primitive_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="primitive_8cpp_source.html">primitive.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = s+<a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a43b2dfafc3857b4bb9cc704b08f12392">single_base</a>;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = <a class="code" href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaafada70ffdb54a9e9c81b2535a7c3c627">level_one</a>;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d">eq_type</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = o;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="primitive_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="primitive_8cpp_source.html">primitive.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="primitive_8cpp.html#a91b549c5f0d3e080ea08e8b90d5fe09f">primName</a>[<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>][o] = std::string(1, s);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = s+<a class="code" href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa43b2dfafc3857b4bb9cc704b08f12392">single_base</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = <a class="code" href="constantes_8h.html#a80155586fa275b28773c9b203f52cabaafada70ffdb54a9e9c81b2535a7c3c627">level_one</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d">eq_type</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = o;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
@@ -199,40 +204,48 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="primitive_8cpp_source.html#l00013">13</a> du fichier <a class="el" href="primitive_8cpp_source.html">primitive.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = <a class="code" href="idlookup_8cpp.html#a6829317424312d301cab25771dac2607">idlookup</a>(t);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="constantes_8cpp.html#a365fc2db0bbb423d6744bf74872c9cbe">flush_string</a>();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0">text</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = <a class="code" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b">txt</a>(t);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = <a class="code" href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaafada70ffdb54a9e9c81b2535a7c3c627">level_one</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d">eq_type</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = o;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="primitive_8cpp_source.html#l00016">16</a> du fichier <a class="el" href="primitive_8cpp_source.html">primitive.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="primitive_8cpp.html#a91b549c5f0d3e080ea08e8b90d5fe09f">primName</a>[<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>][o] = t;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = <a class="code" href="idlookup_8cpp.html#a6829317424312d301cab25771dac2607">idlookup</a>(t);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="constantes_8cpp.html#a365fc2db0bbb423d6744bf74872c9cbe">flush_string</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0">text</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = <a class="code" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b">txt</a>(t);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74">eq_level</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = <a class="code" href="constantes_8h.html#a80155586fa275b28773c9b203f52cabaafada70ffdb54a9e9c81b2535a7c3c627">level_one</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d">eq_type</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed">equiv</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>) = o;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="primitive_8cpp_a1a6323c81f89ec8204dc69f19ddad2e7_cgraph.png" border="0" usemap="#primitive_8cpp_a1a6323c81f89ec8204dc69f19ddad2e7_cgraph" alt=""/></div>
 <map name="primitive_8cpp_a1a6323c81f89ec8204dc69f19ddad2e7_cgraph" id="primitive_8cpp_a1a6323c81f89ec8204dc69f19ddad2e7_cgraph">
-<area shape="rect" title=" " alt="" coords="5,284,76,311"/>
-<area shape="rect" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="133,132,204,159"/>
-<area shape="rect" href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d" title="command code for equivalent" alt="" coords="135,183,203,209"/>
-<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="142,233,195,260"/>
-<area shape="rect" href="constantes_8cpp.html#a365fc2db0bbb423d6744bf74872c9cbe" title=" " alt="" coords="124,284,213,311"/>
-<area shape="rect" href="idlookup_8cpp.html#a6829317424312d301cab25771dac2607" title=" " alt="" coords="133,335,204,361"/>
-<area shape="rect" href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0" title="string number for control sequence name" alt="" coords="287,512,331,539"/>
-<area shape="rect" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="290,563,329,589"/>
-<area shape="rect" href="constantes_8cpp.html#a3d10279728a85600f3a5705f66fc489d" title="put ASCII_code # at the end of str_pool" alt="" coords="261,309,357,336"/>
-<area shape="rect" href="constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6" title=" " alt="" coords="268,360,351,387"/>
-<area shape="rect" href="constantes_8cpp.html#aaec9f1cb143a75bb36cbff10d45ca30f" title="forget the last character in the pool" alt="" coords="268,411,351,437"/>
-<area shape="rect" href="idlookup_8cpp.html#a805ee55ca9395c9d22a143f6a1d24555" title="test if all positions are occupied" alt="" coords="264,461,355,488"/>
-<area shape="rect" href="constantes_8cpp.html#aff605f8748f25aba822c931cb20975dd" title="the number of characters" alt="" coords="281,5,338,32"/>
-<area shape="rect" href="makestring_8cpp.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="266,107,353,133"/>
-<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="405,157,476,184"/>
-<area shape="rect" href="texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="417,81,464,108"/>
-<area shape="rect" href="idlookup_8cpp.html#a5f9fba2d64a6d24f452a4fd2c35d16ed" title="link for coalesced lists" alt="" coords="286,259,333,285"/>
-<area shape="rect" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="273,208,346,235"/>
+<area shape="rect" title=" " alt="" coords="5,157,76,184"/>
+<area shape="rect" href="constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="133,5,204,32"/>
+<area shape="rect" href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d" title="command code for equivalent" alt="" coords="135,56,203,83"/>
+<area shape="rect" href="constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="142,107,195,133"/>
+<area shape="rect" href="constantes_8cpp.html#a365fc2db0bbb423d6744bf74872c9cbe" title=" " alt="" coords="124,157,213,184"/>
+<area shape="rect" href="idlookup_8cpp.html#a6829317424312d301cab25771dac2607" title=" " alt="" coords="133,259,204,285"/>
+<area shape="rect" href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0" title="string number for control sequence name" alt="" coords="261,233,305,260"/>
+<area shape="rect" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="264,296,303,323"/>
 </map>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="a91b549c5f0d3e080ea08e8b90d5fe09f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91b549c5f0d3e080ea08e8b90d5fe09f">&#9670;&nbsp;</a></span>primName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;<a class="el" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a>, std::map&lt;<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>, std::string&gt; &gt; primName</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="primitive_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="primitive_8cpp_source.html">primitive.cpp</a>.</p>
 
 </div>
 </div>
@@ -242,11 +255,12 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="ttc" id="aconstantes_8cpp_html_a30e61288612879b61525ab34298b794d"><div class="ttname"><a href="constantes_8cpp.html#a30e61288612879b61525ab34298b794d">eq_type</a></div><div class="ttdeci">quarterword &amp; eq_type(halfword p)</div><div class="ttdoc">command code for equivalent</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00026">constantes.cpp:26</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_ac04939951c709f3d90ac4e9f6a6ff3b0"><div class="ttname"><a href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0">text</a></div><div class="ttdeci">halfword &amp; text(halfword p)</div><div class="ttdoc">string number for control sequence name</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00126">constantes.cpp:126</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960a43b2dfafc3857b4bb9cc704b08f12392"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a43b2dfafc3857b4bb9cc704b08f12392">single_base</a></div><div class="ttdeci">@ single_base</div><div class="ttdoc">equivalents of one-character control sequences</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00391">constantes.h:391</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a365fc2db0bbb423d6744bf74872c9cbe"><div class="ttname"><a href="constantes_8cpp.html#a365fc2db0bbb423d6744bf74872c9cbe">flush_string</a></div><div class="ttdeci">void flush_string(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00154">constantes.cpp:154</a></div></div>
 <div class="ttc" id="atexte_8cpp_html_a46dac58eb46eaee7b157e59bdef55b1b"><div class="ttname"><a href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b">txt</a></div><div class="ttdeci">int txt(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="texte_8cpp_source.html#l00007">texte.cpp:7</a></div></div>
+<div class="ttc" id="aprimitive_8cpp_html_a91b549c5f0d3e080ea08e8b90d5fe09f"><div class="ttname"><a href="primitive_8cpp.html#a91b549c5f0d3e080ea08e8b90d5fe09f">primName</a></div><div class="ttdeci">std::map&lt; quarterword, std::map&lt; halfword, std::string &gt; &gt; primName</div><div class="ttdef"><b>Definition:</b> <a href="primitive_8cpp_source.html#l00005">primitive.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a6b7b47dd702d9e331586d485013fd1eaa43b2dfafc3857b4bb9cc704b08f12392"><div class="ttname"><a href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa43b2dfafc3857b4bb9cc704b08f12392">single_base</a></div><div class="ttdeci">@ single_base</div><div class="ttdoc">equivalents of one-character control sequences</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00391">constantes.h:391</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a80155586fa275b28773c9b203f52cabaafada70ffdb54a9e9c81b2535a7c3c627"><div class="ttname"><a href="constantes_8h.html#a80155586fa275b28773c9b203f52cabaafada70ffdb54a9e9c81b2535a7c3c627">level_one</a></div><div class="ttdeci">@ level_one</div><div class="ttdoc">outermost level for defined quantities</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00385">constantes.h:385</a></div></div>
 <div class="ttc" id="aidlookup_8cpp_html_a6829317424312d301cab25771dac2607"><div class="ttname"><a href="idlookup_8cpp.html#a6829317424312d301cab25771dac2607">idlookup</a></div><div class="ttdeci">halfword idlookup(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="idlookup_8cpp_source.html#l00012">idlookup.cpp:12</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a6b7b47dd702d9e331586d485013fd1eaafada70ffdb54a9e9c81b2535a7c3c627"><div class="ttname"><a href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaafada70ffdb54a9e9c81b2535a7c3c627">level_one</a></div><div class="ttdeci">@ level_one</div><div class="ttdoc">outermost level for defined quantities</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00385">constantes.h:385</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a3fc97d19e160956f7fa23eb8ded19785"><div class="ttname"><a href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a></div><div class="ttdeci">int curval</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00019">globals.cpp:19</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

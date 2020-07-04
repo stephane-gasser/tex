@@ -92,8 +92,6 @@ Graphe des dépendances par inclusion de idlookup.cpp:</div>
 <area shape="rect" href="overflow_8h.html" title=" " alt="" coords="111,80,191,107"/>
 <area shape="rect" href="makestring_8h.html" title=" " alt="" coords="216,80,313,107"/>
 <area shape="rect" href="texte_8h.html" title=" " alt="" coords="337,80,400,107"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="114,155,189,181"/>
-<area shape="rect" title=" " alt="" coords="341,155,396,181"/>
 </map>
 </div>
 </div>
@@ -138,16 +136,14 @@ Fonctions</h2></td></tr>
 <p>test if all positions are occupied </p>
 
 <p class="definition">Définition à la ligne <a class="el" href="idlookup_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="idlookup_8cpp_source.html">idlookup.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="globals_8cpp.html#aed0a426f1e7a3d4a8106d44c2dcf91e6">hashused</a> == <a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a56f77b2122961eb876c05a23050e9318">hash_base</a>; }</div>
+<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="globals_8cpp.html#aed0a426f1e7a3d4a8106d44c2dcf91e6">hashused</a> == <a class="code" href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa56f77b2122961eb876c05a23050e9318">hash_base</a>; }</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="idlookup_8cpp_a805ee55ca9395c9d22a143f6a1d24555_icgraph.png" border="0" usemap="#idlookup_8cpp_a805ee55ca9395c9d22a143f6a1d24555_icgraph" alt=""/></div>
 <map name="idlookup_8cpp_a805ee55ca9395c9d22a143f6a1d24555_icgraph" id="idlookup_8cpp_a805ee55ca9395c9d22a143f6a1d24555_icgraph">
-<area shape="rect" title="test if all positions are occupied" alt="" coords="243,31,333,57"/>
-<area shape="rect" href="idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="124,31,195,57"/>
-<area shape="rect" href="getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="8,5,73,32"/>
-<area shape="rect" href="primitive_8h.html#afd390c212945223fe7892dc9e61dcc3d" title=" " alt="" coords="5,56,76,83"/>
+<area shape="rect" title="test if all positions are occupied" alt="" coords="124,5,215,32"/>
+<area shape="rect" href="idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="5,5,76,32"/>
 </map>
 </div>
 
@@ -178,7 +174,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordflow">while</span> (h &gt;= <a class="code" href="constantes_8h.html#a657a50b89927094636254a4409f707f6">hash_prime</a>)</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            h -= <a class="code" href="constantes_8h.html#a657a50b89927094636254a4409f707f6">hash_prime</a>;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p = h+<a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a56f77b2122961eb876c05a23050e9318">hash_base</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p = h+<a class="code" href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa56f77b2122961eb876c05a23050e9318">hash_base</a>;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0">text</a>(p) &gt; 0)</div>
@@ -188,7 +184,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="idlookup_8cpp.html#a5f9fba2d64a6d24f452a4fd2c35d16ed">next</a>(p) == 0)</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#ab3b73a872173cfe0a6956c0e8e60e65a">nonewcontrolsequence</a>)</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                p = <a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960aa909f3691545f26c1c43da24581088b2">undefined_control_sequence</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                p = <a class="code" href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaaa909f3691545f26c1c43da24581088b2">undefined_control_sequence</a>;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            {</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0">text</a>(p) &gt; 0)</div>
@@ -244,15 +240,9 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="idlookup_8cpp_a6829317424312d301cab25771dac2607_icgraph.png" border="0" usemap="#idlookup_8cpp_a6829317424312d301cab25771dac2607_icgraph" alt=""/></div>
 <map name="idlookup_8cpp_a6829317424312d301cab25771dac2607_icgraph" id="idlookup_8cpp_a6829317424312d301cab25771dac2607_icgraph">
-<area shape="rect" title=" " alt="" coords="445,157,516,184"/>
-<area shape="rect" href="getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="329,132,395,159"/>
-<area shape="rect" href="primitive_8h.html#afd390c212945223fe7892dc9e61dcc3d" title=" " alt="" coords="327,183,397,209"/>
-<area shape="rect" href="gettoken_8h.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="203,5,275,32"/>
-<area shape="rect" href="scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="41,81,116,108"/>
-<area shape="rect" href="getxtoken_8h.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="200,107,279,133"/>
-<area shape="rect" href="maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="5,208,152,235"/>
-<area shape="rect" href="passtext_8h.html#a6fdb8af2a942331652d3e8a3b121d6be" title=" " alt="" coords="203,208,275,235"/>
-<area shape="rect" href="xtoken_8h.html#a2e46936a66be3da34c1306e4ec999ffb" title=" " alt="" coords="209,157,270,184"/>
+<area shape="rect" title=" " alt="" coords="124,31,195,57"/>
+<area shape="rect" href="getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="8,5,73,32"/>
+<area shape="rect" href="primitive_8h.html#afd390c212945223fe7892dc9e61dcc3d" title=" " alt="" coords="5,56,76,83"/>
 </map>
 </div>
 
@@ -291,20 +281,18 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="idlookup_8cpp_a5f9fba2d64a6d24f452a4fd2c35d16ed_icgraph.png" border="0" usemap="#idlookup_8cpp_a5f9fba2d64a6d24f452a4fd2c35d16ed_icgraph" alt=""/></div>
 <map name="idlookup_8cpp_a5f9fba2d64a6d24f452a4fd2c35d16ed_icgraph" id="idlookup_8cpp_a5f9fba2d64a6d24f452a4fd2c35d16ed_icgraph">
-<area shape="rect" title="link for coalesced lists" alt="" coords="243,31,289,57"/>
-<area shape="rect" href="idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="124,31,195,57"/>
-<area shape="rect" href="getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="8,5,73,32"/>
-<area shape="rect" href="primitive_8h.html#afd390c212945223fe7892dc9e61dcc3d" title=" " alt="" coords="5,56,76,83"/>
+<area shape="rect" title="link for coalesced lists" alt="" coords="124,5,171,32"/>
+<area shape="rect" href="idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="5,5,76,32"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
+<div class="ttc" id="aconstantes_8h_html_a6b7b47dd702d9e331586d485013fd1eaaa909f3691545f26c1c43da24581088b2"><div class="ttname"><a href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaaa909f3691545f26c1c43da24581088b2">undefined_control_sequence</a></div><div class="ttdeci">@ undefined_control_sequence</div><div class="ttdoc">dummy location</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00407">constantes.h:407</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aff605f8748f25aba822c931cb20975dd"><div class="ttname"><a href="constantes_8cpp.html#aff605f8748f25aba822c931cb20975dd">length</a></div><div class="ttdeci">int length(halfword p)</div><div class="ttdoc">the number of characters</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00127">constantes.cpp:127</a></div></div>
 <div class="ttc" id="aoverflow_8cpp_html_a570e0c3ba4fd6dec0e3e83fbb09d04e7"><div class="ttname"><a href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a></div><div class="ttdeci">void str_room(int n)</div><div class="ttdoc">make sure that the pool hasn't overflowed</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00009">overflow.cpp:9</a></div></div>
 <div class="ttc" id="aoverflow_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00015">overflow.cpp:15</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960aa909f3691545f26c1c43da24581088b2"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960aa909f3691545f26c1c43da24581088b2">undefined_control_sequence</a></div><div class="ttdeci">@ undefined_control_sequence</div><div class="ttdoc">dummy location</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00407">constantes.h:407</a></div></div>
 <div class="ttc" id="aidlookup_8cpp_html_a5f9fba2d64a6d24f452a4fd2c35d16ed"><div class="ttname"><a href="idlookup_8cpp.html#a5f9fba2d64a6d24f452a4fd2c35d16ed">next</a></div><div class="ttdeci">static halfword &amp; next(halfword p)</div><div class="ttdoc">link for coalesced lists</div><div class="ttdef"><b>Definition:</b> <a href="idlookup_8cpp_source.html#l00010">idlookup.cpp:10</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aed0a426f1e7a3d4a8106d44c2dcf91e6"><div class="ttname"><a href="globals_8cpp.html#aed0a426f1e7a3d4a8106d44c2dcf91e6">hashused</a></div><div class="ttdeci">halfword hashused</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00100">globals.cpp:100</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a657a50b89927094636254a4409f707f6"><div class="ttname"><a href="constantes_8h.html#a657a50b89927094636254a4409f707f6">hash_prime</a></div><div class="ttdeci">constexpr int hash_prime</div><div class="ttdoc">a prime number equal to about 85% of hash_size</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00013">constantes.h:13</a></div></div>
@@ -314,12 +302,12 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aconstantes_8cpp_html_ac04939951c709f3d90ac4e9f6a6ff3b0"><div class="ttname"><a href="constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0">text</a></div><div class="ttdeci">halfword &amp; text(halfword p)</div><div class="ttdoc">string number for control sequence name</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00126">constantes.cpp:126</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_adc7927a275454b0cbbfa3b06a11035f5"><div class="ttname"><a href="globals_8cpp.html#adc7927a275454b0cbbfa3b06a11035f5">poolptr</a></div><div class="ttdeci">poolpointer poolptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00053">globals.cpp:53</a></div></div>
 <div class="ttc" id="astructtwohalves_html_a92806e7239fdd8181190d0ec817bdb0a"><div class="ttname"><a href="structtwohalves.html#a92806e7239fdd8181190d0ec817bdb0a">twohalves::lh</a></div><div class="ttdeci">std::uint16_t lh</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00051">tex.h:51</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a6b7b47dd702d9e331586d485013fd1eaa56f77b2122961eb876c05a23050e9318"><div class="ttname"><a href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa56f77b2122961eb876c05a23050e9318">hash_base</a></div><div class="ttdeci">@ hash_base</div><div class="ttdoc">beginning of region 2, for the hash table</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00393">constantes.h:393</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a6de07defa89031626954e09d4394ff81"><div class="ttname"><a href="globals_8cpp.html#a6de07defa89031626954e09d4394ff81">hash</a></div><div class="ttdeci">twohalves hash[2881]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00099">globals.cpp:99</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a9a39497b5850d8ef84842b542afb8124"><div class="ttname"><a href="globals_8cpp.html#a9a39497b5850d8ef84842b542afb8124">strpool</a></div><div class="ttdeci">packedASCIIcode strpool[poolsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00051">globals.cpp:51</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00044">tex.h:44</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_ab3b73a872173cfe0a6956c0e8e60e65a"><div class="ttname"><a href="globals_8cpp.html#ab3b73a872173cfe0a6956c0e8e60e65a">nonewcontrolsequence</a></div><div class="ttdeci">bool nonewcontrolsequence</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00101">globals.cpp:101</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aa4c3887078a0917e85a82b9a6b3cb8a6"><div class="ttname"><a href="constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6">cur_length</a></div><div class="ttdeci">int cur_length(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00131">constantes.cpp:131</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960a56f77b2122961eb876c05a23050e9318"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a56f77b2122961eb876c05a23050e9318">hash_base</a></div><div class="ttdeci">@ hash_base</div><div class="ttdoc">beginning of region 2, for the hash table</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00393">constantes.h:393</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aaec9f1cb143a75bb36cbff10d45ca30f"><div class="ttname"><a href="constantes_8cpp.html#aaec9f1cb143a75bb36cbff10d45ca30f">flush_char</a></div><div class="ttdeci">void flush_char(void)</div><div class="ttdoc">forget the last character in the pool</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00146">constantes.cpp:146</a></div></div>
 <div class="ttc" id="atexte_8cpp_html_a46dac58eb46eaee7b157e59bdef55b1b"><div class="ttname"><a href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b">txt</a></div><div class="ttdeci">int txt(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="texte_8cpp_source.html#l00007">texte.cpp:7</a></div></div>
 <div class="ttc" id="amakestring_8cpp_html_af2a73a1ccd1ca6f04bcb36868d97d2e4"><div class="ttname"><a href="makestring_8cpp.html#af2a73a1ccd1ca6f04bcb36868d97d2e4">makestring</a></div><div class="ttdeci">std::string makestring(void)</div><div class="ttdef"><b>Definition:</b> <a href="makestring_8cpp_source.html#l00005">makestring.cpp:5</a></div></div>

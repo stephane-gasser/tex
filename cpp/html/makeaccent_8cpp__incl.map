@@ -1,12 +1,11 @@
 <map id="src/makeaccent.cpp" name="src/makeaccent.cpp">
 <area shape="rect" id="node1" title=" " alt="" coords="458,5,598,32"/>
 <area shape="rect" id="node2" href="$makeaccent_8h.html" title=" " alt="" coords="5,80,109,107"/>
-<area shape="rect" id="node4" href="$scancharnum_8h.html" title=" " alt="" coords="134,80,245,107"/>
-<area shape="rect" id="node5" href="$newcharacter_8h.html" title=" " alt="" coords="269,80,379,107"/>
-<area shape="rect" id="node6" href="$doassignments_8h.html" title=" " alt="" coords="403,80,525,107"/>
-<area shape="rect" id="node7" href="$backinput_8h.html" title=" " alt="" coords="549,80,638,107"/>
-<area shape="rect" id="node8" href="$hpack_8h.html" title=" " alt="" coords="662,80,730,107"/>
-<area shape="rect" id="node9" href="$newkern_8h.html" title=" " alt="" coords="755,80,837,107"/>
-<area shape="rect" id="node10" title=" " alt="" coords="861,80,920,107"/>
-<area shape="rect" id="node3" href="$globals_8h.html" title=" " alt="" coords="427,155,501,181"/>
+<area shape="rect" id="node3" href="$scancharnum_8h.html" title=" " alt="" coords="134,80,245,107"/>
+<area shape="rect" id="node4" href="$newcharacter_8h.html" title=" " alt="" coords="269,80,379,107"/>
+<area shape="rect" id="node5" href="$doassignments_8h.html" title=" " alt="" coords="403,80,525,107"/>
+<area shape="rect" id="node6" href="$backinput_8h.html" title=" " alt="" coords="549,80,638,107"/>
+<area shape="rect" id="node7" href="$hpack_8h.html" title=" " alt="" coords="662,80,730,107"/>
+<area shape="rect" id="node8" href="$newkern_8h.html" title=" " alt="" coords="755,80,837,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="861,80,920,107"/>
 </map>

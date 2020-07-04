@@ -1,12 +1,6 @@
 <map id="end_line_char_inactive" name="end_line_char_inactive">
-<area shape="rect" id="node1" title=" " alt="" coords="451,126,605,152"/>
-<area shape="rect" id="node2" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="332,126,397,152"/>
-<area shape="rect" id="node4" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="43,12,115,39"/>
-<area shape="rect" id="node10" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="327,176,403,203"/>
-<area shape="rect" id="node3" href="$gettoken_8h.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="203,24,275,51"/>
-<area shape="rect" id="node5" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="41,88,116,115"/>
-<area shape="rect" id="node6" href="$getxtoken_8h.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="200,126,279,152"/>
-<area shape="rect" id="node7" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="5,202,152,228"/>
-<area shape="rect" id="node8" href="$passtext_8h.html#a6fdb8af2a942331652d3e8a3b121d6be" title=" " alt="" coords="203,278,275,304"/>
-<area shape="rect" id="node9" href="$xtoken_8h.html#a2e46936a66be3da34c1306e4ec999ffb" title=" " alt="" coords="209,176,270,203"/>
+<area shape="rect" id="node1" title=" " alt="" coords="129,56,284,83"/>
+<area shape="rect" id="node2" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="11,5,76,32"/>
+<area shape="rect" id="node3" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="7,56,79,83"/>
+<area shape="rect" id="node4" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="5,107,81,133"/>
 </map>

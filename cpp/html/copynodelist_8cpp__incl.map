@@ -1,8 +1,7 @@
 <map id="src/copynodelist.cpp" name="src/copynodelist.cpp">
 <area shape="rect" id="node1" title=" " alt="" coords="155,5,298,32"/>
 <area shape="rect" id="node2" href="$copynodelist_8h.html" title=" " alt="" coords="5,80,112,107"/>
-<area shape="rect" id="node4" href="$getavail_8h.html" title=" " alt="" coords="137,80,215,107"/>
-<area shape="rect" id="node5" href="$getnode_8h.html" title=" " alt="" coords="239,80,318,107"/>
-<area shape="rect" id="node6" href="$confusion_8h.html" title=" " alt="" coords="342,80,431,107"/>
-<area shape="rect" id="node3" href="$globals_8h.html" title=" " alt="" coords="189,155,264,181"/>
+<area shape="rect" id="node3" href="$getavail_8h.html" title=" " alt="" coords="137,80,215,107"/>
+<area shape="rect" id="node4" href="$getnode_8h.html" title=" " alt="" coords="239,80,318,107"/>
+<area shape="rect" id="node5" href="$confusion_8h.html" title=" " alt="" coords="342,80,431,107"/>
 </map>

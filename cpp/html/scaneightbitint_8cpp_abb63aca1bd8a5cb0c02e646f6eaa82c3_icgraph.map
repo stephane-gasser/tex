@@ -1,15 +1,11 @@
 <map id="scaneightbitint" name="scaneightbitint">
-<area shape="rect" id="node1" title=" " alt="" coords="879,157,985,184"/>
-<area shape="rect" id="node2" href="$alterboxdimen_8h.html#aec4ac244d278e8fa4798d020849c628f" title=" " alt="" coords="703,5,806,32"/>
-<area shape="rect" id="node3" href="$beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="347,56,421,83"/>
-<area shape="rect" id="node6" href="$begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="500,107,631,133"/>
-<area shape="rect" id="node7" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="316,157,452,184"/>
-<area shape="rect" id="node8" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="143,208,268,235"/>
-<area shape="rect" id="node9" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="679,233,831,260"/>
-<area shape="rect" id="node13" href="$unpackage_8h.html#afc396691da2ad50b5d31c5b03c876f48" title=" " alt="" coords="163,335,248,361"/>
-<area shape="rect" id="node4" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,107,95,133"/>
-<area shape="rect" id="node5" href="$scanbox_8h.html#ae91617805c525de8f7b7679aa48faa8f" title=" " alt="" coords="170,5,241,32"/>
-<area shape="rect" id="node10" href="$scandimen_8h.html#ad330bbbb06884a41f26209e039c103fa" title=" " alt="" coords="341,259,427,285"/>
-<area shape="rect" id="node11" href="$scanint_8h.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="533,208,597,235"/>
-<area shape="rect" id="node12" href="$thetoks_8h.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="533,309,598,336"/>
+<area shape="rect" id="node1" title=" " alt="" coords="379,183,485,209"/>
+<area shape="rect" id="node2" href="$alterboxdimen_8h.html#aec4ac244d278e8fa4798d020849c628f" title=" " alt="" coords="203,5,306,32"/>
+<area shape="rect" id="node3" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,56,131,83"/>
+<area shape="rect" id="node4" href="$beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="217,107,292,133"/>
+<area shape="rect" id="node5" href="$begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="189,157,320,184"/>
+<area shape="rect" id="node6" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="187,208,323,235"/>
+<area shape="rect" id="node7" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="179,259,331,285"/>
+<area shape="rect" id="node8" href="$impression_8h.html#a99b4dadf3c1abee06e9da950c3c704a5" title=" " alt="" coords="201,309,308,336"/>
+<area shape="rect" id="node9" href="$unpackage_8h.html#afc396691da2ad50b5d31c5b03c876f48" title=" " alt="" coords="212,360,297,387"/>
 </map>

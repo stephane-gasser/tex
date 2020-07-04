@@ -90,7 +90,6 @@ Graphe des dépendances par inclusion de makevcenter.cpp:</div>
 <area shape="rect" href="makevcenter_8h.html" title=" " alt="" coords="5,80,112,107"/>
 <area shape="rect" href="confusion_8h.html" title=" " alt="" coords="137,80,226,107"/>
 <area shape="rect" href="half_8h.html" title=" " alt="" coords="250,80,305,107"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="144,155,219,181"/>
 </map>
 </div>
 </div>
@@ -121,7 +120,7 @@ Fonctions</h2></td></tr>
 <p class="definition">Définition à la ligne <a class="el" href="makevcenter_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="makevcenter_8cpp_source.html">makevcenter.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> v = <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(q));</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(v) != <a class="code" href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2dadd1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a>)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(v) != <a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635add1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a>)</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada">confusion</a>(<span class="stringliteral">&quot;vcenter&quot;</span>);</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> delta = <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(v)+<a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(v);</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(v) = <a class="code" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708">axis_height</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>)+<a class="code" href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8">half</a>(delta);</div>
@@ -132,19 +131,14 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="makevcenter_8cpp_a6e5d002d0820c0eb0efc867f638396aa_cgraph.png" border="0" usemap="#makevcenter_8cpp_a6e5d002d0820c0eb0efc867f638396aa_cgraph" alt=""/></div>
 <map name="makevcenter_8cpp_a6e5d002d0820c0eb0efc867f638396aa_cgraph" id="makevcenter_8cpp_a6e5d002d0820c0eb0efc867f638396aa_cgraph">
-<area shape="rect" title=" " alt="" coords="5,208,103,235"/>
-<area shape="rect" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708" title="height of fraction lines above the baseline" alt="" coords="151,31,239,57"/>
-<area shape="rect" href="confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="155,107,234,133"/>
-<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="167,157,222,184"/>
-<area shape="rect" href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8" title=" " alt="" coords="173,208,216,235"/>
-<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="166,259,223,285"/>
-<area shape="rect" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="161,309,228,336"/>
-<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="171,360,218,387"/>
-<area shape="rect" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041" title=" " alt="" coords="316,5,381,32"/>
-<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="325,56,373,83"/>
-<area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="459,81,527,108"/>
-<area shape="rect" href="normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="287,157,411,184"/>
-<area shape="rect" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="314,208,383,235"/>
+<area shape="rect" title=" " alt="" coords="5,157,103,184"/>
+<area shape="rect" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708" title="height of fraction lines above the baseline" alt="" coords="151,5,239,32"/>
+<area shape="rect" href="confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="155,56,234,83"/>
+<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="167,107,222,133"/>
+<area shape="rect" href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8" title=" " alt="" coords="173,157,216,184"/>
+<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="166,208,223,235"/>
+<area shape="rect" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="161,259,228,285"/>
+<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="171,309,218,336"/>
 </map>
 </div>
 <div class="dynheader">
@@ -152,16 +146,15 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="makevcenter_8cpp_a6e5d002d0820c0eb0efc867f638396aa_icgraph.png" border="0" usemap="#makevcenter_8cpp_a6e5d002d0820c0eb0efc867f638396aa_icgraph" alt=""/></div>
 <map name="makevcenter_8cpp_a6e5d002d0820c0eb0efc867f638396aa_icgraph" id="makevcenter_8cpp_a6e5d002d0820c0eb0efc867f638396aa_icgraph">
-<area shape="rect" title=" " alt="" coords="264,31,361,57"/>
-<area shape="rect" href="mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="131,31,216,57"/>
-<area shape="rect" href="aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="5,5,83,32"/>
-<area shape="rect" href="cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="7,56,81,83"/>
+<area shape="rect" title=" " alt="" coords="139,29,236,56"/>
+<area shape="rect" href="mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,29,91,56"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
+<div class="ttc" id="aconstantes_8h_html_a726ca809ffd3d67ab4b8476646f26635add1a01657fdcecb418a4ddfdc7686fdb"><div class="ttname"><a href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635add1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a></div><div class="ttdeci">@ vlist_node</div><div class="ttdoc">type of vlist nodes</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00087">constantes.h:87</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a9242983f21f2b16d36d1fd5f955b185e"><div class="ttname"><a href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a></div><div class="ttdeci">halfword nucleus(halfword p)</div><div class="ttdoc">the nucleus field of a noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00084">constantes.cpp:84</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00587">constantes.h:587</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a4df565ae653d5dfdd476957e92b6a61c"><div class="ttname"><a href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a></div><div class="ttdeci">int &amp; depth(halfword p)</div><div class="ttdoc">depth of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00050">constantes.cpp:50</a></div></div>
@@ -171,7 +164,6 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aglobals_8cpp_html_a2746f146b2673dd893350b5c44da8abd"><div class="ttname"><a href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a></div><div class="ttdeci">smallnumber cursize</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00193">globals.cpp:193</a></div></div>
 <div class="ttc" id="aconfusion_8cpp_html_ac5ea395839fed78d642282ef1e945ada"><div class="ttname"><a href="confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada">confusion</a></div><div class="ttdeci">void confusion(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="confusion_8cpp_source.html#l00008">confusion.cpp:8</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00044">tex.h:44</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a0411cd49bb5b71852cecd93bcbf0ca2dadd1a01657fdcecb418a4ddfdc7686fdb"><div class="ttname"><a href="constantes_8h.html#a0411cd49bb5b71852cecd93bcbf0ca2dadd1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a></div><div class="ttdeci">@ vlist_node</div><div class="ttdoc">type of vlist nodes</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00087">constantes.h:87</a></div></div>
 <div class="ttc" id="ahalf_8cpp_html_ae67e73d5a4cc42b131b635f9cb2461d8"><div class="ttname"><a href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8">half</a></div><div class="ttdeci">int half(int x)</div><div class="ttdef"><b>Definition:</b> <a href="half_8cpp_source.html#l00003">half.cpp:3</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
 <!-- start footer part -->

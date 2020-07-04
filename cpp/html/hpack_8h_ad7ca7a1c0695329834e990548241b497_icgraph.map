@@ -1,25 +1,16 @@
 <map id="hpack" name="hpack">
-<area shape="rect" id="node1" title=" " alt="" coords="767,453,824,480"/>
-<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="151,250,228,277"/>
-<area shape="rect" id="node4" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="632,301,707,328"/>
-<area shape="rect" id="node5" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="462,98,559,125"/>
-<area shape="rect" id="node6" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="300,250,385,277"/>
-<area shape="rect" id="node10" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="465,402,557,429"/>
-<area shape="rect" id="node11" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="464,453,557,480"/>
-<area shape="rect" id="node13" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="638,554,701,581"/>
-<area shape="rect" id="node15" href="$finrow_8h.html#a0dfcdcfca243b8bc38a56bc5f8675d21" title=" " alt="" coords="314,554,371,581"/>
-<area shape="rect" id="node18" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="316,605,369,632"/>
-<area shape="rect" id="node19" href="$makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="143,706,236,733"/>
-<area shape="rect" id="node20" href="$package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="634,656,705,682"/>
-<area shape="rect" id="node21" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="620,757,719,784"/>
-<area shape="rect" id="node23" href="$rebox_8h.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="642,149,697,176"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,630,95,657"/>
-<area shape="rect" id="node7" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="449,250,572,277"/>
-<area shape="rect" id="node8" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="477,149,545,176"/>
-<area shape="rect" id="node9" href="$makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="471,301,550,328"/>
-<area shape="rect" id="node12" href="$makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="467,352,554,378"/>
-<area shape="rect" id="node14" href="$alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="472,554,549,581"/>
-<area shape="rect" id="node17" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="284,656,401,682"/>
-<area shape="rect" id="node16" href="$doendv_8h.html#adbabc406ff0a986dc23c2ad8d5bc9008" title=" " alt="" coords="157,605,221,632"/>
-<area shape="rect" id="node22" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="473,757,548,784"/>
+<area shape="rect" id="node1" title=" " alt="" coords="556,287,613,314"/>
+<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="5,59,83,86"/>
+<area shape="rect" id="node3" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="421,186,496,213"/>
+<area shape="rect" id="node4" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="264,237,361,263"/>
+<area shape="rect" id="node5" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="131,110,216,137"/>
+<area shape="rect" id="node6" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="267,85,359,111"/>
+<area shape="rect" id="node7" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="266,135,359,162"/>
+<area shape="rect" id="node8" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="427,338,490,365"/>
+<area shape="rect" id="node9" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="432,389,485,415"/>
+<area shape="rect" id="node10" href="$finrow_8h.html#a0dfcdcfca243b8bc38a56bc5f8675d21" title=" " alt="" coords="430,439,487,466"/>
+<area shape="rect" id="node11" href="$makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="412,490,505,517"/>
+<area shape="rect" id="node12" href="$package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="423,541,494,567"/>
+<area shape="rect" id="node13" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="409,591,508,618"/>
+<area shape="rect" id="node14" href="$rebox_8h.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="431,237,486,263"/>
 </map>

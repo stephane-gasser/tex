@@ -88,7 +88,6 @@ Graphe des dépendances par inclusion de eqsave.cpp:</div>
 <area shape="rect" title=" " alt="" coords="38,5,149,32"/>
 <area shape="rect" href="eqsave_8h.html" title=" " alt="" coords="5,80,80,107"/>
 <area shape="rect" href="overflow_8h.html" title=" " alt="" coords="104,80,184,107"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="56,155,131,181"/>
 </map>
 </div>
 </div>
@@ -129,12 +128,12 @@ Fonctions</h2></td></tr>
 <p class="definition">Définition à la ligne <a class="el" href="eqsave_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="eqsave_8cpp_source.html">eqsave.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="overflow_8cpp.html#a63c87df7fc9c2697a41f1824e984ff28">check_full_save_stack</a>();</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">if</span> (l == <a class="code" href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa647b3364c51ddc0430d0f344460ece73">level_zero</a>)</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <a class="code" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11">save_type</a>(<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>) = <a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea6935d8dffa298a79c162d660a1ed0cc3">restore_zero</a>;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">if</span> (l == <a class="code" href="constantes_8h.html#a80155586fa275b28773c9b203f52cabaa647b3364c51ddc0430d0f344460ece73">level_zero</a>)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <a class="code" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11">save_type</a>(<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>) = <a class="code" href="constantes_8h.html#aba01db17f4a2bfbc3db60dc172972a25a6935d8dffa298a79c162d660a1ed0cc3">restore_zero</a>;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    {</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a>[<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>++] = <a class="code" href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a>[p];</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11">save_type</a>(<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>) = <a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea85f9df8ac07669c5ecc4347f3c58335d">restore_old_value</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11">save_type</a>(<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>) = <a class="code" href="constantes_8h.html#aba01db17f4a2bfbc3db60dc172972a25a85f9df8ac07669c5ecc4347f3c58335d">restore_old_value</a>;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    }</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="constantes_8cpp.html#adb784dc2516689c3d42c5664f04eafd4">save_level</a>(<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>) = l;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0">save_index</a>(<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>) = p;</div>
@@ -150,7 +149,6 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="rect" href="constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0" title=" " alt="" coords="151,56,239,83"/>
 <area shape="rect" href="constantes_8cpp.html#adb784dc2516689c3d42c5664f04eafd4" title=" " alt="" coords="153,107,237,133"/>
 <area shape="rect" href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11" title="classifies a save_stack entry" alt="" coords="153,157,236,184"/>
-<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="320,5,391,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -158,30 +156,23 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="eqsave_8cpp_a03e055f6df96e78ec9670bc1b6651617_icgraph.png" border="0" usemap="#eqsave_8cpp_a03e055f6df96e78ec9670bc1b6651617_icgraph" alt=""/></div>
 <map name="eqsave_8cpp_a03e055f6df96e78ec9670bc1b6651617_icgraph" id="eqsave_8cpp_a03e055f6df96e78ec9670bc1b6651617_icgraph">
-<area shape="rect" title=" " alt="" coords="325,157,389,184"/>
-<area shape="rect" href="eqdefine_8h.html#a4f9657182abb3c8c499ccd689be3f647" title=" " alt="" coords="193,107,263,133"/>
-<area shape="rect" href="eqworddefine_8h.html#adb9ada4ad25b8952045f620d99afa7d3" title=" " alt="" coords="179,208,277,235"/>
-<area shape="rect" href="boxend_8h.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="36,5,100,32"/>
-<area shape="rect" href="eqdefine_8h.html#aeae006372a12c71aa237d12cdfd5e394" title=" " alt="" coords="39,56,97,83"/>
-<area shape="rect" href="getpreambletoken_8h.html#a82620351bee57bb56f4d0a9181f6af98" title=" " alt="" coords="5,107,131,133"/>
-<area shape="rect" href="normalparagraph_8h.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="9,157,127,184"/>
-<area shape="rect" href="initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="34,208,102,235"/>
-<area shape="rect" href="starteqno_8h.html#a40e390a210c4e1831cf647cefaca8244" title=" " alt="" coords="30,259,106,285"/>
-<area shape="rect" href="eqworddefine_8h.html#a7c3d6699306f4bffaf9ca32b140e609b" title=" " alt="" coords="22,309,114,336"/>
+<area shape="rect" title=" " alt="" coords="152,31,216,57"/>
+<area shape="rect" href="eqdefine_8h.html#a4f9657182abb3c8c499ccd689be3f647" title=" " alt="" coords="19,5,90,32"/>
+<area shape="rect" href="eqworddefine_8h.html#adb9ada4ad25b8952045f620d99afa7d3" title=" " alt="" coords="5,56,104,83"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea6935d8dffa298a79c162d660a1ed0cc3"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea6935d8dffa298a79c162d660a1ed0cc3">restore_zero</a></div><div class="ttdeci">@ restore_zero</div><div class="ttdoc">save_type when an undefined entry should be restored</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00356">constantes.h:356</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a455b41a95f9f40569c9066e2a78a1106"><div class="ttname"><a href="globals_8cpp.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a></div><div class="ttdeci">memoryword eqtb[6107]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00097">globals.cpp:97</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aba01db17f4a2bfbc3db60dc172972a25a85f9df8ac07669c5ecc4347f3c58335d"><div class="ttname"><a href="constantes_8h.html#aba01db17f4a2bfbc3db60dc172972a25a85f9df8ac07669c5ecc4347f3c58335d">restore_old_value</a></div><div class="ttdeci">@ restore_old_value</div><div class="ttdoc">save_type when a value should be restored later</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00355">constantes.h:355</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a05dc1039285ea49749b7b9424d5fab11"><div class="ttname"><a href="constantes_8cpp.html#a05dc1039285ea49749b7b9424d5fab11">save_type</a></div><div class="ttdeci">quarterword &amp; save_type(halfword p)</div><div class="ttdoc">classifies a save_stack entry</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00022">constantes.cpp:22</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea85f9df8ac07669c5ecc4347f3c58335d"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea85f9df8ac07669c5ecc4347f3c58335d">restore_old_value</a></div><div class="ttdeci">@ restore_old_value</div><div class="ttdoc">save_type when a value should be restored later</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00355">constantes.h:355</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a80155586fa275b28773c9b203f52cabaa647b3364c51ddc0430d0f344460ece73"><div class="ttname"><a href="constantes_8h.html#a80155586fa275b28773c9b203f52cabaa647b3364c51ddc0430d0f344460ece73">level_zero</a></div><div class="ttdeci">@ level_zero</div><div class="ttdoc">level for undefined quantities</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00384">constantes.h:384</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a67efc5cbda00d9fe23a1c6d931742de5"><div class="ttname"><a href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a></div><div class="ttdeci">memoryword savestack[savesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00102">globals.cpp:102</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_adb784dc2516689c3d42c5664f04eafd4"><div class="ttname"><a href="constantes_8cpp.html#adb784dc2516689c3d42c5664f04eafd4">save_level</a></div><div class="ttdeci">quarterword &amp; save_level(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00023">constantes.cpp:23</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a6b7b47dd702d9e331586d485013fd1eaa647b3364c51ddc0430d0f344460ece73"><div class="ttname"><a href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa647b3364c51ddc0430d0f344460ece73">level_zero</a></div><div class="ttdeci">@ level_zero</div><div class="ttdoc">level for undefined quantities</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00384">constantes.h:384</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a3b314939ca1ee5da9d022b3f0e2536f0"><div class="ttname"><a href="constantes_8cpp.html#a3b314939ca1ee5da9d022b3f0e2536f0">save_index</a></div><div class="ttdeci">halfword &amp; save_index(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00024">constantes.cpp:24</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aba01db17f4a2bfbc3db60dc172972a25a6935d8dffa298a79c162d660a1ed0cc3"><div class="ttname"><a href="constantes_8h.html#aba01db17f4a2bfbc3db60dc172972a25a6935d8dffa298a79c162d660a1ed0cc3">restore_zero</a></div><div class="ttdeci">@ restore_zero</div><div class="ttdoc">save_type when an undefined entry should be restored</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00356">constantes.h:356</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00103">globals.cpp:103</a></div></div>
 <div class="ttc" id="aoverflow_8cpp_html_a63c87df7fc9c2697a41f1824e984ff28"><div class="ttname"><a href="overflow_8cpp.html#a63c87df7fc9c2697a41f1824e984ff28">check_full_save_stack</a></div><div class="ttdeci">void check_full_save_stack(void)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00030">overflow.cpp:30</a></div></div>
 <!-- start footer part -->

@@ -1,18 +1,5 @@
 <map id="scanbox" name="scanbox">
-<area shape="rect" id="node1" title=" " alt="" coords="5,520,76,546"/>
-<area shape="rect" id="node2" href="$beginbox_8cpp.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="124,342,199,369"/>
-<area shape="rect" id="node13" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="433,621,512,648"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="451,273,494,300"/>
-<area shape="rect" id="node4" href="$copynodelist_8cpp.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="269,216,363,242"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="451,336,494,362"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="439,77,507,104"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="449,216,496,242"/>
-<area shape="rect" id="node8" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="449,412,497,438"/>
-<area shape="rect" id="node9" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="438,545,507,572"/>
-<area shape="rect" id="node10" href="$scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b" title=" " alt="" coords="247,40,385,66"/>
-<area shape="rect" id="node11" href="$scaneightbitint_8cpp.html#abb63aca1bd8a5cb0c02e646f6eaa82c3" title=" " alt="" coords="263,570,369,597"/>
-<area shape="rect" id="node12" href="$scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240" title=" " alt="" coords="267,469,365,496"/>
-<area shape="rect" id="node14" href="$constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title="repositioning distance, in sp" alt="" coords="267,141,365,168"/>
-<area shape="rect" id="node15" href="$vsplit_8cpp.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="289,368,343,394"/>
-<area shape="rect" id="node16" href="$youcant_8cpp.html#a1dd4d1dfb7c61463e09bd88c8b8f4207" title=" " alt="" coords="282,520,350,546"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,76,57"/>
+<area shape="rect" id="node2" href="$beginbox_8cpp.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="126,5,201,32"/>
+<area shape="rect" id="node3" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="124,56,203,83"/>
 </map>

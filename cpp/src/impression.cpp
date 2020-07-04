@@ -154,8 +154,9 @@ std::string cmdchr(quarterword cmd, halfword chrcode)
 			case def_family:
 				n -= math_font_base;
 		}
-		if (primName[cmd].find(n) != primName[cmd].end())
-			return esc(primName[cmd][n]);
+		auto &cmdNames = primName[cmd];
+		if (cmdNames.find(n) != cmdNames.end())
+			return esc(cmdNames[n]);
 	}
 	switch (cmd)
 	{
@@ -407,19 +408,17 @@ std::string asScaled(scaled s)
 	return std::to_string(double(s)/unity);
 }
 
-std::string asSpec(int p, const std::string &s)
+std::string asSpec(int p, const std::string &s = "")
 {
 	if (p < memmin || p >= lomemmax)
 		return "*";
 	return asScaled(width(p))+s+(stretch(p) ? " plus "+glue(stretch(p), type(p), s) : "")+(shrink(p) ? " minus "+glue(shrink(p), subtype(p), s) : "");
 }
 
-static std::string currentstring(void) { return std::string(strpool+strstart[strptr], strpool+poolptr); }
-
-static std::string showinfo(void);
+static std::string shownodelist(halfword p, const std::string &);
 
 //! Display a noad field.
-static std::string subsidiarydata(halfword p, ASCIIcode c)
+static std::string subsidiarydata(halfword p, char c, const std::string &symbol)
 {
 	if (cur_length() >= depththreshold)
 	{
@@ -427,24 +426,21 @@ static std::string subsidiarydata(halfword p, ASCIIcode c)
 			return " []";
 		return "";
 	}
-	append_char(c);
-	tempptr = p;
 	std::ostringstream oss;
 	switch (math_type(p))
 	{
 		case math_char:
-			oss << "\n" << currentstring() << famandchar(p);
+			oss << "\n" << symbol << c << famandchar(p);
 			break;
 		case sub_box: 
-			oss << showinfo();
+			oss << shownodelist(info(p), symbol+c);
 			break;
-		case sub_mlist: 
+		case sub_mlist:
 			if (info(p) == 0)
-				oss << "\n" << currentstring() << "{}";
+				oss << "\n" << symbol << c << "{}";
 			else
-				oss << showinfo();
+				oss << shownodelist(info(p), symbol+c);
 	}
-	poolptr--;
 	return oss.str();
 }
 
@@ -459,7 +455,7 @@ std::string twoDigits(int n)
 
 static std::string writewhatsit(const std::string &s, halfword p)
 {
-	return esc(s)+(write_stream(p) < 16 ? std::to_string(write_stream(p)) :write_stream(p) == 16 ? "*" : "-");
+	return esc(s)+(write_stream(p) < 16 ? std::to_string(write_stream(p)) : write_stream(p) == 16 ? "*" : "-");
 }
 
 void slowprint(int s)
@@ -546,9 +542,7 @@ std::string tokenlist(int p, int q, int l)
 
 std::string tokenshow(halfword p)
 {
-	if (p)
-		return tokenlist(link(p), 0, 10000000);
-	return "";
+	return p ? tokenlist(link(p), 0, 10000000) : "";
 }
 
 //! a frozen font identifier's name
@@ -610,17 +604,7 @@ std::string shortdisplay(int p)
 	return oss.str();
 }
 
-static std::string shownodelist(int p);
-
-static std::string node_list_display(int p)
-{
-	append_char('.'); 
-	auto s = shownodelist(p); 
-	flush_char(); 
-	return s;
-}
-
-static std::string shownodelist(int p)
+static std::string shownodelist(halfword p, const std::string &symbol)
 {
 	if (cur_length() > depththreshold)
 	{
@@ -632,7 +616,7 @@ static std::string shownodelist(int p)
 	std::ostringstream oss;
 	while (p > memmin)
 	{
-		oss << "\n" << currentstring();
+		oss << "\n" << symbol;
 		if (p > memend)
 			return oss.str()+"Bad link, display aborted.";
 		n++;
@@ -688,32 +672,32 @@ static std::string shownodelist(int p)
 						if (shift_amount(p))
 							oss << ", shifted " << asScaled(shift_amount(p));
 					}
-					node_list_display(list_ptr(p));
+					shownodelist(list_ptr(p), symbol+".");
 					break;
 				case rule_node:
 					oss << esc("rule") << "(" << ruledimen(width(p)) << "+" << ruledimen(depth(p)) << ")x" << ruledimen(width(p));
 					break;
 				case ins_node:
 					oss << esc("insert") << subtype(p) << ", natural size " << asScaled(height(p)) << "; split("
-						<< asSpec(split_top_ptr(p), "") << "," << asScaled(depth(p)) << "); float cost " << float_cost(p)
-						<< node_list_display(ins_ptr(p));
+						<< asSpec(split_top_ptr(p)) << "," << asScaled(depth(p)) << "); float cost " << float_cost(p)
+						<< shownodelist(ins_ptr(p), symbol+".");
 					break;
 				case whatsit_node:
 					switch (subtype(p))
 					{
-						case 0:
+						case open_node:
 							oss << writewhatsit("openout", p) << "=" << asFilename(TXT(open_name(p)), TXT(open_area(p)), TXT(open_ext(p)));
 							break;
-						case 1:
+						case write_node:
 							oss << writewhatsit("write", p) << asMark(write_tokens(p));
 							break;
-						case 2: 
+						case close_node: 
 							oss << writewhatsit("closeout", p); 
 							break;
-						case 3:
+						case special_node:
 							oss << esc("special") << asMark(write_tokens(p));
 							break;
-						case 4:
+						case language_node:
 							oss << esc("setlanguage") <<what_lang(p) << " (hyphenmin" << what_lhm(p) << "," << what_rhm(p) << ")";
 							break;
 						default: 
@@ -723,60 +707,56 @@ static std::string shownodelist(int p)
 				case glue_node:
 					if (subtype(p) >= a_leaders)
 						oss << esc(subtype(p) == c_leaders ? "cleaders" : subtype(p) == x_leaders ? "xleaders" : "leaders ") 
-							<< asSpec(glue_ptr(p), "") << node_list_display(leader_ptr(p));
+							<< asSpec(glue_ptr(p)) << shownodelist(leader_ptr(p), symbol+".");
 					else
 					{
 						oss << esc("glue");
-						if (subtype(p) != normal)
+						int n = subtype(p)-1;
+						auto &glueNames = primName[assign_glue];
+						auto &muGlueNames = primName[assign_mu_glue];
+						switch (n+1)
 						{
-							oss << "(";
-							if (subtype(p) < cond_math_glue)
-							{
-								int n = subtype(p)-1;
-								if (primName[assign_glue].find(n) != primName[assign_glue].end())
-										oss << esc(primName[assign_glue][n]);
-									else 
-										if (primName[assign_mu_glue].find(n) != primName[assign_mu_glue].end())
-											oss << esc(primName[assign_mu_glue][n]);
-										else
-											oss << "[unknown glue parameter!]";
-							
-							}
-							else 
-								if (subtype(p) == cond_math_glue)
-								oss << esc("nonscript");
-							else
-								oss << esc("mskip");
-							oss << ")";
-						}
-						if (subtype(p) != cond_math_glue)
-						{
-							oss << " ";
-							if (subtype(p) < cond_math_glue)
-								oss << asSpec(glue_ptr(p), "");
-							else
-								oss << asSpec(glue_ptr(p), "mu");
+							case normal:
+								oss << esc("glue") << " " << asSpec(glue_ptr(p));
+								break;
+							case cond_math_glue:
+								oss << esc("glue") << "(" << esc("nonscript") << ")";
+								break;
+							case mu_glue:
+								oss << esc("glue") << "(" << esc("mskip") << ") " << asSpec(glue_ptr(p), "mu");
+								break;
+							default:
+								if (glueNames.find(n) != glueNames.end())
+								{
+									oss << esc("glue") << "(" << esc(glueNames[n]) << ") " << asSpec(glue_ptr(p));
+									break;
+								}
+								if (muGlueNames.find(n) != muGlueNames.end())
+								{
+									oss << esc("glue") << "(" << esc(muGlueNames[n]) << ") " << asSpec(glue_ptr(p));
+									break;
+								}
+								oss << esc("glue") << "(" << "[unknown glue parameter!]" << ") " << asSpec(glue_ptr(p));
 						}
 					}
 				case kern_node:
-					if (subtype(p) != mu_glue)
+					switch(subtype(p))
 					{
-						oss << esc("kern");
-						if (subtype(p) != normal)
-							oss << " ";
-						oss << asScaled(width(p));
-						if (subtype(p) == acc_kern)
-							oss << " (for accent)";
+						case normal:
+							oss << esc("kern") << asScaled(width(p));
+							break;
+						case mu_glue:
+							oss << esc("mkern") << asScaled(width(p)) << "mu";
+							break;
+						case acc_kern:
+							oss << esc("kern") << " " << asScaled(width(p)) << " (for accent)";
+							break;
+						default:
+							oss << esc("kern") << " " << asScaled(width(p));
 					}
-					else
-						oss << esc("mkern") << asScaled(width(p)) << "mu";
 					break;
 				case math_node:
-					oss << esc("math");
-					if (subtype(p) == before)
-						oss << "on";
-					else
-						oss << "off";
+					oss << esc("math") << (subtype(p) == before ? "on" : "off");
 					if (width(p))
 						oss << ", surrounded " << asScaled(width(p));
 					break;
@@ -796,19 +776,17 @@ static std::string shownodelist(int p)
 				case disc_node:
 					oss << esc("discretionary");
 					if (subtype(p) > 0)
-						oss << " replacing " <<subtype(p);
-					oss << node_list_display(pre_break(p));
-					append_char('|');
-					oss << shownodelist(post_break(p));
-					flush_char();
+						oss << " replacing " << subtype(p);
+					oss << shownodelist(pre_break(p), symbol+".");
+					oss << shownodelist(post_break(p), symbol+"|");
 					break;
 				case mark_node:
 					oss << esc("mark") << asMark(mark_ptr(p));
 					break;
 				case adjust_node:
-					oss << esc("vadjust") << node_list_display(adjust_ptr(p));
+					oss << esc("vadjust") << shownodelist(adjust_ptr(p), symbol+".");
 					break;
-				case style_node: 
+				case style_node:
 					if (primName[math_style].find(subtype(p)) != primName[math_style].end())
 						oss << esc(primName[math_style][subtype(p)]);
 					else
@@ -816,18 +794,10 @@ static std::string shownodelist(int p)
 					break;
 				case choice_node:
 					oss << esc("mathchoice");
-					append_char('D');
-					oss << shownodelist(display_mlist(p));
-					flush_char();
-					append_char('T');
-					oss << shownodelist(text_mlist(p));
-					flush_char();
-					append_char('S');
-					oss << shownodelist(script_mlist(p));
-					flush_char();
-					append_char('s');
-					oss << shownodelist(script_script_mlist(p));
-					flush_char();
+					oss << shownodelist(display_mlist(p), symbol+"D");
+					oss << shownodelist(text_mlist(p), symbol+"T");
+					oss << shownodelist(script_mlist(p), symbol+"S");
+					oss << shownodelist(script_script_mlist(p), symbol+"s");
 					break;
 				case ord_noad:
 				case op_noad:
@@ -897,9 +867,9 @@ static std::string shownodelist(int p)
 						else
 							oss << esc("nolimits");
 					if (type(p) < left_noad)
-						oss << subsidiarydata(nucleus(p), '.');
-					oss << subsidiarydata(supscr(p), '^');
-					oss << subsidiarydata(subscr(p), '_');
+						oss << subsidiarydata(nucleus(p), '.', symbol);
+					oss << subsidiarydata(supscr(p), '^', symbol);
+					oss << subsidiarydata(subscr(p), '_', symbol);
 					break;
 				case fraction_noad:
 					oss << esc("fraction, thickness ") << (new_hlist(p) == default_code ? "= default": asScaled(new_hlist(p)));
@@ -913,8 +883,8 @@ static std::string shownodelist(int p)
 					 || large_fam(right_delimiter(p))
 					 || large_char(right_delimiter(p)))
 						oss << ", right-delimiter " << asDelimiter(right_delimiter(p));
-					oss << subsidiarydata(numerator(p), '\\');
-					oss << subsidiarydata(denominator(p), '/');
+					oss << subsidiarydata(numerator(p), '\\', symbol);
+					oss << subsidiarydata(denominator(p), '/', symbol);
 					break;
 				default: 
 					oss << "Unknown node type!";
@@ -924,23 +894,16 @@ static std::string shownodelist(int p)
 	return oss.str();
 }
 
-static std::string showinfo(void)
-{
-	 return shownodelist(info(tempptr));
-}
-
 static int show_box_breadth(void) { return int_par(show_box_breadth_code); }
 static int show_box_depth(void) { return int_par(show_box_depth_code); }
 
 std::string showbox(halfword p)
 {  
-	depththreshold = show_box_depth();
+	depththreshold = std::min(show_box_depth(), poolsize-poolptr-1);
 	breadthmax = show_box_breadth();
 	if (breadthmax <= 0)
 		breadthmax = 5;
-	if (poolptr+depththreshold >= poolsize)
-		depththreshold = poolsize-poolptr-1;
-	return shownodelist(p)+"\n";
+	return shownodelist(p, "")+"\n";
 }
 
 static void begin_pseudoprint(int l)

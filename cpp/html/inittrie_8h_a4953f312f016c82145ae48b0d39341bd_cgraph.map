@@ -1,13 +1,9 @@
 <map id="inittrie" name="inittrie">
 <area shape="rect" id="node1" title=" " alt="" coords="5,180,63,207"/>
 <area shape="rect" id="node2" href="$compresstrie_8cpp.html#ad4d90f9f0639335b7034309f10a231d9" title=" " alt="" coords="111,29,208,56"/>
-<area shape="rect" id="node4" href="$firstfit_8cpp.html#a9ec7e5f14730f1045a0cafbb2b259e2f" title=" " alt="" coords="265,155,319,181"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64" title="`‘downward’&#39; link in a trie" alt="" coords="380,205,447,232"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#acd16bad116dfba77da241a238860460d" title="character matched at this trie location" alt="" coords="256,256,328,283"/>
-<area shape="rect" id="node9" href="$triefix_8cpp.html#ab083e1d6cead67f05f1559939623e5ec" title=" " alt="" coords="132,331,187,357"/>
-<area shape="rect" id="node11" href="$triepack_8cpp.html#abdca283a7ecad2abcf198d2819b0f535" title=" " alt="" coords="125,155,193,181"/>
-<area shape="rect" id="node3" href="$trienode_8cpp.html#a8601b6a5a200aba7d6d2dad00dcd2581" title=" " alt="" coords="258,29,326,56"/>
-<area shape="rect" id="node5" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="378,104,449,131"/>
-<area shape="rect" id="node6" href="$firstfit_8cpp.html#a10142a48205da70cd0fa6afd599e3dc1" title="backward links in |trie| holes" alt="" coords="376,155,451,181"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#a090160939c3e4007822472d896310f18" title="program for hyphenation at this trie location" alt="" coords="261,357,323,384"/>
+<area shape="rect" id="node3" href="$firstfit_8cpp.html#a9ec7e5f14730f1045a0cafbb2b259e2f" title=" " alt="" coords="265,155,319,181"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64" title="`‘downward’&#39; link in a trie" alt="" coords="376,205,443,232"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#acd16bad116dfba77da241a238860460d" title="character matched at this trie location" alt="" coords="256,261,328,288"/>
+<area shape="rect" id="node6" href="$triefix_8cpp.html#ab083e1d6cead67f05f1559939623e5ec" title=" " alt="" coords="132,331,187,357"/>
+<area shape="rect" id="node7" href="$triepack_8cpp.html#abdca283a7ecad2abcf198d2819b0f535" title=" " alt="" coords="125,155,193,181"/>
 </map>

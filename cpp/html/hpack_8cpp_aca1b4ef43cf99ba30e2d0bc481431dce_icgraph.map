@@ -1,17 +1,4 @@
 <map id="goto50" name="goto50">
-<area shape="rect" id="node1" title=" " alt="" coords="661,287,723,314"/>
-<area shape="rect" id="node2" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="556,287,613,314"/>
-<area shape="rect" id="node3" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="5,59,83,86"/>
-<area shape="rect" id="node4" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="421,186,496,213"/>
-<area shape="rect" id="node5" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="264,237,361,263"/>
-<area shape="rect" id="node6" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="131,110,216,137"/>
-<area shape="rect" id="node7" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="267,85,359,111"/>
-<area shape="rect" id="node8" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="266,135,359,162"/>
-<area shape="rect" id="node9" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="427,338,490,365"/>
-<area shape="rect" id="node10" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="432,389,485,415"/>
-<area shape="rect" id="node11" href="$finrow_8h.html#a0dfcdcfca243b8bc38a56bc5f8675d21" title=" " alt="" coords="430,439,487,466"/>
-<area shape="rect" id="node12" href="$makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="412,490,505,517"/>
-<area shape="rect" id="node13" href="$package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="423,541,494,567"/>
-<area shape="rect" id="node14" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="409,591,508,618"/>
-<area shape="rect" id="node15" href="$rebox_8h.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="431,237,486,263"/>
+<area shape="rect" id="node1" title=" " alt="" coords="111,5,172,32"/>
+<area shape="rect" id="node2" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="5,5,63,32"/>
 </map>

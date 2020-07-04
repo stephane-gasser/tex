@@ -88,8 +88,6 @@ Graphe des dépendances par inclusion de youcant.cpp:</div>
 <area shape="rect" title=" " alt="" coords="43,5,158,32"/>
 <area shape="rect" href="youcant_8h.html" title=" " alt="" coords="5,80,84,107"/>
 <area shape="rect" href="impression_8h.html" title=" " alt="" coords="109,80,205,107"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="19,155,94,181"/>
-<area shape="rect" title=" " alt="" coords="129,155,184,181"/>
 </map>
 </div>
 </div>
@@ -119,36 +117,17 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="youcant_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="youcant_8cpp_source.html">youcant.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a>(<span class="stringliteral">&quot;You can&#39;t use `&quot;</span>);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="impression_8cpp.html#ab8f6990e9aa8ffdacd856de74aa40314">printcmdchr</a>(<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a>, <a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a>);</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a>(<span class="stringliteral">&quot;&#39; in &quot;</span>);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="impression_8cpp.html#a43c9dced8ed05b67bdc23115b72c7893">printmode</a>(<a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a>);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a>(<span class="stringliteral">&quot;You can&#39;t use `&quot;</span>+<a class="code" href="impression_8cpp.html#a34ba44ad16d97758f9eeaa0c98893a3c">cmdchr</a>(<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a>, <a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a>)+<span class="stringliteral">&quot;&#39; in &quot;</span>+<a class="code" href="impression_8cpp.html#a209bd98968041d00181afd1062c967b8">asMode</a>(<a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a>));</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="youcant_8cpp_a1dd4d1dfb7c61463e09bd88c8b8f4207_cgraph.png" border="0" usemap="#youcant_8cpp_a1dd4d1dfb7c61463e09bd88c8b8f4207_cgraph" alt=""/></div>
 <map name="youcant_8cpp_a1dd4d1dfb7c61463e09bd88c8b8f4207_cgraph" id="youcant_8cpp_a1dd4d1dfb7c61463e09bd88c8b8f4207_cgraph">
-<area shape="rect" title=" " alt="" coords="5,206,73,232"/>
-<area shape="rect" href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="437,222,484,248"/>
-<area shape="rect" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="132,344,201,371"/>
-<area shape="rect" href="impression_8cpp.html#ab8f6990e9aa8ffdacd856de74aa40314" title=" " alt="" coords="121,294,212,320"/>
-<area shape="rect" href="impression_8cpp.html#a43c9dced8ed05b67bdc23115b72c7893" title=" " alt="" coords="127,142,206,168"/>
-<area shape="rect" href="parametres_8h.html#a92aab912d4164b91a30449bc19bb1593" title=" " alt="" coords="665,332,771,359"/>
-<area shape="rect" href="impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="544,358,616,384"/>
-<area shape="rect" href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="689,231,747,258"/>
-<area shape="rect" href="texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="561,307,599,334"/>
-<area shape="rect" href="impression_8cpp.html#a38d0d7fcc1e022ff105c6e5a384c1f75" title=" " alt="" coords="283,218,355,244"/>
-<area shape="rect" href="impression_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="427,332,495,359"/>
-<area shape="rect" href="impression_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="543,459,617,486"/>
-<area shape="rect" href="impression_8cpp.html#ab0e0a15731c49d7d8c5885707fe98f2c" title=" " alt="" coords="427,395,495,422"/>
-<area shape="rect" href="impression_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="430,471,491,498"/>
-<area shape="rect" href="impression_8cpp.html#aca670ebb5819c91871d9f9f6e3d85ee5" title=" " alt="" coords="260,268,379,295"/>
-<area shape="rect" href="impression_8cpp.html#a82cc65e07ea8b2e29df42b8a9daaf5fe" title=" " alt="" coords="278,319,361,346"/>
-<area shape="rect" href="impression_8cpp.html#a8b86d6448cd6f52f6054887f2abd74cb" title=" " alt="" coords="277,522,362,548"/>
-<area shape="rect" href="impression_8cpp.html#af72304efe43145a87d89768d6778e9f1" title=" " alt="" coords="284,623,355,650"/>
-<area shape="rect" href="impression_8cpp.html#a6d109192adf7b5a1502c046a76557ab3" title=" " alt="" coords="266,66,373,92"/>
-<area shape="rect" href="impression_8cpp.html#aca8b8a2b4d9d919593892bc838e00c95" title=" " alt="" coords="282,116,357,143"/>
+<area shape="rect" title=" " alt="" coords="5,56,73,83"/>
+<area shape="rect" href="impression_8cpp.html#a209bd98968041d00181afd1062c967b8" title=" " alt="" coords="122,5,190,32"/>
+<area shape="rect" href="impression_8cpp.html#a34ba44ad16d97758f9eeaa0c98893a3c" title=" " alt="" coords="123,56,189,83"/>
+<area shape="rect" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="121,107,191,133"/>
 </map>
 </div>
 <div class="dynheader">
@@ -156,28 +135,22 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="youcant_8cpp_a1dd4d1dfb7c61463e09bd88c8b8f4207_icgraph.png" border="0" usemap="#youcant_8cpp_a1dd4d1dfb7c61463e09bd88c8b8f4207_icgraph" alt=""/></div>
 <map name="youcant_8cpp_a1dd4d1dfb7c61463e09bd88c8b8f4207_icgraph" id="youcant_8cpp_a1dd4d1dfb7c61463e09bd88c8b8f4207_icgraph">
-<area shape="rect" title=" " alt="" coords="447,80,515,106"/>
-<area shape="rect" href="beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="303,29,378,56"/>
-<area shape="rect" href="deletelast_8h.html#adf27bd30a3970cc321bd31cf0109e8b4" title=" " alt="" coords="301,80,380,106"/>
-<area shape="rect" href="reportillegalcase_8h.html#a74a9219c03db22d322bbaeda3bb72225" title=" " alt="" coords="283,181,399,208"/>
-<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,105,95,132"/>
-<area shape="rect" href="scanbox_8h.html#ae91617805c525de8f7b7679aa48faa8f" title=" " alt="" coords="153,29,224,56"/>
-<area shape="rect" href="alteraux_8h.html#acfad1d6cfee9f950e11457f647f80c02" title=" " alt="" coords="155,181,223,208"/>
-<area shape="rect" href="doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="143,256,235,282"/>
-<area shape="rect" href="privileged_8h.html#a52485fd6ecfc41bc1d4cb08f0076c9e7" title=" " alt="" coords="150,306,227,333"/>
+<area shape="rect" title=" " alt="" coords="169,56,237,83"/>
+<area shape="rect" href="beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="26,5,101,32"/>
+<area shape="rect" href="deletelast_8h.html#adf27bd30a3970cc321bd31cf0109e8b4" title=" " alt="" coords="24,56,103,83"/>
+<area shape="rect" href="reportillegalcase_8h.html#a74a9219c03db22d322bbaeda3bb72225" title=" " alt="" coords="5,107,121,133"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aimpression_8cpp_html_aba0e405ae93b2ffc6fa80e2e1f7662eb"><div class="ttname"><a href="impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb">print</a></div><div class="ttdeci">void print(const std::string &amp;t)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00012">impression.cpp:12</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a209bd98968041d00181afd1062c967b8"><div class="ttname"><a href="impression_8cpp.html#a209bd98968041d00181afd1062c967b8">asMode</a></div><div class="ttdeci">std::string asMode(int m)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00335">impression.cpp:335</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a4128dbc20823d10a2626cb9cdf4d6cd4"><div class="ttname"><a href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a></div><div class="ttdeci">halfword curchr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00109">globals.cpp:109</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a34ba44ad16d97758f9eeaa0c98893a3c"><div class="ttname"><a href="impression_8cpp.html#a34ba44ad16d97758f9eeaa0c98893a3c">cmdchr</a></div><div class="ttdeci">std::string cmdchr(quarterword cmd, halfword chrcode)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00118">impression.cpp:118</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00090">globals.cpp:90</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a43c9dced8ed05b67bdc23115b72c7893"><div class="ttname"><a href="impression_8cpp.html#a43c9dced8ed05b67bdc23115b72c7893">printmode</a></div><div class="ttdeci">void printmode(int m)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01244">impression.cpp:1244</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_ab8f6990e9aa8ffdacd856de74aa40314"><div class="ttname"><a href="impression_8cpp.html#ab8f6990e9aa8ffdacd856de74aa40314">printcmdchr</a></div><div class="ttdeci">void printcmdchr(quarterword cmd, halfword chrcode)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00105">impression.cpp:105</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_adb17223ad60c9ffc709eb43e2f309055"><div class="ttname"><a href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a></div><div class="ttdeci">eightbits curcmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00108">globals.cpp:108</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a27f6b6c256d6682247b1fbdd82d30194"><div class="ttname"><a href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a></div><div class="ttdeci">void print_err(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01759">impression.cpp:1759</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a27f6b6c256d6682247b1fbdd82d30194"><div class="ttname"><a href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a></div><div class="ttdeci">void print_err(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00470">impression.cpp:470</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

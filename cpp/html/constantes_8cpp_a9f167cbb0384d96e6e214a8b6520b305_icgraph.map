@@ -1,9 +1,7 @@
 <map id="split_top_ptr" name="split_top_ptr">
-<area shape="rect" id="node1" title="the split_top_skip to be used" alt="" coords="447,107,540,133"/>
-<area shape="rect" id="node2" href="$copynodelist_8h.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="304,56,399,83"/>
-<area shape="rect" id="node5" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="324,107,379,133"/>
-<area shape="rect" id="node7" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="5,132,123,159"/>
-<area shape="rect" id="node3" href="$beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="176,5,251,32"/>
-<area shape="rect" id="node4" href="$unpackage_8h.html#afc396691da2ad50b5d31c5b03c876f48" title=" " alt="" coords="171,56,256,83"/>
-<area shape="rect" id="node6" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="175,107,252,133"/>
+<area shape="rect" id="node1" title="the split_top_skip to be used" alt="" coords="171,105,264,132"/>
+<area shape="rect" id="node2" href="$copynodelist_8h.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="17,29,111,56"/>
+<area shape="rect" id="node3" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="37,80,91,107"/>
+<area shape="rect" id="node4" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="5,131,123,157"/>
+<area shape="rect" id="node5" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="15,181,113,208"/>
 </map>

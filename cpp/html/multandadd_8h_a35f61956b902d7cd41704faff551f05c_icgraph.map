@@ -1,6 +1,5 @@
 <map id="mu_mult" name="mu_mult">
-<area shape="rect" id="node1" title=" " alt="" coords="263,31,335,57"/>
-<area shape="rect" id="node2" href="$mathglue_8h.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="139,5,214,32"/>
-<area shape="rect" id="node4" href="$mathkern_8h.html#a18dcff153c06b9a7be19334ba64191ca" title=" " alt="" coords="139,56,215,83"/>
-<area shape="rect" id="node3" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,31,91,57"/>
+<area shape="rect" id="node1" title=" " alt="" coords="129,31,201,57"/>
+<area shape="rect" id="node2" href="$mathglue_8h.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="6,5,81,32"/>
+<area shape="rect" id="node3" href="$mathkern_8h.html#a18dcff153c06b9a7be19334ba64191ca" title=" " alt="" coords="5,56,81,83"/>
 </map>

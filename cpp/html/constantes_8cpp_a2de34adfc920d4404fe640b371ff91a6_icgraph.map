@@ -1,9 +1,8 @@
 <map id="default_rule_thickness" name="default_rule_thickness">
-<area shape="rect" id="node1" title="thickness of \over bars" alt="" coords="284,107,436,133"/>
-<area shape="rect" id="node2" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="139,5,236,32"/>
-<area shape="rect" id="node4" href="$makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="148,56,227,83"/>
-<area shape="rect" id="node5" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="141,107,233,133"/>
-<area shape="rect" id="node6" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="141,157,234,184"/>
-<area shape="rect" id="node7" href="$makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="144,208,231,235"/>
-<area shape="rect" id="node3" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,107,91,133"/>
+<area shape="rect" id="node1" title="thickness of \over bars" alt="" coords="151,107,303,133"/>
+<area shape="rect" id="node2" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,5,103,32"/>
+<area shape="rect" id="node3" href="$makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="15,56,93,83"/>
+<area shape="rect" id="node4" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="8,107,100,133"/>
+<area shape="rect" id="node5" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="7,157,101,184"/>
+<area shape="rect" id="node6" href="$makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="11,208,97,235"/>
 </map>

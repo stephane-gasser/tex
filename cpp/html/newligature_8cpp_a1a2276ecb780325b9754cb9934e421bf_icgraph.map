@@ -1,9 +1,6 @@
 <map id="newligature" name="newligature">
-<area shape="rect" id="node1" title=" " alt="" coords="541,31,629,57"/>
-<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a324a507e9f6c60cdc8cd9193e7be3df3" title=" " alt="" coords="135,5,236,32"/>
-<area shape="rect" id="node4" href="$maincontrol_8cpp.html#a88975b51f5ad73bf7aef9609a3ad8253" title="the parameter is either |rt_hit| or |false|" alt="" coords="423,31,493,57"/>
-<area shape="rect" id="node6" href="$reconstitute_8cpp.html#a15f606b3367d43ac9994e8d211565d79" title=" " alt="" coords="423,81,493,108"/>
-<area shape="rect" id="node3" href="$maincontrol_8cpp.html#ac9adf23e9668c60e307d353478aec787" title=" " alt="" coords="5,5,87,32"/>
-<area shape="rect" id="node5" href="$maincontrol_8cpp.html#a89c5ef2add7ff812965c651e7fac6c32" title=" " alt="" coords="297,31,361,57"/>
-<area shape="rect" id="node7" href="$reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="284,81,375,108"/>
+<area shape="rect" id="node1" title=" " alt="" coords="155,56,243,83"/>
+<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a324a507e9f6c60cdc8cd9193e7be3df3" title=" " alt="" coords="5,5,107,32"/>
+<area shape="rect" id="node3" href="$maincontrol_8cpp.html#a88975b51f5ad73bf7aef9609a3ad8253" title="the parameter is either |rt_hit| or |false|" alt="" coords="21,56,91,83"/>
+<area shape="rect" id="node4" href="$reconstitute_8cpp.html#a15f606b3367d43ac9994e8d211565d79" title=" " alt="" coords="21,107,91,133"/>
 </map>

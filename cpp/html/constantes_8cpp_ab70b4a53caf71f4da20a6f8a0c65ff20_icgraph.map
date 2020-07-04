@@ -1,13 +1,6 @@
 <map id="cat_code" name="cat_code">
-<area shape="rect" id="node1" title=" " alt="" coords="688,252,763,279"/>
-<area shape="rect" id="node2" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="572,151,637,178"/>
-<area shape="rect" id="node10" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="569,303,640,330"/>
-<area shape="rect" id="node11" href="$impression_8h.html#a80379c6cd497e05646e9aed046240f54" title=" " alt="" coords="574,252,635,279"/>
-<area shape="rect" id="node3" href="$gettoken_8h.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="449,202,521,228"/>
-<area shape="rect" id="node5" href="$getxtoken_8h.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="128,252,207,279"/>
-<area shape="rect" id="node6" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="5,100,80,127"/>
-<area shape="rect" id="node7" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="255,100,401,127"/>
-<area shape="rect" id="node8" href="$passtext_8h.html#a6fdb8af2a942331652d3e8a3b121d6be" title=" " alt="" coords="449,151,521,178"/>
-<area shape="rect" id="node9" href="$xtoken_8h.html#a2e46936a66be3da34c1306e4ec999ffb" title=" " alt="" coords="455,50,516,76"/>
-<area shape="rect" id="node4" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="289,303,367,330"/>
+<area shape="rect" id="node1" title=" " alt="" coords="124,56,199,83"/>
+<area shape="rect" id="node2" href="$impression_8h.html#aff5beadbf72096c5a8ea0b4da97cba5b" title=" " alt="" coords="21,5,60,32"/>
+<area shape="rect" id="node3" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="8,56,73,83"/>
+<area shape="rect" id="node4" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="5,107,76,133"/>
 </map>

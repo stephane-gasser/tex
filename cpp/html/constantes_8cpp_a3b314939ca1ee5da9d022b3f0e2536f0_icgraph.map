@@ -1,25 +1,7 @@
 <map id="save_index" name="save_index">
-<area shape="rect" id="node1" title=" " alt="" coords="927,382,1015,408"/>
-<area shape="rect" id="node2" href="$eqsave_8h.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="815,179,879,206"/>
-<area shape="rect" id="node5" href="$newsavelevel_8h.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="650,230,751,256"/>
-<area shape="rect" id="node18" href="$saveforafter_8h.html#aae407f09853a167eea959b30dda12a67" title=" " alt="" coords="163,838,253,864"/>
-<area shape="rect" id="node19" href="$unsave_8h.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="815,534,879,560"/>
-<area shape="rect" id="node3" href="$eqdefine_8h.html#a4f9657182abb3c8c499ccd689be3f647" title=" " alt="" coords="665,128,736,155"/>
-<area shape="rect" id="node4" href="$eqworddefine_8h.html#adb9ada4ad25b8952045f620d99afa7d3" title=" " alt="" coords="651,179,750,206"/>
-<area shape="rect" id="node6" href="$alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="330,343,407,370"/>
-<area shape="rect" id="node8" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,267,95,294"/>
-<area shape="rect" id="node9" href="$initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="175,198,241,224"/>
-<area shape="rect" id="node10" href="$begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="143,58,273,84"/>
-<area shape="rect" id="node11" href="$builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2" title=" " alt="" coords="464,382,587,408"/>
-<area shape="rect" id="node12" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="499,432,552,459"/>
-<area shape="rect" id="node13" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="498,128,553,155"/>
-<area shape="rect" id="node14" href="$pushmath_8h.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="486,230,565,256"/>
-<area shape="rect" id="node17" href="$scanspec_8h.html#ac8cb2374dcb9af6d4553bbff3533adf1" title=" " alt="" coords="329,128,408,155"/>
-<area shape="rect" id="node7" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="149,470,267,496"/>
-<area shape="rect" id="node15" href="$buildchoices_8h.html#a5f00c14009de038a4c2dc9c2fd9f8e99" title=" " alt="" coords="321,635,416,662"/>
-<area shape="rect" id="node16" href="$mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="321,267,416,294"/>
-<area shape="rect" id="node20" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="487,686,564,712"/>
-<area shape="rect" id="node21" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="494,483,557,510"/>
-<area shape="rect" id="node22" href="$package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="333,496,404,523"/>
-<area shape="rect" id="node23" href="$resumeafterdisplay_8h.html#a5e20dcff03a0b655888f77fb621b21d4" title=" " alt="" coords="635,635,767,662"/>
+<area shape="rect" id="node1" title=" " alt="" coords="155,81,243,108"/>
+<area shape="rect" id="node2" href="$eqsave_8h.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="24,5,88,32"/>
+<area shape="rect" id="node3" href="$newsavelevel_8h.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="5,56,107,83"/>
+<area shape="rect" id="node4" href="$saveforafter_8h.html#aae407f09853a167eea959b30dda12a67" title=" " alt="" coords="11,107,101,133"/>
+<area shape="rect" id="node5" href="$unsave_8h.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="24,157,88,184"/>
 </map>

@@ -1,10 +1,6 @@
 <map id="packfilename" name="packfilename">
-<area shape="rect" id="node1" title=" " alt="" coords="451,259,549,285"/>
-<area shape="rect" id="node2" href="$packfilename_8h.html#a7a0ce63c987a64219951e8be9c9494c3" title=" " alt="" coords="288,132,403,159"/>
-<area shape="rect" id="node7" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="5,208,81,235"/>
-<area shape="rect" id="node8" href="$readfontinfo_8h.html#af923ea1b9fc83c4c6a610d50e43c599d" title=" " alt="" coords="300,309,391,336"/>
-<area shape="rect" id="node3" href="$openorclosein_8h.html#ac7ac73ba34708b8181d49f57d6a90a08" title=" " alt="" coords="133,5,236,32"/>
-<area shape="rect" id="node4" href="$outwhat_8h.html#a1137c5a00a506a80eadbe8aa55c400f5" title=" " alt="" coords="9,107,77,133"/>
-<area shape="rect" id="node5" href="$packjobname_8h.html#a16f419655568b8fa26e452873e809093" title=" " alt="" coords="135,107,234,133"/>
-<area shape="rect" id="node6" href="$promptfilename_8h.html#a30c405cf60000fe656870957636a4d91" title=" " alt="" coords="129,157,240,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="292,56,391,83"/>
+<area shape="rect" id="node2" href="$packfilename_8h.html#a7a0ce63c987a64219951e8be9c9494c3" title=" " alt="" coords="129,5,244,32"/>
+<area shape="rect" id="node3" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="5,31,81,57"/>
+<area shape="rect" id="node4" href="$readfontinfo_8h.html#af923ea1b9fc83c4c6a610d50e43c599d" title=" " alt="" coords="141,107,232,133"/>
 </map>

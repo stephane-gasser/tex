@@ -1,7 +1,5 @@
 <map id="sf_code" name="sf_code">
-<area shape="rect" id="node1" title=" " alt="" coords="387,56,455,83"/>
-<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a18758495c7c51220e749ab1828d9ffca" title=" " alt="" coords="200,31,339,57"/>
-<area shape="rect" id="node5" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="234,81,305,108"/>
-<area shape="rect" id="node3" href="$maincontrol_8cpp.html#ac9adf23e9668c60e307d353478aec787" title=" " alt="" coords="38,5,119,32"/>
-<area shape="rect" id="node4" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="5,56,152,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="192,31,260,57"/>
+<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a18758495c7c51220e749ab1828d9ffca" title=" " alt="" coords="5,5,144,32"/>
+<area shape="rect" id="node3" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="39,56,110,83"/>
 </map>

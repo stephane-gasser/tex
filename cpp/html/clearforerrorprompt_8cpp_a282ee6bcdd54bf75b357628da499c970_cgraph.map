@@ -1,9 +1,5 @@
 <map id="clearforerrorprompt" name="clearforerrorprompt">
-<area shape="rect" id="node1" title=" " alt="" coords="5,107,136,133"/>
-<area shape="rect" id="node2" href="$endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="184,81,287,108"/>
-<area shape="rect" id="node7" href="$impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="207,132,264,159"/>
-<area shape="rect" id="node3" href="$fichiers_8cpp.html#a941887a5a97d9f9b08b2a153321d6816" title="Close a text file." alt="" coords="344,5,404,32"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a7a51c990049bf6c6c9007274271b0681" title="the current alpha_file variable" alt="" coords="342,56,406,83"/>
-<area shape="rect" id="node5" href="$popinput_8cpp.html#a11f9cb6e99b230bd401dc895f52812cb" title="leave an input level, re&#45;enter the old" alt="" coords="335,107,413,133"/>
-<area shape="rect" id="node6" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="355,157,393,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,136,57"/>
+<area shape="rect" id="node2" href="$endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="184,5,287,32"/>
+<area shape="rect" id="node3" href="$impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="207,56,264,83"/>
 </map>

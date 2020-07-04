@@ -1,13 +1,9 @@
 <map id="aclose" name="aclose">
-<area shape="rect" id="node1" title="Close a text file." alt="" coords="384,208,444,235"/>
-<area shape="rect" id="node2" href="$closefilesandterminate_8h.html#afeea3b8d09112570a258cce09bd0aade" title=" " alt="" coords="184,81,336,108"/>
-<area shape="rect" id="node3" href="$endfilereading_8h.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="209,132,311,159"/>
-<area shape="rect" id="node7" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="35,208,107,235"/>
-<area shape="rect" id="node9" href="$getstringsstarted_8h.html#ae46a3d749632a4a2cb1ff358d9d14557" title="Initializes the string pool, but returns |false| if something goes wrong." alt="" coords="201,233,319,260"/>
-<area shape="rect" id="node10" href="$openorclosein_8h.html#ac7ac73ba34708b8181d49f57d6a90a08" title=" " alt="" coords="209,284,311,311"/>
-<area shape="rect" id="node11" href="$outwhat_8h.html#a1137c5a00a506a80eadbe8aa55c400f5" title=" " alt="" coords="226,335,294,361"/>
-<area shape="rect" id="node4" href="$clearforerrorprompt_8h.html#a282ee6bcdd54bf75b357628da499c970" title=" " alt="" coords="5,5,136,32"/>
-<area shape="rect" id="node5" href="$finalcleanup_8h.html#abdaa31c6a83743b7ffe417c4889aceaf" title=" " alt="" coords="25,56,116,83"/>
-<area shape="rect" id="node6" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="38,107,103,133"/>
-<area shape="rect" id="node8" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="33,157,109,184"/>
+<area shape="rect" id="node1" title="Close a text file." alt="" coords="325,132,385,159"/>
+<area shape="rect" id="node2" href="$closefilesandterminate_8h.html#afeea3b8d09112570a258cce09bd0aade" title=" " alt="" coords="125,5,277,32"/>
+<area shape="rect" id="node3" href="$endfilereading_8h.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="150,56,253,83"/>
+<area shape="rect" id="node4" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="5,81,77,108"/>
+<area shape="rect" id="node5" href="$getstringsstarted_8h.html#ae46a3d749632a4a2cb1ff358d9d14557" title="Initializes the string pool, but returns |false| if something goes wrong." alt="" coords="142,157,261,184"/>
+<area shape="rect" id="node6" href="$openorclosein_8h.html#ac7ac73ba34708b8181d49f57d6a90a08" title=" " alt="" coords="150,208,253,235"/>
+<area shape="rect" id="node7" href="$outwhat_8h.html#a1137c5a00a506a80eadbe8aa55c400f5" title=" " alt="" coords="167,259,235,285"/>
 </map>

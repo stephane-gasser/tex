@@ -1,11 +1,8 @@
 <map id="newskipparam" name="newskipparam">
-<area shape="rect" id="node1" title=" " alt="" coords="5,132,112,159"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,112,133"/>
 <area shape="rect" id="node2" href="$parametres_8cpp.html#a0c534032188829d3f6273b3d90e3c64c" title="|mem| location of glue specification" alt="" coords="162,5,233,32"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="399,132,441,159"/>
-<area shape="rect" id="node5" href="$newglue_8cpp.html#a42d1502b38c0f25378f1d603fa359f72" title=" " alt="" coords="162,208,233,235"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="283,309,351,336"/>
-<area shape="rect" id="node9" href="$newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="160,132,235,159"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="290,5,343,32"/>
-<area shape="rect" id="node6" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="283,157,351,184"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="293,259,340,285"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="295,107,338,133"/>
+<area shape="rect" id="node4" href="$newglue_8cpp.html#a42d1502b38c0f25378f1d603fa359f72" title=" " alt="" coords="162,157,233,184"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="283,183,351,209"/>
+<area shape="rect" id="node6" href="$newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="160,107,235,133"/>
 </map>

@@ -1,7 +1,6 @@
 <map id="node_size" name="node_size">
-<area shape="rect" id="node1" title="the size field in empty variable&#45;size nodes" alt="" coords="279,56,360,83"/>
-<area shape="rect" id="node2" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="152,5,223,32"/>
-<area shape="rect" id="node3" href="$loadfmtfile_8h.html#a33fb76b7dd8ba89b07080860dc8a67f7" title=" " alt="" coords="146,56,229,83"/>
-<area shape="rect" id="node4" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="144,107,231,133"/>
-<area shape="rect" id="node5" href="$finalcleanup_8h.html#abdaa31c6a83743b7ffe417c4889aceaf" title=" " alt="" coords="5,107,96,133"/>
+<area shape="rect" id="node1" title="the size field in empty variable&#45;size nodes" alt="" coords="140,56,221,83"/>
+<area shape="rect" id="node2" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="13,5,84,32"/>
+<area shape="rect" id="node3" href="$loadfmtfile_8h.html#a33fb76b7dd8ba89b07080860dc8a67f7" title=" " alt="" coords="7,56,90,83"/>
+<area shape="rect" id="node4" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="5,107,92,133"/>
 </map>

@@ -1,11 +1,9 @@
 <map id="src/headforvmode.cpp" name="src/headforvmode.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="249,5,399,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="269,5,419,32"/>
 <area shape="rect" id="node2" href="$headforvmode_8h.html" title=" " alt="" coords="5,80,120,107"/>
-<area shape="rect" id="node4" href="$offsave_8h.html" title=" " alt="" coords="145,80,221,107"/>
-<area shape="rect" id="node5" href="$impression_8h.html" title=" " alt="" coords="443,80,539,107"/>
-<area shape="rect" id="node7" href="$error_8h.html" title=" " alt="" coords="245,80,304,107"/>
-<area shape="rect" id="node8" href="$backinput_8h.html" title=" " alt="" coords="329,80,418,107"/>
-<area shape="rect" id="node9" href="$texte_8h.html" title=" " alt="" coords="563,80,626,107"/>
-<area shape="rect" id="node3" href="$globals_8h.html" title=" " alt="" coords="237,155,312,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="515,155,570,181"/>
+<area shape="rect" id="node3" href="$offsave_8h.html" title=" " alt="" coords="145,80,221,107"/>
+<area shape="rect" id="node4" href="$impression_8h.html" title=" " alt="" coords="245,80,341,107"/>
+<area shape="rect" id="node5" href="$error_8h.html" title=" " alt="" coords="365,80,424,107"/>
+<area shape="rect" id="node6" href="$backinput_8h.html" title=" " alt="" coords="449,80,538,107"/>
+<area shape="rect" id="node7" href="$texte_8h.html" title=" " alt="" coords="562,80,625,107"/>
 </map>

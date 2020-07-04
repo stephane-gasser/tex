@@ -1,8 +1,6 @@
 <map id="pack_lig" name="pack_lig">
-<area shape="rect" id="node1" title="the parameter is either |rt_hit| or |false|" alt="" coords="5,81,76,108"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="376,5,419,32"/>
-<area shape="rect" id="node3" href="$newligature_8cpp.html#a1a2276ecb780325b9754cb9934e421bf" title=" " alt="" coords="124,81,212,108"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="260,157,328,184"/>
-<area shape="rect" id="node4" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="260,56,328,83"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="271,107,317,133"/>
+<area shape="rect" id="node1" title="the parameter is either |rt_hit| or |false|" alt="" coords="5,31,76,57"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="273,5,315,32"/>
+<area shape="rect" id="node3" href="$newligature_8cpp.html#a1a2276ecb780325b9754cb9934e421bf" title=" " alt="" coords="124,31,212,57"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="260,68,328,95"/>
 </map>

@@ -1,7 +1,5 @@
 <map id="inc/parametres.h" name="inc/parametres.h">
-<area shape="rect" id="node1" title=" " alt="" coords="56,5,175,32"/>
-<area shape="rect" id="node2" href="$parametres_8cpp.html" title=" " alt="" coords="5,229,140,256"/>
-<area shape="rect" id="node3" href="$constantes_8h.html" title=" " alt="" coords="105,80,224,107"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html" title=" " alt="" coords="167,229,301,256"/>
-<area shape="rect" id="node5" href="$globals_8h.html" title=" " alt="" coords="105,155,200,181"/>
+<area shape="rect" id="node1" title=" " alt="" coords="88,5,207,32"/>
+<area shape="rect" id="node2" href="$parametres_8cpp.html" title=" " alt="" coords="5,80,140,107"/>
+<area shape="rect" id="node3" href="$constantes_8h.html" title=" " alt="" coords="164,80,283,107"/>
 </map>

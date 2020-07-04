@@ -1,11 +1,6 @@
 <map id="youcant" name="youcant">
-<area shape="rect" id="node1" title=" " alt="" coords="447,80,515,106"/>
-<area shape="rect" id="node2" href="$beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="303,29,378,56"/>
-<area shape="rect" id="node5" href="$deletelast_8h.html#adf27bd30a3970cc321bd31cf0109e8b4" title=" " alt="" coords="301,80,380,106"/>
-<area shape="rect" id="node6" href="$reportillegalcase_8h.html#a74a9219c03db22d322bbaeda3bb72225" title=" " alt="" coords="283,181,399,208"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,105,95,132"/>
-<area shape="rect" id="node4" href="$scanbox_8h.html#ae91617805c525de8f7b7679aa48faa8f" title=" " alt="" coords="153,29,224,56"/>
-<area shape="rect" id="node7" href="$alteraux_8h.html#acfad1d6cfee9f950e11457f647f80c02" title=" " alt="" coords="155,181,223,208"/>
-<area shape="rect" id="node8" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="143,256,235,282"/>
-<area shape="rect" id="node9" href="$privileged_8h.html#a52485fd6ecfc41bc1d4cb08f0076c9e7" title=" " alt="" coords="150,306,227,333"/>
+<area shape="rect" id="node1" title=" " alt="" coords="169,56,237,83"/>
+<area shape="rect" id="node2" href="$beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="26,5,101,32"/>
+<area shape="rect" id="node3" href="$deletelast_8h.html#adf27bd30a3970cc321bd31cf0109e8b4" title=" " alt="" coords="24,56,103,83"/>
+<area shape="rect" id="node4" href="$reportillegalcase_8h.html#a74a9219c03db22d322bbaeda3bb72225" title=" " alt="" coords="5,107,121,133"/>
 </map>

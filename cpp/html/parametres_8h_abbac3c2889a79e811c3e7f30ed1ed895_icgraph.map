@@ -1,7 +1,5 @@
 <map id="pre_display_penalty" name="pre_display_penalty">
-<area shape="rect" id="node1" title=" " alt="" coords="268,31,405,57"/>
-<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="143,5,220,32"/>
-<area shape="rect" id="node4" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="150,56,213,83"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,5,95,32"/>
-<area shape="rect" id="node5" href="$alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="11,56,89,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="131,31,268,57"/>
+<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="5,5,83,32"/>
+<area shape="rect" id="node3" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="13,56,75,83"/>
 </map>

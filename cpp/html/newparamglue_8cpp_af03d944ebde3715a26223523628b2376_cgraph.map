@@ -1,9 +1,8 @@
 <map id="newparamglue" name="newparamglue">
 <area shape="rect" id="node1" title=" " alt="" coords="5,107,112,133"/>
 <area shape="rect" id="node2" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="161,5,229,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="284,31,327,57"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="279,31,321,57"/>
 <area shape="rect" id="node4" href="$parametres_8cpp.html#a0c534032188829d3f6273b3d90e3c64c" title="|mem| location of glue specification" alt="" coords="160,107,231,133"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="161,157,229,184"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="172,208,219,235"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="279,107,332,133"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="161,157,229,184"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="172,208,219,235"/>
 </map>

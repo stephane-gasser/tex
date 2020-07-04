@@ -1,15 +1,9 @@
 <map id="char_tag" name="char_tag">
-<area shape="rect" id="node1" title=" " alt="" coords="459,132,531,159"/>
-<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a324a507e9f6c60cdc8cd9193e7be3df3" title=" " alt="" coords="309,5,411,32"/>
-<area shape="rect" id="node4" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="139,56,261,83"/>
-<area shape="rect" id="node6" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="326,107,394,133"/>
-<area shape="rect" id="node7" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="324,157,396,184"/>
-<area shape="rect" id="node8" href="$reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="315,208,405,235"/>
-<area shape="rect" id="node10" href="$vardelimiter_8h.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="315,284,405,311"/>
-<area shape="rect" id="node3" href="$maincontrol_8cpp.html#ac9adf23e9668c60e307d353478aec787" title=" " alt="" coords="159,5,241,32"/>
-<area shape="rect" id="node5" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,208,91,235"/>
-<area shape="rect" id="node9" href="$hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="159,208,241,235"/>
-<area shape="rect" id="node11" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="151,259,249,285"/>
-<area shape="rect" id="node12" href="$makeleftright_8h.html#a76b4391a42af986372484ba3094dcb8a" title=" " alt="" coords="151,309,249,336"/>
-<area shape="rect" id="node13" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="154,360,246,387"/>
+<area shape="rect" id="node1" title=" " alt="" coords="176,132,248,159"/>
+<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a324a507e9f6c60cdc8cd9193e7be3df3" title=" " alt="" coords="16,5,117,32"/>
+<area shape="rect" id="node3" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="5,56,128,83"/>
+<area shape="rect" id="node4" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="33,107,101,133"/>
+<area shape="rect" id="node5" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="31,157,103,184"/>
+<area shape="rect" id="node6" href="$reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="21,208,112,235"/>
+<area shape="rect" id="node7" href="$vardelimiter_8h.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="22,259,111,285"/>
 </map>

@@ -1,23 +1,16 @@
 <map id="makeradical" name="makeradical">
-<area shape="rect" id="node1" title=" " alt="" coords="5,830,97,856"/>
-<area shape="rect" id="node2" href="$cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="184,399,259,426"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="763,247,805,274"/>
-<area shape="rect" id="node5" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="497,551,555,578"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="639,855,693,882"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="637,906,695,932"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title="repositioning distance, in sp" alt="" coords="617,804,715,831"/>
-<area shape="rect" id="node12" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="493,703,559,730"/>
-<area shape="rect" id="node16" href="$constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="145,855,297,882"/>
-<area shape="rect" id="node17" href="$half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8" title=" " alt="" coords="505,1108,547,1135"/>
-<area shape="rect" id="node18" href="$constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256" title="first delimiter field of a noad" alt="" coords="173,956,269,983"/>
-<area shape="rect" id="node19" href="$constantes_8cpp.html#a71c47a293ae659ec562bb81e3dcd81a5" title="height of ‘x’" alt="" coords="168,1007,275,1034"/>
-<area shape="rect" id="node20" href="$overbar_8cpp.html#a5b487c0636abe1d8f8766696d91829d6" title=" " alt="" coords="357,44,423,71"/>
-<area shape="rect" id="node21" href="$vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="345,956,435,983"/>
-<area shape="rect" id="node3" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="630,450,702,476"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="643,500,689,527"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#af9289b57d2744238aa244ac1f60c85c5" title="18mu" alt="" coords="483,298,569,324"/>
-<area shape="rect" id="node11" href="$mlisttohlist_8cpp.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="347,450,433,476"/>
-<area shape="rect" id="node13" href="$xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="495,348,557,375"/>
-<area shape="rect" id="node14" href="$newnoad_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52" title=" " alt="" coords="353,196,427,223"/>
-<area shape="rect" id="node15" href="$newnullbox_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="483,855,569,882"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,348,97,375"/>
+<area shape="rect" id="node2" href="$cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="184,196,259,223"/>
+<area shape="rect" id="node3" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="361,297,419,324"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="504,348,559,375"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="503,424,560,451"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="510,95,553,121"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title="repositioning distance, in sp" alt="" coords="483,272,580,299"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="357,95,423,121"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="145,399,297,425"/>
+<area shape="rect" id="node10" href="$half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8" title=" " alt="" coords="510,551,553,577"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256" title="first delimiter field of a noad" alt="" coords="173,500,269,527"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#a71c47a293ae659ec562bb81e3dcd81a5" title="height of ‘x’" alt="" coords="168,551,275,577"/>
+<area shape="rect" id="node13" href="$overbar_8cpp.html#a5b487c0636abe1d8f8766696d91829d6" title=" " alt="" coords="357,44,423,71"/>
+<area shape="rect" id="node14" href="$vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="345,424,435,451"/>
 </map>

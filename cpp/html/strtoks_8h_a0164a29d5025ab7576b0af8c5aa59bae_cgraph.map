@@ -1,7 +1,6 @@
 <map id="strtoks" name="strtoks">
-<area shape="rect" id="node1" title=" " alt="" coords="5,107,68,133"/>
-<area shape="rect" id="node2" href="$getavail_8cpp.html#af3df9f1773f7ae0591d3580af2b1ab6d" title=" " alt="" coords="116,56,267,83"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="465,56,508,83"/>
-<area shape="rect" id="node5" href="$overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="155,157,228,184"/>
-<area shape="rect" id="node3" href="$getavail_8cpp.html#a3b8c51140a2912d4fa1c7f4fab8519be" title=" " alt="" coords="315,5,417,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,68,83"/>
+<area shape="rect" id="node2" href="$getavail_8cpp.html#af3df9f1773f7ae0591d3580af2b1ab6d" title=" " alt="" coords="116,5,267,32"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="315,31,357,57"/>
+<area shape="rect" id="node4" href="$overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="155,107,228,133"/>
 </map>

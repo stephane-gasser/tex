@@ -1,15 +1,6 @@
 <map id="scantwentysevenbitint" name="scantwentysevenbitint">
-<area shape="rect" id="node1" title=" " alt="" coords="5,19,157,46"/>
-<area shape="rect" id="node2" href="$interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="524,19,587,46"/>
-<area shape="rect" id="node8" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="521,70,590,96"/>
-<area shape="rect" id="node9" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="205,196,269,223"/>
-<area shape="rect" id="node3" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="657,222,705,248"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="781,171,827,198"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="888,146,960,172"/>
-<area shape="rect" id="node7" href="$impression_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="773,120,835,147"/>
-<area shape="rect" id="node4" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="768,348,840,375"/>
-<area shape="rect" id="node10" href="$backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="517,323,593,350"/>
-<area shape="rect" id="node11" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="641,323,720,350"/>
-<area shape="rect" id="node12" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="354,120,433,147"/>
-<area shape="rect" id="node13" href="$scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="317,222,469,248"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,157,83"/>
+<area shape="rect" id="node2" href="$interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="206,5,269,32"/>
+<area shape="rect" id="node3" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="317,81,387,108"/>
+<area shape="rect" id="node4" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="205,107,269,133"/>
 </map>

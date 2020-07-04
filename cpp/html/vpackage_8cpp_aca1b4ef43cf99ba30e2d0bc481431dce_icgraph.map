@@ -1,9 +1,4 @@
 <map id="goto50" name="goto50">
-<area shape="rect" id="node1" title=" " alt="" coords="353,107,415,133"/>
-<area shape="rect" id="node2" href="$vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="227,107,305,133"/>
-<area shape="rect" id="node3" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="117,5,170,32"/>
-<area shape="rect" id="node4" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="5,132,60,159"/>
-<area shape="rect" id="node5" href="$package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="108,107,179,133"/>
-<area shape="rect" id="node6" href="$vpackage_8h.html#a206cf29986058df07ca90d49bb7ce152" title="special case of unconstrained depth" alt="" coords="115,157,172,184"/>
-<area shape="rect" id="node7" href="$vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="6,195,59,221"/>
+<area shape="rect" id="node1" title=" " alt="" coords="132,5,193,32"/>
+<area shape="rect" id="node2" href="$vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="5,5,84,32"/>
 </map>

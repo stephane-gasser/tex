@@ -1,9 +1,7 @@
 <map id="src/endfilereading.cpp" name="src/endfilereading.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="151,5,301,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="146,5,295,32"/>
 <area shape="rect" id="node2" href="$endfilereading_8h.html" title=" " alt="" coords="5,80,119,107"/>
-<area shape="rect" id="node4" href="$fichier_8h.html" title=" " alt="" coords="143,80,210,107"/>
-<area shape="rect" id="node5" href="$texte_8h.html" title=" " alt="" coords="341,80,404,107"/>
-<area shape="rect" id="node7" href="$popinput_8h.html" title=" " alt="" coords="234,80,317,107"/>
-<area shape="rect" id="node3" href="$globals_8h.html" title=" " alt="" coords="139,155,214,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="345,155,400,181"/>
+<area shape="rect" id="node3" href="$fichier_8h.html" title=" " alt="" coords="143,80,210,107"/>
+<area shape="rect" id="node4" href="$texte_8h.html" title=" " alt="" coords="235,80,297,107"/>
+<area shape="rect" id="node5" href="$popinput_8h.html" title=" " alt="" coords="322,80,405,107"/>
 </map>

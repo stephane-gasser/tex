@@ -1,10 +1,9 @@
 <map id="movement" name="movement">
 <area shape="rect" id="node1" title=" " alt="" coords="5,103,88,130"/>
 <area shape="rect" id="node2" href="$dviswap_8cpp.html#a4d3e8098d40415fa85a1bb2c79343f63" title=" " alt="" coords="252,15,316,42"/>
-<area shape="rect" id="node4" href="$dvifour_8cpp.html#a9a26950da85b284d7c63f4071d482f14" title=" " alt="" coords="139,27,201,54"/>
-<area shape="rect" id="node5" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="136,78,204,104"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="263,91,305,118"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a57c1d8fc5bc0091690bd213643c6fce2" title="DVI byte number for a movement command." alt="" coords="137,179,203,206"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="143,230,197,256"/>
-<area shape="rect" id="node3" href="$dviswap_8cpp.html#a590f8af5b9c3c5259b7b86e58bc8b399" title=" " alt="" coords="364,15,435,42"/>
+<area shape="rect" id="node3" href="$dvifour_8cpp.html#a9a26950da85b284d7c63f4071d482f14" title=" " alt="" coords="139,27,201,54"/>
+<area shape="rect" id="node4" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="136,78,204,104"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="263,91,305,118"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a57c1d8fc5bc0091690bd213643c6fce2" title="DVI byte number for a movement command." alt="" coords="137,179,203,206"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="143,230,197,256"/>
 </map>

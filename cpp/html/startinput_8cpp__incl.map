@@ -1,19 +1,17 @@
 <map id="src/startinput.cpp" name="src/startinput.cpp">
 <area shape="rect" id="node1" title=" " alt="" coords="829,5,951,32"/>
 <area shape="rect" id="node2" href="$startinput_8h.html" title=" " alt="" coords="5,80,92,107"/>
-<area shape="rect" id="node4" href="$scanfilename_8h.html" title=" " alt="" coords="116,80,227,107"/>
-<area shape="rect" id="node5" href="$packfilename_8h.html" title=" " alt="" coords="251,80,361,107"/>
-<area shape="rect" id="node6" href="$beginfilereading_8h.html" title=" " alt="" coords="386,80,509,107"/>
-<area shape="rect" id="node7" href="$fichier_8h.html" title=" " alt="" coords="533,80,599,107"/>
-<area shape="rect" id="node8" href="$endfilereading_8h.html" title=" " alt="" coords="624,80,737,107"/>
-<area shape="rect" id="node9" href="$promptfilename_8h.html" title=" " alt="" coords="762,80,885,107"/>
-<area shape="rect" id="node10" href="$openlogfile_8h.html" title=" " alt="" coords="909,80,1004,107"/>
-<area shape="rect" id="node11" href="$impression_8h.html" title=" " alt="" coords="1415,80,1511,107"/>
-<area shape="rect" id="node13" href="$firmuptheline_8h.html" title=" " alt="" coords="1029,80,1135,107"/>
-<area shape="rect" id="node14" href="$amakenamestring_8h.html" title=" " alt="" coords="1159,80,1295,107"/>
-<area shape="rect" id="node15" href="$inputln_8h.html" title=" " alt="" coords="1320,80,1391,107"/>
-<area shape="rect" id="node16" title=" " alt="" coords="1535,80,1607,107"/>
-<area shape="rect" id="node17" href="$texte_8h.html" title=" " alt="" coords="1632,80,1695,107"/>
-<area shape="rect" id="node3" href="$globals_8h.html" title=" " alt="" coords="715,155,790,181"/>
-<area shape="rect" id="node12" title=" " alt="" coords="1536,155,1591,181"/>
+<area shape="rect" id="node3" href="$scanfilename_8h.html" title=" " alt="" coords="116,80,227,107"/>
+<area shape="rect" id="node4" href="$packfilename_8h.html" title=" " alt="" coords="251,80,361,107"/>
+<area shape="rect" id="node5" href="$beginfilereading_8h.html" title=" " alt="" coords="386,80,509,107"/>
+<area shape="rect" id="node6" href="$fichier_8h.html" title=" " alt="" coords="533,80,599,107"/>
+<area shape="rect" id="node7" href="$endfilereading_8h.html" title=" " alt="" coords="624,80,737,107"/>
+<area shape="rect" id="node8" href="$promptfilename_8h.html" title=" " alt="" coords="762,80,885,107"/>
+<area shape="rect" id="node9" href="$openlogfile_8h.html" title=" " alt="" coords="909,80,1004,107"/>
+<area shape="rect" id="node10" href="$impression_8h.html" title=" " alt="" coords="1029,80,1125,107"/>
+<area shape="rect" id="node11" href="$firmuptheline_8h.html" title=" " alt="" coords="1149,80,1255,107"/>
+<area shape="rect" id="node12" href="$amakenamestring_8h.html" title=" " alt="" coords="1279,80,1415,107"/>
+<area shape="rect" id="node13" href="$inputln_8h.html" title=" " alt="" coords="1440,80,1511,107"/>
+<area shape="rect" id="node14" title=" " alt="" coords="1535,80,1607,107"/>
+<area shape="rect" id="node15" href="$texte_8h.html" title=" " alt="" coords="1632,80,1695,107"/>
 </map>

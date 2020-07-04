@@ -1,10 +1,9 @@
 <map id="src/scanfilename.cpp" name="src/scanfilename.cpp">
 <area shape="rect" id="node1" title=" " alt="" coords="290,5,437,32"/>
 <area shape="rect" id="node2" href="$scanfilename_8h.html" title=" " alt="" coords="5,80,116,107"/>
-<area shape="rect" id="node4" href="$beginname_8h.html" title=" " alt="" coords="141,80,237,107"/>
-<area shape="rect" id="node5" href="$getxtoken_8h.html" title=" " alt="" coords="261,80,351,107"/>
-<area shape="rect" id="node6" href="$backinput_8h.html" title=" " alt="" coords="376,80,465,107"/>
-<area shape="rect" id="node7" href="$morename_8h.html" title=" " alt="" coords="489,80,584,107"/>
-<area shape="rect" id="node8" href="$endname_8h.html" title=" " alt="" coords="608,80,695,107"/>
-<area shape="rect" id="node3" href="$globals_8h.html" title=" " alt="" coords="326,155,401,181"/>
+<area shape="rect" id="node3" href="$beginname_8h.html" title=" " alt="" coords="141,80,237,107"/>
+<area shape="rect" id="node4" href="$getxtoken_8h.html" title=" " alt="" coords="261,80,351,107"/>
+<area shape="rect" id="node5" href="$backinput_8h.html" title=" " alt="" coords="376,80,465,107"/>
+<area shape="rect" id="node6" href="$morename_8h.html" title=" " alt="" coords="489,80,584,107"/>
+<area shape="rect" id="node7" href="$endname_8h.html" title=" " alt="" coords="608,80,695,107"/>
 </map>

@@ -1,8 +1,4 @@
 <map id="push_input" name="push_input">
-<area shape="rect" id="node1" title="//enter a new input level, save the old" alt="" coords="5,81,91,108"/>
-<area shape="rect" id="node2" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="139,81,209,108"/>
-<area shape="rect" id="node3" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="295,5,343,32"/>
-<area shape="rect" id="node4" href="$jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="429,31,497,57"/>
-<area shape="rect" id="node5" href="$normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5" title=" " alt="" coords="257,107,381,133"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="285,157,354,184"/>
+<area shape="rect" id="node1" title="//enter a new input level, save the old" alt="" coords="5,5,91,32"/>
+<area shape="rect" id="node2" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="139,5,209,32"/>
 </map>

@@ -1,7 +1,4 @@
 <map id="get_x_token_or_active_char" name="get_x_token_or_active_char">
-<area shape="rect" id="node1" title=" " alt="" coords="5,55,191,81"/>
-<area shape="rect" id="node2" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="239,55,317,81"/>
-<area shape="rect" id="node3" href="$expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="373,29,437,56"/>
-<area shape="rect" id="node4" href="$getnext_8cpp.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="372,80,437,107"/>
-<area shape="rect" id="node5" href="$macrocall_8cpp.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="365,131,444,157"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,191,32"/>
+<area shape="rect" id="node2" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="239,5,317,32"/>
 </map>

@@ -1,11 +1,10 @@
 <map id="cleanbox" name="cleanbox">
-<area shape="rect" id="node1" title=" " alt="" coords="309,183,384,209"/>
-<area shape="rect" id="node2" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="151,5,249,32"/>
-<area shape="rect" id="node4" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="139,56,261,83"/>
-<area shape="rect" id="node5" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="166,107,234,133"/>
-<area shape="rect" id="node6" href="$makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="161,157,239,184"/>
-<area shape="rect" id="node7" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="154,208,246,235"/>
-<area shape="rect" id="node8" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="153,259,247,285"/>
-<area shape="rect" id="node9" href="$makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="157,309,243,336"/>
-<area shape="rect" id="node3" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,183,91,209"/>
+<area shape="rect" id="node1" title=" " alt="" coords="176,157,251,184"/>
+<area shape="rect" id="node2" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="18,5,115,32"/>
+<area shape="rect" id="node3" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="5,56,128,83"/>
+<area shape="rect" id="node4" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="33,107,101,133"/>
+<area shape="rect" id="node5" href="$makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="27,157,106,184"/>
+<area shape="rect" id="node6" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="21,208,113,235"/>
+<area shape="rect" id="node7" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="20,259,113,285"/>
+<area shape="rect" id="node8" href="$makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="23,309,110,336"/>
 </map>

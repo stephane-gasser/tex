@@ -1,11 +1,5 @@
 <map id="idlookup" name="idlookup">
-<area shape="rect" id="node1" title=" " alt="" coords="445,157,516,184"/>
-<area shape="rect" id="node2" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="329,132,395,159"/>
-<area shape="rect" id="node9" href="$primitive_8h.html#afd390c212945223fe7892dc9e61dcc3d" title=" " alt="" coords="327,183,397,209"/>
-<area shape="rect" id="node3" href="$gettoken_8h.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="203,5,275,32"/>
-<area shape="rect" id="node4" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="41,81,116,108"/>
-<area shape="rect" id="node5" href="$getxtoken_8h.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="200,107,279,133"/>
-<area shape="rect" id="node6" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="5,208,152,235"/>
-<area shape="rect" id="node7" href="$passtext_8h.html#a6fdb8af2a942331652d3e8a3b121d6be" title=" " alt="" coords="203,208,275,235"/>
-<area shape="rect" id="node8" href="$xtoken_8h.html#a2e46936a66be3da34c1306e4ec999ffb" title=" " alt="" coords="209,157,270,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="124,31,195,57"/>
+<area shape="rect" id="node2" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="8,5,73,32"/>
+<area shape="rect" id="node3" href="$primitive_8h.html#afd390c212945223fe7892dc9e61dcc3d" title=" " alt="" coords="5,56,76,83"/>
 </map>

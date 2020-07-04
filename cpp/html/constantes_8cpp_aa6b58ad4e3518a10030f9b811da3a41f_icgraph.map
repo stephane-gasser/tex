@@ -1,42 +1,12 @@
 <map id="param" name="param">
-<area shape="rect" id="node1" title=" " alt="" coords="661,297,720,323"/>
-<area shape="rect" id="node2" href="$appspace_8cpp.html#ab93755269dcb3e9e521d7b8d050eee12" title="additional space at end of sentence" alt="" coords="515,69,608,95"/>
-<area shape="rect" id="node4" href="$constantes_8h.html#a14c2f9a131aa88c3c7fbff21e8cc667e" title=" " alt="" coords="529,297,594,323"/>
-<area shape="rect" id="node13" href="$constantes_8h.html#a67aa0cac71863f280bfd72387a85faff" title=" " alt="" coords="529,879,594,906"/>
-<area shape="rect" id="node31" href="$constantes_8h.html#a5b246d0988e4b7e15f2e96c7f51a7f6a" title="one em" alt="" coords="536,1462,587,1489"/>
-<area shape="rect" id="node33" href="$makeaccent_8cpp.html#a63b9a63da4a64ca0890875e6675be923" title="slant to the right, per unit distance upward" alt="" coords="536,1411,587,1438"/>
-<area shape="rect" id="node35" href="$constantes_8h.html#ab0c6b480516fcd4f6bb06ad72e7aeb54" title="normal space between words" alt="" coords="533,18,590,45"/>
-<area shape="rect" id="node37" href="$constantes_8h.html#a87c7b076494bb627bda701d6ca9eb648" title="shrink between words" alt="" coords="512,170,611,197"/>
-<area shape="rect" id="node38" href="$constantes_8h.html#aa8d716bd37a39f6f7c941f352d3b4f28" title="stretch between words" alt="" coords="509,119,613,146"/>
-<area shape="rect" id="node39" href="$constantes_8h.html#a70886c5e70f0d68cdcd19ba50de701aa" title="one ex" alt="" coords="526,1361,597,1387"/>
-<area shape="rect" id="node3" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="346,43,425,70"/>
-<area shape="rect" id="node5" href="$makeop_8cpp.html#a2edec5b47fdfdd577afa281bba6d2c25" title="minimum clearance above a displayed op" alt="" coords="326,246,445,273"/>
-<area shape="rect" id="node6" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="166,373,234,399"/>
-<area shape="rect" id="node8" href="$makeop_8cpp.html#a5cf655b4dc77e009be198f177c323359" title="minimum clearance below a displayed op" alt="" coords="326,297,445,323"/>
-<area shape="rect" id="node9" href="$makeop_8cpp.html#ac6580ddbaaf6607c23bb0f110930d0a8" title="minimum baselineskip above displayed op" alt="" coords="326,347,445,374"/>
-<area shape="rect" id="node10" href="$makeop_8cpp.html#a23938f54fb8bf748e253e78187f52f69" title="minimum baselineskip below displayed op" alt="" coords="326,398,445,425"/>
-<area shape="rect" id="node11" href="$makeop_8cpp.html#a1cd304e0beb3d406a22ecd95dc16371d" title="padding above and below displayed limits" alt="" coords="326,449,445,475"/>
-<area shape="rect" id="node12" href="$constantes_8h.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="309,195,461,222"/>
-<area shape="rect" id="node7" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,626,91,653"/>
-<area shape="rect" id="node14" href="$constantes_8h.html#a34925b0cdd88c509ec27c46b83221bc9" title="height of fraction lines above the baseline" alt="" coords="341,499,429,526"/>
-<area shape="rect" id="node15" href="$makefraction_8cpp.html#aa11384405a33d56ab36323ac96ef6212" title="size of \atopwithdelims delimiters" alt="" coords="355,905,415,931"/>
-<area shape="rect" id="node16" href="$makefraction_8cpp.html#a67416fc26eb077ebd47a05861d2cbe07" title="size of \atopwithdelims delimiters in non&#45;displays" alt="" coords="355,955,415,982"/>
-<area shape="rect" id="node17" href="$makefraction_8cpp.html#a4ac14495bd218aec4f21fffa2819c0c1" title="denominator shift&#45;down in display styles" alt="" coords="351,1006,419,1033"/>
-<area shape="rect" id="node18" href="$makefraction_8cpp.html#aaa40b41ea32d3797e3a862cf6846a748" title="denominator shift&#45;down in non&#45;display styles" alt="" coords="351,1057,419,1083"/>
-<area shape="rect" id="node19" href="$constantes_8h.html#a16231e40bcd71e79a9f5763401c9c0a1" title="18mu" alt="" coords="157,651,243,678"/>
-<area shape="rect" id="node20" href="$constantes_8h.html#a40ed1a665d5b581777edffd9809f447c" title="height of ‘x’" alt="" coords="332,1107,439,1134"/>
-<area shape="rect" id="node21" href="$makefraction_8cpp.html#a3ea41372309803809bca11d1b59b2adf" title="numerator shift&#45;up in display styles" alt="" coords="358,1209,413,1235"/>
-<area shape="rect" id="node22" href="$makefraction_8cpp.html#adcc39b9880840fedaf9a6e1ea7ac317b" title="numerator shift&#45;up in non&#45;display, non&#45;\atop" alt="" coords="358,1259,413,1286"/>
-<area shape="rect" id="node23" href="$makefraction_8cpp.html#ad7ce77df82b3831e97e57ec16070eb36" title="numerator shift&#45;up in non&#45;display \atop" alt="" coords="358,1310,413,1337"/>
-<area shape="rect" id="node24" href="$makescripts_8cpp.html#a3e7c1f647fd3751e002ea20a85e0133a" title="subscript shift&#45;down if superscript is absent" alt="" coords="360,550,411,577"/>
-<area shape="rect" id="node25" href="$makescripts_8cpp.html#a259e4a2941f0a35549d141dd183d7735" title="subscript shift&#45;down if superscript is present" alt="" coords="360,601,411,627"/>
-<area shape="rect" id="node26" href="$makescripts_8cpp.html#a73b3892301b39e579f6f17ea5d4cfcad" title="subscript baseline below bottom of large box" alt="" coords="348,651,423,678"/>
-<area shape="rect" id="node27" href="$makescripts_8cpp.html#a6d344a8c145cf8effd74ebd31f071998" title="superscript shift&#45;up in uncramped display style" alt="" coords="360,702,411,729"/>
-<area shape="rect" id="node28" href="$makescripts_8cpp.html#a3655d49def7485670a663a94cecfabec" title="superscript shift&#45;up in uncramped non&#45;display" alt="" coords="360,753,411,779"/>
-<area shape="rect" id="node29" href="$makescripts_8cpp.html#aebcdba0c79bcabd1d5e3afd14f376a1f" title="superscript shift&#45;up in cramped styles" alt="" coords="360,803,411,830"/>
-<area shape="rect" id="node30" href="$makescripts_8cpp.html#ade3d9a349d7d403d9966bd2b38cd3022" title="superscript baseline below top of large box" alt="" coords="348,854,423,881"/>
-<area shape="rect" id="node32" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="351,1462,419,1489"/>
-<area shape="rect" id="node34" href="$makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="339,1411,432,1438"/>
-<area shape="rect" id="node36" href="$maincontrol_8cpp.html#ab7f7983b788abb1c635c1bd67f967894" title=" " alt="" coords="309,94,461,121"/>
-<area shape="rect" id="node40" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="139,1158,261,1185"/>
+<area shape="rect" id="node1" title=" " alt="" coords="157,208,216,235"/>
+<area shape="rect" id="node2" href="$appspace_8cpp.html#ab93755269dcb3e9e521d7b8d050eee12" title="additional space at end of sentence" alt="" coords="11,5,104,32"/>
+<area shape="rect" id="node3" href="$constantes_8h.html#a14c2f9a131aa88c3c7fbff21e8cc667e" title=" " alt="" coords="25,56,90,83"/>
+<area shape="rect" id="node4" href="$constantes_8h.html#a67aa0cac71863f280bfd72387a85faff" title=" " alt="" coords="25,107,90,133"/>
+<area shape="rect" id="node5" href="$constantes_8h.html#a5b246d0988e4b7e15f2e96c7f51a7f6a" title="one em" alt="" coords="32,157,83,184"/>
+<area shape="rect" id="node6" href="$makeaccent_8cpp.html#a63b9a63da4a64ca0890875e6675be923" title="slant to the right, per unit distance upward" alt="" coords="32,208,83,235"/>
+<area shape="rect" id="node7" href="$constantes_8h.html#ab0c6b480516fcd4f6bb06ad72e7aeb54" title="normal space between words" alt="" coords="29,259,86,285"/>
+<area shape="rect" id="node8" href="$constantes_8h.html#a87c7b076494bb627bda701d6ca9eb648" title="shrink between words" alt="" coords="8,309,107,336"/>
+<area shape="rect" id="node9" href="$constantes_8h.html#aa8d716bd37a39f6f7c941f352d3b4f28" title="stretch between words" alt="" coords="5,360,109,387"/>
+<area shape="rect" id="node10" href="$constantes_8h.html#a70886c5e70f0d68cdcd19ba50de701aa" title="one ex" alt="" coords="22,411,93,437"/>
 </map>

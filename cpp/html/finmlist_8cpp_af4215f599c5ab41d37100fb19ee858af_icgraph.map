@@ -1,8 +1,7 @@
 <map id="finmlist" name="finmlist">
-<area shape="rect" id="node1" title=" " alt="" coords="451,68,515,95"/>
-<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="163,5,240,32"/>
-<area shape="rect" id="node4" href="$buildchoices_8h.html#a5f00c14009de038a4c2dc9c2fd9f8e99" title=" " alt="" coords="308,43,403,69"/>
-<area shape="rect" id="node5" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="143,68,260,95"/>
-<area shape="rect" id="node6" href="$mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="308,144,403,171"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,68,95,95"/>
+<area shape="rect" id="node1" title=" " alt="" coords="313,81,377,108"/>
+<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="179,5,257,32"/>
+<area shape="rect" id="node3" href="$buildchoices_8h.html#a5f00c14009de038a4c2dc9c2fd9f8e99" title=" " alt="" coords="171,56,265,83"/>
+<area shape="rect" id="node4" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="5,81,123,108"/>
+<area shape="rect" id="node5" href="$mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="171,157,265,184"/>
 </map>

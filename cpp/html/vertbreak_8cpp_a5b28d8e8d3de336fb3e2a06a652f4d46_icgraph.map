@@ -1,6 +1,4 @@
 <map id="set_height_zero" name="set_height_zero">
-<area shape="rect" id="node1" title="initialize the height to zero" alt="" coords="255,31,369,57"/>
-<area shape="rect" id="node2" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="131,31,207,57"/>
-<area shape="rect" id="node3" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="5,5,83,32"/>
-<area shape="rect" id="node4" href="$vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="17,56,71,83"/>
+<area shape="rect" id="node1" title="initialize the height to zero" alt="" coords="129,5,244,32"/>
+<area shape="rect" id="node2" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="5,5,81,32"/>
 </map>

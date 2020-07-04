@@ -1,14 +1,6 @@
 <map id="charwarning" name="charwarning">
-<area shape="rect" id="node1" title=" " alt="" coords="504,233,596,260"/>
-<area shape="rect" id="node2" href="$fetch_8h.html#aee1d069ba584076de270d547f3ddfc71" title=" " alt="" coords="363,107,414,133"/>
-<area shape="rect" id="node7" href="$maincontrol_8cpp.html#aee41666bb43f68ce58fd3f71c7781cd8" title=" " alt="" coords="321,233,456,260"/>
-<area shape="rect" id="node10" href="$newcharacter_8h.html#a6e07886dd6173debb4827256ca3327df" title=" " alt="" coords="339,335,439,361"/>
-<area shape="rect" id="node3" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="145,5,267,32"/>
-<area shape="rect" id="node4" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,107,91,133"/>
-<area shape="rect" id="node5" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="172,107,240,133"/>
-<area shape="rect" id="node6" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="170,157,242,184"/>
-<area shape="rect" id="node8" href="$maincontrol_8cpp.html#ac9adf23e9668c60e307d353478aec787" title=" " alt="" coords="165,208,247,235"/>
-<area shape="rect" id="node9" href="$maincontrol_8cpp.html#a5e8e2b01df795acc700f7d39099198d3" title=" " alt="" coords="139,259,273,285"/>
-<area shape="rect" id="node11" href="$hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="165,360,247,387"/>
-<area shape="rect" id="node12" href="$makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="159,411,253,437"/>
+<area shape="rect" id="node1" title=" " alt="" coords="188,56,280,83"/>
+<area shape="rect" id="node2" href="$fetch_8h.html#aee1d069ba584076de270d547f3ddfc71" title=" " alt="" coords="47,5,98,32"/>
+<area shape="rect" id="node3" href="$maincontrol_8cpp.html#aee41666bb43f68ce58fd3f71c7781cd8" title=" " alt="" coords="5,56,140,83"/>
+<area shape="rect" id="node4" href="$newcharacter_8h.html#a6e07886dd6173debb4827256ca3327df" title=" " alt="" coords="23,107,123,133"/>
 </map>

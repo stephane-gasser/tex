@@ -1,9 +1,5 @@
 <map id="append_to_name" name="append_to_name">
-<area shape="rect" id="node1" title=" " alt="" coords="469,56,591,83"/>
-<area shape="rect" id="node2" href="$packbufferedname_8h.html#a8623253cdeaba585c376bf0b1994b137" title=" " alt="" coords="292,19,421,45"/>
-<area shape="rect" id="node4" href="$packfilename_8h.html#a3c586855c5f1246bad7419677767ba57" title=" " alt="" coords="307,81,406,108"/>
-<area shape="rect" id="node3" href="$openfmtfile_8h.html#a66d7710ffd29b664e7cdbdc41f0165e7" title=" " alt="" coords="143,5,230,32"/>
-<area shape="rect" id="node5" href="$packfilename_8h.html#a7a0ce63c987a64219951e8be9c9494c3" title=" " alt="" coords="129,56,244,83"/>
-<area shape="rect" id="node6" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="5,81,81,108"/>
-<area shape="rect" id="node7" href="$readfontinfo_8h.html#af923ea1b9fc83c4c6a610d50e43c599d" title=" " alt="" coords="141,157,232,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="183,31,304,57"/>
+<area shape="rect" id="node2" href="$packbufferedname_8h.html#a8623253cdeaba585c376bf0b1994b137" title=" " alt="" coords="5,5,135,32"/>
+<area shape="rect" id="node3" href="$packfilename_8h.html#a3c586855c5f1246bad7419677767ba57" title=" " alt="" coords="21,56,119,83"/>
 </map>

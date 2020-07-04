@@ -1,21 +1,14 @@
 <map id="promptfilename" name="promptfilename">
-<area shape="rect" id="node1" title=" " alt="" coords="5,335,116,361"/>
-<area shape="rect" id="node2" href="$beginname_8cpp.html#a2b6351e3b3fd066643f3468b43b7cab9" title=" " alt="" coords="179,5,264,32"/>
-<area shape="rect" id="node3" href="$endname_8cpp.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="184,259,259,285"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="589,132,659,159"/>
-<area shape="rect" id="node8" href="$fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="338,81,411,108"/>
-<area shape="rect" id="node9" href="$morename_8cpp.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="180,335,263,361"/>
-<area shape="rect" id="node13" href="$packfilename_8cpp.html#a7a0ce63c987a64219951e8be9c9494c3" title=" " alt="" coords="164,385,279,412"/>
-<area shape="rect" id="node14" href="$impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="351,487,398,513"/>
-<area shape="rect" id="node15" href="$impression_8cpp.html#a559da3b8344a65bc5ef98146356ab12d" title=" " alt="" coords="173,537,269,564"/>
-<area shape="rect" id="node17" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="193,436,250,463"/>
-<area shape="rect" id="node18" href="$impression_8cpp.html#a08865d4e55bc6116a39dbd5679041e61" title=" " alt="" coords="173,588,269,615"/>
-<area shape="rect" id="node19" href="$terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="183,56,259,83"/>
-<area shape="rect" id="node4" href="$makestring_8cpp.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="331,233,418,260"/>
-<area shape="rect" id="node5" href="$overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="471,271,541,297"/>
-<area shape="rect" id="node7" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="483,208,529,235"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#a3d10279728a85600f3a5705f66fc489d" title="put ASCII_code # at the end of str_pool" alt="" coords="327,385,423,412"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6" title=" " alt="" coords="333,436,416,463"/>
-<area shape="rect" id="node12" href="$overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="338,335,411,361"/>
-<area shape="rect" id="node16" href="$impression_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="337,537,412,564"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,259,116,285"/>
+<area shape="rect" id="node2" href="$impression_8cpp.html#a0aab991d51193c009fd6bb6c720abb2f" title=" " alt="" coords="177,5,266,32"/>
+<area shape="rect" id="node3" href="$beginname_8cpp.html#a2b6351e3b3fd066643f3468b43b7cab9" title=" " alt="" coords="179,56,264,83"/>
+<area shape="rect" id="node4" href="$endname_8cpp.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="184,107,259,133"/>
+<area shape="rect" id="node5" href="$fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="327,259,400,285"/>
+<area shape="rect" id="node6" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="448,233,517,260"/>
+<area shape="rect" id="node7" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="565,233,623,260"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="671,309,717,336"/>
+<area shape="rect" id="node9" href="$morename_8cpp.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="180,360,263,387"/>
+<area shape="rect" id="node10" href="$packfilename_8cpp.html#a7a0ce63c987a64219951e8be9c9494c3" title=" " alt="" coords="164,411,279,437"/>
+<area shape="rect" id="node11" href="$impression_8cpp.html#adb970f809d1f5630b828852e68845edb" title=" " alt="" coords="173,461,269,488"/>
+<area shape="rect" id="node12" href="$terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="183,309,259,336"/>
 </map>

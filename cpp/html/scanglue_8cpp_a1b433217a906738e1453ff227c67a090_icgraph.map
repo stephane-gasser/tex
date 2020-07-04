@@ -1,10 +1,7 @@
 <map id="scanglue" name="scanglue">
-<area shape="rect" id="node1" title=" " alt="" coords="500,81,575,108"/>
-<area shape="rect" id="node2" href="$appendglue_8h.html#ac2d4cd53223f578f84f88274403f30a1" title=" " alt="" coords="340,5,428,32"/>
-<area shape="rect" id="node5" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="316,56,452,83"/>
-<area shape="rect" id="node6" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="143,107,268,133"/>
-<area shape="rect" id="node7" href="$getpreambletoken_8h.html#a82620351bee57bb56f4d0a9181f6af98" title=" " alt="" coords="321,157,447,184"/>
-<area shape="rect" id="node3" href="$boxend_8h.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="173,5,237,32"/>
-<area shape="rect" id="node4" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,107,95,133"/>
-<area shape="rect" id="node8" href="$initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="172,157,239,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="363,81,437,108"/>
+<area shape="rect" id="node2" href="$appendglue_8h.html#ac2d4cd53223f578f84f88274403f30a1" title=" " alt="" coords="203,5,291,32"/>
+<area shape="rect" id="node3" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="179,56,315,83"/>
+<area shape="rect" id="node4" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,81,131,108"/>
+<area shape="rect" id="node5" href="$getpreambletoken_8h.html#a82620351bee57bb56f4d0a9181f6af98" title=" " alt="" coords="184,157,309,184"/>
 </map>

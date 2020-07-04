@@ -1,24 +1,21 @@
 <map id="overflow" name="overflow">
-<area shape="rect" id="node1" title=" " alt="" coords="680,453,751,480"/>
-<area shape="rect" id="node2" href="$beginfilereading_8h.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="317,340,429,367"/>
-<area shape="rect" id="node4" href="$findfontdimen_8h.html#a3a1391088579b75ddb821a1f66a01b42" title=" " alt="" coords="24,187,124,213"/>
-<area shape="rect" id="node5" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="35,313,113,340"/>
-<area shape="rect" id="node6" href="$newhyphexceptions_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="5,769,143,796"/>
-<area shape="rect" id="node7" href="$newpatterns_8h.html#a1356e8c74d8485cbd0e20c09f2c25886" title=" " alt="" coords="27,73,121,100"/>
-<area shape="rect" id="node10" href="$overflow_8h.html#a63c87df7fc9c2697a41f1824e984ff28" title=" " alt="" coords="477,225,632,252"/>
-<area shape="rect" id="node11" href="$newsavelevel_8h.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="323,187,424,213"/>
-<area shape="rect" id="node12" href="$endname_8h.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="336,719,411,745"/>
-<area shape="rect" id="node13" href="$expand_8h.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="341,465,405,492"/>
-<area shape="rect" id="node14" href="$firstfit_8h.html#a9ec7e5f14730f1045a0cafbb2b259e2f" title=" " alt="" coords="527,479,582,505"/>
-<area shape="rect" id="node15" href="$getavail_8h.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="521,580,588,607"/>
-<area shape="rect" id="node16" href="$pushnest_8h.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="336,668,411,695"/>
-<area shape="rect" id="node17" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="338,820,409,847"/>
-<area shape="rect" id="node18" href="$inputln_8h.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="343,391,403,417"/>
-<area shape="rect" id="node19" href="$makestring_8h.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="511,732,598,759"/>
-<area shape="rect" id="node20" href="$newtrieop_8h.html#a8023c9c96a124c4d7a09141cb18a452f" title=" " alt="" coords="191,23,269,49"/>
-<area shape="rect" id="node21" href="$pushinput_8h.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="512,377,597,404"/>
-<area shape="rect" id="node22" href="$overflow_8h.html#a660e4de544f7296aa4e385a3122e298e" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="518,833,591,860"/>
-<area shape="rect" id="node3" href="$error_8h.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="206,313,254,340"/>
-<area shape="rect" id="node8" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="38,415,110,441"/>
-<area shape="rect" id="node9" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="192,415,268,441"/>
+<area shape="rect" id="node1" title=" " alt="" coords="393,436,464,463"/>
+<area shape="rect" id="node2" href="$beginfilereading_8h.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="18,120,130,147"/>
+<area shape="rect" id="node3" href="$overflow_8h.html#a63c87df7fc9c2697a41f1824e984ff28" title=" " alt="" coords="191,5,345,32"/>
+<area shape="rect" id="node4" href="$newsavelevel_8h.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="23,44,125,71"/>
+<area shape="rect" id="node5" href="$endname_8h.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="37,512,111,539"/>
+<area shape="rect" id="node6" href="$expand_8h.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="42,271,106,297"/>
+<area shape="rect" id="node7" href="$findfontdimen_8h.html#a3a1391088579b75ddb821a1f66a01b42" title=" " alt="" coords="218,259,318,285"/>
+<area shape="rect" id="node8" href="$firstfit_8h.html#a9ec7e5f14730f1045a0cafbb2b259e2f" title=" " alt="" coords="241,309,295,336"/>
+<area shape="rect" id="node9" href="$getavail_8h.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="235,411,301,437"/>
+<area shape="rect" id="node10" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="35,385,113,412"/>
+<area shape="rect" id="node11" href="$newhyphexceptions_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="5,613,143,640"/>
+<area shape="rect" id="node12" href="$pushnest_8h.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="37,448,111,475"/>
+<area shape="rect" id="node13" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="39,715,109,741"/>
+<area shape="rect" id="node14" href="$inputln_8h.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="238,613,298,640"/>
+<area shape="rect" id="node15" href="$makestring_8h.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="225,563,311,589"/>
+<area shape="rect" id="node16" href="$newpatterns_8h.html#a1356e8c74d8485cbd0e20c09f2c25886" title=" " alt="" coords="27,841,121,868"/>
+<area shape="rect" id="node17" href="$newtrieop_8h.html#a8023c9c96a124c4d7a09141cb18a452f" title=" " alt="" coords="229,867,307,893"/>
+<area shape="rect" id="node18" href="$pushinput_8h.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="225,157,311,184"/>
+<area shape="rect" id="node19" href="$overflow_8h.html#a660e4de544f7296aa4e385a3122e298e" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="231,715,305,741"/>
 </map>

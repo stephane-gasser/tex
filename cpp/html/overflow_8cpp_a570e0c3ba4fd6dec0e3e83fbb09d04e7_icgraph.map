@@ -1,13 +1,11 @@
 <map id="str_room" name="str_room">
-<area shape="rect" id="node1" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="309,208,383,235"/>
-<area shape="rect" id="node2" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="157,31,228,57"/>
-<area shape="rect" id="node5" href="$issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="139,81,246,108"/>
-<area shape="rect" id="node6" href="$morename_8h.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="151,132,234,159"/>
-<area shape="rect" id="node7" href="$newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="159,183,227,209"/>
-<area shape="rect" id="node8" href="$newhyphexceptions_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="124,233,261,260"/>
-<area shape="rect" id="node9" href="$specialout_8h.html#aa0e252049df8a1e42832dadc540f2899" title=" " alt="" coords="152,284,233,311"/>
-<area shape="rect" id="node10" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="149,335,236,361"/>
-<area shape="rect" id="node11" href="$strtoks_8h.html#a0164a29d5025ab7576b0af8c5aa59bae" title=" " alt="" coords="161,385,224,412"/>
-<area shape="rect" id="node3" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="8,5,73,32"/>
-<area shape="rect" id="node4" href="$primitive_8h.html#afd390c212945223fe7892dc9e61dcc3d" title=" " alt="" coords="5,56,76,83"/>
+<area shape="rect" id="node1" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="191,183,264,209"/>
+<area shape="rect" id="node2" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="39,5,109,32"/>
+<area shape="rect" id="node3" href="$issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="21,56,127,83"/>
+<area shape="rect" id="node4" href="$morename_8h.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="33,107,115,133"/>
+<area shape="rect" id="node5" href="$newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="40,157,108,184"/>
+<area shape="rect" id="node6" href="$newhyphexceptions_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="5,208,143,235"/>
+<area shape="rect" id="node7" href="$specialout_8h.html#aa0e252049df8a1e42832dadc540f2899" title=" " alt="" coords="33,259,115,285"/>
+<area shape="rect" id="node8" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="31,309,117,336"/>
+<area shape="rect" id="node9" href="$strtoks_8h.html#a0164a29d5025ab7576b0af8c5aa59bae" title=" " alt="" coords="43,360,105,387"/>
 </map>

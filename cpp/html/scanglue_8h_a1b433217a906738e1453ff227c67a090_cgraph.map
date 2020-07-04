@@ -1,7 +1,4 @@
 <map id="scanglue" name="scanglue">
-<area shape="rect" id="node1" title=" " alt="" coords="5,55,80,81"/>
-<area shape="rect" id="node2" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="128,55,207,81"/>
-<area shape="rect" id="node3" href="$expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="262,29,326,56"/>
-<area shape="rect" id="node4" href="$getnext_8cpp.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="261,80,327,107"/>
-<area shape="rect" id="node5" href="$macrocall_8cpp.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="255,131,333,157"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,80,32"/>
+<area shape="rect" id="node2" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="128,5,207,32"/>
 </map>

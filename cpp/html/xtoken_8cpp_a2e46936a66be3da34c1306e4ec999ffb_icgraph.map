@@ -1,14 +1,5 @@
 <map id="xtoken" name="xtoken">
-<area shape="rect" id="node1" title=" " alt="" coords="388,169,449,196"/>
-<area shape="rect" id="node2" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="193,56,340,83"/>
-<area shape="rect" id="node5" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="229,257,304,284"/>
-<area shape="rect" id="node3" href="$maincontrol_8cpp.html#aee41666bb43f68ce58fd3f71c7781cd8" title=" " alt="" coords="8,5,143,32"/>
-<area shape="rect" id="node4" href="$maincontrol_8cpp.html#a1c4fbceeb0a6504e980d70aea5dc2ad9" title=" " alt="" coords="5,56,145,83"/>
-<area shape="rect" id="node6" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="29,131,121,157"/>
-<area shape="rect" id="node7" href="$issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="22,181,129,208"/>
-<area shape="rect" id="node8" href="$makemark_8h.html#a7ce350cb1567ad847f571cfcd9ec4118" title=" " alt="" coords="34,232,117,259"/>
-<area shape="rect" id="node9" href="$newpatterns_8h.html#a1356e8c74d8485cbd0e20c09f2c25886" title=" " alt="" coords="29,283,122,309"/>
-<area shape="rect" id="node10" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="13,333,138,360"/>
-<area shape="rect" id="node11" href="$shiftcase_8h.html#a466876aa5b16eb9d7556fd65d3479f6e" title=" " alt="" coords="38,384,113,411"/>
-<area shape="rect" id="node12" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="41,435,109,461"/>
+<area shape="rect" id="node1" title=" " alt="" coords="200,31,261,57"/>
+<area shape="rect" id="node2" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="5,5,152,32"/>
+<area shape="rect" id="node3" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="41,56,116,83"/>
 </map>

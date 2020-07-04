@@ -1,28 +1,21 @@
 <map id="startinput" name="startinput">
-<area shape="rect" id="node1" title=" " alt="" coords="5,447,81,474"/>
-<area shape="rect" id="node2" href="$amakenamestring_8cpp.html#a2b677ddfc7fdca4017dcf9ffc0e2e6da" title=" " alt="" coords="332,359,457,386"/>
-<area shape="rect" id="node4" href="$fichiers_8cpp.html#ab59d265f11c411e7d0a1a3ccf4b97bb0" title="Open a text file for input." alt="" coords="173,42,240,69"/>
-<area shape="rect" id="node5" href="$beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="151,93,263,119"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a7a51c990049bf6c6c9007274271b0681" title="the current alpha_file variable" alt="" coords="363,67,427,94"/>
-<area shape="rect" id="node7" href="$parametres_8h.html#a43108f9e5b0a872b47c5d80c52d2d449" title=" " alt="" coords="343,245,446,271"/>
-<area shape="rect" id="node8" href="$constantes_8h.html#a31f3a63bec138d92dfe4842edb93895a" title=" " alt="" coords="129,245,284,271"/>
-<area shape="rect" id="node9" href="$endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="155,143,258,170"/>
-<area shape="rect" id="node10" href="$firmuptheline_8cpp.html#ad2887480bd69067d27bbd8db4c59342a" title=" " alt="" coords="159,650,255,677"/>
-<area shape="rect" id="node11" href="$impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="359,555,431,582"/>
-<area shape="rect" id="node12" href="$impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="536,491,593,518"/>
-<area shape="rect" id="node13" href="$constantes_8cpp.html#a365fc2db0bbb423d6744bf74872c9cbe" title=" " alt="" coords="162,498,251,525"/>
-<area shape="rect" id="node14" href="$inputln_8cpp.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="177,549,237,575"/>
-<area shape="rect" id="node15" href="$openlogfile_8cpp.html#aa093bac5d614a1706a24856de98e0c7d" title=" " alt="" coords="165,447,249,474"/>
-<area shape="rect" id="node16" href="$promptfilename_8cpp.html#a09b5bedc5ecd13402ffc7784081eef8a" title=" " alt="" coords="339,657,450,683"/>
-<area shape="rect" id="node19" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="698,763,745,790"/>
-<area shape="rect" id="node21" href="$packfilename_8cpp.html#a7a0ce63c987a64219951e8be9c9494c3" title=" " alt="" coords="507,713,622,739"/>
-<area shape="rect" id="node22" href="$packfilename_8cpp.html#a424dc8c98f4a7c5563f5bf7d5b87a821" title=" " alt="" coords="672,814,771,841"/>
-<area shape="rect" id="node23" href="$impression_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="357,435,432,462"/>
-<area shape="rect" id="node24" href="$scanfilename_8cpp.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="345,726,444,753"/>
-<area shape="rect" id="node3" href="$makenamestring_8cpp.html#a9e64257b3f687e0775273d7598d0e0cb" title=" " alt="" coords="505,359,624,386"/>
-<area shape="rect" id="node17" href="$beginname_8cpp.html#a2b6351e3b3fd066643f3468b43b7cab9" title=" " alt="" coords="522,611,607,638"/>
-<area shape="rect" id="node18" href="$endname_8cpp.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="527,561,602,587"/>
-<area shape="rect" id="node20" href="$morename_8cpp.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="523,662,606,689"/>
-<area shape="rect" id="node25" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="525,763,604,790"/>
-<area shape="rect" id="node26" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="525,814,604,841"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,476,81,503"/>
+<area shape="rect" id="node2" href="$amakenamestring_8cpp.html#a2b677ddfc7fdca4017dcf9ffc0e2e6da" title=" " alt="" coords="332,248,457,275"/>
+<area shape="rect" id="node3" href="$fichiers_8cpp.html#ab59d265f11c411e7d0a1a3ccf4b97bb0" title="Open a text file for input." alt="" coords="173,552,240,579"/>
+<area shape="rect" id="node4" href="$beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="151,603,263,629"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a7a51c990049bf6c6c9007274271b0681" title="the current alpha_file variable" alt="" coords="363,679,427,705"/>
+<area shape="rect" id="node6" href="$parametres_8h.html#a43108f9e5b0a872b47c5d80c52d2d449" title=" " alt="" coords="343,45,446,72"/>
+<area shape="rect" id="node7" href="$constantes_8h.html#a31f3a63bec138d92dfe4842edb93895a" title=" " alt="" coords="129,45,284,72"/>
+<area shape="rect" id="node8" href="$endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="155,704,258,731"/>
+<area shape="rect" id="node9" href="$firmuptheline_8cpp.html#ad2887480bd69067d27bbd8db4c59342a" title=" " alt="" coords="347,349,443,376"/>
+<area shape="rect" id="node10" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="539,299,586,325"/>
+<area shape="rect" id="node11" href="$impression_8cpp.html#a6f24c68dc4ffde288d61dcb71d93170e" title=" " alt="" coords="680,147,755,173"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#a365fc2db0bbb423d6744bf74872c9cbe" title=" " alt="" coords="162,755,251,781"/>
+<area shape="rect" id="node13" href="$inputln_8cpp.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="177,805,237,832"/>
+<area shape="rect" id="node14" href="$openlogfile_8cpp.html#aa093bac5d614a1706a24856de98e0c7d" title=" " alt="" coords="165,197,249,224"/>
+<area shape="rect" id="node15" href="$promptfilename_8cpp.html#a09b5bedc5ecd13402ffc7784081eef8a" title=" " alt="" coords="339,400,450,427"/>
+<area shape="rect" id="node16" href="$packfilename_8cpp.html#a7a0ce63c987a64219951e8be9c9494c3" title=" " alt="" coords="505,451,620,477"/>
+<area shape="rect" id="node17" href="$packfilename_8cpp.html#a424dc8c98f4a7c5563f5bf7d5b87a821" title=" " alt="" coords="668,476,767,503"/>
+<area shape="rect" id="node18" href="$scanfilename_8cpp.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="157,856,256,883"/>
+<area shape="rect" id="node19" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="183,907,230,933"/>
 </map>

@@ -1,13 +1,6 @@
 <map id="extra_info" name="extra_info">
-<area shape="rect" id="node1" title="info to remember during template" alt="" coords="552,23,631,49"/>
-<area shape="rect" id="node2" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="164,23,217,49"/>
-<area shape="rect" id="node4" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="439,175,504,201"/>
-<area shape="rect" id="node11" href="$initcol_8h.html#a1c3a2eedfb749e57cf833cc140fbe403" title=" " alt="" coords="443,23,499,49"/>
-<area shape="rect" id="node3" href="$doendv_8h.html#adbabc406ff0a986dc23c2ad8d5bc9008" title=" " alt="" coords="5,23,69,49"/>
-<area shape="rect" id="node5" href="$gettoken_8h.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="315,225,387,252"/>
-<area shape="rect" id="node6" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="153,200,228,227"/>
-<area shape="rect" id="node7" href="$getxtoken_8h.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="312,124,391,151"/>
-<area shape="rect" id="node8" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="117,301,264,328"/>
-<area shape="rect" id="node9" href="$passtext_8h.html#a6fdb8af2a942331652d3e8a3b121d6be" title=" " alt="" coords="315,73,387,100"/>
-<area shape="rect" id="node10" href="$xtoken_8h.html#a2e46936a66be3da34c1306e4ec999ffb" title=" " alt="" coords="321,276,382,303"/>
+<area shape="rect" id="node1" title="info to remember during template" alt="" coords="220,21,299,47"/>
+<area shape="rect" id="node2" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="5,21,59,47"/>
+<area shape="rect" id="node3" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="107,21,172,47"/>
+<area shape="rect" id="node4" href="$initcol_8h.html#a1c3a2eedfb749e57cf833cc140fbe403" title=" " alt="" coords="111,71,167,98"/>
 </map>

@@ -10,11 +10,12 @@ var searchData=
   ['headforvmode_3130',['headforvmode',['../headforvmode_8cpp.html#a3128641e5b4a7dd454caf724178c4023',1,'headforvmode(void):&#160;headforvmode.cpp'],['../headforvmode_8h.html#a3128641e5b4a7dd454caf724178c4023',1,'headforvmode(void):&#160;headforvmode.cpp']]],
   ['height_3131',['height',['../constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071',1,'height(halfword p):&#160;constantes.cpp'],['../constantes_8h.html#ad4fec79822bc2ee9d17b7d12f022435e',1,'height(halfword):&#160;constantes.cpp']]],
   ['heightplusdepth_3132',['heightplusdepth',['../heightplusdepth_8cpp.html#aa73e9414477f6808c6257cf13874cb06',1,'heightplusdepth(internalfontnumber f, quarterword c):&#160;heightplusdepth.cpp'],['../heightplusdepth_8h.html#aa73e9414477f6808c6257cf13874cb06',1,'heightplusdepth(internalfontnumber f, quarterword c):&#160;heightplusdepth.cpp']]],
-  ['hfuzz_3133',['hfuzz',['../hpack_8cpp.html#a5f65ba9d42b87835898938869d07c413',1,'hpack.cpp']]],
-  ['hlistout_3134',['hlistout',['../hlistout_8cpp.html#a7ace644ac544d9b67d962f83c7e5ad15',1,'hlistout(void):&#160;hlistout.cpp'],['../hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15',1,'hlistout(void):&#160;hlistout.cpp']]],
-  ['holding_5finserts_3135',['holding_inserts',['../fireup_8cpp.html#af9be930ac356c88fa54ada483eb4461e',1,'fireup.cpp']]],
-  ['hpack_3136',['hpack',['../hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497',1,'hpack(halfword p, scaled w, smallnumber m):&#160;hpack.cpp'],['../hpack_8h.html#ad7ca7a1c0695329834e990548241b497',1,'hpack(halfword p, scaled w, smallnumber m):&#160;hpack.cpp']]],
-  ['hsize_3137',['hsize',['../parametres_8h.html#a45cc0a02877c99457cd993ff3f374e05',1,'parametres.h']]],
-  ['hyphen_5fpenalty_3138',['hyphen_penalty',['../linebreak_8cpp.html#a6c1eccdd764b8e25b34a9b5370d0d5aa',1,'linebreak.cpp']]],
-  ['hyphenate_3139',['hyphenate',['../hyphenate_8cpp.html#ad2ec39c3db4249f202c32daca895f4da',1,'hyphenate(void):&#160;hyphenate.cpp'],['../hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da',1,'hyphenate(void):&#160;hyphenate.cpp']]]
+  ['hex_3133',['hex',['../impression_8cpp.html#a091252d4a78e2210c421825aa403ae3b',1,'impression.cpp']]],
+  ['hfuzz_3134',['hfuzz',['../hpack_8cpp.html#a5f65ba9d42b87835898938869d07c413',1,'hpack.cpp']]],
+  ['hlistout_3135',['hlistout',['../hlistout_8cpp.html#a7ace644ac544d9b67d962f83c7e5ad15',1,'hlistout(void):&#160;hlistout.cpp'],['../hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15',1,'hlistout(void):&#160;hlistout.cpp']]],
+  ['holding_5finserts_3136',['holding_inserts',['../fireup_8cpp.html#af9be930ac356c88fa54ada483eb4461e',1,'fireup.cpp']]],
+  ['hpack_3137',['hpack',['../hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497',1,'hpack(halfword p, scaled w, smallnumber m):&#160;hpack.cpp'],['../hpack_8h.html#ad7ca7a1c0695329834e990548241b497',1,'hpack(halfword p, scaled w, smallnumber m):&#160;hpack.cpp']]],
+  ['hsize_3138',['hsize',['../parametres_8h.html#a45cc0a02877c99457cd993ff3f374e05',1,'parametres.h']]],
+  ['hyphen_5fpenalty_3139',['hyphen_penalty',['../linebreak_8cpp.html#a6c1eccdd764b8e25b34a9b5370d0d5aa',1,'linebreak.cpp']]],
+  ['hyphenate_3140',['hyphenate',['../hyphenate_8cpp.html#ad2ec39c3db4249f202c32daca895f4da',1,'hyphenate(void):&#160;hyphenate.cpp'],['../hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da',1,'hyphenate(void):&#160;hyphenate.cpp']]]
 ];

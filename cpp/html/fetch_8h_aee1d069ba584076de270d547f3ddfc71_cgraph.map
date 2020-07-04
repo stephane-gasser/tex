@@ -1,31 +1,13 @@
 <map id="fetch" name="fetch">
-<area shape="rect" id="node1" title=" " alt="" coords="5,740,56,767"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,233,56,260"/>
 <area shape="rect" id="node2" href="$constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="113,5,187,32"/>
-<area shape="rect" id="node3" href="$charwarning_8cpp.html#a151b5d2be0ab9cc2e1728e16b5e8927c" title=" " alt="" coords="104,284,196,311"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#aba0e405ae93b2ffc6fa80e2e1f7662eb" title=" " alt="" coords="435,259,481,285"/>
-<area shape="rect" id="node7" href="$impression_8cpp.html#aafadfe8083da1050b2adfd63ead4a034" title=" " alt="" coords="573,600,645,627"/>
-<area shape="rect" id="node12" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="126,689,174,716"/>
-<area shape="rect" id="node19" href="$impression_8cpp.html#a3e0bbc492597d05b770a8e0ba03b95ee" title=" " alt="" coords="277,563,339,589"/>
-<area shape="rect" id="node22" href="$constantes_8cpp.html#aad1788b536fcd0c08958fb6a8470ae1a" title=" " alt="" coords="117,740,183,767"/>
-<area shape="rect" id="node24" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="129,791,171,817"/>
-<area shape="rect" id="node25" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="115,841,185,868"/>
-<area shape="rect" id="node26" href="$impression_8cpp.html#af72304efe43145a87d89768d6778e9f1" title=" " alt="" coords="115,892,185,919"/>
-<area shape="rect" id="node27" href="$constantes_8cpp.html#afc4130c3e660c696fd60874168fec8d3" title=" " alt="" coords="111,943,189,969"/>
-<area shape="rect" id="node28" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="116,993,184,1020"/>
-<area shape="rect" id="node29" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="127,1044,173,1071"/>
-<area shape="rect" id="node4" href="$impression_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title="Prepare to do some tracing." alt="" coords="252,157,364,184"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#a77750f94de523bc7cb10b205e7bb9825" title=" " alt="" coords="257,259,359,285"/>
-<area shape="rect" id="node9" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="279,309,337,336"/>
-<area shape="rect" id="node10" href="$impression_8cpp.html#a163fa1f725ed91bdbb220bd85a1fd852" title=" " alt="" coords="421,613,495,640"/>
-<area shape="rect" id="node11" href="$charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1" title=" " alt="" coords="244,107,372,133"/>
-<area shape="rect" id="node8" href="$impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="723,639,780,665"/>
-<area shape="rect" id="node13" href="$beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="252,867,364,893"/>
-<area shape="rect" id="node14" href="$clearforerrorprompt_8cpp.html#a282ee6bcdd54bf75b357628da499c970" title=" " alt="" coords="544,1095,675,1121"/>
-<area shape="rect" id="node15" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="272,917,344,944"/>
-<area shape="rect" id="node16" href="$giveerrhelp_8cpp.html#a78490fe79fcaae6767240cc8e0fe0fbd" title=" " alt="" coords="265,1069,351,1096"/>
-<area shape="rect" id="node17" href="$jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="274,715,342,741"/>
-<area shape="rect" id="node18" href="$impression_8cpp.html#ace069a9f107f557990814241b661ad5f" title=" " alt="" coords="274,664,342,691"/>
-<area shape="rect" id="node20" href="$impression_8cpp.html#a08865d4e55bc6116a39dbd5679041e61" title=" " alt="" coords="260,765,356,792"/>
-<area shape="rect" id="node21" href="$terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="420,867,496,893"/>
-<area shape="rect" id="node23" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="281,1171,335,1197"/>
+<area shape="rect" id="node3" href="$charwarning_8cpp.html#a151b5d2be0ab9cc2e1728e16b5e8927c" title=" " alt="" coords="104,56,196,83"/>
+<area shape="rect" id="node4" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="126,107,174,133"/>
+<area shape="rect" id="node5" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="244,132,287,159"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#aad1788b536fcd0c08958fb6a8470ae1a" title=" " alt="" coords="117,208,183,235"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="129,259,171,285"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="115,309,185,336"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#afc4130c3e660c696fd60874168fec8d3" title=" " alt="" coords="111,360,189,387"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="116,411,184,437"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="127,461,173,488"/>
 </map>

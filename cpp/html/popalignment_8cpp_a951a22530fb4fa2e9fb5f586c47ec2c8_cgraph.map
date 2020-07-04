@@ -3,8 +3,7 @@
 <area shape="rect" id="node2" href="$getavail_8cpp.html#a57e5861075197f4fe65695ad0b9d4fbb" title="single&#45;word node liberation" alt="" coords="152,5,231,32"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="279,107,321,133"/>
 <area shape="rect" id="node4" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="155,107,227,133"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a1d478b50b817866786b1bc1dc81a08b0" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="169,259,214,285"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a83972007a929029d4cb84d153fa33a70" title="the current preamble list" alt="" coords="154,157,229,184"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="168,208,215,235"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#aef52059b87160e917aa21f8a4dd1316b" title="the info field of a memory word" alt="" coords="279,259,321,285"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a1d478b50b817866786b1bc1dc81a08b0" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="169,157,214,184"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a83972007a929029d4cb84d153fa33a70" title="the current preamble list" alt="" coords="154,208,229,235"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="168,259,215,285"/>
 </map>

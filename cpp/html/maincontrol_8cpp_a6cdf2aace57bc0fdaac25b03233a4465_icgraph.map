@@ -1,6 +1,5 @@
 <map id="main_loop_move" name="main_loop_move">
-<area shape="rect" id="node1" title=" " alt="" coords="463,5,583,32"/>
-<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a324a507e9f6c60cdc8cd9193e7be3df3" title=" " alt="" coords="135,5,236,32"/>
-<area shape="rect" id="node4" href="$maincontrol_8cpp.html#a269ee46ec8b97b5779ae99c9f2be65ea" title=" " alt="" coords="284,31,415,57"/>
-<area shape="rect" id="node3" href="$maincontrol_8cpp.html#ac9adf23e9668c60e307d353478aec787" title=" " alt="" coords="5,5,87,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="333,5,453,32"/>
+<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a324a507e9f6c60cdc8cd9193e7be3df3" title=" " alt="" coords="5,5,107,32"/>
+<area shape="rect" id="node3" href="$maincontrol_8cpp.html#a269ee46ec8b97b5779ae99c9f2be65ea" title=" " alt="" coords="155,31,285,57"/>
 </map>

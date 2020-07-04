@@ -1,7 +1,5 @@
 <map id="copynodelist" name="copynodelist">
-<area shape="rect" id="node1" title=" " alt="" coords="399,47,493,73"/>
-<area shape="rect" id="node2" href="$beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="276,21,351,48"/>
-<area shape="rect" id="node5" href="$unpackage_8h.html#afc396691da2ad50b5d31c5b03c876f48" title=" " alt="" coords="143,72,228,99"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,21,95,48"/>
-<area shape="rect" id="node4" href="$scanbox_8h.html#ae91617805c525de8f7b7679aa48faa8f" title=" " alt="" coords="150,21,221,48"/>
+<area shape="rect" id="node1" title=" " alt="" coords="139,31,233,57"/>
+<area shape="rect" id="node2" href="$beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="11,5,85,32"/>
+<area shape="rect" id="node3" href="$unpackage_8h.html#afc396691da2ad50b5d31c5b03c876f48" title=" " alt="" coords="5,56,91,83"/>
 </map>

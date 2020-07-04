@@ -1,10 +1,7 @@
 <map id="initcol" name="initcol">
-<area shape="rect" id="node1" title=" " alt="" coords="5,132,61,159"/>
-<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="121,56,200,83"/>
-<area shape="rect" id="node6" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="109,107,212,133"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#aec4fc83cd999f662fb64c719dffa7b8d" title="info to remember during template" alt="" coords="121,157,200,184"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#aaf20e812e87e3a5c9570bdd9459891ae" title="pointer to &#160;token list" alt="" coords="131,208,190,235"/>
-<area shape="rect" id="node3" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="260,5,352,32"/>
-<area shape="rect" id="node4" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="273,56,339,83"/>
-<area shape="rect" id="node5" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="263,107,349,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,61,108"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="121,5,200,32"/>
+<area shape="rect" id="node3" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="109,56,212,83"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#aec4fc83cd999f662fb64c719dffa7b8d" title="info to remember during template" alt="" coords="121,107,200,133"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#aaf20e812e87e3a5c9570bdd9459891ae" title="pointer to &#160;token list" alt="" coords="131,157,190,184"/>
 </map>

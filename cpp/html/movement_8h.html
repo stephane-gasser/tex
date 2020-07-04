@@ -86,9 +86,6 @@ Graphe des dépendances par inclusion de movement.h:</div>
 <map name="inc_2movement_8h" id="inc_2movement_8h">
 <area shape="rect" title=" " alt="" coords="5,5,120,32"/>
 <area shape="rect" href="globals_8h.html" title=" " alt="" coords="25,80,100,107"/>
-<area shape="rect" href="tex_8h.html" title=" " alt="" coords="55,229,105,256"/>
-<area shape="rect" title=" " alt="" coords="39,155,86,181"/>
-<area shape="rect" href="constantes_8h.html" title=" " alt="" coords="110,155,207,181"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -144,7 +141,7 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="movement_8cpp_source.html#l00013">13</a> du fichier <a class="el" href="movement_8cpp_source.html">movement.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a>(<a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635ae40c75a4c5f2d523776501c54a5bd772">movement_node_size</a>);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a>(<a class="code" href="constantes_8h.html#a61dadd085c1777f559549e05962b2c9eae40c75a4c5f2d523776501c54a5bd772">movement_node_size</a>);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(q) = w;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="constantes_8cpp.html#a57c1d8fc5bc0091690bd213643c6fce2">location</a>(q) = <a class="code" href="globals_8cpp.html#aae5b1c72a48fe3ceb88810d646d468e0">dvioffset</a>+<a class="code" href="globals_8cpp.html#a67adde4a4ed8ccc8ff4920b87b62ab1d">dviptr</a>;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">if</span> (o == 157)</div>
@@ -309,7 +306,6 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="263,91,305,118"/>
 <area shape="rect" href="constantes_8cpp.html#a57c1d8fc5bc0091690bd213643c6fce2" title="DVI byte number for a movement command." alt="" coords="137,179,203,206"/>
 <area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="143,230,197,256"/>
-<area shape="rect" href="dviswap_8cpp.html#a590f8af5b9c3c5259b7b86e58bc8b399" title=" " alt="" coords="364,15,435,42"/>
 </map>
 </div>
 <div class="dynheader">
@@ -317,10 +313,8 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="movement_8h_a20866aa1f5e095a472254bcf4c6d5e03_icgraph.png" border="0" usemap="#movement_8h_a20866aa1f5e095a472254bcf4c6d5e03_icgraph" alt=""/></div>
 <map name="movement_8h_a20866aa1f5e095a472254bcf4c6d5e03_icgraph" id="movement_8h_a20866aa1f5e095a472254bcf4c6d5e03_icgraph">
-<area shape="rect" title=" " alt="" coords="341,29,424,56"/>
-<area shape="rect" href="vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="229,29,293,56"/>
-<area shape="rect" href="hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="117,29,181,56"/>
-<area shape="rect" href="shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="5,55,69,81"/>
+<area shape="rect" title=" " alt="" coords="117,29,200,56"/>
+<area shape="rect" href="vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="5,29,69,56"/>
 </map>
 </div>
 
@@ -346,7 +340,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="fragment"><div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;{</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#ac7fa2232b345586cab587b978391d2dd">curh</a> != <a class="code" href="globals_8cpp.html#a81322713bff682e8e12dc3859d0f9bd7">dvih</a>)</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    {</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <a class="code" href="movement_8cpp.html#a76e26c05d84bb9a0d22034ece7233b3d">movement</a>(<a class="code" href="globals_8cpp.html#ac7fa2232b345586cab587b978391d2dd">curh</a>-<a class="code" href="globals_8cpp.html#a81322713bff682e8e12dc3859d0f9bd7">dvih</a>, <a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fab119b1827f97d04557ae23988e4be382">right1</a>);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <a class="code" href="movement_8cpp.html#a76e26c05d84bb9a0d22034ece7233b3d">movement</a>(<a class="code" href="globals_8cpp.html#ac7fa2232b345586cab587b978391d2dd">curh</a>-<a class="code" href="globals_8cpp.html#a81322713bff682e8e12dc3859d0f9bd7">dvih</a>, <a class="code" href="constantes_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ab119b1827f97d04557ae23988e4be382">right1</a>);</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <a class="code" href="globals_8cpp.html#a81322713bff682e8e12dc3859d0f9bd7">dvih</a> = <a class="code" href="globals_8cpp.html#ac7fa2232b345586cab587b978391d2dd">curh</a>;</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    }</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;}</div>
@@ -355,12 +349,10 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="movement_8h_a387f370c790b0d1fd76ddc3c2faee3bd_icgraph.png" border="0" usemap="#movement_8h_a387f370c790b0d1fd76ddc3c2faee3bd_icgraph" alt=""/></div>
 <map name="movement_8h_a387f370c790b0d1fd76ddc3c2faee3bd_icgraph" id="movement_8h_a387f370c790b0d1fd76ddc3c2faee3bd_icgraph">
-<area shape="rect" title=" " alt="" coords="587,80,657,107"/>
-<area shape="rect" href="hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="229,29,293,56"/>
-<area shape="rect" href="vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="117,80,181,107"/>
-<area shape="rect" href="specialout_8h.html#aa0e252049df8a1e42832dadc540f2899" title=" " alt="" coords="457,80,539,107"/>
-<area shape="rect" href="shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="5,43,69,69"/>
-<area shape="rect" href="outwhat_8h.html#a1137c5a00a506a80eadbe8aa55c400f5" title=" " alt="" coords="341,80,409,107"/>
+<area shape="rect" title=" " alt="" coords="247,80,317,107"/>
+<area shape="rect" href="hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="126,29,190,56"/>
+<area shape="rect" href="vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="5,29,69,56"/>
+<area shape="rect" href="specialout_8h.html#aa0e252049df8a1e42832dadc540f2899" title=" " alt="" coords="117,131,199,157"/>
 </map>
 </div>
 
@@ -386,7 +378,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="fragment"><div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;{</div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#ab2b4fe35f41516759afb060f685b1839">curv</a> != <a class="code" href="globals_8cpp.html#aa07923103f5758b5d4028e73e7935ba6">dviv</a>)</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    {</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <a class="code" href="movement_8cpp.html#a76e26c05d84bb9a0d22034ece7233b3d">movement</a>(<a class="code" href="globals_8cpp.html#ab2b4fe35f41516759afb060f685b1839">curv</a>-<a class="code" href="globals_8cpp.html#aa07923103f5758b5d4028e73e7935ba6">dviv</a>, <a class="code" href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa3f0219cdd61834fe7487d8ea31cc29fd">down1</a>);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <a class="code" href="movement_8cpp.html#a76e26c05d84bb9a0d22034ece7233b3d">movement</a>(<a class="code" href="globals_8cpp.html#ab2b4fe35f41516759afb060f685b1839">curv</a>-<a class="code" href="globals_8cpp.html#aa07923103f5758b5d4028e73e7935ba6">dviv</a>, <a class="code" href="constantes_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a3f0219cdd61834fe7487d8ea31cc29fd">down1</a>);</div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <a class="code" href="globals_8cpp.html#aa07923103f5758b5d4028e73e7935ba6">dviv</a> = <a class="code" href="globals_8cpp.html#ab2b4fe35f41516759afb060f685b1839">curv</a>;</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    }</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;}</div>
@@ -395,12 +387,10 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="movement_8h_acf0daf3f4ad468bc8ae8eedc1817b29a_icgraph.png" border="0" usemap="#movement_8h_acf0daf3f4ad468bc8ae8eedc1817b29a_icgraph" alt=""/></div>
 <map name="movement_8h_acf0daf3f4ad468bc8ae8eedc1817b29a_icgraph" id="movement_8h_acf0daf3f4ad468bc8ae8eedc1817b29a_icgraph">
-<area shape="rect" title=" " alt="" coords="587,80,657,107"/>
-<area shape="rect" href="hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="229,29,293,56"/>
-<area shape="rect" href="vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="117,80,181,107"/>
-<area shape="rect" href="specialout_8h.html#aa0e252049df8a1e42832dadc540f2899" title=" " alt="" coords="457,80,539,107"/>
-<area shape="rect" href="shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="5,43,69,69"/>
-<area shape="rect" href="outwhat_8h.html#a1137c5a00a506a80eadbe8aa55c400f5" title=" " alt="" coords="341,80,409,107"/>
+<area shape="rect" title=" " alt="" coords="247,80,317,107"/>
+<area shape="rect" href="hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="126,29,190,56"/>
+<area shape="rect" href="vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="5,29,69,56"/>
+<area shape="rect" href="specialout_8h.html#aa0e252049df8a1e42832dadc540f2899" title=" " alt="" coords="117,131,199,157"/>
 </map>
 </div>
 
@@ -419,22 +409,22 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdoc">width of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00048">constantes.cpp:48</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aae5b1c72a48fe3ceb88810d646d468e0"><div class="ttname"><a href="globals_8cpp.html#aae5b1c72a48fe3ceb88810d646d468e0">dvioffset</a></div><div class="ttdeci">int dvioffset</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00027">globals.cpp:27</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa07923103f5758b5d4028e73e7935ba6"><div class="ttname"><a href="globals_8cpp.html#aa07923103f5758b5d4028e73e7935ba6">dviv</a></div><div class="ttdeci">scaled dviv</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00184">globals.cpp:184</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8ab119b1827f97d04557ae23988e4be382"><div class="ttname"><a href="constantes_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ab119b1827f97d04557ae23988e4be382">right1</a></div><div class="ttdeci">@ right1</div><div class="ttdoc">move right</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00575">constantes.h:575</a></div></div>
 <div class="ttc" id="amovement_8cpp_html_a06fc87d81c62e9abb8790b6e5713c55ba425a789a7842df94fc5d70d3d71f8a57"><div class="ttname"><a href="movement_8cpp.html#a06fc87d81c62e9abb8790b6e5713c55ba425a789a7842df94fc5d70d3d71f8a57">z_seen</a></div><div class="ttdeci">@ z_seen</div><div class="ttdef"><b>Definition:</b> <a href="movement_8cpp_source.html#l00010">movement.cpp:10</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a57c1d8fc5bc0091690bd213643c6fce2"><div class="ttname"><a href="constantes_8cpp.html#a57c1d8fc5bc0091690bd213643c6fce2">location</a></div><div class="ttdeci">int &amp; location(halfword p)</div><div class="ttdoc">DVI byte number for a movement command.</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00113">constantes.cpp:113</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a4c687b215791c5186d4350d8f1e78a8b"><div class="ttname"><a href="globals_8cpp.html#a4c687b215791c5186d4350d8f1e78a8b">rightptr</a></div><div class="ttdeci">halfword rightptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00183">globals.cpp:183</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63cab0df1aa7eecfc070de5a764db068d68f"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63cab0df1aa7eecfc070de5a764db068d68f">yz_OK</a></div><div class="ttdeci">@ yz_OK</div><div class="ttdoc">info corresponding to an unconstrained down command</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00591">constantes.h:591</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a61dadd085c1777f559549e05962b2c9eae40c75a4c5f2d523776501c54a5bd772"><div class="ttname"><a href="constantes_8h.html#a61dadd085c1777f559549e05962b2c9eae40c75a4c5f2d523776501c54a5bd772">movement_node_size</a></div><div class="ttdeci">@ movement_node_size</div><div class="ttdoc">number of words per entry in the down and right stacks</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00067">constantes.h:67</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a99054c86de98ad23a20cfbd6d4da4474"><div class="ttname"><a href="globals_8cpp.html#a99054c86de98ad23a20cfbd6d4da4474">dvibuf</a></div><div class="ttdeci">eightbits dvibuf[dvibufsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00179">globals.cpp:179</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a81322713bff682e8e12dc3859d0f9bd7"><div class="ttname"><a href="globals_8cpp.html#a81322713bff682e8e12dc3859d0f9bd7">dvih</a></div><div class="ttdeci">scaled dvih</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00184">globals.cpp:184</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63caae483546936657fa363a6faa50a0a90e"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63caae483546936657fa363a6faa50a0a90e">z_here</a></div><div class="ttdeci">@ z_here</div><div class="ttdoc">info when the movement entry points to a z command</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00590">constantes.h:590</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a5d76b81b0ad4c19007a781d4edb8181fab119b1827f97d04557ae23988e4be382"><div class="ttname"><a href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fab119b1827f97d04557ae23988e4be382">right1</a></div><div class="ttdeci">@ right1</div><div class="ttdoc">move right</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00575">constantes.h:575</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a7c1938470100aa0870e192c212a0050b"><div class="ttname"><a href="globals_8cpp.html#a7c1938470100aa0870e192c212a0050b">downptr</a></div><div class="ttdeci">halfword downptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00183">globals.cpp:183</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_afe60b904edfb077f44830e92d5c705a3"><div class="ttname"><a href="globals_8cpp.html#afe60b904edfb077f44830e92d5c705a3">dvigone</a></div><div class="ttdeci">int dvigone</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00028">globals.cpp:28</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63cad4b4923263ca9a9b387736c90349328c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63cad4b4923263ca9a9b387736c90349328c">z_OK</a></div><div class="ttdeci">@ z_OK</div><div class="ttdoc">info corresponding to a down that can't become a y</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00593">constantes.h:593</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a5d76b81b0ad4c19007a781d4edb8181fa3f0219cdd61834fe7487d8ea31cc29fd"><div class="ttname"><a href="constantes_8h.html#a5d76b81b0ad4c19007a781d4edb8181fa3f0219cdd61834fe7487d8ea31cc29fd">down1</a></div><div class="ttdeci">@ down1</div><div class="ttdoc">move down</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00576">constantes.h:576</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8a3f0219cdd61834fe7487d8ea31cc29fd"><div class="ttname"><a href="constantes_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8a3f0219cdd61834fe7487d8ea31cc29fd">down1</a></div><div class="ttdeci">@ down1</div><div class="ttdoc">move down</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00576">constantes.h:576</a></div></div>
 <div class="ttc" id="atex_8h_html_a3fbb1f4fdb63be986c6debacfb88b62b"><div class="ttname"><a href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a></div><div class="ttdeci">std::uint8_t smallnumber</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00041">tex.h:41</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_ac7fa2232b345586cab587b978391d2dd"><div class="ttname"><a href="globals_8cpp.html#ac7fa2232b345586cab587b978391d2dd">curh</a></div><div class="ttdeci">scaled curh</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00185">globals.cpp:185</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a726ca809ffd3d67ab4b8476646f26635ae40c75a4c5f2d523776501c54a5bd772"><div class="ttname"><a href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635ae40c75a4c5f2d523776501c54a5bd772">movement_node_size</a></div><div class="ttdeci">@ movement_node_size</div><div class="ttdoc">number of words per entry in the down and right stacks</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00067">constantes.h:67</a></div></div>
 <div class="ttc" id="adviswap_8cpp_html_a4d3e8098d40415fa85a1bb2c79343f63"><div class="ttname"><a href="dviswap_8cpp.html#a4d3e8098d40415fa85a1bb2c79343f63">dvi_out</a></div><div class="ttdeci">void dvi_out(eightbits e)</div><div class="ttdef"><b>Definition:</b> <a href="dviswap_8cpp_source.html#l00004">dviswap.cpp:4</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a67adde4a4ed8ccc8ff4920b87b62ab1d"><div class="ttname"><a href="globals_8cpp.html#a67adde4a4ed8ccc8ff4920b87b62ab1d">dviptr</a></div><div class="ttdeci">dviindex dviptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00182">globals.cpp:182</a></div></div>
 <div class="ttc" id="agetnode_8cpp_html_a2baceeb19c0c4b666f0e18bcaff56d8a"><div class="ttname"><a href="getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a></div><div class="ttdeci">halfword getnode(int s)</div><div class="ttdef"><b>Definition:</b> <a href="getnode_8cpp_source.html#l00004">getnode.cpp:4</a></div></div>

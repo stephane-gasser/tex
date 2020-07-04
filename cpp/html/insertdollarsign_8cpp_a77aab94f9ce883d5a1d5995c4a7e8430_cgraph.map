@@ -1,9 +1,6 @@
 <map id="insertdollarsign" name="insertdollarsign">
-<area shape="rect" id="node1" title=" " alt="" coords="5,81,115,108"/>
-<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="280,56,359,83"/>
-<area shape="rect" id="node6" href="$inserror_8cpp.html#a78ba8096cd55b7c51db15c721de975b2" title=" " alt="" coords="165,81,230,108"/>
-<area shape="rect" id="node7" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="163,132,232,159"/>
-<area shape="rect" id="node3" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="407,5,499,32"/>
-<area shape="rect" id="node4" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="419,56,486,83"/>
-<area shape="rect" id="node5" href="$pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="410,107,495,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,115,57"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="280,5,359,32"/>
+<area shape="rect" id="node3" href="$inserror_8cpp.html#a78ba8096cd55b7c51db15c721de975b2" title=" " alt="" coords="165,31,230,57"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="163,81,232,108"/>
 </map>

@@ -1,11 +1,6 @@
 <map id="check_shrinkage" name="check_shrinkage">
-<area shape="rect" id="node1" title=" " alt="" coords="5,157,125,184"/>
-<area shape="rect" id="node2" href="$finiteshrink_8cpp.html#a44e34bae9b7e036aec3f59c776c36c1c" title=" " alt="" coords="177,107,263,133"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title="the shrinkability of this glob of glue" alt="" coords="191,157,249,184"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#ad06551159ef3096eb7d534df06098bb4" title="order of infinity for shrinking" alt="" coords="173,208,267,235"/>
-<area shape="rect" id="node3" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="315,5,411,32"/>
-<area shape="rect" id="node4" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="339,56,387,83"/>
-<area shape="rect" id="node5" href="$newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="325,107,400,133"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="328,157,397,184"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="329,208,397,235"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,125,83"/>
+<area shape="rect" id="node2" href="$finiteshrink_8cpp.html#a44e34bae9b7e036aec3f59c776c36c1c" title=" " alt="" coords="177,5,263,32"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title="the shrinkability of this glob of glue" alt="" coords="191,56,249,83"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#ad06551159ef3096eb7d534df06098bb4" title="order of infinity for shrinking" alt="" coords="173,107,267,133"/>
 </map>

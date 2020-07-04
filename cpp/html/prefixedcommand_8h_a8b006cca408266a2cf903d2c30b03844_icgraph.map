@@ -1,7 +1,5 @@
 <map id="prefixedcommand" name="prefixedcommand">
-<area shape="rect" id="node1" title=" " alt="" coords="443,81,568,108"/>
-<area shape="rect" id="node2" href="$doassignments_8h.html#a600d75e92c3a991d8672e091303a8b40" title=" " alt="" coords="284,56,395,83"/>
-<area shape="rect" id="node5" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,81,95,108"/>
-<area shape="rect" id="node3" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="158,5,221,32"/>
-<area shape="rect" id="node4" href="$makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="143,56,236,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="164,31,289,57"/>
+<area shape="rect" id="node2" href="$doassignments_8h.html#a600d75e92c3a991d8672e091303a8b40" title=" " alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="16,56,105,83"/>
 </map>

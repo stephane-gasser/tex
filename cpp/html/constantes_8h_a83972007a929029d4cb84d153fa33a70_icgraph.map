@@ -1,8 +1,6 @@
 <map id="preamble" name="preamble">
-<area shape="rect" id="node1" title="the current preamble list" alt="" coords="547,22,621,49"/>
-<area shape="rect" id="node2" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="267,22,330,49"/>
-<area shape="rect" id="node5" href="$popalignment_8h.html#a951a22530fb4fa2e9fb5f586c47ec2c8" title=" " alt="" coords="400,22,499,49"/>
-<area shape="rect" id="node6" href="$pushalignment_8h.html#a8cbbbca3e5d7c4a3d2fe9a5687b567d9" title=" " alt="" coords="245,73,352,99"/>
-<area shape="rect" id="node3" href="$alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="120,22,197,49"/>
-<area shape="rect" id="node4" href="$initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="5,47,72,74"/>
+<area shape="rect" id="node1" title="the current preamble list" alt="" coords="271,31,345,57"/>
+<area shape="rect" id="node2" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="5,5,68,32"/>
+<area shape="rect" id="node3" href="$popalignment_8h.html#a951a22530fb4fa2e9fb5f586c47ec2c8" title=" " alt="" coords="120,31,219,57"/>
+<area shape="rect" id="node4" href="$pushalignment_8h.html#a8cbbbca3e5d7c4a3d2fe9a5687b567d9" title=" " alt="" coords="116,81,223,108"/>
 </map>

@@ -1,12 +1,6 @@
 <map id="hang_indent" name="hang_indent">
-<area shape="rect" id="node1" title=" " alt="" coords="488,56,580,83"/>
-<area shape="rect" id="node2" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="174,5,242,32"/>
-<area shape="rect" id="node4" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="343,56,418,83"/>
-<area shape="rect" id="node6" href="$normalparagraph_8h.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="321,157,440,184"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,81,95,108"/>
-<area shape="rect" id="node5" href="$endgraf_8h.html#abee47be02d4d2b4c7bdb494f59a5a8bc" title=" " alt="" coords="175,56,241,83"/>
-<area shape="rect" id="node7" href="$alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="169,157,247,184"/>
-<area shape="rect" id="node8" href="$begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="143,208,273,235"/>
-<area shape="rect" id="node9" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="181,259,235,285"/>
-<area shape="rect" id="node10" href="$initspan_8h.html#a1c347985717caccf5068d06b952b2a47" title=" " alt="" coords="175,309,241,336"/>
+<area shape="rect" id="node1" title=" " alt="" coords="288,31,380,57"/>
+<area shape="rect" id="node2" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="5,5,73,32"/>
+<area shape="rect" id="node3" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="143,31,218,57"/>
+<area shape="rect" id="node4" href="$normalparagraph_8h.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="121,81,240,108"/>
 </map>

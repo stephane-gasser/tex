@@ -1,12 +1,11 @@
 <map id="src/resumeafterdisplay.cpp" name="src/resumeafterdisplay.cpp">
 <area shape="rect" id="node1" title=" " alt="" coords="395,5,573,32"/>
 <area shape="rect" id="node2" href="$resumeafterdisplay_8h.html" title=" " alt="" coords="5,80,147,107"/>
-<area shape="rect" id="node4" href="$confusion_8h.html" title=" " alt="" coords="171,80,261,107"/>
-<area shape="rect" id="node5" href="$unsave_8h.html" title=" " alt="" coords="285,80,360,107"/>
-<area shape="rect" id="node6" href="$pushnest_8h.html" title=" " alt="" coords="385,80,471,107"/>
-<area shape="rect" id="node7" href="$getxtoken_8h.html" title=" " alt="" coords="496,80,587,107"/>
-<area shape="rect" id="node8" href="$normmin_8h.html" title=" " alt="" coords="611,80,693,107"/>
-<area shape="rect" id="node9" href="$buildpage_8h.html" title=" " alt="" coords="717,80,805,107"/>
-<area shape="rect" id="node10" href="$backinput_8h.html" title=" " alt="" coords="830,80,919,107"/>
-<area shape="rect" id="node3" href="$globals_8h.html" title=" " alt="" coords="447,155,521,181"/>
+<area shape="rect" id="node3" href="$confusion_8h.html" title=" " alt="" coords="171,80,261,107"/>
+<area shape="rect" id="node4" href="$unsave_8h.html" title=" " alt="" coords="285,80,360,107"/>
+<area shape="rect" id="node5" href="$pushnest_8h.html" title=" " alt="" coords="385,80,471,107"/>
+<area shape="rect" id="node6" href="$getxtoken_8h.html" title=" " alt="" coords="496,80,587,107"/>
+<area shape="rect" id="node7" href="$normmin_8h.html" title=" " alt="" coords="611,80,693,107"/>
+<area shape="rect" id="node8" href="$buildpage_8h.html" title=" " alt="" coords="717,80,805,107"/>
+<area shape="rect" id="node9" href="$backinput_8h.html" title=" " alt="" coords="830,80,919,107"/>
 </map>
