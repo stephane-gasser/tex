@@ -1,8 +1,8 @@
 <map id="scansomethinginternal" name="scansomethinginternal">
 <area shape="rect" id="node1" title=" " alt="" coords="5,816,157,843"/>
-<area shape="rect" id="node2" href="$backerror_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="519,157,595,184"/>
+<area shape="rect" id="node2" href="$erreur_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="519,157,595,184"/>
 <area shape="rect" id="node3" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="643,132,721,159"/>
-<area shape="rect" id="node4" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="658,208,706,235"/>
+<area shape="rect" id="node4" href="$erreur_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="658,208,706,235"/>
 <area shape="rect" id="node5" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="769,132,812,159"/>
 <area shape="rect" id="node6" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="396,867,439,893"/>
 <area shape="rect" id="node7" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="530,765,583,792"/>
@@ -16,7 +16,7 @@
 <area shape="rect" id="node15" href="$constantes_8cpp.html#aa0355678d828c2e2f836409b82366625" title=" " alt="" coords="211,1120,310,1147"/>
 <area shape="rect" id="node16" href="$constantes_8cpp.html#afae596361a6f56764d80e73ae5b32a08" title=" " alt="" coords="374,917,461,944"/>
 <area shape="rect" id="node17" href="$scansomethinginternal_8cpp.html#acb27d8065547b0637c8bcd521dc7b46d" title="|mem| location of math glue spec" alt="" coords="382,664,453,691"/>
-<area shape="rect" id="node18" href="$muerror_8cpp.html#ab653e7bc889c7b5a69f69d82594903e9" title=" " alt="" coords="384,259,451,285"/>
+<area shape="rect" id="node18" href="$erreur_8cpp.html#ab653e7bc889c7b5a69f69d82594903e9" title=" " alt="" coords="384,259,451,285"/>
 <area shape="rect" id="node19" href="$newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="223,1171,298,1197"/>
 <area shape="rect" id="node20" href="$constantes_8cpp.html#acd8e2010495121e1bcaa7765b0cacdfc" title=" " alt="" coords="365,715,469,741"/>
 <area shape="rect" id="node21" href="$constantes_8cpp.html#a765fb197a183d02c528ad03d46cee17f" title="the added cost of breaking a list here" alt="" coords="229,1221,293,1248"/>

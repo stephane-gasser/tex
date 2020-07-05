@@ -2,12 +2,43 @@
 #include "scanleftbrace.h"
 #include "getxtoken.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "newtrieop.h"
-#include "overflow.h"
 #include "scantoks.h"
 #include "flushlist.h"
 #include "texte.h"
+
+static void erreurNewpatterns1(void)
+{
+	print_err("Nonletter");
+	helpptr = 1;
+	helpline[0] = "(See Appendix H.)";
+	error();
+}
+
+static void erreurNewpatterns2(void)
+{
+	print_err("Duplicate pattern");
+	helpptr = 1;
+	helpline[0] = "(See Appendix H.)";
+	error();
+}
+
+static void erreurNewpatterns3(void)
+{
+	print_err("Bad "+esc("patterns"));
+	helpptr = 1;
+	helpline[0] = "(See Appendix H.)";
+	error();
+}
+
+static void erreurNewpatterns4(void)
+{
+	print_err("Too late for "+esc("patterns"));
+	helpptr = 1;
+	helpline[0] = "All patterns must be given before typesetting begins.";
+	error();
+}
 
 void newpatterns(void)
 {
@@ -42,12 +73,7 @@ void newpatterns(void)
 						{
 							curchr = lc_code(curchr);
 							if (curchr == 0)
-							{
-								print_err("Nonletter");
-								helpptr = 1;
-								helpline[0] = "(See Appendix H.)";
-								error();
-							}
+								erreurNewpatterns1();
 						}
 						if (k < 63)
 						{
@@ -115,12 +141,7 @@ void newpatterns(void)
 							q = p;
 						}
 						if (trieo[q])
-						{
-							print_err("Duplicate pattern");
-							helpptr = 1;
-							helpline[0] = "(See Appendix H.)";
-							error();
-						}
+							erreurNewpatterns2();
 						trieo[q] = v;
 					}
 					if (curcmd == right_brace)
@@ -133,19 +154,13 @@ void newpatterns(void)
 					digitsensed = false;
 					break;
 				default:
-					print_err("Bad "+esc("patterns"));
-					helpptr = 1;
-					helpline[0] = "(See Appendix H.)";
-					error();
+					erreurNewpatterns3();
 			}
 		}
 	}
 	else
 	{
-		print_err("Too late for "+esc("patterns"));
-		helpptr = 1;
-		helpline[0] = "All patterns must be given before typesetting begins.";
-		error();
+		erreurNewpatterns4();
 		link(garbage) = scantoks(false, false);
 		flushlist(defref);
 	}

@@ -1,17 +1,17 @@
 <map id="writeout" name="writeout">
-<area shape="rect" id="node1" title=" " alt="" coords="5,335,73,361"/>
-<area shape="rect" id="node2" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="261,347,364,373"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="558,208,601,235"/>
-<area shape="rect" id="node4" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="556,512,603,539"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="431,461,489,488"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a08e6de05705ca19525644c3c49d4c7ee" title=" " alt="" coords="417,259,503,285"/>
-<area shape="rect" id="node7" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="121,5,213,32"/>
-<area shape="rect" id="node8" href="$flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a" title=" " alt="" coords="279,56,346,83"/>
-<area shape="rect" id="node9" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="289,563,337,589"/>
-<area shape="rect" id="node10" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="424,613,496,640"/>
-<area shape="rect" id="node11" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="279,208,346,235"/>
-<area shape="rect" id="node12" href="$begintokenlist_8cpp.html#a5f4232bf5579ef4981db33096414bc2a" title="inserts a simple token list" alt="" coords="136,360,199,387"/>
-<area shape="rect" id="node13" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="278,461,347,488"/>
-<area shape="rect" id="node14" href="$scantoks_8cpp.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="130,512,205,539"/>
-<area shape="rect" id="node15" href="$constantes_8cpp.html#a177ed5e89b8c5da61476a30ad8d3384b" title="reference count of token list to write" alt="" coords="412,107,508,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,340,73,367"/>
+<area shape="rect" id="node2" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="272,138,375,164"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="569,324,611,351"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="567,62,613,88"/>
+<area shape="rect" id="node5" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="442,62,499,88"/>
+<area shape="rect" id="node6" href="$impression_8cpp.html#a08e6de05705ca19525644c3c49d4c7ee" title=" " alt="" coords="428,214,513,240"/>
+<area shape="rect" id="node7" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="127,670,219,696"/>
+<area shape="rect" id="node8" href="$flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a" title=" " alt="" coords="290,568,357,595"/>
+<area shape="rect" id="node9" href="$writeout_8cpp.html#a6845877416d36551f529b5a2d1baeed3" title=" " alt="" coords="121,366,224,392"/>
+<area shape="rect" id="node10" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="290,324,357,351"/>
+<area shape="rect" id="node11" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="287,459,359,486"/>
+<area shape="rect" id="node12" href="$begintokenlist_8cpp.html#a5f4232bf5579ef4981db33096414bc2a" title="inserts a simple token list" alt="" coords="141,163,204,190"/>
+<area shape="rect" id="node13" href="$scantoks_8cpp.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="135,416,210,443"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#a555c50d862b9b6fa68704c4277d8ff36" title="stream number (0 to 17)" alt="" coords="124,619,221,646"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#a177ed5e89b8c5da61476a30ad8d3384b" title="reference count of token list to write" alt="" coords="423,470,519,496"/>
 </map>

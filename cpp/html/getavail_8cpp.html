@@ -80,7 +80,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="getavail_8h_source.html">getavail.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="runaway_8h_source.html">runaway.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="overflow_8h_source.html">overflow.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="erreur_8h_source.html">erreur.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de getavail.cpp:</div>
 <div class="dyncontent">
@@ -89,7 +89,7 @@ Graphe des dépendances par inclusion de getavail.cpp:</div>
 <area shape="rect" title=" " alt="" coords="91,5,206,32"/>
 <area shape="rect" href="getavail_8h.html" title=" " alt="" coords="5,80,84,107"/>
 <area shape="rect" href="runaway_8h.html" title=" " alt="" coords="109,80,189,107"/>
-<area shape="rect" href="overflow_8h.html" title=" " alt="" coords="213,80,293,107"/>
+<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="213,80,279,107"/>
 </map>
 </div>
 </div>
@@ -294,7 +294,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a0bf0906aa735ca8c56823902bc3a6b9a">himemmin</a> &lt;= <a class="code" href="globals_8cpp.html#a74a81f693ecceeb1d9b283811d1cc814">lomemmax</a>)</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            {</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                <a class="code" href="runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414">runaway</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <a class="code" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;main memory size&quot;</span>, <a class="code" href="tex_8h.html#a4d80dc1c318f88a198f2813c45f8f8ee">memmax</a>+1-<a class="code" href="tex_8h.html#a99842d321de8903f2f6f15cbbc21aef4">memmin</a>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <a class="code" href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;main memory size&quot;</span>, <a class="code" href="tex_8h.html#a4d80dc1c318f88a198f2813c45f8f8ee">memmax</a>+1-<a class="code" href="tex_8h.html#a99842d321de8903f2f6f15cbbc21aef4">memmin</a>);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            }</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = 0;</div>
@@ -307,7 +307,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <map name="getavail_8cpp_a954ade667e3184eb61ed18e925b628c7_cgraph" id="getavail_8cpp_a954ade667e3184eb61ed18e925b628c7_cgraph">
 <area shape="rect" title=" " alt="" coords="5,21,72,48"/>
 <area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="239,21,281,48"/>
-<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="120,21,191,48"/>
+<area shape="rect" href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="120,21,191,48"/>
 <area shape="rect" href="runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="120,72,191,99"/>
 </map>
 </div>
@@ -404,7 +404,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="atex_8h_html_a4d80dc1c318f88a198f2813c45f8f8ee"><div class="ttname"><a href="tex_8h.html#a4d80dc1c318f88a198f2813c45f8f8ee">memmax</a></div><div class="ttdeci">constexpr int memmax</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00009">tex.h:9</a></div></div>
-<div class="ttc" id="aoverflow_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00015">overflow.cpp:15</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00340">erreur.cpp:340</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00587">constantes.h:587</a></div></div>
 <div class="ttc" id="atex_8h_html_a99842d321de8903f2f6f15cbbc21aef4"><div class="ttname"><a href="tex_8h.html#a99842d321de8903f2f6f15cbbc21aef4">memmin</a></div><div class="ttdeci">constexpr int memmin</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00010">tex.h:10</a></div></div>
 <div class="ttc" id="agetavail_8cpp_html_a954ade667e3184eb61ed18e925b628c7"><div class="ttname"><a href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7">getavail</a></div><div class="ttdeci">halfword getavail(void)</div><div class="ttdef"><b>Definition:</b> <a href="getavail_8cpp_source.html#l00005">getavail.cpp:5</a></div></div>

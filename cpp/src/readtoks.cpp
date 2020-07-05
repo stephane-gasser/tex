@@ -3,14 +3,21 @@
 #include "getavail.h"
 #include "terminput.h"
 #include "impression.h"
-#include "fatalerror.h"
 #include "inputln.h"
 #include "fichier.h"
 #include "runaway.h"
 #include "gettoken.h"
-#include "error.h"
+#include "erreur.h"
 #include "endfilereading.h"
 #include "texte.h"
+
+static void erreurReadtoks(void)
+{
+	print_err("File ended within "+esc("read"));
+	helpptr = 1;
+	helpline[0] = "This \\read has unbalanced braces.";
+	error();
+}
 
 void readtoks(int n, halfword r)
 {
@@ -61,11 +68,8 @@ void readtoks(int n, halfword r)
 					if (alignstate != 1000000)
 					{
 						runaway();
-						print_err("File ended within "+esc("read"));
-						helpptr = 1;
-						helpline[0] = "This \\read has unbalanced braces.";
+						erreurReadtoks();
 						alignstate = 1000000;
-						error();
 					}
 				}
 		limit = last;

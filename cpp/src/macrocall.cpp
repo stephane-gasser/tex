@@ -5,13 +5,44 @@
 #include "runaway.h"
 #include "flushlist.h"
 #include "backinput.h"
-#include "backerror.h"
 #include "endtokenlist.h"
 #include "begintokenlist.h"
-#include "error.h"
-#include "inserror.h"
-#include "overflow.h"
+#include "erreur.h"
 #include "texte.h"
+
+static void erreurMacrocall1(void)
+{
+	print_err("Use of "+scs(warningindex)+" doesn't match its definition");
+	helpptr = 4;
+	helpline[3] = "If you say, e.g., `\\def\\a1{...}', then you must always";
+	helpline[2] = "put `1' after `\\a', since control sequence names are";
+	helpline[1] = "made up of letters only. The macro here has not been";
+	helpline[0] = "followed by the required stuff, so I'm ignoring it.";
+	error();
+}
+
+static void erreurMacrocall2(void)
+{
+	print_err("Paragraph ended before "+scs(warningindex)+" was complete");
+	helpptr = 3;
+	helpline[2] = "I suspect you've forgotten a `}', causing me to apply this";
+	helpline[1] = "control sequence to too much text. How can we recover?";
+	helpline[0] = "My plan is to forget the whole thing and hope for the best.";
+	backerror();
+}
+
+static void erreurMacrocall3(void)
+{
+	print_err("Argument of "+scs(warningindex)+" has an extra }");
+	helpptr = 6;
+	helpline[5] = "I've run across a `}' that doesn't seem to match anything.";
+	helpline[4] = "For example, `\\def\\a#1{...}' and `\\a}' would produce";
+	helpline[3] = "this error. If you simply proceed now, the `\\par' that";
+	helpline[2] = "I've just inserted will cause me to report a runaway";
+	helpline[1] = "argument that might be the root of the problem. But if";
+	helpline[0] = "your `}' was spurious, just type `2' and it will go away.";
+	inserror();
+}
 
 void macrocall(void)
 {
@@ -70,13 +101,7 @@ void macrocall(void)
 				if (s != r)
 					if (s == 0)
 					{
-						print_err("Use of "+scs(warningindex)+" doesn't match its definition");
-						helpptr = 4;
-						helpline[3] = "If you say, e.g., `\\def\\a1{...}', then you must always";
-						helpline[2] = "put `1' after `\\a', since control sequence names are";
-						helpline[1] = "made up of letters only. The macro here has not been";
-						helpline[0] = "followed by the required stuff, so I'm ignoring it.";
-						error();
+						erreurMacrocall1();
 						scannerstatus = savescannerstatus;
 						warningindex = savewarningindex;
 						return;
@@ -123,13 +148,7 @@ void macrocall(void)
 						if (longstate == call)
 						{
 							runaway();
-							printnl("! ");
-							print("Paragraph ended before "+scs(warningindex)+" was complete");
-							helpptr = 3;
-							helpline[2] = "I suspect you've forgotten a `}', causing me to apply this";
-							helpline[1] = "control sequence to too much text. How can we recover?";
-							helpline[0] = "My plan is to forget the whole thing and hope for the best.";
-							backerror();
+							erreurMacrocall2();
 						}
 						pstack[n] = link(temp_head);
 						alignstate -= unbalance;
@@ -163,13 +182,7 @@ void macrocall(void)
 									if (longstate == call)
 									{
 										runaway();
-										printnl("! ");
-										print("Paragraph ended before "+scs(warningindex)+" was complete");
-										helpptr = 3;
-										helpline[2] = "I suspect you've forgotten a `}', causing me to apply this"; 
-										helpline[1] = "control sequence to too much text. How can we recover?";
-										helpline[0] = "My plan is to forget the whole thing and hope for the best.";
-										backerror();
+										erreurMacrocall2();
 									}
 									pstack[n] = link(temp_head);
 									alignstate -= unbalance;
@@ -198,19 +211,10 @@ void macrocall(void)
 					else
 					{
 						backinput();
-						printnl("! ");
-						print("Argument of "+scs(warningindex)+" has an extra }");
-						helpptr = 6;
-						helpline[5] = "I've run across a `}' that doesn't seem to match anything.";
-						helpline[4] = "For example, `\\def\\a#1{...}' and `\\a}' would produce";
-						helpline[3] = "this error. If you simply proceed now, the `\\par' that";
-						helpline[2] = "I've just inserted will cause me to report a runaway";
-						helpline[1] = "argument that might be the root of the problem. But if";
-						helpline[0] = "your `}' was spurious, just type `2' and it will go away.";
+						erreurMacrocall3();
 						alignstate++;
 						longstate = call;
 						curtok = partoken;
-						inserror();
 						continue;
 					}
 				else

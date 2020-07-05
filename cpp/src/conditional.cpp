@@ -4,14 +4,13 @@
 #include "scanint.h"
 #include "scandimen.h"
 #include "impression.h"
-#include "backerror.h"
 #include "scaneightbitint.h"
 #include "getnext.h"
 #include "scanfourbitint.h"
 #include "freenode.h"
 #include "passtext.h"
 #include "changeiflimit.h"
-#include "error.h"
+#include "erreur.h"
 #include "texte.h"
 
 static void get_x_token_or_active_char(void)
@@ -23,6 +22,22 @@ static void get_x_token_or_active_char(void)
 			curcmd = active_char; 
 			curchr = curtok-cs_token_flag-active_base; 
 		}
+}
+
+static void erreurConditional1(smallnumber thisif)
+{
+	print_err("Missing = inserted for "+cmdchr(if_test, thisif));
+	helpptr = 1;
+	helpline[0] = "I was expecting to see `<', `=', or `>'. Didn't.";
+	backerror();
+}
+
+static void erreurConditional2(void)
+{
+	print_err("Extra "+esc("or"));
+	helpptr = 1;
+	helpline[0] = "I'm ignoring this; it doesn't match any \\if.";
+	error();
 }
 
 void conditional(void)
@@ -84,10 +99,7 @@ void conditional(void)
 				r = curtok-0x0C'00;
 			else
 			{
-				print_err("Missing = inserted for "+cmdchr(if_test, thisif));
-				helpptr = 1;
-				helpline[0] = "I was expecting to see `<', `=', or `>'. Didn't.";
-				backerror();
+				erreurConditional1(thisif);
 				r = '=';
 			}
 			if (thisif == if_int_code)
@@ -260,10 +272,7 @@ void conditional(void)
 					iflimit = 2;
 				return;
 			}
-			print_err("Extra "+esc("or"));
-			helpptr = 1;
-			helpline[0] = "I'm ignoring this; it doesn't match any \\if.";
-			error();
+			erreurConditional2();
 		}
 		else 
 			if (curchr == 2)

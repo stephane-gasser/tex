@@ -1,7 +1,7 @@
 #include "doregistercommand.h"
 #include "getxtoken.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "scaneightbitint.h"
 #include "scanoptionalequals.h"
 #include "scankeyword.h"
@@ -18,6 +18,23 @@
 #include "geqdefine.h"
 #include "eqdefine.h"
 #include "texte.h"
+
+static void erreurDoregistercommand1(halfword q)
+{
+	print_err("You can't use `"+cmdchr(curcmd, curchr)+"' after "+cmdchr(q, 0));
+	helpptr = 1;
+	helpline[0] = "I'm forgetting what you said and not changing anything.";
+	error();
+}
+
+static void erreurDoregistercommand2(void)
+{
+	print_err("Arithmetic overflow");
+	helpptr = 2;
+	helpline[1] = "I can't carry out that multiplication or division,";
+	helpline[0] = "since the result is out of range.";
+	error();
+}
 
 void doregistercommand(smallnumber a)
 {
@@ -37,10 +54,7 @@ void doregistercommand(smallnumber a)
 			}
 			if (curcmd != register_)
 			{
-				print_err("You can't use `"+cmdchr(curcmd, curchr)+"' after "+cmdchr(q, 0));
-				helpptr = 1;
-				helpline[0] = "I'm forgetting what you said and not changing anything.";
-				error();
+				erreurDoregistercommand1(q);
 				return;
 			}
 		}
@@ -141,13 +155,9 @@ void doregistercommand(smallnumber a)
 	}
 	if (aritherror)
 	{
-		print_err("Arithmetic overflow");
-		helpptr = 2;
-		helpline[1] = "I can't carry out that multiplication or division,";
-		helpline[0] = "since the result is out of range.";
+		erreurDoregistercommand2();
 		if (p >= 2)
 			deleteglueref(curval);
-		error();
 		return;
 	}
 	if (p < 2)

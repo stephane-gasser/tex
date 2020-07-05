@@ -79,15 +79,15 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="firstfit_8h_source.html">firstfit.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="overflow_8h_source.html">overflow.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="erreur_8h_source.html">erreur.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de firstfit.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="firstfit_8cpp__incl.png" border="0" usemap="#src_2firstfit_8cpp" alt=""/></div>
 <map name="src_2firstfit_8cpp" id="src_2firstfit_8cpp">
-<area shape="rect" title=" " alt="" coords="35,5,138,32"/>
+<area shape="rect" title=" " alt="" coords="33,5,135,32"/>
 <area shape="rect" href="firstfit_8h.html" title=" " alt="" coords="5,80,72,107"/>
-<area shape="rect" href="overflow_8h.html" title=" " alt="" coords="96,80,176,107"/>
+<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="97,80,162,107"/>
 </map>
 </div>
 </div>
@@ -130,7 +130,7 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a> &lt; h+256)</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        {</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="tex_8h.html#a617310b2e4954282654633ff592e7f26">triesize</a> &lt;= h+256)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <a class="code" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;pattern memory&quot;</span>, <a class="code" href="tex_8h.html#a617310b2e4954282654633ff592e7f26">triesize</a>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <a class="code" href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;pattern memory&quot;</span>, <a class="code" href="tex_8h.html#a617310b2e4954282654633ff592e7f26">triesize</a>);</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keywordflow">do</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            {</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <a class="code" href="globals_8cpp.html#af8db1371c3944bab305a526c2e531458">triemax</a>++;</div>
@@ -188,7 +188,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="center"><img src="firstfit_8cpp_a9ec7e5f14730f1045a0cafbb2b259e2f_cgraph.png" border="0" usemap="#firstfit_8cpp_a9ec7e5f14730f1045a0cafbb2b259e2f_cgraph" alt=""/></div>
 <map name="firstfit_8cpp_a9ec7e5f14730f1045a0cafbb2b259e2f_cgraph" id="firstfit_8cpp_a9ec7e5f14730f1045a0cafbb2b259e2f_cgraph">
 <area shape="rect" title=" " alt="" coords="5,56,60,83"/>
-<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="110,5,181,32"/>
+<area shape="rect" href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="110,5,181,32"/>
 <area shape="rect" href="firstfit_8cpp.html#a10142a48205da70cd0fa6afd599e3dc1" title="backward links in |trie| holes" alt="" coords="108,56,183,83"/>
 <area shape="rect" href="constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64" title="`‘downward’&#39; link in a trie" alt="" coords="112,107,179,133"/>
 </map>
@@ -251,7 +251,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="atex_8h_html_ab83428f90f6421c7dad8f3aea11430b3"><div class="ttname"><a href="tex_8h.html#ab83428f90f6421c7dad8f3aea11430b3">ASCIIcode</a></div><div class="ttdeci">std::uint8_t ASCIIcode</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00032">tex.h:32</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_af9374bce631e7c1829db752c1ac7ed4f"><div class="ttname"><a href="globals_8cpp.html#af9374bce631e7c1829db752c1ac7ed4f">trier</a></div><div class="ttdeci">triepointer trier[triesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00260">globals.cpp:260</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a1d191a9073ecc9e4ea7c3ca504e46a64"><div class="ttname"><a href="constantes_8cpp.html#a1d191a9073ecc9e4ea7c3ca504e46a64">trie_link</a></div><div class="ttdeci">halfword &amp; trie_link(halfword p)</div><div class="ttdoc">`‘downward’' link in a trie</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00139">constantes.cpp:139</a></div></div>
-<div class="ttc" id="aoverflow_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00015">overflow.cpp:15</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00340">erreur.cpp:340</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a68fcdb5ab01dd0d0914f80d819e61f56"><div class="ttname"><a href="globals_8cpp.html#a68fcdb5ab01dd0d0914f80d819e61f56">trietaken</a></div><div class="ttdeci">bool trietaken[triesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00263">globals.cpp:263</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_add48da8b5158f673ad926a8c44a55323"><div class="ttname"><a href="globals_8cpp.html#add48da8b5158f673ad926a8c44a55323">triemin</a></div><div class="ttdeci">map&lt; ASCIIcode, triepointer &gt; triemin</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00264">globals.cpp:264</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a4fde541381bcc34b9c3d264762b04d0d"><div class="ttname"><a href="globals_8cpp.html#a4fde541381bcc34b9c3d264762b04d0d">trie</a></div><div class="ttdeci">twohalves trie[triesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00245">globals.cpp:245</a></div></div>

@@ -1,5 +1,5 @@
 #include "firstfit.h"
-#include "overflow.h"
+#include "erreur.h"
 
 //! backward links in |trie| holes
 static halfword& trie_back(halfword p) { return trie[p].lh; }

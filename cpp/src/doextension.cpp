@@ -9,7 +9,7 @@
 #include "flushnodelist.h"
 #include "backinput.h"
 #include "scanint.h"
-#include "reportillegalcase.h"
+#include "erreur.h"
 #include "normmin.h"
 #include "confusion.h"
 #include "texte.h"

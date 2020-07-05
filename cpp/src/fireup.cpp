@@ -3,13 +3,12 @@
 #include "deletetokenref.h"
 #include "impression.h"
 #include "ensurevbox.h"
-#include "boxerror.h"
 #include "newnullbox.h"
 #include "prunepagetop.h"
 #include "vpackage.h"
 #include "freenode.h"
 #include "deleteglueref.h"
-#include "error.h"
+#include "erreur.h"
 #include "pushnest.h"
 #include "begintokenlist.h"
 #include "newsavelevel.h"
@@ -21,6 +20,25 @@
 static halfword& broken_ptr(halfword p) { return link(p+1); }
 static int holding_inserts(void) { return int_par(holding_inserts_code); }
 static halfword& output_routine(void) { return equiv(output_routine_loc); }
+
+static void erreurFireup1(void)
+{
+	print_err(esc("box")+"255 is not void");
+	helpptr = 2;
+	helpline[1] = "You shouldn't use \\box255 except in \\output routines.";
+	helpline[0] = "Proceed, and I'll discard its present contents.";
+	boxerror(255);
+}
+
+static void erreurFireup2(void)
+{
+	print_err("Output loop---"+std::to_string(deadcycles)+" consecutive dead cycles");
+	helpptr = 3;
+	helpline[2] = "I've concluded that your \\output is awry; it never does a";
+	helpline[1] = "\\shipout, so I'm shipping \\box255 out myself. Next time";
+	helpline[0] = "increase \\maxdeadcycles if you want me to be more patient!";
+	error();
+}
 
 void fireup(halfword c)
 {
@@ -49,13 +67,7 @@ void fireup(halfword c)
 	if (c == bestpagebreak)
 		bestpagebreak = 0;
 	if (box(255))
-	{
-		print_err(esc("box")+"255 is not void");
-		helpptr = 2;
-		helpline[1] = "You shouldn't use \\box255 except in \\output routines.";
-		helpline[0] = "Proceed, and I'll discard its present contents.";
-		boxerror(255);
-	}
+		erreurFireup1();
 	insertpenalties = 0;
 	savesplittopskip = split_top_skip();
 	if (holding_inserts() <= 0)
@@ -208,14 +220,7 @@ void fireup(halfword c)
 	}
 	if (output_routine())
 		if (deadcycles >= max_dead_cycles())
-		{
-			print_err("Output loop---"+std::to_string(deadcycles)+" consecutive dead cycles");
-			helpptr = 3;
-			helpline[2] = "I've concluded that your \\output is awry; it never does a";
-			helpline[1] = "\\shipout, so I'm shipping \\box255 out myself. Next time";
-			helpline[0] = "increase \\maxdeadcycles if you want me to be more patient!";
-			error();
-		}
+			erreurFireup2();
 		else
 		{
 			outputactive = true;

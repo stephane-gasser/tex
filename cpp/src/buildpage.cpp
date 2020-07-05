@@ -7,7 +7,7 @@
 #include "ensurevbox.h"
 #include "xovern.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "xovern.h"
 #include "vertbreak.h"
 #include "confusion.h"
@@ -15,6 +15,27 @@
 #include "fireup.h"
 #include "newspec.h"
 #include "texte.h"
+
+static void erreurBuildpage1(int n)
+{
+	print_err("Infinite glue shrinkage inserted from "+esc("skip")+std::to_string(n));
+	helpptr = 3;
+	helpline[2] = "The correction glue for page breaking with insertions";
+	helpline[1] = "must have finite shrinkability. But you may proceed,";
+	helpline[0] = "since the offensive shrinkability has been made finite.";
+	error();
+}
+
+static void erreurBuildpage2(void)
+{
+	print_err("Infinite glue shrinkage found on current page");
+	helpptr = 4;
+	helpline[3] = "The page about to be output contains some infinitely";
+	helpline[2] = "shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.";
+	helpline[1] = "Such glue doesn't belong there; but you can safely proceed,";
+	helpline[0] = "since the offensive shrinkability has been made finite.";
+	error();
+}
 
 //! Append contributions to the current page.
 void buildpage(void)
@@ -137,14 +158,7 @@ void buildpage(void)
 					pagesofar[2+type(q)] += depth(q);
 					page_shrink += height(q);
 					if (subtype(q) && height(q))
-					{
-						print_err("Infinite glue shrinkage inserted from "+esc("skip")+std::to_string(n));
-						helpptr = 3;
-						helpline[2] = "The correction glue for page breaking with insertions";
-						helpline[1] = "must have finite shrinkability. But you may proceed,";
-						helpline[0] = "since the offensive shrinkability has been made finite.";
-						error();
-					}
+						erreurBuildpage1(n);
 				}
 				if (type(r) == vlist_node)
 					insertpenalties += width(p);
@@ -225,7 +239,7 @@ void buildpage(void)
 					r = link(page_ins_head);
 					while (r != page_ins_head)
 					{
-						info(r+2) = link(r+2);
+						best_ins_ptr(r) = last_ins_ptr(r);
 						r = link(r);
 					}
 				}
@@ -250,17 +264,11 @@ void buildpage(void)
 			page_shrink += height(q);
 			if (subtype(q) && height(q))
 			{
-				print_err("Infinite glue shrinkage found on current page");
-				helpptr = 4;
-				helpline[3] = "The page about to be output contains some infinitely";
-				helpline[2] = "shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.";
-				helpline[1] = "Such glue doesn't belong there; but you can safely proceed,";
-				helpline[0] = "since the offensive shrinkability has been made finite.";
-				error();
+				erreurBuildpage2();
 				r = newspec(q);
-				subtype(r) = 0;
+				shrink_order(r) = normal;
 				deleteglueref(q);
-				info(p+1) = r;
+				glue_ptr(p) = r;
 				q = r;
 			}
 			page_total += page_depth+width(q);

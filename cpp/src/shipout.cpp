@@ -1,6 +1,6 @@
 #include "shipout.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "fichier.h"
 #include "preparemag.h"
 #include "bmakenamestring.h"
@@ -32,6 +32,15 @@ static void ensure_dvi_open(void)
 	}
 }
 
+static void erreurShipout(void)
+{
+	print_err("Huge page cannot be shipped out");
+	helpptr = 2;
+	helpline[1] = txt("The page just created is more than 18 feet tall or");
+	helpline[0] = txt("more than 18 feet wide, so I suspect something went wrong.");
+	error();
+}
+
 void shipout(halfword p)
 {
 	if (tracing_output())
@@ -58,11 +67,7 @@ void shipout(halfword p)
 	 || height(p)+depth(p)+v_offset() > max_dimen 
 	 || width(p)+h_offset() > max_dimen)
 	{
-		print_err("Huge page cannot be shipped out");
-		helpptr = 2;
-		helpline[1] = txt("The page just created is more than 18 feet tall or");
-		helpline[0] = txt("more than 18 feet wide, so I suspect something went wrong.");
-		error();
+		erreurShipout();
 		if (tracing_output() <= 0)
 		{
 			begindiagnostic();

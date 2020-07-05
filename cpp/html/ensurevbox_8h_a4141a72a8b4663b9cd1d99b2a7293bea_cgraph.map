@@ -1,7 +1,7 @@
 <map id="ensurevbox" name="ensurevbox">
 <area shape="rect" id="node1" title=" " alt="" coords="5,56,95,83"/>
 <area shape="rect" id="node2" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="260,5,303,32"/>
-<area shape="rect" id="node3" href="$boxerror_8cpp.html#a0bbccd15aae646ece75f2703dda44c2e" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="143,31,212,57"/>
+<area shape="rect" id="node3" href="$erreur_8cpp.html#a0bbccd15aae646ece75f2703dda44c2e" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="143,31,212,57"/>
 <area shape="rect" id="node4" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="143,81,212,108"/>
 <area shape="rect" id="node5" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="154,132,201,159"/>
 </map>

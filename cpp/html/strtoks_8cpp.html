@@ -80,7 +80,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="strtoks_8h_source.html">strtoks.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="getavail_8h_source.html">getavail.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="overflow_8h_source.html">overflow.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="erreur_8h_source.html">erreur.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de strtoks.cpp:</div>
 <div class="dyncontent">
@@ -89,7 +89,7 @@ Graphe des dépendances par inclusion de strtoks.cpp:</div>
 <area shape="rect" title=" " alt="" coords="87,5,197,32"/>
 <area shape="rect" href="strtoks_8h.html" title=" " alt="" coords="5,80,79,107"/>
 <area shape="rect" href="getavail_8h.html" title=" " alt="" coords="103,80,181,107"/>
-<area shape="rect" href="overflow_8h.html" title=" " alt="" coords="206,80,286,107"/>
+<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="205,80,271,107"/>
 </map>
 </div>
 </div>
@@ -119,7 +119,7 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="strtoks_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="strtoks_8cpp_source.html">strtoks.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a>(1);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="erreur_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a>(1);</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p = <a class="code" href="constantes_8h.html#ac36f475ca5b446f4fde4c9b90bec77c8a2cd3c8a389d4f06ac700cff9a2fdb5d6">temp_head</a>;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = 0;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span> k = b; k &lt; <a class="code" href="globals_8cpp.html#adc7927a275454b0cbbfa3b06a11035f5">poolptr</a>; k++)</div>
@@ -142,7 +142,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="rect" title=" " alt="" coords="5,56,68,83"/>
 <area shape="rect" href="getavail_8cpp.html#af3df9f1773f7ae0591d3580af2b1ab6d" title=" " alt="" coords="116,5,267,32"/>
 <area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="315,31,357,57"/>
-<area shape="rect" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="155,107,228,133"/>
+<area shape="rect" href="erreur_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="155,107,228,133"/>
 </map>
 </div>
 <div class="dynheader">
@@ -159,7 +159,6 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aoverflow_8cpp_html_a570e0c3ba4fd6dec0e3e83fbb09d04e7"><div class="ttname"><a href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a></div><div class="ttdeci">void str_room(int n)</div><div class="ttdoc">make sure that the pool hasn't overflowed</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00009">overflow.cpp:9</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960adab0b5b046655afe578fb5416ad8f901"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960adab0b5b046655afe578fb5416ad8f901">other_token</a></div><div class="ttdeci">@ other_token</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00447">constantes.h:447</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960a261da50d5fc22187d6aff6e613b36986"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960a261da50d5fc22187d6aff6e613b36986">space_token</a></div><div class="ttdeci">@ space_token</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00444">constantes.h:444</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
@@ -167,6 +166,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aconstantes_8h_html_ac36f475ca5b446f4fde4c9b90bec77c8a2cd3c8a389d4f06ac700cff9a2fdb5d6"><div class="ttname"><a href="constantes_8h.html#ac36f475ca5b446f4fde4c9b90bec77c8a2cd3c8a389d4f06ac700cff9a2fdb5d6">temp_head</a></div><div class="ttdeci">@ temp_head</div><div class="ttdoc">head of a temporary list of some kind</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00192">constantes.h:192</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a9a39497b5850d8ef84842b542afb8124"><div class="ttname"><a href="globals_8cpp.html#a9a39497b5850d8ef84842b542afb8124">strpool</a></div><div class="ttdeci">packedASCIIcode strpool[poolsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00051">globals.cpp:51</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00044">tex.h:44</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a570e0c3ba4fd6dec0e3e83fbb09d04e7"><div class="ttname"><a href="erreur_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a></div><div class="ttdeci">void str_room(int n)</div><div class="ttdoc">make sure that the pool hasn't overflowed</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00334">erreur.cpp:334</a></div></div>
 <div class="ttc" id="agetavail_8cpp_html_af3df9f1773f7ae0591d3580af2b1ab6d"><div class="ttname"><a href="getavail_8cpp.html#af3df9f1773f7ae0591d3580af2b1ab6d">fast_store_new_token</a></div><div class="ttdeci">void fast_store_new_token(halfword &amp;p, halfword t)</div><div class="ttdef"><b>Definition:</b> <a href="getavail_8cpp_source.html#l00050">getavail.cpp:50</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

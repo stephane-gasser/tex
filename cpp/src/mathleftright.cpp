@@ -1,13 +1,21 @@
 #include "mathleftright.h"
 #include "scandelimiter.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "offsave.h"
 #include "newnoad.h"
 #include "pushmath.h"
 #include "unsave.h"
 #include "finmlist.h"
 #include "texte.h"
+
+static void erreurMathleftright(void)
+{
+	print_err("Extra "+esc("right"));
+	helpptr = 1;
+	helpline[0] = "I'm ignoring a \\right that had no matching \\left.";
+	error();
+}
 
 void mathleftright(void)
 {
@@ -17,10 +25,7 @@ void mathleftright(void)
 		if (curgroup == math_shift_group)
 		{
 			scandelimiter(garbage, false);
-			print_err("Extra "+esc("right"));
-			helpptr = 1;
-			helpline[0] = "I'm ignoring a \\right that had no matching \\left.";
-			error();
+			erreurMathleftright();
 		}
 		else
 			offsave();

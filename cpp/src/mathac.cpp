@@ -1,21 +1,24 @@
 #include "mathac.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "getnode.h"
 #include "scanfifteenbitint.h"
 #include "scanmath.h"
 #include "texte.h"
 
+static void erreurMathac(void)
+{
+	print_err("Please use "+esc("mathaccent")+" for accents in math mode");
+	helpptr = 2;
+	helpline[1] = "I'm changing \\accent to \\mathaccent here; wish me luck.";
+	helpline[0] = "(Accents are not the same in formulas as they are in text.)";
+	error();
+}
+
 void mathac(void)
 {
 	if (curcmd == accent)
-	{
-		print_err("Please use "+esc("mathaccent")+" for accents in math mode");
-		helpptr = 2;
-		helpline[1] = "I'm changing \\accent to \\mathaccent here; wish me luck.";
-		helpline[0] = "(Accents are not the same in formulas as they are in text.)";
-		error();
-	}
+		erreurMathac();
 	tail_append(getnode(accent_noad_size));
 	type(tail) = accent_noad;
 	subtype(tail) = normal;

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de inc/erreur.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">erreur.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="erreur_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ERREUR_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define ERREUR_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="globals_8h.html">globals.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a518288848eb2471573b6581060452931">error</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a78ba8096cd55b7c51db15c721de975b2">inserror</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a96f36a6afe751cbfd07b095782045b7d">alignerror</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a65b8b2c3bf6ac32ae0eec0468e9d265e">backerror</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a7f00f6e29637c0b93f180e4432db6fb5">cserror</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a0bbccd15aae646ece75f2703dda44c2e">boxerror</a>(<a class="code" href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a> n);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a282ee6bcdd54bf75b357628da499c970">clearforerrorprompt</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a7588f5b92a31b6dabffccf00c0d6bcec">fatalerror</a>(<span class="keyword">const</span> std::string &amp;);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a52a3c9863ed2b03820053c8eb5f2ba67">interror</a>(<span class="keywordtype">int</span> n);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#ab653e7bc889c7b5a69f69d82594903e9">muerror</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a60758e446ba71a13df23a4f82458ba50">noalignerror</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a25289217d87585048088c28fd8b97a2f">omiterror</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a6b6f568963b00004024cfd8cfa86c296">overflow</a>(<span class="keyword">const</span> std::string &amp;, <span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a660e4de544f7296aa4e385a3122e298e">str_room</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a63c87df7fc9c2697a41f1824e984ff28">check_full_save_stack</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a74a9219c03db22d322bbaeda3bb72225">reportillegalcase</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a1dd4d1dfb7c61463e09bd88c8b8f4207">youcant</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> <a class="code" href="erreur_8h.html#a78490fe79fcaae6767240cc8e0fe0fbd">giveerrhelp</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="erreur_8h.html#a52485fd6ecfc41bc1d4cb08f0076c9e7">privileged</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aerreur_8h_html_a660e4de544f7296aa4e385a3122e298e"><div class="ttname"><a href="erreur_8h.html#a660e4de544f7296aa4e385a3122e298e">str_room</a></div><div class="ttdeci">void str_room(int)</div><div class="ttdoc">make sure that the pool hasn't overflowed</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00334">erreur.cpp:334</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a63c87df7fc9c2697a41f1824e984ff28"><div class="ttname"><a href="erreur_8h.html#a63c87df7fc9c2697a41f1824e984ff28">check_full_save_stack</a></div><div class="ttdeci">void check_full_save_stack(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00355">erreur.cpp:355</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a7f00f6e29637c0b93f180e4432db6fb5"><div class="ttname"><a href="erreur_8h.html#a7f00f6e29637c0b93f180e4432db6fb5">cserror</a></div><div class="ttdeci">void cserror(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00257">erreur.cpp:257</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a78490fe79fcaae6767240cc8e0fe0fbd"><div class="ttname"><a href="erreur_8h.html#a78490fe79fcaae6767240cc8e0fe0fbd">giveerrhelp</a></div><div class="ttdeci">void giveerrhelp(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00381">erreur.cpp:381</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a74a9219c03db22d322bbaeda3bb72225"><div class="ttname"><a href="erreur_8h.html#a74a9219c03db22d322bbaeda3bb72225">reportillegalcase</a></div><div class="ttdeci">void reportillegalcase(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00370">erreur.cpp:370</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a78ba8096cd55b7c51db15c721de975b2"><div class="ttname"><a href="erreur_8h.html#a78ba8096cd55b7c51db15c721de975b2">inserror</a></div><div class="ttdeci">void inserror(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00186">erreur.cpp:186</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a0bbccd15aae646ece75f2703dda44c2e"><div class="ttname"><a href="erreur_8h.html#a0bbccd15aae646ece75f2703dda44c2e">boxerror</a></div><div class="ttdeci">void boxerror(eightbits n)</div><div class="ttdoc">At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be...</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00269">erreur.cpp:269</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a6b6f568963b00004024cfd8cfa86c296"><div class="ttname"><a href="erreur_8h.html#a6b6f568963b00004024cfd8cfa86c296">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;, int)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00340">erreur.cpp:340</a></div></div>
+<div class="ttc" id="aerreur_8h_html_ab653e7bc889c7b5a69f69d82594903e9"><div class="ttname"><a href="erreur_8h.html#ab653e7bc889c7b5a69f69d82594903e9">muerror</a></div><div class="ttdeci">void muerror(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00307">erreur.cpp:307</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a282ee6bcdd54bf75b357628da499c970"><div class="ttname"><a href="erreur_8h.html#a282ee6bcdd54bf75b357628da499c970">clearforerrorprompt</a></div><div class="ttdeci">void clearforerrorprompt(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00279">erreur.cpp:279</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a65b8b2c3bf6ac32ae0eec0468e9d265e"><div class="ttname"><a href="erreur_8h.html#a65b8b2c3bf6ac32ae0eec0468e9d265e">backerror</a></div><div class="ttdeci">void backerror(void)</div><div class="ttdoc">Back up one token and call error.</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00249">erreur.cpp:249</a></div></div>
+<div class="ttc" id="aglobals_8h_html"><div class="ttname"><a href="globals_8h.html">globals.h</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a96f36a6afe751cbfd07b095782045b7d"><div class="ttname"><a href="erreur_8h.html#a96f36a6afe751cbfd07b095782045b7d">alignerror</a></div><div class="ttdeci">void alignerror(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00195">erreur.cpp:195</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a25289217d87585048088c28fd8b97a2f"><div class="ttname"><a href="erreur_8h.html#a25289217d87585048088c28fd8b97a2f">omiterror</a></div><div class="ttdeci">void omiterror(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00324">erreur.cpp:324</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a7588f5b92a31b6dabffccf00c0d6bcec"><div class="ttname"><a href="erreur_8h.html#a7588f5b92a31b6dabffccf00c0d6bcec">fatalerror</a></div><div class="ttdeci">void fatalerror(const std::string &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00287">erreur.cpp:287</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a52485fd6ecfc41bc1d4cb08f0076c9e7"><div class="ttname"><a href="erreur_8h.html#a52485fd6ecfc41bc1d4cb08f0076c9e7">privileged</a></div><div class="ttdeci">bool privileged(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00386">erreur.cpp:386</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a52a3c9863ed2b03820053c8eb5f2ba67"><div class="ttname"><a href="erreur_8h.html#a52a3c9863ed2b03820053c8eb5f2ba67">interror</a></div><div class="ttdeci">void interror(int n)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00301">erreur.cpp:301</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a60758e446ba71a13df23a4f82458ba50"><div class="ttname"><a href="erreur_8h.html#a60758e446ba71a13df23a4f82458ba50">noalignerror</a></div><div class="ttdeci">void noalignerror(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00315">erreur.cpp:315</a></div></div>
+<div class="ttc" id="atex_8h_html_abc49fad02b91822e61ddf562d8fa9c27"><div class="ttname"><a href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a></div><div class="ttdeci">std::uint8_t eightbits</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00033">tex.h:33</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a1dd4d1dfb7c61463e09bd88c8b8f4207"><div class="ttname"><a href="erreur_8h.html#a1dd4d1dfb7c61463e09bd88c8b8f4207">youcant</a></div><div class="ttdeci">void youcant(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00365">erreur.cpp:365</a></div></div>
+<div class="ttc" id="aerreur_8h_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="erreur_8h.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00015">erreur.cpp:15</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

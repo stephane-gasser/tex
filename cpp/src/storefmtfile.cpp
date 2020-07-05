@@ -1,8 +1,7 @@
 #include "storefmtfile.h"
 #include "impression.h" 
-#include "error.h"
+#include "erreur.h"
 #include "jumpout.h"
-#include "overflow.h"
 #include "makestring.h"
 #include "packjobname.h"
 #include "promptfilename.h"
@@ -30,19 +29,24 @@ static void dump_four_ASCII(int k)
 	dump_qqqq(w);
 }
 
+static void erreurStorefmtfile(void)
+{
+	print_err("You can't dump_int inside a group");
+	helpptr = 1;
+	helpline[0] = "`{...\\dump_int}' is a no-no.";
+	if (interaction == error_stop_mode)
+		interaction = scroll_mode;
+	if (logopened)
+		error();
+}
+
 void storefmtfile(void)
 {
 	int j, k, l;
 	halfword p, q;
 	if (saveptr)
 	{ 
-		print_err("You can't dump_int inside a group");
-		helpptr = 1;
-		helpline[0] = "`{...\\dump_int}' is a no-no.";
-		if (interaction == error_stop_mode)
-			interaction = scroll_mode;
-		if (logopened)
-			error();
+		erreurStorefmtfile();
 		history = fatal_error_stop;
 		jumpout();
 	}

@@ -1,9 +1,8 @@
 #include "getnext.h"
 #include "checkoutervalidity.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "terminput.h"
-#include "fatalerror.h"
 #include "endfilereading.h"
 #include "openlogfile.h"
 #include "inputln.h"
@@ -15,17 +14,17 @@
 #include "idlookup.h"
 #include "texte.h"
 
-bool is_hex(ASCIIcode c)
+static bool is_hex(ASCIIcode c)
 {
 	return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f');
 }
 
-int toHex(ASCIIcode c)
+static int toHex(ASCIIcode c)
 {
 	return c <= '9' ? c -'0' : c-'a'+10;
 }
 
-int intFromTwoHexDigit(ASCIIcode c, int pos)
+static int intFromTwoHexDigit(ASCIIcode c, int pos)
 {
 	if (is_hex(c) && pos <= limit)
 	{
@@ -36,12 +35,12 @@ int intFromTwoHexDigit(ASCIIcode c, int pos)
 	return -1;
 }
 
-bool prochainCaractereOK(int pos)
+static bool prochainCaractereOK(int pos)
 {
 	return buffer[pos] == curchr && pos < limit && buffer[pos+1] < 128;
 }
 
-template<class T> int processBuffer(int k, T &var)
+template<class T> static int processBuffer(int k, T &var)
 {
 	ASCIIcode c = buffer[k+1];
 	auto t = intFromTwoHexDigit(c, k+2);
@@ -49,12 +48,23 @@ template<class T> int processBuffer(int k, T &var)
 	return t >= 0 ? 3 : 2;
 }
 
-void removeFromEnd(int &k, int d)
+static void removeFromEnd(int &k, int d)
 {
 	limit -= d;
 	First -= d;
 	for (;k <= limit; k++)
 		buffer[k] = buffer[k+d];
+}
+
+static void erreurGetnext(void)
+{
+	print_err("Text line contains an invalid character");
+	helpptr = 2;
+	helpline[1] = "A funny symbol that I can't read has just been input.";
+	helpline[0] = "Continue, and I'll forget that it ever happened.";
+	deletionsallowed = false;
+	error();
+	deletionsallowed = true;
 }
 
 #define ANY_STATE_PLUS(cmd) mid_line+cmd: case skip_blanks+cmd: case new_line+cmd
@@ -179,13 +189,7 @@ void getnext(void)
 									state = mid_line;
 								break;
 							case ANY_STATE_PLUS(invalid_char):
-								print_err("Text line contains an invalid character");
-								helpptr = 2;
-								helpline[1] = "A funny symbol that I can't read has just been input.";
-								helpline[0] = "Continue, and I'll forget that it ever happened.";
-								deletionsallowed = false;
-								error();
-								deletionsallowed = true;
+								erreurGetnext();
 								restart = true;
 								break;
 							case mid_line+spacer:

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fourquarters_2304',['fourquarters',['../structfourquarters.html',1,'']]]
+  ['fourquarters_2281',['fourquarters',['../structfourquarters.html',1,'']]]
 ];

@@ -1,5 +1,5 @@
 #include "newtrieop.h"
-#include "overflow.h"
+#include "erreur.h"
 
 quarterword newtrieop(smallnumber d, smallnumber  n, quarterword v)
 {

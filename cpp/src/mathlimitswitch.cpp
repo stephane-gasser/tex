@@ -1,7 +1,15 @@
 #include "mathlimitswitch.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "texte.h"
+
+static void erreurMathlimitswitch(void)
+{
+	print_err("Limit controls must follow a math operator");
+	helpptr = 1;
+	helpline[0] = "I'm ignoring this misplaced \\limits or \\nolimits command.";
+	error();
+}
 
 void mathlimitswitch(void)
 {
@@ -10,8 +18,5 @@ void mathlimitswitch(void)
 			subtype(tail) = curchr;
 			return;
 		}
-	print_err("Limit controls must follow a math operator");
-	helpptr = 1;
-	helpline[0] = "I'm ignoring this misplaced \\limits or \\nolimits command.";
-	error();
+	erreurMathlimitswitch();
 }

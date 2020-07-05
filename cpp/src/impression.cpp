@@ -7,7 +7,7 @@
 #include "gettoken.h"
 #include "thetoks.h"
 #include "flushlist.h"
-#include "error.h"
+#include "erreur.h"
 #include "primitive.h"
 #include <sstream>
 
@@ -1186,6 +1186,32 @@ static void showactivities(void)
 	}
 }
 
+static void erreurShowwhatever1(void)
+{
+	helpptr = 0;
+	error();
+}
+
+static void erreurShowwhatever2(void)
+{
+	helpptr = 3;
+	helpline[2] = "This isn't an error message; I'm just \\showing something.";
+	helpline[1] = "Type `I\\show...' to show more (e.g., \\show\\cs,";
+	helpline[0] = "\\showthe\\count10, \\showbox255, \\showlists).";
+	error();
+}
+
+static void erreurShowwhatever3(void)
+{
+	helpptr = 5;
+	helpline[4] = "This isn't an error message; I'm just \\showing something.";
+	helpline[3] = "Type `I\\show...' to show more (e.g., \\show\\cs,";
+	helpline[2] = "\\showthe\\count10, \\showbox255, \\showlists).";
+	helpline[1] = "And type `I\\tracingonline=1\\show...' to show boxes and";
+	helpline[0] = "lists on your terminal as well as in the transcript file.";
+	error();
+}
+
 void showwhatever(void)
 {
 	switch (curchr)
@@ -1227,25 +1253,12 @@ void showwhatever(void)
 	}
 	if (interaction < error_stop_mode)
 	{
-		helpptr = 0;
+		erreurShowwhatever1();
 		errorcount--;
 	}
 	else 
 		if (tracing_online() > 0)
-		{
-			helpptr = 3;
-			helpline[2] = "This isn't an error message; I'm just \\showing something.";
-			helpline[1] = "Type `I\\show...' to show more (e.g., \\show\\cs,";
-			helpline[0] = "\\showthe\\count10, \\showbox255, \\showlists).";
-		}
+			erreurShowwhatever2();
 		else
-		{
-			helpptr = 5;
-			helpline[4] = "This isn't an error message; I'm just \\showing something.";
-			helpline[3] = "Type `I\\show...' to show more (e.g., \\show\\cs,";
-			helpline[2] = "\\showthe\\count10, \\showbox255, \\showlists).";
-			helpline[1] = "And type `I\\tracingonline=1\\show...' to show boxes and";
-			helpline[0] = "lists on your terminal as well as in the transcript file.";
-		}
-	error();
+			erreurShowwhatever3();
 }

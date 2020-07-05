@@ -2,7 +2,6 @@
 #include "getxtoken.h"
 #include "scansomethinginternal.h"
 #include "deleteglueref.h"
-#include "muerror.h"
 #include "scanint.h"
 #include "backinput.h"
 #include "gettoken.h"
@@ -12,10 +11,51 @@
 #include "impression.h"
 #include "xnoverd.h"
 #include "multandadd.h"
-#include "error.h"
+#include "erreur.h"
 #include "preparemag.h"
 #include "xnoverd.h"
 #include "texte.h"
+
+static void erreurScandimen1(void)
+{
+	print_err("Illegal unit of measure (replaced by filll)");
+	helpptr = 1;
+	helpline[0] = "I dddon't go any higher than filll.";
+	error();
+}
+
+static void erreurScandimen2(void)
+{
+	print_err("Illegal unit of measure (mu inserted)"); 
+	helpptr = 4;
+	helpline[3] = "The unit of measurement in math glue must be mu.";
+	helpline[2] = "To recover gracefully from this error, it's best to";
+	helpline[1] = "delete the erroneous units; e.g., type `2' to delete";
+	helpline[0] = "two letters. (See Chapter 27 of The TeXbook.)";
+	error();
+}
+
+static void erreurScandimen3(void)
+{
+	print_err("Illegal unit of measure (pt inserted)");
+	helpptr = 6;
+	helpline[5] = "Dimensions can be in units of em, ex, in, pt, pc,";
+	helpline[4] = "cm, mm, dd, cc, bp, or sp; but yours is a new one!";
+	helpline[3] = "I'll assume that you meant to say pt, for printer's points.";
+	helpline[2] = "Dimension too large";
+	helpline[1] = "I can't work with sizes bigger than about 19 feet.";
+	helpline[0] = "Continue and I'll use the largest value I can.";
+	error();
+}
+
+static void erreurScandimen4(void)
+{
+		print_err("Dimension too large"); 
+		helpptr = 2;
+		helpline[1] = "I can't work with sizes bigger than about 19 feet.";
+		helpline[0] = "Continue and I'll use the largest value I can.";
+		error();
+}
 
 void scandimen(bool mu, bool inf, bool shortcut)
 {
@@ -117,12 +157,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 				curorder = 1;
 				while (scankeyword("l")) 
 				if (curorder == 3)
-				{
-					print_err("Illegal unit of measure (replaced by filll)");
-					helpptr = 1;
-					helpline[0] = "I dddon't go any higher than filll.";
-					error();
-				}
+					erreurScandimen1();
 				else
 					curorder++;
 				if (curval >= 0x40'00)
@@ -181,15 +216,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 		if (mu)
 		{
 			if (!scankeyword("mu"))
-			{
-				print_err("Illegal unit of measure (mu inserted)"); 
-				helpptr = 4;
-				helpline[3] = "The unit of measurement in math glue must be mu.";
-				helpline[2] = "To recover gracefully from this error, it's best to";
-				helpline[1] = "delete the erroneous units; e.g., type `2' to delete";
-				helpline[0] = "two letters. (See Chapter 27 of The TeXbook.)";
-				error();
-			}
+				erreurScandimen2();
 			if (curval >= 0x40'00)
 				aritherror = true;
 			else
@@ -253,15 +280,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 									}
 									else
 									{
-										print_err("Illegal unit of measure (pt inserted)");
-										helpptr = 6;
-										helpline[5] = "Dimensions can be in units of em, ex, in, pt, pc,";
-										helpline[4] = "cm, mm, dd, cc, bp, or sp; but yours is a new one!";
-										helpline[3] = "I'll assume that you meant to say pt, for printer's points.";
-										helpline[2] = "Dimension too large";
-										helpline[1] = "I can't work with sizes bigger than about 19 feet.";
-										helpline[0] = "Continue and I'll use the largest value I can.";
-										error();
+										erreurScandimen3();
 										if (curval >= 0x40'00)
 											aritherror = true;
 										else
@@ -286,11 +305,7 @@ void scandimen(bool mu, bool inf, bool shortcut)
 	} 
 	if (aritherror || abs(curval) >= 0x40'00'00'00)
 	{
-		print_err("Dimension too large"); 
-		helpptr = 2;
-		helpline[1] = "I can't work with sizes bigger than about 19 feet.";
-		helpline[0] = "Continue and I'll use the largest value I can.";
-		error;
+		erreurScandimen4();
 		curval = max_dimen;
 		aritherror = false;
 	}

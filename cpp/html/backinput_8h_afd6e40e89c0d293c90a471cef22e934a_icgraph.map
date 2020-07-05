@@ -1,8 +1,8 @@
 <map id="backinput" name="backinput">
 <area shape="rect" id="node1" title="Undoes one token of input." alt="" coords="968,700,1047,727"/>
-<area shape="rect" id="node2" href="$alignerror_8h.html#a96f36a6afe751cbfd07b095782045b7d" title=" " alt="" coords="676,624,751,651"/>
+<area shape="rect" id="node2" href="$erreur_8h.html#a96f36a6afe751cbfd07b095782045b7d" title=" " alt="" coords="676,624,751,651"/>
 <area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,933,95,960"/>
-<area shape="rect" id="node4" href="$backerror_8h.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="841,269,917,296"/>
+<area shape="rect" id="node4" href="$erreur_8h.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="841,269,917,296"/>
 <area shape="rect" id="node5" href="$expand_8h.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="681,168,745,195"/>
 <area shape="rect" id="node6" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="674,371,753,397"/>
 <area shape="rect" id="node7" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="143,447,268,473"/>
@@ -15,7 +15,7 @@
 <area shape="rect" id="node14" href="$headforvmode_8h.html#a3128641e5b4a7dd454caf724178c4023" title=" " alt="" coords="661,1131,765,1157"/>
 <area shape="rect" id="node15" href="$initcol_8h.html#a1c3a2eedfb749e57cf833cc140fbe403" title=" " alt="" coords="851,725,907,752"/>
 <area shape="rect" id="node16" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="171,997,239,1024"/>
-<area shape="rect" id="node17" href="$inserror_8h.html#a78ba8096cd55b7c51db15c721de975b2" title=" " alt="" coords="846,573,911,600"/>
+<area shape="rect" id="node17" href="$erreur_8h.html#a78ba8096cd55b7c51db15c721de975b2" title=" " alt="" coords="846,573,911,600"/>
 <area shape="rect" id="node18" href="$insertdollarsign_8h.html#a77aab94f9ce883d5a1d5995c4a7e8430" title=" " alt="" coords="659,776,768,803"/>
 <area shape="rect" id="node19" href="$insertrelax_8h.html#a3c1d60d7781e5b1b3733906b0cb43129" title=" " alt="" coords="837,928,920,955"/>
 <area shape="rect" id="node20" href="$itsallover_8h.html#a328c29eeaa688dcd15cc3534c1b078bc" title=" " alt="" coords="325,1080,399,1107"/>

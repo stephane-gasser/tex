@@ -1,7 +1,7 @@
 #include "builddiscretionary.h"
 #include "unsave.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "flushnodelist.h"
 #include "popnest.h"
 #include "flushnodelist.h"
@@ -9,6 +9,33 @@
 #include "scanleftbrace.h"
 #include "pushnest.h"
 #include "texte.h"
+
+static void erreurBuilddiscretionary1(void)
+{
+	print_err("Improper discretionary list"); 
+	helpptr = 1;
+	helpline[0] = "Discretionary lists must contain only boxes and kerns.";
+	error();
+}
+
+static void erreurBuilddiscretionary2(void)
+{
+	print_err("Illegal math "+esc("discretionary"));
+	helpptr = 2;
+	helpline[1] = "Sorry: The third part of a discretionary break must be";
+	helpline[0] = "empty, in math formulas. I had to delete your third part.";
+	error();
+}
+
+static void erreurBuilddiscretionary3(void)
+{
+	
+	print_err("Discretionary list is too long");
+	helpptr = 2;
+	helpline[1] = "Wow---I never thought anybody would tweak me here.";
+	helpline[0] = "You can't seriously need such a huge discretionary list?";
+	error();
+}
 
 void builddiscretionary(void)
 {
@@ -22,10 +49,7 @@ void builddiscretionary(void)
 	{
 		if (!is_char_node(p) && type(p) > rule_node && type(p) != kern_node && type(p) != ligature_node)
 		{
-			print_err("Improper discretionary list"); 
-			helpptr = 1;
-			helpline[0] = "Discretionary lists must contain only boxes and kerns.";
-			error();
+			erreurBuilddiscretionary1();
 			begindiagnostic();
 			printnl("The following discretionary sublist has been deleted:"+showbox(p));
 			print(enddiagnostic(true));
@@ -50,26 +74,16 @@ void builddiscretionary(void)
 		case 2: //Attach list |p| to the current list, and record its length; then finish up and |return|
 			if (n > 0 && abs(mode) == mmode)
 			{
-				print_err("Illegal math "+esc("discretionary"));
-				helpptr = 2;
-				helpline[1] = "Sorry: The third part of a discretionary break must be";
-				helpline[0] = "empty, in math formulas. I had to delete your third part.";
+				erreurBuilddiscretionary2();
 				flushnodelist(p);
 				n = 0;
-				error();
 			}
 			else
 				link(tail) = p;
 			if (n <= 255)
 				subtype(tail) = n;
 			else
-			{
-				print_err("Discretionary list is too long");
-				helpptr = 2;
-				helpline[1] = "Wow---I never thought anybody would tweak me here.";
-				helpline[0] = "You can't seriously need such a huge discretionary list?";
-				error();
-			}
+				erreurBuilddiscretionary3();
 			if (n > 0)
 				tail = q;
 			saveptr--;

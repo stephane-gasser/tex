@@ -1,13 +1,29 @@
 #include "subsup.h"
 #include "newnoad.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "scanmath.h"
 #include "texte.h"
 
 static bool scripts_allowed(halfword tail)
 {
 	return type(tail) >= ord_noad && type(tail) < left_noad;
+}
+
+static void erreurSubsup1(void)
+{
+	print_err("Double superscript");
+	helpptr = 1;
+	helpline[0] = "I treat `x^1^2' essentially like `x^1{}^2'.";
+	error();
+}
+
+static void erreurSubsup2(void)
+{
+	print_err("Double subscript");
+	helpptr = 1;
+	helpline[0] = "I treat `x_1_2' essentially like `x_1{}_2'.";
+	error();
 }
 
 void subsup(void)
@@ -27,18 +43,9 @@ void subsup(void)
 		if (t)
 		{
 			if (curcmd == sup_mark)
-			{
-				print_err("Double superscript");
-				helpptr = 1;
-				helpline[0] = "I treat `x^1^2' essentially like `x^1{}^2'.";
-			}
+				erreurSubsup1();
 			else
-			{
-				print_err("Double subscript");
-				helpptr = 1;
-				helpline[0] = "I treat `x_1_2' essentially like `x_1{}_2'.";
-			}
-			error();
+				erreurSubsup2();
 		}
 	}
 	scanmath(p);

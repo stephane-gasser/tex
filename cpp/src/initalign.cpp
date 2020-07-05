@@ -1,19 +1,47 @@
 #include "initalign.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "flushmath.h"
 #include "scanspec.h"
 #include "pushalignment.h"
 #include "pushnest.h"
 #include "newparamglue.h"
 #include "getpreambletoken.h"
-#include "backerror.h"
 #include "getavail.h"
 #include "newnullbox.h"
 #include "newsavelevel.h"
 #include "begintokenlist.h"
 #include "alignpeek.h"
 #include "texte.h"
+
+static void erreurInitalign1(void)
+{
+	print_err("Improper "+esc("halign")+" inside $$'s");
+	helpptr = 3;
+	helpline[2] = "Displays can use special alignments (like \\eqalignno)";
+	helpline[1] = "only if nothing but the alignment itself is between $$'s.";
+	helpline[0] = "So I've deleted the formulas that preceded this alignment.";
+	error();
+}
+
+static void erreurInitalign2(void)
+{
+	print_err("Missing # inserted in alignment preamble");
+	helpptr = 3;
+	helpline[2] = "There should be exactly one # between &'s, when an";
+	helpline[1] = "\\halign or \\valign is being set up. In this case you had";
+	helpline[0] = "none, so I've put one in; maybe that will work.";
+}
+
+static void erreurInitalign3(void)
+{
+	print_err("Only one # is allowed per tab");
+	helpptr = 3;
+	helpline[2] = "There should be exactly one # between &'s, when an";
+	helpline[1] = "\\halign or \\valign is being set up. In this case you had";
+	helpline[0] = "more than one, so I'm ignoring all but the first.";
+	error();
+}
 
 void initalign(void)
 {
@@ -22,12 +50,7 @@ void initalign(void)
 	alignstate = -1000000;
 	if (mode == mmode && (tail != head || incompleat_noad))
 	{
-		print_err("Improper "+esc("halign")+" inside $$'s");
-		helpptr = 3;
-		helpline[2] = "Displays can use special alignments (like \\eqalignno)";
-		helpline[1] = "only if nothing but the alignment itself is between $$'s.";
-		helpline[0] = "So I've deleted the formulas that preceded this alignment.";
-		error();
+		erreurInitalign1();
 		flushmath();
 	}
 	pushnest();
@@ -65,11 +88,7 @@ void initalign(void)
 					curloop = curalign;
 				else
 				{
-					print_err("Missing # inserted in alignment preamble");
-					helpptr = 3;
-					helpline[2] = "There should be exactly one # between &'s, when an";
-					helpline[1] = "\\halign or \\valign is being set up. In this case you had";
-					helpline[0] = "none, so I've put one in; maybe that will work.";
+					erreurInitalign2();
 					backerror();
 					break;
 				}
@@ -95,12 +114,7 @@ void initalign(void)
 				break;
 			if (curcmd == mac_param)
 			{
-				print_err("Only one # is allowed per tab");
-				helpptr = 3;
-				helpline[2] = "There should be exactly one # between &'s, when an";
-				helpline[1] = "\\halign or \\valign is being set up. In this case you had";
-				helpline[0] = "more than one, so I'm ignoring all but the first.";
-				error();
+				erreurInitalign3();
 				continue;
 			}
 			link(p) = getavail();

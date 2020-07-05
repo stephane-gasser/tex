@@ -1,7 +1,7 @@
 #include "getpreambletoken.h"
 #include "gettoken.h"
 #include "expand.h"
-#include "fatalerror.h"
+#include "erreur.h"
 #include "scanoptionalequals.h"
 #include "scanglue.h"
 #include "geqdefine.h"

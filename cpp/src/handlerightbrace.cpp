@@ -1,7 +1,7 @@
 #include "handlerightbrace.h"
 #include "unsave.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "extrarightbrace.h"
 #include "package.h"
 #include "endgraf.h"
@@ -13,11 +13,9 @@
 #include "buildpage.h"
 #include "gettoken.h"
 #include "endtokenlist.h"
-#include "boxerror.h"
 #include "buildpage.h"
 #include "builddiscretionary.h"
 #include "backinput.h"
-#include "inserror.h"
 #include "alignpeek.h"
 #include "newnoad.h"
 #include "buildchoices.h"
@@ -26,6 +24,42 @@
 #include "texte.h"
 
 static int floating_penalty(void) { return int_par(floating_penalty_code); }
+
+static void erreurHandlerightbrace1(void)
+{
+	print_err("Too many }'s");
+	helpptr = 2;
+	helpline[1] = "You've closed more groups than you opened.";
+	helpline[0] = "Such booboos are generally harmless, so keep going.";
+	error();
+}
+
+static void erreurHandlerightbrace2(void)
+{
+	print_err("Unbalanced output routine");
+	helpptr = 2;
+	helpline[1] = "Your sneaky output routine has problematic {'s and/or }'s.";
+	helpline[0] = "I can't handle that very well; good luck.";
+	error();
+}
+
+static void erreurHandlerightbrace3(void)
+{
+	print_err("Output routine didn't use all of "+esc("box255")); 
+	helpptr = 3;
+	helpline[2] = "Your \\output commands should empty \\box255,";
+	helpline[1] = "e.g., by saying `\\shipout\\box255'.";
+	helpline[0] = "Proceed; I'll discard its present contents.";
+	boxerror(255);
+}
+
+static void erreurHandlerightbrace4(void)
+{
+	print_err("Missing "+esc("cr")+" inserted");
+	helpptr = 1;
+	helpline[0] = "I'm guessing that you meant to end an alignment here.";
+	inserror();
+}
 
 void handlerightbrace(void)
 {
@@ -38,11 +72,7 @@ void handlerightbrace(void)
 			unsave();
 			break;
 		case bottom_level:
-			print_err("Too many }'s");
-			helpptr = 2;
-			helpline[1] = "You've closed more groups than you opened.";
-			helpline[0] = "Such booboos are generally harmless, so keep going.";
-			error();
+			erreurHandlerightbrace1();
 			break;
 		case semi_simple_group:
 		case math_shift_group:
@@ -100,11 +130,7 @@ void handlerightbrace(void)
 		case output_group:
 			if (loc || (token_type != output_text && token_type != backed_up))
 			{
-				print_err("Unbalanced output routine");
-				helpptr = 2;
-				helpline[1] = "Your sneaky output routine has problematic {'s and/or }'s.";
-				helpline[0] = "I can't handle that very well; good luck.";
-				error();
+				erreurHandlerightbrace2();
 				do
 					gettoken();
 				while (loc);
@@ -115,14 +141,7 @@ void handlerightbrace(void)
 			outputactive = false;
 			insertpenalties = 0;
 			if (box(255))
-			{
-				print_err("Output routine didn't use all of "+esc("box255")); 
-				helpptr = 3;
-				helpline[2] = "Your \\output commands should empty \\box255,";
-				helpline[1] = "e.g., by saying `\\shipout\\box255'.";
-				helpline[0] = "Proceed; I'll discard its present contents.";
-				boxerror(255);
-			}
+				erreurHandlerightbrace3();
 			if (tail != head)
 			{
 				link(pagetail) = link(head);
@@ -146,10 +165,7 @@ void handlerightbrace(void)
 		case align_group:
 			backinput();
 			curtok = cs_token_flag+frozen_cr;
-			print_err("Missing "+esc("cr")+" inserted");
-			helpptr = 1;
-			helpline[0] = "I'm guessing that you meant to end an alignment here.";
-			inserror();
+			erreurHandlerightbrace4();
 			break;
 		case no_align_group:
 			endgraf();

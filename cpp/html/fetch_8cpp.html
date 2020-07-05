@@ -80,7 +80,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="fetch_8h_source.html">fetch.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="impression_8h_source.html">impression.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="error_8h_source.html">error.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="erreur_8h_source.html">erreur.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="charwarning_8h_source.html">charwarning.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="texte_8h_source.html">texte.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="primitive_8h_source.html">primitive.h</a>&quot;</code><br />
@@ -89,13 +89,13 @@ Graphe des dépendances par inclusion de fetch.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="fetch_8cpp__incl.png" border="0" usemap="#src_2fetch_8cpp" alt=""/></div>
 <map name="src_2fetch_8cpp" id="src_2fetch_8cpp">
-<area shape="rect" title=" " alt="" coords="245,5,343,32"/>
+<area shape="rect" title=" " alt="" coords="250,5,349,32"/>
 <area shape="rect" href="fetch_8h.html" title=" " alt="" coords="5,80,68,107"/>
 <area shape="rect" href="impression_8h.html" title=" " alt="" coords="93,80,189,107"/>
-<area shape="rect" href="error_8h.html" title=" " alt="" coords="213,80,271,107"/>
-<area shape="rect" href="charwarning_8h.html" title=" " alt="" coords="296,80,399,107"/>
-<area shape="rect" href="texte_8h.html" title=" " alt="" coords="423,80,485,107"/>
-<area shape="rect" href="primitive_8h.html" title=" " alt="" coords="510,80,593,107"/>
+<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="213,80,279,107"/>
+<area shape="rect" href="charwarning_8h.html" title=" " alt="" coords="303,80,405,107"/>
+<area shape="rect" href="texte_8h.html" title=" " alt="" coords="429,80,492,107"/>
+<area shape="rect" href="primitive_8h.html" title=" " alt="" coords="517,80,599,107"/>
 </map>
 </div>
 </div>
@@ -135,7 +135,7 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[2] = <span class="stringliteral">&quot;stated character from an undefined font family. For example,&quot;</span>;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[1] = <span class="stringliteral">&quot;plain TeX doesn&#39;t allow \\it or \\sl in subscripts. Proceed,&quot;</span>;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;and I&#39;ll try to forget that I needed that character.&quot;</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="erreur_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="globals_8cpp.html#a016c34349109c25a62ae5425c3f98a63">curi</a> = <a class="code" href="globals_8cpp.html#a9a454d53b3518cd7a1cfafc7aa9013a6">nullcharacter</a>;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(a) = 0;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
@@ -160,7 +160,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="rect" title=" " alt="" coords="5,233,56,260"/>
 <area shape="rect" href="constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="113,5,187,32"/>
 <area shape="rect" href="charwarning_8cpp.html#a151b5d2be0ab9cc2e1728e16b5e8927c" title=" " alt="" coords="104,56,196,83"/>
-<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="126,107,174,133"/>
+<area shape="rect" href="erreur_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="126,107,174,133"/>
 <area shape="rect" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="244,132,287,159"/>
 <area shape="rect" href="constantes_8cpp.html#aad1788b536fcd0c08958fb6a8470ae1a" title=" " alt="" coords="117,208,183,235"/>
 <area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="129,259,171,285"/>
@@ -193,7 +193,6 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aglobals_8cpp_html_a9a454d53b3518cd7a1cfafc7aa9013a6"><div class="ttname"><a href="globals_8cpp.html#a9a454d53b3518cd7a1cfafc7aa9013a6">nullcharacter</a></div><div class="ttdeci">fourquarters nullcharacter</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00172">globals.cpp:172</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a85c0624f93ed5c5e8c722316dad139af"><div class="ttname"><a href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a></div><div class="ttdeci">char helpptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00069">globals.cpp:69</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_aeea8d57e6b8d67c82e80f69aec9b31aa"><div class="ttname"><a href="constantes_8h.html#aeea8d57e6b8d67c82e80f69aec9b31aa">null_font</a></div><div class="ttdeci">constexpr int null_font</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00692">constantes.h:692</a></div></div>
-<div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00012">error.cpp:12</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="acharwarning_8cpp_html_a151b5d2be0ab9cc2e1728e16b5e8927c"><div class="ttname"><a href="charwarning_8cpp.html#a151b5d2be0ab9cc2e1728e16b5e8927c">charwarning</a></div><div class="ttdeci">void charwarning(internalfontnumber f, eightbits c)</div><div class="ttdef"><b>Definition:</b> <a href="charwarning_8cpp_source.html#l00006">charwarning.cpp:6</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a2746f146b2673dd893350b5c44da8abd"><div class="ttname"><a href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a></div><div class="ttdeci">smallnumber cursize</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00193">globals.cpp:193</a></div></div>
@@ -203,6 +202,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a375b29365eb2744579e4bf4518e6aaac"><div class="ttname"><a href="constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac">char_info</a></div><div class="ttdeci">fourquarters char_info(internalfontnumber f, smallnumber q)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00107">constantes.cpp:107</a></div></div>
 <div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00260">impression.cpp:260</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="erreur_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00015">erreur.cpp:15</a></div></div>
 <div class="ttc" id="aprimitive_8cpp_html_a91b549c5f0d3e080ea08e8b90d5fe09f"><div class="ttname"><a href="primitive_8cpp.html#a91b549c5f0d3e080ea08e8b90d5fe09f">primName</a></div><div class="ttdeci">std::map&lt; quarterword, std::map&lt; halfword, std::string &gt; &gt; primName</div><div class="ttdef"><b>Definition:</b> <a href="primitive_8cpp_source.html#l00005">primitive.cpp:5</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a412f2a93a7f7d574d5f8f3d61cc98449"><div class="ttname"><a href="globals_8cpp.html#a412f2a93a7f7d574d5f8f3d61cc98449">fontbc</a></div><div class="ttdeci">eightbits fontbc[fontmax+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00154">globals.cpp:154</a></div></div>
 <div class="ttc" id="aimpression_8cpp_html_a27f6b6c256d6682247b1fbdd82d30194"><div class="ttname"><a href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a></div><div class="ttdeci">void print_err(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00470">impression.cpp:470</a></div></div>

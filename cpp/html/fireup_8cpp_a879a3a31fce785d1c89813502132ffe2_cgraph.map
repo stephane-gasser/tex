@@ -5,8 +5,8 @@
 <area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="581,1052,624,1079"/>
 <area shape="rect" id="node5" href="$constantes_8cpp.html#a86534cacd907643eb3c4fd09e6abf05b" title="the optimum most recent insertion" alt="" coords="125,1432,218,1459"/>
 <area shape="rect" id="node6" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="461,115,503,141"/>
-<area shape="rect" id="node7" href="$boxerror_8cpp.html#a0bbccd15aae646ece75f2703dda44c2e" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="298,115,367,141"/>
-<area shape="rect" id="node8" href="$error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="458,267,506,293"/>
+<area shape="rect" id="node7" href="$erreur_8cpp.html#a0bbccd15aae646ece75f2703dda44c2e" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="298,115,367,141"/>
+<area shape="rect" id="node8" href="$erreur_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="458,267,506,293"/>
 <area shape="rect" id="node9" href="$constantes_8cpp.html#a1a87f1c2232ae2ba94e399ffc28ffeee" title="this insertion might break at broken_ptr" alt="" coords="129,1483,214,1509"/>
 <area shape="rect" id="node10" href="$fireup_8cpp.html#ae6a4b1c79d70005ec212dacc5f9c42e1" title=" " alt="" coords="291,1280,374,1307"/>
 <area shape="rect" id="node11" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="123,1331,219,1357"/>

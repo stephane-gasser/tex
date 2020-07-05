@@ -79,15 +79,15 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="newtrieop_8h_source.html">newtrieop.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="overflow_8h_source.html">overflow.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="erreur_8h_source.html">erreur.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de newtrieop.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="newtrieop_8cpp__incl.png" border="0" usemap="#src_2newtrieop_8cpp" alt=""/></div>
 <map name="src_2newtrieop_8cpp" id="src_2newtrieop_8cpp">
-<area shape="rect" title=" " alt="" coords="42,5,167,32"/>
+<area shape="rect" title=" " alt="" coords="38,5,163,32"/>
 <area shape="rect" href="newtrieop_8h.html" title=" " alt="" coords="5,80,95,107"/>
-<area shape="rect" href="overflow_8h.html" title=" " alt="" coords="119,80,199,107"/>
+<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="119,80,184,107"/>
 </map>
 </div>
 </div>
@@ -140,10 +140,10 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordflow">if</span> (l == 0)</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        {</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a202dbf18bbd11e220618d9ec5e58f96a">trieopptr</a> == <a class="code" href="tex_8h.html#a63e9ce3a49bdfe4b80b6c2dfe4ccc2e4">trieopsize</a>)</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                <a class="code" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;pattern memory ops&quot;</span>, <a class="code" href="tex_8h.html#a63e9ce3a49bdfe4b80b6c2dfe4ccc2e4">trieopsize</a>);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                <a class="code" href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;pattern memory ops&quot;</span>, <a class="code" href="tex_8h.html#a63e9ce3a49bdfe4b80b6c2dfe4ccc2e4">trieopsize</a>);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <a class="code" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> u = <a class="code" href="globals_8cpp.html#af735427d3da97e86d2623f7acdde086f">trieused</a>[<a class="code" href="globals_8cpp.html#a47caa4c14f0016670070f12338bfc383">curlang</a>];</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <span class="keywordflow">if</span> (u == 255)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                <a class="code" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;pattern memory ops per language&quot;</span>, 255);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                <a class="code" href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;pattern memory ops per language&quot;</span>, 255);</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="globals_8cpp.html#a202dbf18bbd11e220618d9ec5e58f96a">trieopptr</a>++;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            u++;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <a class="code" href="globals_8cpp.html#af735427d3da97e86d2623f7acdde086f">trieused</a>[<a class="code" href="globals_8cpp.html#a47caa4c14f0016670070f12338bfc383">curlang</a>] = u;</div>
@@ -169,7 +169,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="center"><img src="newtrieop_8cpp_a8023c9c96a124c4d7a09141cb18a452f_cgraph.png" border="0" usemap="#newtrieop_8cpp_a8023c9c96a124c4d7a09141cb18a452f_cgraph" alt=""/></div>
 <map name="newtrieop_8cpp_a8023c9c96a124c4d7a09141cb18a452f_cgraph" id="newtrieop_8cpp_a8023c9c96a124c4d7a09141cb18a452f_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,84,32"/>
-<area shape="rect" href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="132,5,203,32"/>
+<area shape="rect" href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="132,5,203,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -186,8 +186,8 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="aglobals_8cpp_html_ac353cc8c5b2d74c8616198a44f2284ac"><div class="ttname"><a href="globals_8cpp.html#ac353cc8c5b2d74c8616198a44f2284ac">hyfnum</a></div><div class="ttdeci">smallnumber hyfnum[trieopsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00247">globals.cpp:247</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00340">erreur.cpp:340</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a4b61b2549a67580ec871cb348b225c82"><div class="ttname"><a href="globals_8cpp.html#a4b61b2549a67580ec871cb348b225c82">hyfdistance</a></div><div class="ttdeci">smallnumber hyfdistance[trieopsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00246">globals.cpp:246</a></div></div>
-<div class="ttc" id="aoverflow_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="overflow_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00015">overflow.cpp:15</a></div></div>
 <div class="ttc" id="atex_8h_html_aaef48c5c65cb13f3e50745390b269155"><div class="ttname"><a href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a></div><div class="ttdeci">std::uint8_t quarterword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00043">tex.h:43</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_af23e8957ac766b0b621087df4a3d2faf"><div class="ttname"><a href="globals_8cpp.html#af23e8957ac766b0b621087df4a3d2faf">trieoplang</a></div><div class="ttdeci">ASCIIcode trieoplang[trieopsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00254">globals.cpp:254</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_af735427d3da97e86d2623f7acdde086f"><div class="ttname"><a href="globals_8cpp.html#af735427d3da97e86d2623f7acdde086f">trieused</a></div><div class="ttdeci">map&lt; ASCIIcode, quarterword &gt; trieused</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00253">globals.cpp:253</a></div></div>

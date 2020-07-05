@@ -2,7 +2,7 @@
 #include "scaneightbitint.h"
 #include "copynodelist.h"
 #include "youcant.h"
-#include "error.h"
+#include "erreur.h"
 #include "scankeyword.h"
 #include "impression.h"
 #include "vsplit.h"
@@ -15,6 +15,32 @@
 #include "texte.h"
 
 static halfword& every_hbox(void) { return equiv(every_hbox_loc); }
+
+static void erreurBeginbox1(void)
+{
+	youcant();
+	helpptr = 1;
+	helpline[0] = "Sorry; this \\lastbox will be void.";
+	error();
+}
+
+static void erreurBeginbox2(void)
+{
+	youcant();
+	helpptr = 2;
+	helpline[1] = "Sorry...I usually can't take things from the current page.";
+	helpline[0] = "This \\lastbox will therefore be void.";
+	error();
+}
+
+static void erreurBeginbox3(void)
+{
+	print_err("Missing `to' inserted");
+	helpptr = 2;
+	helpline[1] = "I'm working on `\\vsplit<box number> to <dimen>';";
+	helpline[0] = "will look for the <dimen> next.";
+	error();
+}
 
 //! Now that we can see what eventually happens to boxes, we can consider
 //! the first steps in their creation. The \a begin_box routine is called when
@@ -42,21 +68,10 @@ void beginbox(int boxcontext)
 			// the list and make |cur_box| point to it; otherwise set |cur_box:=null|
 			curbox = 0;
 			if (abs(mode) == mmode)
-			{
-				youcant();
-				helpptr = 1;
-				helpline[0] = "Sorry; this \\lastbox will be void.";
-				error();
-			}
+				erreurBeginbox1();
 			else 
 				if (mode == vmode && head == tail)
-				{
-					youcant();
-					helpptr = 2;
-					helpline[1] = "Sorry...I usually can't take things from the current page.";
-					helpline[0] = "This \\lastbox will therefore be void.";
-					error();
-				}
+					erreurBeginbox2();
 				else 
 					if (tail < himemmin)
 						if (type(tail) == hlist_node || type(tail) == vlist_node)
@@ -91,13 +106,7 @@ void beginbox(int boxcontext)
 			scaneightbitint();
 			n = curval;
 			if (!scankeyword("to"))
-			{
-				print_err("Missing `to' inserted");
-				helpptr = 2;
-				helpline[1] = "I'm working on `\\vsplit<box number> to <dimen>';";
-				helpline[0] = "will look for the <dimen> next.";
-				error();
-			}
+				erreurBeginbox3();
 			scan_normal_dimen();
 			curbox = vsplit(n, curval);
 			break;

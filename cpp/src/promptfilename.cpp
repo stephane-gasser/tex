@@ -1,6 +1,6 @@
 #include "promptfilename.h"
 #include "impression.h"
-#include "fatalerror.h"
+#include "erreur.h"
 #include "terminput.h"
 #include "beginname.h"
 #include "morename.h"

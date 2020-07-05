@@ -131,24 +131,18 @@ $(function() {
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="stringliteral">            writedvi(halfbuf, dvibufsize-1);</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="stringliteral">        if (dviptr &gt; 0)</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="stringliteral">            writedvi(0, dviptr-1);</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="stringliteral">        printnl(&quot;Output written on &quot;);</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="stringliteral">        slowprint(outputfilename);</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="stringliteral">        print(&quot;// (&quot;+std::to_string(totalpages)+&quot; page&quot;+(totalpages == 1 ? &quot;&quot; : &quot;s&quot;)+&quot;, &quot;+std::to_string(dvioffset+dviptr)+&quot; bytes).&quot;);</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="stringliteral">        bclose(dvifile);</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="stringliteral">    }</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="stringliteral">    if (logopened)</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="stringliteral">    {</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral">        logfile &lt;&lt; &quot;\n&quot;;</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral">        aclose(logfile);</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral">        selector -= 2;</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="stringliteral">        if (selector == term_only)</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="stringliteral">        {</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="stringliteral">            printnl(&quot;Transcript written on &quot;);</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="stringliteral">            slowprint(logname);</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="stringliteral">            print(&quot;.&quot;);</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="stringliteral">        }</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="stringliteral">    }</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="stringliteral">}</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="stringliteral">        printnl(&quot;Output written on &quot;+outputfilename+&quot;// (&quot;+std::to_string(totalpages)+&quot; page&quot;+(totalpages == 1 ? &quot;&quot; : &quot;s&quot;)+&quot;, &quot;+std::to_string(dvioffset+dviptr)+&quot; bytes).&quot;);</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="stringliteral">        bclose(dvifile);</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="stringliteral">    }</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="stringliteral">    if (logopened)</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="stringliteral">    {</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="stringliteral">        logfile &lt;&lt; &quot;\n&quot;;</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="stringliteral">        aclose(logfile);</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="stringliteral">        selector -= 2;</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="stringliteral">        if (selector == term_only)</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="stringliteral">            printnl(&quot;Transcript written on &quot;+logname+&quot;.&quot;);</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="stringliteral">    }</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="stringliteral">}</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aconstantes_8h_html_aabfcbcb5ac86a1edac4035264bc7d2b8ad071fc6f9469835b7438c85e70ffcc43"><div class="ttname"><a href="constantes_8h.html#aabfcbcb5ac86a1edac4035264bc7d2b8ad071fc6f9469835b7438c85e70ffcc43">post</a></div><div class="ttdeci">@ post</div><div class="ttdoc">postamble beginning</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00583">constantes.h:583</a></div></div>
 <div class="ttc" id="aclosefilesandterminate_8h_html"><div class="ttname"><a href="closefilesandterminate_8h.html">closefilesandterminate.h</a></div></div>

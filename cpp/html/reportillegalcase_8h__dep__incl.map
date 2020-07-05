@@ -1,8 +1,5 @@
 <map id="inc/reportillegalcase.h" name="inc/reportillegalcase.h">
-<area shape="rect" id="node1" title=" " alt="" coords="301,5,449,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="63,5,211,32"/>
 <area shape="rect" id="node2" href="$alteraux_8cpp.html" title=" " alt="" coords="5,80,120,107"/>
-<area shape="rect" id="node3" href="$doextension_8cpp.html" title=" " alt="" coords="144,80,283,107"/>
-<area shape="rect" id="node4" href="$maincontrol_8cpp.html" title=" " alt="" coords="307,80,443,107"/>
-<area shape="rect" id="node5" href="$privileged_8cpp.html" title=" " alt="" coords="467,80,591,107"/>
-<area shape="rect" id="node6" href="$reportillegalcase_8cpp.html" title=" " alt="" coords="616,80,779,107"/>
+<area shape="rect" id="node3" href="$maincontrol_8cpp.html" title=" " alt="" coords="144,80,280,107"/>
 </map>

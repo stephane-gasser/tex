@@ -1,5 +1,5 @@
 #include "doendv.h"
-#include "fatalerror.h"
+#include "erreur.h"
 #include "endgraf.h"
 #include "fincol.h"
 #include "finrow.h"

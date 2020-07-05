@@ -1,7 +1,7 @@
 #include "endtokenlist.h"
 #include "flushlist.h"
 #include "deletetokenref.h"
-#include "fatalerror.h"
+#include "erreur.h"
 #include "pauseforinstructions.h"
 #include "popinput.h"
 

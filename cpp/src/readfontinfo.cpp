@@ -1,6 +1,6 @@
 #include "readfontinfo.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "packfilename.h"
 #include "fichier.h"
 #include "xnoverd.h"
@@ -10,23 +10,14 @@ constexpr char TEX_font_area[] = "TeXfonts:";
 
 static int default_skew_char(void) { return int_par(default_skew_char_code); }
 
-static void start_font_error_message(halfword u, scaled s, const std::string &nom, const std::string &aire)
+static void start_font_error_message(halfword u, scaled s, const std::string &nom, const std::string &aire, const std::string &msg)
 {
-	print_err("Font "+scs(u)+"="+asFilename(nom, aire, ""));
-	if (s >= 0)
-		print(" at "+asScaled(s)+"pt");
-	else 
-		if (s != -1000)
-			print(" scaled "+std::to_string(-s));
+	print_err("Font "+scs(u)+"="+asFilename(nom, aire, "")+(s >= 0 ? " at "+asScaled(s)+"pt" : s == -1000 ? "" : " scaled "+std::to_string(-s))+msg);
 }
 
-static void notLoadable(halfword u, const std::string &nom, const std::string &aire, scaled s, bool fileopened)
+static void erreurReadfontinfo1(halfword u, const std::string &nom, const std::string &aire, scaled s, bool fileopened)
 {
-	start_font_error_message(u, s, nom, aire);
-	if (fileopened)
-		print(" not loadable: Bad metric (TFM) file");
-	else
-		print(" not loadable: Metric (TFM) file not found");
+	start_font_error_message(u, s, nom, aire, fileopened ? " not loadable: Bad metric (TFM) file" : " not loadable: Metric (TFM) file not found");
 	helpptr = 5;
 	helpline[4] = "I wasn't able to read the size data for this font,";
 	helpline[3] = "so I will ignore the font specification.";
@@ -34,9 +25,19 @@ static void notLoadable(halfword u, const std::string &nom, const std::string &a
 	helpline[1] = "You might try inserting a different font spec;";
 	helpline[0] = "e.g., type `I\\font<same font id>=<substitute font name>'.";
 	error();
-	if (fileopened)
-		bclose(tfmfile);
 }
+
+static void erreurReadfontinfo2(halfword u, const std::string &nom, const std::string &aire, scaled s)
+{
+	start_font_error_message(u, s, nom, aire, " not loaded: Not enough room left");
+	helpptr = 4;
+	helpline[3] = "I'm afraid I won't be able to make use of this font,";
+	helpline[2] = "because my memory for character-size data is too small.";
+	helpline[1] = "If you're really stuck, ask a wizard to enlarge me.";
+	helpline[0] = "Or maybe try `I\\font<same font id>=<name of loaded font>'.";
+	error();
+}
+
 
 template<class T> static void read_sixteen(T &z)
 {
@@ -288,22 +289,11 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 	catch (int e)
 	{
 		if (e == 1)
-			notLoadable(u, nom, aire, s, fileopened);
+			erreurReadfontinfo1(u, nom, aire, s, fileopened);
 		else
-		{
-			start_font_error_message(u, s, nom, aire);
-			print(" not loaded: Not enough room left");
-			{
-			helpptr = 4;
-			helpline[3] = "I'm afraid I won't be able to make use of this font,";
-			helpline[2] = "because my memory for character-size data is too small.";
-			helpline[1] = "If you're really stuck, ask a wizard to enlarge me.";
-			helpline[0] = "Or maybe try `I\\font<same font id>=<name of loaded font>'.";
-			}
-			error();
-			if (fileopened)
-				bclose(tfmfile);
-		}
+			erreurReadfontinfo2(u, nom, aire, s);
+		if (fileopened)
+			bclose(tfmfile);
 	}
 	return null_font;
 }

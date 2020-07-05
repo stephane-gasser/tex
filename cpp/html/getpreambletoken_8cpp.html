@@ -81,7 +81,7 @@ $(function() {
 <div class="textblock"><code>#include &quot;<a class="el" href="getpreambletoken_8h_source.html">getpreambletoken.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="gettoken_8h_source.html">gettoken.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="expand_8h_source.html">expand.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="fatalerror_8h_source.html">fatalerror.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="erreur_8h_source.html">erreur.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="scanoptionalequals_8h_source.html">scanoptionalequals.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="scanglue_8h_source.html">scanglue.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="geqdefine_8h_source.html">geqdefine.h</a>&quot;</code><br />
@@ -91,15 +91,15 @@ Graphe des dépendances par inclusion de getpreambletoken.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="getpreambletoken_8cpp__incl.png" border="0" usemap="#src_2getpreambletoken_8cpp" alt=""/></div>
 <map name="src_2getpreambletoken_8cpp" id="src_2getpreambletoken_8cpp">
-<area shape="rect" title=" " alt="" coords="394,5,566,32"/>
+<area shape="rect" title=" " alt="" coords="382,5,554,32"/>
 <area shape="rect" href="getpreambletoken_8h.html" title=" " alt="" coords="5,80,141,107"/>
 <area shape="rect" href="gettoken_8h.html" title=" " alt="" coords="165,80,248,107"/>
 <area shape="rect" href="expand_8h.html" title=" " alt="" coords="272,80,347,107"/>
-<area shape="rect" href="fatalerror_8h.html" title=" " alt="" coords="371,80,453,107"/>
-<area shape="rect" href="scanoptionalequals_8h.html" title=" " alt="" coords="477,80,621,107"/>
-<area shape="rect" href="scanglue_8h.html" title=" " alt="" coords="645,80,731,107"/>
-<area shape="rect" href="geqdefine_8h.html" title=" " alt="" coords="755,80,845,107"/>
-<area shape="rect" href="eqdefine_8h.html" title=" " alt="" coords="869,80,952,107"/>
+<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="371,80,437,107"/>
+<area shape="rect" href="scanoptionalequals_8h.html" title=" " alt="" coords="461,80,605,107"/>
+<area shape="rect" href="scanglue_8h.html" title=" " alt="" coords="629,80,715,107"/>
+<area shape="rect" href="geqdefine_8h.html" title=" " alt="" coords="739,80,829,107"/>
+<area shape="rect" href="eqdefine_8h.html" title=" " alt="" coords="853,80,936,107"/>
 </map>
 </div>
 </div>
@@ -142,7 +142,7 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            }</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea4f9ab4002f3b3a6fbc9db354941f416b">endv</a>)</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <a class="code" href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b">fatalerror</a>(<span class="stringliteral">&quot;(interwoven alignment preambles are not allowed)&quot;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <a class="code" href="erreur_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b">fatalerror</a>(<span class="stringliteral">&quot;(interwoven alignment preambles are not allowed)&quot;</span>);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9eae960f789f523f5ef5ed93b0f9b3629da">assign_glue</a> &amp;&amp; <a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a> == <a class="code" href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaaa396b9f11695015f472bc89881b38a6c">glue_base</a>+<a class="code" href="parametres_8h.html#a1f9aebf1de3ebbf4283a4dcf73308562acf5b5f4783cffbae1dd3c22042a74040">tab_skip_code</a>)</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        {</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <a class="code" href="scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063">scanoptionalequals</a>();</div>
@@ -162,7 +162,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="rect" href="eqdefine_8cpp.html#a3391d0a47960eef3ec27804bb9bb0a15" title=" " alt="" coords="210,5,281,32"/>
 <area shape="rect" href="expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="213,80,277,107"/>
 <area shape="rect" href="gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="360,105,432,132"/>
-<area shape="rect" href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="209,181,282,208"/>
+<area shape="rect" href="erreur_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="209,181,282,208"/>
 <area shape="rect" href="geqdefine_8cpp.html#ae3b1e53099c16062397fd40c3a959099" title=" " alt="" coords="206,232,285,259"/>
 <area shape="rect" href="parametres_8h.html#a1c1f84e52a0e31ce5f71c708fdb0c40e" title=" " alt="" coords="201,283,289,309"/>
 <area shape="rect" href="scanglue_8cpp.html#a1b433217a906738e1453ff227c67a090" title=" " alt="" coords="208,333,283,360"/>
@@ -182,10 +182,9 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="afatalerror_8cpp_html_a3104c2391b36a315ae82b5ad0b67fa6b"><div class="ttname"><a href="fatalerror_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b">fatalerror</a></div><div class="ttdeci">void fatalerror(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="fatalerror_8cpp_source.html#l00008">fatalerror.cpp:8</a></div></div>
 <div class="ttc" id="aparametres_8h_html_a1f9aebf1de3ebbf4283a4dcf73308562acf5b5f4783cffbae1dd3c22042a74040"><div class="ttname"><a href="parametres_8h.html#a1f9aebf1de3ebbf4283a4dcf73308562acf5b5f4783cffbae1dd3c22042a74040">tab_skip_code</a></div><div class="ttdeci">@ tab_skip_code</div><div class="ttdoc">glue between aligned entries*‍/</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8h_source.html#l00080">parametres.h:80</a></div></div>
 <div class="ttc" id="aparametres_8h_html_a1c1f84e52a0e31ce5f71c708fdb0c40e"><div class="ttname"><a href="parametres_8h.html#a1c1f84e52a0e31ce5f71c708fdb0c40e">global_defs</a></div><div class="ttdeci">int global_defs(void)</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8h_source.html#l00134">parametres.h:134</a></div></div>
-<div class="ttc" id="aexpand_8cpp_html_abf4ef81214404f9ab64830d5820ea301"><div class="ttname"><a href="expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301">expand</a></div><div class="ttdeci">void expand(void)</div><div class="ttdef"><b>Definition:</b> <a href="expand_8cpp_source.html#l00024">expand.cpp:24</a></div></div>
+<div class="ttc" id="aexpand_8cpp_html_abf4ef81214404f9ab64830d5820ea301"><div class="ttname"><a href="expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301">expand</a></div><div class="ttdeci">void expand(void)</div><div class="ttdef"><b>Definition:</b> <a href="expand_8cpp_source.html#l00023">expand.cpp:23</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a39fca1837c5ce7715cbf571669660c13a3887febabba29447419df26a311aa4c7"><div class="ttname"><a href="constantes_8h.html#a39fca1837c5ce7715cbf571669660c13a3887febabba29447419df26a311aa4c7">glue_val</a></div><div class="ttdeci">@ glue_val</div><div class="ttdoc">glue specifications</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00514">constantes.h:514</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ea27a355a48ab1af84eadbd934ae3e5415"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea27a355a48ab1af84eadbd934ae3e5415">max_command</a></div><div class="ttdeci">@ max_command</div><div class="ttdoc">the largest command code seen at big_switch</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00323">constantes.h:323</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9eae960f789f523f5ef5ed93b0f9b3629da"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9eae960f789f523f5ef5ed93b0f9b3629da">assign_glue</a></div><div class="ttdeci">@ assign_glue</div><div class="ttdoc">user-defined glue ( \baselineskip, etc. )</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00296">constantes.h:296</a></div></div>
@@ -195,6 +194,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aconstantes_8h_html_a5e6327954b61c23b347b1839bac0d65e"><div class="ttname"><a href="constantes_8h.html#a5e6327954b61c23b347b1839bac0d65e">span_code</a></div><div class="ttdeci">constexpr int span_code</div><div class="ttdoc">distinct from any character</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00706">constantes.h:706</a></div></div>
 <div class="ttc" id="ageqdefine_8cpp_html_ae3b1e53099c16062397fd40c3a959099"><div class="ttname"><a href="geqdefine_8cpp.html#ae3b1e53099c16062397fd40c3a959099">geqdefine</a></div><div class="ttdeci">void geqdefine(halfword p, quarterword t, halfword e)</div><div class="ttdef"><b>Definition:</b> <a href="geqdefine_8cpp_source.html#l00004">geqdefine.cpp:4</a></div></div>
 <div class="ttc" id="aeqdefine_8cpp_html_a3391d0a47960eef3ec27804bb9bb0a15"><div class="ttname"><a href="eqdefine_8cpp.html#a3391d0a47960eef3ec27804bb9bb0a15">eqdefine</a></div><div class="ttdeci">void eqdefine(halfword p, quarterword t, halfword e)</div><div class="ttdef"><b>Definition:</b> <a href="eqdefine_8cpp_source.html#l00014">eqdefine.cpp:14</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a3104c2391b36a315ae82b5ad0b67fa6b"><div class="ttname"><a href="erreur_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b">fatalerror</a></div><div class="ttdeci">void fatalerror(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00287">erreur.cpp:287</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_adb17223ad60c9ffc709eb43e2f309055"><div class="ttname"><a href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a></div><div class="ttdeci">eightbits curcmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00108">globals.cpp:108</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ead7672327c01db71b15c4dd46e17e9c53"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ead7672327c01db71b15c4dd46e17e9c53">tab_mark</a></div><div class="ttdeci">@ tab_mark</div><div class="ttdoc">alignment delimiter ( &amp;, \span )</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00215">constantes.h:215</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a6b7b47dd702d9e331586d485013fd1eaaa396b9f11695015f472bc89881b38a6c"><div class="ttname"><a href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaaa396b9f11695015f472bc89881b38a6c">glue_base</a></div><div class="ttdeci">@ glue_base</div><div class="ttdoc">beginning of region 3</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00408">constantes.h:408</a></div></div>

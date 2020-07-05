@@ -1,13 +1,13 @@
 <map id="src/promptfilename.cpp" name="src/promptfilename.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="519,5,678,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="502,5,661,32"/>
 <area shape="rect" id="node2" href="$promptfilename_8h.html" title=" " alt="" coords="5,80,128,107"/>
 <area shape="rect" id="node3" href="$impression_8h.html" title=" " alt="" coords="152,80,248,107"/>
-<area shape="rect" id="node4" href="$fatalerror_8h.html" title=" " alt="" coords="272,80,355,107"/>
-<area shape="rect" id="node5" href="$terminput_8h.html" title=" " alt="" coords="379,80,466,107"/>
-<area shape="rect" id="node6" href="$beginname_8h.html" title=" " alt="" coords="491,80,587,107"/>
-<area shape="rect" id="node7" href="$morename_8h.html" title=" " alt="" coords="611,80,706,107"/>
-<area shape="rect" id="node8" href="$endname_8h.html" title=" " alt="" coords="730,80,817,107"/>
-<area shape="rect" id="node9" href="$packfilename_8h.html" title=" " alt="" coords="841,80,951,107"/>
-<area shape="rect" id="node10" title=" " alt="" coords="976,80,1048,107"/>
-<area shape="rect" id="node11" href="$texte_8h.html" title=" " alt="" coords="1073,80,1135,107"/>
+<area shape="rect" id="node4" href="$erreur_8h.html" title=" " alt="" coords="273,80,338,107"/>
+<area shape="rect" id="node5" href="$terminput_8h.html" title=" " alt="" coords="362,80,449,107"/>
+<area shape="rect" id="node6" href="$beginname_8h.html" title=" " alt="" coords="473,80,569,107"/>
+<area shape="rect" id="node7" href="$morename_8h.html" title=" " alt="" coords="594,80,689,107"/>
+<area shape="rect" id="node8" href="$endname_8h.html" title=" " alt="" coords="713,80,799,107"/>
+<area shape="rect" id="node9" href="$packfilename_8h.html" title=" " alt="" coords="823,80,934,107"/>
+<area shape="rect" id="node10" title=" " alt="" coords="959,80,1031,107"/>
+<area shape="rect" id="node11" href="$texte_8h.html" title=" " alt="" coords="1055,80,1118,107"/>
 </map>

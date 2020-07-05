@@ -53,9 +53,7 @@ void closefilesandterminate(void)
 			writedvi(halfbuf, dvibufsize-1);
 		if (dviptr > 0)
 			writedvi(0, dviptr-1);
-		printnl("Output written on ");
-		slowprint(outputfilename);
-		print("// ("+std::to_string(totalpages)+" page"+(totalpages == 1 ? "" : "s")+", "+std::to_string(dvioffset+dviptr)+" bytes).");
+		printnl("Output written on "+outputfilename+"// ("+std::to_string(totalpages)+" page"+(totalpages == 1 ? "" : "s")+", "+std::to_string(dvioffset+dviptr)+" bytes).");
 		bclose(dvifile);
 	}
 	if (logopened)
@@ -64,10 +62,6 @@ void closefilesandterminate(void)
 		aclose(logfile);
 		selector -= 2;
 		if (selector == term_only)
-		{
-			printnl("Transcript written on ");
-			slowprint(logname);
-			print(".");
-		}
+			printnl("Transcript written on "+logname+".");
 	}
 }

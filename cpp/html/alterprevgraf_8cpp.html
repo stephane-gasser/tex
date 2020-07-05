@@ -82,7 +82,7 @@ $(function() {
 <code>#include &quot;<a class="el" href="scanoptionalequals_8h_source.html">scanoptionalequals.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="scanint_8h_source.html">scanint.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="impression_8h_source.html">impression.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="interror_8h_source.html">interror.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="erreur_8h_source.html">erreur.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="texte_8h_source.html">texte.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de alterprevgraf.cpp:</div>
@@ -94,8 +94,8 @@ Graphe des dépendances par inclusion de alterprevgraf.cpp:</div>
 <area shape="rect" href="scanoptionalequals_8h.html" title=" " alt="" coords="135,80,279,107"/>
 <area shape="rect" href="scanint_8h.html" title=" " alt="" coords="303,80,378,107"/>
 <area shape="rect" href="impression_8h.html" title=" " alt="" coords="402,80,498,107"/>
-<area shape="rect" href="interror_8h.html" title=" " alt="" coords="522,80,594,107"/>
-<area shape="rect" href="texte_8h.html" title=" " alt="" coords="619,80,681,107"/>
+<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="523,80,588,107"/>
+<area shape="rect" href="texte_8h.html" title=" " alt="" coords="612,80,675,107"/>
 </map>
 </div>
 </div>
@@ -136,7 +136,7 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a>(<span class="stringliteral">&quot; Bad &quot;</span>+<a class="code" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a>(<span class="stringliteral">&quot;prevgraf&quot;</span>));</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a> = 1;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;I allow only nonnegative values here.&quot;</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67">interror</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="erreur_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67">interror</a>(<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>);</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div>
@@ -151,7 +151,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <map name="alterprevgraf_8cpp_a87971ff31482682ce732cd558847876c_cgraph" id="alterprevgraf_8cpp_a87971ff31482682ce732cd558847876c_cgraph">
 <area shape="rect" title=" " alt="" coords="5,107,100,133"/>
 <area shape="rect" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="193,5,236,32"/>
-<area shape="rect" href="interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="183,56,246,83"/>
+<area shape="rect" href="erreur_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="183,56,246,83"/>
 <area shape="rect" href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="329,132,399,159"/>
 <area shape="rect" href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="183,157,247,184"/>
 <area shape="rect" href="scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="148,208,281,235"/>
@@ -172,10 +172,10 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><!-- contents -->
 <div class="ttc" id="astructliststaterecord_html_a7d9e9d329c4809c38ca427bb8616030b"><div class="ttname"><a href="structliststaterecord.html#a7d9e9d329c4809c38ca427bb8616030b">liststaterecord::pgfield</a></div><div class="ttdeci">int pgfield</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00082">tex.h:82</a></div></div>
 <div class="ttc" id="aglobals_8h_html_ae1c0d92ce2fe057255c7badbbb0615b0"><div class="ttname"><a href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a></div><div class="ttdeci">std::string helpline[6]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00071">globals.h:71</a></div></div>
-<div class="ttc" id="ascanint_8cpp_html_a625555ea8e7846b221c64b2c56e0e886"><div class="ttname"><a href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886">scanint</a></div><div class="ttdeci">void scanint(void)</div><div class="ttdoc">Sets curval to an integer.</div><div class="ttdef"><b>Definition:</b> <a href="scanint_8cpp_source.html#l00017">scanint.cpp:17</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a52a3c9863ed2b03820053c8eb5f2ba67"><div class="ttname"><a href="erreur_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67">interror</a></div><div class="ttdeci">void interror(int n)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00301">erreur.cpp:301</a></div></div>
+<div class="ttc" id="ascanint_8cpp_html_a625555ea8e7846b221c64b2c56e0e886"><div class="ttname"><a href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886">scanint</a></div><div class="ttdeci">void scanint(void)</div><div class="ttdoc">Sets curval to an integer.</div><div class="ttdef"><b>Definition:</b> <a href="scanint_8cpp_source.html#l00016">scanint.cpp:16</a></div></div>
 <div class="ttc" id="ascanoptionalequals_8cpp_html_aba61603fc78224712ab55bae77b79063"><div class="ttname"><a href="scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063">scanoptionalequals</a></div><div class="ttdeci">void scanoptionalequals(void)</div><div class="ttdef"><b>Definition:</b> <a href="scanoptionalequals_8cpp_source.html#l00005">scanoptionalequals.cpp:5</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a85c0624f93ed5c5e8c722316dad139af"><div class="ttname"><a href="globals_8cpp.html#a85c0624f93ed5c5e8c722316dad139af">helpptr</a></div><div class="ttdeci">char helpptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00069">globals.cpp:69</a></div></div>
-<div class="ttc" id="ainterror_8cpp_html_a52a3c9863ed2b03820053c8eb5f2ba67"><div class="ttname"><a href="interror_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67">interror</a></div><div class="ttdeci">void interror(int n)</div><div class="ttdef"><b>Definition:</b> <a href="interror_8cpp_source.html#l00005">interror.cpp:5</a></div></div>
 <div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00260">impression.cpp:260</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_acc1a15eb0264d7af49f3e039aca1b4b0"><div class="ttname"><a href="globals_8cpp.html#acc1a15eb0264d7af49f3e039aca1b4b0">nestptr</a></div><div class="ttdeci">char nestptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00082">globals.cpp:82</a></div></div>
 <div class="ttc" id="aimpression_8cpp_html_a27f6b6c256d6682247b1fbdd82d30194"><div class="ttname"><a href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a></div><div class="ttdeci">void print_err(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00470">impression.cpp:470</a></div></div>

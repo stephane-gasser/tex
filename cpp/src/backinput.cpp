@@ -1,7 +1,7 @@
 #include "backinput.h"
 #include "endtokenlist.h"
 #include "getavail.h"
-#include "overflow.h"
+#include "erreur.h"
 #include "pushinput.h"
 
 //! Undoes one token of input.

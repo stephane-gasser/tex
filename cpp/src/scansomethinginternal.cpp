@@ -1,18 +1,45 @@
 #include "scansomethinginternal.h"
 #include "scancharnum.h"
 #include "impression.h"
-#include "backerror.h"
 #include "scaneightbitint.h"
 #include "backinput.h"
 #include "scanfontident.h"
 #include "findfontdimen.h"
-#include "error.h"
-#include "muerror.h"
+#include "erreur.h"
 #include "newspec.h"
 #include "texte.h"
 
 //! |mem| location of math glue spec
 static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
+
+static void erreurScansomethinginternal1(void)
+{
+	print_err("Missing number, treated as zero");
+	helpptr = 3;
+	helpline[2] = "A number should have been here; I inserted `0'.";
+	helpline[1] = "(If you can't figure out why I needed to see a number,";
+	helpline[0] = "look up `weird error' in the index to The TeXbook.)";
+	backerror();
+}
+
+static void erreurScansomethinginternal2(halfword m)
+{
+	print_err("Improper "+cmdchr(set_aux, m));
+	helpptr = 4;
+	helpline[3] = "You can refer to \\spacefactor only in horizontal mode;";
+	helpline[2] = "you can refer to \\prevdepth only in vertical mode; and";
+	helpline[1] = "neither of these is meaningful inside \\write. So";
+	helpline[0] = "I'm forgetting what you said and using zero instead.";
+	error();
+}
+
+static void erreurScansomethinginternal3(void)
+{
+	print_err("You can't use `"+cmdchr(curcmd, curchr)+"' after "+esc("the"));
+	helpptr = 1;
+	helpline[0] = "I'm forgetting what you said and using zero instead.";
+	error();
+}
 
 void scansomethinginternal(smallnumber level, bool negative)
 {
@@ -36,12 +63,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case def_font:
 			if (level != tok_val)
 			{
-				print_err("Missing number, treated as zero");
-				helpptr = 3;
-				helpline[2] = "A number should have been here; I inserted `0'.";
-				helpline[1] = "(If you can't figure out why I needed to see a number,";
-				helpline[0] = "look up `weird error' in the index to The TeXbook.)";
-				backerror();
+				erreurScansomethinginternal1();
 				scanned_result(0, dimen_val);
 			}
 			else 
@@ -76,13 +98,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case set_aux:
 			if (abs(mode) != m)
 			{
-				print_err("Improper "+cmdchr(set_aux, m));
-				helpptr = 4;
-				helpline[3] = "You can refer to \\spacefactor only in horizontal mode;";
-				helpline[2] = "you can refer to \\prevdepth only in vertical mode; and";
-				helpline[1] = "neither of these is meaningful inside \\write. So";
-				helpline[0] = "I'm forgetting what you said and using zero instead.";
-				error();
+				erreurScansomethinginternal2(m);
 				if (level != tok_val)
 					scanned_result(0, dimen_val);
 				else
@@ -217,10 +233,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 			}
 			break;
 		default:
-			print_err("You can't use `"+cmdchr(curcmd, curchr)+"' after "+esc("the"));
-			helpptr = 1;
-			helpline[0] = "I'm forgetting what you said and using zero instead.";
-			error();
+			erreurScansomethinginternal3();
 			if (level != tok_val)
 				scanned_result(0, dimen_val);
 			else

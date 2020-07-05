@@ -1,9 +1,9 @@
 <map id="jumpout" name="jumpout">
 <area shape="rect" id="node1" title=" " alt="" coords="239,125,307,152"/>
 <area shape="rect" id="node2" href="$confusion_8h.html#a0ae9ffebf69edd43b89a69e135fa13ad" title=" " alt="" coords="9,5,88,32"/>
-<area shape="rect" id="node3" href="$error_8h.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="141,100,189,127"/>
-<area shape="rect" id="node4" href="$fatalerror_8h.html#a7588f5b92a31b6dabffccf00c0d6bcec" title=" " alt="" coords="12,63,85,89"/>
-<area shape="rect" id="node5" href="$overflow_8h.html#a6b6f568963b00004024cfd8cfa86c296" title=" " alt="" coords="13,125,84,152"/>
+<area shape="rect" id="node3" href="$erreur_8h.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="141,100,189,127"/>
+<area shape="rect" id="node4" href="$erreur_8h.html#a7588f5b92a31b6dabffccf00c0d6bcec" title=" " alt="" coords="12,63,85,89"/>
+<area shape="rect" id="node5" href="$erreur_8h.html#a6b6f568963b00004024cfd8cfa86c296" title=" " alt="" coords="13,125,84,152"/>
 <area shape="rect" id="node6" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="5,176,92,203"/>
 <area shape="rect" id="node7" href="$main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="140,252,191,279"/>
 </map>

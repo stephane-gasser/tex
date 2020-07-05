@@ -1,5 +1,5 @@
 #include "inputln.h"
-#include "overflow.h"
+#include "erreur.h"
 #include <iostream>
 
 bool inputln(std::istream& f, bool bypasseoln)

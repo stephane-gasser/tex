@@ -4,12 +4,21 @@
 #include "scantoks.h"
 #include "gettoken.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "endtokenlist.h"
 #include "flushlist.h"
 #include "texte.h"
 
 constexpr int end_write_token = cs_token_flag+end_write;
+
+static void erreurWriteout(void)
+{
+	print_err("Unbalanced write command");
+	helpptr = 2;
+	helpline[1] = "On this page there's a \\write with fewer real {'s than }'s.";
+	helpline[0] = "I can't handle that very well; good luck.";
+	error();
+}
 
 void writeout(halfword p)
 {
@@ -30,25 +39,20 @@ void writeout(halfword p)
 	gettoken();
 	if (curtok != end_write_token)
 	{
-		print_err("Unbalanced write command");
-		helpptr = 2;
-		helpline[1] = "On this page there's a \\write with fewer real {'s than }'s.";
-		helpline[0] = "I can't handle that very well; good luck.";
-		error();
+		erreurWriteout();
 		do
 			gettoken();
 		while (curtok != end_write_token);
 	}
-	;
 	mode = oldmode;
 	endtokenlist();
 	auto oldsetting = selector;
-	auto j = info(p+1);
+	auto j = write_stream(p);
 	if (writeopen[j])
 		selector = j;
 	else
 	{
-		if (j == 17 && selector == term_and_log)
+		if (j == term_only && selector == term_and_log)
 			selector = log_only;
 		printnl(""); 
 	}

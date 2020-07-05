@@ -1,7 +1,7 @@
 #include "scanglue.h"
 #include "getxtoken.h"
 #include "scansomethinginternal.h"
-#include "muerror.h"
+#include "erreur.h"
 #include "scandimen.h"
 #include "backinput.h"
 #include "newspec.h"

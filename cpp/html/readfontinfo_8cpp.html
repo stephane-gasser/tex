@@ -81,7 +81,7 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="readfontinfo_8h_source.html">readfontinfo.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="impression_8h_source.html">impression.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="error_8h_source.html">error.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="erreur_8h_source.html">erreur.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="packfilename_8h_source.html">packfilename.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="fichier_8h_source.html">fichier.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="xnoverd_8h_source.html">xnoverd.h</a>&quot;</code><br />
@@ -91,14 +91,14 @@ Graphe des dépendances par inclusion de readfontinfo.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="readfontinfo_8cpp__incl.png" border="0" usemap="#src_2readfontinfo_8cpp" alt=""/></div>
 <map name="src_2readfontinfo_8cpp" id="src_2readfontinfo_8cpp">
-<area shape="rect" title=" " alt="" coords="321,5,458,32"/>
+<area shape="rect" title=" " alt="" coords="327,5,465,32"/>
 <area shape="rect" href="readfontinfo_8h.html" title=" " alt="" coords="5,80,107,107"/>
 <area shape="rect" href="impression_8h.html" title=" " alt="" coords="131,80,227,107"/>
-<area shape="rect" href="error_8h.html" title=" " alt="" coords="251,80,309,107"/>
-<area shape="rect" href="packfilename_8h.html" title=" " alt="" coords="334,80,445,107"/>
-<area shape="rect" href="fichier_8h.html" title=" " alt="" coords="469,80,536,107"/>
-<area shape="rect" href="xnoverd_8h.html" title=" " alt="" coords="561,80,639,107"/>
-<area shape="rect" href="texte_8h.html" title=" " alt="" coords="663,80,726,107"/>
+<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="251,80,317,107"/>
+<area shape="rect" href="packfilename_8h.html" title=" " alt="" coords="341,80,451,107"/>
+<area shape="rect" href="fichier_8h.html" title=" " alt="" coords="476,80,543,107"/>
+<area shape="rect" href="xnoverd_8h.html" title=" " alt="" coords="567,80,646,107"/>
+<area shape="rect" href="texte_8h.html" title=" " alt="" coords="670,80,733,107"/>
 </map>
 </div>
 </div>
@@ -410,7 +410,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[2] = <span class="stringliteral">&quot;[Wizards can fix TFM files using TFtoPL/PLtoTF.]&quot;</span>;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[1] = <span class="stringliteral">&quot;You might try inserting a different font spec;&quot;</span>;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="globals_8h.html#ae1c0d92ce2fe057255c7badbbb0615b0">helpline</a>[0] = <span class="stringliteral">&quot;e.g., type `I\\font&lt;same font id&gt;=&lt;substitute font name&gt;&#39;.&quot;</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="erreur_8cpp.html#a518288848eb2471573b6581060452931">error</a>();</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">if</span> (fileopened)</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <a class="code" href="fichiers_8cpp.html#ae7b1dac2d95a83bd2cc03814dcb77596">bclose</a>(<a class="code" href="globals_8cpp.html#a18ffd0433407230a37663ff1a97e463d">tfmfile</a>);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
@@ -421,7 +421,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <map name="readfontinfo_8cpp_a6d93fef0c83023857e214851da28c7b7_cgraph" id="readfontinfo_8cpp_a6d93fef0c83023857e214851da28c7b7_cgraph">
 <area shape="rect" title=" " alt="" coords="5,81,97,108"/>
 <area shape="rect" href="fichiers_8cpp.html#ae7b1dac2d95a83bd2cc03814dcb77596" title="Close a binary file." alt="" coords="201,5,261,32"/>
-<area shape="rect" href="error_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="207,56,255,83"/>
+<area shape="rect" href="erreur_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="207,56,255,83"/>
 <area shape="rect" href="impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="364,107,411,133"/>
 <area shape="rect" href="readfontinfo_8cpp.html#a69dd6a8f679156d5933d5762659a4279" title=" " alt="" coords="145,157,316,184"/>
 </map>
@@ -1020,7 +1020,6 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aimpression_8cpp_html_af7cfdbcf9e3fceeef51678778974091c"><div class="ttname"><a href="impression_8cpp.html#af7cfdbcf9e3fceeef51678778974091c">scs</a></div><div class="ttdeci">std::string scs(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00238">impression.cpp:238</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a7b176e38229ebf0771d197c6223f4778"><div class="ttname"><a href="globals_8cpp.html#a7b176e38229ebf0771d197c6223f4778">ligkernbase</a></div><div class="ttdeci">int ligkernbase[fontmax+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00168">globals.cpp:168</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a3cb7ad22ae5f652c347f58dd8ce9de43"><div class="ttname"><a href="globals_8cpp.html#a3cb7ad22ae5f652c347f58dd8ce9de43">fontptr</a></div><div class="ttdeci">internalfontnumber fontptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00149">globals.cpp:149</a></div></div>
-<div class="ttc" id="aerror_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="error_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="error_8cpp_source.html#l00012">error.cpp:12</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
 <div class="ttc" id="atex_8h_html_a5b53d72b9167093f9f5615ed80bbad7c"><div class="ttname"><a href="tex_8h.html#a5b53d72b9167093f9f5615ed80bbad7c">fontmax</a></div><div class="ttdeci">constexpr int fontmax</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00017">tex.h:17</a></div></div>
 <div class="ttc" id="astructfourquarters_html_a4fff2818b0784353595c84cbd62734a1"><div class="ttname"><a href="structfourquarters.html#a4fff2818b0784353595c84cbd62734a1">fourquarters::b1</a></div><div class="ttdeci">std::uint8_t b1</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00063">tex.h:63</a></div></div>
@@ -1035,6 +1034,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aglobals_8cpp_html_acb26e5ea151700d34a8c76cb9e07ea6b"><div class="ttname"><a href="globals_8cpp.html#acb26e5ea151700d34a8c76cb9e07ea6b">charbase</a></div><div class="ttdeci">int charbase[fontmax+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00163">globals.cpp:163</a></div></div>
 <div class="ttc" id="areadfontinfo_8cpp_html_ade32da6eb3adf6d0436fb5e134a5f879"><div class="ttname"><a href="readfontinfo_8cpp.html#ade32da6eb3adf6d0436fb5e134a5f879">read_sixteen</a></div><div class="ttdeci">static void read_sixteen(T &amp;z)</div><div class="ttdef"><b>Definition:</b> <a href="readfontinfo_8cpp_source.html#l00041">readfontinfo.cpp:41</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a375b29365eb2744579e4bf4518e6aaac"><div class="ttname"><a href="constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac">char_info</a></div><div class="ttdeci">fourquarters char_info(internalfontnumber f, smallnumber q)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00107">constantes.cpp:107</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a518288848eb2471573b6581060452931"><div class="ttname"><a href="erreur_8cpp.html#a518288848eb2471573b6581060452931">error</a></div><div class="ttdeci">void error(void)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00015">erreur.cpp:15</a></div></div>
 <div class="ttc" id="areadfontinfo_8cpp_html_a2725e6c450222badf53624a8a4434dca"><div class="ttname"><a href="readfontinfo_8cpp.html#a2725e6c450222badf53624a8a4434dca">check_byte_range</a></div><div class="ttdeci">static void check_byte_range(halfword p, halfword bc, halfword ec)</div><div class="ttdef"><b>Definition:</b> <a href="readfontinfo_8cpp_source.html#l00060">readfontinfo.cpp:60</a></div></div>
 <div class="ttc" id="areadfontinfo_8cpp_html_a84eae24220495493c8da2f4a96eb4681"><div class="ttname"><a href="readfontinfo_8cpp.html#a84eae24220495493c8da2f4a96eb4681">TEX_font_area</a></div><div class="ttdeci">constexpr char TEX_font_area[]</div><div class="ttdef"><b>Definition:</b> <a href="readfontinfo_8cpp_source.html#l00009">readfontinfo.cpp:9</a></div></div>
 <div class="ttc" id="afichiers_8cpp_html_a1c5db51ccbc145cbbd85e6c07467d21e"><div class="ttname"><a href="fichiers_8cpp.html#a1c5db51ccbc145cbbd85e6c07467d21e">bopenin</a></div><div class="ttdeci">bool bopenin(bytefile &amp;f)</div><div class="ttdoc">Open a binary file for input.</div><div class="ttdef"><b>Definition:</b> <a href="fichiers_8cpp_source.html#l00036">fichiers.cpp:36</a></div></div>

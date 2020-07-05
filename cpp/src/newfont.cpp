@@ -2,7 +2,6 @@
 #include "openlogfile.h"
 #include "getrtoken.h"
 #include "impression.h"
-#include "overflow.h"
 #include "makestring.h"
 #include "geqdefine.h"
 #include "eqdefine.h"
@@ -11,14 +10,29 @@
 #include "scankeyword.h"
 #include "scandimen.h"
 #include "scanint.h"
-#include "interror.h"
-#include "error.h"
+#include "erreur.h"
 #include "xnoverd.h"
 #include "readfontinfo.h"
 #include "texte.h"
 
-void newfont(smallnumber a)
+static void erreurNewfont1(scaled s)
+{
+	print_err("Improper `at' size ("+asScaled(s)+"pt), replaced by 10pt");
+	helpptr = 2;
+	helpline[1] = "I can only handle fonts at positive sizes that are";
+	helpline[0] = "less than 2048pt, so I've changed what you said to 10pt.";
+	error();
+}
 
+static void erreurNewfont2(void)
+{
+	print_err("Illegal magnification has been changed to 1000");
+	helpptr = 1;
+	helpline[0] = "The magnification ratio must be between 1 and 0x80'00.";
+	interror(curval);
+}
+
+void newfont(smallnumber a)
 {
 	halfword u;
 	scaled s;
@@ -57,11 +71,7 @@ void newfont(smallnumber a)
 		s = curval;
 		if (s <= 0 || s >= 134217728)
 		{
-			print_err("Improper `at' size ("+asScaled(s)+"pt), replaced by 10pt");
-			helpptr = 2;
-			helpline[1] = "I can only handle fonts at positive sizes that are";
-			helpline[0] = "less than 2048pt, so I've changed what you said to 10pt.";
-			error();
+			erreurNewfont1(s);
 			s = 10*0x1'00'00;
 		}
 	}
@@ -72,10 +82,7 @@ void newfont(smallnumber a)
 			s = -curval;
 			if (curval <= 0 || curval > 0x80'00)
 			{
-				print_err("Illegal magnification has been changed to 1000");
-				helpptr = 1;
-				helpline[0] = "The magnification ratio must be between 1 and 0x80'00.";
-				interror(curval);
+				erreurNewfont2();
 				s = -1000;
 			}
 		}

@@ -79,15 +79,15 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="morename_8h_source.html">morename.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="overflow_8h_source.html">overflow.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="erreur_8h_source.html">erreur.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de morename.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="morename_8cpp__incl.png" border="0" usemap="#src_2morename_8cpp" alt=""/></div>
 <map name="src_2morename_8cpp" id="src_2morename_8cpp">
-<area shape="rect" title=" " alt="" coords="43,5,174,32"/>
+<area shape="rect" title=" " alt="" coords="39,5,170,32"/>
 <area shape="rect" href="morename_8h.html" title=" " alt="" coords="5,80,100,107"/>
-<area shape="rect" href="overflow_8h.html" title=" " alt="" coords="125,80,205,107"/>
+<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="124,80,189,107"/>
 </map>
 </div>
 </div>
@@ -119,7 +119,7 @@ Fonctions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> == <span class="charliteral">&#39; &#39;</span>)</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a>(1);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="erreur_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a>(1);</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#a3d10279728a85600f3a5705f66fc489d">append_char</a>(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>);</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> == <span class="charliteral">&#39;&gt;&#39;</span> || <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> == <span class="charliteral">&#39;:&#39;</span>)</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
@@ -139,7 +139,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="rect" title=" " alt="" coords="5,56,88,83"/>
 <area shape="rect" href="constantes_8cpp.html#a3d10279728a85600f3a5705f66fc489d" title="put ASCII_code # at the end of str_pool" alt="" coords="136,5,232,32"/>
 <area shape="rect" href="constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6" title=" " alt="" coords="143,56,225,83"/>
-<area shape="rect" href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="147,107,221,133"/>
+<area shape="rect" href="erreur_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="147,107,221,133"/>
 </map>
 </div>
 <div class="dynheader">
@@ -157,10 +157,10 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="aglobals_8cpp_html_a8f4da18a8ebcfcb0ec15719c6fa05b29"><div class="ttname"><a href="globals_8cpp.html#a8f4da18a8ebcfcb0ec15719c6fa05b29">areadelimiter</a></div><div class="ttdeci">poolpointer areadelimiter</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00140">globals.cpp:140</a></div></div>
-<div class="ttc" id="aoverflow_8cpp_html_a570e0c3ba4fd6dec0e3e83fbb09d04e7"><div class="ttname"><a href="overflow_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a></div><div class="ttdeci">void str_room(int n)</div><div class="ttdoc">make sure that the pool hasn't overflowed</div><div class="ttdef"><b>Definition:</b> <a href="overflow_8cpp_source.html#l00009">overflow.cpp:9</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a3d10279728a85600f3a5705f66fc489d"><div class="ttname"><a href="constantes_8cpp.html#a3d10279728a85600f3a5705f66fc489d">append_char</a></div><div class="ttdeci">void append_char(ASCIIcode c)</div><div class="ttdoc">put ASCII_code # at the end of str_pool</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00145">constantes.cpp:145</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00176">globals.cpp:176</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aa4c3887078a0917e85a82b9a6b3cb8a6"><div class="ttname"><a href="constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6">cur_length</a></div><div class="ttdeci">int cur_length(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00131">constantes.cpp:131</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a570e0c3ba4fd6dec0e3e83fbb09d04e7"><div class="ttname"><a href="erreur_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7">str_room</a></div><div class="ttdeci">void str_room(int n)</div><div class="ttdoc">make sure that the pool hasn't overflowed</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00334">erreur.cpp:334</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a88f40394713d9739363f1f67b634c270"><div class="ttname"><a href="globals_8cpp.html#a88f40394713d9739363f1f67b634c270">extdelimiter</a></div><div class="ttdeci">poolpointer extdelimiter</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00141">globals.cpp:141</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

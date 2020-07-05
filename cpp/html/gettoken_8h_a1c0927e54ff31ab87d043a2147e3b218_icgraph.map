@@ -1,19 +1,19 @@
 <map id="gettoken" name="gettoken">
-<area shape="rect" id="node1" title=" " alt="" coords="747,407,819,434"/>
-<area shape="rect" id="node2" href="$convtoks_8h.html#a0f6f2a8ccaad133ad4b9cf4f67f214b1" title=" " alt="" coords="321,127,396,154"/>
-<area shape="rect" id="node3" href="$error_8h.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="637,382,685,409"/>
-<area shape="rect" id="node4" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="453,203,571,230"/>
-<area shape="rect" id="node5" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,355,95,382"/>
-<area shape="rect" id="node6" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="473,507,551,534"/>
-<area shape="rect" id="node7" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="143,355,268,382"/>
-<area shape="rect" id="node8" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="476,254,548,281"/>
-<area shape="rect" id="node9" href="$scandimen_8h.html#ad330bbbb06884a41f26209e039c103fa" title=" " alt="" coords="316,355,401,382"/>
-<area shape="rect" id="node10" href="$scanint_8h.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="480,305,544,331"/>
-<area shape="rect" id="node11" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="475,659,549,686"/>
-<area shape="rect" id="node12" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="325,609,393,635"/>
-<area shape="rect" id="node13" href="$impression_8h.html#a99b4dadf3c1abee06e9da950c3c704a5" title=" " alt="" coords="459,558,565,585"/>
-<area shape="rect" id="node14" href="$expand_8h.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="629,659,693,686"/>
-<area shape="rect" id="node15" href="$getpreambletoken_8h.html#a82620351bee57bb56f4d0a9181f6af98" title=" " alt="" coords="449,710,575,737"/>
+<area shape="rect" id="node1" title=" " alt="" coords="747,380,819,407"/>
+<area shape="rect" id="node2" href="$convtoks_8h.html#a0f6f2a8ccaad133ad4b9cf4f67f214b1" title=" " alt="" coords="321,152,396,179"/>
+<area shape="rect" id="node3" href="$erreur_8h.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="637,355,685,382"/>
+<area shape="rect" id="node4" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="453,102,571,128"/>
+<area shape="rect" id="node5" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,304,95,331"/>
+<area shape="rect" id="node6" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="473,456,551,483"/>
+<area shape="rect" id="node7" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="143,304,268,331"/>
+<area shape="rect" id="node8" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="476,203,548,230"/>
+<area shape="rect" id="node9" href="$scandimen_8h.html#ad330bbbb06884a41f26209e039c103fa" title=" " alt="" coords="316,304,401,331"/>
+<area shape="rect" id="node10" href="$scanint_8h.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="480,254,544,280"/>
+<area shape="rect" id="node11" href="$scantoks_8h.html#ae3260f4b061a4d0e2c525058ca531fcb" title=" " alt="" coords="475,608,549,635"/>
+<area shape="rect" id="node12" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="325,696,393,723"/>
+<area shape="rect" id="node13" href="$impression_8h.html#a99b4dadf3c1abee06e9da950c3c704a5" title=" " alt="" coords="459,507,565,534"/>
+<area shape="rect" id="node14" href="$expand_8h.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="629,632,693,659"/>
+<area shape="rect" id="node15" href="$getpreambletoken_8h.html#a82620351bee57bb56f4d0a9181f6af98" title=" " alt="" coords="449,671,575,698"/>
 <area shape="rect" id="node16" href="$getrtoken_8h.html#a7c08b32f4ec91d2132e1ab0c876995f3" title=" " alt="" coords="623,51,699,78"/>
-<area shape="rect" id="node17" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="171,710,239,737"/>
+<area shape="rect" id="node17" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="171,671,239,698"/>
 </map>

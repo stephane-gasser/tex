@@ -1,11 +1,10 @@
 #include "fincol.h"
 #include "confusion.h"
-#include "fatalerror.h"
 #include "getavail.h"
 #include "newnullbox.h"
 #include "newglue.h"
 #include "impression.h"
-#include "error.h"
+#include "erreur.h"
 #include "unsave.h"
 #include "newsavelevel.h"
 #include "hpack.h"
@@ -16,6 +15,16 @@
 #include "getxtoken.h"
 #include "initcol.h"
 #include "texte.h"
+
+static void erreurFincol(void)
+{
+	print_err("Extra alignment tab has been changed to "+esc("cr"));
+	helpptr = 3;
+	helpline[2] = "You have given more \\span or & marks than there were";
+	helpline[1] = "in the preamble to the \\halign or \\valign now in progress.";
+	helpline[0] = "So I'll assume that you meant to type \\cr instead.";
+	error();
+}
 
 bool fincol(void)
 {
@@ -66,13 +75,8 @@ bool fincol(void)
 		}
 		else
 		{
-			print_err("Extra alignment tab has been changed to "+esc("cr"));
-			helpptr = 3;
-			helpline[2] = "You have given more \\span or & marks than there were";
-			helpline[1] = "in the preamble to the \\halign or \\valign now in progress.";
-			helpline[0] = "So I'll assume that you meant to type \\cr instead.";
+			erreurFincol();
 			extra_info(curalign) = cr_code;
-			error();
 		}
 	if (extra_info(curalign) != span_code)
 	{
