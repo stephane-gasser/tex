@@ -1,5 +1,5 @@
 <map id="readfontinfo" name="readfontinfo">
-<area shape="rect" id="node1" title=" " alt="" coords="5,157,96,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,183,96,209"/>
 <area shape="rect" id="node2" href="$fichiers_8cpp.html#a1c5db51ccbc145cbbd85e6c07467d21e" title="Open a binary file for input." alt="" coords="178,5,245,32"/>
 <area shape="rect" id="node3" href="$readfontinfo_8cpp.html#a49e18029faa352b022942a52cace139b" title=" " alt="" coords="151,56,271,83"/>
 <area shape="rect" id="node4" href="$constantes_8cpp.html#a2537c13195b22342fd09b94a05323a04" title="the font code in a char_node" alt="" coords="189,107,233,133"/>
@@ -7,4 +7,5 @@
 <area shape="rect" id="node6" href="$readfontinfo_8cpp.html#ade32da6eb3adf6d0436fb5e134a5f879" title=" " alt="" coords="163,208,259,235"/>
 <area shape="rect" id="node7" href="$readfontinfo_8cpp.html#a8e3ed131aa5ad03cbae249284ce102f8" title=" " alt="" coords="144,259,279,285"/>
 <area shape="rect" id="node8" href="$readfontinfo_8cpp.html#ac043865bd1915a18ac1446e2875bf6b9" title=" " alt="" coords="163,309,259,336"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="188,360,235,387"/>
 </map>

@@ -1,15 +1,14 @@
 <map id="expand" name="expand">
-<area shape="rect" id="node1" title=" " alt="" coords="5,296,69,323"/>
-<area shape="rect" id="node2" href="$erreur_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="145,94,221,120"/>
-<area shape="rect" id="node3" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="297,100,376,127"/>
-<area shape="rect" id="node4" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="424,100,491,127"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="553,100,595,127"/>
-<area shape="rect" id="node6" href="$erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="539,296,609,323"/>
-<area shape="rect" id="node7" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="657,322,727,348"/>
-<area shape="rect" id="node8" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="132,195,235,222"/>
-<area shape="rect" id="node9" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="315,234,358,260"/>
-<area shape="rect" id="node10" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="147,398,219,424"/>
-<area shape="rect" id="node11" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="144,448,223,475"/>
-<area shape="rect" id="node12" href="$impression_8cpp.html#a663c42b205477b7748f1324b1a526f70" title=" " alt="" coords="126,499,241,526"/>
-<area shape="rect" id="node13" href="$parametres_8h.html#afd293e731aa5f183146f50f71405e79c" title=" " alt="" coords="117,550,249,576"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,282,69,308"/>
+<area shape="rect" id="node2" href="$erreur_8cpp.html#ae3f6c9874539e99c231da30e2a94c0db" title="Back up one token and call error." alt="" coords="145,155,221,182"/>
+<area shape="rect" id="node3" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="297,104,376,131"/>
+<area shape="rect" id="node4" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="424,79,491,106"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="553,206,595,232"/>
+<area shape="rect" id="node6" href="$erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="539,28,609,55"/>
+<area shape="rect" id="node7" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="132,256,235,283"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="315,307,358,334"/>
+<area shape="rect" id="node9" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="147,358,219,384"/>
+<area shape="rect" id="node10" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="144,408,223,435"/>
+<area shape="rect" id="node11" href="$impression_8cpp.html#a663c42b205477b7748f1324b1a526f70" title=" " alt="" coords="126,459,241,486"/>
+<area shape="rect" id="node12" href="$parametres_8h.html#afd293e731aa5f183146f50f71405e79c" title=" " alt="" coords="117,510,249,536"/>
 </map>

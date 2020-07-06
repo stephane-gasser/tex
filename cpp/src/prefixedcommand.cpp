@@ -37,50 +37,7 @@
 #include "findfontdimen.h"
 #include "newfont.h"
 #include "newinteraction.h"
-#include "confusion.h"
 #include "texte.h"
-
-static void erreurPrefixedcommand1(void)
-{
-	print_err("You can't use a prefix with `"+cmdchr(curcmd, curchr)+"\'"); 
-	helpptr = 1;
-	helpline[0] = "I'll pretend you didn't say \\long or \\outer or \\global.";
-	backerror();
-}
-
-static void erreurPrefixedcommand2(void)
-{
-	print_err("You can't use `"+esc("long")+"' or `"+esc("outer")+"' with `"+cmdchr(curcmd, curchr)+"\'");
-	helpptr = 1;
-	helpline[0] = "I'll pretend you didn't say \\long or \\outer here.";
-	error();
-}
-
-static void erreurPrefixedcommand3(void)
-{
-	print_err("Missing `to' inserted");
-	helpptr = 2;
-	helpline[1] = "You should have said `\\read<number> to \\cs'.";
-	helpline[0] = "I'm going to look for the \\cs now.";
-	error();
-}
-
-static void erreurPrefixedcommand4(halfword p, int n)
-{
-	print_err("Invalid code ("+std::to_string(curval)+(p < del_code_base ? "), should be in the range 0.." : "//), should be at most ")+std::to_string(n));
-	helpptr = 1;
-	helpline[0] = "I'm going to use 0 instead of that illegal code value.";
-	error;
-}
-
-static void erreurPrefixedcommand5(void)
-{
-	print_err("Improper "+esc("setbox"));
-	helpptr = 2;
-	helpline[1] = "Sorry, \\setbox is not allowed after \\halign in a display,";
-	helpline[0] = "or between \\accent and an accented character.";
-	error();
-}
 
 void prefixedcommand(void)
 {
@@ -101,12 +58,12 @@ void prefixedcommand(void)
 		while (curcmd == spacer || curcmd == escape);
 		if (curcmd <= max_non_prefixed_command)
 		{
-			erreurPrefixedcommand1();
+			backerror("You can't use a prefix with `"+cmdchr(curcmd, curchr)+"\'", "I'll pretend you didn't say \\long or \\outer or \\global.");
 			return;
 		}
 	}
 	if (curcmd != def && a%4)
-		erreurPrefixedcommand2();
+		error("You can't use `"+esc("long")+"' or `"+esc("outer")+"' with `"+cmdchr(curcmd, curchr)+"\'", "I'll pretend you didn't say \\long or \\outer here.");
 	if (global_defs())
 		if (global_defs() < 0)
 		{
@@ -200,7 +157,7 @@ void prefixedcommand(void)
 			scanint();
 			n = curval;
 			if (!scankeyword("to")) 
-				erreurPrefixedcommand3();
+				error("Missing `to' inserted", "You should have said `\\read<number> to \\cs'.\nI'm going to look for the \\cs now.");
 			getrtoken();
 			p = curcs;
 			readtoks(n, p);
@@ -310,7 +267,7 @@ void prefixedcommand(void)
 			scanint();
 			if ((curval < 0 && p < del_code_base) || curval > n)
 			{
-				erreurPrefixedcommand4(p, n);
+				error("Invalid code ("+std::to_string(curval)+(p < del_code_base ? "), should be in the range 0.." : "//), should be at most ")+std::to_string(n), "I'm going to use 0 instead of that illegal code value.");
 				curval = 0;
 			}
 			if (p < math_code_base)
@@ -344,7 +301,7 @@ void prefixedcommand(void)
 			if (setboxallowed)
 				scanbox(box_flag+n);
 			else
-				erreurPrefixedcommand5();
+				error("Improper "+esc("setbox"), "Sorry, \\setbox is not allowed after \\halign in a display,\nor between \\accent and an accented character.");
 			break;
 		case set_aux: 
 			alteraux();

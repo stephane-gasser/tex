@@ -1,5 +1,5 @@
 #include "makevcenter.h"
-#include "confusion.h"	
+#include "erreur.h"	
 #include "half.h"	
 
 void makevcenter(halfword q)

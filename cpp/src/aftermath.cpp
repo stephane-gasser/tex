@@ -21,64 +21,6 @@ static int display_width(void) { return dimen_par(display_width_code); }
 static int math_surround(void) { return dimen_par(math_surround_code); }
 static int pre_display_size(void) { return dimen_par(pre_display_size_code); }
 
-static void erreurAftermath1(void)
-{
-	print_err("Math formula deleted: Insufficient symbol fonts");
-	helpptr = 3;
-	helpline[2] = "Sorry, but I can't typeset math unless \\textfont 2";
-	helpline[1] = "and \\scriptfont 2 and \\scriptscriptfont 2 have all";
-	helpline[0] = "The \\fontdimen values needed in math symbol fonts.";
-	error();
-}
-
-static void erreurAftermath2(void)
-{
-	print_err("Math formula deleted: Insufficient extension fonts"); 
-	helpptr = 3;
-	helpline[2] = "Sorry, but I can't typeset math unless \\textfont 3";
-	helpline[1] = "and \\scriptfont 3 and \\scriptscriptfont 3 have all";
-	helpline[0] = "the \\fontdimen values needed in math extension fonts.";
-	error();
-}
-
-static void erreurAftermath3(void)
-{
-	print_err("Display math should end with $$"); 
-	helpptr = 2;
-	helpline[1] = "The `$' that I just saw supposedly matches a previous `$$'.";
-	helpline[0] = "So I shall assume that you typed `$$' both times.";
-	backerror();
-}
-
-static void erreurAftermath4(void)
-{
-	print_err("Math formula deleted: Insufficient symbol fonts");
-	helpptr = 3;
-	helpline[2] = "Sorry, but I can't typeset math unless \\textfont 2";
-	helpline[1] = "and \\scriptfont 2 and \\scriptscriptfont 2 have all";
-	helpline[0] = "the \\fontdimen values needed in math symbol fonts.";
-	error();
-}
-
-static void erreurAftermath5(void)
-{
-	print_err("Math formula deleted: Insufficient extension fonts"); 
-	helpptr = 3;
-	helpline[2] = "Sorry, but I can't typeset math unless \\textfont 3";
-	helpline[1] = "and \\scriptfont 3 and \\scriptscriptfont 3 have all";
-	helpline[0] = "the \\fontdimen values needed in math extension fonts.";
-	error();
-}
-
-static void erreurAftermath6(void)
-{
-	print_err("Display math should end with $$");
-	helpptr = 2;
-	helpline[1] = "The `$' that I just saw supposedly matches a previous `$$'.";
-	helpline[0] = "So I shall assume that you typed `$$' both times.";
-	backerror();
-}
-
 constexpr int total_mathsy_params = 22;
 constexpr int total_mathex_params = 13;
 
@@ -97,7 +39,7 @@ void aftermath(void)
 	 || fontparams[fam_fnt(2+script_size)] < total_mathsy_params 
 	 || fontparams[fam_fnt(2+script_script_size)] < total_mathsy_params)
 	{
-		erreurAftermath1();
+		error("Math formula deleted: Insufficient symbol fonts", "Sorry, but I can't typeset math unless \\textfont 2\nand \\scriptfont 2 and \\scriptscriptfont 2 have all\nThe \\fontdimen values needed in math symbol fonts.");
 		flushmath();
 		danger = true;
 	}
@@ -106,7 +48,7 @@ void aftermath(void)
 		 || fontparams[fam_fnt(3+script_size)] < total_mathex_params
 		 || fontparams[fam_fnt(3+script_script_size)] < total_mathex_params)
 		{
-			erreurAftermath2();
+			error("Math formula deleted: Insufficient extension fonts", "Sorry, but I can't typeset math unless \\textfont 3\nand \\scriptfont 3 and \\scriptscriptfont 3 have all\nthe \\fontdimen values needed in math extension fonts.");
 			flushmath();
 			danger = true;
 		}
@@ -116,7 +58,7 @@ void aftermath(void)
 	if (mode == -m)
 	{
 		getxtoken();
-		erreurAftermath3();
+		backerror("Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		curmlist = p;
 		curstyle = 2;
 		mlistpenalties = false;
@@ -131,7 +73,7 @@ void aftermath(void)
 		 || fontparams[fam_fnt(2+script_size)] < total_mathsy_params 
 		 || fontparams[fam_fnt(2+script_script_size)] < total_mathsy_params)
 		{
-			erreurAftermath4();
+			error("Math formula deleted: Insufficient symbol fonts", "Sorry, but I can't typeset math unless \\textfont 2\nand \\scriptfont 2 and \\scriptscriptfont 2 have all\nthe \\fontdimen values needed in math symbol fonts.");
 			flushmath();
 			danger = true;
 		}
@@ -140,7 +82,7 @@ void aftermath(void)
 			 || fontparams[fam_fnt(3+script_size)] < total_mathex_params
 			 || fontparams[fam_fnt(3+script_script_size)] < total_mathex_params)
 			{
-				erreurAftermath5();
+				error("Math formula deleted: Insufficient extension fonts", "Sorry, but I can't typeset math unless \\textfont 3\nand \\scriptfont 3 and \\scriptscriptfont 3 have all\nthe \\fontdimen values needed in math extension fonts.");
 				flushmath();
 				danger = true;
 			}
@@ -169,7 +111,7 @@ void aftermath(void)
 		{
 			getxtoken();
 			if (curcmd != math_shift)
-				erreurAftermath6();
+				backerror("Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
 		curmlist = p;
 		curstyle = 0;

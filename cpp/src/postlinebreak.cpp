@@ -5,7 +5,7 @@
 #include "hpack.h"
 #include "appendtovlist.h"
 #include "newpenalty.h"
-#include "confusion.h"
+#include "erreur.h"
 
 static int broken_penalty(void) { return int_par(broken_penalty_code); }
 static int club_penalty(void) { return int_par(club_penalty_code); }

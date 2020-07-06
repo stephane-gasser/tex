@@ -9,14 +9,6 @@
 #include "finmlist.h"
 #include "texte.h"
 
-static void erreurMathleftright(void)
-{
-	print_err("Extra "+esc("right"));
-	helpptr = 1;
-	helpline[0] = "I'm ignoring a \\right that had no matching \\left.";
-	error();
-}
-
 void mathleftright(void)
 {
 	smallnumber t = curchr;
@@ -25,7 +17,7 @@ void mathleftright(void)
 		if (curgroup == math_shift_group)
 		{
 			scandelimiter(garbage, false);
-			erreurMathleftright();
+			error("Extra "+esc("right"), "I'm ignoring a \\right that had no matching \\left.");
 		}
 		else
 			offsave();

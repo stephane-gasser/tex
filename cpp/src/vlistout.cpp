@@ -7,7 +7,7 @@
 #include "vlistout.h"
 #include "dvipop.h"
 #include "outwhat.h"
-#include "confusion.h"
+#include "erreur.h"
 #include <cmath>
 
 void vlistout(void)

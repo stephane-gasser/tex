@@ -1,5 +1,5 @@
 #include "finmlist.h"
-#include "confusion.h"
+#include "erreur.h"
 #include "popnest.h"
 
 halfword finmlist(halfword p)

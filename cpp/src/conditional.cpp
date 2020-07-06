@@ -24,22 +24,6 @@ static void get_x_token_or_active_char(void)
 		}
 }
 
-static void erreurConditional1(smallnumber thisif)
-{
-	print_err("Missing = inserted for "+cmdchr(if_test, thisif));
-	helpptr = 1;
-	helpline[0] = "I was expecting to see `<', `=', or `>'. Didn't.";
-	backerror();
-}
-
-static void erreurConditional2(void)
-{
-	print_err("Extra "+esc("or"));
-	helpptr = 1;
-	helpline[0] = "I'm ignoring this; it doesn't match any \\if.";
-	error();
-}
-
 void conditional(void)
 {
 
@@ -99,7 +83,7 @@ void conditional(void)
 				r = curtok-0x0C'00;
 			else
 			{
-				erreurConditional1(thisif);
+				backerror("Missing = inserted for "+cmdchr(if_test, thisif), "I was expecting to see `<', `=', or `>'. Didn't.");
 				r = '=';
 			}
 			if (thisif == if_int_code)
@@ -272,7 +256,7 @@ void conditional(void)
 					iflimit = 2;
 				return;
 			}
-			erreurConditional2();
+			error("Extra "+esc("or"), "I'm ignoring this; it doesn't match any \\if.");
 		}
 		else 
 			if (curchr == 2)

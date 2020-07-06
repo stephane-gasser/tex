@@ -11,42 +11,6 @@
 #include "getxtoken.h"
 #include "texte.h"
 
-static void erreurScantoks1(void)
-{
-	print_err("Missing { inserted"); 
-	helpptr = 2;
-	helpline[1] = "Where was the left brace? You said something like `\\def\\a}',";
-	helpline[0] = "which I'm going to interpret as `\\def\\a{}'.";
-	error();
-}
-
-static void erreurScantoks2(void)
-{
-	print_err("You already have nine parameters");
-	helpptr = 1;
-	helpline[0] = "I'm going to ignore the # sign you just used.";
-	error();
-}
-
-static void erreurScantoks3(void)
-{
-	print_err("Parameters must be numbered consecutively");
-	helpptr = 2;
-	helpline[1] = "I've inserted the digit you should have used after the #.";
-	helpline[0] = "Type `1' to delete what you did use.";
-	backerror();
-}
-
-static void erreurScantoks4(void)
-{
-	print_err("Illegal parameter number in definition of "+scs(warningindex));
-	helpptr = 3;
-	helpline[2] = "You meant to type ## instead of #, right?";
-	helpline[1] = "Or maybe a } was forgotten somewhere earlier, and things";
-	helpline[0] = "are all screwed up? I'm going to assume that you meant ##.";
-	backerror();
-}
-
 halfword scantoks(bool macrodef, bool xpand)
 {
 	scannerstatus = macrodef ? defining : absorbing;
@@ -67,7 +31,7 @@ halfword scantoks(bool macrodef, bool xpand)
 				store_new_token(p, end_match_token);
 				if (curcmd == right_brace)
 				{
-					erreurScantoks1();
+					error("Missing { inserted", "Where was the left brace? You said something like `\\def\\a}',\nwhich I'm going to interpret as `\\def\\a{}'.");
 					alignstate++;
 					l40 = true;
 					break;
@@ -86,12 +50,12 @@ halfword scantoks(bool macrodef, bool xpand)
 					break;
 				}
 				if (t == zero_token+9)
-					erreurScantoks2();
+					error("You already have nine parameters", "I'm going to ignore the # sign you just used.");
 				else
 				{
 					t++;
 					if (curtok != t)
-						erreurScantoks3();
+						backerror("Parameters must be numbered consecutively", "I've inserted the digit you should have used after the #.\nType `1' to delete what you did use.");
 					curtok = s;
 				}
 			}
@@ -149,7 +113,7 @@ halfword scantoks(bool macrodef, bool xpand)
 					if (curcmd != mac_param)
 						if (curtok <= zero_token || curtok > t) 
 						{
-							erreurScantoks4();
+							backerror("Illegal parameter number in definition of "+scs(warningindex), "You meant to type ## instead of #, right?\nOr maybe a } was forgotten somewhere earlier, and things\nare all screwed up? I'm going to assume that you meant ##.");
 							curtok = s;
 						}
 						else

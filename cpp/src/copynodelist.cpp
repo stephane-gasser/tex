@@ -1,7 +1,7 @@
 #include "copynodelist.h"
 #include "getavail.h"
 #include "getnode.h"
-#include "confusion.h"
+#include "erreur.h"
 
 halfword copynodelist(halfword p)
 {

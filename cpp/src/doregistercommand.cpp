@@ -19,23 +19,6 @@
 #include "eqdefine.h"
 #include "texte.h"
 
-static void erreurDoregistercommand1(halfword q)
-{
-	print_err("You can't use `"+cmdchr(curcmd, curchr)+"' after "+cmdchr(q, 0));
-	helpptr = 1;
-	helpline[0] = "I'm forgetting what you said and not changing anything.";
-	error();
-}
-
-static void erreurDoregistercommand2(void)
-{
-	print_err("Arithmetic overflow");
-	helpptr = 2;
-	helpline[1] = "I can't carry out that multiplication or division,";
-	helpline[0] = "since the result is out of range.";
-	error();
-}
-
 void doregistercommand(smallnumber a)
 {
 	halfword l, q, r, s;
@@ -54,7 +37,7 @@ void doregistercommand(smallnumber a)
 			}
 			if (curcmd != register_)
 			{
-				erreurDoregistercommand1(q);
+				error("You can't use `"+cmdchr(curcmd, curchr)+"' after "+cmdchr(q, 0), "I'm forgetting what you said and not changing anything.");
 				return;
 			}
 		}
@@ -155,7 +138,7 @@ void doregistercommand(smallnumber a)
 	}
 	if (aritherror)
 	{
-		erreurDoregistercommand2();
+		error("Arithmetic overflow", "I can't carry out that multiplication or division,\nsince the result is out of range.");
 		if (p >= 2)
 			deleteglueref(curval);
 		return;

@@ -56,17 +56,6 @@ static void removeFromEnd(int &k, int d)
 		buffer[k] = buffer[k+d];
 }
 
-static void erreurGetnext(void)
-{
-	print_err("Text line contains an invalid character");
-	helpptr = 2;
-	helpline[1] = "A funny symbol that I can't read has just been input.";
-	helpline[0] = "Continue, and I'll forget that it ever happened.";
-	deletionsallowed = false;
-	error();
-	deletionsallowed = true;
-}
-
 #define ANY_STATE_PLUS(cmd) mid_line+cmd: case skip_blanks+cmd: case new_line+cmd
 #define ADD_DELIMS_TO(state) state+math_shift: case state+tab_mark: case state+mac_param: case state+sub_mark: case state+letter: case state+other_char 
 
@@ -189,7 +178,9 @@ void getnext(void)
 									state = mid_line;
 								break;
 							case ANY_STATE_PLUS(invalid_char):
-								erreurGetnext();
+								deletionsallowed = false;
+								error("Text line contains an invalid character", "A funny symbol that I can't read has just been input.\nContinue, and I'll forget that it ever happened.");
+								deletionsallowed = true;
 								restart = true;
 								break;
 							case mid_line+spacer:

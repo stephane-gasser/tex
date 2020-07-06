@@ -6,19 +6,10 @@
 #include "scanmath.h"
 #include "texte.h"
 
-static void erreurMathac(void)
-{
-	print_err("Please use "+esc("mathaccent")+" for accents in math mode");
-	helpptr = 2;
-	helpline[1] = "I'm changing \\accent to \\mathaccent here; wish me luck.";
-	helpline[0] = "(Accents are not the same in formulas as they are in text.)";
-	error();
-}
-
 void mathac(void)
 {
 	if (curcmd == accent)
-		erreurMathac();
+		error("Please use "+esc("mathaccent")+" for accents in math mode", "I'm changing \\accent to \\mathaccent here; wish me luck.\n(Accents are not the same in formulas as they are in text.)");
 	tail_append(getnode(accent_noad_size));
 	type(tail) = accent_noad;
 	subtype(tail) = normal;

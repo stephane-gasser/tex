@@ -7,16 +7,6 @@
 #include "scanrulespec.h"
 #include "texte.h"
 
-static void erreurScanbox(void)
-{
-	print_err("A <box> was supposed to be here");
-	helpptr = 3;
-	helpline[2] = "I was expecting to see \\hbox or \\vbox or \\copy or \\box or";
-	helpline[1] = "something like that. So you might find something missing in";
-	helpline[0] = "your output. But keep trying; you can fix this later.";
-	backerror();
-}
-
 void scanbox(int boxcontext)
 {
 	do
@@ -31,5 +21,5 @@ void scanbox(int boxcontext)
 			boxend(boxcontext);
 		}
 		else
-			erreurScanbox();
+			backerror("A <box> was supposed to be here", "I was expecting to see \\hbox or \\vbox or \\copy or \\box or\nsomething like that. So you might find something missing in\nyour output. But keep trying; you can fix this later.");
 }

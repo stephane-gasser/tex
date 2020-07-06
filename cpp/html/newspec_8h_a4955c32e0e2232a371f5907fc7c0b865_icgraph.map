@@ -1,11 +1,12 @@
 <map id="newspec" name="newspec">
-<area shape="rect" id="node1" title=" " alt="" coords="331,183,405,209"/>
-<area shape="rect" id="node2" href="$maincontrol_8cpp.html#ab7f7983b788abb1c635c1bd67f967894" title=" " alt="" coords="131,5,283,32"/>
-<area shape="rect" id="node3" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="167,56,246,83"/>
-<area shape="rect" id="node4" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="5,259,83,285"/>
-<area shape="rect" id="node5" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="139,157,275,184"/>
-<area shape="rect" id="node6" href="$finiteshrink_8h.html#a44e34bae9b7e036aec3f59c776c36c1c" title=" " alt="" coords="164,208,249,235"/>
-<area shape="rect" id="node7" href="$newskipparam_8h.html#a8511a3c5feb7efdf85ba943f6aea2b93" title=" " alt="" coords="153,259,260,285"/>
-<area shape="rect" id="node8" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="131,309,283,336"/>
-<area shape="rect" id="node9" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="169,360,245,387"/>
+<area shape="rect" id="node1" title=" " alt="" coords="515,208,589,235"/>
+<area shape="rect" id="node2" href="$maincontrol_8cpp.html#ab7f7983b788abb1c635c1bd67f967894" title=" " alt="" coords="315,5,467,32"/>
+<area shape="rect" id="node3" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="351,56,430,83"/>
+<area shape="rect" id="node4" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="189,259,267,285"/>
+<area shape="rect" id="node5" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="5,233,141,260"/>
+<area shape="rect" id="node6" href="$finiteshrink_8h.html#a44e34bae9b7e036aec3f59c776c36c1c" title=" " alt="" coords="348,208,433,235"/>
+<area shape="rect" id="node7" href="$newskipparam_8h.html#a8511a3c5feb7efdf85ba943f6aea2b93" title=" " alt="" coords="337,259,444,285"/>
+<area shape="rect" id="node8" href="$scanglue_8h.html#a1b433217a906738e1453ff227c67a090" title=" " alt="" coords="191,360,265,387"/>
+<area shape="rect" id="node9" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="315,411,467,437"/>
+<area shape="rect" id="node10" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="353,309,429,336"/>
 </map>

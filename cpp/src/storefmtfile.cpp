@@ -29,27 +29,12 @@ static void dump_four_ASCII(int k)
 	dump_qqqq(w);
 }
 
-static void erreurStorefmtfile(void)
-{
-	print_err("You can't dump_int inside a group");
-	helpptr = 1;
-	helpline[0] = "`{...\\dump_int}' is a no-no.";
-	if (interaction == error_stop_mode)
-		interaction = scroll_mode;
-	if (logopened)
-		error();
-}
-
 void storefmtfile(void)
 {
 	int j, k, l;
 	halfword p, q;
 	if (saveptr)
-	{ 
-		erreurStorefmtfile();
-		history = fatal_error_stop;
-		jumpout();
-	}
+		fatal("You can't dump_int inside a group", "`{...\\dump_int}' is a no-no.");
 	selector = new_string;
 	print(" (preloaded format="+jobname+" "+std::to_string(year())+"."+std::to_string(month())+"."+std::to_string(day())+")");
 	if (interaction == batch_mode)

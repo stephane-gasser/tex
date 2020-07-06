@@ -79,17 +79,17 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="makevcenter_8h_source.html">makevcenter.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="confusion_8h_source.html">confusion.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="erreur_8h_source.html">erreur.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="half_8h_source.html">half.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de makevcenter.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="makevcenter_8cpp__incl.png" border="0" usemap="#src_2makevcenter_8cpp" alt=""/></div>
 <map name="src_2makevcenter_8cpp" id="src_2makevcenter_8cpp">
-<area shape="rect" title=" " alt="" coords="110,5,253,32"/>
+<area shape="rect" title=" " alt="" coords="98,5,241,32"/>
 <area shape="rect" href="makevcenter_8h.html" title=" " alt="" coords="5,80,112,107"/>
-<area shape="rect" href="confusion_8h.html" title=" " alt="" coords="137,80,226,107"/>
-<area shape="rect" href="half_8h.html" title=" " alt="" coords="250,80,305,107"/>
+<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="137,80,202,107"/>
+<area shape="rect" href="half_8h.html" title=" " alt="" coords="226,80,281,107"/>
 </map>
 </div>
 </div>
@@ -121,7 +121,7 @@ Fonctions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> v = <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(q));</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(v) != <a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635add1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a>)</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada">confusion</a>(<span class="stringliteral">&quot;vcenter&quot;</span>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada">confusion</a>(<span class="stringliteral">&quot;vcenter&quot;</span>);</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> delta = <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(v)+<a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(v);</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(v) = <a class="code" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708">axis_height</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>)+<a class="code" href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8">half</a>(delta);</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(v) = delta-<a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(v);</div>
@@ -133,7 +133,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <map name="makevcenter_8cpp_a6e5d002d0820c0eb0efc867f638396aa_cgraph" id="makevcenter_8cpp_a6e5d002d0820c0eb0efc867f638396aa_cgraph">
 <area shape="rect" title=" " alt="" coords="5,157,103,184"/>
 <area shape="rect" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708" title="height of fraction lines above the baseline" alt="" coords="151,5,239,32"/>
-<area shape="rect" href="confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="155,56,234,83"/>
+<area shape="rect" href="erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="155,56,234,83"/>
 <area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="167,107,222,133"/>
 <area shape="rect" href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8" title=" " alt="" coords="173,157,216,184"/>
 <area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="166,208,223,235"/>
@@ -159,10 +159,10 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00587">constantes.h:587</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a4df565ae653d5dfdd476957e92b6a61c"><div class="ttname"><a href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a></div><div class="ttdeci">int &amp; depth(halfword p)</div><div class="ttdoc">depth of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00050">constantes.cpp:50</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aaf95f6a6992031770009c02b8d2b4071"><div class="ttname"><a href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a></div><div class="ttdeci">int &amp; height(halfword p)</div><div class="ttdoc">height of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00051">constantes.cpp:51</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_ac5ea395839fed78d642282ef1e945ada"><div class="ttname"><a href="erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada">confusion</a></div><div class="ttdeci">void confusion(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00230">erreur.cpp:230</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a1b7ae8e4e9bf30bd3b1f9c970d985708"><div class="ttname"><a href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708">axis_height</a></div><div class="ttdeci">int axis_height(smallnumber c)</div><div class="ttdoc">height of fraction lines above the baseline</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00111">constantes.cpp:111</a></div></div>
 <div class="ttc" id="atex_8h_html_a76970135ed45e872cd47aff06bc1dd33"><div class="ttname"><a href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a></div><div class="ttdeci">int scaled</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00040">tex.h:40</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a2746f146b2673dd893350b5c44da8abd"><div class="ttname"><a href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a></div><div class="ttdeci">smallnumber cursize</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00193">globals.cpp:193</a></div></div>
-<div class="ttc" id="aconfusion_8cpp_html_ac5ea395839fed78d642282ef1e945ada"><div class="ttname"><a href="confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada">confusion</a></div><div class="ttdeci">void confusion(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="confusion_8cpp_source.html#l00008">confusion.cpp:8</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a2746f146b2673dd893350b5c44da8abd"><div class="ttname"><a href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a></div><div class="ttdeci">smallnumber cursize</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00192">globals.cpp:192</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00044">tex.h:44</a></div></div>
 <div class="ttc" id="ahalf_8cpp_html_ae67e73d5a4cc42b131b635f9cb2461d8"><div class="ttname"><a href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8">half</a></div><div class="ttdeci">int half(int x)</div><div class="ttdef"><b>Definition:</b> <a href="half_8cpp_source.html#l00003">half.cpp:3</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>

@@ -8,24 +8,6 @@
 #include "erreur.h"
 #include "texte.h"
 
-static void erreurNewhyphexceptions1(void)
-{
-	print_err("Not a letter");
-	helpptr = 2;
-	helpline[1] = "Letters in \\hyphenation words must have \\lccode>0.";
-	helpline[0] = "Proceed; I'll ignore the character I just read.";
-	error();
-}
-
-static void erreurNewhyphexceptions2(void)
-{
-	print_err("Improper "+esc("hyphenation")+" will be flushed");
-	helpptr = 2;
-	helpline[1] = "Hyphenation exceptions must contain only letters";
-	helpline[0] = "and hyphens. But continue; I'll forgive and forget.";
-	error();
-}
-
 void newhyphexceptions(void)
 {
 	char n, j;
@@ -58,7 +40,7 @@ void newhyphexceptions(void)
 				}
 				else 
 					if (lc_code(curchr) == 0)
-						erreurNewhyphexceptions1();
+						error("Not a letter", "Letters in \\hyphenation words must have \\lccode>0.\nProceed; I'll ignore the character I just read.");
 					else 
 						if (n < 63)
 						{
@@ -136,7 +118,7 @@ void newhyphexceptions(void)
 				p = 0;
 				break;
 			default:
-				erreurNewhyphexceptions2();
+				error("Improper "+esc("hyphenation")+" will be flushed", "Hyphenation exceptions must contain only letters\nand hyphens. But continue; I'll forgive and forget.");
 		}
 		getxtoken();
 	}

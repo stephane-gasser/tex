@@ -1,22 +1,21 @@
 <map id="readtoks" name="readtoks">
-<area shape="rect" id="node1" title=" " alt="" coords="5,461,77,488"/>
-<area shape="rect" id="node2" href="$fichiers_8cpp.html#a941887a5a97d9f9b08b2a153321d6816" title="Close a text file." alt="" coords="354,31,414,57"/>
-<area shape="rect" id="node3" href="$beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="328,208,440,235"/>
-<area shape="rect" id="node4" href="$parametres_8h.html#a43108f9e5b0a872b47c5d80c52d2d449" title=" " alt="" coords="333,132,435,159"/>
-<area shape="rect" id="node5" href="$constantes_8h.html#a31f3a63bec138d92dfe4842edb93895a" title=" " alt="" coords="125,107,280,133"/>
-<area shape="rect" id="node6" href="$endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="151,5,254,32"/>
-<area shape="rect" id="node7" href="$erreur_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="179,411,227,437"/>
-<area shape="rect" id="node8" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="363,259,405,285"/>
-<area shape="rect" id="node9" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="348,461,420,488"/>
-<area shape="rect" id="node10" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="621,437,667,464"/>
-<area shape="rect" id="node11" href="$terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="346,512,422,539"/>
-<area shape="rect" id="node12" href="$erreur_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="488,525,561,552"/>
-<area shape="rect" id="node13" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="609,539,679,565"/>
-<area shape="rect" id="node14" href="$inputln_8cpp.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="495,588,555,615"/>
-<area shape="rect" id="node15" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="351,765,417,792"/>
-<area shape="rect" id="node16" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="623,791,665,817"/>
-<area shape="rect" id="node17" href="$runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="489,715,560,741"/>
-<area shape="rect" id="node18" href="$impression_8cpp.html#af7cfdbcf9e3fceeef51678778974091c" title=" " alt="" coords="181,259,224,285"/>
-<area shape="rect" id="node19" href="$getavail_8cpp.html#ab66fdad2e7e67fc6932956666eb928ba" title=" " alt="" coords="142,816,263,843"/>
-<area shape="rect" id="node20" href="$constantes_8cpp.html#af755b301592c71df76696d1a360984de" title="reference count preceding a token list" alt="" coords="145,917,260,944"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,427,77,453"/>
+<area shape="rect" id="node2" href="$fichiers_8cpp.html#a941887a5a97d9f9b08b2a153321d6816" title="Close a text file." alt="" coords="354,35,414,61"/>
+<area shape="rect" id="node3" href="$beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="328,224,440,251"/>
+<area shape="rect" id="node4" href="$parametres_8h.html#a43108f9e5b0a872b47c5d80c52d2d449" title=" " alt="" coords="333,111,435,137"/>
+<area shape="rect" id="node5" href="$constantes_8h.html#a31f3a63bec138d92dfe4842edb93895a" title=" " alt="" coords="125,148,280,175"/>
+<area shape="rect" id="node6" href="$endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="151,47,254,73"/>
+<area shape="rect" id="node7" href="$erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc" title=" " alt="" coords="179,351,227,377"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="363,300,405,327"/>
+<area shape="rect" id="node9" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="348,401,420,428"/>
+<area shape="rect" id="node10" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="609,477,656,504"/>
+<area shape="rect" id="node11" href="$terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="346,503,422,529"/>
+<area shape="rect" id="node12" href="$erreur_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="488,553,561,580"/>
+<area shape="rect" id="node13" href="$inputln_8cpp.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="495,604,555,631"/>
+<area shape="rect" id="node14" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="351,705,417,732"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="611,731,654,757"/>
+<area shape="rect" id="node16" href="$runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="489,655,560,681"/>
+<area shape="rect" id="node17" href="$impression_8cpp.html#af7cfdbcf9e3fceeef51678778974091c" title=" " alt="" coords="181,300,224,327"/>
+<area shape="rect" id="node18" href="$getavail_8cpp.html#ab66fdad2e7e67fc6932956666eb928ba" title=" " alt="" coords="142,756,263,783"/>
+<area shape="rect" id="node19" href="$constantes_8cpp.html#af755b301592c71df76696d1a360984de" title="reference count preceding a token list" alt="" coords="145,857,260,884"/>
 </map>

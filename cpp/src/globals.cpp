@@ -66,7 +66,6 @@ bool deletionsallowed;
 bool setboxallowed;
 char history; // 0..3
 char errorcount; // -1..100
-char helpptr; // 0..6
 bool useerrhelp;
 bool OKtointerrupt;
 bool aritherror;

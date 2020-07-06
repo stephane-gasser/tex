@@ -20,46 +20,9 @@
 #include "newnoad.h"
 #include "buildchoices.h"
 #include "finmlist.h"
-#include "confusion.h"
 #include "texte.h"
 
 static int floating_penalty(void) { return int_par(floating_penalty_code); }
-
-static void erreurHandlerightbrace1(void)
-{
-	print_err("Too many }'s");
-	helpptr = 2;
-	helpline[1] = "You've closed more groups than you opened.";
-	helpline[0] = "Such booboos are generally harmless, so keep going.";
-	error();
-}
-
-static void erreurHandlerightbrace2(void)
-{
-	print_err("Unbalanced output routine");
-	helpptr = 2;
-	helpline[1] = "Your sneaky output routine has problematic {'s and/or }'s.";
-	helpline[0] = "I can't handle that very well; good luck.";
-	error();
-}
-
-static void erreurHandlerightbrace3(void)
-{
-	print_err("Output routine didn't use all of "+esc("box255")); 
-	helpptr = 3;
-	helpline[2] = "Your \\output commands should empty \\box255,";
-	helpline[1] = "e.g., by saying `\\shipout\\box255'.";
-	helpline[0] = "Proceed; I'll discard its present contents.";
-	boxerror(255);
-}
-
-static void erreurHandlerightbrace4(void)
-{
-	print_err("Missing "+esc("cr")+" inserted");
-	helpptr = 1;
-	helpline[0] = "I'm guessing that you meant to end an alignment here.";
-	inserror();
-}
 
 void handlerightbrace(void)
 {
@@ -72,7 +35,7 @@ void handlerightbrace(void)
 			unsave();
 			break;
 		case bottom_level:
-			erreurHandlerightbrace1();
+			error("Too many }'s", "You've closed more groups than you opened.\nSuch booboos are generally harmless, so keep going.");
 			break;
 		case semi_simple_group:
 		case math_shift_group:
@@ -130,7 +93,7 @@ void handlerightbrace(void)
 		case output_group:
 			if (loc || (token_type != output_text && token_type != backed_up))
 			{
-				erreurHandlerightbrace2();
+				error("Unbalanced output routine", "Your sneaky output routine has problematic {'s and/or }'s.\nI can't handle that very well; good luck.");
 				do
 					gettoken();
 				while (loc);
@@ -141,7 +104,7 @@ void handlerightbrace(void)
 			outputactive = false;
 			insertpenalties = 0;
 			if (box(255))
-				erreurHandlerightbrace3();
+				boxerror(255, "Output routine didn't use all of "+esc("box255"), "Your \\output commands should empty \\box255,\ne.g., by saying `\\shipout\\box255'.\nProceed; I'll discard its present contents.");
 			if (tail != head)
 			{
 				link(pagetail) = link(head);
@@ -165,7 +128,7 @@ void handlerightbrace(void)
 		case align_group:
 			backinput();
 			curtok = cs_token_flag+frozen_cr;
-			erreurHandlerightbrace4();
+			inserror("Missing "+esc("cr")+" inserted", "I'm guessing that you meant to end an alignment here.");
 			break;
 		case no_align_group:
 			endgraf();

@@ -1,6 +1,6 @@
 #include "vpackage.h"
 #include "impression.h"
-#include "confusion.h"
+#include "erreur.h"
 #include "getnode.h"
 #include "freenode.h"
 #include "badness.h"

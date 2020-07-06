@@ -1,7 +1,7 @@
 #include "unsave.h"
 #include "backinput.h"
 #include "eqdestroy.h"
-#include "confusion.h"
+#include "erreur.h"
 
 void unsave(void)
 {

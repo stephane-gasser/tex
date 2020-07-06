@@ -5,14 +5,6 @@
 #include "erreur.h"
 #include "texte.h"
 
-static void erreurAlterprevgraf(void)
-{
-	print_err(" Bad "+esc("prevgraf"));
-	helpptr = 1;
-	helpline[0] = "I allow only nonnegative values here.";
-	interror(curval);
-}
-
 void alterprevgraf(void)
 {
 	nest[nestptr] = curlist;
@@ -22,7 +14,7 @@ void alterprevgraf(void)
 	scanoptionalequals();
 	scanint();
 	if (curval < 0)
-		erreurAlterprevgraf();
+		interror(curval, " Bad "+esc("prevgraf"), "I allow only nonnegative values here.");
 	else
 	{
 		nest[p].pgfield = curval;

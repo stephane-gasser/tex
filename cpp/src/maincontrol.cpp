@@ -16,7 +16,7 @@
 #include "backinput.h"
 #include "pauseforinstructions.h"
 #include "appspace.h"
-#include "reportillegalcase.h"
+#include "erreur.h"
 #include "newligitem.h"
 #include "appendglue.h"
 #include "insertdollarsign.h"
@@ -45,9 +45,7 @@
 #include "appenditaliccorrection.h"
 #include "makeaccent.h"
 #include "initalign.h"
-#include "privileged.h"
 #include "doendv.h"
-#include "erreur.h"
 #include "initmath.h"
 #include "starteqno.h"
 #include "newnoad.h"
@@ -666,13 +664,35 @@ void maincontrol(void)
 				break;
 			case ANY_MODE(car_ret):
 			case ANY_MODE(tab_mark):
-				alignerror();
+				if (abs(alignstate) > 2)
+				{
+					if (curtok == tab_token+'&')
+						error("Misplaced "+cmdchr(curcmd, curchr), "I can't figure out why you would want to use a tab mark\nhere. If you just want an ampersand, the remedy is\nsimple: Just type `I\\&' now. But if some right brace\nup above has ended a previous alignment prematurely,\nyou're probably due for more error messages, and you\nmight try typing `S' now just to see what is salvageable.");
+					else
+						error("Misplaced "+cmdchr(curcmd, curchr), "I can't figure out why you would want to use a tab mark\nor \\cr or \\span just now. If something like a right brace\nup above has ended a previous alignment prematurely,\nyou're probably due for more error messages, and you\nmight try typing `S' now just to see what is salvageable.");
+				}
+				else
+				{
+					backinput();
+					if (alignstate < 0)
+					{
+						inserror("Missing { inserted", "I've put in what seems to be necessary to fix\nthe current column of the current alignment.\nTry to go on, since this might almost work.");
+						alignstate++;
+						curtok = left_brace_token+'{'; 
+					}
+					else
+					{
+						inserror("Missing } inserted", "I've put in what seems to be necessary to fix\nthe current column of the current alignment.\nTry to go on, since this might almost work.");
+						alignstate--;
+						curtok = right_brace_token+ '}';
+					}
+				}
 				break;
 			case ANY_MODE(no_align):
-				noalignerror();
+				error("Misplaced "+esc("noalign"), "I expect to see \\noalign only after the \\cr of\nan alignment. Proceed, and I'll ignore this case.");
 				break;
 			case ANY_MODE(omit):
-				omiterror();
+				error("Misplaced "+esc("omit"), "I expect to see \\omit only after tab marks or the \\cr of\nan alignment. Proceed, and I'll ignore this case.");
 				break;
 			case vmode+halign:
 			case hmode+valign: 
@@ -690,7 +710,7 @@ void maincontrol(void)
 				doendv();
 				break;
 			case ANY_MODE(end_cs_name):
-				cserror();
+				error("Extra "+esc("endcsname"), "I'm ignoring this, since I wasn't doing a \\csname.");
 				break;
 			case hmode+math_shift: 
 				initmath();

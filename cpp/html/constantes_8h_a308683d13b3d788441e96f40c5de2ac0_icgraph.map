@@ -1,15 +1,16 @@
 <map id="glue_ptr" name="glue_ptr">
-<area shape="rect" id="node1" title="pointer to a glue specification" alt="" coords="468,332,536,359"/>
-<area shape="rect" id="node2" href="$copynodelist_8h.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="297,29,391,56"/>
-<area shape="rect" id="node3" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="144,433,197,460"/>
-<area shape="rect" id="node4" href="$flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="297,205,391,232"/>
-<area shape="rect" id="node5" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="133,243,208,269"/>
-<area shape="rect" id="node6" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="5,161,73,188"/>
-<area shape="rect" id="node7" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="128,167,213,193"/>
-<area shape="rect" id="node8" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="268,357,420,384"/>
-<area shape="rect" id="node9" href="$impression_8h.html#a190dbb1f454e717590536284ba1d88be" title=" " alt="" coords="298,659,390,685"/>
-<area shape="rect" id="node10" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="121,584,220,611"/>
-<area shape="rect" id="node11" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="309,256,379,283"/>
-<area shape="rect" id="node12" href="$vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="312,584,376,611"/>
-<area shape="rect" id="node13" href="$vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="305,408,383,435"/>
+<area shape="rect" id="node1" title="pointer to a glue specification" alt="" coords="468,336,536,363"/>
+<area shape="rect" id="node2" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="132,73,209,100"/>
+<area shape="rect" id="node3" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="5,73,73,100"/>
+<area shape="rect" id="node4" href="$copynodelist_8h.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="297,109,391,136"/>
+<area shape="rect" id="node5" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="144,463,197,489"/>
+<area shape="rect" id="node6" href="$flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="297,235,391,261"/>
+<area shape="rect" id="node7" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="133,260,208,287"/>
+<area shape="rect" id="node8" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="128,185,213,212"/>
+<area shape="rect" id="node9" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="268,387,420,413"/>
+<area shape="rect" id="node10" href="$impression_8h.html#a190dbb1f454e717590536284ba1d88be" title=" " alt="" coords="298,563,390,589"/>
+<area shape="rect" id="node11" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="121,625,220,652"/>
+<area shape="rect" id="node12" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="309,285,379,312"/>
+<area shape="rect" id="node13" href="$vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="312,637,376,664"/>
+<area shape="rect" id="node14" href="$vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="305,488,383,515"/>
 </map>

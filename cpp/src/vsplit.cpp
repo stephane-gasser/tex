@@ -8,15 +8,6 @@
 #include "vpackage.h"
 #include "texte.h"
 
-static void erreurVsplit(void)
-{
-	print_err(esc("vsplit")+" needs a "+esc("vbox"));
-	helpptr = 2;
-	helpline[1] = "The box you are trying to split is an \\hbox.";
-	helpline[0] = "I can't split such a box, so I'll leave it alone.";
-	error();
-}
-
 halfword vsplit(eightbits n, scaled h)
 {
 	auto v = box(n);
@@ -29,9 +20,9 @@ halfword vsplit(eightbits n, scaled h)
 	}
 	if (v == 0)
 		return 0;
-	if (type(v) != 1)
+	if (type(v) != vlist_node)
 	{
-		erreurVsplit();
+		error(esc("vsplit")+" needs a "+esc("vbox"), "The box you are trying to split is an \\hbox.\nI can't split such a box, so I'll leave it alone.");
 		return 0;
 	}
 	auto q = vertbreak(list_ptr(v), h, split_max_depth());

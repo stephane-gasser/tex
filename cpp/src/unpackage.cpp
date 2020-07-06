@@ -6,16 +6,6 @@
 #include "freenode.h"
 #include "texte.h"
 
-static void erreurUnpackage(void)
-{
-	print_err("Incompatible list can't be unboxed");
-	helpptr = 3;
-	helpline[2] = "Sorry, Pandora. (You sneaky devil.)";
-	helpline[1] = "I refuse to unbox an \\hbox in vertical mode or vice versa.";
-	helpline[0] = "And I can't open any boxes in math mode.";
-	error();
-}
-
 void unpackage(void)
 {
 	auto c = curchr;
@@ -25,7 +15,7 @@ void unpackage(void)
 		return;
 	if (abs(mode) == mmode || (abs(mode) == vmode && type(p) != vlist_node) || (abs(mode) == hmode && type(p) != hlist_node))
 	{
-		erreurUnpackage();
+		error("Incompatible list can't be unboxed", "Sorry, Pandora. (You sneaky devil.)\nI refuse to unbox an \\hbox in vertical mode or vice versa.\nAnd I can't open any boxes in math mode.");
 		return;
 	}
 	if (c == copy_code)

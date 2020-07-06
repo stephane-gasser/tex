@@ -1,5 +1,5 @@
 #include "trybreak.h"
-#include "confusion.h"
+#include "erreur.h"
 #include "getnode.h"
 #include "badness.h"
 #include "freenode.h"

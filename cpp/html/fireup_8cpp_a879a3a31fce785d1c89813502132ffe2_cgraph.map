@@ -1,43 +1,42 @@
 <map id="fireup" name="fireup">
-<area shape="rect" id="node1" title=" " alt="" coords="5,1103,60,1129"/>
-<area shape="rect" id="node2" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="431,317,533,344"/>
-<area shape="rect" id="node3" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="581,267,624,293"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="581,1052,624,1079"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a86534cacd907643eb3c4fd09e6abf05b" title="the optimum most recent insertion" alt="" coords="125,1432,218,1459"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="461,115,503,141"/>
-<area shape="rect" id="node7" href="$erreur_8cpp.html#a0bbccd15aae646ece75f2703dda44c2e" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="298,115,367,141"/>
-<area shape="rect" id="node8" href="$erreur_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="458,267,506,293"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#a1a87f1c2232ae2ba94e399ffc28ffeee" title="this insertion might break at broken_ptr" alt="" coords="129,1483,214,1509"/>
-<area shape="rect" id="node10" href="$fireup_8cpp.html#ae6a4b1c79d70005ec212dacc5f9c42e1" title=" " alt="" coords="291,1280,374,1307"/>
-<area shape="rect" id="node11" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="123,1331,219,1357"/>
-<area shape="rect" id="node12" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="297,1381,369,1408"/>
-<area shape="rect" id="node13" href="$deletetokenref_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="119,1533,223,1560"/>
-<area shape="rect" id="node14" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="455,900,509,927"/>
-<area shape="rect" id="node15" href="$ensurevbox_8cpp.html#a4141a72a8b4663b9cd1d99b2a7293bea" title=" " alt="" coords="127,216,216,243"/>
-<area shape="rect" id="node16" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="298,419,367,445"/>
-<area shape="rect" id="node17" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="459,621,505,648"/>
-<area shape="rect" id="node18" href="$geqworddefine_8cpp.html#a159f7881894ccff280dcdd1fb31c77bf" title=" " alt="" coords="118,1584,225,1611"/>
-<area shape="rect" id="node19" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="453,824,511,851"/>
-<area shape="rect" id="node20" href="$fireup_8cpp.html#af9be930ac356c88fa54ada483eb4461e" title=" " alt="" coords="117,1635,226,1661"/>
-<area shape="rect" id="node21" href="$constantes_8cpp.html#ae0ed24bf553e8dc5306f6f0a1b0b258c" title="the vertical list to be inserted" alt="" coords="141,1685,202,1712"/>
-<area shape="rect" id="node22" href="$constantes_8cpp.html#a61f4b23e21019dba50e313b7cd705be8" title="the most recent insertion for this subtype" alt="" coords="288,368,377,395"/>
-<area shape="rect" id="node23" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="451,1077,513,1104"/>
-<area shape="rect" id="node24" href="$constantes_8cpp.html#a34ccce0f3beee6b21f6c62506bb33dd4" title="head of the token list for a mark" alt="" coords="135,1736,208,1763"/>
-<area shape="rect" id="node25" href="$parametres_8h.html#a25c00c4beaaee40a26711fd1530430d2" title=" " alt="" coords="108,1787,235,1813"/>
-<area shape="rect" id="node26" href="$newnullbox_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="289,925,376,952"/>
-<area shape="rect" id="node27" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="448,976,516,1003"/>
-<area shape="rect" id="node28" href="$newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="121,1837,222,1864"/>
-<area shape="rect" id="node29" href="$normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="112,1888,231,1915"/>
-<area shape="rect" id="node30" href="$fireup_8cpp.html#af673c8575b43040fb7fcaa5aef2c6ddb" title=" " alt="" coords="119,1939,223,1965"/>
-<area shape="rect" id="node31" href="$constantes_8cpp.html#a765fb197a183d02c528ad03d46cee17f" title="the added cost of breaking a list here" alt="" coords="139,1989,203,2016"/>
-<area shape="rect" id="node32" href="$prunepagetop_8cpp.html#afd81d1b3f22735dc6e67ad0266cf0e89" title=" " alt="" coords="283,672,383,699"/>
-<area shape="rect" id="node33" href="$pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="134,2040,209,2067"/>
-<area shape="rect" id="node34" href="$scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="121,419,221,445"/>
-<area shape="rect" id="node35" href="$shipout_8cpp.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="139,633,203,660"/>
-<area shape="rect" id="node36" href="$constantes_8cpp.html#a9f167cbb0384d96e6e214a8b6520b305" title="the split_top_skip to be used" alt="" coords="286,469,379,496"/>
-<area shape="rect" id="node37" href="$parametres_8h.html#a028fa0ba2a7985475faec46cf881a4d4" title=" " alt="" coords="120,2091,223,2117"/>
-<area shape="rect" id="node38" href="$parametres_8h.html#a822b9a2a37506ed12d91fc3a855f1903" title=" " alt="" coords="443,1128,521,1155"/>
-<area shape="rect" id="node39" href="$parametres_8h.html#aeae39af715748b45d8c086d434987cc2" title=" " alt="" coords="455,1179,509,1205"/>
-<area shape="rect" id="node40" href="$vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="143,1027,200,1053"/>
-<area shape="rect" id="node41" href="$vpackage_8cpp.html#a67d4c487177aa349f7595ddb33aa9534" title=" " alt="" coords="293,1027,372,1053"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,1014,60,1040"/>
+<area shape="rect" id="node2" href="$begintokenlist_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="431,64,533,91"/>
+<area shape="rect" id="node3" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="581,64,624,91"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="581,923,624,950"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a86534cacd907643eb3c4fd09e6abf05b" title="the optimum most recent insertion" alt="" coords="125,1267,218,1294"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="461,203,503,230"/>
+<area shape="rect" id="node7" href="$erreur_8cpp.html#aaa5e5762314112fc9c118ea4b4eaa620" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="298,152,367,179"/>
+<area shape="rect" id="node8" href="$erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc" title=" " alt="" coords="458,127,506,154"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#a1a87f1c2232ae2ba94e399ffc28ffeee" title="this insertion might break at broken_ptr" alt="" coords="129,1318,214,1344"/>
+<area shape="rect" id="node10" href="$fireup_8cpp.html#ae6a4b1c79d70005ec212dacc5f9c42e1" title=" " alt="" coords="291,1064,374,1091"/>
+<area shape="rect" id="node11" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="123,1115,219,1142"/>
+<area shape="rect" id="node12" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="297,1166,369,1192"/>
+<area shape="rect" id="node13" href="$deletetokenref_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="119,1368,223,1395"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="455,558,509,584"/>
+<area shape="rect" id="node15" href="$ensurevbox_8cpp.html#a4141a72a8b4663b9cd1d99b2a7293bea" title=" " alt="" coords="127,240,216,267"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="459,456,505,483"/>
+<area shape="rect" id="node17" href="$geqworddefine_8cpp.html#a159f7881894ccff280dcdd1fb31c77bf" title=" " alt="" coords="118,1419,225,1446"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="453,608,511,635"/>
+<area shape="rect" id="node19" href="$fireup_8cpp.html#af9be930ac356c88fa54ada483eb4461e" title=" " alt="" coords="117,1470,226,1496"/>
+<area shape="rect" id="node20" href="$constantes_8cpp.html#ae0ed24bf553e8dc5306f6f0a1b0b258c" title="the vertical list to be inserted" alt="" coords="141,1520,202,1547"/>
+<area shape="rect" id="node21" href="$constantes_8cpp.html#a61f4b23e21019dba50e313b7cd705be8" title="the most recent insertion for this subtype" alt="" coords="288,1216,377,1243"/>
+<area shape="rect" id="node22" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="451,822,513,848"/>
+<area shape="rect" id="node23" href="$constantes_8cpp.html#a34ccce0f3beee6b21f6c62506bb33dd4" title="head of the token list for a mark" alt="" coords="135,1571,208,1598"/>
+<area shape="rect" id="node24" href="$parametres_8h.html#a25c00c4beaaee40a26711fd1530430d2" title=" " alt="" coords="108,1622,235,1648"/>
+<area shape="rect" id="node25" href="$newnullbox_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="289,608,376,635"/>
+<area shape="rect" id="node26" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="448,710,516,736"/>
+<area shape="rect" id="node27" href="$newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="121,1672,222,1699"/>
+<area shape="rect" id="node28" href="$normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="112,1723,231,1750"/>
+<area shape="rect" id="node29" href="$fireup_8cpp.html#af673c8575b43040fb7fcaa5aef2c6ddb" title=" " alt="" coords="119,1774,223,1800"/>
+<area shape="rect" id="node30" href="$constantes_8cpp.html#a765fb197a183d02c528ad03d46cee17f" title="the added cost of breaking a list here" alt="" coords="139,1824,203,1851"/>
+<area shape="rect" id="node31" href="$prunepagetop_8cpp.html#afd81d1b3f22735dc6e67ad0266cf0e89" title=" " alt="" coords="283,507,383,534"/>
+<area shape="rect" id="node32" href="$pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="134,1875,209,1902"/>
+<area shape="rect" id="node33" href="$scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="121,1926,221,1952"/>
+<area shape="rect" id="node34" href="$shipout_8cpp.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="301,456,365,483"/>
+<area shape="rect" id="node35" href="$constantes_8cpp.html#a9f167cbb0384d96e6e214a8b6520b305" title="the split_top_skip to be used" alt="" coords="286,355,379,382"/>
+<area shape="rect" id="node36" href="$parametres_8h.html#a028fa0ba2a7985475faec46cf881a4d4" title=" " alt="" coords="120,1976,223,2003"/>
+<area shape="rect" id="node37" href="$parametres_8h.html#a822b9a2a37506ed12d91fc3a855f1903" title=" " alt="" coords="443,884,521,911"/>
+<area shape="rect" id="node38" href="$parametres_8h.html#aeae39af715748b45d8c086d434987cc2" title=" " alt="" coords="455,960,509,987"/>
+<area shape="rect" id="node39" href="$vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="143,760,200,787"/>
+<area shape="rect" id="node40" href="$vpackage_8cpp.html#a67d4c487177aa349f7595ddb33aa9534" title=" " alt="" coords="293,762,372,788"/>
 </map>

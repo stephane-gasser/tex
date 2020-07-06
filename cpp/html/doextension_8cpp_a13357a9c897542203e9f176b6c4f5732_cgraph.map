@@ -1,7 +1,7 @@
 <map id="doextension" name="doextension">
 <area shape="rect" id="node1" title=" " alt="" coords="5,636,97,662"/>
 <area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="499,80,577,106"/>
-<area shape="rect" id="node3" href="$confusion_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="345,561,423,588"/>
+<area shape="rect" id="node3" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="345,561,423,588"/>
 <area shape="rect" id="node4" href="$flushnodelist_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="160,636,255,662"/>
 <area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="517,434,559,461"/>
 <area shape="rect" id="node6" href="$constantes_8cpp.html#a177ed5e89b8c5da61476a30ad8d3384b" title="reference count of token list to write" alt="" coords="336,662,432,689"/>

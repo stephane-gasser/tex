@@ -11,15 +11,6 @@
 
 constexpr int end_write_token = cs_token_flag+end_write;
 
-static void erreurWriteout(void)
-{
-	print_err("Unbalanced write command");
-	helpptr = 2;
-	helpline[1] = "On this page there's a \\write with fewer real {'s than }'s.";
-	helpline[0] = "I can't handle that very well; good luck.";
-	error();
-}
-
 void writeout(halfword p)
 {
 	auto q = getavail();
@@ -39,7 +30,7 @@ void writeout(halfword p)
 	gettoken();
 	if (curtok != end_write_token)
 	{
-		erreurWriteout();
+		error("Unbalanced write command", "On this page there's a \\write with fewer real {'s than }'s.\nI can't handle that very well; good luck.");
 		do
 			gettoken();
 		while (curtok != end_write_token);

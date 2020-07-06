@@ -1,5 +1,4 @@
 #include "vertbreak.h"
-#include "confusion.h"
 #include "badness.h"
 #include "impression.h"
 #include "erreur.h"
@@ -12,17 +11,6 @@ scaled &cur_height = active_height[1]; //!< the natural height
 
 //! initialize the height to zero
 static void set_height_zero(int i) { active_height[i] = 0; }
-
-static void erreurVertbreak(void)
-{
-	print_err("Infinite glue shrinkage found in box being split"); 
-	helpptr = 4;
-	helpline[3] = "The box you are \\vsplitting contains some infinitely";
-	helpline[2] = "shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.";
-	helpline[1] = "Such glue doesn't belong there; but you can safely proceed,";
-	helpline[0] = "since the offensive shrinkability has been made finite.";
-	error();
-}
 
 halfword vertbreak(halfword p, scaled h, scaled d)
 {
@@ -115,7 +103,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 			active_height[6] += shrink(q);
 			if (shrink_order(q) && shrink(q))
 			{
-				erreurVertbreak();
+				error("Infinite glue shrinkage found in box being split", "The box you are \\vsplitting contains some infinitely\nshrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.\nSuch glue doesn't belong there; but you can safely proceed,\nsince the offensive shrinkability has been made finite.");
 				r = newspec(q);
 				subtype(r) = 0;
 				deleteglueref(q);

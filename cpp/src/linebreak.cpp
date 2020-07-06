@@ -9,7 +9,7 @@
 #include "getnode.h"
 #include "trybreak.h"
 #include "hyphenate.h"
-#include "confusion.h"
+#include "erreur.h"
 #include "postlinebreak.h"
 #include "freenode.h"
 

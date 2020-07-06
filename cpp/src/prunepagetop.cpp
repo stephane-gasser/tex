@@ -1,7 +1,7 @@
 #include "prunepagetop.h"
 #include "newskipparam.h"
 #include "flushnodelist.h"
-#include "confusion.h"
+#include "erreur.h"
 
 halfword prunepagetop(halfword p)
 {

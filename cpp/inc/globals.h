@@ -68,8 +68,7 @@ extern bool deletionsallowed;
 extern bool setboxallowed;
 extern char history; // 0..3
 extern char errorcount; // -1..100
-inline std::string helpline[6];
-extern char helpptr; // 0..6
+inline std::string helpline;
 extern bool useerrhelp;
 extern bool OKtointerrupt;
 extern bool aritherror;

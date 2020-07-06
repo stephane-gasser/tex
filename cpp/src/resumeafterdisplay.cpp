@@ -1,5 +1,5 @@
 #include "resumeafterdisplay.h"
-#include "confusion.h"
+#include "erreur.h"
 #include "unsave.h"
 #include "pushnest.h"
 #include "getxtoken.h"

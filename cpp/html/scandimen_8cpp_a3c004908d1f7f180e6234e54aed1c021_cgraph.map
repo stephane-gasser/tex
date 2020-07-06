@@ -1,22 +1,20 @@
 <map id="scandimen" name="scandimen">
-<area shape="rect" id="node1" title=" " alt="" coords="5,584,91,611"/>
-<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="493,128,572,155"/>
-<area shape="rect" id="node3" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="626,78,693,104"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="761,179,804,206"/>
-<area shape="rect" id="node5" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="321,179,417,206"/>
-<area shape="rect" id="node6" href="$erreur_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="635,584,683,611"/>
-<area shape="rect" id="node7" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="747,483,819,510"/>
-<area shape="rect" id="node8" href="$getavail_8cpp.html#a57e5861075197f4fe65695ad0b9d4fbb" title="single&#45;word node liberation" alt="" coords="620,255,699,282"/>
-<area shape="rect" id="node9" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="330,230,409,256"/>
-<area shape="rect" id="node10" href="$parametres_8h.html#aa530a2fab0c0a26bbc70cb273b4a22d2" title=" " alt="" coords="346,939,393,966"/>
-<area shape="rect" id="node11" href="$erreur_8cpp.html#ab653e7bc889c7b5a69f69d82594903e9" title=" " alt="" coords="499,686,566,712"/>
-<area shape="rect" id="node12" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="625,787,694,814"/>
-<area shape="rect" id="node13" href="$preparemag_8cpp.html#abf37a40b9d95bc2a1560163dea9ec5c9" title=" " alt="" coords="147,888,237,915"/>
-<area shape="rect" id="node14" href="$rounddecimals_8cpp.html#ab9486c5801fee6279d00594937f45e24" title=" " alt="" coords="139,1040,245,1067"/>
-<area shape="rect" id="node15" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="160,534,224,560"/>
-<area shape="rect" id="node16" href="$scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="293,736,445,763"/>
-<area shape="rect" id="node17" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="509,838,556,864"/>
-<area shape="rect" id="node18" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="506,888,559,915"/>
-<area shape="rect" id="node19" href="$scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240" title=" " alt="" coords="143,78,241,104"/>
-<area shape="rect" id="node20" href="$xnoverd_8cpp.html#a52ee334cb1cd3de8b42c93c6a8a22cd8" title=" " alt="" coords="158,1091,226,1118"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,642,91,669"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="493,389,572,416"/>
+<area shape="rect" id="node3" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="635,288,701,314"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="764,136,807,162"/>
+<area shape="rect" id="node5" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="620,34,716,61"/>
+<area shape="rect" id="node6" href="$erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc" title=" " alt="" coords="509,642,557,669"/>
+<area shape="rect" id="node7" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="632,642,704,669"/>
+<area shape="rect" id="node8" href="$getavail_8cpp.html#a57e5861075197f4fe65695ad0b9d4fbb" title="single&#45;word node liberation" alt="" coords="330,85,409,112"/>
+<area shape="rect" id="node9" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="330,440,409,466"/>
+<area shape="rect" id="node10" href="$parametres_8h.html#aa530a2fab0c0a26bbc70cb273b4a22d2" title=" " alt="" coords="346,921,393,948"/>
+<area shape="rect" id="node11" href="$preparemag_8cpp.html#abf37a40b9d95bc2a1560163dea9ec5c9" title=" " alt="" coords="147,946,237,973"/>
+<area shape="rect" id="node12" href="$rounddecimals_8cpp.html#ab9486c5801fee6279d00594937f45e24" title=" " alt="" coords="139,997,245,1024"/>
+<area shape="rect" id="node13" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="160,566,224,593"/>
+<area shape="rect" id="node14" href="$scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="293,693,445,720"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="509,718,556,745"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="506,782,559,809"/>
+<area shape="rect" id="node17" href="$scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240" title=" " alt="" coords="143,338,241,365"/>
+<area shape="rect" id="node18" href="$xnoverd_8cpp.html#a52ee334cb1cd3de8b42c93c6a8a22cd8" title=" " alt="" coords="158,1048,226,1074"/>
 </map>

@@ -2,7 +2,7 @@
 #include "freenode.h"
 #include "deleteglueref.h"
 #include "deletetokenref.h"
-#include "confusion.h"
+#include "erreur.h"
 
 void flushnodelist(halfword p)
 {

@@ -4,17 +4,7 @@
 #include "deleteglueref.h"
 #include "erreur.h"
 #include "impression.h"
-#include "erreur.h"
 #include "texte.h"
-
-static void erreurFindfontdimen(void)
-{
-	print_err("Font "+esc(TXT(hash[font_id_base+f].rh))+" has only "+std::to_string(fontparams[f])+" fontdimen parameters");
-	helpptr = 2;
-	helpline[1] = "To increase the number of font parameters, you must";
-	helpline[0] = "use \\fontdimen immediately after the \\font is loaded.";
-	error();
-}
 
 void findfontdimen(bool writing)
 {
@@ -49,5 +39,5 @@ void findfontdimen(bool writing)
 			curval = n+parambase[f];
 	}
 	if (curval == fmemptr)
-		erreurFindfontdimen();
+		error("Font "+esc(TXT(hash[font_id_base+f].rh))+" has only "+std::to_string(fontparams[f])+" fontdimen parameters", "To increase the number of font parameters, you must\nuse \\fontdimen immediately after the \\font is loaded.");
 }

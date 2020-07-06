@@ -10,35 +10,6 @@ constexpr char TEX_font_area[] = "TeXfonts:";
 
 static int default_skew_char(void) { return int_par(default_skew_char_code); }
 
-static void start_font_error_message(halfword u, scaled s, const std::string &nom, const std::string &aire, const std::string &msg)
-{
-	print_err("Font "+scs(u)+"="+asFilename(nom, aire, "")+(s >= 0 ? " at "+asScaled(s)+"pt" : s == -1000 ? "" : " scaled "+std::to_string(-s))+msg);
-}
-
-static void erreurReadfontinfo1(halfword u, const std::string &nom, const std::string &aire, scaled s, bool fileopened)
-{
-	start_font_error_message(u, s, nom, aire, fileopened ? " not loadable: Bad metric (TFM) file" : " not loadable: Metric (TFM) file not found");
-	helpptr = 5;
-	helpline[4] = "I wasn't able to read the size data for this font,";
-	helpline[3] = "so I will ignore the font specification.";
-	helpline[2] = "[Wizards can fix TFM files using TFtoPL/PLtoTF.]";
-	helpline[1] = "You might try inserting a different font spec;";
-	helpline[0] = "e.g., type `I\\font<same font id>=<substitute font name>'.";
-	error();
-}
-
-static void erreurReadfontinfo2(halfword u, const std::string &nom, const std::string &aire, scaled s)
-{
-	start_font_error_message(u, s, nom, aire, " not loaded: Not enough room left");
-	helpptr = 4;
-	helpline[3] = "I'm afraid I won't be able to make use of this font,";
-	helpline[2] = "because my memory for character-size data is too small.";
-	helpline[1] = "If you're really stuck, ask a wizard to enlarge me.";
-	helpline[0] = "Or maybe try `I\\font<same font id>=<name of loaded font>'.";
-	error();
-}
-
-
 template<class T> static void read_sixteen(T &z)
 {
 	z = tfmfile.get();
@@ -289,9 +260,9 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 	catch (int e)
 	{
 		if (e == 1)
-			erreurReadfontinfo1(u, nom, aire, s, fileopened);
+			error("Font "+scs(u)+"="+asFilename(nom, aire, "")+(s >= 0 ? " at "+asScaled(s)+"pt" : s == -1000 ? "" : " scaled "+std::to_string(-s))+(fileopened ? " not loadable: Bad metric (TFM) file" : " not loadable: Metric (TFM) file not found"), "I wasn't able to read the size data for this font,\nso I will ignore the font specification.\n[Wizards can fix TFM files using TFtoPL/PLtoTF.]\nYou might try inserting a different font spec;\ne.g., type `I\\font<same font id>=<substitute font name>'.");
 		else
-			erreurReadfontinfo2(u, nom, aire, s);
+			error("Font "+scs(u)+"="+asFilename(nom, aire, "")+(s >= 0 ? " at "+asScaled(s)+"pt" : s == -1000 ? "" : " scaled "+std::to_string(-s))+" not loaded: Not enough room left", "I'm afraid I won't be able to make use of this font,\nbecause my memory for character-size data is too small.\nIf you're really stuck, ask a wizard to enlarge me.\nOr maybe try `I\\font<same font id>=<name of loaded font>'.");
 		if (fileopened)
 			bclose(tfmfile);
 	}

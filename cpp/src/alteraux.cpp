@@ -1,19 +1,10 @@
 #include "alteraux.h"
-#include "reportillegalcase.h"
 #include "scanoptionalequals.h"
 #include "scandimen.h"
 #include "scanint.h"
 #include "impression.h"
 #include "erreur.h"
 #include "texte.h"
-
-static void erreurAlteraux(void)
-{
-	print_err("Bad space factor");
-	helpptr = 1;
-	helpline[0] = "I allow only values in the range 1..32767 here.";
-	interror(curval);
-}
 
 void alteraux(void)
 {
@@ -32,7 +23,7 @@ void alteraux(void)
 		{
 			scanint();
 			if (curval <= 0 || curval > 32767)
-				erreurAlteraux();
+				interror(curval, "Bad space factor", "I allow only values in the range 1..32767 here.");
 			else
 				space_factor = curval;
 		}

@@ -7,34 +7,6 @@
 #include "erreur.h"
 #include "texte.h"
 
-static void erreurScanint1(void)
-{
-	print_err("Improper alphabetic constant");
-	helpptr = 2;
-	helpline[1] = "A one-character control sequence belongs after a ` mark.";
-	helpline[0] = "So I'm essentially inserting \\0 here.";
-	backerror();
-}
-
-static void erreurScanint2(void)
-{
-	print_err("Number too big");
-	helpptr = 2;
-	helpline[1] = "I can only go up to 2147483647='17777777777=\"7FFFFFFF,";
-	helpline[0] = "so I'm using that number instead of yours.";
-	error();
-}
-
-static void erreurScanint3(void)
-{
-	print_err("Missing number, treated as zero");
-	helpptr = 3;
-	helpline[2] = "A number should have been here; I inserted `0'.";
-	helpline[1] = "(If you can't figure out why I needed to see a number,";
-	helpline[0] = "look up `weird error' in the index to The TeXbook.)";
-	backerror();
-}
-
 //! Sets \a curval to an integer.
 //! The \a scan_int routine is used also to scan the integer part of a 
 //! fraction; for example, the `3' in `3.14159' will be found by 
@@ -72,7 +44,7 @@ void scanint(void)
 			curval = curtok-cs_token_flag-(curtok < cs_token_flag+single_base ? active_base : single_base);
 		if (curval > 0xFF)
 		{
-			erreurScanint1();
+			backerror("Improper alphabetic constant", "A one-character control sequence belongs after a ` mark.\nSo I'm essentially inserting \\0 here.");
 			curval = '0';
 		}
 		else
@@ -125,7 +97,7 @@ void scanint(void)
 				{
 					if (OKsofar)
 					{
-						erreurScanint2();
+						error("Number too big", "I can only go up to 2147483647='17777777777=\"7FFFFFFF,\nso I'm using that number instead of yours.");
 						curval = infinity;
 						OKsofar = false;
 					}
@@ -135,7 +107,7 @@ void scanint(void)
 				getxtoken();
 			}
 			if (vacuous)
-				erreurScanint3();
+				backerror("Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
 			else 
 				if (curcmd != spacer)
 					backinput();

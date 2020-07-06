@@ -14,35 +14,6 @@
 #include "alignpeek.h"
 #include "texte.h"
 
-static void erreurInitalign1(void)
-{
-	print_err("Improper "+esc("halign")+" inside $$'s");
-	helpptr = 3;
-	helpline[2] = "Displays can use special alignments (like \\eqalignno)";
-	helpline[1] = "only if nothing but the alignment itself is between $$'s.";
-	helpline[0] = "So I've deleted the formulas that preceded this alignment.";
-	error();
-}
-
-static void erreurInitalign2(void)
-{
-	print_err("Missing # inserted in alignment preamble");
-	helpptr = 3;
-	helpline[2] = "There should be exactly one # between &'s, when an";
-	helpline[1] = "\\halign or \\valign is being set up. In this case you had";
-	helpline[0] = "none, so I've put one in; maybe that will work.";
-}
-
-static void erreurInitalign3(void)
-{
-	print_err("Only one # is allowed per tab");
-	helpptr = 3;
-	helpline[2] = "There should be exactly one # between &'s, when an";
-	helpline[1] = "\\halign or \\valign is being set up. In this case you had";
-	helpline[0] = "more than one, so I'm ignoring all but the first.";
-	error();
-}
-
 void initalign(void)
 {
 	auto savecsptr = curcs;
@@ -50,7 +21,7 @@ void initalign(void)
 	alignstate = -1000000;
 	if (mode == mmode && (tail != head || incompleat_noad))
 	{
-		erreurInitalign1();
+		error("Improper "+esc("halign")+" inside $$'s", "Displays can use special alignments (like \\eqalignno)\nonly if nothing but the alignment itself is between $$'s.\nSo I've deleted the formulas that preceded this alignment.");
 		flushmath();
 	}
 	pushnest();
@@ -88,8 +59,7 @@ void initalign(void)
 					curloop = curalign;
 				else
 				{
-					erreurInitalign2();
-					backerror();
+					backerror("Missing # inserted in alignment preamble", "There should be exactly one # between &'s, when an\n\\halign or \\valign is being set up. In this case you had\nnone, so I've put one in; maybe that will work.");
 					break;
 				}
 			else 
@@ -114,7 +84,7 @@ void initalign(void)
 				break;
 			if (curcmd == mac_param)
 			{
-				erreurInitalign3();
+				error("Only one # is allowed per tab", "There should be exactly one # between &'s, when an\n\\halign or \\valign is being set up. In this case you had\nmore than one, so I'm ignoring all but the first.");
 				continue;
 			}
 			link(p) = getavail();

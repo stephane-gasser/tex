@@ -4,7 +4,7 @@
 #include "newglue.h"
 #include "newpenalty.h"
 #include "buildpage.h"
-#include "privileged.h"
+#include "erreur.h"
 
 bool itsallover(void)
 {

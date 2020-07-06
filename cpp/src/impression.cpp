@@ -1186,32 +1186,6 @@ static void showactivities(void)
 	}
 }
 
-static void erreurShowwhatever1(void)
-{
-	helpptr = 0;
-	error();
-}
-
-static void erreurShowwhatever2(void)
-{
-	helpptr = 3;
-	helpline[2] = "This isn't an error message; I'm just \\showing something.";
-	helpline[1] = "Type `I\\show...' to show more (e.g., \\show\\cs,";
-	helpline[0] = "\\showthe\\count10, \\showbox255, \\showlists).";
-	error();
-}
-
-static void erreurShowwhatever3(void)
-{
-	helpptr = 5;
-	helpline[4] = "This isn't an error message; I'm just \\showing something.";
-	helpline[3] = "Type `I\\show...' to show more (e.g., \\show\\cs,";
-	helpline[2] = "\\showthe\\count10, \\showbox255, \\showlists).";
-	helpline[1] = "And type `I\\tracingonline=1\\show...' to show boxes and";
-	helpline[0] = "lists on your terminal as well as in the transcript file.";
-	error();
-}
-
 void showwhatever(void)
 {
 	switch (curchr)
@@ -1253,12 +1227,12 @@ void showwhatever(void)
 	}
 	if (interaction < error_stop_mode)
 	{
-		erreurShowwhatever1();
+		error("", "");
 		errorcount--;
 	}
 	else 
 		if (tracing_online() > 0)
-			erreurShowwhatever2();
+			error("", "This isn't an error message; I'm just \\showing something.\nType `I\\show...' to show more (e.g., \\show\\cs,\n\\showthe\\count10, \\showbox255, \\showlists).");
 		else
-			erreurShowwhatever3();
+			error("", "This isn't an error message; I'm just \\showing something.\nType `I\\show...' to show more (e.g., \\show\\cs,\n\\showthe\\count10, \\showbox255, \\showlists).\nAnd type `I\\tracingonline=1\\show...' to show boxes and\nlists on your terminal as well as in the transcript file.");
 }

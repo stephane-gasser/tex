@@ -10,32 +10,10 @@
 #include "erreur.h"
 #include "xovern.h"
 #include "vertbreak.h"
-#include "confusion.h"
 #include "badness.h"
 #include "fireup.h"
 #include "newspec.h"
 #include "texte.h"
-
-static void erreurBuildpage1(int n)
-{
-	print_err("Infinite glue shrinkage inserted from "+esc("skip")+std::to_string(n));
-	helpptr = 3;
-	helpline[2] = "The correction glue for page breaking with insertions";
-	helpline[1] = "must have finite shrinkability. But you may proceed,";
-	helpline[0] = "since the offensive shrinkability has been made finite.";
-	error();
-}
-
-static void erreurBuildpage2(void)
-{
-	print_err("Infinite glue shrinkage found on current page");
-	helpptr = 4;
-	helpline[3] = "The page about to be output contains some infinitely";
-	helpline[2] = "shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.";
-	helpline[1] = "Such glue doesn't belong there; but you can safely proceed,";
-	helpline[0] = "since the offensive shrinkability has been made finite.";
-	error();
-}
 
 //! Append contributions to the current page.
 void buildpage(void)
@@ -158,7 +136,7 @@ void buildpage(void)
 					pagesofar[2+type(q)] += depth(q);
 					page_shrink += height(q);
 					if (subtype(q) && height(q))
-						erreurBuildpage1(n);
+						error("Infinite glue shrinkage inserted from "+esc("skip")+std::to_string(n), "The correction glue for page breaking with insertions\nmust have finite shrinkability. But you may proceed,\nsince the offensive shrinkability has been made finite.");
 				}
 				if (type(r) == vlist_node)
 					insertpenalties += width(p);
@@ -264,7 +242,7 @@ void buildpage(void)
 			page_shrink += height(q);
 			if (subtype(q) && height(q))
 			{
-				erreurBuildpage2();
+				error("Infinite glue shrinkage found on current page", "The page about to be output contains some infinitely\nshrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.\nSuch glue doesn't belong there; but you can safely proceed,\nsince the offensive shrinkability has been made finite.");
 				r = newspec(q);
 				shrink_order(r) = normal;
 				deleteglueref(q);

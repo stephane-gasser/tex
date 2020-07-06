@@ -1,7 +1,6 @@
 #include "erreur.h"
 #include "impression.h"
 #include "jumpout.h"
-#include "giveerrhelp.h"
 #include "terminput.h"
 #include "gettoken.h"
 #include "beginfilereading.h"
@@ -12,8 +11,11 @@
 #include "normalizeselector.h"
 #include <iostream>
 
-void error(void)
+void error(const std::string &msg, const std::string &hlp)
 {
+	if (msg != "")
+		print_err(msg);
+	helpline = hlp;
 	if (history < error_message_issued)
 		history = error_message_issued;
 	print("."+showcontext());
@@ -62,9 +64,7 @@ void error(void)
 						curchr = s3;
 						alignstate = s4;
 						OKtointerrupt = true;
-						helpptr = 2;
-						helpline[1] = "I have just deleted some text, as you asked.";
-						helpline[0] = "You can now delete more, or insert, or whatever.";
+						helpline = "I have just deleted some text, as you asked.";
 						print(showcontext());
 						return;
 					}
@@ -87,28 +87,16 @@ void error(void)
 					}
 					else
 					{
-						if (helpptr == 0)
-						{
-							helpptr = 2;
-							helpline[1] = "Sorry, I don't know how to help in this situation.";
-							helpline[0] = "Maybe you should try asking a human?";
-						}
-						do
-						{
-							helpptr--;
-							print(helpline[helpptr]);
-							println();
-						} while (helpptr);
+						if (helpline == "")
+							helpline = "Sorry, I don't know how to help in this situation.\nMaybe you should try asking a human?";
+						print(helpline);
+						println();
 					}
-					helpptr = 4;
-					helpline[3] = "Sorry, I already gave what help I could...";
-					helpline[2] = "Maybe you should try asking a human?";
-					helpline[1] = "An error might have occurred before I noticed any problems.";
-					helpline[0] = "``If all else fails, read the instructions.''";
+					helpline = "Sorry, I already gave what help I could...\nMaybe you should try asking a human?\nAn error might have occurred before I noticed any problems.\n``If all else fails, read the instructions.''";
 					continue;
 				case 'I':
 					beginfilereading();
-					if (last > First + 1)
+					if (last > First+1)
 					{
 						loc = First+1;
 						buffer[First] = ' ';
@@ -172,10 +160,10 @@ void error(void)
 		giveerrhelp();
 	}
 	else
-		while (helpptr > 0)
+		if (helpline != "")
 		{
-			helpptr--;
-			printnl(helpline[helpptr]);
+			printnl(helpline);
+			helpline = "";
 		}
 	println();
 	if (interaction > batch_mode)
@@ -183,62 +171,13 @@ void error(void)
 	println();
 }
 
-void inserror(void)
+void inserror(const std::string &msg, const std::string &hlp)
 {
 	OKtointerrupt = false;
 	backinput();
 	token_type = inserted;
 	OKtointerrupt = true;
-	error();
-}
-
-void alignerror(void)
-{
-	if (abs(alignstate) > 2)
-	{
-		print_err("Misplaced "+cmdchr(curcmd, curchr));
-		if (curtok == tab_token+'&')
-		{
-			helpptr = 6;
-			helpline[5] = "I can't figure out why you would want to use a tab mark";
-			helpline[4] = "here. If you just want an ampersand, the remedy is";
-			helpline[3] = "simple: Just type `I\\&' now. But if some right brace";
-			helpline[2] = "up above has ended a previous alignment prematurely,";
-			helpline[1] = "you're probably due for more error messages, and you";
-			helpline[0] = "might try typing `S' now just to see what is salvageable.";
-		}
-		else
-		{
-			helpptr = 5;
-			helpline[4] = "I can't figure out why you would want to use a tab mark";
-			helpline[3] = "or \\cr or \\span just now. If something like a right brace";
-			helpline[2] = "up above has ended a previous alignment prematurely,";
-			helpline[1] = "you're probably due for more error messages, and you";
-			helpline[0] = "might try typing `S' now just to see what is salvageable.";
-		}
-		error();
-	}
-	else
-	{
-		backinput();
-		if (alignstate < 0)
-		{
-			print_err("Missing { inserted");
-			alignstate++;
-			curtok = left_brace_token+'{'; 
-		}
-		else
-		{
-			print_err("Missing } inserted");
-			alignstate--;
-			curtok = right_brace_token+ '}';
-		}
-		helpptr = 3;
-		helpline[2] = "I've put in what seems to be necessary to fix";
-		helpline[1] = "the current column of the current alignment.";
-		helpline[0] = "Try to go on, since this might almost work.";
-		inserror();
-	}
+	error(msg, hlp);
 }
 
 //! Back up one token and call \a error.
@@ -246,29 +185,21 @@ void alignerror(void)
 //!just before issuing an error message. This routine, like \a back_input,
 //!requires that \a cur_tok has been set. We disable interrupts during the
 //!call of \a back_input so that the help message won't be lost.
-void backerror(void)
+void backerror(const std::string &msg, const std::string &hlp)
 {
 	OKtointerrupt = false;
 	backinput();
 	OKtointerrupt = true;
-	error();
-}
-
-void cserror(void)
-{
-	print_err("Extra "+esc("endcsname"));
-	helpptr = 1;
-	helpline[0] = "I'm ignoring this, since I wasn't doing a \\csname.";
-	error();
+	error(msg, hlp);
 }
 
 //! At certain times box 255 is supposed to be void (i.e., |null|),
 //! or an insertion box is supposed to be ready to accept a vertical list.
 //!  If not, an error message is printed, and the following subroutine
 //!  flushes the unwanted contents, reporting them to the user.
-void boxerror(eightbits n)
+void boxerror(eightbits n, const std::string &msg, const std::string &hlp)
 {
-	error();
+	error(msg, hlp);
 	begindiagnostic();
 	printnl("The following box has been deleted:"+showbox(box(n)));
 	print(enddiagnostic(true));
@@ -284,50 +215,42 @@ void clearforerrorprompt(void)
 	std::cin.clear();
 }
 
-void fatalerror(const std::string &s)
+void fatal(const std::string &msg, const std::string &hlp)
 {
-	normalizeselector();
-	print_err("Emergency stop");
-	helpptr = 1;
-	helpline[0] = s;
 	if (interaction == error_stop_mode)
 		interaction = scroll_mode;
 	if (logopened)
-		error();
+		error(msg, hlp);
+	else
+		print_err(msg);
 	history = fatal_error_stop;
 	jumpout();
 }
 
-void interror(int n)
+void confusion(const std::string &s)
 {
-	print(" ("+std::to_string(n)+")");
-	error();
+	normalizeselector();
+	if (history < error_message_issued)
+		fatal("This can't happen ("+s+")", "I'm broken. Please show this to someone who can fix can fix");
+	else
+		fatal("I can't go on meeting you like this", "One of your faux pas seems to have wounded me deeply...\nin fact, I'm barely conscious. Please fix it and try again.");
 }
 
-void muerror(void)
+void overflow(const std::string &s, int n)
 {
-	print_err("Incompatible glue units"); 
-	helpptr = 1;
-	helpline[0] = "I'm going to assume that 1mu=1pt when they're mixed.";
-	error();
+	normalizeselector();
+	fatal("TeX capacity exceeded, sorry ["+s+"="+std::to_string(n)+"]", "If you really absolutely need more capacity,\nyou can ask a wizard to enlarge me.");
 }
 
-void noalignerror(void)
+void fatalerror(const std::string &s)
 {
-	print_err("Misplaced "+esc("noalign"));
-	helpptr = 2;
-	helpline[1] = "I expect to see \\noalign only after the \\cr of";
-	helpline[0] = "an alignment. Proceed, and I'll ignore this case.";
-	error();
+	normalizeselector();
+	fatal("Emergency stop", s);
 }
 
-void omiterror(void)
+void interror(int n, const std::string &msg, const std::string &hlp)
 {
-	print_err("Misplaced "+esc("omit"));
-	helpptr = 2;
-	helpline[1] = "I expect to see \\omit only after tab marks or the \\cr of";
-	helpline[0] = "an alignment. Proceed, and I'll ignore this case.";
-	error();
+	error(msg+" ("+std::to_string(n)+")", hlp);
 }
 
 //! make sure that the pool hasn't overflowed
@@ -335,21 +258,6 @@ void str_room(int n)
 {
   if (poolptr+n > poolsize)
 	  overflow("pool size", poolsize-initpoolptr); 
-}
-
-void overflow(const std::string &s, int n)
-{
-	normalizeselector();
-	print_err("TeX capacity exceeded, sorry ["+s+"="+std::to_string(n)+"]");
-	helpptr = 2;
-	helpline[1] = "If you really absolutely need more capacity,";
-	helpline[0] = "you can ask a wizard to enlarge me.";
-	if (interaction == error_stop_mode)
-		interaction = scroll_mode;
-	if (logopened)
-		error();
-	history = fatal_error_stop;
-	jumpout();
 }
 
 void check_full_save_stack(void)
@@ -362,20 +270,9 @@ void check_full_save_stack(void)
 	}
 }
 
-void youcant(void)
-{
-	print_err("You can't use `"+cmdchr(curcmd, curchr)+"' in "+asMode(mode));
-}
-
 void reportillegalcase(void)
 {
-	youcant();
-	helpptr = 4;
-	helpline[3] = "Sorry, but I'm not programmed to handle this case;";
-	helpline[2] = "I'll just pretend that you didn't ask for it.";
-	helpline[1] = "If you're in the wrong mode, you might be able to";
-	helpline[0] = "return to the right one by typing `I}' or `I$' or `I\\par'.";
-	error();
+	error("You can't use `"+cmdchr(curcmd, curchr)+"' in "+asMode(mode), "Sorry, but I'm not programmed to handle this case;\nI'll just pretend that you didn't ask for it.\nIf you're in the wrong mode, you might be able to\nreturn to the right one by typing `I}' or `I$' or `I\\par'.");
 }
 
 void giveerrhelp(void)
@@ -391,32 +288,3 @@ bool privileged(void)
 	return false;
 }
 
-static void erreurConfusion1(const std::string &s)
-{
-	print_err("This can't happen ("+s+")");
-	helpptr = 1;
-	helpline[0] = "I'm broken. Please show this to someone who can fix can fix";
-}
-
-static void erreurConfusion2(void)
-{
-	print_err("I can't go on meeting you like this");
-	helpptr = 2;
-	helpline[1] = "One of your faux pas seems to have wounded me deeply...";
-	helpline[0] = "in fact, I'm barely conscious. Please fix it and try again.";
-}
-
-void confusion(const std::string &s)
-{
-	normalizeselector();
-	if (history < error_message_issued)
-		erreurConfusion1(s);
-	else
-		erreurConfusion2();
-	if (interaction == error_stop_mode)
-		interaction = scroll_mode;
-	if (logopened)
-		error();
-	history = fatal_error_stop;
-	jumpout();
-}

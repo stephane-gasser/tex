@@ -1,9 +1,10 @@
 <map id="shrink_order" name="shrink_order">
-<area shape="rect" id="node1" title="order of infinity for shrinking" alt="" coords="189,132,283,159"/>
-<area shape="rect" id="node2" href="$linebreak_8cpp.html#abe07bda0bdd114e23a3709425a227dd0" title=" " alt="" coords="13,5,133,32"/>
-<area shape="rect" id="node3" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="5,56,141,83"/>
-<area shape="rect" id="node4" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="38,107,109,133"/>
-<area shape="rect" id="node5" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="39,157,107,184"/>
-<area shape="rect" id="node6" href="$mathglue_8h.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="36,208,111,235"/>
-<area shape="rect" id="node7" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="35,259,111,285"/>
+<area shape="rect" id="node1" title="order of infinity for shrinking" alt="" coords="431,137,524,163"/>
+<area shape="rect" id="node2" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="121,35,199,62"/>
+<area shape="rect" id="node3" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="5,10,73,37"/>
+<area shape="rect" id="node4" href="$linebreak_8cpp.html#abe07bda0bdd114e23a3709425a227dd0" title=" " alt="" coords="255,86,375,113"/>
+<area shape="rect" id="node5" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="247,137,383,163"/>
+<area shape="rect" id="node6" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="279,187,350,214"/>
+<area shape="rect" id="node7" href="$mathglue_8h.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="277,238,352,265"/>
+<area shape="rect" id="node8" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="277,289,353,315"/>
 </map>

@@ -1,24 +1,15 @@
 #include "deletelast.h"
-#include "youcant.h"
+#include "impression.h"
 #include "erreur.h"
 #include "flushnodelist.h"
 #include "texte.h"
-
-static void erreurDeletelast(void)
-{
-	youcant();
-	helpptr = 2;
-	helpline[1] = "Sorry...I usually can't take things from the current page.";
-	helpline[0] = curchr == 11 ? "Try `I\\kern-\\lastkern' instead." : curchr == '\n' ? "Try `I\\vskip-\\lastskip' instead." : "Perhaps you can make the output routine do it.";
-	error();
-}
 
 void deletelast(void)
 {
 	if (mode == vmode && tail == head)
 	{
 		if (curchr != '\n' || lastglue != empty_flag)
-			erreurDeletelast();
+			error("You can't use `"+cmdchr(curcmd, curchr)+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page."+std::string(curchr == 11 ? "Try `I\\kern-\\lastkern' instead." : curchr == '\n' ? "Try `I\\vskip-\\lastskip' instead." : "Perhaps you can make the output routine do it."));
 	}
 	else 
 		if (tail < himemmin)

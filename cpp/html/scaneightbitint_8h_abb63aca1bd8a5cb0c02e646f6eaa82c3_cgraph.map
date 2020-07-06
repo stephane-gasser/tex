@@ -1,6 +1,5 @@
 <map id="scaneightbitint" name="scaneightbitint">
-<area shape="rect" id="node1" title=" " alt="" coords="5,56,112,83"/>
-<area shape="rect" id="node2" href="$erreur_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="161,5,223,32"/>
-<area shape="rect" id="node3" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="272,81,341,108"/>
-<area shape="rect" id="node4" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="160,107,224,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,112,57"/>
+<area shape="rect" id="node2" href="$erreur_8cpp.html#a4e4be46a4276e7ab8bae6246144187a4" title=" " alt="" coords="161,5,223,32"/>
+<area shape="rect" id="node3" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="160,56,224,83"/>
 </map>

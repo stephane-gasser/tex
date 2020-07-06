@@ -1,18 +1,17 @@
 <map id="scantoks" name="scantoks">
-<area shape="rect" id="node1" title=" " alt="" coords="5,398,80,425"/>
-<area shape="rect" id="node2" href="$erreur_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="461,145,537,172"/>
-<area shape="rect" id="node3" href="$erreur_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="587,196,635,222"/>
-<area shape="rect" id="node4" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="683,246,755,273"/>
-<area shape="rect" id="node5" href="$getnext_8cpp.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="803,246,868,273"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="929,576,972,602"/>
-<area shape="rect" id="node7" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="916,170,985,197"/>
-<area shape="rect" id="node8" href="$expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="319,348,383,374"/>
-<area shape="rect" id="node9" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="466,652,533,678"/>
-<area shape="rect" id="node10" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="460,449,539,476"/>
-<area shape="rect" id="node11" href="$scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="301,145,401,172"/>
-<area shape="rect" id="node12" href="$impression_8cpp.html#af7cfdbcf9e3fceeef51678778974091c" title=" " alt="" coords="164,550,207,577"/>
-<area shape="rect" id="node13" href="$getavail_8cpp.html#ab66fdad2e7e67fc6932956666eb928ba" title=" " alt="" coords="291,652,412,678"/>
-<area shape="rect" id="node14" href="$thetoks_8cpp.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="153,601,218,628"/>
-<area shape="rect" id="node15" href="$constantes_8cpp.html#af755b301592c71df76696d1a360984de" title="reference count preceding a token list" alt="" coords="128,702,243,729"/>
-<area shape="rect" id="node16" href="$xtoken_8cpp.html#a2e46936a66be3da34c1306e4ec999ffb" title=" " alt="" coords="155,449,216,476"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,345,80,372"/>
+<area shape="rect" id="node2" href="$erreur_8cpp.html#ae3f6c9874539e99c231da30e2a94c0db" title="Back up one token and call error." alt="" coords="461,195,537,221"/>
+<area shape="rect" id="node3" href="$erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc" title=" " alt="" coords="587,195,635,221"/>
+<area shape="rect" id="node4" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="683,195,755,221"/>
+<area shape="rect" id="node5" href="$getnext_8cpp.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="803,245,868,272"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="916,367,959,393"/>
+<area shape="rect" id="node7" href="$expand_8cpp.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="319,320,383,347"/>
+<area shape="rect" id="node8" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="466,467,533,493"/>
+<area shape="rect" id="node9" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="460,347,539,373"/>
+<area shape="rect" id="node10" href="$scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="301,245,401,272"/>
+<area shape="rect" id="node11" href="$impression_8cpp.html#af7cfdbcf9e3fceeef51678778974091c" title=" " alt="" coords="164,624,207,651"/>
+<area shape="rect" id="node12" href="$getavail_8cpp.html#ab66fdad2e7e67fc6932956666eb928ba" title=" " alt="" coords="291,624,412,651"/>
+<area shape="rect" id="node13" href="$thetoks_8cpp.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="153,523,218,549"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#af755b301592c71df76696d1a360984de" title="reference count preceding a token list" alt="" coords="128,675,243,701"/>
+<area shape="rect" id="node15" href="$xtoken_8cpp.html#a2e46936a66be3da34c1306e4ec999ffb" title=" " alt="" coords="155,371,216,397"/>
 </map>

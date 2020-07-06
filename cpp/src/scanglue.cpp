@@ -16,26 +16,26 @@ void scanglue(smallnumber level)
 		do
 			getxtoken();
 		while (curcmd == spacer);
-		if (curtok == other_char*0x1'00+'-')
+		if (curtok == other_token+'-')
 		{
 			negative = !negative;
-			curtok = other_char*0x1'00+'+';
+			curtok = other_token+'+';
 		}
-	} while (curtok != other_char*0x1'00+'+');
+	} while (curtok != other_token+'+');
 	if (curcmd >= min_internal && curcmd <= max_internal)
 	{
 		scansomethinginternal(level, negative);
 		if (curvallevel >= 2)
 		{
 			if (curvallevel != level)
-				muerror();
+				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
 			return;
 		}
 		if (curvallevel == 0)
 			scandimen(mu, false, true);
 		else 
 			if (level == 3)
-				muerror();
+				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
 	}
 	else
 	{

@@ -12,35 +12,6 @@
 //! |mem| location of math glue spec
 static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 
-static void erreurScansomethinginternal1(void)
-{
-	print_err("Missing number, treated as zero");
-	helpptr = 3;
-	helpline[2] = "A number should have been here; I inserted `0'.";
-	helpline[1] = "(If you can't figure out why I needed to see a number,";
-	helpline[0] = "look up `weird error' in the index to The TeXbook.)";
-	backerror();
-}
-
-static void erreurScansomethinginternal2(halfword m)
-{
-	print_err("Improper "+cmdchr(set_aux, m));
-	helpptr = 4;
-	helpline[3] = "You can refer to \\spacefactor only in horizontal mode;";
-	helpline[2] = "you can refer to \\prevdepth only in vertical mode; and";
-	helpline[1] = "neither of these is meaningful inside \\write. So";
-	helpline[0] = "I'm forgetting what you said and using zero instead.";
-	error();
-}
-
-static void erreurScansomethinginternal3(void)
-{
-	print_err("You can't use `"+cmdchr(curcmd, curchr)+"' after "+esc("the"));
-	helpptr = 1;
-	helpline[0] = "I'm forgetting what you said and using zero instead.";
-	error();
-}
-
 void scansomethinginternal(smallnumber level, bool negative)
 {
 	halfword m = curchr;
@@ -63,7 +34,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case def_font:
 			if (level != tok_val)
 			{
-				erreurScansomethinginternal1();
+				backerror("Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
 				scanned_result(0, dimen_val);
 			}
 			else 
@@ -98,7 +69,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 		case set_aux:
 			if (abs(mode) != m)
 			{
-				erreurScansomethinginternal2(m);
+				error("Improper "+cmdchr(set_aux, m), "You can refer to \\spacefactor only in horizontal mode;\nyou can refer to \\prevdepth only in vertical mode; and\nneither of these is meaningful inside \\write. So\nI'm forgetting what you said and using zero instead.");
 				if (level != tok_val)
 					scanned_result(0, dimen_val);
 				else
@@ -233,7 +204,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 			}
 			break;
 		default:
-			erreurScansomethinginternal3();
+			error("You can't use `"+cmdchr(curcmd, curchr)+"' after "+esc("the"), "I'm forgetting what you said and using zero instead.");
 			if (level != tok_val)
 				scanned_result(0, dimen_val);
 			else
@@ -245,7 +216,7 @@ void scansomethinginternal(smallnumber level, bool negative)
 			curval = width(curval);
 		else 
 			if (curvallevel == mu_val)
-			muerror();
+				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
 		curvallevel--;
 	}
 	if (negative)

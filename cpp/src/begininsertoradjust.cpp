@@ -8,14 +8,6 @@
 #include "pushnest.h"
 #include "texte.h"
 
-static void erreurBeginInsertoradjust(void)
-{
-	print_err("You can't "+esc("insert")+"255");
-	helpptr = 1;
-	helpline[0] = "I'm changing to \\insert0; box 255 is special.";
-	error();
-}
-
 void begininsertoradjust(void)
 {
 	if (curcmd == vadjust)
@@ -25,7 +17,7 @@ void begininsertoradjust(void)
 		scaneightbitint();
 		if (curval == 255)
 		{
-			erreurBeginInsertoradjust();
+			error("You can't "+esc("insert")+"255", "I'm changing to \\insert0; box 255 is special.");
 			curval = 0;
 		}
 	}

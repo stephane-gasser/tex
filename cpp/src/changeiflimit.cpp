@@ -1,5 +1,5 @@
 #include "changeiflimit.h"
-#include "confusion.h"
+#include "erreur.h"
 
 void changeiflimit(smallnumber l, halfword p)
 {

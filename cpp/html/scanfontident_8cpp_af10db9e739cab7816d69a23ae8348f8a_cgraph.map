@@ -1,9 +1,8 @@
 <map id="scanfontident" name="scanfontident">
-<area shape="rect" id="node1" title=" " alt="" coords="5,132,105,159"/>
-<area shape="rect" id="node2" href="$erreur_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="165,5,241,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,105,133"/>
+<area shape="rect" id="node2" href="$erreur_8cpp.html#ae3f6c9874539e99c231da30e2a94c0db" title="Back up one token and call error." alt="" coords="165,5,241,32"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#aca760671a22142e0e59d362c04885039" title=" " alt="" coords="169,56,238,83"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="309,81,363,108"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="301,81,355,108"/>
 <area shape="rect" id="node5" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="164,157,243,184"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="301,233,371,260"/>
-<area shape="rect" id="node7" href="$scanfourbitint_8cpp.html#a44ab07c8d4889fe956cbff3d73cf58d3" title=" " alt="" coords="153,259,253,285"/>
+<area shape="rect" id="node6" href="$scanfourbitint_8cpp.html#a44ab07c8d4889fe956cbff3d73cf58d3" title=" " alt="" coords="153,208,253,235"/>
 </map>

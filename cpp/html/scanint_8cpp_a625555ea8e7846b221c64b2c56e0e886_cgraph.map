@@ -1,10 +1,9 @@
 <map id="scanint" name="scanint">
-<area shape="rect" id="node1" title="Sets curval to an integer." alt="" coords="5,107,69,133"/>
-<area shape="rect" id="node2" href="$erreur_8cpp.html#a65b8b2c3bf6ac32ae0eec0468e9d265e" title="Back up one token and call error." alt="" coords="317,107,393,133"/>
-<area shape="rect" id="node3" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="441,56,520,83"/>
-<area shape="rect" id="node4" href="$erreur_8cpp.html#a518288848eb2471573b6581060452931" title=" " alt="" coords="457,132,505,159"/>
-<area shape="rect" id="node5" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="568,56,640,83"/>
-<area shape="rect" id="node6" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="154,157,233,184"/>
-<area shape="rect" id="node7" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="321,208,390,235"/>
-<area shape="rect" id="node8" href="$scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="117,107,269,133"/>
+<area shape="rect" id="node1" title="Sets curval to an integer." alt="" coords="5,124,69,150"/>
+<area shape="rect" id="node2" href="$erreur_8cpp.html#ae3f6c9874539e99c231da30e2a94c0db" title="Back up one token and call error." alt="" coords="317,149,393,176"/>
+<area shape="rect" id="node3" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="441,48,520,74"/>
+<area shape="rect" id="node4" href="$erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc" title=" " alt="" coords="457,124,505,150"/>
+<area shape="rect" id="node5" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="568,48,640,74"/>
+<area shape="rect" id="node6" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="154,250,233,277"/>
+<area shape="rect" id="node7" href="$scansomethinginternal_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="117,98,269,125"/>
 </map>

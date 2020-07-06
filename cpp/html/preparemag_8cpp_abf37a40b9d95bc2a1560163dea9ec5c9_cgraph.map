@@ -1,8 +1,6 @@
 <map id="preparemag" name="preparemag">
-<area shape="rect" id="node1" title=" " alt="" coords="5,107,96,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,96,83"/>
 <area shape="rect" id="node2" href="$geqworddefine_8cpp.html#a159f7881894ccff280dcdd1fb31c77bf" title=" " alt="" coords="144,5,251,32"/>
-<area shape="rect" id="node3" href="$erreur_8cpp.html#a52a3c9863ed2b03820053c8eb5f2ba67" title=" " alt="" coords="166,56,229,83"/>
+<area shape="rect" id="node3" href="$erreur_8cpp.html#a4e4be46a4276e7ab8bae6246144187a4" title=" " alt="" coords="166,56,229,83"/>
 <area shape="rect" id="node4" href="$parametres_8h.html#aa530a2fab0c0a26bbc70cb273b4a22d2" title=" " alt="" coords="174,107,221,133"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194" title=" " alt="" coords="163,157,232,184"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="299,183,356,209"/>
 </map>

@@ -6,27 +6,6 @@
 #include "runaway.h"
 #include "texte.h"
 
-static void erreurCheckoutervalidity1(const std::string &s)
-{
-	print_err(curcs ? "Forbidden control sequence found" : "File ended while scanning "+s+" of "+scs(warningindex));
-	helpptr = 4;
-	helpline[3] = "I suspect you have forgotten a `}', causing me";
-	helpline[2] = "to read past where you wanted me to stop.";
-	helpline[1] = "I'll try to recover; but if the error is serious,";
-	helpline[0] = "you'd better type `E' or `X' now and fix your file.";
-	error();
-}
-
-static void erreurCheckoutervalidity2(void)
-{
-	print_err("Incomplete "+cmdchr(if_test, curif)+"; all text was ignored after line "+std::to_string(skipline));
-	helpptr = 3;
-	helpline[2] = curcs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.";
-	helpline[1] = "This kind of error happens when you say `\\if...' and forget";
-	helpline[0] = "the matching `\\fi'. I've inserted a `\\fi'; this might work.";
-	inserror();
-}
-
 void checkoutervalidity(void)
 {
 	if (scannerstatus)
@@ -51,16 +30,16 @@ void checkoutervalidity(void)
 			switch (scannerstatus)
 			{
 				case defining:
-					erreurCheckoutervalidity1("definition");
+					error(curcs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.");
 					info(p) = right_brace_token+'}';
 					break;
 				case matching:
-					erreurCheckoutervalidity1("use");
+					error(curcs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.");
 					info(p) = partoken;
 					longstate = outer_call;
 					break;
 				case aligning:
-					erreurCheckoutervalidity1("preamble");
+					error(curcs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.");
 					info(p) = right_brace_token+'}';
 					q = p;
 					p = getavail();
@@ -69,14 +48,14 @@ void checkoutervalidity(void)
 					alignstate = -1000000;
 					break;
 				case absorbing:
-					erreurCheckoutervalidity1("text");
+					error(curcs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.");
 					info(p) = right_brace_token+'}';
 			}
 			ins_list(p);
 		}
 		else
 		{
-			erreurCheckoutervalidity2();
+			inserror("Incomplete "+cmdchr(if_test, curif)+"; all text was ignored after line "+std::to_string(skipline), std::string(curcs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.");
 			curtok = frozen_fi+cs_token_flag;
 		}
 		curcs = 0;

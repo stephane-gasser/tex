@@ -5,15 +5,6 @@
 #include "erreur.h"
 #include "texte.h"
 
-static void erreurScanfontident(void)
-{
-	print_err("Missing font identifier");
-	helpptr = 2;
-	helpline[1] = "I was looking for a control sequence whose";
-	helpline[0] = "current meaning has been defined by \\font.";
-	backerror();
-}
-
 void scanfontident(void)
 {
 	do
@@ -34,7 +25,7 @@ void scanfontident(void)
 			}
 			else
 			{
-				erreurScanfontident();
+				backerror("Missing font identifier", "I was looking for a control sequence whose\ncurrent meaning has been defined by \\font.");
 				f = null_font;
 			}
 	curval = f;

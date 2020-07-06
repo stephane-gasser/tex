@@ -1,20 +1,21 @@
 <map id="nucleus" name="nucleus">
-<area shape="rect" id="node1" title="the nucleus field of a noad" alt="" coords="475,435,541,461"/>
-<area shape="rect" id="node2" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="331,283,405,309"/>
-<area shape="rect" id="node3" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="139,181,261,208"/>
-<area shape="rect" id="node4" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,257,91,284"/>
-<area shape="rect" id="node5" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="166,435,234,461"/>
-<area shape="rect" id="node6" href="$makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="161,232,239,259"/>
-<area shape="rect" id="node7" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="154,333,246,360"/>
-<area shape="rect" id="node8" href="$makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="157,384,243,411"/>
-<area shape="rect" id="node9" href="$flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="321,131,415,157"/>
-<area shape="rect" id="node10" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="309,587,427,613"/>
-<area shape="rect" id="node11" href="$indentinhmode_8h.html#a5016a6f79ae901c498a9d0c6981d9db6" title=" " alt="" coords="315,637,421,664"/>
-<area shape="rect" id="node12" href="$makevcenter_8h.html#a6e5d002d0820c0eb0efc867f638396aa" title=" " alt="" coords="151,5,249,32"/>
-<area shape="rect" id="node13" href="$mathac_8h.html#a9b15be3a9cc9ba63e0b8cdbf650bba92" title=" " alt="" coords="335,688,401,715"/>
-<area shape="rect" id="node14" href="$mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="321,739,415,765"/>
-<area shape="rect" id="node15" href="$mathradical_8h.html#a6e86e5d001c758710d7dd35221efb5a6" title=" " alt="" coords="323,789,413,816"/>
-<area shape="rect" id="node16" href="$constantes_8h.html#a0129b73f23f35eca6b18766768c5ed8a" title="the translation of an mlist" alt="" coords="329,485,407,512"/>
-<area shape="rect" id="node17" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="151,536,249,563"/>
-<area shape="rect" id="node18" href="$setmathchar_8h.html#a78741c557d11e65fff7328bc2b1a6449" title=" " alt="" coords="321,840,415,867"/>
+<area shape="rect" id="node1" title="the nucleus field of a noad" alt="" coords="475,460,541,487"/>
+<area shape="rect" id="node2" href="$boxend_8h.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="168,119,232,145"/>
+<area shape="rect" id="node3" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="331,384,405,411"/>
+<area shape="rect" id="node4" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="139,232,261,259"/>
+<area shape="rect" id="node5" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,308,91,335"/>
+<area shape="rect" id="node6" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="166,485,234,512"/>
+<area shape="rect" id="node7" href="$makeover_8h.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="161,435,239,461"/>
+<area shape="rect" id="node8" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="154,283,246,309"/>
+<area shape="rect" id="node9" href="$makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="157,333,243,360"/>
+<area shape="rect" id="node10" href="$flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="321,181,415,208"/>
+<area shape="rect" id="node11" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="309,637,427,664"/>
+<area shape="rect" id="node12" href="$indentinhmode_8h.html#a5016a6f79ae901c498a9d0c6981d9db6" title=" " alt="" coords="315,688,421,715"/>
+<area shape="rect" id="node13" href="$makevcenter_8h.html#a6e5d002d0820c0eb0efc867f638396aa" title=" " alt="" coords="151,5,249,32"/>
+<area shape="rect" id="node14" href="$mathac_8h.html#a9b15be3a9cc9ba63e0b8cdbf650bba92" title=" " alt="" coords="335,739,401,765"/>
+<area shape="rect" id="node15" href="$mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="321,789,415,816"/>
+<area shape="rect" id="node16" href="$mathradical_8h.html#a6e86e5d001c758710d7dd35221efb5a6" title=" " alt="" coords="323,840,413,867"/>
+<area shape="rect" id="node17" href="$constantes_8h.html#a0129b73f23f35eca6b18766768c5ed8a" title="the translation of an mlist" alt="" coords="329,536,407,563"/>
+<area shape="rect" id="node18" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="151,587,249,613"/>
+<area shape="rect" id="node19" href="$setmathchar_8h.html#a78741c557d11e65fff7328bc2b1a6449" title=" " alt="" coords="321,891,415,917"/>
 </map>

@@ -11,14 +11,6 @@
 #include "endfilereading.h"
 #include "texte.h"
 
-static void erreurReadtoks(void)
-{
-	print_err("File ended within "+esc("read"));
-	helpptr = 1;
-	helpline[0] = "This \\read has unbalanced braces.";
-	error();
-}
-
 void readtoks(int n, halfword r)
 {
 	scannerstatus = defining;
@@ -68,7 +60,7 @@ void readtoks(int n, halfword r)
 					if (alignstate != 1000000)
 					{
 						runaway();
-						erreurReadtoks();
+						error("File ended within "+esc("read"), "This \\read has unbalanced braces.");
 						alignstate = 1000000;
 					}
 				}

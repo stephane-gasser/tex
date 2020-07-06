@@ -1,5 +1,4 @@
 #include "finalign.h"
-#include "confusion.h"
 #include "unsave.h"
 #include "flushlist.h"
 #include "deleteglueref.h"
@@ -21,24 +20,6 @@
 #include "newparamglue.h"
 #include <cmath>
 #include "texte.h"
-
-static void erreurFinalign1(void)
-{
-	print_err("Missing $$ inserted"); 
-	helpptr = 2;
-	helpline[1] = "Displays can use special alignments (like \\eqalignno)";
-	helpline[0] = "only if nothing but the alignment itself is between $$'s.";
-	backerror();
-}
-
-static void erreurFinalign2(void)
-{
-	print_err("Display math should end with $$");
-	helpptr = 2;
-	helpline[1] = "The `$' that I just saw supposedly matches a previous `$$'.";
-	helpline[0] = "So I shall assume that you typed `$$' both times.";
-	backerror();
-}
 
 void finalign(void)
 {
@@ -314,12 +295,12 @@ void finalign(void)
 	{
 		doassignments();
 		if (curcmd != math_shift)
-			erreurFinalign1();
+			backerror("Missing $$ inserted", "Displays can use special alignments (like \\eqalignno)\nonly if nothing but the alignment itself is between $$'s.");
 		else
 		{
 			getxtoken();
 			if (curcmd != math_shift)
-				erreurFinalign2();
+				backerror("Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
 		popnest();
 		tail_append(newpenalty(pre_display_penalty()));

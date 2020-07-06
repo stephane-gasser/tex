@@ -4,7 +4,7 @@
 #include "fichier.h"
 #include "promptfilename.h"
 #include "specialout.h"
-#include "confusion.h"
+#include "erreur.h"
 #include "texte.h"
 
 void outwhat(halfword p)

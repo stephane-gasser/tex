@@ -13,41 +13,11 @@
 #include "insthetoks.h"
 #include "conditional.h"
 #include "insertrelax.h"
-#include "erreur.h"
 #include "passtext.h"
 #include "freenode.h"
 #include "startinput.h"
 #include "macrocall.h"
 #include "texte.h"
-
-static void erreurExpand1(void)
-{
-	print_err("Missing "+esc("endcsname")+" inserted");
-	helpptr = 2;
-	helpline[1] = "The control sequence marked <to be read again> should";
-	helpline[0] = "not appear between \\csname and \\endcsname.";
-	backerror();
-}
-
-static void erreurExpand2(void)
-{
-	print_err("Extra "+cmdchr(fi_or_else, curchr)); 
-	helpptr = 1;
-	helpline[0] = "I'm ignoring this; it doesn't match any \\if.";
-	error();
-}
-
-static void erreurExpand3(void)
-{
-	print_err("Undefined control sequence");
-	helpptr = 5;
-	helpline[4] = "The control sequence at the end of the top line";
-	helpline[3] = "of your error message was never \\def'ed. If you have";
-	helpline[2] = "misspelled it (e.g., `\\hobx'), type `I' and the correct";
-	helpline[1] = "spelling (e.g., `I\\hbox'). Otherwise just continue,";
-	helpline[0] = "and I'll forget about whatever was undefined.";
-	error();
-}
 
 void expand(void)
 {
@@ -112,7 +82,7 @@ void expand(void)
 					}
 				} while (curcs == 0);
 				if (curcmd != end_cs_name)
-					erreurExpand1();
+					backerror("Missing "+esc("endcsname")+" inserted", "The control sequence marked <to be read again> should\nnot appear between \\csname and \\endcsname.");
 				j = First;
 				p = link(r);
 				while (p)
@@ -160,7 +130,7 @@ void expand(void)
 					if (iflimit = 1)
 						insertrelax();
 					else
-						erreurExpand2();
+						error("Extra "+cmdchr(fi_or_else, curchr), "I'm ignoring this; it doesn't match any \\if.");
 				else
 				{
 					while (curchr != 2)
@@ -183,7 +153,7 @@ void expand(void)
 						startinput();
 				break;
 			default:
-				erreurExpand3();
+				error("Undefined control sequence", "The control sequence at the end of the top line\nof your error message was never \\def'ed. If you have\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\nspelling (e.g., `I\\hbox'). Otherwise just continue,\nand I'll forget about whatever was undefined.");
 		}
 	}
 	else 

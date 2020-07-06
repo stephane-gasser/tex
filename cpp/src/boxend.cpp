@@ -12,16 +12,6 @@
 #include "shipout.h"
 #include "texte.h"
 
-static void erreurBoxend(void)
-{
-	print_err("Leaders not followed by proper glue");
-	helpptr = 3;
-	helpline[2] = "You should say `\\leaders <box or rule><hskip or vskip>'.";
-	helpline[1] = "I found the <box or rule>, but there's no suitable";
-	helpline[0] = "<hskip or vskip>, so I'm ignoring these leaders.";
-	backerror();
-}
-
 void boxend(int boxcontext)
 {
 	halfword p; //\a ord_noad for new box in math mode
@@ -49,8 +39,8 @@ void boxend(int boxcontext)
 				else
 				{
 					p = newnoad();
-					link(p+1) = 2;
-					info(p+1) = curbox;
+					math_type(nucleus(p)) = sub_box;
+					info(nucleus(p)) = curbox;
 					curbox = p;
 				}
 				tail_append(curbox);
@@ -79,7 +69,7 @@ void boxend(int boxcontext)
 				}
 				else
 				{
-					erreurBoxend();
+					backerror("Leaders not followed by proper glue", "You should say `\\leaders <box or rule><hskip or vskip>'.\nI found the <box or rule>, but there's no suitable\n<hskip or vskip>, so I'm ignoring these leaders.");
 					flushnodelist(curbox);
 				}
 			}

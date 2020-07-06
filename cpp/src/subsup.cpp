@@ -5,26 +5,7 @@
 #include "scanmath.h"
 #include "texte.h"
 
-static bool scripts_allowed(halfword tail)
-{
-	return type(tail) >= ord_noad && type(tail) < left_noad;
-}
-
-static void erreurSubsup1(void)
-{
-	print_err("Double superscript");
-	helpptr = 1;
-	helpline[0] = "I treat `x^1^2' essentially like `x^1{}^2'.";
-	error();
-}
-
-static void erreurSubsup2(void)
-{
-	print_err("Double subscript");
-	helpptr = 1;
-	helpline[0] = "I treat `x_1_2' essentially like `x_1{}_2'.";
-	error();
-}
+static bool scripts_allowed(halfword tail) { return type(tail) >= ord_noad && type(tail) < left_noad; }
 
 void subsup(void)
 {
@@ -33,19 +14,19 @@ void subsup(void)
 	if (tail != head)
 		if (scripts_allowed(tail))
 		{
-			p = tail+2+curcmd-sup_mark;
+			p = supscr(tail)+curcmd-sup_mark;
 			t = link(p);
 		}
 	if (p == 0 || t)
 	{
 		tail_append(newnoad());
-		p = tail+2+curcmd-sup_mark;
+		p = supscr(tail)+curcmd-sup_mark;
 		if (t)
 		{
 			if (curcmd == sup_mark)
-				erreurSubsup1();
+				error("Double superscript", "I treat `x^1^2' essentially like `x^1{}^2'.");
 			else
-				erreurSubsup2();
+				error("Double subscript", "I treat `x_1_2' essentially like `x_1{}_2'.");
 		}
 	}
 	scanmath(p);

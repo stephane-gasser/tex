@@ -13,7 +13,7 @@
 #include "mathglue.h"
 #include "deleteglueref.h"
 #include "mathkern.h"
-#include "confusion.h"
+#include "erreur.h"
 #include "fetch.h"
 #include "newcharacter.h"
 #include "hpack.h"

@@ -21,7 +21,6 @@ void Initialize(void)
 	deletionsallowed = true;
 	setboxallowed = true;
 	errorcount = 0;
-	helpptr = 0;
 	useerrhelp = false;
 	interrupt = 0;
 	OKtointerrupt = true;

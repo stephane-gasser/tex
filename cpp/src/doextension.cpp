@@ -11,7 +11,6 @@
 #include "scanint.h"
 #include "erreur.h"
 #include "normmin.h"
-#include "confusion.h"
 #include "texte.h"
 
 void doextension(void)

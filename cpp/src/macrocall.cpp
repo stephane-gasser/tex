@@ -10,40 +10,6 @@
 #include "erreur.h"
 #include "texte.h"
 
-static void erreurMacrocall1(void)
-{
-	print_err("Use of "+scs(warningindex)+" doesn't match its definition");
-	helpptr = 4;
-	helpline[3] = "If you say, e.g., `\\def\\a1{...}', then you must always";
-	helpline[2] = "put `1' after `\\a', since control sequence names are";
-	helpline[1] = "made up of letters only. The macro here has not been";
-	helpline[0] = "followed by the required stuff, so I'm ignoring it.";
-	error();
-}
-
-static void erreurMacrocall2(void)
-{
-	print_err("Paragraph ended before "+scs(warningindex)+" was complete");
-	helpptr = 3;
-	helpline[2] = "I suspect you've forgotten a `}', causing me to apply this";
-	helpline[1] = "control sequence to too much text. How can we recover?";
-	helpline[0] = "My plan is to forget the whole thing and hope for the best.";
-	backerror();
-}
-
-static void erreurMacrocall3(void)
-{
-	print_err("Argument of "+scs(warningindex)+" has an extra }");
-	helpptr = 6;
-	helpline[5] = "I've run across a `}' that doesn't seem to match anything.";
-	helpline[4] = "For example, `\\def\\a#1{...}' and `\\a}' would produce";
-	helpline[3] = "this error. If you simply proceed now, the `\\par' that";
-	helpline[2] = "I've just inserted will cause me to report a runaway";
-	helpline[1] = "argument that might be the root of the problem. But if";
-	helpline[0] = "your `}' was spurious, just type `2' and it will go away.";
-	inserror();
-}
-
 void macrocall(void)
 {
 	auto savescannerstatus = scannerstatus;
@@ -101,7 +67,7 @@ void macrocall(void)
 				if (s != r)
 					if (s == 0)
 					{
-						erreurMacrocall1();
+						error("Use of "+scs(warningindex)+" doesn't match its definition", "If you say, e.g., `\\def\\a1{...}', then you must always\nput `1' after `\\a', since control sequence names are\nmade up of letters only. The macro here has not been\nfollowed by the required stuff, so I'm ignoring it.");
 						scannerstatus = savescannerstatus;
 						warningindex = savewarningindex;
 						return;
@@ -148,7 +114,7 @@ void macrocall(void)
 						if (longstate == call)
 						{
 							runaway();
-							erreurMacrocall2();
+							backerror("Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 						}
 						pstack[n] = link(temp_head);
 						alignstate -= unbalance;
@@ -182,7 +148,7 @@ void macrocall(void)
 									if (longstate == call)
 									{
 										runaway();
-										erreurMacrocall2();
+										backerror("Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 									}
 									pstack[n] = link(temp_head);
 									alignstate -= unbalance;
@@ -211,7 +177,7 @@ void macrocall(void)
 					else
 					{
 						backinput();
-						erreurMacrocall3();
+						inserror("Argument of "+scs(warningindex)+" has an extra }", "I've run across a `}' that doesn't seem to match anything.\nFor example, `\\def\\a#1{...}' and `\\a}' would produce\nthis error. If you simply proceed now, the `\\par' that\nI've just inserted will cause me to report a runaway\nargument that might be the root of the problem. But if\nyour `}' was spurious, just type `2' and it will go away.");
 						alignstate++;
 						longstate = call;
 						curtok = partoken;

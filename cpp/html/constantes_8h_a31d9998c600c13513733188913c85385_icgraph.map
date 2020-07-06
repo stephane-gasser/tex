@@ -1,19 +1,20 @@
 <map id="stretch" name="stretch">
-<area shape="rect" id="node1" title="the stretchability of this glob of glue" alt="" coords="505,409,568,436"/>
-<area shape="rect" id="node2" href="$maincontrol_8cpp.html#ab7f7983b788abb1c635c1bd67f967894" title=" " alt="" coords="305,5,457,32"/>
-<area shape="rect" id="node3" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="342,56,421,83"/>
-<area shape="rect" id="node4" href="$impression_8h.html#ad5391b211fc659f6da369be0e7481f67" title=" " alt="" coords="348,107,415,133"/>
-<area shape="rect" id="node5" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="121,359,257,385"/>
-<area shape="rect" id="node6" href="$hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="349,181,413,208"/>
-<area shape="rect" id="node7" href="$vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="157,181,221,208"/>
-<area shape="rect" id="node8" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="353,333,410,360"/>
-<area shape="rect" id="node9" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="346,384,417,411"/>
-<area shape="rect" id="node10" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="5,561,73,588"/>
-<area shape="rect" id="node11" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="152,637,227,664"/>
-<area shape="rect" id="node12" href="$mathglue_8h.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="344,536,419,563"/>
-<area shape="rect" id="node13" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="305,587,457,613"/>
-<area shape="rect" id="node14" href="$trapzeroglue_8h.html#a26dc1cd3915de61dda98edd1589c6158" title=" " alt="" coords="335,435,428,461"/>
-<area shape="rect" id="node15" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="347,637,416,664"/>
-<area shape="rect" id="node16" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="343,739,419,765"/>
-<area shape="rect" id="node17" href="$vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="342,789,421,816"/>
+<area shape="rect" id="node1" title="the stretchability of this glob of glue" alt="" coords="531,435,593,461"/>
+<area shape="rect" id="node2" href="$maincontrol_8cpp.html#ab7f7983b788abb1c635c1bd67f967894" title=" " alt="" coords="331,5,483,32"/>
+<area shape="rect" id="node3" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="367,56,446,83"/>
+<area shape="rect" id="node4" href="$impression_8h.html#ad5391b211fc659f6da369be0e7481f67" title=" " alt="" coords="373,107,440,133"/>
+<area shape="rect" id="node5" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="5,637,141,664"/>
+<area shape="rect" id="node6" href="$hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="375,232,439,259"/>
+<area shape="rect" id="node7" href="$vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="204,232,268,259"/>
+<area shape="rect" id="node8" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="378,333,435,360"/>
+<area shape="rect" id="node9" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="371,384,442,411"/>
+<area shape="rect" id="node10" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="39,296,107,323"/>
+<area shape="rect" id="node11" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="199,435,273,461"/>
+<area shape="rect" id="node12" href="$mathglue_8h.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="369,536,444,563"/>
+<area shape="rect" id="node13" href="$scanglue_8h.html#a1b433217a906738e1453ff227c67a090" title=" " alt="" coords="199,688,273,715"/>
+<area shape="rect" id="node14" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="331,739,483,765"/>
+<area shape="rect" id="node15" href="$trapzeroglue_8h.html#a26dc1cd3915de61dda98edd1589c6158" title=" " alt="" coords="189,587,283,613"/>
+<area shape="rect" id="node16" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="372,435,441,461"/>
+<area shape="rect" id="node17" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="369,789,445,816"/>
+<area shape="rect" id="node18" href="$vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="367,840,446,867"/>
 </map>

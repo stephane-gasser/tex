@@ -1,7 +1,6 @@
 <map id="inc/jumpout.h" name="inc/jumpout.h">
-<area shape="rect" id="node1" title=" " alt="" coords="221,5,321,32"/>
-<area shape="rect" id="node2" href="$confusion_8cpp.html" title=" " alt="" coords="5,80,131,107"/>
-<area shape="rect" id="node3" href="$erreur_8cpp.html" title=" " alt="" coords="155,80,256,107"/>
-<area shape="rect" id="node4" href="$jumpout_8cpp.html" title=" " alt="" coords="280,80,395,107"/>
-<area shape="rect" id="node5" href="$storefmtfile_8cpp.html" title=" " alt="" coords="419,80,554,107"/>
+<area shape="rect" id="node1" title=" " alt="" coords="138,5,238,32"/>
+<area shape="rect" id="node2" href="$erreur_8cpp.html" title=" " alt="" coords="5,80,107,107"/>
+<area shape="rect" id="node3" href="$jumpout_8cpp.html" title=" " alt="" coords="131,80,245,107"/>
+<area shape="rect" id="node4" href="$storefmtfile_8cpp.html" title=" " alt="" coords="270,80,405,107"/>
 </map>
