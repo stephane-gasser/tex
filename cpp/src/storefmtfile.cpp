@@ -35,22 +35,14 @@ void storefmtfile(void)
 	halfword p, q;
 	if (saveptr)
 		fatal("You can't dump_int inside a group", "`{...\\dump_int}' is a no-no.");
-	selector = new_string;
-	print(" (preloaded format="+jobname+" "+std::to_string(year())+"."+std::to_string(month())+"."+std::to_string(day())+")");
-	if (interaction == batch_mode)
-		selector = log_only;
-	else
-		selector = term_and_log;
-	str_room(1);
-	formatident = makestring();
+	formatident = " (preloaded format="+jobname+" "+std::to_string(year())+"."+std::to_string(month())+"."+std::to_string(day())+")";
+	selector = interaction == batch_mode ? log_only : term_and_log;
 	packjobname(format_extension);
 	while (!wopenout(fmtfile))
 		promptfilename("format file name", format_extension); 
 	printnl("Beginning to dump_int on file ");
 	slowprint(wmakenamestring(fmtfile));
-	flush_string();
-	printnl("");
-	slowprint(formatident);
+	printnl(formatident);
 	dump_int(CHECKSUM);
 	dump_int(mem_bot);
 	dump_int(mem_top);

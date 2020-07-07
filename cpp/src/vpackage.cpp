@@ -17,9 +17,7 @@ static void goto50(halfword r)
 			print(") detected at line ");
 		print(std::to_string(line)+"\n");
 	}
-	begindiagnostic();
-	print(showbox(r));
-	print(enddiagnostic(true));
+	diagnostic(showbox(r)+"\n");
 }
 
 //! special case of unconstrained depth

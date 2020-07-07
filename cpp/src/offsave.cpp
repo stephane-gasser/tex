@@ -3,7 +3,7 @@
 #include "backinput.h"
 #include "erreur.h"
 #include "getavail.h"
-#include "begintokenlist.h"
+#include "lecture.h"
 #include "texte.h"
 
 void offsave(void)

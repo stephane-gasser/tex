@@ -1,6 +1,5 @@
 <map id="end_line_char_inactive" name="end_line_char_inactive">
-<area shape="rect" id="node1" title=" " alt="" coords="129,56,284,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="129,31,284,57"/>
 <area shape="rect" id="node2" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="11,5,76,32"/>
-<area shape="rect" id="node3" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="7,56,79,83"/>
-<area shape="rect" id="node4" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="5,107,81,133"/>
+<area shape="rect" id="node3" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="5,56,81,83"/>
 </map>

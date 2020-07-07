@@ -4,7 +4,7 @@
 #include "newnoad.h"
 #include "eqdefine.h"
 #include "geqdefine.h"
-#include "getxtoken.h"
+#include "lecture.h"
 #include "appendglue.h"
 #include "impression.h"
 #include "erreur.h"

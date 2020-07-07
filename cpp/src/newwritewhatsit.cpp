@@ -1,17 +1,15 @@
 #include "newwritewhatsit.h"
 #include "newwhatsit.h"
-#include "scanfourbitint.h"
-#include "scanint.h"
-
+#include "lecture.h"
 
 void newwritewhatsit(smallnumber w)
 {
 	newwhatsit(curchr, w);
 	if (w != write_node_size)
-		scanfourbitint();
+		curval = scanfourbitint();
 	else
 	{
-		scanint();
+		curval = scanint();
 		if (curval < 0)
 			curval = 17;
 		else 

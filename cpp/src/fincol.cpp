@@ -11,7 +11,7 @@
 #include "getnode.h"
 #include "initspan.h"
 #include "popnest.h"
-#include "getxtoken.h"
+#include "lecture.h"
 #include "initcol.h"
 #include "texte.h"
 

@@ -1,6 +1,6 @@
 #include "initcol.h"
 #include "backinput.h"
-#include "begintokenlist.h"
+#include "lecture.h"
 
 void initcol(void)
 {

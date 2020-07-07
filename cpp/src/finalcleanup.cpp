@@ -1,10 +1,9 @@
 #include "finalcleanup.h"
 #include "openlogfile.h"
-#include "endtokenlist.h"
 #include "endfilereading.h"
 #include "impression.h"
 #include "freenode.h"
-#include "deletetokenref.h"
+#include "lecture.h"
 #include "deleteglueref.h"
 #include "storefmtfile.h"
 

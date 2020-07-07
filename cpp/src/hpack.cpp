@@ -20,9 +20,7 @@ static void goto50(halfword r)
 	println();
 	fontinshortdisplay = null_font;
 	print(shortdisplay(list_ptr(r))+"\n");
-	begindiagnostic();
-	print(showbox(r));
-	print(enddiagnostic(true));
+	diagnostic(showbox(r)+"\n");
 }
 
 halfword hpack(halfword p, scaled w, smallnumber m)

@@ -50,9 +50,7 @@ void shipout(halfword p)
 	if (tracing_output() > 0)
 	{
 		print("]");
-		begindiagnostic();
-		print(showbox(p));
-		print(enddiagnostic(true));
+		diagnostic(showbox(p)+"\n");
 	}
 	if (height(p) > max_dimen || depth(p) > max_dimen 
 	 || height(p)+depth(p)+v_offset() > max_dimen 
@@ -61,12 +59,9 @@ void shipout(halfword p)
 		error("Huge page cannot be shipped out", "The page just created is more than 18 feet tall or\nmore than 18 feet wide, so I suspect something went wrong.");
 		if (tracing_output() <= 0)
 		{
-			begindiagnostic();
-			printnl("The following box has been deleted:"+showbox(p));
-			print(enddiagnostic(true));
+			diagnostic("\rThe following box has been deleted:"+showbox(p)+"\n");
+			print("]");
 		}
-		if (tracing_output() <= 0)
-		print("]");
 		deadcycles = 0;
 		std::cout << std::flush;
 		flushnodelist(p);
@@ -89,14 +84,9 @@ void shipout(halfword p)
 		dvifour(473628672);
 		preparemag();
 		dvifour(mag());
-		oldsetting = selector;
-		selector = new_string;
-		print(" TeX output "+std::to_string(year())+"."+twoDigits(month())+"."+twoDigits(day())+":"+twoDigits(time()/60)+twoDigits(time()%60));
-		selector = oldsetting;
 		dvi_out(cur_length());
-		for (auto s = strstart[strptr]; s < poolptr; s++)
-			dvi_out(strpool[s]);
-		poolptr = strstart[strptr];
+		for (char c: " TeX output "+std::to_string(year())+"."+twoDigits(month())+"."+twoDigits(day())+":"+twoDigits(time()/60)+twoDigits(time()%60))
+			dvi_out(c);
 	}
 	auto pageloc = dvioffset+dviptr;
 	dvi_out(bop);

@@ -1,11 +1,8 @@
 <map id="fatalerror" name="fatalerror">
-<area shape="rect" id="node1" title=" " alt="" coords="337,167,411,194"/>
-<area shape="rect" id="node2" href="$doendv_8h.html#adbabc406ff0a986dc23c2ad8d5bc9008" title=" " alt="" coords="29,15,93,42"/>
-<area shape="rect" id="node3" href="$endtokenlist_8h.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="181,142,273,169"/>
-<area shape="rect" id="node4" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="28,142,93,169"/>
-<area shape="rect" id="node5" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="200,41,253,67"/>
-<area shape="rect" id="node6" href="$getpreambletoken_8h.html#a82620351bee57bb56f4d0a9181f6af98" title=" " alt="" coords="164,345,289,371"/>
-<area shape="rect" id="node7" href="$promptfilename_8h.html#a30c405cf60000fe656870957636a4d91" title=" " alt="" coords="5,205,116,231"/>
-<area shape="rect" id="node8" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="25,281,97,307"/>
-<area shape="rect" id="node9" href="$terminput_8h.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="189,193,265,219"/>
+<area shape="rect" id="node1" title=" " alt="" coords="288,78,361,104"/>
+<area shape="rect" id="node2" href="$doendv_8h.html#adbabc406ff0a986dc23c2ad8d5bc9008" title=" " alt="" coords="29,22,93,48"/>
+<area shape="rect" id="node3" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="175,27,229,54"/>
+<area shape="rect" id="node4" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="28,84,93,111"/>
+<area shape="rect" id="node5" href="$promptfilename_8h.html#a30c405cf60000fe656870957636a4d91" title=" " alt="" coords="5,160,116,187"/>
+<area shape="rect" id="node6" href="$terminput_8h.html#aacbc6794f9371128ce624765a5915df9" title=" " alt="" coords="164,128,240,155"/>
 </map>

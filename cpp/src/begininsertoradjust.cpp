@@ -1,9 +1,8 @@
 #include "begininsertoradjust.h"
-#include "scaneightbitint.h"
+#include "lecture.h"
 #include "impression.h"
 #include "erreur.h"
 #include "newsavelevel.h"
-#include "scanleftbrace.h"
 #include "normalparagraph.h"
 #include "pushnest.h"
 #include "texte.h"
@@ -14,7 +13,7 @@ void begininsertoradjust(void)
 		curval = 255;
 	else
 	{
-		scaneightbitint();
+		curval = scaneightbitint();
 		if (curval == 255)
 		{
 			error("You can't "+esc("insert")+"255", "I'm changing to \\insert0; box 255 is special.");

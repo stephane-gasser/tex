@@ -2,7 +2,7 @@
 #include "impression.h"
 #include "jumpout.h"
 #include "terminput.h"
-#include "gettoken.h"
+#include "lecture.h"
 #include "beginfilereading.h"
 #include "texte.h"
 #include "backinput.h"
@@ -11,7 +11,7 @@
 #include "normalizeselector.h"
 #include <iostream>
 
-void error(const std::string &msg, const std::string &hlp)
+void error(const std::string &msg, const std::string &hlp, bool deletionsallowed)
 {
 	if (msg != "")
 		print_err(msg);
@@ -81,17 +81,10 @@ void error(const std::string &msg, const std::string &hlp)
 					break;
 				case 'H':
 					if (useerrhelp)
-					{
-						giveerrhelp();
-						useerrhelp = false;
-					}
+						print(tokenshow(err_help()));
 					else
-					{
-						if (helpline == "")
-							helpline = "Sorry, I don't know how to help in this situation.\nMaybe you should try asking a human?";
-						print(helpline);
-						println();
-					}
+						print((helpline == "" ? "Sorry, I don't know how to help in this situation.\nMaybe you should try asking a human?" : helpline)+"\n");
+					useerrhelp = false;
 					helpline = "Sorry, I already gave what help I could...\nMaybe you should try asking a human?\nAn error might have occurred before I noticed any problems.\n``If all else fails, read the instructions.''";
 					continue;
 				case 'I':
@@ -155,29 +148,25 @@ void error(const std::string &msg, const std::string &hlp)
 	if (interaction > batch_mode)
 		selector--;
 	if (useerrhelp)
-	{
-		println();
-		giveerrhelp();
-	}
+		print("\n"+tokenshow(err_help())+"\n");
 	else
 		if (helpline != "")
 		{
-			printnl(helpline);
+			printnl(helpline+"\n");
 			helpline = "";
 		}
-	println();
 	if (interaction > batch_mode)
 		selector++;
 	println();
 }
 
-void inserror(const std::string &msg, const std::string &hlp)
+void inserror(const std::string &msg, const std::string &hlp, bool deletionsallowed)
 {
 	OKtointerrupt = false;
 	backinput();
 	token_type = inserted;
 	OKtointerrupt = true;
-	error(msg, hlp);
+	error(msg, hlp, deletionsallowed);
 }
 
 //! Back up one token and call \a error.
@@ -200,9 +189,7 @@ void backerror(const std::string &msg, const std::string &hlp)
 void boxerror(eightbits n, const std::string &msg, const std::string &hlp)
 {
 	error(msg, hlp);
-	begindiagnostic();
-	printnl("The following box has been deleted:"+showbox(box(n)));
-	print(enddiagnostic(true));
+	diagnostic("\rThe following box has been deleted:"+showbox(box(n))+"\n");
 	flushnodelist(box(n));
 	box(n) = 0;
 }
@@ -248,11 +235,6 @@ void fatalerror(const std::string &s)
 	fatal("Emergency stop", s);
 }
 
-void interror(int n, const std::string &msg, const std::string &hlp)
-{
-	error(msg+" ("+std::to_string(n)+")", hlp);
-}
-
 //! make sure that the pool hasn't overflowed
 void str_room(int n) 
 {
@@ -270,15 +252,8 @@ void check_full_save_stack(void)
 	}
 }
 
-void reportillegalcase(void)
-{
-	error("You can't use `"+cmdchr(curcmd, curchr)+"' in "+asMode(mode), "Sorry, but I'm not programmed to handle this case;\nI'll just pretend that you didn't ask for it.\nIf you're in the wrong mode, you might be able to\nreturn to the right one by typing `I}' or `I$' or `I\\par'.");
-}
-
-void giveerrhelp(void)
-{
-	print(tokenshow(err_help()));
-}
+void interror(int n, const std::string &msg, const std::string &hlp) { error(msg+" ("+std::to_string(n)+")", hlp); }
+void reportillegalcase(void) { error("You can't use `"+cmdchr(curcmd, curchr)+"' in "+asMode(mode), "Sorry, but I'm not programmed to handle this case;\nI'll just pretend that you didn't ask for it.\nIf you're in the wrong mode, you might be able to\nreturn to the right one by typing `I}' or `I$' or `I\\par'."); }
 
 bool privileged(void)
 {

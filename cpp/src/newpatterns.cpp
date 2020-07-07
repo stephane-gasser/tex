@@ -1,10 +1,8 @@
 #include "newpatterns.h"
-#include "scanleftbrace.h"
-#include "getxtoken.h"
+#include "lecture.h"
 #include "impression.h"
 #include "erreur.h"
 #include "newtrieop.h"
-#include "scantoks.h"
 #include "flushlist.h"
 #include "texte.h"
 

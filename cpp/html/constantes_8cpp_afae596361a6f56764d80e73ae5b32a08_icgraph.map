@@ -1,7 +1,5 @@
 <map id="math_code" name="math_code">
-<area shape="rect" id="node1" title=" " alt="" coords="343,81,429,108"/>
-<area shape="rect" id="node2" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="183,5,254,32"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,81,95,108"/>
-<area shape="rect" id="node4" href="$scanmath_8h.html#a08e430fac951f380f2e3441e2c8c4fa4" title=" " alt="" coords="179,107,258,133"/>
-<area shape="rect" id="node5" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="143,157,295,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="143,31,229,57"/>
+<area shape="rect" id="node2" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="15,5,85,32"/>
+<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,56,95,83"/>
 </map>

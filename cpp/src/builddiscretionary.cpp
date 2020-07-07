@@ -6,7 +6,7 @@
 #include "popnest.h"
 #include "flushnodelist.h"
 #include "newsavelevel.h"
-#include "scanleftbrace.h"
+#include "lecture.h"
 #include "pushnest.h"
 #include "texte.h"
 
@@ -23,9 +23,7 @@ void builddiscretionary(void)
 		if (!is_char_node(p) && type(p) > rule_node && type(p) != kern_node && type(p) != ligature_node)
 		{
 			error("Improper discretionary list", "Discretionary lists must contain only boxes and kerns.");
-			begindiagnostic();
-			printnl("The following discretionary sublist has been deleted:"+showbox(p));
-			print(enddiagnostic(true));
+			diagnostic("\rThe following discretionary sublist has been deleted:"+showbox(p)+"\n");
 			flushnodelist(p);
 			link(q) = 0;
 			break;

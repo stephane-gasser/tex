@@ -6,7 +6,7 @@
 
 extern std::map<quarterword, std::map<halfword, std::string>> primName;
 
-void primitive(ASCIIcode, quarterword, halfword);
-void primitive(const std::string &, quarterword, halfword);
+int primitive(ASCIIcode, quarterword, halfword);
+int primitive(const std::string &, quarterword, halfword);
 
 #endif

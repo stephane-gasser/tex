@@ -2,8 +2,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "getnode.h"
-#include "scanfifteenbitint.h"
-#include "scanmath.h"
+#include "lecture.h"
 #include "texte.h"
 
 void mathac(void)
@@ -17,7 +16,7 @@ void mathac(void)
 	mem[subscr(tail)].hh = emptyfield;
 	mem[supscr(tail)].hh = emptyfield;
 	math_type(accent_chr(tail)) = math_char;
-	scanfifteenbitint();
+	curval = scanfifteenbitint();
 	character(accent_chr(tail)) = curval%0x1'00;
 	if (curval >= var_code && fam_in_range())
 		fam(accent_chr(tail)) = cur_fam();

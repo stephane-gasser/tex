@@ -2,7 +2,7 @@
 #include "newdisc.h"
 #include "newcharacter.h"
 #include "newsavelevel.h"
-#include "scanleftbrace.h"
+#include "lecture.h"
 #include "pushnest.h"
 
 void appenddiscretionary(void)

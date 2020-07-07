@@ -1,12 +1,11 @@
 <map id="newsavelevel" name="newsavelevel">
-<area shape="rect" id="node1" title=" " alt="" coords="492,188,593,215"/>
-<area shape="rect" id="node2" href="$alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="344,36,421,63"/>
-<area shape="rect" id="node3" href="$initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="175,36,241,63"/>
-<area shape="rect" id="node4" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,112,95,139"/>
-<area shape="rect" id="node5" href="$begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="143,289,273,316"/>
-<area shape="rect" id="node6" href="$builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2" title=" " alt="" coords="321,188,444,215"/>
-<area shape="rect" id="node7" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="356,239,409,265"/>
-<area shape="rect" id="node8" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="355,289,410,316"/>
-<area shape="rect" id="node9" href="$pushmath_8h.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="343,340,422,367"/>
-<area shape="rect" id="node10" href="$scanspec_8h.html#ac8cb2374dcb9af6d4553bbff3533adf1" title=" " alt="" coords="343,87,422,113"/>
+<area shape="rect" id="node1" title=" " alt="" coords="492,183,593,209"/>
+<area shape="rect" id="node2" href="$alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="344,5,421,32"/>
+<area shape="rect" id="node3" href="$initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="175,56,241,83"/>
+<area shape="rect" id="node4" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,107,95,133"/>
+<area shape="rect" id="node5" href="$begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="143,157,273,184"/>
+<area shape="rect" id="node6" href="$builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2" title=" " alt="" coords="321,208,444,235"/>
+<area shape="rect" id="node7" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="356,259,409,285"/>
+<area shape="rect" id="node8" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="355,309,410,336"/>
+<area shape="rect" id="node9" href="$pushmath_8h.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="343,360,422,387"/>
 </map>

@@ -1,5 +1,4 @@
 <map id="fam" name="fam">
-<area shape="rect" id="node1" title="a quarterword in mem" alt="" coords="148,31,192,57"/>
-<area shape="rect" id="node2" href="$scanmath_8h.html#a08e430fac951f380f2e3441e2c8c4fa4" title=" " alt="" coords="13,5,92,32"/>
-<area shape="rect" id="node3" href="$setmathchar_8h.html#a78741c557d11e65fff7328bc2b1a6449" title=" " alt="" coords="5,56,100,83"/>
+<area shape="rect" id="node1" title="a quarterword in mem" alt="" coords="148,5,192,32"/>
+<area shape="rect" id="node2" href="$setmathchar_8h.html#a78741c557d11e65fff7328bc2b1a6449" title=" " alt="" coords="5,5,100,32"/>
 </map>

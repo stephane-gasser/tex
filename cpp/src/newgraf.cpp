@@ -3,7 +3,7 @@
 #include "normmin.h"
 #include "newparamglue.h"
 #include "newnullbox.h"
-#include "begintokenlist.h"
+#include "lecture.h"
 #include "buildpage.h"
 
 static halfword& every_par(void) { return equiv(every_par_loc); }

@@ -1,5 +1,5 @@
 #include "mathleftright.h"
-#include "scandelimiter.h"
+#include "lecture.h"
 #include "impression.h"
 #include "erreur.h"
 #include "offsave.h"

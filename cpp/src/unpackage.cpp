@@ -1,5 +1,5 @@
 #include "unpackage.h"
-#include "scaneightbitint.h"
+#include "lecture.h"
 #include "impression.h"
 #include "erreur.h"
 #include "copynodelist.h"
@@ -9,7 +9,7 @@
 void unpackage(void)
 {
 	auto c = curchr;
-	scaneightbitint();
+	curval = scaneightbitint();
 	halfword p = box(curval);
 	if (p == 0)
 		return;

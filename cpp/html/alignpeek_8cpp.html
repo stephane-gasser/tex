@@ -79,8 +79,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="alignpeek_8h_source.html">alignpeek.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="getxtoken_8h_source.html">getxtoken.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="scanleftbrace_8h_source.html">scanleftbrace.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="lecture_8h_source.html">lecture.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="newsavelevel_8h_source.html">newsavelevel.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="normalparagraph_8h_source.html">normalparagraph.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="finalign_8h_source.html">finalign.h</a>&quot;</code><br />
@@ -91,15 +90,14 @@ Graphe des dépendances par inclusion de alignpeek.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="alignpeek_8cpp__incl.png" border="0" usemap="#src_2alignpeek_8cpp" alt=""/></div>
 <map name="src_2alignpeek_8cpp" id="src_2alignpeek_8cpp">
-<area shape="rect" title=" " alt="" coords="434,5,558,32"/>
+<area shape="rect" title=" " alt="" coords="351,5,475,32"/>
 <area shape="rect" href="alignpeek_8h.html" title=" " alt="" coords="5,80,93,107"/>
-<area shape="rect" href="getxtoken_8h.html" title=" " alt="" coords="117,80,208,107"/>
-<area shape="rect" href="scanleftbrace_8h.html" title=" " alt="" coords="233,80,343,107"/>
-<area shape="rect" href="newsavelevel_8h.html" title=" " alt="" coords="368,80,480,107"/>
-<area shape="rect" href="normalparagraph_8h.html" title=" " alt="" coords="503,80,633,107"/>
-<area shape="rect" href="finalign_8h.html" title=" " alt="" coords="657,80,732,107"/>
-<area shape="rect" href="initrow_8h.html" title=" " alt="" coords="756,80,825,107"/>
-<area shape="rect" href="initcol_8h.html" title=" " alt="" coords="849,80,916,107"/>
+<area shape="rect" href="lecture_8h.html" title=" " alt="" coords="117,80,189,107"/>
+<area shape="rect" href="newsavelevel_8h.html" title=" " alt="" coords="213,80,325,107"/>
+<area shape="rect" href="normalparagraph_8h.html" title=" " alt="" coords="349,80,478,107"/>
+<area shape="rect" href="finalign_8h.html" title=" " alt="" coords="503,80,577,107"/>
+<area shape="rect" href="initrow_8h.html" title=" " alt="" coords="601,80,671,107"/>
+<area shape="rect" href="initcol_8h.html" title=" " alt="" coords="695,80,761,107"/>
 </map>
 </div>
 </div>
@@ -127,35 +125,35 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="alignpeek_8cpp_source.html#l00010">10</a> du fichier <a class="el" href="alignpeek_8cpp_source.html">alignpeek.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="globals_8cpp.html#ab366184edc7e8b986e320e1e0e61483f">alignstate</a> = 1000000;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">do</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <a class="code" href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115">getxtoken</a>();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">while</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea23852876218fe552ef38df0502a605a4">spacer</a>);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9eac4651428b94d30809cbd93b10ad203dc">no_align</a>)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a>();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a>(7);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a> == -<a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da0298d8eb356f2993dbef77b5ec25e6fb">vmode</a>)</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <a class="code" href="normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9">normalparagraph</a>();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">else</span> </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea5a7a316ece45b1c203f483971a973896">right_brace</a>)</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <a class="code" href="finalign_8cpp.html#ab913cca5f19aa49b0a6806e93106cd89">finalign</a>();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">else</span> </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea6b6b21b9be798c546f13e7c7cd93fdb0">car_ret</a> &amp;&amp; <a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a> == 258)</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                    <a class="code" href="initrow_8cpp.html#a87e01201e15d56552784671986da86f0">initrow</a>();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                    <a class="code" href="initcol_8cpp.html#a1c3a2eedfb749e57cf833cc140fbe403">initcol</a>();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="alignpeek_8cpp_source.html#l00009">9</a> du fichier <a class="el" href="alignpeek_8cpp_source.html">alignpeek.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="globals_8cpp.html#ab366184edc7e8b986e320e1e0e61483f">alignstate</a> = 1000000;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordflow">do</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <a class="code" href="lecture_8cpp.html#a3237321de3327dcec8b8e81069858115">getxtoken</a>();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">while</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea23852876218fe552ef38df0502a605a4">spacer</a>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9eac4651428b94d30809cbd93b10ad203dc">no_align</a>)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <a class="code" href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a>(7);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a> == -<a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da0298d8eb356f2993dbef77b5ec25e6fb">vmode</a>)</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <a class="code" href="normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9">normalparagraph</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea5a7a316ece45b1c203f483971a973896">right_brace</a>)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <a class="code" href="finalign_8cpp.html#ab913cca5f19aa49b0a6806e93106cd89">finalign</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea6b6b21b9be798c546f13e7c7cd93fdb0">car_ret</a> &amp;&amp; <a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a> == 258)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                    <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                    <a class="code" href="initrow_8cpp.html#a87e01201e15d56552784671986da86f0">initrow</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                    <a class="code" href="initcol_8cpp.html#a1c3a2eedfb749e57cf833cc140fbe403">initcol</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                }</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
@@ -163,12 +161,12 @@ Voici le graphe d'appel pour cette fonction :</div>
 <map name="alignpeek_8cpp_abbfb7fd09994a199e27bf006b6708462_cgraph" id="alignpeek_8cpp_abbfb7fd09994a199e27bf006b6708462_cgraph">
 <area shape="rect" title=" " alt="" coords="5,157,83,184"/>
 <area shape="rect" href="finalign_8cpp.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="159,5,221,32"/>
-<area shape="rect" href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="297,56,376,83"/>
+<area shape="rect" href="lecture_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="297,31,376,57"/>
 <area shape="rect" href="initcol_8cpp.html#a1c3a2eedfb749e57cf833cc140fbe403" title=" " alt="" coords="162,107,218,133"/>
 <area shape="rect" href="initrow_8cpp.html#a87e01201e15d56552784671986da86f0" title=" " alt="" coords="160,157,220,184"/>
 <area shape="rect" href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="139,208,241,235"/>
 <area shape="rect" href="normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="131,259,249,285"/>
-<area shape="rect" href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="140,309,240,336"/>
+<area shape="rect" href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="140,309,240,336"/>
 </map>
 </div>
 <div class="dynheader">
@@ -187,21 +185,21 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="anewsavelevel_8cpp_html_afad44a60dc27690826030e3d7bfe80a0"><div class="ttname"><a href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a></div><div class="ttdeci">void newsavelevel(groupcode c)</div><div class="ttdef"><b>Definition:</b> <a href="newsavelevel_8cpp_source.html#l00004">newsavelevel.cpp:4</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a4128dbc20823d10a2626cb9cdf4d6cd4"><div class="ttname"><a href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a></div><div class="ttdeci">halfword curchr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00108">globals.cpp:108</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a4128dbc20823d10a2626cb9cdf4d6cd4"><div class="ttname"><a href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a></div><div class="ttdeci">halfword curchr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00107">globals.cpp:107</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ea6b6b21b9be798c546f13e7c7cd93fdb0"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea6b6b21b9be798c546f13e7c7cd93fdb0">car_ret</a></div><div class="ttdeci">@ car_ret</div><div class="ttdoc">end of line ( carriage_return, \cr, \crcr )</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00216">constantes.h:216</a></div></div>
 <div class="ttc" id="ainitrow_8cpp_html_a87e01201e15d56552784671986da86f0"><div class="ttname"><a href="initrow_8cpp.html#a87e01201e15d56552784671986da86f0">initrow</a></div><div class="ttdeci">void initrow(void)</div><div class="ttdef"><b>Definition:</b> <a href="initrow_8cpp_source.html#l00006">initrow.cpp:6</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4da0298d8eb356f2993dbef77b5ec25e6fb"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da0298d8eb356f2993dbef77b5ec25e6fb">vmode</a></div><div class="ttdeci">@ vmode</div><div class="ttdoc">vertical mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00348">constantes.h:348</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ea5a7a316ece45b1c203f483971a973896"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea5a7a316ece45b1c203f483971a973896">right_brace</a></div><div class="ttdeci">@ right_brace</div><div class="ttdoc">ending of a group ( } )</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00213">constantes.h:213</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ea23852876218fe552ef38df0502a605a4"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea23852876218fe552ef38df0502a605a4">spacer</a></div><div class="ttdeci">@ spacer</div><div class="ttdoc">characters equivalent to blank space</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00223">constantes.h:223</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00089">globals.cpp:89</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00088">globals.cpp:88</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_ab366184edc7e8b986e320e1e0e61483f"><div class="ttname"><a href="globals_8cpp.html#ab366184edc7e8b986e320e1e0e61483f">alignstate</a></div><div class="ttdeci">int alignstate</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00018">globals.cpp:18</a></div></div>
 <div class="ttc" id="ainitcol_8cpp_html_a1c3a2eedfb749e57cf833cc140fbe403"><div class="ttname"><a href="initcol_8cpp.html#a1c3a2eedfb749e57cf833cc140fbe403">initcol</a></div><div class="ttdeci">void initcol(void)</div><div class="ttdef"><b>Definition:</b> <a href="initcol_8cpp_source.html#l00005">initcol.cpp:5</a></div></div>
 <div class="ttc" id="anormalparagraph_8cpp_html_ab732d4db0ce00747da0bdb0fff3c7af9"><div class="ttname"><a href="normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9">normalparagraph</a></div><div class="ttdeci">void normalparagraph(void)</div><div class="ttdef"><b>Definition:</b> <a href="normalparagraph_8cpp_source.html#l00005">normalparagraph.cpp:5</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_adb17223ad60c9ffc709eb43e2f309055"><div class="ttname"><a href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a></div><div class="ttdeci">eightbits curcmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00107">globals.cpp:107</a></div></div>
-<div class="ttc" id="ascanleftbrace_8cpp_html_a055cc2de58a83eda8aeb70e218e5fb1c"><div class="ttname"><a href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a></div><div class="ttdeci">void scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="scanleftbrace_8cpp_source.html#l00007">scanleftbrace.cpp:7</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_adb17223ad60c9ffc709eb43e2f309055"><div class="ttname"><a href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a></div><div class="ttdeci">eightbits curcmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00106">globals.cpp:106</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9eac4651428b94d30809cbd93b10ad203dc"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9eac4651428b94d30809cbd93b10ad203dc">no_align</a></div><div class="ttdeci">@ no_align</div><div class="ttdoc">temporary escape from alignment ( \noalign )</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00253">constantes.h:253</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a3237321de3327dcec8b8e81069858115"><div class="ttname"><a href="lecture_8cpp.html#a3237321de3327dcec8b8e81069858115">getxtoken</a></div><div class="ttdeci">void getxtoken(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l01264">lecture.cpp:1264</a></div></div>
 <div class="ttc" id="afinalign_8cpp_html_ab913cca5f19aa49b0a6806e93106cd89"><div class="ttname"><a href="finalign_8cpp.html#ab913cca5f19aa49b0a6806e93106cd89">finalign</a></div><div class="ttdeci">void finalign(void)</div><div class="ttdef"><b>Definition:</b> <a href="finalign_8cpp_source.html#l00024">finalign.cpp:24</a></div></div>
-<div class="ttc" id="agetxtoken_8cpp_html_a3237321de3327dcec8b8e81069858115"><div class="ttname"><a href="getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115">getxtoken</a></div><div class="ttdeci">void getxtoken(void)</div><div class="ttdef"><b>Definition:</b> <a href="getxtoken_8cpp_source.html#l00006">getxtoken.cpp:6</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a055cc2de58a83eda8aeb70e218e5fb1c"><div class="ttname"><a href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a></div><div class="ttdeci">void scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00639">lecture.cpp:639</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

@@ -2,8 +2,7 @@
 #include "flushlist.h"
 #include "impression.h"
 #include "erreur.h"
-#include "scantoks.h"
-#include "makestring.h"
+#include "lecture.h"
 #include <iostream>
 #include "texte.h"
 
@@ -11,13 +10,8 @@ void issuemessage(void)
 {
 	auto c = curchr;
 	link(garbage) = scantoks(false, true);
-	auto oldsetting = selector;
-	selector = new_string;
-	print(tokenshow(defref));
-	selector = oldsetting;
+	auto s = tokenshow(defref);
 	flushlist(defref);
-	str_room(1);
-	auto s = makestring(); 
 	if (c == 0)
 	{
 		print((termoffset+s.size() > maxprintline-2 ? "\n": termoffset > 0 || fileoffset > 0 ? " " : "")+s);
@@ -41,5 +35,4 @@ void issuemessage(void)
 			}
 		useerrhelp = false;
 	}
-	flush_string();
 }

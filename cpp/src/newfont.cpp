@@ -1,15 +1,9 @@
 #include "newfont.h"
 #include "openlogfile.h"
-#include "getrtoken.h"
 #include "impression.h"
-#include "makestring.h"
 #include "geqdefine.h"
 #include "eqdefine.h"
-#include "scanoptionalequals.h"
-#include "scanfilename.h"
-#include "scankeyword.h"
-#include "scandimen.h"
-#include "scanint.h"
+#include "lecture.h"
 #include "erreur.h"
 #include "xnoverd.h"
 #include "readfontinfo.h"
@@ -21,7 +15,6 @@ void newfont(smallnumber a)
 	scaled s;
 	internalfontnumber f;
 	std::string t;
-	char oldsetting;
 	if (jobname == "")
 		openlogfile();
 	getrtoken();
@@ -33,24 +26,16 @@ void newfont(smallnumber a)
 			if (u == txt("char"))
 				t = "FONT";
 			else
-				t = std::string(1, char(u-single_base));
+				t = char(u-single_base);
 		else
-		{
-			oldsetting = selector;
-			selector = new_string;
-			print("FONT");
-			print(std::string(1, u-1));
-			selector = oldsetting;
-			str_room(1);
-			t = makestring();
-		}
+			t = "FONT"+char(u-1);
 	define(a, u, set_font, null_font);
 	scanoptionalequals();
 	scanfilename();
 	nameinprogress = true;
 	if (scankeyword("at"))
 	{
-		scan_normal_dimen();
+		curval = scan_normal_dimen();
 		s = curval;
 		if (s <= 0 || s >= 134217728)
 		{
@@ -61,7 +46,7 @@ void newfont(smallnumber a)
 	else 
 		if (scankeyword("scaled"))
 		{
-			scanint();
+			curval = scanint();
 			s = -curval;
 			if (curval <= 0 || curval > 0x80'00)
 			{

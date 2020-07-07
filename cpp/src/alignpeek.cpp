@@ -1,6 +1,5 @@
 #include "alignpeek.h"
-#include "getxtoken.h"
-#include "scanleftbrace.h"
+#include "lecture.h"
 #include "newsavelevel.h"
 #include "normalparagraph.h"
 #include "finalign.h"

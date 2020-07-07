@@ -12,7 +12,7 @@
 void promptfilename(const std::string &s, const std::string &e)
 {
 	if (interaction == scroll_mode)
-	print_err(s == "input file name" ? "I can't find file `" : "I can't write on file `"+asFilename(curname, curarea, curext)+"'.");
+		print_err(s == "input file name" ? "I can't find file `" : "I can't write on file `"+asFilename(curname, curarea, curext)+"'.");
 	if (e == ".tex")
 		print(showcontext());
 	printnl("Please type another "+s);

@@ -1,13 +1,11 @@
 #include "macrocall.h"
 #include "impression.h"
-#include "gettoken.h"
 #include "getavail.h"
 #include "runaway.h"
 #include "flushlist.h"
 #include "backinput.h"
-#include "endtokenlist.h"
-#include "begintokenlist.h"
 #include "erreur.h"
+#include "lecture.h"
 #include "texte.h"
 
 void macrocall(void)
@@ -19,11 +17,7 @@ void macrocall(void)
 	halfword r = link(refcount);
 	smallnumber n = 0;
 	if (tracing_macros() > 0)
-	{
-		begindiagnostic();
-		print("\n"+cs(warningindex)+tokenshow(refcount));
-		print(enddiagnostic(false));
-	}
+		diagnostic("\n"+cs(warningindex)+tokenshow(refcount));
 	ASCIIcode matchchr;
 	if (info(r) != end_match_token) 
 	{
@@ -214,12 +208,7 @@ void macrocall(void)
 					pstack[n] = link(temp_head);
 				n++;
 				if (tracing_macros() > 0)
-				{
-					begindiagnostic();
-					print(std::string(1, matchchr));
-					printnl(std::to_string(n)+"<-"+tokenlist(pstack[n-1], 0, 1000));
-					print(enddiagnostic(false));
-				}
+					diagnostic(std::string(1, matchchr)+"\n"+std::to_string(n)+"<-"+tokenlist(pstack[n-1], 0, 1000));
 			}
 		} while (info(r) != end_match_token); 
 	}

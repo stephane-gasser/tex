@@ -120,7 +120,7 @@ void initprim(void)
 	primitive("delimiter", delim_num, 0); 
 	primitive("divide", divide, 0); 
 	primitive("endcsname", end_cs_name, 0); 
-	primitive("endgroup", end_group, 0); 
+	curval = primitive("endgroup", end_group, 0); 
 	text(frozen_end_group) = txt("endgroup");
 	eqtb[frozen_end_group] = eqtb[curval];
 	primitive("expandafter", expand_after, 0); 
@@ -145,7 +145,7 @@ void initprim(void)
 	primitive("prevgraf", set_prev_graf, 0); 
 	primitive("radical", radical, 0); 
 	primitive("read", read_to_cs, 0); 
-	primitive("relax", relax, 256); 
+	curval = primitive("relax", relax, 256); 
 	text(frozen_relax) = txt("relax"); 
 	eqtb[frozen_relax] = eqtb[curval];
 	primitive("setbox", set_box, 0); 
@@ -155,7 +155,7 @@ void initprim(void)
 	primitive("valign", valign, 0); 
 	primitive("vcenter", vcenter, 0); 
 	primitive("vrule", vrule, 0); 
-	primitive("par", par_end, 256); 
+	curval = primitive("par", par_end, 256); 
 	parloc = curval;
 	partoken = cs_token_flag+parloc;
 	primitive("input", input, 0); 
@@ -204,16 +204,16 @@ void initprim(void)
 	primitive("iftrue", if_test, if_true_code); 
 	primitive("iffalse", if_test, if_false_code); 
 	primitive("ifcase", if_test, if_case_code); 
-	primitive("fi", fi_or_else, fi_code); 
+	curval = primitive("fi", fi_or_else, fi_code); 
 	text(frozen_fi) = txt("fi");
 	eqtb[frozen_fi] = eqtb[curval];
 	primitive("or", fi_or_else, or_code); 
 	primitive("else", fi_or_else, else_code); 
-	primitive("nullfont", set_font, null_font); 
+	curval = primitive("nullfont", set_font, null_font); 
 	text(frozen_null_font) = txt("nullfont");
 	eqtb[frozen_null_font] = eqtb[curval]; 
 	primitive("span", tab_mark, span_code); 
-	primitive("cr", car_ret, cr_code); 
+	curval = primitive("cr", car_ret, cr_code); 
 	text(frozen_cr) = txt("cr");
 	eqtb[frozen_cr] = eqtb[curval];
 	primitive("crcr", car_ret, cr_cr_code); 
@@ -299,7 +299,7 @@ void initprim(void)
 	primitive("overwithdelims", above, delimited_code+over_code); 
 	primitive("atopwithdelims", above, delimited_code+atop_code); 
 	primitive("left", left_right, left_noad); 
-	primitive("right", left_right, right_noad); 
+	curval = primitive("right", left_right, right_noad); 
 	text(frozen_right) = txt("right");
 	eqtb[frozen_right] = eqtb[curval];
 	primitive("long", prefix, 1); 
@@ -346,7 +346,7 @@ void initprim(void)
 	primitive("showthe", xray, show_the_code); 
 	primitive("showlists", xray, show_lists); 
 	primitive("openout", extension, open_node); 
-	primitive("write", extension, write_node); 
+	curval = primitive("write", extension, write_node); 
 	writeloc = curval; 
 	primitive("closeout", extension, close_node); 
 	primitive("special", extension, special_node); 

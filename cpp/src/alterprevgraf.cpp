@@ -1,6 +1,5 @@
 #include "alterprevgraf.h"
-#include "scanoptionalequals.h"
-#include "scanint.h"
+#include "lecture.h"
 #include "impression.h"
 #include "erreur.h"
 #include "texte.h"
@@ -12,7 +11,7 @@ void alterprevgraf(void)
 	while (abs(nest[p].modefield) != 1)
 		p--;
 	scanoptionalequals();
-	scanint();
+	curval = scanint();
 	if (curval < 0)
 		interror(curval, " Bad "+esc("prevgraf"), "I allow only nonnegative values here.");
 	else

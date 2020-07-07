@@ -13,7 +13,7 @@
 #include "impression.h"
 #include "doassignments.h"
 #include "erreur.h"
-#include "getxtoken.h"
+#include "lecture.h"
 #include "resumeafterdisplay.h"
 #include "buildpage.h"
 #include "newpenalty.h"

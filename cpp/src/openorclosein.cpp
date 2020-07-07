@@ -1,7 +1,5 @@
 #include "openorclosein.h"
-#include "scanfourbitint.h"
-#include "scanoptionalequals.h"
-#include "scanfilename.h"
+#include "lecture.h"
 #include "packfilename.h"
 #include "fichier.h"
 #include "texte.h"
@@ -9,7 +7,7 @@
 void openorclosein(void)
 {
 	auto c = curchr;
-	scanfourbitint();
+	curval = scanfourbitint();
 	auto n = curval;
 	if (readopen[n] != closed)
 	{

@@ -1,14 +1,10 @@
 #include "doextension.h"
 #include "newwritewhatsit.h"
-#include "scanoptionalequals.h"
-#include "scanfilename.h"
-#include "scantoks.h"
+#include "lecture.h"
 #include "newwhatsit.h"
-#include "getxtoken.h"
 #include "outwhat.h"
 #include "flushnodelist.h"
 #include "backinput.h"
-#include "scanint.h"
 #include "erreur.h"
 #include "normmin.h"
 #include "texte.h"
@@ -64,11 +60,8 @@ void doextension(void)
 			else
 			{
 				newwhatsit(language_node, small_node_size);
-				scanint();
-				if (curval <= 0)
-					clang = 0;
-				else 
-					if (curval > 255)
+				curval = scanint();
+				if (curval <= 0 || curval > 255)
 						clang = 0;
 					else
 						clang = curval;

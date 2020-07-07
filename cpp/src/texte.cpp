@@ -9,7 +9,7 @@ int txt(const std::string&s)
 	if (texte.find(s) != texte.end())
 	{
 		for (int i = 0; i < 256; i++)
-			texte[std::string(1, char(i))] = i;
+			texte[std::string(1, i)] = i;
 		texte["buffer size"] = 256;
 		texte["pool size"] = 257;
 		texte["number of strings"] = 258;

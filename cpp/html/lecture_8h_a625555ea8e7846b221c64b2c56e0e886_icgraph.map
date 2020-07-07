@@ -1,0 +1,19 @@
+<map id="scanint" name="scanint">
+<area shape="rect" id="node1" title="Sets curval to an integer. The scan_int routine is used also to scan the integer part of a fraction; ..." alt="" coords="527,387,591,413"/>
+<area shape="rect" id="node2" href="$alteraux_8h.html#acfad1d6cfee9f950e11457f647f80c02" title=" " alt="" coords="213,57,281,84"/>
+<area shape="rect" id="node3" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,513,131,540"/>
+<area shape="rect" id="node4" href="$alterinteger_8h.html#ad0d9ee05a5584e6611723b40b0e5d7ab" title=" " alt="" coords="203,235,290,261"/>
+<area shape="rect" id="node5" href="$alterprevgraf_8h.html#a87971ff31482682ce732cd558847876c" title=" " alt="" coords="199,463,294,489"/>
+<area shape="rect" id="node6" href="$appendpenalty_8h.html#a82e3f6f58b17cb079cbca728f3c09d8b" title=" " alt="" coords="367,209,474,236"/>
+<area shape="rect" id="node7" href="$conditional_8h.html#a815438201a7d90ec1c3da14aea3774c0" title=" " alt="" coords="379,260,463,287"/>
+<area shape="rect" id="node8" href="$convtoks_8h.html#a0f6f2a8ccaad133ad4b9cf4f67f214b1" title=" " alt="" coords="383,311,458,337"/>
+<area shape="rect" id="node9" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="201,387,293,413"/>
+<area shape="rect" id="node10" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="179,615,315,641"/>
+<area shape="rect" id="node11" href="$findfontdimen_8h.html#a3a1391088579b75ddb821a1f66a01b42" title=" " alt="" coords="197,513,297,540"/>
+<area shape="rect" id="node12" href="$newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="213,564,281,591"/>
+<area shape="rect" id="node13" href="$newwritewhatsit_8h.html#ad3cbbd2a868a1a14f4e212db0053c0a3" title=" " alt="" coords="363,361,479,388"/>
+<area shape="rect" id="node14" href="$lecture_8h.html#ad73fd96a347109ca82a676f233224e60" title=" " alt="" coords="197,716,297,743"/>
+<area shape="rect" id="node15" href="$lecture_8h.html#ad330bbbb06884a41f26209e039c103fa" title=" " alt="" coords="378,767,463,793"/>
+<area shape="rect" id="node16" href="$lecture_8h.html#abb63aca1bd8a5cb0c02e646f6eaa82c3" title=" " alt="" coords="367,665,474,692"/>
+<area shape="rect" id="node17" href="$lecture_8h.html#ab737481de2e16e910f5c33ad5ff07ea2" title=" " alt="" coords="363,7,478,33"/>
+</map>

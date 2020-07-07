@@ -3,9 +3,7 @@
 #include "xovern.h"
 #include <iostream> 
 #include <cmath>
-#include "scaneightbitint.h" 
-#include "gettoken.h"
-#include "thetoks.h"
+#include "lecture.h" 
 #include "flushlist.h"
 #include "erreur.h"
 #include "primitive.h"
@@ -57,10 +55,7 @@ static void printchar(ASCIIcode s)
 			break;
 		case new_string: 
 			if (poolptr < poolsize)
-			{
-				strpool[poolptr] = s;
-				poolptr++;
-			}
+				append_char(s);
 			break;
 		default: 
 			writefile[selector] << xchr[s];
@@ -1076,33 +1071,24 @@ std::string showcontext(void)
 	return oss.str();
 }
 
-std::string enddiagnostic(bool blankline)
-{
-	std::ostringstream oss;
-	if (blankline)
-		oss << "\n";
-	selector = oldsetting;
-	return oss.str();
-}
-
-//! Prepare to do some tracing
-void begindiagnostic(void)
+//! Do some tracing.
+void diagnostic(const std::string &s)
 {
 	oldsetting = selector;
 	if (tracing_online() <= 0 && selector == term_and_log)
 	{
-		selector--;
+		selector = log_only;
 		if (history == spotless)
 			history = warning_issued;
 	}
+	print(s);
+	selector = oldsetting;
 }
 
 void showcurcmdchr(void)
 {
-	begindiagnostic();
-	printnl("{"+(mode != shownmode ? asMode(mode)+": " : "")+cmdchr(curcmd, curchr)+"}");
+	diagnostic("\r{"+(mode != shownmode ? asMode(mode)+": " : "")+cmdchr(curcmd, curchr)+"}");
 	shownmode = mode;
-	print(enddiagnostic(false));
 }
 
 static std::string plus(int i, const std::string &s)
@@ -1112,37 +1098,36 @@ static std::string plus(int i, const std::string &s)
 	return "";
 }
 
-static void showactivities(void)
+static std::string showactivities(void)
 {
+	std::ostringstream oss;
 	nest[nestptr] = curlist;
-	printnl("\n");
+	oss << "\r\n";
 	for (int p = nestptr; p >= 0; p--)
 	{
 		int m = nest[p].modefield;
 		memoryword a = nest[p].auxfield;
-		printnl("### "+asMode(m)+" entered at line "+std::to_string(abs(nest[p].mlfield)));
+		oss << "\r### " << asMode(m) << " entered at line " << abs(nest[p].mlfield);
 		if (m == hmode && nest[p].pgfield != (2<<22)+(3<<16)+0) // language=0, hyphenmin=2,3
-			print(" (language"+std::to_string(nest[p].pgfield%(1<<16))+":hyphenmin"+std::to_string(nest[p].pgfield>>22)+","+std::to_string((nest[p].pgfield>>16)%(1<<6))+")");
+			oss << " (language" << nest[p].pgfield%(1<<16)  << ":hyphenmin" << (nest[p].pgfield>>22) << "," << ((nest[p].pgfield>>16)%(1<<6)) << ")";
 		if (nest[p].mlfield < 0)
-			print(" (\\output routine)");
+			oss << " (\\output routine)";
 		if (p == 0)
 		{
 			if (page_head != pagetail)
 			{
-				printnl("### current page:");
+				oss << "\r### current page:";
 				if (outputactive)
-					print(" (held over for link output)");
-				showbox(link(page_head));
+					oss << " (held over for link output)";
+				oss << showbox(link(page_head));
 				if (pagecontents > 0)
 				{
-					printnl("total height "+asScaled(page_total)+plus(2, "")+plus(3, "fil")+plus(4, "fill")+plus(5, "filll")+(page_shrink ? " minus "+asScaled(page_shrink) : ""));
-					printnl(" goal height");
-					print(asScaled(page_goal));
+					oss << "\rtotal height " << asScaled(page_total) << plus(2, "") << plus(3, "fil") << plus(4, "fill") << plus(5, "filll") << (page_shrink ? " minus "+asScaled(page_shrink) : "");
+					oss << "\r goal height" << asScaled(page_goal);
 					halfword r = link(page_ins_head);
 					while (r != page_ins_head)
 					{
-						println();
-						print(esc("insert")+std::to_string(subtype(r))+" adds "+asScaled(count(subtype(r)) == 1000 ? height(r) : xovern(height(r), 1000)*count(subtype(r))));
+						oss << "\n" << esc("insert") << subtype(r) << " adds " << asScaled(count(subtype(r)) == 1000 ? height(r) : xovern(height(r), 1000)*count(subtype(r)));
 						if (type(r) == vlist_node)
 						{
 							halfword q = page_head;
@@ -1153,37 +1138,36 @@ static void showactivities(void)
 								if (type(q) == ins_node && subtype(q) == subtype(r))
 									t++;
 							} while (q != broken_ins(r));
-							print(", #"+std::to_string(t)+" might split");
+							oss << ", #"+std::to_string(t)+" might split";
 						}
 						r = link(r);
 					}
 				}
 			}
-			;
 			if (link(contrib_head))
-			printnl("### recent contributions:");
+				oss << "\r### recent contributions:";
 		}
-		showbox(link(nest[p].headfield));
-		switch (abs(m)/101)
+		oss <<showbox(link(nest[p].headfield));
+		switch (abs(m))
 		{
-			case 0:
-				printnl("prevdepth "+(a.int_ <= ignore_depth ? "ignored" : asScaled(a.int_)));
+			//case 0:
+			case vmode:
+				oss << "\rprevdepth " << (a.int_ <= ignore_depth ? "ignored" : asScaled(a.int_));
 				if (nest[p].pgfield)
-					print(", prevgraf "+std::to_string(nest[p].pgfield)+" line"+(nest[p].pgfield == 1 ?"" : "s"));
+					oss << ", prevgraf " << nest[p].pgfield << " line" << (nest[p].pgfield == 1 ?"" : "s");
 				break;
-			case 1:
-				printnl("spacefactor "+std::to_string(a.hh.lh));
+			case hmode:
+				oss << "\rspacefactor " << a.hh.lh;
 				if (m > 0 && a.hh.rh > 0)
-					print(", current language "+std::to_string(a.hh.rh));
+					oss << ", current language " << a.hh.rh;
 				break;
-			case 2: 
+			case mmode:
 				if (a.int_)
-				{
-					print("this will be denominator of:");
-					showbox(a.int_);
-				}
+					oss << "this will be denominator of:" << showbox(a.int_);
 		}
 	}
+	oss << "\n";
+	return oss.str();
 }
 
 void showwhatever(void)
@@ -1191,9 +1175,7 @@ void showwhatever(void)
 	switch (curchr)
 	{
 		case show_lists:
-			begindiagnostic();
-			showactivities();
-			print(enddiagnostic(true));
+			diagnostic(showactivities());
 			print_err("OK");
 			if (selector == term_and_log && tracing_online() <= 0)
 				selector = term_only;
@@ -1201,14 +1183,8 @@ void showwhatever(void)
 			selector = term_and_log;
 			break;
 		case show_box_code:
-			scaneightbitint();
-			begindiagnostic();
-			printnl("> \\box"+std::to_string(curval)+"="); 
-			if (box(curval) == 0)
-				print("void");
-			else
-				showbox(box(curval));
-			print(enddiagnostic(true));
+			curval = scaneightbitint();
+			diagnostic("\r> \\box"+std::to_string(curval)+"="+(box(curval) == 0 ? "void" : showbox(box(curval)))+"\n");
 			print_err("OK");
 			if (selector == term_and_log && tracing_online() <= 0)
 				selector = term_only;

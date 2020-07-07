@@ -1,9 +1,7 @@
 #include "newhyphexceptions.h"
-#include "scanleftbrace.h"
-#include "getxtoken.h"
 #include "getavail.h"
 #include "impression.h"
-#include "scancharnum.h"
+#include "lecture.h"
 #include "makestring.h"
 #include "erreur.h"
 #include "texte.h"
@@ -49,7 +47,7 @@ void newhyphexceptions(void)
 						}
 				break;
 			case char_num:
-				scancharnum();
+				curval = scancharnum();
 				curchr = curval;
 				curcmd = char_given;
 				continue;

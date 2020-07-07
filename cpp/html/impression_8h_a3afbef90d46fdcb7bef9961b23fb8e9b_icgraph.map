@@ -1,15 +1,13 @@
 <map id="asScaled" name="asScaled">
-<area shape="rect" id="node1" title=" " alt="" coords="440,273,516,300"/>
-<area shape="rect" id="node2" href="$impression_8h.html#ad5391b211fc659f6da369be0e7481f67" title=" " alt="" coords="171,147,238,173"/>
-<area shape="rect" id="node3" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="5,84,104,111"/>
-<area shape="rect" id="node4" href="$thetoks_8h.html#a3d9f2f273381823c25aaf0d9331e4492" title=" " alt="" coords="22,160,87,187"/>
-<area shape="rect" id="node5" href="$convtoks_8h.html#a0f6f2a8ccaad133ad4b9cf4f67f214b1" title=" " alt="" coords="311,248,386,275"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#ae510fed7b37448b7a8111a9acbf3f1c9" title=" " alt="" coords="325,96,372,123"/>
-<area shape="rect" id="node7" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="320,299,377,325"/>
-<area shape="rect" id="node8" href="$newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="315,349,383,376"/>
-<area shape="rect" id="node9" href="$impression_8cpp.html#ad73c91c9251c225aec65d66eb381b363" title=" " alt="" coords="325,451,372,477"/>
-<area shape="rect" id="node10" href="$impression_8cpp.html#a3260a309cc9809d1771696233d80f44f" title=" " alt="" coords="152,425,257,452"/>
-<area shape="rect" id="node11" href="$impression_8cpp.html#af841ed5b09d84f0d769c1aa8f9bc13cb" title=" " alt="" coords="165,45,244,72"/>
-<area shape="rect" id="node12" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="305,501,392,528"/>
-<area shape="rect" id="node13" href="$vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="309,552,388,579"/>
+<area shape="rect" id="node1" title=" " alt="" coords="440,219,516,246"/>
+<area shape="rect" id="node2" href="$impression_8h.html#ad5391b211fc659f6da369be0e7481f67" title=" " alt="" coords="171,42,238,68"/>
+<area shape="rect" id="node3" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="5,67,104,94"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#ae510fed7b37448b7a8111a9acbf3f1c9" title=" " alt="" coords="325,92,372,119"/>
+<area shape="rect" id="node5" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="320,143,377,170"/>
+<area shape="rect" id="node6" href="$newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="315,194,383,220"/>
+<area shape="rect" id="node7" href="$impression_8cpp.html#ad73c91c9251c225aec65d66eb381b363" title=" " alt="" coords="325,244,372,271"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#a3260a309cc9809d1771696233d80f44f" title=" " alt="" coords="152,256,257,283"/>
+<area shape="rect" id="node9" href="$impression_8cpp.html#af841ed5b09d84f0d769c1aa8f9bc13cb" title=" " alt="" coords="165,332,244,359"/>
+<area shape="rect" id="node10" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="305,396,392,423"/>
+<area shape="rect" id="node11" href="$vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="309,447,388,474"/>
 </map>

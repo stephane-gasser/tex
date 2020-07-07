@@ -1,31 +1,15 @@
 #include "prefixedcommand.h"
-#include "getxtoken.h"
 #include "impression.h"
 #include "erreur.h"
-#include "getrtoken.h"
 #include "geqdefine.h"
-#include "scantoks.h"
-#include "gettoken.h"
 #include "eqdefine.h"
-#include "scanoptionalequals.h"
 #include "backinput.h"
-#include "scancharnum.h"
-#include "scanfifteenbitint.h"
-#include "scaneightbitint.h"
-#include "scanint.h"
-#include "readtoks.h"
-#include "scankeyword.h"
 #include "getavail.h"
 #include "eqworddefine.h"
-#include "scandimen.h"
-#include "scanglue.h"
 #include "trapzeroglue.h"
 #include "geqworddefine.h"
-#include "scancharnum.h"
-#include "scanfourbitint.h"
-#include "scanfontident.h"
 #include "doregistercommand.h"
-#include "scanbox.h"
+#include "lecture.h"
 #include "alteraux.h"
 #include "alterprevgraf.h"
 #include "alterpagesofar.h"
@@ -125,37 +109,33 @@ void prefixedcommand(void)
 			switch (n)
 			{
 				case 0:
-					scancharnum();
-					define(a, p, char_given, curval);
+					define(a, p, char_given, scancharnum());
 					break;
 				case 1:
-					scanfifteenbitint();
-					define(a, p, math_given, curval);
+					define(a, p, math_given, scanfifteenbitint());
 					break;
 				default:
-					scaneightbitint();
 					switch (n)
 					{
 						case 2: 
-							define(a, p, assign_int, count_base+curval);
+							define(a, p, assign_int, count_base+scaneightbitint());
 							break;
 						case 3: 
-							define(a, p, assign_dimen, scaled_base+curval);
+							define(a, p, assign_dimen, scaled_base+scaneightbitint());
 							break;
 						case 4: 
-							define(a, p, assign_glue, skip_base+curval);
+							define(a, p, assign_glue, skip_base+scaneightbitint());
 							break;
 						case 5: 
-							define(a, p, assign_mu_glue, mu_skip_base+curval);
+							define(a, p, assign_mu_glue, mu_skip_base+scaneightbitint());
 							break;
 						case 6: 
-							define(a, p, assign_toks, toks_base+curval);
+							define(a, p, assign_toks, toks_base+scaneightbitint());
 					}
 			}
 			break;
 		case read_to_cs:
-			scanint();
-			n = curval;
+			n = scanint();
 			if (!scankeyword("to")) 
 				error("Missing `to' inserted", "You should have said `\\read<number> to \\cs'.\nI'm going to look for the \\cs now.");
 			getrtoken();
@@ -167,10 +147,7 @@ void prefixedcommand(void)
 		case assign_toks:
 			q = curcs;
 			if (curcmd == toks_register)
-			{
-				scaneightbitint();
-				p = toks_base+curval;
-			}
+				p = toks_base+scaneightbitint();
 			else
 				p = curchr;
 			scanoptionalequals();
@@ -181,9 +158,8 @@ void prefixedcommand(void)
 			{
 				if (curcmd == toks_register)
 				{
-					scaneightbitint();
 					curcmd = assign_toks;
-					curchr = toks_base+curval;
+					curchr = toks_base+scaneightbitint();
 				}
 				if (curcmd == assign_toks)
 				{
@@ -225,24 +201,22 @@ void prefixedcommand(void)
 		case assign_int:
 			p = curchr;
 			scanoptionalequals();
-			scanint();
-			word_define(a, p, curval);
+			word_define(a, p, scanint());
 			break;
 		case assign_dimen:
 			p = curchr;
 			scanoptionalequals();
-			scandimen(false, false, false);
-			word_define(a, p, curval);
+			word_define(a, p, scandimen(false, false, false));
 			break;
 		case assign_glue:
 		case assign_mu_glue:
 			p = curchr;
 			n = curcmd;
 			scanoptionalequals();
-			if (n == 76)
-				scanglue(3);
+			if (n == assign_mu_glue)
+				curval = scanglue(3);
 			else
-				scanglue(2);
+				curval = scanglue(2);
 			trapzeroglue();
 			define(a, p, glue_ref, curval);
 			break;
@@ -261,10 +235,9 @@ void prefixedcommand(void)
 						else
 						n = 0xFF;
 			p = curchr;
-			scancharnum();
-			p += curval;
+			p += scancharnum();
 			scanoptionalequals();
-			scanint();
+			curval = scanint();
 			if ((curval < 0 && p < del_code_base) || curval > n)
 			{
 				error("Invalid code ("+std::to_string(curval)+(p < del_code_base ? "), should be in the range 0.." : "//), should be at most ")+std::to_string(n), "I'm going to use 0 instead of that illegal code value.");
@@ -280,11 +253,9 @@ void prefixedcommand(void)
 			break;
 		case def_family:
 			p = curchr;
-			scanfourbitint();
-			p += curval;
+			p += scanfourbitint();
 			scanoptionalequals();
-			scanfontident();
-			define(a, p, data, curval);
+			define(a, p, data, scanfontident());
 			break;
 		case register_:
 		case advance:
@@ -293,8 +264,7 @@ void prefixedcommand(void)
 			doregistercommand(a);
 			break;
 		case set_box:
-			scaneightbitint();
-			n = curval;
+			n = scaneightbitint();
 			if (a >= 4)
 				n += 1<<8;
 			scanoptionalequals();
@@ -320,8 +290,7 @@ void prefixedcommand(void)
 			break;
 		case set_shape:
 			scanoptionalequals();
-			scanint();
-			n = curval;
+			n = scanint();
 			if (n <= 0)
 				p = 0;
 			else
@@ -330,10 +299,8 @@ void prefixedcommand(void)
 				info(p) = n;
 				for (j = 1; j <= n; j++)
 				{
-					scan_normal_dimen();
-					mem[p+2*j-1].int_ = curval;
-					scan_normal_dimen();
-					mem[p+2*j].int_ = curval;
+					mem[p+2*j-1].int_ = scan_normal_dimen();
+					mem[p+2*j].int_ = scan_normal_dimen();
 				}
 			}
 			define(a, par_shape_loc, shape_ref, p);
@@ -348,19 +315,16 @@ void prefixedcommand(void)
 			findfontdimen(true);
 			k = curval;
 			scanoptionalequals();
-			scan_normal_dimen();
-			fontinfo[k].int_ = curval;
+			fontinfo[k].int_ = scan_normal_dimen();
 			break;
 		case assign_font_int:
 			n = curchr;
-			scanfontident();
-			f = curval;
+			f = scanfontident();
 			scanoptionalequals();
-			scanint();
 			if (n == 0)
-				hyphenchar[f] = curval;
+				hyphenchar[f] = scanint();
 			else
-				skewchar[f] = curval;
+				skewchar[f] = scanint();
 			break;
 		case def_font: 
 			newfont(a);

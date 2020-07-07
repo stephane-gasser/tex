@@ -1,9 +1,8 @@
 <map id="par_shape_ptr" name="par_shape_ptr">
-<area shape="rect" id="node1" title=" " alt="" coords="444,84,548,110"/>
-<area shape="rect" id="node2" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="5,33,73,60"/>
-<area shape="rect" id="node3" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="121,58,196,85"/>
-<area shape="rect" id="node4" href="$normalparagraph_8h.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="261,58,379,85"/>
-<area shape="rect" id="node5" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="271,109,369,136"/>
-<area shape="rect" id="node6" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="244,160,396,186"/>
-<area shape="rect" id="node7" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="285,210,355,237"/>
+<area shape="rect" id="node1" title=" " alt="" coords="411,49,515,76"/>
+<area shape="rect" id="node2" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="5,24,73,51"/>
+<area shape="rect" id="node3" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="121,49,196,76"/>
+<area shape="rect" id="node4" href="$normalparagraph_8h.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="244,49,363,76"/>
+<area shape="rect" id="node5" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="254,100,353,127"/>
+<area shape="rect" id="node6" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="269,151,338,177"/>
 </map>

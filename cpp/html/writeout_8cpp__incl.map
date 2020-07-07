@@ -1,13 +1,10 @@
 <map id="src/writeout.cpp" name="src/writeout.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="499,5,614,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="298,5,413,32"/>
 <area shape="rect" id="node2" href="$writeout_8h.html" title=" " alt="" coords="5,80,84,107"/>
 <area shape="rect" id="node3" href="$getavail_8h.html" title=" " alt="" coords="108,80,187,107"/>
-<area shape="rect" id="node4" href="$begintokenlist_8h.html" title=" " alt="" coords="211,80,324,107"/>
-<area shape="rect" id="node5" href="$scantoks_8h.html" title=" " alt="" coords="348,80,435,107"/>
-<area shape="rect" id="node6" href="$gettoken_8h.html" title=" " alt="" coords="459,80,542,107"/>
-<area shape="rect" id="node7" href="$impression_8h.html" title=" " alt="" coords="566,80,662,107"/>
-<area shape="rect" id="node8" href="$erreur_8h.html" title=" " alt="" coords="687,80,752,107"/>
-<area shape="rect" id="node9" href="$endtokenlist_8h.html" title=" " alt="" coords="776,80,879,107"/>
-<area shape="rect" id="node10" href="$flushlist_8h.html" title=" " alt="" coords="903,80,981,107"/>
-<area shape="rect" id="node11" href="$texte_8h.html" title=" " alt="" coords="1005,80,1068,107"/>
+<area shape="rect" id="node4" href="$lecture_8h.html" title=" " alt="" coords="211,80,283,107"/>
+<area shape="rect" id="node5" href="$impression_8h.html" title=" " alt="" coords="307,80,403,107"/>
+<area shape="rect" id="node6" href="$erreur_8h.html" title=" " alt="" coords="428,80,493,107"/>
+<area shape="rect" id="node7" href="$flushlist_8h.html" title=" " alt="" coords="517,80,596,107"/>
+<area shape="rect" id="node8" href="$texte_8h.html" title=" " alt="" coords="620,80,683,107"/>
 </map>

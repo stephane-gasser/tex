@@ -1,6 +1,5 @@
 #include "shiftcase.h"
-#include "scantoks.h"
-#include "begintokenlist.h"
+#include "lecture.h"
 
 void shiftcase(void)
 {

@@ -1,12 +1,11 @@
 #include "alterinteger.h"
-#include "scanoptionalequals.h"
-#include "scanint.h"
+#include "lecture.h"
 
 void alterinteger(void)
 {
 	char c = curchr;
 	scanoptionalequals();
-	scanint();
+	curval = scanint();
 	if (c == 0)
 		deadcycles = curval;
 	else

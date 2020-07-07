@@ -2,7 +2,7 @@
 #include "newnoad.h"
 #include "impression.h"
 #include "erreur.h"
-#include "scanmath.h"
+#include "lecture.h"
 #include "texte.h"
 
 static bool scripts_allowed(halfword tail) { return type(tail) >= ord_noad && type(tail) < left_noad; }

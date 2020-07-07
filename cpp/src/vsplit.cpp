@@ -2,7 +2,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "vertbreak.h"
-#include "deletetokenref.h"
+#include "lecture.h"
 #include "prunepagetop.h"
 #include "freenode.h"
 #include "vpackage.h"

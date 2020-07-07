@@ -20,14 +20,13 @@ std::string romanint(int);
 std::string twoDigits(int);
 std::string showbox(halfword);
 std::string showcontext(void);
-std::string enddiagnostic(bool);
+void diagnostic(const std::string &);
 void print(const std::string &);
 void println(void);
 void printnl(const std::string &);
 void print_err(const std::string &);
 void slowprint(int);
 void slowprint(const std::string &);
-void begindiagnostic(void);
 void showcurcmdchr(void);
 void showwhatever(void);
 

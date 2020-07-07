@@ -1,7 +1,7 @@
 #include "starteqno.h"
 #include "pushmath.h"
 #include "eqworddefine.h"
-#include "begintokenlist.h"
+#include "lecture.h"
 
 void starteqno(void)
 {

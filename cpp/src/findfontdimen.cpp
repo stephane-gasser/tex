@@ -1,6 +1,5 @@
 #include "findfontdimen.h"
-#include "scanint.h"
-#include "scanfontident.h"
+#include "lecture.h"
 #include "deleteglueref.h"
 #include "erreur.h"
 #include "impression.h"
@@ -8,10 +7,8 @@
 
 void findfontdimen(bool writing)
 {
-	scanint();
-	int n = curval;
-	scanfontident();
-	internalfontnumber f = curval;
+	int n = scanint();
+	internalfontnumber f = scanfontident();
 	if (n <= 0)
 		curval = fmemptr;
 	else

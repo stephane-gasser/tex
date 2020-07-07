@@ -2,7 +2,7 @@
 #include "unsave.h"
 #include "finmlist.h"
 #include "pushmath.h"
-#include "scanleftbrace.h"
+#include "lecture.h"
 
 void buildchoices(void)
 {

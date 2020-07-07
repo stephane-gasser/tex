@@ -1,11 +1,8 @@
 <map id="makestring" name="makestring">
-<area shape="rect" id="node1" title=" " alt="" coords="191,183,277,209"/>
+<area shape="rect" id="node1" title=" " alt="" coords="191,107,277,133"/>
 <area shape="rect" id="node2" href="$endname_8h.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="37,5,111,32"/>
 <area shape="rect" id="node3" href="$getstringsstarted_8h.html#ae46a3d749632a4a2cb1ff358d9d14557" title="Initializes the string pool, but returns |false| if something goes wrong." alt="" coords="15,56,133,83"/>
 <area shape="rect" id="node4" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="39,107,109,133"/>
-<area shape="rect" id="node5" href="$issuemessage_8h.html#adaee46b89a83ea6193bbda500242f65c" title=" " alt="" coords="21,157,127,184"/>
-<area shape="rect" id="node6" href="$makenamestring_8h.html#a9e64257b3f687e0775273d7598d0e0cb" title=" " alt="" coords="15,208,133,235"/>
-<area shape="rect" id="node7" href="$newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="40,259,108,285"/>
-<area shape="rect" id="node8" href="$newhyphexceptions_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="5,309,143,336"/>
-<area shape="rect" id="node9" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="31,360,117,387"/>
+<area shape="rect" id="node5" href="$makenamestring_8h.html#a9e64257b3f687e0775273d7598d0e0cb" title=" " alt="" coords="15,157,133,184"/>
+<area shape="rect" id="node6" href="$newhyphexceptions_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="5,208,143,235"/>
 </map>

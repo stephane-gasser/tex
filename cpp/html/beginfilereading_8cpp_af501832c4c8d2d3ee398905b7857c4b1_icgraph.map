@@ -1,6 +1,5 @@
 <map id="beginfilereading" name="beginfilereading">
-<area shape="rect" id="node1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="249,56,361,83"/>
-<area shape="rect" id="node2" href="$erreur_8h.html#ace3930cd6c49e4e12e070cb03a7c0cc0" title=" " alt="" coords="139,5,187,32"/>
-<area shape="rect" id="node3" href="$readtoks_8h.html#acde8bc505eeac66b187524fa495f70ff" title=" " alt="" coords="5,31,77,57"/>
-<area shape="rect" id="node4" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="125,107,201,133"/>
+<area shape="rect" id="node1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="129,31,241,57"/>
+<area shape="rect" id="node2" href="$erreur_8h.html#a3fc8a874a1cb1a9bbb4150ec4080df26" title=" " alt="" coords="19,5,67,32"/>
+<area shape="rect" id="node3" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="5,56,81,83"/>
 </map>

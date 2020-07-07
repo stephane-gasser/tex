@@ -1,15 +1,12 @@
 #include "beginbox.h"
-#include "scaneightbitint.h"
+#include "lecture.h"
 #include "copynodelist.h"
 #include "erreur.h"
-#include "scankeyword.h"
 #include "impression.h"
 #include "vsplit.h"
-#include "scandimen.h"
+#include "lecture.h"
 #include "normalparagraph.h"
-#include "scanspec.h"
 #include "pushnest.h"
-#include "begintokenlist.h"
 #include "boxend.h"
 #include "texte.h"
 
@@ -28,12 +25,12 @@ void beginbox(int boxcontext)
 	switch (curchr)
 	{
 		case box_code:
-			scaneightbitint();
+			curval = scaneightbitint();
 			curbox = box(curval);
 			box(curval) = 0; // the box becomes void, at the same level
 			break;
 		case copy_code:
-			scaneightbitint();
+			curval = scaneightbitint();
 			curbox = copynodelist(box(curval));
 			break;
 		case last_box_code:
@@ -76,11 +73,11 @@ void beginbox(int boxcontext)
 						}
 			break;
 		case vsplit_code:
-			scaneightbitint();
+			curval = scaneightbitint();
 			n = curval;
 			if (!scankeyword("to"))
 				error("Missing `to' inserted", "I'm working on `\\vsplit<box number> to <dimen>';\nwill look for the <dimen> next.");
-			scan_normal_dimen();
+			curval = scan_normal_dimen();
 			curbox = vsplit(n, curval);
 			break;
 		default:

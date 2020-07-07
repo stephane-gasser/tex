@@ -1,5 +1,5 @@
 #include "makemark.h"
-#include "scantoks.h"
+#include "lecture.h"
 #include "getnode.h"
 
 void makemark(void)

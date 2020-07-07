@@ -2,7 +2,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "flushmath.h"
-#include "getxtoken.h"
+#include "lecture.h"
 #include "finmlist.h"
 #include "mlisttohlist.h"
 #include "unsave.h"

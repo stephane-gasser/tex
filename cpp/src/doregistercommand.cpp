@@ -1,13 +1,7 @@
 #include "doregistercommand.h"
-#include "getxtoken.h"
 #include "impression.h"
 #include "erreur.h"
-#include "scaneightbitint.h"
-#include "scanoptionalequals.h"
-#include "scankeyword.h"
-#include "scanint.h"
-#include "scandimen.h"
-#include "scanglue.h"
+#include "lecture.h"
 #include "newspec.h"
 #include "deleteglueref.h"
 #include "multandadd.h"
@@ -42,7 +36,7 @@ void doregistercommand(smallnumber a)
 			}
 		}
 		p = curchr;
-		scaneightbitint();
+		curval = scaneightbitint();
 		switch (p)
 		{
 			case int_val: 
@@ -68,15 +62,15 @@ void doregistercommand(smallnumber a)
 		if (p < glue_val)
 		{
 			if (p == int_val)
-				scanint();
+				curval = scanint();
 			else
-				scan_normal_dimen();
+				curval = scan_normal_dimen();
 			if (q == advance)
 				curval += eqtb[l].int_;
 		}
 		else
 		{
-			scanglue(p);
+			curval = scanglue(p);
 			if (q == advance)
 			{
 				q = newspec(curval);
@@ -108,7 +102,7 @@ void doregistercommand(smallnumber a)
 		}
 	else
 	{
-		scanint();
+		curval = scanint();
 		if (p < glue_val)
 			if (q == multiply)
 				if (p == int_val)

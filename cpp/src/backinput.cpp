@@ -1,5 +1,5 @@
 #include "backinput.h"
-#include "endtokenlist.h"
+#include "lecture.h"
 #include "getavail.h"
 #include "pushinput.h"
 

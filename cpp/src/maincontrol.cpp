@@ -5,14 +5,10 @@
 #include "newdisc.h"
 #include "freenode.h"
 #include "getnext.h"
-#include "xtoken.h"
-#include "scancharnum.h"
 #include "newspec.h"
 #include "newglue.h"
 #include "newparamglue.h"
-#include "getxtoken.h"
 #include "charwarning.h"
-#include "begintokenlist.h"
 #include "backinput.h"
 #include "pauseforinstructions.h"
 #include "appspace.h"
@@ -24,10 +20,8 @@
 #include "newsavelevel.h"
 #include "unsave.h"
 #include "offsave.h"
-#include "scandimen.h"
 #include "handlerightbrace.h"
 #include "beginbox.h"
-#include "scanbox.h"
 #include "newgraf.h"
 #include "indentinhmode.h"
 #include "normalparagraph.h"
@@ -49,16 +43,12 @@
 #include "initmath.h"
 #include "starteqno.h"
 #include "newnoad.h"
-#include "scanmath.h"
-#include "scanrulespec.h"
 #include "appenddiscretionary.h"
 #include "setmathchar.h"
-#include "scanfifteenbitint.h"
-#include "scantwentysevenbitint.h"
 #include "mathlimitswitch.h"
 #include "mathac.h"
 #include "mathradical.h"
-#include "scanspec.h"
+#include "lecture.h"
 #include "pushnest.h"
 #include "newstyle.h"
 #include "appendchoices.h"
@@ -67,7 +57,6 @@
 #include "mathleftright.h"
 #include "aftermath.h"
 #include "prefixedcommand.h"
-#include "gettoken.h"
 #include "saveforafter.h"
 #include "issuemessage.h"
 #include "openorclosein.h"
@@ -146,7 +135,7 @@ static void main_loop_lookahead(void)
 		{
 			if (curcmd == char_num)
 			{
-				scancharnum();
+				curval = scancharnum();
 				curchr = curval;
 			}
 			else
@@ -468,13 +457,13 @@ void maincontrol(void)
 				main_loop();
 				continue;
 			case hmode+char_num:
-				scancharnum();
+				curval = scancharnum();
 				curchr = curval;
 				main_loop();
 				continue;
 			case hmode+no_boundary:
 				getxtoken();
-				if (curcmd == letter || curcmd == other_char || curcmd == char_given|| curcmd == char_num)
+				if (curcmd == letter || curcmd == other_char || curcmd == char_given || curcmd == char_num)
 					cancelboundary = true;
 				continue;
 			case hmode+spacer: 
@@ -579,7 +568,7 @@ void maincontrol(void)
 			case hmode+vmove:
 			case mmode+vmove:
 				t = curchr;
-				scan_normal_dimen();
+				curval = scan_normal_dimen();
 				scanbox(t == 0 ? curval : -curval);
 				break;
 			case ANY_MODE(leader_ship):
@@ -733,19 +722,19 @@ void maincontrol(void)
 				setmathchar(math_code(curchr));
 				break;
 			case mmode+char_num:
-				scancharnum();
+				curval = scancharnum();
 				curchr = curval;
 				setmathchar(math_code(curchr));
 				break;
 			case mmode+math_char_num:
-				scanfifteenbitint();
+				curval = scanfifteenbitint();
 				setmathchar(curval);
 				break;
 			case mmode+math_given: 
 				setmathchar(curchr);
 				break;
 			case mmode+delim_num:
-				scantwentysevenbitint();
+				curval = scantwentysevenbitint();
 				setmathchar(curval>>12);
 				break;
 			case mmode+math_comp:

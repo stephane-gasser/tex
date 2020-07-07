@@ -1,7 +1,7 @@
 #include "appendchoices.h"
 #include "pushmath.h"
 #include "newchoice.h"
-#include "scanleftbrace.h"
+#include "lecture.h"
 
 void appendchoices(void)
 {

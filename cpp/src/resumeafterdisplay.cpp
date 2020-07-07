@@ -2,7 +2,7 @@
 #include "erreur.h"
 #include "unsave.h"
 #include "pushnest.h"
-#include "getxtoken.h"
+#include "lecture.h"
 #include "normmin.h"
 #include "buildpage.h"
 #include "backinput.h"

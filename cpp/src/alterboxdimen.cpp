@@ -1,15 +1,13 @@
 #include "alterboxdimen.h"
-#include "scaneightbitint.h"
-#include "scanoptionalequals.h"
-#include "scandimen.h"
+#include "lecture.h"
 
 void alterboxdimen(void)
 {
 	auto c = curchr;
-	scaneightbitint();
+	curval = scaneightbitint();
 	auto b = curval;
 	scanoptionalequals();
-	scan_normal_dimen();
+	curval = scan_normal_dimen();
 	if (box(b))
 		mem[box(b)+c].int_ = curval;
 }

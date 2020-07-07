@@ -62,7 +62,6 @@ char termoffset; // 0..maxprintline
 char fileoffset; // 0..maxprintline
 ASCIIcode trickbuf[errorline+1];
 char interaction; // 0..3
-bool deletionsallowed;
 bool setboxallowed;
 char history; // 0..3
 char errorcount; // -1..100

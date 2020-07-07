@@ -10,10 +10,7 @@ void specialout(halfword p)
 	synch_h();
 	synch_v();
 	auto oldsetting = selector;
-	selector = new_string;
-	print(tokenlist(link(write_tokens(p)), 0, poolsize-poolptr));
-	selector = oldsetting;
-	str_room(1); 
+	auto s = tokenlist(link(write_tokens(p)), 0, poolsize-poolptr);
 	if (cur_length() < 256)
 	{
 		dvi_out(xxx1);
@@ -24,7 +21,6 @@ void specialout(halfword p)
 		dvi_out(xxx4);
 		dvifour(cur_length());
 	}
-	for (auto k = strstart[strptr]; k < poolptr; k++)
-		dvi_out(strpool[k]);
-	poolptr = strstart[strptr];
+	for (auto c: s)
+		dvi_out(c);
 }

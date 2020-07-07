@@ -1,0 +1,20 @@
+<map id="scandimen" name="scandimen">
+<area shape="rect" id="node1" title=" " alt="" coords="5,407,91,434"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="175,154,254,180"/>
+<area shape="rect" id="node3" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="353,154,420,180"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="497,78,540,104"/>
+<area shape="rect" id="node5" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="339,52,435,79"/>
+<area shape="rect" id="node6" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="363,306,411,332"/>
+<area shape="rect" id="node7" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="483,280,555,307"/>
+<area shape="rect" id="node8" href="$getavail_8cpp.html#a57e5861075197f4fe65695ad0b9d4fbb" title="single&#45;word node liberation" alt="" coords="347,103,426,130"/>
+<area shape="rect" id="node9" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="175,356,254,383"/>
+<area shape="rect" id="node10" href="$parametres_8h.html#aa530a2fab0c0a26bbc70cb273b4a22d2" title=" " alt="" coords="363,508,410,535"/>
+<area shape="rect" id="node11" href="$preparemag_8cpp.html#abf37a40b9d95bc2a1560163dea9ec5c9" title=" " alt="" coords="169,559,260,586"/>
+<area shape="rect" id="node12" href="$rounddecimals_8cpp.html#ab9486c5801fee6279d00594937f45e24" title=" " alt="" coords="161,508,268,535"/>
+<area shape="rect" id="node13" href="$lecture_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer. The scan_int routine is used also to scan the integer part of a fraction; ..." alt="" coords="183,306,247,332"/>
+<area shape="rect" id="node14" href="$lecture_8cpp.html#a514cdc68b010264d20e363f694fec240" title=" " alt="" coords="165,610,264,636"/>
+<area shape="rect" id="node15" href="$lecture_8cpp.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="139,660,291,687"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="191,711,238,738"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="188,762,241,788"/>
+<area shape="rect" id="node18" href="$xnoverd_8cpp.html#a52ee334cb1cd3de8b42c93c6a8a22cd8" title=" " alt="" coords="181,812,249,839"/>
+</map>

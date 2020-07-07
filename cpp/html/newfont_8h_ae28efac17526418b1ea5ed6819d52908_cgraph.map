@@ -1,19 +1,16 @@
 <map id="newfont" name="newfont">
-<area shape="rect" id="node1" title=" " alt="" coords="5,385,73,412"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,309,73,336"/>
 <area shape="rect" id="node2" href="$impression_8cpp.html#a31a15345027ce954e1ff8fa40f149d17" title=" " alt="" coords="153,5,229,32"/>
 <area shape="rect" id="node3" href="$eqdefine_8cpp.html#a545e35b1ae246ca07e225cc1e9ffb506" title=" " alt="" coords="162,56,219,83"/>
-<area shape="rect" id="node4" href="$erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc" title=" " alt="" coords="326,208,374,235"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="440,309,487,336"/>
-<area shape="rect" id="node6" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="535,259,573,285"/>
-<area shape="rect" id="node7" href="$getrtoken_8cpp.html#a7c08b32f4ec91d2132e1ab0c876995f3" title=" " alt="" coords="153,259,229,285"/>
-<area shape="rect" id="node8" href="$makestring_8cpp.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="147,360,234,387"/>
-<area shape="rect" id="node9" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="327,335,373,361"/>
-<area shape="rect" id="node10" href="$openlogfile_8cpp.html#aa093bac5d614a1706a24856de98e0c7d" title=" " alt="" coords="308,512,392,539"/>
-<area shape="rect" id="node11" href="$scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b" title=" " alt="" coords="121,461,260,488"/>
-<area shape="rect" id="node12" href="$scanfilename_8cpp.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="141,512,240,539"/>
-<area shape="rect" id="node13" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="159,208,223,235"/>
-<area shape="rect" id="node14" href="$scankeyword_8cpp.html#a514cdc68b010264d20e363f694fec240" title=" " alt="" coords="141,613,240,640"/>
-<area shape="rect" id="node15" href="$scanoptionalequals_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="124,664,257,691"/>
-<area shape="rect" id="node16" href="$erreur_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="154,715,227,741"/>
-<area shape="rect" id="node17" href="$constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0" title="string number for control sequence name" alt="" coords="169,765,213,792"/>
+<area shape="rect" id="node4" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="308,233,356,260"/>
+<area shape="rect" id="node5" href="$lecture_8cpp.html#a7c08b32f4ec91d2132e1ab0c876995f3" title=" " alt="" coords="153,157,229,184"/>
+<area shape="rect" id="node6" href="$openlogfile_8cpp.html#aa093bac5d614a1706a24856de98e0c7d" title=" " alt="" coords="149,208,233,235"/>
+<area shape="rect" id="node7" href="$lecture_8cpp.html#acd91137563c568c716525074e0b5ef8b" title=" " alt="" coords="121,259,260,285"/>
+<area shape="rect" id="node8" href="$lecture_8cpp.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="141,309,240,336"/>
+<area shape="rect" id="node9" href="$lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="159,360,223,387"/>
+<area shape="rect" id="node10" href="$lecture_8cpp.html#a514cdc68b010264d20e363f694fec240" title=" " alt="" coords="141,411,240,437"/>
+<area shape="rect" id="node11" href="$lecture_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="124,461,257,488"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0" title="string number for control sequence name" alt="" coords="169,512,213,539"/>
+<area shape="rect" id="node13" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="171,563,210,589"/>
+<area shape="rect" id="node14" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="167,613,214,640"/>
 </map>

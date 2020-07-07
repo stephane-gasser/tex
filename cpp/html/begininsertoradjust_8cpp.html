@@ -79,11 +79,10 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="begininsertoradjust_8h_source.html">begininsertoradjust.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="scaneightbitint_8h_source.html">scaneightbitint.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="lecture_8h_source.html">lecture.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="impression_8h_source.html">impression.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="erreur_8h_source.html">erreur.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="newsavelevel_8h_source.html">newsavelevel.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="scanleftbrace_8h_source.html">scanleftbrace.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="normalparagraph_8h_source.html">normalparagraph.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="pushnest_8h_source.html">pushnest.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="texte_8h_source.html">texte.h</a>&quot;</code><br />
@@ -92,16 +91,15 @@ Graphe des dépendances par inclusion de begininsertoradjust.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="begininsertoradjust_8cpp__incl.png" border="0" usemap="#src_2begininsertoradjust_8cpp" alt=""/></div>
 <map name="src_2begininsertoradjust_8cpp" id="src_2begininsertoradjust_8cpp">
-<area shape="rect" title=" " alt="" coords="491,5,670,32"/>
+<area shape="rect" title=" " alt="" coords="389,5,567,32"/>
 <area shape="rect" href="begininsertoradjust_8h.html" title=" " alt="" coords="5,80,148,107"/>
-<area shape="rect" href="scaneightbitint_8h.html" title=" " alt="" coords="173,80,290,107"/>
-<area shape="rect" href="impression_8h.html" title=" " alt="" coords="314,80,410,107"/>
-<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="435,80,500,107"/>
-<area shape="rect" href="newsavelevel_8h.html" title=" " alt="" coords="525,80,637,107"/>
-<area shape="rect" href="scanleftbrace_8h.html" title=" " alt="" coords="661,80,772,107"/>
-<area shape="rect" href="normalparagraph_8h.html" title=" " alt="" coords="796,80,925,107"/>
-<area shape="rect" href="pushnest_8h.html" title=" " alt="" coords="949,80,1036,107"/>
-<area shape="rect" href="texte_8h.html" title=" " alt="" coords="1060,80,1123,107"/>
+<area shape="rect" href="lecture_8h.html" title=" " alt="" coords="173,80,245,107"/>
+<area shape="rect" href="impression_8h.html" title=" " alt="" coords="269,80,365,107"/>
+<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="389,80,455,107"/>
+<area shape="rect" href="newsavelevel_8h.html" title=" " alt="" coords="479,80,591,107"/>
+<area shape="rect" href="normalparagraph_8h.html" title=" " alt="" coords="615,80,744,107"/>
+<area shape="rect" href="pushnest_8h.html" title=" " alt="" coords="768,80,855,107"/>
+<area shape="rect" href="texte_8h.html" title=" " alt="" coords="879,80,941,107"/>
 </map>
 </div>
 </div>
@@ -129,40 +127,40 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="begininsertoradjust_8cpp_source.html#l00011">11</a> du fichier <a class="el" href="begininsertoradjust_8cpp_source.html">begininsertoradjust.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea8b64e9afd9e15958e4e9e3e0ca6fb367">vadjust</a>)</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = 255;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="scaneightbitint_8cpp.html#abb63aca1bd8a5cb0c02e646f6eaa82c3">scaneightbitint</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> == 255)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc">error</a>(<span class="stringliteral">&quot;You can&#39;t &quot;</span>+<a class="code" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a>(<span class="stringliteral">&quot;insert&quot;</span>)+<span class="stringliteral">&quot;255&quot;</span>, <span class="stringliteral">&quot;I&#39;m changing to \\insert0; box 255 is special.&quot;</span>);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = 0;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a>[<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>++].<a class="code" href="unionmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a> = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a>(<a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fceae35044fc72b77ac9d137aa7097b9ce72">insert_group</a>);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9">normalparagraph</a>();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309">pushnest</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a> = -<a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da0298d8eb356f2993dbef77b5ec25e6fb">vmode</a>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="globals_8cpp.html#af63f4ef8550dae22c18f3db782753fe8">prev_depth</a> = <a class="code" href="constantes_8h.html#af214c8ab9b11b218f85214f2a58b714e">ignore_depth</a>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="begininsertoradjust_8cpp_source.html#l00010">10</a> du fichier <a class="el" href="begininsertoradjust_8cpp_source.html">begininsertoradjust.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea8b64e9afd9e15958e4e9e3e0ca6fb367">vadjust</a>)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = 255;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = <a class="code" href="lecture_8cpp.html#a5582312d4ec520bdb117d4bd96c59e9f">scaneightbitint</a>();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> == 255)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<span class="stringliteral">&quot;You can&#39;t &quot;</span>+<a class="code" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a>(<span class="stringliteral">&quot;insert&quot;</span>)+<span class="stringliteral">&quot;255&quot;</span>, <span class="stringliteral">&quot;I&#39;m changing to \\insert0; box 255 is special.&quot;</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = 0;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a>[<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>++].<a class="code" href="unionmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a> = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a>(<a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fceae35044fc72b77ac9d137aa7097b9ce72">insert_group</a>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9">normalparagraph</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309">pushnest</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a> = -<a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da0298d8eb356f2993dbef77b5ec25e6fb">vmode</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="globals_8cpp.html#af63f4ef8550dae22c18f3db782753fe8">prev_depth</a> = <a class="code" href="constantes_8h.html#af214c8ab9b11b218f85214f2a58b714e">ignore_depth</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="begininsertoradjust_8cpp_aced2386faf00f88641a052228b5cd413_cgraph.png" border="0" usemap="#begininsertoradjust_8cpp_aced2386faf00f88641a052228b5cd413_cgraph" alt=""/></div>
 <map name="begininsertoradjust_8cpp_aced2386faf00f88641a052228b5cd413_cgraph" id="begininsertoradjust_8cpp_aced2386faf00f88641a052228b5cd413_cgraph">
 <area shape="rect" title=" " alt="" coords="5,157,136,184"/>
-<area shape="rect" href="erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc" title=" " alt="" coords="219,5,267,32"/>
+<area shape="rect" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="219,5,267,32"/>
 <area shape="rect" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="351,31,393,57"/>
 <area shape="rect" href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="193,107,294,133"/>
 <area shape="rect" href="normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="184,157,303,184"/>
 <area shape="rect" href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="206,208,281,235"/>
-<area shape="rect" href="scaneightbitint_8cpp.html#abb63aca1bd8a5cb0c02e646f6eaa82c3" title=" " alt="" coords="190,259,297,285"/>
-<area shape="rect" href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="193,309,293,336"/>
+<area shape="rect" href="lecture_8cpp.html#a5582312d4ec520bdb117d4bd96c59e9f" title=" " alt="" coords="190,259,297,285"/>
+<area shape="rect" href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="193,309,293,336"/>
 </map>
 </div>
 <div class="dynheader">
@@ -181,21 +179,21 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aconstantes_8h_html_af214c8ab9b11b218f85214f2a58b714e"><div class="ttname"><a href="constantes_8h.html#af214c8ab9b11b218f85214f2a58b714e">ignore_depth</a></div><div class="ttdeci">constexpr int ignore_depth</div><div class="ttdoc">prev_depth value that is ignored</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00691">constantes.h:691</a></div></div>
 <div class="ttc" id="anewsavelevel_8cpp_html_afad44a60dc27690826030e3d7bfe80a0"><div class="ttname"><a href="newsavelevel_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a></div><div class="ttdeci">void newsavelevel(groupcode c)</div><div class="ttdef"><b>Definition:</b> <a href="newsavelevel_8cpp_source.html#l00004">newsavelevel.cpp:4</a></div></div>
 <div class="ttc" id="aunionmemoryword_html_a4d5c9735ea2e99d2d3aed088c2fa3f0d"><div class="ttname"><a href="unionmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">memoryword::int_</a></div><div class="ttdeci">std::int32_t int_</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00070">tex.h:70</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_af63f4ef8550dae22c18f3db782753fe8"><div class="ttname"><a href="globals_8cpp.html#af63f4ef8550dae22c18f3db782753fe8">prev_depth</a></div><div class="ttdeci">int &amp; prev_depth</div><div class="ttdoc">the name of aux in vertical mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00085">globals.cpp:85</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a5582312d4ec520bdb117d4bd96c59e9f"><div class="ttname"><a href="lecture_8cpp.html#a5582312d4ec520bdb117d4bd96c59e9f">scaneightbitint</a></div><div class="ttdeci">int scaneightbitint(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00376">lecture.cpp:376</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_af63f4ef8550dae22c18f3db782753fe8"><div class="ttname"><a href="globals_8cpp.html#af63f4ef8550dae22c18f3db782753fe8">prev_depth</a></div><div class="ttdeci">int &amp; prev_depth</div><div class="ttdoc">the name of aux in vertical mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00084">globals.cpp:84</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fceae35044fc72b77ac9d137aa7097b9ce72"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fceae35044fc72b77ac9d137aa7097b9ce72">insert_group</a></div><div class="ttdeci">@ insert_group</div><div class="ttdoc">code for ‘\insert\grp’, ‘\vadjust\grp’</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00374">constantes.h:374</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a67efc5cbda00d9fe23a1c6d931742de5"><div class="ttname"><a href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a></div><div class="ttdeci">memoryword savestack[savesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00101">globals.cpp:101</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a67efc5cbda00d9fe23a1c6d931742de5"><div class="ttname"><a href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a></div><div class="ttdeci">memoryword savestack[savesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00100">globals.cpp:100</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4da0298d8eb356f2993dbef77b5ec25e6fb"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da0298d8eb356f2993dbef77b5ec25e6fb">vmode</a></div><div class="ttdeci">@ vmode</div><div class="ttdoc">vertical mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00348">constantes.h:348</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00089">globals.cpp:89</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00088">globals.cpp:88</a></div></div>
 <div class="ttc" id="anormalparagraph_8cpp_html_ab732d4db0ce00747da0bdb0fff3c7af9"><div class="ttname"><a href="normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9">normalparagraph</a></div><div class="ttdeci">void normalparagraph(void)</div><div class="ttdef"><b>Definition:</b> <a href="normalparagraph_8cpp_source.html#l00005">normalparagraph.cpp:5</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_adb17223ad60c9ffc709eb43e2f309055"><div class="ttname"><a href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a></div><div class="ttdeci">eightbits curcmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00107">globals.cpp:107</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00260">impression.cpp:260</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_adb17223ad60c9ffc709eb43e2f309055"><div class="ttname"><a href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a></div><div class="ttdeci">eightbits curcmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00106">globals.cpp:106</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00255">impression.cpp:255</a></div></div>
 <div class="ttc" id="apushnest_8cpp_html_a67fd485afd94f32c6e7f6dcea9e6b309"><div class="ttname"><a href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309">pushnest</a></div><div class="ttdeci">void pushnest(void)</div><div class="ttdef"><b>Definition:</b> <a href="pushnest_8cpp_source.html#l00005">pushnest.cpp:5</a></div></div>
-<div class="ttc" id="ascanleftbrace_8cpp_html_a055cc2de58a83eda8aeb70e218e5fb1c"><div class="ttname"><a href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a></div><div class="ttdeci">void scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="scanleftbrace_8cpp_source.html#l00007">scanleftbrace.cpp:7</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00102">globals.cpp:102</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00101">globals.cpp:101</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ea8b64e9afd9e15958e4e9e3e0ca6fb367"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea8b64e9afd9e15958e4e9e3e0ca6fb367">vadjust</a></div><div class="ttdeci">@ vadjust</div><div class="ttdoc">vlist inserted in enclosing paragraph ( \vadjust )</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00257">constantes.h:257</a></div></div>
-<div class="ttc" id="ascaneightbitint_8cpp_html_abb63aca1bd8a5cb0c02e646f6eaa82c3"><div class="ttname"><a href="scaneightbitint_8cpp.html#abb63aca1bd8a5cb0c02e646f6eaa82c3">scaneightbitint</a></div><div class="ttdeci">void scaneightbitint(void)</div><div class="ttdef"><b>Definition:</b> <a href="scaneightbitint_8cpp_source.html#l00007">scaneightbitint.cpp:7</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a055cc2de58a83eda8aeb70e218e5fb1c"><div class="ttname"><a href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a></div><div class="ttdeci">void scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00639">lecture.cpp:639</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_ac7643d2431e40f0ac7a89ec84f1bda70"><div class="ttname"><a href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a></div><div class="ttdeci">void error(const std::string &amp;msg, const std::string &amp;hlp, bool deletionsallowed)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00014">erreur.cpp:14</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a3fc97d19e160956f7fa23eb8ded19785"><div class="ttname"><a href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a></div><div class="ttdeci">int curval</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00019">globals.cpp:19</a></div></div>
-<div class="ttc" id="aerreur_8cpp_html_a8094d2b3dcc0b89179315a3ff21045bc"><div class="ttname"><a href="erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc">error</a></div><div class="ttdeci">void error(const std::string &amp;msg, const std::string &amp;hlp)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00014">erreur.cpp:14</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

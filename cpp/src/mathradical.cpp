@@ -1,6 +1,5 @@
 #include "mathradical.h"
-#include "scandelimiter.h"
-#include "scanmath.h"
+#include "lecture.h"
 #include "getnode.h"
 
 void mathradical(void)

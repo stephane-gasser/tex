@@ -1,9 +1,8 @@
 <map id="check_interrupt" name="check_interrupt">
-<area shape="rect" id="node1" title=" " alt="" coords="268,132,379,159"/>
-<area shape="rect" id="node2" href="$endtokenlist_8h.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="123,5,215,32"/>
-<area shape="rect" id="node3" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="5,31,71,57"/>
-<area shape="rect" id="node4" href="$maincontrol_8cpp.html#a324a507e9f6c60cdc8cd9193e7be3df3" title=" " alt="" coords="119,107,220,133"/>
-<area shape="rect" id="node5" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="125,157,214,184"/>
-<area shape="rect" id="node6" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="133,208,205,235"/>
-<area shape="rect" id="node7" href="$reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="124,259,215,285"/>
+<area shape="rect" id="node1" title=" " alt="" coords="155,107,265,133"/>
+<area shape="rect" id="node2" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="23,5,89,32"/>
+<area shape="rect" id="node3" href="$maincontrol_8cpp.html#a324a507e9f6c60cdc8cd9193e7be3df3" title=" " alt="" coords="5,56,107,83"/>
+<area shape="rect" id="node4" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="11,107,101,133"/>
+<area shape="rect" id="node5" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="20,157,92,184"/>
+<area shape="rect" id="node6" href="$reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="11,208,101,235"/>
 </map>

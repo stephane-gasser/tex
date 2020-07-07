@@ -1,12 +1,10 @@
 <map id="src/newpatterns.cpp" name="src/newpatterns.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="467,5,607,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="313,5,453,32"/>
 <area shape="rect" id="node2" href="$newpatterns_8h.html" title=" " alt="" coords="5,80,109,107"/>
-<area shape="rect" id="node3" href="$scanleftbrace_8h.html" title=" " alt="" coords="134,80,245,107"/>
-<area shape="rect" id="node4" href="$getxtoken_8h.html" title=" " alt="" coords="269,80,360,107"/>
-<area shape="rect" id="node5" href="$impression_8h.html" title=" " alt="" coords="384,80,480,107"/>
-<area shape="rect" id="node6" href="$erreur_8h.html" title=" " alt="" coords="505,80,570,107"/>
-<area shape="rect" id="node7" href="$newtrieop_8h.html" title=" " alt="" coords="594,80,683,107"/>
-<area shape="rect" id="node8" href="$scantoks_8h.html" title=" " alt="" coords="707,80,794,107"/>
-<area shape="rect" id="node9" href="$flushlist_8h.html" title=" " alt="" coords="818,80,897,107"/>
-<area shape="rect" id="node10" href="$texte_8h.html" title=" " alt="" coords="921,80,983,107"/>
+<area shape="rect" id="node3" href="$lecture_8h.html" title=" " alt="" coords="133,80,205,107"/>
+<area shape="rect" id="node4" href="$impression_8h.html" title=" " alt="" coords="229,80,325,107"/>
+<area shape="rect" id="node5" href="$erreur_8h.html" title=" " alt="" coords="350,80,415,107"/>
+<area shape="rect" id="node6" href="$newtrieop_8h.html" title=" " alt="" coords="439,80,529,107"/>
+<area shape="rect" id="node7" href="$flushlist_8h.html" title=" " alt="" coords="553,80,631,107"/>
+<area shape="rect" id="node8" href="$texte_8h.html" title=" " alt="" coords="655,80,718,107"/>
 </map>

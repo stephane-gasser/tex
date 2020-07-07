@@ -1,6 +1,5 @@
 #include "fireup.h"
 #include "geqworddefine.h"
-#include "deletetokenref.h"
 #include "impression.h"
 #include "ensurevbox.h"
 #include "newnullbox.h"
@@ -10,10 +9,9 @@
 #include "deleteglueref.h"
 #include "erreur.h"
 #include "pushnest.h"
-#include "begintokenlist.h"
 #include "newsavelevel.h"
 #include "normalparagraph.h"
-#include "scanleftbrace.h"
+#include "lecture.h"
 #include "shipout.h"
 #include "texte.h"
 

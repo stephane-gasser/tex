@@ -1,35 +1,33 @@
 <map id="equiv" name="equiv">
-<area shape="rect" id="node1" title="equivalent value" alt="" coords="541,793,595,820"/>
-<area shape="rect" id="node2" href="$constantes_8h.html#aba7c5bf8c3e657c9b1fb0125e7c1ca13" title=" " alt="" coords="252,1300,295,1326"/>
-<area shape="rect" id="node3" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="5,1224,157,1250"/>
-<area shape="rect" id="node4" href="$constantes_8h.html#a86341c8706240b4a2c964359cd763c64" title=" " alt="" coords="404,362,479,389"/>
-<area shape="rect" id="node5" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="241,261,306,288"/>
-<area shape="rect" id="node6" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="238,1097,309,1124"/>
-<area shape="rect" id="node7" href="$constantes_8h.html#aca760671a22142e0e59d362c04885039" title=" " alt="" coords="407,109,476,136"/>
-<area shape="rect" id="node8" href="$scanfontident_8h.html#af10db9e739cab7816d69a23ae8348f8a" title=" " alt="" coords="223,134,323,161"/>
-<area shape="rect" id="node9" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="19,58,144,85"/>
-<area shape="rect" id="node10" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="205,58,341,85"/>
-<area shape="rect" id="node11" href="$eqdefine_8h.html#a4f9657182abb3c8c499ccd689be3f647" title=" " alt="" coords="406,464,477,490"/>
-<area shape="rect" id="node12" href="$constantes_8h.html#a2715dcea36ae0bf1f96b9d1b10923598" title=" " alt="" coords="407,514,475,541"/>
-<area shape="rect" id="node13" href="$constantes_8h.html#a60c965218c52394aaa95513c326eafbc" title=" " alt="" coords="405,565,477,592"/>
-<area shape="rect" id="node14" href="$initmath_8cpp.html#ad11e2009b8eed5f8a7c21a03d9c6c096" title=" " alt="" coords="390,616,493,642"/>
-<area shape="rect" id="node15" href="$beginbox_8cpp.html#a718aebd47ff5e8c8bfe7265de195d178" title=" " alt="" coords="397,666,486,693"/>
-<area shape="rect" id="node16" href="$maincontrol_8cpp.html#a5e4e9b853fb9a9e15db075560cdc797c" title=" " alt="" coords="402,717,481,744"/>
-<area shape="rect" id="node17" href="$constantes_8h.html#a8876b599eada2030e47cb5132ea2f567" title=" " alt="" coords="396,768,487,794"/>
-<area shape="rect" id="node18" href="$newgraf_8cpp.html#ae490a2a626b28988153ab4307c6ccdca" title=" " alt="" coords="402,818,481,845"/>
-<area shape="rect" id="node19" href="$constantes_8h.html#adfe793ebdd339ae180446278830c18d5" title=" " alt="" coords="397,869,486,896"/>
-<area shape="rect" id="node20" href="$constantes_8h.html#a1ed21f826253b3e96fe9a17a5a67acc8" title=" " alt="" coords="408,920,475,946"/>
-<area shape="rect" id="node21" href="$geqdefine_8h.html#ae3b1e53099c16062397fd40c3a959099" title=" " alt="" coords="402,970,481,997"/>
-<area shape="rect" id="node22" href="$parametres_8h.html#ae40c3da6e30def508e65708378959618" title="|mem| location of glue specification" alt="" coords="406,1021,477,1048"/>
-<area shape="rect" id="node23" href="$initprim_8h.html#a00fac4d433de0ce408e745ad03051386" title=" " alt="" coords="241,1401,305,1428"/>
-<area shape="rect" id="node24" href="$constantes_8h.html#a8bf0c89280513a147dbbe155ebdd1d01" title=" " alt="" coords="408,1173,475,1200"/>
-<area shape="rect" id="node25" href="$constantes_8h.html#afae596361a6f56764d80e73ae5b32a08" title=" " alt="" coords="398,1224,485,1250"/>
-<area shape="rect" id="node26" href="$scansomethinginternal_8cpp.html#acb27d8065547b0637c8bcd521dc7b46d" title="|mem| location of math glue spec" alt="" coords="238,1553,309,1580"/>
-<area shape="rect" id="node27" href="$fireup_8cpp.html#af673c8575b43040fb7fcaa5aef2c6ddb" title=" " alt="" coords="389,1274,493,1301"/>
-<area shape="rect" id="node28" href="$constantes_8h.html#acd8e2010495121e1bcaa7765b0cacdfc" title=" " alt="" coords="221,678,325,705"/>
-<area shape="rect" id="node29" href="$primitive_8h.html#a88b1d9a40bbdf4a3363b49915010d754" title=" " alt="" coords="406,1426,477,1453"/>
-<area shape="rect" id="node30" href="$constantes_8h.html#ac18a1e91e843cbd7c002f6d03c11f0a8" title=" " alt="" coords="407,413,475,440"/>
-<area shape="rect" id="node31" href="$constantes_8h.html#a67dce7fd75188327ea86097a58a2767d" title="mem location of glue specification" alt="" coords="418,210,465,237"/>
-<area shape="rect" id="node32" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="398,1528,485,1554"/>
-<area shape="rect" id="node33" href="$initialize_8cpp.html#a6c3f3ca0a64283c8f08b4a209261da17" title=" " alt="" coords="406,1072,477,1098"/>
+<area shape="rect" id="node1" title="equivalent value" alt="" coords="515,740,568,767"/>
+<area shape="rect" id="node2" href="$constantes_8h.html#aba7c5bf8c3e657c9b1fb0125e7c1ca13" title=" " alt="" coords="393,5,436,32"/>
+<area shape="rect" id="node3" href="$constantes_8h.html#a86341c8706240b4a2c964359cd763c64" title=" " alt="" coords="377,157,452,184"/>
+<area shape="rect" id="node4" href="$getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="214,107,279,133"/>
+<area shape="rect" id="node5" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="211,284,282,311"/>
+<area shape="rect" id="node6" href="$constantes_8h.html#aca760671a22142e0e59d362c04885039" title=" " alt="" coords="380,563,449,589"/>
+<area shape="rect" id="node7" href="$lecture_8h.html#ab5468bc60f6a966124d1016ccf7706cb" title=" " alt="" coords="197,524,297,551"/>
+<area shape="rect" id="node8" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,524,131,551"/>
+<area shape="rect" id="node9" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="179,600,315,627"/>
+<area shape="rect" id="node10" href="$eqdefine_8h.html#a4f9657182abb3c8c499ccd689be3f647" title=" " alt="" coords="379,664,450,691"/>
+<area shape="rect" id="node11" href="$constantes_8h.html#a2715dcea36ae0bf1f96b9d1b10923598" title=" " alt="" coords="381,715,449,741"/>
+<area shape="rect" id="node12" href="$constantes_8h.html#a60c965218c52394aaa95513c326eafbc" title=" " alt="" coords="379,765,451,792"/>
+<area shape="rect" id="node13" href="$initmath_8cpp.html#ad11e2009b8eed5f8a7c21a03d9c6c096" title=" " alt="" coords="363,816,466,843"/>
+<area shape="rect" id="node14" href="$beginbox_8cpp.html#a718aebd47ff5e8c8bfe7265de195d178" title=" " alt="" coords="370,867,459,893"/>
+<area shape="rect" id="node15" href="$maincontrol_8cpp.html#a5e4e9b853fb9a9e15db075560cdc797c" title=" " alt="" coords="375,917,454,944"/>
+<area shape="rect" id="node16" href="$constantes_8h.html#a8876b599eada2030e47cb5132ea2f567" title=" " alt="" coords="369,968,460,995"/>
+<area shape="rect" id="node17" href="$newgraf_8cpp.html#ae490a2a626b28988153ab4307c6ccdca" title=" " alt="" coords="375,1019,454,1045"/>
+<area shape="rect" id="node18" href="$constantes_8h.html#adfe793ebdd339ae180446278830c18d5" title=" " alt="" coords="370,1069,459,1096"/>
+<area shape="rect" id="node19" href="$constantes_8h.html#a1ed21f826253b3e96fe9a17a5a67acc8" title=" " alt="" coords="381,1120,448,1147"/>
+<area shape="rect" id="node20" href="$geqdefine_8h.html#ae3b1e53099c16062397fd40c3a959099" title=" " alt="" coords="375,1171,454,1197"/>
+<area shape="rect" id="node21" href="$parametres_8h.html#ae40c3da6e30def508e65708378959618" title="|mem| location of glue specification" alt="" coords="379,1221,450,1248"/>
+<area shape="rect" id="node22" href="$initprim_8h.html#a00fac4d433de0ce408e745ad03051386" title=" " alt="" coords="215,1297,279,1324"/>
+<area shape="rect" id="node23" href="$constantes_8h.html#a8bf0c89280513a147dbbe155ebdd1d01" title=" " alt="" coords="381,259,448,285"/>
+<area shape="rect" id="node24" href="$constantes_8h.html#afae596361a6f56764d80e73ae5b32a08" title=" " alt="" coords="371,309,458,336"/>
+<area shape="rect" id="node25" href="$fireup_8cpp.html#af673c8575b43040fb7fcaa5aef2c6ddb" title=" " alt="" coords="363,1373,467,1400"/>
+<area shape="rect" id="node26" href="$constantes_8h.html#acd8e2010495121e1bcaa7765b0cacdfc" title=" " alt="" coords="363,1424,467,1451"/>
+<area shape="rect" id="node27" href="$primitive_8h.html#ac40275ffd4fe9539344c66bd4d2b151a" title=" " alt="" coords="379,1323,450,1349"/>
+<area shape="rect" id="node28" href="$constantes_8h.html#ac18a1e91e843cbd7c002f6d03c11f0a8" title=" " alt="" coords="381,360,449,387"/>
+<area shape="rect" id="node29" href="$constantes_8h.html#a67dce7fd75188327ea86097a58a2767d" title="mem location of glue specification" alt="" coords="391,107,438,133"/>
+<area shape="rect" id="node30" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="371,1475,458,1501"/>
+<area shape="rect" id="node31" href="$initialize_8cpp.html#a6c3f3ca0a64283c8f08b4a209261da17" title=" " alt="" coords="379,411,450,437"/>
 </map>

@@ -4,8 +4,8 @@
 #include "globals.h"
 #include <string>
 
-void error(const std::string &, const std::string &);
-void inserror(const std::string &, const std::string &);
+void error(const std::string &, const std::string &, bool = true);
+void inserror(const std::string &, const std::string &, bool = true);
 void backerror(const std::string &, const std::string &);
 void boxerror(eightbits, const std::string &, const std::string &);
 void clearforerrorprompt(void);
@@ -16,7 +16,6 @@ void overflow(const std::string &, int);
 void str_room(int);
 void check_full_save_stack(void);
 void reportillegalcase(void);
-void giveerrhelp(void);
 bool privileged(void);
 void confusion(const std::string &);
 

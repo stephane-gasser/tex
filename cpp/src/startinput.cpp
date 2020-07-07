@@ -1,5 +1,5 @@
 #include "startinput.h"
-#include "scanfilename.h"
+#include "lecture.h"
 #include "packfilename.h"
 #include "beginfilereading.h"
 #include "fichier.h"

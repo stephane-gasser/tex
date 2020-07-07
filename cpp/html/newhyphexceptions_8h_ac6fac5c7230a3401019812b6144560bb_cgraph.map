@@ -2,15 +2,15 @@
 <area shape="rect" id="node1" title=" " alt="" coords="5,309,143,336"/>
 <area shape="rect" id="node2" href="$constantes_8cpp.html#a3d10279728a85600f3a5705f66fc489d" title="put ASCII_code # at the end of str_pool" alt="" coords="193,5,289,32"/>
 <area shape="rect" id="node3" href="$parametres_8h.html#a07535a18a8328a1c21de6acc81e23278" title=" " alt="" coords="206,56,275,83"/>
-<area shape="rect" id="node4" href="$erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc" title=" " alt="" coords="217,157,265,184"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="357,145,399,172"/>
+<area shape="rect" id="node4" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="217,107,265,133"/>
+<area shape="rect" id="node5" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="353,145,395,172"/>
 <area shape="rect" id="node6" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="207,259,274,285"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="357,221,399,248"/>
-<area shape="rect" id="node8" href="$erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="343,335,413,361"/>
-<area shape="rect" id="node9" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="339,588,417,615"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="353,221,395,248"/>
+<area shape="rect" id="node8" href="$erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="339,385,409,412"/>
+<area shape="rect" id="node9" href="$lecture_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="201,360,280,387"/>
 <area shape="rect" id="node10" href="$constantes_8cpp.html#a8bf0c89280513a147dbbe155ebdd1d01" title=" " alt="" coords="207,411,274,437"/>
 <area shape="rect" id="node11" href="$makestring_8cpp.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="197,461,284,488"/>
-<area shape="rect" id="node12" href="$scancharnum_8cpp.html#ad73fd96a347109ca82a676f233224e60" title=" " alt="" coords="191,512,291,539"/>
-<area shape="rect" id="node13" href="$scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="191,563,291,589"/>
-<area shape="rect" id="node14" href="$erreur_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="204,309,277,336"/>
+<area shape="rect" id="node12" href="$lecture_8cpp.html#a824233e29e5992b41ed05977a24f256f" title=" " alt="" coords="191,512,291,539"/>
+<area shape="rect" id="node13" href="$lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="191,563,291,589"/>
+<area shape="rect" id="node14" href="$erreur_8cpp.html#a570e0c3ba4fd6dec0e3e83fbb09d04e7" title="make sure that the pool hasn&#39;t overflowed" alt="" coords="204,613,277,640"/>
 </map>

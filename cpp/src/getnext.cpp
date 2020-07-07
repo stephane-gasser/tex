@@ -9,8 +9,7 @@
 #include <iostream>
 #include "firmuptheline.h"
 #include "pauseforinstructions.h"
-#include "begintokenlist.h"
-#include "endtokenlist.h"
+#include "lecture.h"
 #include "idlookup.h"
 #include "texte.h"
 
@@ -178,9 +177,7 @@ void getnext(void)
 									state = mid_line;
 								break;
 							case ANY_STATE_PLUS(invalid_char):
-								deletionsallowed = false;
-								error("Text line contains an invalid character", "A funny symbol that I can't read has just been input.\nContinue, and I'll forget that it ever happened.");
-								deletionsallowed = true;
+								error("Text line contains an invalid character", "A funny symbol that I can't read has just been input.\nContinue, and I'll forget that it ever happened.", false);
 								restart = true;
 								break;
 							case mid_line+spacer:

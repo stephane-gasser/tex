@@ -1,5 +1,5 @@
 #include "appendglue.h"
-#include "scanglue.h"
+#include "lecture.h"
 #include "newglue.h"
 
 void appendglue(void)
@@ -20,10 +20,10 @@ void appendglue(void)
 			curval = fil_neg_glue;
 			break;
 		case skip_code: 
-			scanglue(glue_val);
+			curval = scanglue(glue_val);
 			break;
 		case mskip_code: 
-			scanglue(mu_val);
+			curval = scanglue(mu_val);
 	}
 	tail_append(newglue(curval));
 	if (s >= skip_code)

@@ -81,7 +81,7 @@ $(function() {
 <div class="textblock"><code>#include &quot;<a class="el" href="appendchoices_8h_source.html">appendchoices.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="pushmath_8h_source.html">pushmath.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="newchoice_8h_source.html">newchoice.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="scanleftbrace_8h_source.html">scanleftbrace.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="lecture_8h_source.html">lecture.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de appendchoices.cpp:</div>
 <div class="dyncontent">
@@ -91,7 +91,7 @@ Graphe des dépendances par inclusion de appendchoices.cpp:</div>
 <area shape="rect" href="appendchoices_8h.html" title=" " alt="" coords="5,80,125,107"/>
 <area shape="rect" href="pushmath_8h.html" title=" " alt="" coords="149,80,240,107"/>
 <area shape="rect" href="newchoice_8h.html" title=" " alt="" coords="265,80,359,107"/>
-<area shape="rect" href="scanleftbrace_8h.html" title=" " alt="" coords="383,80,494,107"/>
+<area shape="rect" href="lecture_8h.html" title=" " alt="" coords="384,80,456,107"/>
 </map>
 </div>
 </div>
@@ -124,7 +124,7 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a>(<a class="code" href="newchoice_8cpp.html#a6cb7977fae87b2f4f45a5cfb7c184809">newchoice</a>());</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a>[<a class="code" href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a>++].<a class="code" href="unionmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">int_</a> = 0;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012">pushmath</a>(<a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea477f1d7d5d9635a216d4eda6885a0d3d">math_choice_group</a>);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a>();</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a>();</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
@@ -134,7 +134,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="rect" title=" " alt="" coords="5,81,115,108"/>
 <area shape="rect" href="newchoice_8cpp.html#a6cb7977fae87b2f4f45a5cfb7c184809" title=" " alt="" coords="171,5,255,32"/>
 <area shape="rect" href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="173,56,252,83"/>
-<area shape="rect" href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="163,107,263,133"/>
+<area shape="rect" href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="163,107,263,133"/>
 <area shape="rect" href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="169,157,257,184"/>
 </map>
 </div>
@@ -154,10 +154,10 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="apushmath_8cpp_html_aba90df5553aea9707087be473eddb012"><div class="ttname"><a href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012">pushmath</a></div><div class="ttdeci">void pushmath(groupcode c)</div><div class="ttdef"><b>Definition:</b> <a href="pushmath_8cpp_source.html#l00005">pushmath.cpp:5</a></div></div>
 <div class="ttc" id="anewchoice_8cpp_html_a6cb7977fae87b2f4f45a5cfb7c184809"><div class="ttname"><a href="newchoice_8cpp.html#a6cb7977fae87b2f4f45a5cfb7c184809">newchoice</a></div><div class="ttdeci">halfword newchoice(void)</div><div class="ttdef"><b>Definition:</b> <a href="newchoice_8cpp_source.html#l00004">newchoice.cpp:4</a></div></div>
 <div class="ttc" id="aunionmemoryword_html_a4d5c9735ea2e99d2d3aed088c2fa3f0d"><div class="ttname"><a href="unionmemoryword.html#a4d5c9735ea2e99d2d3aed088c2fa3f0d">memoryword::int_</a></div><div class="ttdeci">std::int32_t int_</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00070">tex.h:70</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a67efc5cbda00d9fe23a1c6d931742de5"><div class="ttname"><a href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a></div><div class="ttdeci">memoryword savestack[savesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00101">globals.cpp:101</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a67efc5cbda00d9fe23a1c6d931742de5"><div class="ttname"><a href="globals_8cpp.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a></div><div class="ttdeci">memoryword savestack[savesize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00100">globals.cpp:100</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea477f1d7d5d9635a216d4eda6885a0d3d"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea477f1d7d5d9635a216d4eda6885a0d3d">math_choice_group</a></div><div class="ttdeci">@ math_choice_group</div><div class="ttdoc">code for ‘\mathchoice\grp\grp\grp\grp’</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00376">constantes.h:376</a></div></div>
-<div class="ttc" id="ascanleftbrace_8cpp_html_a055cc2de58a83eda8aeb70e218e5fb1c"><div class="ttname"><a href="scanleftbrace_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a></div><div class="ttdeci">void scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="scanleftbrace_8cpp_source.html#l00007">scanleftbrace.cpp:7</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00102">globals.cpp:102</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00101">globals.cpp:101</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a055cc2de58a83eda8aeb70e218e5fb1c"><div class="ttname"><a href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a></div><div class="ttdeci">void scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00639">lecture.cpp:639</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a79c6dd981ca9096a229688c57fc324ca"><div class="ttname"><a href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a></div><div class="ttdeci">void tail_append(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00148">constantes.cpp:148</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

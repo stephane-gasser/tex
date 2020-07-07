@@ -4,7 +4,7 @@
 #include "appendtovlist.h"
 #include "vpackage.h"
 #include "alignpeek.h"
-#include "begintokenlist.h"
+#include "lecture.h"
 
 void finrow(void)
 {

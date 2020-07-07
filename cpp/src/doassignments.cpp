@@ -1,5 +1,5 @@
 #include "doassignments.h"
-#include "getxtoken.h"
+#include "lecture.h"
 #include "prefixedcommand.h"
 
 void doassignments(void)

@@ -80,18 +80,16 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="newwritewhatsit_8h_source.html">newwritewhatsit.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="newwhatsit_8h_source.html">newwhatsit.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="scanfourbitint_8h_source.html">scanfourbitint.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="scanint_8h_source.html">scanint.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="lecture_8h_source.html">lecture.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de newwritewhatsit.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="newwritewhatsit_8cpp__incl.png" border="0" usemap="#src_2newwritewhatsit_8cpp" alt=""/></div>
 <map name="src_2newwritewhatsit_8cpp" id="src_2newwritewhatsit_8cpp">
-<area shape="rect" title=" " alt="" coords="189,5,351,32"/>
+<area shape="rect" title=" " alt="" coords="125,5,287,32"/>
 <area shape="rect" href="newwritewhatsit_8h.html" title=" " alt="" coords="5,80,132,107"/>
 <area shape="rect" href="newwhatsit_8h.html" title=" " alt="" coords="157,80,255,107"/>
-<area shape="rect" href="scanfourbitint_8h.html" title=" " alt="" coords="280,80,391,107"/>
-<area shape="rect" href="scanint_8h.html" title=" " alt="" coords="415,80,490,107"/>
+<area shape="rect" href="lecture_8h.html" title=" " alt="" coords="279,80,351,107"/>
 </map>
 </div>
 </div>
@@ -119,22 +117,22 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="newwritewhatsit_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="newwritewhatsit_8cpp_source.html">newwritewhatsit.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="newwhatsit_8cpp.html#a1261952612c9c3237400b8b77065f964">newwhatsit</a>(<a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a>, w);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (w != <a class="code" href="constantes_8h.html#a61dadd085c1777f559549e05962b2c9ea0667b1241f9909793384c7467f5f49d4">write_node_size</a>)</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="scanfourbitint_8cpp.html#a44ab07c8d4889fe956cbff3d73cf58d3">scanfourbitint</a>();</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886">scanint</a>();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> &lt; 0)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = 17;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">else</span> </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> &gt; 15)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = 16;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="constantes_8cpp.html#a555c50d862b9b6fa68704c4277d8ff36">write_stream</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="newwritewhatsit_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="newwritewhatsit_8cpp_source.html">newwritewhatsit.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="newwhatsit_8cpp.html#a1261952612c9c3237400b8b77065f964">newwhatsit</a>(<a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a>, w);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (w != <a class="code" href="constantes_8h.html#a61dadd085c1777f559549e05962b2c9ea0667b1241f9909793384c7467f5f49d4">write_node_size</a>)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = <a class="code" href="lecture_8cpp.html#ad5eae8ad40fce33b7804d69a169786ea">scanfourbitint</a>();</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = <a class="code" href="lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76">scanint</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> &lt; 0)</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = 17;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">else</span> </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> &gt; 15)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a> = 16;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="constantes_8cpp.html#a555c50d862b9b6fa68704c4277d8ff36">write_stream</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) = <a class="code" href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
@@ -142,8 +140,8 @@ Voici le graphe d'appel pour cette fonction :</div>
 <map name="newwritewhatsit_8cpp_ad3cbbd2a868a1a14f4e212db0053c0a3_cgraph" id="newwritewhatsit_8cpp_ad3cbbd2a868a1a14f4e212db0053c0a3_cgraph">
 <area shape="rect" title=" " alt="" coords="5,81,121,108"/>
 <area shape="rect" href="newwhatsit_8cpp.html#a1261952612c9c3237400b8b77065f964" title=" " alt="" coords="175,5,263,32"/>
-<area shape="rect" href="scanfourbitint_8cpp.html#a44ab07c8d4889fe956cbff3d73cf58d3" title=" " alt="" coords="169,56,269,83"/>
-<area shape="rect" href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="317,81,381,108"/>
+<area shape="rect" href="lecture_8cpp.html#ad5eae8ad40fce33b7804d69a169786ea" title=" " alt="" coords="169,56,269,83"/>
+<area shape="rect" href="lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="317,81,381,108"/>
 <area shape="rect" href="constantes_8cpp.html#a555c50d862b9b6fa68704c4277d8ff36" title="stream number (0 to 17)" alt="" coords="171,157,268,184"/>
 </map>
 </div>
@@ -160,13 +158,13 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
+<div class="ttc" id="alecture_8cpp_html_ad5eae8ad40fce33b7804d69a169786ea"><div class="ttname"><a href="lecture_8cpp.html#ad5eae8ad40fce33b7804d69a169786ea">scanfourbitint</a></div><div class="ttdeci">int scanfourbitint(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00365">lecture.cpp:365</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a555c50d862b9b6fa68704c4277d8ff36"><div class="ttname"><a href="constantes_8cpp.html#a555c50d862b9b6fa68704c4277d8ff36">write_stream</a></div><div class="ttdeci">halfword &amp; write_stream(halfword p)</div><div class="ttdoc">stream number (0 to 17)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00094">constantes.cpp:94</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a61dadd085c1777f559549e05962b2c9ea0667b1241f9909793384c7467f5f49d4"><div class="ttname"><a href="constantes_8h.html#a61dadd085c1777f559549e05962b2c9ea0667b1241f9909793384c7467f5f49d4">write_node_size</a></div><div class="ttdeci">@ write_node_size</div><div class="ttdoc">number of words in a write/whatsit node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00075">constantes.h:75</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a4128dbc20823d10a2626cb9cdf4d6cd4"><div class="ttname"><a href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a></div><div class="ttdeci">halfword curchr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00108">globals.cpp:108</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00091">globals.cpp:91</a></div></div>
-<div class="ttc" id="ascanint_8cpp_html_a625555ea8e7846b221c64b2c56e0e886"><div class="ttname"><a href="scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886">scanint</a></div><div class="ttdeci">void scanint(void)</div><div class="ttdoc">Sets curval to an integer.</div><div class="ttdef"><b>Definition:</b> <a href="scanint_8cpp_source.html#l00016">scanint.cpp:16</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a4128dbc20823d10a2626cb9cdf4d6cd4"><div class="ttname"><a href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a></div><div class="ttdeci">halfword curchr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00107">globals.cpp:107</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00090">globals.cpp:90</a></div></div>
 <div class="ttc" id="anewwhatsit_8cpp_html_a1261952612c9c3237400b8b77065f964"><div class="ttname"><a href="newwhatsit_8cpp.html#a1261952612c9c3237400b8b77065f964">newwhatsit</a></div><div class="ttdeci">void newwhatsit(smallnumber s, smallnumber w)</div><div class="ttdef"><b>Definition:</b> <a href="newwhatsit_8cpp_source.html#l00004">newwhatsit.cpp:4</a></div></div>
-<div class="ttc" id="ascanfourbitint_8cpp_html_a44ab07c8d4889fe956cbff3d73cf58d3"><div class="ttname"><a href="scanfourbitint_8cpp.html#a44ab07c8d4889fe956cbff3d73cf58d3">scanfourbitint</a></div><div class="ttdeci">void scanfourbitint(void)</div><div class="ttdef"><b>Definition:</b> <a href="scanfourbitint_8cpp_source.html#l00007">scanfourbitint.cpp:7</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_ab6c507fd0d143723b1f2aa7d183f5d76"><div class="ttname"><a href="lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76">scanint</a></div><div class="ttdeci">int scanint(void)</div><div class="ttdoc">Sets curval to an integer.</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00506">lecture.cpp:506</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a3fc97d19e160956f7fa23eb8ded19785"><div class="ttname"><a href="globals_8cpp.html#a3fc97d19e160956f7fa23eb8ded19785">curval</a></div><div class="ttdeci">int curval</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00019">globals.cpp:19</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

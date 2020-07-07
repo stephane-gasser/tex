@@ -18,7 +18,6 @@ void Initialize(void)
 	for (int i = 0; i < 127; i++)
 		xord[xchr[i]] = i;
 	interaction = error_stop_mode;
-	deletionsallowed = true;
 	setboxallowed = true;
 	errorcount = 0;
 	useerrhelp = false;

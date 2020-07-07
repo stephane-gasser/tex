@@ -1,12 +1,9 @@
 #include "conditional.h"
 #include "getnode.h"
-#include "getxtoken.h"
-#include "scanint.h"
-#include "scandimen.h"
+#include "lecture.h"
 #include "impression.h"
-#include "scaneightbitint.h"
+#include "lecture.h"
 #include "getnext.h"
-#include "scanfourbitint.h"
 #include "freenode.h"
 #include "passtext.h"
 #include "changeiflimit.h"
@@ -26,7 +23,6 @@ static void get_x_token_or_active_char(void)
 
 void conditional(void)
 {
-
 	auto p = getnode(2);
 	link(p) = condptr;
 	type(p) = iflimit;
@@ -72,9 +68,9 @@ void conditional(void)
 		case if_int_code:
 		case if_dim_code:
 			if (thisif == if_int_code)
-				scanint();
+				curval = scanint();
 			else
-				scan_normal_dimen();
+				curval = scan_normal_dimen();
 			n = curval;
 			do
 				getxtoken();
@@ -87,9 +83,9 @@ void conditional(void)
 				r = '=';
 			}
 			if (thisif == if_int_code)
-				scanint();
+				curval = scanint();
 			else
-				scan_normal_dimen();
+				curval = scan_normal_dimen();
 			switch (r)
 			{
 				case '<': 
@@ -103,7 +99,7 @@ void conditional(void)
 			}
 			break;
 		case if_odd_code:
-			scanint();
+			curval = scanint();
 			b = curval%2;
 			break;
 		case if_vmode_code: 
@@ -121,7 +117,7 @@ void conditional(void)
 		case if_void_code:
 		case if_hbox_code:
 		case if_vbox_code:
-			scaneightbitint();
+			curval = scaneightbitint();
 			p = box(curval);
 			if (thisif == if_void_code)
 				b = p == 0;
@@ -169,7 +165,7 @@ void conditional(void)
 			scannerstatus = savescannerstatus;
 			break;
 		case if_eof_code:
-			scanfourbitint();
+			curval = scanfourbitint();
 			b = readopen[curval] == 2;
 			break;
 		case if_true_code: 
@@ -179,14 +175,10 @@ void conditional(void)
 			b = false;
 			break;
 		case if_case_code:
-			scanint();
+			curval = scanint();
 			n = curval;
 			if (tracing_commands() > 1)
-			{
-				begindiagnostic();
-				print("{case "+std::to_string(n)+"}");
-				print(enddiagnostic(false));
-			}
+				diagnostic("{case "+std::to_string(n)+"}");
 			while (n)
 			{
 				passtext();
@@ -223,14 +215,7 @@ void conditional(void)
 			return;
 	}
 	if (tracing_commands() > 1)
-	{
-		begindiagnostic();
-		if (b)
-			print("{true}");
-		else
-			print("{false}");
-		print(enddiagnostic(false));
-	}
+		diagnostic(b ? "{true}" : "{false}");
 	if (b)
 	{
 		changeiflimit(3, savecondptr);

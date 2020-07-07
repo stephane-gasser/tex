@@ -1,5 +1,5 @@
 #include "eqdestroy.h"
-#include "deletetokenref.h"
+#include "lecture.h"
 #include "deleteglueref.h"
 #include "freenode.h"
 #include "flushnodelist.h"

@@ -1,7 +1,7 @@
 #include "flushnodelist.h"
 #include "freenode.h"
 #include "deleteglueref.h"
-#include "deletetokenref.h"
+#include "lecture.h"
 #include "erreur.h"
 
 void flushnodelist(halfword p)

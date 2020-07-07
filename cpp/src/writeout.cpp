@@ -1,11 +1,8 @@
 #include "writeout.h"
 #include "getavail.h"
-#include "begintokenlist.h"
-#include "scantoks.h"
-#include "gettoken.h"
+#include "lecture.h"
 #include "impression.h"
 #include "erreur.h"
-#include "endtokenlist.h"
 #include "flushlist.h"
 #include "texte.h"
 

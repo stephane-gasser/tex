@@ -1,7 +1,6 @@
 <map id="count" name="count">
-<area shape="rect" id="node1" title=" " alt="" coords="205,81,260,108"/>
-<area shape="rect" id="node2" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="43,5,120,32"/>
-<area shape="rect" id="node3" href="$scansomethinginternal_8h.html#a9fe9753f74e043d09baea2df018d6dfa" title=" " alt="" coords="5,56,157,83"/>
-<area shape="rect" id="node4" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="49,107,113,133"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#a3260a309cc9809d1771696233d80f44f" title=" " alt="" coords="29,157,134,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="159,56,213,83"/>
+<area shape="rect" id="node2" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="19,5,97,32"/>
+<area shape="rect" id="node3" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="26,56,90,83"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#a3260a309cc9809d1771696233d80f44f" title=" " alt="" coords="5,107,111,133"/>
 </map>

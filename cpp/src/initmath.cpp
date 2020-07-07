@@ -1,10 +1,9 @@
 #include "initmath.h"
-#include "gettoken.h"
+#include "lecture.h"
 #include "popnest.h"
 #include "linebreak.h"
 #include "pushmath.h"
 #include "eqworddefine.h"
-#include "begintokenlist.h"
 #include "buildpage.h"
 #include "backinput.h"
 

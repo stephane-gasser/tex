@@ -1,5 +1,5 @@
 #include "setmathchar.h"
-#include "xtoken.h"
+#include "lecture.h"
 #include "newnoad.h"
 #include "backinput.h"
 

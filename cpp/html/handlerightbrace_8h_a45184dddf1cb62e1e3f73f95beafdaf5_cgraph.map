@@ -3,12 +3,12 @@
 <area shape="rect" id="node2" href="$constantes_8cpp.html#a9b1a0fe0853bd25a8d74737dfe51ed77" title="vertical list to be moved out of horizontal list" alt="" coords="193,5,271,32"/>
 <area shape="rect" id="node3" href="$alignpeek_8cpp.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="193,56,271,83"/>
 <area shape="rect" id="node4" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="493,233,571,260"/>
-<area shape="rect" id="node5" href="$endtokenlist_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="627,157,719,184"/>
+<area shape="rect" id="node5" href="$lecture_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="627,157,719,184"/>
 <area shape="rect" id="node6" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="368,411,411,437"/>
 <area shape="rect" id="node7" href="$erreur_8cpp.html#aaa5e5762314112fc9c118ea4b4eaa620" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="197,411,267,437"/>
-<area shape="rect" id="node8" href="$erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc" title=" " alt="" coords="365,360,413,387"/>
+<area shape="rect" id="node8" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="365,360,413,387"/>
 <area shape="rect" id="node9" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="511,461,553,488"/>
-<area shape="rect" id="node10" href="$gettoken_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="496,169,568,196"/>
+<area shape="rect" id="node10" href="$lecture_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="496,169,568,196"/>
 <area shape="rect" id="node11" href="$buildchoices_8cpp.html#a5f00c14009de038a4c2dc9c2fd9f8e99" title=" " alt="" coords="185,1272,279,1299"/>
 <area shape="rect" id="node12" href="$finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af" title=" " alt="" coords="357,1424,421,1451"/>
 <area shape="rect" id="node13" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="493,1145,571,1172"/>
@@ -29,7 +29,7 @@
 <area shape="rect" id="node28" href="$constantes_8cpp.html#a245837c2bcaa255b371ee0aa7c217eca" title="the floating_penalty to be used" alt="" coords="193,1424,271,1451"/>
 <area shape="rect" id="node29" href="$handlerightbrace_8cpp.html#a06149cd2216cb7e097e35f9292a37f28" title=" " alt="" coords="175,1475,289,1501"/>
 <area shape="rect" id="node30" href="$constantes_8cpp.html#ae0ed24bf553e8dc5306f6f0a1b0b258c" title="the vertical list to be inserted" alt="" coords="201,1525,263,1552"/>
-<area shape="rect" id="node31" href="$erreur_8cpp.html#acfb0b8307a5b56181a6622821cfd3324" title=" " alt="" coords="199,259,265,285"/>
+<area shape="rect" id="node31" href="$erreur_8cpp.html#a774246bf573bd1096f9a32a8dc288840" title=" " alt="" coords="199,259,265,285"/>
 <area shape="rect" id="node32" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="359,1779,420,1805"/>
 <area shape="rect" id="node33" href="$newnoad_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52" title=" " alt="" coords="195,1019,269,1045"/>
 <area shape="rect" id="node34" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="199,1728,265,1755"/>

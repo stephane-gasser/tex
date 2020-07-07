@@ -1,12 +1,12 @@
 <map id="conditional" name="conditional">
 <area shape="rect" id="node1" title=" " alt="" coords="5,208,89,235"/>
 <area shape="rect" id="node2" href="$conditional_8cpp.html#a0a68d291d73301f972ebf104eacb9d82" title=" " alt="" coords="137,5,323,32"/>
-<area shape="rect" id="node3" href="$getxtoken_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="371,56,449,83"/>
+<area shape="rect" id="node3" href="$lecture_8cpp.html#a3237321de3327dcec8b8e81069858115" title=" " alt="" coords="371,56,449,83"/>
 <area shape="rect" id="node4" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="196,157,264,184"/>
 <area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="389,233,431,260"/>
 <area shape="rect" id="node6" href="$constantes_8cpp.html#ad43c4d5b6754d502967c5c05796d32de" title=" " alt="" coords="187,208,273,235"/>
-<area shape="rect" id="node7" href="$scandimen_8cpp.html#ad74509e6ed252b5c56f10a22dda9342b" title=" " alt="" coords="161,259,299,285"/>
-<area shape="rect" id="node8" href="$scanint_8cpp.html#a625555ea8e7846b221c64b2c56e0e886" title="Sets curval to an integer." alt="" coords="198,107,262,133"/>
+<area shape="rect" id="node7" href="$lecture_8cpp.html#acd91137563c568c716525074e0b5ef8b" title=" " alt="" coords="161,259,299,285"/>
+<area shape="rect" id="node8" href="$lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="198,107,262,133"/>
 <area shape="rect" id="node9" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="196,360,264,387"/>
 <area shape="rect" id="node10" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="207,411,253,437"/>
 </map>

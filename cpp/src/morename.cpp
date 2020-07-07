@@ -7,13 +7,16 @@ bool morename(ASCIIcode c)
 		return false;
 	str_room(1);
 	append_char(c);
-	if (c == '>' || c == ':')
+	switch (c)
 	{
-		areadelimiter = cur_length();
-		extdelimiter = 0;
+		case '>':
+		case ':':
+			areadelimiter = cur_length();
+			extdelimiter = 0;
+			break;
+		case '.':
+			if (extdelimiter == 0)
+				extdelimiter = cur_length();
 	}
-	else 
-		if (c == '.' && extdelimiter == 0)
-			extdelimiter = cur_length();
 	return true;
 }

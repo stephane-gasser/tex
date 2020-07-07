@@ -2,7 +2,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "getavail.h"
-#include "begintokenlist.h"
+#include "lecture.h"
 #include "runaway.h"
 #include "texte.h"
 
@@ -10,7 +10,6 @@ void checkoutervalidity(void)
 {
 	if (scannerstatus)
 	{
-		deletionsallowed = false;
 		if (curcs)
 		{
 			if (state == token_list || txt(name) < 1 || txt(name) > 17)
@@ -30,16 +29,16 @@ void checkoutervalidity(void)
 			switch (scannerstatus)
 			{
 				case defining:
-					error(curcs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.");
+					error(curcs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
 					info(p) = right_brace_token+'}';
 					break;
 				case matching:
-					error(curcs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.");
+					error(curcs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
 					info(p) = partoken;
 					longstate = outer_call;
 					break;
 				case aligning:
-					error(curcs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.");
+					error(curcs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
 					info(p) = right_brace_token+'}';
 					q = p;
 					p = getavail();
@@ -48,17 +47,16 @@ void checkoutervalidity(void)
 					alignstate = -1000000;
 					break;
 				case absorbing:
-					error(curcs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.");
+					error(curcs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
 					info(p) = right_brace_token+'}';
 			}
 			ins_list(p);
 		}
 		else
 		{
-			inserror("Incomplete "+cmdchr(if_test, curif)+"; all text was ignored after line "+std::to_string(skipline), std::string(curcs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.");
+			inserror("Incomplete "+cmdchr(if_test, curif)+"; all text was ignored after line "+std::to_string(skipline), std::string(curcs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
 			curtok = frozen_fi+cs_token_flag;
 		}
 		curcs = 0;
-		deletionsallowed = true;
 	}
 }

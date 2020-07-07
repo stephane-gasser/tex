@@ -1,5 +1,5 @@
 #include "makeaccent.h"
-#include "scancharnum.h"
+#include "lecture.h"
 #include "newcharacter.h"
 #include "doassignments.h"
 #include "backinput.h"
@@ -16,7 +16,7 @@ void makeaccent(void)
 	halfword r;
 	scaled a, h, x, w, delta;
 	fourquarters i;
-	scancharnum();
+	curval = scancharnum();
 	internalfontnumber f = cur_font();
 	auto p = newcharacter(f, curval);
 	if (p)
@@ -32,7 +32,7 @@ void makeaccent(void)
 		else 
 			if (curcmd == char_num)
 			{
-				scancharnum();
+				curval = scancharnum();
 				q = newcharacter(f, curval);
 			}
 			else

@@ -1,11 +1,11 @@
 #include "appendpenalty.h"
-#include "scanint.h"
+#include "lecture.h"
 #include "buildpage.h"
 #include "newpenalty.h"
 
 void appendpenalty(void)
 {
-	scanint();
+	curval = scanint();
 	tail_append(newpenalty(curval));
 	if (mode == vmode)
 		buildpage();

@@ -140,13 +140,12 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="pauseforinstructions_8cpp_afc7c2b7ab3560ffe77e9a9bcdf7d1bf0_icgraph.png" border="0" usemap="#pauseforinstructions_8cpp_afc7c2b7ab3560ffe77e9a9bcdf7d1bf0_icgraph" alt=""/></div>
 <map name="pauseforinstructions_8cpp_afc7c2b7ab3560ffe77e9a9bcdf7d1bf0_icgraph" id="pauseforinstructions_8cpp_afc7c2b7ab3560ffe77e9a9bcdf7d1bf0_icgraph">
-<area shape="rect" title=" " alt="" coords="268,132,379,159"/>
-<area shape="rect" href="endtokenlist_8h.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="123,5,215,32"/>
-<area shape="rect" href="getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="5,31,71,57"/>
-<area shape="rect" href="maincontrol_8cpp.html#a324a507e9f6c60cdc8cd9193e7be3df3" title=" " alt="" coords="119,107,220,133"/>
-<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="125,157,214,184"/>
-<area shape="rect" href="makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="133,208,205,235"/>
-<area shape="rect" href="reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="124,259,215,285"/>
+<area shape="rect" title=" " alt="" coords="155,107,265,133"/>
+<area shape="rect" href="getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11" title=" " alt="" coords="23,5,89,32"/>
+<area shape="rect" href="maincontrol_8cpp.html#a324a507e9f6c60cdc8cd9193e7be3df3" title=" " alt="" coords="5,56,107,83"/>
+<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="11,107,101,133"/>
+<area shape="rect" href="makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="20,157,92,184"/>
+<area shape="rect" href="reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="11,208,101,235"/>
 </map>
 </div>
 
@@ -175,19 +174,17 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a> = <a class="code" href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a8b6e5947264532204d9fe39c29db0631">error_stop_mode</a>;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8h.html#a093b121866a6168a986e7ff004ddc5c4">selector</a> == <a class="code" href="constantes_8h.html#a093b121866a6168a986e7ff004ddc5c4a52c3f3cf5a053f7c861dd9ed13830e4c">log_only</a> || <a class="code" href="constantes_8h.html#a093b121866a6168a986e7ff004ddc5c4">selector</a> == <a class="code" href="constantes_8h.html#a093b121866a6168a986e7ff004ddc5c4a444981aeaf42de511c26bc5f1a0fa5db">no_print</a>)</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <a class="code" href="constantes_8h.html#a093b121866a6168a986e7ff004ddc5c4">selector</a>++;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="globals_8cpp.html#ad3a0f2f4d904db225a9c41c3daf8c9b0">deletionsallowed</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc">error</a>(<span class="stringliteral">&quot;Interruption&quot;</span>, <span class="stringliteral">&quot;You rang?\nTry to insert some instructions for me (e.g.,`I\\showlists&#39;),\nunless you just want to quit by typing `X&#39;.&quot;</span>);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="globals_8cpp.html#ad3a0f2f4d904db225a9c41c3daf8c9b0">deletionsallowed</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="globals_8cpp.html#a1862ae642e39165b1d6af1c4eba231eb">interrupt</a> = 0;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<span class="stringliteral">&quot;Interruption&quot;</span>, <span class="stringliteral">&quot;You rang?\nTry to insert some instructions for me (e.g.,`I\\showlists&#39;),\nunless you just want to quit by typing `X&#39;.&quot;</span>, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="globals_8cpp.html#a1862ae642e39165b1d6af1c4eba231eb">interrupt</a> = 0;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="pauseforinstructions_8cpp_ac606ce3fae3d721c69e531f7920c5ffd_cgraph.png" border="0" usemap="#pauseforinstructions_8cpp_ac606ce3fae3d721c69e531f7920c5ffd_cgraph" alt=""/></div>
 <map name="pauseforinstructions_8cpp_ac606ce3fae3d721c69e531f7920c5ffd_cgraph" id="pauseforinstructions_8cpp_ac606ce3fae3d721c69e531f7920c5ffd_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,144,32"/>
-<area shape="rect" href="erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc" title=" " alt="" coords="192,5,240,32"/>
+<area shape="rect" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="192,5,240,32"/>
 </map>
 </div>
 <div class="dynheader">
@@ -206,13 +203,12 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aglobals_8cpp_html_a1862ae642e39165b1d6af1c4eba231eb"><div class="ttname"><a href="globals_8cpp.html#a1862ae642e39165b1d6af1c4eba231eb">interrupt</a></div><div class="ttdeci">int interrupt</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00009">globals.cpp:9</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a093b121866a6168a986e7ff004ddc5c4"><div class="ttname"><a href="constantes_8h.html#a093b121866a6168a986e7ff004ddc5c4">selector</a></div><div class="ttdeci">selector</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00034">constantes.h:34</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a0489286d29b84691df49ff88e8487b1a"><div class="ttname"><a href="globals_8cpp.html#a0489286d29b84691df49ff88e8487b1a">interaction</a></div><div class="ttdeci">char interaction</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00064">globals.cpp:64</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_ab9098e7a67c7b99e8d4e6bf73b595a46"><div class="ttname"><a href="globals_8cpp.html#ab9098e7a67c7b99e8d4e6bf73b595a46">OKtointerrupt</a></div><div class="ttdeci">bool OKtointerrupt</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00070">globals.cpp:70</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_ab9098e7a67c7b99e8d4e6bf73b595a46"><div class="ttname"><a href="globals_8cpp.html#ab9098e7a67c7b99e8d4e6bf73b595a46">OKtointerrupt</a></div><div class="ttdeci">bool OKtointerrupt</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00069">globals.cpp:69</a></div></div>
 <div class="ttc" id="apauseforinstructions_8cpp_html_ac606ce3fae3d721c69e531f7920c5ffd"><div class="ttname"><a href="pauseforinstructions_8cpp.html#ac606ce3fae3d721c69e531f7920c5ffd">pauseforinstructions</a></div><div class="ttdeci">void pauseforinstructions(void)</div><div class="ttdef"><b>Definition:</b> <a href="pauseforinstructions_8cpp_source.html#l00012">pauseforinstructions.cpp:12</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a093b121866a6168a986e7ff004ddc5c4a52c3f3cf5a053f7c861dd9ed13830e4c"><div class="ttname"><a href="constantes_8h.html#a093b121866a6168a986e7ff004ddc5c4a52c3f3cf5a053f7c861dd9ed13830e4c">log_only</a></div><div class="ttdeci">@ log_only</div><div class="ttdoc">printing is destined for the transcript file only</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00038">constantes.h:38</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a093b121866a6168a986e7ff004ddc5c4a444981aeaf42de511c26bc5f1a0fa5db"><div class="ttname"><a href="constantes_8h.html#a093b121866a6168a986e7ff004ddc5c4a444981aeaf42de511c26bc5f1a0fa5db">no_print</a></div><div class="ttdeci">@ no_print</div><div class="ttdoc">selector setting that makes data disappear</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00036">constantes.h:36</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_ad3a0f2f4d904db225a9c41c3daf8c9b0"><div class="ttname"><a href="globals_8cpp.html#ad3a0f2f4d904db225a9c41c3daf8c9b0">deletionsallowed</a></div><div class="ttdeci">bool deletionsallowed</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00065">globals.cpp:65</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_abc6126af1d45847bc59afa0aa3216b04a8b6e5947264532204d9fe39c29db0631"><div class="ttname"><a href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a8b6e5947264532204d9fe39c29db0631">error_stop_mode</a></div><div class="ttdeci">@ error_stop_mode</div><div class="ttdoc">stops at every opportunity to interact</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00049">constantes.h:49</a></div></div>
-<div class="ttc" id="aerreur_8cpp_html_a8094d2b3dcc0b89179315a3ff21045bc"><div class="ttname"><a href="erreur_8cpp.html#a8094d2b3dcc0b89179315a3ff21045bc">error</a></div><div class="ttdeci">void error(const std::string &amp;msg, const std::string &amp;hlp)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00014">erreur.cpp:14</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_ac7643d2431e40f0ac7a89ec84f1bda70"><div class="ttname"><a href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a></div><div class="ttdeci">void error(const std::string &amp;msg, const std::string &amp;hlp, bool deletionsallowed)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00014">erreur.cpp:14</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

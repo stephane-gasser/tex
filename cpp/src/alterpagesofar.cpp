@@ -1,11 +1,10 @@
 #include "alterpagesofar.h"
-#include "scanoptionalequals.h"
-#include "scandimen.h"
+#include "lecture.h"
 
 void alterpagesofar(void)
 {
 	char c = curchr;
 	scanoptionalequals();
-	scan_normal_dimen();
+	curval = scan_normal_dimen();
 	pagesofar[c] = curval;
 }
