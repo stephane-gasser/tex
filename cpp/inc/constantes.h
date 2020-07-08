@@ -3,7 +3,6 @@
 
 #include "tex.h"
 #include "parametres.h"
-#include <tuple>
 
 constexpr int CHECKSUM = 117275187;
 constexpr char banner[] ="This is TeX, Version 3.14159265"; //!<  printed when \\TeX starts
@@ -797,7 +796,6 @@ quarterword& save_level(halfword);
 halfword& save_index(halfword); 
 int& saved(halfword); 
 alphafile& cur_file(void); //!< the current \a alpha_file variable
-[[nodiscard]] std::tuple<int, char> scanned_result(int, char);
 int& if_line_field(halfword); 
 void append_to_name(int&, char); 
 quarterword skip_byte(fourquarters);

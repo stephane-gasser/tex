@@ -762,13 +762,14 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 	switch (curcmd)
 	{
 		case def_code:
+			lev = int_val;
 			if (m == math_code_base)
-				std::tie(val, lev) = scanned_result(math_code(scancharnum()), int_val);
+				val = math_code(scancharnum());
 			else 
 				if (m < math_code_base)
-					std::tie(val, lev) = scanned_result(equiv(m+scancharnum()), int_val);
+					val = equiv(m+scancharnum());
 				else
-					std::tie(val, lev) = scanned_result(eqtb[m+scancharnum()].int_, int_val);
+					val = eqtb[m+scancharnum()].int_;
 			break;
 		case toks_register:
 		case assign_toks:
@@ -778,131 +779,146 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			if (level != tok_val)
 			{
 				backerror("Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
-				std::tie(val, lev) = scanned_result(0, dimen_val);
+				val = 0;
+				lev = dimen_val;
 			}
 			else 
 				if (curcmd <= assign_toks)
 				{
 					if (curcmd < assign_toks)
 						m = toks_base+scaneightbitint();
-					std::tie(val, lev) = scanned_result(equiv(m), tok_val);
+					val = equiv(m);
+					lev = tok_val;
 				}
 				else
 				{
 					backinput();
-					std::tie(val, lev) = scanned_result(scanfontident()+frozen_null_font, ident_val);
+					val = scanfontident()+frozen_null_font;
+					lev = ident_val;
 				}
 			break;
 		case assign_int:
-			std::tie(val, lev) = scanned_result(eqtb[m].int_, int_val);
+			val = eqtb[m].int_;
+			lev = int_val;
 			break;
 		case assign_dimen:
-			std::tie(val, lev) = scanned_result(eqtb[m].int_, dimen_val);
+			val = eqtb[m].int_;
+			lev = dimen_val;
 			break;
 		case assign_glue:
-			std::tie(val, lev) = scanned_result(equiv(m), glue_val);
+			val = equiv(m);
+			lev = glue_val;
 			break;
 		case assign_mu_glue:
-			std::tie(val, lev) = scanned_result(equiv(m), mu_val);
+			val = equiv(m);
+			lev = mu_val;
 			break;
 		case set_aux:
 			if (abs(mode) != m)
 			{
 				error("Improper "+cmdchr(set_aux, m), "You can refer to \\spacefactor only in horizontal mode;\nyou can refer to \\prevdepth only in vertical mode; and\nneither of these is meaningful inside \\write. So\nI'm forgetting what you said and using zero instead.");
-				if (level != tok_val)
-					std::tie(val, lev) = scanned_result(0, dimen_val);
-				else
-					std::tie(val, lev) = scanned_result(0, int_val);
+				val = 0;
+				lev = level == tok_val ? int_val : dimen_val;
 			}
-			else 
-				if (m == 1)
-					std::tie(val, lev) = scanned_result(prev_depth, dimen_val);
+			else
+				if (m == vmode)
+				{
+					val = prev_depth;
+					lev = dimen_val;
+				}
 				else
-					std::tie(val, lev) = scanned_result(space_factor, int_val);
+				{
+					val = space_factor;
+					lev = int_val;
+				}
 			break;
 		case set_prev_graf:
-			if (mode == 0)
-				std::tie(val, lev) = scanned_result(0, int_val);
-			else
+			val = 0;
+			if (mode)
 			{
 				nest[nestptr] = curlist;
 				auto p = nestptr;
 				while (abs(nest[p].modefield) != vmode)
 					p--;
-				std::tie(val, lev) = scanned_result(nest[p].pgfield, int_val);
+				val = nest[p].pgfield;
 			}
+			lev = int_val;
 			break;
 		case set_page_int:
-			if (m == 0)
-				std::tie(val, lev) = scanned_result(deadcycles, int_val);
-			else
-				std::tie(val, lev) = scanned_result(insertpenalties, int_val);
+			val =  m == 0 ? deadcycles : insertpenalties;
+			lev = int_val;
 			break;
 		case set_page_dimen:
 			if (pagecontents == 0 && !outputactive)
-				if (m == 0)
-					std::tie(val, lev) = scanned_result(max_dimen, dimen_val);
-				else
-					std::tie(val, lev) = scanned_result(0, dimen_val);
+				val = m == 0 ? max_dimen : 0;
 			else
-				std::tie(val, lev) = scanned_result(pagesofar[m], dimen_val);
+				val = pagesofar[m];
+			lev = dimen_val;
 			break;
 		case set_shape:
-			if (par_shape_ptr() == 0)
-				std::tie(val, lev) = scanned_result(0, int_val);
-			else
-				std::tie(val, lev) = scanned_result(info(par_shape_ptr()), int_val);
+			val = 0;
+			if (par_shape_ptr())
+				val = info(par_shape_ptr());
+			lev = int_val;
 			break;
 		case set_box_dimen:
 			val = scaneightbitint();
 			if (box(val) == 0)
-				std::tie(val, lev) = scanned_result(0, 1);
+				val = 0;
 			else
-				std::tie(val, lev) = scanned_result(mem[box(val)+m].int_, dimen_val);
+				val = mem[box(val)+m].int_;
+			lev = dimen_val;
 		break;
 		case char_given:
 		case math_given:
-			std::tie(val, lev) = scanned_result(curchr, 0);
+			val = curchr;
+			lev = int_val;
 			break;
 		case assign_font_dimen:
 			val = findfontdimen(false);
 			fontinfo[fmemptr].int_ = 0;
-			std::tie(val, lev) = scanned_result(fontinfo[val].int_, dimen_val);
+			val = fontinfo[val].int_;
+			lev = dimen_val;
 			break;
 		case assign_font_int:
-			if (m == 0)
-				std::tie(val, lev) = scanned_result(hyphenchar[scanfontident()], int_val);
-			else
-				std::tie(val, lev) = scanned_result(skewchar[scanfontident()], int_val);
+			val = (m == 0 ? hyphenchar: skewchar)[scanfontident()];
+			lev = int_val;
 			break;
 		case register_:
 			switch (m)
 			{
 				case int_val: 
-					std::tie(val, lev) = scanned_result(count(scaneightbitint()), m);
+					val = count(scaneightbitint());
 					break;
 				case dimen_val: 
-					std::tie(val, lev) = scanned_result(dimen(scaneightbitint()), m);
+					val = dimen(scaneightbitint());
 					break;
 				case glue_val: 
-					std::tie(val, lev) = scanned_result(skip(scaneightbitint()), m);
+					val = skip(scaneightbitint());
 					break;
 				case mu_val: 
-					std::tie(val, lev) = scanned_result(mu_skip(scaneightbitint()), m);
-			};
+					val = mu_skip(scaneightbitint());
+			}
+			lev = m;
 			break;
 		case last_item:
 			if (curchr > glue_val)
-				if (curchr == input_line_no_code)
-					std::tie(val, lev) = scanned_result(line, 0);
-				else
-					std::tie(val, lev) = scanned_result(lastbadness, int_val);
+			{
+				val = curchr == input_line_no_code ? line : lastbadness;
+				lev = int_val;
+			}
 			else
 			{
-				 if (curchr == glue_val)
-					std::tie(val, lev) = scanned_result(zero_glue, curchr);
-				  else
-					std::tie(val, lev) = scanned_result(0, curchr);
+				if (curchr == glue_val)
+				{
+					val = zero_glue;
+					lev = glue_val;
+				}
+				else
+				{
+					val = 0;
+					lev = curchr;
+				}
 				if (!is_char_node(tail) && mode)
 					switch (curchr)
 					{
@@ -940,10 +956,8 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			break;
 		default:
 			error("You can't use `"+cmdchr(curcmd, curchr)+"' after "+esc("the"), "I'm forgetting what you said and using zero instead.");
-			if (level != tok_val)
-				std::tie(val, lev) = scanned_result(0, dimen_val);
-			else
-				std::tie(val, lev) = scanned_result(0, int_val);
+			val = 0;
+			lev = level == tok_val ? int_val : dimen_val;
 	}
 	while (lev > level)
 	{

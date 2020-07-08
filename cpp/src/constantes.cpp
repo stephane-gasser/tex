@@ -159,11 +159,6 @@ void flush_string(void)
 	poolptr = strstart[strptr];*/
 }
 
-[[nodiscard]] std::tuple<int, char> scanned_result(int c, char l)
-{
-	return std::make_tuple(c, l);
-}
-
 void append_to_name(int &k, char c)
 {
 	k++;
