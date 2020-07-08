@@ -16,7 +16,7 @@ void mathfraction(void)
 			scandelimiter(garbage, false);
 		}
 		if (c%delimited_code == 0)
-			curval = scan_normal_dimen();
+			int _ = scan_normal_dimen();
 		error("Ambiguous; you need another { and }", "I'm ignoring this fraction specification, since I don't\nknow whether a construction like `x \\over y \\over z'\nmeans `{x \\over y} \\over z' or `x \\over {y \\over z}'.");
 	}
 	else
@@ -39,8 +39,7 @@ void mathfraction(void)
 		switch (c%delimited_code)
 		{
 			case above_code:
-				curval = scan_normal_dimen();
-				thickness(incompleat_noad) = curval;
+				thickness(incompleat_noad) = scan_normal_dimen();
 				break;
 			case over_code: 
 				thickness(incompleat_noad) = default_code;

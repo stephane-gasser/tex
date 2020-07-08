@@ -1,6 +1,6 @@
 #include "finiteshrink.h"
 #include "impression.h"
-#include "newspec.h"
+#include "noeud.h"
 #include "erreur.h"
 #include "deleteglueref.h"
 #include "texte.h"

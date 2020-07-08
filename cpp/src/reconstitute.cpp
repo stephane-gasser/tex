@@ -1,10 +1,8 @@
 #include "reconstitute.h"
 #include "getavail.h"
-#include "newligitem.h"
+#include "noeud.h"
 #include "pauseforinstructions.h"
 #include "freenode.h"
-#include "newligature.h"
-#include "newkern.h"
 
 static void set_cur_r(int j, int n, halfword &curr, halfword &currh, halfword hchar)
 {

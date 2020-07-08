@@ -3,7 +3,7 @@
 #include "freenode.h"
 #include "reconstitute.h"
 #include "getnode.h"
-#include "newcharacter.h"
+#include "noeud.h"
 #include "flushlist.h"
 #include "texte.h"
 

@@ -1,8 +1,7 @@
 #include "rebox.h"
 #include "hpack.h"
-#include "newkern.h"
+#include "noeud.h"
 #include "freenode.h"
-#include "newglue.h"
 
 halfword rebox(halfword b, scaled w)
 {

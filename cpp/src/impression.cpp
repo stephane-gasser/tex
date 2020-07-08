@@ -12,11 +12,10 @@
 static void printchar(ASCIIcode s)
 {
 	if (s == new_line_char())
-		if (selector < pseudo)
-		{
-			println();
-			return;
-		}
+	{
+		println();
+		return;
+	}
 	switch (selector)
 	{
 		case term_and_log:
@@ -48,14 +47,6 @@ static void printchar(ASCIIcode s)
 				println();
 			break;
 		case no_print:
-			break;
-		case pseudo:
-			if (tally < trickcount)
-				trickbuf[tally%errorline] = s;
-			break;
-		case new_string: 
-			if (poolptr < poolsize)
-				append_char(s);
 			break;
 		default: 
 			writefile[selector] << xchr[s];
@@ -90,13 +81,8 @@ void print(const std::string &s)
 			slowprint(s);
 			return;
 		}
-		if (selector > pseudo) // ===new_string
-		{
-			printchar(s[0]);
-			return;
-		}
 		unsigned char S = s[0];
-		if (S == new_line_char() && selector < pseudo)
+		if (S == new_line_char())
 		{
 			println();
 			return;
@@ -225,7 +211,7 @@ std::string cs(int p)
 	}
 	if (p >= undefined_control_sequence)
 		return esc("IMPOSSIBLE.");
-	if (text(p) < 0 || text(p) >= strptr)
+	if (text(p) < 0 || text(p) >= strings.size())
 		return esc("NONEXISTENT.");
 	return esc(TXT(hash[p].rh))+" ";
 }
@@ -309,9 +295,6 @@ void println(void)
 			termoffset = 0;
 			break;
 		case no_print:
-		case pseudo:
-		case new_string: 
-			break;
 		default: 
 			writefile[selector] << "\n";
 	}
@@ -455,11 +438,10 @@ static std::string writewhatsit(const std::string &s, halfword p)
 
 void slowprint(int s)
 {
-	if (s >= strptr || s < 256)
+	if (s >= strings.size() || s < 256)
 		printchar(s);
 	else
-		for (int j = strstart[s]; j < strstart[s+1]; j++)
-			printchar(strpool[j]);
+		print(strings[s]);
 }
 
 void print_err(const std::string &s)
@@ -472,15 +454,12 @@ std::string tokenlist(int p, int q, int l)
 	std::ostringstream oss;
 	ASCIIcode matchchr = '#';
 	ASCIIcode n = '0';
-	tally = 0;
-	while (p && tally < l)
+	while (p && oss.str().size() < l)
 	{
 		if (p == q)
 		{
-			firstcount = tally;
-			trickcount = tally+1+errorline-halferrorline;
-			if (trickcount < errorline)
-				trickcount = errorline;
+			firstcount = oss.str().size();
+			trickcount = std::max(firstcount+1+errorline-halferrorline, errorline);
 		}
 		if (p < himemmin || p > memend)
 			return oss.str()+esc("CLOBBERED.");
@@ -488,8 +467,8 @@ std::string tokenlist(int p, int q, int l)
 			oss << cs(info(p)-cs_token_flag);
 		else
 		{
-			int m = info(p)/0x1'00;
-			int c = info(p)%0x1'00;
+			int m = info(p)>>8;
+			int c = info(p)%(1<<8);
 			if (info(p) < 0)
 				oss << esc("BAD.");
 			else
@@ -894,34 +873,17 @@ static int show_box_depth(void) { return int_par(show_box_depth_code); }
 
 std::string showbox(halfword p)
 {  
-	depththreshold = std::min(show_box_depth(), poolsize-poolptr-1);
+	depththreshold = show_box_depth();
 	breadthmax = show_box_breadth();
 	if (breadthmax <= 0)
 		breadthmax = 5;
 	return shownodelist(p, "")+"\n";
 }
 
-static void begin_pseudoprint(int l)
-{
-	l = tally;
-	tally = 0;
-	selector = pseudo;
-	trickcount = 1000000;
-}
-
-static void set_trick_count(void)
-{
-	firstcount = tally; 
-	trickcount = tally+1+errorline-halferrorline;
-	if (trickcount < errorline)
-		trickcount = errorline;
-}
-
 static int error_context_lines(void) { return int_par(error_context_lines_code); }
 
 std::string showcontext(void)
 {
-	int l;
 	baseptr = inputptr;
 	inputstack[baseptr] = curinput; 
 	int nn = -1;
@@ -937,29 +899,31 @@ std::string showcontext(void)
 		{
 			if (baseptr == inputptr || state != token_list || token_type != backed_up || loc)
 			{
-				tally = 0;
-				oldsetting = selector;
+				int l = oss.str().size();
 				if (state)
 				{
 					if (txt(name) <= 17)
 						if (terminal_input(name))
 							oss << (baseptr == 0 ? "\r<*> " : "\r<insert>  ");
 						else
-							oss << ("\r<read "+(txt(name) == 17 ? "*" : std::to_string((txt(name)-1)))+"> ");
+							oss << "\r<read " << (txt(name) == 17 ? "*" : std::to_string((txt(name)-1)))+"> ";
 					else
 						oss << "\rl."+std::to_string(line) << " ";
-					begin_pseudoprint(l);
-					int j;
-					if (buffer[limit] == end_line_char())
-						j = limit;
-					else
-						j = limit+1;
+					l = oss.str().size()-l;
+					tally = 0;
+					trickcount = 1000000;
+					int j = limit+(buffer[limit] == end_line_char() ? 0 : 1);
 					if (j > 0)
 						for (int i = start; i < j; i++)
 						{
 							if (i == loc)
-								set_trick_count();
-							oss << buffer[i];
+							{
+								firstcount = tally; 
+								trickcount = std::max(firstcount+1+errorline-halferrorline, errorline);
+							}
+							if (tally < trickcount)
+								trickbuf[tally%errorline] = buffer[i];
+							tally++;
 						}
 				}
 				else
@@ -974,10 +938,7 @@ std::string showcontext(void)
 							oss << "\r<template> ";
 							break;
 						case backed_up: 
-							if (loc == 0)
-								oss << "\r<recently read> ";
-							else
-								oss << "\r<to be read again> ";
+							oss << (loc == 0 ? "\r<recently read> ": "\r<to be read again> ");
 							break;
 						case inserted: 
 							oss << "\r<inserted text> ";
@@ -985,10 +946,10 @@ std::string showcontext(void)
 						case macro:
 							oss << "\n" << cs(txt(name));
 							break;
-						case output_text: 
+						case output_text:
 							oss << "\r<output> ";
 							break;
-						case every_par_text: 
+						case every_par_text:
 							oss << "\r<everypar> ";
 							break;
 						case every_math_text: 
@@ -1018,17 +979,20 @@ std::string showcontext(void)
 						default: 
 							oss << "\r?";
 					}
-					begin_pseudoprint(l);
-					oss << (token_type < macro ? tokenlist(start, loc, 100000): tokenlist(link(start), loc, 100000));
+					l = oss.str().size()-l;
+					tally = 0;
+					trickcount = 1000000;
+					for (auto c: tokenlist(token_type < macro ? start : link(start), loc, 100000));
+						if (tally < trickcount)
+							trickbuf[tally%errorline] = c;
+						tally++;
 				}
-				selector = oldsetting;
 				if (trickcount == 1000000)
-					set_trick_count();
-				int m;
-				if (tally < trickcount)
-					m = tally - firstcount;
-				else
-					m = trickcount-firstcount;
+				{
+					firstcount = tally; 
+					trickcount = std::max(tally+1+errorline-halferrorline, errorline);
+				}
+				int m = tally < trickcount ? tally-firstcount : trickcount-firstcount;
 				int p, n;
 				if (l+firstcount <= halferrorline)
 				{
@@ -1037,19 +1001,14 @@ std::string showcontext(void)
 				}
 				else
 				{
-					oss <<"...";
+					oss << "...";
 					p = l+firstcount-halferrorline+3;
 					n = halferrorline;
 				}
 				for (int q = p; q < firstcount; q++)
 					oss << trickbuf[q%errorline];
-				oss << "\n";
-				for (int q = 0; q < n; q++)
-					oss << " ";
-				if (m + n <= errorline)
-					p = firstcount+m;
-				else
-					p = firstcount+errorline-n-3;
+				oss << "\n" << std::string(n, ' ');
+				p = firstcount+(m + n <= errorline ? m : errorline-n-3);
 				for (int q = firstcount; q < p; q++)
 					oss << trickbuf[q%errorline];
 				if (m+n > errorline)
@@ -1172,6 +1131,7 @@ static std::string showactivities(void)
 
 void showwhatever(void)
 {
+	int val;
 	switch (curchr)
 	{
 		case show_lists:
@@ -1183,8 +1143,8 @@ void showwhatever(void)
 			selector = term_and_log;
 			break;
 		case show_box_code:
-			curval = scaneightbitint();
-			diagnostic("\r> \\box"+std::to_string(curval)+"="+(box(curval) == 0 ? "void" : showbox(box(curval)))+"\n");
+			val = scaneightbitint();
+			diagnostic("\r> \\box"+std::to_string(val)+"="+(box(val) == 0 ? "void" : showbox(box(val)))+"\n");
 			print_err("OK");
 			if (selector == term_and_log && tracing_online() <= 0)
 				selector = term_only;

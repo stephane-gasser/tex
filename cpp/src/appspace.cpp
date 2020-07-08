@@ -1,8 +1,6 @@
 #include "appspace.h"
-#include "newparamglue.h"
-#include "newspec.h"
+#include "noeud.h"
 #include "xnoverd.h"
-#include "newglue.h"
 
 //! additional space at end of sentence
 static int& extra_space(internalfontnumber f) { return param(extra_space_code, f); }

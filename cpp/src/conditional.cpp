@@ -68,10 +68,9 @@ void conditional(void)
 		case if_int_code:
 		case if_dim_code:
 			if (thisif == if_int_code)
-				curval = scanint();
+				n = scanint();
 			else
-				curval = scan_normal_dimen();
-			n = curval;
+				n = scan_normal_dimen();
 			do
 				getxtoken();
 			while (curcmd == spacer);
@@ -82,25 +81,20 @@ void conditional(void)
 				backerror("Missing = inserted for "+cmdchr(if_test, thisif), "I was expecting to see `<', `=', or `>'. Didn't.");
 				r = '=';
 			}
-			if (thisif == if_int_code)
-				curval = scanint();
-			else
-				curval = scan_normal_dimen();
 			switch (r)
 			{
 				case '<': 
-					b = n < curval;
+					b = thisif == if_int_code ? n < scanint() : n < scan_normal_dimen();
 					break;
 				case '=': 
-					b = n == curval;
+					b = thisif == if_int_code ? n == scanint() : n == scan_normal_dimen();
 					break;
 				case '>': 
-					b = n > curval;
+					b = thisif == if_int_code ? n > scanint() : n > scan_normal_dimen();
 			}
 			break;
 		case if_odd_code:
-			curval = scanint();
-			b = curval%2;
+			b = scanint()%2;
 			break;
 		case if_vmode_code: 
 			b = abs(mode) == vmode;
@@ -117,8 +111,7 @@ void conditional(void)
 		case if_void_code:
 		case if_hbox_code:
 		case if_vbox_code:
-			curval = scaneightbitint();
-			p = box(curval);
+			p = box(scaneightbitint());
 			if (thisif == if_void_code)
 				b = p == 0;
 			else 
@@ -165,8 +158,7 @@ void conditional(void)
 			scannerstatus = savescannerstatus;
 			break;
 		case if_eof_code:
-			curval = scanfourbitint();
-			b = readopen[curval] == 2;
+			b = readopen[scanfourbitint()] == 2;
 			break;
 		case if_true_code: 
 			b = true;
@@ -175,8 +167,7 @@ void conditional(void)
 			b = false;
 			break;
 		case if_case_code:
-			curval = scanint();
-			n = curval;
+			n = scanint();
 			if (tracing_commands() > 1)
 				diagnostic("{case "+std::to_string(n)+"}");
 			while (n)

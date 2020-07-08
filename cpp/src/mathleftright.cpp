@@ -3,7 +3,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "offsave.h"
-#include "newnoad.h"
+#include "noeud.h"
 #include "pushmath.h"
 #include "unsave.h"
 #include "finmlist.h"

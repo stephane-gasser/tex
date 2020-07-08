@@ -7,8 +7,7 @@
 void openorclosein(void)
 {
 	auto c = curchr;
-	curval = scanfourbitint();
-	auto n = curval;
+	auto n = scanfourbitint();
 	if (readopen[n] != closed)
 	{
 		aclose(readfile[n]);

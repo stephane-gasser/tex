@@ -1,6 +1,6 @@
 #include "appendglue.h"
 #include "lecture.h"
-#include "newglue.h"
+#include "noeud.h"
 
 void appendglue(void)
 {
@@ -8,28 +8,24 @@ void appendglue(void)
 	switch (s)
 	{
 		case fil_code: 
-			curval = fil_glue;
+			tail_append(newglue(fil_glue));
 			break;
 		case fill_code: 
-			curval = fill_glue;
+			tail_append(newglue(fill_glue));
 			break;
 		case ss_code: 
-			curval = ss_glue;
+			tail_append(newglue(ss_glue));
 			break;
 		case fil_neg_code: 
-			curval = fil_neg_glue;
+			tail_append(newglue(fil_neg_glue));
 			break;
 		case skip_code: 
-			curval = scanglue(glue_val);
+			tail_append(newglue(scanglue(glue_val)));
+			glue_ref_count(tail)--;
 			break;
 		case mskip_code: 
-			curval = scanglue(mu_val);
-	}
-	tail_append(newglue(curval));
-	if (s >= skip_code)
-	{
-		glue_ref_count(curval)--;
-		if (s > skip_code)
+			tail_append(newglue(scanglue(mu_val)));
+			glue_ref_count(tail)--;
 			subtype(tail) = mu_glue;
 	}
 }

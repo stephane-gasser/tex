@@ -5,6 +5,5 @@ void alterpagesofar(void)
 {
 	char c = curchr;
 	scanoptionalequals();
-	curval = scan_normal_dimen();
-	pagesofar[c] = curval;
+	pagesofar[c] = scan_normal_dimen();
 }

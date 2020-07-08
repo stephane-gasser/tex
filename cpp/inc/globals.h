@@ -3,6 +3,21 @@
 
 #include "tex.h"
 #include <map>
+#include <vector>
+
+inline std::string hyphword[308];
+inline std::string helpline;
+inline std::vector<std::string> strings;
+inline std::string currentString;
+inline std::string curname;
+inline std::string curarea;
+inline std::string curext;
+inline std::string jobname;
+inline std::string outputfilename;
+inline std::string logname;
+inline std::string fontname[fontmax+1];
+inline std::string fontarea[fontmax+1];
+inline std::string formatident;
 
 extern int bad;
 extern int tally;
@@ -18,7 +33,6 @@ extern int magset;
 extern int line;
 extern int maxparamstack;
 extern int alignstate;
-extern int curval;
 extern int ifline;
 extern int skipline;
 extern int totalpages;
@@ -50,12 +64,6 @@ extern ASCIIcode buffer[bufsize+1]; // débute à 0
 extern int First;// 0..bufsize
 extern int last; // 0..bufsize
 extern int maxbufstack; // 0..bufsize
-extern packedASCIIcode strpool[poolsize+1]; // débute à 0
-extern poolpointer strstart[maxstrings+1]; // débute à 1
-extern poolpointer poolptr;
-extern strnumber strptr;
-extern poolpointer initpoolptr;
-extern strnumber initstrptr;
 extern alphafile poolfile;
 extern alphafile logfile;
 extern char selector; //0..21
@@ -68,7 +76,6 @@ extern bool deletionsallowed;
 extern bool setboxallowed;
 extern char history; // 0..3
 extern char errorcount; // -1..100
-inline std::string helpline;
 extern bool useerrhelp;
 extern bool OKtointerrupt;
 extern bool aritherror;
@@ -121,7 +128,6 @@ extern bool forceeof;
 extern halfword curmark[5];
 extern char longstate; // 111..114
 extern halfword pstack[9];
-extern char curvallevel; // 0..5
 extern smallnumber radix;
 extern glueord curorder;
 extern alphafile readfile[16];
@@ -129,18 +135,12 @@ extern char readopen[17]; // of 0..2
 extern halfword condptr;
 extern char iflimit; // 0..4
 extern smallnumber curif;
-inline std::string curname;
-inline std::string curarea;
-inline std::string curext;
 extern poolpointer areadelimiter;
 extern poolpointer extdelimiter;
 extern std::string TEXformatdefault; // commence à 1
 extern bool nameinprogress;
-inline std::string jobname;
 extern bool logopened;
 extern bytefile dvifile;
-inline std::string outputfilename;
-inline std::string logname;
 extern bytefile tfmfile;
 extern memoryword fontinfo[fontmemsize+1];
 extern fontindex fmemptr;
@@ -149,8 +149,6 @@ extern fourquarters fontcheck[fontmax+1];
 extern scaled fontsize[fontmax+1];
 extern scaled fontdsize[fontmax+1]; 
 extern fontindex fontparams[fontmax+1];
-inline std::string fontname[fontmax+1];
-inline std::string fontarea[fontmax+1];
 extern eightbits fontbc[fontmax+1];
 extern eightbits fontec[fontmax+1];
 extern halfword fontglue[fontmax+1];
@@ -247,7 +245,6 @@ extern smallnumber hyfdistance[trieopsize+1]; // commence à 1
 extern smallnumber hyfnum[trieopsize+1]; // commence à 1
 extern quarterword hyfnext[trieopsize+1]; // commence à 
 extern std::map<ASCIIcode, int> opstart; //of 0..trieopsize
-inline std::string hyphword[308];
 extern halfword hyphlist[308];
 extern hyphpointer hyphcount;
 extern std::map<int, int> trieophash; // [-trieopsize..trieopsize] of 0..trieopsize
@@ -282,7 +279,6 @@ extern bool insdisc;
 extern halfword curbox;
 extern halfword aftertoken;
 extern bool longhelpseen;
-inline std::string formatident;
 extern wordfile fmtfile;
 extern alphafile writefile[16];
 extern bool writeopen[18];

@@ -1,25 +1,10 @@
 #include "loadfmtfile.h"
 #include <iostream>
 
-void undump_hh(twohalves &num)
-{
-	fmtfile.read(reinterpret_cast<char *>(&num), 4);
-}
-
-void undump_wd(memoryword &num)
-{
-	fmtfile.read(reinterpret_cast<char *>(&num), 4);
-}
-
-void undump_qqqq(fourquarters &num)
-{
-	fmtfile.read(reinterpret_cast<char *>(&num), 4);
-}
-
-void undump_int(int &num)
-{
-	fmtfile.read(reinterpret_cast<char *>(&num), 4);
-}
+void undump_hh(twohalves &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
+void undump_wd(memoryword &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
+void undump_qqqq(fourquarters &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
+void undump_int(int &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
 
 void badFormatIf(bool b)
 {
@@ -53,14 +38,16 @@ int undump_size(int min, int max, const std::string &s)
 	return x;
 }
 
-void undump_four_ASCII(int k)
+static std::string pool;
+
+void undump_four_ASCII(void)
 {
 	fourquarters w;
-	undump_qqqq(w); 
-	strpool[k] = w.b0;
-	strpool[k+1] = w.b1;
-	strpool[k+2] = w.b2;
-	strpool[k+3] = w.b3;
+	undump_qqqq(w);
+	pool.push_back(w.b0);
+	pool.push_back(w.b1);
+	pool.push_back(w.b2);
+	pool.push_back(w.b3);
 }
 
 bool loadfmtfile(void)
@@ -83,16 +70,17 @@ bool loadfmtfile(void)
 		badFormatIf(x != hash_prime);
 		undump_int(x);	
 		badFormatIf(x != hyph_size);
-		poolptr = undump_size(0, poolsize, "string pool size");
-		strptr = undump_size(0,  maxstrings, "max strings");
+		int poolptr = undump_size(0, poolsize, "string pool size");
+		int strptr = undump_size(0,  maxstrings, "max strings");
+		std::vector<int> strstart;
 		for (k = 0; k <= strptr; k++)
-			strstart[k] = undump(0,  poolptr);
+			strstart.push_back(undump(0,  poolptr));
+		for (k = 0; k < strptr; k++)
+			strings.push_back(std::string(pool.begin()+strstart[k], pool.begin()+strstart[k+1]));
 		for (k = 0; k+4 < poolptr; k = k+4)
-			undump_four_ASCII(k);
+			undump_four_ASCII();
 		k = poolptr-4;
-		undump_four_ASCII(k);
-		initstrptr = strptr;
-		initpoolptr = poolptr;
+		undump_four_ASCII();
 		lomemmax = undump(lo_mem_stat_max+1000, hi_mem_stat_min-1);
 		rover = undump(lo_mem_stat_max+1, lomemmax);
 		p = 0;

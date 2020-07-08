@@ -3,7 +3,7 @@
 
 std::string makenamestring(void)
 {
-	if (poolptr+namelength > poolsize || strptr == maxstrings || cur_length() > 0)
+	if (cur_length() > 0)
 		return "?";
 	else
 	{

@@ -7,21 +7,21 @@ std::map<quarterword, std::map<halfword, std::string>> primName;
 int primitive(ASCIIcode s, quarterword c, halfword o) 
 {
 	primName[c][o] = std::string(1, s);
-	int curval = s+single_base;
-	eq_level(curval) = level_one;
-	eq_type(curval) = c;
-	equiv(curval) = o;
-	return curval;
+	int val = s+single_base;
+	eq_level(val) = level_one;
+	eq_type(val) = c;
+	equiv(val) = o;
+	return val;
 }
 
 int primitive(const std::string &t, quarterword c, halfword o)
 {
 	primName[c][o] = t;
-	int curval = idlookup(t);
+	int val = idlookup(t);
 	flush_string();
-	text(curval) = txt(t);
-	eq_level(curval) = level_one;
-	eq_type(curval) = c;
-	equiv(curval) = o;
-	return curval;
+	text(val) = txt(t);
+	eq_level(val) = level_one;
+	eq_type(val) = c;
+	equiv(val) = o;
+	return val;
 }

@@ -1,12 +1,12 @@
 #include "trapzeroglue.h"
 #include "deleteglueref.h"
 
-void trapzeroglue(void)
+void trapzeroglue(int &val)
 {
-	if (width(curval) == 0 && stretch(curval) == 0 && shrink(curval) == 0)
+	if (width(val) == 0 && stretch(val) == 0 && shrink(val) == 0)
 	{
 		glue_ref_count(zero_glue)++;
-		deleteglueref(curval);
-		curval = 0;
+		deleteglueref(val);
+		val = 0;
 	}
 }

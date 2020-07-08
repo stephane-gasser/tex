@@ -1,6 +1,6 @@
 #include "setmathchar.h"
 #include "lecture.h"
-#include "newnoad.h"
+#include "noeud.h"
 #include "backinput.h"
 
 void setmathchar(int c)

@@ -1,7 +1,7 @@
 #include "boxend.h"
 #include "appendtovlist.h"
 #include "buildpage.h"
-#include "newnoad.h"
+#include "noeud.h"
 #include "eqdefine.h"
 #include "geqdefine.h"
 #include "lecture.h"

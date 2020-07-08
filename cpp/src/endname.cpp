@@ -5,25 +5,22 @@
 
 void endname(void)
 {
-	if (strptr+3 > maxstrings)
-		overflow("number of strings", maxstrings-initstrptr);
-	if (areadelimiter == 0)
-		curarea = "";
-	else
-	{
-		curarea = TXT(strptr);
-		strstart[1+strptr] = strstart[strptr]+areadelimiter;
-		strptr++;
-	}
+/*	if (strptr+3 > maxstrings)
+		overflow("number of strings", maxstrings-initstrptr);*/
+	curarea = currentString.substr(0, areadelimiter);
+	if (areadelimiter)
+		strings.push_back(curarea);
 	if (extdelimiter == 0)
 	{
 		curext = "";
-		curname = makestring();
+		curname = currentString.substr(areadelimiter);
 	}
 	else
 	{
-		curname = TXT(strptr);
-		strstart[1+strptr++] = strstart[strptr]+extdelimiter-areadelimiter-1;
-		curext = makestring();
+		curext = currentString.substr(extdelimiter-1);
+		curname = currentString.substr(areadelimiter, extdelimiter-1);
 	}
+	strings.push_back(curname);
+	if (extdelimiter)
+		strings.push_back(curext);
 }

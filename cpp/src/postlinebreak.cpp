@@ -1,10 +1,9 @@
 #include "postlinebreak.h"
 #include "deleteglueref.h"
 #include "flushnodelist.h"
-#include "newparamglue.h"
 #include "hpack.h"
 #include "appendtovlist.h"
-#include "newpenalty.h"
+#include "noeud.h"
 #include "erreur.h"
 
 static int broken_penalty(void) { return int_par(broken_penalty_code); }

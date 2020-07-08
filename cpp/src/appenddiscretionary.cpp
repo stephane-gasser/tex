@@ -1,7 +1,5 @@
 #include "appenddiscretionary.h"
-#include "newdisc.h"
-#include "newcharacter.h"
-#include "newsavelevel.h"
+#include "noeud.h"
 #include "lecture.h"
 #include "pushnest.h"
 

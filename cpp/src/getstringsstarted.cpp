@@ -11,9 +11,9 @@ constexpr char poolname[] = "tex.pool";
 //! but returns |false| if something goes wrong.
 bool getstringsstarted(void)
 {
-	poolptr = 0;
+	/*poolptr = 0;
 	strptr = 0;
-	strstart[0] = 0;
+	strstart[0] = 0;*/
 	for (int k = 0; k < 256; k++)
 	{
 		if (k < ' ' || k > '~')
@@ -91,12 +91,12 @@ bool getstringsstarted(void)
 				return false;
 			}
 			int l = (xord[m]-'0')*10+xord[n]-'0';
-			if (poolptr+l+stringvacancies > poolsize)
+			/*if (poolptr+l+stringvacancies > poolsize)
 			{
 				std::cout << "! You have to increase POOLSIZE." << std::endl;
 				aclose(poolfile);
 				return false;
-			}
+			}*/
 			for (int k = 1; k <= l; k++)
 			{
 				if (poolfile.peek() == '\n')

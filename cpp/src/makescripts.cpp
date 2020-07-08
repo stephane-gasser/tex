@@ -2,7 +2,7 @@
 #include "hpack.h"
 #include "cleanbox.h"
 #include "freenode.h"
-#include "newkern.h"
+#include "noeud.h"
 #include "vpackage.h"
 
 static int script_space(void) { return dimen_par(script_space_code); }

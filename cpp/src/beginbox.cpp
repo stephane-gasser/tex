@@ -22,16 +22,16 @@ void beginbox(int boxcontext)
 	quarterword m; // the length of a replacement list
 	halfword k; // 0 or vmode or hmode
 	eightbits n; // a box number
+	int val;
 	switch (curchr)
 	{
 		case box_code:
-			curval = scaneightbitint();
-			curbox = box(curval);
-			box(curval) = 0; // the box becomes void, at the same level
+			val = scaneightbitint();
+			curbox = box(val);
+			box(val) = 0; // the box becomes void, at the same level
 			break;
 		case copy_code:
-			curval = scaneightbitint();
-			curbox = copynodelist(box(curval));
+			curbox = copynodelist(box(scaneightbitint()));
 			break;
 		case last_box_code:
 			// If the current list ends with a box node, delete it from 
@@ -73,12 +73,10 @@ void beginbox(int boxcontext)
 						}
 			break;
 		case vsplit_code:
-			curval = scaneightbitint();
-			n = curval;
+			n = scaneightbitint();
 			if (!scankeyword("to"))
 				error("Missing `to' inserted", "I'm working on `\\vsplit<box number> to <dimen>';\nwill look for the <dimen> next.");
-			curval = scan_normal_dimen();
-			curbox = vsplit(n, curval);
+			curbox = vsplit(n, scan_normal_dimen());
 			break;
 		default:
 			k = curchr-4;

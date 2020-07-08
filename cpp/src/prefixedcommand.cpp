@@ -16,11 +16,8 @@
 #include "alterboxdimen.h"
 #include "alterinteger.h"
 #include "getnode.h"
-#include "newpatterns.h"
-#include "newhyphexceptions.h"
+#include "noeud.h"
 #include "findfontdimen.h"
-#include "newfont.h"
-#include "newinteraction.h"
 #include "texte.h"
 
 void prefixedcommand(void)
@@ -57,6 +54,7 @@ void prefixedcommand(void)
 		else 
 			if (a < 4)
 			a += 4;
+	int val;
 	switch (curcmd)
 	{
 		case set_font: 
@@ -140,8 +138,7 @@ void prefixedcommand(void)
 				error("Missing `to' inserted", "You should have said `\\read<number> to \\cs'.\nI'm going to look for the \\cs now.");
 			getrtoken();
 			p = curcs;
-			readtoks(n, p);
-			define(a, p, call, curval);
+			define(a, p, call, readtoks(n, p));
 			break;
 		case toks_register:
 		case assign_toks:
@@ -214,11 +211,11 @@ void prefixedcommand(void)
 			n = curcmd;
 			scanoptionalequals();
 			if (n == assign_mu_glue)
-				curval = scanglue(3);
+				val = scanglue(3);
 			else
-				curval = scanglue(2);
-			trapzeroglue();
-			define(a, p, glue_ref, curval);
+				val = scanglue(2);
+			trapzeroglue(val);
+			define(a, p, glue_ref, val);
 			break;
 		case def_code:
 			if (curchr == cat_code_base)
@@ -237,19 +234,19 @@ void prefixedcommand(void)
 			p = curchr;
 			p += scancharnum();
 			scanoptionalequals();
-			curval = scanint();
-			if ((curval < 0 && p < del_code_base) || curval > n)
+			val = scanint();
+			if ((val < 0 && p < del_code_base) || val > n)
 			{
-				error("Invalid code ("+std::to_string(curval)+(p < del_code_base ? "), should be in the range 0.." : "//), should be at most ")+std::to_string(n), "I'm going to use 0 instead of that illegal code value.");
-				curval = 0;
+				error("Invalid code ("+std::to_string(val)+(p < del_code_base ? "), should be in the range 0.." : "//), should be at most ")+std::to_string(n), "I'm going to use 0 instead of that illegal code value.");
+				val = 0;
 			}
 			if (p < math_code_base)
-				define(a, p, data, curval);
+				define(a, p, data, val);
 			else 
 				if (p < del_code_base)
-					define(a, p, data, curval);
+					define(a, p, data, val);
 				else 
-					word_define(a, p, curval);
+					word_define(a, p, val);
 			break;
 		case def_family:
 			p = curchr;
@@ -312,8 +309,7 @@ void prefixedcommand(void)
 				newhyphexceptions();
 			break;
 		case assign_font_dimen:
-			findfontdimen(true);
-			k = curval;
+			k = findfontdimen(true);
 			scanoptionalequals();
 			fontinfo[k].int_ = scan_normal_dimen();
 			break;

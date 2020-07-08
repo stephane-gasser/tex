@@ -73,8 +73,8 @@ int main()
 			if (!getstringsstarted())
 				throw std::string();
 			initprim();
-			initstrptr = strptr;
-			initpoolptr = poolptr;
+			//initstrptr = strptr;
+			//initpoolptr = poolptr;
 			fixdateandtime();
 			readyalready = 314159;
 		}

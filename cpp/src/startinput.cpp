@@ -46,7 +46,7 @@ void startinput(void)
 	slowprint(name);
 	std::cout << std::flush;
 	state = new_line;
-	if (name == TXT(strptr-1))
+	if (name == strings.back())
 	{
 		flush_string();
 		name = curname;

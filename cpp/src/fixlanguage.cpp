@@ -1,5 +1,5 @@
 #include "fixlanguage.h"
-#include "newwhatsit.h"
+#include "noeud.h"
 #include "normmin.h"
 
 void fixlanguage(void)

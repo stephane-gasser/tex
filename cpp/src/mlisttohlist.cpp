@@ -15,14 +15,11 @@
 #include "mathkern.h"
 #include "erreur.h"
 #include "fetch.h"
-#include "newcharacter.h"
 #include "hpack.h"
 #include "makeord.h"
 #include "makescripts.h"
 #include "freenode.h"
-#include "newkern.h"
-#include "newglue.h"
-#include "newpenalty.h"
+#include "noeud.h"
 #include "makeleftright.h"
 
 constexpr char math_spacing[] = "0234000122*4000133**3**344*0400400*000000234000111*1111112341011";

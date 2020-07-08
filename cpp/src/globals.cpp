@@ -16,7 +16,6 @@ int magset;
 int line;
 int maxparamstack;
 int alignstate;
-int curval;
 int ifline;
 int skipline;
 int totalpages;
@@ -127,7 +126,6 @@ bool forceeof;
 halfword curmark[5];
 char longstate; // 111..114
 halfword pstack[9];
-char curvallevel; // 0..5
 smallnumber radix;
 glueord curorder;
 alphafile readfile[16];

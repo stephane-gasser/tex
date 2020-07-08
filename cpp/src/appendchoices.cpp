@@ -1,6 +1,6 @@
 #include "appendchoices.h"
 #include "pushmath.h"
-#include "newchoice.h"
+#include "noeud.h"
 #include "lecture.h"
 
 void appendchoices(void)

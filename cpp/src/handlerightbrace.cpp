@@ -16,7 +16,7 @@
 #include "builddiscretionary.h"
 #include "backinput.h"
 #include "alignpeek.h"
-#include "newnoad.h"
+#include "noeud.h"
 #include "buildchoices.h"
 #include "finmlist.h"
 #include "texte.h"

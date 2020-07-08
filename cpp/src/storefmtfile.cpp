@@ -19,13 +19,15 @@ static void dump_qqqq(fourquarters num) { fmtfile.write(reinterpret_cast<const c
 static void dump_int(std::uint32_t num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
 static int& tracing_stats(void) { return int_par(tracing_stats_code); }
 
+static std::string pool;
+
 static void dump_four_ASCII(int k)
 {
 	fourquarters w;
-	w.b0 = strpool[k];
-	w.b1 = strpool[k+1];
-	w.b2 = strpool[k+2];
-	w.b3 = strpool[k+3];
+	w.b0 = pool[k];
+	w.b1 = pool[k+1];
+	w.b2 = pool[k+2];
+	w.b3 = pool[k+3];
 	dump_qqqq(w);
 }
 
@@ -49,15 +51,27 @@ void storefmtfile(void)
 	dump_int(eqtb_size);
 	dump_int(hash_prime);
 	dump_int(hyph_size);
+	int poolptr = 0;
+	std::vector<int> strstart;
+	for (auto s: strings)
+	{
+		strstart.push_back(poolptr);
+		for (auto c: s)
+		{
+			pool += c;
+			poolptr++;
+		}
+	}
+	strstart.push_back(poolptr);
 	dump_int(poolptr);
-	dump_int(strptr);
-	for (k = 0; k <= strptr; k++)
+	dump_int(strings.size());
+	for (k = 0; k <= strings.size(); k++)
 		dump_int(strstart[k]);
 	for (k = 0; k+4 < poolptr; k += 4)
 		dump_four_ASCII(k);
 	k = poolptr-4;
 	dump_four_ASCII(k);
-	print("\n"+std::to_string(strptr)+" strings of total length "+std::to_string(poolptr));
+	print("\n"+std::to_string(strings.size())+" strings of total length "+std::to_string(poolptr));
 	sortavail();
 	varused = 0;
 	dump_int(lomemmax);

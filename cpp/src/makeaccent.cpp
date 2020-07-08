@@ -1,10 +1,9 @@
 #include "makeaccent.h"
 #include "lecture.h"
-#include "newcharacter.h"
+#include "noeud.h"
 #include "doassignments.h"
 #include "backinput.h"
 #include "hpack.h"
-#include "newkern.h"
 #include <cmath>
 
 //! slant to the right, per unit distance upward
@@ -16,9 +15,8 @@ void makeaccent(void)
 	halfword r;
 	scaled a, h, x, w, delta;
 	fourquarters i;
-	curval = scancharnum();
 	internalfontnumber f = cur_font();
-	auto p = newcharacter(f, curval);
+	auto p = newcharacter(f, scancharnum());
 	if (p)
 	{
 		x = x_height(f);
@@ -31,10 +29,7 @@ void makeaccent(void)
 			q = newcharacter(f, curchr);
 		else 
 			if (curcmd == char_num)
-			{
-				curval = scancharnum();
-				q = newcharacter(f, curval);
-			}
+				q = newcharacter(f, scancharnum());
 			else
 				backinput();
 		if (q)

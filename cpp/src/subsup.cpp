@@ -1,5 +1,5 @@
 #include "subsup.h"
-#include "newnoad.h"
+#include "noeud.h"
 #include "impression.h"
 #include "erreur.h"
 #include "lecture.h"

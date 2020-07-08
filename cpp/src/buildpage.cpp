@@ -1,7 +1,6 @@
 #include "buildpage.h"
 #include "freezepagespecs.h"
 #include "deleteglueref.h"
-#include "newskipparam.h"
 #include "flushnodelist.h"
 #include "getnode.h"
 #include "ensurevbox.h"
@@ -12,7 +11,7 @@
 #include "vertbreak.h"
 #include "badness.h"
 #include "fireup.h"
-#include "newspec.h"
+#include "noeud.h"
 #include "texte.h"
 
 //! Append contributions to the current page.

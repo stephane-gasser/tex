@@ -5,9 +5,8 @@ void alterinteger(void)
 {
 	char c = curchr;
 	scanoptionalequals();
-	curval = scanint();
 	if (c == 0)
-		deadcycles = curval;
+		deadcycles = scanint();
 	else
-		insertpenalties = curval;
+		insertpenalties = scanint();
 }

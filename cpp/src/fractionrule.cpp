@@ -1,5 +1,5 @@
 #include "fractionrule.h"
-#include "newrule.h"
+#include "noeud.h"
 
 halfword fractionrule(scaled t)
 {

@@ -58,7 +58,6 @@ void Initialize(void)
 	bot_mark = 0;
 	split_first_mark = 0;
 	split_bot_mark = 0;
-	scanned_result(0, 0);
 	radix = 0;
 	curorder = 0;
 	for (int k = 0; k < 17; k++)

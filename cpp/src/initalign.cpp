@@ -5,10 +5,8 @@
 #include "lecture.h"
 #include "pushalignment.h"
 #include "pushnest.h"
-#include "newparamglue.h"
 #include "getavail.h"
-#include "newnullbox.h"
-#include "newsavelevel.h"
+#include "noeud.h"
 #include "alignpeek.h"
 #include "texte.h"
 

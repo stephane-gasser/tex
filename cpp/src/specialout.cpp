@@ -10,7 +10,7 @@ void specialout(halfword p)
 	synch_h();
 	synch_v();
 	auto oldsetting = selector;
-	auto s = tokenlist(link(write_tokens(p)), 0, poolsize-poolptr);
+	auto s = tokenlist(link(write_tokens(p)), 0, poolsize/*-poolptr*/);
 	if (cur_length() < 256)
 	{
 		dvi_out(xxx1);

@@ -1,21 +1,14 @@
 #include "vardelimiter.h"
-#include "newnullbox.h"
+#include "noeud.h"
 #include "heightplusdepth.h"
 #include "stackintobox.h"
 #include "charbox.h"
 #include "half.h"
 
-//! |top| piece in a recipe
-static quarterword ext_top(fourquarters q) { return q.b0; }
-
-//! |mid| pie1ce in a recipe
-static quarterword ext_mid(fourquarters q) { return q.b1; }
-
-//! |bot| piece in a recipe
-static quarterword ext_bot(fourquarters q) { return q.b2; }
-
-//! |rep| piece in a recipe
-static quarterword ext_rep(fourquarters q) { return q.b3; }
+static quarterword ext_top(fourquarters q) { return q.b0; } //!< |top| piece in a recipe
+static quarterword ext_mid(fourquarters q) { return q.b1; } //!< |mid| pie1ce in a recipe
+static quarterword ext_bot(fourquarters q) { return q.b2; } //!< |bot| piece in a recipe
+static quarterword ext_rep(fourquarters q) { return q.b3; } //!< |rep| piece in a recipe
 
 static int null_delimiter_space(void) { return dimen_par(null_delimiter_space_code); }
 

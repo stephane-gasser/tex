@@ -236,11 +236,11 @@ void fatalerror(const std::string &s)
 }
 
 //! make sure that the pool hasn't overflowed
-void str_room(int n) 
+/*void str_room(int n) 
 {
   if (poolptr+n > poolsize)
 	  overflow("pool size", poolsize-initpoolptr); 
-}
+}*/
 
 void check_full_save_stack(void)
 {

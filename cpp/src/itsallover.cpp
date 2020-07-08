@@ -1,8 +1,6 @@
 #include "itsallover.h"
 #include "backinput.h"
-#include "newnullbox.h"
-#include "newglue.h"
-#include "newpenalty.h"
+#include "noeud.h"
 #include "buildpage.h"
 #include "erreur.h"
 

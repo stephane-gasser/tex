@@ -1,5 +1,5 @@
 #include "charbox.h"
-#include "newnullbox.h"
+#include "noeud.h"
 #include "getavail.h"
 
 halfword charbox(internalfontnumber f, quarterword c)

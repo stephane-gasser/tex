@@ -12,12 +12,8 @@ static halfword& next(halfword p) { return hash[p].lh; }
 halfword idlookup(const std::string &s)
 {
 	int h = 0;
-	for (auto c: s)
-	{
-		h = 2*h+(unsigned char)c;
-		while (h >= hash_prime)
-			h -= hash_prime;
-	}
+	for (unsigned char c: s)
+		h = (2*h+c)%hash_prime;
 	halfword p = h+hash_base;
 	while (true)
 	{
@@ -42,17 +38,8 @@ halfword idlookup(const std::string &s)
 					next(p) = hashused;
 					p = hashused;
 				}
-				str_room(s.size());
-				int d = cur_length();
-				while (cur_length() > 0)
-				{
-					flush_char();
-					strpool[poolptr+s.size()] = strpool[poolptr];
-				}
-				for (auto c: s)
-					append_char(c);
-				text(p) = txt(makestring());
-				poolptr += d;
+				strings.push_back(s);
+				text(p) = strings.size()-1;
 			}
 			return p;
 		}

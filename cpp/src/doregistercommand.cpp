@@ -2,7 +2,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "lecture.h"
-#include "newspec.h"
+#include "noeud.h"
 #include "deleteglueref.h"
 #include "multandadd.h"
 #include "xovern.h"
@@ -16,7 +16,7 @@
 void doregistercommand(smallnumber a)
 {
 	halfword l, q, r, s;
-	char  p;
+	halfword p;
 	q = curcmd;
 	do 
 	{
@@ -36,20 +36,19 @@ void doregistercommand(smallnumber a)
 			}
 		}
 		p = curchr;
-		curval = scaneightbitint();
 		switch (p)
 		{
 			case int_val: 
-				l = curval+count_base;
+				l = scaneightbitint()+count_base;
 				break;
 			case dimen_val: 
-				l = curval+scaled_base;
+				l = scaneightbitint()+scaled_base;
 				break;
 			case glue_val: 
-				l = curval+skip_base;
+				l = scaneightbitint()+skip_base;
 				break;
 			case mu_val: 
-				l = curval+mu_skip_base;
+				l = scaneightbitint()+mu_skip_base;
 				break;
 		}
 	} while (false);
@@ -58,24 +57,25 @@ void doregistercommand(smallnumber a)
 	else 
 		if (scankeyword("by"))
 			aritherror = false;
+	int val;
 	if (q < multiply)
 		if (p < glue_val)
 		{
 			if (p == int_val)
-				curval = scanint();
+				val = scanint();
 			else
-				curval = scan_normal_dimen();
+				val = scan_normal_dimen();
 			if (q == advance)
-				curval += eqtb[l].int_;
+				val += eqtb[l].int_;
 		}
 		else
 		{
-			curval = scanglue(p);
+			val = scanglue(p);
 			if (q == advance)
 			{
-				q = newspec(curval);
+				q = newspec(val);
 				r = equiv(l);
-				deleteglueref(curval);
+				deleteglueref(val);
 				width(q) += width(r);
 				if (stretch(q) == 0)
 					stretch_order(q) = 0;
@@ -97,51 +97,51 @@ void doregistercommand(smallnumber a)
 						shrink(q) = shrink(r);
 						shrink_order(q) = shrink_order(r);
 					}
-				curval = q;
+				val = q;
 			}
 		}
 	else
 	{
-		curval = scanint();
+		val = scanint();
 		if (p < glue_val)
 			if (q == multiply)
 				if (p == int_val)
-					curval = mult_integers(eqtb[l].int_, curval);
+					val = mult_integers(eqtb[l].int_, val);
 				else
-					curval = nx_plus_y(eqtb[l].int_, curval, 0);
+					val = nx_plus_y(eqtb[l].int_, val, 0);
 			else
-				curval = xovern(eqtb[l].int_, curval);
+				val = xovern(eqtb[l].int_, val);
 		else
 		{
 			s = equiv(l);
 			r = newspec(s);
 			if (q == multiply)
 			{
-				width(r) = nx_plus_y(width(s), curval, 0);
-				depth(r) = nx_plus_y(depth(s), curval, 0);
-				height(r) = nx_plus_y(height(s), curval, 0);;
+				width(r) = nx_plus_y(width(s), val, 0);
+				depth(r) = nx_plus_y(depth(s), val, 0);
+				height(r) = nx_plus_y(height(s), val, 0);;
 			}
 			else
 			{
-				width(r) = xovern(width(s), curval);
-				depth(r) = xovern(depth(s), curval);
-				height(r) = xovern(height(s), curval);
+				width(r) = xovern(width(s), val);
+				depth(r) = xovern(depth(s), val);
+				height(r) = xovern(height(s), val);
 			}
-			curval = r;
+			val = r;
 		}
 	}
 	if (aritherror)
 	{
 		error("Arithmetic overflow", "I can't carry out that multiplication or division,\nsince the result is out of range.");
 		if (p >= 2)
-			deleteglueref(curval);
+			deleteglueref(val);
 		return;
 	}
 	if (p < 2)
-		word_define(a, l, curval);
+		word_define(a, l, val);
 	else
 	{
-		trapzeroglue();
-		define(a, l, glue_ref, curval);
+		trapzeroglue(val);
+		define(a, l, glue_ref, val);
 	}
 }

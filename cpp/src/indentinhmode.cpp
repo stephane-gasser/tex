@@ -1,6 +1,5 @@
 #include "indentinhmode.h"
-#include "newnullbox.h"
-#include "newnoad.h"
+#include "noeud.h"
 
 void indentinhmode(void)
 {

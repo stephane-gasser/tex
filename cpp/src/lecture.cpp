@@ -1,11 +1,9 @@
 #include "lecture.h"
 #include "getnext.h"
 #include "expand.h"
-#include "newsavelevel.h"
-#include "newspec.h"
 #include "pushmath.h"
 #include "flushlist.h"
-#include "newrule.h"
+#include "noeud.h"
 #include "beginbox.h"
 #include "boxend.h"
 #include "impression.h"
@@ -204,7 +202,7 @@ void scandelimiter(halfword p, bool r)
 					backinput();
 				break;
 			}
-		auto savecurval = val;
+		auto saveval = val;
 		do
 			getxtoken();
 		while (curcmd == spacer);
@@ -227,7 +225,7 @@ void scandelimiter(halfword p, bool r)
 			else
 				std::tie(val, lev) = scansomethinginternal(1, false);
 			auto v = val;
-			val = nx_plus_y(savecurval, v, xnoverd(v, f, 0x1'00'00));
+			val = nx_plus_y(saveval, v, xnoverd(v, f, 0x1'00'00));
 			break;
 		}
 		if (!mu)
@@ -465,7 +463,7 @@ void scanfilename(void)
 		std::tie(val, lev) = scansomethinginternal(level, negative);
 		if (lev >= 2)
 		{
-			if (curvallevel != level)
+			if (lev != level)
 				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
 			return val;
 		}
@@ -505,7 +503,7 @@ void scanfilename(void)
 //! and that the decimal point has been backed up to be scanned again. 
 [[nodiscard]] int scanint(void)
 {
-	int curval;
+	int val, lev;
 	radix = 0;
 	bool OKsofar = true; // has an error message been issued?
 	bool negative = false; // should the answer be negated?
@@ -525,18 +523,18 @@ void scanfilename(void)
 		gettoken();
 		if (curtok < cs_token_flag)
 		{
-			curval = curchr;
+			val = curchr;
 			if (curcmd == right_brace)
 				alignstate++;
 			if (curcmd == left_brace)
 				alignstate--;
 		}
 		else 
-			curval = curtok-cs_token_flag-(curtok < cs_token_flag+single_base ? active_base : single_base);
-		if (curval > 0xFF)
+			val = curtok-cs_token_flag-(curtok < cs_token_flag+single_base ? active_base : single_base);
+		if (val > 0xFF)
 		{
 			backerror("Improper alphabetic constant", "A one-character control sequence belongs after a ` mark.\nSo I'm essentially inserting \\0 here.");
-			curval = '0';
+			val = '0';
 		}
 		else
 		{
@@ -547,7 +545,7 @@ void scanfilename(void)
 	}
 	else 
 		if (curcmd >= min_internal && curcmd <= max_internal)
-			auto [curval, curvallevel] = scansomethinginternal(0, false);
+			std::tie(val, lev) = scansomethinginternal(0, false);
 		else
 		{
 			radix = 10;
@@ -566,7 +564,7 @@ void scanfilename(void)
 					getxtoken();
 				};
 			bool vacuous = true;
-			curval = 0;
+			val = 0;
 			while (true)
 			{
 				int d; //the digit just scanned
@@ -584,17 +582,17 @@ void scanfilename(void)
 					else
 						break;
 				vacuous = false; // has no digits appeared?
-				if (curval >= m && (curval > m || d > 7 || radix != 10))
+				if (val >= m && (val > m || d > 7 || radix != 10))
 				{
 					if (OKsofar)
 					{
 						error("Number too big", "I can only go up to 2147483647='17777777777=\"7FFFFFFF,\nso I'm using that number instead of yours.");
-						curval = infinity;
+						val = infinity;
 						OKsofar = false;
 					}
 				}
 				else
-					curval = curval*radix+d;
+					val = val*radix+d;
 				getxtoken();
 			}
 			if (vacuous)
@@ -604,8 +602,8 @@ void scanfilename(void)
 					backinput();
 		}
 	if (negative)
-		curval = -curval;
-	return curval;
+		val = -val;
+	return val;
 }
 
 bool scankeyword(const std::string &t)
@@ -759,19 +757,18 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 
 [[nodiscard]] std::tuple<int, int> scansomethinginternal(smallnumber level, bool negative)
 {
-	int curval;
+	int val, lev;
 	halfword m = curchr;
 	switch (curcmd)
 	{
 		case def_code:
-			curval = scancharnum();
 			if (m == math_code_base)
-				scanned_result(math_code(curval), int_val);
+				std::tie(val, lev) = scanned_result(math_code(scancharnum()), int_val);
 			else 
 				if (m < math_code_base)
-					scanned_result(equiv(m+curval), int_val);
+					std::tie(val, lev) = scanned_result(equiv(m+scancharnum()), int_val);
 				else
-					scanned_result(eqtb[m+curval].int_, int_val);
+					std::tie(val, lev) = scanned_result(eqtb[m+scancharnum()].int_, int_val);
 			break;
 		case toks_register:
 		case assign_toks:
@@ -781,156 +778,148 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			if (level != tok_val)
 			{
 				backerror("Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
-				scanned_result(0, dimen_val);
+				std::tie(val, lev) = scanned_result(0, dimen_val);
 			}
 			else 
 				if (curcmd <= assign_toks)
 				{
 					if (curcmd < assign_toks)
-					{
-						scaneightbitint;
-						m = toks_base+curval;
-					}
-					scanned_result(equiv(m), tok_val);
+						m = toks_base+scaneightbitint();
+					std::tie(val, lev) = scanned_result(equiv(m), tok_val);
 				}
 				else
 				{
 					backinput();
-					curval = scanfontident();
-					scanned_result(curval+frozen_null_font, ident_val);
+					std::tie(val, lev) = scanned_result(scanfontident()+frozen_null_font, ident_val);
 				}
 			break;
 		case assign_int:
-			scanned_result(eqtb[m].int_, int_val);
+			std::tie(val, lev) = scanned_result(eqtb[m].int_, int_val);
 			break;
 		case assign_dimen:
-			scanned_result(eqtb[m].int_, dimen_val);
+			std::tie(val, lev) = scanned_result(eqtb[m].int_, dimen_val);
 			break;
 		case assign_glue:
-			scanned_result(equiv(m), glue_val);
+			std::tie(val, lev) = scanned_result(equiv(m), glue_val);
 			break;
 		case assign_mu_glue:
-			scanned_result(equiv(m), mu_val);
+			std::tie(val, lev) = scanned_result(equiv(m), mu_val);
 			break;
 		case set_aux:
 			if (abs(mode) != m)
 			{
 				error("Improper "+cmdchr(set_aux, m), "You can refer to \\spacefactor only in horizontal mode;\nyou can refer to \\prevdepth only in vertical mode; and\nneither of these is meaningful inside \\write. So\nI'm forgetting what you said and using zero instead.");
 				if (level != tok_val)
-					scanned_result(0, dimen_val);
+					std::tie(val, lev) = scanned_result(0, dimen_val);
 				else
-					scanned_result(0, int_val);
+					std::tie(val, lev) = scanned_result(0, int_val);
 			}
 			else 
 				if (m == 1)
-					scanned_result(prev_depth, dimen_val);
+					std::tie(val, lev) = scanned_result(prev_depth, dimen_val);
 				else
-					scanned_result(space_factor, int_val);
+					std::tie(val, lev) = scanned_result(space_factor, int_val);
 			break;
 		case set_prev_graf:
 			if (mode == 0)
-				scanned_result(0, int_val);
+				std::tie(val, lev) = scanned_result(0, int_val);
 			else
 			{
 				nest[nestptr] = curlist;
 				auto p = nestptr;
 				while (abs(nest[p].modefield) != vmode)
 					p--;
-				scanned_result(nest[p].pgfield, int_val);
+				std::tie(val, lev) = scanned_result(nest[p].pgfield, int_val);
 			}
 			break;
 		case set_page_int:
 			if (m == 0)
-				scanned_result(deadcycles, int_val);
+				std::tie(val, lev) = scanned_result(deadcycles, int_val);
 			else
-				scanned_result(insertpenalties, int_val);
+				std::tie(val, lev) = scanned_result(insertpenalties, int_val);
 			break;
 		case set_page_dimen:
 			if (pagecontents == 0 && !outputactive)
 				if (m == 0)
-					scanned_result(max_dimen, dimen_val);
+					std::tie(val, lev) = scanned_result(max_dimen, dimen_val);
 				else
-					scanned_result(0, dimen_val);
+					std::tie(val, lev) = scanned_result(0, dimen_val);
 			else
-				scanned_result(pagesofar[m], dimen_val);
+				std::tie(val, lev) = scanned_result(pagesofar[m], dimen_val);
 			break;
 		case set_shape:
 			if (par_shape_ptr() == 0)
-				scanned_result(0, int_val);
+				std::tie(val, lev) = scanned_result(0, int_val);
 			else
-				scanned_result(info(par_shape_ptr()), int_val);
+				std::tie(val, lev) = scanned_result(info(par_shape_ptr()), int_val);
 			break;
 		case set_box_dimen:
-			curval = scaneightbitint();
-			if (box(curval) == 0)
-				scanned_result(0, 1);
+			val = scaneightbitint();
+			if (box(val) == 0)
+				std::tie(val, lev) = scanned_result(0, 1);
 			else
-				scanned_result(mem[box(curval)+m].int_, dimen_val);
+				std::tie(val, lev) = scanned_result(mem[box(val)+m].int_, dimen_val);
 		break;
 		case char_given:
 		case math_given:
-			scanned_result(curchr, 0);
+			std::tie(val, lev) = scanned_result(curchr, 0);
 			break;
 		case assign_font_dimen:
-			findfontdimen(false);
+			val = findfontdimen(false);
 			fontinfo[fmemptr].int_ = 0;
-			scanned_result(fontinfo[curval].int_, dimen_val);
+			std::tie(val, lev) = scanned_result(fontinfo[val].int_, dimen_val);
 			break;
 		case assign_font_int:
-			curval = scanfontident();
 			if (m == 0)
-				scanned_result(hyphenchar[curval], int_val);
+				std::tie(val, lev) = scanned_result(hyphenchar[scanfontident()], int_val);
 			else
-			{
-				scanned_result(skewchar[curval], int_val);
-			};
+				std::tie(val, lev) = scanned_result(skewchar[scanfontident()], int_val);
 			break;
 		case register_:
-			curval = scaneightbitint();
 			switch (m)
 			{
 				case int_val: 
-					scanned_result(count(curval), m);
+					std::tie(val, lev) = scanned_result(count(scaneightbitint()), m);
 					break;
 				case dimen_val: 
-					scanned_result(dimen(curval), m);
+					std::tie(val, lev) = scanned_result(dimen(scaneightbitint()), m);
 					break;
 				case glue_val: 
-					scanned_result(skip(curval), m);
+					std::tie(val, lev) = scanned_result(skip(scaneightbitint()), m);
 					break;
 				case mu_val: 
-					scanned_result(mu_skip(curval), m);
+					std::tie(val, lev) = scanned_result(mu_skip(scaneightbitint()), m);
 			};
 			break;
 		case last_item:
 			if (curchr > glue_val)
 				if (curchr == input_line_no_code)
-					scanned_result(line, 0);
+					std::tie(val, lev) = scanned_result(line, 0);
 				else
-					scanned_result(lastbadness, int_val);
+					std::tie(val, lev) = scanned_result(lastbadness, int_val);
 			else
 			{
 				 if (curchr == glue_val)
-					scanned_result(zero_glue, curchr);
+					std::tie(val, lev) = scanned_result(zero_glue, curchr);
 				  else
-					scanned_result(0, curchr);
+					std::tie(val, lev) = scanned_result(0, curchr);
 				if (!is_char_node(tail) && mode)
 					switch (curchr)
 					{
 						case int_val: 
 							if (type(tail) == penalty_node)
-								curval = penalty(tail);
+								val = penalty(tail);
 							break;
 						case dimen_val: 
 							if (type(tail) == kern_node)
-								curval = width(tail);
+								val = width(tail);
 							break;
 						case glue_val: 
 							if (type(tail) == glue_node)
 							{
-								curval = glue_ptr(tail);
+								val = glue_ptr(tail);
 								if (subtype(tail) == mu_glue)
-									curvallevel = mu_val;
+									lev = mu_val;
 							}
 					}
 				else 
@@ -938,47 +927,47 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 						switch (curchr)
 						{
 							case int_val: 
-								curval = lastpenalty;
+								val = lastpenalty;
 								break;
 							case dimen_val: 
-								curval = lastkern;
+								val = lastkern;
 								break;
 							case glue_val: 
 								if (lastglue != empty_flag)
-									curval = lastglue;
+									val = lastglue;
 						}
 			}
 			break;
 		default:
 			error("You can't use `"+cmdchr(curcmd, curchr)+"' after "+esc("the"), "I'm forgetting what you said and using zero instead.");
 			if (level != tok_val)
-				scanned_result(0, dimen_val);
+				std::tie(val, lev) = scanned_result(0, dimen_val);
 			else
-				scanned_result(0, int_val);
-	};
-	while (curvallevel > level)
+				std::tie(val, lev) = scanned_result(0, int_val);
+	}
+	while (lev > level)
 	{
-		if (curvallevel == glue_val)
-			curval = width(curval);
+		if (lev == glue_val)
+			val = width(val);
 		else 
-			if (curvallevel == mu_val)
+			if (lev == mu_val)
 				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
-		curvallevel--;
+		lev--;
 	}
 	if (negative)
-		if (curvallevel >= glue_val)
+		if (lev >= glue_val)
 		{
-			curval = newspec(curval);
-			width(curval) = -width(curval);
-			stretch(curval) = -stretch(curval);
-			shrink(curval) = -shrink(curval);
+			val = newspec(val);
+			width(val) = -width(val);
+			stretch(val) = -stretch(val);
+			shrink(val) = -shrink(val);
 		}
 		else
-			curval = -curval;
+			val = -val;
 	else 
-		if (curvallevel >= glue_val && curvallevel <= mu_val)
-			add_glue_ref(curval);
-	return {curval, curvallevel};
+		if (lev >= glue_val && lev <= mu_val)
+			add_glue_ref(val);
+	return {val, lev};
 }
 
 void scanspec(groupcode c, bool threecodes)
@@ -987,26 +976,27 @@ void scanspec(groupcode c, bool threecodes)
 	if (threecodes)
 		s = savestack[saveptr+0].int_;
 	int speccode;
+	int val;
 	if (scankeyword("to"))
 	{
 		speccode = exactly;
-		curval = scan_normal_dimen();
+		val = scan_normal_dimen();
 	}
 	else 
 		if (scankeyword("spread"))
 		{
 			speccode = additional;
-			curval = scan_normal_dimen();
+			val = scan_normal_dimen();
 		}
 		else
 		{
 			speccode = additional;
-			curval = 0;
+			val = 0;
 		}
 	if (threecodes)
 		savestack[saveptr++].int_ = s;
 	savestack[saveptr].int_ = speccode;
-	savestack[saveptr].int_ = curval;
+	savestack[saveptr].int_ = val;
 	saveptr += 2;
 	newsavelevel(c);
 	scanleftbrace();
@@ -1170,24 +1160,38 @@ void begintokenlist(halfword p, quarterword t)
 
 void endtokenlist(void)
 {
-	if (token_type >= backed_up)
+	switch (token_type)
 	{
-		if (token_type <= inserted)
-			flushlist(start);
-		else
-		{
-			deletetokenref(start);
-			if (token_type == macro)
-				for (;paramptr > param_start; paramptr--)
-					flushlist(paramstack[paramptr]);
-		}
-	}
-	else 
-		if (token_type == u_template)
+		case parameter:
+		case v_template:
+			break;
+		case u_template:
 			if (alignstate > 500000)
 				alignstate = 0;
 			else
 				fatalerror("(interwoven alignment preambles are not allowed)");
+			break;
+		case backed_up:
+		case inserted:
+			flushlist(start);
+			break;
+		case macro:
+			deletetokenref(start);
+			for (;paramptr > param_start; paramptr--)
+				flushlist(paramstack[paramptr]);
+			break;
+		case output_text:
+		case every_par_text:
+		case every_math_text:
+		case every_display_text:
+		case every_hbox_text:
+		case every_vbox_text:
+		case every_job_text:
+		case every_cr_text:
+		case mark_text:
+		case write_text:
+			deletetokenref(start);
+	}
 	pop_input();
 	check_interrupt();
 }
@@ -1296,7 +1300,7 @@ void insthetoks(void)
 	ins_list(link(temp_head));
 }
 
-void readtoks(int n, halfword r)
+[[nodiscard]] int readtoks(int n, halfword r)
 {
 	scannerstatus = defining;
 	warningindex = r;
@@ -1377,26 +1381,24 @@ void readtoks(int n, halfword r)
 		}
 		endfilereading();
 	} while (alignstate != 1000000);
-	curval = defref;
 	scannerstatus = 0;
 	alignstate = s;
+	return defref;
 }
 
-static halfword strtoks(poolpointer b)
+static halfword strtoks(void)
 {
-	str_room(1);
 	halfword p = temp_head;
 	link(p) = 0;
-	for (auto k = b; k < poolptr; k++)
+	for (auto c: strings.back())
 	{
-		halfword t = strpool[k];
+		halfword t = c;
 		if (t == ' ')
 			t = space_token;
 		else
 			t += other_token;
 		fast_store_new_token(p, t);
 	}
-	poolptr = b;
 	return p;
 }
 
@@ -1421,32 +1423,29 @@ void convtoks(void)
 			if (jobname == "")
 				openlogfile();
 	}
-	oldsetting = selector;
-	selector = new_string;
-	auto b = poolptr;
+	int val;
 	switch (c)
 	{
 		case number_code: 
-			print(std::to_string(scanint()));
+			strings.push_back(std::to_string(scanint()));
 			break;
 		case roman_numeral_code: 
-			print(romanint(scanint()));
+			strings.push_back(romanint(scanint()));
 			break;
 		case string_code: 
-			print(curcs ? scs(curcs) : std::string(1, curchr));
+			strings.push_back(curcs ? scs(curcs) : std::string(1, curchr));
 			break;
 		case meaning_code: 
-			print(meaning());
+			strings.push_back(meaning());
 			break;
 		case font_name_code:
-			curval = scanfontident();
-			print(fontname[curval]+(fontsize[curval] != fontdsize[curval] ? " at "+asScaled(fontsize[curval])+"pt" : ""));
+			val = scanfontident();
+			strings.push_back(fontname[val]+(fontsize[val] != fontdsize[val] ? " at "+asScaled(fontsize[val])+"pt" : ""));
 			break;
 		case job_name_code: 
-			print(jobname);
+			strings.push_back(jobname);
 	}
-	selector = oldsetting;
-	link(garbage) = strtoks(b);
+	link(garbage) = strtoks();
 	ins_list(link(temp_head));
 }
 
@@ -1472,26 +1471,22 @@ halfword thetoks(void)
 			}
 		return p;
 	}
-	oldsetting = selector;
-	selector = new_string;
-	auto b = poolptr;
 	switch (lev)
 	{
 		case int_val: 
-			print(std::to_string(val));
+			strings.push_back(std::to_string(val));
 			break;
 		case dimen_val:
-			print(asScaled(val)+"pt");
+			strings.push_back(asScaled(val)+"pt");
 			break;
 		case glue_val:
-			print(asSpec(val, "pt"));
+			strings.push_back(asSpec(val, "pt"));
 			deleteglueref(val);
 			break;
 		case mu_val:
-			print(asSpec(val, "mu"));
+			strings.push_back(asSpec(val, "mu"));
 			deleteglueref(val);
 	}
-	selector = oldsetting;
-	return strtoks(b);
+	return strtoks();
 }
 

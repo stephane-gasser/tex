@@ -4,8 +4,7 @@
 #include "flushnodelist.h"
 #include "charbox.h"
 #include "half.h"
-#include "newkern.h"
-#include "newnoad.h"
+#include "noeud.h"
 #include "vpackage.h"
 
 void makemathaccent(halfword q)

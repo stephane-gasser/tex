@@ -5,8 +5,6 @@
 #include "freenode.h"
 #include "hpack.h"
 #include "vpackage.h"
-#include "newglue.h"
-#include "newnullbox.h"
 #include "flushnodelist.h"
 #include "popalignment.h"
 #include "popnest.h"
@@ -16,8 +14,7 @@
 #include "lecture.h"
 #include "resumeafterdisplay.h"
 #include "buildpage.h"
-#include "newpenalty.h"
-#include "newparamglue.h"
+#include "noeud.h"
 #include <cmath>
 #include "texte.h"
 

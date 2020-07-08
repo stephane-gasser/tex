@@ -5,7 +5,6 @@ bool morename(ASCIIcode c)
 {
 	if (c == ' ')
 		return false;
-	str_room(1);
 	append_char(c);
 	switch (c)
 	{

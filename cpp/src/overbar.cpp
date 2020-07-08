@@ -1,5 +1,5 @@
 #include "overbar.h"
-#include "newkern.h"
+#include "noeud.h"
 #include "fractionrule.h"
 #include "vpackage.h"
 

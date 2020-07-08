@@ -9,8 +9,8 @@
 void unpackage(void)
 {
 	auto c = curchr;
-	curval = scaneightbitint();
-	halfword p = box(curval);
+	int val = scaneightbitint();
+	halfword p = box(val);
 	if (p == 0)
 		return;
 	if (abs(mode) == mmode || (abs(mode) == vmode && type(p) != vlist_node) || (abs(mode) == hmode && type(p) != hlist_node))
@@ -23,7 +23,7 @@ void unpackage(void)
 	else
 	{
 		link(tail) = list_ptr(p);
-		box(curval) = 0;
+		box(val) = 0;
 		freenode(p, box_node_size);
 	}
 	while (link(tail))

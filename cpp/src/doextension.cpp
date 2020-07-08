@@ -1,7 +1,6 @@
 #include "doextension.h"
-#include "newwritewhatsit.h"
+#include "noeud.h"
 #include "lecture.h"
-#include "newwhatsit.h"
 #include "outwhat.h"
 #include "flushnodelist.h"
 #include "backinput.h"
@@ -60,11 +59,9 @@ void doextension(void)
 			else
 			{
 				newwhatsit(language_node, small_node_size);
-				curval = scanint();
-				if (curval <= 0 || curval > 255)
+				clang = scanint();
+				if (clang <= 0 || clang > 255)
 						clang = 0;
-					else
-						clang = curval;
 				what_lang(tail) = clang;
 				what_lhm(tail) = normmin(left_hyphen_min());
 				what_rhm(tail) = normmin(right_hyphen_min());

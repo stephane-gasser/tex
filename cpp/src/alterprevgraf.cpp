@@ -11,12 +11,12 @@ void alterprevgraf(void)
 	while (abs(nest[p].modefield) != 1)
 		p--;
 	scanoptionalequals();
-	curval = scanint();
-	if (curval < 0)
-		interror(curval, " Bad "+esc("prevgraf"), "I allow only nonnegative values here.");
+	int val = scanint();
+	if (val < 0)
+		interror(val, " Bad "+esc("prevgraf"), "I allow only nonnegative values here.");
 	else
 	{
-		nest[p].pgfield = curval;
+		nest[p].pgfield = val;
 		curlist = nest[nestptr];
 	}
 }

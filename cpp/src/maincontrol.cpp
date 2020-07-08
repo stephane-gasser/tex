@@ -1,33 +1,24 @@
 #include "maincontrol.h"
 #include "fixlanguage.h"
 #include "getavail.h"
-#include "newligature.h"
-#include "newdisc.h"
 #include "freenode.h"
 #include "getnext.h"
-#include "newspec.h"
-#include "newglue.h"
-#include "newparamglue.h"
 #include "charwarning.h"
 #include "backinput.h"
 #include "pauseforinstructions.h"
 #include "appspace.h"
 #include "erreur.h"
-#include "newligitem.h"
 #include "appendglue.h"
 #include "insertdollarsign.h"
 #include "appendkern.h"
-#include "newsavelevel.h"
 #include "unsave.h"
 #include "offsave.h"
 #include "handlerightbrace.h"
 #include "beginbox.h"
-#include "newgraf.h"
 #include "indentinhmode.h"
 #include "normalparagraph.h"
 #include "buildpage.h"
 #include "headforvmode.h"
-#include "newkern.h"
 #include "itsallover.h"
 #include "endgraf.h"
 #include "begininsertoradjust.h"
@@ -35,14 +26,12 @@
 #include "appendpenalty.h"
 #include "deletelast.h"
 #include "unpackage.h"
-#include "newkern.h"
 #include "appenditaliccorrection.h"
 #include "makeaccent.h"
 #include "initalign.h"
 #include "doendv.h"
 #include "initmath.h"
 #include "starteqno.h"
-#include "newnoad.h"
 #include "appenddiscretionary.h"
 #include "setmathchar.h"
 #include "mathlimitswitch.h"
@@ -50,7 +39,7 @@
 #include "mathradical.h"
 #include "lecture.h"
 #include "pushnest.h"
-#include "newstyle.h"
+#include "noeud.h"
 #include "appendchoices.h"
 #include "subsup.h"
 #include "mathfraction.h"
@@ -134,10 +123,7 @@ static void main_loop_lookahead(void)
 		if (curcmd != letter && curcmd != other_char && curcmd != char_given)
 		{
 			if (curcmd == char_num)
-			{
-				curval = scancharnum();
-				curchr = curval;
-			}
+				curchr = scancharnum();
 			else
 			{
 				if (curcmd == no_boundary)
@@ -457,8 +443,7 @@ void maincontrol(void)
 				main_loop();
 				continue;
 			case hmode+char_num:
-				curval = scancharnum();
-				curchr = curval;
+				curchr = scancharnum();
 				main_loop();
 				continue;
 			case hmode+no_boundary:
@@ -568,8 +553,7 @@ void maincontrol(void)
 			case hmode+vmove:
 			case mmode+vmove:
 				t = curchr;
-				curval = scan_normal_dimen();
-				scanbox(t == 0 ? curval : -curval);
+				scanbox(t == 0 ? scan_normal_dimen() : -scan_normal_dimen());
 				break;
 			case ANY_MODE(leader_ship):
 				scanbox(leader_flag-a_leaders+curchr);
@@ -722,20 +706,17 @@ void maincontrol(void)
 				setmathchar(math_code(curchr));
 				break;
 			case mmode+char_num:
-				curval = scancharnum();
-				curchr = curval;
+				curchr = scancharnum();
 				setmathchar(math_code(curchr));
 				break;
 			case mmode+math_char_num:
-				curval = scanfifteenbitint();
-				setmathchar(curval);
+				setmathchar(scanfifteenbitint());
 				break;
 			case mmode+math_given: 
 				setmathchar(curchr);
 				break;
 			case mmode+delim_num:
-				curval = scantwentysevenbitint();
-				setmathchar(curval>>12);
+				setmathchar(scantwentysevenbitint()>>12);
 				break;
 			case mmode+math_comp:
 				tail_append(newnoad());

@@ -17,8 +17,6 @@
 
 void expand(void)
 {
-	int cvbackup = curval;
-	smallnumber cvlbackup = curvallevel;
 	smallnumber radixbackup = radix;
 	smallnumber cobackup = curorder;
 	halfword backupbackup = link(backup_head);
@@ -160,7 +158,6 @@ void expand(void)
 			curtok = frozen_endv+cs_token_flag; 
 			backinput();
 		}
-	scanned_result(cvbackup, cvlbackup);
 	radix = radixbackup;
 	curorder = cobackup;
 	link(backup_head) = backupbackup;

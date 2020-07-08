@@ -2,7 +2,7 @@
 #include "badness.h"
 #include "impression.h"
 #include "erreur.h"
-#include "newspec.h"
+#include "noeud.h"
 #include "deleteglueref.h"
 #include "texte.h"
 

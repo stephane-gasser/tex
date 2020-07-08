@@ -6,8 +6,8 @@
 void starteqno(void)
 {
 	savestack[saveptr++].int_ = curchr;
-	pushmath(15);
-	eqworddefine(5307, -1);
+	pushmath(math_shift_group);
+	eqworddefine(int_base+cur_fam_code, -1);
 	if (every_math())
-		begintokenlist(every_math(), 8);
+		begintokenlist(every_math(), every_math_text);
 }

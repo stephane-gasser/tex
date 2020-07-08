@@ -1,5 +1,5 @@
 #include "appenditaliccorrection.h"
-#include "newkern.h"
+#include "noeud.h"
 
 void appenditaliccorrection(void)
 {

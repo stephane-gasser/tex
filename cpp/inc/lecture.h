@@ -36,7 +36,7 @@ void getrtoken(void);
 void gettoken(void);
 void getxtoken(void);
 void insthetoks(void);
-void readtoks(int, halfword);
+[[nodiscard]] int readtoks(int, halfword);
 halfword thetoks(void);
 void xtoken(void);
 

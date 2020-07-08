@@ -2,25 +2,15 @@
 #include "fetch.h"
 #include "cleanbox.h"
 #include "half.h"
-#include "newnullbox.h"
+#include "noeud.h"
 #include "rebox.h"
 #include "freenode.h"
-#include "newkern.h"
 
-//! minimum clearance above a displayed op
-static int big_op_spacing1(void) { return mathex(9); }
-
-//! minimum clearance below a displayed op
-static int big_op_spacing2(void) { return mathex(10); }
-
-//! minimum baselineskip above displayed op
-static int big_op_spacing3(void) { return mathex(11); }
-
-//! minimum baselineskip below displayed op
-static int big_op_spacing4(void) { return mathex(12); }
-
-//! padding above and below displayed limits
-static int big_op_spacing5(void) { return mathex(13); }
+static int big_op_spacing1(void) { return mathex(9); } //!< minimum clearance above a displayed op
+static int big_op_spacing2(void) { return mathex(10); } //!< minimum clearance below a displayed op
+static int big_op_spacing3(void) { return mathex(11); } //!< minimum baselineskip above displayed op
+static int big_op_spacing4(void) { return mathex(12); } //!< minimum baselineskip below displayed op
+static int big_op_spacing5(void) { return mathex(13); } //!< padding above and below displayed limits
 
 
 scaled makeop(halfword q)

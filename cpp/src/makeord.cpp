@@ -1,8 +1,7 @@
 #include "makeord.h"
 #include "fetch.h"
 #include "pauseforinstructions.h"
-#include "newkern.h"
-#include "newnoad.h"
+#include "noeud.h"
 #include "freenode.h"
 
 void makeord(halfword q)

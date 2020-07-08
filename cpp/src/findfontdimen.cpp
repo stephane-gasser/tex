@@ -5,13 +5,12 @@
 #include "impression.h"
 #include "texte.h"
 
-void findfontdimen(bool writing)
+[[nodiscard]] int findfontdimen(bool writing)
 {
 	int n = scanint();
 	internalfontnumber f = scanfontident();
-	if (n <= 0)
-		curval = fmemptr;
-	else
+	int val = fmemptr;
+	if (n > 0)
 	{
 		if (writing && n <= 4 && n >= 2 && fontglue[f])
 		{
@@ -19,9 +18,8 @@ void findfontdimen(bool writing)
 			fontglue[f] = 0;
 		}
 		if (n > fontparams[f])
-			if (f < fontptr)
-				curval = fmemptr;
-			else
+		{
+			if (f >= fontptr)
 			{
 				do
 				{
@@ -30,11 +28,13 @@ void findfontdimen(bool writing)
 					fontinfo[fmemptr++].int_ = 0;
 					fontparams[f]++;
 				} while (n != fontparams[f]);
-				curval = fmemptr-1;
+				val = fmemptr-1;
 			}
+		}
 		else
-			curval = n+parambase[f];
+			val = n+parambase[f];
 	}
-	if (curval == fmemptr)
+	if (val == fmemptr)
 		error("Font "+esc(TXT(hash[font_id_base+f].rh))+" has only "+std::to_string(fontparams[f])+" fontdimen parameters", "To increase the number of font parameters, you must\nuse \\fontdimen immediately after the \\font is loaded.");
+	return val;
 }

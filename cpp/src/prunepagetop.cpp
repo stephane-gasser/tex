@@ -1,5 +1,5 @@
 #include "prunepagetop.h"
-#include "newskipparam.h"
+#include "noeud.h"
 #include "flushnodelist.h"
 #include "erreur.h"
 
@@ -13,11 +13,11 @@ halfword prunepagetop(halfword p)
 			case hlist_node:
 			case vlist_node:
 			case rule_node:
-				q = newskipparam(10);
+				q = newskipparam(split_top_skip_code);
 				link(prevp) = q;
 				link(q) = p;
 				if (width(tempptr) > height(p))
-					width(tempptr+1) -= height(p);
+					width(tempptr) -= height(p);
 				else
 					width(tempptr) = 0;
 				p = 0;

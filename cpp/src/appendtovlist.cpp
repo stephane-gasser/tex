@@ -1,6 +1,5 @@
 #include "appendtovlist.h"
-#include "newparamglue.h"
-#include "newskipparam.h"
+#include "noeud.h"
 
 static halfword& baseline_skip(void) { return glue_par(baseline_skip_code); }
 static int line_skip_limit(void) { return dimen_par(line_skip_limit_code); }

@@ -124,11 +124,11 @@ int lig_kern_start(internalfontnumber f, fourquarters i) { return ligkernbase[f]
 int lig_kern_restart(internalfontnumber f, fourquarters i) { return ligkernbase[f]+256*op_byte(i)+rem_byte(i); }
 int char_kern(internalfontnumber f, fourquarters i) { return fontinfo[kernbase[f]+256*op_byte(i)+rem_byte(i)].int_; }
 halfword& text(halfword p) { return hash[p].rh; }
-int length(halfword p) { return strstart[p+1]-strstart[p]; }
+int length(halfword p) { return /*strstart[p+1]-strstart[p]*/strings[p].size(); }
 halfword& open_name(halfword p) { return link(p+1); }
 halfword& open_area(halfword p) { return info(p+2); }
 halfword& open_ext(halfword p) { return link(p+2); }
-int cur_length(void) { return poolptr-strstart[strptr]; }
+int cur_length(void) { return /*poolptr-strstart[strptr]*/currentString.size(); }
 bool is_running(int d) { return d == null_flag; }
 alphafile& cur_file(void) { return inputfile[index]; }
 int& space(internalfontnumber f) { return param(space_code, f); }
@@ -142,8 +142,8 @@ quarterword& trie_op(halfword p) { return trie[p].b0; }
 halfword& every_vbox(void) { return equiv(every_vbox_loc); }
 bool fam_in_range(void) { return cur_fam() >= 0 && cur_fam() < 16; }
 void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : language(); }
-void append_char(ASCIIcode c) { strpool[poolptr++] = c; }
-void flush_char(void) { poolptr--; }
+void append_char(ASCIIcode c) { /*strpool[poolptr++] = c*/ currentString += c; }
+void flush_char(void) { /*poolptr--*/currentString.pop_back(); }
 
 void tail_append(halfword p) 
 {
@@ -153,14 +153,15 @@ void tail_append(halfword p)
 
 void flush_string(void)
 {
-	strptr--;
-	poolptr = strstart[strptr];
+	strings.pop_back();
+	currentString = "";
+/*	strptr--;
+	poolptr = strstart[strptr];*/
 }
 
-void scanned_result(int c, char l)
+[[nodiscard]] std::tuple<int, char> scanned_result(int c, char l)
 {
-	curval = c;
-	curvallevel = l;
+	return std::make_tuple(c, l);
 }
 
 void append_to_name(int &k, char c)

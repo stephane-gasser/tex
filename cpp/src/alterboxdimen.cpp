@@ -4,10 +4,9 @@
 void alterboxdimen(void)
 {
 	auto c = curchr;
-	curval = scaneightbitint();
-	auto b = curval;
+	auto b = scaneightbitint();
 	scanoptionalequals();
-	curval = scan_normal_dimen();
+	int val = scan_normal_dimen();
 	if (box(b))
-		mem[box(b)+c].int_ = curval;
+		mem[box(b)+c].int_ = val;
 }

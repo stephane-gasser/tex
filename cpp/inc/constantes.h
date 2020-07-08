@@ -3,6 +3,7 @@
 
 #include "tex.h"
 #include "parametres.h"
+#include <tuple>
 
 constexpr int CHECKSUM = 117275187;
 constexpr char banner[] ="This is TeX, Version 3.14159265"; //!<  printed when \\TeX starts
@@ -36,9 +37,9 @@ enum selector
 	no_print = 16, //!< \a selector setting that makes data disappear
 	term_only = 17, //!<  printing is destined for the terminal only
 	log_only = 18, //!<  printing is destined for the transcript file only
-	term_and_log = 19, //!<  normal \a selector setting
-	pseudo = 20, //!<  special \a selector setting for \a show_context
-	new_string = 21 //!<  printing is deflected to the string pool
+	term_and_log = 19 //!<  normal \a selector setting
+//	pseudo = 20 //!<  special \a selector setting for \a show_context
+//	new_string = 21 //!<  printing is deflected to the string pool
 };
 
 enum
@@ -796,7 +797,7 @@ quarterword& save_level(halfword);
 halfword& save_index(halfword); 
 int& saved(halfword); 
 alphafile& cur_file(void); //!< the current \a alpha_file variable
-void scanned_result(int, char);
+[[nodiscard]] std::tuple<int, char> scanned_result(int, char);
 int& if_line_field(halfword); 
 void append_to_name(int&, char); 
 quarterword skip_byte(fourquarters);
