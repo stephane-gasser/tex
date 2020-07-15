@@ -1,13 +1,13 @@
 #include "mathac.h"
 #include "impression.h"
 #include "erreur.h"
-#include "getnode.h"
+#include "noeud.h"
 #include "lecture.h"
 #include "texte.h"
 
-void mathac(void)
+void mathac(eightbits cmd)
 {
-	if (curcmd == accent)
+	if (cmd == accent)
 		error("Please use "+esc("mathaccent")+" for accents in math mode", "I'm changing \\accent to \\mathaccent here; wish me luck.\n(Accents are not the same in formulas as they are in text.)");
 	tail_append(getnode(accent_noad_size));
 	type(tail) = accent_noad;

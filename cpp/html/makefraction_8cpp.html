@@ -82,9 +82,8 @@ $(function() {
 <code>#include &quot;<a class="el" href="cleanbox_8h_source.html">cleanbox.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="rebox_8h_source.html">rebox.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="half_8h_source.html">half.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="newnullbox_8h_source.html">newnullbox.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="noeud_8h_source.html">noeud.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="fractionrule_8h_source.html">fractionrule.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="newkern_8h_source.html">newkern.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="vardelimiter_8h_source.html">vardelimiter.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="hpack_8h_source.html">hpack.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -92,16 +91,15 @@ Graphe des dépendances par inclusion de makefraction.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="makefraction_8cpp__incl.png" border="0" usemap="#src_2makefraction_8cpp" alt=""/></div>
 <map name="src_2makefraction_8cpp" id="src_2makefraction_8cpp">
-<area shape="rect" title=" " alt="" coords="394,5,538,32"/>
+<area shape="rect" title=" " alt="" coords="335,5,479,32"/>
 <area shape="rect" href="makefraction_8h.html" title=" " alt="" coords="5,80,113,107"/>
 <area shape="rect" href="cleanbox_8h.html" title=" " alt="" coords="138,80,223,107"/>
 <area shape="rect" href="rebox_8h.html" title=" " alt="" coords="248,80,313,107"/>
 <area shape="rect" href="half_8h.html" title=" " alt="" coords="337,80,392,107"/>
-<area shape="rect" href="newnullbox_8h.html" title=" " alt="" coords="417,80,515,107"/>
-<area shape="rect" href="fractionrule_8h.html" title=" " alt="" coords="540,80,637,107"/>
-<area shape="rect" href="newkern_8h.html" title=" " alt="" coords="662,80,745,107"/>
-<area shape="rect" href="vardelimiter_8h.html" title=" " alt="" coords="769,80,867,107"/>
-<area shape="rect" href="hpack_8h.html" title=" " alt="" coords="892,80,960,107"/>
+<area shape="rect" href="noeud_8h.html" title=" " alt="" coords="416,80,484,107"/>
+<area shape="rect" href="fractionrule_8h.html" title=" " alt="" coords="508,80,605,107"/>
+<area shape="rect" href="vardelimiter_8h.html" title=" " alt="" coords="630,80,729,107"/>
+<area shape="rect" href="hpack_8h.html" title=" " alt="" coords="753,80,821,107"/>
 </map>
 </div>
 </div>
@@ -109,273 +107,10 @@ Graphe des dépendances par inclusion de makefraction.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a3ea41372309803809bca11d1b59b2adf"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="makefraction_8cpp.html#a3ea41372309803809bca11d1b59b2adf">num1</a> (<a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a> <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
-<tr class="memdesc:a3ea41372309803809bca11d1b59b2adf"><td class="mdescLeft">&#160;</td><td class="mdescRight">numerator shift-up in display styles  <a href="makefraction_8cpp.html#a3ea41372309803809bca11d1b59b2adf">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a3ea41372309803809bca11d1b59b2adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcc39b9880840fedaf9a6e1ea7ac317b"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="makefraction_8cpp.html#adcc39b9880840fedaf9a6e1ea7ac317b">num2</a> (<a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a> <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
-<tr class="memdesc:adcc39b9880840fedaf9a6e1ea7ac317b"><td class="mdescLeft">&#160;</td><td class="mdescRight">numerator shift-up in non-display, non-\atop  <a href="makefraction_8cpp.html#adcc39b9880840fedaf9a6e1ea7ac317b">Plus de détails...</a><br /></td></tr>
-<tr class="separator:adcc39b9880840fedaf9a6e1ea7ac317b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7ce77df82b3831e97e57ec16070eb36"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="makefraction_8cpp.html#ad7ce77df82b3831e97e57ec16070eb36">num3</a> (<a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a> <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
-<tr class="memdesc:ad7ce77df82b3831e97e57ec16070eb36"><td class="mdescLeft">&#160;</td><td class="mdescRight">numerator shift-up in non-display \atop  <a href="makefraction_8cpp.html#ad7ce77df82b3831e97e57ec16070eb36">Plus de détails...</a><br /></td></tr>
-<tr class="separator:ad7ce77df82b3831e97e57ec16070eb36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ac14495bd218aec4f21fffa2819c0c1"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="makefraction_8cpp.html#a4ac14495bd218aec4f21fffa2819c0c1">denom1</a> (<a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a> <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
-<tr class="memdesc:a4ac14495bd218aec4f21fffa2819c0c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">denominator shift-down in display styles  <a href="makefraction_8cpp.html#a4ac14495bd218aec4f21fffa2819c0c1">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a4ac14495bd218aec4f21fffa2819c0c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa40b41ea32d3797e3a862cf6846a748"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="makefraction_8cpp.html#aaa40b41ea32d3797e3a862cf6846a748">denom2</a> (<a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a> <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
-<tr class="memdesc:aaa40b41ea32d3797e3a862cf6846a748"><td class="mdescLeft">&#160;</td><td class="mdescRight">denominator shift-down in non-display styles  <a href="makefraction_8cpp.html#aaa40b41ea32d3797e3a862cf6846a748">Plus de détails...</a><br /></td></tr>
-<tr class="separator:aaa40b41ea32d3797e3a862cf6846a748"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa11384405a33d56ab36323ac96ef6212"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="makefraction_8cpp.html#aa11384405a33d56ab36323ac96ef6212">delim1</a> (<a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a> <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
-<tr class="memdesc:aa11384405a33d56ab36323ac96ef6212"><td class="mdescLeft">&#160;</td><td class="mdescRight">size of \atopwithdelims delimiters  <a href="makefraction_8cpp.html#aa11384405a33d56ab36323ac96ef6212">Plus de détails...</a><br /></td></tr>
-<tr class="separator:aa11384405a33d56ab36323ac96ef6212"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67416fc26eb077ebd47a05861d2cbe07"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="makefraction_8cpp.html#a67416fc26eb077ebd47a05861d2cbe07">delim2</a> (<a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a> <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
-<tr class="memdesc:a67416fc26eb077ebd47a05861d2cbe07"><td class="mdescLeft">&#160;</td><td class="mdescRight">size of \atopwithdelims delimiters in non-displays  <a href="makefraction_8cpp.html#a67416fc26eb077ebd47a05861d2cbe07">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a67416fc26eb077ebd47a05861d2cbe07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb7704ec2924879d9fb7d4fcddf8b247"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="makefraction_8cpp.html#adb7704ec2924879d9fb7d4fcddf8b247">denom_style</a> (int <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
-<tr class="memdesc:adb7704ec2924879d9fb7d4fcddf8b247"><td class="mdescLeft">&#160;</td><td class="mdescRight">smaller, cramped  <a href="makefraction_8cpp.html#adb7704ec2924879d9fb7d4fcddf8b247">Plus de détails...</a><br /></td></tr>
-<tr class="separator:adb7704ec2924879d9fb7d4fcddf8b247"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9708a08e9cc1343024df96c24b3188c3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="makefraction_8cpp.html#a9708a08e9cc1343024df96c24b3188c3">num_style</a> (int <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
-<tr class="memdesc:a9708a08e9cc1343024df96c24b3188c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">smaller unless already script-script  <a href="makefraction_8cpp.html#a9708a08e9cc1343024df96c24b3188c3">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a9708a08e9cc1343024df96c24b3188c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d26759cdbf7f3955d2dbfd8efd47469"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="makefraction_8cpp.html#a5d26759cdbf7f3955d2dbfd8efd47469">makefraction</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> q)</td></tr>
 <tr class="separator:a5d26759cdbf7f3955d2dbfd8efd47469"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="aa11384405a33d56ab36323ac96ef6212"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa11384405a33d56ab36323ac96ef6212">&#9670;&nbsp;</a></span>delim1()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static int delim1 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a>&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>size of \atopwithdelims delimiters </p>
-
-<p class="definition">Définition à la ligne <a class="el" href="makefraction_8cpp_source.html#l00027">27</a> du fichier <a class="el" href="makefraction_8cpp_source.html">makefraction.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041">mathsy</a>(20, <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>); }</div>
-</div><!-- fragment --><div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_aa11384405a33d56ab36323ac96ef6212_cgraph.png" border="0" usemap="#makefraction_8cpp_aa11384405a33d56ab36323ac96ef6212_cgraph" alt=""/></div>
-<map name="makefraction_8cpp_aa11384405a33d56ab36323ac96ef6212_cgraph" id="makefraction_8cpp_aa11384405a33d56ab36323ac96ef6212_cgraph">
-<area shape="rect" title="size of \atopwithdelims delimiters" alt="" coords="5,5,65,32"/>
-<area shape="rect" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041" title=" " alt="" coords="113,5,179,32"/>
-</map>
-</div>
-<div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_aa11384405a33d56ab36323ac96ef6212_icgraph.png" border="0" usemap="#makefraction_8cpp_aa11384405a33d56ab36323ac96ef6212_icgraph" alt=""/></div>
-<map name="makefraction_8cpp_aa11384405a33d56ab36323ac96ef6212_icgraph" id="makefraction_8cpp_aa11384405a33d56ab36323ac96ef6212_icgraph">
-<area shape="rect" title="size of \atopwithdelims delimiters" alt="" coords="151,5,211,32"/>
-<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,5,103,32"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a67416fc26eb077ebd47a05861d2cbe07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67416fc26eb077ebd47a05861d2cbe07">&#9670;&nbsp;</a></span>delim2()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static int delim2 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a>&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>size of \atopwithdelims delimiters in non-displays </p>
-
-<p class="definition">Définition à la ligne <a class="el" href="makefraction_8cpp_source.html#l00030">30</a> du fichier <a class="el" href="makefraction_8cpp_source.html">makefraction.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041">mathsy</a>(21, <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>); }</div>
-</div><!-- fragment --><div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_a67416fc26eb077ebd47a05861d2cbe07_cgraph.png" border="0" usemap="#makefraction_8cpp_a67416fc26eb077ebd47a05861d2cbe07_cgraph" alt=""/></div>
-<map name="makefraction_8cpp_a67416fc26eb077ebd47a05861d2cbe07_cgraph" id="makefraction_8cpp_a67416fc26eb077ebd47a05861d2cbe07_cgraph">
-<area shape="rect" title="size of \atopwithdelims delimiters in non&#45;displays" alt="" coords="5,5,65,32"/>
-<area shape="rect" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041" title=" " alt="" coords="113,5,179,32"/>
-</map>
-</div>
-<div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_a67416fc26eb077ebd47a05861d2cbe07_icgraph.png" border="0" usemap="#makefraction_8cpp_a67416fc26eb077ebd47a05861d2cbe07_icgraph" alt=""/></div>
-<map name="makefraction_8cpp_a67416fc26eb077ebd47a05861d2cbe07_icgraph" id="makefraction_8cpp_a67416fc26eb077ebd47a05861d2cbe07_icgraph">
-<area shape="rect" title="size of \atopwithdelims delimiters in non&#45;displays" alt="" coords="151,5,211,32"/>
-<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,5,103,32"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a4ac14495bd218aec4f21fffa2819c0c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ac14495bd218aec4f21fffa2819c0c1">&#9670;&nbsp;</a></span>denom1()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static int denom1 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a>&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>denominator shift-down in display styles </p>
-
-<p class="definition">Définition à la ligne <a class="el" href="makefraction_8cpp_source.html#l00021">21</a> du fichier <a class="el" href="makefraction_8cpp_source.html">makefraction.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041">mathsy</a>(11, <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>); }</div>
-</div><!-- fragment --><div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_a4ac14495bd218aec4f21fffa2819c0c1_cgraph.png" border="0" usemap="#makefraction_8cpp_a4ac14495bd218aec4f21fffa2819c0c1_cgraph" alt=""/></div>
-<map name="makefraction_8cpp_a4ac14495bd218aec4f21fffa2819c0c1_cgraph" id="makefraction_8cpp_a4ac14495bd218aec4f21fffa2819c0c1_cgraph">
-<area shape="rect" title="denominator shift&#45;down in display styles" alt="" coords="5,5,73,32"/>
-<area shape="rect" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041" title=" " alt="" coords="121,5,187,32"/>
-</map>
-</div>
-<div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_a4ac14495bd218aec4f21fffa2819c0c1_icgraph.png" border="0" usemap="#makefraction_8cpp_a4ac14495bd218aec4f21fffa2819c0c1_icgraph" alt=""/></div>
-<map name="makefraction_8cpp_a4ac14495bd218aec4f21fffa2819c0c1_icgraph" id="makefraction_8cpp_a4ac14495bd218aec4f21fffa2819c0c1_icgraph">
-<area shape="rect" title="denominator shift&#45;down in display styles" alt="" coords="151,5,219,32"/>
-<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,5,103,32"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="aaa40b41ea32d3797e3a862cf6846a748"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa40b41ea32d3797e3a862cf6846a748">&#9670;&nbsp;</a></span>denom2()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static int denom2 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a>&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>denominator shift-down in non-display styles </p>
-
-<p class="definition">Définition à la ligne <a class="el" href="makefraction_8cpp_source.html#l00024">24</a> du fichier <a class="el" href="makefraction_8cpp_source.html">makefraction.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041">mathsy</a>(12, <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>); }</div>
-</div><!-- fragment --><div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_aaa40b41ea32d3797e3a862cf6846a748_cgraph.png" border="0" usemap="#makefraction_8cpp_aaa40b41ea32d3797e3a862cf6846a748_cgraph" alt=""/></div>
-<map name="makefraction_8cpp_aaa40b41ea32d3797e3a862cf6846a748_cgraph" id="makefraction_8cpp_aaa40b41ea32d3797e3a862cf6846a748_cgraph">
-<area shape="rect" title="denominator shift&#45;down in non&#45;display styles" alt="" coords="5,5,73,32"/>
-<area shape="rect" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041" title=" " alt="" coords="121,5,187,32"/>
-</map>
-</div>
-<div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_aaa40b41ea32d3797e3a862cf6846a748_icgraph.png" border="0" usemap="#makefraction_8cpp_aaa40b41ea32d3797e3a862cf6846a748_icgraph" alt=""/></div>
-<map name="makefraction_8cpp_aaa40b41ea32d3797e3a862cf6846a748_icgraph" id="makefraction_8cpp_aaa40b41ea32d3797e3a862cf6846a748_icgraph">
-<area shape="rect" title="denominator shift&#45;down in non&#45;display styles" alt="" coords="151,5,219,32"/>
-<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,5,103,32"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="adb7704ec2924879d9fb7d4fcddf8b247"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb7704ec2924879d9fb7d4fcddf8b247">&#9670;&nbsp;</a></span>denom_style()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static int denom_style </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>smaller, cramped </p>
-
-<p class="definition">Définition à la ligne <a class="el" href="makefraction_8cpp_source.html#l00033">33</a> du fichier <a class="el" href="makefraction_8cpp_source.html">makefraction.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{ <span class="keywordflow">return</span> 2*(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>/2)+<a class="code" href="constantes_8h.html#a7a4469941761247c9a0b0f6814c89979">cramped</a>+2-2*(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>/6); } </div>
-</div><!-- fragment --><div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_adb7704ec2924879d9fb7d4fcddf8b247_icgraph.png" border="0" usemap="#makefraction_8cpp_adb7704ec2924879d9fb7d4fcddf8b247_icgraph" alt=""/></div>
-<map name="makefraction_8cpp_adb7704ec2924879d9fb7d4fcddf8b247_icgraph" id="makefraction_8cpp_adb7704ec2924879d9fb7d4fcddf8b247_icgraph">
-<area shape="rect" title="smaller, cramped" alt="" coords="151,5,247,32"/>
-<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,5,103,32"/>
-</map>
-</div>
-
-</div>
-</div>
 <a id="a5d26759cdbf7f3955d2dbfd8efd47469"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5d26759cdbf7f3955d2dbfd8efd47469">&#9670;&nbsp;</a></span>makefraction()</h2>
 
@@ -392,124 +127,115 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="makefraction_8cpp_source.html#l00038">38</a> du fichier <a class="el" href="makefraction_8cpp_source.html">makefraction.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q) == <a class="code" href="constantes_8h.html#a557f3655f104ec7153a69fcb29241b9c">default_code</a>)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q) = <a class="code" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a>();</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">auto</span> x = <a class="code" href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d">cleanbox</a>(q+2, <a class="code" href="makefraction_8cpp.html#a9708a08e9cc1343024df96c24b3188c3">num_style</a>(<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a>));</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">auto</span> z = <a class="code" href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d">cleanbox</a>(q+3, <a class="code" href="makefraction_8cpp.html#adb7704ec2924879d9fb7d4fcddf8b247">denom_style</a>(<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a>));</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(x) &lt; <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(z))</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        x = <a class="code" href="rebox_8cpp.html#aef583d5662dfa34c0be76e74439fae59">rebox</a>(x, <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(z));</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        z = <a class="code" href="rebox_8cpp.html#aef583d5662dfa34c0be76e74439fae59">rebox</a>(z, <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(x));</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> shiftup, shiftdown;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a> &lt; 2)</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        shiftup = <a class="code" href="makefraction_8cpp.html#a3ea41372309803809bca11d1b59b2adf">num1</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        shiftdown = <a class="code" href="makefraction_8cpp.html#a4ac14495bd218aec4f21fffa2819c0c1">denom1</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        shiftdown = <a class="code" href="makefraction_8cpp.html#aaa40b41ea32d3797e3a862cf6846a748">denom2</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q))</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            shiftup = <a class="code" href="makefraction_8cpp.html#adcc39b9880840fedaf9a6e1ea7ac317b">num2</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            shiftup = <a class="code" href="makefraction_8cpp.html#ad7ce77df82b3831e97e57ec16070eb36">num3</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> clr, delta;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q) == 0)</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a> &lt; 2)</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            clr = 7*<a class="code" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a>();</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            clr = 3*<a class="code" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a>();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        delta = <a class="code" href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8">half</a>(clr-((shiftup-<a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(x))-(<a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(z)-shiftdown)));</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">if</span> (delta &gt; 0)</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            shiftup += delta;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            shiftdown += delta;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a> &lt; 2)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            clr = 3*<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            clr = <a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        delta = <a class="code" href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8">half</a>(<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q));</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> delta1 = clr-(shiftup-<a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(x)-(<a class="code" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708">axis_height</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>)+delta));</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> delta2 = clr-(<a class="code" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708">axis_height</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>)-delta-(<a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(z)-shiftdown));</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">if</span> (delta1 &gt; 0)</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            shiftup += delta1;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">if</span> (delta2 &gt; 0)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            shiftdown += delta2;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keyword">auto</span> v = <a class="code" href="newnullbox_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732">newnullbox</a>();</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(v) = <a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635add1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a>;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(v) = shiftup+<a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(x);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(v) = <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(z)+shiftdown;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(v) = <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(x);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q) == 0)</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        p = <a class="code" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>((shiftup-<a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(x))-(<a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(z)-shiftdown));</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = z;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    {</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keyword">auto</span> y = <a class="code" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6">fractionrule</a>(<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q));</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        p = <a class="code" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>((<a class="code" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708">axis_height</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>)-delta)-(<a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(z)-shiftdown));</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(y) = p;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = z;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        p = <a class="code" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>((shiftup-<a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(x))-(<a class="code" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708">axis_height</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>)+delta));</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = y;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(x) = p;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a>(v) = x;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a> &lt; 2)</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        delta = <a class="code" href="makefraction_8cpp.html#aa11384405a33d56ab36323ac96ef6212">delim1</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        delta = <a class="code" href="makefraction_8cpp.html#a67416fc26eb077ebd47a05861d2cbe07">delim2</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    x = <a class="code" href="vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea">vardelimiter</a>(<a class="code" href="constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256">left_delimiter</a>(q), <a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>, delta);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(x) = v;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    z = <a class="code" href="vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea">vardelimiter</a>(<a class="code" href="constantes_8cpp.html#ad5b1f1dc7fa85e49de3d8eb8edcc9b35">right_delimiter</a>(q), <a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>, delta);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(v) = z;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q) = <a class="code" href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497">hpack</a>(x, 0, <a class="code" href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a>);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="makefraction_8cpp_source.html#l00020">20</a> du fichier <a class="el" href="makefraction_8cpp_source.html">makefraction.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q) == <a class="code" href="constantes_8h.html#a557f3655f104ec7153a69fcb29241b9c">default_code</a>)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q) = <a class="code" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">auto</span> x = <a class="code" href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d">cleanbox</a>(q+2, num_style(<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a>));</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">auto</span> z = <a class="code" href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d">cleanbox</a>(q+3, denom_style(<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a>));</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(x) &lt; <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(z))</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        x = <a class="code" href="rebox_8cpp.html#aef583d5662dfa34c0be76e74439fae59">rebox</a>(x, <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(z));</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        z = <a class="code" href="rebox_8cpp.html#aef583d5662dfa34c0be76e74439fae59">rebox</a>(z, <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(x));</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> shiftup, shiftdown;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a> &lt; 2)</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        shiftup = num1(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        shiftdown = denom1(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        shiftdown = denom2(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q))</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            shiftup = num2(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            shiftup = num3(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> clr, delta;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q) == 0)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a> &lt; 2)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            clr = 7*<a class="code" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            clr = 3*<a class="code" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6">default_rule_thickness</a>();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        delta = <a class="code" href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8">half</a>(clr-((shiftup-<a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(x))-(<a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(z)-shiftdown)));</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">if</span> (delta &gt; 0)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            shiftup += delta;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            shiftdown += delta;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a> &lt; 2)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            clr = 3*<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            clr = <a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        delta = <a class="code" href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8">half</a>(<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q));</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> delta1 = clr-(shiftup-<a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(x)-(<a class="code" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708">axis_height</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>)+delta));</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> delta2 = clr-(<a class="code" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708">axis_height</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>)-delta-(<a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(z)-shiftdown));</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">if</span> (delta1 &gt; 0)</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            shiftup += delta1;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">if</span> (delta2 &gt; 0)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            shiftdown += delta2;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">auto</span> v = <a class="code" href="noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732">newnullbox</a>();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(v) = <a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635add1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(v) = shiftup+<a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(x);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(v) = <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(z)+shiftdown;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(v) = <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(x);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q) == 0)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        p = <a class="code" href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>((shiftup-<a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(x))-(<a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(z)-shiftdown));</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = z;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keyword">auto</span> y = <a class="code" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6">fractionrule</a>(<a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q));</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        p = <a class="code" href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>((<a class="code" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708">axis_height</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>)-delta)-(<a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(z)-shiftdown));</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(y) = p;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = z;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        p = <a class="code" href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>((shiftup-<a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(x))-(<a class="code" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708">axis_height</a>(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>)+delta));</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = y;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(x) = p;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a>(v) = x;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a> &lt; 2)</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        delta = delim1(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        delta = delim2(<a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    x = <a class="code" href="vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea">vardelimiter</a>(<a class="code" href="constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256">left_delimiter</a>(q), <a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>, delta);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(x) = v;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    z = <a class="code" href="vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea">vardelimiter</a>(<a class="code" href="constantes_8cpp.html#ad5b1f1dc7fa85e49de3d8eb8edcc9b35">right_delimiter</a>(q), <a class="code" href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a>, delta);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(v) = z;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a>(q) = <a class="code" href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497">hpack</a>(x, 0, <a class="code" href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a>);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="makefraction_8cpp_a5d26759cdbf7f3955d2dbfd8efd47469_cgraph.png" border="0" usemap="#makefraction_8cpp_a5d26759cdbf7f3955d2dbfd8efd47469_cgraph" alt=""/></div>
 <map name="makefraction_8cpp_a5d26759cdbf7f3955d2dbfd8efd47469_cgraph" id="makefraction_8cpp_a5d26759cdbf7f3955d2dbfd8efd47469_cgraph">
-<area shape="rect" title=" " alt="" coords="5,1007,103,1034"/>
-<area shape="rect" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708" title="height of fraction lines above the baseline" alt="" coords="351,171,439,198"/>
-<area shape="rect" href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="189,576,264,603"/>
-<area shape="rect" href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="366,678,423,704"/>
-<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="490,222,545,248"/>
-<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="489,272,546,299"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="596,830,639,856"/>
-<area shape="rect" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="487,830,548,856"/>
-<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="494,627,541,654"/>
-<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="491,728,544,755"/>
-<area shape="rect" href="newnullbox_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="351,475,438,502"/>
-<area shape="rect" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="151,1083,303,1110"/>
-<area shape="rect" href="makefraction_8cpp.html#aa11384405a33d56ab36323ac96ef6212" title="size of \atopwithdelims delimiters" alt="" coords="197,1134,257,1160"/>
-<area shape="rect" href="makefraction_8cpp.html#a67416fc26eb077ebd47a05861d2cbe07" title="size of \atopwithdelims delimiters in non&#45;displays" alt="" coords="197,1184,257,1211"/>
-<area shape="rect" href="makefraction_8cpp.html#a4ac14495bd218aec4f21fffa2819c0c1" title="denominator shift&#45;down in display styles" alt="" coords="193,1235,261,1262"/>
-<area shape="rect" href="makefraction_8cpp.html#aaa40b41ea32d3797e3a862cf6846a748" title="denominator shift&#45;down in non&#45;display styles" alt="" coords="193,1286,261,1312"/>
-<area shape="rect" href="makefraction_8cpp.html#adb7704ec2924879d9fb7d4fcddf8b247" title="smaller, cramped" alt="" coords="179,1336,275,1363"/>
-<area shape="rect" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="351,70,438,96"/>
-<area shape="rect" href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8" title=" " alt="" coords="373,424,416,451"/>
-<area shape="rect" href="constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256" title="first delimiter field of a noad" alt="" coords="179,1387,275,1414"/>
-<area shape="rect" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="359,728,430,755"/>
-<area shape="rect" href="makefraction_8cpp.html#a3ea41372309803809bca11d1b59b2adf" title="numerator shift&#45;up in display styles" alt="" coords="199,1438,254,1464"/>
-<area shape="rect" href="makefraction_8cpp.html#adcc39b9880840fedaf9a6e1ea7ac317b" title="numerator shift&#45;up in non&#45;display, non&#45;\atop" alt="" coords="199,1488,254,1515"/>
-<area shape="rect" href="makefraction_8cpp.html#ad7ce77df82b3831e97e57ec16070eb36" title="numerator shift&#45;up in non&#45;display \atop" alt="" coords="199,1539,254,1566"/>
-<area shape="rect" href="makefraction_8cpp.html#a9708a08e9cc1343024df96c24b3188c3" title="smaller unless already script&#45;script" alt="" coords="185,1590,268,1616"/>
-<area shape="rect" href="rebox_8cpp.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="199,830,254,856"/>
-<area shape="rect" href="constantes_8cpp.html#ad5b1f1dc7fa85e49de3d8eb8edcc9b35" title="second delimiter field of a fraction noad" alt="" coords="175,1640,278,1667"/>
-<area shape="rect" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790" title="thickness field in a fraction noad" alt="" coords="187,1691,266,1718"/>
-<area shape="rect" href="vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="182,374,271,400"/>
+<area shape="rect" title=" " alt="" coords="5,617,103,644"/>
+<area shape="rect" href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708" title="height of fraction lines above the baseline" alt="" coords="351,212,439,238"/>
+<area shape="rect" href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="189,617,264,644"/>
+<area shape="rect" href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="366,566,423,593"/>
+<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="490,110,545,137"/>
+<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="489,212,546,238"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="596,668,639,694"/>
+<area shape="rect" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="487,566,548,593"/>
+<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="494,617,541,644"/>
+<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="491,794,544,821"/>
+<area shape="rect" href="noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="351,516,438,542"/>
+<area shape="rect" href="constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="151,1124,303,1150"/>
+<area shape="rect" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="351,60,438,86"/>
+<area shape="rect" href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8" title=" " alt="" coords="373,465,416,492"/>
+<area shape="rect" href="constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256" title="first delimiter field of a noad" alt="" coords="179,1174,275,1201"/>
+<area shape="rect" href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="359,972,430,998"/>
+<area shape="rect" href="rebox_8cpp.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="199,820,254,846"/>
+<area shape="rect" href="constantes_8cpp.html#ad5b1f1dc7fa85e49de3d8eb8edcc9b35" title="second delimiter field of a fraction noad" alt="" coords="175,1225,278,1252"/>
+<area shape="rect" href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790" title="thickness field in a fraction noad" alt="" coords="187,1276,266,1302"/>
+<area shape="rect" href="vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="182,389,271,416"/>
 </map>
 </div>
 <div class="dynheader">
@@ -524,228 +250,29 @@ Voici le graphe des appelants de cette fonction :</div>
 
 </div>
 </div>
-<a id="a3ea41372309803809bca11d1b59b2adf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ea41372309803809bca11d1b59b2adf">&#9670;&nbsp;</a></span>num1()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static int num1 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a>&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>numerator shift-up in display styles </p>
-
-<p class="definition">Définition à la ligne <a class="el" href="makefraction_8cpp_source.html#l00012">12</a> du fichier <a class="el" href="makefraction_8cpp_source.html">makefraction.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041">mathsy</a>(8, <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>); }</div>
-</div><!-- fragment --><div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_a3ea41372309803809bca11d1b59b2adf_cgraph.png" border="0" usemap="#makefraction_8cpp_a3ea41372309803809bca11d1b59b2adf_cgraph" alt=""/></div>
-<map name="makefraction_8cpp_a3ea41372309803809bca11d1b59b2adf_cgraph" id="makefraction_8cpp_a3ea41372309803809bca11d1b59b2adf_cgraph">
-<area shape="rect" title="numerator shift&#45;up in display styles" alt="" coords="5,5,60,32"/>
-<area shape="rect" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041" title=" " alt="" coords="108,5,173,32"/>
-</map>
-</div>
-<div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_a3ea41372309803809bca11d1b59b2adf_icgraph.png" border="0" usemap="#makefraction_8cpp_a3ea41372309803809bca11d1b59b2adf_icgraph" alt=""/></div>
-<map name="makefraction_8cpp_a3ea41372309803809bca11d1b59b2adf_icgraph" id="makefraction_8cpp_a3ea41372309803809bca11d1b59b2adf_icgraph">
-<area shape="rect" title="numerator shift&#45;up in display styles" alt="" coords="151,5,205,32"/>
-<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,5,103,32"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="adcc39b9880840fedaf9a6e1ea7ac317b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adcc39b9880840fedaf9a6e1ea7ac317b">&#9670;&nbsp;</a></span>num2()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static int num2 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a>&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>numerator shift-up in non-display, non-\atop </p>
-
-<p class="definition">Définition à la ligne <a class="el" href="makefraction_8cpp_source.html#l00015">15</a> du fichier <a class="el" href="makefraction_8cpp_source.html">makefraction.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041">mathsy</a>(9, <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>); }</div>
-</div><!-- fragment --><div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_adcc39b9880840fedaf9a6e1ea7ac317b_cgraph.png" border="0" usemap="#makefraction_8cpp_adcc39b9880840fedaf9a6e1ea7ac317b_cgraph" alt=""/></div>
-<map name="makefraction_8cpp_adcc39b9880840fedaf9a6e1ea7ac317b_cgraph" id="makefraction_8cpp_adcc39b9880840fedaf9a6e1ea7ac317b_cgraph">
-<area shape="rect" title="numerator shift&#45;up in non&#45;display, non&#45;\atop" alt="" coords="5,5,60,32"/>
-<area shape="rect" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041" title=" " alt="" coords="108,5,173,32"/>
-</map>
-</div>
-<div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_adcc39b9880840fedaf9a6e1ea7ac317b_icgraph.png" border="0" usemap="#makefraction_8cpp_adcc39b9880840fedaf9a6e1ea7ac317b_icgraph" alt=""/></div>
-<map name="makefraction_8cpp_adcc39b9880840fedaf9a6e1ea7ac317b_icgraph" id="makefraction_8cpp_adcc39b9880840fedaf9a6e1ea7ac317b_icgraph">
-<area shape="rect" title="numerator shift&#45;up in non&#45;display, non&#45;\atop" alt="" coords="151,5,205,32"/>
-<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,5,103,32"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="ad7ce77df82b3831e97e57ec16070eb36"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7ce77df82b3831e97e57ec16070eb36">&#9670;&nbsp;</a></span>num3()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static int num3 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a>&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>numerator shift-up in non-display \atop </p>
-
-<p class="definition">Définition à la ligne <a class="el" href="makefraction_8cpp_source.html#l00018">18</a> du fichier <a class="el" href="makefraction_8cpp_source.html">makefraction.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041">mathsy</a>(10, <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>); }</div>
-</div><!-- fragment --><div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_ad7ce77df82b3831e97e57ec16070eb36_cgraph.png" border="0" usemap="#makefraction_8cpp_ad7ce77df82b3831e97e57ec16070eb36_cgraph" alt=""/></div>
-<map name="makefraction_8cpp_ad7ce77df82b3831e97e57ec16070eb36_cgraph" id="makefraction_8cpp_ad7ce77df82b3831e97e57ec16070eb36_cgraph">
-<area shape="rect" title="numerator shift&#45;up in non&#45;display \atop" alt="" coords="5,5,60,32"/>
-<area shape="rect" href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041" title=" " alt="" coords="108,5,173,32"/>
-</map>
-</div>
-<div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_ad7ce77df82b3831e97e57ec16070eb36_icgraph.png" border="0" usemap="#makefraction_8cpp_ad7ce77df82b3831e97e57ec16070eb36_icgraph" alt=""/></div>
-<map name="makefraction_8cpp_ad7ce77df82b3831e97e57ec16070eb36_icgraph" id="makefraction_8cpp_ad7ce77df82b3831e97e57ec16070eb36_icgraph">
-<area shape="rect" title="numerator shift&#45;up in non&#45;display \atop" alt="" coords="151,5,205,32"/>
-<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,5,103,32"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a9708a08e9cc1343024df96c24b3188c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9708a08e9cc1343024df96c24b3188c3">&#9670;&nbsp;</a></span>num_style()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int num_style </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>smaller unless already script-script </p>
-
-<p class="definition">Définition à la ligne <a class="el" href="makefraction_8cpp_source.html#l00036">36</a> du fichier <a class="el" href="makefraction_8cpp_source.html">makefraction.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>+2-2*(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>/6); } </div>
-</div><!-- fragment --><div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="makefraction_8cpp_a9708a08e9cc1343024df96c24b3188c3_icgraph.png" border="0" usemap="#makefraction_8cpp_a9708a08e9cc1343024df96c24b3188c3_icgraph" alt=""/></div>
-<map name="makefraction_8cpp_a9708a08e9cc1343024df96c24b3188c3_icgraph" id="makefraction_8cpp_a9708a08e9cc1343024df96c24b3188c3_icgraph">
-<area shape="rect" title="smaller unless already script&#45;script" alt="" coords="151,5,233,32"/>
-<area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,5,103,32"/>
-</map>
-</div>
-
-</div>
-</div>
 </div><!-- contents -->
 <div class="ttc" id="aconstantes_8cpp_html_aac4ee1f610e90b2f8a5eaf39f1e66256"><div class="ttname"><a href="constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256">left_delimiter</a></div><div class="ttdeci">halfword left_delimiter(halfword p)</div><div class="ttdoc">first delimiter field of a noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00078">constantes.cpp:78</a></div></div>
-<div class="ttc" id="amakefraction_8cpp_html_ad7ce77df82b3831e97e57ec16070eb36"><div class="ttname"><a href="makefraction_8cpp.html#ad7ce77df82b3831e97e57ec16070eb36">num3</a></div><div class="ttdeci">static int num3(smallnumber c)</div><div class="ttdoc">numerator shift-up in non-display \atop</div><div class="ttdef"><b>Definition:</b> <a href="makefraction_8cpp_source.html#l00018">makefraction.cpp:18</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_af546b443f5dba44bbff1a794b82e9041"><div class="ttname"><a href="constantes_8cpp.html#af546b443f5dba44bbff1a794b82e9041">mathsy</a></div><div class="ttdeci">int mathsy(smallnumber p, smallnumber c)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00110">constantes.cpp:110</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a6743e4ff0a613ae12c295c5ce8a5e790"><div class="ttname"><a href="constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790">thickness</a></div><div class="ttdeci">int &amp; thickness(halfword p)</div><div class="ttdoc">thickness field in a fraction noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00049">constantes.cpp:49</a></div></div>
-<div class="ttc" id="avardelimiter_8cpp_html_a6584b3fbe08181419dfed854b56a1bea"><div class="ttname"><a href="vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea">vardelimiter</a></div><div class="ttdeci">halfword vardelimiter(halfword d, smallnumber s, scaled v)</div><div class="ttdef"><b>Definition:</b> <a href="vardelimiter_8cpp_source.html#l00022">vardelimiter.cpp:22</a></div></div>
+<div class="ttc" id="avardelimiter_8cpp_html_a6584b3fbe08181419dfed854b56a1bea"><div class="ttname"><a href="vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea">vardelimiter</a></div><div class="ttdeci">halfword vardelimiter(halfword d, smallnumber s, scaled v)</div><div class="ttdef"><b>Definition:</b> <a href="vardelimiter_8cpp_source.html#l00015">vardelimiter.cpp:15</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a726ca809ffd3d67ab4b8476646f26635add1a01657fdcecb418a4ddfdc7686fdb"><div class="ttname"><a href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635add1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a></div><div class="ttdeci">@ vlist_node</div><div class="ttdoc">type of vlist nodes</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00087">constantes.h:87</a></div></div>
-<div class="ttc" id="amakefraction_8cpp_html_a9708a08e9cc1343024df96c24b3188c3"><div class="ttname"><a href="makefraction_8cpp.html#a9708a08e9cc1343024df96c24b3188c3">num_style</a></div><div class="ttdeci">int num_style(int c)</div><div class="ttdoc">smaller unless already script-script</div><div class="ttdef"><b>Definition:</b> <a href="makefraction_8cpp_source.html#l00036">makefraction.cpp:36</a></div></div>
-<div class="ttc" id="amakefraction_8cpp_html_a67416fc26eb077ebd47a05861d2cbe07"><div class="ttname"><a href="makefraction_8cpp.html#a67416fc26eb077ebd47a05861d2cbe07">delim2</a></div><div class="ttdeci">static int delim2(smallnumber c)</div><div class="ttdoc">size of \atopwithdelims delimiters in non-displays</div><div class="ttdef"><b>Definition:</b> <a href="makefraction_8cpp_source.html#l00030">makefraction.cpp:30</a></div></div>
+<div class="ttc" id="anoeud_8cpp_html_a4b66b8f6553ae965a55cdcdf20ebe732"><div class="ttname"><a href="noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732">newnullbox</a></div><div class="ttdeci">halfword newnullbox(void)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00673">noeud.cpp:673</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a4df565ae653d5dfdd476957e92b6a61c"><div class="ttname"><a href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a></div><div class="ttdeci">int &amp; depth(halfword p)</div><div class="ttdoc">depth of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00050">constantes.cpp:50</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b"><div class="ttname"><a href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a></div><div class="ttdeci">@ additional</div><div class="ttdoc">a box dimension is increased from the natural one</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00600">constantes.h:600</a></div></div>
-<div class="ttc" id="amakefraction_8cpp_html_aa11384405a33d56ab36323ac96ef6212"><div class="ttname"><a href="makefraction_8cpp.html#aa11384405a33d56ab36323ac96ef6212">delim1</a></div><div class="ttdeci">static int delim1(smallnumber c)</div><div class="ttdoc">size of \atopwithdelims delimiters</div><div class="ttdef"><b>Definition:</b> <a href="makefraction_8cpp_source.html#l00027">makefraction.cpp:27</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdoc">width of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00048">constantes.cpp:48</a></div></div>
-<div class="ttc" id="amakefraction_8cpp_html_a4ac14495bd218aec4f21fffa2819c0c1"><div class="ttname"><a href="makefraction_8cpp.html#a4ac14495bd218aec4f21fffa2819c0c1">denom1</a></div><div class="ttdeci">static int denom1(smallnumber c)</div><div class="ttdoc">denominator shift-down in display styles</div><div class="ttdef"><b>Definition:</b> <a href="makefraction_8cpp_source.html#l00021">makefraction.cpp:21</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aaf95f6a6992031770009c02b8d2b4071"><div class="ttname"><a href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a></div><div class="ttdeci">int &amp; height(halfword p)</div><div class="ttdoc">height of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00051">constantes.cpp:51</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_ae506bbae1bdb1f143ed3873325de216b"><div class="ttname"><a href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a></div><div class="ttdeci">halfword &amp; list_ptr(halfword p)</div><div class="ttdoc">beginning of the list inside the box</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00047">constantes.cpp:47</a></div></div>
-<div class="ttc" id="amakefraction_8cpp_html_a3ea41372309803809bca11d1b59b2adf"><div class="ttname"><a href="makefraction_8cpp.html#a3ea41372309803809bca11d1b59b2adf">num1</a></div><div class="ttdeci">static int num1(smallnumber c)</div><div class="ttdoc">numerator shift-up in display styles</div><div class="ttdef"><b>Definition:</b> <a href="makefraction_8cpp_source.html#l00012">makefraction.cpp:12</a></div></div>
-<div class="ttc" id="arebox_8cpp_html_aef583d5662dfa34c0be76e74439fae59"><div class="ttname"><a href="rebox_8cpp.html#aef583d5662dfa34c0be76e74439fae59">rebox</a></div><div class="ttdeci">halfword rebox(halfword b, scaled w)</div><div class="ttdef"><b>Definition:</b> <a href="rebox_8cpp_source.html#l00007">rebox.cpp:7</a></div></div>
-<div class="ttc" id="ahpack_8cpp_html_ad7ca7a1c0695329834e990548241b497"><div class="ttname"><a href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497">hpack</a></div><div class="ttdeci">halfword hpack(halfword p, scaled w, smallnumber m)</div><div class="ttdef"><b>Definition:</b> <a href="hpack_8cpp_source.html#l00028">hpack.cpp:28</a></div></div>
+<div class="ttc" id="anoeud_8cpp_html_af78e07183c617d97a350cc11c9c18d37"><div class="ttname"><a href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a></div><div class="ttdeci">halfword newkern(scaled w)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00625">noeud.cpp:625</a></div></div>
+<div class="ttc" id="arebox_8cpp_html_aef583d5662dfa34c0be76e74439fae59"><div class="ttname"><a href="rebox_8cpp.html#aef583d5662dfa34c0be76e74439fae59">rebox</a></div><div class="ttdeci">halfword rebox(halfword b, scaled w)</div><div class="ttdef"><b>Definition:</b> <a href="rebox_8cpp_source.html#l00005">rebox.cpp:5</a></div></div>
+<div class="ttc" id="ahpack_8cpp_html_ad7ca7a1c0695329834e990548241b497"><div class="ttname"><a href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497">hpack</a></div><div class="ttdeci">halfword hpack(halfword p, scaled w, smallnumber m)</div><div class="ttdef"><b>Definition:</b> <a href="hpack_8cpp_source.html#l00024">hpack.cpp:24</a></div></div>
 <div class="ttc" id="afractionrule_8cpp_html_aca27d6d4d1ded04c4038c9bca7f136f6"><div class="ttname"><a href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6">fractionrule</a></div><div class="ttdeci">halfword fractionrule(scaled t)</div><div class="ttdef"><b>Definition:</b> <a href="fractionrule_8cpp_source.html#l00004">fractionrule.cpp:4</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00174">globals.cpp:174</a></div></div>
-<div class="ttc" id="amakefraction_8cpp_html_aaa40b41ea32d3797e3a862cf6846a748"><div class="ttname"><a href="makefraction_8cpp.html#aaa40b41ea32d3797e3a862cf6846a748">denom2</a></div><div class="ttdeci">static int denom2(smallnumber c)</div><div class="ttdoc">denominator shift-down in non-display styles</div><div class="ttdef"><b>Definition:</b> <a href="makefraction_8cpp_source.html#l00024">makefraction.cpp:24</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a1b7ae8e4e9bf30bd3b1f9c970d985708"><div class="ttname"><a href="constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708">axis_height</a></div><div class="ttdeci">int axis_height(smallnumber c)</div><div class="ttdoc">height of fraction lines above the baseline</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00111">constantes.cpp:111</a></div></div>
 <div class="ttc" id="atex_8h_html_a76970135ed45e872cd47aff06bc1dd33"><div class="ttname"><a href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a></div><div class="ttdeci">int scaled</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00040">tex.h:40</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a2746f146b2673dd893350b5c44da8abd"><div class="ttname"><a href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a></div><div class="ttdeci">smallnumber cursize</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00191">globals.cpp:191</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a6a7b1f013c94afa2d1a5b5fd7243f852"><div class="ttname"><a href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a></div><div class="ttdeci">smallnumber curstyle</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00190">globals.cpp:190</a></div></div>
-<div class="ttc" id="anewkern_8cpp_html_af78e07183c617d97a350cc11c9c18d37"><div class="ttname"><a href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a></div><div class="ttdeci">halfword newkern(scaled w)</div><div class="ttdef"><b>Definition:</b> <a href="newkern_8cpp_source.html#l00004">newkern.cpp:4</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a2746f146b2673dd893350b5c44da8abd"><div class="ttname"><a href="globals_8cpp.html#a2746f146b2673dd893350b5c44da8abd">cursize</a></div><div class="ttdeci">smallnumber cursize</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00189">globals.cpp:189</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a6a7b1f013c94afa2d1a5b5fd7243f852"><div class="ttname"><a href="globals_8cpp.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a></div><div class="ttdeci">smallnumber curstyle</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00188">globals.cpp:188</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a557f3655f104ec7153a69fcb29241b9c"><div class="ttname"><a href="constantes_8h.html#a557f3655f104ec7153a69fcb29241b9c">default_code</a></div><div class="ttdeci">constexpr int default_code</div><div class="ttdoc">denotes default_rule_thickness</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00704">constantes.h:704</a></div></div>
-<div class="ttc" id="amakefraction_8cpp_html_adb7704ec2924879d9fb7d4fcddf8b247"><div class="ttname"><a href="makefraction_8cpp.html#adb7704ec2924879d9fb7d4fcddf8b247">denom_style</a></div><div class="ttdeci">static int denom_style(int c)</div><div class="ttdoc">smaller, cramped</div><div class="ttdef"><b>Definition:</b> <a href="makefraction_8cpp_source.html#l00033">makefraction.cpp:33</a></div></div>
-<div class="ttc" id="amakefraction_8cpp_html_adcc39b9880840fedaf9a6e1ea7ac317b"><div class="ttname"><a href="makefraction_8cpp.html#adcc39b9880840fedaf9a6e1ea7ac317b">num2</a></div><div class="ttdeci">static int num2(smallnumber c)</div><div class="ttdoc">numerator shift-up in non-display, non-\atop</div><div class="ttdef"><b>Definition:</b> <a href="makefraction_8cpp_source.html#l00015">makefraction.cpp:15</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00044">tex.h:44</a></div></div>
-<div class="ttc" id="acleanbox_8cpp_html_ab0ffad1299c4a1f5fe44e836a184518d"><div class="ttname"><a href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d">cleanbox</a></div><div class="ttdeci">halfword cleanbox(halfword p, smallnumber s)</div><div class="ttdef"><b>Definition:</b> <a href="cleanbox_8cpp_source.html#l00009">cleanbox.cpp:9</a></div></div>
-<div class="ttc" id="anewnullbox_8cpp_html_a4b66b8f6553ae965a55cdcdf20ebe732"><div class="ttname"><a href="newnullbox_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732">newnullbox</a></div><div class="ttdeci">halfword newnullbox(void)</div><div class="ttdef"><b>Definition:</b> <a href="newnullbox_8cpp_source.html#l00004">newnullbox.cpp:4</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a7a4469941761247c9a0b0f6814c89979"><div class="ttname"><a href="constantes_8h.html#a7a4469941761247c9a0b0f6814c89979">cramped</a></div><div class="ttdeci">constexpr int cramped</div><div class="ttdoc">add this to an uncramped style if you want to cramp it</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00705">constantes.h:705</a></div></div>
+<div class="ttc" id="acleanbox_8cpp_html_ab0ffad1299c4a1f5fe44e836a184518d"><div class="ttname"><a href="cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d">cleanbox</a></div><div class="ttdeci">halfword cleanbox(halfword p, smallnumber s)</div><div class="ttdef"><b>Definition:</b> <a href="cleanbox_8cpp_source.html#l00007">cleanbox.cpp:7</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_ad5b1f1dc7fa85e49de3d8eb8edcc9b35"><div class="ttname"><a href="constantes_8cpp.html#ad5b1f1dc7fa85e49de3d8eb8edcc9b35">right_delimiter</a></div><div class="ttdeci">halfword right_delimiter(halfword p)</div><div class="ttdoc">second delimiter field of a fraction noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00079">constantes.cpp:79</a></div></div>
 <div class="ttc" id="ahalf_8cpp_html_ae67e73d5a4cc42b131b635f9cb2461d8"><div class="ttname"><a href="half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8">half</a></div><div class="ttdeci">int half(int x)</div><div class="ttdef"><b>Definition:</b> <a href="half_8cpp_source.html#l00003">half.cpp:3</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>

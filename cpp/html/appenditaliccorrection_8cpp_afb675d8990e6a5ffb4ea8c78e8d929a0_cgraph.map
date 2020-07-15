@@ -6,8 +6,8 @@
 <area shape="rect" id="node5" href="$constantes_8cpp.html#a2537c13195b22342fd09b94a05323a04" title="the font code in a char_node" alt="" coords="229,157,273,184"/>
 <area shape="rect" id="node6" href="$constantes_8cpp.html#aa0355678d828c2e2f836409b82366625" title=" " alt="" coords="201,208,300,235"/>
 <area shape="rect" id="node7" href="$constantes_8cpp.html#ad058da1b3e7e4027797ff16b1e5a6c32" title="the word where the ligature is to be found" alt="" coords="217,259,284,285"/>
-<area shape="rect" id="node8" href="$newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="215,360,286,387"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="348,335,416,361"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="359,385,405,412"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="207,461,295,488"/>
+<area shape="rect" id="node8" href="$noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="215,309,286,336"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="217,360,285,387"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="207,411,295,437"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="227,461,274,488"/>
 </map>

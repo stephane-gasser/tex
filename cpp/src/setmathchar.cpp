@@ -3,15 +3,16 @@
 #include "noeud.h"
 #include "backinput.h"
 
-void setmathchar(int c)
+void setmathchar(int c, halfword chr)
 {
 	if (c >= 0x80'00)
 	{
-		curcs = curchr+active_base;
-		curcmd = eq_type(curcs);
-		curchr = equiv(curcs);
-		xtoken();
-		backinput();
+		halfword cs = chr+active_base;
+		eightbits cmd = eq_type(cs);
+		halfword chr = equiv(cs);
+		halfword tok;
+		std::tie(cmd, chr, tok) = xtoken(cmd, chr, cs);
+		backinput(tok);
 	}
 	else
 	{

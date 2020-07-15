@@ -12,6 +12,62 @@
 #include "lecture.h"
 #include "idlookup.h"
 #include "texte.h"
+#include "getavail.h"
+#include "runaway.h"
+
+[[nodiscard]] static std::tuple<eightbits, halfword, halfword, halfword> checkoutervalidity(eightbits cmd, halfword chr, halfword tok, halfword cs)
+{
+	if (scannerstatus == 0)
+		return std::make_tuple(cmd, chr, tok, cs);
+	if (cs)
+	{
+		if (state == token_list || txt(name) < 1 || txt(name) > 17)
+		{
+			auto p = getavail();
+			info(p) = cs_token_flag+cs;
+			back_list(p);
+		}
+		cmd = spacer;
+		chr = ' ';
+	}
+	if (scannerstatus == skipping)
+	{
+		inserror(tok, "Incomplete "+cmdchr(if_test, curif)+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
+		tok = frozen_fi+cs_token_flag;
+	}
+	else
+	{
+		runaway();
+		auto p = getavail();
+		decltype(p) q;
+		switch (scannerstatus)
+		{
+			case defining:
+				error(cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+				info(p) = right_brace_token+'}';
+				break;
+			case matching:
+				error(cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+				info(p) = partoken;
+				longstate = outer_call;
+				break;
+			case aligning:
+				error(cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+				info(p) = right_brace_token+'}';
+				q = p;
+				p = getavail();
+				link(p) = q;
+				info(p) = frozen_cr+cs_token_flag;
+				alignstate = -1000000;
+				break;
+			case absorbing:
+				error(cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+				info(p) = right_brace_token+'}';
+		}
+		ins_list(p);
+	}
+	return std::make_tuple(cmd, chr, tok, 0);
+}
 
 static bool is_hex(ASCIIcode c)
 {
@@ -27,21 +83,21 @@ static int intFromTwoHexDigit(ASCIIcode c, int pos)
 {
 	if (is_hex(c) && pos <= limit)
 	{
-		ASCIIcode cc = buffer[pos];
+		auto &cc = buffer[pos];
 		if (is_hex(cc))
 			return 16*toHex(c)+toHex(cc);
 	}
 	return -1;
 }
 
-static bool prochainCaractereOK(int pos)
+static bool prochainCaractereOK(int pos, halfword chr)
 {
-	return buffer[pos] == curchr && pos < limit && buffer[pos+1] < 128;
+	return buffer[pos] == chr && pos < limit && buffer[pos+1] < 128;
 }
 
 template<class T> static int processBuffer(int k, T &var)
 {
-	ASCIIcode c = buffer[k+1];
+	auto &c = buffer[k+1];
 	auto t = intFromTwoHexDigit(c, k+2);
 	var = t >= 0 ? t : c < 64 ? c + 64 : c - 64;
 	return t >= 0 ? 3 : 2;
@@ -58,13 +114,15 @@ static void removeFromEnd(int &k, int d)
 #define ANY_STATE_PLUS(cmd) mid_line+cmd: case skip_blanks+cmd: case new_line+cmd
 #define ADD_DELIMS_TO(state) state+math_shift: case state+tab_mark: case state+mac_param: case state+sub_mark: case state+letter: case state+other_char 
 
-void getnext(void)
+[[nodiscard]] std::tuple<eightbits, halfword, halfword> getnext(void)
 {
+	eightbits cmd;
+	halfword chr, cs, tok;
 	bool restart;
 	do 
 	{
 		restart = false;
-		curcs = 0;
+		cs = 0;
 		if (state != token_list)
 		{
 			bool skip;
@@ -73,14 +131,14 @@ void getnext(void)
 				skip = false;
 				if (loc <= limit)
 				{
-					curchr = buffer[loc];
+					chr = buffer[loc];
 					loc++;
 					bool superscript2;
 					do
 					{
 						superscript2 = false;
-						curcmd = cat_code(curchr);
-						switch (state+curcmd)
+						cmd = cat_code(chr);
+						switch (state+cmd)
 						{
 							case ANY_STATE_PLUS(ignore):
 							case skip_blanks+spacer:
@@ -89,7 +147,7 @@ void getnext(void)
 								break;
 							case ANY_STATE_PLUS(escape):
 								if (loc > limit)
-									curcs = null_cs;
+									cs = null_cs;
 								else
 								{
 									bool superscript, identifiant;
@@ -97,23 +155,23 @@ void getnext(void)
 									{
 										superscript = false;
 										identifiant = false;
-										curchr = buffer[loc];
-										int cat = cat_code(curchr);
+										chr = buffer[loc];
+										int cat = cat_code(chr);
 										int k = loc+1;
 										state = (cat == letter || cat == spacer) ? skip_blanks : mid_line;
 										if (cat == letter && k <= limit)
 										{
 											do
 											{
-												curchr = buffer[k];
-												cat = cat_code(curchr);
+												chr = buffer[k];
+												cat = cat_code(chr);
 												k++;
 											} while (cat == letter && k <= limit);
-											if (cat == sup_mark && prochainCaractereOK(k))
+											if (cat == sup_mark && prochainCaractereOK(k, chr))
 											{
 												if (processBuffer(k, buffer[k-1]) == 3)
 												{
-													curchr = buffer[k-1];
+													chr = buffer[k-1];
 													removeFromEnd(k, 3);
 												}
 												else
@@ -129,18 +187,18 @@ void getnext(void)
 													std::string s;
 													for (int i = loc; i <= k; i++)
 														s += buffer[i];
-													curcs = idlookup(s);
+													cs = idlookup(s);
 													loc = k;
 													identifiant = true;
 												}
 											}
 										}
 										else
-											if (cat == sup_mark && prochainCaractereOK(k))
+											if (cat == sup_mark && prochainCaractereOK(k, chr))
 											{
 												if (processBuffer(k, buffer[k-1]) == 3)
 												{
-													curchr = buffer[k-1];
+													chr = buffer[k-1];
 													removeFromEnd(k, 3);
 												}
 												else
@@ -150,27 +208,27 @@ void getnext(void)
 									} while (superscript && !identifiant);
 									if (!identifiant)
 									{
-										curcs = single_base+buffer[loc];
+										cs = single_base+buffer[loc];
 										loc++;
 									}
 								}
-								curcmd = eq_type(curcs);
-								curchr = equiv(curcs);
-								if (curcmd >= outer_call)
-									checkoutervalidity();
+								cmd = eq_type(cs);
+								chr = equiv(cs);
+								if (cmd >= outer_call)
+									std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
 								break;
 							case ANY_STATE_PLUS(active_char):
-								curcs = curchr+1;
-								curcmd = eq_type(curcs);
-								curchr = equiv(curcs);
+								cs = chr+1;
+								cmd = eq_type(cs);
+								chr = equiv(cs);
 								state = mid_line;
-								if (curcmd >= outer_call)
-									checkoutervalidity();
+								if (cmd >= outer_call)
+									std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
 								break;
 							case ANY_STATE_PLUS(sup_mark):
-								if (prochainCaractereOK(loc))
+								if (prochainCaractereOK(loc, chr))
 								{
-									loc += processBuffer(loc, curchr);
+									loc += processBuffer(loc, chr);
 									superscript2 = true;
 								}
 								else
@@ -182,12 +240,12 @@ void getnext(void)
 								break;
 							case mid_line+spacer:
 								state = skip_blanks;
-								curchr = ' ';
+								chr = ' ';
 								break;
 							case mid_line+car_ret:
 								loc = limit+1;
-								curcmd = spacer;
-								curchr = ' ';
+								cmd = spacer;
+								chr = ' ';
 								break;
 							case skip_blanks+car_ret:
 							case ANY_STATE_PLUS(comment):
@@ -196,11 +254,11 @@ void getnext(void)
 								break;
 							case new_line+car_ret:
 								loc = limit+1;
-								curcs = parloc;
-								curcmd = eq_type(curcs);
-								curchr = equiv(curcs);
-								if (curcmd >= outer_call)
-									checkoutervalidity();
+								cs = parloc;
+								cmd = eq_type(cs);
+								chr = equiv(cs);
+								if (cmd >= outer_call)
+									std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
 								break;
 							case skip_blanks+left_brace:
 							case new_line+left_brace:
@@ -239,7 +297,7 @@ void getnext(void)
 							std::cout << std::flush;
 							forceeof = false;
 							endfilereading();
-							checkoutervalidity();
+							std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
 							restart = true;
 						}
 						if (!restart)
@@ -255,10 +313,7 @@ void getnext(void)
 					else
 					{
 						if (!terminal_input(name))
-						{
-							curcmd = curchr = 0;
-							return;
-						}
+							return std::make_tuple(0, 0, cs);
 						if (inputptr > 0)
 						{
 							endfilereading();
@@ -305,30 +360,30 @@ void getnext(void)
 				loc = link(loc);
 				if (t >= cs_token_flag)
 				{
-					curcs = t-cs_token_flag;
-					curcmd = eq_type(curcs);
-					curchr = equiv(curcs);
-					if (curcmd >= outer_call)
-						if (curcmd == dont_expand)
+					cs = t-cs_token_flag;
+					cmd = eq_type(cs);
+					chr = equiv(cs);
+					if (cmd >= outer_call)
+						if (cmd == dont_expand)
 						{
-							curcs = info(loc)-cs_token_flag;
+							cs = info(loc)-cs_token_flag;
 							loc = 0;
-							curcmd = eq_type(curcs);
-							curchr = equiv(curcs);
-							if (curcmd > max_command)
+							cmd = eq_type(cs);
+							chr = equiv(cs);
+							if (cmd > max_command)
 							{
-								curcmd = relax;
-								curchr = no_expand_flag;
+								cmd = relax;
+								chr = no_expand_flag;
 							}
 						}
 						else
-							checkoutervalidity();
+							std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
 				}
 				else
 				{
-					curcmd = t/0x1'00;
-					curchr = t%0x1'00;
-					switch (curcmd)
+					cmd = t>>8;
+					chr = t%(1<<8);
+					switch (cmd)
 					{
 						case left_brace: 
 							alignstate++;
@@ -337,7 +392,7 @@ void getnext(void)
 							alignstate--;
 							break;
 						case out_param:
-							begintokenlist(paramstack[limit+curchr-1], 0);
+							begintokenlist(paramstack[limit+chr-1], 0);
 							restart = true;
 					}
 				}
@@ -347,18 +402,16 @@ void getnext(void)
 				endtokenlist();
 				restart = true;
 			}
-		if (!restart && curcmd <= out_param && curcmd >= tab_mark && alignstate == 0)
+		if (!restart && cmd <= out_param && cmd >= tab_mark && alignstate == 0)
 		{
-			if (scannerstatus == 4 || curalign == 0)
+			if (scannerstatus == aligning || curalign == 0)
 				fatalerror("(interwoven alignment preambles are not allowed)");
-			curcmd = extra_info(curalign);
-			extra_info(curalign) = curchr;
-			if (curcmd == omit)
-				begintokenlist(omit_template, v_template);
-			else
-				begintokenlist(v_part(curalign), v_template);
+			cmd = extra_info(curalign);
+			extra_info(curalign) = chr;
+			begintokenlist(cmd == omit ? omit_template : v_part(curalign), v_template);
 			alignstate = 1000000;
 			restart = true;
 		}
 	} while (restart);
+	return std::make_tuple(cmd, chr, cs);
 }

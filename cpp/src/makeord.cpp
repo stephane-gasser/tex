@@ -2,7 +2,6 @@
 #include "fetch.h"
 #include "pauseforinstructions.h"
 #include "noeud.h"
-#include "freenode.h"
 
 void makeord(halfword q)
 {

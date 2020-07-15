@@ -8,9 +8,7 @@
 #include "unsave.h"
 #include "hpack.h"
 #include "noeud.h"
-#include "freenode.h"
 #include "half.h"
-#include "appendtovlist.h"
 #include "resumeafterdisplay.h"
 #include "texte.h"
 
@@ -52,18 +50,19 @@ void aftermath(void)
 	m = mode;
 	l = false;
 	p = finmlist(0);
+	halfword tok;
 	if (mode == -m)
 	{
-		getxtoken();
-		backerror("Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
+		std::tie(std::ignore, std::ignore, tok, std::ignore) = getxtoken();
+		backerror(tok, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		curmlist = p;
 		curstyle = 2;
 		mlistpenalties = false;
 		mlisttohlist();
 		a = hpack(link(temp_head), 0, additional);
-		unsave();
+		unsave(tok);
 		saveptr--;
-		if (savestack[saveptr].int_ == 1)
+		if (saved(0) == 1)
 			l = true;
 		danger = false;
 		if (fontparams[fam_fnt(2+text_size)] < total_mathsy_params 
@@ -100,15 +99,16 @@ void aftermath(void)
 			tail = link(tail);
 		tail_append(newmath(math_surround(), after));
 		space_factor = 1000;
-		unsave();
+		unsave(tok);
 	}
 	else
 	{
 		if (a == 0)
 		{
-			getxtoken();
-			if (curcmd != math_shift)
-				backerror("Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
+			eightbits cmd;
+			std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
+			if (cmd != math_shift)
+				backerror(tok, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
 		curmlist = p;
 		curstyle = 0;
@@ -211,6 +211,6 @@ void aftermath(void)
 		tail_append(newpenalty(post_display_penalty()));
 		if (g2 > 0)
 			tail_append(newparamglue(g2));
-		resumeafterdisplay();
+		resumeafterdisplay(tok);
 	}
 }

@@ -1,6 +1,6 @@
 #include "beginbox.h"
 #include "lecture.h"
-#include "copynodelist.h"
+#include "noeud.h"
 #include "erreur.h"
 #include "impression.h"
 #include "vsplit.h"
@@ -16,14 +16,14 @@ static halfword& every_hbox(void) { return equiv(every_hbox_loc); }
 //! the first steps in their creation. The \a begin_box routine is called when
 //! \a box_context is a context specification, \a cur_chr specifies the type of
 //! box desired, and <em> cur_cmd=make_box </em>.
-void beginbox(int boxcontext)
+void beginbox(int boxcontext, eightbits cmd, halfword chr)
 {
 	halfword p, q; // run through the current list
 	quarterword m; // the length of a replacement list
 	halfword k; // 0 or vmode or hmode
 	eightbits n; // a box number
 	int val;
-	switch (curchr)
+	switch (chr)
 	{
 		case box_code:
 			val = scaneightbitint();
@@ -38,10 +38,10 @@ void beginbox(int boxcontext)
 			// the list and make |cur_box| point to it; otherwise set |cur_box:=null|
 			curbox = 0;
 			if (abs(mode) == mmode)
-				error("You can't use `"+cmdchr(curcmd, curchr)+"' in "+asMode(mode), "Sorry; this \\lastbox will be void.");
+				error("You can't use `"+cmdchr(cmd, chr)+"' in "+asMode(mode), "Sorry; this \\lastbox will be void.");
 			else 
 				if (mode == vmode && head == tail)
-					error("You can't use `"+cmdchr(curcmd, curchr)+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page.\nThis \\lastbox will therefore be void.");
+					error("You can't use `"+cmdchr(cmd, chr)+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page.\nThis \\lastbox will therefore be void.");
 				else 
 					if (tail < himemmin)
 						if (type(tail) == hlist_node || type(tail) == vlist_node)
@@ -79,20 +79,20 @@ void beginbox(int boxcontext)
 			curbox = vsplit(n, scan_normal_dimen());
 			break;
 		default:
-			k = curchr-4;
-			savestack[saveptr].int_ = boxcontext;
+			k = chr-4;
+			saved(0) = boxcontext;
 			if (k == hmode)
-				if (boxcontext < 0x40'00'00'00 && abs(mode) == vmode)
-					scanspec(3, true);
+				if (boxcontext < box_flag && abs(mode) == vmode)
+					std::tie(cmd, chr, std::ignore) = scanspec(adjusted_hbox_group, true);
 				else
-					scanspec(2, true);
+					std::tie(cmd, chr, std::ignore) = scanspec(hbox_group, true);
 			else
 			{
 				if (k == vmode)
-					scanspec(4,	true);
+					std::tie(cmd, chr, std::ignore) = scanspec(vbox_group, true);
 				else
 				{
-					scanspec(5, true);
+					std::tie(cmd, chr, std::ignore) = scanspec(vtop_group, true);
 					k = vmode;
 				}
 				normalparagraph();

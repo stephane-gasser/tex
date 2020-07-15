@@ -1,11 +1,9 @@
 #include "insertrelax.h"
 #include "backinput.h"
 
-void insertrelax(void)
+void insertrelax(halfword cs)
 {
-	curtok = cs_token_flag+curcs;
-	backinput();
-	curtok = cs_token_flag+frozen_relax;
-	backinput();
+	backinput(cs_token_flag+cs);
+	backinput(cs_token_flag+frozen_relax);
 	token_type = inserted;
 }

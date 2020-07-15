@@ -1,29 +1,38 @@
 #include "eqdestroy.h"
 #include "lecture.h"
 #include "deleteglueref.h"
-#include "freenode.h"
-#include "flushnodelist.h"
+#include "noeud.h"
+
+static halfword equiv_field(memoryword w)
+{
+	return w.hh.rh;
+}
+
+static quarterword eq_type_field(memoryword w)
+{
+	return w.hh.b0;
+}
 
 void eqdestroy(memoryword w)
 {
 	halfword q;
 	switch (w.hh.b0)
 	{
-		case 111:
-		case 112:
-		case 113:
-		case 114: 
-			deletetokenref(w.hh.rh);
+		case call:
+		case long_call:
+		case outer_call:
+		case long_outer_call: 
+			deletetokenref(equiv_field(w));
 			break;
-		case 117: 
-			deleteglueref(w.hh.rh);
+		case glue_ref: 
+			deleteglueref(equiv_field(w));
 			break;
-		case 118:
-			q = w.hh.rh;
+		case shape_ref:
+			q = equiv_field(w);
 			if (q)
 				freenode(q, 2*info(q)+1);
 			break;
-		case 119: 
-			flushnodelist(w.hh.rh);
+		case box_ref: 
+			flushnodelist(equiv_field(w));
 	}
 }

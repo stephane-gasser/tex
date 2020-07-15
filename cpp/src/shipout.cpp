@@ -4,7 +4,7 @@
 #include "fichier.h"
 #include "preparemag.h"
 #include "bmakenamestring.h"
-#include "flushnodelist.h"
+#include "noeud.h"
 #include "openlogfile.h"
 #include "packjobname.h"
 #include "promptfilename.h"

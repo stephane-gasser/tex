@@ -1,7 +1,7 @@
 <map id="lig_char" name="lig_char">
 <area shape="rect" id="node1" title="the word where the ligature is to be found" alt="" coords="583,257,649,284"/>
 <area shape="rect" id="node2" href="$appenditaliccorrection_8h.html#afb675d8990e6a5ffb4ea8c78e8d929a0" title=" " alt="" coords="387,5,535,32"/>
-<area shape="rect" id="node3" href="$copynodelist_8h.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="244,144,339,171"/>
+<area shape="rect" id="node3" href="$noeud_8h.html#a10ce09de92566b94c5155b2fd74872f3" title=" " alt="" coords="244,144,339,171"/>
 <area shape="rect" id="node4" href="$hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="429,131,493,157"/>
 <area shape="rect" id="node5" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="432,181,489,208"/>
 <area shape="rect" id="node6" href="$hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="250,283,333,309"/>

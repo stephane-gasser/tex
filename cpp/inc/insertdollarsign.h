@@ -1,5 +1,8 @@
 #ifndef INSERTDOLLARSIGN_H
 #define INSERTDOLLARSIGN_H
+
 #include "globals.h"
-void insertdollarsign(void);
+
+[[nodiscard]] halfword insertdollarsign(halfword);
+
 #endif

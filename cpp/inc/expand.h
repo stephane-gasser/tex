@@ -1,5 +1,8 @@
 #ifndef EXPAND_H
 #define EXPAND_H
+
 #include "globals.h"
-void expand(void);
+
+void expand(eightbits, halfword, halfword);
+
 #endif

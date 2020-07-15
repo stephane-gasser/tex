@@ -460,7 +460,7 @@ enum
 		A_token = letter_token+'A' //!< the smallest special hex digit
 };
 
-enum
+enum state_code
 {
 	token_list = 0, //!< \a state code when scanning a token list
 	mid_line = 1, //!< \a state code when scanning a line of characters

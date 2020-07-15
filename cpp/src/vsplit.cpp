@@ -4,7 +4,7 @@
 #include "vertbreak.h"
 #include "lecture.h"
 #include "prunepagetop.h"
-#include "freenode.h"
+#include "noeud.h"
 #include "vpackage.h"
 #include "texte.h"
 

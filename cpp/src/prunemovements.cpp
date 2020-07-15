@@ -1,5 +1,5 @@
 #include "prunemovements.h"
-#include "freenode.h"
+#include "noeud.h"
 
 void prunemovements(int l)
 {

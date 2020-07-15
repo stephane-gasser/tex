@@ -1,0 +1,8 @@
+<map id="newdisc" name="newdisc">
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,76,133"/>
+<area shape="rect" id="node2" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="141,5,209,32"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#aac88a33bd50777ec79e93f77fdc0fe5a" title="text that follows a discretionary break" alt="" coords="132,56,219,83"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a65e055dfd7fea1ac8c6c735f76e87825" title="text that precedes a discretionary break" alt="" coords="136,107,215,133"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a91c27ff4451197a1974a2bb653477cf6" title="how many subsequent nodes to replace" alt="" coords="124,157,227,184"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="152,208,199,235"/>
+</map>

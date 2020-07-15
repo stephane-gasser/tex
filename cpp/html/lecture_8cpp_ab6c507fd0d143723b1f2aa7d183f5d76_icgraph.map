@@ -1,20 +1,19 @@
 <map id="scanint" name="scanint">
-<area shape="rect" id="node1" title="Sets curval to an integer." alt="" coords="563,413,627,439"/>
-<area shape="rect" id="node2" href="$alteraux_8h.html#acfad1d6cfee9f950e11457f647f80c02" title=" " alt="" coords="213,58,281,85"/>
-<area shape="rect" id="node3" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,387,131,414"/>
-<area shape="rect" id="node4" href="$alterinteger_8h.html#ad0d9ee05a5584e6611723b40b0e5d7ab" title=" " alt="" coords="203,210,290,237"/>
-<area shape="rect" id="node5" href="$alterprevgraf_8h.html#a87971ff31482682ce732cd558847876c" title=" " alt="" coords="199,311,294,338"/>
-<area shape="rect" id="node6" href="$appendpenalty_8h.html#a82e3f6f58b17cb079cbca728f3c09d8b" title=" " alt="" coords="385,210,492,237"/>
-<area shape="rect" id="node7" href="$conditional_8h.html#a815438201a7d90ec1c3da14aea3774c0" title=" " alt="" coords="397,261,481,287"/>
-<area shape="rect" id="node8" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="22,742,114,769"/>
-<area shape="rect" id="node9" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="179,463,315,490"/>
-<area shape="rect" id="node10" href="$findfontdimen_8h.html#a3a1391088579b75ddb821a1f66a01b42" title=" " alt="" coords="197,362,297,389"/>
-<area shape="rect" id="node11" href="$newfont_8h.html#ae28efac17526418b1ea5ed6819d52908" title=" " alt="" coords="213,413,281,439"/>
-<area shape="rect" id="node12" href="$newwritewhatsit_8h.html#ad3cbbd2a868a1a14f4e212db0053c0a3" title=" " alt="" coords="189,717,305,743"/>
-<area shape="rect" id="node13" href="$lecture_8h.html#a824233e29e5992b41ed05977a24f256f" title=" " alt="" coords="197,565,297,591"/>
-<area shape="rect" id="node14" href="$lecture_8h.html#adefa9e2e73b623f6a19242a1b365ddf0" title=" " alt="" coords="396,615,481,642"/>
-<area shape="rect" id="node15" href="$lecture_8h.html#a5582312d4ec520bdb117d4bd96c59e9f" title=" " alt="" coords="385,514,492,541"/>
-<area shape="rect" id="node16" href="$lecture_8h.html#a8ba445bd6b28ee2fbafb8bd8f83b2773" title=" " alt="" coords="381,7,496,34"/>
-<area shape="rect" id="node17" href="$lecture_8h.html#ad5eae8ad40fce33b7804d69a169786ea" title=" " alt="" coords="389,666,489,693"/>
-<area shape="rect" id="node18" href="$lecture_8h.html#a38710b8c72458a2b9a397ef63156a5b1" title=" " alt="" coords="363,818,515,845"/>
+<area shape="rect" id="node1" title="Sets curval to an integer." alt="" coords="563,411,627,438"/>
+<area shape="rect" id="node2" href="$alteraux_8h.html#acfad1d6cfee9f950e11457f647f80c02" title=" " alt="" coords="213,7,281,34"/>
+<area shape="rect" id="node3" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,462,131,488"/>
+<area shape="rect" id="node4" href="$alterinteger_8h.html#ad0d9ee05a5584e6611723b40b0e5d7ab" title=" " alt="" coords="203,152,290,179"/>
+<area shape="rect" id="node5" href="$alterprevgraf_8h.html#a87971ff31482682ce732cd558847876c" title=" " alt="" coords="199,247,294,274"/>
+<area shape="rect" id="node6" href="$appendpenalty_8h.html#a82e3f6f58b17cb079cbca728f3c09d8b" title=" " alt="" coords="385,210,492,236"/>
+<area shape="rect" id="node7" href="$conditional_8h.html#a815438201a7d90ec1c3da14aea3774c0" title=" " alt="" coords="397,260,481,287"/>
+<area shape="rect" id="node8" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="393,335,485,362"/>
+<area shape="rect" id="node9" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="179,487,315,514"/>
+<area shape="rect" id="node10" href="$findfontdimen_8h.html#a2d5c68a412768a9eb384c13d641b68f6" title=" " alt="" coords="197,386,297,412"/>
+<area shape="rect" id="node11" href="$noeud_8h.html#a55499cc477d95c4c351b76b513273a75" title=" " alt="" coords="213,436,281,463"/>
+<area shape="rect" id="node12" href="$lecture_8h.html#a824233e29e5992b41ed05977a24f256f" title=" " alt="" coords="197,588,297,615"/>
+<area shape="rect" id="node13" href="$lecture_8h.html#adefa9e2e73b623f6a19242a1b365ddf0" title=" " alt="" coords="204,639,289,666"/>
+<area shape="rect" id="node14" href="$lecture_8h.html#a5582312d4ec520bdb117d4bd96c59e9f" title=" " alt="" coords="385,538,492,564"/>
+<area shape="rect" id="node15" href="$lecture_8h.html#a8ba445bd6b28ee2fbafb8bd8f83b2773" title=" " alt="" coords="381,690,496,716"/>
+<area shape="rect" id="node16" href="$lecture_8h.html#ad5eae8ad40fce33b7804d69a169786ea" title=" " alt="" coords="389,740,489,767"/>
+<area shape="rect" id="node17" href="$lecture_8h.html#a38710b8c72458a2b9a397ef63156a5b1" title=" " alt="" coords="363,791,515,818"/>
 </map>

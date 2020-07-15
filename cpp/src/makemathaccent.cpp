@@ -1,7 +1,6 @@
 #include "makemathaccent.h"
 #include "cleanbox.h"
 #include "fetch.h"
-#include "flushnodelist.h"
 #include "charbox.h"
 #include "half.h"
 #include "noeud.h"

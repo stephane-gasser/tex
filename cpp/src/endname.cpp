@@ -5,8 +5,6 @@
 
 void endname(void)
 {
-/*	if (strptr+3 > maxstrings)
-		overflow("number of strings", maxstrings-initstrptr);*/
 	curarea = currentString.substr(0, areadelimiter);
 	if (areadelimiter)
 		strings.push_back(curarea);

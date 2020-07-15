@@ -1,7 +1,6 @@
 #include "noeud.h"
 #include "getavail.h"
 #include "charwarning.h"
-#include "getnode.h"
 #include "openlogfile.h"
 #include "impression.h"
 #include "geqdefine.h"
@@ -11,6 +10,7 @@
 #include "xnoverd.h"
 #include "readfontinfo.h"
 #include "texte.h"
+#include "pushmath.h"
 #include "pushnest.h"
 #include "normmin.h"
 #include "buildpage.h"
@@ -19,6 +19,339 @@
 #include "erreur.h"
 #include "texte.h"
 #include "flushlist.h"
+#include "deleteglueref.h"
+
+halfword copynodelist(halfword p)
+{
+	auto h = getavail();
+	auto q = h;
+	while (p)
+	{
+		int words = 1;
+		halfword r;
+		if (is_char_node(p))
+			r = getavail();
+		else
+			switch (type(p))
+			{
+				case hlist_node:
+				case vlist_node:
+				case unset_node:
+					r = getnode(box_node_size);
+					mem[r+6] = mem[p+6];
+					mem[r+5] = mem[p+5];
+					list_ptr(r) = copynodelist(list_ptr(p));
+					words = 5;
+					break;
+				case rule_node:
+					r = getnode(rule_node_size);
+					words = rule_node_size;
+					break;
+				case ins_node:
+					r = getnode(ins_node_size);
+					mem[r+4] = mem[p+4];
+					add_glue_ref(split_top_ptr(p));
+					ins_ptr(r) = copynodelist(ins_ptr(p));
+					words = ins_node_size-1;
+					break;
+				case whatsit_node:
+					switch (subtype(p))
+					{
+						case open_node:
+							r = getnode(open_node_size);
+							words = open_node_size;
+							break;
+						case write_node:
+						case special_node:
+							r = getnode(write_node_size);
+							add_token_ref(write_tokens(p));
+							words = write_node_size;
+							break;
+						case close_node:
+						case language_node:
+							r = getnode(small_node_size);
+							words = small_node_size;
+							break;
+						default:
+							confusion("ext2");
+					}
+					break;
+				case glue_node:
+					r = getnode(small_node_size);
+					add_glue_ref(glue_ptr(p));
+					glue_ptr(r) = glue_ptr(p);
+					leader_ptr(r) = copynodelist(leader_ptr(p));
+					break;
+				case kern_node:
+				case math_node:
+				case penalty_node:
+					r = getnode(small_node_size);
+					words = 2;
+					break;
+				case ligature_node:
+					r = getnode(small_node_size);
+					mem[lig_char(r)] = mem[lig_char(p)];
+					lig_ptr(r) = copynodelist(lig_ptr(p));
+					break;
+				case disc_node:
+					r = getnode(small_node_size);
+					pre_break(r) = copynodelist(pre_break(p));
+					post_break(r) = copynodelist(post_break(p));
+					break;
+				case mark_node:
+					r = getnode(small_node_size);
+					info(mark_ptr(p))++;
+					words = small_node_size;
+					break;
+				case adjust_node:
+					r = getnode(small_node_size);
+					adjust_ptr(r) = copynodelist(adjust_ptr(p));
+					break;
+				default: 
+					confusion("copying");
+			}
+		;
+		for (;words > 0; words--)
+			mem[r+words] = mem[p+words];
+		link(q) = r;
+		q = r;
+		p = link(p);
+	}
+	link(q) = 0;
+	q = link(h);
+	link(h) = avail;
+	avail = h;
+	return q;
+}
+
+void flushnodelist(halfword p)
+{
+	while (p)
+	{
+		auto q = link(p);
+		if (p >= himemmin)
+		{
+			link(p) = avail;
+			avail = p;
+		}
+		else
+		{
+			switch (type(p))
+			{
+				case hlist_node:
+				case vlist_node:
+				case unset_node:
+					flushnodelist(list_ptr(p));
+					freenode(p, box_node_size);
+					break;
+				case rule_node:
+					freenode(p, rule_node_size);
+					break;
+				case ins_node:
+					flushnodelist(ins_ptr(p));
+					deleteglueref(ins_ptr(p));
+					freenode(p, ins_node_size);
+					break;
+				case whatsit_node:
+					switch (subtype(p))
+					{
+						case open_node:
+							freenode(p, open_node_size);
+							break;
+						case write_node:
+						case special_node:
+							deletetokenref(write_tokens(p));
+							freenode(p, write_node_size);
+							break;
+						case close_node:
+						case language_node: 
+							freenode(p, small_node_size);
+							break;
+						default: 
+							confusion("ext3");
+					}
+					break;
+				case glue_node:
+					deleteglueref(glue_ptr(p));
+					if (leader_ptr(p))
+						flushnodelist(leader_ptr(p));
+					freenode(p, small_node_size);
+					break;
+				case kern_node:
+				case math_node:
+				case penalty_node: 
+					freenode(p, small_node_size);
+					break;
+				case ligature_node: 
+					flushnodelist(lig_ptr(p));
+					freenode(p, small_node_size);
+					break;
+				case mark_node: 
+					deletetokenref(mark_ptr(p));
+					freenode(p, small_node_size);
+					break;
+				case disc_node:
+					flushnodelist(pre_break(p));
+					flushnodelist(post_break(p));
+					freenode(p, small_node_size);
+					break;
+				case adjust_node: 
+					flushnodelist(adjust_ptr(p));
+					freenode(p, small_node_size);
+					break;
+				case style_node:
+					freenode(p, style_node_size);
+					break;
+				case choice_node:
+					flushnodelist(display_mlist(p));
+					flushnodelist(text_mlist(p));
+					flushnodelist(script_mlist(p));
+					flushnodelist(script_script_mlist(p));
+					freenode(p, style_node_size);
+					break;
+				case ord_noad:
+				case op_noad:
+				case bin_noad:
+				case rel_noad:
+				case open_noad:
+				case close_noad:
+				case punct_noad:
+				case inner_noad:
+				case radical_noad:
+				case over_noad:
+				case under_noad:
+				case vcenter_noad:
+				case accent_noad:
+					if (math_type(nucleus(p)) >= sub_box)
+						flushnodelist(nucleus(p));
+					if (math_type(supscr(p)) >= sub_box)
+						flushnodelist(info(supscr(p)));
+					if (math_type(subscr(p)) >= sub_box)
+						flushnodelist(info(subscr(p)));
+					if (type(p) == radical_noad || type(p) == accent_noad)
+						freenode(p, radical_noad_size);
+					else
+						freenode(p, noad_size);
+					break;
+				case left_noad:
+				case right_noad:
+					freenode(p, noad_size);
+					break;
+				case fraction_noad:
+					flushnodelist(info(numerator(p)));
+					flushnodelist(info(denominator(p)));
+					freenode(p, fraction_noad_size);
+					break;
+				default: 
+					confusion("flushing"); 
+			}
+		}
+		p = q;
+	}
+}
+
+void freenode(halfword p, halfword s)
+{
+	node_size(p) = s;
+	link(p) = empty_flag;
+	halfword q = llink(rover);
+	llink(p) = q;
+	rlink(p) = rover;
+	llink(rover) = p;
+	rlink(q) = p;
+}
+
+halfword getnode(int s)
+{
+	bool label20;
+	halfword r;
+	do
+	{
+		label20 = false;
+		halfword p = rover;
+		do
+		{ 
+			halfword q = p+node_size(p);
+			while (link(q) == empty_flag)
+			{
+				auto t = rlink(q);
+				if (q == rover)
+					rover = t;
+				llink(t) = llink(q);
+				rlink(llink(q)) = t;
+				q += node_size(q);
+			}
+			r = q-s;
+			if (r > p+1)
+			{
+				node_size(p) = r-p;
+				rover = p;
+				link(r) = 0;
+				return r;
+			}
+			if (r == p)
+			if (rlink(p) != p)
+			{
+				rover = rlink(p);
+				int t = llink(p);
+				llink(rover) = t;
+				rlink(t) = rover;
+				link(r) = 0;
+				return r;
+			}
+			node_size(p) = q-p;
+			p = rlink(p);
+		} while (p != rover);
+		if (s == 1<<30)
+			return empty_flag;
+		if (lomemmax+2 < himemmin && lomemmax+2 <= empty_flag)
+		{
+			int t;
+			if (himemmin-lomemmax >= 1998)
+				t = lomemmax+1000;
+			else
+				t = lomemmax+1+(himemmin-lomemmax)/2;
+			p = llink(rover);
+			halfword q = lomemmax;
+			rlink(p) = q;
+			llink(rover) = q;
+			if (t > empty_flag)
+				t = empty_flag;
+			rlink(q) = rover;
+			llink(q) = p;
+			link(q) = empty_flag;
+			info(q) = t-lomemmax;
+			lomemmax = t;
+			link(lomemmax) = 0;
+			info(lomemmax) = 0;
+			rover = q;
+			label20 = true;
+		}
+	} while (label20);
+	overflow("main memory size", memmax+1-memmin);
+	link(r) = 0;
+	return r;
+}
+
+triepointer trienode(triepointer p)
+{
+	triepointer h = abs(triec[p]+1009*trieo[p]+2718*triel[p]+3142*trier[p])%triesize;
+	while (true)
+	{
+		triepointer q = triehash[h];
+		if (q == 0)
+		{
+			triehash[h] = p;
+			return p;
+		}
+		if (triec[q] == triec[p] && trieo[q] == trieo[p] && triel[q] == triel[p] && trier[q] == trier[p])
+			return q;
+		if (h > 0)
+			h--;
+		else
+			h = triesize;
+	}
+}
 
 void newhyphexceptions(void)
 {
@@ -26,21 +359,22 @@ void newhyphexceptions(void)
 	hyphpointer h;
 	halfword p;
 	poolpointer u, v;
-	scanleftbrace();
+	auto [cmd, chr, tok] = scanleftbrace();
 	curlang = cur_fam();
 	if (curlang < 0 || curlang > 255)
 		curlang = 0;
 	n = 0;
 	p = 0;
-	getxtoken();
+	halfword cs;
+	std::tie(cmd, chr, tok, cs) = getxtoken();
 	while (true)
 	{
-		switch (curcmd)
+		switch (cmd)
 		{
 			case letter:
 			case other_char:
 			case char_given:
-				if (curchr == '-')
+				if (chr == '-')
 				{
 					if (n < 63)
 					{
@@ -51,18 +385,18 @@ void newhyphexceptions(void)
 					}
 				}
 				else 
-					if (lc_code(curchr) == 0)
+					if (lc_code(chr) == 0)
 						error("Not a letter", "Letters in \\hyphenation words must have \\lccode>0.\nProceed; I'll ignore the character I just read.");
 					else 
 						if (n < 63)
 						{
 							n++;
-							hc[n] = lc_code(curchr);
+							hc[n] = lc_code(chr);
 						}
 				break;
 			case char_num:
-				curchr = scancharnum();
-				curcmd = char_given;
+				chr = scancharnum();
+				cmd = char_given;
 				continue;
 			case spacer:
 			case right_brace:
@@ -122,7 +456,7 @@ void newhyphexceptions(void)
 					hyphword[h] = s;
 					hyphlist[h] = p;
 				}
-				if (curcmd == right_brace)
+				if (cmd == right_brace)
 					return;
 				n = 0;
 				p = 0;
@@ -130,21 +464,19 @@ void newhyphexceptions(void)
 			default:
 				error("Improper "+esc("hyphenation")+" will be flushed", "Hyphenation exceptions must contain only letters\nand hyphens. But continue; I'll forgive and forget.");
 		}
-		getxtoken();
+		std::tie(cmd, chr, tok, cs) = getxtoken();
 	}
 }
 
 halfword newcharacter(internalfontnumber f, eightbits c)
 {
-	if (fontbc[f] <= c)
-		if (fontec[f] >= c)
-			if ((skip_byte(char_info(f, c)) > 0))
-			{
-				auto p = getavail();
-				type(p) = f;
-				subtype(p) = c;
-				return p;
-			}
+	if (fontbc[f] <= c && fontec[f] >= c && skip_byte(char_info(f, c)) > 0)
+	{
+		auto p = getavail();
+		type(p) = f;
+		subtype(p) = c;
+		return p;
+	}
 	charwarning(f, c);
 	return 0;
 }
@@ -163,7 +495,7 @@ halfword newchoice(void)
 
 halfword newdisc(void)
 {
-	auto p = getnode(2);
+	auto p = getnode(small_node_size);
 	type(p) = disc_node;
 	replace_count(p) = 0;
 	pre_break(p) = 0;
@@ -179,8 +511,7 @@ void newfont(smallnumber a)
 	std::string t;
 	if (jobname == "")
 		openlogfile();
-	getrtoken();
-	u = curcs;
+	u = getrtoken();
 	if (u >= hash_base)
 		t = TXT(text(u));
 	else 
@@ -244,12 +575,12 @@ void newfont(smallnumber a)
 
 halfword newglue(halfword q)
 {
-	auto p = getnode(2);
+	auto p = getnode(small_node_size);
 	type(p) = glue_node;
-	subtype(p) = 0;
-	link(p+1) = 0;
-	info(p+1) = q;
-	link(q)++;
+	subtype(p) = normal;
+	leader_ptr(p) = 0;
+	glue_ptr(p) = q;
+	glue_ref_count(q)++;
 	return p;
 }
 
@@ -278,49 +609,46 @@ void newgraf(bool indented)
 		buildpage();
 }
 
-void newinteraction(void)
+void newinteraction(halfword chr)
 {
 	println();
-	interaction = curchr;
-	if (interaction == batch_mode)
-		selector = no_print;
-	else
-		selector = term_only;
+	interaction = chr;
+	selector = interaction == batch_mode ? no_print : term_only;
 	if (logopened)
 		selector += 2;
 }
 
 halfword newkern(scaled w)
 {
-	auto p = getnode(2);
+	auto p = getnode(small_node_size);
 	type(p) = kern_node;
-	subtype(p) = 0;
+	subtype(p) = normal;
 	width(p) = w;
 	return p;
 }
 
 halfword newligature(quarterword f, quarterword c, halfword q)
 {
-	auto p = getnode(2);
+	auto p = getnode(small_node_size);
 	type(p) = ligature_node;
-	type(p+1) = f;
-	subtype(p+1) = c;
-	link(p+1) = q;
+	font(lig_char(p)) = f;
+	character(lig_char(p)) = c;
+	lig_ptr(p) = q;
 	subtype(p) = 0;
 	return p;
 }
 
 halfword newligitem(quarterword c)
 {
-	auto p = getnode(2);
-	subtype(p) = c;
-	link(p+1) = 0;
+	auto p = getnode(small_node_size);
+	character(p) = c;
+	lig_ptr(p) = 0;
 	return p;
 }
 
 halfword newmath(scaled w, smallnumber s)
 { 
-	auto p = getnode(2);
+	auto p = getnode(small_node_size);
 	type(p) = math_node;
 	subtype(p) = s;
 	width(p) = w;
@@ -332,9 +660,9 @@ halfword newnoad(void)
 	auto p = getnode(noad_size);
 	type(p) = ord_noad;
 	subtype(p) = normal;
-	mem[p+1].hh = emptyfield;
-	mem[p+3].hh = emptyfield;
-	mem[p+2].hh = emptyfield;
+	mem[nucleus(p)].hh = emptyfield;
+	mem[subscr(p)].hh = emptyfield;
+	mem[supscr(p)].hh = emptyfield;
 	return p;
 }
 
@@ -356,17 +684,17 @@ halfword newnullbox(void)
 
 halfword newparamglue(smallnumber n)
 {
-	auto p = getnode(2);
+	auto p = getnode(small_node_size);
 	type(p) = glue_node;
 	subtype(p) = n+1;
-	link(p+1) = 0;
+	leader_ptr(p) = 0;
 	auto q = glue_par(n);
-	info(p+1) = q;
-	link(q)++;
+	glue_ptr(p) = q;
+	glue_ref_count(q)++;
 	return p;
 }
 
-void newpatterns(void)
+void newpatterns(halfword cs)
 {
 	char k, l;
 	bool digitsensed;
@@ -379,32 +707,32 @@ void newpatterns(void)
 		curlang = cur_fam();
 		if (curlang <= 0 || curlang > 255)
 				curlang = 0;
-		scanleftbrace();
+		auto [cmd, chr, tok] = scanleftbrace();
 		k = 0;
 		hyf[0] = 0;
 		digitsensed = false;
 		bool keepIn = true;
 		while (keepIn)
 		{
-			getxtoken();
-			switch (curcmd)
+			auto [cmd, chr, tok, cs] = getxtoken();
+			switch (cmd)
 			{
 				case letter:
 				case other_char:
-					if (digitsensed  || curchr < '0' || curchr > '9')
+					if (digitsensed  || chr < '0' || chr > '9')
 					{
-						if (curchr == '.')
-							curchr = 0;
+						if (chr == '.')
+							chr = 0;
 						else
 						{
-							curchr = lc_code(curchr);
-							if (curchr == 0)
+							chr = lc_code(chr);
+							if (chr == 0)
 								error("Nonletter", "(See Appendix H.)");
 						}
 						if (k < 63)
 						{
 							k++;
-							hc[k] = curchr;
+							hc[k] = chr;
 							hyf[k] = 0;
 							digitsensed = false;
 						}
@@ -412,7 +740,7 @@ void newpatterns(void)
 					else 
 						if (k < 63)
 						{
-							hyf[k] = curchr-'0';
+							hyf[k] = chr-'0';
 							digitsensed = true;
 						}
 					break;
@@ -470,7 +798,7 @@ void newpatterns(void)
 							error("Duplicate pattern", "(See Appendix H.)");
 						trieo[q] = v;
 					}
-					if (curcmd == right_brace)
+					if (cmd == right_brace)
 					{
 						keepIn = false;
 						continue;
@@ -487,16 +815,16 @@ void newpatterns(void)
 	else
 	{
 		error("Too late for "+esc("patterns"), "All patterns must be given before typesetting begins.");
-		link(garbage) = scantoks(false, false);
+		link(garbage) = scantoks(false, false, cs);
 		flushlist(defref);
 	}
 }
 
 halfword newpenalty(int m)
 {
-	auto p = getnode(2);
+	auto p = getnode(small_node_size);
 	type(p) = penalty_node;
-	subtype(p) = 0;
+	subtype(p) = 0; //the |subtype| is not used
 	penalty(p) = m;
 	return p;
 }
@@ -530,19 +858,19 @@ halfword newskipparam(smallnumber n)
 {
 	tempptr = newspec(glue_par(n));
 	auto p = newglue(tempptr);
-	link(tempptr) = 0;
+	glue_ref_count(tempptr) = 0;
 	subtype(p) = n+1;
 	return p;
 }
 
 halfword newspec(halfword p)
 {
-	auto q = getnode(4);
+	auto q = getnode(glue_spec_size);
 	mem[q] = mem[p];
-	link(q) = 0;
-	mem[q+1] = mem[p+1];
-	mem[q+2] = mem[p+2];
-	mem[q+3] = mem[p+3];
+	glue_ref_count(q) = 0;
+	width(q) = width(p);
+	stretch(q) = stretch(p);
+	shrink(q) = shrink(p);
 	return q;
 }
 
@@ -597,20 +925,171 @@ void newwhatsit(smallnumber s, smallnumber w)
 	tail_append(p);
 }
 
-void newwritewhatsit(smallnumber w)
+void newwritewhatsit(smallnumber w, halfword chr)
 {
-	newwhatsit(curchr, w);
-	int val;
+	newwhatsit(chr, w);
 	if (w != write_node_size)
-		val = scanfourbitint();
+		write_stream(tail) = scanfourbitint();
 	else
 	{
-		val = scanint();
+		int val = scanint();
 		if (val < 0)
 			val = 17;
 		else 
 			if (val > 15)
 				val = 16;
+		write_stream(tail) = val;
 	}
-	write_stream(tail) = val;
+}
+
+void appendchoices(void)
+{
+	tail_append(newchoice());
+	saved(0) = 0;
+	saveptr++;
+	pushmath(math_choice_group);
+	auto [cmd, chr, tok] = scanleftbrace();
+}
+
+void appenddiscretionary(halfword s)
+{
+	tail_append(newdisc());
+	if (s == 1)
+	{
+		int c = hyphenchar[cur_font()];
+		if (c >= 0 && c < 0x1'00)
+			pre_break(tail) = newcharacter(cur_font(), c);
+	}
+	else
+	{
+		saved(0) = 0;
+		saveptr++;
+		newsavelevel(disc_group);
+		auto [cmd, chr, tok] = scanleftbrace();
+		pushnest();
+		mode = -hmode;
+		space_factor = 1000;
+	}
+}
+
+void appendglue(halfword s)
+{
+	switch (s)
+	{
+		case fil_code: 
+			tail_append(newglue(fil_glue));
+			break;
+		case fill_code: 
+			tail_append(newglue(fill_glue));
+			break;
+		case ss_code: 
+			tail_append(newglue(ss_glue));
+			break;
+		case fil_neg_code: 
+			tail_append(newglue(fil_neg_glue));
+			break;
+		case skip_code: 
+			tail_append(newglue(scanglue(glue_val)));
+			glue_ref_count(tail)--;
+			break;
+		case mskip_code: 
+			tail_append(newglue(scanglue(mu_val)));
+			glue_ref_count(tail)--;
+			subtype(tail) = mu_glue;
+	}
+}
+
+void appenditaliccorrection(void)
+{
+	if (tail != head)
+	{
+		halfword p;
+		if (is_char_node(tail))
+			p = tail;
+		else 
+			if (type(tail) == ligature_node)
+				p = lig_char(tail);
+			else
+				return;
+		auto f = font(p);
+		tail_append(newkern(char_italic(f, char_info(f, character(p)))));
+		subtype(tail) = explicit_;
+	}
+}
+
+void appendkern(halfword s)
+{
+	tail_append(newkern(scandimen(s == mu_glue, false, false)));
+	subtype(tail) = s;
+}
+
+void appendpenalty(void)
+{
+	tail_append(newpenalty(scanint()));
+	if (mode == vmode)
+		buildpage();
+}
+
+static halfword& baseline_skip(void) { return glue_par(baseline_skip_code); }
+static int line_skip_limit(void) { return dimen_par(line_skip_limit_code); }
+
+//! When a box is being appended to the current vertical list, the
+//! baselineskip calculation is handled by the \a append_to_vlist routine.
+void appendtovlist(halfword b)
+{
+	if (prev_depth > ignore_depth)
+	{
+		scaled d = width(baseline_skip())-prev_depth-height(b);
+		halfword p;
+		if (d < line_skip_limit())
+			p = newparamglue(line_skip_code);
+		else
+		{
+			p = newskipparam(baseline_skip_code);
+			width(tempptr) = d;
+		}
+		tail_append(p);
+	}
+	tail_append(b);
+	prev_depth = depth(b);
+}
+
+//! additional space at end of sentence
+static int& extra_space(internalfontnumber f) { return param(extra_space_code, f); }
+
+static halfword& xspace_skip(void) { return glue_par(xspace_skip_code); }
+
+//! Handle spaces when <em> space_factor != 1000 </em>.
+void appspace(halfword &mainp, fontindex &maink)
+{
+	halfword q; // glue node
+	if (space_factor >= 2000 && xspace_skip() != zero_glue)
+		q = newparamglue(xspace_skip_code);
+	else
+	{
+		if (space_skip() != zero_glue)
+			mainp = space_skip();
+		else // Find the glue specification, \a main_p, for text spaces in the current font
+		{
+			mainp = fontglue[cur_font()];
+			if (mainp == 0)
+			{
+				mainp = newspec(zero_glue);
+				maink = space_code+parambase[cur_font()];
+				width(mainp) = space(cur_font());
+				stretch(mainp) = space_stretch(cur_font());
+				shrink(mainp) = space_shrink(cur_font());
+				fontglue[cur_font()] = mainp;
+			}
+		}
+		mainp = newspec(mainp);
+		// Modify the glue specification in \a main_p according to the space factor
+		if (space_factor >= 2000)
+			width(mainp) += extra_space(cur_font());
+		stretch(mainp) = xnoverd(stretch(mainp), space_factor, 1000);
+		shrink(mainp) = xnoverd(shrink(mainp), 1000, space_factor);
+		q = newglue(mainp);
+		link(mainp) = 0;
+	}
+	tail_append(q);
 }

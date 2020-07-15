@@ -8,12 +8,12 @@
 #include "lecture.h"
 #include "texte.h"
 
-void macrocall(void)
+void macrocall(halfword chr, halfword cs_)
 {
 	auto savescannerstatus = scannerstatus;
 	auto savewarningindex = warningindex;
-	warningindex = curcs;
-	halfword refcount = curchr;
+	warningindex = cs_;
+	halfword refcount = chr;
 	halfword r = link(refcount);
 	smallnumber n = 0;
 	if (tracing_macros() > 0)
@@ -23,7 +23,7 @@ void macrocall(void)
 	{
 		scannerstatus = matching;
 		halfword unbalance = 0;
-		longstate = type(curcs);
+		longstate = type(cs_);
 		if (longstate >= outer_call)
 			longstate -= 2;
 		do
@@ -45,13 +45,14 @@ void macrocall(void)
 			halfword rbraceptr;
 			while (true)
 			{
-				gettoken();
-				if (curtok = info(r))
+				halfword tok;
+				std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken();
+				if (tok = info(r))
 				{
 					r = link(r);
 					if (info(r) >= match_token && info(r) <= end_match_token)
 					{
-						if (curtok < left_brace_limit) // cmd < right_brace
+						if (tok < left_brace_limit) // cmd < right_brace
 							alignstate--;
 						break;
 					}
@@ -82,7 +83,7 @@ void macrocall(void)
 							while(true)
 							{
 								if (u == r)
-									if (curtok != info(v))
+									if (tok != info(v))
 										break;
 									else
 									{
@@ -102,13 +103,13 @@ void macrocall(void)
 							continue;
 						r = s;
 					}
-				if (curtok == partoken)
+				if (tok == partoken)
 					if (longstate != long_call)
 					{
 						if (longstate == call)
 						{
 							runaway();
-							backerror("Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
+							backerror(tok, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 						}
 						pstack[n] = link(temp_head);
 						alignstate -= unbalance;
@@ -118,8 +119,8 @@ void macrocall(void)
 						warningindex = savewarningindex;
 						return;
 					}
-				if (curtok < right_brace_limit)
-					if (curtok < left_brace_limit)
+				if (tok < right_brace_limit)
+					if (tok < left_brace_limit)
 					{
 						unbalance = 1;
 						while (true)
@@ -133,16 +134,16 @@ void macrocall(void)
 								link(q) = 0;
 							}
 							link(p) = q;
-							info(q) = curtok;
+							info(q) = tok;
 							p = q;
-							gettoken();
-							if (curtok == partoken)
+							std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken();
+							if (tok == partoken)
 								if (longstate != long_call)
 								{
 									if (longstate == call)
 									{
 										runaway();
-										backerror("Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
+										backerror(tok, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 									}
 									pstack[n] = link(temp_head);
 									alignstate -= unbalance;
@@ -152,8 +153,8 @@ void macrocall(void)
 									warningindex = savewarningindex;
 									return;
 								}
-							if (curtok < right_brace_limit)
-								if (curtok < left_brace_limit)
+							if (tok < right_brace_limit)
+								if (tok < left_brace_limit)
 									unbalance++;
 								else
 								{
@@ -165,26 +166,26 @@ void macrocall(void)
 						rbraceptr = p;
 						auto q = getavail();
 						link(p) = q;
-						info(q) = curtok;
+						info(q) = tok;
 						p = q;
 					}
 					else
 					{
-						backinput();
-						inserror("Argument of "+scs(warningindex)+" has an extra }", "I've run across a `}' that doesn't seem to match anything.\nFor example, `\\def\\a#1{...}' and `\\a}' would produce\nthis error. If you simply proceed now, the `\\par' that\nI've just inserted will cause me to report a runaway\nargument that might be the root of the problem. But if\nyour `}' was spurious, just type `2' and it will go away.");
+						backinput(tok);
+						inserror(tok, "Argument of "+scs(warningindex)+" has an extra }", "I've run across a `}' that doesn't seem to match anything.\nFor example, `\\def\\a#1{...}' and `\\a}' would produce\nthis error. If you simply proceed now, the `\\par' that\nI've just inserted will cause me to report a runaway\nargument that might be the root of the problem. But if\nyour `}' was spurious, just type `2' and it will go away.");
 						alignstate++;
 						longstate = call;
-						curtok = partoken;
+						tok = partoken;
 						continue;
 					}
 				else
 				{
-					if (curtok == space_token)
+					if (tok == space_token)
 						if (info(r) <= end_match_token && info(r) >= match_token)
 							continue;
 					auto q = getavail();
 					link(p) = q;
-					info(q) = curtok;
+					info(q) = tok;
 					p = q;
 				}
 				m++;

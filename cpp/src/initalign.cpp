@@ -10,9 +10,9 @@
 #include "alignpeek.h"
 #include "texte.h"
 
-void initalign(void)
+void initalign(eightbits cmd, halfword cs)
 {
-	auto savecsptr = curcs;
+	auto savecsptr = cs;
 	pushalignment();
 	alignstate = -1000000;
 	if (mode == mmode && (tail != head || incompleat_noad))
@@ -29,7 +29,8 @@ void initalign(void)
 	else 
 		if (mode > 0)
 		mode = -mode;
-	scanspec(6, false);
+	halfword tok;
+	std::tie(cmd, std::ignore, tok) = scanspec(6, false);
 	link(align_head) = 0;
 	curalign = align_head;
 	curloop = 0;
@@ -41,29 +42,30 @@ void initalign(void)
 	{
 		link(curalign) = newparamglue(11);
 		curalign = link(curalign);
-		if (curcmd == car_ret)
+		if (cmd == car_ret)
 			break;
 		p = hold_head;
 		link(p) = 0;
+		halfword tok;
 		while (true)
 		{
-			getpreambletoken();
-			if (curcmd == mac_param)
+			std::tie(cmd, tok) = getpreambletoken();
+			if (cmd == mac_param)
 				break;
-			if (curcmd <= out_param && curcmd >= tab_mark &&alignstate == -1000000)
-				if (p == hold_head && curloop == 0 && curcmd == tab_mark)
+			if (cmd <= out_param && cmd >= tab_mark && alignstate == -1000000)
+				if (p == hold_head && curloop == 0 && cmd == tab_mark)
 					curloop = curalign;
 				else
 				{
-					backerror("Missing # inserted in alignment preamble", "There should be exactly one # between &'s, when an\n\\halign or \\valign is being set up. In this case you had\nnone, so I've put one in; maybe that will work.");
+					backerror(tok, "Missing # inserted in alignment preamble", "There should be exactly one # between &'s, when an\n\\halign or \\valign is being set up. In this case you had\nnone, so I've put one in; maybe that will work.");
 					break;
 				}
 			else 
-				if (curcmd != spacer || p != hold_head)
+				if (cmd != spacer || p != hold_head)
 				{
 					link(p) = getavail();
 					p = link(p);
-					info(p) = curtok;
+					info(p) = tok;
 				}
 		}
 		link(curalign) = newnullbox();
@@ -75,17 +77,17 @@ void initalign(void)
 		link(p) = 0;
 		while (true)
 		{
-			getpreambletoken();
-			if (curcmd <= out_param && curcmd >= tab_mark && alignstate == -1000000)
+			std::tie(cmd, tok) = getpreambletoken();
+			if (cmd <= out_param && cmd >= tab_mark && alignstate == -1000000)
 				break;
-			if (curcmd == mac_param)
+			if (cmd == mac_param)
 			{
 				error("Only one # is allowed per tab", "There should be exactly one # between &'s, when an\n\\halign or \\valign is being set up. In this case you had\nmore than one, so I'm ignoring all but the first.");
 				continue;
 			}
 			link(p) = getavail();
 			p = link(p);
-			info(p) = curtok;
+			info(p) = tok;
 		}
 		link(p) = getavail();
 		p = link(p);

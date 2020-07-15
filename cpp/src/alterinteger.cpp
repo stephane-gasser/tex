@@ -1,9 +1,9 @@
 #include "alterinteger.h"
 #include "lecture.h"
 
-void alterinteger(void)
+void alterinteger(halfword chr)
 {
-	char c = curchr;
+	char c = chr;
 	scanoptionalequals();
 	if (c == 0)
 		deadcycles = scanint();

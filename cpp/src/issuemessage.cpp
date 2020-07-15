@@ -6,10 +6,9 @@
 #include <iostream>
 #include "texte.h"
 
-void issuemessage(void)
+void issuemessage(halfword c, halfword cs)
 {
-	auto c = curchr;
-	link(garbage) = scantoks(false, true);
+	link(garbage) = scantoks(false, true, cs);
 	auto s = tokenshow(defref);
 	flushlist(defref);
 	if (c == 0)

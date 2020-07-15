@@ -1,5 +1,5 @@
 #include "popalignment.h"
-#include "freenode.h"
+#include "noeud.h"
 #include "getavail.h"
 
 void popalignment(void)

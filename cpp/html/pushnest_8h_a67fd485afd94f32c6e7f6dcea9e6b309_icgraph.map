@@ -1,13 +1,12 @@
 <map id="pushnest" name="pushnest">
-<area shape="rect" id="node1" title=" " alt="" coords="323,233,397,260"/>
+<area shape="rect" id="node1" title=" " alt="" coords="323,208,397,235"/>
 <area shape="rect" id="node2" href="$begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="143,5,274,32"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,132,95,159"/>
+<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,56,95,83"/>
 <area shape="rect" id="node4" href="$builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2" title=" " alt="" coords="147,107,270,133"/>
 <area shape="rect" id="node5" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="181,157,236,184"/>
 <area shape="rect" id="node6" href="$initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="175,208,242,235"/>
-<area shape="rect" id="node7" href="$initrow_8h.html#a87e01201e15d56552784671986da86f0" title=" " alt="" coords="20,335,80,361"/>
-<area shape="rect" id="node8" href="$initspan_8h.html#a1c347985717caccf5068d06b952b2a47" title=" " alt="" coords="175,360,242,387"/>
-<area shape="rect" id="node9" href="$newgraf_8h.html#a32eeb6c6a88201e95a9a86b0c110dc4c" title=" " alt="" coords="175,259,243,285"/>
-<area shape="rect" id="node10" href="$pushmath_8h.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="169,411,248,437"/>
-<area shape="rect" id="node11" href="$resumeafterdisplay_8h.html#a5e20dcff03a0b655888f77fb621b21d4" title=" " alt="" coords="143,461,275,488"/>
+<area shape="rect" id="node7" href="$initrow_8h.html#a87e01201e15d56552784671986da86f0" title=" " alt="" coords="20,284,80,311"/>
+<area shape="rect" id="node8" href="$initspan_8h.html#a1c347985717caccf5068d06b952b2a47" title=" " alt="" coords="175,309,242,336"/>
+<area shape="rect" id="node9" href="$pushmath_8h.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="169,360,248,387"/>
+<area shape="rect" id="node10" href="$resumeafterdisplay_8h.html#a5e20dcff03a0b655888f77fb621b21d4" title=" " alt="" coords="143,411,275,437"/>
 </map>

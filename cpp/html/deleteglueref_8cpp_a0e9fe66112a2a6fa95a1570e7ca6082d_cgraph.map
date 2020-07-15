@@ -1,6 +1,6 @@
 <map id="deleteglueref" name="deleteglueref">
 <area shape="rect" id="node1" title=" " alt="" coords="5,56,101,83"/>
-<area shape="rect" id="node2" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="167,5,239,32"/>
+<area shape="rect" id="node2" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="167,5,239,32"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="304,31,347,57"/>
 <area shape="rect" id="node4" href="$constantes_8cpp.html#ab2def9ced9c196d76adb71f31b4f8619" title="reference count of a glue specification" alt="" coords="149,107,256,133"/>
 </map>

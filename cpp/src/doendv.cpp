@@ -5,7 +5,7 @@
 #include "finrow.h"
 #include "offsave.h"
 
-void doendv(void)
+void doendv(eightbits cmd, halfword chr, halfword tok)
 {
 	baseptr = inputptr;
 	inputstack[baseptr] = curinput;
@@ -16,9 +16,9 @@ void doendv(void)
 	if (curgroup == 6)
 	{
 		endgraf();
-		if (fincol())
+		if (fincol(tok))
 			finrow();
 	}
 	else
-		offsave();
+		offsave(cmd, chr, tok);
 }

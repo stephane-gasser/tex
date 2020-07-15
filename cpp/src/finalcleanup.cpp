@@ -2,14 +2,14 @@
 #include "openlogfile.h"
 #include "endfilereading.h"
 #include "impression.h"
-#include "freenode.h"
+#include "noeud.h"
 #include "lecture.h"
 #include "deleteglueref.h"
 #include "storefmtfile.h"
 
-void finalcleanup(void)
+void finalcleanup(halfword chr)
 {
-	smallnumber c = curchr;
+	smallnumber c = chr;
 	if (jobname == "")
 		openlogfile();
 	while (inputptr > 0)

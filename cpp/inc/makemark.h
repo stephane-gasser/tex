@@ -1,5 +1,8 @@
 #ifndef MAKEMARK_H
 #define MAKEMARK_H
+
 #include "globals.h"
-void makemark(void);
+
+void makemark(halfword);
+
 #endif

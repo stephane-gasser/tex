@@ -1,8 +1,7 @@
 #include "trybreak.h"
 #include "erreur.h"
-#include "getnode.h"
+#include "noeud.h"
 #include "badness.h"
-#include "freenode.h"
 
 static void copy_to_cur_active(void) 
 {

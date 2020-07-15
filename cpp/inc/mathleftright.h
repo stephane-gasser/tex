@@ -1,5 +1,8 @@
 #ifndef MATHLEFTRIGHT_H
 #define MATHLEFTRIGHT_H
+
 #include "globals.h"
-void mathleftright(void);
+
+void mathleftright(eightbits, halfword, halfword);
+
 #endif

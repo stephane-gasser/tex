@@ -1,8 +1,7 @@
 #include "vpackage.h"
 #include "impression.h"
 #include "erreur.h"
-#include "getnode.h"
-#include "freenode.h"
+#include "noeud.h"
 #include "badness.h"
 
 static void goto50(halfword r)

@@ -1,6 +1,6 @@
 <map id="mathglue" name="mathglue">
 <area shape="rect" id="node1" title=" " alt="" coords="5,183,80,209"/>
-<area shape="rect" id="node2" href="$getnode_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="143,5,211,32"/>
+<area shape="rect" id="node2" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="143,5,211,32"/>
 <area shape="rect" id="node3" href="$multandadd_8cpp.html#af927a08050f5f57f75bd896b66ec87bd" title=" " alt="" coords="141,56,213,83"/>
 <area shape="rect" id="node4" href="$constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title="the shrinkability of this glob of glue" alt="" coords="149,107,206,133"/>
 <area shape="rect" id="node5" href="$constantes_8cpp.html#ad06551159ef3096eb7d534df06098bb4" title="order of infinity for shrinking" alt="" coords="131,157,224,184"/>

@@ -1,8 +1,6 @@
 #include "postlinebreak.h"
 #include "deleteglueref.h"
-#include "flushnodelist.h"
 #include "hpack.h"
-#include "appendtovlist.h"
 #include "noeud.h"
 #include "erreur.h"
 

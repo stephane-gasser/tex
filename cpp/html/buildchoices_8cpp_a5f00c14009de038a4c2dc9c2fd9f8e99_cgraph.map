@@ -1,11 +1,12 @@
 <map id="buildchoices" name="buildchoices">
-<area shape="rect" id="node1" title=" " alt="" coords="5,183,100,209"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,208,100,235"/>
 <area shape="rect" id="node2" href="$constantes_8cpp.html#a4da40ddb2b5a65de1d2bba8128eb3167" title="mlist to be used in display style" alt="" coords="163,5,261,32"/>
 <area shape="rect" id="node3" href="$finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af" title=" " alt="" coords="180,56,244,83"/>
 <area shape="rect" id="node4" href="$pushmath_8cpp.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="173,107,251,133"/>
-<area shape="rect" id="node5" href="$lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="162,157,262,184"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a76f175f6541923e8ba102ee0dc79eb5c" title="mlist to be used in script style" alt="" coords="167,208,257,235"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a9cbfeb716eeea05a09ed2ee0460d8f82" title="mlist to be used in scriptscript style" alt="" coords="148,259,276,285"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#a159b73dc022ab907a96c51c0f881f8c7" title="mlist to be used in text style" alt="" coords="173,309,251,336"/>
-<area shape="rect" id="node9" href="$unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="180,360,244,387"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9" title=" " alt="" coords="324,284,381,311"/>
+<area shape="rect" id="node6" href="$lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="162,208,262,235"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a76f175f6541923e8ba102ee0dc79eb5c" title="mlist to be used in script style" alt="" coords="167,259,257,285"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#a9cbfeb716eeea05a09ed2ee0460d8f82" title="mlist to be used in scriptscript style" alt="" coords="148,309,276,336"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#a159b73dc022ab907a96c51c0f881f8c7" title="mlist to be used in text style" alt="" coords="173,360,251,387"/>
+<area shape="rect" id="node10" href="$unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="180,411,244,437"/>
 </map>

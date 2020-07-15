@@ -15,7 +15,7 @@ std::string asFilename(const std::string &, const std::string &, const std::stri
 std::string shortdisplay(int);
 std::string tokenlist(int, int, int);
 std::string tokenshow(halfword);
-std::string meaning(void);
+std::string meaning(eightbits, halfword);
 std::string romanint(int);
 std::string twoDigits(int);
 std::string showbox(halfword);
@@ -27,7 +27,7 @@ void printnl(const std::string &);
 void print_err(const std::string &);
 void slowprint(int);
 void slowprint(const std::string &);
-void showcurcmdchr(void);
-void showwhatever(void);
+void showcurcmdchr(eightbits, halfword);
+void showwhatever(halfword);
 
 #endif

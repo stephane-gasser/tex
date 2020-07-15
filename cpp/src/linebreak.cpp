@@ -1,16 +1,13 @@
 #include "linebreak.h"
 #include "noeud.h"
 #include "deleteglueref.h"
-#include "flushnodelist.h"
 #include "popnest.h"
 #include "finiteshrink.h"
 #include "inittrie.h"
-#include "getnode.h"
 #include "trybreak.h"
 #include "hyphenate.h"
 #include "erreur.h"
 #include "postlinebreak.h"
-#include "freenode.h"
 
 static void check_shrinkage(halfword &p)
 {

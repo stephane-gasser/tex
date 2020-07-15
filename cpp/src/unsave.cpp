@@ -3,7 +3,7 @@
 #include "eqdestroy.h"
 #include "erreur.h"
 
-void unsave(void)
+void unsave(halfword tok)
 {
 	if (curlevel > level_one)
 	{
@@ -16,12 +16,7 @@ void unsave(void)
 			halfword p = save_index(saveptr);
 			quarterword l;
 			if (save_type(saveptr) == insert_token)
-			{
-				halfword t = curtok;
-				curtok = p;
-				backinput();
-				curtok = t;
-			}
+				backinput(p);
 			else
 			{
 				if (save_type(saveptr) == restore_old_value)
@@ -30,19 +25,23 @@ void unsave(void)
 					saveptr--;
 				}
 				else
-					savestack[saveptr] = eqtb[undefined_control_sequence];
+					saved(0) = eqtb[undefined_control_sequence].int_;
 				if (p < int_base)
 					if (eq_level(p) == level_one)
-						eqdestroy(savestack[saveptr]);
+					{
+						memoryword m;
+						m.int_ = saved(0);
+						eqdestroy(m);
+					}
 					else
 					{
 						eqdestroy(eqtb[p]);
-						eqtb[p] = savestack[saveptr];
+						eqtb[p].int_ = saved(0);
 					}
 				else 
 					if (xeqlevel[p] != level_one)
 					{
-						eqtb[p] = savestack[saveptr];
+						eqtb[p].int_ = saved(0);
 						xeqlevel[p] = l;
 					}
 			}

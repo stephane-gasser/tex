@@ -1,31 +1,22 @@
 <map id="makefraction" name="makefraction">
-<area shape="rect" id="node1" title=" " alt="" coords="5,1007,103,1034"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708" title="height of fraction lines above the baseline" alt="" coords="351,171,439,198"/>
-<area shape="rect" id="node3" href="$cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="189,576,264,603"/>
-<area shape="rect" id="node4" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="366,678,423,704"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="490,222,545,248"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="489,272,546,299"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="596,830,639,856"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="487,830,548,856"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="494,627,541,654"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="491,728,544,755"/>
-<area shape="rect" id="node11" href="$newnullbox_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="351,475,438,502"/>
-<area shape="rect" id="node12" href="$constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="151,1083,303,1110"/>
-<area shape="rect" id="node13" href="$makefraction_8cpp.html#aa11384405a33d56ab36323ac96ef6212" title="size of \atopwithdelims delimiters" alt="" coords="197,1134,257,1160"/>
-<area shape="rect" id="node14" href="$makefraction_8cpp.html#a67416fc26eb077ebd47a05861d2cbe07" title="size of \atopwithdelims delimiters in non&#45;displays" alt="" coords="197,1184,257,1211"/>
-<area shape="rect" id="node15" href="$makefraction_8cpp.html#a4ac14495bd218aec4f21fffa2819c0c1" title="denominator shift&#45;down in display styles" alt="" coords="193,1235,261,1262"/>
-<area shape="rect" id="node16" href="$makefraction_8cpp.html#aaa40b41ea32d3797e3a862cf6846a748" title="denominator shift&#45;down in non&#45;display styles" alt="" coords="193,1286,261,1312"/>
-<area shape="rect" id="node17" href="$makefraction_8cpp.html#adb7704ec2924879d9fb7d4fcddf8b247" title="smaller, cramped" alt="" coords="179,1336,275,1363"/>
-<area shape="rect" id="node18" href="$fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="351,70,438,96"/>
-<area shape="rect" id="node19" href="$half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8" title=" " alt="" coords="373,424,416,451"/>
-<area shape="rect" id="node20" href="$constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256" title="first delimiter field of a noad" alt="" coords="179,1387,275,1414"/>
-<area shape="rect" id="node21" href="$newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="359,728,430,755"/>
-<area shape="rect" id="node22" href="$makefraction_8cpp.html#a3ea41372309803809bca11d1b59b2adf" title="numerator shift&#45;up in display styles" alt="" coords="199,1438,254,1464"/>
-<area shape="rect" id="node23" href="$makefraction_8cpp.html#adcc39b9880840fedaf9a6e1ea7ac317b" title="numerator shift&#45;up in non&#45;display, non&#45;\atop" alt="" coords="199,1488,254,1515"/>
-<area shape="rect" id="node24" href="$makefraction_8cpp.html#ad7ce77df82b3831e97e57ec16070eb36" title="numerator shift&#45;up in non&#45;display \atop" alt="" coords="199,1539,254,1566"/>
-<area shape="rect" id="node25" href="$makefraction_8cpp.html#a9708a08e9cc1343024df96c24b3188c3" title="smaller unless already script&#45;script" alt="" coords="185,1590,268,1616"/>
-<area shape="rect" id="node26" href="$rebox_8cpp.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="199,830,254,856"/>
-<area shape="rect" id="node27" href="$constantes_8cpp.html#ad5b1f1dc7fa85e49de3d8eb8edcc9b35" title="second delimiter field of a fraction noad" alt="" coords="175,1640,278,1667"/>
-<area shape="rect" id="node28" href="$constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790" title="thickness field in a fraction noad" alt="" coords="187,1691,266,1718"/>
-<area shape="rect" id="node29" href="$vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="182,374,271,400"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,617,103,644"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708" title="height of fraction lines above the baseline" alt="" coords="351,212,439,238"/>
+<area shape="rect" id="node3" href="$cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="189,617,264,644"/>
+<area shape="rect" id="node4" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="366,566,423,593"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="490,110,545,137"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="489,212,546,238"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="596,668,639,694"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="487,566,548,593"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="494,617,541,644"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="491,794,544,821"/>
+<area shape="rect" id="node11" href="$noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="351,516,438,542"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="151,1124,303,1150"/>
+<area shape="rect" id="node13" href="$fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="351,60,438,86"/>
+<area shape="rect" id="node14" href="$half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8" title=" " alt="" coords="373,465,416,492"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256" title="first delimiter field of a noad" alt="" coords="179,1174,275,1201"/>
+<area shape="rect" id="node16" href="$noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="359,972,430,998"/>
+<area shape="rect" id="node17" href="$rebox_8cpp.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="199,820,254,846"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#ad5b1f1dc7fa85e49de3d8eb8edcc9b35" title="second delimiter field of a fraction noad" alt="" coords="175,1225,278,1252"/>
+<area shape="rect" id="node19" href="$constantes_8cpp.html#a6743e4ff0a613ae12c295c5ce8a5e790" title="thickness field in a fraction noad" alt="" coords="187,1276,266,1302"/>
+<area shape="rect" id="node20" href="$vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="182,389,271,416"/>
 </map>

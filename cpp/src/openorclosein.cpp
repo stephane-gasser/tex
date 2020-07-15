@@ -4,9 +4,8 @@
 #include "fichier.h"
 #include "texte.h"
 
-void openorclosein(void)
+void openorclosein(halfword c)
 {
-	auto c = curchr;
 	auto n = scanfourbitint();
 	if (readopen[n] != closed)
 	{

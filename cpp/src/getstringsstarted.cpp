@@ -11,31 +11,27 @@ constexpr char poolname[] = "tex.pool";
 //! but returns |false| if something goes wrong.
 bool getstringsstarted(void)
 {
-	/*poolptr = 0;
-	strptr = 0;
-	strstart[0] = 0;*/
+	strings.resize(256);
 	for (int k = 0; k < 256; k++)
 	{
 		if (k < ' ' || k > '~')
 		{
-			append_char('^');
-			append_char('^');
+			strings[k] = "^^";
 			if (k < 64)
-				append_char(k+64);
+				strings[k] += char(k+64);
 			else 
 				if (k < 128)
-					append_char(k-64);
+					strings[k] += char(k-64);
 				else
 				{
 					int l = k/16;
-					append_char(l < 10 ? l+'0' : l+'a'-10);
+					strings[k] += char(l < 10 ? l+'0' : l+'a'-10);
 					l = k%16;
-					append_char(l < 10 ? l+'0' : l+'a'-10);
+					strings[k] += char(l < 10 ? l+'0' : l+'a'-10);
 				}
 		}
 		else
-			append_char(k);
-		makestring();
+			strings[k] = char(k);
 	}
 	nameoffile = poolname;
 	if (!aopenin(poolfile))
@@ -44,7 +40,7 @@ bool getstringsstarted(void)
 		aclose(poolfile);
 		return false;
 	}
-	c = false;
+	bool c = false;
 	do
 	{
 		if (poolfile.eof())
@@ -62,13 +58,13 @@ bool getstringsstarted(void)
 			int k = 1;
 			while (true)
 			{
-				if (xord[n] < '0' || xord[n] > '9')
+				if (n < '0' || n> '9')
 				{
 					std::cout << "! TEX.POOL check sum doesn't have nine digits." << std::endl;
 					aclose(poolfile);
 					return false;
 				}
-				a = 10*a+xord[n]-'0';
+				a = 10*a+n-'0';
 				if (k == 9)
 					break;
 				k++;
@@ -84,30 +80,25 @@ bool getstringsstarted(void)
 		}
 		else
 		{
-			if (xord[m] < '0' || xord[m] > '9' || xord[n] < '0' || xord[n] > '9')
+			if (m < '0' || m > '9' || n < '0' || n > '9')
 			{
 				std::cout << "! TEX.POOL line doesn't begin with two digits." << std::endl;
 				aclose(poolfile);
 				return false;
 			}
-			int l = (xord[m]-'0')*10+xord[n]-'0';
-			/*if (poolptr+l+stringvacancies > poolsize)
-			{
-				std::cout << "! You have to increase POOLSIZE." << std::endl;
-				aclose(poolfile);
-				return false;
-			}*/
+			std::string s;
+			int l = (m-'0')*10+n-'0';
 			for (int k = 1; k <= l; k++)
 			{
 				if (poolfile.peek() == '\n')
 					m = ' ';
 				else
 					m = poolfile.get();
-				append_char(xord[m]);
+				s += m;
 			}
 			std::string dummy;
 			getline(poolfile, dummy);
-			makestring();
+			strings.push_back(s);
 		}
 	} while (!c);
 	aclose(poolfile);

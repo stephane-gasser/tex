@@ -1,5 +1,8 @@
 #ifndef MATHFRACTION_H
 #define MATHFRACTION_H
+
 #include "globals.h"
-void mathfraction(void);
+
+void mathfraction(halfword, halfword);
+
 #endif

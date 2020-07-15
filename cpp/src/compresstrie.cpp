@@ -1,5 +1,5 @@
 #include "compresstrie.h"
-#include "trienode.h"
+#include "noeud.h"
 
 triepointer compresstrie(triepointer p)
 {

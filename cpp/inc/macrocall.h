@@ -1,5 +1,8 @@
 #ifndef MACROCALL_H
 #define MACROCALL_H
+
 #include "globals.h"
-void macrocall(void);
+
+void macrocall(halfword, halfword);
+
 #endif

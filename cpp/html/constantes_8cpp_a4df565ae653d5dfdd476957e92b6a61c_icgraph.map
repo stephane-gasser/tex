@@ -1,31 +1,28 @@
 <map id="depth" name="depth">
-<area shape="rect" id="node1" title="depth of the box, in sp" alt="" coords="916,841,971,868"/>
-<area shape="rect" id="node2" href="$appendtovlist_8h.html#a7018c33b1ef8cb50dd66430b241ccb32" title="When a box is being appended to the current vertical list, the baselineskip calculation is handled by..." alt="" coords="751,5,849,32"/>
-<area shape="rect" id="node3" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="175,968,252,995"/>
-<area shape="rect" id="node4" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="33,512,95,539"/>
-<area shape="rect" id="node5" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="5,1245,123,1272"/>
-<area shape="rect" id="node6" href="$charbox_8h.html#a86c2c46fc0276e96f2b7744e731ee4a1" title=" " alt="" coords="601,461,669,488"/>
-<area shape="rect" id="node7" href="$vardelimiter_8h.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="449,512,539,539"/>
-<area shape="rect" id="node8" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="304,563,401,589"/>
-<area shape="rect" id="node9" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="171,537,256,564"/>
-<area shape="rect" id="node10" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="307,512,399,539"/>
-<area shape="rect" id="node11" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="732,1397,868,1424"/>
-<area shape="rect" id="node12" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="325,1069,380,1096"/>
-<area shape="rect" id="node13" href="$fractionrule_8h.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="451,563,537,589"/>
-<area shape="rect" id="node14" href="$makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="309,461,396,488"/>
-<area shape="rect" id="node15" href="$hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="768,1093,832,1120"/>
-<area shape="rect" id="node16" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="462,1069,526,1096"/>
-<area shape="rect" id="node17" href="$vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="603,1144,667,1171"/>
-<area shape="rect" id="node18" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="465,715,523,741"/>
-<area shape="rect" id="node19" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="306,715,399,741"/>
-<area shape="rect" id="node20" href="$package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="317,1296,388,1323"/>
-<area shape="rect" id="node21" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="601,259,669,285"/>
-<area shape="rect" id="node22" href="$makevcenter_8h.html#a6e5d002d0820c0eb0efc867f638396aa" title=" " alt="" coords="587,107,684,133"/>
-<area shape="rect" id="node23" href="$newnullbox_8h.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="757,411,843,437"/>
-<area shape="rect" id="node24" href="$newrule_8h.html#adde749bc3235334488b223590d8e4a87" title=" " alt="" coords="602,613,669,640"/>
-<area shape="rect" id="node25" href="$newstyle_8h.html#a2bec312cb936e3995fac8bb2fce43f0f" title=" " alt="" coords="763,1448,837,1475"/>
-<area shape="rect" id="node26" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="751,1499,849,1525"/>
-<area shape="rect" id="node27" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="765,1549,835,1576"/>
-<area shape="rect" id="node28" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="597,917,673,944"/>
-<area shape="rect" id="node29" href="$vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="455,1296,533,1323"/>
+<area shape="rect" id="node1" title="depth of the box, in sp" alt="" coords="896,613,951,640"/>
+<area shape="rect" id="node2" href="$appendtovlist_8h.html#a7018c33b1ef8cb50dd66430b241ccb32" title="When a box is being appended to the current vertical list, the baselineskip calculation is handled by..." alt="" coords="731,5,829,32"/>
+<area shape="rect" id="node3" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="171,765,248,792"/>
+<area shape="rect" id="node4" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="33,360,95,387"/>
+<area shape="rect" id="node5" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="5,1043,123,1069"/>
+<area shape="rect" id="node6" href="$charbox_8h.html#a86c2c46fc0276e96f2b7744e731ee4a1" title=" " alt="" coords="746,208,814,235"/>
+<area shape="rect" id="node7" href="$vardelimiter_8h.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="575,259,664,285"/>
+<area shape="rect" id="node8" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="429,259,527,285"/>
+<area shape="rect" id="node9" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="296,448,381,475"/>
+<area shape="rect" id="node10" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="432,309,524,336"/>
+<area shape="rect" id="node11" href="$doregistercommand_8h.html#acd62917e3e1df172561a3a17e50a2adc" title=" " alt="" coords="712,461,848,488"/>
+<area shape="rect" id="node12" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="311,841,366,868"/>
+<area shape="rect" id="node13" href="$fractionrule_8h.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="737,411,823,437"/>
+<area shape="rect" id="node14" href="$makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="576,512,663,539"/>
+<area shape="rect" id="node15" href="$hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="748,941,812,968"/>
+<area shape="rect" id="node16" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="446,885,510,912"/>
+<area shape="rect" id="node17" href="$vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="587,992,651,1019"/>
+<area shape="rect" id="node18" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="591,411,648,437"/>
+<area shape="rect" id="node19" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="431,461,525,488"/>
+<area shape="rect" id="node20" href="$package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="443,1043,513,1069"/>
+<area shape="rect" id="node21" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="585,613,653,640"/>
+<area shape="rect" id="node22" href="$makevcenter_8h.html#a6e5d002d0820c0eb0efc867f638396aa" title=" " alt="" coords="429,651,527,677"/>
+<area shape="rect" id="node23" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="731,1093,829,1120"/>
+<area shape="rect" id="node24" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="745,1144,815,1171"/>
+<area shape="rect" id="node25" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="301,715,377,741"/>
+<area shape="rect" id="node26" href="$vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="580,1043,659,1069"/>
 </map>

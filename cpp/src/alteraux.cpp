@@ -4,13 +4,13 @@
 #include "erreur.h"
 #include "texte.h"
 
-void alteraux(void)
+void alteraux(eightbits cmd, halfword chr)
 {
-	if (curchr != abs(mode))
-		reportillegalcase();
+	if (chr != abs(mode))
+		reportillegalcase(cmd, chr);
 	else
 	{
-		halfword c = curchr;
+		auto c = chr;
 		scanoptionalequals();
 		if (c == vmode)
 			prev_depth = scan_normal_dimen();

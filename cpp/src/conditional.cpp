@@ -1,27 +1,27 @@
 #include "conditional.h"
-#include "getnode.h"
+#include "noeud.h"
 #include "lecture.h"
 #include "impression.h"
 #include "lecture.h"
 #include "getnext.h"
-#include "freenode.h"
 #include "passtext.h"
 #include "changeiflimit.h"
 #include "erreur.h"
 #include "texte.h"
 
-static void get_x_token_or_active_char(void)
+[[nodiscard]] static std::tuple<eightbits, halfword> get_x_token_or_active_char(void)
 { 
-	getxtoken(); 
-	if (curcmd == relax)
-		if (curchr == no_expand_flag)
+	auto [cmd, chr, tok, cs] = getxtoken(); 
+	if (cmd == relax)
+		if (chr == no_expand_flag)
 		{
-			curcmd = active_char; 
-			curchr = curtok-cs_token_flag-active_base; 
+			cmd = active_char; 
+			chr = tok-cs_token_flag-active_base; 
 		}
+	return std::make_tuple(cmd, chr);
 }
 
-void conditional(void)
+void conditional(halfword chr)
 {
 	auto p = getnode(2);
 	link(p) = condptr;
@@ -29,41 +29,43 @@ void conditional(void)
 	subtype(p) = curif;
 	if_line_field(p) = ifline;
 	condptr = p;
-	curif = curchr;
+	curif = chr;
 	iflimit = 1;
 	ifline = line;
 	auto savecondptr = condptr;
-	smallnumber thisif = curchr;
+	smallnumber thisif = chr;
 	halfword q;
 	int r;
 	bool b;
 	int m, n;
 	smallnumber savescannerstatus;
+	halfword cs;
+	eightbits cmd;
 	switch (thisif)
 	{
 		case if_char_code:
 		case if_cat_code:
-			get_x_token_or_active_char();
-			if (curcmd > active_char || curchr > 255)
+			std::tie(cmd, chr) = get_x_token_or_active_char();
+			if (cmd > active_char || chr > 255)
 			{
 				m = relax;
 				n = 256;
 			}
 			else
 			{
-				m = curcmd;
-				n = curchr;
+				m = cmd;
+				n = chr;
 			}
-			get_x_token_or_active_char();
-			if (curcmd > 13 || curchr > 255)
+			std::tie(cmd, chr) = get_x_token_or_active_char();
+			if (cmd > 13 || chr > 255)
 			{
-				curcmd = relax;
-				curchr = 256;
+				cmd = relax;
+				chr = 256;
 			}
 			if (thisif == if_char_code)
-				b = n == curchr;
+				b = n == chr;
 			else
-				b = m == curcmd;
+				b = m == cmd;
 			break;
 		case if_int_code:
 		case if_dim_code:
@@ -71,14 +73,15 @@ void conditional(void)
 				n = scanint();
 			else
 				n = scan_normal_dimen();
+			halfword tok;
 			do
-				getxtoken();
-			while (curcmd == spacer);
-			if (curtok >= 0x0C'00+'<' && curtok <= 0x0C'00+'>')
-				r = curtok-0x0C'00;
+				std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
+			while (cmd == spacer);
+			if (tok >= other_token+'<' && tok <= other_token+'>')
+				r = tok-other_token;
 			else
 			{
-				backerror("Missing = inserted for "+cmdchr(if_test, thisif), "I was expecting to see `<', `=', or `>'. Didn't.");
+				backerror(tok, "Missing = inserted for "+cmdchr(if_test, thisif), "I was expecting to see `<', `=', or `>'. Didn't.");
 				r = '=';
 			}
 			switch (r)
@@ -126,19 +129,16 @@ void conditional(void)
 		case ifx_code:
 			savescannerstatus = scannerstatus;
 			scannerstatus = 0;
-			getnext();
-			n = curcs;
-			p = curcmd;
-			q = curchr;
-			getnext();
-			if (curcmd != p)
+			std::tie(p, q, r) = getnext();
+			std::tie(cmd, chr, cs) = getnext();
+			if (cmd != p)
 				b = false;
 			else 
-				if (curcmd < call)
-					b = curchr == q;
+				if (cmd < call)
+					b = chr == q;
 				else
 				{
-					p = link(curchr);
+					p = link(chr);
 					q = link(equiv(n));
 					if (p == q)
 						b = true;
@@ -174,11 +174,11 @@ void conditional(void)
 			{
 				passtext();
 				if (condptr == savecondptr)
-					if (curchr == 4)
+					if (chr == 4)
 						n--;
 					else
 					{
-						if (curchr == 2)
+						if (chr == 2)
 						{
 							p = condptr;
 							ifline = if_line_field(p);
@@ -192,7 +192,7 @@ void conditional(void)
 						return;
 					}
 				else 
-					if (curchr == 2)
+					if (chr == 2)
 					{
 						p = condptr;
 						ifline = if_line_field(p);
@@ -217,9 +217,9 @@ void conditional(void)
 		passtext();
 		if (condptr == savecondptr)
 		{
-			if (curchr != 4)
+			if (chr != 4)
 			{
-				if (curchr == 2)
+				if (chr == 2)
 				{
 					p = condptr;
 					ifline = if_line_field(p);
@@ -235,7 +235,7 @@ void conditional(void)
 			error("Extra "+esc("or"), "I'm ignoring this; it doesn't match any \\if.");
 		}
 		else 
-			if (curchr == 2)
+			if (chr == 2)
 			{
 				p = condptr;
 				ifline = if_line_field(p);

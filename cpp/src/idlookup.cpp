@@ -1,7 +1,5 @@
 #include "idlookup.h"
 #include "erreur.h"
-#include "makestring.h"
-#include "texte.h"
 
 //! test if all positions are occupied
 static bool hash_is_full(void) { return hashused == hash_base; }
@@ -18,9 +16,8 @@ halfword idlookup(const std::string &s)
 	while (true)
 	{
 		if (text(p) > 0)
-			if (length(text(p)) == s.size())
-				if (TXT(text(p)) == s)
-					return p;
+			if (strings[text(p)] == s)
+				return p;
 		if (next(p) == 0)
 		{
 			if (nonewcontrolsequence)

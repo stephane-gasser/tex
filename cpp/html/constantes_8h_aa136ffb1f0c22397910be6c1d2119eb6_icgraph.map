@@ -1,9 +1,8 @@
 <map id="penalty" name="penalty">
-<area shape="rect" id="node1" title="the added cost of breaking a list here" alt="" coords="277,105,341,132"/>
-<area shape="rect" id="node2" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="5,29,83,56"/>
-<area shape="rect" id="node3" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="153,29,207,56"/>
-<area shape="rect" id="node4" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="7,181,81,208"/>
-<area shape="rect" id="node5" href="$newpenalty_8h.html#a391ee2979062801a9a3d066cb9bfafd3" title=" " alt="" coords="136,131,224,157"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="131,181,229,208"/>
-<area shape="rect" id="node7" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="142,80,218,107"/>
+<area shape="rect" id="node1" title="the added cost of breaking a list here" alt="" coords="277,78,341,105"/>
+<area shape="rect" id="node2" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="5,27,83,54"/>
+<area shape="rect" id="node3" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="153,27,207,54"/>
+<area shape="rect" id="node4" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="143,78,217,105"/>
+<area shape="rect" id="node5" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="131,129,229,155"/>
+<area shape="rect" id="node6" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="142,179,218,206"/>
 </map>

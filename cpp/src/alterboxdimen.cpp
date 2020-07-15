@@ -1,9 +1,9 @@
 #include "alterboxdimen.h"
 #include "lecture.h"
 
-void alterboxdimen(void)
+void alterboxdimen(halfword chr)
 {
-	auto c = curchr;
+	auto c = chr;
 	auto b = scaneightbitint();
 	scanoptionalequals();
 	int val = scan_normal_dimen();

@@ -4,21 +4,21 @@
 void passtext(void)
 {
 	auto savescannerstatus = scannerstatus;
-	scannerstatus = 1;
+	scannerstatus = skipping;
 	int l = 0;
 	skipline = line;
 	while (true)
 	{
-		getnext();
-		if (curcmd == fi_or_else)
+		auto [cmd, chr, cs] = getnext();
+		if (cmd == fi_or_else)
 		{
 			if (l == 0)
 				break;
-			if (curchr == 2)
+			if (chr == fi_code)
 				l--;
 		}
 		else 
-			if (curcmd == if_test)
+			if (cmd == if_test)
 				l++;
 	}
 	scannerstatus = savescannerstatus;

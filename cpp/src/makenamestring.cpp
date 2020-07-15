@@ -5,10 +5,8 @@ std::string makenamestring(void)
 {
 	if (cur_length() > 0)
 		return "?";
-	else
-	{
-		for (int k = 1; k <= namelength; k++)
-			append_char(xord[nameoffile[k]]);
-		return makestring();
-	}
+	
+	strings.push_back(/*currentString+*/nameoffile);
+	currentString = "";
+	return strings.back();
 }

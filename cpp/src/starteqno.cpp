@@ -3,9 +3,10 @@
 #include "eqworddefine.h"
 #include "lecture.h"
 
-void starteqno(void)
+void starteqno(halfword chr)
 {
-	savestack[saveptr++].int_ = curchr;
+	saved(0) = chr;
+	saveptr++;
 	pushmath(math_shift_group);
 	eqworddefine(int_base+cur_fam_code, -1);
 	if (every_math())

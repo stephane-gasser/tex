@@ -17,8 +17,8 @@ void initmath(void)
 	internalfontnumber f;
 	int n;
 	scaled v, d;
-	gettoken();
-	if (curcmd == math_shift && mode > 0)
+	auto [cmd, chr, tok, cs] = gettoken();
+	if (cmd == math_shift && mode > 0)
 	{
 		if (head == tail)
 		{
@@ -151,7 +151,7 @@ void initmath(void)
 	}
 	else
 	{
-		backinput();
+		backinput(tok);
 		pushmath(math_shift_group);
 		eqworddefine(int_base+cur_fam_code, -1);
 		if (every_math())

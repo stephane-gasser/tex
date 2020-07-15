@@ -5,7 +5,6 @@
 #include "noeud.h"
 #include "prunepagetop.h"
 #include "vpackage.h"
-#include "freenode.h"
 #include "deleteglueref.h"
 #include "erreur.h"
 #include "pushnest.h"
@@ -210,7 +209,7 @@ void fireup(halfword c)
 			begintokenlist(output_routine(), 6);
 			newsavelevel(8);
 			normalparagraph();
-			scanleftbrace();
+			auto [cmd, chr, tok] = scanleftbrace();
 			return;
 		}
 	if (link(page_head))

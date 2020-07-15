@@ -1,20 +1,6 @@
 <map id="mathsy" name="mathsy">
-<area shape="rect" id="node1" title=" " alt="" coords="160,411,225,437"/>
+<area shape="rect" id="node1" title=" " alt="" coords="160,56,225,83"/>
 <area shape="rect" id="node2" href="$constantes_8h.html#a34925b0cdd88c509ec27c46b83221bc9" title="height of fraction lines above the baseline" alt="" coords="15,5,103,32"/>
-<area shape="rect" id="node3" href="$makefraction_8cpp.html#aa11384405a33d56ab36323ac96ef6212" title="size of \atopwithdelims delimiters" alt="" coords="29,56,89,83"/>
-<area shape="rect" id="node4" href="$makefraction_8cpp.html#a67416fc26eb077ebd47a05861d2cbe07" title="size of \atopwithdelims delimiters in non&#45;displays" alt="" coords="29,107,89,133"/>
-<area shape="rect" id="node5" href="$makefraction_8cpp.html#a4ac14495bd218aec4f21fffa2819c0c1" title="denominator shift&#45;down in display styles" alt="" coords="25,157,93,184"/>
-<area shape="rect" id="node6" href="$makefraction_8cpp.html#aaa40b41ea32d3797e3a862cf6846a748" title="denominator shift&#45;down in non&#45;display styles" alt="" coords="25,208,93,235"/>
-<area shape="rect" id="node7" href="$constantes_8h.html#a16231e40bcd71e79a9f5763401c9c0a1" title="18mu" alt="" coords="15,259,102,285"/>
-<area shape="rect" id="node8" href="$constantes_8h.html#a40ed1a665d5b581777edffd9809f447c" title="height of ‘x’" alt="" coords="5,309,112,336"/>
-<area shape="rect" id="node9" href="$makefraction_8cpp.html#a3ea41372309803809bca11d1b59b2adf" title="numerator shift&#45;up in display styles" alt="" coords="31,360,86,387"/>
-<area shape="rect" id="node10" href="$makefraction_8cpp.html#adcc39b9880840fedaf9a6e1ea7ac317b" title="numerator shift&#45;up in non&#45;display, non&#45;\atop" alt="" coords="31,411,86,437"/>
-<area shape="rect" id="node11" href="$makefraction_8cpp.html#ad7ce77df82b3831e97e57ec16070eb36" title="numerator shift&#45;up in non&#45;display \atop" alt="" coords="31,461,86,488"/>
-<area shape="rect" id="node12" href="$makescripts_8cpp.html#a3e7c1f647fd3751e002ea20a85e0133a" title="subscript shift&#45;down if superscript is absent" alt="" coords="33,512,84,539"/>
-<area shape="rect" id="node13" href="$makescripts_8cpp.html#a259e4a2941f0a35549d141dd183d7735" title="subscript shift&#45;down if superscript is present" alt="" coords="33,563,84,589"/>
-<area shape="rect" id="node14" href="$makescripts_8cpp.html#a73b3892301b39e579f6f17ea5d4cfcad" title="subscript baseline below bottom of large box" alt="" coords="21,613,96,640"/>
-<area shape="rect" id="node15" href="$makescripts_8cpp.html#a6d344a8c145cf8effd74ebd31f071998" title="superscript shift&#45;up in uncramped display style" alt="" coords="33,664,84,691"/>
-<area shape="rect" id="node16" href="$makescripts_8cpp.html#a3655d49def7485670a663a94cecfabec" title="superscript shift&#45;up in uncramped non&#45;display" alt="" coords="33,715,84,741"/>
-<area shape="rect" id="node17" href="$makescripts_8cpp.html#aebcdba0c79bcabd1d5e3afd14f376a1f" title="superscript shift&#45;up in cramped styles" alt="" coords="33,765,84,792"/>
-<area shape="rect" id="node18" href="$makescripts_8cpp.html#ade3d9a349d7d403d9966bd2b38cd3022" title="superscript baseline below top of large box" alt="" coords="21,816,96,843"/>
+<area shape="rect" id="node3" href="$constantes_8h.html#a16231e40bcd71e79a9f5763401c9c0a1" title="18mu" alt="" coords="15,56,102,83"/>
+<area shape="rect" id="node4" href="$constantes_8h.html#a40ed1a665d5b581777edffd9809f447c" title="height of ‘x’" alt="" coords="5,107,112,133"/>
 </map>

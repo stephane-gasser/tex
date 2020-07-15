@@ -4,11 +4,11 @@
 #include "pushmath.h"
 #include "lecture.h"
 
-void buildchoices(void)
+void buildchoices(halfword tok)
 {
-	unsave();
+	unsave(tok);
 	auto p = finmlist(0); // the current mlist
-	switch (savestack[saveptr-1].int_)
+	switch (saved(-1))
 	{
 		case 0: 
 			display_mlist(tail) = p;
@@ -24,7 +24,7 @@ void buildchoices(void)
 			saveptr--;
 			return;
 	}
-	savestack[saveptr-1].int_++;
+	saved(-1)++;
 	pushmath(math_choice_group);
-	scanleftbrace();
+	std::tie(std::ignore, std::ignore, tok) = scanleftbrace();
 }

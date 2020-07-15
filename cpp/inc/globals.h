@@ -104,10 +104,10 @@ extern int maxsavestack; // 0..savesize
 extern quarterword curlevel;
 extern groupcode curgroup;
 extern int curboundary; // 0..savesize
-extern eightbits curcmd;
+/*extern eightbits curcmd;
 extern halfword curchr;
 extern halfword curcs;
-extern halfword curtok;
+extern halfword curtok;*/
 extern instaterecord inputstack[stacksize+1];
 extern unsigned char inputptr; // 0..stacksize
 extern unsigned char maxinstack; // 0..stacksize

@@ -1,27 +1,20 @@
 <map id="makescripts" name="makescripts">
-<area shape="rect" id="node1" title=" " alt="" coords="5,651,99,678"/>
-<area shape="rect" id="node2" href="$cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="185,170,260,196"/>
-<area shape="rect" id="node3" href="$freenode_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="479,68,551,95"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="612,94,655,120"/>
-<area shape="rect" id="node5" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="353,271,411,298"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="487,322,542,348"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="486,372,543,399"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#aa0355678d828c2e2f836409b82366625" title=" " alt="" coords="465,423,564,450"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title="repositioning distance, in sp" alt="" coords="466,220,563,247"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="488,474,541,500"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="147,575,299,602"/>
-<area shape="rect" id="node12" href="$constantes_8cpp.html#a71c47a293ae659ec562bb81e3dcd81a5" title="height of ‘x’" alt="" coords="169,626,276,652"/>
-<area shape="rect" id="node13" href="$constantes_8cpp.html#a5bb851b8f5d5d2f2fd4e39f0b770e89a" title="the translation of an mlist" alt="" coords="184,676,261,703"/>
-<area shape="rect" id="node14" href="$newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="347,524,417,551"/>
-<area shape="rect" id="node15" href="$makescripts_8cpp.html#a0fc7b0df1783c98f86c6327639376a1c" title=" " alt="" coords="175,727,271,754"/>
-<area shape="rect" id="node16" href="$makescripts_8cpp.html#a3e7c1f647fd3751e002ea20a85e0133a" title="subscript shift&#45;down if superscript is absent" alt="" coords="197,778,248,804"/>
-<area shape="rect" id="node17" href="$makescripts_8cpp.html#a259e4a2941f0a35549d141dd183d7735" title="subscript shift&#45;down if superscript is present" alt="" coords="197,828,248,855"/>
-<area shape="rect" id="node18" href="$makescripts_8cpp.html#a73b3892301b39e579f6f17ea5d4cfcad" title="subscript baseline below bottom of large box" alt="" coords="185,879,260,906"/>
-<area shape="rect" id="node19" href="$constantes_8cpp.html#af3b3f58f78af4dd1fd2db67eaa6f6124" title="the subscr field of a noad" alt="" coords="192,930,253,956"/>
-<area shape="rect" id="node20" href="$makescripts_8cpp.html#a6d344a8c145cf8effd74ebd31f071998" title="superscript shift&#45;up in uncramped display style" alt="" coords="197,980,248,1007"/>
-<area shape="rect" id="node21" href="$makescripts_8cpp.html#a3655d49def7485670a663a94cecfabec" title="superscript shift&#45;up in uncramped non&#45;display" alt="" coords="197,1031,248,1058"/>
-<area shape="rect" id="node22" href="$makescripts_8cpp.html#aebcdba0c79bcabd1d5e3afd14f376a1f" title="superscript shift&#45;up in cramped styles" alt="" coords="197,1082,248,1108"/>
-<area shape="rect" id="node23" href="$makescripts_8cpp.html#ade3d9a349d7d403d9966bd2b38cd3022" title="superscript baseline below top of large box" alt="" coords="185,1132,260,1159"/>
-<area shape="rect" id="node24" href="$constantes_8cpp.html#a7c168ea5f061757fddf1c55e0ca46911" title="the supscr field of a noad" alt="" coords="192,1183,253,1210"/>
-<area shape="rect" id="node25" href="$vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="194,1234,251,1260"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,445,99,472"/>
+<area shape="rect" id="node2" href="$cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="185,141,260,168"/>
+<area shape="rect" id="node3" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="465,65,537,92"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="599,28,641,55"/>
+<area shape="rect" id="node5" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="347,243,404,269"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="474,293,529,320"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="473,344,530,371"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#aa0355678d828c2e2f836409b82366625" title=" " alt="" coords="452,395,551,421"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title="repositioning distance, in sp" alt="" coords="453,192,550,219"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="475,445,528,472"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="147,496,299,523"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#a71c47a293ae659ec562bb81e3dcd81a5" title="height of ‘x’" alt="" coords="169,547,276,573"/>
+<area shape="rect" id="node13" href="$constantes_8cpp.html#a5bb851b8f5d5d2f2fd4e39f0b770e89a" title="the translation of an mlist" alt="" coords="184,597,261,624"/>
+<area shape="rect" id="node14" href="$noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="187,648,258,675"/>
+<area shape="rect" id="node15" href="$makescripts_8cpp.html#a0fc7b0df1783c98f86c6327639376a1c" title=" " alt="" coords="175,699,271,725"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#af3b3f58f78af4dd1fd2db67eaa6f6124" title="the subscr field of a noad" alt="" coords="192,749,253,776"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#a7c168ea5f061757fddf1c55e0ca46911" title="the supscr field of a noad" alt="" coords="192,800,253,827"/>
+<area shape="rect" id="node18" href="$vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="194,851,251,877"/>
 </map>

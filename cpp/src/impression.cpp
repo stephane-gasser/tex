@@ -54,9 +54,9 @@ static void printchar(ASCIIcode s)
 	tally++;
 }
 
-static std::string chr_cmd(const std::string &s, halfword chrcode)
+static std::string chr_cmd(const std::string &s, halfword chr)
 {
-	return s+char(chrcode);
+	return s+char(chr);
 }
 
 static std::string hex(int t)
@@ -96,7 +96,7 @@ void print(const std::string &s)
 		slowprint("???");
 }
 
-std::string cmdchr(quarterword cmd, halfword chrcode)
+std::string cmdchr(eightbits cmd, halfword chr)
 {
 	static std::map<quarterword, std::string> echap;
 	static std::map<quarterword, std::string> caract;
@@ -119,7 +119,7 @@ std::string cmdchr(quarterword cmd, halfword chrcode)
 	}
 	if (primName.find(cmd) != primName.end())
 	{
-		int n = curchr;
+		int n = chr;
 		switch (cmd)
 		{
 			case assign_glue:
@@ -147,29 +147,29 @@ std::string cmdchr(quarterword cmd, halfword chrcode)
 		case end_template: 
 			return esc(echap[cmd]);
 		case assign_glue:
-			if (chrcode < skip_base)
+			if (chr < skip_base)
 				return "[unknown glue parameter!]";
-			return esc("skip")+std::to_string(chrcode-skip_base);
+			return esc("skip")+std::to_string(chr-skip_base);
 		case assign_mu_glue:
-			if (chrcode < mu_skip_base)
+			if (chr < mu_skip_base)
 				return "[unknown glue parameter!]";
-			return esc("muskip")+std::to_string(chrcode-mu_skip_base);
+			return esc("muskip")+std::to_string(chr-mu_skip_base);
 		case assign_toks:
-			return esc("toks")+std::to_string(chrcode-toks_base);
+			return esc("toks")+std::to_string(chr-toks_base);
 		case assign_int: 
-			if (chrcode < count_base)
+			if (chr < count_base)
 				return "[unknown integer parameter!]";
-			return esc("count")+std::to_string(chrcode-count_base);
+			return esc("count")+std::to_string(chr-count_base);
 		case assign_dimen:
-			if (chrcode < scaled_base)
+			if (chr < scaled_base)
 				return "[unknown dimen parameter!]";
-			return esc("dimen")+std::to_string(chrcode-scaled_base);
+			return esc("dimen")+std::to_string(chr-scaled_base);
 		case char_given:
-			return esc("char")+hex(chrcode);
+			return esc("char")+hex(chr);
 		case math_given:
-			return esc("mathchar")+hex(chrcode); 
+			return esc("mathchar")+hex(chr); 
 		case set_font:
-			return "select font "+fontname[chrcode]+(fontsize[chrcode] == fontdsize[chrcode] ? "" : " at "+std::to_string(double(fontsize[chrcode])/unity)+"pt");
+			return "select font "+fontname[chr]+(fontsize[chr] == fontdsize[chr] ? "" : " at "+std::to_string(double(fontsize[chr])/unity)+"pt");
 		case tab_mark:
 		case left_brace:
 		case right_brace:
@@ -180,7 +180,7 @@ std::string cmdchr(quarterword cmd, halfword chrcode)
 		case spacer:
 		case letter:
 		case other_char:
-			return chr_cmd(caract[cmd], chrcode);
+			return chr_cmd(caract[cmd], chr);
 		case math_style:
 			return "Unknown style!";
 		case extension: 
@@ -305,10 +305,7 @@ static std::string asMark(int p)
 	return "{"+(p < himemmin || p > memend ? esc("CLOBBERED.") : tokenlist(link(p), 0, maxprintline-10))+"}";
 }
 
-std::string meaning(void)
-{
-	return cmdchr(curcmd, curchr)+(curcmd >= call ? ":\n"+tokenshow(curchr) : curcmd == top_bot_mark ?":\n"+tokenshow(curmark[curchr]) : "");
-}
+std::string meaning(eightbits cmd, halfword chr) { return cmdchr(cmd, chr)+(cmd >= call ? ":\n"+tokenshow(chr) : cmd == top_bot_mark ?":\n"+tokenshow(curmark[chr]) : ""); }
 
 std::string asMode(int m)
 {
@@ -1044,9 +1041,9 @@ void diagnostic(const std::string &s)
 	selector = oldsetting;
 }
 
-void showcurcmdchr(void)
+void showcurcmdchr(eightbits cmd, halfword chr)
 {
-	diagnostic("\r{"+(mode != shownmode ? asMode(mode)+": " : "")+cmdchr(curcmd, curchr)+"}");
+	diagnostic("\r{"+(mode != shownmode ? asMode(mode)+": " : "")+cmdchr(cmd, chr)+"}");
 	shownmode = mode;
 }
 
@@ -1129,10 +1126,12 @@ static std::string showactivities(void)
 	return oss.str();
 }
 
-void showwhatever(void)
+void showwhatever(halfword chr)
 {
 	int val;
-	switch (curchr)
+	halfword cs;
+	eightbits cmd;
+	switch (chr)
 	{
 		case show_lists:
 			diagnostic(showactivities());
@@ -1152,8 +1151,8 @@ void showwhatever(void)
 			selector = term_and_log;
 			break;
 		case show_code:
-			gettoken();
-			printnl("> "+(curcs ? scs(curcs)+"=" : "")+meaning());
+			std::tie(cmd, chr, std::ignore, cs) = gettoken();
+			printnl("> "+(cs ? scs(cs)+"=" : "")+meaning(cmd, chr));
 			break;
 		default:
 			thetoks();

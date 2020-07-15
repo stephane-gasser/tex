@@ -1,7 +1,7 @@
 <map id="wrap_lig" name="wrap_lig">
-<area shape="rect" id="node1" title=" " alt="" coords="5,56,76,83"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="273,5,315,32"/>
-<area shape="rect" id="node3" href="$newligature_8cpp.html#a1a2276ecb780325b9754cb9934e421bf" title=" " alt="" coords="124,31,212,57"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="260,56,328,83"/>
-<area shape="rect" id="node5" href="$test_8cpp.html#ac8da963855e09bf929c085486f4a3b47" title=" " alt="" coords="146,132,190,159"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,76,108"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="147,5,189,32"/>
+<area shape="rect" id="node3" href="$noeud_8cpp.html#a1a2276ecb780325b9754cb9934e421bf" title=" " alt="" coords="124,56,212,83"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="134,107,202,133"/>
+<area shape="rect" id="node5" href="$test_8cpp.html#ac8da963855e09bf929c085486f4a3b47" title=" " alt="" coords="146,157,190,184"/>
 </map>

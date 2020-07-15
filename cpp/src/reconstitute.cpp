@@ -2,7 +2,6 @@
 #include "getavail.h"
 #include "noeud.h"
 #include "pauseforinstructions.h"
-#include "freenode.h"
 
 static void set_cur_r(int j, int n, halfword &curr, halfword &currh, halfword hchar)
 {

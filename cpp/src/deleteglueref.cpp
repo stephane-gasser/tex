@@ -1,5 +1,5 @@
 #include "deleteglueref.h"
-#include "freenode.h"
+#include "noeud.h"
 
 void deleteglueref(halfword p)
 {

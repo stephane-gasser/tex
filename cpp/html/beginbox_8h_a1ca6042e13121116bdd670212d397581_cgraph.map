@@ -1,16 +1,17 @@
 <map id="beginbox" name="beginbox">
-<area shape="rect" id="node1" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="5,333,80,360"/>
+<area shape="rect" id="node1" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="5,359,80,385"/>
 <area shape="rect" id="node2" href="$impression_8cpp.html#a209bd98968041d00181afd1062c967b8" title=" " alt="" coords="163,5,231,32"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="327,283,370,309"/>
 <area shape="rect" id="node4" href="$impression_8cpp.html#a34ba44ad16d97758f9eeaa0c98893a3c" title=" " alt="" coords="165,107,230,133"/>
-<area shape="rect" id="node5" href="$copynodelist_8cpp.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="150,181,245,208"/>
+<area shape="rect" id="node5" href="$noeud_8cpp.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="150,181,245,208"/>
 <area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="327,232,370,259"/>
 <area shape="rect" id="node7" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="315,119,383,145"/>
 <area shape="rect" id="node8" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="325,333,372,360"/>
-<area shape="rect" id="node9" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="325,511,373,537"/>
-<area shape="rect" id="node10" href="$lecture_8cpp.html#acd91137563c568c716525074e0b5ef8b" title=" " alt="" coords="128,435,267,461"/>
-<area shape="rect" id="node11" href="$lecture_8cpp.html#a5582312d4ec520bdb117d4bd96c59e9f" title=" " alt="" coords="144,485,251,512"/>
-<area shape="rect" id="node12" href="$lecture_8cpp.html#a514cdc68b010264d20e363f694fec240" title=" " alt="" coords="148,536,247,563"/>
-<area shape="rect" id="node13" href="$constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title="repositioning distance, in sp" alt="" coords="149,587,246,613"/>
-<area shape="rect" id="node14" href="$vsplit_8cpp.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="171,333,224,360"/>
+<area shape="rect" id="node9" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="325,536,373,563"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9" title=" " alt="" coords="169,435,226,461"/>
+<area shape="rect" id="node11" href="$lecture_8cpp.html#acd91137563c568c716525074e0b5ef8b" title=" " alt="" coords="128,485,267,512"/>
+<area shape="rect" id="node12" href="$lecture_8cpp.html#a5582312d4ec520bdb117d4bd96c59e9f" title=" " alt="" coords="144,536,251,563"/>
+<area shape="rect" id="node13" href="$lecture_8cpp.html#a514cdc68b010264d20e363f694fec240" title=" " alt="" coords="148,587,247,613"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title="repositioning distance, in sp" alt="" coords="149,637,246,664"/>
+<area shape="rect" id="node15" href="$vsplit_8cpp.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="171,333,224,360"/>
 </map>

@@ -2,17 +2,15 @@
 #include "unsave.h"
 #include "impression.h"
 #include "erreur.h"
-#include "flushnodelist.h"
 #include "popnest.h"
-#include "flushnodelist.h"
 #include "noeud.h"
 #include "lecture.h"
 #include "pushnest.h"
 #include "texte.h"
 
-void builddiscretionary(void)
+void builddiscretionary(halfword tok)
 {
-	unsave();
+	unsave(tok);
 	// Prune the current list, if necessary, until it contains only |char_node|, |kern_node|, |hlist_node|, |vlist_node|, |rule_node|,
 	//  and |ligature_node| items; set |n| to the length of the list, and set |q| to the list's tail
 	auto q = head;
@@ -34,7 +32,7 @@ void builddiscretionary(void)
 	}
 	p = link(head);
 	popnest();
-	switch (savestack[saveptr-1].int_)
+	switch (saved(-1))
 	{
 		case 0: 
 			pre_break(tail) = p;
@@ -60,9 +58,9 @@ void builddiscretionary(void)
 			saveptr--;
 			return;
 	}
-	savestack[saveptr-1].int_++;
+	saved(-1)++;
 	newsavelevel(10);
-	scanleftbrace();
+	std::tie(std::ignore, std::ignore, tok) = scanleftbrace();
 	pushnest();
 	mode = -hmode;
 	space_factor = 1000;

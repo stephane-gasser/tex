@@ -6,7 +6,7 @@
 #include "beginfilereading.h"
 #include "texte.h"
 #include "backinput.h"
-#include "flushnodelist.h"
+#include "noeud.h"
 #include "endfilereading.h"
 #include "normalizeselector.h"
 #include <iostream>
@@ -44,10 +44,10 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 				case '9':
 					if (deletionsallowed)
 					{
-						int s1 = curtok;
-						int s2 = curcmd;
-						int s3 = curchr;
-						int s4 = alignstate;
+						/*auto s1 = tok;
+						auto s2 = cmd;
+						auto s3 = chr;*/
+						auto s4 = alignstate;
 						alignstate = 1000000;
 						OKtointerrupt = false;
 						if (last > First + 1 && buffer[First+1] >= '0' && buffer[First+1] <= '9')
@@ -56,12 +56,12 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 							c -= '0';
 						while (c > 0)
 						{
-							gettoken();
+							auto [cmd, chr, tok, cs] = gettoken();
 							c--;
 						}
-						curtok = s1;
-						curcmd = s2;
-						curchr = s3;
+						/*tok = s1;
+						cmd = s2;
+						chr = s3;*/
 						alignstate = s4;
 						OKtointerrupt = true;
 						helpline = "I have just deleted some text, as you asked.";
@@ -160,10 +160,10 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 	println();
 }
 
-void inserror(const std::string &msg, const std::string &hlp, bool deletionsallowed)
+void inserror(halfword tok, const std::string &msg, const std::string &hlp, bool deletionsallowed)
 {
 	OKtointerrupt = false;
-	backinput();
+	backinput(tok);
 	token_type = inserted;
 	OKtointerrupt = true;
 	error(msg, hlp, deletionsallowed);
@@ -174,10 +174,10 @@ void inserror(const std::string &msg, const std::string &hlp, bool deletionsallo
 //!just before issuing an error message. This routine, like \a back_input,
 //!requires that \a cur_tok has been set. We disable interrupts during the
 //!call of \a back_input so that the help message won't be lost.
-void backerror(const std::string &msg, const std::string &hlp)
+void backerror(halfword tok, const std::string &msg, const std::string &hlp)
 {
 	OKtointerrupt = false;
-	backinput();
+	backinput(tok);
 	OKtointerrupt = true;
 	error(msg, hlp);
 }
@@ -253,13 +253,13 @@ void check_full_save_stack(void)
 }
 
 void interror(int n, const std::string &msg, const std::string &hlp) { error(msg+" ("+std::to_string(n)+")", hlp); }
-void reportillegalcase(void) { error("You can't use `"+cmdchr(curcmd, curchr)+"' in "+asMode(mode), "Sorry, but I'm not programmed to handle this case;\nI'll just pretend that you didn't ask for it.\nIf you're in the wrong mode, you might be able to\nreturn to the right one by typing `I}' or `I$' or `I\\par'."); }
+void reportillegalcase(eightbits cmd, halfword chr) { error("You can't use `"+cmdchr(cmd, chr)+"' in "+asMode(mode), "Sorry, but I'm not programmed to handle this case;\nI'll just pretend that you didn't ask for it.\nIf you're in the wrong mode, you might be able to\nreturn to the right one by typing `I}' or `I$' or `I\\par'."); }
 
-bool privileged(void)
+bool privileged(eightbits cmd, halfword chr)
 {
 	if (mode > 0)
 		return true;
-	reportillegalcase();
+	reportillegalcase(cmd, chr);
 	return false;
 }
 

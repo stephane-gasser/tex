@@ -1,7 +1,6 @@
 <map id="write_stream" name="write_stream">
-<area shape="rect" id="node1" title="stream number (0 to 17)" alt="" coords="309,80,407,107"/>
+<area shape="rect" id="node1" title="stream number (0 to 17)" alt="" coords="145,80,243,107"/>
 <area shape="rect" id="node2" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="5,29,97,56"/>
-<area shape="rect" id="node3" href="$newwritewhatsit_8h.html#ad3cbbd2a868a1a14f4e212db0053c0a3" title=" " alt="" coords="145,55,261,81"/>
-<area shape="rect" id="node4" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="169,105,237,132"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#a2a779072060e50671c1da678c47cdceb" title=" " alt="" coords="157,156,249,183"/>
+<area shape="rect" id="node3" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="17,80,85,107"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#a2a779072060e50671c1da678c47cdceb" title=" " alt="" coords="5,131,97,157"/>
 </map>

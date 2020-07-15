@@ -1,8 +1,5 @@
 #include "hyphenate.h"
-#include "flushnodelist.h"
-#include "freenode.h"
 #include "reconstitute.h"
-#include "getnode.h"
 #include "noeud.h"
 #include "flushlist.h"
 #include "texte.h"

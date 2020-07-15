@@ -1,5 +1,5 @@
 #include "flushmath.h"
-#include "flushnodelist.h"
+#include "noeud.h"
 
 void flushmath(void)
 {

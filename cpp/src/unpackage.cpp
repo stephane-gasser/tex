@@ -2,13 +2,10 @@
 #include "lecture.h"
 #include "impression.h"
 #include "erreur.h"
-#include "copynodelist.h"
-#include "freenode.h"
-#include "texte.h"
+#include "noeud.h"
 
-void unpackage(void)
+void unpackage(halfword c)
 {
-	auto c = curchr;
 	int val = scaneightbitint();
 	halfword p = box(val);
 	if (p == 0)

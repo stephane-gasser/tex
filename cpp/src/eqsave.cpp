@@ -8,7 +8,8 @@ void eqsave(halfword p, quarterword l)
 		save_type(saveptr) = restore_zero;
 	else
 	{
-		savestack[saveptr++] = eqtb[p];
+		saved(0) = eqtb[p].int_;
+		saveptr++;
 		save_type(saveptr) = restore_old_value;
 	}
 	save_level(saveptr) = l;

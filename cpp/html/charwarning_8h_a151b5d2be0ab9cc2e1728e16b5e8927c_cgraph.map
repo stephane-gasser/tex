@@ -1,9 +1,5 @@
 <map id="charwarning" name="charwarning">
-<area shape="rect" id="node1" title=" " alt="" coords="5,132,97,159"/>
-<area shape="rect" id="node2" href="$impression_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title="Prepare to do some tracing." alt="" coords="153,5,265,32"/>
-<area shape="rect" id="node3" href="$impression_8cpp.html#a2b9dfc9ab19206e2b5e2d11ba6c94c70" title=" " alt="" coords="158,56,261,83"/>
-<area shape="rect" id="node4" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="321,157,368,184"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#a6f24c68dc4ffde288d61dcb71d93170e" title=" " alt="" coords="416,183,491,209"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="181,157,238,184"/>
-<area shape="rect" id="node7" href="$charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1" title=" " alt="" coords="145,259,273,285"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,97,57"/>
+<area shape="rect" id="node2" href="$impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba" title="Do some tracing." alt="" coords="169,5,250,32"/>
+<area shape="rect" id="node3" href="$charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1" title=" " alt="" coords="145,56,273,83"/>
 </map>

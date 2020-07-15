@@ -6,14 +6,13 @@
 #include "unsave.h"
 #include "hpack.h"
 #include "vpackage.h"
-#include "getnode.h"
 #include "initspan.h"
 #include "popnest.h"
 #include "lecture.h"
 #include "initcol.h"
 #include "texte.h"
 
-bool fincol(void)
+bool fincol(halfword tok)
 {
 	halfword p, q, r, s, u;
 	scaled w;
@@ -67,7 +66,7 @@ bool fincol(void)
 		}
 	if (extra_info(curalign) != span_code)
 	{
-		unsave();
+		unsave(tok);
 		newsavelevel(6);
 		if (mode == -hmode)
 		{
@@ -147,10 +146,11 @@ bool fincol(void)
 		initspan(p);
 	}
 	alignstate = 1000000;
+	eightbits cmd;
 	do
-		getxtoken();
-	while (curcmd == spacer);
+		std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
+	while (cmd == spacer);
 	curalign = p;
-	initcol();
+	initcol(cmd, tok);
 	return false;
 }

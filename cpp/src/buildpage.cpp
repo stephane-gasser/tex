@@ -1,8 +1,6 @@
 #include "buildpage.h"
 #include "freezepagespecs.h"
 #include "deleteglueref.h"
-#include "flushnodelist.h"
-#include "getnode.h"
 #include "ensurevbox.h"
 #include "xovern.h"
 #include "impression.h"

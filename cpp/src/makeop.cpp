@@ -4,7 +4,6 @@
 #include "half.h"
 #include "noeud.h"
 #include "rebox.h"
-#include "freenode.h"
 
 static int big_op_spacing1(void) { return mathex(9); } //!< minimum clearance above a displayed op
 static int big_op_spacing2(void) { return mathex(10); } //!< minimum clearance below a displayed op

@@ -1,6 +1,5 @@
 #include "prunepagetop.h"
 #include "noeud.h"
-#include "flushnodelist.h"
 #include "erreur.h"
 
 halfword prunepagetop(halfword p)

@@ -1,7 +1,6 @@
 <map id="cur_fam" name="cur_fam">
-<area shape="rect" id="node1" title=" " alt="" coords="333,81,403,108"/>
+<area shape="rect" id="node1" title=" " alt="" coords="333,56,403,83"/>
 <area shape="rect" id="node2" href="$constantes_8h.html#aa8ac4bb40ad503916456979c1a5a287e" title=" " alt="" coords="167,5,267,32"/>
 <area shape="rect" id="node3" href="$setmathchar_8h.html#a78741c557d11e65fff7328bc2b1a6449" title=" " alt="" coords="5,31,100,57"/>
-<area shape="rect" id="node4" href="$newhyphexceptions_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="148,107,285,133"/>
-<area shape="rect" id="node5" href="$newpatterns_8h.html#a1356e8c74d8485cbd0e20c09f2c25886" title=" " alt="" coords="170,157,263,184"/>
+<area shape="rect" id="node4" href="$noeud_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="148,107,285,133"/>
 </map>

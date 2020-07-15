@@ -1,0 +1,8 @@
+<map id="trapzeroglue" name="trapzeroglue">
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,99,133"/>
+<area shape="rect" id="node2" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="147,5,243,32"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#ab2def9ced9c196d76adb71f31b4f8619" title="reference count of a glue specification" alt="" coords="291,31,397,57"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title="the shrinkability of this glob of glue" alt="" coords="166,107,223,133"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc" title="the stretchability of this glob of glue" alt="" coords="163,157,226,184"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="168,208,221,235"/>
+</map>

@@ -2,18 +2,17 @@
 #include "lecture.h"
 #include "impression.h"
 #include "erreur.h"
-#include "getnode.h"
+#include "noeud.h"
 #include "texte.h"
 
-void mathfraction(void)
+void mathfraction(halfword c, halfword tok)
 {
-	smallnumber c = curchr;
 	if (incompleat_noad)
 	{
 		if (c >= delimited_code)
 		{
-			scandelimiter(garbage, false);
-			scandelimiter(garbage, false);
+			scandelimiter(garbage, false, tok);
+			scandelimiter(garbage, false, tok);
 		}
 		if (c%delimited_code == 0)
 			int _ = scan_normal_dimen();
@@ -33,8 +32,8 @@ void mathfraction(void)
 		tail = head;
 		if (c >= delimited_code)
 		{
-			scandelimiter(left_delimiter(incompleat_noad), false);
-			scandelimiter(right_delimiter(incompleat_noad), false);
+			scandelimiter(left_delimiter(incompleat_noad), false, tok);
+			scandelimiter(right_delimiter(incompleat_noad), false, tok);
 		}
 		switch (c%delimited_code)
 		{

@@ -1,25 +1,22 @@
 <map id="macrocall" name="macrocall">
-<area shape="rect" id="node1" title=" " alt="" coords="5,524,84,551"/>
-<area shape="rect" id="node2" href="$erreur_8cpp.html#ae3f6c9874539e99c231da30e2a94c0db" title="Back up one token and call error." alt="" coords="150,246,226,272"/>
-<area shape="rect" id="node3" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="292,246,371,272"/>
-<area shape="rect" id="node4" href="$lecture_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="419,170,511,196"/>
-<area shape="rect" id="node5" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="431,347,498,374"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="813,575,855,602"/>
-<area shape="rect" id="node7" href="$erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="566,499,637,526"/>
-<area shape="rect" id="node8" href="$runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="566,347,637,374"/>
-<area shape="rect" id="node9" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="811,271,857,298"/>
-<area shape="rect" id="node10" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="699,246,756,272"/>
-<area shape="rect" id="node11" href="$impression_8cpp.html#a5f145598c2e272be764bdc5078d738f0" title=" " alt="" coords="692,702,763,728"/>
-<area shape="rect" id="node12" href="$impression_8cpp.html#a7a622e389fe45f9b10a5918a9d18c57a" title=" " alt="" coords="815,803,853,830"/>
-<area shape="rect" id="node13" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="307,296,355,323"/>
-<area shape="rect" id="node14" href="$lecture_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="429,448,501,475"/>
-<area shape="rect" id="node15" href="$impression_8cpp.html#a08e6de05705ca19525644c3c49d4c7ee" title=" " alt="" coords="559,550,644,576"/>
-<area shape="rect" id="node16" href="$impression_8cpp.html#ae7f34298980b60c63ccdee9eb0225d67" title="Prepare to do some tracing." alt="" coords="132,702,244,728"/>
-<area shape="rect" id="node17" href="$lecture_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="137,752,239,779"/>
-<area shape="rect" id="node18" href="$impression_8cpp.html#a2b9dfc9ab19206e2b5e2d11ba6c94c70" title=" " alt="" coords="137,803,239,830"/>
-<area shape="rect" id="node19" href="$flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a" title=" " alt="" coords="298,600,365,627"/>
-<area shape="rect" id="node20" href="$erreur_8cpp.html#a774246bf573bd1096f9a32a8dc288840" title=" " alt="" coords="155,296,221,323"/>
-<area shape="rect" id="node21" href="$impression_8cpp.html#af7cfdbcf9e3fceeef51678778974091c" title=" " alt="" coords="167,955,209,982"/>
-<area shape="rect" id="node22" href="$parametres_8h.html#a3031faaf45fa3af8e62335eaab553572" title=" " alt="" coords="133,1006,243,1032"/>
-<area shape="rect" id="node23" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="165,1056,211,1083"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,448,84,475"/>
+<area shape="rect" id="node2" href="$erreur_8cpp.html#ae3f6c9874539e99c231da30e2a94c0db" title="Back up one token and call error." alt="" coords="149,296,225,323"/>
+<area shape="rect" id="node3" href="$backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="291,245,369,272"/>
+<area shape="rect" id="node4" href="$lecture_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="417,169,509,196"/>
+<area shape="rect" id="node5" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="430,245,497,272"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="809,271,852,297"/>
+<area shape="rect" id="node7" href="$erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="565,144,635,171"/>
+<area shape="rect" id="node8" href="$runaway_8cpp.html#ac542a0034fbac204b2532deac2e1e414" title=" " alt="" coords="565,321,635,348"/>
+<area shape="rect" id="node9" href="$impression_8cpp.html#a5f145598c2e272be764bdc5078d738f0" title=" " alt="" coords="691,397,761,424"/>
+<area shape="rect" id="node10" href="$impression_8cpp.html#a7a622e389fe45f9b10a5918a9d18c57a" title=" " alt="" coords="811,575,850,601"/>
+<area shape="rect" id="node11" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="306,397,354,424"/>
+<area shape="rect" id="node12" href="$lecture_8cpp.html#a1c0927e54ff31ab87d043a2147e3b218" title=" " alt="" coords="427,448,499,475"/>
+<area shape="rect" id="node13" href="$impression_8cpp.html#a08e6de05705ca19525644c3c49d4c7ee" title=" " alt="" coords="557,397,643,424"/>
+<area shape="rect" id="node14" href="$lecture_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="136,600,239,627"/>
+<area shape="rect" id="node15" href="$impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba" title="Do some tracing." alt="" coords="147,651,228,677"/>
+<area shape="rect" id="node16" href="$flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a" title=" " alt="" coords="693,119,759,145"/>
+<area shape="rect" id="node17" href="$erreur_8cpp.html#a774246bf573bd1096f9a32a8dc288840" title=" " alt="" coords="155,347,220,373"/>
+<area shape="rect" id="node18" href="$impression_8cpp.html#af7cfdbcf9e3fceeef51678778974091c" title=" " alt="" coords="166,803,209,829"/>
+<area shape="rect" id="node19" href="$parametres_8h.html#a3031faaf45fa3af8e62335eaab553572" title=" " alt="" coords="132,853,243,880"/>
+<area shape="rect" id="node20" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="164,904,211,931"/>
 </map>

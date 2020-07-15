@@ -1,11 +1,9 @@
 <map id="src/makeop.cpp" name="src/makeop.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="326,5,441,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="227,5,342,32"/>
 <area shape="rect" id="node2" href="$makeop_8h.html" title=" " alt="" coords="5,80,84,107"/>
 <area shape="rect" id="node3" href="$fetch_8h.html" title=" " alt="" coords="108,80,171,107"/>
 <area shape="rect" id="node4" href="$cleanbox_8h.html" title=" " alt="" coords="195,80,281,107"/>
 <area shape="rect" id="node5" href="$half_8h.html" title=" " alt="" coords="305,80,360,107"/>
-<area shape="rect" id="node6" href="$newnullbox_8h.html" title=" " alt="" coords="385,80,483,107"/>
-<area shape="rect" id="node7" href="$rebox_8h.html" title=" " alt="" coords="508,80,573,107"/>
-<area shape="rect" id="node8" href="$freenode_8h.html" title=" " alt="" coords="598,80,681,107"/>
-<area shape="rect" id="node9" href="$newkern_8h.html" title=" " alt="" coords="705,80,787,107"/>
+<area shape="rect" id="node6" href="$noeud_8h.html" title=" " alt="" coords="384,80,452,107"/>
+<area shape="rect" id="node7" href="$rebox_8h.html" title=" " alt="" coords="476,80,541,107"/>
 </map>

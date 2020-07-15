@@ -79,7 +79,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="overbar_8h_source.html">overbar.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="newkern_8h_source.html">newkern.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="noeud_8h_source.html">noeud.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="fractionrule_8h_source.html">fractionrule.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="vpackage_8h_source.html">vpackage.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -87,11 +87,11 @@ Graphe des dépendances par inclusion de overbar.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="overbar_8cpp__incl.png" border="0" usemap="#src_2overbar_8cpp" alt=""/></div>
 <map name="src_2overbar_8cpp" id="src_2overbar_8cpp">
-<area shape="rect" title=" " alt="" coords="147,5,258,32"/>
+<area shape="rect" title=" " alt="" coords="137,5,247,32"/>
 <area shape="rect" href="overbar_8h.html" title=" " alt="" coords="5,80,80,107"/>
-<area shape="rect" href="newkern_8h.html" title=" " alt="" coords="104,80,187,107"/>
-<area shape="rect" href="fractionrule_8h.html" title=" " alt="" coords="211,80,309,107"/>
-<area shape="rect" href="vpackage_8h.html" title=" " alt="" coords="333,80,422,107"/>
+<area shape="rect" href="noeud_8h.html" title=" " alt="" coords="105,80,173,107"/>
+<area shape="rect" href="fractionrule_8h.html" title=" " alt="" coords="197,80,294,107"/>
+<area shape="rect" href="vpackage_8h.html" title=" " alt="" coords="318,80,407,107"/>
 </map>
 </div>
 </div>
@@ -137,11 +137,11 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="overbar_8cpp_source.html#l00006">6</a> du fichier <a class="el" href="overbar_8cpp_source.html">overbar.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>(k);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>(k);</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = b;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6">fractionrule</a>(t);</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q) = p;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    p = <a class="code" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>(t);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    p = <a class="code" href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>(t);</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = q;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665">vpack</a>(p, 0, <a class="code" href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a>);</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
@@ -153,7 +153,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="rect" title=" " alt="" coords="5,81,71,108"/>
 <area shape="rect" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="119,5,205,32"/>
 <area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="141,56,183,83"/>
-<area shape="rect" href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="127,107,197,133"/>
+<area shape="rect" href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="127,107,197,133"/>
 <area shape="rect" href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="133,157,191,184"/>
 </map>
 </div>
@@ -172,10 +172,10 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="aconstantes_8h_html_a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b"><div class="ttname"><a href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a></div><div class="ttdeci">@ additional</div><div class="ttdoc">a box dimension is increased from the natural one</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00600">constantes.h:600</a></div></div>
-<div class="ttc" id="avpackage_8cpp_html_a9f1d86e5c299878041fb0f88d75d3665"><div class="ttname"><a href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665">vpack</a></div><div class="ttdeci">halfword vpack(halfword p, scaled h, smallnumber m)</div><div class="ttdoc">special case of unconstrained depth</div><div class="ttdef"><b>Definition:</b> <a href="vpackage_8cpp_source.html#l00026">vpackage.cpp:26</a></div></div>
+<div class="ttc" id="avpackage_8cpp_html_a9f1d86e5c299878041fb0f88d75d3665"><div class="ttname"><a href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665">vpack</a></div><div class="ttdeci">halfword vpack(halfword p, scaled h, smallnumber m)</div><div class="ttdoc">special case of unconstrained depth</div><div class="ttdef"><b>Definition:</b> <a href="vpackage_8cpp_source.html#l00023">vpackage.cpp:23</a></div></div>
+<div class="ttc" id="anoeud_8cpp_html_af78e07183c617d97a350cc11c9c18d37"><div class="ttname"><a href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a></div><div class="ttdeci">halfword newkern(scaled w)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00625">noeud.cpp:625</a></div></div>
 <div class="ttc" id="afractionrule_8cpp_html_aca27d6d4d1ded04c4038c9bca7f136f6"><div class="ttname"><a href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6">fractionrule</a></div><div class="ttdeci">halfword fractionrule(scaled t)</div><div class="ttdef"><b>Definition:</b> <a href="fractionrule_8cpp_source.html#l00004">fractionrule.cpp:4</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
-<div class="ttc" id="anewkern_8cpp_html_af78e07183c617d97a350cc11c9c18d37"><div class="ttname"><a href="newkern_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a></div><div class="ttdeci">halfword newkern(scaled w)</div><div class="ttdef"><b>Definition:</b> <a href="newkern_8cpp_source.html#l00004">newkern.cpp:4</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

@@ -1,6 +1,6 @@
 <map id="fractionrule" name="fractionrule">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,92,57"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="256,5,311,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="255,68,312,95"/>
-<area shape="rect" id="node4" href="$newrule_8cpp.html#adde749bc3235334488b223590d8e4a87" title=" " alt="" coords="140,31,207,57"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,92,83"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="146,5,201,32"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="145,56,202,83"/>
+<area shape="rect" id="node4" href="$noeud_8cpp.html#adde749bc3235334488b223590d8e4a87" title=" " alt="" coords="140,107,207,133"/>
 </map>

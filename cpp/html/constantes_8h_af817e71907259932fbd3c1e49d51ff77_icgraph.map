@@ -1,8 +1,8 @@
 <map id="write_tokens" name="write_tokens">
 <area shape="rect" id="node1" title="reference count of token list to write" alt="" coords="292,180,388,207"/>
-<area shape="rect" id="node2" href="$copynodelist_8h.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="147,29,242,56"/>
+<area shape="rect" id="node2" href="$noeud_8h.html#a10ce09de92566b94c5155b2fd74872f3" title=" " alt="" coords="147,29,242,56"/>
 <area shape="rect" id="node3" href="$doextension_8h.html#a13357a9c897542203e9f176b6c4f5732" title=" " alt="" coords="5,117,97,144"/>
-<area shape="rect" id="node4" href="$flushnodelist_8h.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="147,155,242,181"/>
+<area shape="rect" id="node4" href="$noeud_8h.html#a3e570593ced1e6ecba9565f34061a432" title=" " alt="" coords="147,155,242,181"/>
 <area shape="rect" id="node5" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="145,205,244,232"/>
 <area shape="rect" id="node6" href="$specialout_8h.html#aa0e252049df8a1e42832dadc540f2899" title=" " alt="" coords="154,256,235,283"/>
 <area shape="rect" id="node7" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="161,307,229,333"/>

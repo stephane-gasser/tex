@@ -2,17 +2,19 @@
 #include "lecture.h"
 #include "prefixedcommand.h"
 
-void doassignments(void)
+std::tuple<eightbits, halfword> doassignments(void)
 {
 	while (true)
 	{
+		eightbits cmd;
+		halfword chr, tok;
 		do
-			getxtoken();
-		while (curcmd == spacer || curcmd == escape);
-		if (curcmd <= max_non_prefixed_command)
-			return;
+			std::tie(cmd, chr, tok, std::ignore) = getxtoken();
+		while (cmd == spacer || cmd == escape);
+		if (cmd <= max_non_prefixed_command)
+			return std::make_tuple(cmd, tok);
 		setboxallowed = false;
-		prefixedcommand();
+		prefixedcommand(cmd, chr);
 		setboxallowed = true;
 	}
 }

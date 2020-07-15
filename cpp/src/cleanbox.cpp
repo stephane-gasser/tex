@@ -3,7 +3,6 @@
 #include "mlisttohlist.h"
 #include "hpack.h"
 #include "xovern.h"
-#include "freenode.h"
 
 halfword cleanbox(halfword p, smallnumber s)
 {

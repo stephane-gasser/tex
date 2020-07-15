@@ -1,0 +1,8 @@
+<map id="getnode" name="getnode">
+<area shape="rect" id="node1" title=" " alt="" coords="5,79,73,105"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="251,79,293,105"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a1d478b50b817866786b1bc1dc81a08b0" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="139,28,185,55"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a32cfafb65118c24464dc5287104ff994" title="the size field in empty variable&#45;size nodes" alt="" coords="121,79,203,105"/>
+<area shape="rect" id="node5" href="$erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="127,129,197,156"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="139,180,185,207"/>
+</map>

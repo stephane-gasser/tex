@@ -1,9 +1,9 @@
 #include "sortavail.h"
-#include "getnode.h"
+#include "noeud.h"
 
 void sortavail(void)
 {
-	halfword p = getnode(0x40'00'00'00);
+	halfword p = getnode(1<<30);
 	p = link(rover+1);
 	link(rover+1) = empty_flag;
 	halfword oldrover = rover;

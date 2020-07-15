@@ -2,7 +2,7 @@
 #include "xovern.h"
 #include "multandadd.h"
 #include "xnoverd.h"
-#include "getnode.h"
+#include "noeud.h"
 
 halfword mathglue(halfword g, scaled m)
 {

@@ -9,42 +9,38 @@
 //! slant to the right, per unit distance upward
 static int& slant(internalfontnumber f) { return param(slant_code, f); }
 
-void makeaccent(void)
+void makeaccent(eightbits cmd, halfword chr, halfword tok)
 {
-	float s, t;
-	halfword r;
-	scaled a, h, x, w, delta;
-	fourquarters i;
-	internalfontnumber f = cur_font();
+	auto f = cur_font();
 	auto p = newcharacter(f, scancharnum());
 	if (p)
 	{
-		x = x_height(f);
-		s = slant(f)/float(unity);
-		a = char_width(f, char_info(f, character(p)));
+		auto x = x_height(f);
+		auto s = slant(f)/float(unity);
+		auto a = char_width(f, char_info(f, character(p)));
 		doassignments();
 		halfword q = 0;
 		f = cur_font();
-		if (curcmd == letter || curcmd == other_char || curcmd == char_given)
-			q = newcharacter(f, curchr);
+		if (cmd == letter || cmd == other_char || cmd == char_given)
+			q = newcharacter(f, chr);
 		else 
-			if (curcmd == char_num)
+			if (cmd == char_num)
 				q = newcharacter(f, scancharnum());
 			else
-				backinput();
+				backinput(tok);
 		if (q)
 		{
-			t = slant(f)/float(unity);
-			i = char_info(f, character(q));
-			w = char_width(f, i);
-			h = char_height(f, i);
+			auto t = slant(f)/float(unity);
+			auto i = char_info(f, character(q));
+			auto w = char_width(f, i);
+			auto h = char_height(f, i);
 			if (h != x)
 			{
 				p = hpack(p, 0, additional);
 				shift_amount(p) = x-h;
 			}
-			delta = round((w-a)/2.0+h*t-x*s);
-			r = newkern(delta);
+			auto delta = round((w-a)/2.0+h*t-x*s);
+			auto r = newkern(delta);
 			subtype(r) = acc_kern;
 			link(tail) = r;
 			link(r) = p;

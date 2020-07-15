@@ -1,5 +1,8 @@
 #ifndef DOASSIGNMENTS_H
 #define DOASSIGNMENTS_H
+
 #include "globals.h"
-void doassignments(void);
+
+std::tuple<eightbits, halfword> doassignments(void);
+
 #endif

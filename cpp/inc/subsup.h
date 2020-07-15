@@ -1,5 +1,8 @@
 #ifndef SUBSUP_H
 #define SUBSUP_H
+
 #include "globals.h"
-void subsup(void);
+
+void subsup(eightbits);
+
 #endif

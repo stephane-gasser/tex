@@ -1,14 +1,11 @@
 #include "boxend.h"
-#include "appendtovlist.h"
 #include "buildpage.h"
 #include "noeud.h"
 #include "eqdefine.h"
 #include "geqdefine.h"
 #include "lecture.h"
-#include "appendglue.h"
 #include "impression.h"
 #include "erreur.h"
-#include "flushnodelist.h"
 #include "shipout.h"
 #include "texte.h"
 
@@ -58,18 +55,20 @@ void boxend(int boxcontext)
 			if (curbox && boxcontext > ship_out_flag)
 			// Append a new leader node that uses \a cur_box
 			{
+				halfword chr, tok;
+				eightbits cmd;
 				do
-					getxtoken();
-				while (curcmd == spacer || curcmd == escape);
-				if ((curcmd == hskip && abs(mode) != vmode) || (curcmd == vskip && abs(mode) == vmode))
+					std::tie(cmd, chr, tok, std::ignore) = getxtoken();
+				while (cmd == spacer || cmd == escape);
+				if ((cmd == hskip && abs(mode) != vmode) || (cmd == vskip && abs(mode) == vmode))
 				{
-					appendglue();
+					appendglue(chr);
 					subtype(tail) = boxcontext-(leader_flag-a_leaders);
 					leader_ptr(tail) = curbox;
 				}
 				else
 				{
-					backerror("Leaders not followed by proper glue", "You should say `\\leaders <box or rule><hskip or vskip>'.\nI found the <box or rule>, but there's no suitable\n<hskip or vskip>, so I'm ignoring these leaders.");
+					backerror(tok, "Leaders not followed by proper glue", "You should say `\\leaders <box or rule><hskip or vskip>'.\nI found the <box or rule>, but there's no suitable\n<hskip or vskip>, so I'm ignoring these leaders.");
 					flushnodelist(curbox);
 				}
 			}

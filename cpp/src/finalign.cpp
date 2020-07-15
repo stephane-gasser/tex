@@ -2,10 +2,9 @@
 #include "unsave.h"
 #include "flushlist.h"
 #include "deleteglueref.h"
-#include "freenode.h"
+#include "noeud.h"
 #include "hpack.h"
 #include "vpackage.h"
-#include "flushnodelist.h"
 #include "popalignment.h"
 #include "popnest.h"
 #include "impression.h"
@@ -18,7 +17,7 @@
 #include <cmath>
 #include "texte.h"
 
-void finalign(void)
+void finalign(halfword tok)
 {
 	halfword p, q, r, s, u, v;
 	scaled t, w;
@@ -28,10 +27,10 @@ void finalign(void)
 	memoryword auxsave;
 	if (curgroup != 6)
 		confusion("align1");
-	unsave();
+	unsave(tok);
 	if (curgroup != 6)
 		confusion("align0"); 
-	unsave();
+	unsave(tok);
 	if (nest[nestptr-1].modefield == mmode)
 		o = display_indent();
 	else
@@ -102,7 +101,7 @@ void finalign(void)
 	{
 		rulesave = overfull_rule();
 		overfull_rule() = 0;
-		p = hpack(preamble(), savestack[saveptr+1].int_, savestack[saveptr].int_);
+		p = hpack(preamble(), saved(1), saved(0));
 		overfull_rule() = rulesave;
 	}
 	else
@@ -114,7 +113,7 @@ void finalign(void)
 			width(q) = 0;
 			q = link(link(q));
 		} while (q);
-		p = vpack(preamble(), savestack[saveptr+1].int_, savestack[saveptr+0].int_);
+		p = vpack(preamble(), saved(1), saved(0));
 		q = link(preamble());
 		do
 		{
@@ -290,14 +289,14 @@ void finalign(void)
 	popnest();
 	if (mode == mmode)
 	{
-		doassignments();
-		if (curcmd != math_shift)
-			backerror("Missing $$ inserted", "Displays can use special alignments (like \\eqalignno)\nonly if nothing but the alignment itself is between $$'s.");
+		auto [cmd, tok] = doassignments();
+		if (cmd != math_shift)
+			backerror(tok, "Missing $$ inserted", "Displays can use special alignments (like \\eqalignno)\nonly if nothing but the alignment itself is between $$'s.");
 		else
 		{
-			getxtoken();
-			if (curcmd != math_shift)
-				backerror("Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
+			std::tie (cmd, std::ignore, tok, std::ignore) = getxtoken();
+			if (cmd != math_shift)
+				backerror(tok, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
 		popnest();
 		tail_append(newpenalty(pre_display_penalty()));
@@ -308,7 +307,7 @@ void finalign(void)
 		tail_append(newpenalty(post_display_penalty()));
 		tail_append(newparamglue(4));
 		aux = auxsave;
-		resumeafterdisplay();
+		resumeafterdisplay(tok);
 	}
 	else
 	{

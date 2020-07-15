@@ -1,8 +1,8 @@
 <map id="src/makeunder.cpp" name="src/makeunder.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="209,5,341,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="195,5,327,32"/>
 <area shape="rect" id="node2" href="$makeunder_8h.html" title=" " alt="" coords="5,80,101,107"/>
-<area shape="rect" id="node3" href="$newkern_8h.html" title=" " alt="" coords="125,80,208,107"/>
-<area shape="rect" id="node4" href="$cleanbox_8h.html" title=" " alt="" coords="232,80,317,107"/>
-<area shape="rect" id="node5" href="$vpackage_8h.html" title=" " alt="" coords="342,80,431,107"/>
-<area shape="rect" id="node6" href="$fractionrule_8h.html" title=" " alt="" coords="455,80,553,107"/>
+<area shape="rect" id="node3" href="$noeud_8h.html" title=" " alt="" coords="126,80,194,107"/>
+<area shape="rect" id="node4" href="$cleanbox_8h.html" title=" " alt="" coords="219,80,304,107"/>
+<area shape="rect" id="node5" href="$vpackage_8h.html" title=" " alt="" coords="329,80,418,107"/>
+<area shape="rect" id="node6" href="$fractionrule_8h.html" title=" " alt="" coords="442,80,539,107"/>
 </map>

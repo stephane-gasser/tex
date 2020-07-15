@@ -2,10 +2,10 @@
 <area shape="rect" id="node1" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="5,385,84,412"/>
 <area shape="rect" id="node2" href="$constantes_8cpp.html#aca760671a22142e0e59d362c04885039" title=" " alt="" coords="151,5,220,32"/>
 <area shape="rect" id="node3" href="$appspace_8cpp.html#ab93755269dcb3e9e521d7b8d050eee12" title="additional space at end of sentence" alt="" coords="139,56,232,83"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="287,208,329,235"/>
-<area shape="rect" id="node5" href="$newglue_8cpp.html#a42d1502b38c0f25378f1d603fa359f72" title=" " alt="" coords="150,157,221,184"/>
-<area shape="rect" id="node6" href="$newparamglue_8cpp.html#af03d944ebde3715a26223523628b2376" title=" " alt="" coords="132,208,239,235"/>
-<area shape="rect" id="node7" href="$newspec_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="148,259,223,285"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="287,360,329,387"/>
+<area shape="rect" id="node5" href="$noeud_8cpp.html#a42d1502b38c0f25378f1d603fa359f72" title=" " alt="" coords="150,157,221,184"/>
+<area shape="rect" id="node6" href="$noeud_8cpp.html#af03d944ebde3715a26223523628b2376" title=" " alt="" coords="132,208,239,235"/>
+<area shape="rect" id="node7" href="$noeud_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="148,259,223,285"/>
 <area shape="rect" id="node8" href="$constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title="the shrinkability of this glob of glue" alt="" coords="157,309,214,336"/>
 <area shape="rect" id="node9" href="$constantes_8cpp.html#ab698043008cf6c9bc6b69f9922080d32" title="normal space between words" alt="" coords="157,360,214,387"/>
 <area shape="rect" id="node10" href="$constantes_8cpp.html#ac5ca327fb829b3914bd662916d1545c3" title="shrink between words" alt="" coords="136,411,235,437"/>

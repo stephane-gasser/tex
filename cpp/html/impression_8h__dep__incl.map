@@ -1,5 +1,5 @@
 <map id="inc/impression.h" name="inc/impression.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5086,5,5203,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="4854,5,4971,32"/>
 <area shape="rect" id="node2" href="$aftermath_8cpp.html" title=" " alt="" coords="5,80,129,107"/>
 <area shape="rect" id="node3" href="$alteraux_8cpp.html" title=" " alt="" coords="154,80,269,107"/>
 <area shape="rect" id="node4" href="$alterprevgraf_8cpp.html" title=" " alt="" coords="293,80,434,107"/>
@@ -42,27 +42,24 @@
 <area shape="rect" id="node41" href="$mathfraction_8cpp.html" title=" " alt="" coords="6125,80,6266,107"/>
 <area shape="rect" id="node42" href="$mathleftright_8cpp.html" title=" " alt="" coords="6290,80,6431,107"/>
 <area shape="rect" id="node43" href="$mathlimitswitch_8cpp.html" title=" " alt="" coords="6455,80,6615,107"/>
-<area shape="rect" id="node44" href="$newfont_8cpp.html" title=" " alt="" coords="6639,80,6754,107"/>
-<area shape="rect" id="node45" href="$newhyphexceptions_8cpp.html" title=" " alt="" coords="6778,80,6962,107"/>
-<area shape="rect" id="node46" href="$newinteraction_8cpp.html" title=" " alt="" coords="6987,80,7140,107"/>
-<area shape="rect" id="node47" href="$newpatterns_8cpp.html" title=" " alt="" coords="7164,80,7304,107"/>
-<area shape="rect" id="node48" href="$offsave_8cpp.html" title=" " alt="" coords="7329,80,7441,107"/>
-<area shape="rect" id="node49" href="$openlogfile_8cpp.html" title=" " alt="" coords="7465,80,7595,107"/>
-<area shape="rect" id="node50" href="$pauseforinstructions_8cpp.html" title=" " alt="" coords="7619,80,7806,107"/>
-<area shape="rect" id="node51" href="$prefixedcommand_8cpp.html" title=" " alt="" coords="7831,80,8003,107"/>
-<area shape="rect" id="node52" href="$preparemag_8cpp.html" title=" " alt="" coords="8027,80,8164,107"/>
-<area shape="rect" id="node53" href="$promptfilename_8cpp.html" title=" " alt="" coords="8188,80,8347,107"/>
-<area shape="rect" id="node54" href="$readfontinfo_8cpp.html" title=" " alt="" coords="8371,80,8508,107"/>
-<area shape="rect" id="node55" href="$runaway_8cpp.html" title=" " alt="" coords="8532,80,8648,107"/>
-<area shape="rect" id="node56" href="$shipout_8cpp.html" title=" " alt="" coords="8672,80,8783,107"/>
-<area shape="rect" id="node57" href="$specialout_8cpp.html" title=" " alt="" coords="8807,80,8935,107"/>
-<area shape="rect" id="node58" href="$startinput_8cpp.html" title=" " alt="" coords="8959,80,9082,107"/>
-<area shape="rect" id="node59" href="$storefmtfile_8cpp.html" title=" " alt="" coords="9107,80,9241,107"/>
-<area shape="rect" id="node60" href="$subsup_8cpp.html" title=" " alt="" coords="9265,80,9376,107"/>
-<area shape="rect" id="node61" href="$terminput_8cpp.html" title=" " alt="" coords="9401,80,9523,107"/>
-<area shape="rect" id="node62" href="$unpackage_8cpp.html" title=" " alt="" coords="9548,80,9680,107"/>
-<area shape="rect" id="node63" href="$vertbreak_8cpp.html" title=" " alt="" coords="9705,80,9827,107"/>
-<area shape="rect" id="node64" href="$vpackage_8cpp.html" title=" " alt="" coords="9851,80,9977,107"/>
-<area shape="rect" id="node65" href="$vsplit_8cpp.html" title=" " alt="" coords="10001,80,10101,107"/>
-<area shape="rect" id="node66" href="$writeout_8cpp.html" title=" " alt="" coords="10126,80,10241,107"/>
+<area shape="rect" id="node44" href="$noeud_8cpp.html" title=" " alt="" coords="6639,80,6743,107"/>
+<area shape="rect" id="node45" href="$offsave_8cpp.html" title=" " alt="" coords="6767,80,6879,107"/>
+<area shape="rect" id="node46" href="$openlogfile_8cpp.html" title=" " alt="" coords="6903,80,7034,107"/>
+<area shape="rect" id="node47" href="$pauseforinstructions_8cpp.html" title=" " alt="" coords="7058,80,7245,107"/>
+<area shape="rect" id="node48" href="$prefixedcommand_8cpp.html" title=" " alt="" coords="7269,80,7441,107"/>
+<area shape="rect" id="node49" href="$preparemag_8cpp.html" title=" " alt="" coords="7465,80,7603,107"/>
+<area shape="rect" id="node50" href="$promptfilename_8cpp.html" title=" " alt="" coords="7627,80,7785,107"/>
+<area shape="rect" id="node51" href="$readfontinfo_8cpp.html" title=" " alt="" coords="7809,80,7947,107"/>
+<area shape="rect" id="node52" href="$runaway_8cpp.html" title=" " alt="" coords="7971,80,8087,107"/>
+<area shape="rect" id="node53" href="$shipout_8cpp.html" title=" " alt="" coords="8111,80,8221,107"/>
+<area shape="rect" id="node54" href="$specialout_8cpp.html" title=" " alt="" coords="8246,80,8374,107"/>
+<area shape="rect" id="node55" href="$startinput_8cpp.html" title=" " alt="" coords="8398,80,8521,107"/>
+<area shape="rect" id="node56" href="$storefmtfile_8cpp.html" title=" " alt="" coords="8545,80,8680,107"/>
+<area shape="rect" id="node57" href="$subsup_8cpp.html" title=" " alt="" coords="8704,80,8815,107"/>
+<area shape="rect" id="node58" href="$terminput_8cpp.html" title=" " alt="" coords="8839,80,8962,107"/>
+<area shape="rect" id="node59" href="$unpackage_8cpp.html" title=" " alt="" coords="8987,80,9119,107"/>
+<area shape="rect" id="node60" href="$vertbreak_8cpp.html" title=" " alt="" coords="9143,80,9266,107"/>
+<area shape="rect" id="node61" href="$vpackage_8cpp.html" title=" " alt="" coords="9290,80,9415,107"/>
+<area shape="rect" id="node62" href="$vsplit_8cpp.html" title=" " alt="" coords="9440,80,9540,107"/>
+<area shape="rect" id="node63" href="$writeout_8cpp.html" title=" " alt="" coords="9565,80,9679,107"/>
 </map>

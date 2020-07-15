@@ -150,8 +150,8 @@ int main()
 		if (loc < limit && cat_code(buffer[loc]))
 			startinput();
 		history = spotless;
-		maincontrol();
-		finalcleanup();
+		auto chr = maincontrol();
+		finalcleanup(chr);
 	}
 	catch(const std::string &msg)
 	{

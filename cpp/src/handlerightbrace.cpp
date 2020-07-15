@@ -7,9 +7,7 @@
 #include "endgraf.h"
 #include "vpackage.h"
 #include "popnest.h"
-#include "getnode.h"
 #include "deleteglueref.h"
-#include "freenode.h"
 #include "buildpage.h"
 #include "lecture.h"
 #include "buildpage.h"
@@ -23,7 +21,7 @@
 
 static int floating_penalty(void) { return int_par(floating_penalty_code); }
 
-void handlerightbrace(void)
+void handlerightbrace(halfword tok)
 {
 	halfword p, q;
 	scaled d;
@@ -31,7 +29,7 @@ void handlerightbrace(void)
 	switch (curgroup)
 	{
 		case simple_group: 
-			unsave();
+			unsave(tok);
 			break;
 		case bottom_level:
 			error("Too many }'s", "You've closed more groups than you opened.\nSuch booboos are generally harmless, so keep going.");
@@ -42,19 +40,19 @@ void handlerightbrace(void)
 			extrarightbrace();
 			break;
 		case hbox_group: 
-			package(0);
+			package(0, tok);
 			break;
 		case adjusted_hbox_group:
 			adjusttail = adjust_head;
-			package(0);
+			package(0, tok);
 			break;
 		case vbox_group:
 			endgraf();
-			package(0);
+			package(0, tok);
 			break;
 		case vtop_group:
 			endgraf();
-			package(4);
+			package(4, tok);
 			break;
 		case insert_group:
 			endgraf();
@@ -62,7 +60,7 @@ void handlerightbrace(void)
 			link(q)++;
 			d = split_max_depth();
 			f = floating_penalty();
-			unsave();
+			unsave(tok);
 			saveptr--;
 			p = vpack(link(head), 0, additional);
 			popnest();
@@ -94,12 +92,12 @@ void handlerightbrace(void)
 			{
 				error("Unbalanced output routine", "Your sneaky output routine has problematic {'s and/or }'s.\nI can't handle that very well; good luck.");
 				do
-					gettoken();
+					std::tie(std::ignore, std::ignore, std::ignore, std::ignore) = gettoken();
 				while (loc);
 			}
 			endtokenlist();
 			endgraf();
-			unsave();
+			unsave(tok);
 			outputactive = false;
 			insertpenalties = 0;
 			if (box(255))
@@ -125,18 +123,18 @@ void handlerightbrace(void)
 			builddiscretionary;
 			break;
 		case align_group:
-			backinput();
-			curtok = cs_token_flag+frozen_cr;
-			inserror("Missing "+esc("cr")+" inserted", "I'm guessing that you meant to end an alignment here.");
+			backinput(tok);
+			tok = cs_token_flag+frozen_cr;
+			inserror(tok, "Missing "+esc("cr")+" inserted", "I'm guessing that you meant to end an alignment here.");
 			break;
 		case no_align_group:
 			endgraf();
-			unsave();
+			unsave(tok);
 			alignpeek();
 			break;
 		case vcenter_group:
 			endgraf();
-			unsave();
+			unsave(tok);
 			saveptr -= 2;
 			p = vpack(link(head), saved(1), saved(0));
 			popnest();
@@ -146,10 +144,10 @@ void handlerightbrace(void)
 			info(nucleus(tail)) = p;
 			break;
 		case math_choice_group: 
-			buildchoices();
+			buildchoices(tok);
 			break;
 		case math_group:
-			unsave();
+			unsave(tok);
 			saveptr--;
 			math_type(saved(0)) = sub_mlist;
 			p = finmlist(0);

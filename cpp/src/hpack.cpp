@@ -1,7 +1,5 @@
 #include "hpack.h"
 #include "impression.h"
-#include "getnode.h"
-#include "freenode.h"
 #include "badness.h"
 #include "noeud.h"
 
