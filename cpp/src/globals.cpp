@@ -194,7 +194,6 @@ quarterword curc;
 fourquarters curi;
 halfword curalign;
 halfword curspan;
-halfword curloop;
 halfword alignptr;
 halfword curhead, curtail;
 halfword justbox;

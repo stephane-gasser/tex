@@ -97,12 +97,12 @@ Graphe des dépendances par inclusion de mathradical.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a6e86e5d001c758710d7dd35221efb5a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathradical_8cpp.html#a6e86e5d001c758710d7dd35221efb5a6">mathradical</a> (void)</td></tr>
-<tr class="separator:a6e86e5d001c758710d7dd35221efb5a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d2193a737b87ec5d5df8b2f6bb6f9eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathradical_8cpp.html#a3d2193a737b87ec5d5df8b2f6bb6f9eb">mathradical</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> tok)</td></tr>
+<tr class="separator:a3d2193a737b87ec5d5df8b2f6bb6f9eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a6e86e5d001c758710d7dd35221efb5a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e86e5d001c758710d7dd35221efb5a6">&#9670;&nbsp;</a></span>mathradical()</h2>
+<a id="a3d2193a737b87ec5d5df8b2f6bb6f9eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d2193a737b87ec5d5df8b2f6bb6f9eb">&#9670;&nbsp;</a></span>mathradical()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -110,8 +110,8 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void mathradical </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
+          <td class="paramname"><em>tok</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -125,19 +125,19 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="globals_8cpp.html#a5038b616b1201aeb12a176eb4b4513a8">mem</a>[<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>)].<a class="code" href="unionmemoryword.html#a5eafefa08094b518efdf6ac6463cbf00">hh</a> = <a class="code" href="globals_8cpp.html#a089894697e1175acc6c6fe2fe533b85b">emptyfield</a>;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="globals_8cpp.html#a5038b616b1201aeb12a176eb4b4513a8">mem</a>[<a class="code" href="constantes_8cpp.html#af3b3f58f78af4dd1fd2db67eaa6f6124">subscr</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>)].<a class="code" href="unionmemoryword.html#a5eafefa08094b518efdf6ac6463cbf00">hh</a> = <a class="code" href="globals_8cpp.html#a089894697e1175acc6c6fe2fe533b85b">emptyfield</a>;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="globals_8cpp.html#a5038b616b1201aeb12a176eb4b4513a8">mem</a>[<a class="code" href="constantes_8cpp.html#a7c168ea5f061757fddf1c55e0ca46911">supscr</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>)].<a class="code" href="unionmemoryword.html#a5eafefa08094b518efdf6ac6463cbf00">hh</a> = <a class="code" href="globals_8cpp.html#a089894697e1175acc6c6fe2fe533b85b">emptyfield</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="lecture_8cpp.html#a2e0bf53d32035b3ef5225b37ca94dacc">scandelimiter</a>(<a class="code" href="constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256">left_delimiter</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>), <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="lecture_8cpp.html#a8d6f92ddc744c20427a73f43c6b30e15">scandelimiter</a>(<a class="code" href="constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256">left_delimiter</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>), <span class="keyword">true</span>, tok);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="lecture_8cpp.html#a08e430fac951f380f2e3441e2c8c4fa4">scanmath</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>));</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="mathradical_8cpp_a6e86e5d001c758710d7dd35221efb5a6_cgraph.png" border="0" usemap="#mathradical_8cpp_a6e86e5d001c758710d7dd35221efb5a6_cgraph" alt=""/></div>
-<map name="mathradical_8cpp_a6e86e5d001c758710d7dd35221efb5a6_cgraph" id="mathradical_8cpp_a6e86e5d001c758710d7dd35221efb5a6_cgraph">
+<div class="center"><img src="mathradical_8cpp_a3d2193a737b87ec5d5df8b2f6bb6f9eb_cgraph.png" border="0" usemap="#mathradical_8cpp_a3d2193a737b87ec5d5df8b2f6bb6f9eb_cgraph" alt=""/></div>
+<map name="mathradical_8cpp_a3d2193a737b87ec5d5df8b2f6bb6f9eb_cgraph" id="mathradical_8cpp_a3d2193a737b87ec5d5df8b2f6bb6f9eb_cgraph">
 <area shape="rect" title=" " alt="" coords="5,233,95,260"/>
 <area shape="rect" href="noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="158,5,226,32"/>
 <area shape="rect" href="constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256" title="first delimiter field of a noad" alt="" coords="144,56,240,83"/>
 <area shape="rect" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="159,107,225,133"/>
-<area shape="rect" href="lecture_8cpp.html#a2e0bf53d32035b3ef5225b37ca94dacc" title=" " alt="" coords="143,157,241,184"/>
+<area shape="rect" href="lecture_8cpp.html#a8d6f92ddc744c20427a73f43c6b30e15" title=" " alt="" coords="143,157,241,184"/>
 <area shape="rect" href="lecture_8cpp.html#a08e430fac951f380f2e3441e2c8c4fa4" title=" " alt="" coords="153,208,231,235"/>
 <area shape="rect" href="constantes_8cpp.html#af3b3f58f78af4dd1fd2db67eaa6f6124" title="the subscr field of a noad" alt="" coords="161,259,223,285"/>
 <area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="158,309,226,336"/>
@@ -149,10 +149,10 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="mathradical_8cpp_a6e86e5d001c758710d7dd35221efb5a6_icgraph.png" border="0" usemap="#mathradical_8cpp_a6e86e5d001c758710d7dd35221efb5a6_icgraph" alt=""/></div>
-<map name="mathradical_8cpp_a6e86e5d001c758710d7dd35221efb5a6_icgraph" id="mathradical_8cpp_a6e86e5d001c758710d7dd35221efb5a6_icgraph">
+<div class="center"><img src="mathradical_8cpp_a3d2193a737b87ec5d5df8b2f6bb6f9eb_icgraph.png" border="0" usemap="#mathradical_8cpp_a3d2193a737b87ec5d5df8b2f6bb6f9eb_icgraph" alt=""/></div>
+<map name="mathradical_8cpp_a3d2193a737b87ec5d5df8b2f6bb6f9eb_icgraph" id="mathradical_8cpp_a3d2193a737b87ec5d5df8b2f6bb6f9eb_icgraph">
 <area shape="rect" title=" " alt="" coords="143,5,232,32"/>
-<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,5,95,32"/>
+<area shape="rect" href="maincontrol_8h.html#ae509bc209a74fcb44a9fc70140474583" title=" " alt="" coords="5,5,95,32"/>
 </map>
 </div>
 
@@ -162,15 +162,15 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aconstantes_8cpp_html_aac4ee1f610e90b2f8a5eaf39f1e66256"><div class="ttname"><a href="constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256">left_delimiter</a></div><div class="ttdeci">halfword left_delimiter(halfword p)</div><div class="ttdoc">first delimiter field of a noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00078">constantes.cpp:78</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a7c168ea5f061757fddf1c55e0ca46911"><div class="ttname"><a href="constantes_8cpp.html#a7c168ea5f061757fddf1c55e0ca46911">supscr</a></div><div class="ttdeci">halfword supscr(halfword p)</div><div class="ttdoc">the supscr field of a noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00089">constantes.cpp:89</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a61dadd085c1777f559549e05962b2c9eae6add990df0f5a06b40b06c978de04ac"><div class="ttname"><a href="constantes_8h.html#a61dadd085c1777f559549e05962b2c9eae6add990df0f5a06b40b06c978de04ac">radical_noad_size</a></div><div class="ttdeci">@ radical_noad_size</div><div class="ttdoc">number of mem words in a radical noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00079">constantes.h:79</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_a08e430fac951f380f2e3441e2c8c4fa4"><div class="ttname"><a href="lecture_8cpp.html#a08e430fac951f380f2e3441e2c8c4fa4">scanmath</a></div><div class="ttdeci">void scanmath(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00652">lecture.cpp:652</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a08e430fac951f380f2e3441e2c8c4fa4"><div class="ttname"><a href="lecture_8cpp.html#a08e430fac951f380f2e3441e2c8c4fa4">scanmath</a></div><div class="ttdeci">void scanmath(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00674">lecture.cpp:674</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a9242983f21f2b16d36d1fd5f955b185e"><div class="ttname"><a href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a></div><div class="ttdeci">halfword nucleus(halfword p)</div><div class="ttdoc">the nucleus field of a noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00084">constantes.cpp:84</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a089894697e1175acc6c6fe2fe533b85b"><div class="ttname"><a href="globals_8cpp.html#a089894697e1175acc6c6fe2fe533b85b">emptyfield</a></div><div class="ttdeci">twohalves emptyfield</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00185">globals.cpp:185</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a726ca809ffd3d67ab4b8476646f26635a0c8460bf328c4621111013c47e9d04e6"><div class="ttname"><a href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635a0c8460bf328c4621111013c47e9d04e6">radical_noad</a></div><div class="ttdeci">@ radical_noad</div><div class="ttdoc">type of a noad for square roots</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00110">constantes.h:110</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00089">globals.cpp:89</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a5038b616b1201aeb12a176eb4b4513a8"><div class="ttname"><a href="globals_8cpp.html#a5038b616b1201aeb12a176eb4b4513a8">mem</a></div><div class="ttdeci">memoryword mem[memmax+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00072">globals.cpp:72</a></div></div>
-<div class="ttc" id="anoeud_8cpp_html_a2baceeb19c0c4b666f0e18bcaff56d8a"><div class="ttname"><a href="noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a></div><div class="ttdeci">halfword getnode(int s)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00263">noeud.cpp:263</a></div></div>
+<div class="ttc" id="anoeud_8cpp_html_a2baceeb19c0c4b666f0e18bcaff56d8a"><div class="ttname"><a href="noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a></div><div class="ttdeci">halfword getnode(int s)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00264">noeud.cpp:264</a></div></div>
 <div class="ttc" id="aunionmemoryword_html_a5eafefa08094b518efdf6ac6463cbf00"><div class="ttname"><a href="unionmemoryword.html#a5eafefa08094b518efdf6ac6463cbf00">memoryword::hh</a></div><div class="ttdeci">twohalves hh</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00072">tex.h:72</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_a2e0bf53d32035b3ef5225b37ca94dacc"><div class="ttname"><a href="lecture_8cpp.html#a2e0bf53d32035b3ef5225b37ca94dacc">scandelimiter</a></div><div class="ttdeci">void scandelimiter(halfword p, bool r)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00058">lecture.cpp:58</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a8d6f92ddc744c20427a73f43c6b30e15"><div class="ttname"><a href="lecture_8cpp.html#a8d6f92ddc744c20427a73f43c6b30e15">scandelimiter</a></div><div class="ttdeci">void scandelimiter(halfword p, bool r, halfword tok)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00060">lecture.cpp:60</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_af3b3f58f78af4dd1fd2db67eaa6f6124"><div class="ttname"><a href="constantes_8cpp.html#af3b3f58f78af4dd1fd2db67eaa6f6124">subscr</a></div><div class="ttdeci">halfword subscr(halfword p)</div><div class="ttdoc">the subscr field of a noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00090">constantes.cpp:90</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_abed82baf7f470b522273a3e37c24c600aebc81705969b8c5ae986b0b2ec08d1d5"><div class="ttname"><a href="constantes_8h.html#abed82baf7f470b522273a3e37c24c600aebc81705969b8c5ae986b0b2ec08d1d5">normal</a></div><div class="ttdeci">@ normal</div><div class="ttdoc">the most common case when several cases are named</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00131">constantes.h:131</a></div></div>

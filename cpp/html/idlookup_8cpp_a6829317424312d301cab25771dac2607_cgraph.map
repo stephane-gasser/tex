@@ -1,9 +1,7 @@
 <map id="idlookup" name="idlookup">
-<area shape="rect" id="node1" title=" " alt="" coords="5,132,76,159"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,76,108"/>
 <area shape="rect" id="node2" href="$idlookup_8cpp.html#a805ee55ca9395c9d22a143f6a1d24555" title="test if all positions are occupied" alt="" coords="124,5,215,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#aff605f8748f25aba822c931cb20975dd" title="the number of characters" alt="" coords="141,56,198,83"/>
-<area shape="rect" id="node4" href="$idlookup_8cpp.html#a5f9fba2d64a6d24f452a4fd2c35d16ed" title="link for coalesced lists" alt="" coords="146,107,193,133"/>
-<area shape="rect" id="node5" href="$erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="134,157,205,184"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0" title="string number for control sequence name" alt="" coords="147,208,191,235"/>
-<area shape="rect" id="node7" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="146,259,193,285"/>
+<area shape="rect" id="node3" href="$idlookup_8cpp.html#a5f9fba2d64a6d24f452a4fd2c35d16ed" title="link for coalesced lists" alt="" coords="146,56,193,83"/>
+<area shape="rect" id="node4" href="$erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="134,107,205,133"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0" title="string number for control sequence name" alt="" coords="147,157,191,184"/>
 </map>

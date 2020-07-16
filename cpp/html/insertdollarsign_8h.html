@@ -103,20 +103,20 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a77aab94f9ce883d5a1d5995c4a7e8430"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="insertdollarsign_8h.html#a77aab94f9ce883d5a1d5995c4a7e8430">insertdollarsign</a> (void)</td></tr>
-<tr class="separator:a77aab94f9ce883d5a1d5995c4a7e8430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e8064cd42bda8ffee78d78c06c87e87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="insertdollarsign_8h.html#a6e8064cd42bda8ffee78d78c06c87e87">insertdollarsign</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>)</td></tr>
+<tr class="separator:a6e8064cd42bda8ffee78d78c06c87e87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a77aab94f9ce883d5a1d5995c4a7e8430"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77aab94f9ce883d5a1d5995c4a7e8430">&#9670;&nbsp;</a></span>insertdollarsign()</h2>
+<a id="a6e8064cd42bda8ffee78d78c06c87e87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e8064cd42bda8ffee78d78c06c87e87">&#9670;&nbsp;</a></span>insertdollarsign()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void insertdollarsign </td>
+          <td class="memname"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> insertdollarsign </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -125,36 +125,36 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="insertdollarsign_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="insertdollarsign_8cpp_source.html">insertdollarsign.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a>();</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="globals_8cpp.html#af5b7cfb45f653f0dc9ba05c338cc8a8e">curtok</a> = <a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960ac2e8389985184af7f79d8708f980e221">math_shift_token</a>+<span class="charliteral">&#39;$&#39;</span>;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="erreur_8cpp.html#a774246bf573bd1096f9a32a8dc288840">inserror</a>(<span class="stringliteral">&quot;Missing $ inserted&quot;</span>, <span class="stringliteral">&quot;I&#39;ve inserted a begin-math/end-math symbol since I think\nyou left one out. Proceed, with fingers crossed.&quot;</span>);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="backinput_8cpp.html#a999fe0a02561a0158caa3372a424f82d">backinput</a>(tok);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    tok = <a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960ac2e8389985184af7f79d8708f980e221">math_shift_token</a>+<span class="charliteral">&#39;$&#39;</span>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="erreur_8cpp.html#a97011dcb8baf4307226c7185e590d580">inserror</a>(tok, <span class="stringliteral">&quot;Missing $ inserted&quot;</span>, <span class="stringliteral">&quot;I&#39;ve inserted a begin-math/end-math symbol since I think\nyou left one out. Proceed, with fingers crossed.&quot;</span>);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">return</span> tok;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="insertdollarsign_8h_a77aab94f9ce883d5a1d5995c4a7e8430_cgraph.png" border="0" usemap="#insertdollarsign_8h_a77aab94f9ce883d5a1d5995c4a7e8430_cgraph" alt=""/></div>
-<map name="insertdollarsign_8h_a77aab94f9ce883d5a1d5995c4a7e8430_cgraph" id="insertdollarsign_8h_a77aab94f9ce883d5a1d5995c4a7e8430_cgraph">
+<div class="center"><img src="insertdollarsign_8h_a6e8064cd42bda8ffee78d78c06c87e87_cgraph.png" border="0" usemap="#insertdollarsign_8h_a6e8064cd42bda8ffee78d78c06c87e87_cgraph" alt=""/></div>
+<map name="insertdollarsign_8h_a6e8064cd42bda8ffee78d78c06c87e87_cgraph" id="insertdollarsign_8h_a6e8064cd42bda8ffee78d78c06c87e87_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,115,32"/>
-<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="276,5,355,32"/>
-<area shape="rect" href="erreur_8cpp.html#a774246bf573bd1096f9a32a8dc288840" title=" " alt="" coords="163,31,228,57"/>
+<area shape="rect" href="backinput_8cpp.html#a999fe0a02561a0158caa3372a424f82d" title="Undoes one token of input." alt="" coords="276,5,355,32"/>
+<area shape="rect" href="erreur_8cpp.html#a97011dcb8baf4307226c7185e590d580" title=" " alt="" coords="163,31,228,57"/>
 </map>
 </div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="insertdollarsign_8h_a77aab94f9ce883d5a1d5995c4a7e8430_icgraph.png" border="0" usemap="#insertdollarsign_8h_a77aab94f9ce883d5a1d5995c4a7e8430_icgraph" alt=""/></div>
-<map name="insertdollarsign_8h_a77aab94f9ce883d5a1d5995c4a7e8430_icgraph" id="insertdollarsign_8h_a77aab94f9ce883d5a1d5995c4a7e8430_icgraph">
+<div class="center"><img src="insertdollarsign_8h_a6e8064cd42bda8ffee78d78c06c87e87_icgraph.png" border="0" usemap="#insertdollarsign_8h_a6e8064cd42bda8ffee78d78c06c87e87_icgraph" alt=""/></div>
+<map name="insertdollarsign_8h_a6e8064cd42bda8ffee78d78c06c87e87_icgraph" id="insertdollarsign_8h_a6e8064cd42bda8ffee78d78c06c87e87_icgraph">
 <area shape="rect" title=" " alt="" coords="143,5,252,32"/>
-<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,5,95,32"/>
+<area shape="rect" href="maincontrol_8h.html#ae509bc209a74fcb44a9fc70140474583" title=" " alt="" coords="5,5,95,32"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aerreur_8cpp_html_a774246bf573bd1096f9a32a8dc288840"><div class="ttname"><a href="erreur_8cpp.html#a774246bf573bd1096f9a32a8dc288840">inserror</a></div><div class="ttdeci">void inserror(const std::string &amp;msg, const std::string &amp;hlp, bool deletionsallowed)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00163">erreur.cpp:163</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_af5b7cfb45f653f0dc9ba05c338cc8a8e"><div class="ttname"><a href="globals_8cpp.html#af5b7cfb45f653f0dc9ba05c338cc8a8e">curtok</a></div><div class="ttdeci">halfword curtok</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00108">globals.cpp:108</a></div></div>
-<div class="ttc" id="abackinput_8cpp_html_afd6e40e89c0d293c90a471cef22e934a"><div class="ttname"><a href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a></div><div class="ttdeci">void backinput(void)</div><div class="ttdoc">Undoes one token of input.</div><div class="ttdef"><b>Definition:</b> <a href="backinput_8cpp_source.html#l00013">backinput.cpp:13</a></div></div>
+<div class="ttc" id="abackinput_8cpp_html_a999fe0a02561a0158caa3372a424f82d"><div class="ttname"><a href="backinput_8cpp.html#a999fe0a02561a0158caa3372a424f82d">backinput</a></div><div class="ttdeci">void backinput(halfword tok)</div><div class="ttdoc">Undoes one token of input.</div><div class="ttdef"><b>Definition:</b> <a href="backinput_8cpp_source.html#l00013">backinput.cpp:13</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a97011dcb8baf4307226c7185e590d580"><div class="ttname"><a href="erreur_8cpp.html#a97011dcb8baf4307226c7185e590d580">inserror</a></div><div class="ttdeci">void inserror(halfword tok, const std::string &amp;msg, const std::string &amp;hlp, bool deletionsallowed)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00163">erreur.cpp:163</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960ac2e8389985184af7f79d8708f980e221"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960ac2e8389985184af7f79d8708f980e221">math_shift_token</a></div><div class="ttdeci">@ math_shift_token</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00442">constantes.h:442</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

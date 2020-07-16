@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void doendv(eightbits, halfword, halfword);
+void doendv(eightbits, halfword, halfword, halfword &);
 
 #endif

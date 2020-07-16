@@ -6,7 +6,7 @@
 #include "alignpeek.h"
 #include "lecture.h"
 
-void finrow(void)
+void finrow(halfword &loop)
 {
 	halfword p;
 	if (mode == -hmode)
@@ -32,6 +32,6 @@ void finrow(void)
 	glue_stretch(p) = 0;
 	if (every_cr())
 		begintokenlist(every_cr(), every_cr_text);
-	alignpeek();
+	alignpeek(loop);
 }
 

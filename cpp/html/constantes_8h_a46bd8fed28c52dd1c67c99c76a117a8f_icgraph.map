@@ -1,7 +1,5 @@
 <map id="append_char" name="append_char">
-<area shape="rect" id="node1" title="put ASCII_code # at the end of str_pool" alt="" coords="191,81,287,108"/>
-<area shape="rect" id="node2" href="$getstringsstarted_8h.html#ae46a3d749632a4a2cb1ff358d9d14557" title="Initializes the string pool, but returns |false| if something goes wrong." alt="" coords="15,5,133,32"/>
-<area shape="rect" id="node3" href="$makenamestring_8h.html#a9e64257b3f687e0775273d7598d0e0cb" title=" " alt="" coords="15,56,133,83"/>
-<area shape="rect" id="node4" href="$morename_8h.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="33,107,115,133"/>
-<area shape="rect" id="node5" href="$noeud_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="5,157,143,184"/>
+<area shape="rect" id="node1" title="put ASCII_code # at the end of str_pool" alt="" coords="191,31,287,57"/>
+<area shape="rect" id="node2" href="$morename_8h.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="33,5,115,32"/>
+<area shape="rect" id="node3" href="$noeud_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="5,56,143,83"/>
 </map>

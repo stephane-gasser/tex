@@ -17,7 +17,7 @@
 #include <cmath>
 #include "texte.h"
 
-void finalign(halfword tok)
+void finalign(halfword tok, halfword &loop)
 {
 	halfword p, q, r, s, u, v;
 	scaled t, w;
@@ -282,7 +282,7 @@ void finalign(halfword tok)
 		q = link(q);
 	}
 	flushnodelist(p);
-	popalignment();
+	popalignment(loop);
 	auxsave = aux;
 	p = link(head);
 	q = tail;

@@ -103,12 +103,12 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a9b15be3a9cc9ba63e0b8cdbf650bba92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathac_8h.html#a9b15be3a9cc9ba63e0b8cdbf650bba92">mathac</a> (void)</td></tr>
-<tr class="separator:a9b15be3a9cc9ba63e0b8cdbf650bba92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af402080aef2ef90e17e7e16d0b66b218"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathac_8h.html#af402080aef2ef90e17e7e16d0b66b218">mathac</a> (<a class="el" href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>)</td></tr>
+<tr class="separator:af402080aef2ef90e17e7e16d0b66b218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a9b15be3a9cc9ba63e0b8cdbf650bba92"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b15be3a9cc9ba63e0b8cdbf650bba92">&#9670;&nbsp;</a></span>mathac()</h2>
+<a id="af402080aef2ef90e17e7e16d0b66b218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af402080aef2ef90e17e7e16d0b66b218">&#9670;&nbsp;</a></span>mathac()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -116,7 +116,7 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void mathac </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -125,7 +125,7 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="mathac_8cpp_source.html#l00008">8</a> du fichier <a class="el" href="mathac_8cpp_source.html">mathac.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a> == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9eaaf93ba0341fad999ff1e0ccc0f549313">accent</a>)</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">if</span> (cmd == <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9eaaf93ba0341fad999ff1e0ccc0f549313">accent</a>)</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<span class="stringliteral">&quot;Please use &quot;</span>+<a class="code" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a>(<span class="stringliteral">&quot;mathaccent&quot;</span>)+<span class="stringliteral">&quot; for accents in math mode&quot;</span>, <span class="stringliteral">&quot;I&#39;m changing \\accent to \\mathaccent here; wish me luck.\n(Accents are not the same in formulas as they are in text.)&quot;</span>);</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a>(<a class="code" href="noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a>(<a class="code" href="constantes_8h.html#a61dadd085c1777f559549e05962b2c9eacbadcd60765692be1cf9dd88e59dda29">accent_noad_size</a>));</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) = <a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635a9b488cebbe7158d1c1ed6b55fff4bd43">accent_noad</a>;</div>
@@ -145,8 +145,8 @@ Fonctions</h2></td></tr>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="mathac_8h_a9b15be3a9cc9ba63e0b8cdbf650bba92_cgraph.png" border="0" usemap="#mathac_8h_a9b15be3a9cc9ba63e0b8cdbf650bba92_cgraph" alt=""/></div>
-<map name="mathac_8h_a9b15be3a9cc9ba63e0b8cdbf650bba92_cgraph" id="mathac_8h_a9b15be3a9cc9ba63e0b8cdbf650bba92_cgraph">
+<div class="center"><img src="mathac_8h_af402080aef2ef90e17e7e16d0b66b218_cgraph.png" border="0" usemap="#mathac_8h_af402080aef2ef90e17e7e16d0b66b218_cgraph" alt=""/></div>
+<map name="mathac_8h_af402080aef2ef90e17e7e16d0b66b218_cgraph" id="mathac_8h_af402080aef2ef90e17e7e16d0b66b218_cgraph">
 <area shape="rect" title=" " alt="" coords="5,284,71,311"/>
 <area shape="rect" href="constantes_8cpp.html#a0b546a77a166ecab4272888cf6ac5dde" title="the accent_chr field of an accent noad" alt="" coords="133,5,219,32"/>
 <area shape="rect" href="constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title="the character code in a char_node" alt="" coords="138,56,214,83"/>
@@ -165,10 +165,10 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="mathac_8h_a9b15be3a9cc9ba63e0b8cdbf650bba92_icgraph.png" border="0" usemap="#mathac_8h_a9b15be3a9cc9ba63e0b8cdbf650bba92_icgraph" alt=""/></div>
-<map name="mathac_8h_a9b15be3a9cc9ba63e0b8cdbf650bba92_icgraph" id="mathac_8h_a9b15be3a9cc9ba63e0b8cdbf650bba92_icgraph">
+<div class="center"><img src="mathac_8h_af402080aef2ef90e17e7e16d0b66b218_icgraph.png" border="0" usemap="#mathac_8h_af402080aef2ef90e17e7e16d0b66b218_icgraph" alt=""/></div>
+<map name="mathac_8h_af402080aef2ef90e17e7e16d0b66b218_icgraph" id="mathac_8h_af402080aef2ef90e17e7e16d0b66b218_icgraph">
 <area shape="rect" title=" " alt="" coords="143,5,208,32"/>
-<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,5,95,32"/>
+<area shape="rect" href="maincontrol_8h.html#ae509bc209a74fcb44a9fc70140474583" title=" " alt="" coords="5,5,95,32"/>
 </map>
 </div>
 
@@ -184,16 +184,15 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aglobals_8cpp_html_a5038b616b1201aeb12a176eb4b4513a8"><div class="ttname"><a href="globals_8cpp.html#a5038b616b1201aeb12a176eb4b4513a8">mem</a></div><div class="ttdeci">memoryword mem[memmax+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00072">globals.cpp:72</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_acfd168283e0375316338c74b2d61186f"><div class="ttname"><a href="constantes_8h.html#acfd168283e0375316338c74b2d61186f">math_type</a></div><div class="ttdeci">math_type</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00603">constantes.h:603</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9eaaf93ba0341fad999ff1e0ccc0f549313"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9eaaf93ba0341fad999ff1e0ccc0f549313">accent</a></div><div class="ttdeci">@ accent</div><div class="ttdoc">attach accent in text ( \accent )</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00264">constantes.h:264</a></div></div>
-<div class="ttc" id="anoeud_8cpp_html_a2baceeb19c0c4b666f0e18bcaff56d8a"><div class="ttname"><a href="noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a></div><div class="ttdeci">halfword getnode(int s)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00263">noeud.cpp:263</a></div></div>
+<div class="ttc" id="anoeud_8cpp_html_a2baceeb19c0c4b666f0e18bcaff56d8a"><div class="ttname"><a href="noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a">getnode</a></div><div class="ttdeci">halfword getnode(int s)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00264">noeud.cpp:264</a></div></div>
 <div class="ttc" id="aunionmemoryword_html_a5eafefa08094b518efdf6ac6463cbf00"><div class="ttname"><a href="unionmemoryword.html#a5eafefa08094b518efdf6ac6463cbf00">memoryword::hh</a></div><div class="ttdeci">twohalves hh</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00072">tex.h:72</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_adb17223ad60c9ffc709eb43e2f309055"><div class="ttname"><a href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a></div><div class="ttdeci">eightbits curcmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00105">globals.cpp:105</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a726ca809ffd3d67ab4b8476646f26635a9b488cebbe7158d1c1ed6b55fff4bd43"><div class="ttname"><a href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635a9b488cebbe7158d1c1ed6b55fff4bd43">accent_noad</a></div><div class="ttdeci">@ accent_noad</div><div class="ttdoc">type of a noad for accented subformulas</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00114">constantes.h:114</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_af3b3f58f78af4dd1fd2db67eaa6f6124"><div class="ttname"><a href="constantes_8cpp.html#af3b3f58f78af4dd1fd2db67eaa6f6124">subscr</a></div><div class="ttdeci">halfword subscr(halfword p)</div><div class="ttdoc">the subscr field of a noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00090">constantes.cpp:90</a></div></div>
 <div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00241">impression.cpp:241</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a61dadd085c1777f559549e05962b2c9eacbadcd60765692be1cf9dd88e59dda29"><div class="ttname"><a href="constantes_8h.html#a61dadd085c1777f559549e05962b2c9eacbadcd60765692be1cf9dd88e59dda29">accent_noad_size</a></div><div class="ttdeci">@ accent_noad_size</div><div class="ttdoc">number of mem words in an accent noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00078">constantes.h:78</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_abed82baf7f470b522273a3e37c24c600aebc81705969b8c5ae986b0b2ec08d1d5"><div class="ttname"><a href="constantes_8h.html#abed82baf7f470b522273a3e37c24c600aebc81705969b8c5ae986b0b2ec08d1d5">normal</a></div><div class="ttdeci">@ normal</div><div class="ttdoc">the most common case when several cases are named</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00131">constantes.h:131</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_a8ba445bd6b28ee2fbafb8bd8f83b2773"><div class="ttname"><a href="lecture_8cpp.html#a8ba445bd6b28ee2fbafb8bd8f83b2773">scanfifteenbitint</a></div><div class="ttdeci">int scanfifteenbitint(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00385">lecture.cpp:385</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a8ba445bd6b28ee2fbafb8bd8f83b2773"><div class="ttname"><a href="lecture_8cpp.html#a8ba445bd6b28ee2fbafb8bd8f83b2773">scanfifteenbitint</a></div><div class="ttdeci">int scanfifteenbitint(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00391">lecture.cpp:391</a></div></div>
 <div class="ttc" id="aerreur_8cpp_html_ac7643d2431e40f0ac7a89ec84f1bda70"><div class="ttname"><a href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a></div><div class="ttdeci">void error(const std::string &amp;msg, const std::string &amp;hlp, bool deletionsallowed)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00014">erreur.cpp:14</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_acfd168283e0375316338c74b2d61186fa8a908be9ff0cbb9661015822094805bd"><div class="ttname"><a href="constantes_8h.html#acfd168283e0375316338c74b2d61186fa8a908be9ff0cbb9661015822094805bd">math_char</a></div><div class="ttdeci">@ math_char</div><div class="ttdoc">math_type when the attribute is simple</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00605">constantes.h:605</a></div></div>

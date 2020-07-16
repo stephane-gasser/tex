@@ -1,15 +1,14 @@
 <map id="saved" name="saved">
-<area shape="rect" id="node1" title=" " alt="" coords="520,283,577,310"/>
-<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="193,106,271,133"/>
-<area shape="rect" id="node3" href="$appendchoices_8h.html#a8f7ed45d5a9980b4d2dd4739091bedff" title=" " alt="" coords="352,359,461,386"/>
-<area shape="rect" id="node4" href="$beginbox_8h.html#a1ca6042e13121116bdd670212d397581" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="369,410,444,437"/>
-<area shape="rect" id="node5" href="$begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="341,461,472,487"/>
-<area shape="rect" id="node6" href="$buildchoices_8h.html#a5f00c14009de038a4c2dc9c2fd9f8e99" title=" " alt="" coords="185,55,279,82"/>
-<area shape="rect" id="node7" href="$handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="5,157,123,183"/>
-<area shape="rect" id="node8" href="$builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2" title=" " alt="" coords="171,157,293,183"/>
-<area shape="rect" id="node9" href="$eqsave_8h.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="375,511,439,538"/>
-<area shape="rect" id="node10" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="201,309,263,335"/>
-<area shape="rect" id="node11" href="$package_8h.html#a6891d99351b6cbbd121dc2f0b1d5550e" title=" " alt="" coords="197,258,267,285"/>
-<area shape="rect" id="node12" href="$starteqno_8h.html#a40e390a210c4e1831cf647cefaca8244" title=" " alt="" coords="369,562,445,589"/>
-<area shape="rect" id="node13" href="$unsave_8h.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="375,207,439,234"/>
+<area shape="rect" id="node1" title=" " alt="" coords="520,232,577,259"/>
+<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="193,80,271,107"/>
+<area shape="rect" id="node3" href="$beginbox_8h.html#ad9d5ddd4d003af0c6e93985ad5eca6b7" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="369,333,444,360"/>
+<area shape="rect" id="node4" href="$begininsertoradjust_8h.html#af49604a30c2d81d3ce8beed694d0d64d" title=" " alt="" coords="341,384,472,411"/>
+<area shape="rect" id="node5" href="$buildchoices_8h.html#a5b571c0e485bfeb4f88807e0150ba332" title=" " alt="" coords="185,29,279,56"/>
+<area shape="rect" id="node6" href="$handlerightbrace_8h.html#a286db2f2727264ddfa0d49e4188caeac" title=" " alt="" coords="5,131,123,157"/>
+<area shape="rect" id="node7" href="$builddiscretionary_8h.html#a67984389ff8333976f6cb8461be2df00" title=" " alt="" coords="171,131,293,157"/>
+<area shape="rect" id="node8" href="$eqsave_8h.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="375,435,439,461"/>
+<area shape="rect" id="node9" href="$finalign_8h.html#ad8c0717c46bef48ee12ca2790151db1c" title=" " alt="" coords="201,283,263,309"/>
+<area shape="rect" id="node10" href="$package_8h.html#a9d9a30e9e3108b4ad1d0266d450cdfb7" title=" " alt="" coords="197,232,267,259"/>
+<area shape="rect" id="node11" href="$starteqno_8h.html#ab159af32f0eb47f0663bede8eeb989f4" title=" " alt="" coords="369,485,445,512"/>
+<area shape="rect" id="node12" href="$unsave_8h.html#ae7551e4939302a2b1fcd4a59b8bc0078" title=" " alt="" coords="375,181,439,208"/>
 </map>

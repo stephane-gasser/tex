@@ -1,6 +1,6 @@
 <map id="aopenin" name="aopenin">
 <area shape="rect" id="node1" title="Open a text file for input." alt="" coords="172,56,239,83"/>
 <area shape="rect" id="node2" href="$getstringsstarted_8h.html#ae46a3d749632a4a2cb1ff358d9d14557" title="Initializes the string pool, but returns |false| if something goes wrong." alt="" coords="5,5,124,32"/>
-<area shape="rect" id="node3" href="$openorclosein_8h.html#ac7ac73ba34708b8181d49f57d6a90a08" title=" " alt="" coords="13,56,116,83"/>
+<area shape="rect" id="node3" href="$openorclosein_8h.html#a35cb066074c059af9e989724e3913707" title=" " alt="" coords="13,56,116,83"/>
 <area shape="rect" id="node4" href="$startinput_8h.html#a36e1e896f8f7b67ca95b8c20295fc18f" title=" " alt="" coords="27,107,103,133"/>
 </map>

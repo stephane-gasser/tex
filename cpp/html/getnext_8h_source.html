@@ -78,12 +78,15 @@ $(function() {
 <div class="contents">
 <a href="getnext_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef GETNEXT_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define GETNEXT_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="globals_8h.html">globals.h</a>&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keywordtype">void</span> <a class="code" href="getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11">getnext</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="globals_8h.html">globals.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;tuple&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;[[nodiscard]] std::tuple&lt;eightbits, halfword, halfword&gt; <a class="code" href="getnext_8h.html#a6bafe5081d2924d59b857585d19a4de4">getnext</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aglobals_8h_html"><div class="ttname"><a href="globals_8h.html">globals.h</a></div></div>
-<div class="ttc" id="agetnext_8h_html_a18d0a6eddff65d623650e09b4c866f11"><div class="ttname"><a href="getnext_8h.html#a18d0a6eddff65d623650e09b4c866f11">getnext</a></div><div class="ttdeci">void getnext(void)</div><div class="ttdef"><b>Definition:</b> <a href="getnext_8cpp_source.html#l00061">getnext.cpp:61</a></div></div>
+<div class="ttc" id="agetnext_8h_html_a6bafe5081d2924d59b857585d19a4de4"><div class="ttname"><a href="getnext_8h.html#a6bafe5081d2924d59b857585d19a4de4">getnext</a></div><div class="ttdeci">std::tuple&lt; eightbits, halfword, halfword &gt; getnext(void)</div><div class="ttdef"><b>Definition:</b> <a href="getnext_8cpp_source.html#l00117">getnext.cpp:117</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

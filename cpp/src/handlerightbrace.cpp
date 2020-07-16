@@ -21,7 +21,7 @@
 
 static int floating_penalty(void) { return int_par(floating_penalty_code); }
 
-void handlerightbrace(halfword tok)
+void handlerightbrace(halfword tok, halfword &loop)
 {
 	halfword p, q;
 	scaled d;
@@ -130,7 +130,7 @@ void handlerightbrace(halfword tok)
 		case no_align_group:
 			endgraf();
 			unsave(tok);
-			alignpeek();
+			alignpeek(loop);
 			break;
 		case vcenter_group:
 			endgraf();

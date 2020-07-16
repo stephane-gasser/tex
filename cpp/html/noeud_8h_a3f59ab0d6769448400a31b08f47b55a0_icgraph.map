@@ -1,13 +1,11 @@
 <map id="newglue" name="newglue">
-<area shape="rect" id="node1" title=" " alt="" coords="343,233,413,260"/>
-<area shape="rect" id="node2" href="$maincontrol_8cpp.html#ab7f7983b788abb1c635c1bd67f967894" title=" " alt="" coords="143,5,295,32"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,107,95,133"/>
-<area shape="rect" id="node4" href="$appendglue_8h.html#ac2d4cd53223f578f84f88274403f30a1" title=" " alt="" coords="175,107,263,133"/>
-<area shape="rect" id="node5" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="179,157,258,184"/>
-<area shape="rect" id="node6" href="$finalign_8h.html#ab913cca5f19aa49b0a6806e93106cd89" title=" " alt="" coords="187,208,250,235"/>
-<area shape="rect" id="node7" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="192,259,245,285"/>
-<area shape="rect" id="node8" href="$initrow_8h.html#a87e01201e15d56552784671986da86f0" title=" " alt="" coords="189,309,249,336"/>
-<area shape="rect" id="node9" href="$itsallover_8h.html#a328c29eeaa688dcd15cc3534c1b078bc" title=" " alt="" coords="181,360,256,387"/>
-<area shape="rect" id="node10" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="176,435,261,461"/>
-<area shape="rect" id="node11" href="$rebox_8h.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="191,485,246,512"/>
+<area shape="rect" id="node1" title=" " alt="" coords="343,183,413,209"/>
+<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a0df6982a7ec1c82f598377d2e6f82de5" title=" " alt="" coords="143,5,295,32"/>
+<area shape="rect" id="node3" href="$maincontrol_8h.html#ae509bc209a74fcb44a9fc70140474583" title=" " alt="" coords="5,56,95,83"/>
+<area shape="rect" id="node4" href="$finalign_8h.html#ad8c0717c46bef48ee12ca2790151db1c" title=" " alt="" coords="187,107,250,133"/>
+<area shape="rect" id="node5" href="$fincol_8h.html#aed105ad31d9841b021bb9fad16dfa43d" title=" " alt="" coords="192,157,245,184"/>
+<area shape="rect" id="node6" href="$initrow_8h.html#a87e01201e15d56552784671986da86f0" title=" " alt="" coords="189,208,249,235"/>
+<area shape="rect" id="node7" href="$itsallover_8h.html#a59d8ef7e2ca1c8c07259fa62c3e8e7c7" title=" " alt="" coords="181,259,256,285"/>
+<area shape="rect" id="node8" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="176,333,261,360"/>
+<area shape="rect" id="node9" href="$rebox_8h.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="191,384,246,411"/>
 </map>

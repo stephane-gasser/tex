@@ -106,12 +106,12 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a63378f93afc7d8ca66b9fe6f6f3d920b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="offsave_8h.html#a63378f93afc7d8ca66b9fe6f6f3d920b">offsave</a> (void)</td></tr>
-<tr class="separator:a63378f93afc7d8ca66b9fe6f6f3d920b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a248e6be7b71aa92bdb245c870ea826e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="offsave_8h.html#a248e6be7b71aa92bdb245c870ea826e2">offsave</a> (<a class="el" href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>)</td></tr>
+<tr class="separator:a248e6be7b71aa92bdb245c870ea826e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a63378f93afc7d8ca66b9fe6f6f3d920b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63378f93afc7d8ca66b9fe6f6f3d920b">&#9670;&nbsp;</a></span>offsave()</h2>
+<a id="a248e6be7b71aa92bdb245c870ea826e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a248e6be7b71aa92bdb245c870ea826e2">&#9670;&nbsp;</a></span>offsave()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -119,9 +119,25 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void offsave </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -129,16 +145,16 @@ Fonctions</h2></td></tr>
 <p class="definition">Définition à la ligne <a class="el" href="offsave_8cpp_source.html#l00009">9</a> du fichier <a class="el" href="offsave_8cpp_source.html">offsave.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a> == <a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea58f575b2af3a7e25df2d26a6f313384d">bottom_level</a>)</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<span class="stringliteral">&quot;Extra &quot;</span>+<a class="code" href="impression_8cpp.html#a34ba44ad16d97758f9eeaa0c98893a3c">cmdchr</a>(<a class="code" href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a>, <a class="code" href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a>), <span class="stringliteral">&quot;Things are pretty mixed up, but I think the worst is over.&quot;</span>);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<span class="stringliteral">&quot;Extra &quot;</span>+<a class="code" href="impression_8cpp.html#a4dd42d1d9a5f5f12b6f9095cc9190e31">cmdchr</a>(cmd, chr), <span class="stringliteral">&quot;Things are pretty mixed up, but I think the worst is over.&quot;</span>);</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a>();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="backinput_8cpp.html#a999fe0a02561a0158caa3372a424f82d">backinput</a>(tok);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keyword">auto</span> p = <a class="code" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7">getavail</a>();</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="constantes_8h.html#ac36f475ca5b446f4fde4c9b90bec77c8a2cd3c8a389d4f06ac700cff9a2fdb5d6">temp_head</a>) = p;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordflow">switch</span> (<a class="code" href="globals_8cpp.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a>)</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        {</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea07f557c8c66a6700156193d001eb6b07">semi_simple_group</a>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p) = <a class="code" href="constantes_8h.html#a0ed680fdb405e7195d9f14032851eebba8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a>+<a class="code" href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa1cb75edc73cac47555cd215fa4e11857">frozen_end_group</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p) = <a class="code" href="constantes_8h.html#aac34dfe6c6b73b43a4656c9dce041034a8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a>+<a class="code" href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa1cb75edc73cac47555cd215fa4e11857">frozen_end_group</a>;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<span class="stringliteral">&quot;Missing &quot;</span>+<a class="code" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a>(<span class="stringliteral">&quot;endgroup&quot;</span>)+<span class="stringliteral">&quot; inserted&quot;</span>, <span class="stringliteral">&quot;I&#39;ve inserted something that you may have forgotten.\n(See the &lt;inserted text&gt; above.)\nWith luck, this will get me unwedged. But if you\nreally didn&#39;t forget anything, try typing `2&#39; now; then\nmy insertion and my current dilemma will both disappear.&quot;</span>);</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea7f9512f855570913b2cbe82aee813e82">math_shift_group</a>:</div>
@@ -146,7 +162,7 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<span class="stringliteral">&quot;Missing $ inserted&quot;</span>, <span class="stringliteral">&quot;I&#39;ve inserted something that you may have forgotten.\n(See the &lt;inserted text&gt; above.)\nWith luck, this will get me unwedged. But if you\nreally didn&#39;t forget anything, try typing `2&#39; now; then\nmy insertion and my current dilemma will both disappear.&quot;</span>);</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <span class="keywordflow">case</span> <a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fceaa10cd2b9d4159cc7d68e4467ae20c5a3">math_left_group</a>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p) = <a class="code" href="constantes_8h.html#a0ed680fdb405e7195d9f14032851eebba8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a>+<a class="code" href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa133cf26b5d160c05e586436b8d8986b4">frozen_right</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p) = <a class="code" href="constantes_8h.html#aac34dfe6c6b73b43a4656c9dce041034a8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a>+<a class="code" href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa133cf26b5d160c05e586436b8d8986b4">frozen_right</a>;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = <a class="code" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7">getavail</a>();</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                p = <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p) = <a class="code" href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960adab0b5b046655afe578fb5416ad8f901">other_token</a>+<span class="charliteral">&#39;.&#39;</span>;</div>
@@ -162,13 +178,13 @@ Fonctions</h2></td></tr>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="offsave_8h_a63378f93afc7d8ca66b9fe6f6f3d920b_cgraph.png" border="0" usemap="#offsave_8h_a63378f93afc7d8ca66b9fe6f6f3d920b_cgraph" alt=""/></div>
-<map name="offsave_8h_a63378f93afc7d8ca66b9fe6f6f3d920b_cgraph" id="offsave_8h_a63378f93afc7d8ca66b9fe6f6f3d920b_cgraph">
+<div class="center"><img src="offsave_8h_a248e6be7b71aa92bdb245c870ea826e2_cgraph.png" border="0" usemap="#offsave_8h_a248e6be7b71aa92bdb245c870ea826e2_cgraph" alt=""/></div>
+<map name="offsave_8h_a248e6be7b71aa92bdb245c870ea826e2_cgraph" id="offsave_8h_a248e6be7b71aa92bdb245c870ea826e2_cgraph">
 <area shape="rect" title=" " alt="" coords="5,157,71,184"/>
-<area shape="rect" href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="119,5,197,32"/>
+<area shape="rect" href="backinput_8cpp.html#a999fe0a02561a0158caa3372a424f82d" title="Undoes one token of input." alt="" coords="119,5,197,32"/>
 <area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="245,56,312,83"/>
 <area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="360,81,403,108"/>
-<area shape="rect" href="impression_8cpp.html#a34ba44ad16d97758f9eeaa0c98893a3c" title=" " alt="" coords="125,157,191,184"/>
+<area shape="rect" href="impression_8cpp.html#a4dd42d1d9a5f5f12b6f9095cc9190e31" title=" " alt="" coords="125,157,191,184"/>
 <area shape="rect" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="257,208,300,235"/>
 <area shape="rect" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="134,259,182,285"/>
 <area shape="rect" href="lecture_8cpp.html#a5f4232bf5579ef4981db33096414bc2a" title="inserts a simple token list" alt="" coords="127,309,189,336"/>
@@ -177,37 +193,35 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="offsave_8h_a63378f93afc7d8ca66b9fe6f6f3d920b_icgraph.png" border="0" usemap="#offsave_8h_a63378f93afc7d8ca66b9fe6f6f3d920b_icgraph" alt=""/></div>
-<map name="offsave_8h_a63378f93afc7d8ca66b9fe6f6f3d920b_icgraph" id="offsave_8h_a63378f93afc7d8ca66b9fe6f6f3d920b_icgraph">
+<div class="center"><img src="offsave_8h_a248e6be7b71aa92bdb245c870ea826e2_icgraph.png" border="0" usemap="#offsave_8h_a248e6be7b71aa92bdb245c870ea826e2_icgraph" alt=""/></div>
+<map name="offsave_8h_a248e6be7b71aa92bdb245c870ea826e2_icgraph" id="offsave_8h_a248e6be7b71aa92bdb245c870ea826e2_icgraph">
 <area shape="rect" title=" " alt="" coords="295,81,360,108"/>
-<area shape="rect" href="doendv_8h.html#adbabc406ff0a986dc23c2ad8d5bc9008" title=" " alt="" coords="163,5,227,32"/>
-<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,81,95,108"/>
-<area shape="rect" href="headforvmode_8h.html#a3128641e5b4a7dd454caf724178c4023" title=" " alt="" coords="143,107,247,133"/>
-<area shape="rect" href="mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="147,157,242,184"/>
+<area shape="rect" href="doendv_8h.html#a5209b46c546de06f23281740095fcf3a" title=" " alt="" coords="163,5,227,32"/>
+<area shape="rect" href="maincontrol_8h.html#ae509bc209a74fcb44a9fc70140474583" title=" " alt="" coords="5,81,95,108"/>
+<area shape="rect" href="headforvmode_8h.html#ac7d6d0e851f5238c3b5f4f7ab935515c" title=" " alt="" coords="143,107,247,133"/>
+<area shape="rect" href="mathleftright_8h.html#a8ba2e85699eb0a11079c4ed727771909" title=" " alt="" coords="147,157,242,184"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
+<div class="ttc" id="abackinput_8cpp_html_a999fe0a02561a0158caa3372a424f82d"><div class="ttname"><a href="backinput_8cpp.html#a999fe0a02561a0158caa3372a424f82d">backinput</a></div><div class="ttdeci">void backinput(halfword tok)</div><div class="ttdoc">Undoes one token of input.</div><div class="ttdef"><b>Definition:</b> <a href="backinput_8cpp_source.html#l00013">backinput.cpp:13</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00587">constantes.h:587</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a4128dbc20823d10a2626cb9cdf4d6cd4"><div class="ttname"><a href="globals_8cpp.html#a4128dbc20823d10a2626cb9cdf4d6cd4">curchr</a></div><div class="ttdeci">halfword curchr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00106">globals.cpp:106</a></div></div>
 <div class="ttc" id="agetavail_8cpp_html_a954ade667e3184eb61ed18e925b628c7"><div class="ttname"><a href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7">getavail</a></div><div class="ttdeci">halfword getavail(void)</div><div class="ttdef"><b>Definition:</b> <a href="getavail_8cpp_source.html#l00005">getavail.cpp:5</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960adab0b5b046655afe578fb5416ad8f901"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960adab0b5b046655afe578fb5416ad8f901">other_token</a></div><div class="ttdeci">@ other_token</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00447">constantes.h:447</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960af6a3b5af0453bc2367c39a7bbb9da316"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960af6a3b5af0453bc2367c39a7bbb9da316">right_brace_token</a></div><div class="ttdeci">@ right_brace_token</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00446">constantes.h:446</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fceaa10cd2b9d4159cc7d68e4467ae20c5a3"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fceaa10cd2b9d4159cc7d68e4467ae20c5a3">math_left_group</a></div><div class="ttdeci">@ math_left_group</div><div class="ttdoc">code for ‘\left...\right’</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00379">constantes.h:379</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea58f575b2af3a7e25df2d26a6f313384d"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea58f575b2af3a7e25df2d26a6f313384d">bottom_level</a></div><div class="ttdeci">@ bottom_level</div><div class="ttdoc">group code for the outside world</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00363">constantes.h:363</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_a5f4232bf5579ef4981db33096414bc2a"><div class="ttname"><a href="lecture_8cpp.html#a5f4232bf5579ef4981db33096414bc2a">ins_list</a></div><div class="ttdeci">void ins_list(halfword p)</div><div class="ttdoc">inserts a simple token list</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l01143">lecture.cpp:1143</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a5f4232bf5579ef4981db33096414bc2a"><div class="ttname"><a href="lecture_8cpp.html#a5f4232bf5579ef4981db33096414bc2a">ins_list</a></div><div class="ttdeci">void ins_list(halfword p)</div><div class="ttdoc">inserts a simple token list</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l01168">lecture.cpp:1168</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a85ef1f882d9456051bd7b436978858d0"><div class="ttname"><a href="globals_8cpp.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a></div><div class="ttdeci">groupcode curgroup</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00103">globals.cpp:103</a></div></div>
-<div class="ttc" id="abackinput_8cpp_html_afd6e40e89c0d293c90a471cef22e934a"><div class="ttname"><a href="backinput_8cpp.html#afd6e40e89c0d293c90a471cef22e934a">backinput</a></div><div class="ttdeci">void backinput(void)</div><div class="ttdoc">Undoes one token of input.</div><div class="ttdef"><b>Definition:</b> <a href="backinput_8cpp_source.html#l00013">backinput.cpp:13</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a4dd42d1d9a5f5f12b6f9095cc9190e31"><div class="ttname"><a href="impression_8cpp.html#a4dd42d1d9a5f5f12b6f9095cc9190e31">cmdchr</a></div><div class="ttdeci">std::string cmdchr(eightbits cmd, halfword chr)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00099">impression.cpp:99</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a6b7b47dd702d9e331586d485013fd1eaa1cb75edc73cac47555cd215fa4e11857"><div class="ttname"><a href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa1cb75edc73cac47555cd215fa4e11857">frozen_end_group</a></div><div class="ttdeci">@ frozen_end_group</div><div class="ttdoc">permanent ‘\endgroup’</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00397">constantes.h:397</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a34ba44ad16d97758f9eeaa0c98893a3c"><div class="ttname"><a href="impression_8cpp.html#a34ba44ad16d97758f9eeaa0c98893a3c">cmdchr</a></div><div class="ttdeci">std::string cmdchr(quarterword cmd, halfword chrcode)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00099">impression.cpp:99</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_ac36f475ca5b446f4fde4c9b90bec77c8a2cd3c8a389d4f06ac700cff9a2fdb5d6"><div class="ttname"><a href="constantes_8h.html#ac36f475ca5b446f4fde4c9b90bec77c8a2cd3c8a389d4f06ac700cff9a2fdb5d6">temp_head</a></div><div class="ttdeci">@ temp_head</div><div class="ttdoc">head of a temporary list of some kind</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00192">constantes.h:192</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aac34dfe6c6b73b43a4656c9dce041034a8382990150c1cad5a49285b51f27fbeb"><div class="ttname"><a href="constantes_8h.html#aac34dfe6c6b73b43a4656c9dce041034a8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a></div><div class="ttdeci">@ cs_token_flag</div><div class="ttdoc">amount added to the eqtb location in a token that stands for a control sequence; is a multiple of 256...</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00628">constantes.h:628</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea07f557c8c66a6700156193d001eb6b07"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea07f557c8c66a6700156193d001eb6b07">semi_simple_group</a></div><div class="ttdeci">@ semi_simple_group</div><div class="ttdoc">code for ‘\begingroup...\endgroup’</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00377">constantes.h:377</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_adb17223ad60c9ffc709eb43e2f309055"><div class="ttname"><a href="globals_8cpp.html#adb17223ad60c9ffc709eb43e2f309055">curcmd</a></div><div class="ttdeci">eightbits curcmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00105">globals.cpp:105</a></div></div>
 <div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00241">impression.cpp:241</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a0ed680fdb405e7195d9f14032851eebba8382990150c1cad5a49285b51f27fbeb"><div class="ttname"><a href="constantes_8h.html#a0ed680fdb405e7195d9f14032851eebba8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a></div><div class="ttdeci">@ cs_token_flag</div><div class="ttdoc">amount added to the eqtb location in a token that stands for a control sequence; is a multiple of 256...</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00628">constantes.h:628</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a6b7b47dd702d9e331586d485013fd1eaa133cf26b5d160c05e586436b8d8986b4"><div class="ttname"><a href="constantes_8h.html#a6b7b47dd702d9e331586d485013fd1eaa133cf26b5d160c05e586436b8d8986b4">frozen_right</a></div><div class="ttdeci">@ frozen_right</div><div class="ttdoc">permanent ‘\right’</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00398">constantes.h:398</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_af9bdc3014f3d54c426b6d2df10de4960ac2e8389985184af7f79d8708f980e221"><div class="ttname"><a href="constantes_8h.html#af9bdc3014f3d54c426b6d2df10de4960ac2e8389985184af7f79d8708f980e221">math_shift_token</a></div><div class="ttdeci">@ math_shift_token</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00442">constantes.h:442</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea7f9512f855570913b2cbe82aee813e82"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea7f9512f855570913b2cbe82aee813e82">math_shift_group</a></div><div class="ttdeci">@ math_shift_group</div><div class="ttdoc">//!&lt; code for ‘$...$’</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00378">constantes.h:378</a></div></div>

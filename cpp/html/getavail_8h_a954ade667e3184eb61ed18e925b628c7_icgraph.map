@@ -1,17 +1,17 @@
 <map id="getavail" name="getavail">
 <area shape="rect" id="node1" title=" " alt="" coords="539,509,605,536"/>
-<area shape="rect" id="node2" href="$backinput_8h.html#afd6e40e89c0d293c90a471cef22e934a" title="Undoes one token of input." alt="" coords="388,131,467,157"/>
-<area shape="rect" id="node3" href="$expand_8h.html#abf4ef81214404f9ab64830d5820ea301" title=" " alt="" coords="215,29,279,56"/>
-<area shape="rect" id="node4" href="$macrocall_8h.html#a7b207fba9cb90450eb7a52f1147231ab" title=" " alt="" coords="208,80,287,107"/>
-<area shape="rect" id="node5" href="$offsave_8h.html#a63378f93afc7d8ca66b9fe6f6f3d920b" title=" " alt="" coords="215,181,280,208"/>
-<area shape="rect" id="node6" href="$prefixedcommand_8h.html#a8b006cca408266a2cf903d2c30b03844" title=" " alt="" coords="5,257,131,284"/>
+<area shape="rect" id="node2" href="$backinput_8h.html#ac121089024c8a2aeea2c7648a9a27c4c" title="Undoes one token of input." alt="" coords="388,131,467,157"/>
+<area shape="rect" id="node3" href="$expand_8h.html#a6cd353cccefba79d63b4b15cc9add294" title=" " alt="" coords="215,29,279,56"/>
+<area shape="rect" id="node4" href="$macrocall_8h.html#a5c6e9f685027b1cbb3da41d4040a4408" title=" " alt="" coords="208,80,287,107"/>
+<area shape="rect" id="node5" href="$offsave_8h.html#a248e6be7b71aa92bdb245c870ea826e2" title=" " alt="" coords="215,181,280,208"/>
+<area shape="rect" id="node6" href="$prefixedcommand_8h.html#af2228d242075314f70f29227a9c79444" title=" " alt="" coords="5,257,131,284"/>
 <area shape="rect" id="node7" href="$lecture_8h.html#adefa9e2e73b623f6a19242a1b365ddf0" title=" " alt="" coords="205,232,290,259"/>
 <area shape="rect" id="node8" href="$charbox_8h.html#a86c2c46fc0276e96f2b7744e731ee4a1" title=" " alt="" coords="393,384,461,411"/>
-<area shape="rect" id="node9" href="$checkoutervalidity_8h.html#a6bca3c8986cc82099dde339cf36de911" title=" " alt="" coords="364,435,491,461"/>
+<area shape="rect" id="node9" href="$getnext_8cpp.html#afc0dfeddc2617f4d191039af820d60e0" title=" " alt="" coords="364,435,491,461"/>
 <area shape="rect" id="node10" href="$noeud_8h.html#a10ce09de92566b94c5155b2fd74872f3" title=" " alt="" coords="380,509,475,536"/>
 <area shape="rect" id="node11" href="$getavail_8h.html#a3b8c51140a2912d4fa1c7f4fab8519be" title=" " alt="" coords="376,560,479,587"/>
-<area shape="rect" id="node12" href="$fincol_8h.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="401,611,454,637"/>
-<area shape="rect" id="node13" href="$initalign_8h.html#ae240163ab5bd073e230cd1bcaa074aee" title=" " alt="" coords="214,712,281,739"/>
+<area shape="rect" id="node12" href="$fincol_8h.html#aed105ad31d9841b021bb9fad16dfa43d" title=" " alt="" coords="401,611,454,637"/>
+<area shape="rect" id="node13" href="$initalign_8h.html#af607728ec0dd1a58fd183cc3248e4e42" title=" " alt="" coords="214,712,281,739"/>
 <area shape="rect" id="node14" href="$noeud_8h.html#a1178b2d9577d7ff8057e501c4def33ed" title=" " alt="" coords="377,813,477,840"/>
 <area shape="rect" id="node15" href="$noeud_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="179,333,316,360"/>
 <area shape="rect" id="node16" href="$pushalignment_8h.html#a8cbbbca3e5d7c4a3d2fe9a5687b567d9" title=" " alt="" coords="374,712,481,739"/>

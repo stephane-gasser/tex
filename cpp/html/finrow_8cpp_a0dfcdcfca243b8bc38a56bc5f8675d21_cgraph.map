@@ -1,7 +1,7 @@
 <map id="finrow" name="finrow">
 <area shape="rect" id="node1" title=" " alt="" coords="5,233,63,260"/>
 <area shape="rect" id="node2" href="$alignpeek_8cpp.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="123,5,201,32"/>
-<area shape="rect" id="node3" href="$appendtovlist_8cpp.html#a7018c33b1ef8cb50dd66430b241ccb32" title="When a box is being appended to the current vertical list, the baselineskip calculation is handled by..." alt="" coords="113,56,211,83"/>
+<area shape="rect" id="node3" href="$noeud_8cpp.html#a7018c33b1ef8cb50dd66430b241ccb32" title="When a box is being appended to the current vertical list, the baselineskip calculation is handled by..." alt="" coords="113,56,211,83"/>
 <area shape="rect" id="node4" href="$lecture_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="111,107,213,133"/>
 <area shape="rect" id="node5" href="$constantes_8cpp.html#a60c965218c52394aaa95513c326eafbc" title=" " alt="" coords="126,157,198,184"/>
 <area shape="rect" id="node6" href="$constantes_8cpp.html#ac3d11fd6581239a8bce32f06696b4085" title="total stretch in an unset node" alt="" coords="115,208,209,235"/>

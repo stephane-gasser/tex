@@ -1,9 +1,10 @@
 <map id="normalparagraph" name="normalparagraph">
-<area shape="rect" id="node1" title=" " alt="" coords="321,132,440,159"/>
+<area shape="rect" id="node1" title=" " alt="" coords="321,157,440,184"/>
 <area shape="rect" id="node2" href="$alignpeek_8h.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="169,5,247,32"/>
-<area shape="rect" id="node3" href="$begininsertoradjust_8h.html#aced2386faf00f88641a052228b5cd413" title=" " alt="" coords="143,56,273,83"/>
-<area shape="rect" id="node4" href="$maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,107,95,133"/>
-<area shape="rect" id="node5" href="$endgraf_8h.html#abee47be02d4d2b4c7bdb494f59a5a8bc" title=" " alt="" coords="175,157,241,184"/>
-<area shape="rect" id="node6" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="181,208,235,235"/>
-<area shape="rect" id="node7" href="$initspan_8h.html#a1c347985717caccf5068d06b952b2a47" title=" " alt="" coords="175,259,241,285"/>
+<area shape="rect" id="node3" href="$beginbox_8h.html#ad9d5ddd4d003af0c6e93985ad5eca6b7" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="171,56,245,83"/>
+<area shape="rect" id="node4" href="$maincontrol_8h.html#ae509bc209a74fcb44a9fc70140474583" title=" " alt="" coords="5,132,95,159"/>
+<area shape="rect" id="node5" href="$begininsertoradjust_8h.html#af49604a30c2d81d3ce8beed694d0d64d" title=" " alt="" coords="143,157,273,184"/>
+<area shape="rect" id="node6" href="$endgraf_8h.html#abee47be02d4d2b4c7bdb494f59a5a8bc" title=" " alt="" coords="175,208,241,235"/>
+<area shape="rect" id="node7" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="181,259,235,285"/>
+<area shape="rect" id="node8" href="$initspan_8h.html#a1c347985717caccf5068d06b952b2a47" title=" " alt="" coords="175,309,241,336"/>
 </map>

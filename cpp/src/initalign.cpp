@@ -10,10 +10,10 @@
 #include "alignpeek.h"
 #include "texte.h"
 
-void initalign(eightbits cmd, halfword cs)
+void initalign(eightbits cmd, halfword cs, halfword &loop)
 {
 	auto savecsptr = cs;
-	pushalignment();
+	pushalignment(loop);
 	alignstate = -1000000;
 	if (mode == mmode && (tail != head || incompleat_noad))
 	{
@@ -33,18 +33,17 @@ void initalign(eightbits cmd, halfword cs)
 	std::tie(cmd, std::ignore, tok) = scanspec(6, false);
 	link(align_head) = 0;
 	curalign = align_head;
-	curloop = 0;
+	loop = 0;
 	scannerstatus = 4;
 	warningindex = savecsptr;
 	alignstate = -1000000;
-	halfword p;
 	while (true)
 	{
-		link(curalign) = newparamglue(11);
+		link(curalign) = newparamglue(tab_skip_code);
 		curalign = link(curalign);
 		if (cmd == car_ret)
 			break;
-		p = hold_head;
+		halfword p = hold_head;
 		link(p) = 0;
 		halfword tok;
 		while (true)
@@ -52,9 +51,9 @@ void initalign(eightbits cmd, halfword cs)
 			std::tie(cmd, tok) = getpreambletoken();
 			if (cmd == mac_param)
 				break;
-			if (cmd <= out_param && cmd >= tab_mark && alignstate == -1000000)
-				if (p == hold_head && curloop == 0 && cmd == tab_mark)
-					curloop = curalign;
+			if ((cmd == tab_mark || cmd == out_param) && alignstate == -1000000)
+				if (p == hold_head && loop == 0 && cmd == tab_mark)
+					loop = curalign;
 				else
 				{
 					backerror(tok, "Missing # inserted in alignment preamble", "There should be exactly one # between &'s, when an\n\\halign or \\valign is being set up. In this case you had\nnone, so I've put one in; maybe that will work.");
@@ -98,5 +97,5 @@ void initalign(eightbits cmd, halfword cs)
 	newsavelevel(align_group);
 	if (every_cr())
 		begintokenlist(every_cr(), every_cr_text);
-	alignpeek();
+	alignpeek(loop);
 }

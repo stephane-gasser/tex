@@ -1,0 +1,30 @@
+<map id="doextension" name="doextension">
+<area shape="rect" id="node1" title=" " alt="" coords="5,807,97,834"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#a999fe0a02561a0158caa3372a424f82d" title="Undoes one token of input." alt="" coords="475,986,554,1013"/>
+<area shape="rect" id="node3" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="475,631,554,658"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#a7a622e389fe45f9b10a5918a9d18c57a" title=" " alt="" coords="333,226,371,253"/>
+<area shape="rect" id="node5" href="$doextension_8cpp.html#a7a494ccf93b3502733857bcb92154734" title=" " alt="" coords="145,807,237,834"/>
+<area shape="rect" id="node6" href="$noeud_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="305,125,399,151"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="611,631,653,658"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#a177ed5e89b8c5da61476a30ad8d3384b" title="reference count of token list to write" alt="" coords="467,441,563,467"/>
+<area shape="rect" id="node9" href="$lecture_8cpp.html#ac906451f95919612bebc8e765f2b4d6c" title=" " alt="" coords="475,1037,554,1063"/>
+<area shape="rect" id="node10" href="$parametres_8h.html#a26f198c381967e7bcc507a080c7062f3" title=" " alt="" coords="293,277,411,303"/>
+<area shape="rect" id="node11" href="$noeud_8cpp.html#a1261952612c9c3237400b8b77065f964" title=" " alt="" coords="308,327,396,354"/>
+<area shape="rect" id="node12" href="$noeud_8cpp.html#a29ae445d690f35ce368fa36dde6ec5d8" title=" " alt="" coords="294,378,410,405"/>
+<area shape="rect" id="node13" href="$normmin_8cpp.html#af805df9a180597e0b529dfec14c1dd7a" title=" " alt="" coords="316,429,388,455"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#abb80aa4c5261fe7de19b43bacb971589" title="string number of file area for open_name" alt="" coords="311,479,393,506"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#ac181bafc02293b2e0c53747b6f28b416" title="string number of file extension for open_name" alt="" coords="315,581,389,607"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#a9b1e6377ed45d9ced213accc0d8c90ae" title="string number of file name to open" alt="" coords="307,733,397,759"/>
+<area shape="rect" id="node17" href="$outwhat_8cpp.html#a1137c5a00a506a80eadbe8aa55c400f5" title=" " alt="" coords="318,682,386,709"/>
+<area shape="rect" id="node18" href="$erreur_8cpp.html#acd7fc31cfc4ec6455b2b0ab5d99750fb" title=" " alt="" coords="294,1087,410,1114"/>
+<area shape="rect" id="node19" href="$parametres_8h.html#a2fc0c04efd473c3bbe785f4f12c22ab9" title=" " alt="" coords="290,1138,414,1165"/>
+<area shape="rect" id="node20" href="$lecture_8cpp.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="303,1037,401,1063"/>
+<area shape="rect" id="node21" href="$lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="320,986,384,1013"/>
+<area shape="rect" id="node22" href="$lecture_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="285,1189,419,1215"/>
+<area shape="rect" id="node23" href="$lecture_8cpp.html#ab08f6baf4e5aeec4f2067d21dfe40d0d" title=" " alt="" coords="315,1239,389,1266"/>
+<area shape="rect" id="node24" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="333,1290,371,1317"/>
+<area shape="rect" id="node25" href="$constantes_8cpp.html#a33d8f944ea440e7b549bba9c8d59b7fc" title="language number, in the range 0..255" alt="" coords="311,885,393,911"/>
+<area shape="rect" id="node26" href="$constantes_8cpp.html#ab0ad9017d47db7dbdd4a56de61cf1ab4" title="minimum left fragment, in the range 1..63" alt="" coords="313,1341,391,1367"/>
+<area shape="rect" id="node27" href="$constantes_8cpp.html#a3a9a841425d1132288c369576f00edb1" title="minimum right fragment, in the range 1..63" alt="" coords="313,1391,391,1418"/>
+<area shape="rect" id="node28" href="$constantes_8cpp.html#a555c50d862b9b6fa68704c4277d8ff36" title="stream number (0 to 17)" alt="" coords="303,1442,401,1469"/>
+</map>

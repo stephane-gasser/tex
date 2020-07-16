@@ -103,12 +103,12 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a5f00c14009de038a4c2dc9c2fd9f8e99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="buildchoices_8h.html#a5f00c14009de038a4c2dc9c2fd9f8e99">buildchoices</a> (void)</td></tr>
-<tr class="separator:a5f00c14009de038a4c2dc9c2fd9f8e99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b571c0e485bfeb4f88807e0150ba332"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="buildchoices_8h.html#a5b571c0e485bfeb4f88807e0150ba332">buildchoices</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>)</td></tr>
+<tr class="separator:a5b571c0e485bfeb4f88807e0150ba332"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a5f00c14009de038a4c2dc9c2fd9f8e99"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f00c14009de038a4c2dc9c2fd9f8e99">&#9670;&nbsp;</a></span>buildchoices()</h2>
+<a id="a5b571c0e485bfeb4f88807e0150ba332"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b571c0e485bfeb4f88807e0150ba332">&#9670;&nbsp;</a></span>buildchoices()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -116,7 +116,7 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void buildchoices </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -125,7 +125,7 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="buildchoices_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="buildchoices_8cpp_source.html">buildchoices.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc">unsave</a>();</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="unsave_8cpp.html#aecb76d96036e7741ea081399498fb352">unsave</a>(tok);</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af">finmlist</a>(0); <span class="comment">// the current mlist</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">switch</span> (<a class="code" href="constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9">saved</a>(-1))</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
@@ -145,50 +145,51 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9">saved</a>(-1)++;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012">pushmath</a>(<a class="code" href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea477f1d7d5d9635a216d4eda6885a0d3d">math_choice_group</a>);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    std::tie(<a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea1ab39bc750d3bf0ee5d0214b3b267636">std::ignore</a>, <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea1ab39bc750d3bf0ee5d0214b3b267636">std::ignore</a>, tok) = <a class="code" href="lecture_8cpp.html#a10521749aeef9c08e7176f96543e4e70">scanleftbrace</a>();</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="buildchoices_8h_a5f00c14009de038a4c2dc9c2fd9f8e99_cgraph.png" border="0" usemap="#buildchoices_8h_a5f00c14009de038a4c2dc9c2fd9f8e99_cgraph" alt=""/></div>
-<map name="buildchoices_8h_a5f00c14009de038a4c2dc9c2fd9f8e99_cgraph" id="buildchoices_8h_a5f00c14009de038a4c2dc9c2fd9f8e99_cgraph">
+<div class="center"><img src="buildchoices_8h_a5b571c0e485bfeb4f88807e0150ba332_cgraph.png" border="0" usemap="#buildchoices_8h_a5b571c0e485bfeb4f88807e0150ba332_cgraph" alt=""/></div>
+<map name="buildchoices_8h_a5b571c0e485bfeb4f88807e0150ba332_cgraph" id="buildchoices_8h_a5b571c0e485bfeb4f88807e0150ba332_cgraph">
 <area shape="rect" title=" " alt="" coords="5,208,100,235"/>
 <area shape="rect" href="constantes_8cpp.html#a4da40ddb2b5a65de1d2bba8128eb3167" title="mlist to be used in display style" alt="" coords="163,5,261,32"/>
 <area shape="rect" href="finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af" title=" " alt="" coords="180,56,244,83"/>
 <area shape="rect" href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012" title=" " alt="" coords="173,107,251,133"/>
 <area shape="rect" href="constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9" title=" " alt="" coords="324,284,381,311"/>
-<area shape="rect" href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="162,208,262,235"/>
+<area shape="rect" href="lecture_8cpp.html#a10521749aeef9c08e7176f96543e4e70" title=" " alt="" coords="162,208,262,235"/>
 <area shape="rect" href="constantes_8cpp.html#a76f175f6541923e8ba102ee0dc79eb5c" title="mlist to be used in script style" alt="" coords="167,259,257,285"/>
 <area shape="rect" href="constantes_8cpp.html#a9cbfeb716eeea05a09ed2ee0460d8f82" title="mlist to be used in scriptscript style" alt="" coords="148,309,276,336"/>
 <area shape="rect" href="constantes_8cpp.html#a159b73dc022ab907a96c51c0f881f8c7" title="mlist to be used in text style" alt="" coords="173,360,251,387"/>
-<area shape="rect" href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="180,411,244,437"/>
+<area shape="rect" href="unsave_8cpp.html#aecb76d96036e7741ea081399498fb352" title=" " alt="" coords="180,411,244,437"/>
 </map>
 </div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="buildchoices_8h_a5f00c14009de038a4c2dc9c2fd9f8e99_icgraph.png" border="0" usemap="#buildchoices_8h_a5f00c14009de038a4c2dc9c2fd9f8e99_icgraph" alt=""/></div>
-<map name="buildchoices_8h_a5f00c14009de038a4c2dc9c2fd9f8e99_icgraph" id="buildchoices_8h_a5f00c14009de038a4c2dc9c2fd9f8e99_icgraph">
+<div class="center"><img src="buildchoices_8h_a5b571c0e485bfeb4f88807e0150ba332_icgraph.png" border="0" usemap="#buildchoices_8h_a5b571c0e485bfeb4f88807e0150ba332_icgraph" alt=""/></div>
+<map name="buildchoices_8h_a5b571c0e485bfeb4f88807e0150ba332_icgraph" id="buildchoices_8h_a5b571c0e485bfeb4f88807e0150ba332_icgraph">
 <area shape="rect" title=" " alt="" coords="171,5,265,32"/>
-<area shape="rect" href="handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="5,5,123,32"/>
+<area shape="rect" href="handlerightbrace_8h.html#a286db2f2727264ddfa0d49e4188caeac" title=" " alt="" coords="5,5,123,32"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aunsave_8cpp_html_a107d881e47e06a5ebd5fd6332f972bcc"><div class="ttname"><a href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc">unsave</a></div><div class="ttdeci">void unsave(void)</div><div class="ttdef"><b>Definition:</b> <a href="unsave_8cpp_source.html#l00006">unsave.cpp:6</a></div></div>
+<div class="ttc" id="aunsave_8cpp_html_aecb76d96036e7741ea081399498fb352"><div class="ttname"><a href="unsave_8cpp.html#aecb76d96036e7741ea081399498fb352">unsave</a></div><div class="ttdeci">void unsave(halfword tok)</div><div class="ttdef"><b>Definition:</b> <a href="unsave_8cpp_source.html#l00006">unsave.cpp:6</a></div></div>
 <div class="ttc" id="apushmath_8cpp_html_aba90df5553aea9707087be473eddb012"><div class="ttname"><a href="pushmath_8cpp.html#aba90df5553aea9707087be473eddb012">pushmath</a></div><div class="ttdeci">void pushmath(groupcode c)</div><div class="ttdef"><b>Definition:</b> <a href="pushmath_8cpp_source.html#l00005">pushmath.cpp:5</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a76f175f6541923e8ba102ee0dc79eb5c"><div class="ttname"><a href="constantes_8cpp.html#a76f175f6541923e8ba102ee0dc79eb5c">script_mlist</a></div><div class="ttdeci">halfword &amp; script_mlist(halfword p)</div><div class="ttdoc">mlist to be used in script style</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00098">constantes.cpp:98</a></div></div>
 <div class="ttc" id="afinmlist_8cpp_html_af4215f599c5ab41d37100fb19ee858af"><div class="ttname"><a href="finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af">finmlist</a></div><div class="ttdeci">halfword finmlist(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="finmlist_8cpp_source.html#l00005">finmlist.cpp:5</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a4da40ddb2b5a65de1d2bba8128eb3167"><div class="ttname"><a href="constantes_8cpp.html#a4da40ddb2b5a65de1d2bba8128eb3167">display_mlist</a></div><div class="ttdeci">halfword &amp; display_mlist(halfword p)</div><div class="ttdoc">mlist to be used in display style</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00095">constantes.cpp:95</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00089">globals.cpp:89</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ea1ab39bc750d3bf0ee5d0214b3b267636"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea1ab39bc750d3bf0ee5d0214b3b267636">ignore</a></div><div class="ttdeci">@ ignore</div><div class="ttdoc">characters to ignore</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00221">constantes.h:221</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_ae372924277c9636b7b76c2f3573917b9"><div class="ttname"><a href="constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9">saved</a></div><div class="ttdeci">int &amp; saved(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00101">constantes.cpp:101</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a159b73dc022ab907a96c51c0f881f8c7"><div class="ttname"><a href="constantes_8cpp.html#a159b73dc022ab907a96c51c0f881f8c7">text_mlist</a></div><div class="ttdeci">halfword &amp; text_mlist(halfword p)</div><div class="ttdoc">mlist to be used in text style</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00097">constantes.cpp:97</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_aaf105ae5beaca1dee30ae54530691fcea477f1d7d5d9635a216d4eda6885a0d3d"><div class="ttname"><a href="constantes_8h.html#aaf105ae5beaca1dee30ae54530691fcea477f1d7d5d9635a216d4eda6885a0d3d">math_choice_group</a></div><div class="ttdeci">@ math_choice_group</div><div class="ttdoc">code for ‘\mathchoice\grp\grp\grp\grp’</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00376">constantes.h:376</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a10521749aeef9c08e7176f96543e4e70"><div class="ttname"><a href="lecture_8cpp.html#a10521749aeef9c08e7176f96543e4e70">scanleftbrace</a></div><div class="ttdeci">std::tuple&lt; eightbits, halfword, halfword &gt; scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00656">lecture.cpp:656</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a9cbfeb716eeea05a09ed2ee0460d8f82"><div class="ttname"><a href="constantes_8cpp.html#a9cbfeb716eeea05a09ed2ee0460d8f82">script_script_mlist</a></div><div class="ttdeci">halfword &amp; script_script_mlist(halfword p)</div><div class="ttdoc">mlist to be used in scriptscript style</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00100">constantes.cpp:100</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00100">globals.cpp:100</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_a055cc2de58a83eda8aeb70e218e5fb1c"><div class="ttname"><a href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a></div><div class="ttdeci">void scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00637">lecture.cpp:637</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

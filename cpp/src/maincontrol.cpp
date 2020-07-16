@@ -392,7 +392,7 @@ static void main_loop(eightbits cmd, halfword chr, halfword tok, halfword cs)
 	curl = chr;
 	character(ligstack) = curl;
 	curq = tail;
-	maink = cancelboundary ? 0 : bcharlabel[mainf];
+	maink = cancelboundary ? non_address : bcharlabel[mainf];
 	cancelboundary = false;
 	if (maink == non_address)
 		if (main_loop_move_2(chr))
@@ -413,6 +413,7 @@ static void main_loop(eightbits cmd, halfword chr, halfword tok, halfword cs)
 
 halfword maincontrol(void)
 {
+	halfword loop = 0;
 	if (every_job())
 		begintokenlist(every_job(), every_job_text);
 	auto [cmd, chr, tok, cs] = getxtoken();
@@ -427,7 +428,6 @@ halfword maincontrol(void)
 		}
 		if (tracing_commands() > 0)
 			showcurcmdchr(cmd, chr);
-		int t;
 		switch (abs(mode)+cmd)
 		{
 			case hmode+letter:
@@ -540,13 +540,12 @@ halfword maincontrol(void)
 					offsave(cmd, chr, tok);
 				break;
 			case ANY_MODE(right_brace):
-				handlerightbrace(tok);
+				handlerightbrace(tok, loop);
 				break;
 			case vmode+hmove:
 			case hmode+vmove:
 			case mmode+vmove:
-				t = chr;
-				scanbox(t == 0 ? scan_normal_dimen() : -scan_normal_dimen());
+				scanbox(chr == 0 ? scan_normal_dimen() : -scan_normal_dimen());
 				break;
 			case ANY_MODE(leader_ship):
 				scanbox(leader_flag-a_leaders+chr);
@@ -580,7 +579,7 @@ halfword maincontrol(void)
 			case vmode+par_end:
 				normalparagraph();
 				if (mode > 0)
-				buildpage();
+					buildpage();
 				break;
 			case hmode+par_end:
 				if (alignstate < 0)
@@ -662,18 +661,18 @@ halfword maincontrol(void)
 				break;
 			case vmode+halign:
 			case hmode+valign: 
-				initalign(cmd, cs);
+				initalign(cmd, cs, loop);
 				break;
 			case mmode+halign: 
 				if (privileged(cmd, chr))
 					if (curgroup == math_shift_group)
-						initalign(cmd, cs);
+						initalign(cmd, cs, loop);
 					else
 						offsave(cmd, chr, tok);
 				break;
 			case vmode+endv:
 			case hmode+endv: 
-				doendv(cmd, chr, tok);
+				doendv(cmd, chr, tok, loop);
 				break;
 			case ANY_MODE(end_cs_name):
 				error("Extra "+esc("endcsname"), "I'm ignoring this, since I wasn't doing a \\csname.");
@@ -691,7 +690,7 @@ halfword maincontrol(void)
 			case mmode+left_brace:
 				tail_append(newnoad());
 				backinput(tok);
-				scanmath(tail+1);
+				scanmath(nucleus(tail));
 				break;
 			case mmode+letter:
 			case mmode+other_char:
@@ -714,7 +713,7 @@ halfword maincontrol(void)
 			case mmode+math_comp:
 				tail_append(newnoad());
 				type(tail) = chr;
-				scanmath(tail+1);
+				scanmath(nucleus(tail));
 				break;
 			case mmode+limit_switch: 
 				mathlimitswitch(chr);

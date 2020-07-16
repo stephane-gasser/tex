@@ -1,10 +1,8 @@
 <map id="cur_font" name="cur_font">
-<area shape="rect" id="node1" title=" " alt="" coords="205,157,275,184"/>
-<area shape="rect" id="node2" href="$maincontrol_8cpp.html#ab7f7983b788abb1c635c1bd67f967894" title=" " alt="" coords="5,5,157,32"/>
-<area shape="rect" id="node3" href="$appenddiscretionary_8h.html#ab72cb4f585d452f1586ddc819a11a373" title=" " alt="" coords="12,56,151,83"/>
-<area shape="rect" id="node4" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="42,107,121,133"/>
-<area shape="rect" id="node5" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="47,157,115,184"/>
-<area shape="rect" id="node6" href="$maincontrol_8cpp.html#ac9adf23e9668c60e307d353478aec787" title=" " alt="" coords="41,208,122,235"/>
-<area shape="rect" id="node7" href="$makeaccent_8h.html#a73af5b938a9ef086ac006e237d6e7d7f" title=" " alt="" coords="35,259,128,285"/>
-<area shape="rect" id="node8" href="$lecture_8h.html#ab5468bc60f6a966124d1016ccf7706cb" title=" " alt="" coords="31,309,131,336"/>
+<area shape="rect" id="node1" title=" " alt="" coords="205,107,275,133"/>
+<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a0df6982a7ec1c82f598377d2e6f82de5" title=" " alt="" coords="5,5,157,32"/>
+<area shape="rect" id="node3" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="47,56,115,83"/>
+<area shape="rect" id="node4" href="$maincontrol_8cpp.html#acf2646bebf922ddb645b9c01b0300ddd" title=" " alt="" coords="41,107,122,133"/>
+<area shape="rect" id="node5" href="$makeaccent_8h.html#a88cbc4c03d6a56fd6a6515e21496ada4" title=" " alt="" coords="35,157,128,184"/>
+<area shape="rect" id="node6" href="$lecture_8h.html#ab5468bc60f6a966124d1016ccf7706cb" title=" " alt="" coords="31,208,131,235"/>
 </map>

@@ -100,7 +100,6 @@ void Initialize(void)
 	alignptr = 0;
 	curalign = 0;
 	curspan = 0;
-	curloop = 0;
 	curhead = 0;
 	curtail = 0;
 	for (int z = 0; z < 308; z++)

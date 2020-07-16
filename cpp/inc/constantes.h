@@ -13,7 +13,7 @@ constexpr int hash_size = 2100; //!<  maximum number of control sequences; it sh
 constexpr int hash_prime = 1777; //!<  a prime number equal to about 85% of \a hash_size
 constexpr int hyph_size = 307; //!<  another prime; the number of \\hyphenation exceptions
 
-enum
+enum command_code
 {
 	number_code = 0, // //command code for \number
 	roman_numeral_code = 1, //command code for \romannumeral
@@ -23,7 +23,7 @@ enum
 	job_name_code = 5 //command code for \jobname
 };
 
-enum
+enum if_codes
 {
 	if_code = 1, //code for \if... being evaluated
 	fi_code = 2, //code for \fi
@@ -41,12 +41,12 @@ enum selector
 //	new_string = 21 //!<  printing is deflected to the string pool
 };
 
-enum
+enum interactions
 {
-	batch_mode = 0, //!<  omits all stops and omits terminal output
-	nonstop_mode = 1, //!<  omits all stops
-	scroll_mode = 2, //!<  omits error stops
-	error_stop_mode = 3 //!<  stops at every opportunity to interact
+	batch_mode = 0, //!< omits all stops and omits terminal output
+	nonstop_mode = 1, //!< omits all stops
+	scroll_mode = 2, //!< omits error stops
+	error_stop_mode = 3 //!< stops at every opportunity to interact
 };
 
 enum
@@ -343,22 +343,22 @@ enum
 		data = 120 //!< max_command+20 //!< the equivalent is simply a halfword number
 };
 
-enum
+enum modes
 {
 	vmode = 1, //!< vertical mode
 	hmode = vmode+max_command+1, //!< horizontal mode
 	mmode = hmode+max_command+1 //!< math mode
 };
 
-enum
+enum save_type
 {
 	restore_old_value = 0, //!< \a save_type when a value should be restored later
 	restore_zero = 1, //!< \a save_type when an undefined entry should be restored
 	insert_token = 2, //!< \a save_type when a token is being saved for later use
-	level_boundary=3 //!< \a save_type corresponding to beginning of group
+	level_boundary = 3 //!< \a save_type corresponding to beginning of group
 };
 
-enum
+enum groups
 {
 	bottom_level = 0, //!< group code for the outside world
 	simple_group = 1, //!< group code for local structure only
@@ -379,13 +379,13 @@ enum
 	math_left_group = 16 //!< code for `\\left...\\right'
 };
 
-enum
+enum levels
 {
 	level_zero = 0, //!< level for undefined quantities
 	level_one = level_zero+1 //!< outermost level for defined quantities
 };
 
-enum
+enum memory
 {
 	active_base = 1, //!< beginning of region 1, for active character equivalents
 	single_base = active_base+256, //!< equivalents of one-character control sequences
@@ -436,7 +436,7 @@ enum
 	eqtb_size = scaled_base+255 //!< largest subscript of \a eqtb
 };
 
-enum
+enum special_token
 {
 	out_param_token = out_param<<8, //!< \f$2^8\cdot\textrm{out_param}\f$
 	math_shift_token = math_shift<<8, //!< \f$2^8\cdot\textrm{math_shift}\f$

@@ -1,8 +1,7 @@
 <map id="pushmath" name="pushmath">
-<area shape="rect" id="node1" title=" " alt="" coords="163,107,241,133"/>
-<area shape="rect" id="node2" href="$appendchoices_8h.html#a8f7ed45d5a9980b4d2dd4739091bedff" title=" " alt="" coords="5,5,115,32"/>
-<area shape="rect" id="node3" href="$buildchoices_8h.html#a5f00c14009de038a4c2dc9c2fd9f8e99" title=" " alt="" coords="13,56,107,83"/>
-<area shape="rect" id="node4" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="26,107,94,133"/>
-<area shape="rect" id="node5" href="$mathleftright_8h.html#ae57bcde06a5ae7558dbb7f17a0724552" title=" " alt="" coords="13,157,107,184"/>
-<area shape="rect" id="node6" href="$starteqno_8h.html#a40e390a210c4e1831cf647cefaca8244" title=" " alt="" coords="22,208,98,235"/>
+<area shape="rect" id="node1" title=" " alt="" coords="148,81,227,108"/>
+<area shape="rect" id="node2" href="$buildchoices_8h.html#a5b571c0e485bfeb4f88807e0150ba332" title=" " alt="" coords="5,5,100,32"/>
+<area shape="rect" id="node3" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="19,56,87,83"/>
+<area shape="rect" id="node4" href="$mathleftright_8h.html#a8ba2e85699eb0a11079c4ed727771909" title=" " alt="" coords="5,107,100,133"/>
+<area shape="rect" id="node5" href="$starteqno_8h.html#ab159af32f0eb47f0663bede8eeb989f4" title=" " alt="" coords="15,157,91,184"/>
 </map>

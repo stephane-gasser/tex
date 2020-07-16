@@ -1,7 +1,5 @@
 <map id="getstringsstarted" name="getstringsstarted">
-<area shape="rect" id="node1" title="Initializes the string pool, but returns |false| if something goes wrong." alt="" coords="5,81,124,108"/>
-<area shape="rect" id="node2" href="$fichiers_8cpp.html#a941887a5a97d9f9b08b2a153321d6816" title="Close a text file." alt="" coords="190,5,250,32"/>
-<area shape="rect" id="node3" href="$fichiers_8cpp.html#ab59d265f11c411e7d0a1a3ccf4b97bb0" title="Open a text file for input." alt="" coords="187,56,253,83"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a3d10279728a85600f3a5705f66fc489d" title="put ASCII_code # at the end of str_pool" alt="" coords="172,107,268,133"/>
-<area shape="rect" id="node5" href="$makestring_8cpp.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="177,157,263,184"/>
+<area shape="rect" id="node1" title="Initializes the string pool, but returns |false| if something goes wrong." alt="" coords="5,31,124,57"/>
+<area shape="rect" id="node2" href="$fichiers_8cpp.html#a941887a5a97d9f9b08b2a153321d6816" title="Close a text file." alt="" coords="175,5,235,32"/>
+<area shape="rect" id="node3" href="$fichiers_8cpp.html#ab59d265f11c411e7d0a1a3ccf4b97bb0" title="Open a text file for input." alt="" coords="172,56,239,83"/>
 </map>

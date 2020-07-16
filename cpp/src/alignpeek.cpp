@@ -6,7 +6,7 @@
 #include "initrow.h"
 #include "initcol.h"
 
-void alignpeek(void)
+void alignpeek(halfword &loop)
 {
 	while (true)
 	{
@@ -25,7 +25,7 @@ void alignpeek(void)
 		}
 		else 
 			if (cmd == right_brace)
-				finalign(tok);
+				finalign(tok, loop);
 			else 
 				if (cmd == car_ret && chr == 258)
 					continue;

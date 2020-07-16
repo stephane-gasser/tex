@@ -1,5 +1,4 @@
 <map id="space_stretch" name="space_stretch">
-<area shape="rect" id="node1" title="stretch between words" alt="" coords="205,31,309,57"/>
-<area shape="rect" id="node2" href="$maincontrol_8cpp.html#ab7f7983b788abb1c635c1bd67f967894" title=" " alt="" coords="5,5,157,32"/>
-<area shape="rect" id="node3" href="$appspace_8h.html#af2f6480622390e5c7f1c0c4c512a85ea" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="42,56,121,83"/>
+<area shape="rect" id="node1" title="stretch between words" alt="" coords="205,5,309,32"/>
+<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a0df6982a7ec1c82f598377d2e6f82de5" title=" " alt="" coords="5,5,157,32"/>
 </map>

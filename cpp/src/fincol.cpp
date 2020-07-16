@@ -12,7 +12,7 @@
 #include "initcol.h"
 #include "texte.h"
 
-bool fincol(halfword tok)
+bool fincol(halfword tok, halfword &loop)
 {
 	halfword p, q, r, s, u;
 	scaled w;
@@ -27,15 +27,15 @@ bool fincol(halfword tok)
 		fatalerror("(interwoven alignment preambles are not allowed)");
 	p = link(q);
 	if (p == 0 && extra_info(curalign) < cr_code)
-		if (curloop)
+		if (loop)
 		{
 			link(q) = newnullbox();
 			p = link(q);
 			info(p) = end_span;
 			width(p) = null_flag;
-			curloop = link(curloop);
+			loop = link(loop);
 			q = hold_head;
-			r = u_part(curloop);
+			r = u_part(loop);
 			while (r)
 			{
 				link(q) = getavail();
@@ -46,7 +46,7 @@ bool fincol(halfword tok)
 			link(q) = 0;
 			u_part(p) = link(hold_head);
 			q = hold_head;
-			r = v_part(curloop);
+			r = v_part(loop);
 			while (r)
 			{
 				link(q) = getavail();
@@ -56,8 +56,8 @@ bool fincol(halfword tok)
 			}
 			link(q) = 0;
 			v_part(p) = link(hold_head);
-			curloop = link(curloop);
-			link(p) = newglue(info(curloop+1));
+			loop = link(loop);
+			link(p) = newglue(glue_ptr(loop));
 		}
 		else
 		{

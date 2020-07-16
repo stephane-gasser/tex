@@ -103,12 +103,12 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:ab568a6479589647e20b5d15f816372a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builddiscretionary_8h.html#ab568a6479589647e20b5d15f816372a2">builddiscretionary</a> (void)</td></tr>
-<tr class="separator:ab568a6479589647e20b5d15f816372a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67984389ff8333976f6cb8461be2df00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="builddiscretionary_8h.html#a67984389ff8333976f6cb8461be2df00">builddiscretionary</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>)</td></tr>
+<tr class="separator:a67984389ff8333976f6cb8461be2df00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="ab568a6479589647e20b5d15f816372a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab568a6479589647e20b5d15f816372a2">&#9670;&nbsp;</a></span>builddiscretionary()</h2>
+<a id="a67984389ff8333976f6cb8461be2df00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67984389ff8333976f6cb8461be2df00">&#9670;&nbsp;</a></span>builddiscretionary()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -116,7 +116,7 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void builddiscretionary </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -125,7 +125,7 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="builddiscretionary_8cpp_source.html#l00011">11</a> du fichier <a class="el" href="builddiscretionary_8cpp_source.html">builddiscretionary.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc">unsave</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="unsave_8cpp.html#aecb76d96036e7741ea081399498fb352">unsave</a>(tok);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">// Prune the current list, if necessary, until it contains only |char_node|, |kern_node|, |hlist_node|, |vlist_node|, |rule_node|,</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">//  and |ligature_node| items; set |n| to the length of the list, and set |q| to the list&#39;s tail</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a>;</div>
@@ -175,7 +175,7 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9">saved</a>(-1)++;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="noeud_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a>(10);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    std::tie(<a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea1ab39bc750d3bf0ee5d0214b3b267636">std::ignore</a>, <a class="code" href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea1ab39bc750d3bf0ee5d0214b3b267636">std::ignore</a>, tok) = <a class="code" href="lecture_8cpp.html#a10521749aeef9c08e7176f96543e4e70">scanleftbrace</a>();</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309">pushnest</a>();</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a> = -<a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da23ed1cf2add8386ccd9683ae2bc098b8">hmode</a>;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="globals_8cpp.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a> = 1000;</div>
@@ -183,8 +183,8 @@ Fonctions</h2></td></tr>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="builddiscretionary_8h_ab568a6479589647e20b5d15f816372a2_cgraph.png" border="0" usemap="#builddiscretionary_8h_ab568a6479589647e20b5d15f816372a2_cgraph" alt=""/></div>
-<map name="builddiscretionary_8h_ab568a6479589647e20b5d15f816372a2_cgraph" id="builddiscretionary_8h_ab568a6479589647e20b5d15f816372a2_cgraph">
+<div class="center"><img src="builddiscretionary_8h_a67984389ff8333976f6cb8461be2df00_cgraph.png" border="0" usemap="#builddiscretionary_8h_a67984389ff8333976f6cb8461be2df00_cgraph" alt=""/></div>
+<map name="builddiscretionary_8h_a67984389ff8333976f6cb8461be2df00_cgraph" id="builddiscretionary_8h_a67984389ff8333976f6cb8461be2df00_cgraph">
 <area shape="rect" title=" " alt="" coords="5,435,128,461"/>
 <area shape="rect" href="impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba" title="Do some tracing." alt="" coords="186,5,267,32"/>
 <area shape="rect" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="203,56,251,83"/>
@@ -200,18 +200,18 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="rect" href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="335,208,403,235"/>
 <area shape="rect" href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="189,637,264,664"/>
 <area shape="rect" href="constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9" title=" " alt="" coords="340,713,397,740"/>
-<area shape="rect" href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c" title=" " alt="" coords="177,789,277,816"/>
+<area shape="rect" href="lecture_8cpp.html#a10521749aeef9c08e7176f96543e4e70" title=" " alt="" coords="177,789,277,816"/>
 <area shape="rect" href="impression_8cpp.html#a51297bd2565e1d8124048a7aea9c7aa6" title=" " alt="" coords="189,840,264,867"/>
-<area shape="rect" href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="195,688,259,715"/>
+<area shape="rect" href="unsave_8cpp.html#aecb76d96036e7741ea081399498fb352" title=" " alt="" coords="195,688,259,715"/>
 </map>
 </div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="builddiscretionary_8h_ab568a6479589647e20b5d15f816372a2_icgraph.png" border="0" usemap="#builddiscretionary_8h_ab568a6479589647e20b5d15f816372a2_icgraph" alt=""/></div>
-<map name="builddiscretionary_8h_ab568a6479589647e20b5d15f816372a2_icgraph" id="builddiscretionary_8h_ab568a6479589647e20b5d15f816372a2_icgraph">
+<div class="center"><img src="builddiscretionary_8h_a67984389ff8333976f6cb8461be2df00_icgraph.png" border="0" usemap="#builddiscretionary_8h_a67984389ff8333976f6cb8461be2df00_icgraph" alt=""/></div>
+<map name="builddiscretionary_8h_a67984389ff8333976f6cb8461be2df00_icgraph" id="builddiscretionary_8h_a67984389ff8333976f6cb8461be2df00_icgraph">
 <area shape="rect" title=" " alt="" coords="171,5,293,32"/>
-<area shape="rect" href="handlerightbrace_8h.html#a45184dddf1cb62e1e3f73f95beafdaf5" title=" " alt="" coords="5,5,123,32"/>
+<area shape="rect" href="handlerightbrace_8h.html#a286db2f2727264ddfa0d49e4188caeac" title=" " alt="" coords="5,5,123,32"/>
 </map>
 </div>
 
@@ -219,29 +219,30 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="aconstantes_8cpp_html_aac88a33bd50777ec79e93f77fdc0fe5a"><div class="ttname"><a href="constantes_8cpp.html#aac88a33bd50777ec79e93f77fdc0fe5a">post_break</a></div><div class="ttdeci">halfword &amp; post_break(halfword p)</div><div class="ttdoc">text that follows a discretionary break</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00068">constantes.cpp:68</a></div></div>
-<div class="ttc" id="aunsave_8cpp_html_a107d881e47e06a5ebd5fd6332f972bcc"><div class="ttname"><a href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc">unsave</a></div><div class="ttdeci">void unsave(void)</div><div class="ttdef"><b>Definition:</b> <a href="unsave_8cpp_source.html#l00006">unsave.cpp:6</a></div></div>
+<div class="ttc" id="aunsave_8cpp_html_aecb76d96036e7741ea081399498fb352"><div class="ttname"><a href="unsave_8cpp.html#aecb76d96036e7741ea081399498fb352">unsave</a></div><div class="ttdeci">void unsave(halfword tok)</div><div class="ttdef"><b>Definition:</b> <a href="unsave_8cpp_source.html#l00006">unsave.cpp:6</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa5839c674f8a4ff6fd198113fb1b2d40"><div class="ttname"><a href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a></div><div class="ttdeci">halfword &amp; head</div><div class="ttdoc">header node of current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00088">globals.cpp:88</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a726ca809ffd3d67ab4b8476646f26635af6b4d8d8351410f64abfca85c1954049"><div class="ttname"><a href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635af6b4d8d8351410f64abfca85c1954049">kern_node</a></div><div class="ttdeci">@ kern_node</div><div class="ttdoc">type of a kern node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00097">constantes.h:97</a></div></div>
-<div class="ttc" id="anoeud_8cpp_html_afad44a60dc27690826030e3d7bfe80a0"><div class="ttname"><a href="noeud_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a></div><div class="ttdeci">void newsavelevel(groupcode c)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00847">noeud.cpp:847</a></div></div>
+<div class="ttc" id="anoeud_8cpp_html_afad44a60dc27690826030e3d7bfe80a0"><div class="ttname"><a href="noeud_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a></div><div class="ttdeci">void newsavelevel(groupcode c)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00843">noeud.cpp:843</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00089">globals.cpp:89</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a726ca809ffd3d67ab4b8476646f26635a4843d30c07f93e78341777a80da30eb5"><div class="ttname"><a href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635a4843d30c07f93e78341777a80da30eb5">rule_node</a></div><div class="ttdeci">@ rule_node</div><div class="ttdoc">type of rule nodes</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00088">constantes.h:88</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a05589fbab0657f08285ebdfe93f5ec9ea1ab39bc750d3bf0ee5d0214b3b267636"><div class="ttname"><a href="constantes_8h.html#a05589fbab0657f08285ebdfe93f5ec9ea1ab39bc750d3bf0ee5d0214b3b267636">ignore</a></div><div class="ttdeci">@ ignore</div><div class="ttdoc">characters to ignore</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00221">constantes.h:221</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4da775fe7fdc53fa6d74fbbf2bd3ccf30a6"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da775fe7fdc53fa6d74fbbf2bd3ccf30a6">mmode</a></div><div class="ttdeci">@ mmode</div><div class="ttdoc">math mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00350">constantes.h:350</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_ae372924277c9636b7b76c2f3573917b9"><div class="ttname"><a href="constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9">saved</a></div><div class="ttdeci">int &amp; saved(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00101">constantes.cpp:101</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a0472a8839991d28cfa74dd6602fe4d3e"><div class="ttname"><a href="globals_8cpp.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a></div><div class="ttdeci">halfword &amp; space_factor</div><div class="ttdoc">part of aux in horizontal mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00084">globals.cpp:84</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_adeb7fc965be26e52bb3d9b60342f8fba"><div class="ttname"><a href="impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba">diagnostic</a></div><div class="ttdeci">void diagnostic(const std::string &amp;s)</div><div class="ttdoc">Do some tracing.</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01034">impression.cpp:1034</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_adeb7fc965be26e52bb3d9b60342f8fba"><div class="ttname"><a href="impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba">diagnostic</a></div><div class="ttdeci">void diagnostic(const std::string &amp;s)</div><div class="ttdoc">Do some tracing.</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01031">impression.cpp:1031</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aa0355678d828c2e2f836409b82366625"><div class="ttname"><a href="constantes_8cpp.html#aa0355678d828c2e2f836409b82366625">is_char_node</a></div><div class="ttdeci">bool is_char_node(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00103">constantes.cpp:103</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
-<div class="ttc" id="anoeud_8cpp_html_ac21b7321bdce857532739166ad281729"><div class="ttname"><a href="noeud_8cpp.html#ac21b7321bdce857532739166ad281729">flushnodelist</a></div><div class="ttdeci">void flushnodelist(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00126">noeud.cpp:126</a></div></div>
+<div class="ttc" id="anoeud_8cpp_html_ac21b7321bdce857532739166ad281729"><div class="ttname"><a href="noeud_8cpp.html#ac21b7321bdce857532739166ad281729">flushnodelist</a></div><div class="ttdeci">void flushnodelist(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00127">noeud.cpp:127</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00087">globals.cpp:87</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a10521749aeef9c08e7176f96543e4e70"><div class="ttname"><a href="lecture_8cpp.html#a10521749aeef9c08e7176f96543e4e70">scanleftbrace</a></div><div class="ttdeci">std::tuple&lt; eightbits, halfword, halfword &gt; scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00656">lecture.cpp:656</a></div></div>
 <div class="ttc" id="apopnest_8cpp_html_a847b0a324f6f62ba4e7f679bd16f10dc"><div class="ttname"><a href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc">popnest</a></div><div class="ttdeci">void popnest(void)</div><div class="ttdef"><b>Definition:</b> <a href="popnest_8cpp_source.html#l00003">popnest.cpp:3</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a726ca809ffd3d67ab4b8476646f26635abac053db67b162d24f18c3e52ff89c13"><div class="ttname"><a href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635abac053db67b162d24f18c3e52ff89c13">ligature_node</a></div><div class="ttdeci">@ ligature_node</div><div class="ttdoc">type of a ligature node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00092">constantes.h:92</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
 <div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00241">impression.cpp:241</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a65e055dfd7fea1ac8c6c735f76e87825"><div class="ttname"><a href="constantes_8cpp.html#a65e055dfd7fea1ac8c6c735f76e87825">pre_break</a></div><div class="ttdeci">halfword &amp; pre_break(halfword p)</div><div class="ttdoc">text that precedes a discretionary break</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00063">constantes.cpp:63</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a51297bd2565e1d8124048a7aea9c7aa6"><div class="ttname"><a href="impression_8cpp.html#a51297bd2565e1d8124048a7aea9c7aa6">showbox</a></div><div class="ttdeci">std::string showbox(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00874">impression.cpp:874</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a51297bd2565e1d8124048a7aea9c7aa6"><div class="ttname"><a href="impression_8cpp.html#a51297bd2565e1d8124048a7aea9c7aa6">showbox</a></div><div class="ttdeci">std::string showbox(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00871">impression.cpp:871</a></div></div>
 <div class="ttc" id="apushnest_8cpp_html_a67fd485afd94f32c6e7f6dcea9e6b309"><div class="ttname"><a href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309">pushnest</a></div><div class="ttdeci">void pushnest(void)</div><div class="ttdef"><b>Definition:</b> <a href="pushnest_8cpp_source.html#l00005">pushnest.cpp:5</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8cpp.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00100">globals.cpp:100</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_a055cc2de58a83eda8aeb70e218e5fb1c"><div class="ttname"><a href="lecture_8cpp.html#a055cc2de58a83eda8aeb70e218e5fb1c">scanleftbrace</a></div><div class="ttdeci">void scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00637">lecture.cpp:637</a></div></div>
 <div class="ttc" id="aerreur_8cpp_html_ac7643d2431e40f0ac7a89ec84f1bda70"><div class="ttname"><a href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a></div><div class="ttdeci">void error(const std::string &amp;msg, const std::string &amp;hlp, bool deletionsallowed)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00014">erreur.cpp:14</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4da23ed1cf2add8386ccd9683ae2bc098b8"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da23ed1cf2add8386ccd9683ae2bc098b8">hmode</a></div><div class="ttdeci">@ hmode</div><div class="ttdoc">horizontal mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00349">constantes.h:349</a></div></div>

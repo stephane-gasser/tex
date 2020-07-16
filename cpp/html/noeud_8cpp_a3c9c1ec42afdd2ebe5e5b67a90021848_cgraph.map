@@ -1,4 +1,7 @@
 <map id="freenode" name="freenode">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,77,32"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="125,5,168,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,51,77,77"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="255,51,297,77"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a1d478b50b817866786b1bc1dc81a08b0" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="143,25,189,52"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a32cfafb65118c24464dc5287104ff994" title="the size field in empty variable&#45;size nodes" alt="" coords="125,76,207,103"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="143,127,189,153"/>
 </map>

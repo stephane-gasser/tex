@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void initalign(eightbits, halfword);
+void initalign(eightbits, halfword, halfword &);
 
 #endif

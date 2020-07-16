@@ -103,12 +103,12 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:adbabc406ff0a986dc23c2ad8d5bc9008"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="doendv_8h.html#adbabc406ff0a986dc23c2ad8d5bc9008">doendv</a> (void)</td></tr>
-<tr class="separator:adbabc406ff0a986dc23c2ad8d5bc9008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5209b46c546de06f23281740095fcf3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="doendv_8h.html#a5209b46c546de06f23281740095fcf3a">doendv</a> (<a class="el" href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>)</td></tr>
+<tr class="separator:a5209b46c546de06f23281740095fcf3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="adbabc406ff0a986dc23c2ad8d5bc9008"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adbabc406ff0a986dc23c2ad8d5bc9008">&#9670;&nbsp;</a></span>doendv()</h2>
+<a id="a5209b46c546de06f23281740095fcf3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5209b46c546de06f23281740095fcf3a">&#9670;&nbsp;</a></span>doendv()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -116,9 +116,25 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void doendv </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -134,32 +150,32 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a> == 6)</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    {</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="endgraf_8cpp.html#abee47be02d4d2b4c7bdb494f59a5a8bc">endgraf</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="fincol_8cpp.html#a29c35f087117cb0d94d2369d1737e7c4">fincol</a>())</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="fincol_8cpp.html#ae6a320cde4bde2cd41350979826364e1">fincol</a>(tok))</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="finrow_8cpp.html#a0dfcdcfca243b8bc38a56bc5f8675d21">finrow</a>();</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    }</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b">offsave</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="offsave_8cpp.html#a636aac567ab78a516fc28bb047b237ab">offsave</a>(cmd, chr, tok);</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="doendv_8h_adbabc406ff0a986dc23c2ad8d5bc9008_cgraph.png" border="0" usemap="#doendv_8h_adbabc406ff0a986dc23c2ad8d5bc9008_cgraph" alt=""/></div>
-<map name="doendv_8h_adbabc406ff0a986dc23c2ad8d5bc9008_cgraph" id="doendv_8h_adbabc406ff0a986dc23c2ad8d5bc9008_cgraph">
+<div class="center"><img src="doendv_8h_a5209b46c546de06f23281740095fcf3a_cgraph.png" border="0" usemap="#doendv_8h_a5209b46c546de06f23281740095fcf3a_cgraph" alt=""/></div>
+<map name="doendv_8h_a5209b46c546de06f23281740095fcf3a_cgraph" id="doendv_8h_a5209b46c546de06f23281740095fcf3a_cgraph">
 <area shape="rect" title=" " alt="" coords="5,107,69,133"/>
 <area shape="rect" href="endgraf_8cpp.html#abee47be02d4d2b4c7bdb494f59a5a8bc" title=" " alt="" coords="117,5,183,32"/>
 <area shape="rect" href="erreur_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="231,81,304,108"/>
-<area shape="rect" href="fincol_8cpp.html#a29c35f087117cb0d94d2369d1737e7c4" title=" " alt="" coords="123,107,177,133"/>
+<area shape="rect" href="fincol_8cpp.html#ae6a320cde4bde2cd41350979826364e1" title=" " alt="" coords="123,107,177,133"/>
 <area shape="rect" href="finrow_8cpp.html#a0dfcdcfca243b8bc38a56bc5f8675d21" title=" " alt="" coords="121,157,179,184"/>
-<area shape="rect" href="offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b" title=" " alt="" coords="117,208,183,235"/>
+<area shape="rect" href="offsave_8cpp.html#a636aac567ab78a516fc28bb047b237ab" title=" " alt="" coords="117,208,183,235"/>
 </map>
 </div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="doendv_8h_adbabc406ff0a986dc23c2ad8d5bc9008_icgraph.png" border="0" usemap="#doendv_8h_adbabc406ff0a986dc23c2ad8d5bc9008_icgraph" alt=""/></div>
-<map name="doendv_8h_adbabc406ff0a986dc23c2ad8d5bc9008_icgraph" id="doendv_8h_adbabc406ff0a986dc23c2ad8d5bc9008_icgraph">
+<div class="center"><img src="doendv_8h_a5209b46c546de06f23281740095fcf3a_icgraph.png" border="0" usemap="#doendv_8h_a5209b46c546de06f23281740095fcf3a_icgraph" alt=""/></div>
+<map name="doendv_8h_a5209b46c546de06f23281740095fcf3a_icgraph" id="doendv_8h_a5209b46c546de06f23281740095fcf3a_icgraph">
 <area shape="rect" title=" " alt="" coords="143,5,207,32"/>
-<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,5,95,32"/>
+<area shape="rect" href="maincontrol_8h.html#ae509bc209a74fcb44a9fc70140474583" title=" " alt="" coords="5,5,95,32"/>
 </map>
 </div>
 
@@ -167,15 +183,15 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="aglobals_8cpp_html_aca74807ce5f069d23b1a6af63ed7d00e"><div class="ttname"><a href="globals_8cpp.html#aca74807ce5f069d23b1a6af63ed7d00e">curinput</a></div><div class="ttdeci">instaterecord curinput</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00112">globals.cpp:112</a></div></div>
-<div class="ttc" id="afincol_8cpp_html_a29c35f087117cb0d94d2369d1737e7c4"><div class="ttname"><a href="fincol_8cpp.html#a29c35f087117cb0d94d2369d1737e7c4">fincol</a></div><div class="ttdeci">bool fincol(void)</div><div class="ttdef"><b>Definition:</b> <a href="fincol_8cpp_source.html#l00015">fincol.cpp:15</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a9a13aa7125bf33b3f002c6a9d14ede3d"><div class="ttname"><a href="globals_8cpp.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a></div><div class="ttdeci">unsigned char inputptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00110">globals.cpp:110</a></div></div>
+<div class="ttc" id="aoffsave_8cpp_html_a636aac567ab78a516fc28bb047b237ab"><div class="ttname"><a href="offsave_8cpp.html#a636aac567ab78a516fc28bb047b237ab">offsave</a></div><div class="ttdeci">void offsave(eightbits cmd, halfword chr, halfword tok)</div><div class="ttdef"><b>Definition:</b> <a href="offsave_8cpp_source.html#l00009">offsave.cpp:9</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_aed2bd6a0a774ec6f59c3b0add5adc8f0"><div class="ttname"><a href="globals_8cpp.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a></div><div class="ttdeci">instaterecord inputstack[stacksize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00109">globals.cpp:109</a></div></div>
 <div class="ttc" id="aerreur_8cpp_html_a3104c2391b36a315ae82b5ad0b67fa6b"><div class="ttname"><a href="erreur_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b">fatalerror</a></div><div class="ttdeci">void fatalerror(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00232">erreur.cpp:232</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_a85ef1f882d9456051bd7b436978858d0"><div class="ttname"><a href="globals_8cpp.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a></div><div class="ttdeci">groupcode curgroup</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00103">globals.cpp:103</a></div></div>
 <div class="ttc" id="afinrow_8cpp_html_a0dfcdcfca243b8bc38a56bc5f8675d21"><div class="ttname"><a href="finrow_8cpp.html#a0dfcdcfca243b8bc38a56bc5f8675d21">finrow</a></div><div class="ttdeci">void finrow(void)</div><div class="ttdef"><b>Definition:</b> <a href="finrow_8cpp_source.html#l00009">finrow.cpp:9</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_af1ef163efc9d771f4a9f7f61c269cc97"><div class="ttname"><a href="globals_8cpp.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a></div><div class="ttdeci">unsigned char baseptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00122">globals.cpp:122</a></div></div>
+<div class="ttc" id="afincol_8cpp_html_ae6a320cde4bde2cd41350979826364e1"><div class="ttname"><a href="fincol_8cpp.html#ae6a320cde4bde2cd41350979826364e1">fincol</a></div><div class="ttdeci">bool fincol(halfword tok)</div><div class="ttdef"><b>Definition:</b> <a href="fincol_8cpp_source.html#l00015">fincol.cpp:15</a></div></div>
 <div class="ttc" id="aendgraf_8cpp_html_abee47be02d4d2b4c7bdb494f59a5a8bc"><div class="ttname"><a href="endgraf_8cpp.html#abee47be02d4d2b4c7bdb494f59a5a8bc">endgraf</a></div><div class="ttdeci">void endgraf(void)</div><div class="ttdef"><b>Definition:</b> <a href="endgraf_8cpp_source.html#l00008">endgraf.cpp:8</a></div></div>
-<div class="ttc" id="aoffsave_8cpp_html_a63378f93afc7d8ca66b9fe6f6f3d920b"><div class="ttname"><a href="offsave_8cpp.html#a63378f93afc7d8ca66b9fe6f6f3d920b">offsave</a></div><div class="ttdeci">void offsave(void)</div><div class="ttdef"><b>Definition:</b> <a href="offsave_8cpp_source.html#l00009">offsave.cpp:9</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

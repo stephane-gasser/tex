@@ -1,6 +1,4 @@
 <map id="makenamestring" name="makenamestring">
-<area shape="rect" id="node1" title=" " alt="" coords="5,56,124,83"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a3d10279728a85600f3a5705f66fc489d" title="put ASCII_code # at the end of str_pool" alt="" coords="172,5,268,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6" title=" " alt="" coords="179,56,261,83"/>
-<area shape="rect" id="node4" href="$makestring_8cpp.html#af2a73a1ccd1ca6f04bcb36868d97d2e4" title=" " alt="" coords="177,107,263,133"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6" title=" " alt="" coords="172,5,255,32"/>
 </map>

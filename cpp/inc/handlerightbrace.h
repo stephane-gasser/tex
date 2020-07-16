@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void handlerightbrace(halfword);
+void handlerightbrace(halfword, halfword&);
 
 #endif

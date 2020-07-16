@@ -1,13 +1,12 @@
 <map id="TXT" name="TXT">
-<area shape="rect" id="node1" title=" " alt="" coords="300,233,347,260"/>
+<area shape="rect" id="node1" title=" " alt="" coords="300,208,347,235"/>
 <area shape="rect" id="node2" href="$impression_8h.html#aff5beadbf72096c5a8ea0b4da97cba5b" title=" " alt="" coords="183,5,221,32"/>
 <area shape="rect" id="node3" href="$impression_8cpp.html#a6bdec7509b22f08b592106c1ee6aecbf" title=" " alt="" coords="157,56,247,83"/>
 <area shape="rect" id="node4" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="5,157,104,184"/>
 <area shape="rect" id="node5" href="$findfontdimen_8h.html#a2d5c68a412768a9eb384c13d641b68f6" title=" " alt="" coords="152,157,252,184"/>
 <area shape="rect" id="node6" href="$impression_8cpp.html#a0c08bcb388c17d81fc2ef1f790568d3d" title=" " alt="" coords="157,208,247,235"/>
-<area shape="rect" id="node7" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="167,259,237,285"/>
-<area shape="rect" id="node8" href="$noeud_8h.html#a55499cc477d95c4c351b76b513273a75" title=" " alt="" coords="168,309,236,336"/>
-<area shape="rect" id="node9" href="$impression_8h.html#a86b1ac564da9c7c2aebf4628a734483c" title=" " alt="" coords="181,360,223,387"/>
-<area shape="rect" id="node10" href="$impression_8h.html#a190dbb1f454e717590536284ba1d88be" title=" " alt="" coords="156,435,248,461"/>
-<area shape="rect" id="node11" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="159,485,245,512"/>
+<area shape="rect" id="node7" href="$noeud_8h.html#a55499cc477d95c4c351b76b513273a75" title=" " alt="" coords="168,259,236,285"/>
+<area shape="rect" id="node8" href="$impression_8h.html#a86b1ac564da9c7c2aebf4628a734483c" title=" " alt="" coords="181,309,223,336"/>
+<area shape="rect" id="node9" href="$impression_8h.html#a190dbb1f454e717590536284ba1d88be" title=" " alt="" coords="156,384,248,411"/>
+<area shape="rect" id="node10" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="159,435,245,461"/>
 </map>

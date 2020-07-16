@@ -99,12 +99,12 @@ Graphe des dépendances par inclusion de setmathchar.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a78741c557d11e65fff7328bc2b1a6449"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setmathchar_8cpp.html#a78741c557d11e65fff7328bc2b1a6449">setmathchar</a> (int <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
-<tr class="separator:a78741c557d11e65fff7328bc2b1a6449"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a460a4189528bffd7f3369373188793"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="setmathchar_8cpp.html#a7a460a4189528bffd7f3369373188793">setmathchar</a> (int <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> chr)</td></tr>
+<tr class="separator:a7a460a4189528bffd7f3369373188793"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a78741c557d11e65fff7328bc2b1a6449"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78741c557d11e65fff7328bc2b1a6449">&#9670;&nbsp;</a></span>setmathchar()</h2>
+<a id="a7a460a4189528bffd7f3369373188793"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a460a4189528bffd7f3369373188793">&#9670;&nbsp;</a></span>setmathchar()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -113,8 +113,18 @@ Fonctions</h2></td></tr>
           <td class="memname">void setmathchar </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>c</em></td><td>)</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
+          <td class="paramname"><em>chr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -123,34 +133,35 @@ Fonctions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> &gt;= 0x80<span class="stringliteral">&#39;00)</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="stringliteral">    {</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="stringliteral">        curcs = curchr+active_base;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="stringliteral">        curcmd = eq_type(curcs);</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="stringliteral">        curchr = equiv(curcs);</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="stringliteral">        xtoken();</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="stringliteral">        backinput();</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="stringliteral">    }</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="stringliteral">    else</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="stringliteral">    {</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral">        auto p = newnoad();</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">        math_type(nucleus(p)) = math_char;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">        character(nucleus(p)) = c%0x1&#39;</span>00;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="constantes_8cpp.html#a87e88894a437d840ce25774eff7d1010">fam</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(p)) = (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>&gt;&gt;8)%0x10;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> &gt;= <a class="code" href="constantes_8h.html#ab0058ce61ad38c0d89372ec45d3b7cdf">var_code</a>)</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aa8ac4bb40ad503916456979c1a5a287e">fam_in_range</a>())</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <a class="code" href="constantes_8cpp.html#a87e88894a437d840ce25774eff7d1010">fam</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(p)) = <a class="code" href="parametres_8h.html#a07535a18a8328a1c21de6acc81e23278">cur_fam</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635a5378ed6eac008c6ab2d5256cbfc6d2ed">ord_noad</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        }</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635a5378ed6eac008c6ab2d5256cbfc6d2ed">ord_noad</a>+(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>&gt;&gt;12);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a>(p);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="stringliteral">        halfword cs = chr+active_base;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="stringliteral">        eightbits cmd = eq_type(cs);</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="stringliteral">        halfword chr = equiv(cs);</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="stringliteral">        halfword tok;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="stringliteral">        std::tie(cmd, chr, tok) = xtoken(cmd, chr, cs);</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="stringliteral">        backinput(tok);</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="stringliteral">    }</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="stringliteral">    else</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral">    {</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">        auto p = newnoad();</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">        math_type(nucleus(p)) = math_char;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">        character(nucleus(p)) = c%0x1&#39;</span>00;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="constantes_8cpp.html#a87e88894a437d840ce25774eff7d1010">fam</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(p)) = (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>&gt;&gt;8)%0x10;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> &gt;= <a class="code" href="constantes_8h.html#ab0058ce61ad38c0d89372ec45d3b7cdf">var_code</a>)</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aa8ac4bb40ad503916456979c1a5a287e">fam_in_range</a>())</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                <a class="code" href="constantes_8cpp.html#a87e88894a437d840ce25774eff7d1010">fam</a>(<a class="code" href="constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e">nucleus</a>(p)) = <a class="code" href="parametres_8h.html#a07535a18a8328a1c21de6acc81e23278">cur_fam</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635a5378ed6eac008c6ab2d5256cbfc6d2ed">ord_noad</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635a5378ed6eac008c6ab2d5256cbfc6d2ed">ord_noad</a>+(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>&gt;&gt;12);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca">tail_append</a>(p);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="setmathchar_8cpp_a78741c557d11e65fff7328bc2b1a6449_cgraph.png" border="0" usemap="#setmathchar_8cpp_a78741c557d11e65fff7328bc2b1a6449_cgraph" alt=""/></div>
-<map name="setmathchar_8cpp_a78741c557d11e65fff7328bc2b1a6449_cgraph" id="setmathchar_8cpp_a78741c557d11e65fff7328bc2b1a6449_cgraph">
+<div class="center"><img src="setmathchar_8cpp_a7a460a4189528bffd7f3369373188793_cgraph.png" border="0" usemap="#setmathchar_8cpp_a7a460a4189528bffd7f3369373188793_cgraph" alt=""/></div>
+<map name="setmathchar_8cpp_a7a460a4189528bffd7f3369373188793_cgraph" id="setmathchar_8cpp_a7a460a4189528bffd7f3369373188793_cgraph">
 <area shape="rect" title=" " alt="" coords="5,104,100,130"/>
 <area shape="rect" href="parametres_8h.html#a07535a18a8328a1c21de6acc81e23278" title=" " alt="" coords="296,28,365,54"/>
 <area shape="rect" href="constantes_8cpp.html#a87e88894a437d840ce25774eff7d1010" title="a quarterword in mem" alt="" coords="176,28,220,54"/>
@@ -163,10 +174,10 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="setmathchar_8cpp_a78741c557d11e65fff7328bc2b1a6449_icgraph.png" border="0" usemap="#setmathchar_8cpp_a78741c557d11e65fff7328bc2b1a6449_icgraph" alt=""/></div>
-<map name="setmathchar_8cpp_a78741c557d11e65fff7328bc2b1a6449_icgraph" id="setmathchar_8cpp_a78741c557d11e65fff7328bc2b1a6449_icgraph">
+<div class="center"><img src="setmathchar_8cpp_a7a460a4189528bffd7f3369373188793_icgraph.png" border="0" usemap="#setmathchar_8cpp_a7a460a4189528bffd7f3369373188793_icgraph" alt=""/></div>
+<map name="setmathchar_8cpp_a7a460a4189528bffd7f3369373188793_icgraph" id="setmathchar_8cpp_a7a460a4189528bffd7f3369373188793_icgraph">
 <area shape="rect" title=" " alt="" coords="143,5,237,32"/>
-<area shape="rect" href="maincontrol_8h.html#a55d93fabf9819da8e7a40ed30f640cec" title=" " alt="" coords="5,5,95,32"/>
+<area shape="rect" href="maincontrol_8h.html#ae509bc209a74fcb44a9fc70140474583" title=" " alt="" coords="5,5,95,32"/>
 </map>
 </div>
 
