@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void shiftcase(halfword, halfword cs);
+void shiftcase(halfword, halfword, halfword);
 
 #endif

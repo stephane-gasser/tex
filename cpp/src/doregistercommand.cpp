@@ -13,7 +13,7 @@
 #include "eqdefine.h"
 #include "texte.h"
 
-void doregistercommand(smallnumber a, eightbits cmd, halfword chr)
+void doregistercommand(smallnumber a, eightbits cmd, halfword chr, halfword align)
 {
 	halfword l, q, r, s;
 	halfword p;
@@ -22,7 +22,7 @@ void doregistercommand(smallnumber a, eightbits cmd, halfword chr)
 	{
 		if (q != register_)
 		{
-			std::tie(cmd, chr, std::ignore, std::ignore) = getxtoken();
+			std::tie(cmd, chr, std::ignore, std::ignore) = getxtoken(align);
 			if (cmd >= assign_int && cmd <= assign_mu_glue) // assign_int, assign_dimen, assign_int, assign_mu_glue
 			{
 				l = chr;
@@ -31,7 +31,7 @@ void doregistercommand(smallnumber a, eightbits cmd, halfword chr)
 			}
 			if (cmd != register_)
 			{
-				error("You can't use `"+cmdchr(cmd, chr)+"' after "+cmdchr(q, 0), "I'm forgetting what you said and not changing anything.");
+				error("You can't use `"+cmdchr(cmd, chr)+"' after "+cmdchr(q, 0), "I'm forgetting what you said and not changing anything.", align);
 				return;
 			}
 		}
@@ -39,38 +39,38 @@ void doregistercommand(smallnumber a, eightbits cmd, halfword chr)
 		switch (p)
 		{
 			case int_val: 
-				l = scaneightbitint()+count_base;
+				l = scaneightbitint(align)+count_base;
 				break;
 			case dimen_val: 
-				l = scaneightbitint()+scaled_base;
+				l = scaneightbitint(align)+scaled_base;
 				break;
 			case glue_val: 
-				l = scaneightbitint()+skip_base;
+				l = scaneightbitint(align)+skip_base;
 				break;
 			case mu_val: 
-				l = scaneightbitint()+mu_skip_base;
+				l = scaneightbitint(align)+mu_skip_base;
 				break;
 		}
 	} while (false);
 	if (q == register_)
-		scanoptionalequals();
+		scanoptionalequals(align);
 	else 
-		if (scankeyword("by"))
+		if (scankeyword("by", align))
 			aritherror = false;
 	int val;
 	if (q < multiply)
 		if (p < glue_val)
 		{
 			if (p == int_val)
-				val = scanint();
+				val = scanint(align);
 			else
-				val = scan_normal_dimen();
+				val = scan_normal_dimen(align);
 			if (q == advance)
 				val += eqtb[l].int_;
 		}
 		else
 		{
-			val = scanglue(p);
+			val = scanglue(p, align);
 			if (q == advance)
 			{
 				q = newspec(val);
@@ -102,7 +102,7 @@ void doregistercommand(smallnumber a, eightbits cmd, halfword chr)
 		}
 	else
 	{
-		val = scanint();
+		val = scanint(align);
 		if (p < glue_val)
 			if (q == multiply)
 				if (p == int_val)
@@ -132,7 +132,7 @@ void doregistercommand(smallnumber a, eightbits cmd, halfword chr)
 	}
 	if (aritherror)
 	{
-		error("Arithmetic overflow", "I can't carry out that multiplication or division,\nsince the result is out of range.");
+		error("Arithmetic overflow", "I can't carry out that multiplication or division,\nsince the result is out of range.", align);
 		if (p >= 2)
 			deleteglueref(val);
 		return;

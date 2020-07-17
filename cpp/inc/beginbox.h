@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void beginbox(int, eightbits, halfword);
+void beginbox(int, eightbits, halfword, halfword);
 
 #endif

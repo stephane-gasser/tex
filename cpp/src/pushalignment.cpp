@@ -2,13 +2,13 @@
 #include "getavail.h"
 #include "noeud.h"
 
-void pushalignment(halfword loop)
+void pushalignment(halfword loop, halfword span, halfword align)
 {
 	auto p = getnode(align_stack_node_size);
 	link(p) = alignptr;
-	info(p) = curalign;
+	info(p) = align;
 	llink(p) = preamble();
-	rlink(p) = curspan;
+	rlink(p) = span;
 	mem[p+2].int_ = loop;
 	mem[p+3].int_ = alignstate;
 	info(p+4) = curhead;

@@ -218,7 +218,7 @@ void mlisttohlist(void)
 				q = link(q);
 				continue;
 			default: 
-				confusion("mlist1");
+				confusion("mlist1", curalign);
 		}
 		switch (math_type(nucleus(q)))
 		{
@@ -260,7 +260,7 @@ void mlisttohlist(void)
 				p = hpack(link(temp_head), 0, additional);
 				break;
 			default: 
-				confusion("mlist2");
+				confusion("mlist2", curalign);
 		}
 		new_hlist(q) = p;
 		if (math_type(subscr(q)) || math_type(supscr(q)))
@@ -356,7 +356,7 @@ void mlisttohlist(void)
 				link(p) = 0;
 				continue;
 			default: 
-				confusion("mlist3");
+				confusion("mlist3", curalign);
 		}
 		if (rtype > 0)
 		{
@@ -378,7 +378,7 @@ void mlisttohlist(void)
 					x = curstyle < script_style ? thick_mu_skip_code: 0;
 					break;
 				default: 
-					confusion("mlist4");
+					confusion("mlist4", curalign);
 			}
 			if (x)
 			{

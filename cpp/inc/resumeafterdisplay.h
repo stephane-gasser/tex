@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void resumeafterdisplay(halfword);
+void resumeafterdisplay(halfword, halfword);
 
 #endif

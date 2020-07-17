@@ -11,7 +11,7 @@ void headforvmode(eightbits cmd, halfword chr, halfword tok)
 		if (cmd != hrule)
 			offsave(cmd, chr, tok);
 		else
-			error("You can't use `"+esc("hrule")+"' here except with leaders", "To put a horizontal rule in an hbox or an alignment,\nyou should use \\leaders or \\hrulefill (see The TeXbook).");
+			error("You can't use `"+esc("hrule")+"' here except with leaders", "To put a horizontal rule in an hbox or an alignment,\nyou should use \\leaders or \\hrulefill (see The TeXbook).", curalign);
 	else
 	{
 		backinput(tok);

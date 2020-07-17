@@ -1,5 +1,8 @@
 #ifndef BOXEND_H
 #define BOXEND_H
+
 #include "globals.h"
-void boxend(int boxcontext);
+
+void boxend(int, halfword);
+
 #endif

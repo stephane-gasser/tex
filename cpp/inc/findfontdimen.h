@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-[[nodiscard]] int findfontdimen(bool);
+[[nodiscard]] int findfontdimen(bool, halfword);
 
 #endif

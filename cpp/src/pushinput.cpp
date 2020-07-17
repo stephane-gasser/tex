@@ -8,7 +8,7 @@ void push_input(void)
 	{
 		maxinstack = inputptr;
 		if (inputptr == stacksize)
-		overflow("input stack size", stacksize);
+		overflow("input stack size", stacksize, curalign);
 	}
 	inputstack[inputptr++] = curinput;
 }

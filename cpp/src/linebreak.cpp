@@ -6,7 +6,7 @@
 #include "inittrie.h"
 #include "trybreak.h"
 #include "hyphenate.h"
-#include "erreur.h"
+#include "erreur.h" 
 #include "postlinebreak.h"
 
 static void check_shrinkage(halfword &p)
@@ -407,7 +407,7 @@ void linebreak(int finalwidowpenalty)
 										discwidth += width(s);
 										break;
 									default: 
-										confusion("disc3");
+										confusion("disc3", curalign);
 								}
 							s = link(s);
 						} while (s);
@@ -438,7 +438,7 @@ void linebreak(int finalwidowpenalty)
 									act_width += width(s);
 									break;
 								default: 
-									confusion("disc4");
+									confusion("disc4", curalign);
 							}
 						r--;
 						s = link(s);
@@ -458,7 +458,7 @@ void linebreak(int finalwidowpenalty)
 				case adjust_node:
 					break;
 				default: 
-					confusion("paragraph");
+					confusion("paragraph", curalign);
 			}
 			prevp = curp;
 			curp = link(curp);

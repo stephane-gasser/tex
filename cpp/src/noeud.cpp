@@ -6,7 +6,6 @@
 #include "geqdefine.h"
 #include "eqdefine.h"
 #include "lecture.h"
-#include "erreur.h"
 #include "xnoverd.h"
 #include "readfontinfo.h"
 #include "texte.h"
@@ -73,7 +72,7 @@ halfword copynodelist(halfword p)
 							words = small_node_size;
 							break;
 						default:
-							confusion("ext2");
+							confusion("ext2", curalign);
 					}
 					break;
 				case glue_node:
@@ -108,7 +107,7 @@ halfword copynodelist(halfword p)
 					adjust_ptr(r) = copynodelist(adjust_ptr(p));
 					break;
 				default: 
-					confusion("copying");
+					confusion("copying", curalign);
 			}
 		;
 		for (;words > 0; words--)
@@ -168,7 +167,7 @@ void flushnodelist(halfword p)
 							freenode(p, small_node_size);
 							break;
 						default: 
-							confusion("ext3");
+							confusion("ext3", curalign);
 					}
 					break;
 				case glue_node:
@@ -243,7 +242,7 @@ void flushnodelist(halfword p)
 					freenode(p, fraction_noad_size);
 					break;
 				default: 
-					confusion("flushing"); 
+					confusion("flushing", curalign); 
 			}
 		}
 		p = q;
@@ -328,7 +327,7 @@ halfword getnode(int s)
 			label20 = true;
 		}
 	} while (label20);
-	overflow("main memory size", memmax+1-memmin);
+	overflow("main memory size", memmax+1-memmin, curalign);
 	link(r) = 0;
 	return r;
 }
@@ -353,20 +352,20 @@ triepointer trienode(triepointer p)
 	}
 }
 
-void newhyphexceptions(void)
+void newhyphexceptions(halfword align)
 {
 	char n, j;
 	hyphpointer h;
 	halfword p;
 	poolpointer u, v;
-	auto [cmd, chr, tok] = scanleftbrace();
+	auto [cmd, chr, tok] = scanleftbrace(align);
 	curlang = cur_fam();
 	if (curlang < 0 || curlang > 255)
 		curlang = 0;
 	n = 0;
 	p = 0;
 	halfword cs;
-	std::tie(cmd, chr, tok, cs) = getxtoken();
+	std::tie(cmd, chr, tok, cs) = getxtoken(align);
 	while (true)
 	{
 		switch (cmd)
@@ -386,7 +385,7 @@ void newhyphexceptions(void)
 				}
 				else 
 					if (lc_code(chr) == 0)
-						error("Not a letter", "Letters in \\hyphenation words must have \\lccode>0.\nProceed; I'll ignore the character I just read.");
+						error("Not a letter", "Letters in \\hyphenation words must have \\lccode>0.\nProceed; I'll ignore the character I just read.", align);
 					else 
 						if (n < 63)
 						{
@@ -395,7 +394,7 @@ void newhyphexceptions(void)
 						}
 				break;
 			case char_num:
-				chr = scancharnum();
+				chr = scancharnum(align);
 				cmd = char_given;
 				continue;
 			case spacer:
@@ -412,7 +411,7 @@ void newhyphexceptions(void)
 					}
 					auto s = makestring();
 					if (hyphcount == hyph_size)
-						overflow("exception dictionary", hyph_size);
+						overflow("exception dictionary", hyph_size, curalign);
 					hyphcount++;
 					while (hyphword[h] != "")
 					{
@@ -462,9 +461,9 @@ void newhyphexceptions(void)
 				p = 0;
 				break;
 			default:
-				error("Improper "+esc("hyphenation")+" will be flushed", "Hyphenation exceptions must contain only letters\nand hyphens. But continue; I'll forgive and forget.");
+				error("Improper "+esc("hyphenation")+" will be flushed", "Hyphenation exceptions must contain only letters\nand hyphens. But continue; I'll forgive and forget.", align);
 		}
-		std::tie(cmd, chr, tok, cs) = getxtoken();
+		std::tie(cmd, chr, tok, cs) = getxtoken(align);
 	}
 }
 
@@ -503,7 +502,7 @@ halfword newdisc(void)
 	return p;
 }
 
-void newfont(smallnumber a)
+void newfont(smallnumber a, halfword align)
 {
 	halfword u;
 	scaled s;
@@ -511,7 +510,7 @@ void newfont(smallnumber a)
 	std::string t;
 	if (jobname == "")
 		openlogfile();
-	u = getrtoken();
+	u = getrtoken(align);
 	if (u >= hash_base)
 		t = TXT(text(u));
 	else 
@@ -523,25 +522,25 @@ void newfont(smallnumber a)
 		else
 			t = "FONT"+char(u-1);
 	define(a, u, set_font, null_font);
-	scanoptionalequals();
-	scanfilename();
+	scanoptionalequals(align);
+	scanfilename(align);
 	nameinprogress = true;
-	if (scankeyword("at"))
+	if (scankeyword("at", align))
 	{
-		s = scan_normal_dimen();
+		s = scan_normal_dimen(align);
 		if (s <= 0 || s >= 134217728)
 		{
-			error("Improper `at' size ("+asScaled(s)+"pt), replaced by 10pt", "I can only handle fonts at positive sizes that are\nless than 2048pt, so I've changed what you said to 10pt.");
+			error("Improper `at' size ("+asScaled(s)+"pt), replaced by 10pt", "I can only handle fonts at positive sizes that are\nless than 2048pt, so I've changed what you said to 10pt.", align);
 			s = 10*unity;
 		}
 	}
 	else 
-		if (scankeyword("scaled"))
+		if (scankeyword("scaled", align))
 		{
-			s = -scanint();
+			s = -scanint(align);
 			if (s >= 0 || s < -0x80'00)
 			{
-				interror(-s, "Illegal magnification has been changed to 1000", "The magnification ratio must be between 1 and 0x80'00.");
+				interror(-s, "Illegal magnification has been changed to 1000", "The magnification ratio must be between 1 and 0x80'00.", align);
 				s = -1000;
 			}
 		}
@@ -586,7 +585,7 @@ halfword newglue(halfword q)
 
 static halfword& every_par(void) { return equiv(every_par_loc); }
 
-void newgraf(bool indented)
+void newgraf(bool indented, halfword align)
 {
 	prev_graf = 0;
 	if (mode == vmode || head != tail)
@@ -606,7 +605,7 @@ void newgraf(bool indented)
 	if (every_par())
 		begintokenlist(every_par(), every_par_text);
 	if (nestptr == 1)
-		buildpage();
+		buildpage(align);
 }
 
 void newinteraction(halfword chr)
@@ -694,7 +693,7 @@ halfword newparamglue(smallnumber n)
 	return p;
 }
 
-void newpatterns(halfword cs)
+void newpatterns(halfword cs, halfword align)
 {
 	char k, l;
 	bool digitsensed;
@@ -707,14 +706,14 @@ void newpatterns(halfword cs)
 		curlang = cur_fam();
 		if (curlang <= 0 || curlang > 255)
 				curlang = 0;
-		auto [cmd, chr, tok] = scanleftbrace();
+		auto [cmd, chr, tok] = scanleftbrace(align);
 		k = 0;
 		hyf[0] = 0;
 		digitsensed = false;
 		bool keepIn = true;
 		while (keepIn)
 		{
-			auto [cmd, chr, tok, cs] = getxtoken();
+			auto [cmd, chr, tok, cs] = getxtoken(align);
 			switch (cmd)
 			{
 				case letter:
@@ -727,7 +726,7 @@ void newpatterns(halfword cs)
 						{
 							chr = lc_code(chr);
 							if (chr == 0)
-								error("Nonletter", "(See Appendix H.)");
+								error("Nonletter", "(See Appendix H.)", align);
 						}
 						if (k < 63)
 						{
@@ -780,7 +779,7 @@ void newpatterns(halfword cs)
 							if (p == 0 || c < triec[p])
 							{
 								if (trieptr == triesize)
-									overflow("pattern memory", triesize);
+									overflow("pattern memory", triesize, curalign);
 								trieptr++;
 								trier[trieptr] = p;
 								p = trieptr;
@@ -795,7 +794,7 @@ void newpatterns(halfword cs)
 							q = p;
 						}
 						if (trieo[q])
-							error("Duplicate pattern", "(See Appendix H.)");
+							error("Duplicate pattern", "(See Appendix H.)", align);
 						trieo[q] = v;
 					}
 					if (cmd == right_brace)
@@ -808,14 +807,14 @@ void newpatterns(halfword cs)
 					digitsensed = false;
 					break;
 				default:
-					error("Bad "+esc("patterns"), "(See Appendix H.)");
+					error("Bad "+esc("patterns"), "(See Appendix H.)", align);
 			}
 		}
 	}
 	else
 	{
-		error("Too late for "+esc("patterns"), "All patterns must be given before typesetting begins.");
-		link(garbage) = scantoks(false, false, cs);
+		error("Too late for "+esc("patterns"), "All patterns must be given before typesetting begins.", align);
+		link(garbage) = scantoks(false, false, cs, align);
 		flushlist(defref);
 	}
 }
@@ -842,12 +841,12 @@ halfword newrule(void)
 
 void newsavelevel(groupcode c)
 {
-	check_full_save_stack();
+	check_full_save_stack(curalign);
 	save_type(saveptr) = level_boundary;
 	save_level(saveptr) = curgroup;
 	save_index(saveptr) = curboundary;
 	if (curlevel == 255)
-		overflow("grouping levels", 255);
+		overflow("grouping levels", 255, curalign);
 	curboundary = saveptr;
 	curlevel++;
 	saveptr++;
@@ -893,10 +892,10 @@ quarterword newtrieop(smallnumber d, smallnumber  n, quarterword v)
 		if (l == 0)
 		{
 			if (trieopptr == trieopsize)
-				overflow("pattern memory ops", trieopsize);
+				overflow("pattern memory ops", trieopsize, curalign);
 			quarterword u = trieused[curlang];
 			if (u == 255)
-				overflow("pattern memory ops per language", 255);
+				overflow("pattern memory ops per language", 255, curalign);
 			trieopptr++;
 			u++;
 			trieused[curlang] = u;
@@ -925,14 +924,14 @@ void newwhatsit(smallnumber s, smallnumber w)
 	tail_append(p);
 }
 
-void newwritewhatsit(smallnumber w, halfword chr)
+void newwritewhatsit(smallnumber w, halfword chr, halfword align)
 {
 	newwhatsit(chr, w);
 	if (w != write_node_size)
-		write_stream(tail) = scanfourbitint();
+		write_stream(tail) = scanfourbitint(align);
 	else
 	{
-		int val = scanint();
+		int val = scanint(align);
 		if (val < 0)
 			val = 17;
 		else 
@@ -942,16 +941,16 @@ void newwritewhatsit(smallnumber w, halfword chr)
 	}
 }
 
-void appendchoices(void)
+void appendchoices(halfword align)
 {
 	tail_append(newchoice());
 	saved(0) = 0;
 	saveptr++;
 	pushmath(math_choice_group);
-	auto [cmd, chr, tok] = scanleftbrace();
+	auto [cmd, chr, tok] = scanleftbrace(align);
 }
 
-void appenddiscretionary(halfword s)
+void appenddiscretionary(halfword s, halfword align)
 {
 	tail_append(newdisc());
 	if (s == 1)
@@ -965,14 +964,14 @@ void appenddiscretionary(halfword s)
 		saved(0) = 0;
 		saveptr++;
 		newsavelevel(disc_group);
-		auto [cmd, chr, tok] = scanleftbrace();
+		auto [cmd, chr, tok] = scanleftbrace(align);
 		pushnest();
 		mode = -hmode;
 		space_factor = 1000;
 	}
 }
 
-void appendglue(halfword s)
+void appendglue(halfword s, halfword align)
 {
 	switch (s)
 	{
@@ -989,11 +988,11 @@ void appendglue(halfword s)
 			tail_append(newglue(fil_neg_glue));
 			break;
 		case skip_code: 
-			tail_append(newglue(scanglue(glue_val)));
+			tail_append(newglue(scanglue(glue_val, align)));
 			glue_ref_count(tail)--;
 			break;
 		case mskip_code: 
-			tail_append(newglue(scanglue(mu_val)));
+			tail_append(newglue(scanglue(mu_val, align)));
 			glue_ref_count(tail)--;
 			subtype(tail) = mu_glue;
 	}
@@ -1017,17 +1016,17 @@ void appenditaliccorrection(void)
 	}
 }
 
-void appendkern(halfword s)
+void appendkern(halfword s, halfword align)
 {
-	tail_append(newkern(scandimen(s == mu_glue, false, false)));
+	tail_append(newkern(scandimen(s == mu_glue, false, false, align)));
 	subtype(tail) = s;
 }
 
-void appendpenalty(void)
+void appendpenalty(halfword align)
 {
-	tail_append(newpenalty(scanint()));
+	tail_append(newpenalty(scanint(align)));
 	if (mode == vmode)
-		buildpage();
+		buildpage(align);
 }
 
 static halfword& baseline_skip(void) { return glue_par(baseline_skip_code); }

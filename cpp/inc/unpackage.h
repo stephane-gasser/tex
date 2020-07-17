@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void unpackage(halfword);
+void unpackage(halfword, halfword);
 
 #endif

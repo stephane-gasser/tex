@@ -27,7 +27,7 @@ bool inputln(std::istream& f, bool bypasseoln)
 				{
 					loc = First;
 					limit = last-1;
-					overflow("buffer size", bufsize); 
+					overflow("buffer size", bufsize, curalign); 
 				}
 		}
 		buffer[last++] = xord[c];

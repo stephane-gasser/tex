@@ -2,7 +2,7 @@
 #include "lecture.h"
 #include "noeud.h"
 
-void mathradical(halfword tok)
+void mathradical(halfword tok, halfword align)
 {
 	tail_append(getnode(radical_noad_size));
 	type(tail) = radical_noad;
@@ -10,6 +10,6 @@ void mathradical(halfword tok)
 	mem[nucleus(tail)].hh = emptyfield;
 	mem[subscr(tail)].hh = emptyfield;
 	mem[supscr(tail)].hh = emptyfield;
-	scandelimiter(left_delimiter(tail), true, tok);
-	scanmath(nucleus(tail));
+	scandelimiter(left_delimiter(tail), true, tok, align);
+	scanmath(nucleus(tail), align);
 }

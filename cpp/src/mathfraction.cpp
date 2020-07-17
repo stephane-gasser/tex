@@ -5,18 +5,18 @@
 #include "noeud.h"
 #include "texte.h"
 
-void mathfraction(halfword c, halfword tok)
+void mathfraction(halfword c, halfword tok, halfword align)
 {
 	if (incompleat_noad)
 	{
 		if (c >= delimited_code)
 		{
-			scandelimiter(garbage, false, tok);
-			scandelimiter(garbage, false, tok);
+			scandelimiter(garbage, false, tok, align);
+			scandelimiter(garbage, false, tok, align);
 		}
 		if (c%delimited_code == 0)
-			int _ = scan_normal_dimen();
-		error("Ambiguous; you need another { and }", "I'm ignoring this fraction specification, since I don't\nknow whether a construction like `x \\over y \\over z'\nmeans `{x \\over y} \\over z' or `x \\over {y \\over z}'.");
+			int _ = scan_normal_dimen(align);
+		error("Ambiguous; you need another { and }", "I'm ignoring this fraction specification, since I don't\nknow whether a construction like `x \\over y \\over z'\nmeans `{x \\over y} \\over z' or `x \\over {y \\over z}'.", align);
 	}
 	else
 	{
@@ -32,13 +32,13 @@ void mathfraction(halfword c, halfword tok)
 		tail = head;
 		if (c >= delimited_code)
 		{
-			scandelimiter(left_delimiter(incompleat_noad), false, tok);
-			scandelimiter(right_delimiter(incompleat_noad), false, tok);
+			scandelimiter(left_delimiter(incompleat_noad), false, tok, align);
+			scandelimiter(right_delimiter(incompleat_noad), false, tok, align);
 		}
 		switch (c%delimited_code)
 		{
 			case above_code:
-				thickness(incompleat_noad) = scan_normal_dimen();
+				thickness(incompleat_noad) = scan_normal_dimen(align);
 				break;
 			case over_code: 
 				thickness(incompleat_noad) = default_code;

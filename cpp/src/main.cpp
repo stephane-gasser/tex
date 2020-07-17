@@ -147,10 +147,11 @@ int main()
 			selector = no_print;
 		else
 			selector = term_only;
+		curalign = 0;
 		if (loc < limit && cat_code(buffer[loc]))
-			startinput();
+			startinput(curalign);
 		history = spotless;
-		auto chr = maincontrol();
+		auto chr = maincontrol(curalign);
 		finalcleanup(chr);
 	}
 	catch(const std::string &msg)

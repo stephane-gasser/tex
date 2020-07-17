@@ -8,5 +8,5 @@ void mathlimitswitch(halfword chr)
 	if (head != tail && type(tail) == op_noad)
 		subtype(tail) = chr;
 	else
-		error("Limit controls must follow a math operator", "I'm ignoring this misplaced \\limits or \\nolimits command.");
+		error("Limit controls must follow a math operator", "I'm ignoring this misplaced \\limits or \\nolimits command.", curalign);
 }

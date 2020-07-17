@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void finrow(halfword &);
+void finrow(halfword &, halfword &, halfword &);
 
 #endif

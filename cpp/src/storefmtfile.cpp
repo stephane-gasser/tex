@@ -36,7 +36,7 @@ void storefmtfile(void)
 	int j, k, l;
 	halfword p, q;
 	if (saveptr)
-		fatal("You can't dump_int inside a group", "`{...\\dump_int}' is a no-no.");
+		fatal("You can't dump_int inside a group", "`{...\\dump_int}' is a no-no.", curalign);
 	formatident = " (preloaded format="+jobname+" "+std::to_string(year())+"."+std::to_string(month())+"."+std::to_string(day())+")";
 	selector = interaction == batch_mode ? log_only : term_and_log;
 	packjobname(format_extension);

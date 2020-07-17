@@ -11,7 +11,7 @@
 #include "normalizeselector.h"
 #include <iostream>
 
-void error(const std::string &msg, const std::string &hlp, bool deletionsallowed)
+void error(const std::string &msg, const std::string &hlp, halfword align, bool deletionsallowed)
 {
 	if (msg != "")
 		print_err(msg);
@@ -56,7 +56,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 							c -= '0';
 						while (c > 0)
 						{
-							auto [cmd, chr, tok, cs] = gettoken();
+							auto [cmd, chr, tok, cs] = gettoken(align);
 							c--;
 						}
 						/*tok = s1;
@@ -160,13 +160,13 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 	println();
 }
 
-void inserror(halfword tok, const std::string &msg, const std::string &hlp, bool deletionsallowed)
+void inserror(halfword tok, const std::string &msg, const std::string &hlp, halfword align, bool deletionsallowed)
 {
 	OKtointerrupt = false;
 	backinput(tok);
 	token_type = inserted;
 	OKtointerrupt = true;
-	error(msg, hlp, deletionsallowed);
+	error(msg, hlp, align, deletionsallowed);
 }
 
 //! Back up one token and call \a error.
@@ -174,21 +174,21 @@ void inserror(halfword tok, const std::string &msg, const std::string &hlp, bool
 //!just before issuing an error message. This routine, like \a back_input,
 //!requires that \a cur_tok has been set. We disable interrupts during the
 //!call of \a back_input so that the help message won't be lost.
-void backerror(halfword tok, const std::string &msg, const std::string &hlp)
+void backerror(halfword tok, const std::string &msg, const std::string &hlp, halfword align)
 {
 	OKtointerrupt = false;
 	backinput(tok);
 	OKtointerrupt = true;
-	error(msg, hlp);
+	error(msg, hlp, align);
 }
 
 //! At certain times box 255 is supposed to be void (i.e., |null|),
 //! or an insertion box is supposed to be ready to accept a vertical list.
 //!  If not, an error message is printed, and the following subroutine
 //!  flushes the unwanted contents, reporting them to the user.
-void boxerror(eightbits n, const std::string &msg, const std::string &hlp)
+void boxerror(eightbits n, const std::string &msg, const std::string &hlp, halfword align)
 {
-	error(msg, hlp);
+	error(msg, hlp, align);
 	diagnostic("\rThe following box has been deleted:"+showbox(box(n))+"\n");
 	flushnodelist(box(n));
 	box(n) = 0;
@@ -202,37 +202,37 @@ void clearforerrorprompt(void)
 	std::cin.clear();
 }
 
-void fatal(const std::string &msg, const std::string &hlp)
+void fatal(const std::string &msg, const std::string &hlp, halfword align)
 {
 	if (interaction == error_stop_mode)
 		interaction = scroll_mode;
 	if (logopened)
-		error(msg, hlp);
+		error(msg, hlp, align);
 	else
 		print_err(msg);
 	history = fatal_error_stop;
 	jumpout();
 }
 
-void confusion(const std::string &s)
+void confusion(const std::string &s, halfword align)
 {
 	normalizeselector();
 	if (history < error_message_issued)
-		fatal("This can't happen ("+s+")", "I'm broken. Please show this to someone who can fix can fix");
+		fatal("This can't happen ("+s+")", "I'm broken. Please show this to someone who can fix can fix", align);
 	else
-		fatal("I can't go on meeting you like this", "One of your faux pas seems to have wounded me deeply...\nin fact, I'm barely conscious. Please fix it and try again.");
+		fatal("I can't go on meeting you like this", "One of your faux pas seems to have wounded me deeply...\nin fact, I'm barely conscious. Please fix it and try again.", align);
 }
 
-void overflow(const std::string &s, int n)
+void overflow(const std::string &s, int n, halfword align)
 {
 	normalizeselector();
-	fatal("TeX capacity exceeded, sorry ["+s+"="+std::to_string(n)+"]", "If you really absolutely need more capacity,\nyou can ask a wizard to enlarge me.");
+	fatal("TeX capacity exceeded, sorry ["+s+"="+std::to_string(n)+"]", "If you really absolutely need more capacity,\nyou can ask a wizard to enlarge me.", align);
 }
 
-void fatalerror(const std::string &s)
+void fatalerror(const std::string &s, halfword align)
 {
 	normalizeselector();
-	fatal("Emergency stop", s);
+	fatal("Emergency stop", s, align);
 }
 
 //! make sure that the pool hasn't overflowed
@@ -242,24 +242,24 @@ void fatalerror(const std::string &s)
 	  overflow("pool size", poolsize-initpoolptr); 
 }*/
 
-void check_full_save_stack(void)
+void check_full_save_stack(halfword align)
 {
 	if (saveptr > maxsavestack)
 	{
 		maxsavestack = saveptr; 
 		if (maxsavestack> savesize-6) 
-			overflow("save size",savesize);
+			overflow("save size", savesize, align);
 	}
 }
 
-void interror(int n, const std::string &msg, const std::string &hlp) { error(msg+" ("+std::to_string(n)+")", hlp); }
-void reportillegalcase(eightbits cmd, halfword chr) { error("You can't use `"+cmdchr(cmd, chr)+"' in "+asMode(mode), "Sorry, but I'm not programmed to handle this case;\nI'll just pretend that you didn't ask for it.\nIf you're in the wrong mode, you might be able to\nreturn to the right one by typing `I}' or `I$' or `I\\par'."); }
+void interror(int n, const std::string &msg, const std::string &hlp, halfword align) { error(msg+" ("+std::to_string(n)+")", hlp, align); }
+void reportillegalcase(eightbits cmd, halfword chr, halfword align) { error("You can't use `"+cmdchr(cmd, chr)+"' in "+asMode(mode), "Sorry, but I'm not programmed to handle this case;\nI'll just pretend that you didn't ask for it.\nIf you're in the wrong mode, you might be able to\nreturn to the right one by typing `I}' or `I$' or `I\\par'.", align); }
 
 bool privileged(eightbits cmd, halfword chr)
 {
 	if (mode > 0)
 		return true;
-	reportillegalcase(cmd, chr);
+	reportillegalcase(cmd, chr, curalign);
 	return false;
 }
 

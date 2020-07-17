@@ -180,6 +180,6 @@ void postlinebreak(int finalwidowpenalty)
 			}
 	} while (curp);
 	if (curline != bestline || link(temp_head))
-		confusion("line breaking");
+		confusion("line breaking", curalign);
 	prev_graf = bestline-1;
 }

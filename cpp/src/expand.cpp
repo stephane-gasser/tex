@@ -15,7 +15,7 @@
 #include "macrocall.h"
 #include "texte.h"
 
-void expand(eightbits cmd, halfword chr, halfword cs)
+void expand(eightbits cmd, halfword chr, halfword cs, halfword align)
 {
 	smallnumber radixbackup = radix;
 	smallnumber cobackup = curorder;
@@ -36,11 +36,11 @@ void expand(eightbits cmd, halfword chr, halfword cs)
 					begintokenlist(curmark[chr], mark_text);
 				break;
 			case expand_after:
-				std::tie(cmd, chr, tok, cs) = gettoken();
+				std::tie(cmd, chr, tok, cs) = gettoken(align);
 				t = tok;
-				std::tie(cmd, chr, tok, cs) = gettoken();
+				std::tie(cmd, chr, tok, cs) = gettoken(align);
 				if (cmd > max_command)
-					expand(cmd, chr, cs);
+					expand(cmd, chr, cs, align);
 				else
 					backinput(tok);
 				tok = t;
@@ -49,7 +49,7 @@ void expand(eightbits cmd, halfword chr, halfword cs)
 			case no_expand:
 				savescannerstatus = scannerstatus;
 				scannerstatus = 0;
-				std::tie(cmd, chr, tok, cs) = gettoken();
+				std::tie(cmd, chr, tok, cs) = gettoken(align);
 				scannerstatus = savescannerstatus;
 				t = tok;
 				backinput(tok);
@@ -67,7 +67,7 @@ void expand(eightbits cmd, halfword chr, halfword cs)
 				p = r;
 				do
 				{
-					std::tie(cmd, chr, tok, cs) = getxtoken();
+					std::tie(cmd, chr, tok, cs) = getxtoken(align);
 					if (cs == 0)
 					{
 						q = getavail();
@@ -77,7 +77,7 @@ void expand(eightbits cmd, halfword chr, halfword cs)
 					}
 				} while (cs == 0);
 				if (cmd != end_cs_name)
-					backerror(tok, "Missing "+esc("endcsname")+" inserted", "The control sequence marked <to be read again> should\nnot appear between \\csname and \\endcsname.");
+					backerror(tok, "Missing "+esc("endcsname")+" inserted", "The control sequence marked <to be read again> should\nnot appear between \\csname and \\endcsname.", align);
 				j = First;
 				p = link(r);
 				while (p)
@@ -86,7 +86,7 @@ void expand(eightbits cmd, halfword chr, halfword cs)
 					{
 						maxbufstack = j+1;
 						if (maxbufstack == bufsize)
-							overflow("buffer size", bufsize);
+							overflow("buffer size", bufsize, align);
 					};
 					buffer[j++] = info(p)%0x1'00;
 					p = link(p);
@@ -112,24 +112,24 @@ void expand(eightbits cmd, halfword chr, halfword cs)
 				backinput(tok);
 				break;
 			case convert: 
-				convtoks(chr);
+				convtoks(chr, align);
 				break;
 			case the: 
-				insthetoks();
+				insthetoks(align);
 				break;
 			case if_test: 
-				conditional(chr);
+				conditional(chr, align);
 				break;
 			case fi_or_else:
 				if (chr > iflimit)
 					if (iflimit = 1)
 						insertrelax(cs);
 					else
-						error("Extra "+cmdchr(fi_or_else, chr), "I'm ignoring this; it doesn't match any \\if.");
+						error("Extra "+cmdchr(fi_or_else, chr), "I'm ignoring this; it doesn't match any \\if.", align);
 				else
 				{
 					while (chr != 2)
-						passtext();
+						passtext(align);
 					p = condptr;
 					ifline = if_line_field(p);
 					curif = subtype(p);
@@ -145,15 +145,15 @@ void expand(eightbits cmd, halfword chr, halfword cs)
 					if (nameinprogress)
 						insertrelax(cs);
 					else
-						startinput();
+						startinput(align);
 				break;
 			default:
-				error("Undefined control sequence", "The control sequence at the end of the top line\nof your error message was never \\def'ed. If you have\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\nspelling (e.g., `I\\hbox'). Otherwise just continue,\nand I'll forget about whatever was undefined.");
+				error("Undefined control sequence", "The control sequence at the end of the top line\nof your error message was never \\def'ed. If you have\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\nspelling (e.g., `I\\hbox'). Otherwise just continue,\nand I'll forget about whatever was undefined.", align);
 		}
 	}
 	else 
 		if (cmd < end_template)
-			macrocall(chr, cs);
+			macrocall(chr, cs, align);
 		else
 			backinput(frozen_endv+cs_token_flag);
 	radix = radixbackup;

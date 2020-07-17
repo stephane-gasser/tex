@@ -7,7 +7,7 @@
 
 static int box_max_depth(void) { return dimen_par(box_max_depth_code); }
 
-void package(smallnumber c, halfword tok)
+void package(smallnumber c, halfword tok, halfword align)
 {
 	scaled d = box_max_depth();
 	unsave(tok);
@@ -28,5 +28,5 @@ void package(smallnumber c, halfword tok)
 		}
 	}
 	popnest();
-	boxend(saved(0));
+	boxend(saved(0), align);
 }

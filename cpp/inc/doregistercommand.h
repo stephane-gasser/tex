@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void doregistercommand(smallnumber a, eightbits, halfword);
+void doregistercommand(smallnumber a, eightbits, halfword, halfword);
 
 #endif

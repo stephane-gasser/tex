@@ -7,7 +7,7 @@
 
 static bool scripts_allowed(halfword tail) { return type(tail) >= ord_noad && type(tail) < left_noad; }
 
-void subsup(eightbits cmd)
+void subsup(eightbits cmd, halfword align)
 {
 	smallnumber t = 0;
 	halfword p = 0;
@@ -24,10 +24,10 @@ void subsup(eightbits cmd)
 		if (t)
 		{
 			if (cmd == sup_mark)
-				error("Double superscript", "I treat `x^1^2' essentially like `x^1{}^2'.");
+				error("Double superscript", "I treat `x^1^2' essentially like `x^1{}^2'.", align);
 			else
-				error("Double subscript", "I treat `x_1_2' essentially like `x_1{}_2'.");
+				error("Double subscript", "I treat `x_1_2' essentially like `x_1{}_2'.", align);
 		}
 	}
-	scanmath(p);
+	scanmath(p, align);
 }

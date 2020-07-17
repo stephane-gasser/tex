@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void buildchoices(halfword);
+void buildchoices(halfword, halfword);
 
 #endif

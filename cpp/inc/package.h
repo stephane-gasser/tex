@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void package(smallnumber, halfword);
+void package(smallnumber, halfword, halfword);
 
 #endif

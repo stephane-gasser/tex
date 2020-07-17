@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void setmathchar(int c, halfword);
+void setmathchar(int c, halfword, halfword);
 
 #endif

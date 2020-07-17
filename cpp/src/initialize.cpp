@@ -98,8 +98,6 @@ void Initialize(void)
 	nulldelimiter.b2 = 0;
 	nulldelimiter.b3 = 0;
 	alignptr = 0;
-	curalign = 0;
-	curspan = 0;
 	curhead = 0;
 	curtail = 0;
 	for (int z = 0; z < 308; z++)

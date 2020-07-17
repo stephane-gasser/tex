@@ -22,7 +22,7 @@ halfword vsplit(eightbits n, scaled h)
 		return 0;
 	if (type(v) != vlist_node)
 	{
-		error(esc("vsplit")+" needs a "+esc("vbox"), "The box you are trying to split is an \\hbox.\nI can't split such a box, so I'll leave it alone.");
+		error(esc("vsplit")+" needs a "+esc("vbox"), "The box you are trying to split is an \\hbox.\nI can't split such a box, so I'll leave it alone.", curalign);
 		return 0;
 	}
 	auto q = vertbreak(list_ptr(v), h, split_max_depth());

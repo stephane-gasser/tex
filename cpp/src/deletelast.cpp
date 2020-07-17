@@ -9,7 +9,7 @@ void deletelast(eightbits cmd, halfword chr)
 	if (mode == vmode && tail == head)
 	{
 		if (chr != '\n' || lastglue != empty_flag)
-			error("You can't use `"+cmdchr(cmd, chr)+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page."+std::string(chr == 11 ? "Try `I\\kern-\\lastkern' instead." : chr == '\n' ? "Try `I\\vskip-\\lastskip' instead." : "Perhaps you can make the output routine do it."));
+			error("You can't use `"+cmdchr(cmd, chr)+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page."+std::string(chr == 11 ? "Try `I\\kern-\\lastkern' instead." : chr == '\n' ? "Try `I\\vskip-\\lastskip' instead." : "Perhaps you can make the output routine do it."), curalign);
 	}
 	else 
 		if (tail < himemmin)

@@ -12,21 +12,21 @@
 #include "initcol.h"
 #include "texte.h"
 
-bool fincol(halfword tok, halfword &loop)
+bool fincol(halfword tok, halfword &loop, halfword &span, halfword &align)
 {
 	halfword p, q, r, s, u;
 	scaled w;
 	glueord o;
 	halfword n;
-	if (curalign == 0)
-		confusion("endv");
-	q = link(curalign);
+	if (align == 0)
+		confusion("endv", align);
+	q = link(align);
 	if (q == 0)
-		confusion("endv");
+		confusion("endv", align);
 	if (alignstate < 500000)
-		fatalerror("(interwoven alignment preambles are not allowed)");
+		fatalerror("(interwoven alignment preambles are not allowed)", align);
 	p = link(q);
-	if (p == 0 && extra_info(curalign) < cr_code)
+	if (p == 0 && extra_info(align) < cr_code)
 		if (loop)
 		{
 			link(q) = newnullbox();
@@ -61,10 +61,10 @@ bool fincol(halfword tok, halfword &loop)
 		}
 		else
 		{
-			error("Extra alignment tab has been changed to "+esc("cr"), "You have given more \\span or & marks than there were\nin the preamble to the \\halign or \\valign now in progress.\nSo I'll assume that you meant to type \\cr instead.");
-			extra_info(curalign) = cr_code;
+			error("Extra alignment tab has been changed to "+esc("cr"), "You have given more \\span or & marks than there were\nin the preamble to the \\halign or \\valign now in progress.\nSo I'll assume that you meant to type \\cr instead.", align);
+			extra_info(align) = cr_code;
 		}
-	if (extra_info(curalign) != span_code)
+	if (extra_info(align) != span_code)
 	{
 		unsave(tok);
 		newsavelevel(6);
@@ -82,17 +82,17 @@ bool fincol(halfword tok, halfword &loop)
 			w = height(u);
 		}
 		n = 0;
-		if (curspan != curalign)
+		if (span != align)
 		{
-			q = curspan;
+			q = span;
 			do
 			{
 				n++;
 				q = link(link(q));
-			} while (q != curalign);
+			} while (q != align);
 			if (n > 255)
-				confusion("256 spans");
-			q = curspan;
+				confusion("256 spans", align);
+			q = span;
 			while (link(link(q)) < n)
 				q = link(q);
 			if (link(link(q)) > n)
@@ -108,8 +108,8 @@ bool fincol(halfword tok, halfword &loop)
 					width(info(q)) = w;
 		}
 		else 
-			if (w > width(curalign))
-				width(curalign) = w;
+			if (w > width(align))
+				width(align) = w;
 		type(u) = unset_node;
 		span_count(u) = n;
 		if (totalstretch[3])
@@ -139,18 +139,18 @@ bool fincol(halfword tok, halfword &loop)
 		popnest();
 		link(tail) = u;
 		tail = u;
-		tail_append(newglue(glue_ptr(link(curalign))));
+		tail_append(newglue(glue_ptr(link(align))));
 		subtype(tail) = tab_skip_code+1;
-		if (extra_info(curalign) >= cr_code)
+		if (extra_info(align) >= cr_code)
 			return true;
-		initspan(p);
+		initspan(p, span);
 	}
 	alignstate = 1000000;
 	eightbits cmd;
 	do
-		std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
+		std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken(align);
 	while (cmd == spacer);
-	curalign = p;
-	initcol(cmd, tok);
+	align = p;
+	initcol(cmd, tok, align);
 	return false;
 }

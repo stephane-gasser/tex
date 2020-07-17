@@ -10,14 +10,14 @@
 static int display_widow_penalty(void) { return int_par(display_widow_penalty_code); }
 static halfword& every_display(void) { return equiv(every_display_loc); }
 
-void initmath(void)
+void initmath(halfword align)
 {
 	scaled w, l, s;
 	halfword p, q;
 	internalfontnumber f;
 	int n;
 	scaled v, d;
-	auto [cmd, chr, tok, cs] = gettoken();
+	auto [cmd, chr, tok, cs] = gettoken(align);
 	if (cmd == math_shift && mode > 0)
 	{
 		if (head == tail)
@@ -147,7 +147,7 @@ void initmath(void)
 		if (every_display())
 			begintokenlist(every_display(), 9);
 		if (nestptr == 1)
-			buildpage();
+			buildpage(align);
 	}
 	else
 	{

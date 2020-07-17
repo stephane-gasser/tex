@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void finalign(halfword, halfword &);
+void finalign(halfword, halfword &, halfword &, halfword &);
 
 #endif

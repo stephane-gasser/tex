@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void prefixedcommand(eightbits, halfword);
+void prefixedcommand(eightbits, halfword, halfword);
 
 #endif

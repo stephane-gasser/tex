@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void makemark(halfword);
+void makemark(halfword, halfword);
 
 #endif

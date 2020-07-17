@@ -7,7 +7,7 @@
 #include "erreur.h"
 #include "texte.h"
 
-void outwhat(halfword p)
+void outwhat(halfword p, halfword align)
 {
 	switch (subtype(p))
 	{
@@ -16,21 +16,21 @@ void outwhat(halfword p)
 		case close_node:
 			if (!doingleaders)
 			{
-				smallnumber j = info(p+1);
-				if (subtype(p) == 1)
-					writeout(p);
+				smallnumber j = write_stream(p);
+				if (subtype(p) == write_node)
+					writeout(p, align);
 				else
 				{
 					if (writeopen[j])
 						aclose(writefile[j]);
-					if (subtype(p) == 2)
+					if (subtype(p) == close_node)
 						writeopen[j] = false;
 					else 
 						if (j < 16)
 						{
-							curname = link(p+1);
-							curarea = info(p+2);
-							curext = link(p+2);
+							curname = open_name(p);
+							curarea = open_area(p);
+							curext = open_ext(p);
 							if (curext == "")
 								curext = ".tex";
 							pack_cur_name();
@@ -47,6 +47,6 @@ void outwhat(halfword p)
 		case language_node:
 			break;
 		default:
-			confusion("ext4");
+			confusion("ext4", align);
 	}
 }

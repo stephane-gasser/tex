@@ -29,7 +29,7 @@ halfword idlookup(const std::string &s)
 					do
 					{
 						if (hash_is_full())
-							overflow("hash size", hash_size);
+							overflow("hash size", hash_size, curalign);
 						hashused--;
 					} while (text(hashused));
 					next(p) = hashused;

@@ -1,11 +1,11 @@
 #include "shiftcase.h"
 #include "lecture.h"
 
-void shiftcase(halfword b, halfword cs)
+void shiftcase(halfword b, halfword cs, halfword align)
 {
 	halfword p, t;
 	eightbits c;
-	p = scantoks(false, false, cs);
+	p = scantoks(false, false, cs, align);
 	p = link(defref);
 	while (p)
 	{

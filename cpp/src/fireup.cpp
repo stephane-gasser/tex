@@ -17,7 +17,7 @@ static halfword& broken_ptr(halfword p) { return link(p+1); }
 static int holding_inserts(void) { return int_par(holding_inserts_code); }
 static halfword& output_routine(void) { return equiv(output_routine_loc); }
 
-void fireup(halfword c)
+void fireup(halfword c, halfword align)
 {
 	halfword p, q, r, s, prevp;
 	unsigned char n;
@@ -44,7 +44,7 @@ void fireup(halfword c)
 	if (c == bestpagebreak)
 		bestpagebreak = 0;
 	if (box(255))
-		boxerror(255, esc("box")+"255 is not void", "You shouldn't use \\box255 except in \\output routines.\nProceed, and I'll discard its present contents.");
+		boxerror(255, esc("box")+"255 is not void", "You shouldn't use \\box255 except in \\output routines.\nProceed, and I'll discard its present contents.", align);
 	insertpenalties = 0;
 	savesplittopskip = split_top_skip();
 	if (holding_inserts() <= 0)
@@ -197,7 +197,7 @@ void fireup(halfword c)
 	}
 	if (output_routine())
 		if (deadcycles >= max_dead_cycles())
-			error("Output loop---"+std::to_string(deadcycles)+" consecutive dead cycles", "I've concluded that your \\output is awry; it never does a\n\\shipout, so I'm shipping \\box255 out myself. Next time\nincrease \\maxdeadcycles if you want me to be more patient!");
+			error("Output loop---"+std::to_string(deadcycles)+" consecutive dead cycles", "I've concluded that your \\output is awry; it never does a\n\\shipout, so I'm shipping \\box255 out myself. Next time\nincrease \\maxdeadcycles if you want me to be more patient!", align);
 		else
 		{
 			outputactive = true;
@@ -209,7 +209,7 @@ void fireup(halfword c)
 			begintokenlist(output_routine(), 6);
 			newsavelevel(8);
 			normalparagraph();
-			auto [cmd, chr, tok] = scanleftbrace();
+			auto [cmd, chr, tok] = scanleftbrace(align);
 			return;
 		}
 	if (link(page_head))
@@ -225,6 +225,6 @@ void fireup(halfword c)
 		link(page_head) = 0;
 		pagetail = page_head;
 	}
-	shipout(box(255));
+	shipout(box(255), align);
 	box(255) = 0;
 }

@@ -8,7 +8,7 @@
 
 constexpr int end_write_token = cs_token_flag+end_write;
 
-void writeout(halfword p)
+void writeout(halfword p, halfword align)
 {
 	auto q = getavail();
 	info(q) = right_brace_token+'}';
@@ -23,18 +23,18 @@ void writeout(halfword p)
 	int oldmode = mode;
 	mode = 0;
 	halfword cs = writeloc;
-	q = scantoks(false, true, cs);
+	q = scantoks(false, true, cs, align);
 	halfword tok;
-	std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken();
+	std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken(align);
 	if (tok != end_write_token)
 	{
-		error("Unbalanced write command", "On this page there's a \\write with fewer real {'s than }'s.\nI can't handle that very well; good luck.");
+		error("Unbalanced write command", "On this page there's a \\write with fewer real {'s than }'s.\nI can't handle that very well; good luck.", align);
 		do
-			std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken();
+			std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken(align);
 		while (tok != end_write_token);
 	}
 	mode = oldmode;
-	endtokenlist();
+	endtokenlist(align);
 	auto oldsetting = selector;
 	auto j = write_stream(p);
 	if (writeopen[j])

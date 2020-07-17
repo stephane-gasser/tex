@@ -32,7 +32,7 @@ static void ensure_dvi_open(void)
 	}
 }
 
-void shipout(halfword p)
+void shipout(halfword p, halfword align)
 {
 	if (tracing_output())
 		printnl("\nCompleted box being shipped out"+std::string(termoffset > maxprintline-9 ? "\n" : termoffset > 0 || fileoffset > 0 ? " " : ""));
@@ -56,7 +56,7 @@ void shipout(halfword p)
 	 || height(p)+depth(p)+v_offset() > max_dimen 
 	 || width(p)+h_offset() > max_dimen)
 	{
-		error("Huge page cannot be shipped out", "The page just created is more than 18 feet tall or\nmore than 18 feet wide, so I suspect something went wrong.");
+		error("Huge page cannot be shipped out", "The page just created is more than 18 feet tall or\nmore than 18 feet wide, so I suspect something went wrong.", align);
 		if (tracing_output() <= 0)
 		{
 			diagnostic("\rThe following box has been deleted:"+showbox(p)+"\n");
@@ -97,9 +97,9 @@ void shipout(halfword p)
 	curv = height(p)+v_offset();
 	tempptr = p;
 	if (type(p) == vlist_node)
-		vlistout();
+		vlistout(align);
 	else
-		hlistout();
+		hlistout(align);
 	dvi_out(eop);
 	totalpages++;
 	curs = -1;

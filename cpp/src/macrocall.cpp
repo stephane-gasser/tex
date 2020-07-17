@@ -8,7 +8,7 @@
 #include "lecture.h"
 #include "texte.h"
 
-void macrocall(halfword chr, halfword cs_)
+void macrocall(halfword chr, halfword cs_, halfword align)
 {
 	auto savescannerstatus = scannerstatus;
 	auto savewarningindex = warningindex;
@@ -46,7 +46,7 @@ void macrocall(halfword chr, halfword cs_)
 			while (true)
 			{
 				halfword tok;
-				std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken();
+				std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken(align);
 				if (tok = info(r))
 				{
 					r = link(r);
@@ -62,7 +62,7 @@ void macrocall(halfword chr, halfword cs_)
 				if (s != r)
 					if (s == 0)
 					{
-						error("Use of "+scs(warningindex)+" doesn't match its definition", "If you say, e.g., `\\def\\a1{...}', then you must always\nput `1' after `\\a', since control sequence names are\nmade up of letters only. The macro here has not been\nfollowed by the required stuff, so I'm ignoring it.");
+						error("Use of "+scs(warningindex)+" doesn't match its definition", "If you say, e.g., `\\def\\a1{...}', then you must always\nput `1' after `\\a', since control sequence names are\nmade up of letters only. The macro here has not been\nfollowed by the required stuff, so I'm ignoring it.", align);
 						scannerstatus = savescannerstatus;
 						warningindex = savewarningindex;
 						return;
@@ -109,7 +109,7 @@ void macrocall(halfword chr, halfword cs_)
 						if (longstate == call)
 						{
 							runaway();
-							backerror(tok, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
+							backerror(tok, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.", align);
 						}
 						pstack[n] = link(temp_head);
 						alignstate -= unbalance;
@@ -136,14 +136,14 @@ void macrocall(halfword chr, halfword cs_)
 							link(p) = q;
 							info(q) = tok;
 							p = q;
-							std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken();
+							std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken(align);
 							if (tok == partoken)
 								if (longstate != long_call)
 								{
 									if (longstate == call)
 									{
 										runaway();
-										backerror(tok, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
+										backerror(tok, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.", align);
 									}
 									pstack[n] = link(temp_head);
 									alignstate -= unbalance;
@@ -172,7 +172,7 @@ void macrocall(halfword chr, halfword cs_)
 					else
 					{
 						backinput(tok);
-						inserror(tok, "Argument of "+scs(warningindex)+" has an extra }", "I've run across a `}' that doesn't seem to match anything.\nFor example, `\\def\\a#1{...}' and `\\a}' would produce\nthis error. If you simply proceed now, the `\\par' that\nI've just inserted will cause me to report a runaway\nargument that might be the root of the problem. But if\nyour `}' was spurious, just type `2' and it will go away.");
+						inserror(tok, "Argument of "+scs(warningindex)+" has an extra }", "I've run across a `}' that doesn't seem to match anything.\nFor example, `\\def\\a#1{...}' and `\\a}' would produce\nthis error. If you simply proceed now, the `\\par' that\nI've just inserted will cause me to report a runaway\nargument that might be the root of the problem. But if\nyour `}' was spurious, just type `2' and it will go away.", align);
 						alignstate++;
 						longstate = call;
 						tok = partoken;
@@ -214,7 +214,7 @@ void macrocall(halfword chr, halfword cs_)
 		} while (info(r) != end_match_token); 
 	}
 	while (state == 0 && loc == 0 && index != 2)
-		endtokenlist();
+		endtokenlist(align);
 	begintokenlist(refcount, macro);
 	name = warningindex;
 	loc = link(r);
@@ -224,7 +224,7 @@ void macrocall(halfword chr, halfword cs_)
 		{
 			maxparamstack =	paramptr+n;
 			if (maxparamstack > paramsize)
-				overflow("parameter stack size", paramsize);
+				overflow("parameter stack size", paramsize, align);
 		}
 		for (int m = 0; m < n; m++)
 			paramstack[paramptr+m] = pstack[m];

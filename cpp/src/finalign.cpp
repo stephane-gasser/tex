@@ -17,7 +17,7 @@
 #include <cmath>
 #include "texte.h"
 
-void finalign(halfword tok, halfword &loop)
+void finalign(halfword tok, halfword &loop, halfword &span, halfword &align)
 {
 	halfword p, q, r, s, u, v;
 	scaled t, w;
@@ -26,10 +26,10 @@ void finalign(halfword tok, halfword &loop)
 	scaled rulesave;
 	memoryword auxsave;
 	if (curgroup != 6)
-		confusion("align1");
+		confusion("align1", align);
 	unsave(tok);
 	if (curgroup != 6)
-		confusion("align0"); 
+		confusion("align0", align); 
 	unsave(tok);
 	if (nest[nestptr-1].modefield == mmode)
 		o = display_indent();
@@ -282,21 +282,21 @@ void finalign(halfword tok, halfword &loop)
 		q = link(q);
 	}
 	flushnodelist(p);
-	popalignment(loop);
+	popalignment(loop, span, align);
 	auxsave = aux;
 	p = link(head);
 	q = tail;
 	popnest();
 	if (mode == mmode)
 	{
-		auto [cmd, tok] = doassignments();
+		auto [cmd, tok] = doassignments(align);
 		if (cmd != math_shift)
-			backerror(tok, "Missing $$ inserted", "Displays can use special alignments (like \\eqalignno)\nonly if nothing but the alignment itself is between $$'s.");
+			backerror(tok, "Missing $$ inserted", "Displays can use special alignments (like \\eqalignno)\nonly if nothing but the alignment itself is between $$'s.", align);
 		else
 		{
-			std::tie (cmd, std::ignore, tok, std::ignore) = getxtoken();
+			std::tie (cmd, std::ignore, tok, std::ignore) = getxtoken(align);
 			if (cmd != math_shift)
-				backerror(tok, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
+				backerror(tok, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.", align);
 		}
 		popnest();
 		tail_append(newpenalty(pre_display_penalty()));
@@ -307,7 +307,7 @@ void finalign(halfword tok, halfword &loop)
 		tail_append(newpenalty(post_display_penalty()));
 		tail_append(newparamglue(4));
 		aux = auxsave;
-		resumeafterdisplay(tok);
+		resumeafterdisplay(tok, align);
 	}
 	else
 	{
@@ -316,6 +316,6 @@ void finalign(halfword tok, halfword &loop)
 		if (p)
 			tail = q;
 		if (mode == vmode)
-			buildpage();
+			buildpage(align);
 	}
 }

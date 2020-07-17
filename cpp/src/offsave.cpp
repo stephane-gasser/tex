@@ -9,7 +9,7 @@
 void offsave(eightbits cmd, halfword chr, halfword tok)
 {
 	if (curgroup == bottom_level)
-		error("Extra "+cmdchr(cmd, chr), "Things are pretty mixed up, but I think the worst is over.");
+		error("Extra "+cmdchr(cmd, chr), "Things are pretty mixed up, but I think the worst is over.", curalign);
 	else
 	{
 		backinput(tok);
@@ -19,22 +19,22 @@ void offsave(eightbits cmd, halfword chr, halfword tok)
 		{
 			case semi_simple_group:
 				info(p) = cs_token_flag+frozen_end_group;
-				error("Missing "+esc("endgroup")+" inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
+				error("Missing "+esc("endgroup")+" inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.", curalign);
 				break;
 			case math_shift_group:
 				info(p) = math_shift_token+'$';
-				error("Missing $ inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
+				error("Missing $ inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.", curalign);
 				break;
 			case math_left_group:
 				info(p) = cs_token_flag+frozen_right;
 				link(p) = getavail();
 				p = link(p);
 				info(p) = other_token+'.';
-				error("Missing right. inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
+				error("Missing right. inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.", curalign);
 				break;
 			default:
 				info(p) = right_brace_token+'}';
-				error("Missing } inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
+				error("Missing } inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.", curalign);
 		}
 		ins_list(link(temp_head));
 	}

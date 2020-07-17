@@ -260,9 +260,9 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 	catch (int e)
 	{
 		if (e == 1)
-			error("Font "+scs(u)+"="+asFilename(nom, aire, "")+(s >= 0 ? " at "+asScaled(s)+"pt" : s == -1000 ? "" : " scaled "+std::to_string(-s))+(fileopened ? " not loadable: Bad metric (TFM) file" : " not loadable: Metric (TFM) file not found"), "I wasn't able to read the size data for this font,\nso I will ignore the font specification.\n[Wizards can fix TFM files using TFtoPL/PLtoTF.]\nYou might try inserting a different font spec;\ne.g., type `I\\font<same font id>=<substitute font name>'.");
+			error("Font "+scs(u)+"="+asFilename(nom, aire, "")+(s >= 0 ? " at "+asScaled(s)+"pt" : s == -1000 ? "" : " scaled "+std::to_string(-s))+(fileopened ? " not loadable: Bad metric (TFM) file" : " not loadable: Metric (TFM) file not found"), "I wasn't able to read the size data for this font,\nso I will ignore the font specification.\n[Wizards can fix TFM files using TFtoPL/PLtoTF.]\nYou might try inserting a different font spec;\ne.g., type `I\\font<same font id>=<substitute font name>'.", curalign);
 		else
-			error("Font "+scs(u)+"="+asFilename(nom, aire, "")+(s >= 0 ? " at "+asScaled(s)+"pt" : s == -1000 ? "" : " scaled "+std::to_string(-s))+" not loaded: Not enough room left", "I'm afraid I won't be able to make use of this font,\nbecause my memory for character-size data is too small.\nIf you're really stuck, ask a wizard to enlarge me.\nOr maybe try `I\\font<same font id>=<name of loaded font>'.");
+			error("Font "+scs(u)+"="+asFilename(nom, aire, "")+(s >= 0 ? " at "+asScaled(s)+"pt" : s == -1000 ? "" : " scaled "+std::to_string(-s))+" not loaded: Not enough room left", "I'm afraid I won't be able to make use of this font,\nbecause my memory for character-size data is too small.\nIf you're really stuck, ask a wizard to enlarge me.\nOr maybe try `I\\font<same font id>=<name of loaded font>'.", curalign);
 		if (fileopened)
 			bclose(tfmfile);
 	}

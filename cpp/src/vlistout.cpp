@@ -10,7 +10,7 @@
 #include "erreur.h"
 #include <cmath>
 
-void vlistout(void)
+void vlistout(halfword align)
 {
 	scaled curg = 0;
 	float curglue = 0.0;
@@ -30,7 +30,7 @@ void vlistout(void)
 	while (p)
 	{
 		if (p >= himemmin)
-			confusion("vlistout");
+			confusion("vlistout", align);
 		else
 		{
 			switch (type(p))
@@ -52,9 +52,9 @@ void vlistout(void)
 						curh = leftedge+shift_amount(p);
 						tempptr = p;
 						if (type(p) == 1)
-							vlistout();
+							vlistout(align);
 						else
-							hlistout();
+							hlistout(align);
 						dvih = saveh;
 						dviv = savev;
 						curv = savev+depth(p);
@@ -80,7 +80,7 @@ void vlistout(void)
 					p = link(p);
 					continue;
 				case whatsit_node:
-					outwhat(p);
+					outwhat(p, align);
 					break;
 				case glue_node:
 					g = glue_ptr(p);
@@ -160,9 +160,9 @@ void vlistout(void)
 								bool outerdoingleaders = doingleaders;
 								doingleaders = true;
 								if (type(leaderbox) == 1)
-									vlistout();
+									vlistout(align);
 								else
-									hlistout();
+									hlistout(align);
 								doingleaders = outerdoingleaders;
 								dviv = savev;
 								dvih = saveh;

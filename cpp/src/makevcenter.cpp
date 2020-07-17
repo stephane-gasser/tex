@@ -6,7 +6,7 @@ void makevcenter(halfword q)
 {
 	halfword v = info(nucleus(q));
 	if (type(v) != vlist_node)
-		confusion("vcenter");
+		confusion("vcenter", curalign);
 	scaled delta = height(v)+depth(v);
 	height(v) = axis_height(cursize)+half(delta);
 	depth(v) = delta-height(v);

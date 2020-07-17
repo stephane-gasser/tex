@@ -9,15 +9,15 @@
 #include "finmlist.h"
 #include "texte.h"
 
-void mathleftright(eightbits cmd, halfword chr, halfword tok)
+void mathleftright(eightbits cmd, halfword chr, halfword tok, halfword align)
 {
 	smallnumber t = chr;
 	if (t == right_noad && curgroup != math_left_group)
 	{
 		if (curgroup == math_shift_group)
 		{
-			scandelimiter(garbage, false, tok);
-			error("Extra "+esc("right"), "I'm ignoring a \\right that had no matching \\left.");
+			scandelimiter(garbage, false, tok, align);
+			error("Extra "+esc("right"), "I'm ignoring a \\right that had no matching \\left.", align);
 		}
 		else
 			offsave(cmd, chr, tok);
@@ -26,7 +26,7 @@ void mathleftright(eightbits cmd, halfword chr, halfword tok)
 	{
 		auto p = newnoad();
 		type(p) = t;
-		scandelimiter(delimiter(p), false, tok);
+		scandelimiter(delimiter(p), false, tok, align);
 		if (t == left_noad)
 		{
 			pushmath(math_left_group);

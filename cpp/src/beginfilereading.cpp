@@ -9,9 +9,9 @@
 void beginfilereading(void)
 {
 	if (inopen == maxinopen)
-		overflow("text input levels", maxinopen); 
+		overflow("text input levels", maxinopen, curalign);
 	if (First == bufsize)
-		overflow("buffer size", bufsize);
+		overflow("buffer size", bufsize, curalign);
 	inopen++;
 	push_input();
 	index = inopen;

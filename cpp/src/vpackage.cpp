@@ -49,7 +49,7 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 	while (p)
 	{
 		if (p >= himemmin)
-			confusion("vpack");
+			confusion("vpack", curalign);
 		else
 			switch (type(p))
 			{

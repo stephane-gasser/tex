@@ -50,5 +50,5 @@ void unsave(halfword tok)
 		curboundary = save_index(saveptr);
 	}
 	else
-		confusion("curlevel");
+		confusion("curlevel", curalign);
 }

@@ -4,7 +4,7 @@
 #include "buildpage.h"
 #include "erreur.h"
 
-bool itsallover(eightbits cmd, halfword chr, halfword tok)
+bool itsallover(eightbits cmd, halfword chr, halfword tok, halfword align)
 {
 	if (privileged(cmd, chr))
 	{
@@ -15,7 +15,7 @@ bool itsallover(eightbits cmd, halfword chr, halfword tok)
 		width(tail) = hsize();
 		tail_append(newglue(fill_glue));
 		tail_append(newpenalty(null_flag));
-		buildpage();
+		buildpage(align);
 	}
 	return false;
 }

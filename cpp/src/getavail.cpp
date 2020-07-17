@@ -16,13 +16,12 @@ halfword getavail(void)
 			if (himemmin <= lomemmax)
 			{
 				runaway();
-				overflow("main memory size", memmax+1-memmin);
+				overflow("main memory size", memmax+1-memmin, curalign);
 			}
 		}
 	link(p) = 0;
 	return p;
 }
-
 
 halfword fast_get_avail(void)
 {
@@ -36,7 +35,6 @@ halfword fast_get_avail(void)
 	}
 	return q;
 }
-
 
 void store_new_token(halfword &p, halfword t)
 {

@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void alterboxdimen(halfword);
+void alterboxdimen(halfword, halfword);
 
 #endif

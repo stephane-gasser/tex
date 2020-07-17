@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void conditional(halfword);
+void conditional(halfword, halfword);
 
 #endif

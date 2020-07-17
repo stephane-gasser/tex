@@ -142,7 +142,7 @@ void trybreak(int pi, smallnumber breaktype)
 											breakwidth[1] -= width(v);
 											break;
 										default: 
-											confusion("disc1");
+											confusion("disc1", curalign);
 									}
 							}
 							while (s)
@@ -166,7 +166,7 @@ void trybreak(int pi, smallnumber breaktype)
 											breakwidth[1] += width(s);
 											break;
 										default: 
-											confusion("disc2");
+											confusion("disc2", curalign);
 									}
 								s = link(s);
 							}

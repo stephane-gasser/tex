@@ -58,7 +58,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 				case ins_node: //3
 					break;
 				default: 
-					confusion("vertbreak");
+					confusion("vertbreak", curalign);
 			}
 		if (p == 0 || (type(p) == glue_node && type(prevp) < 9) || (type(p) == kern_node && t == glue_node) || type(p) == penalty_node)
 			if (pi < 10000)
@@ -103,7 +103,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 			active_height[6] += shrink(q);
 			if (shrink_order(q) && shrink(q))
 			{
-				error("Infinite glue shrinkage found in box being split", "The box you are \\vsplitting contains some infinitely\nshrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.\nSuch glue doesn't belong there; but you can safely proceed,\nsince the offensive shrinkability has been made finite.");
+				error("Infinite glue shrinkage found in box being split", "The box you are \\vsplitting contains some infinitely\nshrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.\nSuch glue doesn't belong there; but you can safely proceed,\nsince the offensive shrinkability has been made finite.", curalign);
 				r = newspec(q);
 				subtype(r) = 0;
 				deleteglueref(q);

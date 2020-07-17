@@ -15,9 +15,9 @@
 
 constexpr char TEX_area[] = "TeXinputs:";
 
-void startinput(void)
+void startinput(halfword align)
 {
-	scanfilename();
+	scanfilename(align);
 	if (curext == "")
 		curext = ".tex";
 	pack_cur_name();

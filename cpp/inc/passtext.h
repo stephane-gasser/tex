@@ -1,5 +1,8 @@
 #ifndef PASSTEXT_H
 #define PASSTEXT_H
+
 #include "globals.h"
-void passtext(void);
+
+void passtext(halfword);
+
 #endif

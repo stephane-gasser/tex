@@ -1,7 +1,7 @@
 #include "passtext.h"
 #include "getnext.h"
 
-void passtext(void)
+void passtext(halfword align)
 {
 	auto savescannerstatus = scannerstatus;
 	scannerstatus = skipping;
@@ -9,7 +9,7 @@ void passtext(void)
 	skipline = line;
 	while (true)
 	{
-		auto [cmd, chr, cs] = getnext();
+		auto [cmd, chr, cs] = getnext(align);
 		if (cmd == fi_or_else)
 		{
 			if (l == 0)

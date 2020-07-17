@@ -1,5 +1,4 @@
 #include "morename.h"
-#include "erreur.h"
 
 bool morename(ASCIIcode c)
 {

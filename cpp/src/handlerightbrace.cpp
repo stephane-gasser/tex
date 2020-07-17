@@ -8,7 +8,6 @@
 #include "vpackage.h"
 #include "popnest.h"
 #include "deleteglueref.h"
-#include "buildpage.h"
 #include "lecture.h"
 #include "buildpage.h"
 #include "builddiscretionary.h"
@@ -21,7 +20,7 @@
 
 static int floating_penalty(void) { return int_par(floating_penalty_code); }
 
-void handlerightbrace(halfword tok, halfword &loop)
+void handlerightbrace(halfword tok, halfword &loop, halfword &span, halfword &align)
 {
 	halfword p, q;
 	scaled d;
@@ -32,7 +31,7 @@ void handlerightbrace(halfword tok, halfword &loop)
 			unsave(tok);
 			break;
 		case bottom_level:
-			error("Too many }'s", "You've closed more groups than you opened.\nSuch booboos are generally harmless, so keep going.");
+			error("Too many }'s", "You've closed more groups than you opened.\nSuch booboos are generally harmless, so keep going.", align);
 			break;
 		case semi_simple_group:
 		case math_shift_group:
@@ -40,19 +39,19 @@ void handlerightbrace(halfword tok, halfword &loop)
 			extrarightbrace();
 			break;
 		case hbox_group: 
-			package(0, tok);
+			package(0, tok, align);
 			break;
 		case adjusted_hbox_group:
 			adjusttail = adjust_head;
-			package(0, tok);
+			package(0, tok, align);
 			break;
 		case vbox_group:
 			endgraf();
-			package(0, tok);
+			package(0, tok, align);
 			break;
 		case vtop_group:
 			endgraf();
-			package(4, tok);
+			package(4, tok, align);
 			break;
 		case insert_group:
 			endgraf();
@@ -85,23 +84,23 @@ void handlerightbrace(halfword tok, halfword &loop)
 			}
 			freenode(p, box_node_size);
 			if (nestptr == 0)
-				buildpage();
+				buildpage(align);
 			break;
 		case output_group:
 			if (loc || (token_type != output_text && token_type != backed_up))
 			{
-				error("Unbalanced output routine", "Your sneaky output routine has problematic {'s and/or }'s.\nI can't handle that very well; good luck.");
+				error("Unbalanced output routine", "Your sneaky output routine has problematic {'s and/or }'s.\nI can't handle that very well; good luck.", align);
 				do
-					std::tie(std::ignore, std::ignore, std::ignore, std::ignore) = gettoken();
+					std::tie(std::ignore, std::ignore, std::ignore, std::ignore) = gettoken(align);
 				while (loc);
 			}
-			endtokenlist();
+			endtokenlist(align);
 			endgraf();
 			unsave(tok);
 			outputactive = false;
 			insertpenalties = 0;
 			if (box(255))
-				boxerror(255, "Output routine didn't use all of "+esc("box255"), "Your \\output commands should empty \\box255,\ne.g., by saying `\\shipout\\box255'.\nProceed; I'll discard its present contents.");
+				boxerror(255, "Output routine didn't use all of "+esc("box255"), "Your \\output commands should empty \\box255,\ne.g., by saying `\\shipout\\box255'.\nProceed; I'll discard its present contents.", align);
 			if (tail != head)
 			{
 				link(pagetail) = link(head);
@@ -117,7 +116,7 @@ void handlerightbrace(halfword tok, halfword &loop)
 				pagetail = page_head;
 			}
 			popnest();
-			buildpage();
+			buildpage(align);
 			break;
 		case disc_group: 
 			builddiscretionary;
@@ -125,12 +124,12 @@ void handlerightbrace(halfword tok, halfword &loop)
 		case align_group:
 			backinput(tok);
 			tok = cs_token_flag+frozen_cr;
-			inserror(tok, "Missing "+esc("cr")+" inserted", "I'm guessing that you meant to end an alignment here.");
+			inserror(tok, "Missing "+esc("cr")+" inserted", "I'm guessing that you meant to end an alignment here.", align);
 			break;
 		case no_align_group:
 			endgraf();
 			unsave(tok);
-			alignpeek(loop);
+			alignpeek(loop, span, align);
 			break;
 		case vcenter_group:
 			endgraf();
@@ -144,7 +143,7 @@ void handlerightbrace(halfword tok, halfword &loop)
 			info(nucleus(tail)) = p;
 			break;
 		case math_choice_group: 
-			buildchoices(tok);
+			buildchoices(tok, align);
 			break;
 		case math_group:
 			unsave(tok);
@@ -175,6 +174,6 @@ void handlerightbrace(halfword tok, halfword &loop)
 							}
 			break;
 		default: 
-			confusion("rightbrace");
+			confusion("rightbrace", align);
 	}
 }

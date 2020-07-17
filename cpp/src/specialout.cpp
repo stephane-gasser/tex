@@ -1,7 +1,6 @@
 #include "specialout.h"
 #include "movement.h"
 #include "impression.h"
-#include "erreur.h"
 #include "dviswap.h"
 #include "dvifour.h"
 

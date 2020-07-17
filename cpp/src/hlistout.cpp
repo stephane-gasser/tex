@@ -9,7 +9,7 @@
 #include "outwhat.h"
 #include <cmath>
 
-void hlistout(void)
+void hlistout(halfword align)
 {
 	scaled curg = 0;
 	float curglue = 0.0;
@@ -75,9 +75,9 @@ void hlistout(void)
 						tempptr = p;
 						auto edge = curh;
 						if (type(p) == vlist_node)
-							vlistout();
+							vlistout(align);
 						else
-							hlistout();
+							hlistout(align);
 						dvih = saveh;
 						dviv = savev;
 						curh = edge+width(p);
@@ -108,7 +108,7 @@ void hlistout(void)
 					p = link(p);
 					continue;
 				case whatsit_node:
-					outwhat(p);
+					outwhat(p, align);
 					break;
 				case glue_node:
 					g = info(p+1);
@@ -192,9 +192,9 @@ void hlistout(void)
 								bool outerdoingleaders = doingleaders;
 								doingleaders = true;
 								if (type(leaderbox) == vlist_node)
-									vlistout();
+									vlistout(align);
 								else
-									hlistout();
+									hlistout(align);
 								doingleaders = outerdoingleaders;
 								dviv = savev;
 								dvih = saveh;

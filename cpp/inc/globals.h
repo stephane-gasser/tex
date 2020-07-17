@@ -195,7 +195,6 @@ extern internalfontnumber curf;
 extern quarterword curc;
 extern fourquarters curi;
 extern halfword curalign;
-extern halfword curspan;
 extern halfword alignptr;
 extern halfword curhead, curtail;
 extern halfword justbox;

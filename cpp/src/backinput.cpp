@@ -13,7 +13,7 @@
 void backinput(halfword tok)
 {
 	while (state == token_list && loc == 0 && token_type != v_template)
-		endtokenlist();
+		endtokenlist(curalign);
 	auto p = getavail();
 	info(p) = tok;
 	if (tok < right_brace_limit)

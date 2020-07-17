@@ -28,6 +28,6 @@ void print_err(const std::string &);
 void slowprint(int);
 void slowprint(const std::string &);
 void showcurcmdchr(eightbits, halfword);
-void showwhatever(halfword);
+void showwhatever(halfword, halfword);
 
 #endif

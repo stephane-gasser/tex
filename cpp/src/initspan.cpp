@@ -2,7 +2,7 @@
 #include "pushnest.h"
 #include "normalparagraph.h"
 
-void initspan(halfword p)
+void initspan(halfword p, halfword &span)
 {
 	pushnest();
 	if (mode == -hmode)
@@ -12,5 +12,5 @@ void initspan(halfword p)
 		prev_depth = -0x1'00'00*1000;
 		normalparagraph();
 	}
-	curspan = p;
+	span = p;
 }

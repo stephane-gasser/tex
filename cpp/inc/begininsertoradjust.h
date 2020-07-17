@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void begininsertoradjust(eightbits);
+void begininsertoradjust(eightbits, halfword);
 
 #endif

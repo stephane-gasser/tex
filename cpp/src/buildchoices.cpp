@@ -4,7 +4,7 @@
 #include "pushmath.h"
 #include "lecture.h"
 
-void buildchoices(halfword tok)
+void buildchoices(halfword tok, halfword align)
 {
 	unsave(tok);
 	auto p = finmlist(0); // the current mlist
@@ -26,5 +26,5 @@ void buildchoices(halfword tok)
 	}
 	saved(-1)++;
 	pushmath(math_choice_group);
-	std::tie(std::ignore, std::ignore, tok) = scanleftbrace();
+	std::tie(std::ignore, std::ignore, tok) = scanleftbrace(align);
 }

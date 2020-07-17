@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void mathac(eightbits);
+void mathac(eightbits, halfword);
 
 #endif

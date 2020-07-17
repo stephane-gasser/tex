@@ -106,16 +106,16 @@ static void adjust_space_factor(halfword chr)
 	}
 }
 
-static void main_loop_lookahead(void)
+static void main_loop_lookahead(halfword align)
 {
-	auto [cmd, chr, cs] = getnext();
+	auto [cmd, chr, cs] = getnext(align);
 	if (cmd != letter && cmd != other_char && cmd != char_given)
 	{
-		std::tie(cmd, chr, std::ignore) = xtoken(cmd, chr, cs);
+		std::tie(cmd, chr, std::ignore) = xtoken(cmd, chr, cs, align);
 		if (cmd != letter && cmd != other_char && cmd != char_given)
 		{
 			if (cmd == char_num)
-				chr = scancharnum();
+				chr = scancharnum(align);
 			else
 			{
 				if (cmd == no_boundary)
@@ -136,7 +136,7 @@ static void main_loop_lookahead(void)
 		curr = non_char;
 }
 
-static void main_loop_move_lig(void)
+static void main_loop_move_lig(halfword align)
 {
 	mainp = lig_ptr(ligstack);
 	if (mainp > 0)
@@ -148,14 +148,14 @@ static void main_loop_move_lig(void)
 	ligaturepresent = true;
 	if (ligstack == 0)
 		if (mainp > 0)
-			main_loop_lookahead();
+			main_loop_lookahead(align);
 		else
 			curr = bchar;
 	else
 		curr = character(ligstack);
 }
 
-[[nodiscard]] static std::tuple<eightbits, halfword, halfword, halfword> append_normal_space(void)
+[[nodiscard]] static std::tuple<eightbits, halfword, halfword, halfword> append_normal_space(halfword align)
 {
 	if (space_skip() == zero_glue)
 	{
@@ -174,10 +174,10 @@ static void main_loop_move_lig(void)
 	else
 		tempptr = newparamglue(space_skip_code);
 	tail_append(tempptr);
-	return getxtoken();
+	return getxtoken(align);
 }
 
-static bool main_loop_move_2(halfword chr)
+static bool main_loop_move_2(halfword chr, halfword align)
 {
 	if (fontbc[mainf] <= chr && chr <= fontec[mainf])
 	{
@@ -185,7 +185,7 @@ static bool main_loop_move_2(halfword chr)
 		if (char_exists(maini))
 		{
 			tail_append(ligstack);
-			main_loop_lookahead();
+			main_loop_lookahead(align);
 			return false;
 		}
 	}
@@ -194,33 +194,33 @@ static bool main_loop_move_2(halfword chr)
 	return true;
 }
 
-static bool main_loop_move_1(halfword chr)
+static bool main_loop_move_1(halfword chr, halfword align)
 {
 
 	if (!is_char_node(ligstack))
-		main_loop_move_lig();
+		main_loop_move_lig(align);
 	else
-		if (main_loop_move_2(chr))
+		if (main_loop_move_2(chr, align))
 			return true;
 	return false;
 }
 
-static bool main_loop_move(halfword chr)
+static bool main_loop_move(halfword chr, halfword align)
 {
 	if (ligstack == 0)
 		return true;
 	curq = tail;
 	curl = subtype(ligstack);
-	return main_loop_move_1(chr);
+	return main_loop_move_1(chr, align);
 }
 
-static bool main_loop_wrapup(halfword chr)
+static bool main_loop_wrapup(halfword chr, halfword align)
 {
 	wrapup(rthit);
-	return main_loop_move(chr);
+	return main_loop_move(chr, align);
 }
 
-[[nodiscard]] static std::tuple<eightbits, halfword, halfword, halfword> main_lig_loop(bool is110, halfword chr)
+[[nodiscard]] static std::tuple<eightbits, halfword, halfword, halfword> main_lig_loop(bool is110, halfword chr, halfword align)
 {
 	while (true)
 	{
@@ -228,8 +228,8 @@ static bool main_loop_wrapup(halfword chr)
 		{
 			if (char_tag(maini) != lig_tag || curr == non_char)
 			{
-				if (main_loop_wrapup(chr))
-					return getxtoken();
+				if (main_loop_wrapup(chr, align))
+					return getxtoken(align);
 				continue;
 			}
 			maink = lig_kern_start(mainf, maini);
@@ -275,8 +275,8 @@ static bool main_loop_wrapup(halfword chr)
 						}
 					}
 					tail_append(newkern(char_kern(mainf, mainj)));
-					if (main_loop_move(chr))
-						return getxtoken();
+					if (main_loop_move(chr, align))
+						return getxtoken(align);
 					is110 = true;
 					continue;
 				}
@@ -337,17 +337,17 @@ static bool main_loop_wrapup(halfword chr)
 						ligaturepresent = true;
 						if (ligstack == 0)
 						{
-							if (main_loop_wrapup(chr))
-								return getxtoken();
+							if (main_loop_wrapup(chr, align))
+								return getxtoken(align);
 						}
 						else
-							if (main_loop_move_1(chr))
-								return getxtoken();
+							if (main_loop_move_1(chr, align))
+								return getxtoken(align);
 				}
 				if (op_byte(mainj) > 4 && op_byte(mainj) != 7) // a>=1 et pas a=1,b=1,c=1
 				{
-					if (main_loop_wrapup(chr))
-						return getxtoken();
+					if (main_loop_wrapup(chr, align))
+						return getxtoken(align);
 					is110 = true;
 					continue;
 				}
@@ -367,8 +367,8 @@ static bool main_loop_wrapup(halfword chr)
 		{
 			if (skip_byte(mainj) >= stop_flag)
 			{
-				if (main_loop_wrapup(chr))
-					return getxtoken();
+				if (main_loop_wrapup(chr, align))
+					return getxtoken(align);
 				is110 = true;
 				continue;
 			}
@@ -379,7 +379,7 @@ static bool main_loop_wrapup(halfword chr)
 	}
 }
 
-static void main_loop(eightbits cmd, halfword chr, halfword tok, halfword cs)
+static void main_loop(eightbits cmd, halfword chr, halfword tok, halfword cs, halfword align)
 {
 	adjust_space_factor(chr);
 	mainf = cur_font();
@@ -395,35 +395,36 @@ static void main_loop(eightbits cmd, halfword chr, halfword tok, halfword cs)
 	maink = cancelboundary ? non_address : bcharlabel[mainf];
 	cancelboundary = false;
 	if (maink == non_address)
-		if (main_loop_move_2(chr))
+		if (main_loop_move_2(chr, align))
 		{
-			std::tie(cmd, chr, tok, cs) = getxtoken();
+			std::tie(cmd, chr, tok, cs) = getxtoken(align);
 			curr = curl;
 			curl = non_char;
 			mainj = fontinfo[maink].qqqq;
-			std::tie(cmd, chr, tok, cs) = main_lig_loop(false, chr);
+			std::tie(cmd, chr, tok, cs) = main_lig_loop(false, chr, align);
 		}
 		else
-			std::tie(cmd, chr, tok, cs) = main_lig_loop(true, chr);
+			std::tie(cmd, chr, tok, cs) = main_lig_loop(true, chr, align);
 }
 
 //! for mode-independent commands
 #define ANY_MODE(cmd) vmode+cmd: case hmode+cmd: case mmode+cmd
 #define NON_MATH(cmd) vmode+cmd: case hmode+cmd
 
-halfword maincontrol(void)
+halfword maincontrol(halfword align)
 {
 	halfword loop = 0;
+	halfword span = 0;
 	if (every_job())
 		begintokenlist(every_job(), every_job_text);
-	auto [cmd, chr, tok, cs] = getxtoken();
+	auto [cmd, chr, tok, cs] = getxtoken(align);
 	while (true)
 	{
 		if (interrupt && OKtointerrupt)
 		{
 			backinput(tok);
 			check_interrupt();
-			std::tie(cmd, chr, tok, cs) = getxtoken();
+			std::tie(cmd, chr, tok, cs) = getxtoken(align);
 			continue;
 		}
 		if (tracing_commands() > 0)
@@ -433,28 +434,28 @@ halfword maincontrol(void)
 			case hmode+letter:
 			case hmode+other_char:
 			case hmode+char_given:
-				main_loop(cmd, chr, tok, cs);
+				main_loop(cmd, chr, tok, cs, align);
 				continue;
 			case hmode+char_num:
-				chr = scancharnum();
-				main_loop(cmd, chr, tok, cs);
+				chr = scancharnum(align);
+				main_loop(cmd, chr, tok, cs, align);
 				continue;
 			case hmode+no_boundary:
-				std::tie(cmd, chr, tok, cs) = getxtoken();
+				std::tie(cmd, chr, tok, cs) = getxtoken(align);
 				if (cmd == letter || cmd == other_char || cmd == char_given || cmd == char_num)
 					cancelboundary = true;
 				continue;
 			case hmode+spacer: 
 				if (space_factor == 1000)
 				{
-					std::tie(cmd, chr, tok, cs) = append_normal_space();
+					std::tie(cmd, chr, tok, cs) = append_normal_space(align);
 					continue;
 				}
 				appspace(mainp, maink);
 				break;
 			case hmode+ex_space:
 			case mmode+ex_space: 
-				std::tie(cmd, chr, tok, cs) = append_normal_space();
+				std::tie(cmd, chr, tok, cs) = append_normal_space(align);
 				continue;
 			case ANY_MODE(relax):
 			case vmode+spacer:
@@ -463,11 +464,11 @@ halfword maincontrol(void)
 				break;
 			case ANY_MODE(ignore_spaces):
 				do
-					std::tie(cmd, chr, tok, cs) = getxtoken();
+					std::tie(cmd, chr, tok, cs) = getxtoken(align);
 				while (cmd == spacer);
 				continue;
 			case vmode+stop: 
-				if (itsallover(cmd, chr, tok))
+				if (itsallover(cmd, chr, tok, align))
 					return chr;
 				break;
 			case vmode+vmove:
@@ -479,7 +480,7 @@ halfword maincontrol(void)
 			case vmode+eq_no:
 			case hmode+eq_no:
 			case ANY_MODE(mac_param):
-				reportillegalcase(cmd, chr);
+				reportillegalcase(cmd, chr, align);
 				break;
 			case NON_MATH(sup_mark):
 			case NON_MATH(sub_mark):
@@ -510,7 +511,7 @@ halfword maincontrol(void)
 			case vmode+hrule:
 			case hmode+vrule:
 			case mmode+vrule:
-				tail_append(scanrulespec(cmd));
+				tail_append(scanrulespec(cmd, align));
 				if (abs(mode) == vmode)
 					prev_depth = ignore_depth;
 				else 
@@ -521,11 +522,11 @@ halfword maincontrol(void)
 			case hmode+hskip:
 			case mmode+hskip:
 			case mmode+mskip: 
-				appendglue(chr);
+				appendglue(chr, align);
 				break;
 			case ANY_MODE(kern):
 			case mmode+mkern: 
-				appendkern(chr);
+				appendkern(chr, align);
 				break;
 			case NON_MATH(left_brace):
 				newsavelevel(simple_group);
@@ -540,21 +541,21 @@ halfword maincontrol(void)
 					offsave(cmd, chr, tok);
 				break;
 			case ANY_MODE(right_brace):
-				handlerightbrace(tok, loop);
+				handlerightbrace(tok, loop, span, align);
 				break;
 			case vmode+hmove:
 			case hmode+vmove:
 			case mmode+vmove:
-				scanbox(chr == 0 ? scan_normal_dimen() : -scan_normal_dimen());
+				scanbox(chr == 0 ? scan_normal_dimen(align) : -scan_normal_dimen(align), align);
 				break;
 			case ANY_MODE(leader_ship):
-				scanbox(leader_flag-a_leaders+chr);
+				scanbox(leader_flag-a_leaders+chr, align);
 				break;
 			case ANY_MODE(make_box):
-				beginbox(0, cmd, chr);
+				beginbox(0, cmd, chr, align);
 				break;
 			case vmode+start_par: 
-				newgraf(chr > 0);
+				newgraf(chr > 0, align);
 				break;
 			case vmode+letter:
 			case vmode+other_char:
@@ -570,7 +571,7 @@ halfword maincontrol(void)
 			case vmode+ex_space:
 			case vmode+no_boundary:
 				backinput(tok);
-				newgraf(true);
+				newgraf(true, align);
 				break;
 			case hmode+start_par:
 			case mmode+start_par: 
@@ -579,14 +580,14 @@ halfword maincontrol(void)
 			case vmode+par_end:
 				normalparagraph();
 				if (mode > 0)
-					buildpage();
+					buildpage(align);
 				break;
 			case hmode+par_end:
 				if (alignstate < 0)
 					offsave(cmd, chr, tok);
 				endgraf();
 				if (mode == vmode)
-					buildpage();
+					buildpage(align);
 				break;
 			case hmode+stop:
 			case hmode+vskip:
@@ -598,13 +599,13 @@ halfword maincontrol(void)
 			case ANY_MODE(insert):
 			case hmode+vadjust:
 			case mmode+vadjust: 
-				begininsertoradjust(cmd);
+				begininsertoradjust(cmd, align);
 				break;
 			case ANY_MODE(mark):
-				makemark(cs);
+				makemark(cs, align);
 				break;
 			case ANY_MODE(break_penalty):
-				appendpenalty();
+				appendpenalty(align);
 				break;
 			case ANY_MODE(remove_item):
 				deletelast(cmd, chr);
@@ -612,7 +613,7 @@ halfword maincontrol(void)
 			case vmode+un_vbox:
 			case hmode+un_hbox:
 			case mmode+un_hbox: 
-				unpackage(chr);
+				unpackage(chr, align);
 				break;
 			case hmode+ital_corr: 
 				appenditaliccorrection();
@@ -622,63 +623,63 @@ halfword maincontrol(void)
 				break;
 			case hmode+discretionary:
 			case mmode+discretionary: 
-				appenddiscretionary(chr);
+				appenddiscretionary(chr, align);
 				break;
 			case hmode+accent: 
-				makeaccent(cmd, chr, tok);
+				makeaccent(cmd, chr, tok, align);
 				break;
 			case ANY_MODE(car_ret):
 			case ANY_MODE(tab_mark):
 				if (abs(alignstate) > 2)
 				{
 					if (tok == tab_token+'&')
-						error("Misplaced "+cmdchr(cmd, chr), "I can't figure out why you would want to use a tab mark\nhere. If you just want an ampersand, the remedy is\nsimple: Just type `I\\&' now. But if some right brace\nup above has ended a previous alignment prematurely,\nyou're probably due for more error messages, and you\nmight try typing `S' now just to see what is salvageable.");
+						error("Misplaced "+cmdchr(cmd, chr), "I can't figure out why you would want to use a tab mark\nhere. If you just want an ampersand, the remedy is\nsimple: Just type `I\\&' now. But if some right brace\nup above has ended a previous alignment prematurely,\nyou're probably due for more error messages, and you\nmight try typing `S' now just to see what is salvageable.", align);
 					else
-						error("Misplaced "+cmdchr(cmd, chr), "I can't figure out why you would want to use a tab mark\nor \\cr or \\span just now. If something like a right brace\nup above has ended a previous alignment prematurely,\nyou're probably due for more error messages, and you\nmight try typing `S' now just to see what is salvageable.");
+						error("Misplaced "+cmdchr(cmd, chr), "I can't figure out why you would want to use a tab mark\nor \\cr or \\span just now. If something like a right brace\nup above has ended a previous alignment prematurely,\nyou're probably due for more error messages, and you\nmight try typing `S' now just to see what is salvageable.", align);
 				}
 				else
 				{
 					backinput(tok);
 					if (alignstate < 0)
 					{
-						inserror(tok, "Missing { inserted", "I've put in what seems to be necessary to fix\nthe current column of the current alignment.\nTry to go on, since this might almost work.");
+						inserror(tok, "Missing { inserted", "I've put in what seems to be necessary to fix\nthe current column of the current alignment.\nTry to go on, since this might almost work.", align);
 						alignstate++;
 						tok = left_brace_token+'{'; 
 					}
 					else
 					{
-						inserror(tok, "Missing } inserted", "I've put in what seems to be necessary to fix\nthe current column of the current alignment.\nTry to go on, since this might almost work.");
+						inserror(tok, "Missing } inserted", "I've put in what seems to be necessary to fix\nthe current column of the current alignment.\nTry to go on, since this might almost work.", align);
 						alignstate--;
 						tok = right_brace_token+ '}';
 					}
 				}
 				break;
 			case ANY_MODE(no_align):
-				error("Misplaced "+esc("noalign"), "I expect to see \\noalign only after the \\cr of\nan alignment. Proceed, and I'll ignore this case.");
+				error("Misplaced "+esc("noalign"), "I expect to see \\noalign only after the \\cr of\nan alignment. Proceed, and I'll ignore this case.", align);
 				break;
 			case ANY_MODE(omit):
-				error("Misplaced "+esc("omit"), "I expect to see \\omit only after tab marks or the \\cr of\nan alignment. Proceed, and I'll ignore this case.");
+				error("Misplaced "+esc("omit"), "I expect to see \\omit only after tab marks or the \\cr of\nan alignment. Proceed, and I'll ignore this case.", align);
 				break;
 			case vmode+halign:
 			case hmode+valign: 
-				initalign(cmd, cs, loop);
+				initalign(cmd, cs, loop, span, align);
 				break;
 			case mmode+halign: 
 				if (privileged(cmd, chr))
 					if (curgroup == math_shift_group)
-						initalign(cmd, cs, loop);
+						initalign(cmd, cs, loop, span, align);
 					else
 						offsave(cmd, chr, tok);
 				break;
 			case vmode+endv:
 			case hmode+endv: 
-				doendv(cmd, chr, tok, loop);
+				doendv(cmd, chr, tok, loop, span, align);
 				break;
 			case ANY_MODE(end_cs_name):
-				error("Extra "+esc("endcsname"), "I'm ignoring this, since I wasn't doing a \\csname.");
+				error("Extra "+esc("endcsname"), "I'm ignoring this, since I wasn't doing a \\csname.", align);
 				break;
 			case hmode+math_shift: 
-				initmath();
+				initmath(align);
 				break;
 			case mmode+eq_no: 
 				if (privileged(cmd, chr))
@@ -690,43 +691,43 @@ halfword maincontrol(void)
 			case mmode+left_brace:
 				tail_append(newnoad());
 				backinput(tok);
-				scanmath(nucleus(tail));
+				scanmath(nucleus(tail), align);
 				break;
 			case mmode+letter:
 			case mmode+other_char:
 			case mmode+char_given: 
-				setmathchar(math_code(chr), chr);
+				setmathchar(math_code(chr), chr, align);
 				break;
 			case mmode+char_num:
-				chr = scancharnum();
-				setmathchar(math_code(chr), chr);
+				chr = scancharnum(align);
+				setmathchar(math_code(chr), chr, align);
 				break;
 			case mmode+math_char_num:
-				setmathchar(scanfifteenbitint(), chr);
+				setmathchar(scanfifteenbitint(align), chr, align);
 				break;
 			case mmode+math_given: 
-				setmathchar(chr, chr);
+				setmathchar(chr, chr, align);
 				break;
 			case mmode+delim_num:
-				setmathchar(scantwentysevenbitint()>>12, chr);
+				setmathchar(scantwentysevenbitint(align)>>12, chr, align);
 				break;
 			case mmode+math_comp:
 				tail_append(newnoad());
 				type(tail) = chr;
-				scanmath(nucleus(tail));
+				scanmath(nucleus(tail), align);
 				break;
 			case mmode+limit_switch: 
 				mathlimitswitch(chr);
 				break;
 			case mmode+radical: 
-				mathradical(tok);
+				mathradical(tok, align);
 				break;
 			case mmode+accent:
 			case mmode+math_accent: 
-				mathac(cmd);
+				mathac(cmd, align);
 				break;
 			case mmode+vcenter:
-				std::tie(cmd, chr, tok) = scanspec(vcenter_group, false);
+				std::tie(cmd, chr, tok) = scanspec(vcenter_group, false, align);
 				normalparagraph();
 				pushnest();
 				mode = -vmode;
@@ -742,21 +743,21 @@ halfword maincontrol(void)
 				subtype(tail) = cond_math_glue;
 				break;
 			case mmode+math_choice: 
-				appendchoices();
+				appendchoices(align);
 				break;
 			case mmode+sub_mark:
 			case mmode+sup_mark: 
-				subsup(cmd);
+				subsup(cmd, align);
 				break;
 			case mmode+above: 
-				mathfraction(chr, tok);
+				mathfraction(chr, tok, align);
 				break;
 			case mmode+left_right: 
-				mathleftright(cmd, chr, tok);
+				mathleftright(cmd, chr, tok, align);
 				break;
 			case mmode+math_shift: 
 				if (curgroup == math_shift_group)
-					aftermath();
+					aftermath(align);
 				else
 					offsave(cmd, chr, tok);
 				break;
@@ -790,31 +791,31 @@ halfword maincontrol(void)
 			case ANY_MODE(set_box):
 			case ANY_MODE(hyph_data):
 			case ANY_MODE(set_interaction):
-				prefixedcommand(cmd, chr);
+				prefixedcommand(cmd, chr, align);
 				break;
 			case ANY_MODE(after_assignment):
-				std::tie(cmd, chr, tok, cs) = gettoken();
+				std::tie(cmd, chr, tok, cs) = gettoken(align);
 				aftertoken = tok;
 				break;
 			case ANY_MODE(after_group):
-				std::tie(cmd, chr, tok, cs) = gettoken();
+				std::tie(cmd, chr, tok, cs) = gettoken(align);
 				saveforafter(tok);
 				break;
 			case ANY_MODE(in_stream):
-				openorclosein(chr);
+				openorclosein(chr, align);
 				break;
 			case ANY_MODE(message):
 				issuemessage(chr, cs);
 				break;
 			case ANY_MODE(case_shift):
-				shiftcase(chr, cs);
+				shiftcase(chr, cs, align);
 				break;
 			case ANY_MODE(xray):
-				showwhatever(chr);
+				showwhatever(chr, align);
 				break;
 			case ANY_MODE(extension):
-				doextension(chr, cs);
+				doextension(chr, cs, align);
 		}
-		std::tie(cmd, chr, tok, cs) = getxtoken();
+		std::tie(cmd, chr, tok, cs) = getxtoken(align);
 	}
 }

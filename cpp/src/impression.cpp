@@ -1126,7 +1126,7 @@ static std::string showactivities(void)
 	return oss.str();
 }
 
-void showwhatever(halfword chr)
+void showwhatever(halfword chr, halfword align)
 {
 	int val;
 	halfword cs;
@@ -1142,7 +1142,7 @@ void showwhatever(halfword chr)
 			selector = term_and_log;
 			break;
 		case show_box_code:
-			val = scaneightbitint();
+			val = scaneightbitint(align);
 			diagnostic("\r> \\box"+std::to_string(val)+"="+(box(val) == 0 ? "void" : showbox(box(val)))+"\n");
 			print_err("OK");
 			if (selector == term_and_log && tracing_online() <= 0)
@@ -1151,23 +1151,23 @@ void showwhatever(halfword chr)
 			selector = term_and_log;
 			break;
 		case show_code:
-			std::tie(cmd, chr, std::ignore, cs) = gettoken();
+			std::tie(cmd, chr, std::ignore, cs) = gettoken(align);
 			printnl("> "+(cs ? scs(cs)+"=" : "")+meaning(cmd, chr));
 			break;
 		default:
-			thetoks();
+			thetoks(align);
 			printnl("> "+tokenshow(temp_head));
 			flushlist(link(temp_head));
 			break;
 	}
 	if (interaction < error_stop_mode)
 	{
-		error("", "");
+		error("", "", align);
 		errorcount--;
 	}
 	else 
 		if (tracing_online() > 0)
-			error("", "This isn't an error message; I'm just \\showing something.\nType `I\\show...' to show more (e.g., \\show\\cs,\n\\showthe\\count10, \\showbox255, \\showlists).");
+			error("", "This isn't an error message; I'm just \\showing something.\nType `I\\show...' to show more (e.g., \\show\\cs,\n\\showthe\\count10, \\showbox255, \\showlists).", align);
 		else
-			error("", "This isn't an error message; I'm just \\showing something.\nType `I\\show...' to show more (e.g., \\show\\cs,\n\\showthe\\count10, \\showbox255, \\showlists).\nAnd type `I\\tracingonline=1\\show...' to show boxes and\nlists on your terminal as well as in the transcript file.");
+			error("", "This isn't an error message; I'm just \\showing something.\nType `I\\show...' to show more (e.g., \\show\\cs,\n\\showthe\\count10, \\showbox255, \\showlists).\nAnd type `I\\tracingonline=1\\show...' to show boxes and\nlists on your terminal as well as in the transcript file.", align);
 }

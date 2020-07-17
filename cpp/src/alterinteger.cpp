@@ -1,12 +1,12 @@
 #include "alterinteger.h"
 #include "lecture.h"
 
-void alterinteger(halfword chr)
+void alterinteger(halfword chr, halfword align)
 {
 	char c = chr;
-	scanoptionalequals();
+	scanoptionalequals(align);
 	if (c == 0)
-		deadcycles = scanint();
+		deadcycles = scanint(align);
 	else
-		insertpenalties = scanint();
+		insertpenalties = scanint(align);
 }

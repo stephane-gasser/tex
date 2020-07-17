@@ -2,7 +2,7 @@
 #include "noeud.h"
 #include "getavail.h"
 
-void popalignment(halfword &loop)
+void popalignment(halfword &loop, halfword &span, halfword &align)
 {
 	free_avail(curhead);
 	auto p = alignptr;
@@ -10,9 +10,9 @@ void popalignment(halfword &loop)
 	curhead = info(p+4);
 	alignstate = mem[p+3].int_;
 	loop = mem[p+2].int_;
-	curspan = rlink(p);
+	span = rlink(p);
 	preamble() = llink(p);
-	curalign = info(p);
+	align = info(p);
 	alignptr = link(p);
 	freenode(p, align_stack_node_size);
 }

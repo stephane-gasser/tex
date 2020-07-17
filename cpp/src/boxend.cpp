@@ -9,7 +9,7 @@
 #include "shipout.h"
 #include "texte.h"
 
-void boxend(int boxcontext)
+void boxend(int boxcontext, halfword align)
 {
 	halfword p; //\a ord_noad for new box in math mode
 	if (boxcontext < box_flag)
@@ -27,7 +27,7 @@ void boxend(int boxcontext)
 					adjusttail = 0;
 				}
 				if (mode > 0)
-					buildpage();
+					buildpage(align);
 			}
 			else
 			{
@@ -58,21 +58,21 @@ void boxend(int boxcontext)
 				halfword chr, tok;
 				eightbits cmd;
 				do
-					std::tie(cmd, chr, tok, std::ignore) = getxtoken();
+					std::tie(cmd, chr, tok, std::ignore) = getxtoken(align);
 				while (cmd == spacer || cmd == escape);
 				if ((cmd == hskip && abs(mode) != vmode) || (cmd == vskip && abs(mode) == vmode))
 				{
-					appendglue(chr);
+					appendglue(chr, align);
 					subtype(tail) = boxcontext-(leader_flag-a_leaders);
 					leader_ptr(tail) = curbox;
 				}
 				else
 				{
-					backerror(tok, "Leaders not followed by proper glue", "You should say `\\leaders <box or rule><hskip or vskip>'.\nI found the <box or rule>, but there's no suitable\n<hskip or vskip>, so I'm ignoring these leaders.");
+					backerror(tok, "Leaders not followed by proper glue", "You should say `\\leaders <box or rule><hskip or vskip>'.\nI found the <box or rule>, but there's no suitable\n<hskip or vskip>, so I'm ignoring these leaders.", align);
 					flushnodelist(curbox);
 				}
 			}
 
 	else
-	shipout(curbox);
+	shipout(curbox, align);
 }

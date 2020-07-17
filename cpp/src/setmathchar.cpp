@@ -3,7 +3,7 @@
 #include "noeud.h"
 #include "backinput.h"
 
-void setmathchar(int c, halfword chr)
+void setmathchar(int c, halfword chr, halfword align)
 {
 	if (c >= 0x80'00)
 	{
@@ -11,7 +11,7 @@ void setmathchar(int c, halfword chr)
 		eightbits cmd = eq_type(cs);
 		halfword chr = equiv(cs);
 		halfword tok;
-		std::tie(cmd, chr, tok) = xtoken(cmd, chr, cs);
+		std::tie(cmd, chr, tok) = xtoken(cmd, chr, cs, align);
 		backinput(tok);
 	}
 	else

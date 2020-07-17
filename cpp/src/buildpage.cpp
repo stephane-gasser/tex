@@ -13,7 +13,7 @@
 #include "texte.h"
 
 //! Append contributions to the current page.
-void buildpage(void)
+void buildpage(halfword align)
 {
 	halfword p, q, r;
 	int b, c, pi;
@@ -133,7 +133,7 @@ void buildpage(void)
 					pagesofar[2+type(q)] += depth(q);
 					page_shrink += height(q);
 					if (subtype(q) && height(q))
-						error("Infinite glue shrinkage inserted from "+esc("skip")+std::to_string(n), "The correction glue for page breaking with insertions\nmust have finite shrinkability. But you may proceed,\nsince the offensive shrinkability has been made finite.");
+						error("Infinite glue shrinkage inserted from "+esc("skip")+std::to_string(n), "The correction glue for page breaking with insertions\nmust have finite shrinkability. But you may proceed,\nsince the offensive shrinkability has been made finite.", align);
 				}
 				if (type(r) == vlist_node)
 					insertpenalties += width(p);
@@ -179,7 +179,7 @@ void buildpage(void)
 				}
 				break;
 			default: 
-				confusion("page");
+				confusion("page", align);
 		}
 		if ((type(p) == glue_node && type(pagetail) < 9) || (type(p) ==  kern_node && type(link(p)) == glue_node) || type(p) == penalty_node)
 			if (pi < 10000)
@@ -220,7 +220,7 @@ void buildpage(void)
 				}
 				if (c == awful_bad || pi <= eject_penalty)
 				{
-					fireup(p);
+					fireup(p, align);
 					if (outputactive)
 						return;
 					continue;
@@ -239,7 +239,7 @@ void buildpage(void)
 			page_shrink += height(q);
 			if (subtype(q) && height(q))
 			{
-				error("Infinite glue shrinkage found on current page", "The page about to be output contains some infinitely\nshrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.\nSuch glue doesn't belong there; but you can safely proceed,\nsince the offensive shrinkability has been made finite.");
+				error("Infinite glue shrinkage found on current page", "The page about to be output contains some infinitely\nshrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.\nSuch glue doesn't belong there; but you can safely proceed,\nsince the offensive shrinkability has been made finite.", align);
 				r = newspec(q);
 				shrink_order(r) = normal;
 				deleteglueref(q);

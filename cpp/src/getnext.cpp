@@ -15,7 +15,7 @@
 #include "getavail.h"
 #include "runaway.h"
 
-[[nodiscard]] static std::tuple<eightbits, halfword, halfword, halfword> checkoutervalidity(eightbits cmd, halfword chr, halfword tok, halfword cs)
+[[nodiscard]] static std::tuple<eightbits, halfword, halfword, halfword> checkoutervalidity(eightbits cmd, halfword chr, halfword tok, halfword cs, halfword align)
 {
 	if (scannerstatus == 0)
 		return std::make_tuple(cmd, chr, tok, cs);
@@ -32,7 +32,7 @@
 	}
 	if (scannerstatus == skipping)
 	{
-		inserror(tok, "Incomplete "+cmdchr(if_test, curif)+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
+		inserror(tok, "Incomplete "+cmdchr(if_test, curif)+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", align, false);
 		tok = frozen_fi+cs_token_flag;
 	}
 	else
@@ -43,16 +43,16 @@
 		switch (scannerstatus)
 		{
 			case defining:
-				error(cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+				error(cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", align, false);
 				info(p) = right_brace_token+'}';
 				break;
 			case matching:
-				error(cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+				error(cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", align, false);
 				info(p) = partoken;
 				longstate = outer_call;
 				break;
 			case aligning:
-				error(cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+				error(cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", align, false);
 				info(p) = right_brace_token+'}';
 				q = p;
 				p = getavail();
@@ -61,7 +61,7 @@
 				alignstate = -1000000;
 				break;
 			case absorbing:
-				error(cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+				error(cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", align, false);
 				info(p) = right_brace_token+'}';
 		}
 		ins_list(p);
@@ -114,7 +114,7 @@ static void removeFromEnd(int &k, int d)
 #define ANY_STATE_PLUS(cmd) mid_line+cmd: case skip_blanks+cmd: case new_line+cmd
 #define ADD_DELIMS_TO(state) state+math_shift: case state+tab_mark: case state+mac_param: case state+sub_mark: case state+letter: case state+other_char 
 
-[[nodiscard]] std::tuple<eightbits, halfword, halfword> getnext(void)
+[[nodiscard]] std::tuple<eightbits, halfword, halfword> getnext(halfword align)
 {
 	eightbits cmd;
 	halfword chr, cs, tok;
@@ -215,7 +215,7 @@ static void removeFromEnd(int &k, int d)
 								cmd = eq_type(cs);
 								chr = equiv(cs);
 								if (cmd >= outer_call)
-									std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
+									std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs, align);
 								break;
 							case ANY_STATE_PLUS(active_char):
 								cs = chr+1;
@@ -223,7 +223,7 @@ static void removeFromEnd(int &k, int d)
 								chr = equiv(cs);
 								state = mid_line;
 								if (cmd >= outer_call)
-									std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
+									std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs, align);
 								break;
 							case ANY_STATE_PLUS(sup_mark):
 								if (prochainCaractereOK(loc, chr))
@@ -235,7 +235,7 @@ static void removeFromEnd(int &k, int d)
 									state = mid_line;
 								break;
 							case ANY_STATE_PLUS(invalid_char):
-								error("Text line contains an invalid character", "A funny symbol that I can't read has just been input.\nContinue, and I'll forget that it ever happened.", false);
+								error("Text line contains an invalid character", "A funny symbol that I can't read has just been input.\nContinue, and I'll forget that it ever happened.", align, false);
 								restart = true;
 								break;
 							case mid_line+spacer:
@@ -258,7 +258,7 @@ static void removeFromEnd(int &k, int d)
 								cmd = eq_type(cs);
 								chr = equiv(cs);
 								if (cmd >= outer_call)
-									std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
+									std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs, align);
 								break;
 							case skip_blanks+left_brace:
 							case new_line+left_brace:
@@ -297,7 +297,7 @@ static void removeFromEnd(int &k, int d)
 							std::cout << std::flush;
 							forceeof = false;
 							endfilereading();
-							std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
+							std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs, align);
 							restart = true;
 						}
 						if (!restart)
@@ -342,7 +342,7 @@ static void removeFromEnd(int &k, int d)
 								loc = start;
 							}
 							else
-								fatalerror("*** (job aborted, no legal \end found)");
+								fatalerror("*** (job aborted, no legal \end found)", align);
 						}
 					}
 					if (!restart)
@@ -377,7 +377,7 @@ static void removeFromEnd(int &k, int d)
 							}
 						}
 						else
-							std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
+							std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs, align);
 				}
 				else
 				{
@@ -399,16 +399,16 @@ static void removeFromEnd(int &k, int d)
 			}
 			else
 			{
-				endtokenlist();
+				endtokenlist(align);
 				restart = true;
 			}
 		if (!restart && cmd <= out_param && cmd >= tab_mark && alignstate == 0)
 		{
-			if (scannerstatus == aligning || curalign == 0)
-				fatalerror("(interwoven alignment preambles are not allowed)");
-			cmd = extra_info(curalign);
-			extra_info(curalign) = chr;
-			begintokenlist(cmd == omit ? omit_template : v_part(curalign), v_template);
+			if (scannerstatus == aligning || align == 0)
+				fatalerror("(interwoven alignment preambles are not allowed)", align);
+			cmd = extra_info(align);
+			extra_info(align) = chr;
+			begintokenlist(cmd == omit ? omit_template : v_part(align), v_template);
 			alignstate = 1000000;
 			restart = true;
 		}

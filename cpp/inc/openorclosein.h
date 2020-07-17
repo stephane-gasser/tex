@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void openorclosein(halfword);
+void openorclosein(halfword, halfword);
 
 #endif

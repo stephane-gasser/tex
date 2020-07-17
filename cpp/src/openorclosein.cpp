@@ -4,9 +4,9 @@
 #include "fichier.h"
 #include "texte.h"
 
-void openorclosein(halfword c)
+void openorclosein(halfword c, halfword align)
 {
-	auto n = scanfourbitint();
+	auto n = scanfourbitint(align);
 	if (readopen[n] != closed)
 	{
 		aclose(readfile[n]);
@@ -14,8 +14,8 @@ void openorclosein(halfword c)
 	}
 	if (c)
 	{
-		scanoptionalequals();
-		scanfilename();
+		scanoptionalequals(align);
+		scanfilename(align);
 		if (curext == "") 
 			curext = ".tex";
 		pack_cur_name();

@@ -17,7 +17,7 @@ void promptfilename(const std::string &s, const std::string &e)
 		print(showcontext());
 	printnl("Please type another "+s);
 	if (interaction < scroll_mode)
-		fatalerror("*** (job aborted, file error in nonstop mode)");
+		fatalerror("*** (job aborted, file error in nonstop mode)", curalign);
 	std::cin.clear();
 	print(": ");
 	terminput();

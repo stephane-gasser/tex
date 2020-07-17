@@ -14,7 +14,7 @@ void finalcleanup(halfword chr)
 		openlogfile();
 	while (inputptr > 0)
 		if (state == token_list)
-			endtokenlist();
+			endtokenlist(curalign);
 		else
 			endfilereading();
 	while (openparens > 0)

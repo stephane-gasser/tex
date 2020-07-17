@@ -20,7 +20,7 @@ constexpr int total_mathsy_params = 22;
 constexpr int total_mathex_params = 13;
 
 //! Action procedure for use in maincontrol()
-void aftermath(void)
+void aftermath(halfword align)
 {
 	bool l; // `\\leqno' instead of `\\eqno'
 	int m; // \a mmode or \a -mmode
@@ -34,7 +34,7 @@ void aftermath(void)
 	 || fontparams[fam_fnt(2+script_size)] < total_mathsy_params 
 	 || fontparams[fam_fnt(2+script_script_size)] < total_mathsy_params)
 	{
-		error("Math formula deleted: Insufficient symbol fonts", "Sorry, but I can't typeset math unless \\textfont 2\nand \\scriptfont 2 and \\scriptscriptfont 2 have all\nThe \\fontdimen values needed in math symbol fonts.");
+		error("Math formula deleted: Insufficient symbol fonts", "Sorry, but I can't typeset math unless \\textfont 2\nand \\scriptfont 2 and \\scriptscriptfont 2 have all\nThe \\fontdimen values needed in math symbol fonts.", align);
 		flushmath();
 		danger = true;
 	}
@@ -43,7 +43,7 @@ void aftermath(void)
 		 || fontparams[fam_fnt(3+script_size)] < total_mathex_params
 		 || fontparams[fam_fnt(3+script_script_size)] < total_mathex_params)
 		{
-			error("Math formula deleted: Insufficient extension fonts", "Sorry, but I can't typeset math unless \\textfont 3\nand \\scriptfont 3 and \\scriptscriptfont 3 have all\nthe \\fontdimen values needed in math extension fonts.");
+			error("Math formula deleted: Insufficient extension fonts", "Sorry, but I can't typeset math unless \\textfont 3\nand \\scriptfont 3 and \\scriptscriptfont 3 have all\nthe \\fontdimen values needed in math extension fonts.", align);
 			flushmath();
 			danger = true;
 		}
@@ -53,8 +53,8 @@ void aftermath(void)
 	halfword tok;
 	if (mode == -m)
 	{
-		std::tie(std::ignore, std::ignore, tok, std::ignore) = getxtoken();
-		backerror(tok, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
+		std::tie(std::ignore, std::ignore, tok, std::ignore) = getxtoken(align);
+		backerror(tok, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.", align);
 		curmlist = p;
 		curstyle = 2;
 		mlistpenalties = false;
@@ -69,7 +69,7 @@ void aftermath(void)
 		 || fontparams[fam_fnt(2+script_size)] < total_mathsy_params 
 		 || fontparams[fam_fnt(2+script_script_size)] < total_mathsy_params)
 		{
-			error("Math formula deleted: Insufficient symbol fonts", "Sorry, but I can't typeset math unless \\textfont 2\nand \\scriptfont 2 and \\scriptscriptfont 2 have all\nthe \\fontdimen values needed in math symbol fonts.");
+			error("Math formula deleted: Insufficient symbol fonts", "Sorry, but I can't typeset math unless \\textfont 2\nand \\scriptfont 2 and \\scriptscriptfont 2 have all\nthe \\fontdimen values needed in math symbol fonts.", align);
 			flushmath();
 			danger = true;
 		}
@@ -78,7 +78,7 @@ void aftermath(void)
 			 || fontparams[fam_fnt(3+script_size)] < total_mathex_params
 			 || fontparams[fam_fnt(3+script_script_size)] < total_mathex_params)
 			{
-				error("Math formula deleted: Insufficient extension fonts", "Sorry, but I can't typeset math unless \\textfont 3\nand \\scriptfont 3 and \\scriptscriptfont 3 have all\nthe \\fontdimen values needed in math extension fonts.");
+				error("Math formula deleted: Insufficient extension fonts", "Sorry, but I can't typeset math unless \\textfont 3\nand \\scriptfont 3 and \\scriptscriptfont 3 have all\nthe \\fontdimen values needed in math extension fonts.", align);
 				flushmath();
 				danger = true;
 			}
@@ -106,9 +106,9 @@ void aftermath(void)
 		if (a == 0)
 		{
 			eightbits cmd;
-			std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
+			std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken(align);
 			if (cmd != math_shift)
-				backerror(tok, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
+				backerror(tok, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.", align);
 		}
 		curmlist = p;
 		curstyle = 0;
@@ -211,6 +211,6 @@ void aftermath(void)
 		tail_append(newpenalty(post_display_penalty()));
 		if (g2 > 0)
 			tail_append(newparamglue(g2));
-		resumeafterdisplay(tok);
+		resumeafterdisplay(tok, align);
 	}
 }
