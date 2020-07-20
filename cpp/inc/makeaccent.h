@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void makeaccent(eightbits, halfword, halfword);
+void makeaccent(Token);
 
 #endif

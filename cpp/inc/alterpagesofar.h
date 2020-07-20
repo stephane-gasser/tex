@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void alterpagesofar(halfword);
+void alterpagesofar(Token);
 
 #endif

@@ -7,11 +7,11 @@
 #include "buildpage.h"
 #include "backinput.h"
 
-void resumeafterdisplay(halfword tok)
+void resumeafterdisplay(Token t)
 {
 	if (curgroup != 15)
 		confusion("display");
-	unsave(tok);
+	unsave();
 	prev_graf += 3;
 	pushnest();
 	mode = hmode;
@@ -19,10 +19,9 @@ void resumeafterdisplay(halfword tok)
 	set_cur_lang();
 	clang = curlang;
 	prev_graf = (((normmin(left_hyphen_min())<<6)+normmin(right_hyphen_min()))<<16)+curlang;
-	eightbits cmd;
-	std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
-	if (cmd != spacer)
-		backinput(tok);
+	t = getxtoken();
+	if (t.cmd != spacer)
+		backinput(t);
 	if (nestptr == 1)
 		buildpage();
 }

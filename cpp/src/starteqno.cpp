@@ -3,9 +3,9 @@
 #include "eqworddefine.h"
 #include "lecture.h"
 
-void starteqno(halfword chr)
+void starteqno(Token t)
 {
-	saved(0) = chr;
+	saved(0) = t.chr;
 	saveptr++;
 	pushmath(math_shift_group);
 	eqworddefine(int_base+cur_fam_code, -1);

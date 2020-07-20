@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void doextension(halfword, halfword);
+void doextension(Token);
 
 #endif

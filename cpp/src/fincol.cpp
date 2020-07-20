@@ -12,7 +12,7 @@
 #include "initcol.h"
 #include "texte.h"
 
-bool fincol(halfword tok, halfword &loop)
+bool fincol(Token t, halfword &loop)
 {
 	halfword p, q, r, s, u;
 	scaled w;
@@ -66,7 +66,7 @@ bool fincol(halfword tok, halfword &loop)
 		}
 	if (extra_info(curalign) != span_code)
 	{
-		unsave(tok);
+		unsave();
 		newsavelevel(6);
 		if (mode == -hmode)
 		{
@@ -146,11 +146,10 @@ bool fincol(halfword tok, halfword &loop)
 		initspan(p);
 	}
 	alignstate = 1000000;
-	eightbits cmd;
 	do
-		std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
-	while (cmd == spacer);
+		t = getxtoken();
+	while (t.cmd == spacer);
 	curalign = p;
-	initcol(cmd, tok);
+	initcol(t);
 	return false;
 }

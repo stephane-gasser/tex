@@ -1,9 +1,9 @@
 #include "indentinhmode.h"
 #include "noeud.h"
 
-void indentinhmode(halfword chr)
+void indentinhmode(Token t)
 {
-	if (chr > 0)
+	if (t.chr > 0)
 	{
 		auto p = newnullbox();
 		width(p) = par_indent();

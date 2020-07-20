@@ -7,10 +7,10 @@
 #include "pushnest.h"
 #include "texte.h"
 
-void begininsertoradjust(eightbits cmd)
+void begininsertoradjust(Token t)
 {
 	int val = 255;
-	if (cmd != vadjust)
+	if (t.cmd != vadjust)
 	{
 		val = scaneightbitint();
 		if (val == 255)
@@ -22,7 +22,7 @@ void begininsertoradjust(eightbits cmd)
 	saved(0) = val;
 	saveptr++;
 	newsavelevel(insert_group);
-	std::tie(cmd, std::ignore, std::ignore) = scanleftbrace();
+	t = scanleftbrace();
 	normalparagraph();
 	pushnest();
 	mode = -vmode;

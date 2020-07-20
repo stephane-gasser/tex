@@ -4,5 +4,5 @@
 #include "globals.h"
 #include <tuple>
 
-[[nodiscard]] std::tuple<eightbits, halfword, halfword> getnext(void);
+[[nodiscard]] Token getnext(void);
 #endif

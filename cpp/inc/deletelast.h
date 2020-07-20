@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void deletelast(eightbits, halfword);
+void deletelast(Token);
 
 #endif

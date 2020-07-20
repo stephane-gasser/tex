@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void alteraux(eightbits, halfword);
+void alteraux(Token);
 
 #endif

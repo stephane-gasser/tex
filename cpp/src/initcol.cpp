@@ -2,14 +2,14 @@
 #include "backinput.h"
 #include "lecture.h"
 
-void initcol(eightbits cmd, halfword tok)
+void initcol(Token t)
 {
-	extra_info(curalign) = cmd;
-	if (cmd == omit)
+	extra_info(curalign) = t.cmd;
+	if (t.cmd == omit)
 		alignstate = 0;
 	else
 	{
-		backinput(tok);
+		backinput(t);
 		begintokenlist(u_part(curalign), u_template);
 	}
 }

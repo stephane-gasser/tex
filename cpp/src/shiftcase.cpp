@@ -1,20 +1,18 @@
 #include "shiftcase.h"
 #include "lecture.h"
 
-void shiftcase(halfword b, halfword cs)
+void shiftcase(Token tk)
 {
-	halfword p, t;
-	eightbits c;
-	p = scantoks(false, false, cs);
+	auto p = scantoks(false, false, tk);
 	p = link(defref);
 	while (p)
 	{
-		t = info(p);
+		auto t = info(p);
 		if (t < cs_token_flag+single_base)
 		{
-			c = t%0x1'00;
-			if (equiv(b+c))
-				info(p) = t-c+equiv(b+c);
+			eightbits c = t%(1<<8);
+			if (equiv(tk.chr+c))
+				info(p) = t-c+equiv(tk.chr+c);
 		}
 		p = link(p);
 	}

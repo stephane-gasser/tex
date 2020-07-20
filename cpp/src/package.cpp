@@ -7,10 +7,10 @@
 
 static int box_max_depth(void) { return dimen_par(box_max_depth_code); }
 
-void package(smallnumber c, halfword tok)
+void package(smallnumber c, Token t)
 {
 	scaled d = box_max_depth();
-	unsave(tok);
+	unsave();
 	saveptr -= 3;
 	if (mode == -hmode)
 		curbox = hpack(link(head), saved(2), saved(1));

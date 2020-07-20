@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void initcol(eightbits, halfword);
+void initcol(Token);
 
 #endif

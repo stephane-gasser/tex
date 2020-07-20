@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void issuemessage(halfword, halfword);
+void issuemessage(Token);
 
 #endif

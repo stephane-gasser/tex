@@ -359,22 +359,21 @@ void newhyphexceptions(void)
 	hyphpointer h;
 	halfword p;
 	poolpointer u, v;
-	auto [cmd, chr, tok] = scanleftbrace();
+	auto t = scanleftbrace();
 	curlang = cur_fam();
 	if (curlang < 0 || curlang > 255)
 		curlang = 0;
 	n = 0;
 	p = 0;
-	halfword cs;
-	std::tie(cmd, chr, tok, cs) = getxtoken();
+	t = getxtoken();
 	while (true)
 	{
-		switch (cmd)
+		switch (t.cmd)
 		{
 			case letter:
 			case other_char:
 			case char_given:
-				if (chr == '-')
+				if (t.chr == '-')
 				{
 					if (n < 63)
 					{
@@ -385,18 +384,18 @@ void newhyphexceptions(void)
 					}
 				}
 				else 
-					if (lc_code(chr) == 0)
+					if (lc_code(t.chr) == 0)
 						error("Not a letter", "Letters in \\hyphenation words must have \\lccode>0.\nProceed; I'll ignore the character I just read.");
 					else 
 						if (n < 63)
 						{
 							n++;
-							hc[n] = lc_code(chr);
+							hc[n] = lc_code(t.chr);
 						}
 				break;
 			case char_num:
-				chr = scancharnum();
-				cmd = char_given;
+				t.chr = scancharnum();
+				t.cmd = char_given;
 				continue;
 			case spacer:
 			case right_brace:
@@ -456,7 +455,7 @@ void newhyphexceptions(void)
 					hyphword[h] = s;
 					hyphlist[h] = p;
 				}
-				if (cmd == right_brace)
+				if (t.cmd == right_brace)
 					return;
 				n = 0;
 				p = 0;
@@ -464,7 +463,7 @@ void newhyphexceptions(void)
 			default:
 				error("Improper "+esc("hyphenation")+" will be flushed", "Hyphenation exceptions must contain only letters\nand hyphens. But continue; I'll forgive and forget.");
 		}
-		std::tie(cmd, chr, tok, cs) = getxtoken();
+		t = getxtoken();
 	}
 }
 
@@ -609,10 +608,10 @@ void newgraf(bool indented)
 		buildpage();
 }
 
-void newinteraction(halfword chr)
+void newinteraction(Token t)
 {
 	println();
-	interaction = chr;
+	interaction = t.chr;
 	selector = interaction == batch_mode ? no_print : term_only;
 	if (logopened)
 		selector += 2;
@@ -694,7 +693,7 @@ halfword newparamglue(smallnumber n)
 	return p;
 }
 
-void newpatterns(halfword cs)
+void newpatterns(Token t)
 {
 	char k, l;
 	bool digitsensed;
@@ -707,32 +706,32 @@ void newpatterns(halfword cs)
 		curlang = cur_fam();
 		if (curlang <= 0 || curlang > 255)
 				curlang = 0;
-		auto [cmd, chr, tok] = scanleftbrace();
+		auto t = scanleftbrace();
 		k = 0;
 		hyf[0] = 0;
 		digitsensed = false;
 		bool keepIn = true;
 		while (keepIn)
 		{
-			auto [cmd, chr, tok, cs] = getxtoken();
-			switch (cmd)
+			auto t = getxtoken();
+			switch (t.cmd)
 			{
 				case letter:
 				case other_char:
-					if (digitsensed  || chr < '0' || chr > '9')
+					if (digitsensed || t.chr < '0' || t.chr > '9')
 					{
-						if (chr == '.')
-							chr = 0;
+						if (t.chr == '.')
+							t.chr = 0;
 						else
 						{
-							chr = lc_code(chr);
-							if (chr == 0)
+							t.chr = lc_code(t.chr);
+							if (t.chr == 0)
 								error("Nonletter", "(See Appendix H.)");
 						}
 						if (k < 63)
 						{
 							k++;
-							hc[k] = chr;
+							hc[k] = t.chr;
 							hyf[k] = 0;
 							digitsensed = false;
 						}
@@ -740,7 +739,7 @@ void newpatterns(halfword cs)
 					else 
 						if (k < 63)
 						{
-							hyf[k] = chr-'0';
+							hyf[k] = t.chr-'0';
 							digitsensed = true;
 						}
 					break;
@@ -798,7 +797,7 @@ void newpatterns(halfword cs)
 							error("Duplicate pattern", "(See Appendix H.)");
 						trieo[q] = v;
 					}
-					if (cmd == right_brace)
+					if (t.cmd == right_brace)
 					{
 						keepIn = false;
 						continue;
@@ -815,7 +814,7 @@ void newpatterns(halfword cs)
 	else
 	{
 		error("Too late for "+esc("patterns"), "All patterns must be given before typesetting begins.");
-		link(garbage) = scantoks(false, false, cs);
+		link(garbage) = scantoks(false, false, t);
 		flushlist(defref);
 	}
 }
@@ -884,7 +883,7 @@ halfword newstyle(smallnumber s)
 	return p;
 }
 
-quarterword newtrieop(smallnumber d, smallnumber  n, quarterword v)
+quarterword newtrieop(smallnumber d, smallnumber n, quarterword v)
 {
 	int h = abs(n+313*d+361*v+1009*curlang)%(2*trieopsize)-trieopsize;
 	while (true)
@@ -925,9 +924,9 @@ void newwhatsit(smallnumber s, smallnumber w)
 	tail_append(p);
 }
 
-void newwritewhatsit(smallnumber w, halfword chr)
+void newwritewhatsit(smallnumber w, Token t)
 {
-	newwhatsit(chr, w);
+	newwhatsit(t.chr, w);
 	if (w != write_node_size)
 		write_stream(tail) = scanfourbitint();
 	else
@@ -948,7 +947,7 @@ void appendchoices(void)
 	saved(0) = 0;
 	saveptr++;
 	pushmath(math_choice_group);
-	auto [cmd, chr, tok] = scanleftbrace();
+	auto _ = scanleftbrace();
 }
 
 void appenddiscretionary(halfword s)
@@ -965,7 +964,7 @@ void appenddiscretionary(halfword s)
 		saved(0) = 0;
 		saveptr++;
 		newsavelevel(disc_group);
-		auto [cmd, chr, tok] = scanleftbrace();
+		auto _ = scanleftbrace();
 		pushnest();
 		mode = -hmode;
 		space_factor = 1000;
@@ -985,7 +984,7 @@ void appendglue(halfword s)
 		case ss_code: 
 			tail_append(newglue(ss_glue));
 			break;
-		case fil_neg_code: 
+		case fil_neg_code:
 			tail_append(newglue(fil_neg_glue));
 			break;
 		case skip_code: 

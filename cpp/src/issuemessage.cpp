@@ -6,12 +6,12 @@
 #include <iostream>
 #include "texte.h"
 
-void issuemessage(halfword c, halfword cs)
+void issuemessage(Token t)
 {
-	link(garbage) = scantoks(false, true, cs);
+	link(garbage) = scantoks(false, true, t);
 	auto s = tokenshow(defref);
 	flushlist(defref);
-	if (c == 0)
+	if (t.chr == 0)
 	{
 		print((termoffset+s.size() > maxprintline-2 ? "\n": termoffset > 0 || fileoffset > 0 ? " " : "")+s);
 		std::cout << std::flush;

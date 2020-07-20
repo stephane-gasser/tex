@@ -9,24 +9,24 @@
 #include "finmlist.h"
 #include "texte.h"
 
-void mathleftright(eightbits cmd, halfword chr, halfword tok)
+void mathleftright(Token tk)
 {
-	smallnumber t = chr;
+	smallnumber t = tk.chr;
 	if (t == right_noad && curgroup != math_left_group)
 	{
 		if (curgroup == math_shift_group)
 		{
-			scandelimiter(garbage, false, tok);
+			scandelimiter(garbage, false, tk);
 			error("Extra "+esc("right"), "I'm ignoring a \\right that had no matching \\left.");
 		}
 		else
-			offsave(cmd, chr, tok);
+			offsave(tk);
 	}
 	else
 	{
 		auto p = newnoad();
 		type(p) = t;
-		scandelimiter(delimiter(p), false, tok);
+		scandelimiter(delimiter(p), false, tk);
 		if (t == left_noad)
 		{
 			pushmath(math_left_group);
@@ -36,7 +36,7 @@ void mathleftright(eightbits cmd, halfword chr, halfword tok)
 		else
 		{
 			p = finmlist(p);
-			unsave(tok);
+			unsave();
 			tail_append(newnoad());
 			type(tail) = inner_noad;
 			math_type(nucleus(tail)) = sub_mlist;

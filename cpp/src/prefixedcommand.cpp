@@ -19,7 +19,7 @@
 #include "findfontdimen.h"
 #include "texte.h"
 
-void prefixedcommand(eightbits cmd, halfword chr)
+void prefixedcommand(Token t) 
 {
 	internalfontnumber f;
 	halfword j;
@@ -28,22 +28,21 @@ void prefixedcommand(eightbits cmd, halfword chr)
 	int n;
 	bool e;
 	smallnumber a = 0;
-	halfword cs, tok;
-	while (cmd == prefix)
+	while (t.cmd == prefix)
 	{
-		if ((a/chr)%2 == 0)
-			a += chr;
+		if ((a/t.chr)%2 == 0)
+			a += t.chr;
 		do
-			std::tie(cmd, chr, tok, cs) = getxtoken();
-		while (cmd == spacer || cmd == escape);
-		if (cmd <= max_non_prefixed_command)
+			t = getxtoken();
+		while (t.cmd == spacer || t.cmd == escape);
+		if (t.cmd <= max_non_prefixed_command)
 		{
-			backerror(tok, "You can't use a prefix with `"+cmdchr(cmd, chr)+"\'", "I'll pretend you didn't say \\long or \\outer or \\global.");
+			backerror(t, "You can't use a prefix with `"+cmdchr(t)+"\'", "I'll pretend you didn't say \\long or \\outer or \\global.");
 			return;
 		}
 	}
-	if (cmd != def && a%4)
-		error("You can't use `"+esc("long")+"' or `"+esc("outer")+"' with `"+cmdchr(cmd, chr)+"\'", "I'll pretend you didn't say \\long or \\outer here.");
+	if (t.cmd != def && a%4)
+		error("You can't use `"+esc("long")+"' or `"+esc("outer")+"' with `"+cmdchr(t)+"\'", "I'll pretend you didn't say \\long or \\outer here.");
 	if (global_defs())
 		if (global_defs() < 0)
 		{
@@ -54,48 +53,49 @@ void prefixedcommand(eightbits cmd, halfword chr)
 			if (a < 4)
 			a += 4;
 	int val;
-	switch (cmd)
+	switch (t.cmd)
 	{
 		case set_font: 
-			define(a, cur_font_loc, data, chr);
+			define(a, cur_font_loc, data, t.chr);
 			break;
 		case def:
-			if (chr%2 & a < 4 && global_defs() >= 0)
+			if (t.chr%2 & a < 4 && global_defs() >= 0)
 				a += 4;
-			e = chr >= 2;
+			e = t.chr >= 2;
 			p = getrtoken();
-			q = scantoks(true, e, p);
+			Token tk;
+			tk.cs = p;
+			q = scantoks(true, e, tk);
 			define(a, p, call+a%4, defref); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		case let:
-			n = chr;
+			n = t.chr;
 			p = getrtoken();
-			halfword tok;
 			if (n == 0)
 			{
 				do
-					std::tie(cmd, chr, tok, std::ignore) = gettoken();
-				while (cmd == spacer);
-				if (tok == other_token+'=') // other_char + '='
+					t = gettoken();
+				while (t.cmd == spacer);
+				if (t.tok == other_token+'=') // other_char + '='
 				{
-					std::tie(cmd, chr, tok, std::ignore) = gettoken();
-					if (cmd == spacer)
-						std::tie(cmd, chr, tok, std::ignore) = gettoken();
+					t = gettoken();
+					if (t.cmd == spacer)
+						t = gettoken();
 				}
 			}
 			else
 			{
-				std::tie(cmd, chr, q, std::ignore) = gettoken();
-				std::tie(cmd, chr, tok, std::ignore) = gettoken();
-				backinput(tok);
-				backinput(q);
+				auto tt = gettoken();
+				t = gettoken();
+				backinput(t);
+				backinput(tt);
 			}
-			if (cmd >= call)
-				info(chr)++;
-			define(a, p, cmd, chr);
+			if (t.cmd >= call)
+				info(t.chr)++;
+			define(a, p, t.cmd, t.chr);
 			break;
 		case shorthand_def:
-			n = chr;
+			n = t.chr;
 			p = getrtoken();
 			define(a, p, relax, 256);
 			scanoptionalequals();
@@ -132,22 +132,22 @@ void prefixedcommand(eightbits cmd, halfword chr)
 			break;
 		case toks_register:
 		case assign_toks:
-			q = cs;
-			p = cmd == toks_register ? toks_base+scaneightbitint() : chr;
+			q = t.cs;
+			p = t.cmd == toks_register ? toks_base+scaneightbitint() : t.chr;
 			scanoptionalequals();
 			do
-				std::tie(cmd, chr, tok, cs) = getxtoken();
-			while (cmd == spacer || cmd == escape);
-			if (cmd != left_brace)
+				t = getxtoken();
+			while (t.cmd == spacer || t.cmd == escape);
+			if (t.cmd != left_brace)
 			{
-				if (cmd == toks_register)
+				if (t.cmd == toks_register)
 				{
-					cmd = assign_toks;
-					chr = toks_base+scaneightbitint();
+					t.cmd = assign_toks;
+					t.chr = toks_base+scaneightbitint();
 				}
-				if (cmd == assign_toks)
+				if (t.cmd == assign_toks)
 				{
-					q = equiv(chr);
+					q = equiv(t.chr);
 					if (q == 0)
 						define(a, p, undefined_cs, 0);
 					else
@@ -158,8 +158,9 @@ void prefixedcommand(eightbits cmd, halfword chr)
 					break;
 				}
 			}
-			backinput(tok);
-			q = scantoks(false, false, q);
+			backinput(t);
+			tk.cs = q;
+			q = scantoks(false, false, tk);
 			if (link(defref) == 0)
 			{
 				define(a, p, undefined_cs, 0);
@@ -168,13 +169,13 @@ void prefixedcommand(eightbits cmd, halfword chr)
 			}
 			else
 			{
-				if (p == 3413) //match +'U'/85 ?
+				if (p == output_routine_loc) 
 				{
 					link(q) = getavail();
 					q = link(q);
-					info(q) = right_brace*0x01'00+'}';
+					info(q) = right_brace_token+'}';
 					q = getavail();
-					info(q) = left_brace*0x01'00+'{';
+					info(q) = left_brace_token+'{';
 					link(q) = link(defref);
 					link(defref) = q;
 				}
@@ -182,19 +183,19 @@ void prefixedcommand(eightbits cmd, halfword chr)
 			}
 			break;
 		case assign_int:
-			p = chr;
+			p = t.chr;
 			scanoptionalequals();
 			word_define(a, p, scanint());
 			break;
 		case assign_dimen:
-			p = chr;
+			p = t.chr;
 			scanoptionalequals();
 			word_define(a, p, scandimen(false, false, false));
 			break;
 		case assign_glue:
 		case assign_mu_glue:
-			p = chr;
-			n = cmd;
+			p = t.chr;
+			n = t.cmd;
 			scanoptionalequals();
 			if (n == assign_mu_glue)
 				val = scanglue(3);
@@ -204,7 +205,7 @@ void prefixedcommand(eightbits cmd, halfword chr)
 			define(a, p, glue_ref, val);
 			break;
 		case def_code:
-			switch (chr)
+			switch (t.chr)
 			{
 				case cat_code_base:
 					n = 0x0F;
@@ -221,7 +222,7 @@ void prefixedcommand(eightbits cmd, halfword chr)
 				default:
 					n = 0xFF;
 			}
-			p = chr+scancharnum();
+			p = t.chr+scancharnum();
 			scanoptionalequals();
 			val = scanint();
 			if ((val < 0 && p < del_code_base) || val > n)
@@ -238,7 +239,7 @@ void prefixedcommand(eightbits cmd, halfword chr)
 					word_define(a, p, val);
 			break;
 		case def_family:
-			p = chr;
+			p = t.chr;
 			p += scanfourbitint();
 			scanoptionalequals();
 			define(a, p, data, scanfontident());
@@ -247,7 +248,7 @@ void prefixedcommand(eightbits cmd, halfword chr)
 		case advance:
 		case multiply:
 		case divide: 
-			doregistercommand(a, cmd, chr);
+			doregistercommand(a, t);
 			break;
 		case set_box:
 			n = scaneightbitint();
@@ -260,19 +261,19 @@ void prefixedcommand(eightbits cmd, halfword chr)
 				error("Improper "+esc("setbox"), "Sorry, \\setbox is not allowed after \\halign in a display,\nor between \\accent and an accented character.");
 			break;
 		case set_aux: 
-			alteraux(cmd, chr);
+			alteraux(t);
 			break;
 		case set_prev_graf: 
 			alterprevgraf();
 			break;
 		case set_page_dimen: 
-			alterpagesofar(chr);
+			alterpagesofar(t);
 			break;
 		case set_page_int: 
-			alterinteger(chr);
+			alterinteger(t);
 			break;
 		case set_box_dimen: 
-			alterboxdimen(chr);
+			alterboxdimen(t);
 			break;
 		case set_shape:
 			scanoptionalequals();
@@ -292,8 +293,8 @@ void prefixedcommand(eightbits cmd, halfword chr)
 			define(a, par_shape_loc, shape_ref, p);
 			break;
 		case hyph_data:
-			if (chr == 1)
-				newpatterns(cs);
+			if (t.chr == 1)
+				newpatterns(t);
 			else
 				newhyphexceptions();
 			break;
@@ -303,7 +304,7 @@ void prefixedcommand(eightbits cmd, halfword chr)
 			fontinfo[k].int_ = scan_normal_dimen();
 			break;
 		case assign_font_int:
-			n = chr;
+			n = t.chr;
 			f = scanfontident();
 			scanoptionalequals();
 			if (n == 0)
@@ -315,14 +316,14 @@ void prefixedcommand(eightbits cmd, halfword chr)
 			newfont(a);
 			break;
 		case set_interaction: 
-			newinteraction(chr);
+			newinteraction(t);
 			break;
 		default: 
 			confusion("prefix");
 	}
-	if (aftertoken)
+	if (aftertoken.tok)
 	{
 		backinput(aftertoken);
-		aftertoken = 0;
+		aftertoken.tok = 0;
 	}
 }

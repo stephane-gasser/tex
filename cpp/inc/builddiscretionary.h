@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void builddiscretionary(halfword);
+void builddiscretionary(Token);
 
 #endif

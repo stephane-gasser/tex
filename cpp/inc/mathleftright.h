@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void mathleftright(eightbits, halfword, halfword);
+void mathleftright(Token);
 
 #endif

@@ -28,7 +28,7 @@ void aftermath(void)
 	halfword p, b;
 	scaled w, z, e, q, d, s;
 	smallnumber g1, g2;
-	halfword r, t;
+	halfword r, tt;
 	bool danger = false; // not enough symbol fonts are present
 	if (fontparams[fam_fnt(2+text_size)] < total_mathsy_params 
 	 || fontparams[fam_fnt(2+script_size)] < total_mathsy_params 
@@ -50,17 +50,17 @@ void aftermath(void)
 	m = mode;
 	l = false;
 	p = finmlist(0);
-	halfword tok;
+	Token t;
 	if (mode == -m)
 	{
-		std::tie(std::ignore, std::ignore, tok, std::ignore) = getxtoken();
-		backerror(tok, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
+		t = getxtoken();
+		backerror(t, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		curmlist = p;
 		curstyle = 2;
 		mlistpenalties = false;
 		mlisttohlist();
 		a = hpack(link(temp_head), 0, additional);
-		unsave(tok);
+		unsave();
 		saveptr--;
 		if (saved(0) == 1)
 			l = true;
@@ -99,16 +99,15 @@ void aftermath(void)
 			tail = link(tail);
 		tail_append(newmath(math_surround(), after));
 		space_factor = 1000;
-		unsave(tok);
+		unsave();
 	}
 	else
 	{
 		if (a == 0)
 		{
-			eightbits cmd;
-			std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
-			if (cmd != math_shift)
-				backerror(tok, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
+			t = getxtoken();
+			if (t.cmd != math_shift)
+				backerror(t, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
 		curmlist = p;
 		curstyle = 0;
@@ -118,7 +117,7 @@ void aftermath(void)
 		adjusttail = adjust_head;
 		b = hpack(p, 0, additional);
 		p = list_ptr(b);
-		t = adjusttail;
+		tt = adjusttail;
 		adjusttail = 0;
 		w = width(b);
 		z = display_width();
@@ -203,14 +202,14 @@ void aftermath(void)
 			appendtovlist(a);
 			g2 = 0;
 		}
-		if (t != adjust_head)
+		if (tt != adjust_head)
 		{
 			link(tail) = link(adjust_head);
-			tail = t;
+			tail = tt;
 		}
 		tail_append(newpenalty(post_display_penalty()));
 		if (g2 > 0)
 			tail_append(newparamglue(g2));
-		resumeafterdisplay(tok);
+		resumeafterdisplay(t);
 	}
 }

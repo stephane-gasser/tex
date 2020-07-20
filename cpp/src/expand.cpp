@@ -15,45 +15,43 @@
 #include "macrocall.h"
 #include "texte.h"
 
-void expand(eightbits cmd, halfword chr, halfword cs)
+void expand(Token tk)
 {
 	smallnumber radixbackup = radix;
 	smallnumber cobackup = curorder;
 	halfword backupbackup = link(backup_head);
-	if (cmd < call)
+	if (tk.cmd < call)
 	{
 		if (tracing_commands() > 1)
-			showcurcmdchr(cmd, chr);
-		halfword t;
+			showcurcmdchr(tk);
 		smallnumber savescannerstatus;
 		halfword p, q, r;
 		int j;
-		halfword tok;
-		switch (cmd)
+		Token t;
+		switch (tk.cmd)
 		{
 			case top_bot_mark:
-				if (curmark[chr])
-					begintokenlist(curmark[chr], mark_text);
+				if (curmark[tk.chr])
+					begintokenlist(curmark[tk.chr], mark_text);
 				break;
 			case expand_after:
-				std::tie(cmd, chr, tok, cs) = gettoken();
-				t = tok;
-				std::tie(cmd, chr, tok, cs) = gettoken();
-				if (cmd > max_command)
-					expand(cmd, chr, cs);
+				tk = gettoken();
+				t = tk;
+				tk = gettoken();
+				if (tk.cmd > max_command)
+					expand(tk);
 				else
-					backinput(tok);
-				tok = t;
-				backinput(tok);
+					backinput(tk);
+				tk = t;
+				backinput(tk);
 				break;
 			case no_expand:
 				savescannerstatus = scannerstatus;
 				scannerstatus = 0;
-				std::tie(cmd, chr, tok, cs) = gettoken();
+				tk = gettoken();
 				scannerstatus = savescannerstatus;
-				t = tok;
-				backinput(tok);
-				if (t >= cs_token_flag)
+				backinput(tk);
+				if (tk.tok >= cs_token_flag)
 				{
 					p = getavail();
 					info(p) = frozen_dont_expand+cs_token_flag;
@@ -67,17 +65,17 @@ void expand(eightbits cmd, halfword chr, halfword cs)
 				p = r;
 				do
 				{
-					std::tie(cmd, chr, tok, cs) = getxtoken();
-					if (cs == 0)
+					tk = getxtoken();
+					if (tk.cs == 0)
 					{
 						q = getavail();
 						link(p) = q;
-						info(q) = tok;
+						info(q) = tk.tok;
 						p = q;
 					}
-				} while (cs == 0);
-				if (cmd != end_cs_name)
-					backerror(tok, "Missing "+esc("endcsname")+" inserted", "The control sequence marked <to be read again> should\nnot appear between \\csname and \\endcsname.");
+				} while (tk.cs == 0);
+				if (tk.cmd != end_cs_name)
+					backerror(tk, "Missing "+esc("endcsname")+" inserted", "The control sequence marked <to be read again> should\nnot appear between \\csname and \\endcsname.");
 				j = First;
 				p = link(r);
 				while (p)
@@ -90,45 +88,42 @@ void expand(eightbits cmd, halfword chr, halfword cs)
 					};
 					buffer[j++] = info(p)%0x1'00;
 					p = link(p);
-				};
+				}
 				if (j > First+1)
 				{
 					nonewcontrolsequence = false;
-					std::string s;
-					for (int i = First; i <= j; i++)
-						s += buffer[i];
-					cs = idlookup(s);
+					tk.cs = idlookup(std::string(buffer+First, buffer+j+1));
 					nonewcontrolsequence = true;
 				}
 				else 
 					if (j == First)
-					cs = 513;
+					tk.cs = null_cs;
 				else
-					cs = 257+buffer[First];
+					tk.cs = single_base+buffer[First];
 				flushlist(r);
-				if (eq_type(cs) == undefined_cs)
-					eqdefine(cs, 0, 256);
-				tok = cs+cs_token_flag;
-				backinput(tok);
+				if (eq_type(tk.cs) == undefined_cs)
+					eqdefine(tk.cs, relax, 256);
+				tk.tok = tk.cs+cs_token_flag;
+				backinput(tk);
 				break;
 			case convert: 
-				convtoks(chr);
+				convtoks(tk);
 				break;
 			case the: 
 				insthetoks();
 				break;
 			case if_test: 
-				conditional(chr);
+				conditional(tk);
 				break;
 			case fi_or_else:
-				if (chr > iflimit)
-					if (iflimit = 1)
-						insertrelax(cs);
+				if (tk.chr > iflimit)
+					if (iflimit == 1)
+						insertrelax(tk.cs);
 					else
-						error("Extra "+cmdchr(fi_or_else, chr), "I'm ignoring this; it doesn't match any \\if.");
+						error("Extra "+cmdchr(tk), "I'm ignoring this; it doesn't match any \\if.");
 				else
 				{
-					while (chr != 2)
+					while (tk.chr != 2)
 						passtext();
 					p = condptr;
 					ifline = if_line_field(p);
@@ -139,11 +134,11 @@ void expand(eightbits cmd, halfword chr, halfword cs)
 				}
 				break;
 			case input:
-				if (chr > 0)
+				if (tk.chr > 0)
 					forceeof = true;
 				else 
 					if (nameinprogress)
-						insertrelax(cs);
+						insertrelax(tk.cs);
 					else
 						startinput();
 				break;
@@ -152,10 +147,14 @@ void expand(eightbits cmd, halfword chr, halfword cs)
 		}
 	}
 	else 
-		if (cmd < end_template)
-			macrocall(chr, cs);
+		if (tk.cmd < end_template)
+			macrocall(tk);
 		else
-			backinput(frozen_endv+cs_token_flag);
+		{
+			Token t;
+			t.tok = frozen_endv+cs_token_flag;
+			backinput(t);
+		}
 	radix = radixbackup;
 	curorder = cobackup;
 	link(backup_head) = backupbackup;

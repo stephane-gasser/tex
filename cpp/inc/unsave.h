@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void unsave(halfword);
+void unsave(void);
 
 #endif

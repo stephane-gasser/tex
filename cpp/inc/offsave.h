@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void offsave(eightbits, halfword, halfword);
+void offsave(Token);
 
 #endif

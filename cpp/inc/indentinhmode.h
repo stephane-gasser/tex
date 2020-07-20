@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void indentinhmode(halfword);
+void indentinhmode(Token);
 
 #endif

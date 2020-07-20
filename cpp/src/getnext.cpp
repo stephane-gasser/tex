@@ -15,25 +15,28 @@
 #include "getavail.h"
 #include "runaway.h"
 
-[[nodiscard]] static std::tuple<eightbits, halfword, halfword, halfword> checkoutervalidity(eightbits cmd, halfword chr, halfword tok, halfword cs)
+[[nodiscard]] static Token checkoutervalidity(Token t)
 {
 	if (scannerstatus == 0)
-		return std::make_tuple(cmd, chr, tok, cs);
-	if (cs)
+		return t;
+	if (t.cs)
 	{
 		if (state == token_list || txt(name) < 1 || txt(name) > 17)
 		{
 			auto p = getavail();
-			info(p) = cs_token_flag+cs;
+			info(p) = cs_token_flag+t.cs;
 			back_list(p);
 		}
-		cmd = spacer;
-		chr = ' ';
+		t.cmd = spacer;
+		t.chr = ' ';
 	}
 	if (scannerstatus == skipping)
 	{
-		inserror(tok, "Incomplete "+cmdchr(if_test, curif)+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
-		tok = frozen_fi+cs_token_flag;
+		Token tk;
+		tk.cmd = if_test;
+		tk.chr = curif;
+		inserror(t, "Incomplete "+cmdchr(tk)+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
+		t.tok = frozen_fi+cs_token_flag;
 	}
 	else
 	{
@@ -43,16 +46,16 @@
 		switch (scannerstatus)
 		{
 			case defining:
-				error(cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
 				info(p) = right_brace_token+'}';
 				break;
 			case matching:
-				error(cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
 				info(p) = partoken;
 				longstate = outer_call;
 				break;
 			case aligning:
-				error(cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
 				info(p) = right_brace_token+'}';
 				q = p;
 				p = getavail();
@@ -61,12 +64,13 @@
 				alignstate = -1000000;
 				break;
 			case absorbing:
-				error(cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
 				info(p) = right_brace_token+'}';
 		}
 		ins_list(p);
 	}
-	return std::make_tuple(cmd, chr, tok, 0);
+	t.cs = 0;
+	return t;
 }
 
 static bool is_hex(ASCIIcode c)
@@ -114,15 +118,14 @@ static void removeFromEnd(int &k, int d)
 #define ANY_STATE_PLUS(cmd) mid_line+cmd: case skip_blanks+cmd: case new_line+cmd
 #define ADD_DELIMS_TO(state) state+math_shift: case state+tab_mark: case state+mac_param: case state+sub_mark: case state+letter: case state+other_char 
 
-[[nodiscard]] std::tuple<eightbits, halfword, halfword> getnext(void)
+[[nodiscard]] Token getnext(void)
 {
-	eightbits cmd;
-	halfword chr, cs, tok;
+	Token t;
 	bool restart;
 	do 
 	{
 		restart = false;
-		cs = 0;
+		t.cs = 0;
 		if (state != token_list)
 		{
 			bool skip;
@@ -131,14 +134,14 @@ static void removeFromEnd(int &k, int d)
 				skip = false;
 				if (loc <= limit)
 				{
-					chr = buffer[loc];
+					t.chr = buffer[loc];
 					loc++;
 					bool superscript2;
 					do
 					{
 						superscript2 = false;
-						cmd = cat_code(chr);
-						switch (state+cmd)
+						t.cmd = cat_code(t.chr);
+						switch (state+t.cmd)
 						{
 							case ANY_STATE_PLUS(ignore):
 							case skip_blanks+spacer:
@@ -147,7 +150,7 @@ static void removeFromEnd(int &k, int d)
 								break;
 							case ANY_STATE_PLUS(escape):
 								if (loc > limit)
-									cs = null_cs;
+									t.cs = null_cs;
 								else
 								{
 									bool superscript, identifiant;
@@ -155,23 +158,23 @@ static void removeFromEnd(int &k, int d)
 									{
 										superscript = false;
 										identifiant = false;
-										chr = buffer[loc];
-										int cat = cat_code(chr);
+										t.chr = buffer[loc];
+										int cat = cat_code(t.chr);
 										int k = loc+1;
 										state = (cat == letter || cat == spacer) ? skip_blanks : mid_line;
 										if (cat == letter && k <= limit)
 										{
 											do
 											{
-												chr = buffer[k];
-												cat = cat_code(chr);
+												t.chr = buffer[k];
+												cat = cat_code(t.chr);
 												k++;
 											} while (cat == letter && k <= limit);
-											if (cat == sup_mark && prochainCaractereOK(k, chr))
+											if (cat == sup_mark && prochainCaractereOK(k, t.chr))
 											{
 												if (processBuffer(k, buffer[k-1]) == 3)
 												{
-													chr = buffer[k-1];
+													t.chr = buffer[k-1];
 													removeFromEnd(k, 3);
 												}
 												else
@@ -187,18 +190,18 @@ static void removeFromEnd(int &k, int d)
 													std::string s;
 													for (int i = loc; i <= k; i++)
 														s += buffer[i];
-													cs = idlookup(s);
+													t.cs = idlookup(s);
 													loc = k;
 													identifiant = true;
 												}
 											}
 										}
 										else
-											if (cat == sup_mark && prochainCaractereOK(k, chr))
+											if (cat == sup_mark && prochainCaractereOK(k, t.chr))
 											{
 												if (processBuffer(k, buffer[k-1]) == 3)
 												{
-													chr = buffer[k-1];
+													t.chr = buffer[k-1];
 													removeFromEnd(k, 3);
 												}
 												else
@@ -208,27 +211,27 @@ static void removeFromEnd(int &k, int d)
 									} while (superscript && !identifiant);
 									if (!identifiant)
 									{
-										cs = single_base+buffer[loc];
+										t.cs = single_base+buffer[loc];
 										loc++;
 									}
 								}
-								cmd = eq_type(cs);
-								chr = equiv(cs);
-								if (cmd >= outer_call)
-									std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
+								t.cmd = eq_type(t.cs);
+								t.chr = equiv(t.cs);
+								if (t.cmd >= outer_call)
+									t = checkoutervalidity(t);
 								break;
 							case ANY_STATE_PLUS(active_char):
-								cs = chr+1;
-								cmd = eq_type(cs);
-								chr = equiv(cs);
+								t.cs = t.chr+1;
+								t.cmd = eq_type(t.cs);
+								t.chr = equiv(t.cs);
 								state = mid_line;
-								if (cmd >= outer_call)
-									std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
+								if (t.cmd >= outer_call)
+									t = checkoutervalidity(t);
 								break;
 							case ANY_STATE_PLUS(sup_mark):
-								if (prochainCaractereOK(loc, chr))
+								if (prochainCaractereOK(loc, t.chr))
 								{
-									loc += processBuffer(loc, chr);
+									loc += processBuffer(loc, t.chr);
 									superscript2 = true;
 								}
 								else
@@ -240,12 +243,12 @@ static void removeFromEnd(int &k, int d)
 								break;
 							case mid_line+spacer:
 								state = skip_blanks;
-								chr = ' ';
+								t.chr = ' ';
 								break;
 							case mid_line+car_ret:
 								loc = limit+1;
-								cmd = spacer;
-								chr = ' ';
+								t.cmd = spacer;
+								t.chr = ' ';
 								break;
 							case skip_blanks+car_ret:
 							case ANY_STATE_PLUS(comment):
@@ -254,11 +257,11 @@ static void removeFromEnd(int &k, int d)
 								break;
 							case new_line+car_ret:
 								loc = limit+1;
-								cs = parloc;
-								cmd = eq_type(cs);
-								chr = equiv(cs);
-								if (cmd >= outer_call)
-									std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
+								t.cs = parloc;
+								t.cmd = eq_type(t.cs);
+								t.chr = equiv(t.cs);
+								if (t.cmd >= outer_call)
+									t = checkoutervalidity(t);
 								break;
 							case skip_blanks+left_brace:
 							case new_line+left_brace:
@@ -297,7 +300,7 @@ static void removeFromEnd(int &k, int d)
 							std::cout << std::flush;
 							forceeof = false;
 							endfilereading();
-							std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
+							t = checkoutervalidity(t);
 							restart = true;
 						}
 						if (!restart)
@@ -313,7 +316,11 @@ static void removeFromEnd(int &k, int d)
 					else
 					{
 						if (!terminal_input(name))
-							return std::make_tuple(0, 0, cs);
+						{
+							t.cmd = 0;
+							t.chr = 0;
+							return t;
+						}
 						if (inputptr > 0)
 						{
 							endfilereading();
@@ -356,34 +363,34 @@ static void removeFromEnd(int &k, int d)
 		else
 			if (loc)
 			{
-				int t = info(loc);
+				int tt = info(loc);
 				loc = link(loc);
-				if (t >= cs_token_flag)
+				if (tt >= cs_token_flag)
 				{
-					cs = t-cs_token_flag;
-					cmd = eq_type(cs);
-					chr = equiv(cs);
-					if (cmd >= outer_call)
-						if (cmd == dont_expand)
+					t.cs = tt-cs_token_flag;
+					t.cmd = eq_type(t.cs);
+					t.chr = equiv(t.cs);
+					if (t.cmd >= outer_call)
+						if (t.cmd == dont_expand)
 						{
-							cs = info(loc)-cs_token_flag;
+							t.cs = info(loc)-cs_token_flag;
 							loc = 0;
-							cmd = eq_type(cs);
-							chr = equiv(cs);
-							if (cmd > max_command)
+							t.cmd = eq_type(t.cs);
+							t.chr = equiv(t.cs);
+							if (t.cmd > max_command)
 							{
-								cmd = relax;
-								chr = no_expand_flag;
+								t.cmd = relax;
+								t.chr = no_expand_flag;
 							}
 						}
 						else
-							std::tie(cmd, chr, tok, cs) = checkoutervalidity(cmd, chr, tok, cs);
+							t = checkoutervalidity(t);
 				}
 				else
 				{
-					cmd = t>>8;
-					chr = t%(1<<8);
-					switch (cmd)
+					t.cmd = tt>>8;
+					t.chr = tt%(1<<8);
+					switch (t.cmd)
 					{
 						case left_brace: 
 							alignstate++;
@@ -392,7 +399,7 @@ static void removeFromEnd(int &k, int d)
 							alignstate--;
 							break;
 						case out_param:
-							begintokenlist(paramstack[limit+chr-1], 0);
+							begintokenlist(paramstack[limit+t.chr-1], 0);
 							restart = true;
 					}
 				}
@@ -402,16 +409,16 @@ static void removeFromEnd(int &k, int d)
 				endtokenlist();
 				restart = true;
 			}
-		if (!restart && cmd <= out_param && cmd >= tab_mark && alignstate == 0)
+		if (!restart && t.cmd <= out_param && t.cmd >= tab_mark && alignstate == 0)
 		{
 			if (scannerstatus == aligning || curalign == 0)
 				fatalerror("(interwoven alignment preambles are not allowed)");
-			cmd = extra_info(curalign);
-			extra_info(curalign) = chr;
-			begintokenlist(cmd == omit ? omit_template : v_part(curalign), v_template);
+			t.cmd = extra_info(curalign);
+			extra_info(curalign) = t.chr;
+			begintokenlist(t.cmd == omit ? omit_template : v_part(curalign), v_template);
 			alignstate = 1000000;
 			restart = true;
 		}
 	} while (restart);
-	return std::make_tuple(cmd, chr, cs);
+	return t;
 }

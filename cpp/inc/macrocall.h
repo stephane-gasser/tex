@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void macrocall(halfword, halfword);
+void macrocall(Token);
 
 #endif

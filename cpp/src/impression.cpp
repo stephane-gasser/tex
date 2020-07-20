@@ -54,11 +54,6 @@ static void printchar(ASCIIcode s)
 	tally++;
 }
 
-static std::string chr_cmd(const std::string &s, halfword chr)
-{
-	return s+char(chr);
-}
-
 static std::string hex(int t)
 {
   std::ostringstream oss;
@@ -96,7 +91,7 @@ void print(const std::string &s)
 		slowprint("???");
 }
 
-std::string cmdchr(eightbits cmd, halfword chr)
+std::string cmdchr(Token t)
 {
 	static std::map<quarterword, std::string> echap;
 	static std::map<quarterword, std::string> caract;
@@ -117,10 +112,10 @@ std::string cmdchr(eightbits cmd, halfword chr)
 		caract[other_char] = "the character ";
 		caract[tab_mark] = "alignment tab character ";
 	}
-	if (primName.find(cmd) != primName.end())
+	if (primName.find(t.cmd) != primName.end())
 	{
-		int n = chr;
-		switch (cmd)
+		int n = t.chr;
+		switch (t.cmd)
 		{
 			case assign_glue:
 			case assign_mu_glue:
@@ -135,41 +130,41 @@ std::string cmdchr(eightbits cmd, halfword chr)
 			case def_family:
 				n -= math_font_base;
 		}
-		auto &cmdNames = primName[cmd];
+		auto &cmdNames = primName[t.cmd];
 		if (cmdNames.find(n) != cmdNames.end())
 			return esc(cmdNames[n]);
 	}
-	switch (cmd)
+	switch (t.cmd)
 	{
 		case long_call: 
 		case outer_call: 
 		case long_outer_call:
 		case end_template: 
-			return esc(echap[cmd]);
+			return esc(echap[t.cmd]);
 		case assign_glue:
-			if (chr < skip_base)
+			if (t.chr < skip_base)
 				return "[unknown glue parameter!]";
-			return esc("skip")+std::to_string(chr-skip_base);
+			return esc("skip")+std::to_string(t.chr-skip_base);
 		case assign_mu_glue:
-			if (chr < mu_skip_base)
+			if (t.chr < mu_skip_base)
 				return "[unknown glue parameter!]";
-			return esc("muskip")+std::to_string(chr-mu_skip_base);
+			return esc("muskip")+std::to_string(t.chr-mu_skip_base);
 		case assign_toks:
-			return esc("toks")+std::to_string(chr-toks_base);
+			return esc("toks")+std::to_string(t.chr-toks_base);
 		case assign_int: 
-			if (chr < count_base)
+			if (t.chr < count_base)
 				return "[unknown integer parameter!]";
-			return esc("count")+std::to_string(chr-count_base);
+			return esc("count")+std::to_string(t.chr-count_base);
 		case assign_dimen:
-			if (chr < scaled_base)
+			if (t.chr < scaled_base)
 				return "[unknown dimen parameter!]";
-			return esc("dimen")+std::to_string(chr-scaled_base);
+			return esc("dimen")+std::to_string(t.chr-scaled_base);
 		case char_given:
-			return esc("char")+hex(chr);
+			return esc("char")+hex(t.chr);
 		case math_given:
-			return esc("mathchar")+hex(chr); 
+			return esc("mathchar")+hex(t.chr); 
 		case set_font:
-			return "select font "+fontname[chr]+(fontsize[chr] == fontdsize[chr] ? "" : " at "+std::to_string(double(fontsize[chr])/unity)+"pt");
+			return "select font "+fontname[t.chr]+(fontsize[t.chr] == fontdsize[t.chr] ? "" : " at "+std::to_string(double(fontsize[t.chr])/unity)+"pt");
 		case tab_mark:
 		case left_brace:
 		case right_brace:
@@ -180,7 +175,7 @@ std::string cmdchr(eightbits cmd, halfword chr)
 		case spacer:
 		case letter:
 		case other_char:
-			return chr_cmd(caract[cmd], chr);
+			return caract[t.cmd]+char(t.chr);
 		case math_style:
 			return "Unknown style!";
 		case extension: 
@@ -305,7 +300,7 @@ static std::string asMark(int p)
 	return "{"+(p < himemmin || p > memend ? esc("CLOBBERED.") : tokenlist(link(p), 0, maxprintline-10))+"}";
 }
 
-std::string meaning(eightbits cmd, halfword chr) { return cmdchr(cmd, chr)+(cmd >= call ? ":\n"+tokenshow(chr) : cmd == top_bot_mark ?":\n"+tokenshow(curmark[chr]) : ""); }
+std::string meaning(Token t) { return cmdchr(t)+(t.cmd >= call ? ":\n"+tokenshow(t.chr) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); }
 
 std::string asMode(int m)
 {
@@ -1041,9 +1036,9 @@ void diagnostic(const std::string &s)
 	selector = oldsetting;
 }
 
-void showcurcmdchr(eightbits cmd, halfword chr)
+void showcurcmdchr(Token t)
 {
-	diagnostic("\r{"+(mode != shownmode ? asMode(mode)+": " : "")+cmdchr(cmd, chr)+"}");
+	diagnostic("\r{"+(mode != shownmode ? asMode(mode)+": " : "")+cmdchr(t)+"}");
 	shownmode = mode;
 }
 
@@ -1126,12 +1121,10 @@ static std::string showactivities(void)
 	return oss.str();
 }
 
-void showwhatever(halfword chr)
+void showwhatever(Token t)
 {
 	int val;
-	halfword cs;
-	eightbits cmd;
-	switch (chr)
+	switch (t.chr)
 	{
 		case show_lists:
 			diagnostic(showactivities());
@@ -1151,8 +1144,8 @@ void showwhatever(halfword chr)
 			selector = term_and_log;
 			break;
 		case show_code:
-			std::tie(cmd, chr, std::ignore, cs) = gettoken();
-			printnl("> "+(cs ? scs(cs)+"=" : "")+meaning(cmd, chr));
+			t = gettoken();
+			printnl("> "+(t.cs ? scs(t.cs)+"=" : "")+meaning(t));
 			break;
 		default:
 			thetoks();

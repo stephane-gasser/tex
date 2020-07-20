@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void backinput(halfword);
+void backinput(Token);
 
 #endif

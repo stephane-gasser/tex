@@ -209,7 +209,7 @@ void fireup(halfword c)
 			begintokenlist(output_routine(), 6);
 			newsavelevel(8);
 			normalparagraph();
-			auto [cmd, chr, tok] = scanleftbrace();
+			auto t = scanleftbrace();
 			return;
 		}
 	if (link(page_head))

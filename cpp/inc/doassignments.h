@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-std::tuple<eightbits, halfword> doassignments(void);
+Token doassignments(void);
 
 #endif

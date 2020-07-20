@@ -4,9 +4,9 @@
 #include "pushmath.h"
 #include "lecture.h"
 
-void buildchoices(halfword tok)
+void buildchoices(Token t)
 {
-	unsave(tok);
+	unsave();
 	auto p = finmlist(0); // the current mlist
 	switch (saved(-1))
 	{
@@ -26,5 +26,5 @@ void buildchoices(halfword tok)
 	}
 	saved(-1)++;
 	pushmath(math_choice_group);
-	std::tie(std::ignore, std::ignore, tok) = scanleftbrace();
+	t = scanleftbrace();
 }

@@ -8,12 +8,12 @@
 #include "lecture.h"
 #include "texte.h"
 
-void macrocall(halfword chr, halfword cs_)
+void macrocall(Token t)
 {
 	auto savescannerstatus = scannerstatus;
 	auto savewarningindex = warningindex;
-	warningindex = cs_;
-	halfword refcount = chr;
+	warningindex = t.cs;
+	halfword refcount = t.chr;
 	halfword r = link(refcount);
 	smallnumber n = 0;
 	if (tracing_macros() > 0)
@@ -23,7 +23,7 @@ void macrocall(halfword chr, halfword cs_)
 	{
 		scannerstatus = matching;
 		halfword unbalance = 0;
-		longstate = type(cs_);
+		longstate = type(t.cs);
 		if (longstate >= outer_call)
 			longstate -= 2;
 		do
@@ -45,14 +45,13 @@ void macrocall(halfword chr, halfword cs_)
 			halfword rbraceptr;
 			while (true)
 			{
-				halfword tok;
-				std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken();
-				if (tok = info(r))
+				t = gettoken();
+				if (t.tok = info(r))
 				{
 					r = link(r);
 					if (info(r) >= match_token && info(r) <= end_match_token)
 					{
-						if (tok < left_brace_limit) // cmd < right_brace
+						if (t.tok < left_brace_limit) 
 							alignstate--;
 						break;
 					}
@@ -69,21 +68,21 @@ void macrocall(halfword chr, halfword cs_)
 					}
 					else
 					{
-						auto t = s;
+						auto tt = s;
 						bool l22 = false;
 						do
 						{
 							auto q = getavail();
 							link(p) = q;
-							info(q) = info(t);
+							info(q) = info(tt);
 							p = q;
 							m++;
-							auto u = link(t);
+							auto u = link(tt);
 							auto v = s;
 							while(true)
 							{
 								if (u == r)
-									if (tok != info(v))
+									if (t.tok != info(v))
 										break;
 									else
 									{
@@ -97,19 +96,19 @@ void macrocall(halfword chr, halfword cs_)
 								v = link(v);
 							}
 							if (!l22)
-								t = link(t);
-						} while (t != r && !l22);
+								tt = link(tt);
+						} while (tt != r && !l22);
 						if (l22)
 							continue;
 						r = s;
 					}
-				if (tok == partoken)
+				if (t.tok == partoken)
 					if (longstate != long_call)
 					{
 						if (longstate == call)
 						{
 							runaway();
-							backerror(tok, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
+							backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 						}
 						pstack[n] = link(temp_head);
 						alignstate -= unbalance;
@@ -119,8 +118,8 @@ void macrocall(halfword chr, halfword cs_)
 						warningindex = savewarningindex;
 						return;
 					}
-				if (tok < right_brace_limit)
-					if (tok < left_brace_limit)
+				if (t.tok < right_brace_limit)
+					if (t.tok < left_brace_limit)
 					{
 						unbalance = 1;
 						while (true)
@@ -134,16 +133,16 @@ void macrocall(halfword chr, halfword cs_)
 								link(q) = 0;
 							}
 							link(p) = q;
-							info(q) = tok;
+							info(q) = t.tok;
 							p = q;
-							std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken();
-							if (tok == partoken)
+							t = gettoken();
+							if (t.tok == partoken)
 								if (longstate != long_call)
 								{
 									if (longstate == call)
 									{
 										runaway();
-										backerror(tok, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
+										backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 									}
 									pstack[n] = link(temp_head);
 									alignstate -= unbalance;
@@ -153,8 +152,8 @@ void macrocall(halfword chr, halfword cs_)
 									warningindex = savewarningindex;
 									return;
 								}
-							if (tok < right_brace_limit)
-								if (tok < left_brace_limit)
+							if (t.tok < right_brace_limit)
+								if (t.tok < left_brace_limit)
 									unbalance++;
 								else
 								{
@@ -166,26 +165,26 @@ void macrocall(halfword chr, halfword cs_)
 						rbraceptr = p;
 						auto q = getavail();
 						link(p) = q;
-						info(q) = tok;
+						info(q) = t.tok;
 						p = q;
 					}
 					else
 					{
-						backinput(tok);
-						inserror(tok, "Argument of "+scs(warningindex)+" has an extra }", "I've run across a `}' that doesn't seem to match anything.\nFor example, `\\def\\a#1{...}' and `\\a}' would produce\nthis error. If you simply proceed now, the `\\par' that\nI've just inserted will cause me to report a runaway\nargument that might be the root of the problem. But if\nyour `}' was spurious, just type `2' and it will go away.");
+						backinput(t);
+						inserror(t, "Argument of "+scs(warningindex)+" has an extra }", "I've run across a `}' that doesn't seem to match anything.\nFor example, `\\def\\a#1{...}' and `\\a}' would produce\nthis error. If you simply proceed now, the `\\par' that\nI've just inserted will cause me to report a runaway\nargument that might be the root of the problem. But if\nyour `}' was spurious, just type `2' and it will go away.");
 						alignstate++;
 						longstate = call;
-						tok = partoken;
+						t.tok = partoken;
 						continue;
 					}
 				else
 				{
-					if (tok == space_token)
+					if (t.tok == space_token)
 						if (info(r) <= end_match_token && info(r) >= match_token)
 							continue;
 					auto q = getavail();
 					link(p) = q;
-					info(q) = tok;
+					info(q) = t.tok;
 					p = q;
 				}
 				m++;

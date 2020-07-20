@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void headforvmode(eightbits, halfword, halfword);
+void headforvmode(Token);
 
 #endif

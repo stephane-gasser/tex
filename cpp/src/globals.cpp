@@ -274,9 +274,18 @@ halfword falsebchar;
 bool cancelboundary;
 bool insdisc;
 halfword curbox;
-halfword aftertoken;
 bool longhelpseen;
 wordfile fmtfile;
 alphafile writefile[16];
 bool writeopen[18];
 halfword writeloc;
+
+void Token::make_tok(void)
+{
+	if (cs == 0)
+		tok = (cmd<<8)+chr;
+	else
+		tok = cs_token_flag+cs;
+}
+
+

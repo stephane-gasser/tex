@@ -1,9 +1,16 @@
 #include "insertrelax.h"
 #include "backinput.h"
 
+static Token makeCS(halfword cs)
+{
+	Token t;
+	t.tok = cs_token_flag+cs;
+	return t;
+}
+
 void insertrelax(halfword cs)
 {
-	backinput(cs_token_flag+cs);
-	backinput(cs_token_flag+frozen_relax);
+	backinput(makeCS(cs));
+	backinput(makeCS(frozen_relax));
 	token_type = inserted;
 }

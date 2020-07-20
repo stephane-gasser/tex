@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-halfword maincontrol(void);
+Token maincontrol(void);
 
 #endif

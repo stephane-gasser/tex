@@ -9,7 +9,7 @@
 //! slant to the right, per unit distance upward
 static int& slant(internalfontnumber f) { return param(slant_code, f); }
 
-void makeaccent(eightbits cmd, halfword chr, halfword tok)
+void makeaccent(Token t)
 {
 	auto f = cur_font();
 	auto p = newcharacter(f, scancharnum());
@@ -21,13 +21,13 @@ void makeaccent(eightbits cmd, halfword chr, halfword tok)
 		doassignments();
 		halfword q = 0;
 		f = cur_font();
-		if (cmd == letter || cmd == other_char || cmd == char_given)
-			q = newcharacter(f, chr);
+		if (t.cmd == letter || t.cmd == other_char || t.cmd == char_given)
+			q = newcharacter(f, t.chr);
 		else 
-			if (cmd == char_num)
+			if (t.cmd == char_num)
 				q = newcharacter(f, scancharnum());
 			else
-				backinput(tok);
+				backinput(t);
 		if (q)
 		{
 			auto t = slant(f)/float(unity);

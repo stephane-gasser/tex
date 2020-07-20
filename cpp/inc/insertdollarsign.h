@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-[[nodiscard]] halfword insertdollarsign(halfword);
+[[nodiscard]] Token insertdollarsign(Token);
 
 #endif

@@ -9,16 +9,16 @@ void passtext(void)
 	skipline = line;
 	while (true)
 	{
-		auto [cmd, chr, cs] = getnext();
-		if (cmd == fi_or_else)
+		auto t = getnext();
+		if (t.cmd == fi_or_else)
 		{
 			if (l == 0)
 				break;
-			if (chr == fi_code)
+			if (t.chr == fi_code)
 				l--;
 		}
 		else 
-			if (cmd == if_test)
+			if (t.cmd == if_test)
 				l++;
 	}
 	scannerstatus = savescannerstatus;

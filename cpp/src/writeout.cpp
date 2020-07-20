@@ -22,16 +22,16 @@ void writeout(halfword p)
 	ins_list(q);
 	int oldmode = mode;
 	mode = 0;
-	halfword cs = writeloc;
-	q = scantoks(false, true, cs);
-	halfword tok;
-	std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken();
-	if (tok != end_write_token)
+	Token t;
+	t.cs = writeloc;
+	q = scantoks(false, true, t);
+	t = gettoken();
+	if (t.tok != end_write_token)
 	{
 		error("Unbalanced write command", "On this page there's a \\write with fewer real {'s than }'s.\nI can't handle that very well; good luck.");
 		do
-			std::tie(std::ignore, std::ignore, tok, std::ignore) = gettoken();
-		while (tok != end_write_token);
+			t = gettoken();
+		while (t.tok != end_write_token);
 	}
 	mode = oldmode;
 	endtokenlist();

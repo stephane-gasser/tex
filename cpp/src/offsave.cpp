@@ -6,13 +6,13 @@
 #include "lecture.h"
 #include "texte.h"
 
-void offsave(eightbits cmd, halfword chr, halfword tok)
+void offsave(Token t)
 {
 	if (curgroup == bottom_level)
-		error("Extra "+cmdchr(cmd, chr), "Things are pretty mixed up, but I think the worst is over.");
+		error("Extra "+cmdchr(t), "Things are pretty mixed up, but I think the worst is over.");
 	else
 	{
-		backinput(tok);
+		backinput(t);
 		auto p = getavail();
 		link(temp_head) = p;
 		switch (curgroup)

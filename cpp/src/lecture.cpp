@@ -38,42 +38,52 @@
 #include "runaway.h"
 #include "openlogfile.h"
 
+static Token getXTokenSkipSpace(void)
+{
+	Token t;
+	do
+		t = getxtoken();
+	while (t.cmd == spacer);
+	return t;
+}
+
+static Token getXTokenSkipSpaceAndEscape(void)
+{
+	Token t;
+	do
+		t = getxtoken();
+	while (t.cmd == spacer || t.cmd == escape);
+	return t;
+}
+
 void scanbox(int boxcontext)
 {
-	eightbits cmd;
-	halfword chr, tok;
-	do
-		std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-	while (cmd == spacer || cmd == escape);
-	if (cmd == make_box)
-		beginbox(boxcontext, cmd, chr);
+	auto t = getXTokenSkipSpaceAndEscape();
+	if (t.cmd == make_box)
+		beginbox(boxcontext, t);
 	else 
-		if (boxcontext > leader_flag && (cmd == hrule || cmd == vrule))
+		if (boxcontext > leader_flag && (t.cmd == hrule || t.cmd == vrule))
 		{
-			curbox = scanrulespec(cmd);
+			curbox = scanrulespec(t);
 			boxend(boxcontext);
 		}
 		else
-			backerror(tok, "A <box> was supposed to be here", "I was expecting to see \\hbox or \\vbox or \\copy or \\box or\nsomething like that. So you might find something missing in\nyour output. But keep trying; you can fix this later.");
+			backerror(t, "A <box> was supposed to be here", "I was expecting to see \\hbox or \\vbox or \\copy or \\box or\nsomething like that. So you might find something missing in\nyour output. But keep trying; you can fix this later.");
 }
 
-void scandelimiter(halfword p, bool r, halfword tok)
+void scandelimiter(halfword p, bool r, Token t)
 {
 	int val;
 	if (r)
 		val = scantwentysevenbitint();
 	else
 	{
-		halfword chr;
-		eightbits cmd;
-		do
-			std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-		while (cmd == spacer || cmd == escape);
-		switch (cmd)
+		t = getXTokenSkipSpaceAndEscape();
+		switch (t.cmd)
 		{
 			case letter:
 			case other_char: 
-				val = del_code(chr);
+				val = del_code(t.chr);
 				break;
 			case delim_num: 
 				val = scantwentysevenbitint();
@@ -84,7 +94,7 @@ void scandelimiter(halfword p, bool r, halfword tok)
 	}
 	if (val < 0)
 	{
-		backerror(tok, "Missing delimiter (. inserted)", "I was expecting to see something like `(' or `\\{' or\n`\\}' here. If you typed, e.g., `{' instead of `\\{', you\nshould probably delete the `{' by typing `1' now, so that\nbraces don't get unbalanced. Otherwise just proceed.\nAcceptable delimiters are characters whose \\delcode is\nnonnegative, or you can use `\\delimiter <delimiter code>'.");
+		backerror(t, "Missing delimiter (. inserted)", "I was expecting to see something like `(' or `\\{' or\n`\\}' here. If you typed, e.g., `{' instead of `\\{', you\nshould probably delete the `{' by typing `1' now, so that\nbraces don't get unbalanced. Otherwise just proceed.\nAcceptable delimiters are characters whose \\delcode is\nnonnegative, or you can use `\\delimiter <delimiter code>'.");
 		val = 0;
 	}
 	mem[p].qqqq.b0 = (val>>20)%0x10;
@@ -100,8 +110,7 @@ void scandelimiter(halfword p, bool r, halfword tok)
 	aritherror = false;
 	curorder = 0;
 	bool negative = false;
-	halfword tok, chr, cs;
-	eightbits cmd;
+	Token t;
 	while (true) // label 89
 	{
 		if (!shortcut)
@@ -109,19 +118,17 @@ void scandelimiter(halfword p, bool r, halfword tok)
 			negative = false;
 			do
 			{
-				do
-					std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-				while (cmd == spacer);
-				if (tok == other_token+'-')
+				t = getXTokenSkipSpace();
+				if (t.tok == other_token+'-')
 				{
 					negative = !negative;
-					tok = other_token+'+';
+					t.tok = other_token+'+';
 				}
-			} while (tok == other_token+'+');
-			if (cmd >= min_internal && cmd <= max_internal)
+			} while (t.tok == other_token+'+');
+			if (t.cmd >= min_internal && t.cmd <= max_internal)
 				if (mu)
 				{
-					std::tie(val, lev) = scansomethinginternal(mu_val, false, cmd, chr, tok);
+					std::tie(val, lev) = scansomethinginternal(mu_val, false, t);
 					if (lev >= glue_val)
 					{
 						auto v = width(val);
@@ -135,39 +142,39 @@ void scandelimiter(halfword p, bool r, halfword tok)
 				}
 				else
 				{
-					std::tie(val, lev) = scansomethinginternal(dimen_val, false, cmd, chr, tok);
+					std::tie(val, lev) = scansomethinginternal(dimen_val, false, t);
 					if (lev == dimen_val)
 						break;
 				}
 			else
 			{
-				backinput(tok);
-				if (tok == continental_point_token)
-					tok = point_token; 
-				if (tok != point_token)
+				backinput(t);
+				if (t.tok == continental_point_token)
+					t.tok = point_token; 
+				if (t.tok != point_token)
 					val = scanint();
 				else
 				{
 					radix = 10;
 					val = 0;
 				}
-				if (tok == continental_point_token) 
-					tok = point_token; 
-				if (radix == 10 && tok == point_token) 
+				if (t.tok == continental_point_token) 
+					t.tok = point_token; 
+				if (radix == 10 && t.tok == point_token) 
 				{
 					int k = 0;
 					halfword p = 0;
-					std::tie(std::ignore, std::ignore, std::ignore, std::ignore) = gettoken();
+					auto _ = gettoken();
 					while (true)
 					{
-						std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
-						if (tok > zero_token+9 || tok < zero_token)
+						t = getxtoken();
+						if (t.tok > zero_token+9 || t.tok < zero_token)
 							break;
 						if (k < 17)
 						{
 							auto q = getavail();
 							link(q) = p;
-							info(q) = tok-zero_token;
+							info(q) = t.tok-zero_token;
 							p = q;
 							k++;
 						}
@@ -180,8 +187,8 @@ void scandelimiter(halfword p, bool r, halfword tok)
 						free_avail(q);
 					}
 					f = rounddecimals(k);
-					if (cmd != spacer)
-						backinput(tok);
+					if (t.cmd != spacer)
+						backinput(t);
 				}
 			}
 		}
@@ -203,22 +210,20 @@ void scandelimiter(halfword p, bool r, halfword tok)
 					aritherror = true;
 				else
 					val = (val<<16)+f;
-				std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
-				if (cmd != spacer)
-					backinput(tok);
+				t = getxtoken();
+				if (t.cmd != spacer)
+					backinput(t);
 				break;
 			}
 		auto saveval = val;
-		do
-			std::tie(cmd, chr, tok, cs) = getxtoken();
-		while (cmd == spacer);
-		if (cmd < min_internal || cmd > max_internal)
-			backinput(tok);
+		t = getXTokenSkipSpace();
+		if (t.cmd < min_internal || t.cmd > max_internal)
+			backinput(t);
 		else
 		{
 			if (mu)
 			{
-				std::tie(val, lev) = scansomethinginternal(3, false, cmd, chr, tok);
+				std::tie(val, lev) = scansomethinginternal(3, false, t);
 				if (lev >= 2)
 				{
 					auto v = width(val);
@@ -229,7 +234,7 @@ void scandelimiter(halfword p, bool r, halfword tok)
 					error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
 			}
 			else
-				std::tie(val, lev) = scansomethinginternal(1, false, cmd, chr, tok);
+				std::tie(val, lev) = scansomethinginternal(1, false, t);
 			auto v = val;
 			val = nx_plus_y(saveval, v, xnoverd(v, f, 0x1'00'00));
 			break;
@@ -239,17 +244,17 @@ void scandelimiter(halfword p, bool r, halfword tok)
 			if (scankeyword("em"))
 			{
 				auto v = quad(cur_font());
-				std::tie(cmd, chr, tok, cs) = getxtoken();
-				if (cmd != spacer)
-					backinput(tok);
+				t = getxtoken();
+				if (t.cmd != spacer)
+					backinput(t);
 			}
 			else 
 				if (scankeyword("ex"))
 				{
 					auto v = x_height(cur_font());
-					std::tie(cmd, chr, tok, cs) = getxtoken();
-					if (cmd != spacer)
-						backinput(tok);
+					t = getxtoken();
+					if (t.cmd != spacer)
+						backinput(t);
 				}
 		}
 		if (mu)
@@ -260,9 +265,9 @@ void scandelimiter(halfword p, bool r, halfword tok)
 				aritherror = true;
 			else
 				val = (val<<16)+f;
-			std::tie(cmd, chr, tok, cs) = getxtoken();
-			if (cmd != spacer)
-				backinput(tok);
+			t = getxtoken();
+			if (t.cmd != spacer)
+				backinput(t);
 			break;
 		}
 		if (scankeyword("true"))
@@ -282,9 +287,9 @@ void scandelimiter(halfword p, bool r, halfword tok)
 				aritherror = true;
 			else
 				val = val*unity+f;
-			std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-			if (cmd != spacer)
-				backinput(tok);
+			t = getxtoken();
+			if (t.cmd != spacer)
+				backinput(t);
 			break;
 		}
 		int num, denom;
@@ -312,9 +317,9 @@ void scandelimiter(halfword p, bool r, halfword tok)
 								else 
 									if (scankeyword("sp")) 
 									{
-										std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
-										if (cmd != spacer)
-											backinput(tok);
+										t = getxtoken();
+										if (t.cmd != spacer)
+											backinput(t);
 										break;
 									}
 									else
@@ -324,9 +329,9 @@ void scandelimiter(halfword p, bool r, halfword tok)
 											aritherror = true;
 										else
 											val = val*unity+f;
-										std::tie(cmd, std::ignore, std::ignore) = xtoken(cmd, chr, cs);
-										if (cmd != spacer)
-											backinput(tok);
+										t = xtoken(t);
+										if (t.cmd != spacer)
+											backinput(t);
 										break;
 									}
 		val = xnoverd(val, num, denom);
@@ -337,9 +342,9 @@ void scandelimiter(halfword p, bool r, halfword tok)
 			aritherror = true;
 		else
 			val = val*unity+f;
-		std::tie(cmd, std::ignore, std::ignore, std::ignore) = getxtoken();
-		if (cmd != spacer)
-			backinput(tok);
+		t = getxtoken();
+		if (t.cmd != spacer)
+			backinput(t);
 		break;
 	} 
 	if (aritherror || abs(val) >= 0x40'00'00'00)
@@ -415,21 +420,17 @@ void scanfilename(void)
 {
 	nameinprogress = true;
 	beginname();
-	halfword chr, tok;
-	eightbits cmd;
-	do
-		std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-	while (cmd == spacer);
+	auto t = getXTokenSkipSpace();
 	while (true)
 	{
-		if (cmd > other_char || chr > 255)
+		if (t.cmd > other_char || t.chr > 255)
 		{
-			backinput(tok);
+			backinput(t);
 			break;
 		}
-		if (!morename(chr))
+		if (!morename(t.chr))
 			break;
-		std::tie(cmd, chr, tok, std::ignore) = getxtoken();
+		t = getxtoken();
 	}
 	endname();
 	nameinprogress = false;
@@ -437,21 +438,17 @@ void scanfilename(void)
 
 [[nodiscard]] int scanfontident(void)
 {
-	halfword chr, tok;
-	eightbits cmd;
-	do
-		std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-	while (cmd == spacer);
-	switch (cmd)
+	auto t = getXTokenSkipSpace();
+	switch (t.cmd)
 	{
 		case def_font:
 			return cur_font();
 		case set_font:
-			return chr;
+			return t.chr;
 		case def_family:
-			return equiv(chr+scanfourbitint());
+			return equiv(t.chr+scanfourbitint());
 	}
-	backerror(tok, "Missing font identifier", "I was looking for a control sequence whose\ncurrent meaning has been defined by \\font.");
+	backerror(t, "Missing font identifier", "I was looking for a control sequence whose\ncurrent meaning has been defined by \\font.");
 	return null_font;
 }
 
@@ -459,23 +456,20 @@ void scanfilename(void)
 {
 	bool mu = level == 3;
 	bool negative = false;
-	halfword tok, chr;
-	eightbits cmd;
+	Token t;
 	do
 	{
-		do
-			std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-		while (cmd == spacer);
-		if (tok == other_token+'-')
+		t = getXTokenSkipSpace();
+		if (t.tok == other_token+'-')
 		{
 			negative = !negative;
-			tok = other_token+'+';
+			t.tok = other_token+'+';
 		}
-	} while (tok != other_token+'+');
+	} while (t.tok != other_token+'+');
 	int val, lev;
-	if (cmd >= min_internal && cmd <= max_internal)
+	if (t.cmd >= min_internal && t.cmd <= max_internal)
 	{
-		std::tie(val, lev) = scansomethinginternal(level, negative, cmd, chr, tok);
+		std::tie(val, lev) = scansomethinginternal(level, negative, t);
 		if (lev >= 2)
 		{
 			if (lev != level)
@@ -490,7 +484,7 @@ void scanfilename(void)
 	}
 	else
 	{
-		backinput(tok);
+		backinput(t);
 		val = scandimen(mu, false, false);
 		if (negative)
 			val = -val;
@@ -522,78 +516,75 @@ void scanfilename(void)
 	radix = 0;
 	bool OKsofar = true; // has an error message been issued?
 	bool negative = false; // should the answer be negated?
-	halfword chr, tok;
-	eightbits cmd;
+	Token t;
 	do
 	{
-		do
-			std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-		while (cmd == spacer);
-		if (tok == other_token+'-')
+		t = getXTokenSkipSpace();
+		if (t.tok == other_token+'-')
 		{
 			negative = !negative;
-			tok = other_token+'+';
+			t.tok = other_token+'+';
 		}
-	} while (tok == other_token+'+');
-	if (tok == alpha_token)
+	} while (t.tok == other_token+'+');
+	if (t.tok == alpha_token)
 	{
-		std::tie(cmd, chr, tok, std::ignore) = gettoken();
-		if (tok < cs_token_flag)
+		t = gettoken();
+		if (t.tok < cs_token_flag)
 		{
-			val = chr;
-			if (cmd == right_brace)
+			val = t.chr;
+			if (t.cmd == right_brace)
 				alignstate++;
-			if (cmd == left_brace)
+			if (t.cmd == left_brace)
 				alignstate--;
 		}
 		else 
-			val = tok-cs_token_flag-(tok < cs_token_flag+single_base ? active_base : single_base);
+			val = t.tok-cs_token_flag-(t.tok < cs_token_flag+single_base ? active_base : single_base);
 		if (val > 0xFF)
 		{
-			backerror(tok, "Improper alphabetic constant", "A one-character control sequence belongs after a ` mark.\nSo I'm essentially inserting \\0 here.");
+			backerror(t, "Improper alphabetic constant", "A one-character control sequence belongs after a ` mark.\nSo I'm essentially inserting \\0 here.");
 			val = '0';
 		}
 		else
 		{
-			std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-			if (cmd != spacer)
-				backinput(tok);
+			t = getxtoken();
+			if (t.cmd != spacer)
+				backinput(t);
 		}
 	}
 	else 
-		if (cmd >= min_internal && cmd <= max_internal)
-			std::tie(val, lev) = scansomethinginternal(0, false, cmd, chr, tok);
+		if (t.cmd >= min_internal && t.cmd <= max_internal)
+			std::tie(val, lev) = scansomethinginternal(0, false, t);
 		else
 		{
 			radix = 10;
 			auto m = 214748364; //0xC'CC'CC'CC
-			if (tok == octal_token) //other_char+'\''
+			if (t.tok == octal_token) //other_char+'\''
 			{
 				radix = 8;
 				m = 0x10'00'00'00;
-				std::tie(cmd, chr, tok, std::ignore) = getxtoken();
+				t = getxtoken();
 			}
 			else 
-				if (tok == hex_token) //other_char+'\"'
+				if (t.tok == hex_token) //other_char+'\"'
 				{
 					radix = 16;
 					m = 0x8'00'00'00;
-					std::tie(cmd, chr, tok, std::ignore) = getxtoken();
+					t = getxtoken();
 				};
 			bool vacuous = true;
 			val = 0;
 			while (true)
 			{
 				int d; //the digit just scanned
-				if (tok < zero_token+radix && tok >= zero_token && tok <= zero_token+9)
-					d = tok-zero_token;
+				if (t.tok < zero_token+radix && t.tok >= zero_token && t.tok <= zero_token+9)
+					d = t.tok-zero_token;
 				else 
 					if (radix == 16)
-						if (tok <= A_token+5 && tok >= A_token)
-							d = tok-A_token+10;
+						if (t.tok <= A_token+5 && t.tok >= A_token)
+							d = t.tok-A_token+10;
 						else 
-							if (tok <= other_A_token+5 && tok >= other_A_token)
-								d = tok-other_A_token+10;
+							if (t.tok <= other_A_token+5 && t.tok >= other_A_token)
+								d = t.tok-other_A_token+10;
 							else
 								break;
 					else
@@ -610,40 +601,38 @@ void scanfilename(void)
 				}
 				else
 					val = val*radix+d;
-				std::tie(cmd, chr, tok, std::ignore) = getxtoken();
+				t = getxtoken();
 			}
 			if (vacuous)
-				backerror(tok, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
+				backerror(t, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
 			else 
-				if (cmd != spacer)
-					backinput(tok);
+				if (t.cmd != spacer)
+					backinput(t);
 		}
 	if (negative)
 		val = -val;
 	return val;
 }
 
-bool scankeyword(const std::string &t)
+bool scankeyword(const std::string &s)
 {
 	halfword p = backup_head;
 	link(p) = 0;
-	for (size_t k = 0; k < t.size();)
+	for (size_t k = 0; k < s.size();)
 	{
-		halfword chr, tok, cs;
-		eightbits cmd;
-		std::tie(cmd, chr, tok, cs) = getxtoken();
-		if (cs == 0 && (chr == t[k] || chr == t[k]-'a'+'A'))
+		auto t = getxtoken();
+		if (t.cs == 0 && (t.chr == s[k] || t.chr == s[k]-'a'+'A'))
 		{
 			auto q = getavail();
 			link(p) = q;
-			info(q) = tok;
+			info(q) = t.tok;
 			p = q;
 			k++;
 		}
 		else 
-			if (cmd != spacer || p != backup_head)
+			if (t.cmd != spacer || p != backup_head)
 			{
-				backinput(tok);
+				backinput(t);
 				if (p != backup_head)
 					back_list(link(backup_head));
 				return false;
@@ -653,73 +642,63 @@ bool scankeyword(const std::string &t)
 	return true;
 }
 
-[[nodiscard]] std::tuple<eightbits, halfword, halfword> scanleftbrace(void)
+[[nodiscard]] Token scanleftbrace(void)
 {
-	halfword chr, tok;
-	eightbits cmd;
-	do  
-		std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-	while (cmd == spacer || cmd == escape);
-	if (cmd != left_brace)
+	auto t = getXTokenSkipSpaceAndEscape();
+	if (t.cmd != left_brace)
 	{
-		backerror(tok, "Missing { inserted", "A left brace was mandatory here, so I've put one in.\nYou might want to delete and/or insert some corrections\nso that I will find a matching right brace soon.\n(If you're confused by all this, try typing `I}' now.)");
-		tok = left_brace_token+'{';
-		cmd = left_brace;
-		chr = '{'; 
+		backerror(t, "Missing { inserted", "A left brace was mandatory here, so I've put one in.\nYou might want to delete and/or insert some corrections\nso that I will find a matching right brace soon.\n(If you're confused by all this, try typing `I}' now.)");
+		t.tok = left_brace_token+'{';
+		t.cmd = left_brace;
+		t.chr = '{'; 
 		alignstate++;
 	}
-	return std::make_tuple(cmd, chr, tok);
+	return t;
 }
 
 void scanmath(halfword p)
 {
-	halfword chr, tok;
-	eightbits cmd;
-	do
-		std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-	while (cmd == spacer || cmd == escape);
+	auto t = getXTokenSkipSpaceAndEscape();
 	bool label21;
 	do
 	{
 		label21 = false;
 		int c;
-		switch (cmd)
+		switch (t.cmd)
 		{
 			case letter:
 			case other_char:
 			case char_given:
-				c = math_code(chr);
+				c = math_code(t.chr);
 				if (c == 0x80'00)
 				{
-					halfword cs = chr+1;
-					cmd = eq_type(cs);
-					chr = equiv(cs);
-					std::tie(cmd, chr, tok) = xtoken(cmd, chr, cs);
-					backinput(tok);
-					do
-						std::tie(cmd, chr, std::ignore, std::ignore) = getxtoken();
-					while (cmd == spacer || cmd == escape);
+					t.cs = t.chr+1;
+					t.cmd = eq_type(t.cs);
+					t.chr = equiv(t.cs);
+					t = xtoken(t);
+					backinput(t);
+					t = getXTokenSkipSpaceAndEscape();
 					label21 = true;
 					continue;
 				}
 				break;
 			case char_num:
-				chr = scancharnum();
-				cmd = char_given;
+				t.chr = scancharnum();
+				t.cmd = char_given;
 				label21 = true;
 				continue;
 			case math_char_num:
 				c = scanfifteenbitint();
 				break;
 			case math_given: 
-				c = chr;
+				c = t.chr;
 				break;
 			case delim_num:
 				c = scantwentysevenbitint()>>12;
 				break;
 			default:
-				backinput(tok);
-				std::tie(cmd, chr, tok) = scanleftbrace();
+				backinput(t);
+				t = scanleftbrace();
 				saved(0) = p;
 				saveptr++;
 				pushmath(math_group);
@@ -733,21 +712,17 @@ void scanmath(halfword p)
 
 void scanoptionalequals(void)
 {
-	halfword tok;
-	eightbits cmd;
-	do
-		std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
-	while (cmd == spacer);
-	if (tok != other_token+'=') // other_char + '='
-		backinput(tok);
+	auto t = getXTokenSkipSpace();
+	if (t.tok != other_token+'=') // other_char + '='
+		backinput(t);
 }
 
 constexpr int default_rule = 26214; //0.4\thinspace pt
 
-halfword scanrulespec(eightbits cmd)
+halfword scanrulespec(Token t)
 {
 	auto q = newrule();
-	if (cmd == vrule)
+	if (t.cmd == vrule)
 		width(q) = default_rule;
 	else
 	{
@@ -779,11 +754,11 @@ halfword scanrulespec(eightbits cmd)
 //! |mem| location of math glue spec
 static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 
-[[nodiscard]] std::tuple<int, int> scansomethinginternal(smallnumber level, bool negative, eightbits cmd, halfword chr, halfword tok)
+[[nodiscard]] std::tuple<int, int> scansomethinginternal(smallnumber level, bool negative, Token t)
 {
 	int val, lev;
-	auto m = chr;
-	switch (cmd)
+	auto m = t.chr;
+	switch (t.cmd)
 	{
 		case def_code:
 			lev = int_val;
@@ -802,21 +777,21 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 		case def_font:
 			if (level != tok_val)
 			{
-				backerror(tok, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
+				backerror(t, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
 				val = 0;
 				lev = dimen_val;
 			}
 			else 
-				if (cmd <= assign_toks)
+				if (t.cmd <= assign_toks)
 				{
-					if (cmd < assign_toks)
+					if (t.cmd < assign_toks)
 						m = toks_base+scaneightbitint();
 					val = equiv(m);
 					lev = tok_val;
 				}
 				else
 				{
-					backinput(tok);
+					backinput(t);
 					val = scanfontident()+frozen_null_font;
 					lev = ident_val;
 				}
@@ -840,7 +815,7 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 		case set_aux:
 			if (abs(mode) != m)
 			{
-				error("Improper "+cmdchr(set_aux, m), "You can refer to \\spacefactor only in horizontal mode;\nyou can refer to \\prevdepth only in vertical mode; and\nneither of these is meaningful inside \\write. So\nI'm forgetting what you said and using zero instead.");
+				error("Improper "+cmdchr(t), "You can refer to \\spacefactor only in horizontal mode;\nyou can refer to \\prevdepth only in vertical mode; and\nneither of these is meaningful inside \\write. So\nI'm forgetting what you said and using zero instead.");
 				val = 0;
 				lev = level == tok_val ? int_val : dimen_val;
 			}
@@ -895,7 +870,7 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 		break;
 		case char_given:
 		case math_given:
-			val = chr;
+			val = t.chr;
 			lev = int_val;
 			break;
 		case assign_font_dimen:
@@ -926,14 +901,14 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			lev = m;
 			break;
 		case last_item:
-			if (chr > glue_val)
+			if (t.chr > glue_val)
 			{
-				val = chr == input_line_no_code ? line : lastbadness;
+				val = t.chr == input_line_no_code ? line : lastbadness;
 				lev = int_val;
 			}
 			else
 			{
-				if (chr == glue_val)
+				if (t.chr == glue_val)
 				{
 					val = zero_glue;
 					lev = glue_val;
@@ -941,10 +916,10 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 				else
 				{
 					val = 0;
-					lev = chr;
+					lev = t.chr;
 				}
 				if (!is_char_node(tail) && mode)
-					switch (chr)
+					switch (t.chr)
 					{
 						case int_val: 
 							if (type(tail) == penalty_node)
@@ -964,7 +939,7 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 					}
 				else 
 					if (mode == vmode && tail == head)
-						switch (chr)
+						switch (t.chr)
 						{
 							case int_val: 
 								val = lastpenalty;
@@ -979,7 +954,7 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			}
 			break;
 		default:
-			error("You can't use `"+cmdchr(cmd, chr)+"' after "+esc("the"), "I'm forgetting what you said and using zero instead.");
+			error("You can't use `"+cmdchr(t)+"' after "+esc("the"), "I'm forgetting what you said and using zero instead.");
 			val = 0;
 			lev = level == tok_val ? int_val : dimen_val;
 	}
@@ -1008,7 +983,7 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 	return {val, lev};
 }
 
-[[nodiscard]] std::tuple<eightbits, halfword, halfword> scanspec(groupcode c, bool threecodes)
+[[nodiscard]] Token scanspec(groupcode c, bool threecodes)
 {
 	int s;
 	if (threecodes)
@@ -1043,27 +1018,25 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 	return scanleftbrace();
 }
 
-halfword scantoks(bool macrodef, bool xpand, halfword cs)
+halfword scantoks(bool macrodef, bool xpand, Token tk)
 {
 	scannerstatus = macrodef ? defining : absorbing;
-	warningindex = cs;
+	warningindex = tk.cs;
 	defref = getavail();
 	token_ref_count(defref) = 0;
 	auto p = defref;
 	halfword hashbrace = 0;
 	halfword t = zero_token;
 	bool l40 = false;
-	halfword chr, tok;
-	eightbits cmd;
 	if (macrodef)
 	{
 		while (true)
 		{
-			std::tie(cmd, chr, tok, std::ignore) = gettoken();
-			if (tok < right_brace_limit)
+			tk = gettoken();
+			if (tk.tok < right_brace_limit)
 			{
 				store_new_token(p, end_match_token);
-				if (cmd == right_brace)
+				if (tk.cmd == right_brace)
 				{
 					error("Missing { inserted", "Where was the left brace? You said something like `\\def\\a}',\nwhich I'm going to interpret as `\\def\\a{}'.");
 					alignstate++;
@@ -1072,14 +1045,14 @@ halfword scantoks(bool macrodef, bool xpand, halfword cs)
 				}
 				break;
 			}
-			if (cmd == mac_param)
+			if (tk.cmd == mac_param)
 			{
-				auto s = match_token+chr;
-				std::tie(cmd, chr, tok, std::ignore) = gettoken();
-				if (cmd == left_brace)
+				auto s = match_token+tk.chr;
+				tk = gettoken();
+				if (tk.cmd == left_brace)
 				{
-					hashbrace = tok;
-					store_new_token(p, tok);
+					hashbrace = tk.tok;
+					store_new_token(p, tk.tok);
 					store_new_token(p, end_match_token);
 					break;
 				}
@@ -1088,16 +1061,16 @@ halfword scantoks(bool macrodef, bool xpand, halfword cs)
 				else
 				{
 					t++;
-					if (tok != t)
-						backerror(tok, "Parameters must be numbered consecutively", "I've inserted the digit you should have used after the #.\nType `1' to delete what you did use.");
-					tok = s;
+					if (tk.tok != t)
+						backerror(tk, "Parameters must be numbered consecutively", "I've inserted the digit you should have used after the #.\nType `1' to delete what you did use.");
+					tk.tok = s;
 				}
 			}
-			store_new_token(p, tok);
+			store_new_token(p, tk.tok);
 		}
 	}
 	else
-		std::tie(cmd, chr, tok) = scanleftbrace();
+		tk = scanleftbrace();
 	halfword unbalance;
 	if (!l40)
 		unbalance = 1;
@@ -1107,11 +1080,11 @@ halfword scantoks(bool macrodef, bool xpand, halfword cs)
 		{
 			while (true)
 			{
-				auto [cmd, chr, cs] = getnext();
-				if (cmd <= max_command)
+				tk = getnext();
+				if (tk.cmd <= max_command)
 					break;
-				if (cmd != the)
-					expand(cmd, chr, cs);
+				if (tk.cmd != the)
+					expand(tk);
 				else
 				{
 					auto q = thetoks();
@@ -1122,12 +1095,12 @@ halfword scantoks(bool macrodef, bool xpand, halfword cs)
 					}
 				}
 			}
-			std::tie(cmd, chr, tok) = xtoken(cmd, chr, cs);
+			tk = xtoken(tk);
 		}
 		else
-			std::tie(cmd, chr, tok, std::ignore) = gettoken();
-		if (tok < right_brace_limit) 
-			if (cmd < right_brace)
+			tk = gettoken();
+		if (tk.tok < right_brace_limit)
+			if (tk.cmd < right_brace)
 				unbalance++;
 			else
 			{
@@ -1136,24 +1109,24 @@ halfword scantoks(bool macrodef, bool xpand, halfword cs)
 					break;
 			}
 		else 
-			if (cmd == mac_param)
+			if (tk.cmd == mac_param)
 				if (macrodef)
 				{
-					auto s = tok;
+					auto s = tk.tok;
 					if (xpand)
-						std::tie(cmd, chr, tok, std::ignore) = getxtoken();
+						tk = getxtoken();
 					else
-						std::tie(cmd, chr, tok, std::ignore) = gettoken();
-					if (cmd != mac_param)
-						if (tok <= zero_token || tok > t) 
+						tk = gettoken();
+					if (tk.cmd != mac_param)
+						if (tk.tok <= zero_token || tk.tok > t) 
 						{
-							backerror(tok, "Illegal parameter number in definition of "+scs(warningindex), "You meant to type ## instead of #, right?\nOr maybe a } was forgotten somewhere earlier, and things\nare all screwed up? I'm going to assume that you meant ##.");
-							tok = s;
+							backerror(tk, "Illegal parameter number in definition of "+scs(warningindex), "You meant to type ## instead of #, right?\nOr maybe a } was forgotten somewhere earlier, and things\nare all screwed up? I'm going to assume that you meant ##.");
+							tk.tok = s;
 						}
 						else
-							tok = out_param_token-'0'+chr;
+							tk.tok = out_param_token-'0'+tk.chr;
 				}
-		store_new_token(p, tok);
+		store_new_token(p, tk.tok);
 	}
 	scannerstatus = 0;
 	if (hashbrace)
@@ -1173,6 +1146,7 @@ void begintokenlist(halfword p, quarterword t)
 	state = token_list;
 	start = p;
 	index = t;
+	Token tk;
 	if (t >= macro) //the token list starts with a reference count
 	{
 		add_token_ref(p);
@@ -1191,8 +1165,10 @@ void begintokenlist(halfword p, quarterword t)
 					case write_text: 
 						diagnostic("\r"+esc("write")+"->"+tokenshow(p));
 						break;
-					default: 
-						diagnostic("\r"+cmdchr(assign_toks, t-output_text+output_routine_loc)+"->"+tokenshow(p));
+					default:
+						tk.cmd = assign_toks;
+						tk.chr = t-output_text+output_routine_loc;
+						diagnostic("\r"+cmdchr(tk)+"->"+tokenshow(p));
 				}
 			}
 		}
@@ -1247,76 +1223,68 @@ void deletetokenref(halfword p)
 		info(p)--;
 }
 
-static halfword makeCurtok(eightbits cmd, halfword chr, halfword cs)
-{
-	if (cs == 0)
-		return (cmd<<8)+chr;
-	else
-		return cs_token_flag+cs;
-}
-
-[[nodiscard]] std::tuple<eightbits, halfword, halfword, halfword> gettoken(void)
+[[nodiscard]] Token gettoken(void)
 {
 	nonewcontrolsequence = false;
-	auto [cmd, chr, cs] = getnext();
+	auto t = getnext();
 	nonewcontrolsequence = true;
-	return std::make_tuple(cmd, chr, makeCurtok(cmd, chr, cs), cs);
+	t.make_tok();
+	return t; 
 }
 
-[[nodiscard]] std::tuple<eightbits, halfword, halfword, halfword> getxtoken(void)
+[[nodiscard]] Token getxtoken(void)
 {
-	halfword chr, cs;
-	eightbits cmd;
+	Token t;
 	while (true)
 	{
-		std::tie(cmd, chr, cs) = getnext();
-		if (cmd <= max_command)
+		t = getnext();
+		if (t.cmd <= max_command)
 			break;
-		if (cmd >= call)
-			if (cmd < end_template)
-				macrocall(chr, cs);
+		if (t.cmd >= call)
+			if (t.cmd < end_template)
+				macrocall(t);
 			else
 			{
-				cs = frozen_endv;
-				cmd = ignore;
+				t.cs = frozen_endv;
+				t.cmd = ignore;
 				break;
 			}
 		else
-			expand(cmd, chr, cs);
+			expand(t);
 	}
-	return std::make_tuple(cmd, chr, makeCurtok(cmd, chr, cs), cs);
+	t.make_tok();
+	return t;
 }
 
-[[nodiscard]] std::tuple<eightbits, halfword, halfword> xtoken(eightbits cmd, halfword chr, halfword cs)
+[[nodiscard]] Token xtoken(Token t)
 {
-	while (cmd > max_command)
+	while (t.cmd > max_command)
 	{
-		expand(cmd, chr, cs);
-		std::tie(cmd, chr, cs) = getnext();
+		expand(t);
+		t = getnext();
 	}
-	return std::make_tuple(cmd, chr, makeCurtok(cmd, chr, cs));
+	t.make_tok();
+	return t;
 }
 
-std::tuple<eightbits, halfword> getpreambletoken(void)
+Token getpreambletoken(void)
 {
-	halfword chr, tok, cs;
-	eightbits cmd;
 	while (true)
 	{
-		std::tie(cmd, chr, tok, cs) = gettoken();
-		while (chr == span_code && cmd == tab_mark)
+		auto t = gettoken();
+		while (t.chr == span_code && t.cmd == tab_mark)
 		{
-			std::tie(cmd, chr, tok, cs) = gettoken();
-			if (cmd > max_command)
+			t = gettoken();
+			if (t.cmd > max_command)
 			{
-				expand(cmd, chr, cs);
-				std::tie(cmd, chr, tok, cs) = gettoken();
+				expand(t);
+				t = gettoken();
 			}
 		}
-		if (cmd == endv)
+		if (t.cmd == endv)
 			fatalerror("(interwoven alignment preambles are not allowed)");
-		if (cmd != assign_glue || chr != glue_base+tab_skip_code)
-			return std::make_tuple(cmd, tok);
+		if (t.cmd != assign_glue || t.chr != glue_base+tab_skip_code)
+			return t;
 		scanoptionalequals();
 		(global_defs() > 0 ? geqdefine : eqdefine)(glue_base+tab_skip_code, glue_ref, scanglue(glue_val));
 	}
@@ -1326,17 +1294,16 @@ std::tuple<eightbits, halfword> getpreambletoken(void)
 {
 	while (true)
 	{
-		halfword chr, tok, cs;
-		eightbits cmd;
+		Token t;
 		do
-			std::tie(cmd, chr, tok, cs) = gettoken();
-		while (tok == space_token);
-		if (cs && cs <= frozen_control_sequence)
-			return cs;
-		inserror(tok, "Missing control sequence inserted", "Please don't say `\\def cs{...}', say `\\def\\cs{...}'.\nI've inserted an inaccessible control sequence so that your\ndefinition will be completed without mixing me up too badly.\nYou can recover graciously from this error, if you're\ncareful; see exercise 27.2 in The TeXbook.");
-		if (cs == 0)
-			backinput(tok);
-		tok = frozen_protection+cs_token_flag;
+			t = gettoken();
+		while (t.tok == space_token);
+		if (t.cs && t.cs <= frozen_control_sequence)
+			return t.cs;
+		inserror(t, "Missing control sequence inserted", "Please don't say `\\def cs{...}', say `\\def\\cs{...}'.\nI've inserted an inaccessible control sequence so that your\ndefinition will be completed without mixing me up too badly.\nYou can recover graciously from this error, if you're\ncareful; see exercise 27.2 in The TeXbook.");
+		if (t.cs == 0)
+			backinput(t);
+		t.tok = frozen_protection+cs_token_flag;
 	}
 }
 
@@ -1409,22 +1376,21 @@ void insthetoks(void)
 		state = new_line;
 		while (true)
 		{
-			halfword chr, tok;
-			eightbits cmd;
-			std::tie(cmd, chr, tok, std::ignore) = gettoken();
-			if (tok == 0)
+			Token t;
+			t = gettoken();
+			if (t.tok == 0)
 				break;
 			if (alignstate < 1000000)
 			{
 				do
-					std::tie(cmd, chr, tok, std::ignore) = gettoken();
-				while (tok);
+					t = gettoken();
+				while (t.tok);
 				alignstate = 1000000;
 				break;
 			}
 			auto q = getavail();
 			link(p) = q;
-			info(q) = tok;
+			info(q) = t.tok;
 			p = q;
 		}
 		endfilereading();
@@ -1450,49 +1416,35 @@ static halfword strtoks(void)
 	return p;
 }
 
-void convtoks(halfword chr)
+void convtoks(Token t)
 {
 	smallnumber savescannerstatus;
-	auto c = chr;
-	halfword cs;
-	eightbits cmd;
-	switch (c)
+	int val;
+	switch (t.chr)
 	{
 		case number_code:
-		case roman_numeral_code: 
-		case font_name_code: 
-			break;
-		case string_code:
-		case meaning_code:
-			savescannerstatus = scannerstatus;
-			scannerstatus = 0;
-			std::tie(cmd, chr, std::ignore, cs) = gettoken();
-			scannerstatus = savescannerstatus;
-			break;
-		case job_name_code: 
-			if (jobname == "")
-				openlogfile();
-	}
-	int val;
-	switch (c)
-	{
-		case number_code: 
 			strings.push_back(std::to_string(scanint()));
 			break;
 		case roman_numeral_code: 
 			strings.push_back(romanint(scanint()));
 			break;
-		case string_code: 
-			strings.push_back(cs ? scs(cs) : std::string(1, chr));
-			break;
-		case meaning_code: 
-			strings.push_back(meaning(cmd, chr));
-			break;
-		case font_name_code:
+		case font_name_code: 
 			val = scanfontident();
 			strings.push_back(fontname[val]+(fontsize[val] != fontdsize[val] ? " at "+asScaled(fontsize[val])+"pt" : ""));
 			break;
+		case string_code:
+			strings.push_back(t.cs ? scs(t.cs) : std::string(1, t.chr));
+			break;
+		case meaning_code:
+			savescannerstatus = scannerstatus;
+			scannerstatus = 0;
+			t = gettoken();
+			scannerstatus = savescannerstatus;
+			strings.push_back(meaning(t));
+			break;
 		case job_name_code: 
+			if (jobname == "")
+				openlogfile();
 			strings.push_back(jobname);
 	}
 	link(garbage) = strtoks();
@@ -1501,10 +1453,8 @@ void convtoks(halfword chr)
 
 halfword thetoks(void)
 {
-	halfword chr, tok, cs;
-	eightbits cmd;
-	std::tie(cmd, chr, tok, cs) = getxtoken();
-	auto [val, lev] = scansomethinginternal(tok_val, false, cmd, chr, tok);
+	auto t = getxtoken();
+	auto [val, lev] = scansomethinginternal(tok_val, false, t);
 	if (lev >= ident_val)
 	{
 		halfword p = temp_head;

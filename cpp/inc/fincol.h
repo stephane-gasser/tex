@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-bool fincol(halfword, halfword &);
+bool fincol(Token, halfword &);
 
 #endif

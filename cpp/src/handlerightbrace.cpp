@@ -21,7 +21,7 @@
 
 static int floating_penalty(void) { return int_par(floating_penalty_code); }
 
-void handlerightbrace(halfword tok, halfword &loop)
+void handlerightbrace(Token t, halfword &loop)
 {
 	halfword p, q;
 	scaled d;
@@ -29,7 +29,7 @@ void handlerightbrace(halfword tok, halfword &loop)
 	switch (curgroup)
 	{
 		case simple_group: 
-			unsave(tok);
+			unsave();
 			break;
 		case bottom_level:
 			error("Too many }'s", "You've closed more groups than you opened.\nSuch booboos are generally harmless, so keep going.");
@@ -40,19 +40,19 @@ void handlerightbrace(halfword tok, halfword &loop)
 			extrarightbrace();
 			break;
 		case hbox_group: 
-			package(0, tok);
+			package(0, t);
 			break;
 		case adjusted_hbox_group:
 			adjusttail = adjust_head;
-			package(0, tok);
+			package(0, t);
 			break;
 		case vbox_group:
 			endgraf();
-			package(0, tok);
+			package(0, t);
 			break;
 		case vtop_group:
 			endgraf();
-			package(4, tok);
+			package(vtop_code, t);
 			break;
 		case insert_group:
 			endgraf();
@@ -60,7 +60,7 @@ void handlerightbrace(halfword tok, halfword &loop)
 			link(q)++;
 			d = split_max_depth();
 			f = floating_penalty();
-			unsave(tok);
+			unsave();
 			saveptr--;
 			p = vpack(link(head), 0, additional);
 			popnest();
@@ -92,12 +92,12 @@ void handlerightbrace(halfword tok, halfword &loop)
 			{
 				error("Unbalanced output routine", "Your sneaky output routine has problematic {'s and/or }'s.\nI can't handle that very well; good luck.");
 				do
-					std::tie(std::ignore, std::ignore, std::ignore, std::ignore) = gettoken();
+					t = gettoken();
 				while (loc);
 			}
 			endtokenlist();
 			endgraf();
-			unsave(tok);
+			unsave();
 			outputactive = false;
 			insertpenalties = 0;
 			if (box(255))
@@ -123,18 +123,18 @@ void handlerightbrace(halfword tok, halfword &loop)
 			builddiscretionary;
 			break;
 		case align_group:
-			backinput(tok);
-			tok = cs_token_flag+frozen_cr;
-			inserror(tok, "Missing "+esc("cr")+" inserted", "I'm guessing that you meant to end an alignment here.");
+			backinput(t);
+			t.tok = cs_token_flag+frozen_cr;
+			inserror(t, "Missing "+esc("cr")+" inserted", "I'm guessing that you meant to end an alignment here.");
 			break;
 		case no_align_group:
 			endgraf();
-			unsave(tok);
+			unsave();
 			alignpeek(loop);
 			break;
 		case vcenter_group:
 			endgraf();
-			unsave(tok);
+			unsave();
 			saveptr -= 2;
 			p = vpack(link(head), saved(1), saved(0));
 			popnest();
@@ -144,10 +144,10 @@ void handlerightbrace(halfword tok, halfword &loop)
 			info(nucleus(tail)) = p;
 			break;
 		case math_choice_group: 
-			buildchoices(tok);
+			buildchoices(t);
 			break;
 		case math_group:
-			unsave(tok);
+			unsave();
 			saveptr--;
 			math_type(saved(0)) = sub_mlist;
 			p = finmlist(0);

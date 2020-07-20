@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void mathfraction(halfword, halfword);
+void mathfraction(halfword, Token);
 
 #endif

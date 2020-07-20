@@ -44,24 +44,14 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 				case '9':
 					if (deletionsallowed)
 					{
-						/*auto s1 = tok;
-						auto s2 = cmd;
-						auto s3 = chr;*/
 						auto s4 = alignstate;
 						alignstate = 1000000;
 						OKtointerrupt = false;
-						if (last > First + 1 && buffer[First+1] >= '0' && buffer[First+1] <= '9')
-						  c = (c-'0')*10+buffer[First+1]-'0';
-						else
-							c -= '0';
-						while (c > 0)
-						{
-							auto [cmd, chr, tok, cs] = gettoken();
-							c--;
-						}
-						/*tok = s1;
-						cmd = s2;
-						chr = s3;*/
+						c -= '0';
+						if (last > First+1 && buffer[First+1] >= '0' && buffer[First+1] <= '9')
+						  c = c*10+buffer[First+1]-'0';
+						for (; c > 0; c--)
+							auto _ = gettoken();
 						alignstate = s4;
 						OKtointerrupt = true;
 						helpline = "I have just deleted some text, as you asked.";
@@ -160,10 +150,10 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 	println();
 }
 
-void inserror(halfword tok, const std::string &msg, const std::string &hlp, bool deletionsallowed)
+void inserror(Token t, const std::string &msg, const std::string &hlp, bool deletionsallowed)
 {
 	OKtointerrupt = false;
-	backinput(tok);
+	backinput(t);
 	token_type = inserted;
 	OKtointerrupt = true;
 	error(msg, hlp, deletionsallowed);
@@ -174,10 +164,10 @@ void inserror(halfword tok, const std::string &msg, const std::string &hlp, bool
 //!just before issuing an error message. This routine, like \a back_input,
 //!requires that \a cur_tok has been set. We disable interrupts during the
 //!call of \a back_input so that the help message won't be lost.
-void backerror(halfword tok, const std::string &msg, const std::string &hlp)
+void backerror(Token t, const std::string &msg, const std::string &hlp)
 {
 	OKtointerrupt = false;
-	backinput(tok);
+	backinput(t);
 	OKtointerrupt = true;
 	error(msg, hlp);
 }
@@ -235,13 +225,6 @@ void fatalerror(const std::string &s)
 	fatal("Emergency stop", s);
 }
 
-//! make sure that the pool hasn't overflowed
-/*void str_room(int n) 
-{
-  if (poolptr+n > poolsize)
-	  overflow("pool size", poolsize-initpoolptr); 
-}*/
-
 void check_full_save_stack(void)
 {
 	if (saveptr > maxsavestack)
@@ -253,13 +236,13 @@ void check_full_save_stack(void)
 }
 
 void interror(int n, const std::string &msg, const std::string &hlp) { error(msg+" ("+std::to_string(n)+")", hlp); }
-void reportillegalcase(eightbits cmd, halfword chr) { error("You can't use `"+cmdchr(cmd, chr)+"' in "+asMode(mode), "Sorry, but I'm not programmed to handle this case;\nI'll just pretend that you didn't ask for it.\nIf you're in the wrong mode, you might be able to\nreturn to the right one by typing `I}' or `I$' or `I\\par'."); }
+void reportillegalcase(Token t) { error("You can't use `"+cmdchr(t)+"' in "+asMode(mode), "Sorry, but I'm not programmed to handle this case;\nI'll just pretend that you didn't ask for it.\nIf you're in the wrong mode, you might be able to\nreturn to the right one by typing `I}' or `I$' or `I\\par'."); }
 
-bool privileged(eightbits cmd, halfword chr)
+bool privileged(Token t)
 {
 	if (mode > 0)
 		return true;
-	reportillegalcase(cmd, chr);
+	reportillegalcase(t);
 	return false;
 }
 

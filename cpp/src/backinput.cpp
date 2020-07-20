@@ -10,14 +10,14 @@
 //! procedure can be used only if \a cur_tok represents the token to be
 //! replaced. Some applications of TeX use this procedure a lot,
 //! so it has been slightly optimized for speed.
-void backinput(halfword tok)
+void backinput(Token t)
 {
 	while (state == token_list && loc == 0 && token_type != v_template)
 		endtokenlist();
 	auto p = getavail();
-	info(p) = tok;
-	if (tok < right_brace_limit)
-		if (tok < left_brace_limit)
+	info(p) = t.tok;
+	if (t.tok < right_brace_limit)
+		if (t.tok < left_brace_limit)
 			alignstate--;
 		else
 			alignstate++;

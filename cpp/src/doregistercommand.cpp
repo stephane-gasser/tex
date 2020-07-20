@@ -13,29 +13,32 @@
 #include "eqdefine.h"
 #include "texte.h"
 
-void doregistercommand(smallnumber a, eightbits cmd, halfword chr)
+void doregistercommand(smallnumber a, Token t)
 {
 	halfword l, q, r, s;
 	halfword p;
-	q = cmd;
+	q = t.cmd;
 	do 
 	{
 		if (q != register_)
 		{
-			std::tie(cmd, chr, std::ignore, std::ignore) = getxtoken();
-			if (cmd >= assign_int && cmd <= assign_mu_glue) // assign_int, assign_dimen, assign_int, assign_mu_glue
+			t = getxtoken();
+			if (t.cmd >= assign_int && t.cmd <= assign_mu_glue) // assign_int, assign_dimen, assign_int, assign_mu_glue
 			{
-				l = chr;
-				p = cmd-assign_int;
+				l = t.chr;
+				p = t.cmd-assign_int;
 				continue;
 			}
-			if (cmd != register_)
+			if (t.cmd != register_)
 			{
-				error("You can't use `"+cmdchr(cmd, chr)+"' after "+cmdchr(q, 0), "I'm forgetting what you said and not changing anything.");
+				Token tk;
+				tk.cmd = q;
+				tk.chr = 0;
+				error("You can't use `"+cmdchr(t)+"' after "+cmdchr(tk), "I'm forgetting what you said and not changing anything.");
 				return;
 			}
 		}
-		p = chr;
+		p = t.chr;
 		switch (p)
 		{
 			case int_val: 

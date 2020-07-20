@@ -45,30 +45,27 @@ void boxend(int boxcontext)
 		}
 	}
 	else 
-		if (boxcontext < ship_out_flag)
-			// Store (c) \a cur_box in a box register
+		if (boxcontext < ship_out_flag) // Store (c) \a cur_box in a box register
 			if (boxcontext < box_flag+256)
 				eqdefine(boxcontext-box_flag+box_base, box_ref, curbox);
 			else
 				geqdefine(boxcontext-box_flag-256+box_base, box_ref, curbox);
 		else 
-			if (curbox && boxcontext > ship_out_flag)
-			// Append a new leader node that uses \a cur_box
+			if (curbox && boxcontext > ship_out_flag) // Append a new leader node that uses \a cur_box
 			{
-				halfword chr, tok;
-				eightbits cmd;
+				Token t;
 				do
-					std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-				while (cmd == spacer || cmd == escape);
-				if ((cmd == hskip && abs(mode) != vmode) || (cmd == vskip && abs(mode) == vmode))
+					t = getxtoken();
+				while (t.cmd == spacer || t.cmd == escape);
+				if ((t.cmd == hskip && abs(mode) != vmode) || (t.cmd == vskip && abs(mode) == vmode))
 				{
-					appendglue(chr);
+					appendglue(t.chr);
 					subtype(tail) = boxcontext-(leader_flag-a_leaders);
 					leader_ptr(tail) = curbox;
 				}
 				else
 				{
-					backerror(tok, "Leaders not followed by proper glue", "You should say `\\leaders <box or rule><hskip or vskip>'.\nI found the <box or rule>, but there's no suitable\n<hskip or vskip>, so I'm ignoring these leaders.");
+					backerror(t, "Leaders not followed by proper glue", "You should say `\\leaders <box or rule><hskip or vskip>'.\nI found the <box or rule>, but there's no suitable\n<hskip or vskip>, so I'm ignoring these leaders.");
 					flushnodelist(curbox);
 				}
 			}

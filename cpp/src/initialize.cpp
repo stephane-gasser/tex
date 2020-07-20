@@ -115,7 +115,6 @@ void Initialize(void)
 	lfthit = false;
 	rthit = false;
 	insdisc = false;
-	aftertoken = 0;
 	longhelpseen = false;
 	formatident = "";
 	for (int k = 0; k < 18; k++)

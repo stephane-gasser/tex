@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void alterinteger(halfword);
+void alterinteger(Token);
 
 #endif

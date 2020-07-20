@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void finalcleanup(halfword);
+void finalcleanup(Token);
 
 #endif

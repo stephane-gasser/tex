@@ -17,7 +17,7 @@
 #include <cmath>
 #include "texte.h"
 
-void finalign(halfword tok, halfword &loop)
+void finalign(halfword &loop)
 {
 	halfword p, q, r, s, u, v;
 	scaled t, w;
@@ -27,10 +27,10 @@ void finalign(halfword tok, halfword &loop)
 	memoryword auxsave;
 	if (curgroup != 6)
 		confusion("align1");
-	unsave(tok);
+	unsave();
 	if (curgroup != 6)
 		confusion("align0"); 
-	unsave(tok);
+	unsave();
 	if (nest[nestptr-1].modefield == mmode)
 		o = display_indent();
 	else
@@ -289,14 +289,14 @@ void finalign(halfword tok, halfword &loop)
 	popnest();
 	if (mode == mmode)
 	{
-		auto [cmd, tok] = doassignments();
-		if (cmd != math_shift)
-			backerror(tok, "Missing $$ inserted", "Displays can use special alignments (like \\eqalignno)\nonly if nothing but the alignment itself is between $$'s.");
+		auto tk = doassignments();
+		if (tk.cmd != math_shift)
+			backerror(tk, "Missing $$ inserted", "Displays can use special alignments (like \\eqalignno)\nonly if nothing but the alignment itself is between $$'s.");
 		else
 		{
-			std::tie (cmd, std::ignore, tok, std::ignore) = getxtoken();
-			if (cmd != math_shift)
-				backerror(tok, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
+			tk = getxtoken();
+			if (tk.cmd != math_shift)
+				backerror(tk, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
 		popnest();
 		tail_append(newpenalty(pre_display_penalty()));
@@ -307,7 +307,7 @@ void finalign(halfword tok, halfword &loop)
 		tail_append(newpenalty(post_display_penalty()));
 		tail_append(newparamglue(4));
 		aux = auxsave;
-		resumeafterdisplay(tok);
+		resumeafterdisplay(tk);
 	}
 	else
 	{

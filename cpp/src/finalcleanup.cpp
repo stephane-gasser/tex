@@ -7,9 +7,9 @@
 #include "deleteglueref.h"
 #include "storefmtfile.h"
 
-void finalcleanup(halfword chr)
+void finalcleanup(Token t)
 {
-	smallnumber c = chr;
+	smallnumber c = t.chr;
 	if (jobname == "")
 		openlogfile();
 	while (inputptr > 0)
@@ -26,7 +26,10 @@ void finalcleanup(halfword chr)
 		printnl("("+esc("end")+" occurred inside a group at level "+std::to_string(curlevel-level_one)+")");
 	while (condptr)
 	{
-		printnl("("+esc("end")+" occurred when "+cmdchr(if_test, curif)+(ifline ? " on line "+std::to_string(ifline) : "")+" was incomplete)");
+		Token tk;
+		tk.cmd = if_test;
+		tk.chr = curif;
+		printnl("("+esc("end")+" occurred when "+cmdchr(tk)+(ifline ? " on line "+std::to_string(ifline) : "")+" was incomplete)");
 		ifline = if_line_field(condptr);
 		curif = subtype(condptr);
 		tempptr = condptr;

@@ -5,14 +5,14 @@
 #include "noeud.h"
 #include "texte.h"
 
-void mathfraction(halfword c, halfword tok)
+void mathfraction(halfword c, Token t)
 {
 	if (incompleat_noad)
 	{
 		if (c >= delimited_code)
 		{
-			scandelimiter(garbage, false, tok);
-			scandelimiter(garbage, false, tok);
+			scandelimiter(garbage, false, t);
+			scandelimiter(garbage, false, t);
 		}
 		if (c%delimited_code == 0)
 			int _ = scan_normal_dimen();
@@ -32,8 +32,8 @@ void mathfraction(halfword c, halfword tok)
 		tail = head;
 		if (c >= delimited_code)
 		{
-			scandelimiter(left_delimiter(incompleat_noad), false, tok);
-			scandelimiter(right_delimiter(incompleat_noad), false, tok);
+			scandelimiter(left_delimiter(incompleat_noad), false, t);
+			scandelimiter(right_delimiter(incompleat_noad), false, t);
 		}
 		switch (c%delimited_code)
 		{

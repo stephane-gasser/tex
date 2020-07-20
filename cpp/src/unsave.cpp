@@ -3,7 +3,7 @@
 #include "eqdestroy.h"
 #include "erreur.h"
 
-void unsave(halfword tok)
+void unsave(void)
 {
 	if (curlevel > level_one)
 	{
@@ -16,7 +16,11 @@ void unsave(halfword tok)
 			halfword p = save_index(saveptr);
 			quarterword l;
 			if (save_type(saveptr) == insert_token)
-				backinput(p);
+			{
+				Token t;
+				t.tok = p;
+				backinput(t);
+			}
 			else
 			{
 				if (save_type(saveptr) == restore_old_value)

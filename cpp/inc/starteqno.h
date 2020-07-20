@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void starteqno(halfword);
+void starteqno(Token);
 
 #endif

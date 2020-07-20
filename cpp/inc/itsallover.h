@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-bool itsallover(eightbits, halfword, halfword);
+bool itsallover(Token);
 
 #endif

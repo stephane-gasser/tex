@@ -11,28 +11,27 @@ void alignpeek(halfword &loop)
 	while (true)
 	{
 		alignstate = 1000000;
-		halfword chr, tok;
-		eightbits cmd;
+		Token t;
 		do
-			std::tie(cmd, chr, tok, std::ignore) = getxtoken();
-		while (cmd == spacer);
-		if (cmd == no_align)
+			t = getxtoken();
+		while (t.cmd == spacer);
+		if (t.cmd == no_align)
 		{
-			std::tie(cmd, chr, tok) = scanleftbrace();
+			t = scanleftbrace();
 			newsavelevel(7);
 			if (mode == -vmode)
 				normalparagraph();
 		}
 		else 
-			if (cmd == right_brace)
-				finalign(tok, loop);
+			if (t.cmd == right_brace)
+				finalign(loop);
 			else 
-				if (cmd == car_ret && chr == 258)
+				if (t.cmd == car_ret && t.chr == 258)
 					continue;
 				else
 				{
 					initrow();
-					initcol(cmd, tok);
+					initcol(t);
 				}
 		break;
 	}

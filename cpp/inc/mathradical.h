@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void mathradical(halfword);
+void mathradical(Token);
 
 #endif

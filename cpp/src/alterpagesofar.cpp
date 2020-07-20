@@ -1,9 +1,9 @@
 #include "alterpagesofar.h"
 #include "lecture.h"
 
-void alterpagesofar(halfword chr)
+void alterpagesofar(Token t)
 {
-	char c = chr;
+	char c = t.chr;
 	scanoptionalequals();
 	pagesofar[c] = scan_normal_dimen();
 }

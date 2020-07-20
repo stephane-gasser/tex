@@ -7,16 +7,14 @@
 #include "normmin.h"
 #include "texte.h"
 
-void doextension(halfword chr, halfword cs)
+void doextension(Token t)
 {
-	int i, j, k;
+	int i, j;
 	halfword p, q, r;
-	halfword tok;
-	eightbits cmd;
-	switch (chr)
+	switch (t.chr)
 	{
 		case open_node:
-			newwritewhatsit(open_node_size, chr);
+			newwritewhatsit(open_node_size, t);
 			scanoptionalequals();
 			scanfilename();
 			open_name(tail) = txt(curname);
@@ -24,39 +22,37 @@ void doextension(halfword chr, halfword cs)
 			open_ext(tail) = txt(curext);
 			break;
 		case write_node:
-			k = cs;
-			newwritewhatsit(write_node_size, chr);
-			cs = k;
-			p = scantoks(false, false, cs);
+			newwritewhatsit(write_node_size, t);
+			p = scantoks(false, false, t);
 			write_tokens(tail) = defref;
 			break;
 		case close_node:
-			newwritewhatsit(write_node_size, chr);
+			newwritewhatsit(write_node_size, t);
 			write_tokens(tail) = 0;
 			break;
 		case special_node:
 			newwhatsit(special_node, write_node_size);
 			write_stream(tail) = 0;
-			p = scantoks(false, true, cs);
+			p = scantoks(false, true, t);
 			write_tokens(tail) = defref;
 			break;
 		case immediate_code:
-			std::tie(cmd, chr, tok, cs) = getxtoken();
-			if (cmd == extension && chr <= 2)
+			t = getxtoken();
+			if (t.cmd == extension && t.chr <= 2)
 			{
 				p = tail;
-				doextension(chr, cs);
+				doextension(t);
 				outwhat(tail);
 				flushnodelist(tail);
 				tail = p;
 				link(p) = 0;
 			}
 			else
-				backinput(tok);
+				backinput(t);
 			break;
 		case set_language_code:
 			if (abs(mode) != hmode)
-				reportillegalcase(cmd, chr);
+				reportillegalcase(t);
 			else
 			{
 				newwhatsit(language_node, small_node_size);

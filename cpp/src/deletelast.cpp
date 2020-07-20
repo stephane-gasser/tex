@@ -4,16 +4,16 @@
 #include "noeud.h"
 #include "texte.h"
 
-void deletelast(eightbits cmd, halfword chr)
+void deletelast(Token t)
 {
 	if (mode == vmode && tail == head)
 	{
-		if (chr != '\n' || lastglue != empty_flag)
-			error("You can't use `"+cmdchr(cmd, chr)+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page."+std::string(chr == 11 ? "Try `I\\kern-\\lastkern' instead." : chr == '\n' ? "Try `I\\vskip-\\lastskip' instead." : "Perhaps you can make the output routine do it."));
+		if (t.chr != '\n' || lastglue != empty_flag)
+			error("You can't use `"+cmdchr(t)+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page."+std::string(t.chr == kern_node ? "Try `I\\kern-\\lastkern' instead." : t.chr == glue_node ? "Try `I\\vskip-\\lastskip' instead." : "Perhaps you can make the output routine do it."));
 	}
 	else 
 		if (tail < himemmin)
-			if (type(tail) == chr)
+			if (type(tail) == t.chr)
 			{
 				halfword q = head, p;
 				do

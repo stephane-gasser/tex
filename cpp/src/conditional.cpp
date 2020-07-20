@@ -9,19 +9,19 @@
 #include "erreur.h"
 #include "texte.h"
 
-[[nodiscard]] static std::tuple<eightbits, halfword> get_x_token_or_active_char(void)
+[[nodiscard]] static Token get_x_token_or_active_char(void)
 { 
-	auto [cmd, chr, tok, cs] = getxtoken(); 
-	if (cmd == relax)
-		if (chr == no_expand_flag)
+	auto t = getxtoken(); 
+	if (t.cmd == relax)
+		if (t.chr == no_expand_flag)
 		{
-			cmd = active_char; 
-			chr = tok-cs_token_flag-active_base; 
+			t.cmd = active_char; 
+			t.chr = t.tok-cs_token_flag-active_base; 
 		}
-	return std::make_tuple(cmd, chr);
+	return t;
 }
 
-void conditional(halfword chr)
+void conditional(Token t)
 {
 	auto p = getnode(2);
 	link(p) = condptr;
@@ -29,59 +29,56 @@ void conditional(halfword chr)
 	subtype(p) = curif;
 	if_line_field(p) = ifline;
 	condptr = p;
-	curif = chr;
+	curif = t.chr;
 	iflimit = 1;
 	ifline = line;
 	auto savecondptr = condptr;
-	smallnumber thisif = chr;
+	smallnumber thisif = t.chr;
 	halfword q;
 	int r;
 	bool b;
 	int m, n;
 	smallnumber savescannerstatus;
-	halfword cs;
-	eightbits cmd;
 	switch (thisif)
 	{
 		case if_char_code:
 		case if_cat_code:
-			std::tie(cmd, chr) = get_x_token_or_active_char();
-			if (cmd > active_char || chr > 255)
+			t = get_x_token_or_active_char();
+			if (t.cmd > active_char || t.chr > 255)
 			{
 				m = relax;
 				n = 256;
 			}
 			else
 			{
-				m = cmd;
-				n = chr;
+				m = t.cmd;
+				n = t.chr;
 			}
-			std::tie(cmd, chr) = get_x_token_or_active_char();
-			if (cmd > 13 || chr > 255)
+			t = get_x_token_or_active_char();
+			if (t.cmd > active_char || t.chr > 255)
 			{
-				cmd = relax;
-				chr = 256;
+				t.cmd = relax;
+				t.chr = 256;
 			}
 			if (thisif == if_char_code)
-				b = n == chr;
+				b = n == t.chr;
 			else
-				b = m == cmd;
+				b = m == t.cmd;
 			break;
 		case if_int_code:
 		case if_dim_code:
-			if (thisif == if_int_code)
-				n = scanint();
-			else
-				n = scan_normal_dimen();
-			halfword tok;
+			n = thisif == if_int_code ? scanint() : scan_normal_dimen();
 			do
-				std::tie(cmd, std::ignore, tok, std::ignore) = getxtoken();
-			while (cmd == spacer);
-			if (tok >= other_token+'<' && tok <= other_token+'>')
-				r = tok-other_token;
+				t = getxtoken();
+			while (t.cmd == spacer);
+			if (t.tok >= other_token+'<' && t.tok <= other_token+'>')
+				r = t.tok-other_token;
 			else
 			{
-				backerror(tok, "Missing = inserted for "+cmdchr(if_test, thisif), "I was expecting to see `<', `=', or `>'. Didn't.");
+				Token tk;
+				tk.cmd = if_test;
+				tk.chr = thisif;
+				backerror(t, "Missing = inserted for "+cmdchr(tk), "I was expecting to see `<', `=', or `>'. Didn't.");
 				r = '=';
 			}
 			switch (r)
@@ -129,16 +126,19 @@ void conditional(halfword chr)
 		case ifx_code:
 			savescannerstatus = scannerstatus;
 			scannerstatus = 0;
-			std::tie(p, q, r) = getnext();
-			std::tie(cmd, chr, cs) = getnext();
-			if (cmd != p)
+			t = getnext();
+			p = t.cmd;
+			q = t.chr;
+			r = t.cs;
+			t = getnext();
+			if (t.cmd != p)
 				b = false;
 			else 
-				if (cmd < call)
-					b = chr == q;
+				if (t.cmd < call)
+					b = t.chr == q;
 				else
 				{
-					p = link(chr);
+					p = link(t.chr);
 					q = link(equiv(n));
 					if (p == q)
 						b = true;
@@ -174,11 +174,11 @@ void conditional(halfword chr)
 			{
 				passtext();
 				if (condptr == savecondptr)
-					if (chr == 4)
+					if (t.chr == 4)
 						n--;
 					else
 					{
-						if (chr == 2)
+						if (t.chr == 2)
 						{
 							p = condptr;
 							ifline = if_line_field(p);
@@ -192,7 +192,7 @@ void conditional(halfword chr)
 						return;
 					}
 				else 
-					if (chr == 2)
+					if (t.chr == 2)
 					{
 						p = condptr;
 						ifline = if_line_field(p);
@@ -217,9 +217,9 @@ void conditional(halfword chr)
 		passtext();
 		if (condptr == savecondptr)
 		{
-			if (chr != 4)
+			if (t.chr != 4)
 			{
-				if (chr == 2)
+				if (t.chr == 2)
 				{
 					p = condptr;
 					ifline = if_line_field(p);
@@ -235,7 +235,7 @@ void conditional(halfword chr)
 			error("Extra "+esc("or"), "I'm ignoring this; it doesn't match any \\if.");
 		}
 		else 
-			if (chr == 2)
+			if (t.chr == 2)
 			{
 				p = condptr;
 				ifline = if_line_field(p);

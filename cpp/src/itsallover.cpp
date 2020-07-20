@@ -4,13 +4,13 @@
 #include "buildpage.h"
 #include "erreur.h"
 
-bool itsallover(eightbits cmd, halfword chr, halfword tok)
+bool itsallover(Token t)
 {
-	if (privileged(cmd, chr))
+	if (privileged(t))
 	{
 		if (page_head == pagetail && head == tail && deadcycles == 0)
 			return true;
-		backinput(tok);
+		backinput(t);
 		tail_append(newnullbox());
 		width(tail) = hsize();
 		tail_append(newglue(fill_glue));

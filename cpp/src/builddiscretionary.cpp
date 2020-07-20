@@ -8,9 +8,9 @@
 #include "pushnest.h"
 #include "texte.h"
 
-void builddiscretionary(halfword tok)
+void builddiscretionary(Token t)
 {
-	unsave(tok);
+	unsave();
 	// Prune the current list, if necessary, until it contains only |char_node|, |kern_node|, |hlist_node|, |vlist_node|, |rule_node|,
 	//  and |ligature_node| items; set |n| to the length of the list, and set |q| to the list's tail
 	auto q = head;
@@ -60,7 +60,7 @@ void builddiscretionary(halfword tok)
 	}
 	saved(-1)++;
 	newsavelevel(10);
-	std::tie(std::ignore, std::ignore, tok) = scanleftbrace();
+	t = scanleftbrace();
 	pushnest();
 	mode = -hmode;
 	space_factor = 1000;

@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void expand(eightbits, halfword, halfword);
+void expand(Token);
 
 #endif

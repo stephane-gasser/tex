@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void mathlimitswitch(halfword);
+void mathlimitswitch(Token);
 
 #endif
