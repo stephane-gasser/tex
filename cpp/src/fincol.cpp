@@ -146,9 +146,7 @@ bool fincol(Token t, halfword &loop)
 		initspan(p);
 	}
 	alignstate = 1000000;
-	do
-		t = getxtoken();
-	while (t.cmd == spacer);
+	t = getXTokenSkipSpace();
 	curalign = p;
 	initcol(t);
 	return false;

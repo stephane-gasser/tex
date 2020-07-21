@@ -8,7 +8,6 @@
 #include "inputln.h"
 #include <iostream>
 #include "firmuptheline.h"
-#include "pauseforinstructions.h"
 #include "lecture.h"
 #include "idlookup.h"
 #include "texte.h"
@@ -353,10 +352,7 @@ static void removeFromEnd(int &k, int d)
 						}
 					}
 					if (!restart)
-					{
-						check_interrupt();
 						skip = true;
-					}
 				}
 			} while (skip && !restart);
 		}

@@ -1,6 +1,5 @@
 #include "makeord.h"
 #include "fetch.h"
-#include "pauseforinstructions.h"
 #include "noeud.h"
 
 void makeord(halfword q)
@@ -39,7 +38,6 @@ void makeord(halfword q)
 								}
 								else
 								{
-									check_interrupt();
 									switch (op_byte(curi))
 									{
 										// AB -> CB (symboles =:| et =:|>)

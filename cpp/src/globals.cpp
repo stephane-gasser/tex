@@ -6,7 +6,6 @@ int bad;
 int tally;
 int trickcount;
 int firstcount;
-int interrupt;
 int varused, dynused;
 int fontinshortdisplay;
 int depththreshold;
@@ -61,11 +60,9 @@ char termoffset; // 0..maxprintline
 char fileoffset; // 0..maxprintline
 ASCIIcode trickbuf[errorline+1];
 char interaction; // 0..3
-bool setboxallowed;
 char history; // 0..3
 char errorcount; // -1..100
 bool useerrhelp;
-bool OKtointerrupt;
 bool aritherror;
 scaled remainder_;
 halfword tempptr;
@@ -102,10 +99,6 @@ int maxsavestack; // 0..savesize
 quarterword curlevel;
 groupcode curgroup;
 int curboundary; // 0..savesize
-eightbits curcmd;
-halfword curchr;
-halfword curcs;
-halfword curtok;
 instaterecord inputstack[stacksize+1];
 unsigned char inputptr; // 0..stacksize
 unsigned char maxinstack; // 0..stacksize
@@ -237,13 +230,13 @@ halfword curq;
 halfword ligstack;
 bool ligaturepresent;
 bool lfthit, rthit;
-twohalves trie[triesize+1];
 smallnumber hyfdistance[trieopsize+1]; // commence à 1
 smallnumber hyfnum[trieopsize+1]; // commence à 1
 quarterword hyfnext[trieopsize+1]; // commence à 
 map<ASCIIcode, int> opstart; //of 0..trieopsize
 halfword hyphlist[308];
 hyphpointer hyphcount;
+twohalves trie[triesize+1];
 map<int, int> trieophash; // [-trieopsize..trieopsize] of 0..trieopsize
 map<ASCIIcode, quarterword> trieused;
 ASCIIcode trieoplang[trieopsize+1]; // commence à 1

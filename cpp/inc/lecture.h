@@ -39,5 +39,7 @@ void endtokenlist(void);
 Token getpreambletoken(void);
 void insthetoks(void);
 halfword thetoks(void);
+Token getXTokenSkipSpace(void);
+Token getXTokenSkipSpaceAndEscape(void);
 
 #endif

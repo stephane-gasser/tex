@@ -68,9 +68,7 @@ void conditional(Token t)
 		case if_int_code:
 		case if_dim_code:
 			n = thisif == if_int_code ? scanint() : scan_normal_dimen();
-			do
-				t = getxtoken();
-			while (t.cmd == spacer);
+			t = getXTokenSkipSpace();
 			if (t.tok >= other_token+'<' && t.tok <= other_token+'>')
 				r = t.tok-other_token;
 			else

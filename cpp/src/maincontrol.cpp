@@ -4,7 +4,6 @@
 #include "getnext.h"
 #include "charwarning.h"
 #include "backinput.h"
-#include "pauseforinstructions.h"
 #include "erreur.h"
 #include "insertdollarsign.h"
 #include "unsave.h"
@@ -286,7 +285,6 @@ static bool main_loop_wrapup(halfword chr)
 				else 
 					if (ligstack == 0)
 						rthit = true;
-				check_interrupt();
 				switch (op_byte(mainj))
 				{
 					// AB -> CB (symboles =:| et =:|>)
@@ -419,13 +417,6 @@ Token maincontrol(void)
 	auto t = getxtoken();
 	while (true)
 	{
-		if (interrupt && OKtointerrupt)
-		{
-			backinput(t);
-			check_interrupt();
-			t = getxtoken();
-			continue;
-		}
 		if (tracing_commands() > 0)
 			showcurcmdchr(t);
 		switch (abs(mode)+t.cmd)
@@ -462,9 +453,7 @@ Token maincontrol(void)
 			case mmode+no_boundary: 
 				break;
 			case ANY_MODE(ignore_spaces):
-				do
-					t = getxtoken();
-				while (t.cmd == spacer);
+				t = getXTokenSkipSpace();
 				continue;
 			case vmode+stop: 
 				if (itsallover(t))

@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void prefixedcommand(Token);
+void prefixedcommand(Token, bool = true);
 
 #endif

@@ -26,7 +26,6 @@
 #include "endname.h"
 #include "pushinput.h"
 #include "popinput.h"
-#include "pauseforinstructions.h"
 #include "geqdefine.h"
 #include "eqdefine.h"
 #include "macrocall.h"
@@ -38,7 +37,7 @@
 #include "runaway.h"
 #include "openlogfile.h"
 
-static Token getXTokenSkipSpace(void)
+Token getXTokenSkipSpace(void)
 {
 	Token t;
 	do
@@ -47,7 +46,7 @@ static Token getXTokenSkipSpace(void)
 	return t;
 }
 
-static Token getXTokenSkipSpaceAndEscape(void)
+Token getXTokenSkipSpaceAndEscape(void)
 {
 	Token t;
 	do
@@ -1212,7 +1211,6 @@ void endtokenlist(void)
 			deletetokenref(start);
 	}
 	pop_input();
-	check_interrupt();
 }
 
 void deletetokenref(halfword p)

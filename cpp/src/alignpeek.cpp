@@ -11,10 +11,7 @@ void alignpeek(halfword &loop)
 	while (true)
 	{
 		alignstate = 1000000;
-		Token t;
-		do
-			t = getxtoken();
-		while (t.cmd == spacer);
+		auto t = getXTokenSkipSpace();
 		if (t.cmd == no_align)
 		{
 			t = scanleftbrace();

@@ -1,7 +1,6 @@
 #include "reconstitute.h"
 #include "getavail.h"
 #include "noeud.h"
-#include "pauseforinstructions.h"
 
 static void set_cur_r(int j, int n, halfword &curr, halfword &currh, halfword hchar)
 {
@@ -135,7 +134,6 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 								lfthit = true;
 							if (j == n && ligstack == 0)
 								rthit = true;
-							check_interrupt();
 							switch (op_byte(q))
 							{
 								// AB -> CB (symboles =:| et =:|>)

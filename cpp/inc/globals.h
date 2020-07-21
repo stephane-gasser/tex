@@ -35,7 +35,6 @@ extern int bad;
 extern int tally;
 extern int trickcount;
 extern int firstcount;
-extern int interrupt;
 extern int varused, dynused;
 extern int fontinshortdisplay;
 extern int depththreshold;
@@ -85,11 +84,9 @@ extern char fileoffset; // 0..maxprintline
 extern ASCIIcode trickbuf[errorline+1];
 extern char interaction; // 0..3
 extern bool deletionsallowed;
-extern bool setboxallowed;
 extern char history; // 0..3
 extern char errorcount; // -1..100
 extern bool useerrhelp;
-extern bool OKtointerrupt;
 extern bool aritherror;
 extern scaled remainder_;
 extern halfword tempptr;

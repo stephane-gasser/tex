@@ -18,11 +18,8 @@ void Initialize(void)
 	for (int i = 0; i < 127; i++)
 		xord[xchr[i]] = i;
 	interaction = error_stop_mode;
-	setboxallowed = true;
 	errorcount = 0;
 	useerrhelp = false;
-	interrupt = 0;
-	OKtointerrupt = true;
 	nestptr = 0;
 	maxneststack = 0;
 	mode = vmode;

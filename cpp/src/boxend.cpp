@@ -53,10 +53,7 @@ void boxend(int boxcontext)
 		else 
 			if (curbox && boxcontext > ship_out_flag) // Append a new leader node that uses \a cur_box
 			{
-				Token t;
-				do
-					t = getxtoken();
-				while (t.cmd == spacer || t.cmd == escape);
+				auto t = getXTokenSkipSpaceAndEscape();
 				if ((t.cmd == hskip && abs(mode) != vmode) || (t.cmd == vskip && abs(mode) == vmode))
 				{
 					appendglue(t.chr);

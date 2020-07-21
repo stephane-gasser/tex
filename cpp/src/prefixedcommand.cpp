@@ -19,7 +19,7 @@
 #include "findfontdimen.h"
 #include "texte.h"
 
-void prefixedcommand(Token t) 
+void prefixedcommand(Token t, bool setboxallowed)
 {
 	internalfontnumber f;
 	halfword j;
@@ -32,9 +32,7 @@ void prefixedcommand(Token t)
 	{
 		if ((a/t.chr)%2 == 0)
 			a += t.chr;
-		do
-			t = getxtoken();
-		while (t.cmd == spacer || t.cmd == escape);
+		t = getXTokenSkipSpaceAndEscape();
 		if (t.cmd <= max_non_prefixed_command)
 		{
 			backerror(t, "You can't use a prefix with `"+cmdchr(t)+"\'", "I'll pretend you didn't say \\long or \\outer or \\global.");
@@ -73,9 +71,7 @@ void prefixedcommand(Token t)
 			p = getrtoken();
 			if (n == 0)
 			{
-				do
-					t = gettoken();
-				while (t.cmd == spacer);
+				t = getXTokenSkipSpace();
 				if (t.tok == other_token+'=') // other_char + '='
 				{
 					t = gettoken();
@@ -135,9 +131,7 @@ void prefixedcommand(Token t)
 			q = t.cs;
 			p = t.cmd == toks_register ? toks_base+scaneightbitint() : t.chr;
 			scanoptionalequals();
-			do
-				t = getxtoken();
-			while (t.cmd == spacer || t.cmd == escape);
+			t = getXTokenSkipSpaceAndEscape();
 			if (t.cmd != left_brace)
 			{
 				if (t.cmd == toks_register)

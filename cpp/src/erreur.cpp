@@ -22,7 +22,11 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 	if (interaction == error_stop_mode)
 		while (true)
 		{
-			clearforerrorprompt();
+			// clearforerrorprompt
+			while (state != token_list && terminal_input(name) && inputptr > 0 && loc > limit)
+				endfilereading();
+			println();
+			std::cin.clear();
 			print("? ");
 			terminput();
 			if (last == First)
@@ -46,14 +50,12 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 					{
 						auto s4 = alignstate;
 						alignstate = 1000000;
-						OKtointerrupt = false;
 						c -= '0';
 						if (last > First+1 && buffer[First+1] >= '0' && buffer[First+1] <= '9')
 						  c = c*10+buffer[First+1]-'0';
 						for (; c > 0; c--)
 							auto _ = gettoken();
 						alignstate = s4;
-						OKtointerrupt = true;
 						helpline = "I have just deleted some text, as you asked.";
 						print(showcontext());
 						return;
@@ -91,7 +93,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 						loc = First;
 					}
 					First = last;
-					limit = last - 1;
+					limit = last-1;
 					return;
 				case 'Q':
 				case 'R':
@@ -152,10 +154,8 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 
 void inserror(Token t, const std::string &msg, const std::string &hlp, bool deletionsallowed)
 {
-	OKtointerrupt = false;
 	backinput(t);
 	token_type = inserted;
-	OKtointerrupt = true;
 	error(msg, hlp, deletionsallowed);
 }
 
@@ -166,9 +166,7 @@ void inserror(Token t, const std::string &msg, const std::string &hlp, bool dele
 //!call of \a back_input so that the help message won't be lost.
 void backerror(Token t, const std::string &msg, const std::string &hlp)
 {
-	OKtointerrupt = false;
 	backinput(t);
-	OKtointerrupt = true;
 	error(msg, hlp);
 }
 
@@ -182,14 +180,6 @@ void boxerror(eightbits n, const std::string &msg, const std::string &hlp)
 	diagnostic("\rThe following box has been deleted:"+showbox(box(n))+"\n");
 	flushnodelist(box(n));
 	box(n) = 0;
-}
-
-void clearforerrorprompt(void)
-{
-	while (state != token_list && terminal_input(name) && inputptr > 0 && loc > limit)
-		endfilereading();
-	println();
-	std::cin.clear();
 }
 
 void fatal(const std::string &msg, const std::string &hlp)

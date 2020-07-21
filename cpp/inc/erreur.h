@@ -8,7 +8,6 @@ void error(const std::string &, const std::string &, bool = true);
 void inserror(Token, const std::string &, const std::string &, bool = true);
 void backerror(Token, const std::string &, const std::string &);
 void boxerror(eightbits, const std::string &, const std::string &);
-void clearforerrorprompt(void);
 void fatal(const std::string &, const std::string &);
 void fatalerror(const std::string &);
 void interror(int, const std::string &, const std::string &);
