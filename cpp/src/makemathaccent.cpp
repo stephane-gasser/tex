@@ -67,8 +67,8 @@ void makemathaccent(halfword q)
 				mem[nucleus(x)] = mem[nucleus(q)];
 				mem[supscr(x)] = mem[supscr(q)];
 				mem[subscr(x)] = mem[subscr(q)];
-				mem[supscr(x)].hh = emptyfield;
-				mem[subscr(x)].hh = emptyfield;
+				mem[supscr(x)].hh = twohalves{0, 0};
+				mem[subscr(x)].hh = twohalves{0, 0};
 				math_type(nucleus(q)) = sub_mlist;
 				info(nucleus(q)) = x;
 				x = cleanbox(nucleus(q), curstyle);

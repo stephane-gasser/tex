@@ -25,9 +25,9 @@ void mathfraction(halfword c, Token t)
 		subtype(incompleat_noad) = normal;
 		link(numerator(incompleat_noad)) = 3;
 		info(numerator(incompleat_noad)) = link(head);
-		mem[denominator(incompleat_noad)].hh = emptyfield;
-		mem[left_delimiter(incompleat_noad)].qqqq = nulldelimiter;
-		mem[right_delimiter(incompleat_noad)].qqqq = nulldelimiter;
+		mem[denominator(incompleat_noad)].hh = twohalves{0, 0};
+		mem[left_delimiter(incompleat_noad)].qqqq = fourquarters{0, 0, 0, 0};
+		mem[right_delimiter(incompleat_noad)].qqqq = fourquarters{0, 0, 0, 0};
 		link(head) = 0;
 		tail = head;
 		if (c >= delimited_code)

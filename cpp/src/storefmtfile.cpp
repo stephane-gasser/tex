@@ -7,7 +7,7 @@
 #include "promptfilename.h"
 #include "wmakenamestring.h"
 #include "sortavail.h"
-#include "inittrie.h"
+#include "cesure.h"
 #include "fichier.h"
 #include "texte.h"
 
@@ -222,17 +222,17 @@ void storefmtfile(void)
 	print(std::to_string(hyphcount)+" hyphenation exception"+(hyphcount == 1 ? "" : "s"));
 	if (trienotready)
 		inittrie();
-	dump_int(triemax);
-	for (k = 0; k <= triemax; k++)
-		dump_hh(trie[k]);
-	dump_int(trieopptr);
-	for (k = 1; k<= trieopptr; k++)
+	dump_int(trie.size()-1);
+	for (auto t: trie)
+		dump_hh(t.hh);
+	dump_int(trieOp.size()-1);
+	for (k = 1; k < trieOp.size(); k++)
 	{
-		dump_int(hyfdistance[k]);
-		dump_int(hyfnum[k]);
-		dump_int(hyfnext[k]);
+		dump_int(trieOp[k].hyfdistance);
+		dump_int(trieOp[k].hyfnum);
+		dump_int(trieOp[k].hyfnext);
 	}
-	printnl("Hyphenation trie of length "+std::to_string(triemax)+" has "+std::to_string(trieopptr)+" op"+(trieopptr == 1 ? "" : "s")+" out of "+std::to_string(trieopsize));
+	printnl("Hyphenation trie of length "+std::to_string(trie.size()-1)+" has "+std::to_string(trieOp.size()-1)+" op"+(trieOp.size()-1 == 1 ? "" : "s")+" out of "+std::to_string(trieopsize));
 	for (k = 255; k > -1; k--)
 		if (trieused[k] > 0)
 		{

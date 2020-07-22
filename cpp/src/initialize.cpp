@@ -1,22 +1,16 @@
 #include "initialize.h"
 #include "texte.h"
+#include "cesure.h"
 
 static halfword& uc_code(halfword p) { return equiv(uc_code_base+p); }
 
 void Initialize(void)
 {
-	for (int i = 0; i < 32; i++)
-		xchr[i] = ' ';
-	for (int i = 32; i < 127; i++)
-		xchr[i] = i;
-	for (int i = 127; i < 256; i++)
-		xchr[i] = ' ';
 	for (int i = 0; i < 256; i++)
-	    xord[char(i)] = 127;
-	for (int i = 128; i < 256; i++)
-		xord[xchr[i]] = i;
-	for (int i = 0; i < 127; i++)
-		xord[xchr[i]] = i;
+	{
+		xchr[i] = i < 32 ? ' ' : i < 127 ? i : ' ';
+	    xord[char(i)] = i < 32 ? 127 : i < 127 ? i : 127;
+	}
 	interaction = error_stop_mode;
 	errorcount = 0;
 	useerrhelp = false;
@@ -88,12 +82,6 @@ void Initialize(void)
 	adjusttail = 0;
 	lastbadness = 0;
 	packbeginline = 0;
-	emptyfield.rh = 0;
-	emptyfield.lh = 0;
-	nulldelimiter.b0 = 0;
-	nulldelimiter.b1 = 0;
-	nulldelimiter.b2 = 0;
-	nulldelimiter.b3 = 0;
 	alignptr = 0;
 	curalign = 0;
 	curspan = 0;
@@ -113,7 +101,6 @@ void Initialize(void)
 	rthit = false;
 	insdisc = false;
 	longhelpseen = false;
-	formatident = "";
 	for (int k = 0; k < 18; k++)
 		writeopen[k] = false;
 	for (int k = 1; k < 20; k++)
@@ -260,15 +247,9 @@ void Initialize(void)
 	parambase[null_font] = -1;
 	for (int k = 0; k < 7; k++)
 		fontinfo[k].int_ = 0;
-	for (int k = -trieopsize; k <= trieopsize; k++)
-		trieophash[k] = 0;
-	for (int k = 0; k < 256; k++)
-		trieused[k] = 0;
-	trieopptr = 0;
 	trienotready = true;
 	trie_root = 0;
-	triec[0] = 0;
-	trieptr = 0;
+	trieNode[0].c = 0;
 	text(frozen_control_sequence) = txt("inaccessible");
 	formatident = " (INITEX)";
 	text(end_write) = txt("endwrite");

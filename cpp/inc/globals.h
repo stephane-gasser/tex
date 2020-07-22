@@ -189,8 +189,6 @@ extern scaled curh, curv;
 extern internalfontnumber dvif;
 extern scaled totalstretch[4], totalshrink[4];
 extern halfword adjusttail;
-extern twohalves emptyfield;
-extern fourquarters nulldelimiter;
 extern halfword curmlist;
 extern smallnumber curstyle;
 extern smallnumber cursize;
@@ -244,27 +242,10 @@ extern halfword curq;
 extern halfword ligstack;
 extern bool ligaturepresent;
 extern bool lfthit, rthit;
-extern twohalves trie[triesize+1];
-extern smallnumber hyfdistance[trieopsize+1]; // commence à 1
-extern smallnumber hyfnum[trieopsize+1]; // commence à 1
-extern quarterword hyfnext[trieopsize+1]; // commence à 
 extern std::map<ASCIIcode, int> opstart; //of 0..trieopsize
 extern halfword hyphlist[308];
 extern hyphpointer hyphcount;
-extern std::map<int, int> trieophash; // [-trieopsize..trieopsize] of 0..trieopsize
 extern std::map<ASCIIcode, quarterword> trieused;
-extern ASCIIcode trieoplang[trieopsize+1]; // commence à 1
-extern quarterword trieopval[trieopsize+1]; // commence à 1
-extern int trieopptr; // 0..trieopsize
-extern packedASCIIcode triec[triesize+1];
-extern quarterword trieo[triesize+1];
-extern triepointer triel[triesize+1];
-extern triepointer trier[triesize+1];
-extern triepointer trieptr;
-extern triepointer triehash[triesize+1];
-extern bool trietaken[triesize+1]; // commence à 1
-extern std::map<ASCIIcode, triepointer> triemin;
-extern triepointer triemax;
 extern bool trienotready;
 extern scaled bestheightplusdepth;
 extern halfword pagetail;

@@ -18,6 +18,7 @@
 #include "noeud.h"
 #include "findfontdimen.h"
 #include "texte.h"
+#include "cesure.h"
 
 void prefixedcommand(Token t, bool setboxallowed)
 {
@@ -53,7 +54,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 	int val;
 	switch (t.cmd)
 	{
-		case set_font: 
+		case set_font:
 			define(a, cur_font_loc, data, t.chr);
 			break;
 		case def:

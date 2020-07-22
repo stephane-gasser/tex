@@ -1,4 +1,5 @@
 #include "loadfmtfile.h"
+#include "cesure.h"
 #include <iostream>
 
 void undump_hh(twohalves &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
@@ -177,15 +178,17 @@ bool loadfmtfile(void)
 			hyphword[j] = undump(0, strptr);
 			hyphlist[j] = undump(0, 1<<16-1);
 		}
-		triemax = j = undump_size(0, triesize, "trie size");
-		for (k = 0; k <= j; k++)
-			undump_hh(trie[k]);
-		trieopptr = j = undump_size(0, trieopsize, "trie op size");
-		for (k = 1; k <= j; k++)
+		j = undump_size(0, triesize, "trie size");
+		trie.resize(j+1);
+		for (auto t: trie)
+			undump_hh(t.hh);
+		j = undump_size(0, trieopsize, "trie op size");
+		trieOp.resize(j+1);
+		for (k = 1; k < trieOp.size(); k++)
 		{
-			hyfdistance[k] = undump(0, 63);
-			hyfnum[k] = undump(0, 63);
-			hyfnext[k] = undump(0, 1<<8-1);
+			trieOp[k].hyfdistance = undump(0, 63);
+			trieOp[k].hyfnum = undump(0, 63);
+			trieOp[k].hyfnext = undump(0, 1<<8-1);
 		}
 		for (k = 0; k <= 255; k++)
 			trieused[k] = 0;

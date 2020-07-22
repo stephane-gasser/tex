@@ -6,7 +6,7 @@ void packbufferedname(smallnumber n, int a, int b)
 		b = a+filenamesize-n-1-format_ext_length;
 	int k = 0;
 	for (int j = 1; j <= n; j++)
-		append_to_name(k,xord[TEXformatdefault[j]]);
+		append_to_name(k, xord[TEXformatdefault[j]]);
 	for (int j = a; j <= b; j++)
 		append_to_name(k, buffer[j]);
 	for (int j = format_default_length-format_ext_length+1; j <= format_default_length; j++)

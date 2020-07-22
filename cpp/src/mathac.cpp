@@ -12,9 +12,9 @@ void mathac(eightbits cmd)
 	tail_append(getnode(accent_noad_size));
 	type(tail) = accent_noad;
 	subtype(tail) = normal;
-	mem[nucleus(tail)].hh = emptyfield;
-	mem[subscr(tail)].hh = emptyfield;
-	mem[supscr(tail)].hh = emptyfield;
+	mem[nucleus(tail)].hh = twohalves{0, 0};
+	mem[subscr(tail)].hh = twohalves{0, 0};
+	mem[supscr(tail)].hh = twohalves{0, 0};
 	math_type(accent_chr(tail)) = math_char;
 	int val = scanfifteenbitint();
 	character(accent_chr(tail)) = val%0x1'00;

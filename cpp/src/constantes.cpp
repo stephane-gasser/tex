@@ -136,9 +136,6 @@ int& space_stretch(internalfontnumber f) { return param(space_stretch_code, f); 
 int& space_shrink(internalfontnumber f) { return param(space_shrink_code, f); }
 int& x_height(internalfontnumber f) { return param(x_height_code, f); }
 int& quad(internalfontnumber f) { return param(quad_code, f); }
-halfword& trie_link(halfword p) { return trie[p].rh; }
-quarterword& trie_char(halfword p) { return trie[p].b1; }
-quarterword& trie_op(halfword p) { return trie[p].b0; }
 halfword& every_vbox(void) { return equiv(every_vbox_loc); }
 bool fam_in_range(void) { return cur_fam() >= 0 && cur_fam() < 16; }
 void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : language(); }
@@ -163,7 +160,7 @@ void append_to_name(int &k, char c)
 {
 	k++;
 	if (k <= filenamesize)
-		nameoffile[k] = xchr[c];
+		nameoffile[k] = xchr[c]; 
 }
 
 float vet_glue(float g)
@@ -193,7 +190,5 @@ halfword &first_mark = curmark[first_mark_code];
 halfword &bot_mark = curmark[bot_mark_code];
 halfword &split_first_mark = curmark[split_first_mark_code];
 halfword &split_bot_mark = curmark[split_bot_mark_code];
-triepointer &trie_root = triel[0];
-triepointer *trie_ref = triehash;
 halfword &contrib_tail = nest[0].tailfield;
 

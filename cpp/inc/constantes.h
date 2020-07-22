@@ -855,9 +855,6 @@ quarterword& fitness(halfword); //!< <em> very_loose_fit..tight_fit</em> on fina
 halfword& break_node(halfword); //!< pointer to the corresponding passive node
 halfword& line_number(halfword); //!< line that begins at this breakpoint
 int& total_demerits(halfword); //!< the quantity that \\TeX\\ minimizes
-halfword& trie_link(halfword); //!< ``downward'' link in a trie
-quarterword& trie_char(halfword); //!< character matched at this trie location
-quarterword& trie_op(halfword); //!< program for hyphenation at this trie location
 void set_cur_lang(void); 
 halfword& broken_ins(halfword p); //!< this insertion might break at \a broken_ptr
 halfword& last_ins_ptr(halfword p); //!< the most recent insertion for this \a subtype
@@ -895,8 +892,6 @@ extern halfword &bot_mark;
 extern halfword &split_first_mark;
 extern halfword &split_bot_mark;
 extern scaled &act_width; //!< length from first active node to current node
-extern triepointer &trie_root; //!< root of the linked trie
-extern triepointer *trie_ref; //!< where linked trie families go into \a trie
 extern scaled &page_goal; //!< desired height of information on page being built
 extern scaled &page_total; //!< height of the current page
 extern scaled &page_shrink; //!< shrinkability of the current page

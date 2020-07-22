@@ -3,9 +3,8 @@
 #include "deleteglueref.h"
 #include "popnest.h"
 #include "finiteshrink.h"
-#include "inittrie.h"
+#include "cesure.h"
 #include "trybreak.h"
-#include "hyphenate.h"
 #include "erreur.h"
 #include "postlinebreak.h"
 
@@ -336,24 +335,24 @@ void linebreak(int finalwidowpenalty)
 								bool label34 = true;
 								while (label34)
 								{
-									if (s < himemmin)
+									if (!is_char_node(s))
 										switch (type(s))
 										{
-											case 6: 
+											case ligature_node: 
 												break;
-											case 11: 
-												if (subtype(s))
+											case kern_node: 
+												if (subtype(s) != normal)
 												{
 													label34 = false;
 													continue;
 												}
 												break;
-											case 8:
-											case 10:
-											case 12:
-											case 3:
-											case 5:
-											case 4: 
+											case whatsit_node:
+											case glue_node:
+											case penalty_node:
+											case ins_node:
+											case adjust_node:
+											case mark_node: 
 												label34 = false;
 												continue;
 											default: 

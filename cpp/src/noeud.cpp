@@ -20,6 +20,7 @@
 #include "texte.h"
 #include "flushlist.h"
 #include "deleteglueref.h"
+#include "cesure.h"
 
 halfword copynodelist(halfword p)
 {
@@ -333,26 +334,6 @@ halfword getnode(int s)
 	return r;
 }
 
-triepointer trienode(triepointer p)
-{
-	triepointer h = abs(triec[p]+1009*trieo[p]+2718*triel[p]+3142*trier[p])%triesize;
-	while (true)
-	{
-		triepointer q = triehash[h];
-		if (q == 0)
-		{
-			triehash[h] = p;
-			return p;
-		}
-		if (triec[q] == triec[p] && trieo[q] == trieo[p] && triel[q] == triel[p] && trier[q] == trier[p])
-			return q;
-		if (h > 0)
-			h--;
-		else
-			h = triesize;
-	}
-}
-
 void newhyphexceptions(void)
 {
 	char n, j;
@@ -659,9 +640,9 @@ halfword newnoad(void)
 	auto p = getnode(noad_size);
 	type(p) = ord_noad;
 	subtype(p) = normal;
-	mem[nucleus(p)].hh = emptyfield;
-	mem[subscr(p)].hh = emptyfield;
-	mem[supscr(p)].hh = emptyfield;
+	mem[nucleus(p)].hh = twohalves{0, 0};
+	mem[subscr(p)].hh = twohalves{0, 0};
+	mem[supscr(p)].hh = twohalves{0, 0};
 	return p;
 }
 
@@ -693,137 +674,11 @@ halfword newparamglue(smallnumber n)
 	return p;
 }
 
-void newpatterns(Token t)
-{
-	char k, l;
-	bool digitsensed;
-	quarterword v;
-	triepointer p, q;
-	bool firstchild;
-	ASCIIcode c;
-	if (trienotready)
-	{
-		curlang = cur_fam();
-		if (curlang <= 0 || curlang > 255)
-				curlang = 0;
-		auto t = scanleftbrace();
-		k = 0;
-		hyf[0] = 0;
-		digitsensed = false;
-		bool keepIn = true;
-		while (keepIn)
-		{
-			auto t = getxtoken();
-			switch (t.cmd)
-			{
-				case letter:
-				case other_char:
-					if (digitsensed || t.chr < '0' || t.chr > '9')
-					{
-						if (t.chr == '.')
-							t.chr = 0;
-						else
-						{
-							t.chr = lc_code(t.chr);
-							if (t.chr == 0)
-								error("Nonletter", "(See Appendix H.)");
-						}
-						if (k < 63)
-						{
-							k++;
-							hc[k] = t.chr;
-							hyf[k] = 0;
-							digitsensed = false;
-						}
-					}
-					else 
-						if (k < 63)
-						{
-							hyf[k] = t.chr-'0';
-							digitsensed = true;
-						}
-					break;
-				case spacer:
-				case right_brace:
-					if (k > 0)
-					{
-						if (hc[1] == 0)
-							hyf[0] = 0;
-						if (hc[k] == 0)
-							hyf[k] = 0;
-						l = k;
-						v = 0;
-						while (true)
-						{
-							if (hyf[l] != 0)
-							v = newtrieop(k-l, hyf[l], v);
-							if (l > 0)
-								l--;
-							else
-								break;
-						}
-						q = 0;
-						hc[0] = curlang;
-						while (l <= k)
-						{
-							c = hc[l];
-							l++;
-							p = triel[q];
-							firstchild = true;
-							while (p > 0 && c > triec[p])
-							{
-								q = p;
-								p = trier[q];
-								firstchild = false;
-							}
-							if (p == 0 || c < triec[p])
-							{
-								if (trieptr == triesize)
-									overflow("pattern memory", triesize);
-								trieptr++;
-								trier[trieptr] = p;
-								p = trieptr;
-								triel[p] = 0;
-								if (firstchild)
-									triel[q] = p;
-								else
-									trier[q] = p;
-								triec[p] = c;
-								trieo[p] = 0;
-							}
-							q = p;
-						}
-						if (trieo[q])
-							error("Duplicate pattern", "(See Appendix H.)");
-						trieo[q] = v;
-					}
-					if (t.cmd == right_brace)
-					{
-						keepIn = false;
-						continue;
-					}
-					k = 0;
-					hyf[0] = 0;
-					digitsensed = false;
-					break;
-				default:
-					error("Bad "+esc("patterns"), "(See Appendix H.)");
-			}
-		}
-	}
-	else
-	{
-		error("Too late for "+esc("patterns"), "All patterns must be given before typesetting begins.");
-		link(garbage) = scantoks(false, false, t);
-		flushlist(defref);
-	}
-}
-
 halfword newpenalty(int m)
 {
 	auto p = getnode(small_node_size);
 	type(p) = penalty_node;
-	subtype(p) = 0; //the |subtype| is not used
+	//subtype(p) = 0; //the |subtype| is not used
 	penalty(p) = m;
 	return p;
 }
@@ -881,39 +736,6 @@ halfword newstyle(smallnumber s)
 	width(p) = 0;
 	depth(p) = 0;
 	return p;
-}
-
-quarterword newtrieop(smallnumber d, smallnumber n, quarterword v)
-{
-	int h = abs(n+313*d+361*v+1009*curlang)%(2*trieopsize)-trieopsize;
-	while (true)
-	{
-		int l = trieophash[h];
-		if (l == 0)
-		{
-			if (trieopptr == trieopsize)
-				overflow("pattern memory ops", trieopsize);
-			quarterword u = trieused[curlang];
-			if (u == 255)
-				overflow("pattern memory ops per language", 255);
-			trieopptr++;
-			u++;
-			trieused[curlang] = u;
-			hyfdistance[trieopptr] = d;
-			hyfnum[trieopptr] = n;
-			hyfnext[trieopptr] = v;
-			trieoplang[trieopptr] = curlang;
-			trieophash[h] = trieopptr;
-			trieopval[trieopptr] = u;
-			return u;
-		}
-		if (hyfdistance[l] == d && hyfnum[l] == n && hyfnext[l] == v && trieoplang[l] == curlang)
-			return trieopval[l];
-		if (h > -trieopsize)
-			h--;
-		else
-			h = trieopsize;
-	}
 }
 
 void newwhatsit(smallnumber s, smallnumber w)

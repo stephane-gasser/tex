@@ -1,7 +1,5 @@
 #include "globals.h"
 
-using std::map;
-
 int bad;
 int tally;
 int trickcount;
@@ -38,8 +36,8 @@ int insertpenalties;
 int readyalready;
 int threshold;
 int minimumdemerits;
-map<char, ASCIIcode> xord;
-map<ASCIIcode, char> xchr;
+std::map<char, ASCIIcode> xord;
+std::map<ASCIIcode, char> xchr;
 std::string nameoffile;// char[filenamesize+1]; // débute à 1
 char namelength; //0..filenamesize;
 ASCIIcode buffer[bufsize+1]; // débute à 0
@@ -175,8 +173,6 @@ scaled curh, curv;
 internalfontnumber dvif;
 scaled totalstretch[4], totalshrink[4];
 halfword adjusttail;
-twohalves emptyfield;
-fourquarters nulldelimiter;
 halfword curmlist;
 smallnumber curstyle;
 smallnumber cursize;
@@ -230,27 +226,10 @@ halfword curq;
 halfword ligstack;
 bool ligaturepresent;
 bool lfthit, rthit;
-smallnumber hyfdistance[trieopsize+1]; // commence à 1
-smallnumber hyfnum[trieopsize+1]; // commence à 1
-quarterword hyfnext[trieopsize+1]; // commence à 
-map<ASCIIcode, int> opstart; //of 0..trieopsize
+std::map<ASCIIcode, int> opstart; //of 0..trieopsize
 halfword hyphlist[308];
 hyphpointer hyphcount;
-twohalves trie[triesize+1];
-map<int, int> trieophash; // [-trieopsize..trieopsize] of 0..trieopsize
-map<ASCIIcode, quarterword> trieused;
-ASCIIcode trieoplang[trieopsize+1]; // commence à 1
-quarterword trieopval[trieopsize+1]; // commence à 1
-int trieopptr; // 0..trieopsize
-packedASCIIcode triec[triesize+1];
-quarterword trieo[triesize+1];
-triepointer triel[triesize+1];
-triepointer trier[triesize+1];
-triepointer trieptr;
-triepointer triehash[triesize+1];
-bool trietaken[triesize+1]; // commence à 1
-map<ASCIIcode, triepointer> triemin;
-triepointer triemax;
+std::map<ASCIIcode, quarterword> trieused;
 bool trienotready;
 scaled bestheightplusdepth;
 halfword pagetail;
