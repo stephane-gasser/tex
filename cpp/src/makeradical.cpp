@@ -4,6 +4,7 @@
 #include "half.h"
 #include "overbar.h"
 #include "hpack.h"
+#include "police.h"
 
 void makeradical(halfword q)
 {

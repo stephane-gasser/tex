@@ -1,4 +1,5 @@
 #include "noeud.h"
+#include "police.h"
 #include "getavail.h"
 #include "charwarning.h"
 #include "openlogfile.h"
@@ -450,7 +451,7 @@ void newhyphexceptions(void)
 
 halfword newcharacter(internalfontnumber f, eightbits c)
 {
-	if (fontbc[f] <= c && fontec[f] >= c && skip_byte(char_info(f, c)) > 0)
+	if (fonts[f].bc <= c && fonts[f].ec >= c && skip_byte(char_info(f, c)) > 0)
 	{
 		auto p = getavail();
 		type(p) = f;
@@ -530,20 +531,20 @@ void newfont(smallnumber a)
 	nameinprogress = false;
 	auto flushablestring = strings.back();
 	for (f = 1; f <= fontptr; f++)
-		if (fontname[f] == curname && fontarea[f] == curarea)
+		if (fonts[f].name == curname && fonts[f].area == curarea)
 		{
 			if (curname == flushablestring)
 			{
 				flush_string();
-				curname = fontname[f];
+				curname = fonts[f].name;
 			}
 			if (s > 0)
 			{
-				if (s == fontsize[f])
+				if (s == fonts[f].size)
 					break;
 			}
 			else 
-				if (fontsize[f] == xnoverd(fontdsize[f], -s, 1000))
+				if (fonts[f].size == xnoverd(fonts[f].dsize, -s, 1000))
 					break;
 		}
 	if (f > fontptr)
@@ -777,7 +778,7 @@ void appenddiscretionary(halfword s)
 	tail_append(newdisc());
 	if (s == 1)
 	{
-		int c = hyphenchar[cur_font()];
+		int c = fonts[cur_font()].hyphenchar;
 		if (c >= 0 && c < 0x1'00)
 			pre_break(tail) = newcharacter(cur_font(), c);
 	}
@@ -892,15 +893,15 @@ void appspace(halfword &mainp, fontindex &maink)
 			mainp = space_skip();
 		else // Find the glue specification, \a main_p, for text spaces in the current font
 		{
-			mainp = fontglue[cur_font()];
+			mainp = fonts[cur_font()].glue;
 			if (mainp == 0)
 			{
 				mainp = newspec(zero_glue);
-				maink = space_code+parambase[cur_font()];
+				maink = space_code+fonts[cur_font()].parambase;
 				width(mainp) = space(cur_font());
 				stretch(mainp) = space_stretch(cur_font());
 				shrink(mainp) = space_shrink(cur_font());
-				fontglue[cur_font()] = mainp;
+				fonts[cur_font()].glue = mainp;
 			}
 		}
 		mainp = newspec(mainp);

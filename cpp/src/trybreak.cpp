@@ -2,6 +2,7 @@
 #include "erreur.h"
 #include "noeud.h"
 #include "badness.h"
+#include "police.h"
 
 static void copy_to_cur_active(void) 
 {

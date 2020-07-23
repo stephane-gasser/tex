@@ -1,6 +1,7 @@
 #include "reconstitute.h"
 #include "getavail.h"
 #include "noeud.h"
+#include "police.h"
 
 static void set_cur_r(int j, int n, halfword &curr, halfword &currh, halfword hchar)
 {
@@ -85,7 +86,7 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 		skipLoop = false;
 		if (curl == 256)
 		{
-			k = bcharlabel[hf];
+			k = fonts[hf].bcharlabel;
 			if (k == 0)
 				skipLoop = true;
 			else

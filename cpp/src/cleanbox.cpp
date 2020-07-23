@@ -3,6 +3,7 @@
 #include "mlisttohlist.h"
 #include "hpack.h"
 #include "xovern.h"
+#include "police.h"
 
 halfword cleanbox(halfword p, smallnumber s)
 {

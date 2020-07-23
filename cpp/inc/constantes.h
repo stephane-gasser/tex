@@ -798,26 +798,6 @@ int& saved(halfword);
 alphafile& cur_file(void); //!< the current \a alpha_file variable
 int& if_line_field(halfword); 
 void append_to_name(int&, char); 
-quarterword skip_byte(fourquarters);
-quarterword next_char(fourquarters);
-quarterword op_byte(fourquarters); 
-quarterword rem_byte(fourquarters);
-fourquarters char_info(internalfontnumber, smallnumber);
-int char_width(internalfontnumber, fourquarters); 
-bool char_exists(fourquarters); 
-int char_italic(internalfontnumber, fourquarters);
-int char_height(internalfontnumber, fourquarters);
-int char_depth(internalfontnumber, fourquarters);
-int char_tag(fourquarters);
-int char_kern(internalfontnumber, fourquarters); 
-int lig_kern_start(internalfontnumber, fourquarters); //!< beginning of lig/kern program
-int lig_kern_restart(internalfontnumber, fourquarters); 
-int& param(smallnumber, internalfontnumber); 
-int& space(internalfontnumber); //!< normal space between words
-int& space_stretch(internalfontnumber); //!< stretch between words
-int& space_shrink(internalfontnumber); //!< shrink between words
-int& x_height(internalfontnumber); //!< one ex
-int& quad(internalfontnumber); //!< one em
 int& location(halfword); //!< DVI byte number for a movement command
 float vet_glue(float);
 halfword nucleus(halfword); //!< the \a nucleus field of a noad
@@ -840,11 +820,6 @@ halfword& display_mlist(halfword); //!< mlist to be used in display style
 halfword& text_mlist(halfword); //!< mlist to be used in text style
 halfword& script_mlist(halfword); //!< mlist to be used in script style
 halfword& script_script_mlist(halfword); //!< mlist to be used in scriptscript style
-int mathsy(smallnumber, smallnumber); 
-int math_x_height(smallnumber); //!< height of `x'
-int math_quad(smallnumber); //!< 18mu
-int axis_height(smallnumber); //!< height of fraction lines above the baseline
-int mathex(smallnumber); 
 int default_rule_thickness(void); //!< thickness of \\over bars
 int& new_hlist(halfword); //!< the translation of an mlist
 int& u_part(halfword); //!< pointer to \f$<u_j\f$ token list

@@ -1,4 +1,5 @@
 #include "heightplusdepth.h"
+#include "police.h"
 
 scaled heightplusdepth(internalfontnumber f, quarterword c)
 {

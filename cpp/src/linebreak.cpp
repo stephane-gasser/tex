@@ -6,6 +6,7 @@
 #include "cesure.h"
 #include "trybreak.h"
 #include "erreur.h"
+#include "police.h"
 #include "postlinebreak.h"
 
 static void check_shrinkage(halfword &p)
@@ -265,10 +266,8 @@ void linebreak(int finalwidowpenalty)
 							}
 							while (!label31)
 							{
-								hyfchar = hyphenchar[hf];
-								if (hyfchar < 0)
-									break;
-								if (hyfchar > 255)
+								hyfchar = fonts[hf].hyphenchar;
+								if (hyfchar < 0 || hyfchar > 255)
 									break;
 								ha = prevs;
 								if (lhyf+rhyf > 63)
@@ -316,7 +315,7 @@ void linebreak(int finalwidowpenalty)
 											hb = s;
 											hn = j;
 											if (subtype(s)%2)
-												hyfbchar = fontbchar[hf];
+												hyfbchar = fonts[hf].bchar;
 											else
 												hyfbchar = 256;
 										}
@@ -324,7 +323,7 @@ void linebreak(int finalwidowpenalty)
 											if (type(s) == 11 && subtype(s) == 0)
 											{
 												hb = s;
-												hyfbchar = fontbchar[hf];
+												hyfbchar = fonts[hf].bchar;
 											}
 											else
 												break;

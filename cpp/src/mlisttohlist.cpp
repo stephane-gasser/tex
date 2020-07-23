@@ -18,6 +18,7 @@
 #include "makescripts.h"
 #include "noeud.h"
 #include "makeleftright.h"
+#include "police.h"
 
 constexpr char math_spacing[] = "0234000122*4000133**3**344*0400400*000000234000111*1111112341011";
 

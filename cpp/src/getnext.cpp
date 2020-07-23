@@ -1,5 +1,4 @@
 #include "getnext.h"
-#include "checkoutervalidity.h"
 #include "impression.h"
 #include "erreur.h"
 #include "terminput.h"
@@ -13,6 +12,7 @@
 #include "texte.h"
 #include "getavail.h"
 #include "runaway.h"
+#include "police.h"
 
 [[nodiscard]] static Token checkoutervalidity(Token t)
 {

@@ -11,6 +11,7 @@
 #include "half.h"
 #include "resumeafterdisplay.h"
 #include "texte.h"
+#include "police.h"
 
 static int display_width(void) { return dimen_par(display_width_code); }
 static int math_surround(void) { return dimen_par(math_surround_code); }
@@ -30,18 +31,18 @@ void aftermath(void)
 	smallnumber g1, g2;
 	halfword r, tt;
 	bool danger = false; // not enough symbol fonts are present
-	if (fontparams[fam_fnt(2+text_size)] < total_mathsy_params 
-	 || fontparams[fam_fnt(2+script_size)] < total_mathsy_params 
-	 || fontparams[fam_fnt(2+script_script_size)] < total_mathsy_params)
+	if (fonts[fam_fnt(2+text_size)].params < total_mathsy_params 
+	 || fonts[fam_fnt(2+script_size)].params < total_mathsy_params 
+	 || fonts[fam_fnt(2+script_script_size)].params < total_mathsy_params)
 	{
 		error("Math formula deleted: Insufficient symbol fonts", "Sorry, but I can't typeset math unless \\textfont 2\nand \\scriptfont 2 and \\scriptscriptfont 2 have all\nThe \\fontdimen values needed in math symbol fonts.");
 		flushmath();
 		danger = true;
 	}
 	else 
-		if (fontparams[fam_fnt(3+text_size)] < total_mathex_params
-		 || fontparams[fam_fnt(3+script_size)] < total_mathex_params
-		 || fontparams[fam_fnt(3+script_script_size)] < total_mathex_params)
+		if (fonts[fam_fnt(3+text_size)].params < total_mathex_params
+		 || fonts[fam_fnt(3+script_size)].params < total_mathex_params
+		 || fonts[fam_fnt(3+script_script_size)].params < total_mathex_params)
 		{
 			error("Math formula deleted: Insufficient extension fonts", "Sorry, but I can't typeset math unless \\textfont 3\nand \\scriptfont 3 and \\scriptscriptfont 3 have all\nthe \\fontdimen values needed in math extension fonts.");
 			flushmath();
@@ -65,18 +66,18 @@ void aftermath(void)
 		if (saved(0) == 1)
 			l = true;
 		danger = false;
-		if (fontparams[fam_fnt(2+text_size)] < total_mathsy_params 
-		 || fontparams[fam_fnt(2+script_size)] < total_mathsy_params 
-		 || fontparams[fam_fnt(2+script_script_size)] < total_mathsy_params)
+		if (fonts[fam_fnt(2+text_size)].params < total_mathsy_params 
+		 || fonts[fam_fnt(2+script_size)].params < total_mathsy_params 
+		 || fonts[fam_fnt(2+script_script_size)].params < total_mathsy_params)
 		{
 			error("Math formula deleted: Insufficient symbol fonts", "Sorry, but I can't typeset math unless \\textfont 2\nand \\scriptfont 2 and \\scriptscriptfont 2 have all\nthe \\fontdimen values needed in math symbol fonts.");
 			flushmath();
 			danger = true;
 		}
 		else 
-			if (fontparams[fam_fnt(3+text_size)] < total_mathex_params
-			 || fontparams[fam_fnt(3+script_size)] < total_mathex_params
-			 || fontparams[fam_fnt(3+script_script_size)] < total_mathex_params)
+			if (fonts[fam_fnt(3+text_size)].params < total_mathex_params
+			 || fonts[fam_fnt(3+script_size)].params < total_mathex_params
+			 || fonts[fam_fnt(3+script_script_size)].params < total_mathex_params)
 			{
 				error("Math formula deleted: Insufficient extension fonts", "Sorry, but I can't typeset math unless \\textfont 3\nand \\scriptfont 3 and \\scriptscriptfont 3 have all\nthe \\fontdimen values needed in math extension fonts.");
 				flushmath();

@@ -3,6 +3,7 @@
 #include "heightplusdepth.h"
 #include "stackintobox.h"
 #include "charbox.h"
+#include "police.h"
 #include "half.h"
 
 static quarterword ext_top(fourquarters q) { return q.b0; } //!< |top| piece in a recipe
@@ -33,7 +34,7 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 				if (g != null_font)
 				{
 					auto y = x;
-					if (y >= fontbc[g] && y <= fontec[g])
+					if (y >= fonts[g].bc && y <= fonts[g].ec)
 					{
 						bool label22;
 						do 
@@ -87,7 +88,7 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 		{
 			b = newnullbox();
 			type(b) = vlist_node;
-			fourquarters r = fontinfo[extenbase[f]+rem_byte(q)].qqqq;
+			fourquarters r = fontinfo[fonts[f].extenbase+rem_byte(q)].qqqq;
 			c = ext_rep(r);
 			auto u = heightplusdepth(f, c);
 			w = 0;

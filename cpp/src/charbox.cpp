@@ -1,6 +1,7 @@
 #include "charbox.h"
 #include "noeud.h"
 #include "getavail.h"
+#include "police.h"
 
 halfword charbox(internalfontnumber f, quarterword c)
 {

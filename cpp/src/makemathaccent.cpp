@@ -4,6 +4,7 @@
 #include "charbox.h"
 #include "half.h"
 #include "noeud.h"
+#include "police.h"
 #include "vpackage.h"
 
 void makemathaccent(halfword q)
@@ -29,7 +30,7 @@ void makemathaccent(halfword q)
 				}
 				while (true)
 				{
-					if (next_char(curi) == skewchar[curf])
+					if (next_char(curi) == fonts[curf].skewchar)
 					{
 						if (op_byte(curi) >= kern_flag)
 							if (skip_byte(curi) <= stop_flag)

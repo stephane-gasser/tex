@@ -1,6 +1,7 @@
 #include "makevcenter.h"
 #include "erreur.h"	
 #include "half.h"	
+#include "police.h"	
 
 void makevcenter(halfword q)
 {

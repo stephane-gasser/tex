@@ -7,6 +7,7 @@
 #include "flushlist.h"
 #include "erreur.h"
 #include "primitive.h"
+#include "police.h"
 #include <sstream>
 
 static void printchar(ASCIIcode s)
@@ -164,7 +165,7 @@ std::string cmdchr(Token t)
 		case math_given:
 			return esc("mathchar")+hex(t.chr); 
 		case set_font:
-			return "select font "+fontname[t.chr]+(fontsize[t.chr] == fontdsize[t.chr] ? "" : " at "+std::to_string(double(fontsize[t.chr])/unity)+"pt");
+			return "select font "+fonts[t.chr].name+(fonts[t.chr].size == fonts[t.chr].dsize ? "" : " at "+std::to_string(double(fonts[t.chr].size)/unity)+"pt");
 		case tab_mark:
 		case left_brace:
 		case right_brace:

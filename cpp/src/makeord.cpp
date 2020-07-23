@@ -1,6 +1,7 @@
 #include "makeord.h"
 #include "fetch.h"
 #include "noeud.h"
+#include "police.h"
 
 void makeord(halfword q)
 {

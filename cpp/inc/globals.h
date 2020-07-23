@@ -15,8 +15,6 @@ inline std::string curext;
 inline std::string jobname;
 inline std::string outputfilename;
 inline std::string logname;
-inline std::string fontname[fontmax+1];
-inline std::string fontarea[fontmax+1];
 inline std::string formatident;
 
 class Token
@@ -147,31 +145,6 @@ extern bool nameinprogress;
 extern bool logopened;
 extern bytefile dvifile;
 extern bytefile tfmfile;
-extern memoryword fontinfo[fontmemsize+1];
-extern fontindex fmemptr;
-extern internalfontnumber fontptr;
-extern fourquarters fontcheck[fontmax+1];
-extern scaled fontsize[fontmax+1];
-extern scaled fontdsize[fontmax+1]; 
-extern fontindex fontparams[fontmax+1];
-extern eightbits fontbc[fontmax+1];
-extern eightbits fontec[fontmax+1];
-extern halfword fontglue[fontmax+1];
-extern bool fontused[fontmax+1];
-extern int hyphenchar[fontmax+1];
-extern int skewchar[fontmax+1];
-extern fontindex bcharlabel[fontmax+1];
-extern int fontbchar[fontmax+1]; // of 0..256
-extern int fontfalsebchar[fontmax+1]; // of 0..256
-extern int charbase[fontmax+1];
-extern int widthbase[fontmax+1];
-extern int heightbase[fontmax+1];
-extern int depthbase[fontmax+1];
-extern int italicbase[fontmax+1];
-extern int ligkernbase[fontmax+1];
-extern int kernbase[fontmax+1];
-extern int extenbase[fontmax+1];
-extern int parambase[fontmax+1];
 extern fourquarters nullcharacter;
 extern scaled maxv;
 extern scaled maxh;
@@ -194,7 +167,6 @@ extern smallnumber curstyle;
 extern smallnumber cursize;
 extern scaled curmu;
 extern bool mlistpenalties;
-extern internalfontnumber curf;
 extern quarterword curc;
 extern fourquarters curi;
 extern halfword curalign;

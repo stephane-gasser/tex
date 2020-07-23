@@ -3,6 +3,7 @@
 #include "cleanbox.h"
 #include "noeud.h"
 #include "vpackage.h"
+#include "police.h"
 
 static int script_space(void) { return dimen_par(script_space_code); }
 

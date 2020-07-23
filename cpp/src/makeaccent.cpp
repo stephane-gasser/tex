@@ -4,6 +4,7 @@
 #include "doassignments.h"
 #include "backinput.h"
 #include "hpack.h"
+#include "police.h"
 #include <cmath>
 
 //! slant to the right, per unit distance upward

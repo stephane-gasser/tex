@@ -1,5 +1,6 @@
 #include "makeleftright.h"
 #include "vardelimiter.h"
+#include "police.h"
 
 static int delimiter_factor(void) { return int_par(delimiter_factor_code); }
 static int delimiter_shortfall(void) { return dimen_par(delimiter_shortfall_code); }

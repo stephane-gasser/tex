@@ -1,5 +1,6 @@
 #include "lecture.h"
 #include "getnext.h"
+#include "police.h"
 #include "expand.h"
 #include "pushmath.h"
 #include "flushlist.h"
@@ -879,7 +880,7 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			lev = dimen_val;
 			break;
 		case assign_font_int:
-			val = (m == 0 ? hyphenchar: skewchar)[scanfontident()];
+			val = m == 0 ? fonts[scanfontident()].hyphenchar: fonts[scanfontident()].skewchar;
 			lev = int_val;
 			break;
 		case register_:
@@ -1428,7 +1429,7 @@ void convtoks(Token t)
 			break;
 		case font_name_code: 
 			val = scanfontident();
-			strings.push_back(fontname[val]+(fontsize[val] != fontdsize[val] ? " at "+asScaled(fontsize[val])+"pt" : ""));
+			strings.push_back(fonts[val].name+(fonts[val].size != fonts[val].dsize ? " at "+asScaled(fonts[val].size)+"pt" : ""));
 			break;
 		case string_code:
 			strings.push_back(t.cs ? scs(t.cs) : std::string(1, t.chr));

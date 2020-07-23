@@ -4,6 +4,7 @@
 #include "charwarning.h"
 #include "texte.h"
 #include "primitive.h"
+#include "police.h"
 
 void fetch(halfword a)
 {
@@ -17,7 +18,7 @@ void fetch(halfword a)
 	}
 	else
 	{
-		if (curc >= fontbc[curf] && curc <= fontec[curf])
+		if (curc >= fonts[curf].bc && curc <= fonts[curf].ec)
 			curi = char_info(curf, curc);
 		else
 			curi = nullcharacter;

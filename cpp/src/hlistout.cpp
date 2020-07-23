@@ -7,6 +7,7 @@
 #include "vlistout.h"
 #include "dvipop.h"
 #include "outwhat.h"
+#include "police.h"
 #include <cmath>
 
 void hlistout(void)
@@ -36,10 +37,10 @@ void hlistout(void)
 				c = character(p);
 				if (f != dvif)
 				{
-					if (!fontused[f])
+					if (!fonts[f].used)
 					{
 						dvifontdef(f);
-						fontused[f] = true;
+						fonts[f].used = true;
 					}
 					if (f <= 64+font_base)
 						dvi_out(f-font_base-1+fnt_num_0);

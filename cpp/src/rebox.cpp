@@ -1,6 +1,7 @@
 #include "rebox.h"
 #include "hpack.h"
 #include "noeud.h"
+#include "police.h"
 
 halfword rebox(halfword b, scaled w)
 {

@@ -6,6 +6,7 @@
 #include "fractionrule.h"
 #include "vardelimiter.h"
 #include "hpack.h"
+#include "police.h"
 
 static int num1(smallnumber c) { return mathsy(8, c); } //!< numerator shift-up in display styles
 static int num2(smallnumber c) { return mathsy(9, c); } //!< numerator shift-up in non-display, non-\atop 

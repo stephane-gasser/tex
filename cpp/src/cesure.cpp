@@ -5,6 +5,7 @@
 #include "flushlist.h"
 #include "lecture.h"
 #include "impression.h"
+#include "police.h"
 
 static std::map<TrieNode, triepointer> tnMap;
 
@@ -404,7 +405,7 @@ void hyphenate(void)
 				}
 				while (l <= i)
 				{
-					l = reconstitute(l, i, fontbchar[hf], non_char)+1;
+					l = reconstitute(l, i, fonts[hf].bchar, non_char)+1;
 					if (link(hold_head) > 0)
 					{
 						if (minortail == 0)
@@ -425,7 +426,7 @@ void hyphenate(void)
 				minortail = 0;
 				pre_break(r) = 0;
 				cloc = 0;
-				if (bcharlabel[hf])
+				if (fonts[hf].bcharlabel)
 				{
 					l--;
 					c = hu[l];

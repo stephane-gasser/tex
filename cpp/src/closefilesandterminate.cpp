@@ -6,6 +6,7 @@
 #include "writedvi.h"
 #include "dviswap.h"
 #include "fichier.h"
+#include "police.h"
 
 void closefilesandterminate(void)
 {
@@ -42,7 +43,7 @@ void closefilesandterminate(void)
 		dvi_out((totalpages/0x1'00)%0x1'00);
 		dvi_out(totalpages%0x1'00);
 		for (;fontptr > 0; fontptr--)
-			if (fontused[fontptr])
+			if (fonts[fontptr].used)
 				dvifontdef(fontptr);
 		dvi_out(post_post);
 		dvifour(lastbop);

@@ -101,28 +101,7 @@ halfword& script_script_mlist(halfword p) { return link(p+2); }
 int& saved(halfword p) { return savestack[saveptr+p].int_; }
 int& total_demerits(halfword p) { return mem[p+2].int_; }
 bool is_char_node(halfword p) { return p >= himemmin; }
-int char_width(internalfontnumber f, fourquarters i) { return fontinfo[widthbase[f]+i.b0].int_; }
-int char_height(internalfontnumber f, fourquarters i) { return fontinfo[heightbase[f]+i.b1/16].int_; }
-int& param(smallnumber p, internalfontnumber f) { return fontinfo[p+parambase[f]].int_; }
-fourquarters char_info(internalfontnumber f, smallnumber q) { return fontinfo[charbase[f]+q].qqqq; }
-int mathex(smallnumber p) { return param(p, fam_fnt(3+cursize)); }
-int default_rule_thickness(void) { return mathex(8); }
-int mathsy(smallnumber p, smallnumber c) { return param(p, fam_fnt(2+c)); }
-int axis_height(smallnumber c) { return mathsy(22, c); }
-int math_x_height(smallnumber c) { return mathsy(5, c); }
 int& location(halfword p) { return mem[p+2].int_; }
-int math_quad(smallnumber c) { return mathsy(6, c); }
-int char_italic(internalfontnumber f, fourquarters q) { return fontinfo[italicbase[f]+q.b2/4].int_; }
-int char_depth(internalfontnumber f, fourquarters q) { return fontinfo[depthbase[f]+q.b1%16].int_; }
-int char_tag(fourquarters q) { return q.b2%4; }
-bool char_exists(fourquarters q) { return q.b0 > 0; }
-quarterword skip_byte(fourquarters q) { return q.b0; }
-quarterword next_char(fourquarters q) { return q.b1; }
-quarterword op_byte(fourquarters q) { return q.b2; }
-quarterword rem_byte(fourquarters q) { return q.b3; }
-int lig_kern_start(internalfontnumber f, fourquarters i) { return ligkernbase[f]+rem_byte(i); }
-int lig_kern_restart(internalfontnumber f, fourquarters i) { return ligkernbase[f]+256*op_byte(i)+rem_byte(i); }
-int char_kern(internalfontnumber f, fourquarters i) { return fontinfo[kernbase[f]+256*op_byte(i)+rem_byte(i)].int_; }
 halfword& text(halfword p) { return hash[p].rh; }
 int length(halfword p) { return /*strstart[p+1]-strstart[p]*/strings[p].size(); }
 halfword& open_name(halfword p) { return link(p+1); }
@@ -131,11 +110,6 @@ halfword& open_ext(halfword p) { return link(p+2); }
 int cur_length(void) { return /*poolptr-strstart[strptr]*/currentString.size(); }
 bool is_running(int d) { return d == null_flag; }
 alphafile& cur_file(void) { return inputfile[index]; }
-int& space(internalfontnumber f) { return param(space_code, f); }
-int& space_stretch(internalfontnumber f) { return param(space_stretch_code, f); }
-int& space_shrink(internalfontnumber f) { return param(space_shrink_code, f); }
-int& x_height(internalfontnumber f) { return param(x_height_code, f); }
-int& quad(internalfontnumber f) { return param(quad_code, f); }
 halfword& every_vbox(void) { return equiv(every_vbox_loc); }
 bool fam_in_range(void) { return cur_fam() >= 0 && cur_fam() < 16; }
 void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : language(); }

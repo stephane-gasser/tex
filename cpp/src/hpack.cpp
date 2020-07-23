@@ -2,6 +2,7 @@
 #include "impression.h"
 #include "badness.h"
 #include "noeud.h"
+#include "police.h"
 
 static int hbadness(void) { return int_par(hbadness_code); }
 static int hfuzz(void) { return dimen_par(hfuzz_code); }

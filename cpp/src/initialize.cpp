@@ -1,6 +1,7 @@
 #include "initialize.h"
 #include "texte.h"
 #include "cesure.h"
+#include "police.h"
 
 static halfword& uc_code(halfword p) { return equiv(uc_code_base+p); }
 
@@ -59,7 +60,7 @@ void Initialize(void)
 	ifline = 0;
 	TEXformatdefault = "TeXformats:plain.fmt";
 	for (int k = 0; k <= fontmax; k++)
-		fontused[k] = false;
+		fonts[k].used = false;
 	nullcharacter.b0 = 0;
 	nullcharacter.b1 = 0;
 	nullcharacter.b2 = 0;
@@ -223,28 +224,28 @@ void Initialize(void)
 	text(frozen_dont_expand) = txt("notexpanded:");
 	fontptr = null_font;
 	fmemptr = 7;
-	fontname[null_font] = "nullfont";
-	fontarea[null_font] = "";
-	hyphenchar[null_font] = '-';
-	skewchar[null_font] = -1;
-	bcharlabel[null_font] = non_address;
-	fontbchar[null_font] = non_char;
-	fontfalsebchar[null_font] = non_char;
-	fontbc[null_font] = 1;
-	fontec[null_font] = 0;
-	fontsize[null_font] = 0;
-	fontdsize[null_font] = 0;
-	charbase[null_font] = 0;
-	widthbase[null_font] = 0;
-	heightbase[null_font] = 0;
-	depthbase[null_font] = 0;
-	italicbase[null_font] = 0;
-	ligkernbase[null_font] = 0;
-	kernbase[null_font] = 0;
-	extenbase[null_font] = 0;
-	fontglue[null_font] = 0;
-	fontparams[null_font] = 7;
-	parambase[null_font] = -1;
+	fonts[null_font].name = "nullfont";
+	fonts[null_font].area = "";
+	fonts[null_font].hyphenchar = '-';
+	fonts[null_font].skewchar = -1;
+	fonts[null_font].bcharlabel = non_address;
+	fonts[null_font].bchar = non_char;
+	fonts[null_font].falsebchar = non_char;
+	fonts[null_font].bc = 1;
+	fonts[null_font].ec = 0;
+	fonts[null_font].size = 0;
+	fonts[null_font].dsize = 0;
+	fonts[null_font].glue = 0;
+	fonts[null_font].params = 7;
+	fonts[null_font].charbase = 0;
+	fonts[null_font].widthbase = 0;
+	fonts[null_font].heightbase = 0;
+	fonts[null_font].depthbase = 0;
+	fonts[null_font].italicbase = 0;
+	fonts[null_font].ligkernbase = 0;
+	fonts[null_font].kernbase = 0;
+	fonts[null_font].extenbase = 0;
+	fonts[null_font].parambase = -1;
 	for (int k = 0; k < 7; k++)
 		fontinfo[k].int_ = 0;
 	trienotready = true;

@@ -1,4 +1,5 @@
 #include "maincontrol.h"
+#include "police.h"
 #include "fixlanguage.h"
 #include "getavail.h"
 #include "getnext.h"
@@ -75,7 +76,7 @@ static void wrapup(bool z)
 {
 	if (curl < non_char)
 	{
-		if (link(curq) > 0 && character(tail)==hyphenchar[mainf]) 
+		if (link(curq) > 0 && character(tail) == fonts[mainf].hyphenchar) 
 			insdisc = true; 
 		if (ligaturepresent)
 			pack_lig(z); 
@@ -158,15 +159,15 @@ static void main_loop_move_lig(void)
 {
 	if (space_skip() == zero_glue)
 	{
-		mainp = fontglue[cur_font()];
+		mainp = fonts[cur_font()].glue;
 		if (mainp == 0)
 		{
 			mainp = newspec(zero_glue);
-			maink = parambase[cur_font()]+space_code;
+			maink = fonts[cur_font()].parambase+space_code;
 			width(mainp) = space(cur_font());
 			stretch(mainp) = space_stretch(cur_font());
 			shrink(mainp) = space_shrink(cur_font());
-			fontglue[cur_font()] = mainp;
+			fonts[cur_font()].glue = mainp;
 		}
 		tempptr = newglue(mainp);
 	}
@@ -178,7 +179,7 @@ static void main_loop_move_lig(void)
 
 static bool main_loop_move_2(halfword chr)
 {
-	if (fontbc[mainf] <= chr && chr <= fontec[mainf])
+	if (fonts[mainf].bc <= chr && chr <= fonts[mainf].ec)
 	{
 		maini = char_info(mainf, curl);
 		if (char_exists(maini))
@@ -247,7 +248,7 @@ static bool main_loop_wrapup(halfword chr)
 				{
 					if (curl < non_char)
 					{
-						if (link(curq) > 0 && subtype(tail) == hyphenchar[mainf])
+						if (link(curq) > 0 && subtype(tail) == fonts[mainf].hyphenchar)
 							insdisc = true;
 						if (ligaturepresent)
 						{
@@ -354,7 +355,7 @@ static bool main_loop_wrapup(halfword chr)
 					is110 = true;
 					continue;
 				}
-				maink = bcharlabel[mainf];
+				maink = fonts[mainf].bcharlabel;
 				mainj = fontinfo[maink].qqqq;
 				is110 = false;
 				continue;
@@ -381,8 +382,8 @@ static void main_loop(Token t)
 {
 	adjust_space_factor(t.chr);
 	mainf = cur_font();
-	bchar = fontbchar[mainf];
-	falsebchar = fontfalsebchar[mainf];
+	bchar = fonts[mainf].bchar;
+	falsebchar = fonts[mainf].falsebchar;
 	if (mode > 0 && language() != clang)
 		fixlanguage();
 	ligstack = fast_get_avail();
@@ -390,7 +391,7 @@ static void main_loop(Token t)
 	curl = t.chr;
 	character(ligstack) = curl;
 	curq = tail;
-	maink = cancelboundary ? non_address : bcharlabel[mainf];
+	maink = cancelboundary ? non_address : fonts[mainf].bcharlabel;
 	cancelboundary = false;
 	if (maink == non_address)
 		if (main_loop_move_2(t.chr))

@@ -1,5 +1,6 @@
 #include "loadfmtfile.h"
 #include "cesure.h"
+#include "police.h"
 #include <iostream>
 
 void undump_hh(twohalves &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
@@ -147,29 +148,29 @@ bool loadfmtfile(void)
 		fontptr = undump_size(0, fontmax, "font max");
 		for (k = null_font; k <= fontptr; k++)
 		{
-			undump_qqqq(fontcheck[k]);
-			undump_int(fontsize[k]);
-			undump_int(fontdsize[k]);
-			fontparams[k] = undump(0, 1<<16-1);
-			undump_int(hyphenchar[k]);
-			undump_int(skewchar[k]);
-			fontname[k] = undump(0, strptr);
-			fontarea[k] = undump(0, strptr);
-			fontbc[k] = undump(0, 255);
-			fontec[k] = undump(0, 255);
-			undump_int(charbase[k]);
-			undump_int(widthbase[k]);
-			undump_int(heightbase[k]);
-			undump_int(depthbase[k]);
-			undump_int(italicbase[k]);
-			undump_int(ligkernbase[k]);
-			undump_int(kernbase[k]);
-			undump_int(extenbase[k]);
-			undump_int(parambase[k]);
-			fontglue[k] = undump(0, lomemmax);
-			bcharlabel[k] = undump(0, fmemptr-1);
-			fontbchar[k] = undump(0, non_char);
-			fontfalsebchar[k] = undump(0, non_char);
+			undump_qqqq(fonts[k].check);
+			undump_int(fonts[k].size);
+			undump_int(fonts[k].dsize);
+			fonts[k].params = undump(0, 1<<16-1);
+			undump_int(fonts[k].hyphenchar);
+			undump_int(fonts[k].skewchar);
+			fonts[k].name = strings[undump(0, strptr)];
+			fonts[k].area = strings[undump(0, strptr)];
+			fonts[k].bc = undump(0, 255);
+			fonts[k].ec = undump(0, 255);
+			undump_int(fonts[k].charbase);
+			undump_int(fonts[k].widthbase);
+			undump_int(fonts[k].heightbase);
+			undump_int(fonts[k].depthbase);
+			undump_int(fonts[k].italicbase);
+			undump_int(fonts[k].ligkernbase);
+			undump_int(fonts[k].kernbase);
+			undump_int(fonts[k].extenbase);
+			undump_int(fonts[k].parambase);
+			fonts[k].glue = undump(0, lomemmax);
+			fonts[k].bcharlabel = undump(0, fmemptr-1);
+			fonts[k].bchar = undump(0, non_char);
+			fonts[k].falsebchar = undump(0, non_char);
 		}
 		hyphcount = undump(0, hyph_size);
 		for (k = 1; k <= hyphcount; k++)

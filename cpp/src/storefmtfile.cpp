@@ -8,6 +8,7 @@
 #include "wmakenamestring.h"
 #include "sortavail.h"
 #include "cesure.h"
+#include "police.h"
 #include "fichier.h"
 #include "texte.h"
 
@@ -180,33 +181,33 @@ void storefmtfile(void)
 	dump_int(fontptr);
 	for (k = null_font; k <= fontptr; k++)
 	{
-		dump_qqqq(fontcheck[k]);
-		dump_int(fontsize[k]);
-		dump_int(fontdsize[k]);
-		dump_int(fontparams[k]);
-		dump_int(hyphenchar[k]);
-		dump_int(skewchar[k]);
-		dump_int(txt(fontname[k]));
-		dump_int(txt(fontarea[k]));
-		dump_int(fontbc[k]);
-		dump_int(fontec[k]);
-		dump_int(charbase[k]);
-		dump_int(widthbase[k]);
-		dump_int(heightbase[k]);
-		dump_int(depthbase[k]);
-		dump_int(italicbase[k]);
-		dump_int(ligkernbase[k]);
-		dump_int(kernbase[k]);
-		dump_int(extenbase[k]);
-		dump_int(parambase[k]);
-		dump_int(fontglue[k]);
-		dump_int(bcharlabel[k]);
-		dump_int(fontbchar[k]);
-		dump_int(fontfalsebchar[k]);
+		dump_qqqq(fonts[k].check);
+		dump_int(fonts[k].size);
+		dump_int(fonts[k].dsize);
+		dump_int(fonts[k].params);
+		dump_int(fonts[k].hyphenchar);
+		dump_int(fonts[k].skewchar);
+		dump_int(txt(fonts[k].name));
+		dump_int(txt(fonts[k].area));
+		dump_int(fonts[k].bc);
+		dump_int(fonts[k].ec);
+		dump_int(fonts[k].charbase);
+		dump_int(fonts[k].widthbase);
+		dump_int(fonts[k].heightbase);
+		dump_int(fonts[k].depthbase);
+		dump_int(fonts[k].italicbase);
+		dump_int(fonts[k].ligkernbase);
+		dump_int(fonts[k].kernbase);
+		dump_int(fonts[k].extenbase);
+		dump_int(fonts[k].parambase);
+		dump_int(fonts[k].glue);
+		dump_int(fonts[k].bcharlabel);
+		dump_int(fonts[k].bchar);
+		dump_int(fonts[k].falsebchar);
 		printnl("\\font");
-		print(esc(TXT(text(font_id_base+k)))+esc("FONT")+"="+asFilename(fontname[k], fontarea[k], ""));
-		if (fontsize[k] != fontdsize[k])
-			print(" at "+asScaled(fontsize[k])+"pt");
+		print(esc(TXT(text(font_id_base+k)))+esc("FONT")+"="+asFilename(fonts[k].name, fonts[k].area, ""));
+		if (fonts[k].size != fonts[k].dsize)
+			print(" at "+asScaled(fonts[k].size)+"pt");
 	}
 	println();
 	print(std::to_string(fmemptr-7)+" words of font info for "+std::to_string(fontptr)+" preloaded font"+(fontptr == 1 ? "" : "s"));

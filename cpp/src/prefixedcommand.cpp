@@ -19,6 +19,7 @@
 #include "findfontdimen.h"
 #include "texte.h"
 #include "cesure.h"
+#include "police.h"
 
 void prefixedcommand(Token t, bool setboxallowed)
 {
@@ -303,9 +304,9 @@ void prefixedcommand(Token t, bool setboxallowed)
 			f = scanfontident();
 			scanoptionalequals();
 			if (n == 0)
-				hyphenchar[f] = scanint();
+				fonts[f].hyphenchar = scanint();
 			else
-				skewchar[f] = scanint();
+				fonts[f].skewchar = scanint();
 			break;
 		case def_font: 
 			newfont(a);
