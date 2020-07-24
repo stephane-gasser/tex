@@ -103,12 +103,12 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a0dfcdcfca243b8bc38a56bc5f8675d21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="finrow_8h.html#a0dfcdcfca243b8bc38a56bc5f8675d21">finrow</a> (void)</td></tr>
-<tr class="separator:a0dfcdcfca243b8bc38a56bc5f8675d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad741ef8b1ae1c8ca9aa89932cc0c0e0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="finrow_8h.html#ad741ef8b1ae1c8ca9aa89932cc0c0e0e">finrow</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> &amp;)</td></tr>
+<tr class="separator:ad741ef8b1ae1c8ca9aa89932cc0c0e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a0dfcdcfca243b8bc38a56bc5f8675d21"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0dfcdcfca243b8bc38a56bc5f8675d21">&#9670;&nbsp;</a></span>finrow()</h2>
+<a id="ad741ef8b1ae1c8ca9aa89932cc0c0e0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad741ef8b1ae1c8ca9aa89932cc0c0e0e">&#9670;&nbsp;</a></span>finrow()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -116,7 +116,7 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void finrow </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
+          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> &amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -126,7 +126,7 @@ Fonctions</h2></td></tr>
 <p class="definition">Définition à la ligne <a class="el" href="finrow_8cpp_source.html#l00009">9</a> du fichier <a class="el" href="finrow_8cpp_source.html">finrow.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a> == -<a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da23ed1cf2add8386ccd9683ae2bc098b8">hmode</a>)</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a> == -<a class="code" href="constantes_8h.html#a811fe196a5d9d37857c2f8adeeaac3c6a23ed1cf2add8386ccd9683ae2bc098b8">hmode</a>)</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        p = <a class="code" href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497">hpack</a>(<a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a>), 0, <a class="code" href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a>);</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc">popnest</a>();</div>
@@ -145,19 +145,19 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a> = p;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="globals_8cpp.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a> = 1000;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635a26e62d150a8829503babb8d7f5cba925">unset_node</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a26e62d150a8829503babb8d7f5cba925">unset_node</a>;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="constantes_8cpp.html#ac3d11fd6581239a8bce32f06696b4085">glue_stretch</a>(p) = 0;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a60c965218c52394aaa95513c326eafbc">every_cr</a>())</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="lecture_8cpp.html#a1567b753123bcb567ae22be434031862">begintokenlist</a>(<a class="code" href="constantes_8cpp.html#a60c965218c52394aaa95513c326eafbc">every_cr</a>(), <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da090d6b531758c19c47f3ee2a24115537">every_cr_text</a>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="alignpeek_8cpp.html#abbfb7fd09994a199e27bf006b6708462">alignpeek</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="alignpeek_8cpp.html#a015dc86dbb4807af6d5575339cb94be0">alignpeek</a>(loop);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="finrow_8h_a0dfcdcfca243b8bc38a56bc5f8675d21_cgraph.png" border="0" usemap="#finrow_8h_a0dfcdcfca243b8bc38a56bc5f8675d21_cgraph" alt=""/></div>
-<map name="finrow_8h_a0dfcdcfca243b8bc38a56bc5f8675d21_cgraph" id="finrow_8h_a0dfcdcfca243b8bc38a56bc5f8675d21_cgraph">
+<div class="center"><img src="finrow_8h_ad741ef8b1ae1c8ca9aa89932cc0c0e0e_cgraph.png" border="0" usemap="#finrow_8h_ad741ef8b1ae1c8ca9aa89932cc0c0e0e_cgraph" alt=""/></div>
+<map name="finrow_8h_ad741ef8b1ae1c8ca9aa89932cc0c0e0e_cgraph" id="finrow_8h_ad741ef8b1ae1c8ca9aa89932cc0c0e0e_cgraph">
 <area shape="rect" title=" " alt="" coords="5,233,63,260"/>
-<area shape="rect" href="alignpeek_8cpp.html#abbfb7fd09994a199e27bf006b6708462" title=" " alt="" coords="123,5,201,32"/>
+<area shape="rect" href="alignpeek_8cpp.html#a015dc86dbb4807af6d5575339cb94be0" title=" " alt="" coords="123,5,201,32"/>
 <area shape="rect" href="noeud_8cpp.html#a7018c33b1ef8cb50dd66430b241ccb32" title="When a box is being appended to the current vertical list, the baselineskip calculation is handled by..." alt="" coords="113,56,211,83"/>
 <area shape="rect" href="lecture_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="111,107,213,133"/>
 <area shape="rect" href="constantes_8cpp.html#a60c965218c52394aaa95513c326eafbc" title=" " alt="" coords="126,157,198,184"/>
@@ -172,37 +172,37 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="finrow_8h_a0dfcdcfca243b8bc38a56bc5f8675d21_icgraph.png" border="0" usemap="#finrow_8h_a0dfcdcfca243b8bc38a56bc5f8675d21_icgraph" alt=""/></div>
-<map name="finrow_8h_a0dfcdcfca243b8bc38a56bc5f8675d21_icgraph" id="finrow_8h_a0dfcdcfca243b8bc38a56bc5f8675d21_icgraph">
+<div class="center"><img src="finrow_8h_ad741ef8b1ae1c8ca9aa89932cc0c0e0e_icgraph.png" border="0" usemap="#finrow_8h_ad741ef8b1ae1c8ca9aa89932cc0c0e0e_icgraph" alt=""/></div>
+<map name="finrow_8h_ad741ef8b1ae1c8ca9aa89932cc0c0e0e_icgraph" id="finrow_8h_ad741ef8b1ae1c8ca9aa89932cc0c0e0e_icgraph">
 <area shape="rect" title=" " alt="" coords="117,5,175,32"/>
-<area shape="rect" href="doendv_8h.html#a5209b46c546de06f23281740095fcf3a" title=" " alt="" coords="5,5,69,32"/>
+<area shape="rect" href="doendv_8h.html#ad431978c76e7a81b7af28fde65bf528d" title=" " alt="" coords="5,5,69,32"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aglobals_8cpp_html_aa5839c674f8a4ff6fd198113fb1b2d40"><div class="ttname"><a href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a></div><div class="ttdeci">halfword &amp; head</div><div class="ttdoc">header node of current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00088">globals.cpp:88</a></div></div>
-<div class="ttc" id="anoeud_8cpp_html_a7018c33b1ef8cb50dd66430b241ccb32"><div class="ttname"><a href="noeud_8cpp.html#a7018c33b1ef8cb50dd66430b241ccb32">appendtovlist</a></div><div class="ttdeci">void appendtovlist(halfword b)</div><div class="ttdoc">When a box is being appended to the current vertical list, the baselineskip calculation is handled by...</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l01038">noeud.cpp:1038</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aa5839c674f8a4ff6fd198113fb1b2d40"><div class="ttname"><a href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a></div><div class="ttdeci">halfword &amp; head</div><div class="ttdoc">header node of current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00083">globals.cpp:83</a></div></div>
+<div class="ttc" id="anoeud_8cpp_html_a7018c33b1ef8cb50dd66430b241ccb32"><div class="ttname"><a href="noeud_8cpp.html#a7018c33b1ef8cb50dd66430b241ccb32">appendtovlist</a></div><div class="ttdeci">void appendtovlist(halfword b)</div><div class="ttdoc">When a box is being appended to the current vertical list, the baselineskip calculation is handled by...</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00860">noeud.cpp:860</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b"><div class="ttname"><a href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a></div><div class="ttdeci">@ additional</div><div class="ttdoc">a box dimension is increased from the natural one</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00600">constantes.h:600</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a726ca809ffd3d67ab4b8476646f26635a26e62d150a8829503babb8d7f5cba925"><div class="ttname"><a href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635a26e62d150a8829503babb8d7f5cba925">unset_node</a></div><div class="ttdeci">@ unset_node</div><div class="ttdoc">type for an unset node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00099">constantes.h:99</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00089">globals.cpp:89</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_a1567b753123bcb567ae22be434031862"><div class="ttname"><a href="lecture_8cpp.html#a1567b753123bcb567ae22be434031862">begintokenlist</a></div><div class="ttdeci">void begintokenlist(halfword p, quarterword t)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l01170">lecture.cpp:1170</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00084">globals.cpp:84</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a1567b753123bcb567ae22be434031862"><div class="ttname"><a href="lecture_8cpp.html#a1567b753123bcb567ae22be434031862">begintokenlist</a></div><div class="ttdeci">void begintokenlist(halfword p, quarterword t)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l01143">lecture.cpp:1143</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_ac3d11fd6581239a8bce32f06696b4085"><div class="ttname"><a href="constantes_8cpp.html#ac3d11fd6581239a8bce32f06696b4085">glue_stretch</a></div><div class="ttdeci">int &amp; glue_stretch(halfword p)</div><div class="ttdoc">total stretch in an unset node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00055">constantes.cpp:55</a></div></div>
 <div class="ttc" id="avpackage_8cpp_html_a9f1d86e5c299878041fb0f88d75d3665"><div class="ttname"><a href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665">vpack</a></div><div class="ttdeci">halfword vpack(halfword p, scaled h, smallnumber m)</div><div class="ttdoc">special case of unconstrained depth</div><div class="ttdef"><b>Definition:</b> <a href="vpackage_8cpp_source.html#l00023">vpackage.cpp:23</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a0472a8839991d28cfa74dd6602fe4d3e"><div class="ttname"><a href="globals_8cpp.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a></div><div class="ttdeci">halfword &amp; space_factor</div><div class="ttdoc">part of aux in horizontal mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00084">globals.cpp:84</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a0472a8839991d28cfa74dd6602fe4d3e"><div class="ttname"><a href="globals_8cpp.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a></div><div class="ttdeci">halfword &amp; space_factor</div><div class="ttdoc">part of aux in horizontal mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00079">globals.cpp:79</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a60c965218c52394aaa95513c326eafbc"><div class="ttname"><a href="constantes_8cpp.html#a60c965218c52394aaa95513c326eafbc">every_cr</a></div><div class="ttdeci">halfword &amp; every_cr(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00034">constantes.cpp:34</a></div></div>
-<div class="ttc" id="ahpack_8cpp_html_ad7ca7a1c0695329834e990548241b497"><div class="ttname"><a href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497">hpack</a></div><div class="ttdeci">halfword hpack(halfword p, scaled w, smallnumber m)</div><div class="ttdef"><b>Definition:</b> <a href="hpack_8cpp_source.html#l00024">hpack.cpp:24</a></div></div>
+<div class="ttc" id="ahpack_8cpp_html_ad7ca7a1c0695329834e990548241b497"><div class="ttname"><a href="hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497">hpack</a></div><div class="ttdeci">halfword hpack(halfword p, scaled w, smallnumber m)</div><div class="ttdef"><b>Definition:</b> <a href="hpack_8cpp_source.html#l00025">hpack.cpp:25</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00087">globals.cpp:87</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a811fe196a5d9d37857c2f8adeeaac3c6a23ed1cf2add8386ccd9683ae2bc098b8"><div class="ttname"><a href="constantes_8h.html#a811fe196a5d9d37857c2f8adeeaac3c6a23ed1cf2add8386ccd9683ae2bc098b8">hmode</a></div><div class="ttdeci">@ hmode</div><div class="ttdoc">horizontal mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00349">constantes.h:349</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00082">globals.cpp:82</a></div></div>
 <div class="ttc" id="apopnest_8cpp_html_a847b0a324f6f62ba4e7f679bd16f10dc"><div class="ttname"><a href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc">popnest</a></div><div class="ttdeci">void popnest(void)</div><div class="ttdef"><b>Definition:</b> <a href="popnest_8cpp_source.html#l00003">popnest.cpp:3</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0da090d6b531758c19c47f3ee2a24115537"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da090d6b531758c19c47f3ee2a24115537">every_cr_text</a></div><div class="ttdeci">@ every_cr_text</div><div class="ttdoc">token_type code for \everycr</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00496">constantes.h:496</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abc6126af1d45847bc59afa0aa3216b04a26e62d150a8829503babb8d7f5cba925"><div class="ttname"><a href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a26e62d150a8829503babb8d7f5cba925">unset_node</a></div><div class="ttdeci">@ unset_node</div><div class="ttdoc">type for an unset node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00099">constantes.h:99</a></div></div>
 <div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00044">tex.h:44</a></div></div>
-<div class="ttc" id="aalignpeek_8cpp_html_abbfb7fd09994a199e27bf006b6708462"><div class="ttname"><a href="alignpeek_8cpp.html#abbfb7fd09994a199e27bf006b6708462">alignpeek</a></div><div class="ttdeci">void alignpeek(void)</div><div class="ttdef"><b>Definition:</b> <a href="alignpeek_8cpp_source.html#l00009">alignpeek.cpp:9</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a6f8c3e111cb8d66d52d22c2fe1fd34ff"><div class="ttname"><a href="globals_8cpp.html#a6f8c3e111cb8d66d52d22c2fe1fd34ff">curhead</a></div><div class="ttdeci">halfword curhead</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00199">globals.cpp:199</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a0b300bd358d5105a5718976ca4be8f26"><div class="ttname"><a href="globals_8cpp.html#a0b300bd358d5105a5718976ca4be8f26">curtail</a></div><div class="ttdeci">halfword curtail</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00199">globals.cpp:199</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a6f8c3e111cb8d66d52d22c2fe1fd34ff"><div class="ttname"><a href="globals_8cpp.html#a6f8c3e111cb8d66d52d22c2fe1fd34ff">curhead</a></div><div class="ttdeci">halfword curhead</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00161">globals.cpp:161</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a0b300bd358d5105a5718976ca4be8f26"><div class="ttname"><a href="globals_8cpp.html#a0b300bd358d5105a5718976ca4be8f26">curtail</a></div><div class="ttdeci">halfword curtail</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00161">globals.cpp:161</a></div></div>
+<div class="ttc" id="aalignpeek_8cpp_html_a015dc86dbb4807af6d5575339cb94be0"><div class="ttname"><a href="alignpeek_8cpp.html#a015dc86dbb4807af6d5575339cb94be0">alignpeek</a></div><div class="ttdeci">void alignpeek(halfword &amp;loop)</div><div class="ttdef"><b>Definition:</b> <a href="alignpeek_8cpp_source.html#l00009">alignpeek.cpp:9</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4da23ed1cf2add8386ccd9683ae2bc098b8"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da23ed1cf2add8386ccd9683ae2bc098b8">hmode</a></div><div class="ttdeci">@ hmode</div><div class="ttdoc">horizontal mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00349">constantes.h:349</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

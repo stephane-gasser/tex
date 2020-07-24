@@ -24,7 +24,7 @@ scaled makeop(halfword q)
 		if (curstyle < text_style && char_tag(curi) == list_tag)
 		{
 			auto c = rem_byte(curi);
-			auto i = char_info(curf, c);
+			auto i = fonts[curf].char_info(c);
 			if (char_exists(i))
 			{
 				curc = c;
@@ -32,7 +32,7 @@ scaled makeop(halfword q)
 				character(nucleus(q)) = c;
 			}
 		}
-		delta = char_italic(curf, curi);
+		delta = fonts[curf].char_italic(curc);
 		auto x = cleanbox(nucleus(q), curstyle);
 		if (math_type(subscr(q)) && subtype(q) != limits)
 		width(x) -= delta;

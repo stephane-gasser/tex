@@ -135,11 +135,11 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="charwarning_8cpp_source.html#l00006">6</a> du fichier <a class="el" href="charwarning_8cpp_source.html">charwarning.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1">tracing_lost_chars</a>() &gt; 0)</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba">diagnostic</a>(<span class="stringliteral">&quot;\rMissing character: There is no &quot;</span>+std::string(1, <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>)+<span class="stringliteral">&quot; in font &quot;</span>+<a class="code" href="globals_8h.html#a110d751f8e36424b17054d7114cb169a">fontname</a>[<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>]+<span class="stringliteral">&quot;!&quot;</span>);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="charwarning_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="charwarning_8cpp_source.html">charwarning.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1">tracing_lost_chars</a>() &gt; 0)</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba">diagnostic</a>(<span class="stringliteral">&quot;\rMissing character: There is no &quot;</span>+std::string(1, <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>)+<span class="stringliteral">&quot; in font &quot;</span>+<a class="code" href="police_8h.html#a02fbdba0582d03347390c85019d2d5e1">fonts</a>[<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>].<a class="code" href="constantes_8cpp.html#ade95d1e83389e3e6b2095c8b149d1fc2">name</a>+<span class="stringliteral">&quot;!&quot;</span>);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
@@ -165,11 +165,12 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aglobals_8cpp_html_acee72cc7eac7224c7335fd7da8b4d54a"><div class="ttname"><a href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a></div><div class="ttdeci">quarterword f</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00172">globals.cpp:172</a></div></div>
-<div class="ttc" id="acharwarning_8cpp_html_a3a992e82816e5d1ab70b855c06ad86a1"><div class="ttname"><a href="charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1">tracing_lost_chars</a></div><div class="ttdeci">static int tracing_lost_chars(void)</div><div class="ttdef"><b>Definition:</b> <a href="charwarning_8cpp_source.html#l00004">charwarning.cpp:4</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_adeb7fc965be26e52bb3d9b60342f8fba"><div class="ttname"><a href="impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba">diagnostic</a></div><div class="ttdeci">void diagnostic(const std::string &amp;s)</div><div class="ttdoc">Do some tracing.</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01031">impression.cpp:1031</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00172">globals.cpp:172</a></div></div>
-<div class="ttc" id="aglobals_8h_html_a110d751f8e36424b17054d7114cb169a"><div class="ttname"><a href="globals_8h.html#a110d751f8e36424b17054d7114cb169a">fontname</a></div><div class="ttdeci">std::string fontname[fontmax+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00018">globals.h:18</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ade95d1e83389e3e6b2095c8b149d1fc2"><div class="ttname"><a href="constantes_8cpp.html#ade95d1e83389e3e6b2095c8b149d1fc2">name</a></div><div class="ttdeci">std::string &amp; name</div><div class="ttdoc">name of the current file</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00156">constantes.cpp:156</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_acee72cc7eac7224c7335fd7da8b4d54a"><div class="ttname"><a href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a></div><div class="ttdeci">quarterword f</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00139">globals.cpp:139</a></div></div>
+<div class="ttc" id="acharwarning_8cpp_html_a3a992e82816e5d1ab70b855c06ad86a1"><div class="ttname"><a href="charwarning_8cpp.html#a3a992e82816e5d1ab70b855c06ad86a1">tracing_lost_chars</a></div><div class="ttdeci">static int tracing_lost_chars(void)</div><div class="ttdef"><b>Definition:</b> <a href="charwarning_8cpp_source.html#l00005">charwarning.cpp:5</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_adeb7fc965be26e52bb3d9b60342f8fba"><div class="ttname"><a href="impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba">diagnostic</a></div><div class="ttdeci">void diagnostic(const std::string &amp;s)</div><div class="ttdoc">Do some tracing.</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01027">impression.cpp:1027</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00139">globals.cpp:139</a></div></div>
+<div class="ttc" id="apolice_8h_html_a02fbdba0582d03347390c85019d2d5e1"><div class="ttname"><a href="police_8h.html#a02fbdba0582d03347390c85019d2d5e1">fonts</a></div><div class="ttdeci">Font fonts[fontmax+1]</div><div class="ttdef"><b>Definition:</b> <a href="police_8h_source.html#l00035">police.h:35</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

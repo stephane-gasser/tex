@@ -2,8 +2,8 @@
 <area shape="rect" id="node1" title=" " alt="" coords="5,1419,80,1446"/>
 <area shape="rect" id="node2" href="$constantes_8cpp.html#a098afd72061033385d2dbfa0419c6314" title="pointer to the corresponding passive node" alt="" coords="486,1495,575,1522"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="751,1191,793,1218"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="493,1242,568,1268"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#afed1a10a514734f89ab8691850baa84f" title=" " alt="" coords="488,1292,573,1319"/>
+<area shape="rect" id="node4" href="$police_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="493,1242,568,1268"/>
+<area shape="rect" id="node5" href="$police_8cpp.html#afed1a10a514734f89ab8691850baa84f" title=" " alt="" coords="488,1292,573,1319"/>
 <area shape="rect" id="node6" href="$constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title="the character code in a char_node" alt="" coords="333,407,409,434"/>
 <area shape="rect" id="node7" href="$linebreak_8cpp.html#abe07bda0bdd114e23a3709425a227dd0" title=" " alt="" coords="311,52,431,79"/>
 <area shape="rect" id="node8" href="$constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title="the shrinkability of this glob of glue" alt="" coords="502,103,559,130"/>
@@ -25,10 +25,10 @@
 <area shape="rect" id="node24" href="$parametres_8h.html#aa87a7f865a9c4a7d5d00c022fc6df36e" title=" " alt="" coords="149,1242,241,1268"/>
 <area shape="rect" id="node25" href="$parametres_8h.html#a45cc0a02877c99457cd993ff3f374e05" title=" " alt="" coords="169,1292,222,1319"/>
 <area shape="rect" id="node26" href="$linebreak_8cpp.html#a6c1eccdd764b8e25b34a9b5370d0d5aa" title=" " alt="" coords="139,1343,252,1370"/>
-<area shape="rect" id="node27" href="$hyphenate_8cpp.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="154,735,237,762"/>
+<area shape="rect" id="node27" href="$cesure_8cpp.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="154,735,237,762"/>
 <area shape="rect" id="node28" href="$constantes_8cpp.html#aa0355678d828c2e2f836409b82366625" title=" " alt="" coords="321,988,420,1015"/>
 <area shape="rect" id="node29" href="$constantes_8cpp.html#ad058da1b3e7e4027797ff16b1e5a6c32" title="the word where the ligature is to be found" alt="" coords="337,836,404,863"/>
-<area shape="rect" id="node30" href="$inittrie_8cpp.html#a4953f312f016c82145ae48b0d39341bd" title=" " alt="" coords="167,1546,224,1572"/>
+<area shape="rect" id="node30" href="$cesure_8cpp.html#a4953f312f016c82145ae48b0d39341bd" title=" " alt="" coords="167,1546,224,1572"/>
 <area shape="rect" id="node31" href="$linebreak_8cpp.html#a7c6cf5fe8506c32f31be9ec53a4d994e" title=" " alt="" coords="152,1596,239,1623"/>
 <area shape="rect" id="node32" href="$trybreak_8cpp.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="336,1394,405,1420"/>
 <area shape="rect" id="node33" href="$constantes_8cpp.html#aedcc34a5a67d4cf37531eebef37afc8f" title="line that begins at this breakpoint" alt="" coords="485,1596,577,1623"/>

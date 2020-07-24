@@ -71,32 +71,17 @@ static int line_penalty(void) { return int_par(line_penalty_code); }
 
 void trybreak(int pi, smallnumber breaktype)
 {
-	halfword r, prevr, oldl;
-	bool nobreakyet;
-	halfword prevprevr, s, q, v;
-	int t;
-	internalfontnumber f;
-	halfword l;
-	bool noderstaysactive;
-	scaled linewidth;
-	char fitclass;
-	halfword b;
-	int d;
-	bool artificialdemerits;
-	halfword savelink;
-	scaled shortfall;
-	if (abs(pi) >= 10000)
-		if (pi > 0)
-			return;
-		else
-		pi = -10000;
-	nobreakyet = true;
-	prevr = active;
-	oldl = 0;
+	if (pi >= 10000)
+		return;
+	pi = std::max(pi, -10000);
+	auto nobreakyet = true;
+	halfword prevr = active;
+	halfword oldl = 0;
 	copy_to_cur_active();
+	halfword prevprevr;
 	while (true)
 	{
-		r = link(prevr);
+		auto r = link(prevr);
 		if (type(r) == delta_node)
 		{
 			update_width(r);
@@ -104,7 +89,10 @@ void trybreak(int pi, smallnumber breaktype)
 			prevr = r;
 			continue;
 		}
-		l = info(r+1);
+		char fitclass;
+		auto l = info(r+1);
+		scaled linewidth;
+		halfword b;
 		if (l > oldl)
 		{
 			if ((minimumdemerits < max_dimen) and ((oldl != easyline) or (r == active)))
@@ -113,12 +101,12 @@ void trybreak(int pi, smallnumber breaktype)
 				{
 					nobreakyet = false;
 					set_break_width_to_background();
-					s = curp;
+					auto s = curp;
 					if (breaktype > 0)
 						if (curp)
 						{
-							t = subtype(curp);
-							v = curp;
+							auto t = subtype(curp);
+							auto v = curp;
 							s = link(curp+1);
 							while (t > 0)
 							{
@@ -127,14 +115,14 @@ void trybreak(int pi, smallnumber breaktype)
 								if (v >= himemmin)
 								{
 									f = type(v);
-									breakwidth[1] += -char_width(f, char_info(f, subtype(v)));
+									breakwidth[1] += -fonts[f].char_width(subtype(v));
 								}
 								else
 									switch (type(v))
 									{
 										case ligature_node:
 											f = type(v+1);
-											breakwidth[1] += -char_width(f, char_info(f, type(v+1)));
+											breakwidth[1] += -fonts[f].char_width(type(v+1));
 											break;
 										case hlist_node:
 										case vlist_node:
@@ -151,14 +139,14 @@ void trybreak(int pi, smallnumber breaktype)
 								if (s >= himemmin)
 								{
 									f = type(s);
-									breakwidth[1] += char_width(f, char_info(f, subtype(s)));
+									breakwidth[1] += fonts[f].char_width(subtype(s));
 								}
 								else
 									switch (type(s))
 									{
 										case ligature_node:
 											f = type(s+1);
-											breakwidth[1] += char_width(f, char_info(f, subtype(s+1)));
+											breakwidth[1] += fonts[f].char_width(subtype(s+1));
 											break;
 										case hlist_node:
 										case vlist_node:
@@ -179,6 +167,7 @@ void trybreak(int pi, smallnumber breaktype)
 					{
 						if (s >= himemmin)
 							continue;
+						halfword v;
 						switch (type(s))
 						{
 							case glue_node:
@@ -211,7 +200,7 @@ void trybreak(int pi, smallnumber breaktype)
 						store_break_width();
 					else
 					{
-						q = getnode(7);
+						auto q = getnode(7);
 						link(q) = r;
 						type(q) = delta_node;
 						subtype(q) = 0;
@@ -228,7 +217,7 @@ void trybreak(int pi, smallnumber breaktype)
 				{
 					if (minimaldemerits[fitclass] <= minimumdemerits)
 					{
-						q = getnode(2);
+						auto q = getnode(2);
 						link(q) = passive;
 						passive = q;
 						break_node(q) = curp;
@@ -248,7 +237,7 @@ void trybreak(int pi, smallnumber breaktype)
 				minimumdemerits = max_dimen;
 				if (r != active)
 				{
-					q = getnode(7);
+					auto q = getnode(7);
 					link(q) = r;
 					type(q) = delta_node;
 					subtype(q) = 0;
@@ -277,8 +266,8 @@ void trybreak(int pi, smallnumber breaktype)
 						linewidth = mem[par_shape_ptr()+2*l].int_;
 			}
 		}
-		artificialdemerits = false;
-		shortfall = linewidth-curactivewidth[1];
+		auto artificialdemerits = false;
+		scaled shortfall = linewidth-curactivewidth[1];
 		if (shortfall > 0)
 			if (curactivewidth[3] || curactivewidth[4] || curactivewidth[5])
 			{
@@ -315,6 +304,7 @@ void trybreak(int pi, smallnumber breaktype)
 			else
 				fitclass = decent_fit;
 		}
+		bool noderstaysactive;
 		if (b > 10000 || pi == -10000)
 		{
 			if (finalpass && minimumdemerits == max_dimen && link(r) == active &&prevr == active)
@@ -366,9 +356,8 @@ void trybreak(int pi, smallnumber breaktype)
 				continue;
 			noderstaysactive = true;
 		}
-		if (artificialdemerits)
-			d = 0;
-		else
+		int d = 0;
+		if (!artificialdemerits)
 		{
 			d = line_penalty()+b;
 			if (abs(d) >= 10000)

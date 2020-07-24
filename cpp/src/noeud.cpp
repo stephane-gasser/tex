@@ -9,7 +9,6 @@
 #include "lecture.h"
 #include "erreur.h"
 #include "xnoverd.h"
-#include "readfontinfo.h"
 #include "texte.h"
 #include "pushmath.h"
 #include "pushnest.h"
@@ -451,14 +450,15 @@ void newhyphexceptions(void)
 
 halfword newcharacter(internalfontnumber f, eightbits c)
 {
-	if (fonts[f].bc <= c && fonts[f].ec >= c && skip_byte(char_info(f, c)) > 0)
+	auto &ft = fonts[f];
+	if (ft.bc <= c && ft.ec >= c && skip_byte(ft.char_info(c)) > 0)
 	{
 		auto p = getavail();
-		type(p) = f;
-		subtype(p) = c;
+		font(p) = f;
+		character(p) = c;
 		return p;
 	}
-	charwarning(f, c);
+	charwarning(ft, c);
 	return 0;
 }
 
@@ -486,13 +486,10 @@ halfword newdisc(void)
 
 void newfont(smallnumber a)
 {
-	halfword u;
-	scaled s;
-	internalfontnumber f;
 	std::string t;
 	if (jobname == "")
 		openlogfile();
-	u = getrtoken();
+	auto u = getrtoken();
 	if (u >= hash_base)
 		t = TXT(text(u));
 	else 
@@ -507,6 +504,7 @@ void newfont(smallnumber a)
 	scanoptionalequals();
 	scanfilename();
 	nameinprogress = true;
+	scaled s;
 	if (scankeyword("at"))
 	{
 		s = scan_normal_dimen();
@@ -530,24 +528,24 @@ void newfont(smallnumber a)
 			s = -1000;
 	nameinprogress = false;
 	auto flushablestring = strings.back();
-	for (f = 1; f <= fontptr; f++)
-		if (fonts[f].name == curname && fonts[f].area == curarea)
+	for (auto &ft: fonts)
+		if (ft.name == curname && ft.area == curarea)
 		{
 			if (curname == flushablestring)
 			{
 				flush_string();
-				curname = fonts[f].name;
+				curname = ft.name;
 			}
 			if (s > 0)
 			{
-				if (s == fonts[f].size)
+				if (s == ft.size)
 					break;
 			}
 			else 
-				if (fonts[f].size == xnoverd(fonts[f].dsize, -s, 1000))
+				if (ft.size == xnoverd(ft.dsize, -s, 1000))
 					break;
 		}
-	if (f > fontptr)
+	if (f >= fonts.size())
 		f = readfontinfo(u, curname, curarea, s);
 	equiv(u) = f;
 	eqtb[frozen_null_font+f] = eqtb[u];
@@ -778,9 +776,9 @@ void appenddiscretionary(halfword s)
 	tail_append(newdisc());
 	if (s == 1)
 	{
-		int c = fonts[cur_font()].hyphenchar;
+		int c = cur_font().hyphenchar;
 		if (c >= 0 && c < 0x1'00)
-			pre_break(tail) = newcharacter(cur_font(), c);
+			pre_break(tail) = newcharacter(curFontNum(), c);
 	}
 	else
 	{
@@ -833,8 +831,7 @@ void appenditaliccorrection(void)
 				p = lig_char(tail);
 			else
 				return;
-		auto f = font(p);
-		tail_append(newkern(char_italic(f, char_info(f, character(p)))));
+		tail_append(newkern(fonts[font(p)].char_italic(character(p))));
 		subtype(tail) = explicit_;
 	}
 }
@@ -876,9 +873,6 @@ void appendtovlist(halfword b)
 	prev_depth = depth(b);
 }
 
-//! additional space at end of sentence
-static int& extra_space(internalfontnumber f) { return param(extra_space_code, f); }
-
 static halfword& xspace_skip(void) { return glue_par(xspace_skip_code); }
 
 //! Handle spaces when <em> space_factor != 1000 </em>.
@@ -893,21 +887,21 @@ void appspace(halfword &mainp, fontindex &maink)
 			mainp = space_skip();
 		else // Find the glue specification, \a main_p, for text spaces in the current font
 		{
-			mainp = fonts[cur_font()].glue;
+			mainp = cur_font().glue;
 			if (mainp == 0)
 			{
 				mainp = newspec(zero_glue);
-				maink = space_code+fonts[cur_font()].parambase;
-				width(mainp) = space(cur_font());
-				stretch(mainp) = space_stretch(cur_font());
-				shrink(mainp) = space_shrink(cur_font());
-				fonts[cur_font()].glue = mainp;
+				maink = space_code+cur_font().parambase;
+				width(mainp) = cur_font().space();
+				stretch(mainp) = cur_font().space_stretch();
+				shrink(mainp) = cur_font().space_shrink();
+				cur_font().glue = mainp;
 			}
 		}
 		mainp = newspec(mainp);
 		// Modify the glue specification in \a main_p according to the space factor
 		if (space_factor >= 2000)
-			width(mainp) += extra_space(cur_font());
+			width(mainp) += cur_font().extra_space();
 		stretch(mainp) = xnoverd(stretch(mainp), space_factor, 1000);
 		shrink(mainp) = xnoverd(shrink(mainp), 1000, space_factor);
 		q = newglue(mainp);

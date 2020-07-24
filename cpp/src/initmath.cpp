@@ -29,7 +29,7 @@ void initmath(void)
 		else
 		{
 			linebreak(display_widow_penalty());
-			v = shift_amount(justbox)+2*quad(cur_font());
+			v = shift_amount(justbox)+2*cur_font().quad();
 			w = -max_dimen;
 			p = list_ptr(justbox);
 			while (p)
@@ -37,7 +37,7 @@ void initmath(void)
 				if (p >= himemmin)
 				{
 					f = type(p);
-					d = char_width(f, char_info(f, character(p)));
+					d = fonts[f].char_width(character(p));
 					if (v < max_dimen)
 					{
 						v += d;

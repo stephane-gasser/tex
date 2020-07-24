@@ -228,9 +228,9 @@ void mlisttohlist(void)
 				fetch(nucleus(q));
 				if (char_exists(curi))
 				{
-					delta = char_italic(curf, curi);
+					delta = fonts[curf].char_italic(curc);
 					p = newcharacter(curf, curc);
-					if (math_type(nucleus(q)) == math_text_char && space(curf))
+					if (math_type(nucleus(q)) == math_text_char && fonts[curf].space())
 						delta = 0;
 					if (math_type(subscr(q)) == 0 && delta)
 					{

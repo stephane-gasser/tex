@@ -55,7 +55,7 @@ void hlistout(void)
 				if (c >= 128)
 					dvi_out(set1);
 				dvi_out(c);
-				curh += char_width(f, char_info(f, c));
+				curh += fonts[f].char_width(c);
 				p = link(p);
 			} while (is_char_node(p));
 			dvih = curh;

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['chr_5fcode_3592',['chr_code',['../constantes_8h.html#aa68cc52ae9c5b87121d0ea08202a6400',1,'constantes.h']]]
+  ['chr_5fcode_3552',['chr_code',['../constantes_8h.html#aa68cc52ae9c5b87121d0ea08202a6400',1,'constantes.h']]],
+  ['command_5fcode_3553',['command_code',['../constantes_8h.html#aa716b3ec1d36e9e71a7b62b2af7b9294',1,'constantes.h']]]
 ];

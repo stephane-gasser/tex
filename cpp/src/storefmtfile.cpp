@@ -175,42 +175,42 @@ void storefmtfile(void)
 	dump_int(cscount);
 	println();
 	print(std::to_string(cscount)+" multiletter control sequences");
-	dump_int(fmemptr);
-	for (k = 0; k <fmemptr; k++)
-		dump_wd(fontinfo[k]);
-	dump_int(fontptr);
-	for (k = null_font; k <= fontptr; k++)
+	dump_int(fontinfo.size()-1);
+	for (auto &fi: fontinfo)
+		dump_wd(fi);
+	dump_int(fonts.size()-1);
+	for (auto &ft: fonts)
 	{
-		dump_qqqq(fonts[k].check);
-		dump_int(fonts[k].size);
-		dump_int(fonts[k].dsize);
-		dump_int(fonts[k].params);
-		dump_int(fonts[k].hyphenchar);
-		dump_int(fonts[k].skewchar);
-		dump_int(txt(fonts[k].name));
-		dump_int(txt(fonts[k].area));
-		dump_int(fonts[k].bc);
-		dump_int(fonts[k].ec);
-		dump_int(fonts[k].charbase);
-		dump_int(fonts[k].widthbase);
-		dump_int(fonts[k].heightbase);
-		dump_int(fonts[k].depthbase);
-		dump_int(fonts[k].italicbase);
-		dump_int(fonts[k].ligkernbase);
-		dump_int(fonts[k].kernbase);
-		dump_int(fonts[k].extenbase);
-		dump_int(fonts[k].parambase);
-		dump_int(fonts[k].glue);
-		dump_int(fonts[k].bcharlabel);
-		dump_int(fonts[k].bchar);
-		dump_int(fonts[k].falsebchar);
+		dump_qqqq(ft.check);
+		dump_int(ft.size);
+		dump_int(ft.dsize);
+		dump_int(ft.params);
+		dump_int(ft.hyphenchar);
+		dump_int(ft.skewchar);
+		dump_int(txt(ft.name));
+		dump_int(txt(ft.area));
+		dump_int(ft.bc);
+		dump_int(ft.ec);
+		dump_int(ft.charbase);
+		dump_int(ft.widthbase);
+		dump_int(ft.heightbase);
+		dump_int(ft.depthbase);
+		dump_int(ft.italicbase);
+		dump_int(ft.ligkernbase);
+		dump_int(ft.kernbase);
+		dump_int(ft.extenbase);
+		dump_int(ft.parambase);
+		dump_int(ft.glue);
+		dump_int(ft.bcharlabel);
+		dump_int(ft.bchar);
+		dump_int(ft.falsebchar);
 		printnl("\\font");
-		print(esc(TXT(text(font_id_base+k)))+esc("FONT")+"="+asFilename(fonts[k].name, fonts[k].area, ""));
-		if (fonts[k].size != fonts[k].dsize)
-			print(" at "+asScaled(fonts[k].size)+"pt");
+		print(esc(TXT(text(font_id_base+k)))+esc("FONT")+"="+asFilename(ft.name, ft.area, ""));
+		if (ft.size != ft.dsize)
+			print(" at "+asScaled(ft.size)+"pt");
 	}
 	println();
-	print(std::to_string(fmemptr-7)+" words of font info for "+std::to_string(fontptr)+" preloaded font"+(fontptr == 1 ? "" : "s"));
+	print(std::to_string(fontinfo.size()-7)+" words of font info for "+std::to_string(fonts.size()+1)+" preloaded font"+(fonts.size()+1 == 1 ? "" : "s"));
 	dump_int(hyphcount);
 	for (k = 0; k <= hyph_size; k++)
 		if (hyphword[k] != "")

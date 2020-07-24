@@ -45,10 +45,9 @@
 #include "shiftcase.h"
 #include "doextension.h"
 
-static internalfontnumber mainf; //!< the current font
 static fontindex maink; //!< index into |font_info|
-static fourquarters maini; //!<character information bytes for |cur_l|
-static fourquarters mainj; //!<ligature/kern command
+//static fourquarters mainj; //!<ligature/kern command
+//static fourquarters maini; //!<character information bytes for |cur_l|
 static halfword mainp; //!<temporary register for list manipulation
 
 static halfword& every_job(void) { return equiv(every_job_loc); }
@@ -56,7 +55,7 @@ static halfword& every_job(void) { return equiv(every_job_loc); }
 //! the parameter is either |rt_hit| or |false|
 static void pack_lig(bool z)
 {
-	mainp = newligature(mainf, curl, link(curq));
+	mainp = newligature(curFontNum(), curl, link(curq));
 	if (lfthit)
 	{
 		subtype(mainp) = 2;
@@ -76,7 +75,7 @@ static void wrapup(bool z)
 {
 	if (curl < non_char)
 	{
-		if (link(curq) > 0 && character(tail) == fonts[mainf].hyphenchar) 
+		if (link(curq) > 0 && character(tail) == cur_font().hyphenchar) 
 			insdisc = true; 
 		if (ligaturepresent)
 			pack_lig(z); 
@@ -129,7 +128,7 @@ static void main_loop_lookahead(void)
 	//main_loop_lookahead_1
 	adjust_space_factor(t.chr);
 	ligstack = fast_get_avail();
-	font(ligstack) = mainf;
+	font(ligstack) = curFontNum();
 	curr = t.chr;
 	character(ligstack) = curr;
 	if (curr == falsebchar)
@@ -144,7 +143,6 @@ static void main_loop_move_lig(void)
 	tempptr = ligstack;
 	ligstack = link(tempptr);
 	freenode(tempptr, small_node_size);
-	maini = char_info(mainf, curl);
 	ligaturepresent = true;
 	if (ligstack == 0)
 		if (mainp > 0)
@@ -159,15 +157,15 @@ static void main_loop_move_lig(void)
 {
 	if (space_skip() == zero_glue)
 	{
-		mainp = fonts[cur_font()].glue;
+		mainp = cur_font().glue;
 		if (mainp == 0)
 		{
 			mainp = newspec(zero_glue);
-			maink = fonts[cur_font()].parambase+space_code;
-			width(mainp) = space(cur_font());
-			stretch(mainp) = space_stretch(cur_font());
-			shrink(mainp) = space_shrink(cur_font());
-			fonts[cur_font()].glue = mainp;
+			maink = cur_font().parambase+space_code;
+			width(mainp) = cur_font().space();
+			stretch(mainp) = cur_font().space_stretch();
+			shrink(mainp) = cur_font().space_shrink();
+			cur_font().glue = mainp;
 		}
 		tempptr = newglue(mainp);
 	}
@@ -179,17 +177,16 @@ static void main_loop_move_lig(void)
 
 static bool main_loop_move_2(halfword chr)
 {
-	if (fonts[mainf].bc <= chr && chr <= fonts[mainf].ec)
+	if (cur_font().bc <= chr && chr <= cur_font().ec)
 	{
-		maini = char_info(mainf, curl);
-		if (char_exists(maini))
+		if (cur_font().char_exists(curl))
 		{
 			tail_append(ligstack);
 			main_loop_lookahead();
 			return false;
 		}
 	}
-	charwarning(mainf, chr);
+	charwarning(cur_font(), chr);
 	free_avail(ligstack);
 	return true;
 }
@@ -226,33 +223,29 @@ static bool main_loop_wrapup(halfword chr)
 	{
 		if (is110)
 		{
-			if (char_tag(maini) != lig_tag || curr == non_char)
+			if (cur_font().char_tag(curl) != lig_tag || curr == non_char)
 			{
 				if (main_loop_wrapup(chr))
 					return getxtoken();
 				continue;
 			}
-			maink = lig_kern_start(mainf, maini);
-			mainj = fontinfo[maink].qqqq;
-			if (skip_byte(mainj) > stop_flag)
-			{
-				maink = lig_kern_restart(mainf, mainj);
-				mainj = fontinfo[maink].qqqq;
-			}
+			maink = cur_font().lig_kern_start(cur_font().char_info(curl));
+			if (skip_byte(fontinfo[maink].qqqq) > stop_flag)
+				maink = cur_font().lig_kern_restart(fontinfo[maink].qqqq);
 		}
 		//main_lig_loop+2
-		if (next_char(mainj) == curr)
-			if (skip_byte(mainj) <= stop_flag)
+		if (next_char(fontinfo[maink].qqqq) == curr)
+			if (skip_byte(fontinfo[maink].qqqq) <= stop_flag)
 			{
-				if (op_byte(mainj) >= kern_flag) // c'est un kern
+				if (op_byte(fontinfo[maink].qqqq) >= kern_flag) // c'est un kern
 				{
 					if (curl < non_char)
 					{
-						if (link(curq) > 0 && subtype(tail) == fonts[mainf].hyphenchar)
+						if (link(curq) > 0 && subtype(tail) == cur_font().hyphenchar)
 							insdisc = true;
 						if (ligaturepresent)
 						{
-							mainp = newligature(mainf, curl, link(curq));
+							mainp = newligature(curFontNum(), curl, link(curq));
 							if (lfthit)
 							{
 								subtype(mainp) = 2;
@@ -274,31 +267,30 @@ static bool main_loop_wrapup(halfword chr)
 								tail_append(newdisc());
 						}
 					}
-					tail_append(newkern(char_kern(mainf, mainj)));
+					tail_append(newkern(cur_font().char_kern(fontinfo[maink].qqqq)));
 					if (main_loop_move(chr))
 						return getxtoken();
 					is110 = true;
 					continue;
 				}
-				// op_byte(mainj) < kern_flag => c'est une ligature
+				// op_byte(fontinfo[maink].qqqq) < kern_flag => c'est une ligature
 				if (curl == non_char)
 					lfthit = true;
 				else 
 					if (ligstack == 0)
 						rthit = true;
-				switch (op_byte(mainj))
+				switch (op_byte(fontinfo[maink].qqqq))
 				{
 					// AB -> CB (symboles =:| et =:|>)
 					case 1: //a=0 b=0 c=1 => delete current char
 					case 5: //a=1 b=0 c=1 => idem
-						curl = rem_byte(mainj);
-						maini = char_info(mainf, curl);
+						curl = rem_byte(fontinfo[maink].qqqq);
 						ligaturepresent = true;
 						break;
 					// AB -> AC (symboles |=: et |=:>)
 					case 2: //a=0 b=1 c=0 => delete next char
 					case 6: //a=1 b=1 c=0 => delete next char
-						curr = rem_byte(mainj);
+						curr = rem_byte(fontinfo[maink].qqqq);
 						if (ligstack == 0)
 						{
 							ligstack = newligitem(curr);
@@ -316,7 +308,7 @@ static bool main_loop_wrapup(halfword chr)
 						break;
 					// AB -> ACB (symbole |=:|)
 					case 3: //a=0 b=1 c=1
-						curr = rem_byte(mainj);
+						curr = rem_byte(fontinfo[maink].qqqq);
 						mainp = ligstack;
 						ligstack = newligitem(curr);
 						link(ligstack) = mainp;
@@ -326,13 +318,12 @@ static bool main_loop_wrapup(halfword chr)
 					case 11://a=2 b=1 c=1
 						wrapup(false);
 						curq = tail;
-						curl = rem_byte(mainj);
-						maini = char_info(mainf, curl);
+						curl = rem_byte(fontinfo[maink].qqqq);
 						ligaturepresent = true;
 						break;
 					// AB -> C (symbole !=)
 					default:
-						curl = rem_byte(mainj);
+						curl = rem_byte(fontinfo[maink].qqqq);
 						ligaturepresent = true;
 						if (ligstack == 0)
 						{
@@ -343,7 +334,7 @@ static bool main_loop_wrapup(halfword chr)
 							if (main_loop_move_1(chr))
 								return getxtoken();
 				}
-				if (op_byte(mainj) > 4 && op_byte(mainj) != 7) // a>=1 et pas a=1,b=1,c=1
+				if (op_byte(fontinfo[maink].qqqq) > 4 && op_byte(fontinfo[maink].qqqq) != 7) // a>=1 et pas a=1,b=1,c=1
 				{
 					if (main_loop_wrapup(chr))
 						return getxtoken();
@@ -355,25 +346,23 @@ static bool main_loop_wrapup(halfword chr)
 					is110 = true;
 					continue;
 				}
-				maink = fonts[mainf].bcharlabel;
-				mainj = fontinfo[maink].qqqq;
+				maink = cur_font().bcharlabel;
 				is110 = false;
 				continue;
 			}
-		if (skip_byte(mainj) == 0)
+		if (skip_byte(fontinfo[maink].qqqq) == 0)
 			maink++;
 		else
 		{
-			if (skip_byte(mainj) >= stop_flag)
+			if (skip_byte(fontinfo[maink].qqqq) >= stop_flag)
 			{
 				if (main_loop_wrapup(chr))
 					return getxtoken();
 				is110 = true;
 				continue;
 			}
-			maink += skip_byte(mainj)+1;
+			maink += skip_byte(fontinfo[maink].qqqq)+1;
 		}
-		mainj = fontinfo[maink].qqqq;
 		is110 = false;
 	}
 }
@@ -381,17 +370,16 @@ static bool main_loop_wrapup(halfword chr)
 static void main_loop(Token t)
 {
 	adjust_space_factor(t.chr);
-	mainf = cur_font();
-	bchar = fonts[mainf].bchar;
-	falsebchar = fonts[mainf].falsebchar;
+	bchar = cur_font().bchar;
+	falsebchar = cur_font().falsebchar;
 	if (mode > 0 && language() != clang)
 		fixlanguage();
 	ligstack = fast_get_avail();
-	font(ligstack) = mainf;
+	font(ligstack) = curFontNum();
 	curl = t.chr;
 	character(ligstack) = curl;
 	curq = tail;
-	maink = cancelboundary ? non_address : fonts[mainf].bcharlabel;
+	maink = cancelboundary ? non_address : cur_font().bcharlabel;
 	cancelboundary = false;
 	if (maink == non_address)
 		if (main_loop_move_2(t.chr))
@@ -399,7 +387,6 @@ static void main_loop(Token t)
 			t = getxtoken();
 			curr = curl;
 			curl = non_char;
-			mainj = fontinfo[maink].qqqq;
 			t = main_lig_loop(false, t.chr);
 		}
 		else

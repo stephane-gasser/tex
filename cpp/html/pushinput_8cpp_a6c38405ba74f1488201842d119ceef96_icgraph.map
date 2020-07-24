@@ -1,5 +1,5 @@
 <map id="push_input" name="push_input">
 <area shape="rect" id="node1" title="//enter a new input level, save the old" alt="" coords="165,31,251,57"/>
-<area shape="rect" id="node2" href="$backinput_8h.html#ac121089024c8a2aeea2c7648a9a27c4c" title="Undoes one token of input." alt="" coords="22,5,101,32"/>
+<area shape="rect" id="node2" href="$backinput_8h.html#a392740cb5627508a84b39f4f3e773e1f" title="Undoes one token of input." alt="" coords="22,5,101,32"/>
 <area shape="rect" id="node3" href="$beginfilereading_8h.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="5,56,117,83"/>
 </map>

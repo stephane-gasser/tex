@@ -101,12 +101,12 @@ Graphe des dépendances par inclusion de alteraux.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a1ccfbe86d2f957682e5ddf8ce13145dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alteraux_8cpp.html#a1ccfbe86d2f957682e5ddf8ce13145dc">alteraux</a> (<a class="el" href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a> cmd, <a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> chr)</td></tr>
-<tr class="separator:a1ccfbe86d2f957682e5ddf8ce13145dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58cf203dfb87edb9e3d1575220994265"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alteraux_8cpp.html#a58cf203dfb87edb9e3d1575220994265">alteraux</a> (<a class="el" href="classToken.html">Token</a> t)</td></tr>
+<tr class="separator:a58cf203dfb87edb9e3d1575220994265"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a1ccfbe86d2f957682e5ddf8ce13145dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ccfbe86d2f957682e5ddf8ce13145dc">&#9670;&nbsp;</a></span>alteraux()</h2>
+<a id="a58cf203dfb87edb9e3d1575220994265"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58cf203dfb87edb9e3d1575220994265">&#9670;&nbsp;</a></span>alteraux()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -114,32 +114,22 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void alteraux </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>&#160;</td>
-          <td class="paramname"><em>cmd</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype"><a class="el" href="classToken.html">Token</a>&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
-          <td class="paramname"><em>chr</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p class="definition">Définition à la ligne <a class="el" href="alteraux_8cpp_source.html#l00007">7</a> du fichier <a class="el" href="alteraux_8cpp_source.html">alteraux.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">if</span> (chr != abs(<a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a>))</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="erreur_8cpp.html#acd7fc31cfc4ec6455b2b0ab5d99750fb">reportillegalcase</a>(cmd, chr);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">if</span> (t.<a class="code" href="classToken.html#aa2a1655995674faef2f5690e0c29aaaf">chr</a> != abs(<a class="code" href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a>))</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="erreur_8cpp.html#a432e2d6beb1b9921b4481d81b1f42c19">reportillegalcase</a>(t);</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keyword">auto</span> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> = chr;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keyword">auto</span> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> = t.<a class="code" href="classToken.html#aa2a1655995674faef2f5690e0c29aaaf">chr</a>;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="lecture_8cpp.html#aba61603fc78224712ab55bae77b79063">scanoptionalequals</a>();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> == <a class="code" href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da0298d8eb356f2993dbef77b5ec25e6fb">vmode</a>)</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> == <a class="code" href="constantes_8h.html#a811fe196a5d9d37857c2f8adeeaac3c6a0298d8eb356f2993dbef77b5ec25e6fb">vmode</a>)</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <a class="code" href="globals_8cpp.html#af63f4ef8550dae22c18f3db782753fe8">prev_depth</a> = <a class="code" href="lecture_8cpp.html#acd91137563c568c716525074e0b5ef8b">scan_normal_dimen</a>();</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
@@ -154,11 +144,11 @@ Fonctions</h2></td></tr>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="alteraux_8cpp_a1ccfbe86d2f957682e5ddf8ce13145dc_cgraph.png" border="0" usemap="#alteraux_8cpp_a1ccfbe86d2f957682e5ddf8ce13145dc_cgraph" alt=""/></div>
-<map name="alteraux_8cpp_a1ccfbe86d2f957682e5ddf8ce13145dc_cgraph" id="alteraux_8cpp_a1ccfbe86d2f957682e5ddf8ce13145dc_cgraph">
+<div class="center"><img src="alteraux_8cpp_a58cf203dfb87edb9e3d1575220994265_cgraph.png" border="0" usemap="#alteraux_8cpp_a58cf203dfb87edb9e3d1575220994265_cgraph" alt=""/></div>
+<map name="alteraux_8cpp_a58cf203dfb87edb9e3d1575220994265_cgraph" id="alteraux_8cpp_a58cf203dfb87edb9e3d1575220994265_cgraph">
 <area shape="rect" title=" " alt="" coords="5,107,73,133"/>
 <area shape="rect" href="erreur_8cpp.html#a4e4be46a4276e7ab8bae6246144187a4" title=" " alt="" coords="159,5,222,32"/>
-<area shape="rect" href="erreur_8cpp.html#acd7fc31cfc4ec6455b2b0ab5d99750fb" title=" " alt="" coords="133,56,249,83"/>
+<area shape="rect" href="erreur_8cpp.html#a432e2d6beb1b9921b4481d81b1f42c19" title=" " alt="" coords="133,56,249,83"/>
 <area shape="rect" href="lecture_8cpp.html#acd91137563c568c716525074e0b5ef8b" title=" " alt="" coords="121,107,260,133"/>
 <area shape="rect" href="lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="159,157,223,184"/>
 <area shape="rect" href="lecture_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="124,208,257,235"/>
@@ -167,26 +157,27 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="alteraux_8cpp_a1ccfbe86d2f957682e5ddf8ce13145dc_icgraph.png" border="0" usemap="#alteraux_8cpp_a1ccfbe86d2f957682e5ddf8ce13145dc_icgraph" alt=""/></div>
-<map name="alteraux_8cpp_a1ccfbe86d2f957682e5ddf8ce13145dc_icgraph" id="alteraux_8cpp_a1ccfbe86d2f957682e5ddf8ce13145dc_icgraph">
+<div class="center"><img src="alteraux_8cpp_a58cf203dfb87edb9e3d1575220994265_icgraph.png" border="0" usemap="#alteraux_8cpp_a58cf203dfb87edb9e3d1575220994265_icgraph" alt=""/></div>
+<map name="alteraux_8cpp_a58cf203dfb87edb9e3d1575220994265_icgraph" id="alteraux_8cpp_a58cf203dfb87edb9e3d1575220994265_icgraph">
 <area shape="rect" title=" " alt="" coords="179,5,247,32"/>
-<area shape="rect" href="prefixedcommand_8h.html#af2228d242075314f70f29227a9c79444" title=" " alt="" coords="5,5,131,32"/>
+<area shape="rect" href="prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="5,5,131,32"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aglobals_8cpp_html_af63f4ef8550dae22c18f3db782753fe8"><div class="ttname"><a href="globals_8cpp.html#af63f4ef8550dae22c18f3db782753fe8">prev_depth</a></div><div class="ttdeci">int &amp; prev_depth</div><div class="ttdoc">the name of aux in vertical mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00083">globals.cpp:83</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_acd91137563c568c716525074e0b5ef8b"><div class="ttname"><a href="lecture_8cpp.html#acd91137563c568c716525074e0b5ef8b">scan_normal_dimen</a></div><div class="ttdeci">int scan_normal_dimen(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00356">lecture.cpp:356</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a0472a8839991d28cfa74dd6602fe4d3e"><div class="ttname"><a href="globals_8cpp.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a></div><div class="ttdeci">halfword &amp; space_factor</div><div class="ttdoc">part of aux in horizontal mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00084">globals.cpp:84</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a16af7b253440dadd46a80a4b9fddba4da0298d8eb356f2993dbef77b5ec25e6fb"><div class="ttname"><a href="constantes_8h.html#a16af7b253440dadd46a80a4b9fddba4da0298d8eb356f2993dbef77b5ec25e6fb">vmode</a></div><div class="ttdeci">@ vmode</div><div class="ttdoc">vertical mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00348">constantes.h:348</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00172">globals.cpp:172</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_aba61603fc78224712ab55bae77b79063"><div class="ttname"><a href="lecture_8cpp.html#aba61603fc78224712ab55bae77b79063">scanoptionalequals</a></div><div class="ttdeci">void scanoptionalequals(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00734">lecture.cpp:734</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00087">globals.cpp:87</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_ab6c507fd0d143723b1f2aa7d183f5d76"><div class="ttname"><a href="lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76">scanint</a></div><div class="ttdeci">int scanint(void)</div><div class="ttdoc">Sets curval to an integer.</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00519">lecture.cpp:519</a></div></div>
-<div class="ttc" id="aerreur_8cpp_html_a4e4be46a4276e7ab8bae6246144187a4"><div class="ttname"><a href="erreur_8cpp.html#a4e4be46a4276e7ab8bae6246144187a4">interror</a></div><div class="ttdeci">void interror(int n, const std::string &amp;msg, const std::string &amp;hlp)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00255">erreur.cpp:255</a></div></div>
-<div class="ttc" id="aerreur_8cpp_html_acd7fc31cfc4ec6455b2b0ab5d99750fb"><div class="ttname"><a href="erreur_8cpp.html#acd7fc31cfc4ec6455b2b0ab5d99750fb">reportillegalcase</a></div><div class="ttdeci">void reportillegalcase(eightbits cmd, halfword chr)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00256">erreur.cpp:256</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a432e2d6beb1b9921b4481d81b1f42c19"><div class="ttname"><a href="erreur_8cpp.html#a432e2d6beb1b9921b4481d81b1f42c19">reportillegalcase</a></div><div class="ttdeci">void reportillegalcase(Token t)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00229">erreur.cpp:229</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_af63f4ef8550dae22c18f3db782753fe8"><div class="ttname"><a href="globals_8cpp.html#af63f4ef8550dae22c18f3db782753fe8">prev_depth</a></div><div class="ttdeci">int &amp; prev_depth</div><div class="ttdoc">the name of aux in vertical mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00078">globals.cpp:78</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_acd91137563c568c716525074e0b5ef8b"><div class="ttname"><a href="lecture_8cpp.html#acd91137563c568c716525074e0b5ef8b">scan_normal_dimen</a></div><div class="ttdeci">int scan_normal_dimen(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00361">lecture.cpp:361</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a0472a8839991d28cfa74dd6602fe4d3e"><div class="ttname"><a href="globals_8cpp.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a></div><div class="ttdeci">halfword &amp; space_factor</div><div class="ttdoc">part of aux in horizontal mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00079">globals.cpp:79</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00139">globals.cpp:139</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_aba61603fc78224712ab55bae77b79063"><div class="ttname"><a href="lecture_8cpp.html#aba61603fc78224712ab55bae77b79063">scanoptionalequals</a></div><div class="ttdeci">void scanoptionalequals(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00713">lecture.cpp:713</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a811fe196a5d9d37857c2f8adeeaac3c6a0298d8eb356f2993dbef77b5ec25e6fb"><div class="ttname"><a href="constantes_8h.html#a811fe196a5d9d37857c2f8adeeaac3c6a0298d8eb356f2993dbef77b5ec25e6fb">vmode</a></div><div class="ttdeci">@ vmode</div><div class="ttdoc">vertical mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00348">constantes.h:348</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8cpp.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00082">globals.cpp:82</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_ab6c507fd0d143723b1f2aa7d183f5d76"><div class="ttname"><a href="lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76">scanint</a></div><div class="ttdeci">int scanint(void)</div><div class="ttdoc">Sets curval to an integer.</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00513">lecture.cpp:513</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a4e4be46a4276e7ab8bae6246144187a4"><div class="ttname"><a href="erreur_8cpp.html#a4e4be46a4276e7ab8bae6246144187a4">interror</a></div><div class="ttdeci">void interror(int n, const std::string &amp;msg, const std::string &amp;hlp)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00228">erreur.cpp:228</a></div></div>
+<div class="ttc" id="aclassToken_html_aa2a1655995674faef2f5690e0c29aaaf"><div class="ttname"><a href="classToken.html#aa2a1655995674faef2f5690e0c29aaaf">Token::chr</a></div><div class="ttdeci">halfword chr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00024">globals.h:24</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

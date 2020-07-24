@@ -26,9 +26,7 @@ quarterword& eq_level(halfword p) { return eqtb[p].hh.b1; }
 quarterword& eq_type(halfword p) { return eqtb[p].hh.b0; }
 halfword& equiv(halfword p) { return eqtb[p].hh.rh; }
 halfword& skip(halfword p) { return equiv(skip_base+p); }
-halfword& fam_fnt(halfword p) { return equiv(math_font_base+p); }
 halfword& box(halfword p) { return equiv(box_base+p); }
-halfword& cur_font(void) { return equiv(cur_font_loc); }
 halfword& par_shape_ptr(void) { return equiv(par_shape_loc); }
 halfword& every_math(void) { return equiv(every_math_loc); }
 halfword& every_cr(void) { return equiv(every_cr_loc); }

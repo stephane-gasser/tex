@@ -1,10 +1,10 @@
 <map id="charbox" name="charbox">
 <area shape="rect" id="node1" title=" " alt="" coords="5,309,73,336"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a437b9b007bc70934fccbda61d264cf35" title=" " alt="" coords="123,5,209,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a1ec2443f186d8e26a9c3e7a8184f367f" title=" " alt="" coords="121,56,211,83"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="129,107,203,133"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#ae2584965ba51d321b94b6e36955f218a" title=" " alt="" coords="125,157,207,184"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#afed1a10a514734f89ab8691850baa84f" title=" " alt="" coords="123,208,209,235"/>
+<area shape="rect" id="node2" href="$police_8cpp.html#a437b9b007bc70934fccbda61d264cf35" title=" " alt="" coords="123,5,209,32"/>
+<area shape="rect" id="node3" href="$police_8cpp.html#a1ec2443f186d8e26a9c3e7a8184f367f" title=" " alt="" coords="121,56,211,83"/>
+<area shape="rect" id="node4" href="$police_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="129,107,203,133"/>
+<area shape="rect" id="node5" href="$police_8cpp.html#ae2584965ba51d321b94b6e36955f218a" title=" " alt="" coords="125,157,207,184"/>
+<area shape="rect" id="node6" href="$police_8cpp.html#afed1a10a514734f89ab8691850baa84f" title=" " alt="" coords="123,208,209,235"/>
 <area shape="rect" id="node7" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="139,259,193,285"/>
 <area shape="rect" id="node8" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="133,309,199,336"/>
 <area shape="rect" id="node9" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="137,360,195,387"/>

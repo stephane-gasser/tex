@@ -1,8 +1,8 @@
 <map id="scanbox" name="scanbox">
-<area shape="rect" id="node1" title=" " alt="" coords="5,85,76,112"/>
-<area shape="rect" id="node2" href="$erreur_8cpp.html#a55c49bbc0ce4f2c0432257b1b86aed42" title="Back up one token and call error." alt="" coords="384,34,460,61"/>
-<area shape="rect" id="node3" href="$beginbox_8cpp.html#a7ab9065e177b078f55ac19c6ac9cbe16" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="136,34,211,61"/>
-<area shape="rect" id="node4" href="$boxend_8cpp.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="271,60,335,86"/>
-<area shape="rect" id="node5" href="$lecture_8cpp.html#ac906451f95919612bebc8e765f2b4d6c" title=" " alt="" coords="383,85,461,112"/>
-<area shape="rect" id="node6" href="$lecture_8cpp.html#a9789fabb9050b1de8e3851b8fee95741" title=" " alt="" coords="124,186,223,213"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,89,76,116"/>
+<area shape="rect" id="node2" href="$erreur_8cpp.html#a1a6f10754f33b1f6e804a09bde15b56d" title="Back up one token and call error." alt="" coords="452,38,528,65"/>
+<area shape="rect" id="node3" href="$beginbox_8cpp.html#a2c454f1131585a4c20280083aa635be3" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="136,38,211,65"/>
+<area shape="rect" id="node4" href="$boxend_8cpp.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="271,64,335,90"/>
+<area shape="rect" id="node5" href="$lecture_8cpp.html#a4f6e35100d41c2c67769e4bf464b6365" title=" " alt="" coords="383,89,597,116"/>
+<area shape="rect" id="node6" href="$lecture_8cpp.html#ac4f205836ef877f5923487e087da4fe4" title=" " alt="" coords="124,190,223,217"/>
 </map>

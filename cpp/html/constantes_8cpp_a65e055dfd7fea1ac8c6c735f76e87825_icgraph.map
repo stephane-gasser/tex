@@ -1,9 +1,9 @@
 <map id="pre_break" name="pre_break">
 <area shape="rect" id="node1" title="text that precedes a discretionary break" alt="" coords="441,210,520,237"/>
-<area shape="rect" id="node2" href="$builddiscretionary_8h.html#a67984389ff8333976f6cb8461be2df00" title=" " alt="" coords="128,34,251,61"/>
+<area shape="rect" id="node2" href="$builddiscretionary_8h.html#a50a018e2c9932a40bcbfd39ab987d22c" title=" " alt="" coords="128,34,251,61"/>
 <area shape="rect" id="node3" href="$noeud_8h.html#a10ce09de92566b94c5155b2fd74872f3" title=" " alt="" coords="299,60,393,86"/>
 <area shape="rect" id="node4" href="$noeud_8h.html#a3e570593ced1e6ecba9565f34061a432" title=" " alt="" coords="299,134,393,161"/>
-<area shape="rect" id="node5" href="$hyphenate_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="148,185,231,212"/>
+<area shape="rect" id="node5" href="$cesure_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="148,185,231,212"/>
 <area shape="rect" id="node6" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,185,80,212"/>
 <area shape="rect" id="node7" href="$noeud_8h.html#a51f36dd2960670f7b41be07bc1c57497" title=" " alt="" coords="311,286,381,313"/>
 <area shape="rect" id="node8" href="$impression_8h.html#a190dbb1f454e717590536284ba1d88be" title=" " alt="" coords="300,361,392,388"/>

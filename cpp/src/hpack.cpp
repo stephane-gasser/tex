@@ -49,12 +49,11 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 		while (is_char_node(p))
 		{
 			f = type(p);
-			auto i = char_info(f, character(p));
-			x += char_width(f, i);
-			s = char_height(f, i);
+			x += fonts[f].char_width(character(p));
+			s = fonts[f].char_height(character(p));
 			if (s > h)
 				h = s;
-			s = char_depth(f, i);
+			s = fonts[f].char_depth(character(p));
 			if (s > d)
 				d = s;
 			p = link(p);

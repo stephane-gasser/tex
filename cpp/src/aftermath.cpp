@@ -23,13 +23,6 @@ constexpr int total_mathex_params = 13;
 //! Action procedure for use in maincontrol()
 void aftermath(void)
 {
-	bool l; // `\\leqno' instead of `\\eqno'
-	int m; // \a mmode or \a -mmode
-	halfword a; // box containing equation number
-	halfword p, b;
-	scaled w, z, e, q, d, s;
-	smallnumber g1, g2;
-	halfword r, tt;
 	bool danger = false; // not enough symbol fonts are present
 	if (fonts[fam_fnt(2+text_size)].params < total_mathsy_params 
 	 || fonts[fam_fnt(2+script_size)].params < total_mathsy_params 
@@ -48,10 +41,11 @@ void aftermath(void)
 			flushmath();
 			danger = true;
 		}
-	m = mode;
-	l = false;
-	p = finmlist(0);
+	int m = mode; // \a mmode or \a -mmode
+	bool l = false; // `\\leqno' instead of `\\eqno'
+	auto p = finmlist(0);
 	Token t;
+	halfword a; // box containing equation number
 	if (mode == -m)
 	{
 		t = getxtoken();
@@ -116,13 +110,14 @@ void aftermath(void)
 		mlisttohlist();
 		p = link(temp_head);
 		adjusttail = adjust_head;
-		b = hpack(p, 0, additional);
+		auto b = hpack(p, 0, additional);
 		p = list_ptr(b);
-		tt = adjusttail;
+		auto tt = adjusttail;
 		adjusttail = 0;
-		w = width(b);
-		z = display_width();
-		s = display_indent();
+		auto w = width(b);
+		auto z = display_width();
+		auto s = display_indent();
+		scaled e, q;
 		if (a == 0 || danger)
 		{
 			e = 0;
@@ -151,7 +146,7 @@ void aftermath(void)
 			}
 			w = width(b);
 		}
-		d = half(z-w);
+		auto d = half(z-w);
 		if (e > 0 && d < 2*e)
 		{
 			d = half(z-w-e);
@@ -159,15 +154,11 @@ void aftermath(void)
 			d = 0;
 		}
 		tail_append(newpenalty(pre_display_penalty()));
+		smallnumber g1 = 5, g2 = 6;
 		if (d+s <= pre_display_size() || l)
 		{
 			g1 = 3;
 			g2 = 4;
-		}
-		else
-		{
-			g1 = 5;
-			g2 = 6;
 		}
 		if (l && e == 0)
 		{
@@ -179,7 +170,7 @@ void aftermath(void)
 			tail_append(newparamglue(g1));
 		if (e)
 		{
-			r = newkern(z-w-e-d);
+			auto r = newkern(z-w-e-d);
 			if (l)
 			{
 				link(a) = r;

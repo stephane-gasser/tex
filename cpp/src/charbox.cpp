@@ -3,13 +3,12 @@
 #include "getavail.h"
 #include "police.h"
 
-halfword charbox(internalfontnumber f, quarterword c)
+halfword charbox(const Font &ft, quarterword c)
 {
-	auto q = char_info(f, c);
 	auto b = newnullbox();
-	width(b) = char_width(f, q)+char_italic(f, q);
-	height(b) = char_height(f, q);
-	depth(b) = char_depth(f, q);
+	width(b) = ft.char_width(c)+ft.char_italic(c);
+	height(b) = ft.char_height(c);
+	depth(b) = ft.char_depth(c);
 	auto p = getavail();
 	subtype(p) = c;
 	type(p) = f;

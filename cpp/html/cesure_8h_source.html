@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de inc/cesure.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">cesure.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="cesure_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CESURE_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define CESURE_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="globals_8h.html">globals.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">void</span> <a class="code" href="cesure_8h.html#a4953f312f016c82145ae48b0d39341bd">inittrie</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<a class="code" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> <a class="code" href="cesure_8h.html#ab9a70a6cd9a2218a3ba2ffd0297b9e63">newtrieop</a>(<a class="code" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a>, <a class="code" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a>, <a class="code" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">void</span> <a class="code" href="cesure_8h.html#ad2ec39c3db4249f202c32daca895f4da">hyphenate</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">void</span> <a class="code" href="cesure_8h.html#af3221e6f99f98209e26c1279926a7a37">newpatterns</a>(<a class="code" href="classToken.html">Token</a>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classTrieNode.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTrieNode.html">TrieNode</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classTrieNode.html#a080a57fb85d6b5576b8993ef058d698e">   14</a></span>&#160;        <a class="code" href="tex_8h.html#a450772dfa89c13d91b6486e6567b9882">packedASCIIcode</a> <a class="code" href="classTrieNode.html#a080a57fb85d6b5576b8993ef058d698e">c</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classTrieNode.html#acc8fddc6f5c3e21277447a6259be9df5">   15</a></span>&#160;        <a class="code" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> <a class="code" href="classTrieNode.html#acc8fddc6f5c3e21277447a6259be9df5">o</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classTrieNode.html#a98e8d2e603d6dda50887db9569d93df6">   16</a></span>&#160;        <a class="code" href="tex_8h.html#ac9a4e1c22ae0a18dedf4e77268641793">triepointer</a> <a class="code" href="classTrieNode.html#a98e8d2e603d6dda50887db9569d93df6">l</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classTrieNode.html#ac7e41d5e1cea7eb5c5a07520b2624b44">   17</a></span>&#160;        <a class="code" href="tex_8h.html#ac9a4e1c22ae0a18dedf4e77268641793">triepointer</a> <a class="code" href="classTrieNode.html#ac7e41d5e1cea7eb5c5a07520b2624b44">r</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classTrieNode.html#a0f74549c929472d4373532b0ebb593fc">   18</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTrieNode.html#a0f74549c929472d4373532b0ebb593fc">operator == </a>(<span class="keyword">const</span> <a class="code" href="classTrieNode.html">TrieNode</a> &amp;tn)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> std::tuple(<a class="code" href="classTrieNode.html#a080a57fb85d6b5576b8993ef058d698e">c</a>, <a class="code" href="classTrieNode.html#acc8fddc6f5c3e21277447a6259be9df5">o</a>, <a class="code" href="classTrieNode.html#a98e8d2e603d6dda50887db9569d93df6">l</a>, <a class="code" href="classTrieNode.html#ac7e41d5e1cea7eb5c5a07520b2624b44">r</a>) == std::tuple(tn.<a class="code" href="classTrieNode.html#a080a57fb85d6b5576b8993ef058d698e">c</a>, tn.<a class="code" href="classTrieNode.html#acc8fddc6f5c3e21277447a6259be9df5">o</a>, tn.<a class="code" href="classTrieNode.html#a98e8d2e603d6dda50887db9569d93df6">l</a>, tn.<a class="code" href="classTrieNode.html#ac7e41d5e1cea7eb5c5a07520b2624b44">r</a>); }</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classTrieNode.html#af91004261c8a9d7c268a3ea24ec78878">   19</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTrieNode.html#af91004261c8a9d7c268a3ea24ec78878">operator &lt; </a>(<span class="keyword">const</span> <a class="code" href="classTrieNode.html">TrieNode</a> &amp;tn)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> std::tuple(<a class="code" href="classTrieNode.html#a080a57fb85d6b5576b8993ef058d698e">c</a>, <a class="code" href="classTrieNode.html#acc8fddc6f5c3e21277447a6259be9df5">o</a>, <a class="code" href="classTrieNode.html#a98e8d2e603d6dda50887db9569d93df6">l</a>, <a class="code" href="classTrieNode.html#ac7e41d5e1cea7eb5c5a07520b2624b44">r</a>) &lt; std::tuple(tn.<a class="code" href="classTrieNode.html#a080a57fb85d6b5576b8993ef058d698e">c</a>, tn.<a class="code" href="classTrieNode.html#acc8fddc6f5c3e21277447a6259be9df5">o</a>, tn.<a class="code" href="classTrieNode.html#a98e8d2e603d6dda50887db9569d93df6">l</a>, tn.<a class="code" href="classTrieNode.html#ac7e41d5e1cea7eb5c5a07520b2624b44">r</a>); }</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;};</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">inline</span> std::vector&lt;TrieNode&gt; <a class="code" href="cesure_8h.html#a289e5d0b2176dcb8385e8a6f6250e2d7">trieNode</a>(1);</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="cesure_8h.html#a2106d8769808845770492479ce88fa6e">   23</a></span>&#160;<span class="keyword">inline</span> <a class="code" href="tex_8h.html#ac9a4e1c22ae0a18dedf4e77268641793">triepointer</a> &amp;<a class="code" href="cesure_8h.html#a2106d8769808845770492479ce88fa6e">trie_root</a> = <a class="code" href="cesure_8h.html#a289e5d0b2176dcb8385e8a6f6250e2d7">trieNode</a>[0].l; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classTrie.html">   25</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTrie.html">Trie</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classTrie.html#a939fcdb6ee10918d3a8ab5d9004e7eca">   28</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTrie.html#a939fcdb6ee10918d3a8ab5d9004e7eca">taken</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classTrie.html#a19d574df66029bad27840867b57f5506">   29</a></span>&#160;        <a class="code" href="structtwohalves.html">twohalves</a> <a class="code" href="classTrie.html#a19d574df66029bad27840867b57f5506">hh</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">inline</span> std::vector&lt;Trie&gt; <a class="code" href="cesure_8h.html#a6d839112ab4724d97a90ce378a5e527e">trie</a>(1);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classTrieOp.html">   34</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTrieOp.html">TrieOp</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classTrieOp.html#af2b6053f56ed3642984f066e077b7531">   37</a></span>&#160;        <a class="code" href="tex_8h.html#ab83428f90f6421c7dad8f3aea11430b3">ASCIIcode</a> <a class="code" href="classTrieOp.html#af2b6053f56ed3642984f066e077b7531">lang</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classTrieOp.html#a421ba11a0e50e393a8280a1de185d3ba">   38</a></span>&#160;        <a class="code" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> <a class="code" href="classTrieOp.html#a421ba11a0e50e393a8280a1de185d3ba">val</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classTrieOp.html#a4ebaa09101e23198226dca35611ffff4">   39</a></span>&#160;        <a class="code" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> <a class="code" href="classTrieOp.html#a4ebaa09101e23198226dca35611ffff4">hyfnext</a>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classTrieOp.html#a7cf4ee7be591a478cac988f116a7b202">   40</a></span>&#160;        <a class="code" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a> <a class="code" href="classTrieOp.html#a7cf4ee7be591a478cac988f116a7b202">hyfnum</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classTrieOp.html#aa7ad4a5ba91a4f218846014b4f51014e">   41</a></span>&#160;        <a class="code" href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a> <a class="code" href="classTrieOp.html#aa7ad4a5ba91a4f218846014b4f51014e">hyfdistance</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classTrieOp.html#a2075ebd334879782266881e12e15d78e">   42</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTrieOp.html#a2075ebd334879782266881e12e15d78e">operator == </a>(<span class="keyword">const</span> <a class="code" href="classTrieOp.html">TrieOp</a> &amp;to)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> std::tuple(<a class="code" href="classTrieOp.html#af2b6053f56ed3642984f066e077b7531">lang</a>, <a class="code" href="classTrieOp.html#a4ebaa09101e23198226dca35611ffff4">hyfnext</a>, <a class="code" href="classTrieOp.html#a7cf4ee7be591a478cac988f116a7b202">hyfnum</a>, <a class="code" href="classTrieOp.html#aa7ad4a5ba91a4f218846014b4f51014e">hyfdistance</a>) == std::tuple(to.<a class="code" href="classTrieOp.html#af2b6053f56ed3642984f066e077b7531">lang</a>, to.<a class="code" href="classTrieOp.html#a4ebaa09101e23198226dca35611ffff4">hyfnext</a>, to.<a class="code" href="classTrieOp.html#a7cf4ee7be591a478cac988f116a7b202">hyfnum</a>, to.<a class="code" href="classTrieOp.html#aa7ad4a5ba91a4f218846014b4f51014e">hyfdistance</a>); }</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classTrieOp.html#afc38b5aa2f5bc328795ed56c481470a5">   43</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTrieOp.html#afc38b5aa2f5bc328795ed56c481470a5">operator &lt; </a>(<span class="keyword">const</span> <a class="code" href="classTrieOp.html">TrieOp</a> &amp;to)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> std::tuple(<a class="code" href="classTrieOp.html#af2b6053f56ed3642984f066e077b7531">lang</a>, <a class="code" href="classTrieOp.html#a4ebaa09101e23198226dca35611ffff4">hyfnext</a>, <a class="code" href="classTrieOp.html#a7cf4ee7be591a478cac988f116a7b202">hyfnum</a>, <a class="code" href="classTrieOp.html#aa7ad4a5ba91a4f218846014b4f51014e">hyfdistance</a>) &lt; std::tuple(to.<a class="code" href="classTrieOp.html#af2b6053f56ed3642984f066e077b7531">lang</a>, to.<a class="code" href="classTrieOp.html#a4ebaa09101e23198226dca35611ffff4">hyfnext</a>, to.<a class="code" href="classTrieOp.html#a7cf4ee7be591a478cac988f116a7b202">hyfnum</a>, to.<a class="code" href="classTrieOp.html#aa7ad4a5ba91a4f218846014b4f51014e">hyfdistance</a>); }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;};</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">inline</span> std::vector&lt;TrieOp&gt; <a class="code" href="cesure_8h.html#ad439adcfa9eafe7cd6ed2a4cde107ac7">trieOp</a>(1);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="atex_8h_html_ac9a4e1c22ae0a18dedf4e77268641793"><div class="ttname"><a href="tex_8h.html#ac9a4e1c22ae0a18dedf4e77268641793">triepointer</a></div><div class="ttdeci">int triepointer</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00098">tex.h:98</a></div></div>
+<div class="ttc" id="aclassTrie_html_a939fcdb6ee10918d3a8ab5d9004e7eca"><div class="ttname"><a href="classTrie.html#a939fcdb6ee10918d3a8ab5d9004e7eca">Trie::taken</a></div><div class="ttdeci">bool taken</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00028">cesure.h:28</a></div></div>
+<div class="ttc" id="atex_8h_html_ab83428f90f6421c7dad8f3aea11430b3"><div class="ttname"><a href="tex_8h.html#ab83428f90f6421c7dad8f3aea11430b3">ASCIIcode</a></div><div class="ttdeci">std::uint8_t ASCIIcode</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00032">tex.h:32</a></div></div>
+<div class="ttc" id="aclassTrieOp_html_aa7ad4a5ba91a4f218846014b4f51014e"><div class="ttname"><a href="classTrieOp.html#aa7ad4a5ba91a4f218846014b4f51014e">TrieOp::hyfdistance</a></div><div class="ttdeci">smallnumber hyfdistance</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00041">cesure.h:41</a></div></div>
+<div class="ttc" id="aclassTrieOp_html_afc38b5aa2f5bc328795ed56c481470a5"><div class="ttname"><a href="classTrieOp.html#afc38b5aa2f5bc328795ed56c481470a5">TrieOp::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const TrieOp &amp;to) const</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00043">cesure.h:43</a></div></div>
+<div class="ttc" id="atex_8h_html_aaef48c5c65cb13f3e50745390b269155"><div class="ttname"><a href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a></div><div class="ttdeci">std::uint8_t quarterword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00043">tex.h:43</a></div></div>
+<div class="ttc" id="acesure_8h_html_ab9a70a6cd9a2218a3ba2ffd0297b9e63"><div class="ttname"><a href="cesure_8h.html#ab9a70a6cd9a2218a3ba2ffd0297b9e63">newtrieop</a></div><div class="ttdeci">quarterword newtrieop(smallnumber, smallnumber, quarterword)</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8cpp_source.html#l00169">cesure.cpp:169</a></div></div>
+<div class="ttc" id="atex_8h_html_a450772dfa89c13d91b6486e6567b9882"><div class="ttname"><a href="tex_8h.html#a450772dfa89c13d91b6486e6567b9882">packedASCIIcode</a></div><div class="ttdeci">std::uint8_t packedASCIIcode</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00039">tex.h:39</a></div></div>
+<div class="ttc" id="aclassTrieOp_html_af2b6053f56ed3642984f066e077b7531"><div class="ttname"><a href="classTrieOp.html#af2b6053f56ed3642984f066e077b7531">TrieOp::lang</a></div><div class="ttdeci">ASCIIcode lang</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00037">cesure.h:37</a></div></div>
+<div class="ttc" id="acesure_8h_html_a2106d8769808845770492479ce88fa6e"><div class="ttname"><a href="cesure_8h.html#a2106d8769808845770492479ce88fa6e">trie_root</a></div><div class="ttdeci">triepointer &amp; trie_root</div><div class="ttdoc">root of the linked trie</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00023">cesure.h:23</a></div></div>
+<div class="ttc" id="aclassTrieNode_html"><div class="ttname"><a href="classTrieNode.html">TrieNode</a></div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00011">cesure.h:11</a></div></div>
+<div class="ttc" id="aclassTrieOp_html_a4ebaa09101e23198226dca35611ffff4"><div class="ttname"><a href="classTrieOp.html#a4ebaa09101e23198226dca35611ffff4">TrieOp::hyfnext</a></div><div class="ttdeci">quarterword hyfnext</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00039">cesure.h:39</a></div></div>
+<div class="ttc" id="aclassTrie_html"><div class="ttname"><a href="classTrie.html">Trie</a></div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00025">cesure.h:25</a></div></div>
+<div class="ttc" id="acesure_8h_html_af3221e6f99f98209e26c1279926a7a37"><div class="ttname"><a href="cesure_8h.html#af3221e6f99f98209e26c1279926a7a37">newpatterns</a></div><div class="ttdeci">void newpatterns(Token)</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8cpp_source.html#l00485">cesure.cpp:485</a></div></div>
+<div class="ttc" id="aclassToken_html"><div class="ttname"><a href="classToken.html">Token</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00020">globals.h:20</a></div></div>
+<div class="ttc" id="aclassTrieNode_html_a98e8d2e603d6dda50887db9569d93df6"><div class="ttname"><a href="classTrieNode.html#a98e8d2e603d6dda50887db9569d93df6">TrieNode::l</a></div><div class="ttdeci">triepointer l</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00016">cesure.h:16</a></div></div>
+<div class="ttc" id="acesure_8h_html_a6d839112ab4724d97a90ce378a5e527e"><div class="ttname"><a href="cesure_8h.html#a6d839112ab4724d97a90ce378a5e527e">trie</a></div><div class="ttdeci">std::vector&lt; Trie &gt; trie(1)</div></div>
+<div class="ttc" id="acesure_8h_html_a4953f312f016c82145ae48b0d39341bd"><div class="ttname"><a href="cesure_8h.html#a4953f312f016c82145ae48b0d39341bd">inittrie</a></div><div class="ttdeci">void inittrie(void)</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8cpp_source.html#l00127">cesure.cpp:127</a></div></div>
+<div class="ttc" id="aclassTrieNode_html_a0f74549c929472d4373532b0ebb593fc"><div class="ttname"><a href="classTrieNode.html#a0f74549c929472d4373532b0ebb593fc">TrieNode::operator==</a></div><div class="ttdeci">bool operator==(const TrieNode &amp;tn) const</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00018">cesure.h:18</a></div></div>
+<div class="ttc" id="aglobals_8h_html"><div class="ttname"><a href="globals_8h.html">globals.h</a></div></div>
+<div class="ttc" id="aclassTrieOp_html"><div class="ttname"><a href="classTrieOp.html">TrieOp</a></div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00034">cesure.h:34</a></div></div>
+<div class="ttc" id="aclassTrieNode_html_a080a57fb85d6b5576b8993ef058d698e"><div class="ttname"><a href="classTrieNode.html#a080a57fb85d6b5576b8993ef058d698e">TrieNode::c</a></div><div class="ttdeci">packedASCIIcode c</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00014">cesure.h:14</a></div></div>
+<div class="ttc" id="aclassTrieNode_html_ac7e41d5e1cea7eb5c5a07520b2624b44"><div class="ttname"><a href="classTrieNode.html#ac7e41d5e1cea7eb5c5a07520b2624b44">TrieNode::r</a></div><div class="ttdeci">triepointer r</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00017">cesure.h:17</a></div></div>
+<div class="ttc" id="astructtwohalves_html"><div class="ttname"><a href="structtwohalves.html">twohalves</a></div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00046">tex.h:46</a></div></div>
+<div class="ttc" id="aclassTrieOp_html_a2075ebd334879782266881e12e15d78e"><div class="ttname"><a href="classTrieOp.html#a2075ebd334879782266881e12e15d78e">TrieOp::operator==</a></div><div class="ttdeci">bool operator==(const TrieOp &amp;to) const</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00042">cesure.h:42</a></div></div>
+<div class="ttc" id="aclassTrieOp_html_a7cf4ee7be591a478cac988f116a7b202"><div class="ttname"><a href="classTrieOp.html#a7cf4ee7be591a478cac988f116a7b202">TrieOp::hyfnum</a></div><div class="ttdeci">smallnumber hyfnum</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00040">cesure.h:40</a></div></div>
+<div class="ttc" id="aclassTrieOp_html_a421ba11a0e50e393a8280a1de185d3ba"><div class="ttname"><a href="classTrieOp.html#a421ba11a0e50e393a8280a1de185d3ba">TrieOp::val</a></div><div class="ttdeci">quarterword val</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00038">cesure.h:38</a></div></div>
+<div class="ttc" id="aclassTrieNode_html_af91004261c8a9d7c268a3ea24ec78878"><div class="ttname"><a href="classTrieNode.html#af91004261c8a9d7c268a3ea24ec78878">TrieNode::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const TrieNode &amp;tn) const</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00019">cesure.h:19</a></div></div>
+<div class="ttc" id="acesure_8h_html_ad2ec39c3db4249f202c32daca895f4da"><div class="ttname"><a href="cesure_8h.html#ad2ec39c3db4249f202c32daca895f4da">hyphenate</a></div><div class="ttdeci">void hyphenate(void)</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8cpp_source.html#l00193">cesure.cpp:193</a></div></div>
+<div class="ttc" id="acesure_8h_html_ad439adcfa9eafe7cd6ed2a4cde107ac7"><div class="ttname"><a href="cesure_8h.html#ad439adcfa9eafe7cd6ed2a4cde107ac7">trieOp</a></div><div class="ttdeci">std::vector&lt; TrieOp &gt; trieOp(1)</div></div>
+<div class="ttc" id="aclassTrieNode_html_acc8fddc6f5c3e21277447a6259be9df5"><div class="ttname"><a href="classTrieNode.html#acc8fddc6f5c3e21277447a6259be9df5">TrieNode::o</a></div><div class="ttdeci">quarterword o</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00015">cesure.h:15</a></div></div>
+<div class="ttc" id="acesure_8h_html_a289e5d0b2176dcb8385e8a6f6250e2d7"><div class="ttname"><a href="cesure_8h.html#a289e5d0b2176dcb8385e8a6f6250e2d7">trieNode</a></div><div class="ttdeci">std::vector&lt; TrieNode &gt; trieNode(1)</div></div>
+<div class="ttc" id="atex_8h_html_a3fbb1f4fdb63be986c6debacfb88b62b"><div class="ttname"><a href="tex_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a></div><div class="ttdeci">std::uint8_t smallnumber</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00041">tex.h:41</a></div></div>
+<div class="ttc" id="aclassTrie_html_a19d574df66029bad27840867b57f5506"><div class="ttname"><a href="classTrie.html#a19d574df66029bad27840867b57f5506">Trie::hh</a></div><div class="ttdeci">twohalves hh</div><div class="ttdef"><b>Definition:</b> <a href="cesure_8h_source.html#l00029">cesure.h:29</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

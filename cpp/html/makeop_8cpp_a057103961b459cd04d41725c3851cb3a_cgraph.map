@@ -1,10 +1,10 @@
 <map id="makeop" name="makeop">
 <area shape="rect" id="node1" title=" " alt="" coords="5,664,73,691"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708" title="height of fraction lines above the baseline" alt="" coords="122,5,210,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#ab6c4faf0c701bd19f346dd0fb23494fb" title=" " alt="" coords="121,56,211,83"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="270,157,345,184"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#ae2584965ba51d321b94b6e36955f218a" title=" " alt="" coords="125,867,207,893"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a070722c7bd051824c0d6e5dcc343d40e" title=" " alt="" coords="130,917,202,944"/>
+<area shape="rect" id="node2" href="$police_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708" title="height of fraction lines above the baseline" alt="" coords="122,5,210,32"/>
+<area shape="rect" id="node3" href="$police_8cpp.html#ab6c4faf0c701bd19f346dd0fb23494fb" title=" " alt="" coords="121,56,211,83"/>
+<area shape="rect" id="node4" href="$police_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="270,157,345,184"/>
+<area shape="rect" id="node5" href="$police_8cpp.html#ae2584965ba51d321b94b6e36955f218a" title=" " alt="" coords="125,867,207,893"/>
+<area shape="rect" id="node6" href="$police_8cpp.html#a070722c7bd051824c0d6e5dcc343d40e" title=" " alt="" coords="130,917,202,944"/>
 <area shape="rect" id="node7" href="$constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title="the character code in a char_node" alt="" coords="128,968,204,995"/>
 <area shape="rect" id="node8" href="$cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="129,613,203,640"/>
 <area shape="rect" id="node9" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="271,563,343,589"/>
@@ -19,12 +19,12 @@
 <area shape="rect" id="node18" href="$half_8cpp.html#ae67e73d5a4cc42b131b635f9cb2461d8" title=" " alt="" coords="145,1069,187,1096"/>
 <area shape="rect" id="node19" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="137,1120,195,1147"/>
 <area shape="rect" id="node20" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="277,512,338,539"/>
-<area shape="rect" id="node21" href="$constantes_8cpp.html#a244b54c7ec0409e04d20ec2b27c43801" title=" " alt="" coords="133,1171,199,1197"/>
+<area shape="rect" id="node21" href="$police_8cpp.html#a244b54c7ec0409e04d20ec2b27c43801" title=" " alt="" coords="133,1171,199,1197"/>
 <area shape="rect" id="node22" href="$constantes_8cpp.html#a5bb851b8f5d5d2f2fd4e39f0b770e89a" title="the translation of an mlist" alt="" coords="127,765,205,792"/>
 <area shape="rect" id="node23" href="$noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="272,411,343,437"/>
 <area shape="rect" id="node24" href="$rebox_8cpp.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="139,360,193,387"/>
 <area shape="rect" id="node25" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="281,461,334,488"/>
-<area shape="rect" id="node26" href="$constantes_8cpp.html#a6810e7d36d54ce6e64ce1b0f5e971ac3" title=" " alt="" coords="128,1221,204,1248"/>
+<area shape="rect" id="node26" href="$police_8cpp.html#a6810e7d36d54ce6e64ce1b0f5e971ac3" title=" " alt="" coords="128,1221,204,1248"/>
 <area shape="rect" id="node27" href="$constantes_8cpp.html#af3b3f58f78af4dd1fd2db67eaa6f6124" title="the subscr field of a noad" alt="" coords="135,1272,197,1299"/>
 <area shape="rect" id="node28" href="$constantes_8cpp.html#a7c168ea5f061757fddf1c55e0ca46911" title="the supscr field of a noad" alt="" coords="135,1323,197,1349"/>
 </map>

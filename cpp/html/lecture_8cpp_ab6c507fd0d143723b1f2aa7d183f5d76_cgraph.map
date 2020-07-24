@@ -1,9 +1,10 @@
 <map id="scanint" name="scanint">
-<area shape="rect" id="node1" title="Sets curval to an integer." alt="" coords="5,114,69,141"/>
-<area shape="rect" id="node2" href="$erreur_8cpp.html#a55c49bbc0ce4f2c0432257b1b86aed42" title="Back up one token and call error." alt="" coords="155,38,231,65"/>
-<area shape="rect" id="node3" href="$backinput_8cpp.html#a999fe0a02561a0158caa3372a424f82d" title="Undoes one token of input." alt="" coords="317,13,396,40"/>
-<area shape="rect" id="node4" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="333,89,381,116"/>
-<area shape="rect" id="node5" href="$lecture_8cpp.html#a17bff82877923eb333da03b4c4e7c9ed" title=" " alt="" coords="444,114,516,141"/>
-<area shape="rect" id="node6" href="$lecture_8cpp.html#ac906451f95919612bebc8e765f2b4d6c" title=" " alt="" coords="154,190,233,217"/>
-<area shape="rect" id="node7" href="$lecture_8cpp.html#aa96d358e3d7fcfb48aa71956d07b8618" title=" " alt="" coords="117,241,269,268"/>
+<area shape="rect" id="node1" title="Sets curval to an integer." alt="" coords="5,142,69,168"/>
+<area shape="rect" id="node2" href="$erreur_8cpp.html#a1a6f10754f33b1f6e804a09bde15b56d" title="Back up one token and call error." alt="" coords="155,40,231,67"/>
+<area shape="rect" id="node3" href="$backinput_8cpp.html#ada79b16970afac693692125a26a780ae" title="Undoes one token of input." alt="" coords="317,15,396,42"/>
+<area shape="rect" id="node4" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="333,91,381,118"/>
+<area shape="rect" id="node5" href="$lecture_8cpp.html#ae925ce9cf3090fd9fc647fbc60dbb07c" title=" " alt="" coords="444,116,516,143"/>
+<area shape="rect" id="node6" href="$lecture_8cpp.html#a8011f7e4fce89d03b8863f49b45f4c57" title=" " alt="" coords="317,218,396,244"/>
+<area shape="rect" id="node7" href="$lecture_8cpp.html#abe20aa0d4fde9e11c8f0830f7671847a" title=" " alt="" coords="120,243,267,270"/>
+<area shape="rect" id="node8" href="$lecture_8cpp.html#afdc3c9198bb79b5c0d87d85d1da98992" title=" " alt="" coords="117,294,269,320"/>
 </map>

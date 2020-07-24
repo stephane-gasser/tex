@@ -18,13 +18,11 @@ void fetch(halfword a)
 	}
 	else
 	{
-		if (curc >= fonts[curf].bc && curc <= fonts[curf].ec)
-			curi = char_info(curf, curc);
-		else
-			curi = nullcharacter;
+		auto &ft = fonts[curf];
+		curi = (curc >= ft.bc && curc <= ft.ec) ? ft.char_info(curc) : nullcharacter;
 		if (skip_byte(curi) <= 0)
 		{
-			charwarning(curf, curc);
+			charwarning(ft, curc);
 			link(a) = 0;
 		}
 	}

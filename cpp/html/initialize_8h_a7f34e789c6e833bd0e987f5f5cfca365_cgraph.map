@@ -1,31 +1,32 @@
 <map id="Initialize" name="Initialize">
-<area shape="rect" id="node1" title=" " alt="" coords="5,689,76,716"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#ab70b4a53caf71f4da20a6f8a0c65ff20" title=" " alt="" coords="150,664,225,691"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="299,487,352,513"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a84299e01b644eaf52252f51a5a9c66f3" title=" " alt="" coords="150,107,225,133"/>
-<area shape="rect" id="node5" href="$parametres_8h.html#a43108f9e5b0a872b47c5d80c52d2d449" title=" " alt="" coords="136,157,239,184"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="152,208,223,235"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a30e61288612879b61525ab34298b794d" title="command code for equivalent" alt="" coords="153,259,221,285"/>
-<area shape="rect" id="node8" href="$parametres_8h.html#aa5cf2e1f5b1929eaa700495b1c9209fb" title=" " alt="" coords="139,309,235,336"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#ab2def9ced9c196d76adb71f31b4f8619" title="reference count of a glue specification" alt="" coords="134,360,241,387"/>
-<area shape="rect" id="node10" href="$parametres_8h.html#a80b4ce22c8d7953b8d9d69c5b1868232" title=" " alt="" coords="146,411,229,437"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#a8bf0c89280513a147dbbe155ebdd1d01" title=" " alt="" coords="154,5,221,32"/>
-<area shape="rect" id="node12" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="304,1120,347,1147"/>
-<area shape="rect" id="node13" href="$constantes_8cpp.html#a1d478b50b817866786b1bc1dc81a08b0" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="165,563,210,589"/>
-<area shape="rect" id="node14" href="$parametres_8h.html#aa530a2fab0c0a26bbc70cb273b4a22d2" title=" " alt="" coords="164,613,211,640"/>
-<area shape="rect" id="node15" href="$constantes_8cpp.html#afae596361a6f56764d80e73ae5b32a08" title=" " alt="" coords="144,56,231,83"/>
-<area shape="rect" id="node16" href="$parametres_8h.html#a25c00c4beaaee40a26711fd1530430d2" title=" " alt="" coords="124,715,251,741"/>
-<area shape="rect" id="node17" href="$constantes_8cpp.html#a32cfafb65118c24464dc5287104ff994" title="the size field in empty variable&#45;size nodes" alt="" coords="147,765,228,792"/>
-<area shape="rect" id="node18" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="164,867,211,893"/>
-<area shape="rect" id="node19" href="$constantes_8cpp.html#ac18a1e91e843cbd7c002f6d03c11f0a8" title=" " alt="" coords="153,461,221,488"/>
-<area shape="rect" id="node20" href="$constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title="the shrinkability of this glob of glue" alt="" coords="159,917,216,944"/>
-<area shape="rect" id="node21" href="$constantes_8cpp.html#ad06551159ef3096eb7d534df06098bb4" title="order of infinity for shrinking" alt="" coords="141,968,234,995"/>
-<area shape="rect" id="node22" href="$constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc" title="the stretchability of this glob of glue" alt="" coords="156,1019,219,1045"/>
-<area shape="rect" id="node23" href="$constantes_8cpp.html#adc50c97800a7c2cd367f331208376d6b" title="order of infinity for stretching" alt="" coords="138,1069,237,1096"/>
-<area shape="rect" id="node24" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="153,1120,221,1147"/>
-<area shape="rect" id="node25" href="$constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0" title="string number for control sequence name" alt="" coords="165,1171,209,1197"/>
-<area shape="rect" id="node26" href="$parametres_8h.html#aaf777f3fbe78ad6863c33069ea9b0dbc" title=" " alt="" coords="150,1221,225,1248"/>
-<area shape="rect" id="node27" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="168,1272,207,1299"/>
-<area shape="rect" id="node28" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="164,1323,211,1349"/>
-<area shape="rect" id="node29" href="$initialize_8cpp.html#a6c3f3ca0a64283c8f08b4a209261da17" title=" " alt="" coords="152,512,223,539"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,704,76,730"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#ab70b4a53caf71f4da20a6f8a0c65ff20" title=" " alt="" coords="150,805,225,832"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="299,476,352,502"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a84299e01b644eaf52252f51a5a9c66f3" title=" " alt="" coords="150,96,225,122"/>
+<area shape="rect" id="node5" href="$parametres_8h.html#a43108f9e5b0a872b47c5d80c52d2d449" title=" " alt="" coords="136,146,239,173"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="152,197,223,224"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a30e61288612879b61525ab34298b794d" title="command code for equivalent" alt="" coords="153,248,221,274"/>
+<area shape="rect" id="node8" href="$parametres_8h.html#aa5cf2e1f5b1929eaa700495b1c9209fb" title=" " alt="" coords="139,298,235,325"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#ab2def9ced9c196d76adb71f31b4f8619" title="reference count of a glue specification" alt="" coords="134,349,241,376"/>
+<area shape="rect" id="node10" href="$parametres_8h.html#a80b4ce22c8d7953b8d9d69c5b1868232" title=" " alt="" coords="146,400,229,426"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#a8bf0c89280513a147dbbe155ebdd1d01" title=" " alt="" coords="154,45,221,72"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="304,1134,347,1161"/>
+<area shape="rect" id="node13" href="$constantes_8cpp.html#a1d478b50b817866786b1bc1dc81a08b0" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="165,552,210,578"/>
+<area shape="rect" id="node14" href="$parametres_8h.html#aa530a2fab0c0a26bbc70cb273b4a22d2" title=" " alt="" coords="164,602,211,629"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#afae596361a6f56764d80e73ae5b32a08" title=" " alt="" coords="144,450,231,477"/>
+<area shape="rect" id="node16" href="$parametres_8h.html#a25c00c4beaaee40a26711fd1530430d2" title=" " alt="" coords="124,704,251,730"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#a32cfafb65118c24464dc5287104ff994" title="the size field in empty variable&#45;size nodes" alt="" coords="147,754,228,781"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="164,1413,211,1440"/>
+<area shape="rect" id="node19" href="$constantes_8cpp.html#ac18a1e91e843cbd7c002f6d03c11f0a8" title=" " alt="" coords="153,501,221,528"/>
+<area shape="rect" id="node20" href="$constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title="the shrinkability of this glob of glue" alt="" coords="159,906,216,933"/>
+<area shape="rect" id="node21" href="$constantes_8cpp.html#ad06551159ef3096eb7d534df06098bb4" title="order of infinity for shrinking" alt="" coords="141,957,234,984"/>
+<area shape="rect" id="node22" href="$constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc" title="the stretchability of this glob of glue" alt="" coords="156,1008,219,1034"/>
+<area shape="rect" id="node23" href="$constantes_8cpp.html#adc50c97800a7c2cd367f331208376d6b" title="order of infinity for stretching" alt="" coords="138,1058,237,1085"/>
+<area shape="rect" id="node24" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="153,1109,221,1136"/>
+<area shape="rect" id="node25" href="$constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0" title="string number for control sequence name" alt="" coords="165,1160,209,1186"/>
+<area shape="rect" id="node26" href="$parametres_8h.html#aaf777f3fbe78ad6863c33069ea9b0dbc" title=" " alt="" coords="150,1210,225,1237"/>
+<area shape="rect" id="node27" href="$cesure_8h.html#a289e5d0b2176dcb8385e8a6f6250e2d7" title=" " alt="" coords="152,1261,223,1288"/>
+<area shape="rect" id="node28" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="168,1312,207,1338"/>
+<area shape="rect" id="node29" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="164,1362,211,1389"/>
+<area shape="rect" id="node30" href="$initialize_8cpp.html#a6c3f3ca0a64283c8f08b4a209261da17" title=" " alt="" coords="152,653,223,680"/>
 </map>

@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['math_5ftype_3594',['math_type',['../constantes_8h.html#acfd168283e0375316338c74b2d61186f',1,'constantes.h']]]
+  ['if_5fcodes_3555',['if_codes',['../constantes_8h.html#a943f673815b3cdf921fbcae94fdfb4b6',1,'constantes.h']]],
+  ['info_3556',['info',['../constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c',1,'constantes.h']]],
+  ['interactions_3557',['interactions',['../constantes_8h.html#a42890966701709fc2bc63068689ed518',1,'constantes.h']]]
 ];

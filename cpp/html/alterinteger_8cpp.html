@@ -95,12 +95,12 @@ Graphe des dépendances par inclusion de alterinteger.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a61c3c4dc0185667fd33b916a6867f278"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alterinteger_8cpp.html#a61c3c4dc0185667fd33b916a6867f278">alterinteger</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> chr)</td></tr>
-<tr class="separator:a61c3c4dc0185667fd33b916a6867f278"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5156b0d185ac9ab895da53e78e6229ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alterinteger_8cpp.html#a5156b0d185ac9ab895da53e78e6229ad">alterinteger</a> (<a class="el" href="classToken.html">Token</a> t)</td></tr>
+<tr class="separator:a5156b0d185ac9ab895da53e78e6229ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a61c3c4dc0185667fd33b916a6867f278"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61c3c4dc0185667fd33b916a6867f278">&#9670;&nbsp;</a></span>alterinteger()</h2>
+<a id="a5156b0d185ac9ab895da53e78e6229ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5156b0d185ac9ab895da53e78e6229ad">&#9670;&nbsp;</a></span>alterinteger()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -108,8 +108,8 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void alterinteger </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
-          <td class="paramname"><em>chr</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classToken.html">Token</a>&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -117,18 +117,15 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="alterinteger_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="alterinteger_8cpp_source.html">alterinteger.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordtype">char</span> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> = chr;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordtype">char</span> <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> = t.<a class="code" href="classToken.html#aa2a1655995674faef2f5690e0c29aaaf">chr</a>;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="lecture_8cpp.html#aba61603fc78224712ab55bae77b79063">scanoptionalequals</a>();</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> == 0)</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="globals_8cpp.html#a84c1f931c8606fd7a6d17a999ece5cb7">deadcycles</a> = <a class="code" href="lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76">scanint</a>();</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="globals_8cpp.html#a09556b75710857b930690f56ee27d049">insertpenalties</a> = <a class="code" href="lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76">scanint</a>();</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> == 0 ? <a class="code" href="globals_8cpp.html#a84c1f931c8606fd7a6d17a999ece5cb7">deadcycles</a> : <a class="code" href="globals_8cpp.html#a09556b75710857b930690f56ee27d049">insertpenalties</a>) = <a class="code" href="lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76">scanint</a>();</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="alterinteger_8cpp_a61c3c4dc0185667fd33b916a6867f278_cgraph.png" border="0" usemap="#alterinteger_8cpp_a61c3c4dc0185667fd33b916a6867f278_cgraph" alt=""/></div>
-<map name="alterinteger_8cpp_a61c3c4dc0185667fd33b916a6867f278_cgraph" id="alterinteger_8cpp_a61c3c4dc0185667fd33b916a6867f278_cgraph">
+<div class="center"><img src="alterinteger_8cpp_a5156b0d185ac9ab895da53e78e6229ad_cgraph.png" border="0" usemap="#alterinteger_8cpp_a5156b0d185ac9ab895da53e78e6229ad_cgraph" alt=""/></div>
+<map name="alterinteger_8cpp_a5156b0d185ac9ab895da53e78e6229ad_cgraph" id="alterinteger_8cpp_a5156b0d185ac9ab895da53e78e6229ad_cgraph">
 <area shape="rect" title=" " alt="" coords="5,31,92,57"/>
 <area shape="rect" href="lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="175,5,239,32"/>
 <area shape="rect" href="lecture_8cpp.html#aba61603fc78224712ab55bae77b79063" title=" " alt="" coords="140,56,273,83"/>
@@ -137,21 +134,22 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="alterinteger_8cpp_a61c3c4dc0185667fd33b916a6867f278_icgraph.png" border="0" usemap="#alterinteger_8cpp_a61c3c4dc0185667fd33b916a6867f278_icgraph" alt=""/></div>
-<map name="alterinteger_8cpp_a61c3c4dc0185667fd33b916a6867f278_icgraph" id="alterinteger_8cpp_a61c3c4dc0185667fd33b916a6867f278_icgraph">
+<div class="center"><img src="alterinteger_8cpp_a5156b0d185ac9ab895da53e78e6229ad_icgraph.png" border="0" usemap="#alterinteger_8cpp_a5156b0d185ac9ab895da53e78e6229ad_icgraph" alt=""/></div>
+<map name="alterinteger_8cpp_a5156b0d185ac9ab895da53e78e6229ad_icgraph" id="alterinteger_8cpp_a5156b0d185ac9ab895da53e78e6229ad_icgraph">
 <area shape="rect" title=" " alt="" coords="179,5,265,32"/>
-<area shape="rect" href="prefixedcommand_8h.html#af2228d242075314f70f29227a9c79444" title=" " alt="" coords="5,5,131,32"/>
+<area shape="rect" href="prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="5,5,131,32"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aglobals_8cpp_html_a09556b75710857b930690f56ee27d049"><div class="ttname"><a href="globals_8cpp.html#a09556b75710857b930690f56ee27d049">insertpenalties</a></div><div class="ttdeci">int insertpenalties</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00038">globals.cpp:38</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a84c1f931c8606fd7a6d17a999ece5cb7"><div class="ttname"><a href="globals_8cpp.html#a84c1f931c8606fd7a6d17a999ece5cb7">deadcycles</a></div><div class="ttdeci">int deadcycles</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00024">globals.cpp:24</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00172">globals.cpp:172</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_aba61603fc78224712ab55bae77b79063"><div class="ttname"><a href="lecture_8cpp.html#aba61603fc78224712ab55bae77b79063">scanoptionalequals</a></div><div class="ttdeci">void scanoptionalequals(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00734">lecture.cpp:734</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_ab6c507fd0d143723b1f2aa7d183f5d76"><div class="ttname"><a href="lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76">scanint</a></div><div class="ttdeci">int scanint(void)</div><div class="ttdoc">Sets curval to an integer.</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00519">lecture.cpp:519</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a09556b75710857b930690f56ee27d049"><div class="ttname"><a href="globals_8cpp.html#a09556b75710857b930690f56ee27d049">insertpenalties</a></div><div class="ttdeci">int insertpenalties</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00035">globals.cpp:35</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a84c1f931c8606fd7a6d17a999ece5cb7"><div class="ttname"><a href="globals_8cpp.html#a84c1f931c8606fd7a6d17a999ece5cb7">deadcycles</a></div><div class="ttdeci">int deadcycles</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00021">globals.cpp:21</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00139">globals.cpp:139</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_aba61603fc78224712ab55bae77b79063"><div class="ttname"><a href="lecture_8cpp.html#aba61603fc78224712ab55bae77b79063">scanoptionalequals</a></div><div class="ttdeci">void scanoptionalequals(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00713">lecture.cpp:713</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_ab6c507fd0d143723b1f2aa7d183f5d76"><div class="ttname"><a href="lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76">scanint</a></div><div class="ttdeci">int scanint(void)</div><div class="ttdoc">Sets curval to an integer.</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00513">lecture.cpp:513</a></div></div>
+<div class="ttc" id="aclassToken_html_aa2a1655995674faef2f5690e0c29aaaf"><div class="ttname"><a href="classToken.html#aa2a1655995674faef2f5690e0c29aaaf">Token::chr</a></div><div class="ttdeci">halfword chr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00024">globals.h:24</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

@@ -222,9 +222,7 @@ void Initialize(void)
 	cscount = 0;
 	eq_type(frozen_dont_expand) = dont_expand;
 	text(frozen_dont_expand) = txt("notexpanded:");
-	fontptr = null_font;
-	fmemptr = 7;
-	fonts[null_font].name = "nullfont";
+	fonts[null_font].name = "nullfont"; 
 	fonts[null_font].area = "";
 	fonts[null_font].hyphenchar = '-';
 	fonts[null_font].skewchar = -1;
@@ -246,8 +244,8 @@ void Initialize(void)
 	fonts[null_font].kernbase = 0;
 	fonts[null_font].extenbase = 0;
 	fonts[null_font].parambase = -1;
-	for (int k = 0; k < 7; k++)
-		fontinfo[k].int_ = 0;
+	for (auto &fi: fontinfo)
+		fi.int_ = 0;
 	trienotready = true;
 	trie_root = 0;
 	trieNode[0].c = 0;

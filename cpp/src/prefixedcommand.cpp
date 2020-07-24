@@ -16,19 +16,12 @@
 #include "alterboxdimen.h"
 #include "alterinteger.h"
 #include "noeud.h"
-#include "findfontdimen.h"
 #include "texte.h"
 #include "cesure.h"
 #include "police.h"
 
 void prefixedcommand(Token t, bool setboxallowed)
 {
-	internalfontnumber f;
-	halfword j;
-	fontindex k;
-	halfword p, q;
-	int n;
-	bool e;
 	smallnumber a = 0;
 	while (t.cmd == prefix)
 	{
@@ -51,8 +44,11 @@ void prefixedcommand(Token t, bool setboxallowed)
 		}
 		else 
 			if (a < 4)
-			a += 4;
+				a += 4;
 	int val;
+	fontindex k;
+	halfword p, q;
+	int n;
 	switch (t.cmd)
 	{
 		case set_font:
@@ -61,17 +57,15 @@ void prefixedcommand(Token t, bool setboxallowed)
 		case def:
 			if (t.chr%2 & a < 4 && global_defs() >= 0)
 				a += 4;
-			e = t.chr >= 2;
 			p = getrtoken();
 			Token tk;
 			tk.cs = p;
-			q = scantoks(true, e, tk);
+			q = scantoks(true, t.chr >= 2, tk);
 			define(a, p, call+a%4, defref); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		case let:
-			n = t.chr;
 			p = getrtoken();
-			if (n == 0)
+			if (t.chr == 0)
 			{
 				t = getXTokenSkipSpace();
 				if (t.tok == other_token+'=') // other_char + '='
@@ -93,11 +87,10 @@ void prefixedcommand(Token t, bool setboxallowed)
 			define(a, p, t.cmd, t.chr);
 			break;
 		case shorthand_def:
-			n = t.chr;
 			p = getrtoken();
 			define(a, p, relax, 256);
 			scanoptionalequals();
-			switch (n)
+			switch (t.chr)
 			{
 				case 0:
 					define(a, p, char_given, scancharnum());
@@ -280,11 +273,8 @@ void prefixedcommand(Token t, bool setboxallowed)
 			{
 				p = getnode(2*n+1);
 				info(p) = n;
-				for (j = 1; j <= n; j++)
-				{
-					mem[p+2*j-1].int_ = scan_normal_dimen();
-					mem[p+2*j].int_ = scan_normal_dimen();
-				}
+				for (int j = p+1; j < p+2*n+1; j++)
+					mem[j].int_ = scan_normal_dimen();
 			}
 			define(a, par_shape_loc, shape_ref, p);
 			break;
@@ -303,10 +293,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			n = t.chr;
 			f = scanfontident();
 			scanoptionalequals();
-			if (n == 0)
-				fonts[f].hyphenchar = scanint();
-			else
-				fonts[f].skewchar = scanint();
+			(n == 0 ? fonts[f].hyphenchar : fonts[f].skewchar) = scanint();
 			break;
 		case def_font: 
 			newfont(a);

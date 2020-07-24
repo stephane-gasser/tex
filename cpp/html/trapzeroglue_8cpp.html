@@ -119,7 +119,7 @@ Fonctions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(val) == 0 &amp;&amp; <a class="code" href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a>(val) == 0 &amp;&amp; <a class="code" href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a>(val) == 0)</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <a class="code" href="constantes_8cpp.html#ab2def9ced9c196d76adb71f31b4f8619">glue_ref_count</a>(<a class="code" href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035dac7a4272a14dca1c36077242d285f8352">zero_glue</a>)++;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <a class="code" href="constantes_8cpp.html#ab2def9ced9c196d76adb71f31b4f8619">glue_ref_count</a>(<a class="code" href="constantes_8h.html#abed82baf7f470b522273a3e37c24c600ac7a4272a14dca1c36077242d285f8352">zero_glue</a>)++;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d">deleteglueref</a>(val);</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        val = 0;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    }</div>
@@ -143,16 +143,16 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="center"><img src="trapzeroglue_8cpp_ae07f2e6dc12e75b8323087c3cf20e91b_icgraph.png" border="0" usemap="#trapzeroglue_8cpp_ae07f2e6dc12e75b8323087c3cf20e91b_icgraph" alt=""/></div>
 <map name="trapzeroglue_8cpp_ae07f2e6dc12e75b8323087c3cf20e91b_icgraph" id="trapzeroglue_8cpp_ae07f2e6dc12e75b8323087c3cf20e91b_icgraph">
 <area shape="rect" title=" " alt="" coords="363,31,456,57"/>
-<area shape="rect" href="doregistercommand_8h.html#a09cbd3109fc882db082326a86cbde7cc" title=" " alt="" coords="179,5,315,32"/>
-<area shape="rect" href="prefixedcommand_8h.html#af2228d242075314f70f29227a9c79444" title=" " alt="" coords="5,31,131,57"/>
+<area shape="rect" href="doregistercommand_8h.html#a0e5f002692416d323271f288f343fc9e" title=" " alt="" coords="179,5,315,32"/>
+<area shape="rect" href="prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="5,31,131,57"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_abc5c98fcc1211af2b80116dd6e0a035dac7a4272a14dca1c36077242d285f8352"><div class="ttname"><a href="constantes_8h.html#abc5c98fcc1211af2b80116dd6e0a035dac7a4272a14dca1c36077242d285f8352">zero_glue</a></div><div class="ttdeci">@ zero_glue</div><div class="ttdoc">specification for 0pt plus 0pt minus 0pt</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00178">constantes.h:178</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdoc">width of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00048">constantes.cpp:48</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_abed82baf7f470b522273a3e37c24c600ac7a4272a14dca1c36077242d285f8352"><div class="ttname"><a href="constantes_8h.html#abed82baf7f470b522273a3e37c24c600ac7a4272a14dca1c36077242d285f8352">zero_glue</a></div><div class="ttdeci">@ zero_glue</div><div class="ttdoc">specification for 0pt plus 0pt minus 0pt</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00178">constantes.h:178</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_ae5439b22a7cf88ec2a4523b78d20fec8"><div class="ttname"><a href="constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8">shrink</a></div><div class="ttdeci">int &amp; shrink(halfword p)</div><div class="ttdoc">the shrinkability of this glob of glue</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00054">constantes.cpp:54</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a0ebe134d7199867461456a4ea186d3dc"><div class="ttname"><a href="constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc">stretch</a></div><div class="ttdeci">int &amp; stretch(halfword p)</div><div class="ttdoc">the stretchability of this glob of glue</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00053">constantes.cpp:53</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_ab2def9ced9c196d76adb71f31b4f8619"><div class="ttname"><a href="constantes_8cpp.html#ab2def9ced9c196d76adb71f31b4f8619">glue_ref_count</a></div><div class="ttdeci">halfword &amp; glue_ref_count(halfword p)</div><div class="ttdoc">reference count of a glue specification</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00006">constantes.cpp:6</a></div></div>

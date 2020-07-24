@@ -17,12 +17,12 @@ void makeord(halfword q)
 				fetch(q+1);
 				if (char_tag(curi) == lig_tag)
 				{
-					int a = lig_kern_start(curf, curi);
+					int a = fonts[curf].lig_kern_start(curi);
 					curc = character(lig_char(p));
 					curi = fontinfo[a].qqqq;
 					if (skip_byte(curi) > stop_flag)
 					{
-						a = lig_kern_restart(curf, curi);
+						a = fonts[curf].lig_kern_restart(curi);
 						curi = fontinfo[a].qqqq;
 					}
 					while (true)
@@ -32,7 +32,7 @@ void makeord(halfword q)
 							if (skip_byte(curi) <= stop_flag)
 								if (op_byte(curi) >= kern_flag)
 								{
-									p = newkern(char_kern(curf, curi));
+									p = newkern(fonts[curf].char_kern(curi));
 									link(p) = link(q);
 									link(q) = p;
 									return;

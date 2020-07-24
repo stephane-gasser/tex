@@ -142,35 +142,35 @@ bool loadfmtfile(void)
 		for (p = hashused+1; p < undefined_control_sequence; p++)
 			undump_hh(hash[p]);
 		undump_int(cscount);
-		fmemptr = undump_size(7, fontmemsize, "font mem size");
-		for (k = 0; k < fmemptr; k++)
-			undump_wd(fontinfo[k]);
-		fontptr = undump_size(0, fontmax, "font max");
-		for (k = null_font; k <= fontptr; k++)
+		fontinfo.resize(undump_size(7, fontmemsize, "font mem size")+1);
+		for (auto &fi: fontinfo)
+			undump_wd(fi);
+		fonts.resize(undump_size(0, fontmax, "font max")+1);
+		for (auto &ft: fonts)
 		{
-			undump_qqqq(fonts[k].check);
-			undump_int(fonts[k].size);
-			undump_int(fonts[k].dsize);
-			fonts[k].params = undump(0, 1<<16-1);
-			undump_int(fonts[k].hyphenchar);
-			undump_int(fonts[k].skewchar);
-			fonts[k].name = strings[undump(0, strptr)];
-			fonts[k].area = strings[undump(0, strptr)];
-			fonts[k].bc = undump(0, 255);
-			fonts[k].ec = undump(0, 255);
-			undump_int(fonts[k].charbase);
-			undump_int(fonts[k].widthbase);
-			undump_int(fonts[k].heightbase);
-			undump_int(fonts[k].depthbase);
-			undump_int(fonts[k].italicbase);
-			undump_int(fonts[k].ligkernbase);
-			undump_int(fonts[k].kernbase);
-			undump_int(fonts[k].extenbase);
-			undump_int(fonts[k].parambase);
-			fonts[k].glue = undump(0, lomemmax);
-			fonts[k].bcharlabel = undump(0, fmemptr-1);
-			fonts[k].bchar = undump(0, non_char);
-			fonts[k].falsebchar = undump(0, non_char);
+			undump_qqqq(ft.check);
+			undump_int(ft.size);
+			undump_int(ft.dsize);
+			ft.params = undump(0, 1<<16-1);
+			undump_int(ft.hyphenchar);
+			undump_int(ft.skewchar);
+			ft.name = strings[undump(0, strptr)];
+			ft.area = strings[undump(0, strptr)];
+			ft.bc = undump(0, 255);
+			ft.ec = undump(0, 255);
+			undump_int(ft.charbase);
+			undump_int(ft.widthbase);
+			undump_int(ft.heightbase);
+			undump_int(ft.depthbase);
+			undump_int(ft.italicbase);
+			undump_int(ft.ligkernbase);
+			undump_int(ft.kernbase);
+			undump_int(ft.extenbase);
+			undump_int(ft.parambase);
+			ft.glue = undump(0, lomemmax);
+			ft.bcharlabel = undump(0, fontinfo.size()-1);
+			ft.bchar = undump(0, non_char);
+			ft.falsebchar = undump(0, non_char);
 		}
 		hyphcount = undump(0, hyph_size);
 		for (k = 1; k <= hyphcount; k++)

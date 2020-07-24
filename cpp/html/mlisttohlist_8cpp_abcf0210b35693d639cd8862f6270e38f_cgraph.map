@@ -1,8 +1,8 @@
 <map id="mlisttohlist" name="mlisttohlist">
 <area shape="rect" id="node1" title=" " alt="" coords="5,1803,91,1829"/>
 <area shape="rect" id="node2" href="$mlisttohlist_8cpp.html#aff94ae7300779c28cc52252c81791137" title=" " alt="" coords="145,5,255,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#ab6c4faf0c701bd19f346dd0fb23494fb" title=" " alt="" coords="315,1397,404,1424"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#ae2584965ba51d321b94b6e36955f218a" title=" " alt="" coords="319,1448,400,1475"/>
+<area shape="rect" id="node3" href="$police_8cpp.html#ab6c4faf0c701bd19f346dd0fb23494fb" title=" " alt="" coords="315,1397,404,1424"/>
+<area shape="rect" id="node4" href="$police_8cpp.html#ae2584965ba51d321b94b6e36955f218a" title=" " alt="" coords="319,1448,400,1475"/>
 <area shape="rect" id="node5" href="$mlisttohlist_8cpp.html#a2034c7a0bdaedaf64aee894ac484454a" title=" " alt="" coords="151,157,249,184"/>
 <area shape="rect" id="node6" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="482,688,561,715"/>
 <area shape="rect" id="node7" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="473,435,569,461"/>
@@ -38,7 +38,7 @@
 <area shape="rect" id="node37" href="$makescripts_8cpp.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="153,2461,247,2488"/>
 <area shape="rect" id="node38" href="$makeunder_8cpp.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="157,1271,243,1297"/>
 <area shape="rect" id="node39" href="$makevcenter_8cpp.html#a6e5d002d0820c0eb0efc867f638396aa" title=" " alt="" coords="311,1904,408,1931"/>
-<area shape="rect" id="node40" href="$constantes_8cpp.html#af9289b57d2744238aa244ac1f60c85c5" title="18mu" alt="" coords="157,3424,243,3451"/>
+<area shape="rect" id="node40" href="$police_8cpp.html#af9289b57d2744238aa244ac1f60c85c5" title="18mu" alt="" coords="157,3424,243,3451"/>
 <area shape="rect" id="node41" href="$mathglue_8cpp.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="163,3373,237,3400"/>
 <area shape="rect" id="node42" href="$xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="329,3627,390,3653"/>
 <area shape="rect" id="node43" href="$mathkern_8cpp.html#a18dcff153c06b9a7be19334ba64191ca" title=" " alt="" coords="162,3627,238,3653"/>
@@ -46,5 +46,5 @@
 <area shape="rect" id="node45" href="$noeud_8cpp.html#a42d1502b38c0f25378f1d603fa359f72" title=" " alt="" coords="165,3728,235,3755"/>
 <area shape="rect" id="node46" href="$noeud_8cpp.html#a391ee2979062801a9a3d066cb9bfafd3" title=" " alt="" coords="156,3779,244,3805"/>
 <area shape="rect" id="node47" href="$mlisttohlist_8cpp.html#ab819e34895b063c15085750c16d75fbc" title=" " alt="" coords="157,3829,243,3856"/>
-<area shape="rect" id="node48" href="$constantes_8cpp.html#ab698043008cf6c9bc6b69f9922080d32" title="normal space between words" alt="" coords="171,3880,229,3907"/>
+<area shape="rect" id="node48" href="$police_8cpp.html#ab698043008cf6c9bc6b69f9922080d32" title="normal space between words" alt="" coords="171,3880,229,3907"/>
 </map>

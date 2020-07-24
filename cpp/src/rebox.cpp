@@ -12,8 +12,7 @@ halfword rebox(halfword b, scaled w)
 		halfword p = list_ptr(b);
 		if (is_char_node(p) && link(p) == 0)
 		{
-			internalfontnumber f = type(p);
-			scaled v = char_width(f, char_info(f, subtype(p)));
+			scaled v = fonts[font(p)].char_width(subtype(p));
 			if (v != width(b))
 				link(p) = newkern(width(b)-v);
 		}

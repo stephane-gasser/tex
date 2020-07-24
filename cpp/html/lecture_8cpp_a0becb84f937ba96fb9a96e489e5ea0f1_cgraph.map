@@ -1,8 +1,9 @@
 <map id="scanfilename" name="scanfilename">
-<area shape="rect" id="node1" title=" " alt="" coords="5,107,104,133"/>
-<area shape="rect" id="node2" href="$backinput_8cpp.html#a999fe0a02561a0158caa3372a424f82d" title="Undoes one token of input." alt="" coords="155,5,234,32"/>
-<area shape="rect" id="node3" href="$beginname_8cpp.html#a2b6351e3b3fd066643f3468b43b7cab9" title=" " alt="" coords="152,56,237,83"/>
-<area shape="rect" id="node4" href="$endname_8cpp.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="157,107,232,133"/>
-<area shape="rect" id="node5" href="$lecture_8cpp.html#ac906451f95919612bebc8e765f2b4d6c" title=" " alt="" coords="155,157,234,184"/>
-<area shape="rect" id="node6" href="$morename_8cpp.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="153,208,236,235"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,104,159"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#ada79b16970afac693692125a26a780ae" title="Undoes one token of input." alt="" coords="186,5,265,32"/>
+<area shape="rect" id="node3" href="$beginname_8cpp.html#a2b6351e3b3fd066643f3468b43b7cab9" title=" " alt="" coords="183,56,268,83"/>
+<area shape="rect" id="node4" href="$endname_8cpp.html#a8bfa43632fafb65b173294678686a1e5" title=" " alt="" coords="188,107,263,133"/>
+<area shape="rect" id="node5" href="$lecture_8cpp.html#a8011f7e4fce89d03b8863f49b45f4c57" title=" " alt="" coords="347,183,425,209"/>
+<area shape="rect" id="node6" href="$lecture_8cpp.html#abe20aa0d4fde9e11c8f0830f7671847a" title=" " alt="" coords="152,208,299,235"/>
+<area shape="rect" id="node7" href="$morename_8cpp.html#ac3472909fd6e7a15be0fcbab89764e0c" title=" " alt="" coords="184,259,267,285"/>
 </map>

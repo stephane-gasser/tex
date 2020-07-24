@@ -1,22 +1,22 @@
 <map id="scandimen" name="scandimen">
-<area shape="rect" id="node1" title=" " alt="" coords="5,470,91,496"/>
-<area shape="rect" id="node2" href="$backinput_8cpp.html#a999fe0a02561a0158caa3372a424f82d" title="Undoes one token of input." alt="" coords="330,115,409,142"/>
-<area shape="rect" id="node3" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="508,115,575,142"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="637,140,680,167"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#a7a622e389fe45f9b10a5918a9d18c57a" title=" " alt="" coords="522,292,561,319"/>
-<area shape="rect" id="node6" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="493,166,589,192"/>
-<area shape="rect" id="node7" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="345,318,393,344"/>
-<area shape="rect" id="node8" href="$lecture_8cpp.html#a17bff82877923eb333da03b4c4e7c9ed" title=" " alt="" coords="505,368,577,395"/>
-<area shape="rect" id="node9" href="$getavail_8cpp.html#a57e5861075197f4fe65695ad0b9d4fbb" title="single&#45;word node liberation" alt="" coords="502,216,581,243"/>
-<area shape="rect" id="node10" href="$lecture_8cpp.html#ac906451f95919612bebc8e765f2b4d6c" title=" " alt="" coords="330,419,409,446"/>
-<area shape="rect" id="node11" href="$parametres_8h.html#aa530a2fab0c0a26bbc70cb273b4a22d2" title=" " alt="" coords="346,596,393,623"/>
-<area shape="rect" id="node12" href="$preparemag_8cpp.html#abf37a40b9d95bc2a1560163dea9ec5c9" title=" " alt="" coords="147,571,237,598"/>
-<area shape="rect" id="node13" href="$rounddecimals_8cpp.html#ab9486c5801fee6279d00594937f45e24" title=" " alt="" coords="139,672,245,699"/>
-<area shape="rect" id="node14" href="$lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="160,368,224,395"/>
-<area shape="rect" id="node15" href="$lecture_8cpp.html#aa96d358e3d7fcfb48aa71956d07b8618" title=" " alt="" coords="293,470,445,496"/>
-<area shape="rect" id="node16" href="$lecture_8cpp.html#a514cdc68b010264d20e363f694fec240" title=" " alt="" coords="143,723,241,750"/>
-<area shape="rect" id="node17" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="169,774,215,800"/>
-<area shape="rect" id="node18" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="165,824,219,851"/>
-<area shape="rect" id="node19" href="$xnoverd_8cpp.html#a52ee334cb1cd3de8b42c93c6a8a22cd8" title=" " alt="" coords="158,875,226,902"/>
-<area shape="rect" id="node20" href="$lecture_8cpp.html#ac5101a4e76b4751738b292a156be93cc" title=" " alt="" coords="161,926,223,952"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,431,91,457"/>
+<area shape="rect" id="node2" href="$backinput_8cpp.html#ada79b16970afac693692125a26a780ae" title="Undoes one token of input." alt="" coords="330,127,409,153"/>
+<area shape="rect" id="node3" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="508,127,575,153"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="637,101,680,128"/>
+<area shape="rect" id="node5" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="493,76,589,103"/>
+<area shape="rect" id="node6" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="345,279,393,305"/>
+<area shape="rect" id="node7" href="$lecture_8cpp.html#ae925ce9cf3090fd9fc647fbc60dbb07c" title=" " alt="" coords="505,279,577,305"/>
+<area shape="rect" id="node8" href="$getavail_8cpp.html#a57e5861075197f4fe65695ad0b9d4fbb" title="single&#45;word node liberation" alt="" coords="502,177,581,204"/>
+<area shape="rect" id="node9" href="$lecture_8cpp.html#a8011f7e4fce89d03b8863f49b45f4c57" title=" " alt="" coords="502,481,581,508"/>
+<area shape="rect" id="node10" href="$lecture_8cpp.html#abe20aa0d4fde9e11c8f0830f7671847a" title=" " alt="" coords="296,481,443,508"/>
+<area shape="rect" id="node11" href="$parametres_8h.html#aa530a2fab0c0a26bbc70cb273b4a22d2" title=" " alt="" coords="346,583,393,609"/>
+<area shape="rect" id="node12" href="$preparemag_8cpp.html#abf37a40b9d95bc2a1560163dea9ec5c9" title=" " alt="" coords="147,532,237,559"/>
+<area shape="rect" id="node13" href="$rounddecimals_8cpp.html#ab9486c5801fee6279d00594937f45e24" title=" " alt="" coords="139,633,245,660"/>
+<area shape="rect" id="node14" href="$lecture_8cpp.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="160,329,224,356"/>
+<area shape="rect" id="node15" href="$lecture_8cpp.html#afdc3c9198bb79b5c0d87d85d1da98992" title=" " alt="" coords="293,431,445,457"/>
+<area shape="rect" id="node16" href="$lecture_8cpp.html#a43aca68ab3d8d89081c43615a91307e4" title=" " alt="" coords="143,684,241,711"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="169,735,215,761"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="165,785,219,812"/>
+<area shape="rect" id="node19" href="$xnoverd_8cpp.html#a52ee334cb1cd3de8b42c93c6a8a22cd8" title=" " alt="" coords="158,836,226,863"/>
+<area shape="rect" id="node20" href="$lecture_8cpp.html#a12002333e28682db75413b4a4eba815c" title=" " alt="" coords="161,887,223,913"/>
 </map>

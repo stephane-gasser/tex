@@ -1,9 +1,9 @@
 <map id="endtokenlist" name="endtokenlist">
 <area shape="rect" id="node1" title=" " alt="" coords="309,110,401,136"/>
-<area shape="rect" id="node2" href="$backinput_8h.html#ac121089024c8a2aeea2c7648a9a27c4c" title="Undoes one token of input." alt="" coords="177,34,255,60"/>
-<area shape="rect" id="node3" href="$handlerightbrace_8h.html#a286db2f2727264ddfa0d49e4188caeac" title=" " alt="" coords="5,8,123,35"/>
-<area shape="rect" id="node4" href="$macrocall_8h.html#a5c6e9f685027b1cbb3da41d4040a4408" title=" " alt="" coords="25,59,103,86"/>
-<area shape="rect" id="node5" href="$finalcleanup_8h.html#af093194bae90d3f40046f10d325f898d" title=" " alt="" coords="171,135,261,162"/>
-<area shape="rect" id="node6" href="$getnext_8h.html#a6bafe5081d2924d59b857585d19a4de4" title=" " alt="" coords="183,186,249,212"/>
+<area shape="rect" id="node2" href="$backinput_8h.html#a392740cb5627508a84b39f4f3e773e1f" title="Undoes one token of input." alt="" coords="177,34,255,60"/>
+<area shape="rect" id="node3" href="$handlerightbrace_8h.html#a6c7743f430eb9379c2e5db3eddacae10" title=" " alt="" coords="5,8,123,35"/>
+<area shape="rect" id="node4" href="$macrocall_8h.html#ad5520fcbd165ce5f2e863199df9c14b3" title=" " alt="" coords="25,59,103,86"/>
+<area shape="rect" id="node5" href="$finalcleanup_8h.html#a30a8c1b2a9ea2537af67bddd3c80fb1f" title=" " alt="" coords="171,135,261,162"/>
+<area shape="rect" id="node6" href="$getnext_8h.html#a9e036f0ff44e818c889dfad5e8734eae" title=" " alt="" coords="183,186,249,212"/>
 <area shape="rect" id="node7" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="182,236,250,263"/>
 </map>

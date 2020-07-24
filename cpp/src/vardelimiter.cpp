@@ -1,6 +1,5 @@
 #include "vardelimiter.h"
 #include "noeud.h"
-#include "heightplusdepth.h"
 #include "stackintobox.h"
 #include "charbox.h"
 #include "police.h"
@@ -10,8 +9,15 @@ static quarterword ext_top(fourquarters q) { return q.b0; } //!< |top| piece in 
 static quarterword ext_mid(fourquarters q) { return q.b1; } //!< |mid| pie1ce in a recipe
 static quarterword ext_bot(fourquarters q) { return q.b2; } //!< |bot| piece in a recipe
 static quarterword ext_rep(fourquarters q) { return q.b3; } //!< |rep| piece in a recipe
-
 static int null_delimiter_space(void) { return dimen_par(null_delimiter_space_code); }
+
+static void stackintobox(halfword b, const Font &ft, quarterword c)
+{
+	auto p = charbox(ft, c);
+	link(p) = list_ptr(b);
+	list_ptr(b) = p;
+	height(b) = height(p);
+}
 
 halfword vardelimiter(halfword d, smallnumber s, scaled v)
 {
@@ -34,23 +40,24 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 				if (g != null_font)
 				{
 					auto y = x;
-					if (y >= fonts[g].bc && y <= fonts[g].ec)
+					auto &ft = fonts[g];
+					if (y >= ft.bc && y <= ft.ec)
 					{
 						bool label22;
 						do 
 						{
 							label22 = false;
-							q = char_info(g, y);
+							q = ft.char_info(y);
 							if (char_exists(q))
 							{
-								if (char_tag(q) == ext_tag)
+								if (ft.char_tag(y) == ext_tag)
 								{
 									f = g;
 									c = y;
 									label40 = true;
 									break;
 								}
-								scaled u = char_height(g, q)+char_depth(g, q);
+								scaled u = ft.char_height(y)+ft.char_depth(y);
 								if (u > w)
 								{
 									f = g;
@@ -62,7 +69,7 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 										break;
 									}
 								}
-								if (char_tag(q) == list_tag)
+								if (ft.char_tag(y) == list_tag)
 								{
 									y = rem_byte(q);
 									label22 = true;
@@ -83,26 +90,26 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 		}
 	}
 	halfword b;
-	if (f != null_font)
+	if (auto &ft = fonts[f]; f != null_font)
 		if (char_tag(q) == ext_tag)
 		{
 			b = newnullbox();
 			type(b) = vlist_node;
-			fourquarters r = fontinfo[fonts[f].extenbase+rem_byte(q)].qqqq;
+			fourquarters r = fontinfo[ft.extenbase+rem_byte(q)].qqqq;
 			c = ext_rep(r);
-			auto u = heightplusdepth(f, c);
+			auto u = ft.heightplusdepth(c);
 			w = 0;
-			q = char_info(f, c);
-			width(b) = char_width(f, q)+char_italic(f, q);
+			//q = ft.char_info(c);
+			width(b) = ft.char_width(c)+ft.char_italic(c);
 			c = ext_bot(r);
 			if (c)
-				w += heightplusdepth(f, c);
+				w += ft.heightplusdepth(c);
 			c = ext_mid(r);
 			if (c)
-				w += heightplusdepth(f, c);
+				w += ft.heightplusdepth(c);
 			c = ext_top(r);
 			if (c)
-				w += heightplusdepth(f, c);
+				w += ft.heightplusdepth(c);
 			int n = 0;
 			if (u > 0)
 				while (w < v)
@@ -114,25 +121,25 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 				}
 			c = ext_bot(r);
 			if (c)
-				stackintobox(b, f, c);
+				stackintobox(b, ft, c);
 			c = ext_rep(r);
 			for (int m = 1; m <= n; m++)
-				stackintobox(b, f, c);
+				stackintobox(b, ft, c);
 			c = ext_mid(r);
 			if (c)
 			{
-				stackintobox(b, f, c);
+				stackintobox(b, ft, c);
 				c = ext_rep(r);
 				for (int m = 1; m <= n; m++)
-					stackintobox(b, f, c);
+					stackintobox(b, ft, c);
 			}
 			c = ext_top(r);
 			if (c)
-				stackintobox(b, f, c);
+				stackintobox(b, ft, c);
 			depth(b) = w-height(b);
 		}
 		else
-			b = charbox(f, c);
+			b = charbox(ft, c);
 	else
 	{
 		b = newnullbox();

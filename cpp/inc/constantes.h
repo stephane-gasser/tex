@@ -781,8 +781,6 @@ halfword& every_math(void);
 halfword& every_cr(void); 
 halfword& err_help(void);
 halfword& box(halfword); 
-halfword& cur_font(void);
-halfword& fam_fnt(halfword);
 halfword& cat_code(halfword);
 halfword& lc_code(halfword p);
 halfword& sf_code(halfword p);

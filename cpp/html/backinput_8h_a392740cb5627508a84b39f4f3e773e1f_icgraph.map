@@ -1,0 +1,25 @@
+<map id="backinput" name="backinput">
+<area shape="rect" id="node1" title="Undoes one token of input." alt="" coords="891,548,969,575"/>
+<area shape="rect" id="node2" href="$erreur_8h.html#afdd8a3016379ef19d8801474309a0993" title="Back up one token and call error." alt="" coords="763,269,839,296"/>
+<area shape="rect" id="node3" href="$expand_8h.html#a6c77eceb3e53fd876d329ec10048f5da" title=" " alt="" coords="614,168,678,195"/>
+<area shape="rect" id="node4" href="$macrocall_8h.html#ad5520fcbd165ce5f2e863199df9c14b3" title=" " alt="" coords="607,320,685,347"/>
+<area shape="rect" id="node5" href="$prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="143,193,268,220"/>
+<area shape="rect" id="node6" href="$maincontrol_8h.html#a07452457cef4e38d7b5e617473cb2dcf" title=" " alt="" coords="5,700,95,727"/>
+<area shape="rect" id="node7" href="$lecture_8h.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="614,219,678,245"/>
+<area shape="rect" id="node8" href="$doextension_8h.html#ae0fe82d31e33a0b4f09cd522245dd4f4" title=" " alt="" coords="439,459,531,485"/>
+<area shape="rect" id="node9" href="$lecture_8h.html#adefa9e2e73b623f6a19242a1b365ddf0" title=" " alt="" coords="443,143,528,169"/>
+<area shape="rect" id="node10" href="$lecture_8h.html#a8d0725a7a3aa2859106e2c77c6ed6567" title=" " alt="" coords="316,117,391,144"/>
+<area shape="rect" id="node11" href="$handlerightbrace_8h.html#a6c7743f430eb9379c2e5db3eddacae10" title=" " alt="" coords="587,725,705,752"/>
+<area shape="rect" id="node12" href="$headforvmode_8h.html#aaf41c00d9238599e20b07116c28a7a7e" title=" " alt="" coords="594,827,698,853"/>
+<area shape="rect" id="node13" href="$initcol_8h.html#ab7e29cf2ab3aaae9d790fed64ad5e623" title=" " alt="" coords="773,573,829,600"/>
+<area shape="rect" id="node14" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="319,548,387,575"/>
+<area shape="rect" id="node15" href="$erreur_8h.html#ac6d124019b64b6127e40eaffcf203772" title=" " alt="" coords="769,624,834,651"/>
+<area shape="rect" id="node16" href="$insertdollarsign_8h.html#a2bba3cf0297c0dfbeb88ff51d77c2a2f" title=" " alt="" coords="591,675,701,701"/>
+<area shape="rect" id="node17" href="$insertrelax_8h.html#a7d2e6b249c13dfc9b72e3692ba27716a" title=" " alt="" coords="760,776,843,803"/>
+<area shape="rect" id="node18" href="$itsallover_8h.html#a12797c86dc948db2d4fbac4f83b8fed8" title=" " alt="" coords="168,928,243,955"/>
+<area shape="rect" id="node19" href="$makeaccent_8h.html#aca840bfdce0591976a8d844972501c13" title=" " alt="" coords="439,979,532,1005"/>
+<area shape="rect" id="node20" href="$offsave_8h.html#a42fa661419e3e9de8d6579fc8a906292" title=" " alt="" coords="769,877,834,904"/>
+<area shape="rect" id="node21" href="$resumeafterdisplay_8h.html#aedb7f1751e8a6abd96431df364ccbdae" title=" " alt="" coords="580,1080,712,1107"/>
+<area shape="rect" id="node22" href="$lecture_8h.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="597,472,695,499"/>
+<area shape="rect" id="node23" href="$unsave_8h.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="769,1029,833,1056"/>
+</map>

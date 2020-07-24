@@ -42,9 +42,9 @@ void closefilesandterminate(void)
 		dvi_out(maxpush%0x1'00);
 		dvi_out((totalpages/0x1'00)%0x1'00);
 		dvi_out(totalpages%0x1'00);
-		for (;fontptr > 0; fontptr--)
-			if (fonts[fontptr].used)
-				dvifontdef(fontptr);
+		for (; fonts.size(); fonts.pop_back())
+			if (fonts.back().used)
+				dvifontdef(fonts.size()+1);
 		dvi_out(post_post);
 		dvifour(lastbop);
 		dvi_out(id_byte);

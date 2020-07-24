@@ -14,7 +14,6 @@
 #include "backinput.h"
 #include "getavail.h"
 #include "rounddecimals.h"
-#include "findfontdimen.h"
 #include "impression.h"
 #include "xnoverd.h"
 #include "multandadd.h"
@@ -243,7 +242,7 @@ void scandelimiter(halfword p, bool r, Token t)
 		{
 			if (scankeyword("em"))
 			{
-				auto v = quad(cur_font());
+				auto v = cur_font().quad();
 				t = getxtoken();
 				if (t.cmd != spacer)
 					backinput(t);
@@ -251,7 +250,7 @@ void scandelimiter(halfword p, bool r, Token t)
 			else 
 				if (scankeyword("ex"))
 				{
-					auto v = x_height(cur_font());
+					auto v = cur_font().x_height();
 					t = getxtoken();
 					if (t.cmd != spacer)
 						backinput(t);
@@ -442,7 +441,7 @@ void scanfilename(void)
 	switch (t.cmd)
 	{
 		case def_font:
-			return cur_font();
+			return curFontNum();
 		case set_font:
 			return t.chr;
 		case def_family:
@@ -875,7 +874,7 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			break;
 		case assign_font_dimen:
 			val = findfontdimen(false);
-			fontinfo[fmemptr].int_ = 0;
+			fontinfo.back().int_ = 0;
 			val = fontinfo[val].int_;
 			lev = dimen_val;
 			break;

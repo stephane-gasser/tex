@@ -43,7 +43,6 @@ static void pop_lig_stack(smallnumber &j, halfword &t)
 smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword hchar)
 {
 	halfword p, t;
-	fourquarters q;
 	halfword currh, testchar;
 	scaled w;
 	fontindex k;
@@ -89,31 +88,24 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 			k = fonts[hf].bcharlabel;
 			if (k == 0)
 				skipLoop = true;
-			else
-				q = fontinfo[k].qqqq;
 		}
 		else
 		{
-			q = char_info(hf, curl);
-			if (char_tag(q) != lig_tag)
+			if (fonts[hf].char_tag(curl) != lig_tag)
 				skipLoop = true;
 			else
 			{
-				k = lig_kern_start(hf, q);
-				q = fontinfo[k].qqqq;
-				if (skip_byte(q) > stop_flag)
-				{
-					k = lig_kern_restart(hf, q);
-					q = fontinfo[k].qqqq;
-				}
+				k = fonts[hf].lig_kern_start(fonts[hf].char_info(curl));
+				if (skip_byte(fontinfo[k].qqqq) > stop_flag)
+					k = fonts[hf].lig_kern_restart(fontinfo[k].qqqq);
 			}
 		}
 		if (!skipLoop)
 			testchar = currh < non_char ? currh : curr;
 		while (!skipLoop)
 		{
-			if (next_char(q) == testchar)
-				if (skip_byte(q) <= stop_flag)
+			if (next_char(fontinfo[k].qqqq) == testchar)
+				if (skip_byte(fontinfo[k].qqqq) <= stop_flag)
 					if (currh < non_char)
 					{
 						hyphenpassed = j;
@@ -129,24 +121,24 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 							hyphenpassed = j;
 							hchar = non_char;
 						}
-						if (op_byte(q) < kern_flag)
+						if (op_byte(fontinfo[k].qqqq) < kern_flag)
 						{
 							if (curl == non_char)
 								lfthit = true;
 							if (j == n && ligstack == 0)
 								rthit = true;
-							switch (op_byte(q))
+							switch (op_byte(fontinfo[k].qqqq))
 							{
 								// AB -> CB (symboles =:| et =:|>)
 								case 1:
 								case 5:
-									curl = rem_byte(q);
+									curl = rem_byte(fontinfo[k].qqqq);
 									ligaturepresent = true;
 									break;
 								// AB -> AC (symboles |=: et |=:>)
 								case 2:
 								case 6:
-									curr = rem_byte(q);
+									curr = rem_byte(fontinfo[k].qqqq);
 									if (ligstack > 0)
 										character(ligstack) = curr;
 									else
@@ -165,7 +157,7 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 									break;
 								// AB -> ACB (symbole |=:|)
 								case 3:
-									curr = rem_byte(q);
+									curr = rem_byte(fontinfo[k].qqqq);
 									p = ligstack;
 									ligstack = newligitem(curr);
 									link(ligstack) = p;
@@ -175,12 +167,12 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 								case 11:
 									wrap_lig(false, t);
 									curq = t;
-									curl = rem_byte(q);
+									curl = rem_byte(fontinfo[k].qqqq);
 									ligaturepresent = true;
 									break;
 								// AB -> C (symbole !=)
 								default:
-									curl = rem_byte(q);
+									curl = rem_byte(fontinfo[k].qqqq);
 									ligaturepresent = true;
 									if (ligstack > 0)
 									{
@@ -209,7 +201,7 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 											set_cur_r(j, n, curr, currh, hchar);
 										}
 							}
-							if (op_byte(q) > 4 && op_byte(q) != 7)
+							if (op_byte(fontinfo[k].qqqq) > 4 && op_byte(fontinfo[k].qqqq) != 7)
 							{
 								skipLoop = true;
 								continue;
@@ -217,11 +209,11 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 							recommence = true;
 							break;
 						}
-						w = char_kern(hf, q);
+						w = fonts[hf].char_kern(fontinfo[k].qqqq);
 						skipLoop = true;
 						continue;
 					}
-			if (skip_byte(q) >= 128)
+			if (skip_byte(fontinfo[k].qqqq) >= 128)
 				if (currh == 256)
 				{
 					skipLoop = true;
@@ -233,8 +225,7 @@ smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword 
 					recommence = true;
 					break;
 				}
-			k += skip_byte(q)+1;
-			q = fontinfo[k].qqqq;
+			k += skip_byte(fontinfo[k].qqqq)+1;
 		}
 		if (recommence)
 			continue;

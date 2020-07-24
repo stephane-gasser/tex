@@ -166,7 +166,7 @@ void linebreak(int finalwidowpenalty)
 				do
 				{
 					f = type(curp);
-					act_width += char_width(f, char_info(f, character(curp)));
+					act_width += fonts[f].char_width(character(curp));
 					curp = link(curp);
 				} while (curp >= himemmin);
 			}
@@ -375,7 +375,7 @@ void linebreak(int finalwidowpenalty)
 					break;
 				case ligature_node:
 					f = type(lig_char(curp));
-					act_width += char_width(f, char_info(f, character(lig_char(curp))));
+					act_width += fonts[f].char_width(character(lig_char(curp)));
 					break;
 				case disc_node:
 					s = pre_break(curp);
@@ -389,14 +389,14 @@ void linebreak(int finalwidowpenalty)
 							if (s >= himemmin)
 							{
 								f = type(s);
-								discwidth += char_width(f, char_info(f, character(s)));
+								discwidth += fonts[f].char_width(character(s));
 							}
 							else
 								switch (type(s))
 								{
 									case ligature_node:
 										f = type(lig_char(s));
-										discwidth += char_width(f, char_info(f, character(lig_char(s))));
+										discwidth += fonts[f].char_width(character(lig_char(s)));
 										break;
 									case hlist_node:
 									case vlist_node:
@@ -420,14 +420,14 @@ void linebreak(int finalwidowpenalty)
 						if (s >= himemmin)
 						{
 							f = font(s);
-							act_width += char_width(f, char_info(f, character(s)));
+							act_width += fonts[f].char_width(character(s));
 						}
 						else
 							switch (type(s))
 							{
 								case ligature_node:
 									f = font(lig_char(s));
-									act_width += char_width(f, char_info(f, character(lig_char(s))));
+									act_width += fonts[f].char_width(character(lig_char(s)));
 									break;
 								case hlist_node:
 								case vlist_node:
