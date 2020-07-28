@@ -3,6 +3,10 @@
 
 #include "globals.h"
 
+void flushlist(halfword);
+halfword getavail(void);
+halfword fast_get_avail(void);
+void free_avail(halfword);
 halfword newcharacter(internalfontnumber, eightbits);
 halfword newchoice(void);
 halfword newdisc(void);

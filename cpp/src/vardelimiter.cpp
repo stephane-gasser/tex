@@ -1,6 +1,5 @@
 #include "vardelimiter.h"
 #include "noeud.h"
-#include "stackintobox.h"
 #include "charbox.h"
 #include "police.h"
 #include "half.h"
@@ -95,7 +94,7 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 		{
 			b = newnullbox();
 			type(b) = vlist_node;
-			fourquarters r = fontinfo[ft.extenbase+rem_byte(q)].qqqq;
+			fourquarters r = Font::infos(ft.extenbase+rem_byte(q));
 			c = ext_rep(r);
 			auto u = ft.heightplusdepth(c);
 			w = 0;

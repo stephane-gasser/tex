@@ -142,8 +142,8 @@ bool loadfmtfile(void)
 		for (p = hashused+1; p < undefined_control_sequence; p++)
 			undump_hh(hash[p]);
 		undump_int(cscount);
-		fontinfo.resize(undump_size(7, fontmemsize, "font mem size")+1);
-		for (auto &fi: fontinfo)
+		Font::info.resize(undump_size(7, fontmemsize, "font mem size")+1);
+		for (auto &fi: Font::info)
 			undump_wd(fi);
 		fonts.resize(undump_size(0, fontmax, "font max")+1);
 		for (auto &ft: fonts)
@@ -168,7 +168,7 @@ bool loadfmtfile(void)
 			undump_int(ft.extenbase);
 			undump_int(ft.parambase);
 			ft.glue = undump(0, lomemmax);
-			ft.bcharlabel = undump(0, fontinfo.size()-1);
+			ft.bcharlabel = undump(0, Font::info.size()-1);
 			ft.bchar = undump(0, non_char);
 			ft.falsebchar = undump(0, non_char);
 		}

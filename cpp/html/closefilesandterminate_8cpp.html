@@ -163,9 +163,9 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="stringliteral">        dvi_out(maxpush%0x1&#39;</span>00);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="dviswap_8cpp.html#a4d3e8098d40415fa85a1bb2c79343f63">dvi_out</a>((<a class="code" href="globals_8cpp.html#af9feec6976c26ee6c7edeb02414e122e">totalpages</a>/0x1<span class="stringliteral">&#39;00)%0x1&#39;</span>00);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="dviswap_8cpp.html#a4d3e8098d40415fa85a1bb2c79343f63">dvi_out</a>(<a class="code" href="globals_8cpp.html#af9feec6976c26ee6c7edeb02414e122e">totalpages</a>%0x1<span class="stringliteral">&#39;00);</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="stringliteral">        for (;fontptr &gt; 0; fontptr--)</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="stringliteral">            if (fonts[fontptr].used)</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="stringliteral">                dvifontdef(fontptr);</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="stringliteral">        for (; fonts.size(); fonts.pop_back())</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="stringliteral">            if (fonts.back().used)</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="stringliteral">                dvifontdef(fonts.size()+1);</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="stringliteral">        dvi_out(post_post);</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="stringliteral">        dvifour(lastbop);</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="stringliteral">        dvi_out(id_byte);</span></div>

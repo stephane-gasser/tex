@@ -8,16 +8,22 @@
 #include "lecture.h"
 #include "deleteglueref.h"
 
-fourquarters Font::char_info(smallnumber q) const { return fontinfo[charbase+q].qqqq; }
-int Font::char_width(smallnumber q) const { return fontinfo[widthbase+char_info(q).b0].int_; }
-int Font::char_height(smallnumber q) const { return fontinfo[heightbase+char_info(q).b1/16].int_; }
-int Font::char_depth(smallnumber q) const { return fontinfo[depthbase+char_info(q).b1%16].int_; }
+fourquarters& Font::infos(int k) { return Font::info[k].qqqq; }
+quarterword Font::skip_byte(int k) { return infos(k).b0; }
+quarterword Font::next_char(int k) { return infos(k).b1; }
+quarterword Font::op_byte(int k) { return infos(k).b2; }
+quarterword Font::rem_byte(int k) { return infos(k).b3; }
+
+fourquarters Font::char_info(smallnumber q) const { return infos(charbase+q); }
+int Font::char_width(smallnumber q) const { return info[widthbase+char_info(q).b0].int_; }
+int Font::char_height(smallnumber q) const { return info[heightbase+char_info(q).b1/16].int_; }
+int Font::char_depth(smallnumber q) const { return info[depthbase+char_info(q).b1%16].int_; }
 scaled Font::heightplusdepth(quarterword c) const { return char_height(c)+char_depth(c); }
-int Font::char_italic(smallnumber q) const { return fontinfo[italicbase+char_info(q).b2/4].int_; }
-int Font::lig_kern_start(fourquarters i) const { return ligkernbase+rem_byte(i); }
-int Font::lig_kern_restart(fourquarters i) const { return ligkernbase+256*op_byte(i)+rem_byte(i); }
-int Font::char_kern(fourquarters i) const { return fontinfo[kernbase+256*op_byte(i)+rem_byte(i)].int_; }
-int& Font::param(smallnumber p) const { return fontinfo[parambase+p].int_; }
+int Font::char_italic(smallnumber q) const { return info[italicbase+char_info(q).b2/4].int_; }
+int Font::lig_kern_start(fourquarters i) const { return ligkernbase+::rem_byte(i); }
+int Font::lig_kern_restart(fourquarters i) const { return ligkernbase+256*::op_byte(i)+::rem_byte(i); }
+int Font::char_kern(fourquarters i) const { return info[kernbase+256*::op_byte(i)+::rem_byte(i)].int_; }
+int& Font::param(smallnumber p) const { return info[parambase+p].int_; }
 int& Font::slant(void) const { return param(slant_code); }
 int& Font::extra_space(void) const { return param(extra_space_code); }
 int& Font::space(void) const { return param(space_code); }
@@ -75,7 +81,7 @@ static void check_byte_range(halfword p, halfword bc, halfword ec)
 
 static int current_character_being_worked_on(int k, int bc)
 {
-	return k+bc-fontinfo.size()-1;
+	return k+bc-Font::info.size()-1;
 }
 
 static int store_scaled(scaled z, int beta, int k, int alpha)
@@ -93,10 +99,10 @@ static int store_scaled(scaled z, int beta, int k, int alpha)
 	throw 1;
 }
 
-static void check_existence(halfword p, halfword bc, halfword ec, internalfontnumber f)
+static void check_existence(halfword p, halfword bc, halfword ec, const Font &ft)
 {
 	check_byte_range(p, bc, ec);
-	if (skip_byte(fonts[f].char_info(p)) <= 0)
+	if (skip_byte(ft.char_info(p)) <= 0)
 		throw 1;
 }
 
@@ -136,10 +142,10 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 		lf -= 6+lh;
 		if (np < 7)
 			lf += 7-np;
-		if (fonts.size()-1 == fontmax || fontinfo.size()-1+lf > fontmemsize)
+		if (fonts.size()-1 == fontmax || Font::info.size()-1+lf > fontmemsize)
 			throw 0;
 		Font ft;
-		ft.charbase = fontinfo.size()-1-bc;
+		ft.charbase = Font::info.size()-1-bc;
 		ft.widthbase = ft.charbase+ec+1;
 		ft.heightbase = ft.widthbase+nw;
 		ft.depthbase = ft.heightbase+nh;
@@ -154,8 +160,8 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 		ft.check = store_four_quarters(a, b, c, d);
 		scaled z;
 		read_sixteen(z);
-		z = z*0x1'00+tfmfile.get();
-		z = z*16+tfmfile.get()/16;
+		z = (z<<8)+tfmfile.get();
+		z = (z<<4)+(tfmfile.get()>>4);
 		if (z < unity)
 			throw 1;
 		while (lh > 2)
@@ -170,9 +176,9 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 			else
 				z = xnoverd(z, -s, 1000);
 		ft.size = z;
-		for (int k = fontinfo.size()-1; k < ft.widthbase; k++)
+		for (int k = Font::info.size()-1; k < ft.widthbase; k++)
 		{
-			fontinfo[k].qqqq = store_four_quarters(a, b, c, d);
+			Font::infos(k) = store_four_quarters(a, b, c, d);
 			if (a >= nw || b/16 >= nh || b%16 >= nd || c/4 >= ni)
 				throw 1;
 			switch (c%4)
@@ -207,8 +213,8 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 		int beta = 0x1'00/alpha;
 		alpha *= z;
 		for (int k = ft.widthbase; k < ft.ligkernbase; k++)
-			fontinfo[k].int_ = store_scaled(z, beta, k, alpha);
-		if (fontinfo[ft.widthbase].int_ || fontinfo[ft.heightbase].int_ || fontinfo[ft.depthbase].int_ || fontinfo[ft.italicbase].int_)
+			Font::info[k].int_ = store_scaled(z, beta, k, alpha);
+		if (Font::info[ft.widthbase].int_ || Font::info[ft.heightbase].int_ || Font::info[ft.depthbase].int_ || Font::info[ft.italicbase].int_)
 			throw 1;
 		int bchlabel = 0x7F'FF;
 		bchar = 256;
@@ -216,7 +222,7 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 		{
 			for (int k = ft.ligkernbase; k < ft.kernbase+0x80'00; k++)
 			{
-				fontinfo[k].qqqq = store_four_quarters(a, b, c, d);
+				Font::infos(k) = store_four_quarters(a, b, c, d);
 				if (a > 128)
 				{
 					if (0x1'00*c+d >= nl)
@@ -227,9 +233,9 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 				else
 				{
 					if (b != bchar)
-						check_existence(b, bc, ec, f);
+						check_existence(b, bc, ec, ft);
 					if (c < 128)
-						check_existence(d, bc, ec, f);
+						check_existence(d, bc, ec, ft);
 					else 
 						if ((c-0x80)<<8+d >= nk)
 							throw 1;
@@ -241,17 +247,17 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 				bchlabel = c<<8+d;
 		}
 		for (int k = ft.kernbase+0x80'00; k < ft.extenbase; k++)
-			fontinfo[k].int_ = store_scaled(z, beta, k, alpha);
+			Font::info[k].int_ = store_scaled(z, beta, k, alpha);
 		for (int k = ft.extenbase; k < ft.parambase-1; k++)
 		{
-			fontinfo[k].qqqq = store_four_quarters(a, b, c, d);
+			Font::infos(k) = store_four_quarters(a, b, c, d);
 			if (a)
-				check_existence(a, bc, ec, f);
+				check_existence(a, bc, ec, ft);
 			if (b)
-				check_existence(b, bc, ec, f);
+				check_existence(b, bc, ec, ft);
 			if (c)
-				check_existence(c, bc, ec, f);
-			check_existence(d, bc, ec, f);
+				check_existence(c, bc, ec, ft);
+			check_existence(d, bc, ec, ft);
 		}
 		for (int k = 1; k <= np; k++)
 			if (k == 1)
@@ -289,9 +295,8 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 		ft.ec = ec;
 		ft.glue = 0;
 		ft.parambase--;
-		fontinfo.resize(fontinfo.size()+lf);
+		Font::info.resize(Font::info.size()+lf);
 		fonts.push_back(ft);
-		//fontptr = f;
 		if (fileopened)
 			bclose(tfmfile);
 		return f;
@@ -311,9 +316,8 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 [[nodiscard]] int findfontdimen(bool writing)
 {
 	int n = scanint();
-	auto f = scanfontident();
-	auto &ft = fonts[f];
-	int val = fontinfo.size()-1;
+	auto &ft = fonts[scanfontident()];
+	int val = Font::info.size()-1;
 	if (n > 0)
 	{
 		if (writing && n <= 4 && n >= 2 && ft.glue)
@@ -329,16 +333,16 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 				{
 					memoryword fi;
 					fi.int_ = 0;
-					fontinfo.push_back(fi);
+					Font::info.push_back(fi);
 					ft.params++;
 				}
-				val = fontinfo.size()-2;
+				val = Font::info.size()-2;
 			}
 		}
 		else
 			val = n+ft.parambase;
 	}
-	if (val == fontinfo.size()-1)
+	if (val == Font::info.size()-1)
 		error("Font "+esc(TXT(hash[font_id_base+f].rh))+" has only "+std::to_string(ft.params)+" fontdimen parameters", "To increase the number of font parameters, you must\nuse \\fontdimen immediately after the \\font is loaded.");
 	return val;
 }

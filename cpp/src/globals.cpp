@@ -153,8 +153,6 @@ smallnumber curstyle;
 smallnumber cursize;
 scaled curmu;
 bool mlistpenalties;
-quarterword curc;
-fourquarters curi;
 halfword curalign;
 halfword curspan;
 halfword alignptr;

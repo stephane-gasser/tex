@@ -1,6 +1,6 @@
 #include "backinput.h"
 #include "lecture.h"
-#include "getavail.h"
+#include "noeud.h"
 #include "pushinput.h"
 
 //! Undoes one token of input.

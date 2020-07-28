@@ -1,5 +1,4 @@
 #include "fincol.h"
-#include "getavail.h"
 #include "noeud.h"
 #include "impression.h"
 #include "erreur.h"

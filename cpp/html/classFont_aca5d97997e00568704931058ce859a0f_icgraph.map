@@ -1,0 +1,10 @@
+<map id="Font::param" name="Font::param">
+<area shape="rect" id="node1" title=" " alt="" coords="192,157,284,184"/>
+<area shape="rect" id="node2" href="$classFont.html#a7d2c226774b00bcd58866aa9822925bf" title="additional space at end of sentence" alt="" coords="11,5,138,32"/>
+<area shape="rect" id="node3" href="$classFont.html#ae5424dc7c6706e9d1b030a3a9879f81e" title="one em" alt="" coords="33,56,117,83"/>
+<area shape="rect" id="node4" href="$classFont.html#ae75016b9bdc985412dd3066947e0e32c" title="slant to the right, per unit distance upward" alt="" coords="33,107,117,133"/>
+<area shape="rect" id="node5" href="$classFont.html#a5f88292162ff2de68278f44ac8592f80" title="normal space between words" alt="" coords="29,157,120,184"/>
+<area shape="rect" id="node6" href="$classFont.html#a13d5b718ac41dacf05a499fa9e0d2e25" title="shrink between words" alt="" coords="8,208,141,235"/>
+<area shape="rect" id="node7" href="$classFont.html#aceacc9471c2b41afc283c36e98944277" title="stretch between words" alt="" coords="5,259,144,285"/>
+<area shape="rect" id="node8" href="$classFont.html#a7f8b6bebc478fd514ebb3a41f8da3f03" title="one ex" alt="" coords="22,309,127,336"/>
+</map>

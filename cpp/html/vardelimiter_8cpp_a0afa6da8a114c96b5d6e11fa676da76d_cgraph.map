@@ -1,0 +1,7 @@
+<map id="stackintobox" name="stackintobox">
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,101,83"/>
+<area shape="rect" id="node2" href="$charbox_8cpp.html#a3f7182224cefaaefc315045d8d25c0be" title=" " alt="" coords="149,31,217,57"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="267,5,325,32"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="265,81,327,108"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="375,107,417,133"/>
+</map>

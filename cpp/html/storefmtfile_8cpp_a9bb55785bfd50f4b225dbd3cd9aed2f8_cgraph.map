@@ -1,39 +1,40 @@
 <map id="storefmtfile" name="storefmtfile">
-<area shape="rect" id="node1" title=" " alt="" coords="5,892,92,919"/>
-<area shape="rect" id="node2" href="$impression_8cpp.html#a0aab991d51193c009fd6bb6c720abb2f" title=" " alt="" coords="316,1272,405,1299"/>
-<area shape="rect" id="node3" href="$impression_8cpp.html#a31a15345027ce954e1ff8fa40f149d17" title=" " alt="" coords="323,157,399,184"/>
-<area shape="rect" id="node4" href="$parametres_8h.html#a63c31f79d6ff9ae942a27ddf8bfdd258" title=" " alt="" coords="183,107,225,133"/>
-<area shape="rect" id="node5" href="$storefmtfile_8cpp.html#a02d6b3499eaa31a61219f7ead3797c6e" title=" " alt="" coords="141,5,267,32"/>
-<area shape="rect" id="node6" href="$storefmtfile_8cpp.html#afc80171bd4c72d5e1b6c536308a8962d" title=" " alt="" coords="316,31,405,57"/>
-<area shape="rect" id="node7" href="$storefmtfile_8cpp.html#a62c6487eb5f6b1ca9ad7a483590a0cf8" title=" " alt="" coords="167,259,241,285"/>
-<area shape="rect" id="node8" href="$storefmtfile_8cpp.html#a7c5f629dc33ffdd85b26fcf561c8fb2c" title=" " alt="" coords="167,309,241,336"/>
-<area shape="rect" id="node9" href="$storefmtfile_8cpp.html#ac6c0269debe86de04fa867cfeb82ea2a" title=" " alt="" coords="165,360,243,387"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="169,411,239,437"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#a30e61288612879b61525ab34298b794d" title="command code for equivalent" alt="" coords="170,461,238,488"/>
-<area shape="rect" id="node12" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="177,512,231,539"/>
-<area shape="rect" id="node13" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="183,563,225,589"/>
-<area shape="rect" id="node14" href="$erreur_8cpp.html#a7ab186ce8a58960ce2ad26f8c41e826b" title=" " alt="" coords="181,613,227,640"/>
-<area shape="rect" id="node15" href="$impression_8cpp.html#ae510fed7b37448b7a8111a9acbf3f1c9" title=" " alt="" coords="181,208,227,235"/>
-<area shape="rect" id="node16" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="566,664,605,691"/>
-<area shape="rect" id="node17" href="$cesure_8cpp.html#a4953f312f016c82145ae48b0d39341bd" title=" " alt="" coords="175,765,233,792"/>
-<area shape="rect" id="node18" href="$cesure_8h.html#a6d839112ab4724d97a90ce378a5e527e" title=" " alt="" coords="341,727,381,753"/>
-<area shape="rect" id="node19" href="$cesure_8h.html#ad439adcfa9eafe7cd6ed2a4cde107ac7" title=" " alt="" coords="332,803,389,829"/>
-<area shape="rect" id="node20" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="339,917,382,944"/>
-<area shape="rect" id="node21" href="$parametres_8h.html#a2753d2f41028bd4c73c25ec37a9ba413" title=" " alt="" coords="175,968,233,995"/>
-<area shape="rect" id="node22" href="$constantes_8cpp.html#a32cfafb65118c24464dc5287104ff994" title="the size field in empty variable&#45;size nodes" alt="" coords="163,1019,245,1045"/>
-<area shape="rect" id="node23" href="$packjobname_8cpp.html#ae5634a55cba44f6c252d19587afa16c6" title=" " alt="" coords="155,1069,253,1096"/>
-<area shape="rect" id="node24" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="453,1272,500,1299"/>
-<area shape="rect" id="node25" href="$impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="557,1373,614,1400"/>
-<area shape="rect" id="node26" href="$impression_8cpp.html#a6f24c68dc4ffde288d61dcb71d93170e" title=" " alt="" coords="548,1221,623,1248"/>
-<area shape="rect" id="node27" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="332,1373,389,1400"/>
-<area shape="rect" id="node28" href="$promptfilename_8cpp.html#a09b5bedc5ecd13402ffc7784081eef8a" title=" " alt="" coords="149,1323,259,1349"/>
-<area shape="rect" id="node29" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="181,917,227,944"/>
-<area shape="rect" id="node30" href="$sortavail_8cpp.html#aed193e67812d69956547fdf4d4ae0e53" title=" " alt="" coords="169,1120,239,1147"/>
-<area shape="rect" id="node31" href="$constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0" title="string number for control sequence name" alt="" coords="182,1475,226,1501"/>
-<area shape="rect" id="node32" href="$storefmtfile_8cpp.html#aecef119d966f375bb49f3b52ed343af4" title=" " alt="" coords="155,1525,253,1552"/>
-<area shape="rect" id="node33" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="181,1576,227,1603"/>
-<area shape="rect" id="node34" href="$fichiers_8cpp.html#a5df0f42a06bc654d7e4b1dd969a1e00b" title="Close a word file." alt="" coords="173,1627,235,1653"/>
-<area shape="rect" id="node35" href="$wmakenamestring_8cpp.html#a13d1ac0afc3893d70f65ba357271218d" title=" " alt="" coords="140,1677,268,1704"/>
-<area shape="rect" id="node36" href="$fichiers_8cpp.html#ad6282eb74260892984b73fac6bfdf855" title=" " alt="" coords="165,1728,243,1755"/>
-<area shape="rect" id="node37" href="$parametres_8h.html#a112848a5f8a11d5eae627df0fdc672b2" title=" " alt="" coords="181,1779,227,1805"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,908,92,935"/>
+<area shape="rect" id="node2" href="$impression_8cpp.html#a0aab991d51193c009fd6bb6c720abb2f" title=" " alt="" coords="316,47,405,74"/>
+<area shape="rect" id="node3" href="$impression_8cpp.html#a31a15345027ce954e1ff8fa40f149d17" title=" " alt="" coords="166,351,242,378"/>
+<area shape="rect" id="node4" href="$parametres_8h.html#a63c31f79d6ff9ae942a27ddf8bfdd258" title=" " alt="" coords="183,402,225,428"/>
+<area shape="rect" id="node5" href="$storefmtfile_8cpp.html#a02d6b3499eaa31a61219f7ead3797c6e" title=" " alt="" coords="141,452,267,479"/>
+<area shape="rect" id="node6" href="$storefmtfile_8cpp.html#afc80171bd4c72d5e1b6c536308a8962d" title=" " alt="" coords="316,478,405,504"/>
+<area shape="rect" id="node7" href="$storefmtfile_8cpp.html#a62c6487eb5f6b1ca9ad7a483590a0cf8" title=" " alt="" coords="167,554,241,580"/>
+<area shape="rect" id="node8" href="$storefmtfile_8cpp.html#a7c5f629dc33ffdd85b26fcf561c8fb2c" title=" " alt="" coords="167,604,241,631"/>
+<area shape="rect" id="node9" href="$storefmtfile_8cpp.html#ac6c0269debe86de04fa867cfeb82ea2a" title=" " alt="" coords="165,655,243,682"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#a27378376efbb02517aae5c621db59a74" title=" " alt="" coords="169,706,239,732"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#a30e61288612879b61525ab34298b794d" title="command code for equivalent" alt="" coords="170,756,238,783"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="177,807,231,834"/>
+<area shape="rect" id="node13" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="183,858,225,884"/>
+<area shape="rect" id="node14" href="$erreur_8cpp.html#a7ab186ce8a58960ce2ad26f8c41e826b" title=" " alt="" coords="181,908,227,935"/>
+<area shape="rect" id="node15" href="$police_8h.html#a78d525eb2bc4654ae0528e0a6a83d17b" title=" " alt="" coords="171,959,237,986"/>
+<area shape="rect" id="node16" href="$police_8h.html#a424ff50928214e91519fabeeb26962fe" title=" " alt="" coords="179,1010,229,1036"/>
+<area shape="rect" id="node17" href="$cesure_8cpp.html#a4953f312f016c82145ae48b0d39341bd" title=" " alt="" coords="175,1111,233,1138"/>
+<area shape="rect" id="node18" href="$cesure_8h.html#a6d839112ab4724d97a90ce378a5e527e" title=" " alt="" coords="341,1086,381,1112"/>
+<area shape="rect" id="node19" href="$cesure_8h.html#ad439adcfa9eafe7cd6ed2a4cde107ac7" title=" " alt="" coords="332,1148,389,1175"/>
+<area shape="rect" id="node20" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="339,1263,382,1290"/>
+<area shape="rect" id="node21" href="$parametres_8h.html#a2753d2f41028bd4c73c25ec37a9ba413" title=" " alt="" coords="175,1364,233,1391"/>
+<area shape="rect" id="node22" href="$constantes_8cpp.html#a32cfafb65118c24464dc5287104ff994" title="the size field in empty variable&#45;size nodes" alt="" coords="163,1415,245,1442"/>
+<area shape="rect" id="node23" href="$packjobname_8cpp.html#ae5634a55cba44f6c252d19587afa16c6" title=" " alt="" coords="155,1466,253,1492"/>
+<area shape="rect" id="node24" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="453,160,500,187"/>
+<area shape="rect" id="node25" href="$impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191" title=" " alt="" coords="557,98,614,124"/>
+<area shape="rect" id="node26" href="$impression_8cpp.html#a6f24c68dc4ffde288d61dcb71d93170e" title=" " alt="" coords="548,186,623,212"/>
+<area shape="rect" id="node27" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="566,287,605,314"/>
+<area shape="rect" id="node28" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="332,98,389,124"/>
+<area shape="rect" id="node29" href="$promptfilename_8cpp.html#a09b5bedc5ecd13402ffc7784081eef8a" title=" " alt="" coords="149,148,259,175"/>
+<area shape="rect" id="node30" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="181,1263,227,1290"/>
+<area shape="rect" id="node31" href="$sortavail_8cpp.html#aed193e67812d69956547fdf4d4ae0e53" title=" " alt="" coords="169,1314,239,1340"/>
+<area shape="rect" id="node32" href="$constantes_8cpp.html#ac04939951c709f3d90ac4e9f6a6ff3b0" title="string number for control sequence name" alt="" coords="182,1516,226,1543"/>
+<area shape="rect" id="node33" href="$storefmtfile_8cpp.html#aecef119d966f375bb49f3b52ed343af4" title=" " alt="" coords="155,1567,253,1594"/>
+<area shape="rect" id="node34" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="181,1618,227,1644"/>
+<area shape="rect" id="node35" href="$fichiers_8cpp.html#a5df0f42a06bc654d7e4b1dd969a1e00b" title="Close a word file." alt="" coords="173,1668,235,1695"/>
+<area shape="rect" id="node36" href="$wmakenamestring_8cpp.html#a13d1ac0afc3893d70f65ba357271218d" title=" " alt="" coords="140,1719,268,1746"/>
+<area shape="rect" id="node37" href="$fichiers_8cpp.html#ad6282eb74260892984b73fac6bfdf855" title=" " alt="" coords="165,1770,243,1796"/>
+<area shape="rect" id="node38" href="$parametres_8h.html#a112848a5f8a11d5eae627df0fdc672b2" title=" " alt="" coords="181,1820,227,1847"/>
 </map>

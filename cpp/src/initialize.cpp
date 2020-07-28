@@ -244,7 +244,7 @@ void Initialize(void)
 	fonts[null_font].kernbase = 0;
 	fonts[null_font].extenbase = 0;
 	fonts[null_font].parambase = -1;
-	for (auto &fi: fontinfo)
+	for (auto &fi: Font::info)
 		fi.int_ = 0;
 	trienotready = true;
 	trie_root = 0;

@@ -1,4 +1,5 @@
 <map id="inc/charbox.h" name="inc/charbox.h">
 <area shape="rect" id="node1" title=" " alt="" coords="5,5,105,32"/>
-<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="18,80,93,107"/>
+<area shape="rect" id="node2" href="$globals_8h.html" title=" " alt="" coords="18,155,93,181"/>
+<area shape="rect" id="node3" href="$police_8h.html" title=" " alt="" coords="58,80,125,107"/>
 </map>

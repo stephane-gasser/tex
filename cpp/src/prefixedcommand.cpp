@@ -4,7 +4,6 @@
 #include "geqdefine.h"
 #include "eqdefine.h"
 #include "backinput.h"
-#include "getavail.h"
 #include "eqworddefine.h"
 #include "trapzeroglue.h"
 #include "geqworddefine.h"
@@ -287,7 +286,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 		case assign_font_dimen:
 			k = findfontdimen(true);
 			scanoptionalequals();
-			fontinfo[k].int_ = scan_normal_dimen();
+			Font::info[k].int_ = scan_normal_dimen();
 			break;
 		case assign_font_int:
 			n = t.chr;

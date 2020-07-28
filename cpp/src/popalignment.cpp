@@ -1,6 +1,5 @@
 #include "popalignment.h"
 #include "noeud.h"
-#include "getavail.h"
 
 void popalignment(halfword &loop)
 {

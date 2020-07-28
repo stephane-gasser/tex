@@ -87,11 +87,11 @@ Graphe des dépendances par inclusion de charbox.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="charbox_8cpp__incl.png" border="0" usemap="#src_2charbox_8cpp" alt=""/></div>
 <map name="src_2charbox_8cpp" id="src_2charbox_8cpp">
-<area shape="rect" title=" " alt="" coords="133,5,247,32"/>
+<area shape="rect" title=" " alt="" coords="101,5,215,32"/>
 <area shape="rect" href="charbox_8h.html" title=" " alt="" coords="5,80,84,107"/>
-<area shape="rect" href="noeud_8h.html" title=" " alt="" coords="108,80,176,107"/>
-<area shape="rect" href="getavail_8h.html" title=" " alt="" coords="200,80,279,107"/>
-<area shape="rect" href="police_8h.html" title=" " alt="" coords="303,80,370,107"/>
+<area shape="rect" href="police_8h.html" title=" " alt="" coords="50,155,117,181"/>
+<area shape="rect" href="noeud_8h.html" title=" " alt="" coords="160,80,228,107"/>
+<area shape="rect" href="getavail_8h.html" title=" " alt="" coords="252,80,331,107"/>
 </map>
 </div>
 </div>
@@ -99,12 +99,12 @@ Graphe des dépendances par inclusion de charbox.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a86c2c46fc0276e96f2b7744e731ee4a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="charbox_8cpp.html#a86c2c46fc0276e96f2b7744e731ee4a1">charbox</a> (<a class="el" href="tex_8h.html#a31e60baff034e87efe01cbf977b72a39">internalfontnumber</a> <a class="el" href="globals_8h.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, <a class="el" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
-<tr class="separator:a86c2c46fc0276e96f2b7744e731ee4a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f7182224cefaaefc315045d8d25c0be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="charbox_8cpp.html#a3f7182224cefaaefc315045d8d25c0be">charbox</a> (const <a class="el" href="classFont.html">Font</a> &amp;ft, <a class="el" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
+<tr class="separator:a3f7182224cefaaefc315045d8d25c0be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a86c2c46fc0276e96f2b7744e731ee4a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86c2c46fc0276e96f2b7744e731ee4a1">&#9670;&nbsp;</a></span>charbox()</h2>
+<a id="a3f7182224cefaaefc315045d8d25c0be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f7182224cefaaefc315045d8d25c0be">&#9670;&nbsp;</a></span>charbox()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -112,8 +112,8 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> charbox </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#a31e60baff034e87efe01cbf977b72a39">internalfontnumber</a>&#160;</td>
-          <td class="paramname"><em>f</em>, </td>
+          <td class="paramtype">const <a class="el" href="classFont.html">Font</a> &amp;&#160;</td>
+          <td class="paramname"><em>ft</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -131,46 +131,44 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="charbox_8cpp_source.html#l00006">6</a> du fichier <a class="el" href="charbox_8cpp_source.html">charbox.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="police_8cpp.html#a375b29365eb2744579e4bf4518e6aaac">char_info</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">auto</span> b = <a class="code" href="noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732">newnullbox</a>();</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(b) = <a class="code" href="police_8cpp.html#afed1a10a514734f89ab8691850baa84f">char_width</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, q)+<a class="code" href="police_8cpp.html#ae2584965ba51d321b94b6e36955f218a">char_italic</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, q);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(b) = <a class="code" href="police_8cpp.html#a1ec2443f186d8e26a9c3e7a8184f367f">char_height</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, q);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(b) = <a class="code" href="police_8cpp.html#a437b9b007bc70934fccbda61d264cf35">char_depth</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, q);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7">getavail</a>();</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(p) = <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a>(b) = p;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">return</span> b;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">auto</span> b = <a class="code" href="noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732">newnullbox</a>();</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(b) = ft.<a class="code" href="classFont.html#ab1179f907a9f22ce14250b76bc8a9bad">char_width</a>(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>)+ft.<a class="code" href="classFont.html#a5ef4f56ab07b1dee543b834811bf951c">char_italic</a>(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(b) = ft.<a class="code" href="classFont.html#a4c56cf3633a6b9aad7be06058b74cb80">char_height</a>(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(b) = ft.<a class="code" href="classFont.html#aabdccc63f9bdd0e7bc8e4a7d5d8ad1a7">char_depth</a>(<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7">getavail</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(p) = <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) = <a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a>(b) = p;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">return</span> b;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="charbox_8cpp_a86c2c46fc0276e96f2b7744e731ee4a1_cgraph.png" border="0" usemap="#charbox_8cpp_a86c2c46fc0276e96f2b7744e731ee4a1_cgraph" alt=""/></div>
-<map name="charbox_8cpp_a86c2c46fc0276e96f2b7744e731ee4a1_cgraph" id="charbox_8cpp_a86c2c46fc0276e96f2b7744e731ee4a1_cgraph">
-<area shape="rect" title=" " alt="" coords="5,309,73,336"/>
-<area shape="rect" href="police_8cpp.html#a437b9b007bc70934fccbda61d264cf35" title=" " alt="" coords="123,5,209,32"/>
-<area shape="rect" href="police_8cpp.html#a1ec2443f186d8e26a9c3e7a8184f367f" title=" " alt="" coords="121,56,211,83"/>
-<area shape="rect" href="police_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="129,107,203,133"/>
-<area shape="rect" href="police_8cpp.html#ae2584965ba51d321b94b6e36955f218a" title=" " alt="" coords="125,157,207,184"/>
-<area shape="rect" href="police_8cpp.html#afed1a10a514734f89ab8691850baa84f" title=" " alt="" coords="123,208,209,235"/>
-<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="139,259,193,285"/>
-<area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="133,309,199,336"/>
-<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="137,360,195,387"/>
-<area shape="rect" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="135,411,197,437"/>
-<area shape="rect" href="noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="123,461,209,488"/>
-<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="132,512,200,539"/>
-<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="143,563,189,589"/>
-<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="139,613,193,640"/>
+<div class="center"><img src="charbox_8cpp_a3f7182224cefaaefc315045d8d25c0be_cgraph.png" border="0" usemap="#charbox_8cpp_a3f7182224cefaaefc315045d8d25c0be_cgraph" alt=""/></div>
+<map name="charbox_8cpp_a3f7182224cefaaefc315045d8d25c0be_cgraph" id="charbox_8cpp_a3f7182224cefaaefc315045d8d25c0be_cgraph">
+<area shape="rect" title=" " alt="" coords="5,284,73,311"/>
+<area shape="rect" href="classFont.html#aabdccc63f9bdd0e7bc8e4a7d5d8ad1a7" title=" " alt="" coords="123,5,243,32"/>
+<area shape="rect" href="classFont.html#a4c56cf3633a6b9aad7be06058b74cb80" title=" " alt="" coords="121,56,244,83"/>
+<area shape="rect" href="classFont.html#a5ef4f56ab07b1dee543b834811bf951c" title=" " alt="" coords="125,107,240,133"/>
+<area shape="rect" href="classFont.html#ab1179f907a9f22ce14250b76bc8a9bad" title=" " alt="" coords="123,157,242,184"/>
+<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="155,208,210,235"/>
+<area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="149,259,216,285"/>
+<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="154,309,211,336"/>
+<area shape="rect" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="152,360,213,387"/>
+<area shape="rect" href="noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="139,411,226,437"/>
+<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="149,461,217,488"/>
+<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="159,512,206,539"/>
+<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="156,563,209,589"/>
 </map>
 </div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="charbox_8cpp_a86c2c46fc0276e96f2b7744e731ee4a1_icgraph.png" border="0" usemap="#charbox_8cpp_a86c2c46fc0276e96f2b7744e731ee4a1_icgraph" alt=""/></div>
-<map name="charbox_8cpp_a86c2c46fc0276e96f2b7744e731ee4a1_icgraph" id="charbox_8cpp_a86c2c46fc0276e96f2b7744e731ee4a1_icgraph">
+<div class="center"><img src="charbox_8cpp_a3f7182224cefaaefc315045d8d25c0be_icgraph.png" border="0" usemap="#charbox_8cpp_a3f7182224cefaaefc315045d8d25c0be_icgraph" alt=""/></div>
+<map name="charbox_8cpp_a3f7182224cefaaefc315045d8d25c0be_icgraph" id="charbox_8cpp_a3f7182224cefaaefc315045d8d25c0be_icgraph">
 <area shape="rect" title=" " alt="" coords="313,56,381,83"/>
 <area shape="rect" href="makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="143,5,265,32"/>
-<area shape="rect" href="stackintobox_8h.html#ae30d3e74663cd861dafc8d3cffad9554" title=" " alt="" coords="156,56,252,83"/>
+<area shape="rect" href="vardelimiter_8cpp.html#a0afa6da8a114c96b5d6e11fa676da76d" title=" " alt="" coords="156,56,252,83"/>
 <area shape="rect" href="vardelimiter_8h.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="5,81,95,108"/>
 </map>
 </div>
@@ -178,19 +176,18 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="apolice_8cpp_html_ae2584965ba51d321b94b6e36955f218a"><div class="ttname"><a href="police_8cpp.html#ae2584965ba51d321b94b6e36955f218a">char_italic</a></div><div class="ttdeci">int char_italic(internalfontnumber f, fourquarters q)</div><div class="ttdef"><b>Definition:</b> <a href="police_8cpp_source.html#l00016">police.cpp:16</a></div></div>
-<div class="ttc" id="anoeud_8cpp_html_a4b66b8f6553ae965a55cdcdf20ebe732"><div class="ttname"><a href="noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732">newnullbox</a></div><div class="ttdeci">halfword newnullbox(void)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00650">noeud.cpp:650</a></div></div>
-<div class="ttc" id="apolice_8cpp_html_a375b29365eb2744579e4bf4518e6aaac"><div class="ttname"><a href="police_8cpp.html#a375b29365eb2744579e4bf4518e6aaac">char_info</a></div><div class="ttdeci">fourquarters char_info(internalfontnumber f, smallnumber q)</div><div class="ttdef"><b>Definition:</b> <a href="police_8cpp_source.html#l00015">police.cpp:15</a></div></div>
+<div class="ttc" id="aclassFont_html_ab1179f907a9f22ce14250b76bc8a9bad"><div class="ttname"><a href="classFont.html#ab1179f907a9f22ce14250b76bc8a9bad">Font::char_width</a></div><div class="ttdeci">int char_width(smallnumber) const</div><div class="ttdef"><b>Definition:</b> <a href="police_8cpp_source.html#l00012">police.cpp:12</a></div></div>
+<div class="ttc" id="anoeud_8cpp_html_a4b66b8f6553ae965a55cdcdf20ebe732"><div class="ttname"><a href="noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732">newnullbox</a></div><div class="ttdeci">halfword newnullbox(void)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00648">noeud.cpp:648</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_acee72cc7eac7224c7335fd7da8b4d54a"><div class="ttname"><a href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a></div><div class="ttdeci">quarterword f</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00139">globals.cpp:139</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a4df565ae653d5dfdd476957e92b6a61c"><div class="ttname"><a href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a></div><div class="ttdeci">int &amp; depth(halfword p)</div><div class="ttdoc">depth of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00050">constantes.cpp:50</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdoc">width of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00048">constantes.cpp:48</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a4df565ae653d5dfdd476957e92b6a61c"><div class="ttname"><a href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a></div><div class="ttdeci">int &amp; depth(halfword p)</div><div class="ttdoc">depth of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00048">constantes.cpp:48</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdoc">width of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00046">constantes.cpp:46</a></div></div>
 <div class="ttc" id="agetavail_8cpp_html_a954ade667e3184eb61ed18e925b628c7"><div class="ttname"><a href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7">getavail</a></div><div class="ttdeci">halfword getavail(void)</div><div class="ttdef"><b>Definition:</b> <a href="getavail_8cpp_source.html#l00005">getavail.cpp:5</a></div></div>
-<div class="ttc" id="apolice_8cpp_html_a1ec2443f186d8e26a9c3e7a8184f367f"><div class="ttname"><a href="police_8cpp.html#a1ec2443f186d8e26a9c3e7a8184f367f">char_height</a></div><div class="ttdeci">int char_height(internalfontnumber f, fourquarters i)</div><div class="ttdef"><b>Definition:</b> <a href="police_8cpp_source.html#l00013">police.cpp:13</a></div></div>
-<div class="ttc" id="apolice_8cpp_html_a437b9b007bc70934fccbda61d264cf35"><div class="ttname"><a href="police_8cpp.html#a437b9b007bc70934fccbda61d264cf35">char_depth</a></div><div class="ttdeci">int char_depth(internalfontnumber f, fourquarters q)</div><div class="ttdef"><b>Definition:</b> <a href="police_8cpp_source.html#l00017">police.cpp:17</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aaf95f6a6992031770009c02b8d2b4071"><div class="ttname"><a href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a></div><div class="ttdeci">int &amp; height(halfword p)</div><div class="ttdoc">height of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00051">constantes.cpp:51</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ae506bbae1bdb1f143ed3873325de216b"><div class="ttname"><a href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a></div><div class="ttdeci">halfword &amp; list_ptr(halfword p)</div><div class="ttdoc">beginning of the list inside the box</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00047">constantes.cpp:47</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_aaf95f6a6992031770009c02b8d2b4071"><div class="ttname"><a href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a></div><div class="ttdeci">int &amp; height(halfword p)</div><div class="ttdoc">height of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00049">constantes.cpp:49</a></div></div>
+<div class="ttc" id="aclassFont_html_a4c56cf3633a6b9aad7be06058b74cb80"><div class="ttname"><a href="classFont.html#a4c56cf3633a6b9aad7be06058b74cb80">Font::char_height</a></div><div class="ttdeci">int char_height(smallnumber) const</div><div class="ttdef"><b>Definition:</b> <a href="police_8cpp_source.html#l00013">police.cpp:13</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ae506bbae1bdb1f143ed3873325de216b"><div class="ttname"><a href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a></div><div class="ttdeci">halfword &amp; list_ptr(halfword p)</div><div class="ttdoc">beginning of the list inside the box</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00045">constantes.cpp:45</a></div></div>
+<div class="ttc" id="aclassFont_html_aabdccc63f9bdd0e7bc8e4a7d5d8ad1a7"><div class="ttname"><a href="classFont.html#aabdccc63f9bdd0e7bc8e4a7d5d8ad1a7">Font::char_depth</a></div><div class="ttdeci">int char_depth(smallnumber) const</div><div class="ttdef"><b>Definition:</b> <a href="police_8cpp_source.html#l00014">police.cpp:14</a></div></div>
 <div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00139">globals.cpp:139</a></div></div>
-<div class="ttc" id="apolice_8cpp_html_afed1a10a514734f89ab8691850baa84f"><div class="ttname"><a href="police_8cpp.html#afed1a10a514734f89ab8691850baa84f">char_width</a></div><div class="ttdeci">int char_width(internalfontnumber f, fourquarters i)</div><div class="ttdef"><b>Definition:</b> <a href="police_8cpp_source.html#l00012">police.cpp:12</a></div></div>
+<div class="ttc" id="aclassFont_html_a5ef4f56ab07b1dee543b834811bf951c"><div class="ttname"><a href="classFont.html#a5ef4f56ab07b1dee543b834811bf951c">Font::char_italic</a></div><div class="ttdeci">int char_italic(smallnumber) const</div><div class="ttdef"><b>Definition:</b> <a href="police_8cpp_source.html#l00016">police.cpp:16</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
 <!-- start footer part -->

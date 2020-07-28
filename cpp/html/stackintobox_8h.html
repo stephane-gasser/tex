@@ -72,111 +72,22 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Fonctions</a>  </div>
   <div class="headertitle">
 <div class="title">Référence du fichier stackintobox.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="globals_8h_source.html">globals.h</a>&quot;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Graphe des dépendances par inclusion de stackintobox.h:</div>
-<div class="dyncontent">
-<div class="center"><img src="stackintobox_8h__incl.png" border="0" usemap="#inc_2stackintobox_8h" alt=""/></div>
-<map name="inc_2stackintobox_8h" id="inc_2stackintobox_8h">
-<area shape="rect" title=" " alt="" coords="5,5,133,32"/>
-<area shape="rect" href="globals_8h.html" title=" " alt="" coords="32,80,107,107"/>
-</map>
-</div>
-</div><div class="textblock"><div class="dynheader">
+<div class="textblock"><div class="dynheader">
 Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier :</div>
 <div class="dyncontent">
 <div class="center"><img src="stackintobox_8h__dep__incl.png" border="0" usemap="#inc_2stackintobox_8hdep" alt=""/></div>
 <map name="inc_2stackintobox_8hdep" id="inc_2stackintobox_8hdep">
-<area shape="rect" title=" " alt="" coords="94,5,222,32"/>
-<area shape="rect" href="stackintobox_8cpp.html" title=" " alt="" coords="5,80,148,107"/>
-<area shape="rect" href="vardelimiter_8cpp.html" title=" " alt="" coords="172,80,307,107"/>
+<area shape="rect" title=" " alt="" coords="9,5,137,32"/>
+<area shape="rect" href="vardelimiter_8cpp.html" title=" " alt="" coords="5,80,140,107"/>
 </map>
 </div>
 </div>
 <p><a href="stackintobox_8h_source.html">Aller au code source de ce fichier.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Fonctions</h2></td></tr>
-<tr class="memitem:ae30d3e74663cd861dafc8d3cffad9554"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stackintobox_8h.html#ae30d3e74663cd861dafc8d3cffad9554">stackintobox</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> b, <a class="el" href="tex_8h.html#a31e60baff034e87efe01cbf977b72a39">internalfontnumber</a> <a class="el" href="globals_8h.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, <a class="el" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> <a class="el" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a>)</td></tr>
-<tr class="separator:ae30d3e74663cd861dafc8d3cffad9554"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<h2 class="groupheader">Documentation des fonctions</h2>
-<a id="ae30d3e74663cd861dafc8d3cffad9554"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae30d3e74663cd861dafc8d3cffad9554">&#9670;&nbsp;</a></span>stackintobox()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void stackintobox </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
-          <td class="paramname"><em>b</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#a31e60baff034e87efe01cbf977b72a39">internalfontnumber</a>&#160;</td>
-          <td class="paramname"><em>f</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a>&#160;</td>
-          <td class="paramname"><em>c</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Définition à la ligne <a class="el" href="stackintobox_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="stackintobox_8cpp_source.html">stackintobox.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="charbox_8cpp.html#a86c2c46fc0276e96f2b7744e731ee4a1">charbox</a>(<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a>, <a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a>);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = <a class="code" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a>(b);</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a>(b) = p;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(b) = <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(p);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
-</div><!-- fragment --><div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="stackintobox_8h_ae30d3e74663cd861dafc8d3cffad9554_cgraph.png" border="0" usemap="#stackintobox_8h_ae30d3e74663cd861dafc8d3cffad9554_cgraph" alt=""/></div>
-<map name="stackintobox_8h_ae30d3e74663cd861dafc8d3cffad9554_cgraph" id="stackintobox_8h_ae30d3e74663cd861dafc8d3cffad9554_cgraph">
-<area shape="rect" title=" " alt="" coords="5,56,101,83"/>
-<area shape="rect" href="charbox_8cpp.html#a86c2c46fc0276e96f2b7744e731ee4a1" title=" " alt="" coords="149,31,217,57"/>
-<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="267,5,325,32"/>
-<area shape="rect" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="265,81,327,108"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="375,107,417,133"/>
-</map>
-</div>
-<div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="stackintobox_8h_ae30d3e74663cd861dafc8d3cffad9554_icgraph.png" border="0" usemap="#stackintobox_8h_ae30d3e74663cd861dafc8d3cffad9554_icgraph" alt=""/></div>
-<map name="stackintobox_8h_ae30d3e74663cd861dafc8d3cffad9554_icgraph" id="stackintobox_8h_ae30d3e74663cd861dafc8d3cffad9554_icgraph">
-<area shape="rect" title=" " alt="" coords="143,5,239,32"/>
-<area shape="rect" href="vardelimiter_8h.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="5,5,95,32"/>
-</map>
-</div>
-
-</div>
-</div>
 </div><!-- contents -->
-<div class="ttc" id="aglobals_8cpp_html_acee72cc7eac7224c7335fd7da8b4d54a"><div class="ttname"><a href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a></div><div class="ttdeci">quarterword f</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00139">globals.cpp:139</a></div></div>
-<div class="ttc" id="acharbox_8cpp_html_a86c2c46fc0276e96f2b7744e731ee4a1"><div class="ttname"><a href="charbox_8cpp.html#a86c2c46fc0276e96f2b7744e731ee4a1">charbox</a></div><div class="ttdeci">halfword charbox(internalfontnumber f, quarterword c)</div><div class="ttdef"><b>Definition:</b> <a href="charbox_8cpp_source.html#l00006">charbox.cpp:6</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aaf95f6a6992031770009c02b8d2b4071"><div class="ttname"><a href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a></div><div class="ttdeci">int &amp; height(halfword p)</div><div class="ttdoc">height of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00051">constantes.cpp:51</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ae506bbae1bdb1f143ed3873325de216b"><div class="ttname"><a href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a></div><div class="ttdeci">halfword &amp; list_ptr(halfword p)</div><div class="ttdoc">beginning of the list inside the box</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00047">constantes.cpp:47</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00139">globals.cpp:139</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

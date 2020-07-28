@@ -20,19 +20,17 @@ scaled makeop(halfword q)
 	scaled delta;
 	if (math_type(nucleus(q)) == math_char)
 	{
-		fetch(nucleus(q));
-		if (curstyle < text_style && char_tag(curi) == list_tag)
+		auto [ft, curc] = fetch(nucleus(q));
+		if (curstyle < text_style && char_tag(ft.char_info(curc)) == list_tag)
 		{
-			auto c = rem_byte(curi);
-			auto i = fonts[curf].char_info(c);
-			if (char_exists(i))
+			auto c = rem_byte(ft.char_info(curc));
+			if (char_exists(ft.char_info(c)))
 			{
 				curc = c;
-				curi = i;
 				character(nucleus(q)) = c;
 			}
 		}
-		delta = fonts[curf].char_italic(curc);
+		delta = ft.char_italic(curc);
 		auto x = cleanbox(nucleus(q), curstyle);
 		if (math_type(subscr(q)) && subtype(q) != limits)
 		width(x) -= delta;

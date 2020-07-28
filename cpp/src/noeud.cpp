@@ -1,6 +1,5 @@
 #include "noeud.h"
 #include "police.h"
-#include "getavail.h"
 #include "charwarning.h"
 #include "openlogfile.h"
 #include "impression.h"
@@ -14,13 +13,64 @@
 #include "pushnest.h"
 #include "normmin.h"
 #include "buildpage.h"
-#include "getavail.h"
 #include "makestring.h"
 #include "erreur.h"
 #include "texte.h"
-#include "flushlist.h"
 #include "deleteglueref.h"
 #include "cesure.h"
+#include "runaway.h"
+
+//single-word node allocation
+halfword getavail(void)
+{
+	halfword p = avail; //the new node being got ; get top location in the |avail| stack
+	if (p)
+		avail = link(avail); //and pop it off
+	else //or go into virgin territory
+		if (memend < memmax)
+			p = ++memend;
+		else
+		{
+			p = --himemmin;
+			if (himemmin <= lomemmax)
+			{
+				runaway(); //if memory is exhausted, display possible runaway text
+				overflow("main memory size", memmax+1-memmin);
+			}
+		}
+	link(p) = 0; //provide an oft-desired initialization of the new node
+	return p;
+}
+
+
+halfword fast_get_avail(void)
+{
+	if (avail == 0)
+		return getavail();
+	auto q = avail;
+	avail = link(q);
+	link(q) = 0; 
+	return q;
+}
+
+//! single-word node liberation 
+void free_avail(halfword p)
+{
+	link(p) = avail;
+	avail = p;
+}
+
+void flushlist(halfword p)
+{
+	if (p)
+	{
+		auto q = p;
+		while (link(q))
+			q = link(q);
+		link(q) = avail;
+		avail = p;
+	}
+}
 
 halfword copynodelist(halfword p)
 {

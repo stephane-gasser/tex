@@ -10,7 +10,7 @@
 #include "lecture.h"
 #include "idlookup.h"
 #include "texte.h"
-#include "getavail.h"
+#include "noeud.h"
 #include "runaway.h"
 #include "police.h"
 

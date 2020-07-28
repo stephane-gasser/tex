@@ -3,7 +3,6 @@
 #include "police.h"
 #include "expand.h"
 #include "pushmath.h"
-#include "flushlist.h"
 #include "noeud.h"
 #include "beginbox.h"
 #include "boxend.h"
@@ -12,7 +11,6 @@
 #include "texte.h"
 #include "deleteglueref.h"
 #include "backinput.h"
-#include "getavail.h"
 #include "rounddecimals.h"
 #include "impression.h"
 #include "xnoverd.h"
@@ -96,10 +94,10 @@ void scandelimiter(halfword p, bool r, Token t)
 		backerror(t, "Missing delimiter (. inserted)", "I was expecting to see something like `(' or `\\{' or\n`\\}' here. If you typed, e.g., `{' instead of `\\{', you\nshould probably delete the `{' by typing `1' now, so that\nbraces don't get unbalanced. Otherwise just proceed.\nAcceptable delimiters are characters whose \\delcode is\nnonnegative, or you can use `\\delimiter <delimiter code>'.");
 		val = 0;
 	}
-	mem[p].qqqq.b0 = (val>>20)%0x10;
-	mem[p].qqqq.b1 = (val>>12)%0x1'00;
-	mem[p].qqqq.b2 = (val>>8)%0x10;
-	mem[p].qqqq.b3 = val%0x1'00;
+	small_fam(p) = (val>>20)%(1<<4);
+	small_char(p) = (val>>12)%(1<<8);
+	large_fam(p) = (val>>8)%(1<<4);
+	large_char(p) = val%(1<<8);
 }
 
 [[nodiscard]] int scandimen(bool mu, bool inf, bool shortcut)
@@ -874,8 +872,8 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			break;
 		case assign_font_dimen:
 			val = findfontdimen(false);
-			fontinfo.back().int_ = 0;
-			val = fontinfo[val].int_;
+			Font::info.back().int_ = 0;
+			val = Font::info[val].int_;
 			lev = dimen_val;
 			break;
 		case assign_font_int:
@@ -1015,6 +1013,14 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 	saveptr += 2;
 	newsavelevel(c);
 	return scanleftbrace();
+}
+
+static void store_new_token(halfword &p, halfword t)
+{
+	auto q = getavail(); 
+	link(p) = q; 
+	info(q) = t;
+	p = q;
 }
 
 halfword scantoks(bool macrodef, bool xpand, Token tk)
@@ -1398,13 +1404,20 @@ void insthetoks(void)
 	return defref;
 }
 
+static void fast_store_new_token(halfword &p, halfword t)
+{
+	auto q = fast_get_avail();
+	link(p) = q; 
+	info(q) = t;
+	p = q;
+}
+
 static halfword strtoks(void)
 {
 	halfword p = temp_head;
 	link(p) = 0;
-	for (auto c: strings.back())
+	for (halfword t: strings.back())
 	{
-		halfword t = c;
 		if (t == ' ')
 			t = space_token;
 		else

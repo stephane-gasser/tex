@@ -1,9 +1,9 @@
 <map id="op_byte" name="op_byte">
-<area shape="rect" id="node1" title=" " alt="" coords="335,108,403,135"/>
-<area shape="rect" id="node2" href="$police_8h.html#aa32982d17a2f1a94d0b2e9efb1c2b915" title=" " alt="" coords="192,133,271,160"/>
-<area shape="rect" id="node3" href="$maincontrol_8cpp.html#a6e45a273f9cba9e3532fb656a3ee295c" title=" " alt="" coords="16,32,117,59"/>
-<area shape="rect" id="node4" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="5,209,128,236"/>
-<area shape="rect" id="node5" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="31,83,103,109"/>
-<area shape="rect" id="node6" href="$reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="21,133,112,160"/>
-<area shape="rect" id="node7" href="$police_8h.html#aa03dca6cb9124149e7bfefff1d1482f8" title=" " alt="" coords="176,32,287,59"/>
+<area shape="rect" id="node1" title=" " alt="" coords="348,132,416,159"/>
+<area shape="rect" id="node2" href="$classFont.html#a52362afa44bf263d8a61b4e4b55b3bdf" title=" " alt="" coords="171,5,284,32"/>
+<area shape="rect" id="node3" href="$classFont.html#ad6c44ab47e2af47c1d66c5fb721f4915" title=" " alt="" coords="155,56,300,83"/>
+<area shape="rect" id="node4" href="$maincontrol_8cpp.html#a6e45a273f9cba9e3532fb656a3ee295c" title=" " alt="" coords="5,81,107,108"/>
+<area shape="rect" id="node5" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="166,157,289,184"/>
+<area shape="rect" id="node6" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="191,208,263,235"/>
+<area shape="rect" id="node7" href="$reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="182,259,273,285"/>
 </map>

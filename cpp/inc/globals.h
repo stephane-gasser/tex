@@ -167,8 +167,6 @@ extern smallnumber curstyle;
 extern smallnumber cursize;
 extern scaled curmu;
 extern bool mlistpenalties;
-extern quarterword curc;
-extern fourquarters curi;
 extern halfword curalign;
 extern halfword curspan;
 extern halfword alignptr;

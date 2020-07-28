@@ -5,7 +5,6 @@
 #include "lecture.h"
 #include "pushalignment.h"
 #include "pushnest.h"
-#include "getavail.h"
 #include "noeud.h"
 #include "alignpeek.h"
 #include "texte.h"

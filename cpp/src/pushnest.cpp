@@ -1,14 +1,14 @@
 #include "pushnest.h"
 #include "erreur.h"
-#include "getavail.h"
+#include "noeud.h"
 
 void pushnest(void)
 {
 	if (nestptr > maxneststack)
 	{
 		maxneststack = nestptr;
-	if (nestptr == nestsize)
-		overflow("semantic nest size", nestsize); 
+		if (nestptr == nestsize)
+			overflow("semantic nest size", nestsize); 
 	}
 	nest[nestptr++] = curlist;
 	tail = head = getavail();

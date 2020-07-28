@@ -41,11 +41,13 @@ void mlisttohlist(void)
 	auto style = curstyle;
 	auto q = mlist;
 	halfword r = 0;
-	smallnumber rtype = 17;
+	smallnumber rtype = op_noad;
 	scaled maxh = 0;
 	scaled maxd = 0;
-	cursize = curstyle < 4 ? 0 : 16*((curstyle-2)/2);
+	cursize = curstyle < script_style  ? 0 : 16*((curstyle-text_style)/2);
 	curmu = xovern(math_quad(cursize), 18);
+	quarterword curc;
+	Font ft;
 	while (q)
 	{
 		delta = 0;
@@ -225,12 +227,12 @@ void mlisttohlist(void)
 		{
 			case math_char:
 			case math_text_char:
-				fetch(nucleus(q));
-				if (char_exists(curi))
+				std::tie(ft, curc) = fetch(nucleus(q));
+				if (char_exists(ft.char_info(curc)))
 				{
-					delta = fonts[curf].char_italic(curc);
-					p = newcharacter(curf, curc);
-					if (math_type(nucleus(q)) == math_text_char && fonts[curf].space())
+					delta = ft.char_italic(curc);
+					p = newcharacter(fam_fnt(type(nucleus(q))+cursize), curc);
+					if (math_type(nucleus(q)) == math_text_char && ft.space())
 						delta = 0;
 					if (math_type(subscr(q)) == 0 && delta)
 					{

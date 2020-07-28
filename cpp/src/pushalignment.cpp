@@ -1,5 +1,4 @@
 #include "pushalignment.h"
-#include "getavail.h"
 #include "noeud.h"
 
 void pushalignment(halfword loop)

@@ -9,38 +9,31 @@
 
 void makemathaccent(halfword q)
 {
-	fetch(accent_chr(q));
-	if (char_exists(curi))
+	auto [ft, curc] = fetch(accent_chr(q));
+	if (char_exists(ft.char_info(curc)))
 	{
-		auto i = curi;
 		auto c = curc;
-		auto &ft = fonts[curf];
 		scaled s = 0;
 		if (math_type(nucleus(q)) == math_char)
 		{
-			fetch(nucleus(q));
-			if (char_tag(curi) == lig_tag)
+			std::tie(ft, curc) = fetch(nucleus(q));
+			if (char_tag(ft.char_info(curc)) == lig_tag)
 			{
-				int a = ft.lig_kern_start(curi);
-				curi = fontinfo[a].qqqq;
-				if (skip_byte(curi) > stop_flag)
-				{
-					a = ft.lig_kern_start(curi);
-					curi = fontinfo[a].qqqq;
-				}
+				int a = ft.lig_kern_start(ft.char_info(curc));
+				if (skip_byte(Font::infos(a)) > stop_flag)
+					a = ft.lig_kern_start(Font::infos(a));
 				while (true)
 				{
-					if (next_char(curi) == ft.skewchar)
+					if (next_char(Font::infos(a)) == ft.skewchar)
 					{
-						if (op_byte(curi) >= kern_flag)
-							if (skip_byte(curi) <= stop_flag)
-								s = ft.char_kern(curi);
+						if (op_byte(Font::infos(a)) >= kern_flag)
+							if (skip_byte(Font::infos(a)) <= stop_flag)
+								s = ft.char_kern(Font::infos(a));
 						break;
 					}
-					if (skip_byte(curi) >= stop_flag)
+					if (skip_byte(Font::infos(a)) >= stop_flag)
 						break;
-					a += skip_byte(curi)+1;
-					curi = fontinfo[a].qqqq;
+					a += skip_byte(Font::infos(a))+1;
 				}
 			}
 		}
@@ -49,11 +42,10 @@ void makemathaccent(halfword q)
 		scaled h = height(x);
 		while (true)
 		{
-			if (char_tag(i) != list_tag)
+			if (char_tag(ft.char_info(c)) != list_tag)
 				break;
-			halfword y = rem_byte(i);
-			i = ft.char_info(y);
-			if (skip_byte(i) <= 0)
+			halfword y = rem_byte(ft.char_info(c));
+			if (skip_byte(ft.char_info(y)) <= 0)
 				break;
 			if (ft.char_width(y) > w)
 				break;

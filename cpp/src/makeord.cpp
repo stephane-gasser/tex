@@ -8,82 +8,77 @@ void makeord(halfword q)
 	bool label20 = false;
 	do
 	{
-		if (link(q+3) == 0 && link(q+2) == 0 && link(q+1) == 1)
+		if (math_type(subscr(q)) == 0 && math_type(supscr(q)) == 0 && math_type(nucleus(q)) == math_char)
 		{
-			halfword p = link(q);
-			if (p && type(p) >= 16 && type(p) <= 22 && link(p+1) == 1 && type(p+1) == type(q+1))
+			auto p = link(q);
+			if (p && type(p) >= ord_noad && type(p) <= punct_noad && math_type(nucleus(p)) == math_char && fam(nucleus(p)) == fam(nucleus(q)))
 			{
-				link(q+1) = 4;
-				fetch(q+1);
-				if (char_tag(curi) == lig_tag)
+				math_type(nucleus(q)) = math_text_char;
+				auto [ft, curc] = fetch(nucleus(q));
+				if (char_tag(ft.char_info(curc)) == lig_tag)
 				{
-					int a = fonts[curf].lig_kern_start(curi);
-					curc = character(lig_char(p));
-					curi = fontinfo[a].qqqq;
-					if (skip_byte(curi) > stop_flag)
-					{
-						a = fonts[curf].lig_kern_restart(curi);
-						curi = fontinfo[a].qqqq;
-					}
+					int a = ft.lig_kern_start(ft.char_info(curc));
+					curc = character(nucleus(p));
+					if (skip_byte(Font::infos(a)) > stop_flag)
+						a = ft.lig_kern_restart(Font::infos(a));
 					while (true)
 					{
 						halfword r;
-						if (next_char(curi) == curc)
-							if (skip_byte(curi) <= stop_flag)
-								if (op_byte(curi) >= kern_flag)
+						if (next_char(Font::infos(a)) == curc)
+							if (skip_byte(Font::infos(a)) <= stop_flag)
+								if (op_byte(Font::infos(a)) >= kern_flag)
 								{
-									p = newkern(fonts[curf].char_kern(curi));
+									p = newkern(ft.char_kern(Font::infos(a)));
 									link(p) = link(q);
 									link(q) = p;
 									return;
 								}
 								else
 								{
-									switch (op_byte(curi))
+									switch (op_byte(Font::infos(a)))
 									{
 										// AB -> CB (symboles =:| et =:|>)
 										case 1:
 										case 5: 
-											subtype(q+1) = rem_byte(curi);
+											character(nucleus(q)) = rem_byte(Font::infos(a));
 											break;
 										// AB -> AC (symboles |=: et |=:>)
 										case 2:
 										case 6: 
-											subtype(p+1) = rem_byte(curi);
+											character(nucleus(p)) = rem_byte(Font::infos(a));
 											break;
 										// AB -> ACB (symboles |=:|, |=:|> et |=:|>>)
 										case 3:
 										case 7:
 										case 11:
 											r = newnoad();
-											subtype(r+1) = rem_byte(curi);
-											type(r+1) = type(q+1);
+											character(nucleus(r)) = rem_byte(Font::infos(a));
+											fam(nucleus(r)) = fam(nucleus(q));
 											link(q) = r;
 											link(r) = p;
-											if (op_byte(curi) < 11) // symboles |=:| et |=:|>
-												link(r+1) = 1;
+											if (op_byte(Font::infos(a)) < 11) // symboles |=:| et |=:|>
+												math_type(nucleus(r)) = math_char;
 											else // symbole |=:|>>
-												link(r+1) = 4; 
+												math_type(nucleus(r)) = math_text_char; 
 											break;
 										// AB -> C (symbole =;)
 										default:
 											link(q) = link(p);
-											subtype(q+1) = rem_byte(curi);
-											mem[q+3] = mem[p+3];
-											mem[q+2] = mem[p+2];
-											freenode(p, 4);
+											character(nucleus(q)) = rem_byte(Font::infos(a));
+											mem[subscr(q)] = mem[subscr(p)];
+											mem[supscr(q)] = mem[supscr(p)];
+											freenode(p, noad_size);
 									}
-									if (op_byte(curi) > 3)
+									if (op_byte(Font::infos(a)) > 3)
 										return;
-									link(q+1) = 1;
+									math_type(nucleus(q)) = math_char;
 									label20 = true;
 								}
 						if (label20)
 							break;
-						if (skip_byte(curi) >= stop_flag)
+						if (skip_byte(Font::infos(a)) >= stop_flag)
 							return;
-						a += skip_byte(curi)+1;
-						curi = fontinfo[a].qqqq;
+						a += skip_byte(Font::infos(a))+1;
 					}
 				}
 			}

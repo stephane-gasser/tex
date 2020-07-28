@@ -1,8 +1,6 @@
 #include "cesure.h"
 #include "erreur.h"
 #include "noeud.h"
-#include "reconstitute.h"
-#include "flushlist.h"
 #include "lecture.h"
 #include "impression.h"
 #include "police.h"
@@ -190,27 +188,273 @@ static void advance_major_tail(halfword &majortail, int &rcount)
 	rcount++;
 }
 
+static void set_cur_r(int j, int n, halfword &curr, halfword &currh, halfword hchar)
+{
+	curr = j < n ? hu[j+1] : bchar;
+	currh = hyf[j]%2 ? hchar : non_char;
+}
+
+static void wrap_lig(bool test, halfword &t)
+{
+	if (ligaturepresent)
+	{
+		halfword p = newligature(hf, curl, link(curq));
+		if (lfthit)
+		{
+			subtype(p) = 2;
+			lfthit = false;
+		}
+		if (test && ligstack == 0)
+		{
+			subtype(p)++;
+			rthit = false;
+		}
+		link(curq) = p;
+		t = p;
+		ligaturepresent = false;
+	}
+}
+
+static void pop_lig_stack(smallnumber &j, halfword &t)
+{
+	if (lig_ptr(ligstack) > 0)
+	{
+		link(t) = lig_ptr(ligstack);
+		t = link(t);
+		j++;
+	}
+}
+
+static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword hchar)
+{
+	halfword p, t;
+	halfword currh, testchar;
+	scaled w;
+	fontindex k;
+	hyphenpassed = 0;
+	t = hold_head;
+	w = 0;
+	link(hold_head) = 0;
+	curl = hu[j];
+	curq = t;
+	if (j == 0)
+	{
+		ligaturepresent = initlig;
+		p = initlist;
+		if (ligaturepresent)
+			lfthit = initlft;
+		while (p > 0)
+		{
+			link(t) = getavail();
+			t = link(t);
+			font(t) = hf;
+			character(t) = character(p);
+			p = link(p);
+		}
+	}
+	else 
+		if (curl < non_char)
+		{
+			link(t) = getavail();
+			t = link(t);
+			font(t) = hf;
+			character(t) = curl;
+		}
+	ligstack = 0;
+	set_cur_r(j, n, curr, currh, hchar);
+	bool skipLoop;
+	bool recommence;
+	do
+	{
+		recommence = false;
+		skipLoop = false;
+		if (curl == 256)
+		{
+			k = fonts[hf].bcharlabel;
+			if (k == 0)
+				skipLoop = true;
+		}
+		else
+		{
+			if (fonts[hf].char_tag(curl) != lig_tag)
+				skipLoop = true;
+			else
+			{
+				k = fonts[hf].lig_kern_start(fonts[hf].char_info(curl));
+				if (Font::skip_byte(k) > stop_flag)
+					k = fonts[hf].lig_kern_restart(Font::infos(k));
+			}
+		}
+		if (!skipLoop)
+			testchar = currh < non_char ? currh : curr;
+		while (!skipLoop)
+		{
+			if (Font::next_char(k) == testchar)
+				if (Font::skip_byte(k) <= stop_flag)
+					if (currh < non_char)
+					{
+						hyphenpassed = j;
+						hchar = non_char;
+						currh = non_char;
+						recommence = true;
+						break;
+					}
+					else
+					{
+						if (hchar < non_char && hyf[j]%2)
+						{
+							hyphenpassed = j;
+							hchar = non_char;
+						}
+						if (Font::op_byte(k) < kern_flag)
+						{
+							if (curl == non_char)
+								lfthit = true;
+							if (j == n && ligstack == 0)
+								rthit = true;
+							switch (Font::op_byte(k))
+							{
+								// AB -> CB (symboles =:| et =:|>)
+								case 1:
+								case 5:
+									curl = Font::rem_byte(k);
+									ligaturepresent = true;
+									break;
+								// AB -> AC (symboles |=: et |=:>)
+								case 2:
+								case 6:
+									curr = Font::rem_byte(k);
+									if (ligstack > 0)
+										character(ligstack) = curr;
+									else
+									{
+										ligstack = newligitem(curr);
+										if (j == n)
+											bchar = non_char;
+										else
+										{
+											p = getavail();
+											lig_ptr(ligstack) = p;
+											character(p) = hu[j+1];
+											font(p) = hf;
+										}
+									}
+									break;
+								// AB -> ACB (symbole |=:|)
+								case 3:
+									curr = Font::rem_byte(k);
+									p = ligstack;
+									ligstack = newligitem(curr);
+									link(ligstack) = p;
+									break;
+								// AB -> ACB (symboles |=:|> et |=:|>>)
+								case 7:
+								case 11:
+									wrap_lig(false, t);
+									curq = t;
+									curl = Font::rem_byte(k);
+									ligaturepresent = true;
+									break;
+								// AB -> C (symbole !=)
+								default:
+									curl = Font::rem_byte(k);
+									ligaturepresent = true;
+									if (ligstack > 0)
+									{
+										pop_lig_stack(j, t);
+										p = ligstack;
+										ligstack = link(p);
+										freenode(p, 2);
+										if (ligstack == 0)
+											set_cur_r(j, n, curr, currh, hchar);
+										else
+											curr = character(ligstack);
+									}
+									else 
+										if (j == n)
+										{
+											skipLoop = true;
+											continue;
+										}
+										else
+										{
+											link(t) = getavail();
+											t = link(t);
+											font(t) = hf;
+											character(t) = curr;
+											j++;
+											set_cur_r(j, n, curr, currh, hchar);
+										}
+							}
+							if (Font::op_byte(k) > 4 && Font::op_byte(k) != 7)
+							{
+								skipLoop = true;
+								continue;
+							}
+							recommence = true;
+							break;
+						}
+						w = fonts[hf].char_kern(Font::infos(k));
+						skipLoop = true;
+						continue;
+					}
+			if (Font::skip_byte(k) >= 128)
+				if (currh == 256)
+				{
+					skipLoop = true;
+					continue;
+				}
+				else
+				{
+					currh = 256;
+					recommence = true;
+					break;
+				}
+			k += Font::skip_byte(k)+1;
+		}
+		if (recommence)
+			continue;
+		wrap_lig(rthit, t);
+		if (w)
+		{
+			link(t) = newkern(w);
+			t = link(t);
+			w = 0;
+		}
+		if (ligstack > 0)
+		{
+			curq = t;
+			curl = character(ligstack);
+			ligaturepresent = true;
+			pop_lig_stack(j, t);
+			p = ligstack;
+			ligstack = link(p);
+			freenode(p, 2);
+			if (ligstack == 0)
+				set_cur_r(j, n, curr, currh, hchar);
+			else
+				curr = character(ligstack);
+			recommence = true;
+			continue;
+		}
+	} while (recommence);
+	return j;
+}
+
 void hyphenate(void)
 {
 	char i, j, l;
-	halfword q, r, s, bchar, majortail, minortail;
 	ASCIIcode c;
-	char cloc;
-	int rcount;
-	halfword hyfnode;
-	int v;
-	hyphpointer h;
-	poolpointer u;
 	for (j = 0; j <= hn; j++)
 		hyf[j] = 0;
-	h = hc[1];
+	auto h = hc[1];
 	hn++;
 	hc[hn] = curlang;
 	for (j = 2; j <= hn; j++)
-	h = (2*h+hc[j])%hyph_size;
-	bool keepIn = true;
+		h = (2*h+hc[j])%hyph_size;
 	bool skip = false;
-	while (keepIn)
+	halfword s;
+	for (bool keepIn = true; keepIn;)
 	{
 		if (hyphword[h] == "")
 			break;
@@ -219,7 +463,7 @@ void hyphenate(void)
 		if (hyphword[h].size() == hn)
 		{
 			j = 1;
-			u = 0;
+			poolpointer u = 0;
 			do
 			{
 				if (hyphword[h][u] < hc[j])
@@ -270,7 +514,7 @@ void hyphenate(void)
 			{
 				if (trie_op(z))
 				{
-					v =	trie_op(z);
+					auto v = trie_op(z);
 					do
 					{
 						v += opstart[curlang];
@@ -295,11 +539,11 @@ void hyphenate(void)
 			fini = false;
 	if (fini)
 		return;
-	q = link(hb);
+	auto q = link(hb);
 	link(hb) = 0;
-	r = link(ha);
+	auto r = link(ha);
 	link(ha) = 0;
-	bchar = hyfbchar;
+	auto bchar = hyfbchar;
 	do
 	{
 		if (is_char_node(ha))
@@ -386,22 +630,21 @@ void hyphenate(void)
 				r = getnode(small_node_size);
 				link(r) = link(hold_head);
 				type(r) = disc_node;
-				majortail = r;
-				rcount = 0;
+				auto majortail = r;
+				auto rcount = 0;
 				while (link(majortail) > 0)
 					advance_major_tail(majortail, rcount);
 				i = hyphenpassed;
 				hyf[i] = 0;
-				minortail = 0;
+				auto minortail = 0;
 				info(r+1) = 0;
-				hyfnode = newcharacter(hf, hyfchar);
+				auto hyfnode = newcharacter(hf, hyfchar);
 				if (hyfnode)
 				{
 					i++;
 					c = hu[i];
 					hu[i] = hyfchar;
-					link(hyfnode) = avail;
-					avail = hyfnode;
+					free_avail(hyfnode);
 				}
 				while (l <= i)
 				{
@@ -425,7 +668,7 @@ void hyphenate(void)
 				}
 				minortail = 0;
 				pre_break(r) = 0;
-				cloc = 0;
+				char cloc = 0;
 				if (fonts[hf].bcharlabel)
 				{
 					l--;

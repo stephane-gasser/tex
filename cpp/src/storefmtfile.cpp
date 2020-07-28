@@ -175,8 +175,8 @@ void storefmtfile(void)
 	dump_int(cscount);
 	println();
 	print(std::to_string(cscount)+" multiletter control sequences");
-	dump_int(fontinfo.size()-1);
-	for (auto &fi: fontinfo)
+	dump_int(Font::info.size()-1);
+	for (auto &fi: Font::info)
 		dump_wd(fi);
 	dump_int(fonts.size()-1);
 	for (auto &ft: fonts)
@@ -210,7 +210,7 @@ void storefmtfile(void)
 			print(" at "+asScaled(ft.size)+"pt");
 	}
 	println();
-	print(std::to_string(fontinfo.size()-7)+" words of font info for "+std::to_string(fonts.size()+1)+" preloaded font"+(fonts.size()+1 == 1 ? "" : "s"));
+	print(std::to_string(Font::info.size()-7)+" words of font info for "+std::to_string(fonts.size()+1)+" preloaded font"+(fonts.size()+1 == 1 ? "" : "s"));
 	dump_int(hyphcount);
 	for (k = 0; k <= hyph_size; k++)
 		if (hyphword[k] != "")

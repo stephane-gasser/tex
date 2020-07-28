@@ -6,6 +6,7 @@
 class Font
 {
 	public:
+		static std::vector<memoryword> info;
 		int charbase; //!< base addresses for |char_info|
 		int widthbase; //!< base addresses for widths
 		int heightbase; //!< base addresses for heights
@@ -30,6 +31,11 @@ class Font
 		fontindex bcharlabel; //!< start of |lig_kern| program for left boundary character, |non_address| if there is none
 		int bchar; //!< right boundary character, |non_char| if there is none
 		int falsebchar; //!< |font_bchar| if it doesn't exist in the font, otherwise |non_char|
+		static fourquarters& infos(int);
+		static quarterword skip_byte(int);
+		static quarterword next_char(int);
+		static quarterword op_byte(int);
+		static quarterword rem_byte(int);
 		fourquarters char_info(smallnumber) const;
 		int char_width(smallnumber) const;
 		int char_height(smallnumber) const;
@@ -51,9 +57,8 @@ class Font
 		bool char_exists(smallnumber);
 };
 
+inline std::vector<memoryword> Font::info(7);
 inline std::vector<Font> fonts(1);
-inline std::vector<memoryword> fontinfo(7);
-inline internalfontnumber curf;
 
 Font& cur_font(void);
 int curFontNum(void);

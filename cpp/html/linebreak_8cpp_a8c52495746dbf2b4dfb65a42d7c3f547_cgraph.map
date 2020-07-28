@@ -1,55 +1,54 @@
 <map id="linebreak" name="linebreak">
-<area shape="rect" id="node1" title=" " alt="" coords="5,1419,80,1446"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a098afd72061033385d2dbfa0419c6314" title="pointer to the corresponding passive node" alt="" coords="486,1495,575,1522"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="751,1191,793,1218"/>
-<area shape="rect" id="node4" href="$police_8cpp.html#a375b29365eb2744579e4bf4518e6aaac" title=" " alt="" coords="493,1242,568,1268"/>
-<area shape="rect" id="node5" href="$police_8cpp.html#afed1a10a514734f89ab8691850baa84f" title=" " alt="" coords="488,1292,573,1319"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title="the character code in a char_node" alt="" coords="333,407,409,434"/>
-<area shape="rect" id="node7" href="$linebreak_8cpp.html#abe07bda0bdd114e23a3709425a227dd0" title=" " alt="" coords="311,52,431,79"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title="the shrinkability of this glob of glue" alt="" coords="502,103,559,130"/>
-<area shape="rect" id="node9" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="491,1039,570,1066"/>
-<area shape="rect" id="node10" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="483,672,579,699"/>
-<area shape="rect" id="node11" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="631,640,703,667"/>
-<area shape="rect" id="node12" href="$linebreak_8cpp.html#a12f77ff13ba18ab5565c21eb469dff7b" title=" " alt="" coords="129,634,262,660"/>
-<area shape="rect" id="node13" href="$parametres_8h.html#a6d09e1844277468a290fe7e37ea6a68c" title=" " alt="" coords="128,684,263,711"/>
-<area shape="rect" id="node14" href="$constantes_8cpp.html#a58ce4cdcf816a030036575329971e946" title="very_loose_fit..tight_fit on final line for this break" alt="" coords="500,1343,561,1370"/>
-<area shape="rect" id="node15" href="$noeud_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="323,634,418,660"/>
-<area shape="rect" id="node16" href="$constantes_8cpp.html#afdd839d64f5055eb2e3870458ebe6d39" title="pointer to a glue specification" alt="" coords="497,723,565,750"/>
-<area shape="rect" id="node17" href="$constantes_8cpp.html#a38c34c03d5564efb2b857a562fa4de70" title="pointer to box or rule node for leaders" alt="" coords="491,154,570,180"/>
-<area shape="rect" id="node18" href="$constantes_8cpp.html#a65e055dfd7fea1ac8c6c735f76e87825" title="text that precedes a discretionary break" alt="" coords="491,559,570,586"/>
-<area shape="rect" id="node19" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="497,887,565,914"/>
-<area shape="rect" id="node20" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="507,1546,554,1572"/>
-<area shape="rect" id="node21" href="$constantes_8cpp.html#a2537c13195b22342fd09b94a05323a04" title="the font code in a char_node" alt="" coords="349,786,393,812"/>
-<area shape="rect" id="node22" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="497,1191,565,1218"/>
-<area shape="rect" id="node23" href="$parametres_8h.html#a80b4ce22c8d7953b8d9d69c5b1868232" title=" " alt="" coords="154,1191,237,1218"/>
-<area shape="rect" id="node24" href="$parametres_8h.html#aa87a7f865a9c4a7d5d00c022fc6df36e" title=" " alt="" coords="149,1242,241,1268"/>
-<area shape="rect" id="node25" href="$parametres_8h.html#a45cc0a02877c99457cd993ff3f374e05" title=" " alt="" coords="169,1292,222,1319"/>
-<area shape="rect" id="node26" href="$linebreak_8cpp.html#a6c1eccdd764b8e25b34a9b5370d0d5aa" title=" " alt="" coords="139,1343,252,1370"/>
-<area shape="rect" id="node27" href="$cesure_8cpp.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="154,735,237,762"/>
-<area shape="rect" id="node28" href="$constantes_8cpp.html#aa0355678d828c2e2f836409b82366625" title=" " alt="" coords="321,988,420,1015"/>
-<area shape="rect" id="node29" href="$constantes_8cpp.html#ad058da1b3e7e4027797ff16b1e5a6c32" title="the word where the ligature is to be found" alt="" coords="337,836,404,863"/>
-<area shape="rect" id="node30" href="$cesure_8cpp.html#a4953f312f016c82145ae48b0d39341bd" title=" " alt="" coords="167,1546,224,1572"/>
-<area shape="rect" id="node31" href="$linebreak_8cpp.html#a7c6cf5fe8506c32f31be9ec53a4d994e" title=" " alt="" coords="152,1596,239,1623"/>
-<area shape="rect" id="node32" href="$trybreak_8cpp.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="336,1394,405,1420"/>
-<area shape="rect" id="node33" href="$constantes_8cpp.html#aedcc34a5a67d4cf37531eebef37afc8f" title="line that begins at this breakpoint" alt="" coords="485,1596,577,1623"/>
-<area shape="rect" id="node34" href="$constantes_8cpp.html#acd8e2010495121e1bcaa7765b0cacdfc" title=" " alt="" coords="479,2103,583,2130"/>
-<area shape="rect" id="node35" href="$constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc" title="the stretchability of this glob of glue" alt="" coords="499,1647,562,1674"/>
-<area shape="rect" id="node36" href="$constantes_8cpp.html#adc50c97800a7c2cd367f331208376d6b" title="order of infinity for stretching" alt="" coords="481,1767,580,1794"/>
-<area shape="rect" id="node37" href="$constantes_8cpp.html#a9f6a59c3609f308351f1ecbb9cd040e0" title="the quantity that \TeX\ minimizes" alt="" coords="479,1982,583,2008"/>
-<area shape="rect" id="node38" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="504,1855,557,1882"/>
-<area shape="rect" id="node39" href="$constantes_8cpp.html#a8bf0c89280513a147dbbe155ebdd1d01" title=" " alt="" coords="162,2052,229,2079"/>
-<area shape="rect" id="node40" href="$parametres_8h.html#a4da925467422a9334fbe75b22f73a3fe" title=" " alt="" coords="335,1900,406,1927"/>
-<area shape="rect" id="node41" href="$parametres_8h.html#a5c11bf6d52f10a4dead1d46df79e27a6" title=" " alt="" coords="155,2154,236,2180"/>
-<area shape="rect" id="node42" href="$noeud_8cpp.html#af03d944ebde3715a26223523628b2376" title=" " alt="" coords="317,2255,424,2282"/>
-<area shape="rect" id="node43" href="$noeud_8cpp.html#a391ee2979062801a9a3d066cb9bfafd3" title=" " alt="" coords="327,2306,415,2332"/>
-<area shape="rect" id="node44" href="$constantes_8cpp.html#a765fb197a183d02c528ad03d46cee17f" title="the added cost of breaking a list here" alt="" coords="163,2306,227,2332"/>
-<area shape="rect" id="node45" href="$popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="633,2432,701,2459"/>
-<area shape="rect" id="node46" href="$postlinebreak_8cpp.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="146,1951,245,1978"/>
-<area shape="rect" id="node47" href="$parametres_8h.html#aabc36e5653c6d19e982e16550b2f9ec4" title=" " alt="" coords="331,2356,410,2383"/>
-<area shape="rect" id="node48" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="327,2458,415,2484"/>
-<area shape="rect" id="node49" href="$constantes_8h.html#a40ebcb357219356c4866d033cd52ab5b" title=" " alt="" coords="138,2559,253,2586"/>
-<area shape="rect" id="node50" href="$linebreak_8cpp.html#a897dc855935293cd546f4e5e5c03e6e5" title=" " alt="" coords="149,2610,242,2636"/>
-<area shape="rect" id="node51" href="$linebreak_8cpp.html#acaff73f9ebbb8d8f3aa3746b91b82753" title=" " alt="" coords="133,2660,258,2687"/>
-<area shape="rect" id="node52" href="$parametres_8h.html#aaf777f3fbe78ad6863c33069ea9b0dbc" title=" " alt="" coords="158,2711,233,2738"/>
-<area shape="rect" id="node53" href="$linebreak_8cpp.html#a8cdb4cba095a64f549d751b92cccda6b" title=" " alt="" coords="160,2762,231,2788"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,1420,80,1447"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a098afd72061033385d2dbfa0419c6314" title="pointer to the corresponding passive node" alt="" coords="486,660,575,687"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="751,1140,793,1167"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title="the character code in a char_node" alt="" coords="333,356,409,383"/>
+<area shape="rect" id="node5" href="$linebreak_8cpp.html#abe07bda0bdd114e23a3709425a227dd0" title=" " alt="" coords="311,52,431,79"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#ae5439b22a7cf88ec2a4523b78d20fec8" title="the shrinkability of this glob of glue" alt="" coords="502,103,559,130"/>
+<area shape="rect" id="node7" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="491,1495,570,1522"/>
+<area shape="rect" id="node8" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="483,1140,579,1167"/>
+<area shape="rect" id="node9" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="631,1090,703,1116"/>
+<area shape="rect" id="node10" href="$linebreak_8cpp.html#a12f77ff13ba18ab5565c21eb469dff7b" title=" " alt="" coords="129,432,262,459"/>
+<area shape="rect" id="node11" href="$parametres_8h.html#a6d09e1844277468a290fe7e37ea6a68c" title=" " alt="" coords="128,483,263,510"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#a58ce4cdcf816a030036575329971e946" title="very_loose_fit..tight_fit on final line for this break" alt="" coords="500,1191,561,1218"/>
+<area shape="rect" id="node13" href="$noeud_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="323,1191,418,1218"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#afdd839d64f5055eb2e3870458ebe6d39" title="pointer to a glue specification" alt="" coords="497,1292,565,1319"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#a38c34c03d5564efb2b857a562fa4de70" title="pointer to box or rule node for leaders" alt="" coords="491,508,570,535"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#a65e055dfd7fea1ac8c6c735f76e87825" title="text that precedes a discretionary break" alt="" coords="491,610,570,636"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="497,1039,565,1066"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="507,1343,554,1370"/>
+<area shape="rect" id="node19" href="$constantes_8cpp.html#a2537c13195b22342fd09b94a05323a04" title="the font code in a char_node" alt="" coords="349,458,393,484"/>
+<area shape="rect" id="node20" href="$police_8h.html#a424ff50928214e91519fabeeb26962fe" title=" " alt="" coords="505,711,556,738"/>
+<area shape="rect" id="node21" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="497,458,565,484"/>
+<area shape="rect" id="node22" href="$parametres_8h.html#a80b4ce22c8d7953b8d9d69c5b1868232" title=" " alt="" coords="154,1167,237,1194"/>
+<area shape="rect" id="node23" href="$parametres_8h.html#aa87a7f865a9c4a7d5d00c022fc6df36e" title=" " alt="" coords="149,1218,241,1244"/>
+<area shape="rect" id="node24" href="$parametres_8h.html#a45cc0a02877c99457cd993ff3f374e05" title=" " alt="" coords="169,1268,222,1295"/>
+<area shape="rect" id="node25" href="$linebreak_8cpp.html#a6c1eccdd764b8e25b34a9b5370d0d5aa" title=" " alt="" coords="139,1319,252,1346"/>
+<area shape="rect" id="node26" href="$cesure_8cpp.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="154,711,237,738"/>
+<area shape="rect" id="node27" href="$constantes_8cpp.html#aa0355678d828c2e2f836409b82366625" title=" " alt="" coords="321,1066,420,1092"/>
+<area shape="rect" id="node28" href="$constantes_8cpp.html#ad058da1b3e7e4027797ff16b1e5a6c32" title="the word where the ligature is to be found" alt="" coords="337,812,404,839"/>
+<area shape="rect" id="node29" href="$cesure_8cpp.html#a4953f312f016c82145ae48b0d39341bd" title=" " alt="" coords="167,1522,224,1548"/>
+<area shape="rect" id="node30" href="$linebreak_8cpp.html#a7c6cf5fe8506c32f31be9ec53a4d994e" title=" " alt="" coords="152,1572,239,1599"/>
+<area shape="rect" id="node31" href="$trybreak_8cpp.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="336,1495,405,1522"/>
+<area shape="rect" id="node32" href="$constantes_8cpp.html#aedcc34a5a67d4cf37531eebef37afc8f" title="line that begins at this breakpoint" alt="" coords="485,1647,577,1674"/>
+<area shape="rect" id="node33" href="$constantes_8cpp.html#acd8e2010495121e1bcaa7765b0cacdfc" title=" " alt="" coords="479,2052,583,2079"/>
+<area shape="rect" id="node34" href="$constantes_8cpp.html#a0ebe134d7199867461456a4ea186d3dc" title="the stretchability of this glob of glue" alt="" coords="499,1748,562,1775"/>
+<area shape="rect" id="node35" href="$constantes_8cpp.html#adc50c97800a7c2cd367f331208376d6b" title="order of infinity for stretching" alt="" coords="481,1799,580,1826"/>
+<area shape="rect" id="node36" href="$constantes_8cpp.html#a9f6a59c3609f308351f1ecbb9cd040e0" title="the quantity that \TeX\ minimizes" alt="" coords="479,1976,583,2003"/>
+<area shape="rect" id="node37" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="504,1875,557,1902"/>
+<area shape="rect" id="node38" href="$constantes_8cpp.html#a8bf0c89280513a147dbbe155ebdd1d01" title=" " alt="" coords="162,2052,229,2079"/>
+<area shape="rect" id="node39" href="$parametres_8h.html#a4da925467422a9334fbe75b22f73a3fe" title=" " alt="" coords="335,1850,406,1876"/>
+<area shape="rect" id="node40" href="$parametres_8h.html#a5c11bf6d52f10a4dead1d46df79e27a6" title=" " alt="" coords="155,2154,236,2180"/>
+<area shape="rect" id="node41" href="$noeud_8cpp.html#af03d944ebde3715a26223523628b2376" title=" " alt="" coords="317,2255,424,2282"/>
+<area shape="rect" id="node42" href="$noeud_8cpp.html#a391ee2979062801a9a3d066cb9bfafd3" title=" " alt="" coords="327,2306,415,2332"/>
+<area shape="rect" id="node43" href="$constantes_8cpp.html#a765fb197a183d02c528ad03d46cee17f" title="the added cost of breaking a list here" alt="" coords="163,2306,227,2332"/>
+<area shape="rect" id="node44" href="$popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="633,2458,701,2484"/>
+<area shape="rect" id="node45" href="$postlinebreak_8cpp.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="146,1951,245,1978"/>
+<area shape="rect" id="node46" href="$parametres_8h.html#aabc36e5653c6d19e982e16550b2f9ec4" title=" " alt="" coords="331,2356,410,2383"/>
+<area shape="rect" id="node47" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="327,2458,415,2484"/>
+<area shape="rect" id="node48" href="$constantes_8h.html#a40ebcb357219356c4866d033cd52ab5b" title=" " alt="" coords="138,2559,253,2586"/>
+<area shape="rect" id="node49" href="$linebreak_8cpp.html#a897dc855935293cd546f4e5e5c03e6e5" title=" " alt="" coords="149,2610,242,2636"/>
+<area shape="rect" id="node50" href="$linebreak_8cpp.html#acaff73f9ebbb8d8f3aa3746b91b82753" title=" " alt="" coords="133,2660,258,2687"/>
+<area shape="rect" id="node51" href="$parametres_8h.html#aaf777f3fbe78ad6863c33069ea9b0dbc" title=" " alt="" coords="158,2711,233,2738"/>
+<area shape="rect" id="node52" href="$linebreak_8cpp.html#a8cdb4cba095a64f549d751b92cccda6b" title=" " alt="" coords="160,2762,231,2788"/>
 </map>

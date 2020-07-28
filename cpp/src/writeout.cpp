@@ -1,10 +1,8 @@
 #include "writeout.h"
-#include "getavail.h"
+#include "noeud.h"
 #include "lecture.h"
 #include "impression.h"
 #include "erreur.h"
-#include "flushlist.h"
-#include "texte.h"
 
 constexpr int end_write_token = cs_token_flag+end_write;
 
@@ -43,7 +41,7 @@ void writeout(halfword p)
 	{
 		if (j == term_only && selector == term_and_log)
 			selector = log_only;
-		printnl(""); 
+		printnl("");
 	}
 	print(tokenshow(defref)+"\n");
 	flushlist(defref);

@@ -4,7 +4,7 @@
 #include <iostream> 
 #include <cmath>
 #include "lecture.h" 
-#include "flushlist.h"
+#include "noeud.h"
 #include "erreur.h"
 #include "primitive.h"
 #include "police.h"
@@ -229,8 +229,7 @@ std::string scs(halfword p)
 
 static std::string asDelimiter(halfword p)
 {
-	int a = (mem[p].qqqq.b0<<8)+mem[p].qqqq.b1;
-	a = (a<<12)+(mem[p].qqqq.b2<<8)+mem[p].qqqq.b3;
+	int a = (small_fam(p)<<20)+(small_char(p)<<12)+(large_fam(p)<<8)+large_char(p);
 	return a < 0 ? std::to_string(a) : hex(a);
 }
 
@@ -840,15 +839,9 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 					break;
 				case fraction_noad:
 					oss << esc("fraction, thickness ") << (new_hlist(p) == default_code ? "= default": asScaled(new_hlist(p)));
-					if (small_fam(left_delimiter(p))
-					 || small_char(left_delimiter(p))
-					 || large_fam(left_delimiter(p))
-					 || large_char(left_delimiter(p)))
+					if (small_fam(left_delimiter(p)) || small_char(left_delimiter(p)) || large_fam(left_delimiter(p)) || large_char(left_delimiter(p)))
 						oss << ", left-delimiter " << asDelimiter(left_delimiter(p));
-					if (small_fam(right_delimiter(p))
-					 || small_char(right_delimiter(p))
-					 || large_fam(right_delimiter(p))
-					 || large_char(right_delimiter(p)))
+					if (small_fam(right_delimiter(p)) || small_char(right_delimiter(p)) || large_fam(right_delimiter(p)) || large_char(right_delimiter(p)))
 						oss << ", right-delimiter " << asDelimiter(right_delimiter(p));
 					oss << subsidiarydata(numerator(p), '\\', symbol);
 					oss << subsidiarydata(denominator(p), '/', symbol);

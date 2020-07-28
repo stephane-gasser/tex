@@ -1,7 +1,6 @@
 #include "maincontrol.h"
 #include "police.h"
 #include "fixlanguage.h"
-#include "getavail.h"
 #include "getnext.h"
 #include "charwarning.h"
 #include "backinput.h"
@@ -230,14 +229,14 @@ static bool main_loop_wrapup(halfword chr)
 				continue;
 			}
 			maink = cur_font().lig_kern_start(cur_font().char_info(curl));
-			if (skip_byte(fontinfo[maink].qqqq) > stop_flag)
-				maink = cur_font().lig_kern_restart(fontinfo[maink].qqqq);
+			if (Font::skip_byte(maink) > stop_flag)
+				maink = cur_font().lig_kern_restart(Font::infos(maink));
 		}
 		//main_lig_loop+2
-		if (next_char(fontinfo[maink].qqqq) == curr)
-			if (skip_byte(fontinfo[maink].qqqq) <= stop_flag)
+		if (Font::next_char(maink) == curr)
+			if (Font::skip_byte(maink) <= stop_flag)
 			{
-				if (op_byte(fontinfo[maink].qqqq) >= kern_flag) // c'est un kern
+				if (Font::op_byte(maink) >= kern_flag) // c'est un kern
 				{
 					if (curl < non_char)
 					{
@@ -267,30 +266,30 @@ static bool main_loop_wrapup(halfword chr)
 								tail_append(newdisc());
 						}
 					}
-					tail_append(newkern(cur_font().char_kern(fontinfo[maink].qqqq)));
+					tail_append(newkern(cur_font().char_kern(Font::infos(maink))));
 					if (main_loop_move(chr))
 						return getxtoken();
 					is110 = true;
 					continue;
 				}
-				// op_byte(fontinfo[maink].qqqq) < kern_flag => c'est une ligature
+				// Font::op_byte(maink) < kern_flag => c'est une ligature
 				if (curl == non_char)
 					lfthit = true;
 				else 
 					if (ligstack == 0)
 						rthit = true;
-				switch (op_byte(fontinfo[maink].qqqq))
+				switch (Font::op_byte(maink))
 				{
 					// AB -> CB (symboles =:| et =:|>)
 					case 1: //a=0 b=0 c=1 => delete current char
 					case 5: //a=1 b=0 c=1 => idem
-						curl = rem_byte(fontinfo[maink].qqqq);
+						curl = Font::rem_byte(maink);
 						ligaturepresent = true;
 						break;
 					// AB -> AC (symboles |=: et |=:>)
 					case 2: //a=0 b=1 c=0 => delete next char
 					case 6: //a=1 b=1 c=0 => delete next char
-						curr = rem_byte(fontinfo[maink].qqqq);
+						curr = Font::rem_byte(maink);
 						if (ligstack == 0)
 						{
 							ligstack = newligitem(curr);
@@ -308,7 +307,7 @@ static bool main_loop_wrapup(halfword chr)
 						break;
 					// AB -> ACB (symbole |=:|)
 					case 3: //a=0 b=1 c=1
-						curr = rem_byte(fontinfo[maink].qqqq);
+						curr = Font::rem_byte(maink);
 						mainp = ligstack;
 						ligstack = newligitem(curr);
 						link(ligstack) = mainp;
@@ -318,12 +317,12 @@ static bool main_loop_wrapup(halfword chr)
 					case 11://a=2 b=1 c=1
 						wrapup(false);
 						curq = tail;
-						curl = rem_byte(fontinfo[maink].qqqq);
+						curl = Font::rem_byte(maink);
 						ligaturepresent = true;
 						break;
 					// AB -> C (symbole !=)
 					default:
-						curl = rem_byte(fontinfo[maink].qqqq);
+						curl = Font::rem_byte(maink);
 						ligaturepresent = true;
 						if (ligstack == 0)
 						{
@@ -334,7 +333,7 @@ static bool main_loop_wrapup(halfword chr)
 							if (main_loop_move_1(chr))
 								return getxtoken();
 				}
-				if (op_byte(fontinfo[maink].qqqq) > 4 && op_byte(fontinfo[maink].qqqq) != 7) // a>=1 et pas a=1,b=1,c=1
+				if (Font::op_byte(maink) > 4 && Font::op_byte(maink) != 7) // a>=1 et pas a=1,b=1,c=1
 				{
 					if (main_loop_wrapup(chr))
 						return getxtoken();
@@ -350,18 +349,18 @@ static bool main_loop_wrapup(halfword chr)
 				is110 = false;
 				continue;
 			}
-		if (skip_byte(fontinfo[maink].qqqq) == 0)
+		if (Font::skip_byte(maink) == 0)
 			maink++;
 		else
 		{
-			if (skip_byte(fontinfo[maink].qqqq) >= stop_flag)
+			if (Font::skip_byte(maink) >= stop_flag)
 			{
 				if (main_loop_wrapup(chr))
 					return getxtoken();
 				is110 = true;
 				continue;
 			}
-			maink += skip_byte(fontinfo[maink].qqqq)+1;
+			maink += Font::skip_byte(maink)+1;
 		}
 		is110 = false;
 	}

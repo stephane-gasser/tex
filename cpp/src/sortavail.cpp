@@ -1,36 +1,37 @@
 #include "sortavail.h"
 #include "noeud.h"
 
+//! sorts the available variable-size nodes by location
 void sortavail(void)
 {
-	halfword p = getnode(1<<30);
-	p = link(rover+1);
-	link(rover+1) = empty_flag;
+	auto p = getnode(1<<30);
+	p = rlink(rover);
+	rlink(rover) = empty_flag;
 	halfword oldrover = rover;
 	while (p != oldrover)
 		if (p < rover)
 		{
-			halfword q = p;
-			p = link(q+1);
-			link(q+1) = rover;
+			auto q = p;
+			p = rlink(q);
+			rlink(q) = rover;
 			rover = q;
 		}
 		else
 		{
 			halfword q = rover;
-			while (link(q+1) < p)
-				q = link(q+1);
-			halfword r = link(p+1);
-			link(p+1) = link(q+1);
-			link(q+1) = p;
+			while (rlink(q) < p)
+				q = rlink(q);
+			auto r = rlink(p);
+			rlink(p) = rlink(q);
+			rlink(q) = p;
 			p = r;
 		}
 	p = rover;
-	while (link(p+1) != empty_flag)
+	while (rlink(p) != empty_flag)
 	{
-		info(link(p+1)+1) = p;
-		p = link(p+1);
+		llink(rlink(p)) = p;
+		p = rlink(p);
 	}
-	link(p+1) = rover;
-	info(rover+1) = p;
+	rlink(p) = rover;
+	llink(rover) = p;
 }
