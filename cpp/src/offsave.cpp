@@ -14,28 +14,27 @@ void offsave(Token t)
 		return;
 	}
 	backinput(t);
-	auto p = new TokenNode;
-	temp_head->link = dynamic_cast<LinkedNode*>(p);
+	TokenNode *p;
 	switch (curgroup)
 	{
 		case semi_simple_group:
-			p->token = cs_token_flag+frozen_end_group;
+			p = new TokenNode(cs_token_flag+frozen_end_group);
 			error("Missing "+esc("endgroup")+" inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
 			break;
 		case math_shift_group:
-			p->token = math_shift_token+'$';
+			p = new TokenNode(math_shift_token+'$');
 			error("Missing $ inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
 			break;
 		case math_left_group:
-			p->token = cs_token_flag+frozen_right;
-			p->link = new TokenNode;
+			p = new TokenNode(cs_token_flag+frozen_right);
+			p->link = new TokenNode(other_token+'.');
 			p = dynamic_cast<TokenNode*>(p->link);
-			p->token = other_token+'.';
 			error("Missing right. inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
 			break;
 		default:
-			p->token = right_brace_token+'}';
+			p = new TokenNode(right_brace_token+'}');
 			error("Missing } inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
 	}
+	temp_head->link = dynamic_cast<LinkedNode*>(p);
 	ins_list(temp_head->link->num); 
 }

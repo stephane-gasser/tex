@@ -19,6 +19,7 @@ class LinkedNode : public AnyNode
 class CharNode : public LinkedNode
 {
 	public:
+		CharNode(quarterword f, quarterword c) : font(f), character(c) {}
 		quarterword font; //type
 		quarterword character; //subtype
 		virtual bool is_char_node(void) { return true; }
@@ -27,6 +28,8 @@ class CharNode : public LinkedNode
 class TokenNode : public LinkedNode
 {
 	public:
+		TokenNode(void) : token(0) {}
+		TokenNode(halfword t) : token(t) {}
 		halfword token; // info
 		virtual bool is_char_node(void) { return true; }
 };

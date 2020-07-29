@@ -251,20 +251,16 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 			lfthit = initlft;
 		while (p)
 		{
-			t->link = new CharNode;
+			t->link = new CharNode(hf, p->character);
 			t = dynamic_cast<CharNode*>(t->link);
-			t->font = hf;
-			t->character = p->character;
 			p = dynamic_cast<CharNode*>(p->link);
 		}
 	}
 	else 
 		if (curl < non_char)
 		{
-			t->link = new CharNode;
+			t->link = new CharNode(hf, curl);
 			t = dynamic_cast<CharNode*>(t->link);
-			t->font = hf;
-			t->character = curl;
 		}
 	ligstack = nullptr;
 	set_cur_r(j, n, curr, currh, hchar);
@@ -339,10 +335,8 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 											bchar = non_char;
 										else
 										{
-											p = new CharNode;
+											p = new CharNode(hf, hu[j+1]);
 											lig_ptr(ligstack->num) = p->num;
-											p->character = hu[j+1];
-											p->font = hf;
 										}
 									}
 									break;
@@ -384,10 +378,8 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 										}
 										else
 										{
-											t->link = new CharNode;
+											t->link = new CharNode(hf, curr);
 											t = dynamic_cast<CharNode*>(t->link);
-											t->font = hf;
-											t->character = curr;
 											j++;
 											set_cur_r(j, n, curr, currh, hchar);
 										}

@@ -375,10 +375,8 @@ static void main_loop(Token t)
 	falsebchar = cur_font().falsebchar;
 	if (mode > 0 && language() != clang)
 		fixlanguage();
-	ligstack = new CharNode;
-	ligstack->font = curFontNum();
 	curl = t.chr;
-	ligstack->character = curl;
+	ligstack = new CharNode(curFontNum(), curl);
 	curq->num = tail;
 	maink = cancelboundary ? non_address : cur_font().bcharlabel;
 	cancelboundary = false;

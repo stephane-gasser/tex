@@ -51,8 +51,7 @@ void expand(Token tk)
 				backinput(tk);
 				if (tk.tok >= cs_token_flag)
 				{
-					p = new TokenNode;
-					p->token = frozen_dont_expand+cs_token_flag;
+					p = new TokenNode(frozen_dont_expand+cs_token_flag);
 					p->link->num = loc;
 					start = p->num;
 					loc = p->num;
@@ -66,9 +65,8 @@ void expand(Token tk)
 					tk = getxtoken();
 					if (tk.cs == 0)
 					{
-						q = new TokenNode;
+						q = new TokenNode(tk.tok);
 						p->link = q;
-						q->token = tk.tok;
 						p = q;
 					}
 				} while (tk.cs == 0);

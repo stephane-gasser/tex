@@ -71,9 +71,8 @@ void macrocall(Token t)
 						bool l22 = false;
 						do
 						{
-							auto q = new TokenNode;
+							auto q = new TokenNode(tt->token);
 							p->link = q;
-							q->token = tt->token;
 							p = q;
 							m++;
 							auto u = dynamic_cast<TokenNode*>(tt->link);
@@ -123,9 +122,8 @@ void macrocall(Token t)
 						unbalance = 1;
 						while (true)
 						{
-							auto q = new TokenNode;
+							auto q = new TokenNode(t.tok);
 							p->link = q;
-							q->token = t.tok;
 							p = q;
 							t = gettoken();
 							if (t.tok == partoken)
@@ -155,9 +153,8 @@ void macrocall(Token t)
 								}
 						}
 						rbraceptr = dynamic_cast<TokenNode*>(p);
-						auto q = new TokenNode;
+						auto q = new TokenNode(t.tok);
 						p->link = q;
-						q->token = t.tok;
 						p = q;
 					}
 					else
@@ -174,9 +171,8 @@ void macrocall(Token t)
 					if (t.tok == space_token)
 						if (r->token <= end_match_token && r->token >= match_token)
 							continue;
-					auto q = new TokenNode;
+					auto q = new TokenNode(t.tok);
 					p->link = q;
-					q->token = t.tok;
 					p = q;
 				}
 				m++;

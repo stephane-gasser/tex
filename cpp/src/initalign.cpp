@@ -60,9 +60,8 @@ void initalign(Token t, halfword &loop)
 			else 
 				if (t.cmd != spacer || p->num != hold_head)
 				{
-					p->link = new TokenNode;
+					p->link = new TokenNode(t.tok);
 					p = dynamic_cast<TokenNode*>(p->link);
-					p->token = t.tok;
 				}
 		}
 		link(curalign) = newnullbox();
@@ -82,13 +81,11 @@ void initalign(Token t, halfword &loop)
 				error("Only one # is allowed per tab", "There should be exactly one # between &'s, when an\n\\halign or \\valign is being set up. In this case you had\nmore than one, so I'm ignoring all but the first.");
 				continue;
 			}
-			p->link = new TokenNode;
+			p->link = new TokenNode(t.tok);
 			p = dynamic_cast<TokenNode*>(p->link);
-			p->token = t.tok;
 		}
-		p->link = new TokenNode;
+		p->link = new TokenNode(end_template_token);
 		p = dynamic_cast<TokenNode*>(p->link);
-		p->token = end_template_token;
 		v_part(curalign) = link(hold_head);
 	}
 	scannerstatus = normal;

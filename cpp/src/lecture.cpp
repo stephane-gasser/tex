@@ -608,9 +608,8 @@ bool scankeyword(const std::string &s)
 		auto t = getxtoken();
 		if (t.cs == 0 && (t.chr == s[k] || t.chr == s[k]-'a'+'A'))
 		{
-			auto q = new TokenNode;
+			auto q = new TokenNode(t.tok);
 			p->link = q;
-			q->token = t.tok;
 			p = q;
 			k++;
 		}
@@ -1005,9 +1004,8 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 
 [[nodiscard]] static TokenNode* store_new_token(LinkedNode *p, halfword t)
 {
-	auto q = new TokenNode;
+	auto q = new TokenNode(t);
 	p->link = q; 
-	q->token = t;
 	return q;
 }
 
@@ -1380,9 +1378,8 @@ void insthetoks(void)
 				alignstate = 1000000;
 				break;
 			}
-			auto q = new TokenNode;
+			auto q = new TokenNode(t.tok);
 			p->link = q;
-			q->token = t.tok;
 			p = q;
 		}
 		endfilereading();
@@ -1392,14 +1389,6 @@ void insthetoks(void)
 	return defref;
 }
 
-/*static void fast_store_new_token(halfword &p, halfword t)
-{
-	auto q = fast_get_avail();
-	link(p) = q; 
-	info(q) = t;
-	p = q;
-}
-*/
 static TokenNode* strtoks(void)
 {
 	auto p = dynamic_cast<TokenNode*>(temp_head);

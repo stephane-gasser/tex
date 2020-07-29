@@ -22,8 +22,7 @@
 	{
 		if (state == token_list || txt(name) < 1 || txt(name) > 17)
 		{
-			auto p = new TokenNode;
-			p->token = cs_token_flag+t.cs;
+			auto p = new TokenNode(cs_token_flag+t.cs);
 			back_list(p->num);
 		}
 		t.cmd = spacer;
@@ -40,31 +39,27 @@
 	else
 	{
 		runaway();
-		auto p = new TokenNode;
-		decltype(p) q;
+		TokenNode *p;
 		switch (scannerstatus)
 		{
 			case defining:
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				p->token = right_brace_token+'}';
+				p  = new TokenNode(right_brace_token+'}');
 				break;
 			case matching:
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				p->token = partoken;
+				p = new TokenNode(partoken);
 				longstate = outer_call;
 				break;
 			case aligning:
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				p->token = right_brace_token+'}';
-				q = p;
-				p = new TokenNode;
-				p->link = q;
-				p->token = frozen_cr+cs_token_flag;
+				p = new TokenNode(frozen_cr+cs_token_flag);
+				p->link = new TokenNode(right_brace_token+'}');
 				alignstate = -1000000;
 				break;
 			case absorbing:
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				p->token = right_brace_token+'}';
+				p = new TokenNode(right_brace_token+'}');
 		}
 		ins_list(p->num);
 	}

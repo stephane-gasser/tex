@@ -8,15 +8,12 @@ constexpr int end_write_token = cs_token_flag+end_write;
 
 void writeout(halfword p)
 {
-	auto q = new TokenNode;
-	q->token = right_brace_token+'}';
-	auto r = new TokenNode;
+	auto q = new TokenNode(right_brace_token+'}');
+	auto r = new TokenNode(end_write_token);
 	q->link = r;
-	r->token = end_write_token;
 	ins_list(q->num);
 	begintokenlist(write_tokens(p), write_text);
-	q = new TokenNode;
-	q->token = left_brace_token+'{';
+	q = new TokenNode(left_brace_token+'{');
 	ins_list(q->num);
 	int oldmode = mode;
 	mode = 0;

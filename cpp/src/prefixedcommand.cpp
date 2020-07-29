@@ -160,11 +160,9 @@ void prefixedcommand(Token t, bool setboxallowed)
 			{
 				if (p == output_routine_loc) 
 				{
-					q->link = new TokenNode;
+					q->link = new TokenNode(right_brace_token+'}');
 					q = dynamic_cast<TokenNode*>(q->link);
-					q->token = right_brace_token+'}';
-					q = new TokenNode;
-					q->token = left_brace_token+'{';
+					q = new TokenNode(left_brace_token+'{');
 					q->link = defref->link;
 					defref->link = q;
 				}

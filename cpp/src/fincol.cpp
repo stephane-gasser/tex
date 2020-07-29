@@ -39,9 +39,8 @@ bool fincol(Token t, halfword &loop)
 			auto r = u_part(loop);
 			while (r)
 			{
-				q->link = new TokenNode;
+				q->link = new TokenNode(info(r));
 				q = dynamic_cast<TokenNode*>(q->link);
-				q->token = info(r);
 				r = link(r);
 			}
 			q->link = 0;
@@ -50,9 +49,8 @@ bool fincol(Token t, halfword &loop)
 			r = v_part(loop);
 			while (r)
 			{
-				q->link = new TokenNode;
+				q->link = new TokenNode(info(r));
 				q = dynamic_cast<TokenNode*>(q->link);
-				q->token = info(r);
 				r = link(r);
 			}
 			q->link = nullptr;
