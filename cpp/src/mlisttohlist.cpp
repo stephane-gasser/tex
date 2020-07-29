@@ -33,14 +33,15 @@ static int rel_penalty(void) { return int_par(rel_penalty_code); }
 
 void mlisttohlist(void)
 {
-	halfword p, x, y, z;
+	halfword x, y;
 	scaled delta;
 	smallnumber s, t, savestyle;
 	auto mlist = curmlist;
 	auto penalties = mlistpenalties;
 	auto style = curstyle;
-	auto q = mlist;
-	halfword r = 0;
+	LinkedNode *q;
+	q->num = mlist;
+	LinkedNode *r = nullptr;
 	smallnumber rtype = op_noad;
 	scaled maxh = 0;
 	scaled maxd = 0;
@@ -48,10 +49,11 @@ void mlisttohlist(void)
 	curmu = xovern(math_quad(cursize), 18);
 	quarterword curc;
 	Font ft;
+	LinkedNode *p, *z;
 	while (q)
 	{
 		delta = 0;
-		switch (type(q))
+		switch (type(q->num))
 		{
 			case bin_noad: 
 				switch (rtype)
@@ -62,7 +64,7 @@ void mlisttohlist(void)
 					case open_noad:
 					case punct_noad:
 					case left_noad:
-						type(q) = ord_noad;
+						type(q->num) = ord_noad;
 						continue;
 				}
 				break;
@@ -71,111 +73,111 @@ void mlisttohlist(void)
 			case punct_noad:
 			case right_noad:
 				if (rtype == bin_noad)
-					type(r) = ord_noad;
-				if (type(q) == right_noad)
+					type(r->num) = ord_noad;
+				if (type(q->num) == right_noad)
 				{
 					r = q;
-					rtype = type(r);
-					q = link(q);
+					rtype = type(r->num);
+					q = q->link;
 					continue;
 				}
 				break;
 			case left_noad: 
 				r = q;
-				rtype = type(r);
-				q = link(q);
+				rtype = type(r->num);
+				q = q->link;
 				continue;
 			case fraction_noad:
-				makefraction(q);
-				z = hpack(new_hlist(q), 0, additional);
-				if (height(z) > maxh)
-					maxh = height(z);
-				if (depth(z) > maxd)
-					maxd = depth(z);
-				freenode(z, box_node_size);
+				makefraction(q->num);
+				z->num = hpack(new_hlist(q->num), 0, additional);
+				if (height(z->num) > maxh)
+					maxh = height(z->num);
+				if (depth(z->num) > maxd)
+					maxd = depth(z->num);
+				freenode(z->num, box_node_size);
 				r = q;
-				rtype = type(r);
-				q = link(q);
+				rtype = type(r->num);
+				q = q->link;
 				continue;
 			case op_noad:
-				delta = makeop(q);
-				if (subtype(q) == 1)
+				delta = makeop(q->num);
+				if (subtype(q->num) == 1)
 				{
-					z = hpack(new_hlist(q), 0, additional);
-					if (height(z) > maxh)
-						maxh = height(z);
-					if (depth(z) > maxd)
-						maxd = depth(z);
-					freenode(z, box_node_size);
+					z->num = hpack(new_hlist(q->num), 0, additional);
+					if (height(z->num) > maxh)
+						maxh = height(z->num);
+					if (depth(z->num) > maxd)
+						maxd = depth(z->num);
+					freenode(z->num, box_node_size);
 					r = q;
-					rtype = type(r);
-					q = link(q);
+					rtype = type(r->num);
+					q = q->link;
 					continue;
 				}
 				break;
 			case ord_noad: 
-				makeord(q);
+				makeord(q->num);
 				break;
 			case open_noad:
 			case inner_noad: 
 				break;
 			case radical_noad: 
-				makeradical(q);
+				makeradical(q->num);
 				break;
 			case over_noad: 
-				makeover(q);
+				makeover(q->num);
 				break;
 			case under_noad: 
-				makeunder(q);
+				makeunder(q->num);
 				break;
 			case accent_noad: 
-				makemathaccent(q);
+				makemathaccent(q->num);
 				break;
 			case vcenter_noad: 
-				makevcenter(q);
+				makevcenter(q->num);
 				break;
 			case style_node:
-				curstyle = subtype(q);
+				curstyle = subtype(q->num);
 				if (curstyle < script_style)
 					cursize = text_size;
 				else
 					cursize = 16*((curstyle-2)/2);
 				curmu = xovern(math_quad(cursize), 18);
-				q = link(q);
+				q = q->link;
 				continue;
 				break;
 			case choice_node:
 				switch (curstyle/2)
 				{
 					case 0:
-						choose_mlist(p, q, display_mlist); 
+						choose_mlist(p->num, q->num, display_mlist); 
 						break;
 					case 1:
-						choose_mlist(p, q, text_mlist);
+						choose_mlist(p->num, q->num, text_mlist);
 						break;
 					case 2:
-						choose_mlist(p, q, script_mlist);
+						choose_mlist(p->num, q->num, script_mlist);
 						break;
 					case 3:
-						choose_mlist(p, q, script_script_mlist);
+						choose_mlist(p->num, q->num, script_script_mlist);
 				}
-				flushnodelist(display_mlist(q));
-				flushnodelist(text_mlist(q));
-				flushnodelist(script_mlist(q));
-				flushnodelist(script_script_mlist(q));
-				type(q) = style_node;
-				subtype(q) = curstyle;
-				width(q) = 0;
-				depth(q) = 0;
+				flushnodelist(display_mlist(q->num));
+				flushnodelist(text_mlist(q->num));
+				flushnodelist(script_mlist(q->num));
+				flushnodelist(script_script_mlist(q->num));
+				type(q->num) = style_node;
+				subtype(q->num) = curstyle;
+				width(q->num) = 0;
+				depth(q->num) = 0;
 				if (p)
 				{
-					z = link(q);
-					link(q) = p;
-					while (link(p))
-						p = link(p);
-					link(p) = z;
+					z = q->link;
+					q->link = p;
+					while (p->link)
+						p = p->link;
+					p->link = z;
 				}
-				q = link(q);
+				q = q->link;
 				continue;
 			case ins_node:
 			case mark_node:
@@ -183,74 +185,73 @@ void mlisttohlist(void)
 			case whatsit_node:
 			case penalty_node:
 			case disc_node: 
-				q = link(q);
+				q = q->link;
 				continue;
 			case rule_node:
-				if (height(q) > maxh)
-					maxh = height(q);
-				if (depth(q) > maxd)
-					maxd = depth(q);
-				q = link(q);
+				if (height(q->num) > maxh)
+					maxh = height(q->num);
+				if (depth(q->num) > maxd)
+					maxd = depth(q->num);
+				q = q->link;
 				continue;
 			case glue_node:
-
-				if (subtype(q) == mu_glue)
+				if (subtype(q->num) == mu_glue)
 				{
-					x = glue_ptr(q);
+					x = glue_ptr(q->num);
 					y = mathglue(x, curmu);
 					deleteglueref(x);
-					glue_ptr(q) = y;
-					subtype(q) = 0;
+					glue_ptr(q->num) = y;
+					subtype(q->num) = 0;
 				}
 				else 
-					if (cursize && subtype(q) == cond_math_glue)
+					if (cursize && subtype(q->num) == cond_math_glue)
 					{
-						p = link(q);
+						p = q->link;
 						if (p)
-							if (type(p) == glue_node || type(p) == kern_node)
+							if (type(p->num) == glue_node || type(p->num) == kern_node)
 							{
-								link(q) = link(p);
-								link(p) = 0;
-								flushnodelist(p);
+								q->link = p->link;
+								p->link = 0;
+								flushnodelist(p->num);
 							}
 					}
-				q = link(q);
+				q = q->link;
 				continue;
 			case kern_node:
-				mathkern(q, curmu);
-				q = link(q);
+				mathkern(q->num, curmu);
+				q = q->link;
 				continue;
 			default: 
 				confusion("mlist1");
 		}
-		switch (math_type(nucleus(q)))
+		switch (math_type(nucleus(q->num)))
 		{
 			case math_char:
 			case math_text_char:
-				std::tie(ft, curc) = fetch(nucleus(q));
+				std::tie(ft, curc) = fetch(nucleus(q->num));
 				if (char_exists(ft.char_info(curc)))
 				{
 					delta = ft.char_italic(curc);
-					p = newcharacter(fam_fnt(type(nucleus(q))+cursize), curc);
-					if (math_type(nucleus(q)) == math_text_char && ft.space())
+					p->num = newcharacter(fam_fnt(type(nucleus(q->num))+cursize), curc);
+					if (math_type(nucleus(q->num)) == math_text_char && ft.space())
 						delta = 0;
-					if (math_type(subscr(q)) == 0 && delta)
+					if (math_type(subscr(q->num)) == 0 && delta)
 					{
-						link(p) = newkern(delta);
+						p->link->num = newkern(delta);
 						delta = 0;
 					}
 				}
 				else
-					p = 0;
+					p = nullptr;
 				break;
 			case 0: 
-				p = 0;
+				p = nullptr;
 				break;
 			case sub_box: 
-				p = info(nucleus(q));
+				p->num = info(nucleus(q->num));
 				break;
 			case sub_mlist:
-				curmlist = info(nucleus(q));
+				curmlist = info(nucleus(q->num));
 				savestyle = curstyle;
 				mlistpenalties = false;
 				mlisttohlist();
@@ -260,29 +261,29 @@ void mlisttohlist(void)
 				else
 					cursize = 16*((curstyle-text_style)/2);
 				curmu = xovern(math_quad(cursize), 18);
-				p = hpack(link(temp_head), 0, additional);
+				p->num = hpack(temp_head->link->num, 0, additional);
 				break;
 			default: 
 				confusion("mlist2");
 		}
-		new_hlist(q) = p;
-		if (math_type(subscr(q)) || math_type(supscr(q)))
-			makescripts(q, delta);
-		z = hpack(new_hlist(q), 0, additional);
-		if (height(z) > maxh)
-			maxh = height(z);
-		if (depth(z) > maxd)
-			maxd = depth(z);
-		freenode(z, box_node_size);
+		new_hlist(q->num) = p->num;
+		if (math_type(subscr(q->num)) || math_type(supscr(q->num)))
+			makescripts(q->num, delta);
+		z->num = hpack(new_hlist(q->num), 0, additional);
+		if (height(z->num) > maxh)
+			maxh = height(z->num);
+		if (depth(z->num) > maxd)
+			maxd = depth(z->num);
+		freenode(z->num, box_node_size);
 		r = q;
-		rtype = type(r);
-		q = link(q);
+		rtype = type(r->num);
+		q = q->link;
 	}
 	if (rtype == bin_noad)
-		type(r) = ord_noad;
-	p = temp_head;
-	link(p) = 0;
-	q = mlist;
+		type(r->num) = ord_noad;
+	p = dynamic_cast<CharNode*>(temp_head);
+	p->link = nullptr;
+	q->num = mlist;
 	rtype = 0;
 	curstyle = style;
 	if (curstyle < script_style)
@@ -295,14 +296,14 @@ void mlisttohlist(void)
 		t = ord_noad;
 		s = noad_size;
 		int pen = inf_penalty;
-		switch (type(q))
+		switch (type(q->num))
 		{
 			case op_noad:
 			case open_noad:
 			case close_noad:
 			case punct_noad:
 			case inner_noad: 
-				t = type(q);
+				t = type(q->num);
 				break;
 			case bin_noad:
 				t = bin_noad;
@@ -329,10 +330,10 @@ void mlisttohlist(void)
 				break;
 			case left_noad:
 			case right_noad: 
-				t = makeleftright(q, style, maxd, maxh);
+				t = makeleftright(q->num, style, maxd, maxh);
 				break;
 			case style_node:
-				curstyle = type(q);
+				curstyle = type(q->num);
 				s = style_node_size;
 				if (curstyle < script_style)
 					cursize = text_size;
@@ -340,8 +341,8 @@ void mlisttohlist(void)
 					cursize = 16*((curstyle-2)/2);
 				curmu = xovern(math_quad(cursize), 18);
 				r = q;
-				q = link(q);
-				freenode(r, s);
+				q = q->link;
+				freenode(r->num, s);
 				continue;
 				break;
 			case whatsit_node:
@@ -353,10 +354,10 @@ void mlisttohlist(void)
 			case mark_node:
 			case glue_node:
 			case kern_node:
-				link(p) = q;
+				p->link = q;
 				p = q;
-				q = link(q);
-				link(p) = 0;
+				q = q->link;
+				p->link = 0;
 				continue;
 			default: 
 				confusion("mlist3");
@@ -386,27 +387,27 @@ void mlisttohlist(void)
 			if (x)
 			{
 				y = mathglue(glue_par(x), curmu);
-				z = newglue(y);
+				z->num = newglue(y);
 				glue_ref_count(y) = 0;
-				link(p) = z;
+				p->link = z;
 				p = z;
-				subtype(z) = x+1;
+				subtype(z->num) = x+1;
 			}
 		}
-		if (new_hlist(q))
+		if (new_hlist(q->num))
 		{
-			link(p) = new_hlist(q);
+			p->link->num = new_hlist(q->num);
 			do
-				p = link(p);
-			while (link(p));
+				p = p->link;
+			while (p->link);
 		}
-		if (penalties && link(q) && pen < inf_penalty)
+		if (penalties && q->link && pen < inf_penalty)
 		{
-			rtype = type(link(q));
+			rtype = type(q->link->num);
 			if (rtype != penalty_node && rtype != rel_noad)
 			{
-				z = newpenalty(pen);
-				link(p) = z;
+				z->num = newpenalty(pen);
+				p->link = z;
 				p = z;
 			}
 		}

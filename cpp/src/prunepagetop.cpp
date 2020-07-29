@@ -2,19 +2,19 @@
 #include "noeud.h"
 #include "erreur.h"
 
-halfword prunepagetop(halfword p)
+LinkedNode* prunepagetop(halfword p)
 {
-	halfword prevp = temp_head, q;
-	link(temp_head) = p;
+	LinkedNode *prevp = temp_head, *q;
+	temp_head->link->num = p;
 	while (p)
 		switch (type(p))
 		{
 			case hlist_node:
 			case vlist_node:
 			case rule_node:
-				q = newskipparam(split_top_skip_code);
-				link(prevp) = q;
-				link(q) = p;
+				q->num = newskipparam(split_top_skip_code);
+				prevp->link = q;
+				q->link->num = p;
 				if (width(tempptr) > height(p))
 					width(tempptr) -= height(p);
 				else
@@ -24,20 +24,20 @@ halfword prunepagetop(halfword p)
 			case whatsit_node:
 			case mark_node:
 			case ins_node:
-				prevp = p;
-				p = link(prevp);
+				prevp->num = p;
+				p = prevp->link->num;
 				break;
 			case glue_node:
 			case kern_node:
 			case penalty_node:
-				q = p;
-				p = link(q);
-				link(q) = 0;
-				link(prevp) = p;
-				flushnodelist(q);
+				q->num = p;
+				p = q->link->num;
+				q->link = nullptr;
+				prevp->link->num = p;
+				flushnodelist(q->num);
 				break;
 			default: 
 				confusion("pruning");
 		}
-	return link(temp_head);
+	return temp_head->link;
 }

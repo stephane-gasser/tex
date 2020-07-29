@@ -95,7 +95,7 @@ void fireup(halfword c)
 							s = link(s);
 						link(s) = 0;
 						split_top_skip() = split_top_ptr(p);
-						ins_ptr(p) = prunepagetop(broken_ptr(r));
+						ins_ptr(p) = prunepagetop(broken_ptr(r))->num;
 						if (ins_ptr(p))
 						{
 							tempptr = vpack(ins_ptr(p), 0, additional);

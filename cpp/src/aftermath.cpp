@@ -43,18 +43,19 @@ void aftermath(void)
 		}
 	int m = mode; // \a mmode or \a -mmode
 	bool l = false; // `\\leqno' instead of `\\eqno'
-	auto p = finmlist(0);
+	LinkedNode *p;
+	p->num = finmlist(0);
 	Token t;
 	halfword a; // box containing equation number
 	if (mode == -m)
 	{
 		t = getxtoken();
 		backerror(t, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
-		curmlist = p;
+		curmlist = p->num;
 		curstyle = 2;
 		mlistpenalties = false;
 		mlisttohlist();
-		a = hpack(link(temp_head), 0, additional);
+		a = hpack(temp_head->link->num, 0, additional);
 		unsave();
 		saveptr--;
 		if (saved(0) == 1)
@@ -78,18 +79,18 @@ void aftermath(void)
 				danger = true;
 			}
 		m = mode;
-		p = finmlist(0);
+		p->num = finmlist(0);
 	}
 	else
 		a = 0;
 	if (m < 0)
 	{
 		tail_append(newmath(math_surround(), before));
-		curmlist = p;
+		curmlist = p->num;
 		curstyle = 2;
 		mlistpenalties = mode > 0;
 		mlisttohlist();
-		link(tail) = link(temp_head);
+		link(tail) = temp_head->link->num;
 		while (link(tail))
 			tail = link(tail);
 		tail_append(newmath(math_surround(), after));
@@ -104,14 +105,14 @@ void aftermath(void)
 			if (t.cmd != math_shift)
 				backerror(t, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
-		curmlist = p;
+		curmlist = p->num;
 		curstyle = 0;
 		mlistpenalties = false;
 		mlisttohlist();
-		p = link(temp_head);
+		p = temp_head->link;
 		adjusttail = adjust_head;
-		auto b = hpack(p, 0, additional);
-		p = list_ptr(b);
+		auto b = hpack(p->num, 0, additional);
+		p->num = list_ptr(b);
 		auto tt = adjusttail;
 		adjusttail = 0;
 		auto w = width(b);
@@ -133,7 +134,7 @@ void aftermath(void)
 			if (e && (w-totalshrink[0]+q <= z || totalshrink[1] || totalshrink[2] || totalshrink[3]))
 			{
 				freenode(b, box_node_size);
-				b = hpack(p, z-q, exactly);
+				b = hpack(p->num, z-q, exactly);
 			}
 			else
 			{
@@ -141,7 +142,7 @@ void aftermath(void)
 				if (w > z)
 				{
 					freenode(b, box_node_size);
-					b = hpack(p, z, exactly);
+					b = hpack(p->num, z, exactly);
 				}
 			}
 			w = width(b);
@@ -150,8 +151,9 @@ void aftermath(void)
 		if (e > 0 && d < 2*e)
 		{
 			d = half(z-w-e);
-			if (p && p < himemmin && type(p) == glue_node) //10
-			d = 0;
+			#warning no type
+			if (p && !p->is_char_node() && /*p->type == */glue_node) //10
+				d = 0;
 		}
 		tail_append(newpenalty(pre_display_penalty()));
 		smallnumber g1 = 5, g2 = 6;

@@ -1,6 +1,8 @@
 #ifndef PARAMETRES_H
 #define PARAMETRES_H
 
+#include "globals.h"
+
 constexpr int int_pars = 55; //!< total number of integer parameters
 constexpr int glue_pars = 18; //!< total number of glue parameters
 constexpr int dimen_pars = 21; //!< total number of dimension parameters
@@ -135,6 +137,7 @@ inline int global_defs(void) { return int_par(global_defs_code); }
 inline int& hang_after(void) { return int_par(hang_after_code); }
 inline int& escape_char(void) { return int_par(escape_char_code); }
 inline int cur_fam(void) { return int_par(cur_fam_code); }
+inline bool fam_in_range(void) { return cur_fam() >= 0 && cur_fam() < 16; }
 inline int& new_line_char(void) { return int_par(new_line_char_code); }
 inline int default_hyphen_char(void) { return int_par(default_hyphen_char_code); }
 

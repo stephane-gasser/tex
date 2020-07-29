@@ -10,7 +10,8 @@
 void doextension(Token t)
 {
 	int i, j;
-	halfword p, q, r;
+	TokenNode *p;
+	halfword q, r;
 	switch (t.chr)
 	{
 		case open_node:
@@ -24,7 +25,7 @@ void doextension(Token t)
 		case write_node:
 			newwritewhatsit(write_node_size, t);
 			p = scantoks(false, false, t);
-			write_tokens(tail) = defref;
+			write_tokens(tail) = defref->num;
 			break;
 		case close_node:
 			newwritewhatsit(write_node_size, t);
@@ -34,18 +35,18 @@ void doextension(Token t)
 			newwhatsit(special_node, write_node_size);
 			write_stream(tail) = 0;
 			p = scantoks(false, true, t);
-			write_tokens(tail) = defref;
+			write_tokens(tail) = defref->num;
 			break;
 		case immediate_code:
 			t = getxtoken();
 			if (t.cmd == extension && t.chr <= 2)
 			{
-				p = tail;
+				p->num = tail;
 				doextension(t);
 				outwhat(tail);
 				flushnodelist(tail);
-				tail = p;
-				link(p) = 0;
+				tail = p->num;
+				p->link = 0;
 			}
 			else
 				backinput(t);

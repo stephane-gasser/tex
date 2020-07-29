@@ -1,9 +1,112 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-#include "tex.h"
+#include <fstream>
 #include <map>
 #include <vector>
+
+///////////////////////////////////////////////////////////////////////////////
+// constantes
+///////////////////////////////////////////////////////////////////////////////
+constexpr int memmax = 30000;
+constexpr int memmin = 0;
+constexpr int bufsize = 500;
+constexpr int errorline = 72;
+constexpr int halferrorline = 42;
+constexpr int maxprintline = 79;
+constexpr int stacksize = 200;
+constexpr int maxinopen = 6;
+constexpr int fontmax = 75;
+constexpr int fontmemsize = 20000;
+constexpr int paramsize = 60;
+constexpr int nestsize = 40;
+constexpr int maxstrings = 3000;
+constexpr int poolsize = 32000;
+constexpr int savesize = 600;
+constexpr int triesize = 8000;
+constexpr int trieopsize = 500;
+constexpr int dvibufsize = 800;
+constexpr int filenamesize = 40;
+constexpr int CHECKSUM = 117275187;
+constexpr int mem_bot = 0; //!<  smallest index in the \a mem array dumped by INITEX
+constexpr int mem_top = 30000; //!<  largest index in the \a mem array dumped by INITEX
+constexpr int font_base = 0; //!<  smallest internal font number; must not be less
+constexpr int hash_size = 2100; //!<  maximum number of control sequences; it should be at most
+constexpr int hash_prime = 1777; //!<  a prime number equal to about 85% of \a hash_size
+constexpr int hyph_size = 307; //!<  another prime; the number of \\hyphenation exceptions
+constexpr char banner[] ="This is TeX, Version 3.14159265"; //!<  printed when \\TeX starts
+
+///////////////////////////////////////////////////////////////////////////////
+// types
+///////////////////////////////////////////////////////////////////////////////
+typedef std::uint8_t ASCIIcode; // 0..255
+typedef std::uint8_t eightbits; // 0..255
+typedef std::fstream alphafile; // file of char
+typedef std::fstream bytefile; // file of eightbits
+typedef std::fstream wordfile; // file of memoryword
+typedef int poolpointer; // 0..poolsize
+typedef int strnumber; // 0..maxstrings
+typedef std::uint8_t packedASCIIcode; // 0..255
+typedef int scaled;
+typedef std::uint8_t smallnumber; // 0..63
+typedef float glueratio;
+typedef std::uint8_t quarterword; // 0..255
+typedef std::uint16_t halfword; // 0..0xFF'FF
+
+typedef struct
+{
+    std::uint16_t rh;
+    union
+    {
+    	std::uint16_t lh;
+    	struct
+    	{
+    		std::uint8_t b0;
+    		std::uint8_t b1;
+    	};
+    };
+} twohalves;
+
+typedef struct
+{
+	std::uint8_t b0;
+	std::uint8_t b1;
+	std::uint8_t b2;
+	std::uint8_t b3;
+} fourquarters;
+
+typedef union
+{
+	std::int32_t int_;
+	float gr;
+	twohalves hh;
+	fourquarters qqqq;
+} memoryword;
+
+typedef char glueord; //0..3
+
+typedef struct
+{
+    int modefield; // -203..203
+    halfword headfield, tailfield;
+    int pgfield, mlfield;
+    memoryword auxfield;
+} liststaterecord;
+
+typedef char groupcode; // 0..16
+
+typedef struct
+{
+    quarterword statefield, indexfield;
+    halfword startfield, locfield, limitfield;
+    std::string namefield;
+} instaterecord;
+
+typedef char internalfontnumber; //0..fontmax
+typedef int fontindex; // 0..fontmemsize
+typedef int dviindex; // 0..dvibufsize
+typedef int triepointer; // 0..triesize
+typedef int hyphpointer; //0..307
 
 inline std::string hyphword[308];
 inline std::string helpline;
@@ -121,7 +224,6 @@ extern alphafile inputfile[maxinopen+1]; // commence à 1
 extern int linestack[maxinopen+1]; // commence à 1
 extern char scannerstatus; // 0..5
 extern halfword warningindex;
-extern halfword defref;
 extern halfword paramstack[paramsize+1];
 extern char paramptr; // 0..paramsize
 extern unsigned char baseptr; // 0..stacksize
@@ -203,13 +305,8 @@ extern int hu[64]; // of 0..256
 extern ASCIIcode curlang, initcurlang;
 extern halfword hyfbchar;
 extern char hyf[65]; // of 0..9
-extern halfword initlist;
-extern bool initlig;
-extern bool initlft;
 extern smallnumber hyphenpassed;
 extern halfword curl, curr;
-extern halfword curq;
-extern halfword ligstack;
 extern bool ligaturepresent;
 extern bool lfthit, rthit;
 extern std::map<ASCIIcode, int> opstart; //of 0..trieopsize

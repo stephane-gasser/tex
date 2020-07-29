@@ -8,7 +8,7 @@
 #include "erreur.h"
 #include "primitive.h"
 #include "police.h"
-#include <sstream>
+#include <sstream> 
 
 static void printchar(ASCIIcode s)
 {
@@ -1143,8 +1143,8 @@ void showwhatever(Token t)
 			break;
 		default:
 			thetoks();
-			printnl("> "+tokenshow(temp_head));
-			flushlist(link(temp_head));
+			printnl("> "+tokenshow(temp_head->num));
+			flushlist(temp_head->link->num);
 			break;
 	}
 	if (interaction < error_stop_mode)

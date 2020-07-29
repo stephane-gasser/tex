@@ -7,7 +7,7 @@
 
 halfword cleanbox(halfword p, smallnumber s)
 {
-	halfword q;
+	LinkedNode *q;
 	do
 	{
 		switch (link(p))
@@ -17,21 +17,21 @@ halfword cleanbox(halfword p, smallnumber s)
 				mem[nucleus(curmlist)] = mem[p];
 				break;
 			case 2:
-				q = info(p);
+				q->num = info(p);
 				continue;
 				break;
 			case 3: 
 				curmlist = info(p);
 				break;
 			default:
-				q = newnullbox();
+				q->num = newnullbox();
 				continue;
 		}
 		auto savestyle = curstyle;
 		curstyle = s;
 		mlistpenalties = false;
 		mlisttohlist();
-		q = link(temp_head);
+		q = temp_head->link;
 		curstyle = savestyle;
 		if (curstyle < 4)
 			cursize = 0;
@@ -40,23 +40,25 @@ halfword cleanbox(halfword p, smallnumber s)
 		curmu = xovern(math_quad(cursize), 18);
 		break;
 	} while (false);
-	halfword x;
-	if (q >= himemmin || q == 0)
-		x = hpack(q, 0, additional);
+	LinkedNode *x;
+	if (q->is_char_node() || q == nullptr)
+		x->num = hpack(q->num, 0, additional);
 	else 
-		if (link(q) == 0 && type(q) <= vlist_node && shift_amount(q) == 0)
+		#warning no type and no shift amount
+		if (q->link == nullptr && /*q->type <= */vlist_node /*&& shift_amount(q) == 0*/)
 			x = q;
 		else
-			x = hpack(q, 0, additional);
-	q = link(x+5);
-	if (q >= himemmin)
+			x->num = hpack(q->num, 0, additional);
+	q->num = link(x->num+5);
+	if (q->is_char_node())
 	{
-		auto r = link(q);
-		if (r && link(r) == 0 && r < himemmin && type(r) == kern_node)
+		auto r = q->link;
+		#warning no type
+		if (r && r->link == nullptr && !r->is_char_node() /*&& r->type == kern_node*/)
 		{
-			freenode(r, 2);
-			link(q) = 0;
+			freenode(r->num, 2);
+			q->link = 0;
 		}
 	}
-	return x;
+	return x->num;
 }

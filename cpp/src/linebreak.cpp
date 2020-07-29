@@ -41,7 +41,7 @@ void linebreak(int finalwidowpenalty)
 	smallnumber j;
 	unsigned char c;
 	packbeginline = mode_line;
-	link(temp_head) = link(head);
+	temp_head->link->num = link(head);
 	if ((tail >= himemmin))
 		tail_append(newpenalty(inf_penalty));
 	else 
@@ -152,10 +152,10 @@ void linebreak(int finalwidowpenalty)
 		link(active) = q;
 		store_background();
 		passive = 0;
-		printednode = temp_head;
+		printednode = temp_head->num;
 		passnumber = 0;
 		fontinshortdisplay = null_font;
-		curp = link(temp_head);
+		curp = temp_head->link->num;
 		autobreaking = true;
 		prevp = curp;
 		while (curp && link(active) != active)

@@ -1,5 +1,6 @@
 #include "maincontrol.h"
 #include "police.h"
+#include "cesure.h"
 #include "fixlanguage.h"
 #include "getnext.h"
 #include "charwarning.h"
@@ -47,26 +48,26 @@
 static fontindex maink; //!< index into |font_info|
 //static fourquarters mainj; //!<ligature/kern command
 //static fourquarters maini; //!<character information bytes for |cur_l|
-static halfword mainp; //!<temporary register for list manipulation
+static CharNode *mainp; //!<temporary register for list manipulation
 
 static halfword& every_job(void) { return equiv(every_job_loc); }
 
 //! the parameter is either |rt_hit| or |false|
 static void pack_lig(bool z)
 {
-	mainp = newligature(curFontNum(), curl, link(curq));
+	mainp->num = newligature(curFontNum(), curl, curq->link->num);
 	if (lfthit)
 	{
-		subtype(mainp) = 2;
+		mainp->/*subtype*/character = 2;
 		lfthit = false;
 	}
-	if (z && ligstack == 0)
+	if (z && ligstack == nullptr)
 	{
-		subtype(mainp)++;
+		mainp->/*subtype*/character++;
 		rthit = false;
 	}
-	link(curq) = mainp;
-	tail = mainp;
+	curq->link = mainp;
+	tail = mainp->num;
 	ligaturepresent = false;
 }
 
@@ -74,7 +75,7 @@ static void wrapup(bool z)
 {
 	if (curl < non_char)
 	{
-		if (link(curq) > 0 && character(tail) == cur_font().hyphenchar) 
+		if (curq->link > 0 && character(tail) == cur_font().hyphenchar) 
 			insdisc = true; 
 		if (ligaturepresent)
 			pack_lig(z); 
@@ -119,54 +120,54 @@ static void main_loop_lookahead(void)
 				if (t.cmd == no_boundary)
 					bchar = non_char;
 				curr = bchar;
-				ligstack = 0;
+				ligstack = nullptr;
 				return;
 			}
 		}
 	}
 	//main_loop_lookahead_1
 	adjust_space_factor(t.chr);
-	ligstack = fast_get_avail();
-	font(ligstack) = curFontNum();
+	ligstack->num = fast_get_avail();
+	ligstack->font = curFontNum();
 	curr = t.chr;
-	character(ligstack) = curr;
+	ligstack->character = curr;
 	if (curr == falsebchar)
 		curr = non_char;
 }
 
 static void main_loop_move_lig(void)
 {
-	mainp = lig_ptr(ligstack);
-	if (mainp > 0)
-		tail_append(mainp);
-	tempptr = ligstack;
-	ligstack = link(tempptr);
+	mainp->num = lig_ptr(ligstack->num);
+	if (mainp)
+		tail_append(mainp->num);
+	tempptr = ligstack->num;
+	ligstack->num = link(tempptr);
 	freenode(tempptr, small_node_size);
 	ligaturepresent = true;
-	if (ligstack == 0)
-		if (mainp > 0)
+	if (ligstack == nullptr)
+		if (mainp)
 			main_loop_lookahead();
 		else
 			curr = bchar;
 	else
-		curr = character(ligstack);
+		curr = ligstack->character;
 }
 
 [[nodiscard]] static Token append_normal_space(void)
 {
 	if (space_skip() == zero_glue)
 	{
-		mainp = cur_font().glue;
-		if (mainp == 0)
+		mainp->num = cur_font().glue;
+		if (mainp == nullptr)
 		{
-			mainp = newspec(zero_glue);
+			mainp->num = newspec(zero_glue);
 			maink = cur_font().parambase+space_code;
-			width(mainp) = cur_font().space();
-			stretch(mainp) = cur_font().space_stretch();
-			shrink(mainp) = cur_font().space_shrink();
-			cur_font().glue = mainp;
+			width(mainp->num) = cur_font().space();
+			stretch(mainp->num) = cur_font().space_stretch();
+			shrink(mainp->num) = cur_font().space_shrink();
+			cur_font().glue = mainp->num;
 		}
-		tempptr = newglue(mainp);
+		tempptr = newglue(mainp->num);
 	}
 	else
 		tempptr = newparamglue(space_skip_code);
@@ -180,20 +181,21 @@ static bool main_loop_move_2(halfword chr)
 	{
 		if (cur_font().char_exists(curl))
 		{
-			tail_append(ligstack);
+			tail_append(ligstack->num);
 			main_loop_lookahead();
 			return false;
 		}
 	}
 	charwarning(cur_font(), chr);
-	free_avail(ligstack);
+	delete ligstack;
+	ligstack = 0;
 	return true;
 }
 
 static bool main_loop_move_1(halfword chr)
 {
 
-	if (!is_char_node(ligstack))
+	if (!is_char_node(ligstack->num))
 		main_loop_move_lig();
 	else
 		if (main_loop_move_2(chr))
@@ -203,10 +205,10 @@ static bool main_loop_move_1(halfword chr)
 
 static bool main_loop_move(halfword chr)
 {
-	if (ligstack == 0)
+	if (ligstack == nullptr)
 		return true;
-	curq = tail;
-	curl = subtype(ligstack);
+	curq->num = tail;
+	curl = ligstack->character;
 	return main_loop_move_1(chr);
 }
 
@@ -240,23 +242,23 @@ static bool main_loop_wrapup(halfword chr)
 				{
 					if (curl < non_char)
 					{
-						if (link(curq) > 0 && subtype(tail) == cur_font().hyphenchar)
+						if (curq->link && subtype(tail) == cur_font().hyphenchar)
 							insdisc = true;
 						if (ligaturepresent)
 						{
-							mainp = newligature(curFontNum(), curl, link(curq));
+							mainp->num = newligature(curFontNum(), curl, curq->link->num);
 							if (lfthit)
 							{
-								subtype(mainp) = 2;
+								mainp->/*subtype*/character = 2;
 								lfthit = false;
 							}
-							if (rthit && ligstack == 0)
+							if (rthit && ligstack == nullptr)
 							{
-								subtype(mainp)++;
+								mainp->/*subtype*/character++;
 								rthit = false;
 							}
-							link(curq) = mainp;
-							tail = mainp;
+							curq->link = mainp;
+							tail = mainp->num;
 							ligaturepresent = false;
 						}
 						if (insdisc)
@@ -276,7 +278,7 @@ static bool main_loop_wrapup(halfword chr)
 				if (curl == non_char)
 					lfthit = true;
 				else 
-					if (ligstack == 0)
+					if (ligstack == nullptr)
 						rthit = true;
 				switch (Font::op_byte(maink))
 				{
@@ -290,33 +292,33 @@ static bool main_loop_wrapup(halfword chr)
 					case 2: //a=0 b=1 c=0 => delete next char
 					case 6: //a=1 b=1 c=0 => delete next char
 						curr = Font::rem_byte(maink);
-						if (ligstack == 0)
+						if (ligstack == nullptr)
 						{
-							ligstack = newligitem(curr);
+							ligstack->num = newligitem(curr);
 							bchar = non_char;
 						}
 						else 
-							if (is_char_node(ligstack))
+							if (is_char_node(ligstack->num))
 							{
 								mainp = ligstack;
-								ligstack = newligitem(curr);
-								lig_ptr(ligstack) = mainp;
+								ligstack->num = newligitem(curr);
+								lig_ptr(ligstack->num) = mainp->num;
 							}
 							else
-								character(ligstack) = curr;
+								ligstack->character = curr;
 						break;
 					// AB -> ACB (symbole |=:|)
 					case 3: //a=0 b=1 c=1
 						curr = Font::rem_byte(maink);
 						mainp = ligstack;
-						ligstack = newligitem(curr);
-						link(ligstack) = mainp;
+						ligstack->num = newligitem(curr);
+						ligstack->link = mainp;
 						break;
 					// AB -> ACB (symboles |=:|> et |=:|>>)
 					case 7: //a=1 b=1 c=1
 					case 11://a=2 b=1 c=1
 						wrapup(false);
-						curq = tail;
+						curq->num = tail;
 						curl = Font::rem_byte(maink);
 						ligaturepresent = true;
 						break;
@@ -324,7 +326,7 @@ static bool main_loop_wrapup(halfword chr)
 					default:
 						curl = Font::rem_byte(maink);
 						ligaturepresent = true;
-						if (ligstack == 0)
+						if (ligstack == nullptr)
 						{
 							if (main_loop_wrapup(chr))
 								return getxtoken();
@@ -373,11 +375,11 @@ static void main_loop(Token t)
 	falsebchar = cur_font().falsebchar;
 	if (mode > 0 && language() != clang)
 		fixlanguage();
-	ligstack = fast_get_avail();
-	font(ligstack) = curFontNum();
+	ligstack = new CharNode;
+	ligstack->font = curFontNum();
 	curl = t.chr;
-	character(ligstack) = curl;
-	curq = tail;
+	ligstack->character = curl;
+	curq->num = tail;
 	maink = cancelboundary ? non_address : cur_font().bcharlabel;
 	cancelboundary = false;
 	if (maink == non_address)
@@ -428,7 +430,7 @@ Token maincontrol(void)
 					t = append_normal_space();
 					continue;
 				}
-				appspace(mainp, maink);
+				appspace(mainp->num, maink);
 				break;
 			case hmode+ex_space:
 			case mmode+ex_space: 

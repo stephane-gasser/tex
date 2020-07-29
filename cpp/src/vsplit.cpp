@@ -52,7 +52,7 @@ halfword vsplit(eightbits n, scaled h)
 			}
 			p = link(p);
 		}
-	q = prunepagetop(q);
+	q = prunepagetop(q)->num;
 	p = list_ptr(v);
 	freenode(v, box_node_size);
 	box(n) = q == 0 ? 0 : vpack(q, 0, additional);

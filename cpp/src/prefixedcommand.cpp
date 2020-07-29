@@ -46,7 +46,8 @@ void prefixedcommand(Token t, bool setboxallowed)
 				a += 4;
 	int val;
 	fontindex k;
-	halfword p, q;
+	TokenNode *q;
+	halfword p, old;
 	int n;
 	switch (t.cmd)
 	{
@@ -60,7 +61,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			Token tk;
 			tk.cs = p;
 			q = scantoks(true, t.chr >= 2, tk);
-			define(a, p, call+a%4, defref); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
+			define(a, p, call+a%4, defref->num); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		case let:
 			p = getrtoken();
@@ -118,11 +119,11 @@ void prefixedcommand(Token t, bool setboxallowed)
 			if (!scankeyword("to")) 
 				error("Missing `to' inserted", "You should have said `\\read<number> to \\cs'.\nI'm going to look for the \\cs now.");
 			p = getrtoken();
-			define(a, p, call, readtoks(n, p));
+			define(a, p, call, readtoks(n, p)->num);
 			break;
 		case toks_register:
 		case assign_toks:
-			q = t.cs;
+			old = t.cs;
 			p = t.cmd == toks_register ? toks_base+scaneightbitint() : t.chr;
 			scanoptionalequals();
 			t = getXTokenSkipSpaceAndEscape();
@@ -135,39 +136,39 @@ void prefixedcommand(Token t, bool setboxallowed)
 				}
 				if (t.cmd == assign_toks)
 				{
-					q = equiv(t.chr);
-					if (q == 0)
+					q->num = equiv(t.chr);
+					if (q == nullptr)
 						define(a, p, undefined_cs, 0);
 					else
 					{
-						info(q)++;
-						define(a, p, call, q);
+						add_token_ref(q->num);
+						define(a, p, call, q->num);
 					}
 					break;
 				}
 			}
 			backinput(t);
-			tk.cs = q;
+			tk.cs = old;
 			q = scantoks(false, false, tk);
-			if (link(defref) == 0)
+			if (defref->link == nullptr)
 			{
 				define(a, p, undefined_cs, 0);
-				link(defref) = avail;
-				avail = defref;
+				defref->link->num = avail;
+				avail = defref->num;
 			}
 			else
 			{
 				if (p == output_routine_loc) 
 				{
-					link(q) = getavail();
-					q = link(q);
-					info(q) = right_brace_token+'}';
-					q = getavail();
-					info(q) = left_brace_token+'{';
-					link(q) = link(defref);
-					link(defref) = q;
+					q->link = new TokenNode;
+					q = dynamic_cast<TokenNode*>(q->link);
+					q->token = right_brace_token+'}';
+					q = new TokenNode;
+					q->token = left_brace_token+'{';
+					q->link = defref->link;
+					defref->link = q;
 				}
-				define(a, p, call, defref);
+				define(a, p, call, defref->num);
 			}
 			break;
 		case assign_int:

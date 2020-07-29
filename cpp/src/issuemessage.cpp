@@ -8,9 +8,9 @@
 
 void issuemessage(Token t)
 {
-	link(garbage) = scantoks(false, true, t);
-	auto s = tokenshow(defref);
-	flushlist(defref);
+	link(garbage) = scantoks(false, true, t)->num;
+	auto s = tokenshow(defref->num);
+	flushlist(defref->num);
 	if (t.chr == 0)
 	{
 		print((termoffset+s.size() > maxprintline-2 ? "\n": termoffset > 0 || fileoffset > 0 ? " " : "")+s);

@@ -8,16 +8,16 @@ constexpr int end_write_token = cs_token_flag+end_write;
 
 void writeout(halfword p)
 {
-	auto q = getavail();
-	info(q) = right_brace_token+'}';
-	auto r = getavail();
-	link(q) = r;
-	info(r) = end_write_token;
-	ins_list(q);
+	auto q = new TokenNode;
+	q->token = right_brace_token+'}';
+	auto r = new TokenNode;
+	q->link = r;
+	r->token = end_write_token;
+	ins_list(q->num);
 	begintokenlist(write_tokens(p), write_text);
-	q = getavail();
-	info(q) = left_brace_token+'{';
-	ins_list(q);
+	q = new TokenNode;
+	q->token = left_brace_token+'{';
+	ins_list(q->num);
 	int oldmode = mode;
 	mode = 0;
 	Token t;
@@ -43,7 +43,7 @@ void writeout(halfword p)
 			selector = log_only;
 		printnl("");
 	}
-	print(tokenshow(defref)+"\n");
-	flushlist(defref);
+	print(tokenshow(defref->num)+"\n");
+	flushlist(defref->num);
 	selector = oldsetting;
 }

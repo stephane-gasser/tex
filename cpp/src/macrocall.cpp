@@ -13,12 +13,13 @@ void macrocall(Token t)
 	auto savewarningindex = warningindex;
 	warningindex = t.cs;
 	halfword refcount = t.chr;
-	halfword r = link(refcount);
+	TokenNode *r;
+	r->num = link(refcount);
 	smallnumber n = 0;
 	if (tracing_macros() > 0)
 		diagnostic("\n"+cs(warningindex)+tokenshow(refcount));
 	ASCIIcode matchchr;
-	if (info(r) != end_match_token) 
+	if (r->token != end_match_token) 
 	{
 		scannerstatus = matching;
 		halfword unbalance = 0;
@@ -27,28 +28,27 @@ void macrocall(Token t)
 			longstate -= 2;
 		do
 		{
-			link(temp_head) = 0;
-			halfword s;
-			halfword p;
+			temp_head->link = nullptr;
+			TokenNode *s, *p;
 			halfword m;
-			if (info(r) > match_token+255 || info(r) < match_token)
-				s = 0;
+			if (r->token > match_token+255 || r->token < match_token)
+				s = nullptr;
 			else
 			{
-				matchchr = info(r)-match_token;
-				s = link(r);
+				matchchr = r->token-match_token;
+				s = dynamic_cast<TokenNode*>(r->link);
 				r = s;
-				p = temp_head;
+				p = dynamic_cast<TokenNode*>(temp_head);
 				m = 0;
 			}
-			halfword rbraceptr;
+			TokenNode *rbraceptr;
 			while (true)
 			{
 				t = gettoken();
-				if (t.tok = info(r))
+				if (t.tok = r->token)
 				{
-					r = link(r);
-					if (info(r) >= match_token && info(r) <= end_match_token)
+					r = dynamic_cast<TokenNode*>(r->link);
+					if (r->token >= match_token && r->token <= end_match_token)
 					{
 						if (t.tok < left_brace_limit) 
 							alignstate--;
@@ -71,31 +71,31 @@ void macrocall(Token t)
 						bool l22 = false;
 						do
 						{
-							auto q = getavail();
-							link(p) = q;
-							info(q) = info(tt);
+							auto q = new TokenNode;
+							p->link = q;
+							q->token = tt->token;
 							p = q;
 							m++;
-							auto u = link(tt);
-							auto v = s;
+							auto u = dynamic_cast<TokenNode*>(tt->link);
+							auto v = dynamic_cast<TokenNode*>(s);
 							while(true)
 							{
 								if (u == r)
-									if (t.tok != info(v))
+									if (t.tok != v->token)
 										break;
 									else
 									{
-										r = link(v);
+										r = dynamic_cast<TokenNode*>(v->link);
 										l22 = true;
 										break;
 									}
-								if (info(u) != info(v))
+								if (u->token != v->token)
 									break;
-								u = link(u);
-								v = link(v);
+								u = dynamic_cast<TokenNode*>(u->link);
+								v = dynamic_cast<TokenNode*>(v->link);
 							}
 							if (!l22)
-								tt = link(tt);
+								tt = dynamic_cast<TokenNode*>(tt->link);
 						} while (tt != r && !l22);
 						if (l22)
 							continue;
@@ -109,7 +109,7 @@ void macrocall(Token t)
 							runaway();
 							backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 						}
-						pstack[n] = link(temp_head);
+						pstack[n] = temp_head->link->num;
 						alignstate -= unbalance;
 						for (int m = 0; m <= n; m++)
 							flushlist(pstack[m]);
@@ -123,16 +123,9 @@ void macrocall(Token t)
 						unbalance = 1;
 						while (true)
 						{
-							auto q = avail;
-							if (q == 0)
-								q = getavail();
-							else
-							{
-								avail = link(q);
-								link(q) = 0;
-							}
-							link(p) = q;
-							info(q) = t.tok;
+							auto q = new TokenNode;
+							p->link = q;
+							q->token = t.tok;
 							p = q;
 							t = gettoken();
 							if (t.tok == partoken)
@@ -143,7 +136,7 @@ void macrocall(Token t)
 										runaway();
 										backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 									}
-									pstack[n] = link(temp_head);
+									pstack[n] = temp_head->link->num;
 									alignstate -= unbalance;
 									for (int m = 0; m <= n; m++)
 										flushlist(pstack[m]);
@@ -161,10 +154,10 @@ void macrocall(Token t)
 										break;
 								}
 						}
-						rbraceptr = p;
-						auto q = getavail();
-						link(p) = q;
-						info(q) = t.tok;
+						rbraceptr = dynamic_cast<TokenNode*>(p);
+						auto q = new TokenNode;
+						p->link = q;
+						q->token = t.tok;
 						p = q;
 					}
 					else
@@ -179,43 +172,43 @@ void macrocall(Token t)
 				else
 				{
 					if (t.tok == space_token)
-						if (info(r) <= end_match_token && info(r) >= match_token)
+						if (r->token <= end_match_token && r->token >= match_token)
 							continue;
-					auto q = getavail();
-					link(p) = q;
-					info(q) = t.tok;
+					auto q = new TokenNode;
+					p->link = q;
+					q->token = t.tok;
 					p = q;
 				}
 				m++;
-				if (info(r) > end_match_token || info(r) < match_token)
+				if (r->token > end_match_token || r->token < match_token)
 					continue;
 				break;
 			}
 			if (s)
 			{
-				if (m == 1 && info(p) < right_brace_limit && p != temp_head)
+				if (m == 1 && p->token < right_brace_limit && p != temp_head)
 				{
-					link(rbraceptr) = 0;
-					link(p) = avail;
-					avail = p;
-					p = link(temp_head);
-					pstack[n] = link(p);
-					link(p) = avail;
-					avail = p;
+					rbraceptr->link = nullptr;
+					p->link->num = avail;
+					avail = p->num;
+					p = dynamic_cast<TokenNode*>(temp_head->link);
+					pstack[n] = p->link->num;
+					p->link->num = avail;
+					avail = p->num;
 				}
 				else
-					pstack[n] = link(temp_head);
+					pstack[n] = temp_head->link->num;
 				n++;
 				if (tracing_macros() > 0)
 					diagnostic(std::string(1, matchchr)+"\n"+std::to_string(n)+"<-"+tokenlist(pstack[n-1], 0, 1000));
 			}
-		} while (info(r) != end_match_token); 
+		} while (r->token != end_match_token); 
 	}
 	while (state == 0 && loc == 0 && index != 2)
 		endtokenlist();
 	begintokenlist(refcount, macro);
 	name = warningindex;
-	loc = link(r);
+	loc = r->link->num;
 	if (n > 0)
 	{
 		if (paramptr+n > maxparamstack)

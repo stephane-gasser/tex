@@ -107,7 +107,6 @@ alphafile inputfile[maxinopen+1]; // commence à 1
 int linestack[maxinopen+1]; // commence à 1
 char scannerstatus; // 0..5
 halfword warningindex;
-halfword defref;
 halfword paramstack[paramsize+1];
 char paramptr; // 0..paramsize
 unsigned char baseptr; // 0..stacksize
@@ -189,13 +188,8 @@ int hu[64]; // of 0..256
 ASCIIcode curlang, initcurlang;
 halfword hyfbchar;
 char hyf[65]; // of 0..9
-halfword initlist;
-bool initlig;
-bool initlft;
 smallnumber hyphenpassed;
 halfword curl, curr;
-halfword curq;
-halfword ligstack;
 bool ligaturepresent;
 bool lfthit, rthit;
 std::map<ASCIIcode, int> opstart; //of 0..trieopsize

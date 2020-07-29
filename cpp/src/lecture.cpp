@@ -159,29 +159,16 @@ void scandelimiter(halfword p, bool r, Token t)
 					t.tok = point_token; 
 				if (radix == 10 && t.tok == point_token) 
 				{
-					int k = 0;
-					halfword p = 0;
+					LinkedNode *p = nullptr;
 					auto _ = gettoken();
+					int k = 0;
 					while (true)
 					{
 						t = getxtoken();
 						if (t.tok > zero_token+9 || t.tok < zero_token)
 							break;
 						if (k < 17)
-						{
-							auto q = getavail();
-							link(q) = p;
-							info(q) = t.tok-zero_token;
-							p = q;
-							k++;
-						}
-					}
-					for (int kk = k; k > 0; k--)
-					{
-						dig[kk-1] = info(p);
-						auto q = p;
-						p = link(p);
-						free_avail(q);
+							dig[k] = t.tok-zero_token;
 					}
 					f = rounddecimals(k);
 					if (t.cmd != spacer)
@@ -613,24 +600,25 @@ void scanfilename(void)
 
 bool scankeyword(const std::string &s)
 {
-	halfword p = backup_head;
-	link(p) = 0;
+	TokenNode *p;
+	p->num = backup_head;
+	p->link = 0;
 	for (size_t k = 0; k < s.size();)
 	{
 		auto t = getxtoken();
 		if (t.cs == 0 && (t.chr == s[k] || t.chr == s[k]-'a'+'A'))
 		{
-			auto q = getavail();
-			link(p) = q;
-			info(q) = t.tok;
+			auto q = new TokenNode;
+			p->link = q;
+			q->token = t.tok;
 			p = q;
 			k++;
 		}
 		else 
-			if (t.cmd != spacer || p != backup_head)
+			if (t.cmd != spacer || p->num != backup_head)
 			{
 				backinput(t);
-				if (p != backup_head)
+				if (p->num != backup_head)
 					back_list(link(backup_head));
 				return false;
 			}
@@ -1015,21 +1003,21 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 	return scanleftbrace();
 }
 
-static void store_new_token(halfword &p, halfword t)
+[[nodiscard]] static TokenNode* store_new_token(LinkedNode *p, halfword t)
 {
-	auto q = getavail(); 
-	link(p) = q; 
-	info(q) = t;
-	p = q;
+	auto q = new TokenNode;
+	p->link = q; 
+	q->token = t;
+	return q;
 }
 
-halfword scantoks(bool macrodef, bool xpand, Token tk)
+TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 {
 	scannerstatus = macrodef ? defining : absorbing;
 	warningindex = tk.cs;
-	defref = getavail();
-	token_ref_count(defref) = 0;
-	auto p = defref;
+	defref = new TokenListNode;
+	defref->token_ref_count = 0;
+	LinkedNode *p = dynamic_cast<LinkedNode*>(defref);
 	halfword hashbrace = 0;
 	halfword t = zero_token;
 	bool l40 = false;
@@ -1040,7 +1028,7 @@ halfword scantoks(bool macrodef, bool xpand, Token tk)
 			tk = gettoken();
 			if (tk.tok < right_brace_limit)
 			{
-				store_new_token(p, end_match_token);
+				p = store_new_token(p, end_match_token);
 				if (tk.cmd == right_brace)
 				{
 					error("Missing { inserted", "Where was the left brace? You said something like `\\def\\a}',\nwhich I'm going to interpret as `\\def\\a{}'.");
@@ -1057,8 +1045,8 @@ halfword scantoks(bool macrodef, bool xpand, Token tk)
 				if (tk.cmd == left_brace)
 				{
 					hashbrace = tk.tok;
-					store_new_token(p, tk.tok);
-					store_new_token(p, end_match_token);
+					p = store_new_token(p, tk.tok);
+					p = store_new_token(p, end_match_token);
 					break;
 				}
 				if (t == zero_token+9)
@@ -1071,7 +1059,7 @@ halfword scantoks(bool macrodef, bool xpand, Token tk)
 					tk.tok = s;
 				}
 			}
-			store_new_token(p, tk.tok);
+			p = store_new_token(p, tk.tok);
 		}
 	}
 	else
@@ -1093,9 +1081,9 @@ halfword scantoks(bool macrodef, bool xpand, Token tk)
 				else
 				{
 					auto q = thetoks();
-					if (link(temp_head))
+					if (temp_head->link)
 					{
-						link(p) = link(temp_head);
+						p->link = temp_head->link;
 						p = q;
 					}
 				}
@@ -1131,12 +1119,12 @@ halfword scantoks(bool macrodef, bool xpand, Token tk)
 						else
 							tk.tok = out_param_token-'0'+tk.chr;
 				}
-		store_new_token(p, tk.tok);
+		p = store_new_token(p, tk.tok);
 	}
 	scannerstatus = 0;
 	if (hashbrace)
-		store_new_token(p, hashbrace);
-	return p;
+		p = store_new_token(p, hashbrace);
+	return dynamic_cast<TokenNode*>(p);
 }
 
 //! backs up a simple token list
@@ -1313,18 +1301,18 @@ Token getpreambletoken(void)
 
 void insthetoks(void)
 {
-	link(garbage) = thetoks();
-	ins_list(link(temp_head));
+	link(garbage) = thetoks()->num;
+	ins_list(temp_head->link->num);
 }
 
-[[nodiscard]] int readtoks(int n, halfword r)
+[[nodiscard]] TokenListNode* readtoks(int n, halfword r)
 {
 	scannerstatus = defining;
 	warningindex = r;
-	defref = getavail();
-	token_ref_count(defref) = 0;
-	auto p = defref;
-	store_new_token(p, end_match_token);
+	defref = new TokenListNode;
+	defref->token_ref_count = 0;
+	LinkedNode *p = defref;
+	p = store_new_token(p, end_match_token);
 	smallnumber m = (n < 0 || n > 15) ? 16 : n;
 	auto s = alignstate;
 	alignstate = 1000000;
@@ -1392,9 +1380,9 @@ void insthetoks(void)
 				alignstate = 1000000;
 				break;
 			}
-			auto q = getavail();
-			link(p) = q;
-			info(q) = t.tok;
+			auto q = new TokenNode;
+			p->link = q;
+			q->token = t.tok;
 			p = q;
 		}
 		endfilereading();
@@ -1404,25 +1392,25 @@ void insthetoks(void)
 	return defref;
 }
 
-static void fast_store_new_token(halfword &p, halfword t)
+/*static void fast_store_new_token(halfword &p, halfword t)
 {
 	auto q = fast_get_avail();
 	link(p) = q; 
 	info(q) = t;
 	p = q;
 }
-
-static halfword strtoks(void)
+*/
+static TokenNode* strtoks(void)
 {
-	halfword p = temp_head;
-	link(p) = 0;
+	auto p = dynamic_cast<TokenNode*>(temp_head);
+	p->link = nullptr;
 	for (halfword t: strings.back())
 	{
 		if (t == ' ')
 			t = space_token;
 		else
 			t += other_token;
-		fast_store_new_token(p, t);
+		p = store_new_token(p, t);
 	}
 	return p;
 }
@@ -1458,27 +1446,27 @@ void convtoks(Token t)
 				openlogfile();
 			strings.push_back(jobname);
 	}
-	link(garbage) = strtoks();
-	ins_list(link(temp_head));
+	link(garbage) = strtoks()->num;
+	ins_list(temp_head->link->num);
 }
 
-halfword thetoks(void)
+TokenNode* thetoks(void)
 {
 	auto t = getxtoken();
 	auto [val, lev] = scansomethinginternal(tok_val, false, t);
 	if (lev >= ident_val)
 	{
-		halfword p = temp_head;
-		link(p) = 0;
+		auto p = dynamic_cast<TokenNode*>(temp_head);
+		p->link = nullptr;
 		if (lev == ident_val)
-			store_new_token(p, cs_token_flag+val);
+			p = store_new_token(p, cs_token_flag+val);
 		else 
 			if (val)
 			{
 				auto r = link(val);
 				while (r)
 				{
-					fast_store_new_token(p, info(r));
+					p = store_new_token(p, info(r));
 					r = link(r);
 				}
 			}

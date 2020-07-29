@@ -22,9 +22,9 @@
 	{
 		if (state == token_list || txt(name) < 1 || txt(name) > 17)
 		{
-			auto p = getavail();
-			info(p) = cs_token_flag+t.cs;
-			back_list(p);
+			auto p = new TokenNode;
+			p->token = cs_token_flag+t.cs;
+			back_list(p->num);
 		}
 		t.cmd = spacer;
 		t.chr = ' ';
@@ -40,33 +40,33 @@
 	else
 	{
 		runaway();
-		auto p = getavail();
+		auto p = new TokenNode;
 		decltype(p) q;
 		switch (scannerstatus)
 		{
 			case defining:
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				info(p) = right_brace_token+'}';
+				p->token = right_brace_token+'}';
 				break;
 			case matching:
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				info(p) = partoken;
+				p->token = partoken;
 				longstate = outer_call;
 				break;
 			case aligning:
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				info(p) = right_brace_token+'}';
+				p->token = right_brace_token+'}';
 				q = p;
-				p = getavail();
-				link(p) = q;
-				info(p) = frozen_cr+cs_token_flag;
+				p = new TokenNode;
+				p->link = q;
+				p->token = frozen_cr+cs_token_flag;
 				alignstate = -1000000;
 				break;
 			case absorbing:
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				info(p) = right_brace_token+'}';
+				p->token = right_brace_token+'}';
 		}
-		ins_list(p);
+		ins_list(p->num);
 	}
 	t.cs = 0;
 	return t;

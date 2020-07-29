@@ -1,12 +1,13 @@
 #include "runaway.h"
 #include "impression.h"
+#include "lecture.h"
 
 void runaway(void)
 {
 	if (scannerstatus > skipping)
 	{
 		printnl("Runaway ");
-		halfword p;
+		LinkedNode *p; 
 		switch (scannerstatus)
 		{
 			case defining:
@@ -19,12 +20,12 @@ void runaway(void)
 				break;
 			case aligning:
 				print("preamble");
-				p = hold_head;
+				p->num = hold_head;
 				break;
 			case absorbing:
 				print("text");
 				p = defref;
 		}
-		print("?\n"+tokenlist(link(p), 0, errorline-10));
+		print("?\n"+tokenlist(p->link->num, 0, errorline-10));
 	}
 }

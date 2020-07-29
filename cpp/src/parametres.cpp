@@ -1,4 +1,3 @@
-#include "tex.h"
 #include "globals.h"
 #include "parametres.h"
 

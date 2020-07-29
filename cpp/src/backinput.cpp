@@ -14,8 +14,8 @@ void backinput(Token t)
 {
 	while (state == token_list && loc == 0 && token_type != v_template)
 		endtokenlist();
-	auto p = getavail();
-	info(p) = t.tok;
+	auto p = new TokenNode;
+	p->token = t.tok;
 	if (t.tok < right_brace_limit)
 		if (t.tok < left_brace_limit)
 			alignstate--;
@@ -23,7 +23,7 @@ void backinput(Token t)
 			alignstate++;
 	push_input();
 	state = token_list;
-	start = p;
+	start = p->num;
 	token_type = backed_up;
-	loc = p;
+	loc = p->num;
 }

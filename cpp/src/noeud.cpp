@@ -161,7 +161,6 @@ halfword copynodelist(halfword p)
 				default: 
 					confusion("copying");
 			}
-		;
 		for (;words > 0; words--)
 			mem[r+words] = mem[p+words];
 		link(q) = r;

@@ -1,17 +1,42 @@
 #ifndef CONSTANTES_H
 #define CONSTANTES_H
 
-#include "tex.h"
 #include "parametres.h"
 
-constexpr int CHECKSUM = 117275187;
-constexpr char banner[] ="This is TeX, Version 3.14159265"; //!<  printed when \\TeX starts
-constexpr int mem_bot = 0; //!<  smallest index in the \a mem array dumped by INITEX
-constexpr int mem_top = 30000; //!<  largest index in the \a mem array dumped by INITEX
-constexpr int font_base = 0; //!<  smallest internal font number; must not be less
-constexpr int hash_size = 2100; //!<  maximum number of control sequences; it should be at most
-constexpr int hash_prime = 1777; //!<  a prime number equal to about 85% of \a hash_size
-constexpr int hyph_size = 307; //!<  another prime; the number of \\hyphenation exceptions
+class AnyNode
+{
+	public:
+		halfword num = 0; // bidon
+		virtual bool is_char_node(void) { return false; }
+};
+
+class LinkedNode : public AnyNode
+{
+	public:
+		LinkedNode *link = nullptr;
+};
+
+class CharNode : public LinkedNode
+{
+	public:
+		quarterword font; //type
+		quarterword character; //subtype
+		virtual bool is_char_node(void) { return true; }
+};
+
+class TokenNode : public LinkedNode
+{
+	public:
+		halfword token; // info
+		virtual bool is_char_node(void) { return true; }
+};
+
+class TokenListNode : public LinkedNode
+{
+	public:
+		halfword token_ref_count; // info
+		virtual bool is_char_node(void) { return true; }
+};
 
 enum command_code
 {
@@ -189,7 +214,7 @@ enum
 	page_ins_head = mem_top, //!< list of insertion data for current page
 	contrib_head = mem_top-1, //!< vlist of items not yet on current page
 	page_head = mem_top-2, //!< vlist for current page
-	temp_head = mem_top-3, //!< head of a temporary list of some kind
+//	temp_head = mem_top-3, //!< head of a temporary list of some kind
 	hold_head = mem_top-4, //!< head of a temporary list of another kind
 	adjust_head = mem_top-5, //!< head of adjustment list returned by \a hpack
 	active = mem_top-7, //!< head of active list in \a line_break, needs two words
@@ -202,6 +227,10 @@ enum
 	backup_head = mem_top-13, //!< head of token list built by \a scan_keyword
 	hi_mem_stat_min = mem_top-13 //!< smallest statically allocated word in
 };
+
+inline std::vector<CharNode> heads;
+
+inline LinkedNode * const temp_head = &heads[3];
 
 constexpr int hi_mem_stat_usage = 14; //!< the number of one-word nodes always present
 
@@ -832,7 +861,6 @@ void set_cur_lang(void);
 halfword& broken_ins(halfword p); //!< this insertion might break at \a broken_ptr
 halfword& last_ins_ptr(halfword p); //!< the most recent insertion for this \a subtype
 halfword& best_ins_ptr(halfword); //!< the optimum most recent insertion
-bool fam_in_range(void); 
 halfword& what_lang(halfword); //!< language number, in the range 0..255
 quarterword& what_lhm(halfword); //!< minimum left fragment, in the range 1..63
 quarterword& what_rhm(halfword); //!< minimum right fragment, in the range 1..63

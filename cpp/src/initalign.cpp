@@ -41,15 +41,16 @@ void initalign(Token t, halfword &loop)
 		curalign = link(curalign);
 		if (t.cmd == car_ret)
 			break;
-		halfword p = hold_head;
-		link(p) = 0;
+		TokenNode *p;
+		p->num = hold_head;
+		p->link = nullptr;
 		while (true)
 		{
 			t = getpreambletoken();
 			if (t.cmd == mac_param)
 				break;
 			if ((t.cmd == tab_mark || t.cmd == out_param) && alignstate == -1000000)
-				if (p == hold_head && loop == 0 && t.cmd == tab_mark)
+				if (p->num == hold_head && loop == 0 && t.cmd == tab_mark)
 					loop = curalign;
 				else
 				{
@@ -57,11 +58,11 @@ void initalign(Token t, halfword &loop)
 					break;
 				}
 			else 
-				if (t.cmd != spacer || p != hold_head)
+				if (t.cmd != spacer || p->num != hold_head)
 				{
-					link(p) = getavail();
-					p = link(p);
-					info(p) = t.tok;
+					p->link = new TokenNode;
+					p = dynamic_cast<TokenNode*>(p->link);
+					p->token = t.tok;
 				}
 		}
 		link(curalign) = newnullbox();
@@ -69,8 +70,8 @@ void initalign(Token t, halfword &loop)
 		info(curalign) = end_span;
 		width(curalign) = null_flag;
 		u_part(curalign) = link(hold_head);
-		p = hold_head;
-		link(p) = 0;
+		p->num = hold_head;
+		p->link = 0;
 		while (true)
 		{
 			t = getpreambletoken();
@@ -81,13 +82,13 @@ void initalign(Token t, halfword &loop)
 				error("Only one # is allowed per tab", "There should be exactly one # between &'s, when an\n\\halign or \\valign is being set up. In this case you had\nmore than one, so I'm ignoring all but the first.");
 				continue;
 			}
-			link(p) = getavail();
-			p = link(p);
-			info(p) = t.tok;
+			p->link = new TokenNode;
+			p = dynamic_cast<TokenNode*>(p->link);
+			p->token = t.tok;
 		}
-		link(p) = getavail();
-		p = link(p);
-		info(p) = end_template_token;
+		p->link = new TokenNode;
+		p = dynamic_cast<TokenNode*>(p->link);
+		p->token = end_template_token;
 		v_part(curalign) = link(hold_head);
 	}
 	scannerstatus = normal;

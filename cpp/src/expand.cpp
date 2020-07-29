@@ -23,7 +23,7 @@ void expand(Token tk)
 		if (tracing_commands() > 1)
 			showcurcmdchr(tk);
 		smallnumber savescannerstatus;
-		halfword p, q, r;
+		TokenNode *p, *q, *r;
 		int j;
 		Token t;
 		switch (tk.cmd)
@@ -51,31 +51,31 @@ void expand(Token tk)
 				backinput(tk);
 				if (tk.tok >= cs_token_flag)
 				{
-					p = getavail();
-					info(p) = frozen_dont_expand+cs_token_flag;
-					link(p) = loc;
-					start = p;
-					loc = p;
+					p = new TokenNode;
+					p->token = frozen_dont_expand+cs_token_flag;
+					p->link->num = loc;
+					start = p->num;
+					loc = p->num;
 				}
 				break;
 			case cs_name:
-				r = getavail();
+				r = new TokenNode;
 				p = r;
 				do
 				{
 					tk = getxtoken();
 					if (tk.cs == 0)
 					{
-						q = getavail();
-						link(p) = q;
-						info(q) = tk.tok;
+						q = new TokenNode;
+						p->link = q;
+						q->token = tk.tok;
 						p = q;
 					}
 				} while (tk.cs == 0);
 				if (tk.cmd != end_cs_name)
 					backerror(tk, "Missing "+esc("endcsname")+" inserted", "The control sequence marked <to be read again> should\nnot appear between \\csname and \\endcsname.");
 				j = First;
-				p = link(r);
+				p = dynamic_cast<TokenNode*>(r->link);
 				while (p)
 				{
 					if (j >= maxbufstack)
@@ -84,8 +84,8 @@ void expand(Token tk)
 						if (maxbufstack == bufsize)
 							overflow("buffer size", bufsize);
 					};
-					buffer[j++] = info(p)%0x1'00;
-					p = link(p);
+					buffer[j++] = p->token%(1<<8);
+					p = dynamic_cast<TokenNode*>(p->link);
 				}
 				if (j > First+1)
 				{
@@ -98,7 +98,7 @@ void expand(Token tk)
 					tk.cs = null_cs;
 				else
 					tk.cs = single_base+buffer[First];
-				flushlist(r);
+				flushlist(r->num);
 				if (eq_type(tk.cs) == undefined_cs)
 					eqdefine(tk.cs, relax, 256);
 				tk.tok = tk.cs+cs_token_flag;
@@ -123,12 +123,13 @@ void expand(Token tk)
 				{
 					while (tk.chr != 2)
 						passtext();
-					p = condptr;
-					ifline = if_line_field(p);
-					curif = subtype(p);
-					iflimit = type(p);
-					condptr = link(p);
-					freenode(p, 2);
+					p->num = condptr;
+					ifline = if_line_field(p->num);
+					curif = subtype(p->num);
+					iflimit = type(p->num);
+					condptr = link(p->num);
+					delete p;
+					freenode(p->num, 2);
 				}
 				break;
 			case input:

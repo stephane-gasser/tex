@@ -13,50 +13,52 @@
 
 bool fincol(Token t, halfword &loop)
 {
-	halfword p, q, r, s, u;
+	halfword s, u;
+	#warning pas le bon type ??
+	TokenNode *q;
 	scaled w;
 	glueord o;
 	halfword n;
 	if (curalign == 0)
 		confusion("endv");
-	q = link(curalign);
-	if (q == 0)
+	q->num = link(curalign);
+	if (q == nullptr)
 		confusion("endv");
 	if (alignstate < 500000)
 		fatalerror("(interwoven alignment preambles are not allowed)");
-	p = link(q);
-	if (p == 0 && extra_info(curalign) < cr_code)
+	auto p = q->link;
+	if (p == nullptr && extra_info(curalign) < cr_code)
 		if (loop)
 		{
-			link(q) = newnullbox();
-			p = link(q);
-			info(p) = end_span;
-			width(p) = null_flag;
+			q->link->num = newnullbox();
+			p = q->link;
+			info(p->num) = end_span;
+			width(p->num) = null_flag;
 			loop = link(loop);
-			q = hold_head;
-			r = u_part(loop);
+			q->num = hold_head;
+			auto r = u_part(loop);
 			while (r)
 			{
-				link(q) = getavail();
-				q = link(q);
-				info(q) = info(r);
+				q->link = new TokenNode;
+				q = dynamic_cast<TokenNode*>(q->link);
+				q->token = info(r);
 				r = link(r);
 			}
-			link(q) = 0;
-			u_part(p) = link(hold_head);
-			q = hold_head;
+			q->link = 0;
+			u_part(p->num) = link(hold_head);
+			q->num = hold_head;
 			r = v_part(loop);
 			while (r)
 			{
-				link(q) = getavail();
-				q = link(q);
-				info(q) = info(r);
+				q->link = new TokenNode;
+				q = dynamic_cast<TokenNode*>(q->link);
+				q->token = info(r);
 				r = link(r);
 			}
-			link(q) = 0;
-			v_part(p) = link(hold_head);
+			q->link = nullptr;
+			v_part(p->num) = link(hold_head);
 			loop = link(loop);
-			link(p) = newglue(glue_ptr(loop));
+			p->link->num = newglue(glue_ptr(loop));
 		}
 		else
 		{
@@ -83,28 +85,28 @@ bool fincol(Token t, halfword &loop)
 		n = 0;
 		if (curspan != curalign)
 		{
-			q = curspan;
+			q->num = curspan;
 			do
 			{
 				n++;
-				q = link(link(q));
-			} while (q != curalign);
+				q = dynamic_cast<TokenNode*>(q->link->link);
+			} while (q->num != curalign);
 			if (n > 255)
 				confusion("256 spans");
-			q = curspan;
-			while (link(link(q)) < n)
-				q = link(q);
-			if (link(link(q)) > n)
+			q->num = curspan;
+			while (q->link->link->num < n)
+				q = dynamic_cast<TokenNode*>(q->link);
+			if (q->link->link->num > n)
 			{
 				s = getnode(span_node_size);
-				info(s) = info(q);
+				info(s) = q->token;
 				link(s) = n;
-				info(q) = s;
+				q->token = s;
 				width(s) = w;
 			}
 			else 
-				if (width(info(q)) < w)
-					width(info(q)) = w;
+				if (width(q->token) < w)
+					width(q->token) = w;
 		}
 		else 
 			if (w > width(curalign))
@@ -142,11 +144,11 @@ bool fincol(Token t, halfword &loop)
 		subtype(tail) = tab_skip_code+1;
 		if (extra_info(curalign) >= cr_code)
 			return true;
-		initspan(p);
+		initspan(p->num);
 	}
 	alignstate = 1000000;
 	t = getXTokenSkipSpace();
-	curalign = p;
+	curalign = p->num;
 	initcol(t);
 	return false;
 }

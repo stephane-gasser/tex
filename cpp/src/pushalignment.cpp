@@ -13,5 +13,6 @@ void pushalignment(halfword loop)
 	info(p+4) = curhead;
 	link(p+4) = curtail;
 	alignptr = p;
-	curhead = getavail();
+	CharNode *cn;
+	curhead = cn->num;
 }

@@ -8,106 +8,112 @@ static int broken_penalty(void) { return int_par(broken_penalty_code); }
 static int club_penalty(void) { return int_par(club_penalty_code); }
 static int inter_line_penalty(void) { return int_par(inter_line_penalty_code); }
 
+auto prev_break = llink; //points to passive node that should precede this one
+auto next_break = prev_break; //new name for |prev_break| after links are reversed
+auto cur_break = rlink; //in passive node, points to position of this breakpoint
+
 void postlinebreak(int finalwidowpenalty)
 {
-	halfword q, r, s;
 	bool discbreak, postdiscbreak;
 	scaled curwidth, curindent;
 	quarterword t;
 	int pen;
 	halfword curline;
-	q = link(bestbet+1);
+	LinkedNode *q, *r, *s;
+	q->num = break_node(bestbet);
 	curp = 0;
-	do
+	
+	do //Reverse the links of the relevant passive nodes, setting |cur_p| to the first breakpoint
 	{
 		r = q;
-		q = info(q+1);
-		info(r+1) = curp;
-		curp = r;
+		q->num = prev_break(q->num);
+		next_break(r->num) = curp;
+		curp = r->num;
 	} while (q);
 	curline = prev_graf+1;
-	do
+	do //Justify the line ending at breakpoint |cur_p|, and append it to the current vertical list, together with associated penalties and other insertions
 	{
-		q = link(curp+1);
+		q->num = cur_break(curp);
 		discbreak = false;
 		postdiscbreak = false;
 		if (q)
-			if (type(q) == 10)
+			if (type(q->num) == glue_node)
 			{
-				deleteglueref(info(q+1));
-				info(q+1) = right_skip();
-				subtype(q) = 9;
-				link(right_skip())++;
+				deleteglueref(glue_ptr(q->num));
+				glue_ptr(q->num) = right_skip();
+				subtype(q->num) = 9;
+				add_glue_ref(right_skip());
 			}
 			else
 			{
-				if (type(q) == 7)
+				if (type(q->num) == disc_node) //Change discretionary to compulsory and set |disc_break:=true|
 				{
-					t = subtype(q);
+					t = replace_count(q->num);
+					//Destroy the |t| nodes following |q|, and make |r| point to the following node@
 					if (t == 0)
-						r = link(q);
+						r = q->link;
 					else
 					{
 						r = q;
 						while (t > 1)
 						{
-							r = link(r);
+							r = r->link;
 							t--;
 						}
-						s = link(r);
-						r = link(s);
-						link(s) = 0;
-						flushnodelist(link(q));
-						subtype(q) = 0;
+						s = r->link;
+						r = s->link;
+						s->link = nullptr;
+						flushnodelist(q->link->num);
+						replace_count(q->num) = 0;
 					}
-					if (link(q+1))
+					if (post_break(q->num))
 					{
-						s = link(q+1);
-						while (link(s))
-							s = link(s);
-						link(s) = r;
-						r = link(q+1);
-						link(q+1) = 0;
+						s->num = post_break(q->num);
+						while (s->link)
+							s = s->link;
+						s->link = r;
+						r->num = post_break(q->num);
+						post_break(q->num) = 0;
 						postdiscbreak = true;
 					}
-					if (info(q+1))
+					if (pre_break(q->num))
 					{
-						s = info(q+1);
-						link(q) = s;
-						while (link(s))
-							s = link(s);
-						info(q+1) = 0;
+						s->num = pre_break(q->num);
+						q->link = s;
+						while (s->link)
+							s = s->link;
+						pre_break(q->num) = 0;
 						q = s;
 					}
-					link(q) = r;
+					q->link = r;
 					discbreak = true;
 					}
 					else 
-						if (type(q) == math_node || type(q) == kern_node)
-							width(q) = 0;
-				r = newparamglue(8);
-				link(r) = link(q);
-				link(q) = r;
+						if (type(q->num) == math_node || type(q->num) == kern_node)
+							width(q->num) = 0;
+				r->num = newparamglue(right_skip_code);
+				r->link = q->link;
+				q->link = r;
 				q = r;
 			}
 		else
 		{
 			q = temp_head;
-			while (link(q))
-				q = link(q);
-			r = newparamglue(8);
-			link(r) = link(q);
-			link(q) = r;
+			while (q->link)
+				q = q->link;
+			r->num = newparamglue(right_skip_code);
+			r->link = q->link;
+			q->link = r;
 			q = r;
 		}
-		r = link(q);
-		link(q) = 0;
-		q = link(temp_head);
-		link(temp_head) = r;
+		r = q->link;
+		q->link = 0;
+		q = temp_head->link;
+		temp_head->link = r;
 		if (left_skip())
 		{
-			r = newparamglue(7);
-			link(r) = q;
+			r->num = newparamglue(left_skip_code);
+			r->link = q;
 			q = r;
 		}
 		if (curline > lastspecialline)
@@ -127,7 +133,7 @@ void postlinebreak(int finalwidowpenalty)
 				curindent = mem[par_shape_ptr()+2*curline-1].int_;
 			}
 		adjusttail = adjust_head;
-		justbox = hpack(q, curwidth, 0);
+		justbox = hpack(q->num, curwidth, 0);
 		shift_amount(justbox) = curindent;
 		appendtovlist(justbox);
 		if (adjust_head != adjusttail)
@@ -147,39 +153,39 @@ void postlinebreak(int finalwidowpenalty)
 				pen += broken_penalty();
 			if (pen)
 			{
-				r = newpenalty(pen);
-				tail_append(r);
+				r->num = newpenalty(pen);
+				tail_append(r->num);
 			}
 		}
 		curline++;
-		curp = info(curp+1);
+		curp = next_break(curp);
 		if (curp)
-			if (not postdiscbreak)
+			if (!postdiscbreak)
 			{
 				r = temp_head;
 				while (true)
 				{
-					q = link(r);
-					if (q == link(curp+1))
+					q = r->link;
+					if (q->num == cur_break(curp))
 						break;
-					if (q >= himemmin)
+					if (q->is_char_node())
 						break;
-					if (type(q) < 9)
+					if (type(q->num) < math_node) // non_discardable
 						break;
-					if (type(q) == 11)
-						if (subtype(q) != 1)
+					if (type(q->num) == kern_node)
+						if (subtype(q->num) != explicit_)
 							break;
-					r = q;
+					r = q; //now |type(q)=glue_node|, |kern_node|, |math_node| or |penalty_node|
 				}
 				if (r != temp_head)
 				{
-					link(r) = 0;
-					flushnodelist(link(temp_head));
-					link(temp_head) = q;
+					r->link = nullptr;
+					flushnodelist(temp_head->link->num);
+					temp_head->link = q;
 				}
 			}
 	} while (curp);
-	if (curline != bestline || link(temp_head))
+	if (curline != bestline || temp_head->link)
 		confusion("line breaking");
 	prev_graf = bestline-1;
 }
