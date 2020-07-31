@@ -260,7 +260,7 @@ void buildpage(void)
 		link(p) = 0;
 	} while (link(contrib_head));
 	if (nestptr == 0)
-		tail = contrib_head;
+		tail->num = contrib_head;
 	else
 		contrib_tail = contrib_head;
 }

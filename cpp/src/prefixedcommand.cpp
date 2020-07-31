@@ -153,8 +153,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			if (defref->link == nullptr)
 			{
 				define(a, p, undefined_cs, 0);
-				defref->link->num = avail;
-				avail = defref->num;
+				delete defref;
 			}
 			else
 			{

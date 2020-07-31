@@ -3,44 +3,6 @@
 
 #include "parametres.h"
 
-class AnyNode
-{
-	public:
-		halfword num = 0; // bidon
-		virtual bool is_char_node(void) { return false; }
-};
-
-class LinkedNode : public AnyNode
-{
-	public:
-		LinkedNode *link = nullptr;
-};
-
-class CharNode : public LinkedNode
-{
-	public:
-		CharNode(quarterword f, quarterword c) : font(f), character(c) {}
-		quarterword font; //type
-		quarterword character; //subtype
-		virtual bool is_char_node(void) { return true; }
-};
-
-class TokenNode : public LinkedNode
-{
-	public:
-		TokenNode(void) : token(0) {}
-		TokenNode(halfword t) : token(t) {}
-		halfword token; // info
-		virtual bool is_char_node(void) { return true; }
-};
-
-class TokenListNode : public LinkedNode
-{
-	public:
-		halfword token_ref_count; // info
-		virtual bool is_char_node(void) { return true; }
-};
-
 enum command_code
 {
 	number_code = 0, // //command code for \number
@@ -107,42 +69,6 @@ enum
 	radical_noad_size = 5, //!< number of \a mem words in a radical noad
 	fraction_noad_size = 6, //!< number of \a mem words in a fraction noad
 	glue_spec_size = 4 //!< number of words to allocate for a glue specification
-};
-
-enum
-{
-	hlist_node = 0, //!< \a type of hlist nodes
-	vlist_node = 1, //!< \a type of vlist nodes
-	rule_node = 2, //!< \a type of rule nodes
-	ins_node = 3, //!< \a type of insertion nodes
-	mark_node = 4, //!< \a type of a mark node
-	adjust_node = 5, //!< \a type of an adjust node
-	ligature_node = 6, //!< \a type of a ligature node
-	disc_node = 7, //!< \a type of a discretionary node
-	whatsit_node = 8, //!< \a type of special extension nodes
-	math_node = 9, //!< \a type of a math node
-	glue_node = 10, //!< \a type of node that points to a glue specification
-	kern_node = 11, //!< \a type of a kern node
-	penalty_node = 12, //!< \a type of a penalty node
-	unset_node = 13, //!< \a type for an unset node
-	style_node = unset_node+1, //!< \a type of a style node
-	choice_node = unset_node+2, //!< \a type of a choice node
-	ord_noad = unset_node+3, //!< \a type of a noad classified Ord
-	op_noad = ord_noad+1, //!< \a type of a noad classified Op
-	bin_noad = ord_noad+2, //!< \a type of a noad classified Bin
-	rel_noad = ord_noad+3, //!< \a type of a noad classified Rel
-	open_noad = ord_noad+4, //!< \a type of a noad classified Ope
-	close_noad = ord_noad+5, //!< \a type of a noad classified Clo
-	punct_noad = ord_noad+6, //!< \a type of a noad classified Pun
-	inner_noad = ord_noad+7, //!< \a type of a noad classified Inn
-	radical_noad = inner_noad+1, //!< \a type of a noad for square roots
-	fraction_noad = radical_noad+1, //!< \a type of a noad for generalized fractions
-	under_noad = fraction_noad+1, //!< \a type of a noad for underlining
-	over_noad = under_noad+1, //!< \a type of a noad for overlining
-	accent_noad = over_noad+1, //!< \a type of a noad for accented subformulas
-	vcenter_noad = accent_noad+1, //!< \a type of a noad for \\vcenter
-	left_noad = vcenter_noad+1, //!< \a type of a noad for \\left
-	right_noad = left_noad+1 //!< \a type of a noad for \\right
 };
 
 enum
@@ -227,13 +153,14 @@ enum
 	null_list = mem_top-11, //!< permanently empty list
 	lig_trick = mem_top-12, //!< a ligature masquerading as a \a char_node
 	garbage = mem_top-12, //!< used for scrap information
-	backup_head = mem_top-13, //!< head of token list built by \a scan_keyword
+//	backup_head = mem_top-13, //!< head of token list built by \a scan_keyword
 	hi_mem_stat_min = mem_top-13 //!< smallest statically allocated word in
 };
 
 inline std::vector<CharNode> heads;
 
-inline LinkedNode * const temp_head = &heads[3];
+inline LinkedNode * const temp_head = &heads[3]; //!< head of a temporary list of some kind
+inline LinkedNode * const backup_head = &heads[13]; //!< head of token list built by \a scan_keyword
 
 constexpr int hi_mem_stat_usage = 14; //!< the number of one-word nodes always present
 
@@ -763,6 +690,7 @@ void append_char(ASCIIcode); //!< put \a ASCII_code # at the end of \a str_pool
 void flush_char(void); //!< forget the last character in the pool
 void flush_string(void); 
 void tail_append(halfword); 
+void tail_append(LinkedNode*);
 halfword& node_size(halfword); //!< the size field in empty variable-size nodes
 halfword& llink(halfword); //!< left link in doubly-linked list of empty nodes
 halfword& rlink(halfword); //!< right link in doubly-linked list of empty nodes
@@ -789,9 +717,6 @@ int& mark_ptr(halfword); //!< head of the token list for a mark
 int& adjust_ptr(halfword); //!< vertical list to be moved out of horizontal list
 halfword lig_char(halfword); //!< the word where the ligature is to be found
 halfword& lig_ptr(halfword); //!< the list of characters
-quarterword& replace_count(halfword); //!< how many subsequent nodes to replace
-halfword& pre_break(halfword); //!< text that precedes a discretionary break
-halfword& post_break(halfword); //!< text that follows a discretionary break
 halfword& glue_ptr(halfword); //!< pointer to a glue specification
 halfword& leader_ptr(halfword); //!< pointer to box or rule node for leaders
 halfword& glue_ref_count(halfword); //!< reference count of a glue specification
@@ -846,10 +771,6 @@ halfword numerator(halfword); //!< \a numerator field in a fraction noad
 halfword denominator(halfword); //!< \a denominator field in a fraction noad
 halfword accent_chr(halfword); //!< the \a accent_chr field of an accent noad
 halfword delimiter(halfword); //!< \a delimiter field in left and right noads
-halfword& display_mlist(halfword); //!< mlist to be used in display style
-halfword& text_mlist(halfword); //!< mlist to be used in text style
-halfword& script_mlist(halfword); //!< mlist to be used in script style
-halfword& script_script_mlist(halfword); //!< mlist to be used in scriptscript style
 int default_rule_thickness(void); //!< thickness of \\over bars
 int& new_hlist(halfword); //!< the translation of an mlist
 int& u_part(halfword); //!< pointer to \f$<u_j\f$ token list
@@ -874,21 +795,15 @@ halfword& open_area(halfword); //!< string number of file area for \a open_name
 halfword& open_ext(halfword); //!< string number of file extension for \a open_name
 halfword& every_vbox(void); 
 
-extern halfword &loc; //!< location of first unread character in \a buffer
-extern memoryword& aux; //!< auxiliary data about the current list
-extern int& prev_depth; //!< the name of \a aux in vertical mode
-extern halfword& space_factor; //!< part of \a aux in horizontal mode
-extern halfword& clang; //!< the other part of \a aux in horizontal mode  
-extern int& incompleat_noad; //!< the name of \a aux in math mode
-extern int& mode; //!< current mode
-extern halfword& head; //!< header node of current list
-extern halfword& tail; //!< final node on current list
-extern int& prev_graf; //!< number of paragraph lines accumulated
-extern int& mode_line; //!< source file line number at beginning of list
+inline auto start = curinput.startfield; //!< starting position in \a buffer
+inline auto limit = curinput.limitfield; //!< end of current line in \a buffer
+inline auto param_start = limit; //!< base of macro parameters in \a param_stack
+inline auto loc = curinput.locfield; //!< location of first unread character in \a buffer
+inline TokenNode *Start;
+inline TokenNode *Loc;
+
 extern quarterword &state; //!< current scanner state
 extern quarterword &index; //!< reference for buffer information
-extern halfword &start; //!< starting position in \a buffer
-extern halfword &limit; //!< end of current line in \a buffer
 extern std::string &name; //!< name of the current file
 extern halfword &top_mark; 
 extern halfword &first_mark;
@@ -906,7 +821,6 @@ inline bool precedes_break(halfword p) { return type(p) <math_node; }
 inline void add_glue_ref(halfword p) { glue_ref_count(p)++; } //!< new reference to a glue spec
 inline bool terminal_input(const std::string &name) { return name == ""; } //!< are we reading from the terminal?
 inline quarterword &token_type = index; //!< type of current token list
-inline halfword &param_start = limit; //!< base of macro parameters in \a param_stack
 inline bool end_line_char_inactive() { return end_line_char() < 0 || end_line_char() > 255; }
 inline int cramped_style(int c) { return 2*(c/2)+cramped; } //!< cramp the style
 inline int sub_style(int c) { return 2*(c/4)+script_style+cramped; } //!< smaller and cramped

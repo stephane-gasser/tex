@@ -41,20 +41,20 @@ void linebreak(int finalwidowpenalty)
 	smallnumber j;
 	unsigned char c;
 	packbeginline = mode_line;
-	temp_head->link->num = link(head);
-	if ((tail >= himemmin))
+	temp_head->link = head->link;
+	if (tail->is_char_node())
 		tail_append(newpenalty(inf_penalty));
 	else 
-		if (type(tail) != glue_node)
+		if (tail->type != glue_node)
 			tail_append(newpenalty(inf_penalty));
 		else
 		{
-			type(tail) = penalty_node;
-			deleteglueref(glue_ptr(tail));
-			flushnodelist(leader_ptr(tail));
-			penalty(tail) = inf_penalty;
+			tail->type = penalty_node;
+			deleteglueref(glue_ptr(tail->num));
+			flushnodelist(leader_ptr(tail->num));
+			penalty(tail->num) = inf_penalty;
 		}
-	link(tail) = newparamglue(par_fill_skip_code);
+	tail->link->num = newparamglue(par_fill_skip_code);
 	initcurlang = prev_graf%0x1'00'00;
 	initlhyf = prev_graf>>22;
 	initrhyf = (prev_graf>>16)%0x40;
@@ -378,7 +378,10 @@ void linebreak(int finalwidowpenalty)
 					act_width += fonts[f].char_width(character(lig_char(curp)));
 					break;
 				case disc_node:
-					s = pre_break(curp);
+				{
+					DiscNode *d;
+					d->num = curp;
+					s = d->pre_break->num;
 					discwidth = 0;
 					if (s == 0)
 						trybreak(ex_hyphen_penalty(), hyphenated);
@@ -444,6 +447,7 @@ void linebreak(int finalwidowpenalty)
 					prevp = curp;
 					curp = s;
 					continue;
+				}
 				case math_node:
 					autobreaking = subtype(curp) == after;
 					kern_break(autobreaking);

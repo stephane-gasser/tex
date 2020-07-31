@@ -52,6 +52,12 @@ typedef std::uint8_t smallnumber; // 0..63
 typedef float glueratio;
 typedef std::uint8_t quarterword; // 0..255
 typedef std::uint16_t halfword; // 0..0xFF'FF
+typedef char internalfontnumber; //0..fontmax
+typedef int fontindex; // 0..fontmemsize
+typedef int dviindex; // 0..dvibufsize
+typedef int triepointer; // 0..triesize
+typedef int hyphpointer; //0..307
+
 
 typedef struct
 {
@@ -84,29 +90,200 @@ typedef union
 } memoryword;
 
 typedef char glueord; //0..3
+typedef char groupcode; // 0..16
+
+class Font
+{
+	public:
+		static std::vector<memoryword> info;
+		int charbase; //!< base addresses for |char_info|
+		int widthbase; //!< base addresses for widths
+		int heightbase; //!< base addresses for heights
+		int depthbase; //!< base addresses for depths
+		int italicbase; //!< base addresses for italic corrections
+		int ligkernbase; //!< base addresses for ligature/kerning programs
+		int kernbase; //!< base addresses for kerns
+		int extenbase; //!< base addresses for extensible recipes
+		int parambase; //!< base addresses for font parameters
+		std::string name; //!< name of the font
+		std::string area; //!< area of the font
+		fourquarters check; //!< check sum
+		scaled size; //!< ``at'' size
+		scaled dsize; //!< ``design'' size
+		fontindex params; //!< how many font parameters are present
+		eightbits bc; //!< beginning (smallest) character code
+		eightbits ec; //!< ending (largest) character code
+		halfword glue; //!< glue specification for interword space, |null| if not allocated
+		bool used; //!< has a character from this font actually appeared in the output?
+		int hyphenchar;//!< current \.{\\hyphenchar} values
+		int skewchar; //!< current \.{\\skewchar} values
+		fontindex bcharlabel; //!< start of |lig_kern| program for left boundary character, |non_address| if there is none
+		int bchar; //!< right boundary character, |non_char| if there is none
+		int falsebchar; //!< |font_bchar| if it doesn't exist in the font, otherwise |non_char|
+		static fourquarters& infos(int);
+		static quarterword skip_byte(int);
+		static quarterword next_char(int);
+		static quarterword op_byte(int);
+		static quarterword rem_byte(int);
+		fourquarters char_info(smallnumber) const;
+		int char_width(smallnumber) const;
+		int char_height(smallnumber) const;
+		int char_depth(smallnumber) const;
+		int char_italic(smallnumber) const;
+		int lig_kern_start(fourquarters) const; //!< beginning of lig/kern program
+		int lig_kern_restart(fourquarters) const;
+		int char_kern(fourquarters) const;
+		int& param(smallnumber) const;
+		scaled heightplusdepth(quarterword) const;
+		int& slant(void) const; //!< slant to the right, per unit distance upward
+		int& extra_space(void) const; //!< additional space at end of sentence
+		int& space(void) const; //!< normal space between words
+		int& space_stretch(void) const; //!< stretch between words
+		int& space_shrink(void) const; //!< shrink between words
+		int& x_height(void) const; //!< one ex
+		int& quad(void) const; //!< one em
+		int char_tag(smallnumber);
+		bool char_exists(smallnumber);
+};
+
+
+
+class AnyNode
+{
+	public:
+		halfword num = 0; // bidon
+		quarterword type = 0;
+		virtual bool is_char_node(void) { return false; }
+};
+
+class LinkedNode : public AnyNode
+{
+	public:
+		LinkedNode *link = nullptr;
+};
+
+class CharNode : public LinkedNode
+{
+	public:
+		Font font; //type
+		quarterword character; //subtype
+		virtual bool is_char_node(void) { return true; }
+		CharNode(const Font &f, quarterword c) : font(f), character(c) {}
+};
+
+class TokenNode : public LinkedNode
+{
+	public:
+		TokenNode(void) : token(0) {}
+		TokenNode(halfword t) : token(t) {}
+		halfword token; // info
+		virtual bool is_char_node(void) { return true; }
+};
+
+class TokenListNode : public LinkedNode
+{
+	public:
+		halfword token_ref_count; // info
+		virtual bool is_char_node(void) { return true; }
+};
+
+enum
+{
+	hlist_node = 0, //!< \a type of hlist nodes
+	vlist_node = 1, //!< \a type of vlist nodes
+	rule_node = 2, //!< \a type of rule nodes
+	ins_node = 3, //!< \a type of insertion nodes
+	mark_node = 4, //!< \a type of a mark node
+	adjust_node = 5, //!< \a type of an adjust node
+	ligature_node = 6, //!< \a type of a ligature node
+	disc_node = 7, //!< \a type of a discretionary node
+	whatsit_node = 8, //!< \a type of special extension nodes
+	math_node = 9, //!< \a type of a math node
+	glue_node = 10, //!< \a type of node that points to a glue specification
+	kern_node = 11, //!< \a type of a kern node
+	penalty_node = 12, //!< \a type of a penalty node
+	unset_node = 13, //!< \a type for an unset node
+	style_node = unset_node+1, //!< \a type of a style node
+	choice_node = unset_node+2, //!< \a type of a choice node
+	ord_noad = unset_node+3, //!< \a type of a noad classified Ord
+	op_noad = ord_noad+1, //!< \a type of a noad classified Op
+	bin_noad = ord_noad+2, //!< \a type of a noad classified Bin
+	rel_noad = ord_noad+3, //!< \a type of a noad classified Rel
+	open_noad = ord_noad+4, //!< \a type of a noad classified Ope
+	close_noad = ord_noad+5, //!< \a type of a noad classified Clo
+	punct_noad = ord_noad+6, //!< \a type of a noad classified Pun
+	inner_noad = ord_noad+7, //!< \a type of a noad classified Inn
+	radical_noad = inner_noad+1, //!< \a type of a noad for square roots
+	fraction_noad = radical_noad+1, //!< \a type of a noad for generalized fractions
+	under_noad = fraction_noad+1, //!< \a type of a noad for underlining
+	over_noad = under_noad+1, //!< \a type of a noad for overlining
+	accent_noad = over_noad+1, //!< \a type of a noad for accented subformulas
+	vcenter_noad = accent_noad+1, //!< \a type of a noad for \\vcenter
+	left_noad = vcenter_noad+1, //!< \a type of a noad for \\left
+	right_noad = left_noad+1 //!< \a type of a noad for \\right
+};
+
+class ChoiceNode : public LinkedNode
+{
+	public:
+		LinkedNode *display_mlist = nullptr; //!< mlist to be used in display style
+		LinkedNode *text_mlist = nullptr; //!< mlist to be used in text style
+		LinkedNode *script_mlist = nullptr; //!< mlist to be used in script style
+		LinkedNode *script_script_mlist = nullptr; //!< mlist to be used in scriptscript style
+		ChoiceNode(void) { type = choice_node; }
+};
+
+class DiscNode : public LinkedNode
+{
+	public:
+		quarterword replace_count = 0; //!< how many subsequent nodes to replace
+		LinkedNode *pre_break = nullptr; //!< text that precedes a discretionary break
+		LinkedNode *post_break = nullptr; //!< text that follows a discretionary break
+		DiscNode(void) { type = disc_node; }
+};
+
+class KernNode : public LinkedNode
+{
+	public:
+		quarterword subtype; // normal/explicit_/acc_kern/mu_glue
+		scaled width; //(normally negative) amount of spacing
+		KernNode(scaled w, quarterword s = 0) : width(w), subtype(s) { type = kern_node; }
+};
 
 typedef struct
 {
     int modefield; // -203..203
-    halfword headfield, tailfield;
+    LinkedNode *headfield, *tailfield;
     int pgfield, mlfield;
     memoryword auxfield;
 } liststaterecord;
 
-typedef char groupcode; // 0..16
+inline liststaterecord curlist;
+inline auto &aux = curlist.auxfield; //!< auxiliary data about the current list
+inline auto &head = curlist.headfield; //!< header node of current list
+inline auto &tail = curlist.tailfield; //!< final node on current list
+inline int& prev_depth = aux.int_; //!< the name of \a aux in vertical mode
+inline halfword& space_factor = aux.hh.lh; //!< part of \a aux in horizontal mode
+inline halfword& clang = aux.hh.rh;  //!< the other part of \a aux in horizontal mode
+inline int &incompleat_noad = aux.int_; //!< the name of \a aux in math mode
+inline int& mode = curlist.modefield; //!< current mode
+inline int& prev_graf = curlist.pgfield; //!< number of paragraph lines accumulated
+inline int& mode_line = curlist.mlfield; //!< source file line number at beginning of list
+
+inline LinkedNode *curhead, *curtail;
 
 typedef struct
 {
     quarterword statefield, indexfield;
-    halfword startfield, locfield, limitfield;
+    halfword startfield;
+    halfword locfield, limitfield;
     std::string namefield;
 } instaterecord;
 
-typedef char internalfontnumber; //0..fontmax
-typedef int fontindex; // 0..fontmemsize
-typedef int dviindex; // 0..dvibufsize
-typedef int triepointer; // 0..triesize
-typedef int hyphpointer; //0..307
+inline instaterecord curinput;
+
+inline LinkedNode *pstack[9];
+inline LinkedNode *paramstack[paramsize+1];
 
 inline std::string hyphword[308];
 inline std::string helpline;
@@ -217,14 +394,12 @@ extern int curboundary; // 0..savesize
 extern instaterecord inputstack[stacksize+1];
 extern unsigned char inputptr; // 0..stacksize
 extern unsigned char maxinstack; // 0..stacksize
-extern instaterecord curinput;
 extern char inopen; // 0..maxinopen
 extern char openparens; // 0..maxinopen
 extern alphafile inputfile[maxinopen+1]; // commence à 1
 extern int linestack[maxinopen+1]; // commence à 1
 extern char scannerstatus; // 0..5
 extern halfword warningindex;
-extern halfword paramstack[paramsize+1];
 extern char paramptr; // 0..paramsize
 extern unsigned char baseptr; // 0..stacksize
 extern halfword parloc;
@@ -232,7 +407,6 @@ extern halfword partoken;
 extern bool forceeof;
 extern halfword curmark[5];
 extern char longstate; // 111..114
-extern halfword pstack[9];
 extern smallnumber radix;
 extern glueord curorder;
 extern alphafile readfile[16];
@@ -272,7 +446,6 @@ extern bool mlistpenalties;
 extern halfword curalign;
 extern halfword curspan;
 extern halfword alignptr;
-extern halfword curhead, curtail;
 extern halfword justbox;
 extern halfword passive;
 extern halfword printednode;

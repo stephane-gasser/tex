@@ -37,6 +37,7 @@ void back_list(halfword);
 void ins_list(halfword);
 void begintokenlist(halfword, quarterword);
 void deletetokenref(halfword);
+void deletetokenref(TokenListNode*);
 void endtokenlist(void);
 Token getpreambletoken(void);
 void insthetoks(void);

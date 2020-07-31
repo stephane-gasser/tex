@@ -7,20 +7,22 @@
 void buildchoices(Token t)
 {
 	unsave();
-	auto p = finmlist(0); // the current mlist
+	LinkedNode *p;
+	p->num = finmlist(0); // the current mlist
+	auto Tail = dynamic_cast<ChoiceNode*>(tail);
 	switch (saved(-1))
 	{
 		case 0: 
-			display_mlist(tail) = p;
+			Tail->display_mlist = p;
 			break;
 		case 1: 
-			text_mlist(tail) = p;
+			Tail->text_mlist = p;
 			break;
 		case 2: 
-			script_mlist(tail) = p;
+			Tail->script_mlist = p;
 			break;
 		case 3:
-			script_script_mlist(tail) = p;
+			Tail->script_script_mlist = p;
 			saveptr--;
 			return;
 	}

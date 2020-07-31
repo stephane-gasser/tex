@@ -5,11 +5,11 @@
 
 halfword overbar(halfword b, scaled k, scaled  t)
 {
-	auto p = newkern(k);
-	link(p) = b;
+	auto p = new KernNode(k);
+	p->link->num = b;
 	auto q = fractionrule(t);
-	link(q) = p;
-	p = newkern(t);
-	link(p) = q;
-	return vpack(p, 0, additional);
+	link(q) = p->num;
+	p = new KernNode(t);
+	p->link->num = q;
+	return vpack(p->num, 0, additional);
 }

@@ -24,23 +24,24 @@ void mathleftright(Token tk)
 	}
 	else
 	{
-		auto p = newnoad();
-		type(p) = t;
-		scandelimiter(delimiter(p), false, tk);
+		LinkedNode *p;
+		p->num = newnoad();
+		p->type = t;
+		scandelimiter(delimiter(p->num), false, tk);
 		if (t == left_noad)
 		{
 			pushmath(math_left_group);
-			link(head) = p;
+			head->link = p;
 			tail = p;
 		}
 		else
 		{
-			p = finmlist(p);
+			p->num = finmlist(p->num);
 			unsave();
 			tail_append(newnoad());
-			type(tail) = inner_noad;
-			math_type(nucleus(tail)) = sub_mlist;
-			info(nucleus(tail)) = p;
+			tail->type = inner_noad;
+			math_type(nucleus(tail->num)) = sub_mlist;
+			info(nucleus(tail->num)) = p->num;
 		}
 	}
 }

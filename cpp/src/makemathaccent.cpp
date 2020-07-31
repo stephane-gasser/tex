@@ -71,16 +71,16 @@ void makemathaccent(halfword q)
 		auto y = charbox(ft, c);
 		shift_amount(y) = s+half(w-width(y));
 		width(y) = 0;
-		auto p = newkern(-delta);
-		link(p) = x;
-		link(y) = p;
+		auto p = new KernNode(-delta);
+		p->link->num = x;
+		link(y) = p->num;
 		y = vpack(y, 0, additional);
 		width(y) = width(x);
 		if (height(y) < h)
 		{
-			p = newkern(h-height(y));
-			link(p) = list_ptr(y);
-			list_ptr(y) = p;
+			p = new KernNode(h-height(y));
+			p->link->num = list_ptr(y);
+			list_ptr(y) = p->num;
 			height(y) = h;
 		}
 		info(nucleus(q)) = y;

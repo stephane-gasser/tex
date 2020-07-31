@@ -12,7 +12,7 @@ bool itsallover(Token t)
 			return true;
 		backinput(t);
 		tail_append(newnullbox());
-		width(tail) = hsize();
+		width(tail->num) = hsize();
 		tail_append(newglue(fill_glue));
 		tail_append(newpenalty(null_flag));
 		buildpage();

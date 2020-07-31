@@ -600,9 +600,8 @@ void scanfilename(void)
 
 bool scankeyword(const std::string &s)
 {
-	TokenNode *p;
-	p->num = backup_head;
-	p->link = 0;
+	auto p = backup_head;
+	p->link = nullptr;
 	for (size_t k = 0; k < s.size();)
 	{
 		auto t = getxtoken();
@@ -614,15 +613,15 @@ bool scankeyword(const std::string &s)
 			k++;
 		}
 		else 
-			if (t.cmd != spacer || p->num != backup_head)
+			if (t.cmd != spacer || p != backup_head)
 			{
 				backinput(t);
-				if (p->num != backup_head)
-					back_list(link(backup_head));
+				if (p != backup_head)
+					back_list(backup_head->link->num);
 				return false;
 			}
 	}
-	flushlist(link(backup_head));
+	flushlist(backup_head->link);
 	return true;
 }
 
@@ -902,22 +901,22 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 					val = 0;
 					lev = t.chr;
 				}
-				if (!is_char_node(tail) && mode)
+				if (!tail->is_char_node() && mode)
 					switch (t.chr)
 					{
 						case int_val: 
-							if (type(tail) == penalty_node)
-								val = penalty(tail);
+							if (tail->type == penalty_node)
+								val = penalty(tail->num);
 							break;
 						case dimen_val: 
-							if (type(tail) == kern_node)
-								val = width(tail);
+							if (tail->type == kern_node)
+								val = width(tail->num);
 							break;
 						case glue_val: 
-							if (type(tail) == glue_node)
+							if (tail->type == glue_node)
 							{
-								val = glue_ptr(tail);
-								if (subtype(tail) == mu_glue)
+								val = glue_ptr(tail->num);
+								if (subtype(tail->num) == mu_glue)
 									lev = mu_val;
 							}
 					}
@@ -1135,7 +1134,7 @@ void begintokenlist(halfword p, quarterword t)
 {
 	push_input();
 	state = token_list;
-	start = p;
+	Start->num = p;
 	index = t;
 	Token tk;
 	if (t >= macro) //the token list starts with a reference count
@@ -1183,10 +1182,10 @@ void endtokenlist(void)
 			break;
 		case backed_up:
 		case inserted:
-			flushlist(start);
+			flushlist(Start);
 			break;
 		case macro:
-			deletetokenref(start);
+			deletetokenref(Start->num);
 			for (;paramptr > param_start; paramptr--)
 				flushlist(paramstack[paramptr]);
 			break;
@@ -1200,7 +1199,7 @@ void endtokenlist(void)
 		case every_cr_text:
 		case mark_text:
 		case write_text:
-			deletetokenref(start);
+			deletetokenref(Start->num);
 	}
 	pop_input();
 }
@@ -1211,6 +1210,14 @@ void deletetokenref(halfword p)
 		flushlist(p);
 	else
 		info(p)--;
+}
+
+void deletetokenref(TokenListNode *p)
+{
+	if (p->token_ref_count == 0)
+		flushlist(p);
+	else
+		p->token_ref_count--;
 }
 
 [[nodiscard]] Token gettoken(void)
@@ -1362,7 +1369,7 @@ void insthetoks(void)
 		else
 			buffer[limit] = end_line_char();
 		First = limit+1;
-		loc = start;
+		Loc = Start;
 		state = new_line;
 		while (true)
 		{

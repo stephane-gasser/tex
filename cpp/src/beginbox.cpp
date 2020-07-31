@@ -18,7 +18,7 @@ static halfword& every_hbox(void) { return equiv(every_hbox_loc); }
 //! box desired, and <em> cur_cmd=make_box </em>.
 void beginbox(int boxcontext, Token t)
 {
-	halfword p, q; // run through the current list
+	LinkedNode *p, *q; // run through the current list
 	quarterword m; // the length of a replacement list
 	halfword k; // 0 or vmode or hmode
 	eightbits n; // a box number
@@ -43,32 +43,32 @@ void beginbox(int boxcontext, Token t)
 				if (mode == vmode && head == tail)
 					error("You can't use `"+cmdchr(t)+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page.\nThis \\lastbox will therefore be void.");
 				else 
-					if (tail < himemmin)
-						if (type(tail) == hlist_node || type(tail) == vlist_node)
+					if (!tail->is_char_node())
+						if (tail->type == hlist_node || tail->type == vlist_node)
 						{
 							q = head;
 							bool brk = false;
 							do
 							{
 								p = q;
-								if (q < himemmin && type(q) == disc_node) // 7
+								if (!q->is_char_node() && q->type == disc_node) // 7
 								{
-									for (m = 1 ; m <= subtype(q); m++)
-										p = link(p);
+									for (m = 1 ; m <= subtype(q->num); m++)
+										p = p->link;
 									if (p == tail)
 									{
 										brk = true;
 										break;
 									}
 								}
-								q = link(p);
+								q = p->link;
 							} while (q != tail);
 							if (!brk)
 							{
-								curbox = tail;
+								curbox = tail->num;
 								shift_amount(curbox) = 0;
 								tail = p;
-								link(p) = 0;
+								p->link = nullptr;
 							}
 						}
 			break;

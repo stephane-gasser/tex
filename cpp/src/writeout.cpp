@@ -41,6 +41,6 @@ void writeout(halfword p)
 		printnl("");
 	}
 	print(tokenshow(defref->num)+"\n");
-	flushlist(defref->num);
+	flushlist(defref);
 	selector = oldsetting;
 }

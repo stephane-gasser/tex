@@ -5,11 +5,11 @@
 void mathradical(Token t)
 {
 	tail_append(getnode(radical_noad_size));
-	type(tail) = radical_noad;
-	subtype(tail) = normal;
-	mem[nucleus(tail)].hh = twohalves{0, 0};
-	mem[subscr(tail)].hh = twohalves{0, 0};
-	mem[supscr(tail)].hh = twohalves{0, 0};
-	scandelimiter(left_delimiter(tail), true, t);
-	scanmath(nucleus(tail));
+	tail->type = radical_noad;
+	subtype(tail->num) = normal;
+	mem[nucleus(tail->num)].hh = twohalves{0, 0};
+	mem[subscr(tail->num)].hh = twohalves{0, 0};
+	mem[supscr(tail->num)].hh = twohalves{0, 0};
+	scandelimiter(left_delimiter(tail->num), true, t);
+	scanmath(nucleus(tail->num));
 }

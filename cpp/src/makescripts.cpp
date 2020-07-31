@@ -17,16 +17,17 @@ static int sub_drop(smallnumber c) { return mathsy(19, c); } //!< subscript base
 
 void makescripts(halfword q, scaled delta)
 {
-	halfword p = new_hlist(q);
+	LinkedNode *p;
+	p->num = new_hlist(q);
 	scaled shiftup, shiftdown;
-	if (is_char_node(p))
+	if (p->is_char_node())
 	{
 		shiftup = 0;
 		shiftdown = 0;
 	}
 	else
 	{
-		auto z = hpack(p, 0, additional);
+		auto z = hpack(p->num, 0, additional);
 		smallnumber t = curstyle < script_style ? script_size : script_script_size;
 		shiftup = height(z)-sup_drop(t);
 		shiftdown = depth(z)+sub_drop(t);
@@ -81,9 +82,9 @@ void makescripts(halfword q, scaled delta)
 				}
 			}
 			shift_amount(x) = delta;
-			p = newkern(shiftup-depth(x)-(height(y)-shiftdown));
-			link(x) = p;
-			link(p) = y;
+			p = new KernNode(shiftup-depth(x)-(height(y)-shiftdown));
+			link(x) = p->num;
+			p->link->num = y;
 			x = vpack(x, 0, additional);
 			shift_amount(x) = shiftdown;
 		}
@@ -92,9 +93,9 @@ void makescripts(halfword q, scaled delta)
 		new_hlist(q) = x;
 	else
 	{
-		p = new_hlist(q);
-		while (link(p))
-			p = link(p);
-		link(p) = x;
+		p->num = new_hlist(q);
+		while (p->link)
+			p = p->link;
+		p->link->num = x;
 	}
 }

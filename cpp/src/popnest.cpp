@@ -2,8 +2,7 @@
 
 void popnest(void)
 {
-	link(head) = avail;
-	avail = head;
+	delete head;
 	nestptr--;
 	curlist = nest[nestptr];
 }

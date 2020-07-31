@@ -8,7 +8,7 @@ halfword charbox(const Font &ft, quarterword c)
 	width(b) = ft.char_width(c)+ft.char_italic(c);
 	height(b) = ft.char_height(c);
 	depth(b) = ft.char_depth(c);
-	auto p = new CharNode(f/*t*/, c);
+	auto p = new CharNode(ft, c);
 	list_ptr(b) = p->num;
 	return b;
 }

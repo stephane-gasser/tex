@@ -57,8 +57,8 @@ void boxend(int boxcontext)
 				if ((t.cmd == hskip && abs(mode) != vmode) || (t.cmd == vskip && abs(mode) == vmode))
 				{
 					appendglue(t.chr);
-					subtype(tail) = boxcontext-(leader_flag-a_leaders);
-					leader_ptr(tail) = curbox;
+					subtype(tail->num) = boxcontext-(leader_flag-a_leaders);
+					leader_ptr(tail->num) = curbox;
 				}
 				else
 				{

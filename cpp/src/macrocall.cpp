@@ -108,7 +108,7 @@ void macrocall(Token t)
 							runaway();
 							backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 						}
-						pstack[n] = temp_head->link->num;
+						pstack[n] = temp_head->link;
 						alignstate -= unbalance;
 						for (int m = 0; m <= n; m++)
 							flushlist(pstack[m]);
@@ -134,7 +134,7 @@ void macrocall(Token t)
 										runaway();
 										backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 									}
-									pstack[n] = temp_head->link->num;
+									pstack[n] = temp_head->link;
 									alignstate -= unbalance;
 									for (int m = 0; m <= n; m++)
 										flushlist(pstack[m]);
@@ -185,18 +185,16 @@ void macrocall(Token t)
 				if (m == 1 && p->token < right_brace_limit && p != temp_head)
 				{
 					rbraceptr->link = nullptr;
-					p->link->num = avail;
-					avail = p->num;
+					delete p;
 					p = dynamic_cast<TokenNode*>(temp_head->link);
-					pstack[n] = p->link->num;
-					p->link->num = avail;
-					avail = p->num;
+					pstack[n] = p->link;
+					delete p;
 				}
 				else
-					pstack[n] = temp_head->link->num;
+					pstack[n] = temp_head->link;
 				n++;
 				if (tracing_macros() > 0)
-					diagnostic(std::string(1, matchchr)+"\n"+std::to_string(n)+"<-"+tokenlist(pstack[n-1], 0, 1000));
+					diagnostic(std::string(1, matchchr)+"\n"+std::to_string(n)+"<-"+tokenlist(pstack[n-1]->num, 0, 1000));
 			}
 		} while (r->token != end_match_token); 
 	}

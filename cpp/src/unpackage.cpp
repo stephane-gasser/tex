@@ -16,13 +16,13 @@ void unpackage(halfword c)
 		return;
 	}
 	if (c == copy_code)
-		link(tail) = copynodelist(list_ptr(p));
+		tail->link->num = copynodelist(list_ptr(p));
 	else
 	{
-		link(tail) = list_ptr(p);
+		tail->link->num = list_ptr(p);
 		box(val) = 0;
 		freenode(p, box_node_size);
 	}
-	while (link(tail))
-		tail = link(tail);
+	while (tail->link)
+		tail = tail->link;
 }

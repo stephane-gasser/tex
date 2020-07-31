@@ -48,7 +48,8 @@ void postlinebreak(int finalwidowpenalty)
 			{
 				if (type(q->num) == disc_node) //Change discretionary to compulsory and set |disc_break:=true|
 				{
-					t = replace_count(q->num);
+					auto Q = dynamic_cast<DiscNode*>(q);
+					t = Q->replace_count;
 					//Destroy the |t| nodes following |q|, and make |r| point to the following node@
 					if (t == 0)
 						r = q->link;
@@ -63,26 +64,26 @@ void postlinebreak(int finalwidowpenalty)
 						s = r->link;
 						r = s->link;
 						s->link = nullptr;
-						flushnodelist(q->link->num);
-						replace_count(q->num) = 0;
+						flushnodelist(q->link);
+						Q->replace_count = 0;
 					}
-					if (post_break(q->num))
+					if (Q->post_break)
 					{
-						s->num = post_break(q->num);
+						s = Q->post_break;
 						while (s->link)
 							s = s->link;
 						s->link = r;
-						r->num = post_break(q->num);
-						post_break(q->num) = 0;
+						r = Q->post_break;
+						Q->post_break = nullptr;
 						postdiscbreak = true;
 					}
-					if (pre_break(q->num))
+					if (Q->pre_break)
 					{
-						s->num = pre_break(q->num);
+						s = Q->pre_break;
 						q->link = s;
 						while (s->link)
 							s = s->link;
-						pre_break(q->num) = 0;
+						Q->pre_break = nullptr;
 						q = s;
 					}
 					q->link = r;
@@ -138,8 +139,8 @@ void postlinebreak(int finalwidowpenalty)
 		appendtovlist(justbox);
 		if (adjust_head != adjusttail)
 		{
-			link(tail) = link(adjust_head);
-			tail = adjusttail;
+			tail->link->num = link(adjust_head);
+			tail->num = adjusttail;
 		}
 		adjusttail = 0;
 		if (curline+1 != bestline)
@@ -154,7 +155,7 @@ void postlinebreak(int finalwidowpenalty)
 			if (pen)
 			{
 				r->num = newpenalty(pen);
-				tail_append(r->num);
+				tail_append(r);
 			}
 		}
 		curline++;
@@ -180,7 +181,7 @@ void postlinebreak(int finalwidowpenalty)
 				if (r != temp_head)
 				{
 					r->link = nullptr;
-					flushnodelist(temp_head->link->num);
+					flushnodelist(temp_head->link);
 					temp_head->link = q;
 				}
 			}

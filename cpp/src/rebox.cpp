@@ -9,19 +9,20 @@ halfword rebox(halfword b, scaled w)
 	{
 		if (type(b) == vlist_node)
 			b = hpack(b, 0, additional);
-		halfword p = list_ptr(b);
-		if (is_char_node(p) && link(p) == 0)
+		LinkedNode *p;
+		p->num = list_ptr(b);
+		if (p->is_char_node() && p->link == nullptr)
 		{
-			scaled v = fonts[font(p)].char_width(subtype(p));
+			scaled v = dynamic_cast<CharNode*>(p)->font.char_width(dynamic_cast<CharNode*>(p)->character);
 			if (v != width(b))
-				link(p) = newkern(width(b)-v);
+				p->link = new KernNode(width(b)-v);
 		}
 		freenode(b, box_node_size);
 		b = newglue(ss_glue);
-		link(b) = p;
-		while (link(p))
-			p = link(p);
-		link(p) = newglue(ss_glue);
+		link(b) = p->num;
+		while (p->link)
+			p = p->link;
+		p->link->num = newglue(ss_glue);
 		return hpack(b, w, exactly);
 	}
 	width(b) = w;

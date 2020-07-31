@@ -8,28 +8,28 @@
 
 void finrow(halfword &loop)
 {
-	halfword p;
+	LinkedNode *p;
 	if (mode == -hmode)
 	{
-		p = hpack(link(head), 0, additional);
+		p->num = hpack(head->link->num, 0, additional);
 		popnest();
-		appendtovlist(p);
+		appendtovlist(p->num);
 		if (curhead != curtail)
 		{
-			link(tail) = link(curhead);
+			tail->link = curhead->link;
 			tail = curtail;
 		}
 	}
 	else
 	{
-		p = vpack(link(head), 0, additional);
+		p->num = vpack(head->link->num, 0, additional);
 		popnest();
-		link(tail) = p;
+		tail->link = p;
 		tail = p;
 		space_factor = 1000;
 	}
-	type(p) = unset_node;
-	glue_stretch(p) = 0;
+	p->type = unset_node;
+	glue_stretch(p->num) = 0;
 	if (every_cr())
 		begintokenlist(every_cr(), every_cr_text);
 	alignpeek(loop);

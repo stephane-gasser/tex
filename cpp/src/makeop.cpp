@@ -65,12 +65,12 @@ scaled makeop(halfword q)
 			scaled shiftup = big_op_spacing3()-depth(x);
 			if (shiftup < big_op_spacing1())
 				shiftup = big_op_spacing1();
-			auto p = newkern(shiftup);
-			link(p) = y;
-			link(x) = p;
-			p = newkern(big_op_spacing5());
-			link(p) = x;
-			list_ptr(v) = p;
+			auto p = new KernNode(shiftup);
+			p->link->num = y;
+			link(x) = p->num;
+			p = new KernNode(big_op_spacing5());
+			p->link->num = x;
+			list_ptr(v) = p->num;
 			height(v) += mathex(big_op_spacing5())+height(x)+depth(x)+shiftup;
 		}
 		if (math_type(subscr(q)) == 0)
@@ -80,11 +80,11 @@ scaled makeop(halfword q)
 			scaled shiftdown = big_op_spacing4()-height(z);
 			if (shiftdown < big_op_spacing2())
 				shiftdown = big_op_spacing2();
-			auto p = newkern(shiftdown);
-			link(y) = p;
-			link(p) = z;
-			p = newkern(big_op_spacing5());
-			link(z) = p;
+			auto p = new KernNode(shiftdown);
+			link(y) = p->num;
+			p->link->num = z;
+			p = new KernNode(big_op_spacing5());
+			link(z) = p->num;
 			depth(v) += big_op_spacing5()+height(z)+depth(z)+shiftdown;
 		}
 		new_hlist(q) = v;

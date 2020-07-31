@@ -75,22 +75,22 @@ void makefraction(halfword q)
 	height(v) = shiftup+height(x);
 	depth(v) = depth(z)+shiftdown;
 	width(v) = width(x);
-	halfword p;
+	LinkedNode *p;
 	if (thickness(q) == 0)
 	{
-		p = newkern((shiftup-depth(x))-(height(z)-shiftdown));
-		link(p) = z;
+		p = new KernNode((shiftup-depth(x))-(height(z)-shiftdown));
+		p->link->num = z;
 	}
 	else
 	{
 		auto y = fractionrule(thickness(q));
-		p = newkern((axis_height(cursize)-delta)-(height(z)-shiftdown));
-		link(y) = p;
-		link(p) = z;
-		p = newkern((shiftup-depth(x))-(axis_height(cursize)+delta));
-		link(p) = y;
+		p = new KernNode((axis_height(cursize)-delta)-(height(z)-shiftdown));
+		link(y) = p->num;
+		p->link->num = z;
+		p = new KernNode((shiftup-depth(x))-(axis_height(cursize)+delta));
+		p->link->num = y;
 	}
-	link(x) = p;
+	link(x) = p->num;
 	list_ptr(v) = x;
 	if (curstyle < 2)
 		delta = delim1(cursize);

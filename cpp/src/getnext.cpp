@@ -352,10 +352,10 @@ static void removeFromEnd(int &k, int d)
 			} while (skip && !restart);
 		}
 		else
-			if (loc)
+			if (Loc)
 			{
-				int tt = info(loc);
-				loc = link(loc);
+				int tt = Loc->token;
+				Loc = dynamic_cast<TokenNode*>(Loc->link);
 				if (tt >= cs_token_flag)
 				{
 					t.cs = tt-cs_token_flag;
@@ -364,8 +364,8 @@ static void removeFromEnd(int &k, int d)
 					if (t.cmd >= outer_call)
 						if (t.cmd == dont_expand)
 						{
-							t.cs = info(loc)-cs_token_flag;
-							loc = 0;
+							t.cs = Loc->token-cs_token_flag;
+							Loc = nullptr;
 							t.cmd = eq_type(t.cs);
 							t.chr = equiv(t.cs);
 							if (t.cmd > max_command)
@@ -390,7 +390,7 @@ static void removeFromEnd(int &k, int d)
 							alignstate--;
 							break;
 						case out_param:
-							begintokenlist(paramstack[limit+t.chr-1], 0);
+							begintokenlist(paramstack[limit+t.chr-1]->num, 0);
 							restart = true;
 					}
 				}

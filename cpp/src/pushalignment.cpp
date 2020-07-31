@@ -10,9 +10,8 @@ void pushalignment(halfword loop)
 	rlink(p) = curspan;
 	mem[p+2].int_ = loop;
 	mem[p+3].int_ = alignstate;
-	info(p+4) = curhead;
-	link(p+4) = curtail;
+	info(p+4) = curhead->num;
+	link(p+4) = curtail->num;
 	alignptr = p;
-	CharNode *cn;
-	curhead = cn->num;
+	curhead = new LinkedNode;
 }

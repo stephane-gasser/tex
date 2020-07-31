@@ -12,15 +12,15 @@ void subsup(eightbits cmd)
 	smallnumber t = 0;
 	halfword p = 0;
 	if (tail != head)
-		if (scripts_allowed(tail))
+		if (scripts_allowed(tail->num))
 		{
-			p = supscr(tail)+cmd-sup_mark;
+			p = supscr(tail->num)+cmd-sup_mark;
 			t = link(p);
 		}
 	if (p == 0 || t)
 	{
 		tail_append(newnoad());
-		p = supscr(tail)+cmd-sup_mark;
+		p = supscr(tail->num)+cmd-sup_mark;
 		if (t)
 		{
 			if (cmd == sup_mark)

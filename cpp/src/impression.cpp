@@ -560,10 +560,15 @@ std::string shortdisplay(int p)
 					oss << shortdisplay(lig_ptr(p));
 					break;
 				case disc_node:
-					oss << shortdisplay(pre_break(p)) << shortdisplay(post_break(p));
-					for (int n = replace_count(p); n > 0; n--)
-						if (link(p))
-							p = link(p);
+				{
+					DiscNode *d;
+					d->num = p;
+					oss << shortdisplay(d->pre_break->num) << shortdisplay(d->post_break->num);
+					LinkedNode *q = d;
+					for (int n = d->replace_count; n > 0; n--)
+						if (q->link)
+							q = q->link;
+				}
 			}
 		p = link(p);
 	}
@@ -740,12 +745,16 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 					oss << esc("penalty ") << penalty(p);
 					break;
 				case disc_node:
+				{
+					DiscNode *d;
+					d->num = p;
 					oss << esc("discretionary");
-					if (subtype(p) > 0)
-						oss << " replacing " << subtype(p);
-					oss << shownodelist(pre_break(p), symbol+".");
-					oss << shownodelist(post_break(p), symbol+"|");
+					if (d->replace_count > 0)
+						oss << " replacing " << d->replace_count;
+					oss << shownodelist(d->pre_break->num, symbol+".");
+					oss << shownodelist(d->post_break->num, symbol+"|");
 					break;
+				}
 				case mark_node:
 					oss << esc("mark") << asMark(mark_ptr(p));
 					break;
@@ -759,12 +768,16 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 						oss << "Unknown style!";
 					break;
 				case choice_node:
+				{
+					ChoiceNode *P;
+					P->num = p;
 					oss << esc("mathchoice");
-					oss << shownodelist(display_mlist(p), symbol+"D");
-					oss << shownodelist(text_mlist(p), symbol+"T");
-					oss << shownodelist(script_mlist(p), symbol+"S");
-					oss << shownodelist(script_script_mlist(p), symbol+"s");
+					oss << shownodelist(P->display_mlist->num, symbol+"D");
+					oss << shownodelist(P->text_mlist->num, symbol+"T");
+					oss << shownodelist(P->script_mlist->num, symbol+"S");
+					oss << shownodelist(P->script_script_mlist->num, symbol+"s");
 					break;
+				}
 				case ord_noad:
 				case op_noad:
 				case bin_noad:
@@ -968,7 +981,7 @@ std::string showcontext(void)
 					l = oss.str().size()-l;
 					tally = 0;
 					trickcount = 1000000;
-					for (auto c: tokenlist(token_type < macro ? start : link(start), loc, 100000));
+					for (auto c: tokenlist(token_type < macro ? Start->num : Start->link->num, Loc->num, 100000));
 						if (tally < trickcount)
 							trickbuf[tally%errorline] = c;
 						tally++;
@@ -1092,7 +1105,7 @@ static std::string showactivities(void)
 			if (link(contrib_head))
 				oss << "\r### recent contributions:";
 		}
-		oss <<showbox(link(nest[p].headfield));
+		oss <<showbox(nest[p].headfield->link->num);
 		switch (abs(m))
 		{
 			//case 0:
@@ -1144,7 +1157,7 @@ void showwhatever(Token t)
 		default:
 			thetoks();
 			printnl("> "+tokenshow(temp_head->num));
-			flushlist(temp_head->link->num);
+			flushlist(temp_head->link);
 			break;
 	}
 	if (interaction < error_stop_mode)

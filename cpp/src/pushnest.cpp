@@ -11,7 +11,7 @@ void pushnest(void)
 			overflow("semantic nest size", nestsize); 
 	}
 	nest[nestptr++] = curlist;
-	tail = head = getavail();
+	tail = head = new LinkedNode;
 	prev_graf = 0;
 	mode_line = line;
 }

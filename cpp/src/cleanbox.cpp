@@ -44,17 +44,15 @@ halfword cleanbox(halfword p, smallnumber s)
 	if (q->is_char_node() || q == nullptr)
 		x->num = hpack(q->num, 0, additional);
 	else 
-		#warning no type and no shift amount
-		if (q->link == nullptr && /*q->type <= */vlist_node /*&& shift_amount(q) == 0*/)
+		if (q->link == nullptr && q->type <= vlist_node && shift_amount(q->num) == 0)
 			x = q;
 		else
 			x->num = hpack(q->num, 0, additional);
-	q->num = link(x->num+5);
+	q->num = list_ptr(x->num);
 	if (q->is_char_node())
 	{
 		auto r = q->link;
-		#warning no type
-		if (r && r->link == nullptr && !r->is_char_node() /*&& r->type == kern_node*/)
+		if (r && r->link == nullptr && !r->is_char_node() && r->type == kern_node)
 		{
 			freenode(r->num, 2);
 			q->link = 0;

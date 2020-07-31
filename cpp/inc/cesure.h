@@ -4,7 +4,7 @@
 #include "globals.h"
 
 inline CharNode *ligstack;
-inline CharNode * curq;
+inline LinkedNode * curq;
 
 void inittrie(void);
 quarterword newtrieop(smallnumber, smallnumber, quarterword);

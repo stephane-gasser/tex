@@ -4,28 +4,28 @@
 
 halfword finmlist(halfword p)
 {
-	halfword q;
+	LinkedNode *q;
 	if (incompleat_noad)
 	{
-		link(incompleat_noad+3) = 3;
-		info(incompleat_noad+3) = link(head);
+		math_type(denominator(incompleat_noad)) = sub_mlist;
+		info(denominator(incompleat_noad)) = head->link->num;
 		if (p == 0)
-			q = incompleat_noad;
+			q->num = incompleat_noad;
 		else
 		{
-			q = info(incompleat_noad+2);
-			if (type(q) != 30)
+			q->num = info(numerator(incompleat_noad));
+			if (q->type != left_noad)
 				confusion("right");
-			info(incompleat_noad+2) = link(q);
-			link(q) = incompleat_noad;
+			info(numerator(incompleat_noad)) = q->link->num;
+			q->link->num = incompleat_noad;
 			link(incompleat_noad) = p;
 		}
 	}
 	else
 	{
-		link(tail) = p;
-		q = link(head);
+		tail->link->num = p;
+		q = head->link;
 	}
 	popnest();
-	return q;
+	return q->num;
 }

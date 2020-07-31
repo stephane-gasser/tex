@@ -153,7 +153,7 @@ void fireup(halfword c)
 	{
 		if (link(contrib_head) == 0)
 			if (nestptr == 0)
-				tail = pagetail;
+				tail->num = pagetail;
 			else
 				contrib_tail = pagetail;
 		link(pagetail) = link(contrib_head);
@@ -216,7 +216,7 @@ void fireup(halfword c)
 	{
 		if (link(contrib_head) == 0)
 			if (nestptr == 0)
-				tail = pagetail;
+				tail->num = pagetail;
 			else
 				contrib_tail = pagetail;
 		else

@@ -3,9 +3,9 @@
 
 void flushmath(void)
 {
-	flushnodelist(link(head));
+	flushnodelist(head->link);
 	flushnodelist(incompleat_noad);
-	link(head) = 0;
+	head->link = nullptr;
 	tail = head;
 	incompleat_noad = 0;
 }

@@ -13,10 +13,10 @@ void package(smallnumber c, Token t)
 	unsave();
 	saveptr -= 3;
 	if (mode == -hmode)
-		curbox = hpack(link(head), saved(2), saved(1));
+		curbox = hpack(head->link->num, saved(2), saved(1));
 	else
 	{
-		curbox = vpackage(link(head), saved(2), saved(1), d);
+		curbox = vpackage(head->link->num, saved(2), saved(1), d);
 		if (c == 4)
 		{
 			scaled h = 0;

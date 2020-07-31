@@ -62,25 +62,25 @@ void handlerightbrace(Token t, halfword &loop)
 			f = floating_penalty();
 			unsave();
 			saveptr--;
-			p = vpack(link(head), 0, additional);
+			p = vpack(head->link->num, 0, additional);
 			popnest();
 			if (saved(0) < 255)
 			{
 				tail_append(getnode(ins_node_size));
-				type(tail) = ins_node; //3
-				subtype(tail) = saved(0);
-				height(tail) = height(p)+depth(p);
-				ins_ptr(tail) = list_ptr(p);
-				split_top_ptr(tail) = q;
-				depth(tail) = d;
-				float_cost(tail) = f;
+				tail->type = ins_node;
+				subtype(tail->num) = saved(0);
+				height(tail->num) = height(p)+depth(p);
+				ins_ptr(tail->num) = list_ptr(p);
+				split_top_ptr(tail->num) = q;
+				depth(tail->num) = d;
+				float_cost(tail->num) = f;
 			}
 			else
 			{
 				tail_append(getnode(small_node_size));
-				type(tail) = adjust_node; //5
-				type(tail) = 0;
-				adjust_ptr(tail) = list_ptr(p);
+				tail->type = adjust_node; //5
+				subtype(tail->num) = 0;
+				adjust_ptr(tail->num) = list_ptr(p);
 				deleteglueref(q);
 			}
 			freenode(p, box_node_size);
@@ -104,8 +104,8 @@ void handlerightbrace(Token t, halfword &loop)
 				boxerror(255, "Output routine didn't use all of "+esc("box255"), "Your \\output commands should empty \\box255,\ne.g., by saying `\\shipout\\box255'.\nProceed; I'll discard its present contents.");
 			if (tail != head)
 			{
-				link(pagetail) = link(head);
-				pagetail = tail;
+				link(pagetail) = head->link->num;
+				pagetail = tail->num;
 			}
 			if (link(page_head))
 			{
@@ -136,14 +136,14 @@ void handlerightbrace(Token t, halfword &loop)
 			endgraf();
 			unsave();
 			saveptr -= 2;
-			p = vpack(link(head), saved(1), saved(0));
+			p = vpack(head->link->num, saved(1), saved(0));
 			popnest();
 			tail_append(newnoad());
-			type(tail) = vcenter_noad;
-			math_type(nucleus(tail)) = sub_box;
-			info(nucleus(tail)) = p;
+			tail->type = vcenter_noad;
+			math_type(nucleus(tail->num)) = sub_box;
+			info(nucleus(tail->num)) = p;
 			break;
-		case math_choice_group: 
+		case math_choice_group:
 			buildchoices(t);
 			break;
 		case math_group:
@@ -163,15 +163,15 @@ void handlerightbrace(Token t, halfword &loop)
 				}
 				else 
 					if (type(p) == accent_noad)
-						if (saved(0) == nucleus(tail))
-							if (type(tail) == ord_noad)
+						if (saved(0) == nucleus(tail->num))
+							if (tail->type == ord_noad)
 							{
-								q = head;
-								while (link(q) != tail)
+								q = head->num;
+								while (link(q) != tail->num)
 									q = link(q);
 								link(q) = p;
-								freenode(tail, noad_size);
-								tail = p;
+								freenode(tail->num, noad_size);
+								tail->num = p;
 							}
 			break;
 		default: 

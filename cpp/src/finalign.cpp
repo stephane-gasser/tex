@@ -37,7 +37,7 @@ void finalign(halfword &loop)
 	q = link(preamble());
 	do
 	{
-		flushlist(u_part(q));
+		flushlist(u_part(q)); 
 		flushlist(v_part(q));
 		p = link(link(q));
 		if (is_running(width(q)))
@@ -122,8 +122,8 @@ void finalign(halfword &loop)
 		} while (q);
 	}
 	packbeginline = 0;
-	q = link(head);
-	s = head;
+	q = head->link->num;
+	s = head->num;
 	while (q)
 	{
 		if (q < himemmin)
@@ -283,9 +283,9 @@ void finalign(halfword &loop)
 	flushnodelist(p);
 	popalignment(loop);
 	auxsave = aux;
-	p = link(head);
-	q = tail;
-	popnest();
+	p = head->link->num;
+	q = tail->num;
+	popnest(); 
 	if (mode == mmode)
 	{
 		auto tk = doassignments();
@@ -300,9 +300,9 @@ void finalign(halfword &loop)
 		popnest();
 		tail_append(newpenalty(pre_display_penalty()));
 		tail_append(newparamglue(3));
-		link(tail) = p;
+		tail->link->num = p;
 		if (p)
-			tail = q;
+			tail->num = q;
 		tail_append(newpenalty(post_display_penalty()));
 		tail_append(newparamglue(4));
 		aux = auxsave;
@@ -311,9 +311,9 @@ void finalign(halfword &loop)
 	else
 	{
 		aux = auxsave;
-		link(tail) = p;
+		tail->link->num = p;
 		if (p)
-			tail = q;
+			tail->num = q;
 		if (mode == vmode)
 			buildpage();
 	}

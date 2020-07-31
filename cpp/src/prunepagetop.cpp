@@ -34,7 +34,7 @@ LinkedNode* prunepagetop(halfword p)
 				p = q->link->num;
 				q->link = nullptr;
 				prevp->link->num = p;
-				flushnodelist(q->num);
+				flushnodelist(q);
 				break;
 			default: 
 				confusion("pruning");

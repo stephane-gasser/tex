@@ -7,9 +7,9 @@
 void makeunder(halfword q)
 {
 	auto x = cleanbox(nucleus(q), curstyle);
-	auto p = newkern(3*default_rule_thickness());
-	link(x) = p;
-	link(p) = fractionrule(default_rule_thickness());
+	auto p = new KernNode(3*default_rule_thickness());
+	link(x) = p->num;
+	p->link->num = fractionrule(default_rule_thickness());
 	auto y = vpack(x, 0, additional);
 	scaled delta = height(y)+depth(y)+default_rule_thickness();
 	height(y) = height(x);

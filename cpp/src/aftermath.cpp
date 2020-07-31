@@ -90,9 +90,9 @@ void aftermath(void)
 		curstyle = 2;
 		mlistpenalties = mode > 0;
 		mlisttohlist();
-		link(tail) = temp_head->link->num;
-		while (link(tail))
-			tail = link(tail);
+		tail->link = temp_head->link;
+		while (tail->link)
+			tail = tail->link;
 		tail_append(newmath(math_surround(), after));
 		space_factor = 1000;
 		unsave();
@@ -150,9 +150,8 @@ void aftermath(void)
 		auto d = half(z-w);
 		if (e > 0 && d < 2*e)
 		{
-			d = half(z-w-e);
-			#warning no type
-			if (p && !p->is_char_node() && /*p->type == */glue_node) //10
+			d = half(z-w-e); 
+			if (p && !p->is_char_node() && p->type == glue_node)
 				d = 0;
 		}
 		tail_append(newpenalty(pre_display_penalty()));
@@ -172,18 +171,18 @@ void aftermath(void)
 			tail_append(newparamglue(g1));
 		if (e)
 		{
-			auto r = newkern(z-w-e-d);
+			auto r = new KernNode(z-w-e-d);
 			if (l)
 			{
-				link(a) = r;
-				link(r) = b;
+				link(a) = r->num;
+				r->link->num = b;
 				b = a;
 				d = 0;
 			}
 			else
 			{
-				link(b) = r;
-				link(r) = a;
+				link(b) = r->num;
+				r->link->num = a;
 			}
 			b = hpack(b, 0, additional);
 		}
@@ -198,8 +197,8 @@ void aftermath(void)
 		}
 		if (tt != adjust_head)
 		{
-			link(tail) = link(adjust_head);
-			tail = tt;
+			tail->link->num = link(adjust_head);
+			tail->num = tt;
 		}
 		tail_append(newpenalty(post_display_penalty()));
 		if (g2 > 0)

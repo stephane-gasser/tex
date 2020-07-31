@@ -17,7 +17,7 @@ void expand(Token tk)
 {
 	smallnumber radixbackup = radix;
 	smallnumber cobackup = curorder;
-	halfword backupbackup = link(backup_head);
+	auto backupbackup = backup_head->link;
 	if (tk.cmd < call)
 	{
 		if (tracing_commands() > 1)
@@ -52,9 +52,9 @@ void expand(Token tk)
 				if (tk.tok >= cs_token_flag)
 				{
 					p = new TokenNode(frozen_dont_expand+cs_token_flag);
-					p->link->num = loc;
-					start = p->num;
-					loc = p->num;
+					p->link = Loc;
+					Start = p;
+					Loc = p;
 				}
 				break;
 			case cs_name:
@@ -96,7 +96,7 @@ void expand(Token tk)
 					tk.cs = null_cs;
 				else
 					tk.cs = single_base+buffer[First];
-				flushlist(r->num);
+				flushlist(r);
 				if (eq_type(tk.cs) == undefined_cs)
 					eqdefine(tk.cs, relax, 256);
 				tk.tok = tk.cs+cs_token_flag;
@@ -154,5 +154,5 @@ void expand(Token tk)
 		}
 	radix = radixbackup;
 	curorder = cobackup;
-	link(backup_head) = backupbackup;
+	backup_head->link = backupbackup;
 }

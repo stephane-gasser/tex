@@ -73,17 +73,6 @@ halfword rover;
 liststaterecord nest[nestsize+1];
 char nestptr; //0..nestsize
 char maxneststack; // 0..nestsize
-liststaterecord curlist;
-memoryword& aux = curlist.auxfield;
-int& prev_depth = aux.int_;
-halfword& space_factor = aux.hh.lh;
-halfword& clang = aux.hh.rh;
-int &incompleat_noad = aux.int_;
-int& mode = curlist.modefield;
-halfword& head = curlist.headfield;
-halfword& tail = curlist.tailfield;
-int& prev_graf = curlist.pgfield;
-int& mode_line = curlist.mlfield;
 int shownmode; //-203..203
 char oldsetting; // 0..21
 memoryword eqtb[6107]; // débute à 1
@@ -100,14 +89,12 @@ int curboundary; // 0..savesize
 instaterecord inputstack[stacksize+1];
 unsigned char inputptr; // 0..stacksize
 unsigned char maxinstack; // 0..stacksize
-instaterecord curinput;
 char inopen; // 0..maxinopen
 char openparens; // 0..maxinopen
 alphafile inputfile[maxinopen+1]; // commence à 1
 int linestack[maxinopen+1]; // commence à 1
 char scannerstatus; // 0..5
 halfword warningindex;
-halfword paramstack[paramsize+1];
 char paramptr; // 0..paramsize
 unsigned char baseptr; // 0..stacksize
 halfword parloc;
@@ -115,7 +102,6 @@ halfword partoken;
 bool forceeof;
 halfword curmark[5];
 char longstate; // 111..114
-halfword pstack[9];
 smallnumber radix;
 glueord curorder;
 alphafile readfile[16];
@@ -155,7 +141,6 @@ bool mlistpenalties;
 halfword curalign;
 halfword curspan;
 halfword alignptr;
-halfword curhead, curtail;
 halfword justbox;
 halfword passive;
 halfword printednode;

@@ -3,10 +3,10 @@
 
 void popalignment(halfword &loop)
 {
-	free_avail(curhead);
+	delete curhead; 
 	auto p = alignptr;
-	curtail = link(p+4);
-	curhead = info(p+4);
+	curtail->num = link(p+4);
+	curhead->num = info(p+4);
 	alignstate = mem[p+3].int_;
 	loop = mem[p+2].int_;
 	curspan = rlink(p);

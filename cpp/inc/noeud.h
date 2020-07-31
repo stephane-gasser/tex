@@ -3,19 +3,14 @@
 
 #include "globals.h"
 
-void flushlist(halfword);
-halfword getavail(void);
-halfword fast_get_avail(void);
-void free_avail(halfword);
-halfword newcharacter(internalfontnumber, eightbits);
-halfword newchoice(void);
-halfword newdisc(void);
+[[deprecated]] void flushlist(halfword);
+void flushlist(LinkedNode*);
+CharNode* newcharacter(internalfontnumber, eightbits);
 void newfont(smallnumber);
 halfword newglue(halfword);
 void newgraf(bool);
 void newhyphexceptions(void);
 void newinteraction(Token);
-halfword newkern(scaled);
 halfword newligature(quarterword, quarterword, halfword);
 halfword newligitem(quarterword);
 halfword newmath(scaled, smallnumber);
@@ -30,8 +25,10 @@ halfword newspec(halfword);
 halfword newstyle(smallnumber);
 void newwhatsit(smallnumber, smallnumber);
 void newwritewhatsit(smallnumber, Token);
-halfword copynodelist(halfword);
-void flushnodelist(halfword);
+[[deprecated]] halfword copynodelist(halfword);
+LinkedNode* copynodelist(LinkedNode*);
+[[deprecated]] void flushnodelist(halfword);
+void flushnodelist(LinkedNode*);
 void freenode(halfword, halfword);
 halfword getnode(int);
 void appendchoices(void);

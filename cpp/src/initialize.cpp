@@ -18,8 +18,8 @@ void Initialize(void)
 	nestptr = 0;
 	maxneststack = 0;
 	mode = vmode;
-	head = contrib_head;
-	tail = contrib_head;
+	head->num = contrib_head;
+	tail->num = contrib_head;
 	prev_depth = -0x1'00'00*1000;
 	mode_line = 0;
 	prev_graf = 0;
@@ -86,8 +86,8 @@ void Initialize(void)
 	alignptr = 0;
 	curalign = 0;
 	curspan = 0;
-	curhead = 0;
-	curtail = 0;
+	curhead = nullptr;
+	curtail = nullptr;
 	for (int z = 0; z < 308; z++)
 	{
 		hyphword[z] = "";
@@ -246,7 +246,7 @@ void Initialize(void)
 	fonts[null_font].parambase = -1;
 	for (auto &fi: Font::info)
 		fi.int_ = 0;
-	trienotready = true;
+	trienotready = true; 
 	trie_root = 0;
 	trieNode[0].c = 0;
 	text(frozen_control_sequence) = txt("inaccessible");

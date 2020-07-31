@@ -20,47 +20,7 @@
 #include "cesure.h"
 #include "runaway.h"
 
-//single-word node allocation
-halfword getavail(void)
-{
-	halfword p = avail; //the new node being got ; get top location in the |avail| stack
-	if (p)
-		avail = link(avail); //and pop it off
-	else //or go into virgin territory
-		if (memend < memmax)
-			p = ++memend;
-		else
-		{
-			p = --himemmin;
-			if (himemmin <= lomemmax)
-			{
-				runaway(); //if memory is exhausted, display possible runaway text
-				overflow("main memory size", memmax+1-memmin);
-			}
-		}
-	link(p) = 0; //provide an oft-desired initialization of the new node
-	return p;
-}
-
-
-halfword fast_get_avail(void)
-{
-	if (avail == 0)
-		return getavail();
-	auto q = avail;
-	avail = link(q);
-	link(q) = 0; 
-	return q;
-}
-
-//! single-word node liberation 
-void free_avail(halfword p)
-{
-	link(p) = avail;
-	avail = p;
-}
-
-void flushlist(halfword p)
+[[deprecated]] void flushlist(halfword p)
 {
 	if (p)
 	{
@@ -72,55 +32,72 @@ void flushlist(halfword p)
 	}
 }
 
-halfword copynodelist(halfword p)
+void flushlist(LinkedNode *p)
 {
-	auto h = getavail();
+	while (p)
+	{
+		auto q = p;
+		p = p->link;
+		delete q;
+	}
+}
+
+[[deprecated]] halfword copynodelist(halfword p)
+{
+	LinkedNode *P;
+	P->num = p;
+	return copynodelist(P)->num;
+}
+
+LinkedNode* copynodelist(LinkedNode *p)
+{
+	auto h = new LinkedNode;
 	auto q = h;
 	while (p)
 	{
 		int words = 1;
-		halfword r;
-		if (is_char_node(p))
-			r = getavail();
+		LinkedNode *r;
+		if (p->is_char_node())
+			r = new LinkedNode;
 		else
-			switch (type(p))
+			switch (p->type)
 			{
 				case hlist_node:
 				case vlist_node:
 				case unset_node:
-					r = getnode(box_node_size);
-					mem[r+6] = mem[p+6];
-					mem[r+5] = mem[p+5];
-					list_ptr(r) = copynodelist(list_ptr(p));
+					r->num = getnode(box_node_size);
+					mem[r->num+6] = mem[p->num+6];
+					mem[r->num+5] = mem[p->num+5];
+					list_ptr(r->num) = copynodelist(list_ptr(p->num));
 					words = 5;
 					break;
 				case rule_node:
-					r = getnode(rule_node_size);
+					r->num = getnode(rule_node_size);
 					words = rule_node_size;
 					break;
 				case ins_node:
-					r = getnode(ins_node_size);
-					mem[r+4] = mem[p+4];
-					add_glue_ref(split_top_ptr(p));
-					ins_ptr(r) = copynodelist(ins_ptr(p));
+					r->num = getnode(ins_node_size);
+					mem[r->num+4] = mem[p->num+4];
+					add_glue_ref(split_top_ptr(p->num));
+					ins_ptr(r->num) = copynodelist(ins_ptr(p->num));
 					words = ins_node_size-1;
 					break;
 				case whatsit_node:
-					switch (subtype(p))
+					switch (subtype(p->num))
 					{
 						case open_node:
-							r = getnode(open_node_size);
+							r->num = getnode(open_node_size);
 							words = open_node_size;
 							break;
 						case write_node:
 						case special_node:
-							r = getnode(write_node_size);
-							add_token_ref(write_tokens(p));
+							r->num = getnode(write_node_size);
+							add_token_ref(write_tokens(p->num));
 							words = write_node_size;
 							break;
 						case close_node:
 						case language_node:
-							r = getnode(small_node_size);
+							r->num = getnode(small_node_size);
 							words = small_node_size;
 							break;
 						default:
@@ -128,137 +105,143 @@ halfword copynodelist(halfword p)
 					}
 					break;
 				case glue_node:
-					r = getnode(small_node_size);
-					add_glue_ref(glue_ptr(p));
-					glue_ptr(r) = glue_ptr(p);
-					leader_ptr(r) = copynodelist(leader_ptr(p));
+					r->num = getnode(small_node_size);
+					add_glue_ref(glue_ptr(p->num));
+					glue_ptr(r->num) = glue_ptr(p->num);
+					leader_ptr(r->num) = copynodelist(leader_ptr(p->num));
 					break;
 				case kern_node:
 				case math_node:
 				case penalty_node:
-					r = getnode(small_node_size);
+					r->num = getnode(small_node_size);
 					words = 2;
 					break;
 				case ligature_node:
-					r = getnode(small_node_size);
-					mem[lig_char(r)] = mem[lig_char(p)];
-					lig_ptr(r) = copynodelist(lig_ptr(p));
+					r->num = getnode(small_node_size);
+					mem[lig_char(r->num)] = mem[lig_char(p->num)];
+					lig_ptr(r->num) = copynodelist(lig_ptr(p->num));
 					break;
 				case disc_node:
-					r = getnode(small_node_size);
-					pre_break(r) = copynodelist(pre_break(p));
-					post_break(r) = copynodelist(post_break(p));
+				{
+					auto P = dynamic_cast<DiscNode*>(p);
+					auto R = new DiscNode;
+					R->pre_break->num = copynodelist(P->pre_break->num);
+					R->post_break->num = copynodelist(P->post_break->num);
+					r = R;
 					break;
+				}
 				case mark_node:
-					r = getnode(small_node_size);
-					info(mark_ptr(p))++;
+					r->num = getnode(small_node_size);
+					info(mark_ptr(p->num))++;
 					words = small_node_size;
 					break;
 				case adjust_node:
-					r = getnode(small_node_size);
-					adjust_ptr(r) = copynodelist(adjust_ptr(p));
+					r->num = getnode(small_node_size);
+					adjust_ptr(r->num) = copynodelist(adjust_ptr(p->num));
 					break;
 				default: 
 					confusion("copying");
 			}
 		for (;words > 0; words--)
-			mem[r+words] = mem[p+words];
-		link(q) = r;
+			mem[r->num+words] = mem[p->num+words];
+		q->link = r;
 		q = r;
-		p = link(p);
+		p = p->link;
 	}
-	link(q) = 0;
-	q = link(h);
-	link(h) = avail;
-	avail = h;
+	q->link = nullptr;
+	q = h->link;
+	delete h;
 	return q;
 }
 
-void flushnodelist(halfword p)
+void flushnodelist(LinkedNode *p)
 {
 	while (p)
 	{
-		auto q = link(p);
-		if (p >= himemmin)
-		{
-			link(p) = avail;
-			avail = p;
-		}
+		auto q = p->link;
+		if (p->is_char_node())
+			delete p;
 		else
 		{
-			switch (type(p))
+			switch (p->type)
 			{
 				case hlist_node:
 				case vlist_node:
 				case unset_node:
-					flushnodelist(list_ptr(p));
-					freenode(p, box_node_size);
+					flushnodelist(list_ptr(p->num));
+					freenode(p->num, box_node_size);
 					break;
 				case rule_node:
-					freenode(p, rule_node_size);
+					freenode(p->num, rule_node_size);
 					break;
 				case ins_node:
-					flushnodelist(ins_ptr(p));
-					deleteglueref(ins_ptr(p));
-					freenode(p, ins_node_size);
+					flushnodelist(ins_ptr(p->num));
+					deleteglueref(ins_ptr(p->num));
+					freenode(p->num, ins_node_size);
 					break;
 				case whatsit_node:
-					switch (subtype(p))
+					switch (subtype(p->num))
 					{
 						case open_node:
-							freenode(p, open_node_size);
+							freenode(p->num, open_node_size);
 							break;
 						case write_node:
 						case special_node:
-							deletetokenref(write_tokens(p));
-							freenode(p, write_node_size);
+							deletetokenref(write_tokens(p->num));
+							freenode(p->num, write_node_size);
 							break;
 						case close_node:
 						case language_node: 
-							freenode(p, small_node_size);
+							freenode(p->num, small_node_size);
 							break;
 						default: 
 							confusion("ext3");
 					}
 					break;
 				case glue_node:
-					deleteglueref(glue_ptr(p));
-					if (leader_ptr(p))
-						flushnodelist(leader_ptr(p));
-					freenode(p, small_node_size);
+					deleteglueref(glue_ptr(p->num));
+					if (leader_ptr(p->num))
+						flushnodelist(leader_ptr(p->num));
+					freenode(p->num, small_node_size);
 					break;
 				case kern_node:
 				case math_node:
 				case penalty_node: 
-					freenode(p, small_node_size);
+					freenode(p->num, small_node_size);
 					break;
 				case ligature_node: 
-					flushnodelist(lig_ptr(p));
-					freenode(p, small_node_size);
+					flushnodelist(lig_ptr(p->num));
+					freenode(p->num, small_node_size);
 					break;
 				case mark_node: 
-					deletetokenref(mark_ptr(p));
-					freenode(p, small_node_size);
+					deletetokenref(mark_ptr(p->num));
+					freenode(p->num, small_node_size);
 					break;
 				case disc_node:
-					flushnodelist(pre_break(p));
-					flushnodelist(post_break(p));
-					freenode(p, small_node_size);
+				{
+					auto P = dynamic_cast<DiscNode*>(p);
+					flushnodelist(P->pre_break);
+					flushnodelist(P->post_break);
+					delete p;
 					break;
+				}
 				case adjust_node: 
-					flushnodelist(adjust_ptr(p));
-					freenode(p, small_node_size);
+					flushnodelist(adjust_ptr(p->num));
+					freenode(p->num, small_node_size);
 					break;
 				case style_node:
-					freenode(p, style_node_size);
+					freenode(p->num, style_node_size);
 					break;
 				case choice_node:
-					flushnodelist(display_mlist(p));
-					flushnodelist(text_mlist(p));
-					flushnodelist(script_mlist(p));
-					flushnodelist(script_script_mlist(p));
-					freenode(p, style_node_size);
+				{
+					auto P = dynamic_cast<ChoiceNode*>(p);
+					flushnodelist(P->display_mlist);
+					flushnodelist(P->text_mlist);
+					flushnodelist(P->script_mlist);
+					flushnodelist(P->script_script_mlist);
+					delete p;
 					break;
+				}
 				case ord_noad:
 				case op_noad:
 				case bin_noad:
@@ -272,25 +255,25 @@ void flushnodelist(halfword p)
 				case under_noad:
 				case vcenter_noad:
 				case accent_noad:
-					if (math_type(nucleus(p)) >= sub_box)
-						flushnodelist(nucleus(p));
-					if (math_type(supscr(p)) >= sub_box)
-						flushnodelist(info(supscr(p)));
-					if (math_type(subscr(p)) >= sub_box)
-						flushnodelist(info(subscr(p)));
-					if (type(p) == radical_noad || type(p) == accent_noad)
-						freenode(p, radical_noad_size);
+					if (math_type(nucleus(p->num)) >= sub_box)
+						flushnodelist(nucleus(p->num));
+					if (math_type(supscr(p->num)) >= sub_box)
+						flushnodelist(info(supscr(p->num)));
+					if (math_type(subscr(p->num)) >= sub_box)
+						flushnodelist(info(subscr(p->num)));
+					if (type(p->num) == radical_noad || type(p->num) == accent_noad)
+						freenode(p->num, radical_noad_size);
 					else
-						freenode(p, noad_size);
+						freenode(p->num, noad_size);
 					break;
 				case left_noad:
 				case right_noad:
-					freenode(p, noad_size);
+					freenode(p->num, noad_size);
 					break;
 				case fraction_noad:
-					flushnodelist(info(numerator(p)));
-					flushnodelist(info(denominator(p)));
-					freenode(p, fraction_noad_size);
+					flushnodelist(info(numerator(p->num)));
+					flushnodelist(info(denominator(p->num)));
+					freenode(p->num, fraction_noad_size);
 					break;
 				default: 
 					confusion("flushing"); 
@@ -298,6 +281,14 @@ void flushnodelist(halfword p)
 		}
 		p = q;
 	}
+}
+
+
+[[deprecated]] void flushnodelist(halfword p)
+{
+	LinkedNode *P;
+	P->num = p;
+	flushnodelist(P);
 }
 
 void freenode(halfword p, halfword s)
@@ -387,14 +378,13 @@ void newhyphexceptions(void)
 {
 	char n, j;
 	hyphpointer h;
-	halfword p;
 	poolpointer u, v;
 	auto t = scanleftbrace();
 	curlang = cur_fam();
 	if (curlang < 0 || curlang > 255)
 		curlang = 0;
 	n = 0;
-	p = 0;
+	LinkedNode *p = nullptr;
 	t = getxtoken();
 	while (true)
 	{
@@ -407,9 +397,9 @@ void newhyphexceptions(void)
 				{
 					if (n < 63)
 					{
-						auto q = getavail();
-						link(q) = p;
-						info(q) = n;
+						auto q = new TokenNode; // HyphenNode ???
+						q->link = p;
+						q->token = n;
 						p = q;
 					}
 				}
@@ -447,7 +437,7 @@ void newhyphexceptions(void)
 					{
 						if (hyphword[h].size() < s.size())
 						{
-							std::swap(hyphlist[h], p);
+							std::swap(hyphlist[h], p->num);
 							std::swap(hyphword[h], s);
 						}
 						else 
@@ -460,7 +450,7 @@ void newhyphexceptions(void)
 								{
 									if (hyphword[h][u] < s[v])
 									{
-										std::swap(hyphlist[h], p);
+										std::swap(hyphlist[h], p->num);
 										std::swap(hyphword[h], s);
 										label45 = true;
 									}
@@ -473,7 +463,7 @@ void newhyphexceptions(void)
 								} while (u < hyphword[h].size());
 								if (!label45)
 								{
-									std::swap(hyphlist[h], p);
+									std::swap(hyphlist[h], p->num);
 									std::swap(hyphword[h], s);
 								}
 							}
@@ -483,7 +473,7 @@ void newhyphexceptions(void)
 							h = hyph_size;
 					}
 					hyphword[h] = s;
-					hyphlist[h] = p;
+					hyphlist[h] = p->num;
 				}
 				if (t.cmd == right_brace)
 					return;
@@ -497,40 +487,13 @@ void newhyphexceptions(void)
 	}
 }
 
-halfword newcharacter(internalfontnumber f, eightbits c)
+CharNode* newcharacter(internalfontnumber f, eightbits c)
 {
 	auto &ft = fonts[f];
 	if (ft.bc <= c && ft.ec >= c && skip_byte(ft.char_info(c)) > 0)
-	{
-		auto p = getavail();
-		font(p) = f;
-		character(p) = c;
-		return p;
-	}
+		return new CharNode(ft, c);
 	charwarning(ft, c);
-	return 0;
-}
-
-halfword newchoice(void)
-{
-	auto p = getnode(style_node_size);
-	type(p) = choice_node;
-	subtype(p) = 0;
-	display_mlist(p) = 0;
-	text_mlist(p) = 0;
-	script_mlist(p) = 0;
-	script_script_mlist(p) = 0;
-	return p;
-}
-
-halfword newdisc(void)
-{
-	auto p = getnode(small_node_size);
-	type(p) = disc_node;
-	replace_count(p) = 0;
-	pre_break(p) = 0;
-	post_break(p) = 0;
-	return p;
+	return nullptr;
 }
 
 void newfont(smallnumber a)
@@ -627,9 +590,9 @@ void newgraf(bool indented)
 	prev_graf = (normmin(left_hyphen_min())<<6+normmin(right_hyphen_min()))<<16+curlang;
 	if (indented)
 	{
-		tail = newnullbox();
-		link(head) = tail;
-		width(tail) = par_indent();
+		tail->num = newnullbox();
+		head->link = tail;
+		width(tail->num) = par_indent();
 	}
 	if (every_par())
 		begintokenlist(every_par(), every_par_text);
@@ -646,14 +609,14 @@ void newinteraction(Token t)
 		selector += 2;
 }
 
-halfword newkern(scaled w)
+/*halfword newkern(scaled w)
 {
 	auto p = getnode(small_node_size);
 	type(p) = kern_node;
 	subtype(p) = normal;
 	width(p) = w;
 	return p;
-}
+}*/
 
 halfword newligature(quarterword f, quarterword c, halfword q)
 {
@@ -798,7 +761,7 @@ void newwritewhatsit(smallnumber w, Token t)
 {
 	newwhatsit(t.chr, w);
 	if (w != write_node_size)
-		write_stream(tail) = scanfourbitint();
+		write_stream(tail->num) = scanfourbitint();
 	else
 	{
 		int val = scanint();
@@ -807,13 +770,13 @@ void newwritewhatsit(smallnumber w, Token t)
 		else 
 			if (val > 15)
 				val = 16;
-		write_stream(tail) = val;
+		write_stream(tail->num) = val;
 	}
 }
 
 void appendchoices(void)
 {
-	tail_append(newchoice());
+	tail_append(new ChoiceNode);
 	saved(0) = 0;
 	saveptr++;
 	pushmath(math_choice_group);
@@ -822,12 +785,12 @@ void appendchoices(void)
 
 void appenddiscretionary(halfword s)
 {
-	tail_append(newdisc());
+	tail_append(new DiscNode);
 	if (s == 1)
 	{
 		int c = cur_font().hyphenchar;
 		if (c >= 0 && c < 0x1'00)
-			pre_break(tail) = newcharacter(curFontNum(), c);
+			dynamic_cast<DiscNode*>(tail)->pre_break = newcharacter(curFontNum(), c);
 	}
 	else
 	{
@@ -859,12 +822,12 @@ void appendglue(halfword s)
 			break;
 		case skip_code: 
 			tail_append(newglue(scanglue(glue_val)));
-			glue_ref_count(tail)--;
+			glue_ref_count(tail->num)--;
 			break;
 		case mskip_code: 
 			tail_append(newglue(scanglue(mu_val)));
-			glue_ref_count(tail)--;
-			subtype(tail) = mu_glue;
+			glue_ref_count(tail->num)--;
+			subtype(tail->num) = mu_glue;
 	}
 }
 
@@ -872,23 +835,21 @@ void appenditaliccorrection(void)
 {
 	if (tail != head)
 	{
-		halfword p;
-		if (is_char_node(tail))
-			p = tail;
+		CharNode *p;
+		if (tail->is_char_node())
+			p = dynamic_cast<CharNode*>(tail);
 		else 
-			if (type(tail) == ligature_node)
-				p = lig_char(tail);
+			if (tail->type == ligature_node)
+				p->num = lig_char(tail->num);
 			else
 				return;
-		tail_append(newkern(fonts[font(p)].char_italic(character(p))));
-		subtype(tail) = explicit_;
+		tail_append(new KernNode(p->font.char_italic(p->character), explicit_));
 	}
 }
 
 void appendkern(halfword s)
 {
-	tail_append(newkern(scandimen(s == mu_glue, false, false)));
-	subtype(tail) = s;
+	tail_append(new KernNode(scandimen(s == mu_glue, false, false), s));
 }
 
 void appendpenalty(void)

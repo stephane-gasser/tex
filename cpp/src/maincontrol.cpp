@@ -67,7 +67,7 @@ static void pack_lig(bool z)
 		rthit = false;
 	}
 	curq->link = mainp;
-	tail = mainp->num;
+	tail = mainp;
 	ligaturepresent = false;
 }
 
@@ -75,15 +75,15 @@ static void wrapup(bool z)
 {
 	if (curl < non_char)
 	{
-		if (curq->link > 0 && character(tail) == cur_font().hyphenchar) 
+		if (curq->link > 0 && dynamic_cast<CharNode*>(tail)->character == cur_font().hyphenchar) 
 			insdisc = true; 
 		if (ligaturepresent)
 			pack_lig(z); 
 		if (insdisc)
 		{
-			 insdisc = false; 
+			insdisc = false;
 			if (mode > 0)
-				tail_append(newdisc()); 
+				tail_append(new DiscNode); 
 		}
 	}
 }
@@ -127,10 +127,8 @@ static void main_loop_lookahead(void)
 	}
 	//main_loop_lookahead_1
 	adjust_space_factor(t.chr);
-	ligstack->num = fast_get_avail();
-	ligstack->font = curFontNum();
 	curr = t.chr;
-	ligstack->character = curr;
+	ligstack = new CharNode(cur_font(), curr);
 	if (curr == falsebchar)
 		curr = non_char;
 }
@@ -139,7 +137,7 @@ static void main_loop_move_lig(void)
 {
 	mainp->num = lig_ptr(ligstack->num);
 	if (mainp)
-		tail_append(mainp->num);
+		tail_append(mainp);
 	tempptr = ligstack->num;
 	ligstack->num = link(tempptr);
 	freenode(tempptr, small_node_size);
@@ -181,7 +179,7 @@ static bool main_loop_move_2(halfword chr)
 	{
 		if (cur_font().char_exists(curl))
 		{
-			tail_append(ligstack->num);
+			tail_append(ligstack);
 			main_loop_lookahead();
 			return false;
 		}
@@ -207,7 +205,7 @@ static bool main_loop_move(halfword chr)
 {
 	if (ligstack == nullptr)
 		return true;
-	curq->num = tail;
+	curq = dynamic_cast<CharNode*>(tail);
 	curl = ligstack->character;
 	return main_loop_move_1(chr);
 }
@@ -242,7 +240,7 @@ static bool main_loop_wrapup(halfword chr)
 				{
 					if (curl < non_char)
 					{
-						if (curq->link && subtype(tail) == cur_font().hyphenchar)
+						if (curq->link && dynamic_cast<CharNode*>(tail)->character == cur_font().hyphenchar)
 							insdisc = true;
 						if (ligaturepresent)
 						{
@@ -258,17 +256,17 @@ static bool main_loop_wrapup(halfword chr)
 								rthit = false;
 							}
 							curq->link = mainp;
-							tail = mainp->num;
+							tail = mainp;
 							ligaturepresent = false;
 						}
 						if (insdisc)
 						{
 							insdisc = false;
 							if (mode > 0)
-								tail_append(newdisc());
+								tail_append(new DiscNode);
 						}
 					}
-					tail_append(newkern(cur_font().char_kern(Font::infos(maink))));
+					tail_append(new KernNode(cur_font().char_kern(Font::infos(maink))));
 					if (main_loop_move(chr))
 						return getxtoken();
 					is110 = true;
@@ -318,7 +316,7 @@ static bool main_loop_wrapup(halfword chr)
 					case 7: //a=1 b=1 c=1
 					case 11://a=2 b=1 c=1
 						wrapup(false);
-						curq->num = tail;
+						curq = dynamic_cast<CharNode*>(tail);
 						curl = Font::rem_byte(maink);
 						ligaturepresent = true;
 						break;
@@ -376,8 +374,8 @@ static void main_loop(Token t)
 	if (mode > 0 && language() != clang)
 		fixlanguage();
 	curl = t.chr;
-	ligstack = new CharNode(curFontNum(), curl);
-	curq->num = tail;
+	ligstack = new CharNode(cur_font(), curl);
+	curq = dynamic_cast<CharNode*>(tail);
 	maink = cancelboundary ? non_address : cur_font().bcharlabel;
 	cancelboundary = false;
 	if (maink == non_address)
@@ -594,7 +592,7 @@ Token maincontrol(void)
 				appenditaliccorrection();
 				break;
 			case mmode+ital_corr:
-				tail_append(newkern(0));
+				tail_append(new KernNode(0));
 				break;
 			case hmode+discretionary:
 			case mmode+discretionary: 
@@ -666,7 +664,7 @@ Token maincontrol(void)
 			case mmode+left_brace:
 				tail_append(newnoad());
 				backinput(t);
-				scanmath(nucleus(tail));
+				scanmath(nucleus(tail->num));
 				break;
 			case mmode+letter:
 			case mmode+other_char:
@@ -688,8 +686,8 @@ Token maincontrol(void)
 				break;
 			case mmode+math_comp:
 				tail_append(newnoad());
-				type(tail) = t.chr;
-				scanmath(nucleus(tail));
+				tail->type = t.chr;
+				scanmath(nucleus(tail->num));
 				break;
 			case mmode+limit_switch: 
 				mathlimitswitch(t);
@@ -715,7 +713,7 @@ Token maincontrol(void)
 				break;
 			case mmode+non_script:
 				tail_append(newglue(0));
-				subtype(tail) = cond_math_glue;
+				subtype(tail->num) = cond_math_glue;
 				break;
 			case mmode+math_choice: 
 				appendchoices();

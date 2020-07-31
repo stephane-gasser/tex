@@ -14,31 +14,31 @@ void builddiscretionary(Token t)
 	// Prune the current list, if necessary, until it contains only |char_node|, |kern_node|, |hlist_node|, |vlist_node|, |rule_node|,
 	//  and |ligature_node| items; set |n| to the length of the list, and set |q| to the list's tail
 	auto q = head;
-	auto p = link(q);
+	auto p = q->link;
 	int n = 0;
 	while (p)
 	{
-		if (!is_char_node(p) && type(p) > rule_node && type(p) != kern_node && type(p) != ligature_node)
+		if (!p->is_char_node() && p->type > rule_node && p->type != kern_node && p->type != ligature_node)
 		{
 			error("Improper discretionary list", "Discretionary lists must contain only boxes and kerns.");
-			diagnostic("\rThe following discretionary sublist has been deleted:"+showbox(p)+"\n");
+			diagnostic("\rThe following discretionary sublist has been deleted:"+showbox(p->num)+"\n");
 			flushnodelist(p);
-			link(q) = 0;
+			q->link = nullptr;
 			break;
 		}
 		q = p;
-		p = link(q);
+		p = q->link;
 		n++;
 	}
-	p = link(head);
+	p = head->link;
 	popnest();
 	switch (saved(-1))
 	{
 		case 0: 
-			pre_break(tail) = p;
+			dynamic_cast<DiscNode*>(tail)->pre_break = p;
 			break;
 		case 1: 
-			post_break(tail) = p;
+			dynamic_cast<DiscNode*>(tail)->post_break = p;
 			break;
 		case 2: //Attach list |p| to the current list, and record its length; then finish up and |return|
 			if (n > 0 && abs(mode) == mmode)
@@ -48,9 +48,9 @@ void builddiscretionary(Token t)
 				n = 0;
 			}
 			else
-				link(tail) = p;
+				tail->link = p;
 			if (n <= 255)
-				subtype(tail) = n;
+				dynamic_cast<DiscNode*>(tail)->replace_count = n;
 			else
 				error("Discretionary list is too long", "Wow---I never thought anybody would tweak me here.\nYou can't seriously need such a huge discretionary list?");
 			if (n > 0)

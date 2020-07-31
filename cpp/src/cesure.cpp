@@ -194,7 +194,7 @@ static void set_cur_r(int j, int n, halfword &curr, halfword &currh, halfword hc
 	currh = hyf[j]%2 ? hchar : non_char;
 }
 
-static void wrap_lig(bool test, CharNode *t)
+static void wrap_lig(bool test, LinkedNode *t)
 {
 	if (ligaturepresent)
 	{
@@ -216,12 +216,12 @@ static void wrap_lig(bool test, CharNode *t)
 	}
 }
 
-static void pop_lig_stack(smallnumber &j, CharNode *t)
+static void pop_lig_stack(smallnumber &j, LinkedNode *t)
 {
 	if (lig_ptr(ligstack->num) > 0)
 	{
 		t->link->num = lig_ptr(ligstack->num);
-		t = dynamic_cast<CharNode*>(t->link);
+		t = t->link;
 		j++;
 	}
 }
@@ -233,7 +233,7 @@ static bool initlft;
 static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword hchar)
 {
 	CharNode *p;
-	CharNode *t;
+	LinkedNode *t;
 	halfword currh, testchar;
 	scaled w;
 	fontindex k;
@@ -251,16 +251,16 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 			lfthit = initlft;
 		while (p)
 		{
-			t->link = new CharNode(hf, p->character);
-			t = dynamic_cast<CharNode*>(t->link);
+			t->link = new CharNode(fonts[hf], p->character);
+			t = t->link;
 			p = dynamic_cast<CharNode*>(p->link);
 		}
 	}
 	else 
 		if (curl < non_char)
 		{
-			t->link = new CharNode(hf, curl);
-			t = dynamic_cast<CharNode*>(t->link);
+			t->link = new CharNode(fonts[hf], curl);
+			t = t->link;
 		}
 	ligstack = nullptr;
 	set_cur_r(j, n, curr, currh, hchar);
@@ -335,7 +335,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 											bchar = non_char;
 										else
 										{
-											p = new CharNode(hf, hu[j+1]);
+											p = new CharNode(fonts[hf], hu[j+1]);
 											lig_ptr(ligstack->num) = p->num;
 										}
 									}
@@ -378,8 +378,8 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 										}
 										else
 										{
-											t->link = new CharNode(hf, curr);
-											t = dynamic_cast<CharNode*>(t->link);
+											t->link = new CharNode(fonts[hf], curr);
+											t = t->link;
 											j++;
 											set_cur_r(j, n, curr, currh, hchar);
 										}
@@ -415,8 +415,8 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 		wrap_lig(rthit, t);
 		if (w)
 		{
-			t->link->num = newkern(w);
-			t = dynamic_cast<CharNode*>(t->link);
+			t->link = new KernNode(w);
+			t = dynamic_cast<KernNode*>(t->link);
 			w = 0;
 		}
 		if (ligstack)
@@ -451,7 +451,7 @@ void hyphenate(void)
 	for (j = 2; j <= hn; j++)
 		h = (2*h+hc[j])%hyph_size;
 	bool skip = false;
-	halfword s;
+	LinkedNode *s; // HyphenPositionNode
 	for (bool keepIn = true; keepIn;)
 	{
 		if (hyphword[h] == "")
@@ -481,11 +481,11 @@ void hyphenate(void)
 				j++;
 				u++;
 			} while (j <= hn);
-			s = hyphlist[h];
+			s->num = hyphlist[h];
 			while (s)
 			{
-				hyf[info(s)] = 1;
-				s = link(s);
+				hyf[info(s->num)] = 1;
+				s = s->link;
 			}
 			hn--;
 			skip = true;
@@ -539,7 +539,8 @@ void hyphenate(void)
 		return;
 	auto q = link(hb);
 	link(hb) = 0;
-	auto r = link(ha);
+	LinkedNode *r;
+	r->num = link(ha);
 	link(ha) = 0;
 	auto bchar = hyfbchar;
 	do
@@ -547,7 +548,7 @@ void hyphenate(void)
 		if (is_char_node(ha))
 			if (font(ha) != hf)
 			{
-				s = ha;
+				s->num = ha;
 				j = 0;
 				hu[0] = 256;
 				initlig = false;
@@ -564,7 +565,7 @@ void hyphenate(void)
 			if (type(ha) == ligature_node)
 				if (font(lig_char(ha)) != hf)
 				{
-					s = ha;
+					s->num = ha;
 					j = 0;
 					hu[0] = 256;
 					initlig = false;
@@ -586,9 +587,9 @@ void hyphenate(void)
 				}
 			else
 			{
-				if (!is_char_node(r) && type(r) == ligature_node && subtype(r) > 1)
+				if (!r->is_char_node() && r->type == ligature_node && subtype(r->num) > 1)
 				{
-					s = ha;
+					s->num = ha;
 					j = 0;
 					hu[0] = 256;
 					initlig = false;
@@ -596,13 +597,13 @@ void hyphenate(void)
 					break;
 				}
 				j = 1;
-				s = ha;
+				s->num = ha;
 				initlist = nullptr;
 				break;
 			}
-		s = curp;
-		while (link(s) != ha)
-			s = link(s);
+		s->num = curp;
+		while (s->link->num != ha)
+			s = s->link;
 		j = 0;
 	} while (false);
 	flushnodelist(r);
@@ -612,9 +613,9 @@ void hyphenate(void)
 		j = reconstitute(j, hn, bchar, hyfchar)+1;
 		if (hyphenpassed == 0)
 		{
-			link(s) = link(hold_head);
-			while (link(s) > 0)
-				s = link(s);
+			s->link->num = link(hold_head);
+			while (s->link)
+				s = s->link;
 			if (hyf[j-1]%2)
 			{
 				l = j;
@@ -625,37 +626,37 @@ void hyphenate(void)
 		if (hyphenpassed > 0)
 			do
 			{
-				r = getnode(small_node_size);
-				link(r) = link(hold_head);
-				type(r) = disc_node;
+				r = new DiscNode;
+				r->link->num = link(hold_head);
 				auto majortail = r;
 				auto rcount = 0;
-				while (link(majortail) > 0)
-					advance_major_tail(majortail, rcount);
+				while (majortail->link)
+					advance_major_tail(majortail->num, rcount);
 				i = hyphenpassed;
 				hyf[i] = 0;
-				auto minortail = 0;
-				info(r+1) = 0;
-				auto hyfnode = newcharacter(hf, hyfchar);
+				LinkedNode *minortail = nullptr;
+				dynamic_cast<DiscNode*>(r)->pre_break = nullptr;
+				CharNode *hyfnode = newcharacter(hf, hyfchar);
 				if (hyfnode)
 				{
 					i++;
 					c = hu[i];
 					hu[i] = hyfchar;
-					free_avail(hyfnode);
+					delete hyfnode;
+					hyfnode = nullptr;
 				}
 				while (l <= i)
 				{
 					l = reconstitute(l, i, fonts[hf].bchar, non_char)+1;
 					if (link(hold_head) > 0)
 					{
-						if (minortail == 0)
-							pre_break(r) = link(hold_head);
+						if (minortail == nullptr)
+							dynamic_cast<DiscNode*>(r)->pre_break->num = link(hold_head);
 						else
-							link(minortail) = link(hold_head);
-						minortail = link(hold_head);
-						while (link(minortail) > 0)
-							minortail = link(minortail);
+							minortail->link->num = link(hold_head);
+						minortail->num = link(hold_head);
+						while (minortail->link)
+							minortail = minortail->link;
 					}
 				}
 				if (hyfnode)
@@ -665,7 +666,7 @@ void hyphenate(void)
 					i--;
 				}
 				minortail = 0;
-				pre_break(r) = 0;
+				dynamic_cast<DiscNode*>(r)->pre_break = nullptr;
 				char cloc = 0;
 				if (fonts[hf].bcharlabel)
 				{
@@ -686,41 +687,41 @@ void hyphenate(void)
 						}
 						if (link(hold_head) > 0)
 						{
-							if (minortail == 0)
-								pre_break(r) = link(hold_head);
+							if (minortail == nullptr)
+								dynamic_cast<DiscNode*>(r)->pre_break->num = link(hold_head);
 							else
-								link(minortail) = link(hold_head);
-							minortail = link(hold_head);
-							while (link(minortail) > 0)
-								minortail = link(minortail);
+								minortail->link->num = link(hold_head);
+							minortail->num = link(hold_head);
+							while (minortail->link)
+								minortail = minortail->link;
 						}
 					} while (l < j);
 					while (l > j)
 					{
 						j = reconstitute(j, hn, bchar, non_char)+1;
-						link(majortail) = link(hold_head);
-						while (link(majortail) > 0)
-							advance_major_tail(majortail, rcount);
+						majortail->link->num = link(hold_head);
+						while (majortail->link)
+							advance_major_tail(majortail->num, rcount);
 					}
 				}
 				if (rcount > 127)
 				{
-					link(s) = link(r);
-					link(r) = 0;
+					s->link = r->link;
+					r->link = nullptr;
 					flushnodelist(r);
 				}
 				else
 				{
-					link(s) = r;
-					subtype(r) = rcount;
+					s->link = r;
+					dynamic_cast<DiscNode*>(r)->replace_count = rcount;
 				}
 				s = majortail;
 				hyphenpassed = j-1;
 				link(hold_head) = 0;
 			} while (hyf[j-1]%2);
 	} while (j <= hn);
-	link(s) = q;
-	flushlist(initlist->num);
+	s->link->num = q;
+	flushlist(initlist);
 }
 
 void newpatterns(Token t)
@@ -843,7 +844,7 @@ void newpatterns(Token t)
 	{
 		error("Too late for "+esc("patterns"), "All patterns must be given before typesetting begins.");
 		link(garbage) = scantoks(false, false, t)->num;
-		flushlist(defref->num);
+		flushlist(defref);
 	}
 }
 

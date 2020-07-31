@@ -18,35 +18,35 @@ void doextension(Token t)
 			newwritewhatsit(open_node_size, t);
 			scanoptionalequals();
 			scanfilename();
-			open_name(tail) = txt(curname);
-			open_area(tail) = txt(curarea);
-			open_ext(tail) = txt(curext);
+			open_name(tail->num) = txt(curname);
+			open_area(tail->num) = txt(curarea);
+			open_ext(tail->num) = txt(curext);
 			break;
 		case write_node:
 			newwritewhatsit(write_node_size, t);
 			p = scantoks(false, false, t);
-			write_tokens(tail) = defref->num;
+			write_tokens(tail->num) = defref->num;
 			break;
 		case close_node:
 			newwritewhatsit(write_node_size, t);
-			write_tokens(tail) = 0;
+			write_tokens(tail->num) = 0;
 			break;
 		case special_node:
 			newwhatsit(special_node, write_node_size);
-			write_stream(tail) = 0;
+			write_stream(tail->num) = 0;
 			p = scantoks(false, true, t);
-			write_tokens(tail) = defref->num;
+			write_tokens(tail->num) = defref->num;
 			break;
 		case immediate_code:
 			t = getxtoken();
 			if (t.cmd == extension && t.chr <= 2)
 			{
-				p->num = tail;
+				p = dynamic_cast<TokenNode*>(tail);
 				doextension(t);
-				outwhat(tail);
+				outwhat(tail->num);
 				flushnodelist(tail);
-				tail = p->num;
-				p->link = 0;
+				tail = p;
+				p->link = nullptr;
 			}
 			else
 				backinput(t);
@@ -60,9 +60,9 @@ void doextension(Token t)
 				clang = scanint();
 				if (clang <= 0 || clang > 255)
 						clang = 0;
-				what_lang(tail) = clang;
-				what_lhm(tail) = normmin(left_hyphen_min());
-				what_rhm(tail) = normmin(right_hyphen_min());
+				what_lang(tail->num) = clang;
+				what_lhm(tail->num) = normmin(left_hyphen_min());
+				what_rhm(tail->num) = normmin(right_hyphen_min());
 			}
 			break;
 		default: 

@@ -69,15 +69,15 @@ bool fincol(Token t, halfword &loop)
 		newsavelevel(6);
 		if (mode == -hmode)
 		{
-			adjusttail = curtail;
-			u = hpack(link(head), 0, additional);
+			adjusttail = curtail->num;
+			u = hpack(head->link->num, 0, additional);
 			w = width(u);
-			curtail = adjusttail;
+			curtail->num = adjusttail;
 			adjusttail = 0;
 		}
 		else
 		{
-			u = vpackage(link(head), 0, additional, 0);
+			u = vpackage(head->link->num, 0, additional, 0);
 			w = height(u);
 		}
 		n = 0;
@@ -136,10 +136,10 @@ bool fincol(Token t, halfword &loop)
 		glue_sign(u) = o;
 		glue_shrink(u) = totalshrink[o];
 		popnest();
-		link(tail) = u;
-		tail = u;
+		tail->link->num = u;
+		tail->num = u;
 		tail_append(newglue(glue_ptr(link(curalign))));
-		subtype(tail) = tab_skip_code+1;
+		subtype(tail->num) = tab_skip_code+1;
 		if (extra_info(curalign) >= cr_code)
 			return true;
 		initspan(p->num);
