@@ -5,7 +5,6 @@ int tally;
 int trickcount;
 int firstcount;
 int varused, dynused;
-int fontinshortdisplay;
 int depththreshold;
 int breadthmax;
 int cscount;
@@ -150,7 +149,6 @@ scaled curactivewidth[7]; // commence à 1
 scaled background[7]; // commence à 1 
 scaled breakwidth[7]; // commence à 1
 bool noshrinkerroryet;
-halfword curp;
 bool secondpass;
 bool finalpass;
 int minimaldemerits[4];
@@ -186,10 +184,9 @@ scaled bestheightplusdepth;
 halfword pagetail;
 char pagecontents; // 0..2
 scaled pagemaxdepth;
-halfword bestpagebreak;
+halfword bestpagebreak; 
 scaled bestsize;
 scaled pagesofar[8];
-halfword lastglue;
 scaled lastkern;
 bool outputactive;
 halfword bchar;

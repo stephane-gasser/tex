@@ -10,7 +10,7 @@ void popalignment(halfword &loop)
 	alignstate = mem[p+3].int_;
 	loop = mem[p+2].int_;
 	curspan = rlink(p);
-	preamble() = llink(p);
+	preamble->num = llink(p);
 	curalign = info(p);
 	alignptr = link(p);
 	freenode(p, align_stack_node_size);

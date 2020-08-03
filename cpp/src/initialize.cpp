@@ -18,16 +18,16 @@ void Initialize(void)
 	nestptr = 0;
 	maxneststack = 0;
 	mode = vmode;
-	head->num = contrib_head;
-	tail->num = contrib_head;
+	head = contrib_head;
+	tail = contrib_head;
 	prev_depth = -0x1'00'00*1000;
 	mode_line = 0;
 	prev_graf = 0;
 	shownmode = 0;
 	pagecontents = 0;
-	pagetail = page_head;
-	link(page_head) = 0;
-	lastglue = empty_flag;
+	pagetail = page_head->num;
+	page_head->link = nullptr;
+	lastglue = nullptr;
 	lastpenalty = 0;
 	lastkern = 0;
 	page_depth = 0;
@@ -106,22 +106,23 @@ void Initialize(void)
 		writeopen[k] = false;
 	for (int k = 1; k < 20; k++)
 		mem[k].int_ = 0;
-	for (int k = 0; k <= lo_mem_stat_max; k += glue_spec_size)
+/*	for (int k = 0; k <= lo_mem_stat_max; k += glue_spec_size)
 	{
 		glue_ref_count(k) = 1;
 		stretch_order(k) = normal;
 		shrink_order(k) = normal;
-	}
-	stretch(fil_glue) = unity;
-	stretch_order(fil_glue) = fil;
-	stretch(fill_glue) = unity;
-	stretch_order(fill_glue) = fill;
-	stretch(ss_glue) = unity;
-	stretch_order(ss_glue) = fil;
-	shrink(ss_glue) = unity;
-	shrink_order(ss_glue) = fil;
-	stretch(fil_neg_glue) = -unity;
-	stretch_order(fil_neg_glue) = fil;
+	}*/
+	
+	fil_glue->stretch = unity;
+	fil_glue->stretch_order = fil;
+	fill_glue->stretch = unity;
+	fill_glue->stretch_order = fill;
+	ss_glue->stretch = unity;
+	ss_glue->stretch_order = fil;
+	ss_glue->shrink = unity;
+	ss_glue->shrink_order = fil;
+	fil_neg_glue->stretch = -unity;
+	fil_neg_glue->stretch_order = fil;
 	rover = lo_mem_stat_max+1;
 	link(rover) = empty_flag;
 	node_size(rover) = 1000;
@@ -132,17 +133,17 @@ void Initialize(void)
 	info(lomemmax) = 0;
 	for (int k = hi_mem_stat_min; k <= mem_top; k++)
 		mem[k] = mem[lomemmax];
-	info(omit_template) = end_template_token;
-	link(end_span) = 256;
-	info(end_span) = 0;
-	type(active) = 1;
-	info(29994) = empty_flag;
-	subtype(active) = 0;
-	subtype(page_ins_head) = 255;
-	type(page_ins_head) = 1;
-	link(page_ins_head) = page_ins_head;
-	type(page_head) = 10;
-	subtype(page_head) = 0;
+	omit_template->token = end_template_token;
+	link(end_span->num) = 256;
+	info(end_span->num) = 0;
+	type(active->num) = 1;
+	line_number(active->num) = empty_flag;
+	subtype(active->num) = 0; // the |subtype| is never examined by the algorithm
+	subtype(page_ins_head->num) = 255;
+	type(page_ins_head->num) = 1;
+	link(page_ins_head->num) = page_ins_head->num;
+	page_head->type = glue_node;
+	dynamic_cast<GlueNode*>(page_head)->subtype = normal;
 	avail = 0;
 	memend = mem_top;
 	himemmin = hi_mem_stat_min;
@@ -158,7 +159,7 @@ void Initialize(void)
 	eq_type(glue_base) = glue_ref;
 	for (int k = glue_base+1; k < local_base; k++)
 		eqtb[k] = eqtb[glue_base];
-	link(zero_glue) += 530;
+	zero_glue->glue_ref_count += local_base-glue_base;
 	equiv(local_base) = 0;
 	eq_type(local_base) = shape_ref;
 	eq_level(local_base) = 1;
@@ -233,7 +234,7 @@ void Initialize(void)
 	fonts[null_font].ec = 0;
 	fonts[null_font].size = 0;
 	fonts[null_font].dsize = 0;
-	fonts[null_font].glue = 0;
+	fonts[null_font].glue = nullptr;
 	fonts[null_font].params = 7;
 	fonts[null_font].charbase = 0;
 	fonts[null_font].widthbase = 0;

@@ -167,7 +167,7 @@ bool loadfmtfile(void)
 			undump_int(ft.kernbase);
 			undump_int(ft.extenbase);
 			undump_int(ft.parambase);
-			ft.glue = undump(0, lomemmax);
+			ft.glue->num = undump(0, lomemmax);
 			ft.bcharlabel = undump(0, Font::info.size()-1);
 			ft.bchar = undump(0, non_char);
 			ft.falsebchar = undump(0, non_char);

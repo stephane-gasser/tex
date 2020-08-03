@@ -19,12 +19,11 @@ static halfword& output_routine(void) { return equiv(output_routine_loc); }
 
 void fireup(halfword c)
 {
-	halfword p, q, r, s, prevp;
+	halfword s;
 	unsigned char n;
 	bool wait;
 	int savevbadness;
 	scaled savevfuzz;
-	halfword savesplittopskip;
 	if (type(bestpagebreak) == penalty_node) //12
 	{
 		geqworddefine(int_base+output_penalty_code, penalty(bestpagebreak));
@@ -46,150 +45,150 @@ void fireup(halfword c)
 	if (box(255))
 		boxerror(255, esc("box")+"255 is not void", "You shouldn't use \\box255 except in \\output routines.\nProceed, and I'll discard its present contents.");
 	insertpenalties = 0;
-	savesplittopskip = split_top_skip();
+	auto savesplittopskip = split_top_skip;
 	if (holding_inserts() <= 0)
 	{
-		r = link(page_ins_head);
+		auto r = page_ins_head->link;
 		while (r != page_ins_head)
 		{
-			if (best_ins_ptr(r))
+			if (best_ins_ptr(r->num))
 			{
-				n = subtype(r);
+				n = subtype(r->num);
 				ensurevbox(n);
 				if (box(n) == 0)
 					box(n) = newnullbox();
-				p = box(n)+list_offset;
+				auto p = box(n)+list_offset;
 				while (link(p))
 					p = link(p);
-				last_ins_ptr(r) = p;
+				last_ins_ptr(r->num) = p;
 			}
-			r = link(r);
+			r = r->link;
 		}
 	}
-	q = hold_head;
-	link(q) = 0;
-	prevp = page_head;
-	p = link(prevp);
-	while (p != bestpagebreak)
+	auto q = hold_head;
+	q->link = nullptr;
+	auto prevp = page_head;
+	auto p = prevp->link;
+	while (p->num != bestpagebreak)
 	{
-		if (type(p) == ins_node) //3
+		if (p->type == ins_node) //3
 		{
 			if (holding_inserts() <= 0)
 			{
-			r = link(page_ins_head);
-			while (subtype(r) != subtype(p))
-				r = link(r);
-			if (best_ins_ptr(r) == 0)
-				wait = true;
-			else
-			{
-				wait = false;
-				s = last_ins_ptr(r);
-				link(s) = ins_ptr(p);
-				if (best_ins_ptr(r) == p)
+				auto r = page_ins_head->link;
+				while (subtype(r->num) != subtype(p->num))
+					r = r->link;
+				if (best_ins_ptr(r->num) == 0)
+					wait = true;
+				else
 				{
-					if (type(r) == split_up) //1
-					if (broken_ins(r) == p && broken_ptr(r))
+					wait = false;
+					s = last_ins_ptr(r->num);
+					link(s) = ins_ptr(p->num);
+					if (best_ins_ptr(r->num) == p->num)
 					{
-						while (link(s) != broken_ptr(r))
-							s = link(s);
-						link(s) = 0;
-						split_top_skip() = split_top_ptr(p);
-						ins_ptr(p) = prunepagetop(broken_ptr(r))->num;
-						if (ins_ptr(p))
+						if (r->type == split_up) //1
+						if (broken_ins(r->num) == p->num && broken_ptr(r->num))
 						{
-							tempptr = vpack(ins_ptr(p), 0, additional);
-							height(p) = height(tempptr)+depth(tempptr);
-							freenode(tempptr, box_node_size);
-							wait = true;
+							while (link(s) != broken_ptr(r->num))
+								s = link(s);
+							link(s) = 0;
+							split_top_skip->num = split_top_ptr(p->num);
+							ins_ptr(p->num) = prunepagetop(broken_ptr(r->num))->num;
+							if (ins_ptr(p->num))
+							{
+								tempptr = vpack(ins_ptr(p->num), 0, additional);
+								height(p->num) = height(tempptr)+depth(tempptr);
+								freenode(tempptr, box_node_size);
+								wait = true;
+							}
 						}
+						best_ins_ptr(r->num) = 0;
+						n = subtype(r->num);
+						tempptr = list_ptr(box(n));
+						freenode(box(n), box_node_size);
+						box(n) = vpack(tempptr, 0, additional);
 					}
-					best_ins_ptr(r) = 0;
-					n = subtype(r);
-					tempptr = list_ptr(box(n));
-					freenode(box(n), box_node_size);
-					box(n) = vpack(tempptr, 0, additional);
+					else
+					{
+						while (link(s))
+							s = link(s);
+						last_ins_ptr(r->num) = s;
+					}
+				}
+				prevp->link = p->link;
+				p->link = nullptr;
+				if (wait)
+				{
+					q->link = p;
+					q = p;
+					insertpenalties++;
 				}
 				else
 				{
-					while (link(s))
-						s = link(s);
-					last_ins_ptr(r) = s;
+					deleteglueref(split_top_ptr(p->num));
+					freenode(p->num, ins_node_size);
 				}
-			}
-			link(prevp) = link(p);
-			link(p) = 0;
-			if (wait)
-			{
-				link(q) = p;
-				q = p;
-				insertpenalties++;
-			}
-			else
-			{
-				deleteglueref(split_top_ptr(p));
-				freenode(p, ins_node_size);
-			}
-			p = prevp;
+				p = prevp;
 			}
 		}
-		else if (type(p) == mark_node) //4
+		else if (p->type == mark_node) //4
 		{
 			if (first_mark == 0)
 			{
-				first_mark = mark_ptr(p);
+				first_mark = mark_ptr(p->num);
 				info(first_mark)++;
 			}
 			if (bot_mark)
 				deletetokenref(bot_mark);
-			bot_mark = mark_ptr(p);
+			bot_mark = mark_ptr(p->num);
 			info(bot_mark)++;
 		}
 		prevp = p;
-		p = link(prevp);
+		p = prevp->link;
 	}
-	split_top_skip() = savesplittopskip;
+	split_top_skip = savesplittopskip;
 	if (p)
 	{
-		if (link(contrib_head) == 0)
+		if (contrib_head->link == nullptr)
 			if (nestptr == 0)
 				tail->num = pagetail;
 			else
 				contrib_tail = pagetail;
-		link(pagetail) = link(contrib_head);
-		link(contrib_head) = p;
-		link(prevp) = 0;
+		link(pagetail) = contrib_head->link->num;
+		contrib_head->link = p;
+		prevp->link = nullptr;
 	}
 	savevbadness = vbadness();
 	vbadness() = inf_bad;
 	savevfuzz = vfuzz();
 	vfuzz() = max_dimen;
-	box(255) = vpackage(link(page_head), bestsize, exactly, pagemaxdepth);
+	box(255) = vpackage(page_head->link->num, bestsize, exactly, pagemaxdepth);
 	vbadness() = savevbadness;
 	vfuzz() = savevfuzz;
-	if (lastglue != empty_flag)
-		deleteglueref(lastglue);
+	if (lastglue)
+		delete lastglue;
 	pagecontents = 0;
-	pagetail = page_head;
-	link(page_head) = 0;
-	lastglue = empty_flag;
+	pagetail = page_head->num;
+	page_head->link = nullptr;
+	lastglue = nullptr;
 	lastpenalty = 0;
 	lastkern = 0;
 	page_depth = 0;
 	pagemaxdepth = 0;
 	if (q != hold_head)
 	{
-		link(page_head) = link(hold_head);
-		pagetail = q;
+		page_head->link = hold_head->link;
+		pagetail = q->num;
 	}
-	r = link(page_ins_head);
+	auto r = page_ins_head->link;
 	while (r != page_ins_head)
 	{
-		q = link(r);
-		freenode(r, page_ins_node_size);
+		q = r->link;
+		freenode(r->num, page_ins_node_size);
 		r = q;
 	}
-	link(page_ins_head) = page_ins_head;
+	page_ins_head->link = page_ins_head;
 	if (top_mark && first_mark == 0)
 	{
 		first_mark = top_mark;
@@ -212,18 +211,18 @@ void fireup(halfword c)
 			auto t = scanleftbrace();
 			return;
 		}
-	if (link(page_head))
+	if (page_head->link)
 	{
-		if (link(contrib_head) == 0)
+		if (contrib_head->link == nullptr)
 			if (nestptr == 0)
 				tail->num = pagetail;
 			else
 				contrib_tail = pagetail;
 		else
-			link(pagetail) = link(contrib_head);
-		link(contrib_head) = link(page_head);
-		link(page_head) = 0;
-		pagetail = page_head;
+			link(pagetail) = contrib_head->link->num;
+		contrib_head->link = page_head->link;
+		page_head->link = nullptr;
+		pagetail = page_head->num;
 	}
 	shipout(box(255));
 	box(255) = 0;

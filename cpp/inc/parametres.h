@@ -141,11 +141,15 @@ inline bool fam_in_range(void) { return cur_fam() >= 0 && cur_fam() < 16; }
 inline int& new_line_char(void) { return int_par(new_line_char_code); }
 inline int default_hyphen_char(void) { return int_par(default_hyphen_char_code); }
 
-halfword& glue_par(halfword);//!< |mem| location of glue specification
-inline halfword& left_skip(void) { return glue_par(left_skip_code); }
-inline halfword& right_skip(void) { return glue_par(right_skip_code); }
-inline halfword& split_top_skip(void) { return glue_par(split_top_skip_code); }
-inline halfword& space_skip(void) { return glue_par(space_skip_code); }
+/*halfword& glue_par(halfword);//!< |mem| location of glue specification*/
+inline std::vector<GlueSpec*> glueParams(18);
+inline GlueSpec *left_skip = glueParams[left_skip_code];
+inline GlueSpec *right_skip = glueParams[right_skip_code]; 
+inline GlueSpec *split_top_skip = glueParams[split_top_skip_code];
+inline GlueSpec *space_skip = glueParams[space_skip_code];
+inline GlueSpec *xspace_skip = glueParams[xspace_skip_code];
+inline GlueSpec *baseline_skip = glueParams[baseline_skip_code];
+inline GlueSpec *line_skip = glueParams[line_skip_code];
 
 int& dimen_par(halfword); //! a scaled quantity
 inline int display_indent(void) { return dimen_par(display_indent_code); }

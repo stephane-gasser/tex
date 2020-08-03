@@ -11,8 +11,8 @@ void mathfraction(halfword c, Token t)
 	{
 		if (c >= delimited_code)
 		{
-			scandelimiter(garbage, false, t);
-			scandelimiter(garbage, false, t);
+			scandelimiter(garbage->num, false, t);
+			scandelimiter(garbage->num, false, t);
 		}
 		if (c%delimited_code == 0)
 			int _ = scan_normal_dimen();

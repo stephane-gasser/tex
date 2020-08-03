@@ -127,39 +127,60 @@ enum
 	filll = 3 //!< third-order infinity
 };
 
-enum
+/*enum
 {
 	zero_glue = mem_bot, //!< specification for 0pt plus 0pt minus 0pt
 	fil_glue = zero_glue+glue_spec_size, //!< 0pt plus 1fil minus 0pt
 	fill_glue = fil_glue+glue_spec_size, //!< 0pt plus 1fill minus 0pt
 	ss_glue = fill_glue+glue_spec_size, //!< 0pt plus 1fil minus 1fil
 	fil_neg_glue = ss_glue+glue_spec_size //!< 0pt plus -1fil minus 0pt
-};
+};*/
 
-constexpr int lo_mem_stat_max = fil_neg_glue+glue_spec_size-1; //!< largest statically
+inline std::vector<GlueSpec> glues(5);
+
+inline auto	zero_glue = &glues[0]; //!< specification for 0pt plus 0pt minus 0pt
+inline auto fil_glue = &glues[1]; //!< 0pt plus 1fil minus 0pt
+inline auto fill_glue = &glues[2]; //!< 0pt plus 1fill minus 0pt
+inline auto ss_glue = &glues[3]; //!< 0pt plus 1fil minus 1fil
+inline auto fil_neg_glue = &glues[4]; //!< 0pt plus -1fil minus 0pt
+
+
+constexpr int lo_mem_stat_max = mem_bot+5*glue_spec_size-1; //!< largest statically
 
 enum
 {
-	page_ins_head = mem_top, //!< list of insertion data for current page
-	contrib_head = mem_top-1, //!< vlist of items not yet on current page
-	page_head = mem_top-2, //!< vlist for current page
+//	page_ins_head = mem_top, //!< list of insertion data for current page
+//	contrib_head = mem_top-1, //!< vlist of items not yet on current page
+//	page_head = mem_top-2, //!< vlist for current page
 //	temp_head = mem_top-3, //!< head of a temporary list of some kind
-	hold_head = mem_top-4, //!< head of a temporary list of another kind
-	adjust_head = mem_top-5, //!< head of adjustment list returned by \a hpack
-	active = mem_top-7, //!< head of active list in \a line_break, needs two words
-	align_head = mem_top-8, //!< head of preamble list for alignments
-	end_span = mem_top-9, //!< tail of spanned-width lists
-	omit_template = mem_top-10, //!< a constant token list
-	null_list = mem_top-11, //!< permanently empty list
-	lig_trick = mem_top-12, //!< a ligature masquerading as a \a char_node
-	garbage = mem_top-12, //!< used for scrap information
+//	hold_head = mem_top-4, //!< head of a temporary list of another kind
+//	adjust_head = mem_top-5, //!< head of adjustment list returned by \a hpack
+//	active = mem_top-7, //!< head of active list in \a line_break, needs two words
+//	align_head = mem_top-8, //!< head of preamble list for alignments
+//	end_span = mem_top-9, //!< tail of spanned-width lists
+//	omit_template = mem_top-10, //!< a constant token list
+//	null_list = mem_top-11, //!< permanently empty list
+//	lig_trick = mem_top-12, //!< a ligature masquerading as a \a char_node
+//	garbage = mem_top-12, //!< used for scrap information
 //	backup_head = mem_top-13, //!< head of token list built by \a scan_keyword
 	hi_mem_stat_min = mem_top-13 //!< smallest statically allocated word in
 };
 
 inline std::vector<CharNode> heads;
 
+inline LinkedNode * const page_ins_head = &heads[0]; //!< list of insertion data for current page
+inline LinkedNode * const contrib_head = &heads[1]; //!< vlist of items not yet on current page
+inline LinkedNode * const page_head = &heads[2]; //!< vlist for current page
 inline LinkedNode * const temp_head = &heads[3]; //!< head of a temporary list of some kind
+inline LinkedNode * const hold_head = &heads[4]; //!< head of a temporary list of another kind
+inline LinkedNode * const adjust_head = &heads[5]; //!< head of adjustment list returned by \a hpack
+inline LinkedNode * const active = &heads[7]; //!< head of active list in \a line_break, needs two words
+inline LinkedNode * const align_head = &heads[8]; //!< head of preamble list for alignments
+inline LinkedNode * const end_span = &heads[9]; //!< tail of spanned-width lists
+inline TokenNode * const omit_template = dynamic_cast<TokenNode*>(&heads[10]); //!< a constant token list
+inline LinkedNode * const null_list = &heads[11]; //!< permanently empty list
+inline LinkedNode * const lig_trick = &heads[12]; //!< a ligature masquerading as a \a char_node
+inline LinkedNode * const garbage = &heads[12]; //!< used for scrap information
 inline LinkedNode * const backup_head = &heads[13]; //!< head of token list built by \a scan_keyword
 
 constexpr int hi_mem_stat_usage = 14; //!< the number of one-word nodes always present
@@ -684,6 +705,8 @@ enum
 constexpr int delta_node = 2; //!< \a type field in a delta node
 constexpr int split_up = 1; //!< an overflowed insertion class
 
+inline LinkedNode *preamble = align_head->link; //!< the current preamble list
+
 int length(halfword); //!< the number of characters
 int cur_length(void); 
 void append_char(ASCIIcode); //!< put \a ASCII_code # at the end of \a str_pool
@@ -717,7 +740,6 @@ int& mark_ptr(halfword); //!< head of the token list for a mark
 int& adjust_ptr(halfword); //!< vertical list to be moved out of horizontal list
 halfword lig_char(halfword); //!< the word where the ligature is to be found
 halfword& lig_ptr(halfword); //!< the list of characters
-halfword& glue_ptr(halfword); //!< pointer to a glue specification
 halfword& leader_ptr(halfword); //!< pointer to box or rule node for leaders
 halfword& glue_ref_count(halfword); //!< reference count of a glue specification
 int& stretch(halfword); //!< the stretchability of this glob of glue
@@ -776,7 +798,6 @@ int& new_hlist(halfword); //!< the translation of an mlist
 int& u_part(halfword); //!< pointer to \f$<u_j\f$ token list
 int&v_part(halfword); //!< pointer to \f$<v_j\f$ token list
 halfword& extra_info(halfword); //!< info to remember during template
-halfword& preamble(void); //!< the current preamble list
 quarterword& fitness(halfword); //!< <em> very_loose_fit..tight_fit</em> on final line for this break
 halfword& break_node(halfword); //!< pointer to the corresponding passive node
 halfword& line_number(halfword); //!< line that begins at this breakpoint

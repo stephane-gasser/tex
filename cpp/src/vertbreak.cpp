@@ -98,19 +98,21 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 		}
 		if (type(p) == glue_node)
 		{
-			q = info(p+1);
-			active_height[2+stretch_order(q)] += stretch(q);
-			active_height[6] += shrink(q);
-			if (shrink_order(q) && shrink(q))
+			GlueNode *P;
+			P->num = p;
+			auto q = P->glue_ptr;
+			active_height[2+q->stretch_order] += q->stretch;
+			active_height[6] += q->shrink;
+			if (q->shrink_order && q->shrink)
 			{
 				error("Infinite glue shrinkage found in box being split", "The box you are \\vsplitting contains some infinitely\nshrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.\nSuch glue doesn't belong there; but you can safely proceed,\nsince the offensive shrinkability has been made finite.");
-				r = newspec(q);
-				subtype(r) = 0;
+				auto r = newspec(q);
+				r->shrink_order = 0;
 				deleteglueref(q);
-				info(p+1) = r;
+				P->glue_ptr = r;
 				q = r;
 			}
-			cur_height += prevdp+width(q);
+			cur_height += prevdp+q->width;
 			prevdp = 0;
 		}
 		if (prevdp > d)

@@ -23,7 +23,8 @@ static int floating_penalty(void) { return int_par(floating_penalty_code); }
 
 void handlerightbrace(Token t, halfword &loop)
 {
-	halfword p, q;
+	halfword p;
+	GlueSpec *q;
 	scaled d;
 	int f;
 	switch (curgroup)
@@ -43,7 +44,7 @@ void handlerightbrace(Token t, halfword &loop)
 			package(0, t);
 			break;
 		case adjusted_hbox_group:
-			adjusttail = adjust_head;
+			adjusttail = adjust_head->num;
 			package(0, t);
 			break;
 		case vbox_group:
@@ -56,8 +57,8 @@ void handlerightbrace(Token t, halfword &loop)
 			break;
 		case insert_group:
 			endgraf();
-			q = split_top_skip();
-			link(q)++;
+			q = split_top_skip;
+			q->glue_ref_count++;
 			d = split_max_depth();
 			f = floating_penalty();
 			unsave();
@@ -71,7 +72,7 @@ void handlerightbrace(Token t, halfword &loop)
 				subtype(tail->num) = saved(0);
 				height(tail->num) = height(p)+depth(p);
 				ins_ptr(tail->num) = list_ptr(p);
-				split_top_ptr(tail->num) = q;
+				split_top_ptr(tail->num) = q->num;
 				depth(tail->num) = d;
 				float_cost(tail->num) = f;
 			}
@@ -107,14 +108,14 @@ void handlerightbrace(Token t, halfword &loop)
 				link(pagetail) = head->link->num;
 				pagetail = tail->num;
 			}
-			if (link(page_head))
+			if (page_head->link)
 			{
-				if (link(contrib_head) == 0)
+				if (contrib_head->link == nullptr)
 					contrib_tail = pagetail;
-				link(pagetail) = link(contrib_head);
-				link(contrib_head) = link(page_head);
-				link(page_head) = 0;
-				pagetail = page_head;
+				link(pagetail) = contrib_head->link->num;
+				contrib_head->link = page_head->link;
+				page_head->link = nullptr;
+				pagetail = page_head->num;
 			}
 			popnest();
 			buildpage();
@@ -166,10 +167,10 @@ void handlerightbrace(Token t, halfword &loop)
 						if (saved(0) == nucleus(tail->num))
 							if (tail->type == ord_noad)
 							{
-								q = head->num;
-								while (link(q) != tail->num)
-									q = link(q);
-								link(q) = p;
+								auto q = head;
+								while (q->link != tail)
+									q = q->link;
+								q->link->num = p;
 								freenode(tail->num, noad_size);
 								tail->num = p;
 							}

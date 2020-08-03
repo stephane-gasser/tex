@@ -215,9 +215,9 @@ void hlistout(void)
 					curh += width(p);
 					break;
 				case ligature_node:
-					mem[lig_trick] = mem[lig_char(p)];
-					link(lig_trick) = link(p);
-					p = lig_trick;
+					mem[lig_trick->num] = mem[lig_char(p)];
+					lig_trick->link->num = link(p);
+					p = lig_trick->num;
 					continue;
 			}
 			p = link(p);

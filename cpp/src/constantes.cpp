@@ -46,7 +46,6 @@ quarterword& glue_order(halfword p) { return subtype(p+list_offset); }
 quarterword& what_lhm(halfword p) { return type(p+1); }
 quarterword& glue_sign(halfword p) { return type(p+list_offset); }
 halfword& list_ptr(halfword p) { return link(p+list_offset); }
-halfword& preamble(void) { return link(align_head); }
 halfword& what_lang(halfword p) { return link(p+1); }
 halfword& rlink(halfword p) { return link(p+1); }
 halfword& break_node(halfword p) { return link(p+1); }
@@ -61,11 +60,10 @@ halfword& extra_info(halfword p) { return info(p+list_offset); }
 halfword& line_number(halfword p) { return info(p+1); }
 halfword& llink(halfword p) { return info(p+1); }
 halfword& broken_ins(halfword p) { return info(p+1); }
-halfword& glue_ptr(halfword p) { return info(p+1); }
 halfword& best_ins_ptr(halfword p) { return info(p+2); }
 halfword& ins_ptr(halfword p) { return info(p+4); }
 halfword& write_stream(halfword p) { return info(p+1); }
-halfword& open_area(halfword p) { return info(p+2); }
+halfword& open_area(halfword p) { return info(p+2); } 
 
 quarterword& save_type(halfword p) { return savestack[p].hh.b0; }
 quarterword& save_level(halfword p) { return savestack[p].hh.b1; }

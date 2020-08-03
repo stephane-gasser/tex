@@ -14,8 +14,8 @@ static halfword& every_display(void) { return equiv(every_display_loc); }
 void initmath(void)
 {
 	scaled w, l, s;
-	halfword p, q;
-	internalfontnumber f;
+	LinkedNode *p;
+//	internalfontnumber f;
 	int n;
 	scaled v, d;
 	auto t = gettoken();
@@ -31,13 +31,14 @@ void initmath(void)
 			linebreak(display_widow_penalty());
 			v = shift_amount(justbox)+2*cur_font().quad();
 			w = -max_dimen;
-			p = list_ptr(justbox);
+			p->num = list_ptr(justbox);
 			while (p)
 			{
-				if (p >= himemmin)
+				if (p->is_char_node())
 				{
-					f = type(p);
-					d = fonts[f].char_width(character(p));
+					auto c = dynamic_cast<CharNode*>(p);
+					auto ft = c->font;
+					d = ft.char_width(c->character);
 					if (v < max_dimen)
 					{
 						v += d;
@@ -48,15 +49,15 @@ void initmath(void)
 						w = max_dimen;
 						break;
 					}
-					p = link(p);
+					p = p->link;
 					continue;
 				}
-				switch (type(p))
+				switch (p->type)
 				{
 					case hlist_node: //0
 					case vlist_node: //1
 					case rule_node: //2
-						d = width(p);
+						d = width(p->num);
 						if (v < max_dimen)
 						{
 							v += d;
@@ -67,30 +68,34 @@ void initmath(void)
 							w = max_dimen;
 							break;
 						}
-						p = link(p);
+						p = p->link;
 						continue;
 					case ligature_node: //6
-						mem[lig_trick] = mem[lig_char(p)];
-						link(lig_trick) = link(p);
+						mem[lig_trick->num] = mem[lig_char(p->num)];
+						lig_trick->link = p->link;
 						p = lig_trick;
 						continue;
 					case kern_node: //11
+						d = dynamic_cast<KernNode*>(p)->width;
+						break;
 					case math_node: //9
-						d = width(p);
+						d = width(p->num);
 						break;
 					case glue_node: //10
-						q = glue_ptr(p);
-						d = width(q);
+					{
+						auto g = dynamic_cast<GlueNode*>(p);
+						auto q = g->glue_ptr;
+						d = q->width;
 						if (glue_sign(justbox) == stretching)
 						{
-							if (glue_order(justbox) == stretch_order(q) && stretch(q))
+							if (glue_order(justbox) == q->stretch_order && q->stretch)
 								v = max_dimen;
 						}
 						else 
 							if (glue_sign(justbox) == shrinking)
-								if (glue_order(justbox) == shrink_order(q) && shrink(q))
+								if (glue_order(justbox) == q->shrink_order && q->shrink)
 									v = max_dimen;
-						if (subtype(p) >= a_leaders)
+						if (g->subtype >= a_leaders)
 						{
 							if (v < max_dimen)
 							{
@@ -102,10 +107,11 @@ void initmath(void)
 								w = max_dimen;
 								break;
 							}
-							p = link(p);
+							p = p->link;
 							continue;
 						}
 						break;
+					}
 					case whatsit_node: //8
 						d = 0;
 						break;
@@ -114,7 +120,7 @@ void initmath(void)
 				}
 				if (v < max_dimen)
 					v += d;
-				p = link(p);
+				p = p->link;
 				continue;
 			}
 		}
@@ -133,11 +139,11 @@ void initmath(void)
 		{
 			n = info(par_shape_ptr());
 			if (prev_graf+2 >= n)
-				p = par_shape_ptr()+2*n;
+				p->num = par_shape_ptr()+2*n;
 			else
-				p = par_shape_ptr()+2*(prev_graf+2);
-			s = mem[p-1].int_;
-			l = mem[p].int_;
+				p->num = par_shape_ptr()+2*(prev_graf+2);
+			s = mem[p->num-1].int_;
+			l = mem[p->num].int_;
 		}
 		pushmath(math_shift_group);
 		mode = mmode;

@@ -474,18 +474,18 @@ void scanfilename(void)
 			val = -val;
 	}
 	auto q = newspec(zero_glue);
-	width(q) = val;
+	q->width = val;
 	if (scankeyword("plus"))
 	{
-		stretch(q) = scandimen(mu, true, false);
-		type(q) = curorder;
+		q->stretch = scandimen(mu, true, false);
+		q->stretch_order = curorder;
 	}
 	if (scankeyword("minus"))
 	{
-		shrink(q) = scandimen(mu, true, false);
-		subtype(q) = curorder;
+		q->shrink = scandimen(mu, true, false);
+		q->shrink_order = curorder;
 	}
-	return q;
+	return q->num;
 }
 
 //! Sets \a curval to an integer.
@@ -739,6 +739,10 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 
 [[nodiscard]] std::tuple<int, int> scansomethinginternal(smallnumber level, bool negative, Token t)
 {
+	///////////////////////////////
+	//	val : devrait être un AnyNode 
+	// lev : son type (tok_val/dimen_val/glue_val/ident_val/int_val/mu_val)
+	////////////////////////////////
 	int val, lev;
 	auto m = t.chr;
 	switch (t.cmd)
@@ -755,6 +759,18 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			break;
 		case toks_register:
 		case assign_toks:
+			if (level != tok_val)
+			{
+				backerror(t, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
+				val = 0;
+				lev = dimen_val;
+				break;
+			}
+			if (t.cmd == toks_register)
+				m = toks_base+scaneightbitint();
+			val = equiv(m);
+			lev = tok_val;
+			break;
 		case def_family:
 		case set_font:
 		case def_font:
@@ -763,21 +779,11 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 				backerror(t, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
 				val = 0;
 				lev = dimen_val;
+				break;
 			}
-			else 
-				if (t.cmd <= assign_toks)
-				{
-					if (t.cmd < assign_toks)
-						m = toks_base+scaneightbitint();
-					val = equiv(m);
-					lev = tok_val;
-				}
-				else
-				{
-					backinput(t);
-					val = scanfontident()+frozen_null_font;
-					lev = ident_val;
-				}
+			backinput(t);
+			val = scanfontident()+frozen_null_font;
+			lev = ident_val;
 			break;
 		case assign_int:
 			val = eqtb[m].int_;
@@ -801,18 +807,16 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 				error("Improper "+cmdchr(t), "You can refer to \\spacefactor only in horizontal mode;\nyou can refer to \\prevdepth only in vertical mode; and\nneither of these is meaningful inside \\write. So\nI'm forgetting what you said and using zero instead.");
 				val = 0;
 				lev = level == tok_val ? int_val : dimen_val;
+				break;
 			}
-			else
-				if (m == vmode)
-				{
-					val = prev_depth;
-					lev = dimen_val;
-				}
-				else
-				{
-					val = space_factor;
-					lev = int_val;
-				}
+			if (m == vmode)
+			{
+				val = prev_depth;
+				lev = dimen_val;
+				break;
+			}
+			val = space_factor;
+			lev = int_val;
 			break;
 		case set_prev_graf:
 			val = 0;
@@ -845,10 +849,7 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			break;
 		case set_box_dimen:
 			val = scaneightbitint();
-			if (box(val) == 0)
-				val = 0;
-			else
-				val = mem[box(val)+m].int_;
+			val = box(val) == 0 ? 0 : mem[box(val)+m].int_;
 			lev = dimen_val;
 		break;
 		case char_given:
@@ -888,53 +889,52 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			{
 				val = t.chr == input_line_no_code ? line : lastbadness;
 				lev = int_val;
+				break;
+			}
+			if (t.chr == glue_val)
+			{
+				val = zero_glue->num;
+				lev = glue_val;
 			}
 			else
 			{
-				if (t.chr == glue_val)
+				val = 0;
+				lev = t.chr;
+			}
+			if (!tail->is_char_node() && mode)
+				switch (t.chr)
 				{
-					val = zero_glue;
-					lev = glue_val;
+					case int_val: 
+						if (tail->type == penalty_node)
+							val = penalty(tail->num);
+						break;
+					case dimen_val: 
+						if (tail->type == kern_node)
+							val = dynamic_cast<KernNode*>(tail)->width;
+						break;
+					case glue_val: 
+						if (tail->type == glue_node)
+						{
+							auto g = dynamic_cast<GlueNode*>(tail)->glue_ptr;
+							val = g->num;
+							if (dynamic_cast<GlueNode*>(tail)->subtype == mu_glue)
+								lev = mu_val;
+						}
 				}
-				else
-				{
-					val = 0;
-					lev = t.chr;
-				}
-				if (!tail->is_char_node() && mode)
+			else 
+				if (mode == vmode && tail == head)
 					switch (t.chr)
 					{
 						case int_val: 
-							if (tail->type == penalty_node)
-								val = penalty(tail->num);
+							val = lastpenalty;
 							break;
 						case dimen_val: 
-							if (tail->type == kern_node)
-								val = width(tail->num);
+							val = lastkern;
 							break;
 						case glue_val: 
-							if (tail->type == glue_node)
-							{
-								val = glue_ptr(tail->num);
-								if (subtype(tail->num) == mu_glue)
-									lev = mu_val;
-							}
+							if (lastglue)
+								val = lastglue->num;
 					}
-				else 
-					if (mode == vmode && tail == head)
-						switch (t.chr)
-						{
-							case int_val: 
-								val = lastpenalty;
-								break;
-							case dimen_val: 
-								val = lastkern;
-								break;
-							case glue_val: 
-								if (lastglue != empty_flag)
-									val = lastglue;
-						}
-			}
 			break;
 		default:
 			error("You can't use `"+cmdchr(t)+"' after "+esc("the"), "I'm forgetting what you said and using zero instead.");
@@ -953,10 +953,12 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 	if (negative)
 		if (lev >= glue_val)
 		{
-			val = newspec(val);
-			width(val) = -width(val);
-			stretch(val) = -stretch(val);
-			shrink(val) = -shrink(val);
+			GlueSpec old(val);
+			auto g = newspec(&old);
+			g->width = -old.width;
+			g->stretch = -old.stretch;
+			g->shrink = -old.shrink;
+			val = g->num;
 		}
 		else
 			val = -val;
@@ -1206,10 +1208,9 @@ void endtokenlist(void)
 
 void deletetokenref(halfword p)
 {
-	if (info(p) == 0)
-		flushlist(p);
-	else
-		info(p)--;
+	TokenListNode *P;
+	P->num = p;
+	deletetokenref(P);
 }
 
 void deletetokenref(TokenListNode *p)
@@ -1306,7 +1307,7 @@ Token getpreambletoken(void)
 
 void insthetoks(void)
 {
-	link(garbage) = thetoks()->num;
+	garbage->link = thetoks();
 	ins_list(temp_head->link->num);
 }
 
@@ -1442,7 +1443,7 @@ void convtoks(Token t)
 				openlogfile();
 			strings.push_back(jobname);
 	}
-	link(garbage) = strtoks()->num;
+	garbage->link = strtoks();
 	ins_list(temp_head->link->num);
 }
 

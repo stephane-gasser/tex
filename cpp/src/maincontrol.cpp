@@ -153,23 +153,26 @@ static void main_loop_move_lig(void)
 
 [[nodiscard]] static Token append_normal_space(void)
 {
-	if (space_skip() == zero_glue)
+	GlueNode *g;
+	if (space_skip == zero_glue)
 	{
-		mainp->num = cur_font().glue;
+		GlueSpec *Mainp = cur_font().glue;
 		if (mainp == nullptr)
 		{
-			mainp->num = newspec(zero_glue);
+			Mainp = newspec(zero_glue);
 			maink = cur_font().parambase+space_code;
-			width(mainp->num) = cur_font().space();
-			stretch(mainp->num) = cur_font().space_stretch();
-			shrink(mainp->num) = cur_font().space_shrink();
-			cur_font().glue = mainp->num;
+			Mainp->width = cur_font().space();
+			Mainp->stretch = cur_font().space_stretch();
+			Mainp->shrink = cur_font().space_shrink();
+			cur_font().glue = Mainp;
 		}
-		tempptr = newglue(mainp->num);
+		mainp->num = Mainp->num;
+		g = new GlueNode(Mainp);
 	}
 	else
-		tempptr = newparamglue(space_skip_code);
-	tail_append(tempptr);
+		g = new GlueNode(space_skip);
+//		tempptr = g->num;
+	tail_append(g);
 	return getxtoken();
 }
 
@@ -712,9 +715,12 @@ Token maincontrol(void)
 				tail_append(newstyle(t.chr));
 				break;
 			case mmode+non_script:
-				tail_append(newglue(0));
-				subtype(tail->num) = cond_math_glue;
+			{
+				auto g = new GlueNode(zero_glue);
+				g->subtype = cond_math_glue;
+				tail_append(g);
 				break;
+			}
 			case mmode+math_choice: 
 				appendchoices();
 				break;

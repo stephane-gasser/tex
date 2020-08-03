@@ -4,8 +4,8 @@
 #include "impression.h"
 #include "noeud.h"
 #include "lecture.h"
-#include "deleteglueref.h"
 #include "storefmtfile.h"
+#include "deleteglueref.h"
 
 void finalcleanup(Token t)
 {
@@ -47,7 +47,7 @@ void finalcleanup(Token t)
 		for (c = top_mark_code; c <= split_bot_mark_code; c++)
 		if (curmark[c])
 			deletetokenref(curmark[c]);
-		if (lastglue != empty_flag)
+		if (lastglue)
 			deleteglueref(lastglue);
 		storefmtfile();
 		return;

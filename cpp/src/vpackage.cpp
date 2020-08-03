@@ -69,24 +69,28 @@ halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)
 				case whatsit_node:
 					break;
 				case glue_node:
+				{
+					GlueNode *P;
+					P->num = p;
 					x += d;
 					d = 0;
-					g = glue_ptr(p);
-					x += width(g);
-					o = type(g);
-					totalstretch[o] += stretch(g);
-					o = subtype(g);
-					totalshrink[o] += shrink(g);
-					if (subtype(p) >= 100)
-					{
-						g = glue_ptr(p);
-						if (width(g) > w)
-							w = width(g);
-					}
+					auto g = P->glue_ptr;
+					x += g->width;
+					o = g->stretch_order;
+					totalstretch[o] += g->stretch;
+					o = g->shrink_order;
+					totalshrink[o] += g->shrink;
+					if (P->subtype >= a_leaders && g->width > w)
+						w = g->width;
 					break;
+				}
 				case kern_node:
-					x += d+width(p);
+				{
+					KernNode *P;
+					P->num = p;
+					x += d+P->width;
 					d = 0;
+				}
 			}
 		p = link(p);
 	}

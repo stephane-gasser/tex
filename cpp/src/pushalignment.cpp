@@ -6,7 +6,7 @@ void pushalignment(halfword loop)
 	auto p = getnode(align_stack_node_size);
 	link(p) = alignptr;
 	info(p) = curalign;
-	llink(p) = preamble();
+	llink(p) = preamble->num;
 	rlink(p) = curspan;
 	mem[p+2].int_ = loop;
 	mem[p+3].int_ = alignstate;

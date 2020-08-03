@@ -16,7 +16,7 @@ void mathleftright(Token tk)
 	{
 		if (curgroup == math_shift_group)
 		{
-			scandelimiter(garbage, false, tk);
+			scandelimiter(garbage->num, false, tk);
 			error("Extra "+esc("right"), "I'm ignoring a \\right that had no matching \\left.");
 		}
 		else

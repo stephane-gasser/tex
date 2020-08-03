@@ -214,7 +214,7 @@ void initprim(void)
 	text(frozen_end_template) = txt("endtemplate");
 	text(frozen_endv) = txt("endtemplate");
 	eq_type(frozen_endv) = endv;
-	equiv(frozen_endv) = null_list;
+	equiv(frozen_endv) = null_list->num;
 	eq_level(frozen_endv) = 1;
 	eqtb[frozen_end_template] = eqtb[frozen_endv];
 	eq_type(frozen_end_template) = end_template;

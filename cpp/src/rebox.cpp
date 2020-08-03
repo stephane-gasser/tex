@@ -18,11 +18,12 @@ halfword rebox(halfword b, scaled w)
 				p->link = new KernNode(width(b)-v);
 		}
 		freenode(b, box_node_size);
-		b = newglue(ss_glue);
+		auto g = new GlueNode(ss_glue);
+		b = g->num;
 		link(b) = p->num;
 		while (p->link)
 			p = p->link;
-		p->link->num = newglue(ss_glue);
+		p->link = new GlueNode(ss_glue);
 		return hpack(b, w, exactly);
 	}
 	width(b) = w;

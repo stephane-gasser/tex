@@ -2,24 +2,35 @@
 #include "noeud.h"
 #include "deleteglueref.h"
 #include "popnest.h"
-#include "finiteshrink.h"
 #include "cesure.h"
 #include "trybreak.h"
 #include "erreur.h"
 #include "police.h"
 #include "postlinebreak.h"
 
-static void check_shrinkage(halfword &p)
+static GlueSpec *finiteshrink(GlueSpec *p)
 {
-	if (shrink_order(p) != normal && shrink(p))
+	if (noshrinkerroryet)
+		error("Infinite glue shrinkage found in a paragraph", "The paragraph just ended includes some glue that has\ninfinite shrinkability, e.g., `\\hskip 0pt minus 1fil'.\nSuch glue doesn't belong there---it allows a paragraph\nof any length to fit on one line. But it's safe to proceed,\nsince the offensive shrinkability has been made finite.");
+	noshrinkerroryet = false;
+	auto q = newspec(p);
+	q->shrink_order = normal;
+	deleteglueref(p);
+	return q;
+}
+
+static GlueSpec *check_shrinkage(GlueSpec *p)
+{
+	if (p->shrink_order != normal && p->shrink)
 		p = finiteshrink(p);
+	return p;
 }
 
 static void kern_break(bool autobreaking)
 {
-	if (!is_char_node(link(curp)) && autobreaking && type(link(curp)) == glue_node)
+	if (!curp->link->is_char_node() && autobreaking && curp->link->type == glue_node)
 		trybreak(0, unhyphenated);
-	act_width += width(curp);
+	act_width += width(curp->num);
 }
 
 static void store_background(void)
@@ -36,42 +47,41 @@ static int uc_hyph(void) { return int_par(uc_hyph_code); }
 void linebreak(int finalwidowpenalty)
 {
 	bool autobreaking;
-	halfword prevp, q, r, s, prevs;
-	internalfontnumber f;
+//	halfword s, prevs;
+//	internalfontnumber f;
 	smallnumber j;
 	unsigned char c;
 	packbeginline = mode_line;
 	temp_head->link = head->link;
-	if (tail->is_char_node())
+	if (tail->is_char_node() || tail->type != glue_node)
 		tail_append(newpenalty(inf_penalty));
 	else 
-		if (tail->type != glue_node)
-			tail_append(newpenalty(inf_penalty));
-		else
-		{
-			tail->type = penalty_node;
-			deleteglueref(glue_ptr(tail->num));
-			flushnodelist(leader_ptr(tail->num));
-			penalty(tail->num) = inf_penalty;
-		}
-	tail->link->num = newparamglue(par_fill_skip_code);
-	initcurlang = prev_graf%0x1'00'00;
+	{
+		auto Tail = dynamic_cast<GlueNode*>(tail);
+		deleteglueref(Tail->glue_ptr);
+		flushnodelist(Tail->leader_ptr);
+		// delete tail ?
+		tail->type = penalty_node;
+		penalty(tail->num) = inf_penalty;
+	}
+	tail->link = new GlueNode(par_fill_skip_code);
+	initcurlang = prev_graf%(1<<16);
 	initlhyf = prev_graf>>22;
-	initrhyf = (prev_graf>>16)%0x40;
+	initrhyf = (prev_graf>>16)%(1<<6);
 	popnest();
 	noshrinkerroryet = true;
-	check_shrinkage(left_skip());
-	check_shrinkage(right_skip());
-	q = left_skip();
-	r = right_skip();
-	background[1] = width(q)+width(r);
+	left_skip = check_shrinkage(left_skip);
+	right_skip = check_shrinkage(right_skip);
+	auto q = left_skip;
+	auto r = right_skip;
+	background[1] = q->width+r->width;
 	background[2] = 0;
 	background[3] = 0;
 	background[4] = 0;
 	background[5] = 0;
-	background[2+stretch_order(q)] = stretch(q);
-	background[2+stretch_order(r)] += stretch(r);
-	background[6] = shrink(q)+shrink(r);
+	background[2+q->stretch_order] = q->stretch;
+	background[2+r->stretch_order] += r->stretch;
+	background[6] = q->shrink+r->shrink;
 	minimumdemerits = max_dimen;
 	minimaldemerits[3] = max_dimen;
 	minimaldemerits[2] = max_dimen;
@@ -142,110 +152,114 @@ void linebreak(int finalwidowpenalty)
 			lhyf = initlhyf;
 			rhyf = initrhyf;
 		}
-		q = getnode(active_node_size);
-		type(q) = unhyphenated;
-		fitness(q) = decent_fit;
-		link(q) = active;
-		break_node(q) = 0;
-		line_number(q) = prev_graf+1;
-		total_demerits(q) = 0;
-		link(active) = q;
+		LinkedNode *q;
+		q->num = getnode(active_node_size);
+		q->type = unhyphenated;
+		fitness(q->num) = decent_fit;
+		q->link = active;
+		break_node(q->num) = 0;
+		line_number(q->num) = prev_graf+1;
+		total_demerits(q->num) = 0;
+		active->link = q;
 		store_background();
 		passive = 0;
 		printednode = temp_head->num;
 		passnumber = 0;
-		fontinshortdisplay = null_font;
-		curp = temp_head->link->num;
+		fontinshortdisplay = fonts[null_font];
+		curp = temp_head->link;
 		autobreaking = true;
-		prevp = curp;
-		while (curp && link(active) != active)
+		auto prevp = curp;
+		while (curp && active->link != active)
 		{
-			if ((curp >= himemmin))
+			if (curp->is_char_node())
 			{
 				prevp = curp;
+				auto Curp = dynamic_cast<CharNode*>(curp);
 				do
 				{
-					f = type(curp);
-					act_width += fonts[f].char_width(character(curp));
-					curp = link(curp);
-				} while (curp >= himemmin);
+					auto ft = Curp->font;
+					act_width += ft.char_width(Curp->character);
+					curp = curp->link;
+				} while (curp->is_char_node());
 			}
-			switch (type(curp))
+			switch (curp->type)
 			{
 				case hlist_node:
 				case vlist_node:
 				case rule_node: 
-					act_width += width(curp);
+					act_width += width(curp->num);
 					break;
 				case whatsit_node:
-					if (subtype(curp) == 4)
+					if (subtype(curp->num) == language_node)
 					{
-						curlang = link(curp+1);
-						lhyf = type(curp+1);
-						rhyf = subtype(curp+1);
+						curlang = what_lang(curp->num);
+						lhyf = what_lhm(curp->num);
+						rhyf = what_rhm(curp->num);
 					}
 					break;
 				case glue_node:
+				{
 					if (autobreaking)
-						if (is_char_node(prevp))
+						if (prevp->is_char_node())
 							trybreak(0, unhyphenated);
 						else 
-							if (precedes_break(prevp))
+							if (precedes_break(prevp->num))
 								trybreak(0, unhyphenated);
 							else 
-								if (type(prevp) == kern_node && subtype(prevp) != explicit_)
+								if (prevp->type == kern_node && dynamic_cast<KernNode*>(prevp)->subtype != explicit_)
 									trybreak(0, unhyphenated);
-					check_shrinkage(glue_ptr(curp));
-					q = glue_ptr(curp);
-					act_width += width(q);
-					activewidth[2+stretch_order(q)] += stretch(q);
-					activewidth[6] += shrink(q);
+					auto Q = dynamic_cast<GlueNode*>(curp)->glue_ptr;
+					Q = check_shrinkage(Q);
+					act_width += Q->width;
+					activewidth[2+Q->stretch_order] += Q->stretch;
+					activewidth[6] += Q->shrink;
 					if (secondpass && autobreaking)
 					{
-						prevs = curp;
-						s = link(prevs);
+						auto prevs = curp;
+						auto s = prevs->link;
 						if (s)
 						{
 							bool label31 = false;
 							while (true)
 							{
-								if (s >= himemmin)
+								if (s->is_char_node())
 								{
-									c = subtype(s);
-									hf = type(s);
+									auto S = dynamic_cast<CharNode*>(s);
+									c = S->character;
+									fonts[hf] = S->font;
 								}
 								else 
-									if (type(s) == 6)
-										if (link(s+1) == 0)
+									if (s->type == ligature_node)
+										if (lig_ptr(s->num) == 0)
 										{
 											prevs = s;
-											s = link(prevs);
+											s = prevs->link;
 											continue;
 										}
 										else
 										{
-											q = link(s+1);
-											c = subtype(q);
-											hf = type(q);
+											q->num = lig_ptr(s->num);
+											c = dynamic_cast<CharNode*>(q)->character;
+											fonts[hf] = dynamic_cast<CharNode*>(q)->font;
 										}
 									else 
-										if (type(s) == 11 && subtype(s) == 0)
+										if (s->type == kern_node && dynamic_cast<KernNode*>(s)->subtype == normal)
 										{
 											prevs = s;
-											s = link(prevs);
+											s = prevs->link;
 											continue;
 										}
 										else 
-											if (type(s) == 8)
+											if (s->type == whatsit_node)
 											{
-												if (subtype(s) == 4)
+												if (subtype(s->num) == language_node)
 												{
-													curlang = link(s+1);
-													lhyf = type(s+1);
-													rhyf = subtype(s+1);
+													curlang = what_lang(s->num);
+													lhyf = what_lhm(s->num);
+													rhyf = what_rhm(s->num);
 												}
 												prevs = s;
-												s = link(prevs);
+												s = prevs->link;
 												continue;
 											}
 											else
@@ -262,47 +276,48 @@ void linebreak(int finalwidowpenalty)
 										break;
 									}
 								prevs = s;
-								s = link(prevs);
+								s = prevs->link;
 							}
 							while (!label31)
 							{
 								hyfchar = fonts[hf].hyphenchar;
 								if (hyfchar < 0 || hyfchar > 255)
 									break;
-								ha = prevs;
+								ha = prevs->num;
 								if (lhyf+rhyf > 63)
 									break;
 								hn = 0;
 								while (true)
 								{
-									if (s >= himemmin)
+									if (s->is_char_node())
 									{
-										if (type(s) != hf)
+										auto S = dynamic_cast<CharNode*>(s);
+										if (S->font != fonts[hf])
 											break;
-										hyfbchar = subtype(s);
+										hyfbchar = S->character;
 										c = hyfbchar;
 										if (lc_code(c) == 0)
 											break;
 										if (hn == 63)
 											break;
-										hb = s;
+										hb = s->num;
 										hn++;
 										hu[hn] = c;
 										hc[hn] = lc_code(c);
 										hyfbchar = 256;
 									}
 									else 
-										if (type(s) == 6)
+										if (s->type == ligature_node)
 										{
-											if (type(s+1) != hf)
+											if (font(lig_char(s->num)) != hf)
 												break;
 											j = hn;
-											q = link(s+1);
-											if (q > 0)
-												hyfbchar = subtype(q);
+											q->num = lig_ptr(s->num);
+											if (q)
+												hyfbchar = dynamic_cast<CharNode*>(q)->character;
 											while (q > 0)
 											{
-												c = subtype(q);
+												c = dynamic_cast<CharNode*>(q)->character;
 												if (lc_code(c) == 0)
 													break;
 												if (j == 63)
@@ -310,37 +325,37 @@ void linebreak(int finalwidowpenalty)
 												j++;
 												hu[j] = c;
 												hc[j] = lc_code(c);
-												q = link(q);
+												q = q->link;
 											}
-											hb = s;
+											hb = s->num;
 											hn = j;
-											if (subtype(s)%2)
+											if (subtype(s->num)%2)
 												hyfbchar = fonts[hf].bchar;
 											else
 												hyfbchar = 256;
 										}
 										else 
-											if (type(s) == 11 && subtype(s) == 0)
+											if (s->type == kern_node && dynamic_cast<KernNode*>(s)->subtype == normal)
 											{
-												hb = s;
+												hb = s->num;
 												hyfbchar = fonts[hf].bchar;
 											}
 											else
 												break;
-									s = link(s);
+									s = s->link;
 								}
 								if (hn < lhyf+rhyf)
 									break;
 								bool label34 = true;
 								while (label34)
 								{
-									if (!is_char_node(s))
-										switch (type(s))
+									if (!s->is_char_node())
+										switch (s->type)
 										{
 											case ligature_node: 
 												break;
 											case kern_node: 
-												if (subtype(s) != normal)
+												if (dynamic_cast<KernNode*>(s)->subtype != normal)
 												{
 													label34 = false;
 													continue;
@@ -358,7 +373,7 @@ void linebreak(int finalwidowpenalty)
 												label31 = true;
 												break;
 										}
-									s = link(s);
+									s = s->link;
 								}
 								if (!label31)
 									hyphenate();
@@ -367,93 +382,102 @@ void linebreak(int finalwidowpenalty)
 						}
 					}
 					break;
+				}
 				case kern_node: 
-					if (subtype(curp) == explicit_)
+				{
+					auto Curp = dynamic_cast<KernNode*>(curp);
+					if (Curp->subtype == explicit_)
 						kern_break(autobreaking);
 					else
-						act_width += width(curp);
+						act_width += Curp->width;
 					break;
+				}
 				case ligature_node:
-					f = type(lig_char(curp));
-					act_width += fonts[f].char_width(character(lig_char(curp)));
+					f = type(lig_char(curp->num));
+					act_width += fonts[f].char_width(character(lig_char(curp->num)));
 					break;
 				case disc_node:
 				{
-					DiscNode *d;
-					d->num = curp;
-					s = d->pre_break->num;
+					auto d = dynamic_cast<DiscNode*>(curp);
+					auto s = d->pre_break;
 					discwidth = 0;
-					if (s == 0)
+					if (s == nullptr)
 						trybreak(ex_hyphen_penalty(), hyphenated);
 					else
 					{
 						do
 						{
-							if (s >= himemmin)
+							if (s->is_char_node())
 							{
-								f = type(s);
-								discwidth += fonts[f].char_width(character(s));
+								auto S = dynamic_cast<CharNode*>(s);
+								auto ft = S->font;
+								discwidth += ft.char_width(S->character);
 							}
 							else
-								switch (type(s))
+								switch (s->type)
 								{
 									case ligature_node:
-										f = type(lig_char(s));
-										discwidth += fonts[f].char_width(character(lig_char(s)));
+										f = type(lig_char(s->num));
+										discwidth += fonts[f].char_width(character(lig_char(s->num)));
 										break;
 									case hlist_node:
 									case vlist_node:
 									case rule_node:
+										discwidth += width(s->num);
+										break;
 									case kern_node: 
-										discwidth += width(s);
+										discwidth += dynamic_cast<KernNode*>(s)->width;
 										break;
 									default: 
 										confusion("disc3");
 								}
-							s = link(s);
+							s = s->link;
 						} while (s);
 						act_width += discwidth;
 						trybreak(hyphen_penalty(), 1);
 						act_width -= discwidth;
 					}
-					r = subtype(curp);
-					s = link(curp);
+					auto r = d->replace_count;
+					s = curp->link;
 					while (r > 0)
 					{
-						if (s >= himemmin)
+						if (s->is_char_node())
 						{
-							f = font(s);
-							act_width += fonts[f].char_width(character(s));
+							auto S = dynamic_cast<CharNode*>(s);
+							auto ft = S->font;
+							act_width += ft.char_width(S->character);
 						}
 						else
-							switch (type(s))
+							switch (s->type)
 							{
 								case ligature_node:
-									f = font(lig_char(s));
-									act_width += fonts[f].char_width(character(lig_char(s)));
+									f = font(lig_char(s->num));
+									act_width += fonts[f].char_width(character(lig_char(s->num)));
 									break;
 								case hlist_node:
 								case vlist_node:
 								case rule_node:
+									act_width += width(s->num);
+									break;
 								case kern_node: 
-									act_width += width(s);
+									act_width += dynamic_cast<KernNode*>(s)->width;
 									break;
 								default: 
 									confusion("disc4");
 							}
 						r--;
-						s = link(s);
+						s = s->link;
 					}
 					prevp = curp;
 					curp = s;
 					continue;
 				}
 				case math_node:
-					autobreaking = subtype(curp) == after;
+					autobreaking = subtype(curp->num) == after;
 					kern_break(autobreaking);
 					break;
 				case penalty_node: 
-					trybreak(penalty(curp), unhyphenated);
+					trybreak(penalty(curp->num), unhyphenated);
 					break;
 				case mark_node:
 				case ins_node:
@@ -463,89 +487,89 @@ void linebreak(int finalwidowpenalty)
 					confusion("paragraph");
 			}
 			prevp = curp;
-			curp = link(curp);
+			curp = curp->link;
 		}
-		if (curp == 0)
+		if (curp == nullptr)
 		{
 			trybreak(eject_penalty, hyphenated);
-			if (link(active) != active)
+			if (active->link != active)
 			{
-				r = link(active);
+				auto r = active->link;
 				fewestdemerits = max_dimen;
 				do
 				{
-					if (type(r) != rule_node && total_demerits(r) < fewestdemerits)
+					if (r->type != rule_node && total_demerits(r->num) < fewestdemerits)
 					{
-						fewestdemerits = total_demerits(r);
-						bestbet = r;
+						fewestdemerits = total_demerits(r->num);
+						bestbet = r->num;
 					}
-					r = link(r);
+					r = r->link;
 				} while (r != active);
-				bestline = info(bestbet+1);
+				bestline = line_number(bestbet);
 				if (looseness() == 0)
 				{
 					postlinebreak(finalwidowpenalty);
-					q = link(active);
+					auto q = active->link;
 					while (q != active)
 					{
-						curp = link(q);
-						if (type(q) == delta_node)
-							freenode(q, delta_node_size);
+						curp = q->link;
+						if (q->type == delta_node)
+							freenode(q->num, delta_node_size);
 						else
-							freenode(q, active_node_size);
+							freenode(q->num, active_node_size);
 						q = curp;
 					}
-					q = passive;
+					q->num = passive;
 					while (q)
 					{
-						curp = link(q);
-						freenode(q, passive_node_size);
+						curp = q->link;
+						freenode(q->num, passive_node_size);
 						q = curp;
 					}
 					packbeginline = 0;
 					return;
 				}
-				r = link(active);
+				r = active->link;
 				actuallooseness = 0;
 				do
 				{
-					if (type(r) != 2)
+					if (r->type != 2)
 					{
-						linediff = info(r+1)-bestline;
+						linediff = line_number(r->num)-bestline;
 						if ((linediff < actuallooseness && looseness() <= linediff) || (linediff > actuallooseness && looseness() >= linediff))
 						{
-							bestbet = r;
+							bestbet = r->num;
 							actuallooseness = linediff;
-							fewestdemerits = total_demerits(r);
+							fewestdemerits = total_demerits(r->num);
 						}
 						else 
-							if (linediff == actuallooseness && total_demerits(r) < fewestdemerits)
+							if (linediff == actuallooseness && total_demerits(r->num) < fewestdemerits)
 							{
-								bestbet = r;
-								fewestdemerits = total_demerits(r);
+								bestbet = r->num;
+								fewestdemerits = total_demerits(r->num);
 							}
 					}
-					r = link(r);
+					r = r->link;
 				} while (r != active);
-				bestline = info(bestbet+1);
+				bestline = line_number(bestbet);
 				if (actuallooseness == looseness() || finalpass)
 				{
 					postlinebreak(finalwidowpenalty);
-					q = link(active);
+					auto q = active->link;
 					while (q != active)
 					{
-						curp = link(q);
-						if (type(q) == delta_node)
-							freenode(q, delta_node_size);
+						curp = q->link;
+						if (q->type == delta_node)
+							freenode(q->num, delta_node_size);
 						else
-							freenode(q, active_node_size);
+							freenode(q->num, active_node_size);
 						q = curp;
 					}
-					q = passive;
+					q->num = passive;
 					while (q)
 					{
-						curp = link(q);
-						freenode(q, passive_node_size);
+						curp = q->link;
+						freenode(q->num, passive_node_size);
 						q = curp;
 					}
 					packbeginline = 0;
@@ -553,24 +577,23 @@ void linebreak(int finalwidowpenalty)
 				}
 			}
 		}
-		q = link(active);
+		q = active->link;
 		while (q != active)
 		{
-			curp = link(q);
-			if (type(q) == delta_node)
-				freenode(q, delta_node_size);
+			curp = q->link;
+			if (q->type == delta_node)
+				freenode(q->num, delta_node_size);
 			else
-				freenode(q, active_node_size);
+				freenode(q->num, active_node_size);
 			q = curp;
 		}
-		q = passive;
+		q->num = passive;
 		while (q)
 		{
-			curp = link(q);
-			freenode(q, passive_node_size);
+			curp = q->link;
+			freenode(q->num, passive_node_size);
 			q = curp;
 		}
-		;
 		if (!secondpass)
 		{
 			threshold = tolerance();
@@ -584,22 +607,22 @@ void linebreak(int finalwidowpenalty)
 		}
 	}
 	postlinebreak(finalwidowpenalty);
-	q = link(active);
-	while (q != active)
+	auto qq = active->link;
+	while (qq != active)
 	{
-		curp = link(q);
-		if (type(q) == delta_node)
-			freenode(q, delta_node_size);
+		curp = qq->link;
+		if (qq->type == delta_node)
+			freenode(qq->num, delta_node_size);
 		else
-			freenode(q, active_node_size);
-		q = curp;
+			freenode(qq->num, active_node_size);
+		qq = curp;
 	}
-	q = passive;
-	while (q)
+	qq->num = passive;
+	while (qq)
 	{
-		curp = link(q);
-		freenode(q, passive_node_size);
-		q = curp;
+		curp = qq->link;
+		freenode(qq->num, passive_node_size);
+		qq = curp;
 	}
 	packbeginline = 0;
 }

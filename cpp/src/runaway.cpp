@@ -20,7 +20,7 @@ void runaway(void)
 				break;
 			case aligning:
 				print("preamble");
-				p->num = hold_head;
+				p = hold_head;
 				break;
 			case absorbing:
 				print("text");

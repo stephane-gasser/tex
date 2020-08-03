@@ -11,9 +11,10 @@ void initrow(void)
 		space_factor = 0;
 	else
 		prev_depth = 0;
-	tail_append(newglue(glue_ptr(preamble())));
-	subtype(tail->num) = tab_skip_code+1;
-	curalign = link(preamble());
+	auto G = new GlueNode(dynamic_cast<GlueNode*>(preamble)->glue_ptr);
+	G->subtype = tab_skip_code+1;
+	tail_append(G);
+	curalign = preamble->link->num;
 	curtail = curhead;
 	initspan(curalign);
 }

@@ -22,7 +22,7 @@ void boxend(int boxcontext)
 				appendtovlist(curbox);
 				if (adjusttail)
 				{
-					if (adjust_head != adjusttail)
+					if (adjust_head->num != adjusttail)
 						tail_append(adjust_head);
 					adjusttail = 0;
 				}

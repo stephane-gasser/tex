@@ -22,12 +22,6 @@
 
 constexpr char math_spacing[] = "0234000122*4000133**3**344*0400400*000000234000111*1111112341011";
 
-/*static void choose_mlist(halfword &p, halfword q, halfword& (*f)(halfword))
-{
-	p = f(q);
-	f(q) = 0;
-}*/
-
 static int bin_op_penalty(void) { return int_par(bin_op_penalty_code); }
 static int rel_penalty(void) { return int_par(rel_penalty_code); }
 
@@ -203,16 +197,18 @@ void mlisttohlist(void)
 				q = q->link;
 				continue;
 			case glue_node:
-				if (subtype(q->num) == mu_glue)
+			{
+				auto Q = dynamic_cast<GlueNode*>(q);
+				if (Q->subtype == mu_glue)
 				{
-					x = glue_ptr(q->num);
-					y = mathglue(x, curmu);
+					auto x = Q->glue_ptr;
+					y = mathglue(x->num, curmu);
 					deleteglueref(x);
-					glue_ptr(q->num) = y;
-					subtype(q->num) = 0;
+					Q->glue_ptr->num = y;
+					Q->subtype = 0;
 				}
 				else 
-					if (cursize && subtype(q->num) == cond_math_glue)
+					if (cursize && Q->subtype == cond_math_glue)
 					{
 						p = q->link;
 						if (p)
@@ -225,6 +221,7 @@ void mlisttohlist(void)
 					}
 				q = q->link;
 				continue;
+			}
 			case kern_node:
 				mathkern(q->num, curmu);
 				q = q->link;
@@ -395,11 +392,12 @@ void mlisttohlist(void)
 			if (x)
 			{
 				y = mathglue(glue_par(x), curmu);
-				z->num = newglue(y);
-				glue_ref_count(y) = 0;
+				auto g = new GlueSpec(y);
+				g->glue_ref_count = 0;
+				z = new GlueNode(g);
+				dynamic_cast<GlueNode*>(z)->subtype = x+1;
 				p->link = z;
 				p = z;
-				subtype(z->num) = x+1;
 			}
 		}
 		if (new_hlist(q->num))

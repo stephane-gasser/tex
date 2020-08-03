@@ -21,32 +21,32 @@ void postlinebreak(int finalwidowpenalty)
 	halfword curline;
 	LinkedNode *q, *r, *s;
 	q->num = break_node(bestbet);
-	curp = 0;
-	
+	curp = nullptr;
 	do //Reverse the links of the relevant passive nodes, setting |cur_p| to the first breakpoint
 	{
 		r = q;
 		q->num = prev_break(q->num);
-		next_break(r->num) = curp;
-		curp = r->num;
+		next_break(r->num) = curp->num;
+		curp = r;
 	} while (q);
 	curline = prev_graf+1;
 	do //Justify the line ending at breakpoint |cur_p|, and append it to the current vertical list, together with associated penalties and other insertions
 	{
-		q->num = cur_break(curp);
+		q->num = cur_break(curp->num);
 		discbreak = false;
 		postdiscbreak = false;
 		if (q)
-			if (type(q->num) == glue_node)
+			if (q->type == glue_node)
 			{
-				deleteglueref(glue_ptr(q->num));
-				glue_ptr(q->num) = right_skip();
-				subtype(q->num) = 9;
-				add_glue_ref(right_skip());
+				auto Q = dynamic_cast<GlueNode*>(q);
+				deleteglueref(Q->glue_ptr);
+				Q->glue_ptr = right_skip;
+				Q->glue_ptr->glue_ref_count++;
+				Q->subtype = right_skip_code+1;
 			}
 			else
 			{
-				if (type(q->num) == disc_node) //Change discretionary to compulsory and set |disc_break:=true|
+				if (q->type == disc_node) //Change discretionary to compulsory and set |disc_break:=true|
 				{
 					auto Q = dynamic_cast<DiscNode*>(q);
 					t = Q->replace_count;
@@ -88,11 +88,11 @@ void postlinebreak(int finalwidowpenalty)
 					}
 					q->link = r;
 					discbreak = true;
-					}
-					else 
-						if (type(q->num) == math_node || type(q->num) == kern_node)
-							width(q->num) = 0;
-				r->num = newparamglue(right_skip_code);
+				}
+				else 
+					if (type(q->num) == math_node || type(q->num) == kern_node)
+						width(q->num) = 0;
+				r = new GlueNode(right_skip_code);
 				r->link = q->link;
 				q->link = r;
 				q = r;
@@ -102,7 +102,7 @@ void postlinebreak(int finalwidowpenalty)
 			q = temp_head;
 			while (q->link)
 				q = q->link;
-			r->num = newparamglue(right_skip_code);
+			r = new GlueNode(right_skip_code);
 			r->link = q->link;
 			q->link = r;
 			q = r;
@@ -111,9 +111,9 @@ void postlinebreak(int finalwidowpenalty)
 		q->link = 0;
 		q = temp_head->link;
 		temp_head->link = r;
-		if (left_skip())
+		if (left_skip)
 		{
-			r->num = newparamglue(left_skip_code);
+			r = new GlueNode(left_skip);
 			r->link = q;
 			q = r;
 		}
@@ -133,13 +133,13 @@ void postlinebreak(int finalwidowpenalty)
 				curwidth = mem[par_shape_ptr()+2*curline].int_;
 				curindent = mem[par_shape_ptr()+2*curline-1].int_;
 			}
-		adjusttail = adjust_head;
+		adjusttail = adjust_head->num;
 		justbox = hpack(q->num, curwidth, 0);
 		shift_amount(justbox) = curindent;
 		appendtovlist(justbox);
-		if (adjust_head != adjusttail)
+		if (adjust_head->num != adjusttail)
 		{
-			tail->link->num = link(adjust_head);
+			tail->link = adjust_head->link;
 			tail->num = adjusttail;
 		}
 		adjusttail = 0;
@@ -159,7 +159,7 @@ void postlinebreak(int finalwidowpenalty)
 			}
 		}
 		curline++;
-		curp = next_break(curp);
+		curp->num = next_break(curp->num);
 		if (curp)
 			if (!postdiscbreak)
 			{
@@ -167,7 +167,7 @@ void postlinebreak(int finalwidowpenalty)
 				while (true)
 				{
 					q = r->link;
-					if (q->num == cur_break(curp))
+					if (q->num == cur_break(curp->num))
 						break;
 					if (q->is_char_node())
 						break;

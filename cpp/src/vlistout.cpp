@@ -17,7 +17,8 @@ void vlistout(void)
 	auto thisbox = tempptr;
 	glueord gorder = glue_order(thisbox);
 	char gsign = glue_sign(thisbox);
-	halfword p = list_ptr(thisbox);
+	LinkedNode *p;
+	p->num = list_ptr(thisbox);
 	curs++;
 	if (curs > 0)
 		dvi_out(push);
@@ -29,42 +30,42 @@ void vlistout(void)
 	auto topedge = curv;
 	while (p)
 	{
-		if (p >= himemmin)
+		if (p->is_char_node())
 			confusion("vlistout");
 		else
 		{
-			switch (type(p))
+			switch (p->type)
 			{
 				case hlist_node:
 				case vlist_node:
-					if (list_ptr(p) == 0)
-						curv += height(p)+depth(p);
+					if (list_ptr(p->num) == 0)
+						curv += height(p->num)+depth(p->num);
 					else
 					{
-						curv += height(p);
+						curv += height(p->num);
 						if (curv != dviv)
 						{
-							movement(curv-dviv, 157);
+							movement(curv-dviv, down1);
 							dviv = curv;
 						}
 						auto saveh = dvih;
 						auto savev = dviv;
-						curh = leftedge+shift_amount(p);
-						tempptr = p;
-						if (type(p) == 1)
+						curh = leftedge+shift_amount(p->num);
+						tempptr = p->num;
+						if (p->type == vlist_node)
 							vlistout();
 						else
 							hlistout();
 						dvih = saveh;
 						dviv = savev;
-						curv = savev+depth(p);
+						curv = savev+depth(p->num);
 						curh = leftedge;
 					}
 					break;
 				case rule_node:
-					ruleht = height(p);
-					ruledp = depth(p);
-					rulewd = width(p);
+					ruleht = height(p->num);
+					ruledp = depth(p->num);
+					rulewd = width(p->num);
 					if (is_running(rulewd))
 						rulewd = width(thisbox);
 					ruleht += ruledp;
@@ -77,36 +78,38 @@ void vlistout(void)
 						dvifour(ruleht);
 						dvifour(rulewd);
 					}
-					p = link(p);
+					p = p->link;
 					continue;
 				case whatsit_node:
-					outwhat(p);
+					outwhat(p->num);
 					break;
 				case glue_node:
-					g = glue_ptr(p);
-					ruleht = width(g)-curg;
+				{
+					auto pp = dynamic_cast<GlueNode*>(p);
+					auto g = pp->glue_ptr;
+					ruleht = g->width-curg;
 					if (gsign)
 						if (gsign == 1)
 						{
-							if (type(g) == gorder)
+							if (g->stretch_order == gorder)
 							{
-								curglue += stretch(g);
+								curglue += g->stretch;
 								curg = round(vet_glue(glue_set(thisbox)*curglue));
 							}
 						}
 						else 
-							if (subtype(g) == gorder)
+							if (g->shrink_order == gorder)
 							{
-								curglue -= shrink(g);
+								curglue -= g->shrink;
 								curg = round(vet_glue(glue_set(thisbox)*curglue));
 							}
 					ruleht += curg;
-					if (subtype(p) >= 100)
+					if (pp->subtype >= a_leaders)
 					{
-						halfword leaderbox = link(p+1);
-						if (type(leaderbox) == 2)
+						auto leaderbox = pp->leader_ptr;
+						if (leaderbox->type == rule_node)
 						{
-							rulewd = width(leaderbox);
+							rulewd = width(leaderbox->num);
 							ruledp = 0;
 							if (is_running(rulewd))
 								rulewd = width(thisbox);
@@ -120,16 +123,16 @@ void vlistout(void)
 								dvifour(ruleht);
 								dvifour(rulewd);
 							}
-							p = link(p);
+							p = p->link;
 							continue;
 						}
-						auto leaderht = height(leaderbox)+depth(leaderbox);
+						auto leaderht = height(leaderbox->num)+depth(leaderbox->num);
 						if ((leaderht > 0) and (ruleht > 0))
 						{
 							ruleht += 10;
 							auto edge = curv+ruleht;
 							scaled lx = 0;
-							if (subtype(p) == 100)
+							if (pp->subtype == a_leaders)
 							{
 								auto savev = curv;
 								curv = topedge+leaderht*((curv-topedge)/leaderht);
@@ -140,7 +143,7 @@ void vlistout(void)
 							{
 								lq = ruleht/leaderht;
 								lr = ruleht%leaderht;
-								if (subtype(p) == 101)
+								if (pp->subtype == c_leaders)
 									curv += lr/2;
 								else
 								{
@@ -150,16 +153,16 @@ void vlistout(void)
 							}
 							while (curv+leaderht <= edge)
 							{
-								curh = leftedge+shift_amount(leaderbox);
+								curh = leftedge+shift_amount(leaderbox->num);
 								synch_h();
 								auto saveh = dvih;
-								curv += height(leaderbox);
+								curv += height(leaderbox->num);
 								synch_v();
 								auto savev = dviv;
-								tempptr = leaderbox;
+								tempptr = leaderbox->num;
 								bool outerdoingleaders = doingleaders;
 								doingleaders = true;
-								if (type(leaderbox) == 1)
+								if (leaderbox->type == vlist_node)
 									vlistout();
 								else
 									hlistout();
@@ -167,20 +170,21 @@ void vlistout(void)
 								dviv = savev;
 								dvih = saveh;
 								curh = leftedge;
-								curv = savev-height(leaderbox)+leaderht+lx;
+								curv = savev-height(leaderbox->num)+leaderht+lx;
 							}
 							curv = edge-10;
-							p = link(p);
+							p = p->link;
 							continue;
 						}
 					}
 					curv = curv+ruleht;
-					p = link(p);
+					p = p->link;
 					continue;
-				case kern_node: 
-					curv += width(p);
 				}
-			p = link(p);
+				case kern_node: 
+					curv += dynamic_cast<KernNode*>(p)->width;
+			}
+			p = p->link;
 			continue;
 		}
 	}

@@ -17,7 +17,7 @@ static void goto50(halfword r)
 		else
 			print(") detected at line"+std::to_string(line));
 	println();
-	fontinshortdisplay = null_font;
+	fontinshortdisplay = fonts[null_font];
 	print(shortdisplay(list_ptr(r))+"\n");
 	diagnostic(showbox(r)+"\n");
 }
@@ -124,9 +124,9 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 					x += width(p);
 					break;
 				case ligature_node:
-					mem[lig_trick] = mem[lig_char(p)];
-					link(lig_trick) = link(p);
-					p = lig_trick;
+					mem[lig_trick->num] = mem[lig_char(p)];
+					lig_trick->link->num = link(p);
+					p = lig_trick->num;
 					continue;
 			}
 			p = link(p);

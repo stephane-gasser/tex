@@ -105,11 +105,13 @@ LinkedNode* copynodelist(LinkedNode *p)
 					}
 					break;
 				case glue_node:
-					r->num = getnode(small_node_size);
-					add_glue_ref(glue_ptr(p->num));
-					glue_ptr(r->num) = glue_ptr(p->num);
-					leader_ptr(r->num) = copynodelist(leader_ptr(p->num));
+				{
+					auto P = dynamic_cast<GlueNode*>(p);
+					auto R = new GlueNode(P->glue_ptr);
+					R->leader_ptr = copynodelist(P->leader_ptr);
+					r = R;
 					break;
+				}
 				case kern_node:
 				case math_node:
 				case penalty_node:
@@ -125,8 +127,8 @@ LinkedNode* copynodelist(LinkedNode *p)
 				{
 					auto P = dynamic_cast<DiscNode*>(p);
 					auto R = new DiscNode;
-					R->pre_break->num = copynodelist(P->pre_break->num);
-					R->post_break->num = copynodelist(P->post_break->num);
+					R->pre_break = copynodelist(P->pre_break);
+					R->post_break = copynodelist(P->post_break);
 					r = R;
 					break;
 				}
@@ -199,11 +201,14 @@ void flushnodelist(LinkedNode *p)
 					}
 					break;
 				case glue_node:
-					deleteglueref(glue_ptr(p->num));
-					if (leader_ptr(p->num))
-						flushnodelist(leader_ptr(p->num));
-					freenode(p->num, small_node_size);
+				{
+					auto P = dynamic_cast<GlueNode*>(p);
+					delete P->glue_ptr;
+					if (P->leader_ptr)
+						flushnodelist(P->leader_ptr);
+					delete p;
 					break;
+				}
 				case kern_node:
 				case math_node:
 				case penalty_node: 
@@ -564,24 +569,13 @@ void newfont(smallnumber a)
 	text(frozen_null_font+f) = txt(t);
 }
 
-halfword newglue(halfword q)
-{
-	auto p = getnode(small_node_size);
-	type(p) = glue_node;
-	subtype(p) = normal;
-	leader_ptr(p) = 0;
-	glue_ptr(p) = q;
-	glue_ref_count(q)++;
-	return p;
-}
-
 static halfword& every_par(void) { return equiv(every_par_loc); }
 
 void newgraf(bool indented)
 {
 	prev_graf = 0;
 	if (mode == vmode || head != tail)
-		tail_append(newparamglue(par_skip_code));
+		tail_append(new GlueNode(par_skip_code));
 	pushnest();
 	mode = hmode;
 	space_factor = 1000;
@@ -608,15 +602,6 @@ void newinteraction(Token t)
 	if (logopened)
 		selector += 2;
 }
-
-/*halfword newkern(scaled w)
-{
-	auto p = getnode(small_node_size);
-	type(p) = kern_node;
-	subtype(p) = normal;
-	width(p) = w;
-	return p;
-}*/
 
 halfword newligature(quarterword f, quarterword c, halfword q)
 {
@@ -673,18 +658,6 @@ halfword newnullbox(void)
 	return p;
 }
 
-halfword newparamglue(smallnumber n)
-{
-	auto p = getnode(small_node_size);
-	type(p) = glue_node;
-	subtype(p) = n+1;
-	leader_ptr(p) = 0;
-	auto q = glue_par(n);
-	glue_ptr(p) = q;
-	glue_ref_count(q)++;
-	return p;
-}
-
 halfword newpenalty(int m)
 {
 	auto p = getnode(small_node_size);
@@ -719,16 +692,15 @@ void newsavelevel(groupcode c)
 	curgroup = c;
 }
 
-halfword newskipparam(smallnumber n)
+GlueNode* newskipparam(smallnumber n)
 {
-	tempptr = newspec(glue_par(n));
-	auto p = newglue(tempptr);
-	glue_ref_count(tempptr) = 0;
-	subtype(p) = n+1;
+	auto p = new GlueNode(newspec(glueParams[n]));
+	p->glue_ptr->glue_ref_count = 0;
+	p->subtype = n+1;
 	return p;
 }
 
-halfword newspec(halfword p)
+[[deprecated]] halfword newspec(halfword p)
 {
 	auto q = getnode(glue_spec_size);
 	mem[q] = mem[p];
@@ -736,6 +708,18 @@ halfword newspec(halfword p)
 	width(q) = width(p);
 	stretch(q) = stretch(p);
 	shrink(q) = shrink(p);
+	return q;
+}
+
+GlueSpec *newspec(GlueSpec *p)
+{
+	auto q = new GlueSpec;
+	q->width = p->width;
+	q->stretch = p->stretch;
+	q->shrink = p->shrink;
+	q->stretch_order = p->stretch_order;
+	q->shrink_order = p->shrink_order;
+	q->glue_ref_count = 0;
 	return q;
 }
 
@@ -809,25 +793,32 @@ void appendglue(halfword s)
 	switch (s)
 	{
 		case fil_code: 
-			tail_append(newglue(fil_glue));
+			tail_append(new GlueNode(fil_glue));
 			break;
 		case fill_code: 
-			tail_append(newglue(fill_glue));
+			tail_append(new GlueNode(fill_glue));
 			break;
 		case ss_code: 
-			tail_append(newglue(ss_glue));
+			tail_append(new GlueNode(ss_glue));
 			break;
 		case fil_neg_code:
-			tail_append(newglue(fil_neg_glue));
+			tail_append(new GlueNode(fil_neg_glue));
 			break;
-		case skip_code: 
-			tail_append(newglue(scanglue(glue_val)));
-			glue_ref_count(tail->num)--;
+		case skip_code:
+		{
+			auto g = new GlueSpec(scanglue(mu_val));
+			g->glue_ref_count--;
+			tail_append(new GlueNode(g));
 			break;
+		}
 		case mskip_code: 
-			tail_append(newglue(scanglue(mu_val)));
-			glue_ref_count(tail->num)--;
-			subtype(tail->num) = mu_glue;
+		{
+			auto g = new GlueSpec(scanglue(mu_val));
+			g->glue_ref_count--;
+			auto G = new GlueNode(g);
+			G->subtype = mu_glue;
+			tail_append(G);
+		}
 	}
 }
 
@@ -859,7 +850,6 @@ void appendpenalty(void)
 		buildpage();
 }
 
-static halfword& baseline_skip(void) { return glue_par(baseline_skip_code); }
 static int line_skip_limit(void) { return dimen_par(line_skip_limit_code); }
 
 //! When a box is being appended to the current vertical list, the
@@ -868,14 +858,14 @@ void appendtovlist(halfword b)
 {
 	if (prev_depth > ignore_depth)
 	{
-		scaled d = width(baseline_skip())-prev_depth-height(b);
-		halfword p;
+		scaled d = baseline_skip->width-prev_depth-height(b);
+		GlueNode *p;
 		if (d < line_skip_limit())
-			p = newparamglue(line_skip_code);
+			p = new GlueNode(line_skip);
 		else
 		{
 			p = newskipparam(baseline_skip_code);
-			width(tempptr) = d;
+			p->glue_ptr->width = d;
 		}
 		tail_append(p);
 	}
@@ -883,39 +873,39 @@ void appendtovlist(halfword b)
 	prev_depth = depth(b);
 }
 
-static halfword& xspace_skip(void) { return glue_par(xspace_skip_code); }
-
 //! Handle spaces when <em> space_factor != 1000 </em>.
 void appspace(halfword &mainp, fontindex &maink)
 {
-	halfword q; // glue node
-	if (space_factor >= 2000 && xspace_skip() != zero_glue)
-		q = newparamglue(xspace_skip_code);
+	GlueNode *q; // glue node
+	if (space_factor >= 2000 && xspace_skip != zero_glue)
+		q = new GlueNode(xspace_skip);
 	else
 	{
-		if (space_skip() != zero_glue)
-			mainp = space_skip();
+		GlueSpec *Mainp;
+		if (space_skip != zero_glue)
+			Mainp = space_skip;
 		else // Find the glue specification, \a main_p, for text spaces in the current font
 		{
-			mainp = cur_font().glue;
-			if (mainp == 0)
+			Mainp = cur_font().glue;
+			if (Mainp == nullptr)
 			{
-				mainp = newspec(zero_glue);
+				Mainp = newspec(zero_glue);
 				maink = space_code+cur_font().parambase;
-				width(mainp) = cur_font().space();
-				stretch(mainp) = cur_font().space_stretch();
-				shrink(mainp) = cur_font().space_shrink();
-				cur_font().glue = mainp;
+				Mainp->width = cur_font().space();
+				Mainp->stretch = cur_font().space_stretch();
+				Mainp->shrink = cur_font().space_shrink();
+				cur_font().glue = Mainp;
 			}
 		}
-		mainp = newspec(mainp);
+		Mainp = newspec(Mainp);
 		// Modify the glue specification in \a main_p according to the space factor
 		if (space_factor >= 2000)
-			width(mainp) += cur_font().extra_space();
-		stretch(mainp) = xnoverd(stretch(mainp), space_factor, 1000);
-		shrink(mainp) = xnoverd(shrink(mainp), 1000, space_factor);
-		q = newglue(mainp);
-		link(mainp) = 0;
+			Mainp->width += cur_font().extra_space();
+		Mainp->stretch = xnoverd(Mainp->stretch, space_factor, 1000);
+		Mainp->shrink = xnoverd(Mainp->shrink, 1000, space_factor);
+		q = new GlueNode(Mainp);
+		Mainp->glue_ref_count = 0;
+		mainp = Mainp->num;
 	}
 	tail_append(q);
 }

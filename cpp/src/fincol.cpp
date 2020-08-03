@@ -15,7 +15,7 @@ bool fincol(Token t, halfword &loop)
 {
 	halfword s, u;
 	#warning pas le bon type ??
-	TokenNode *q;
+	LinkedNode *q;
 	scaled w;
 	glueord o;
 	halfword n;
@@ -32,10 +32,10 @@ bool fincol(Token t, halfword &loop)
 		{
 			q->link->num = newnullbox();
 			p = q->link;
-			info(p->num) = end_span;
+			info(p->num) = end_span->num;
 			width(p->num) = null_flag;
 			loop = link(loop);
-			q->num = hold_head;
+			q = hold_head;
 			auto r = u_part(loop);
 			while (r)
 			{
@@ -43,9 +43,9 @@ bool fincol(Token t, halfword &loop)
 				q = dynamic_cast<TokenNode*>(q->link);
 				r = link(r);
 			}
-			q->link = 0;
-			u_part(p->num) = link(hold_head);
-			q->num = hold_head;
+			q->link = nullptr;
+			u_part(p->num) = hold_head->link->num;
+			q = hold_head;
 			r = v_part(loop);
 			while (r)
 			{
@@ -54,9 +54,11 @@ bool fincol(Token t, halfword &loop)
 				r = link(r);
 			}
 			q->link = nullptr;
-			v_part(p->num) = link(hold_head);
+			v_part(p->num) = hold_head->link->num;
 			loop = link(loop);
-			p->link->num = newglue(glue_ptr(loop));
+			GlueNode *Loop;
+			Loop->num = loop;
+			p->link = new GlueNode(Loop->glue_ptr);
 		}
 		else
 		{
@@ -93,18 +95,18 @@ bool fincol(Token t, halfword &loop)
 				confusion("256 spans");
 			q->num = curspan;
 			while (q->link->link->num < n)
-				q = dynamic_cast<TokenNode*>(q->link);
+				q = q->link;
 			if (q->link->link->num > n)
 			{
 				s = getnode(span_node_size);
-				info(s) = q->token;
+				info(s) = info(q->num);
 				link(s) = n;
-				q->token = s;
+				info(q->num) = s;
 				width(s) = w;
 			}
 			else 
-				if (width(q->token) < w)
-					width(q->token) = w;
+				if (width(info(q->num)) < w)
+					width(info(q->num)) = w;
 		}
 		else 
 			if (w > width(curalign))
@@ -138,8 +140,11 @@ bool fincol(Token t, halfword &loop)
 		popnest();
 		tail->link->num = u;
 		tail->num = u;
-		tail_append(newglue(glue_ptr(link(curalign))));
-		subtype(tail->num) = tab_skip_code+1;
+		GlueNode *Curalign;
+		Curalign->num = curalign;
+		auto G = new GlueNode(Curalign->glue_ptr);
+		G->subtype = tab_skip_code+1;
+		tail_append(G);
 		if (extra_info(curalign) >= cr_code)
 			return true;
 		initspan(p->num);

@@ -92,6 +92,8 @@ typedef union
 typedef char glueord; //0..3
 typedef char groupcode; // 0..16
 
+class GlueSpec;
+
 class Font
 {
 	public:
@@ -113,7 +115,7 @@ class Font
 		fontindex params; //!< how many font parameters are present
 		eightbits bc; //!< beginning (smallest) character code
 		eightbits ec; //!< ending (largest) character code
-		halfword glue; //!< glue specification for interword space, |null| if not allocated
+		GlueSpec *glue; //!< glue specification for interword space, |null| if not allocated
 		bool used; //!< has a character from this font actually appeared in the output?
 		int hyphenchar;//!< current \.{\\hyphenchar} values
 		int skewchar; //!< current \.{\\skewchar} values
@@ -144,6 +146,7 @@ class Font
 		int& quad(void) const; //!< one em
 		int char_tag(smallnumber);
 		bool char_exists(smallnumber);
+		bool operator != (const Font &f) { return this != &f; } 
 };
 
 
@@ -250,6 +253,35 @@ class KernNode : public LinkedNode
 		KernNode(scaled w, quarterword s = 0) : width(w), subtype(s) { type = kern_node; }
 };
 
+halfword& glue_ref_count(halfword);
+int& width(halfword); //!< width of the box, in sp
+int& stretch(halfword); //!< the stretchability of this glob of glue
+int& shrink(halfword); //!< the shrinkability of this glob of glue
+quarterword& stretch_order(halfword); //!< order of infinity for stretching
+quarterword& shrink_order(halfword); //!< order of infinity for shrinking
+
+class GlueSpec : public AnyNode
+{
+	public:
+		halfword glue_ref_count = 1;
+		scaled width = 0, stretch = 0, shrink = 0;
+		glueord stretch_order = 0, shrink_order = 0; // normal/fil/fill/filll
+		GlueSpec(void) {}
+		GlueSpec(halfword v) { glue_ref_count = ::glue_ref_count(v); width = ::width(v); stretch = ::stretch(v); shrink = ::shrink(v); stretch_order = ::stretch_order(v); shrink_order = ::shrink_order(v); }
+};
+
+halfword& glue_par(halfword);
+
+class GlueNode : public LinkedNode
+{
+	public:
+		quarterword subtype;
+		LinkedNode *leader_ptr = nullptr; //!< pointer to box or rule node for leaders
+		GlueSpec *glue_ptr; //!< pointer to a glue specification
+		GlueNode(GlueSpec *g) : subtype(0), glue_ptr(g) { type = glue_node; g->glue_ref_count++; }
+		GlueNode(smallnumber n) : subtype(n+1) { type = glue_node; glue_ptr->num = glue_par(n); glue_ptr->glue_ref_count++; }
+};
+
 typedef struct
 {
     int modefield; // -203..203
@@ -308,13 +340,17 @@ class Token
 };
 
 inline Token aftertoken;
+inline Font fontinshortdisplay;
+inline GlueSpec *lastglue;
+
+inline LinkedNode *curp;
+
 
 extern int bad;
 extern int tally;
 extern int trickcount;
 extern int firstcount;
 extern int varused, dynused;
-extern int fontinshortdisplay;
 extern int depththreshold;
 extern int breadthmax;
 extern int cscount;
@@ -455,7 +491,6 @@ extern scaled curactivewidth[7]; // commence à 1
 extern scaled background[7]; // commence à 1 
 extern scaled breakwidth[7]; // commence à 1
 extern bool noshrinkerroryet;
-extern halfword curp;
 extern bool secondpass;
 extern bool finalpass;
 extern int minimaldemerits[4];
@@ -494,7 +529,6 @@ extern scaled pagemaxdepth;
 extern halfword bestpagebreak;
 extern scaled bestsize;
 extern scaled pagesofar[8];
-extern halfword lastglue;
 extern scaled lastkern;
 extern bool outputactive;
 extern halfword bchar;

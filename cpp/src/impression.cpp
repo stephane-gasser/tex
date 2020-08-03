@@ -514,28 +514,31 @@ std::string tokenshow(halfword p)
 //! a frozen font identifier's name
 static halfword& font_id_text(halfword p) { return text(font_id_base+p); }
 
-std::string shortdisplay(int p)
+std::string shortdisplay(int P)
 {
+	LinkedNode *p;
+	p->num = P;
 	std::ostringstream oss;
-	while (p > memmin)
+	while (/*p > memmin*/true)
 	{
-		if (p >= himemmin)
+		if (p->is_char_node())
 		{
-			if (p <= memend)
+			if (/*p <= memend*/true)
 			{
-				if (font(p) != fontinshortdisplay)
+				auto pp = dynamic_cast<CharNode*>(p);
+				if (pp->font != fontinshortdisplay)
 				{
-					if (font(p) < 0 || font(p) > fontmax)
+					if (/*pp->font < 0 || pp->font > fontmax*/true)
 						oss << "* ";
 					else
-						oss << esc(TXT(font_id_text(p))) << " ";
-					fontinshortdisplay = font(p);
+						oss << esc(TXT(font_id_text(p->num))) << " ";
+					fontinshortdisplay = pp->font;
 				}
-				oss << character(p);
+				oss << pp->character;
 			}
 		}
 		else
-			switch (type(p))
+			switch (p->type)
 			{
 				case hlist_node:
 				case vlist_node:
@@ -550,19 +553,18 @@ std::string shortdisplay(int p)
 					oss << "|";
 					break;
 				case glue_node: 
-					if (glue_ptr(p) != zero_glue)
+					if (dynamic_cast<GlueNode*>(p)->glue_ptr != /*zero_glue*/nullptr)
 						oss << " ";
 					break;
 				case math_node:
 					oss << "$";
 					break;
 				case ligature_node:
-					oss << shortdisplay(lig_ptr(p));
+					oss << shortdisplay(lig_ptr(p->num));
 					break;
 				case disc_node:
 				{
-					DiscNode *d;
-					d->num = p;
+					auto d = dynamic_cast<DiscNode*>(p);
 					oss << shortdisplay(d->pre_break->num) << shortdisplay(d->post_break->num);
 					LinkedNode *q = d;
 					for (int n = d->replace_count; n > 0; n--)
@@ -570,7 +572,7 @@ std::string shortdisplay(int p)
 							q = q->link;
 				}
 			}
-		p = link(p);
+		p = p->link;
 	}
 	return oss.str();
 }
@@ -676,9 +678,12 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 					}
 					break;
 				case glue_node:
-					if (subtype(p) >= a_leaders)
-						oss << esc(subtype(p) == c_leaders ? "cleaders" : subtype(p) == x_leaders ? "xleaders" : "leaders ") 
-							<< asSpec(glue_ptr(p)) << shownodelist(leader_ptr(p), symbol+".");
+				{
+					GlueNode* pp;
+					pp->num = p;
+					if (pp->subtype >= a_leaders)
+						oss << esc(pp->subtype == c_leaders ? "cleaders" : pp->subtype == x_leaders ? "xleaders" : "leaders ") 
+							<< asSpec(pp->glue_ptr->num) << shownodelist(pp->leader_ptr->num, symbol+".");
 					else
 					{
 						oss << esc("glue");
@@ -688,28 +693,30 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 						switch (n+1)
 						{
 							case normal:
-								oss << esc("glue") << " " << asSpec(glue_ptr(p));
+								oss << esc("glue") << " " << asSpec(pp->glue_ptr->num);
 								break;
 							case cond_math_glue:
 								oss << esc("glue") << "(" << esc("nonscript") << ")";
 								break;
 							case mu_glue:
-								oss << esc("glue") << "(" << esc("mskip") << ") " << asSpec(glue_ptr(p), "mu");
+								oss << esc("glue") << "(" << esc("mskip") << ") " << asSpec(pp->glue_ptr->num, "mu");
 								break;
 							default:
 								if (glueNames.find(n) != glueNames.end())
 								{
-									oss << esc("glue") << "(" << esc(glueNames[n]) << ") " << asSpec(glue_ptr(p));
+									oss << esc("glue") << "(" << esc(glueNames[n]) << ") " << asSpec(pp->glue_ptr->num);
 									break;
 								}
 								if (muGlueNames.find(n) != muGlueNames.end())
 								{
-									oss << esc("glue") << "(" << esc(muGlueNames[n]) << ") " << asSpec(glue_ptr(p));
+									oss << esc("glue") << "(" << esc(muGlueNames[n]) << ") " << asSpec(pp->glue_ptr->num);
 									break;
 								}
-								oss << esc("glue") << "(" << "[unknown glue parameter!]" << ") " << asSpec(glue_ptr(p));
+								oss << esc("glue") << "(" << "[unknown glue parameter!]" << ") " << asSpec(pp->glue_ptr->num);
 						}
 					}
+					break;
+				}
 				case kern_node:
 					switch(subtype(p))
 					{
@@ -735,7 +742,7 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 					oss << fontandchar(lig_char(p)) << " (ligature ";
 					if (subtype(p) > 1)
 						oss << "|";
-					fontinshortdisplay = font(lig_char(p));
+					fontinshortdisplay = fonts[font(lig_char(p))];
 					oss << shortdisplay(lig_char(p));
 					if (subtype(p)%2)
 						oss << "|";
@@ -1072,37 +1079,37 @@ static std::string showactivities(void)
 			oss << " (\\output routine)";
 		if (p == 0)
 		{
-			if (page_head != pagetail)
+			if (page_head->num != pagetail)
 			{
 				oss << "\r### current page:";
 				if (outputactive)
 					oss << " (held over for link output)";
-				oss << showbox(link(page_head));
+				oss << showbox(page_head->link->num);
 				if (pagecontents > 0)
 				{
 					oss << "\rtotal height " << asScaled(page_total) << plus(2, "") << plus(3, "fil") << plus(4, "fill") << plus(5, "filll") << (page_shrink ? " minus "+asScaled(page_shrink) : "");
 					oss << "\r goal height" << asScaled(page_goal);
-					halfword r = link(page_ins_head);
+					auto r = page_ins_head->link;
 					while (r != page_ins_head)
 					{
-						oss << "\n" << esc("insert") << subtype(r) << " adds " << asScaled(count(subtype(r)) == 1000 ? height(r) : xovern(height(r), 1000)*count(subtype(r)));
-						if (type(r) == vlist_node)
+						oss << "\n" << esc("insert") << subtype(r->num) << " adds " << asScaled(count(subtype(r->num)) == 1000 ? height(r->num) : xovern(height(r->num), 1000)*count(subtype(r->num)));
+						if (r->type == vlist_node)
 						{
-							halfword q = page_head;
+							auto q = page_head;
 							int t = 0;
 							do
 							{
-								q = link(q);
-								if (type(q) == ins_node && subtype(q) == subtype(r))
+								q = q->link;
+								if (q->type == ins_node && subtype(q->num) == subtype(r->num))
 									t++;
-							} while (q != broken_ins(r));
+							} while (q->num != broken_ins(r->num));
 							oss << ", #"+std::to_string(t)+" might split";
 						}
-						r = link(r);
+						r = r->link;
 					}
 				}
 			}
-			if (link(contrib_head))
+			if (contrib_head->link)
 				oss << "\r### recent contributions:";
 		}
 		oss <<showbox(nest[p].headfield->link->num);

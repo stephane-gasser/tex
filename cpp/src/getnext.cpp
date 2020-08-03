@@ -406,7 +406,7 @@ static void removeFromEnd(int &k, int d)
 				fatalerror("(interwoven alignment preambles are not allowed)");
 			t.cmd = extra_info(curalign);
 			extra_info(curalign) = t.chr;
-			begintokenlist(t.cmd == omit ? omit_template : v_part(curalign), v_template);
+			begintokenlist(t.cmd == omit ? omit_template->num : v_part(curalign), v_template);
 			alignstate = 1000000;
 			restart = true;
 		}

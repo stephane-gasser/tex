@@ -293,7 +293,7 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 		ft.area = aire;
 		ft.bc = bc;
 		ft.ec = ec;
-		ft.glue = 0;
+		ft.glue = nullptr;
 		ft.parambase--;
 		Font::info.resize(Font::info.size()+lf);
 		fonts.push_back(ft);
@@ -323,7 +323,7 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 		if (writing && n <= 4 && n >= 2 && ft.glue)
 		{
 			deleteglueref(ft.glue);
-			ft.glue = 0;
+			ft.glue = nullptr;
 		}
 		if (n > ft.params)
 		{

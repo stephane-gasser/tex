@@ -8,3 +8,11 @@ void deleteglueref(halfword p)
 	else
 		link(p)--;
 }
+
+void deleteglueref(GlueSpec *p)
+{
+	if (p->glue_ref_count == 0)
+		delete p;
+	else
+		p->glue_ref_count--;
+}

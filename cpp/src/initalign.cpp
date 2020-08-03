@@ -29,20 +29,20 @@ void initalign(Token t, halfword &loop)
 		if (mode > 0)
 		mode = -mode;
 	t = scanspec(align_group, false);
-	link(align_head) = 0;
-	curalign = align_head;
+	align_head->link = nullptr;
+	curalign = align_head->num;
 	loop = 0;
 	scannerstatus = 4;
 	warningindex = savecsptr;
 	alignstate = -1000000;
 	while (true)
 	{
-		link(curalign) = newparamglue(tab_skip_code);
+		auto g = new GlueNode(tab_skip_code);
+		link(curalign) = g->num;
 		curalign = link(curalign);
 		if (t.cmd == car_ret)
 			break;
-		TokenNode *p;
-		p->num = hold_head;
+		auto p = hold_head;
 		p->link = nullptr;
 		while (true)
 		{
@@ -50,7 +50,7 @@ void initalign(Token t, halfword &loop)
 			if (t.cmd == mac_param)
 				break;
 			if ((t.cmd == tab_mark || t.cmd == out_param) && alignstate == -1000000)
-				if (p->num == hold_head && loop == 0 && t.cmd == tab_mark)
+				if (p == hold_head && loop == 0 && t.cmd == tab_mark)
 					loop = curalign;
 				else
 				{
@@ -58,7 +58,7 @@ void initalign(Token t, halfword &loop)
 					break;
 				}
 			else 
-				if (t.cmd != spacer || p->num != hold_head)
+				if (t.cmd != spacer || p != hold_head)
 				{
 					p->link = new TokenNode(t.tok);
 					p = dynamic_cast<TokenNode*>(p->link);
@@ -66,10 +66,10 @@ void initalign(Token t, halfword &loop)
 		}
 		link(curalign) = newnullbox();
 		curalign = link(curalign);
-		info(curalign) = end_span;
+		info(curalign) = end_span->num;
 		width(curalign) = null_flag;
-		u_part(curalign) = link(hold_head);
-		p->num = hold_head;
+		u_part(curalign) = hold_head->link->num;
+		p = hold_head;
 		p->link = 0;
 		while (true)
 		{
@@ -86,7 +86,7 @@ void initalign(Token t, halfword &loop)
 		}
 		p->link = new TokenNode(end_template_token);
 		p = dynamic_cast<TokenNode*>(p->link);
-		v_part(curalign) = link(hold_head);
+		v_part(curalign) = hold_head->link->num;
 	}
 	scannerstatus = normal;
 	newsavelevel(align_group);

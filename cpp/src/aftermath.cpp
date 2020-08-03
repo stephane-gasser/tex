@@ -110,7 +110,7 @@ void aftermath(void)
 		mlistpenalties = false;
 		mlisttohlist();
 		p = temp_head->link;
-		adjusttail = adjust_head;
+		adjusttail = adjust_head->num;
 		auto b = hpack(p->num, 0, additional);
 		p->num = list_ptr(b);
 		auto tt = adjusttail;
@@ -168,7 +168,7 @@ void aftermath(void)
 			tail_append(newpenalty(10000));
 		}
 		else
-			tail_append(newparamglue(g1));
+			tail_append(new GlueNode(g1));
 		if (e)
 		{
 			auto r = new KernNode(z-w-e-d);
@@ -195,14 +195,14 @@ void aftermath(void)
 			appendtovlist(a);
 			g2 = 0;
 		}
-		if (tt != adjust_head)
+		if (tt != adjust_head->num)
 		{
-			tail->link->num = link(adjust_head);
+			tail->link = adjust_head->link;
 			tail->num = tt;
 		}
 		tail_append(newpenalty(post_display_penalty()));
 		if (g2 > 0)
-			tail_append(newparamglue(g2));
+			tail_append(new GlueNode(g2));
 		resumeafterdisplay(t);
 	}
 }

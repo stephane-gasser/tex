@@ -3,10 +3,12 @@
 
 void trapzeroglue(int &val)
 {
-	if (width(val) == 0 && stretch(val) == 0 && shrink(val) == 0)
+	GlueSpec *Val;
+	Val->num = val;
+	if (Val->width == 0 && Val->stretch == 0 && Val->shrink == 0)
 	{
-		glue_ref_count(zero_glue)++;
-		deleteglueref(val);
-		val = 0;
+		zero_glue->glue_ref_count++;
+		deleteglueref(Val);
+		Val = nullptr;
 	}
 }

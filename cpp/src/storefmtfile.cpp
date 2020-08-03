@@ -200,7 +200,7 @@ void storefmtfile(void)
 		dump_int(ft.kernbase);
 		dump_int(ft.extenbase);
 		dump_int(ft.parambase);
-		dump_int(ft.glue);
+		dump_int(ft.glue->num);
 		dump_int(ft.bcharlabel);
 		dump_int(ft.bchar);
 		dump_int(ft.falsebchar);
