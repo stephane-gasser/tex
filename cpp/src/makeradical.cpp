@@ -17,12 +17,12 @@ void makeradical(halfword q)
 		clr = default_rule_thickness();
 		clr += abs(clr)/4;
 	}
-	auto y = vardelimiter(left_delimiter(q), cursize, height(x)+depth(x)+clr+default_rule_thickness());
-	scaled delta = depth(y)-(height(x)+depth(x)+clr);
+	auto y = vardelimiter(left_delimiter(q), cursize, x->height+x->depth+clr+default_rule_thickness());
+	scaled delta = y->depth-(x->height+x->depth+clr);
 	if (delta > 0)
 		clr += half(delta);
-	shift_amount(y) = -(height(x)+clr);
-	link(y) = overbar(x, clr, height(y));
-	info(nucleus(q)) = hpack(y, 0, additional);
+	y->shift_amount = -(x->height+clr);
+	y->link->num = overbar(x->num, clr, y->height);
+	info(nucleus(q)) = hpack(y->num, 0, additional);
 	link(nucleus(q)) = sub_box;
 }

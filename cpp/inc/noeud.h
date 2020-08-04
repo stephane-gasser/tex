@@ -15,8 +15,6 @@ halfword newligitem(quarterword);
 halfword newmath(scaled, smallnumber);
 halfword newnoad(void);
 halfword newnullbox(void);
-halfword newpenalty(int);
-halfword newrule(void);
 void newsavelevel(groupcode);
 GlueNode* newskipparam(smallnumber);
 [[deprecated]] halfword newspec(halfword);

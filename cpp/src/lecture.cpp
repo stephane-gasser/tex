@@ -61,7 +61,7 @@ void scanbox(int boxcontext)
 	else 
 		if (boxcontext > leader_flag && (t.cmd == hrule || t.cmd == vrule))
 		{
-			curbox = scanrulespec(t);
+			curbox = scanrulespec(t)->num;
 			boxend(boxcontext);
 		}
 		else
@@ -702,31 +702,31 @@ void scanoptionalequals(void)
 
 constexpr int default_rule = 26214; //0.4\thinspace pt
 
-halfword scanrulespec(Token t)
+RuleNode *scanrulespec(Token t)
 {
-	auto q = newrule();
+	auto q = new RuleNode;
 	if (t.cmd == vrule)
-		width(q) = default_rule;
+		q->width = default_rule;
 	else
 	{
-		height(q) = default_rule;
-		depth(q) = 0;
+		q->height = default_rule;
+		q->depth = 0;
 	}
 	while (true)
 	{
 		if (scankeyword("width"))
 		{
-			width(q) = scan_normal_dimen();
+			q->width = scan_normal_dimen();
 			continue;
 		}
 		if (scankeyword("height"))
 		{
-			height(q) = scan_normal_dimen();
+			q->height = scan_normal_dimen();
 			continue;
 		}
 		if (scankeyword("depth"))
 		{
-			depth(q) = scan_normal_dimen();
+			q->depth = scan_normal_dimen();
 			continue;
 		}
 		break;
@@ -904,9 +904,9 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			if (!tail->is_char_node() && mode)
 				switch (t.chr)
 				{
-					case int_val: 
+					case int_val:
 						if (tail->type == penalty_node)
-							val = penalty(tail->num);
+							val = dynamic_cast<PenaltyNode*>(tail)->penalty;
 						break;
 					case dimen_val: 
 						if (tail->type == kern_node)

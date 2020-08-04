@@ -8,8 +8,8 @@ halfword overbar(halfword b, scaled k, scaled  t)
 	auto p = new KernNode(k);
 	p->link->num = b;
 	auto q = fractionrule(t);
-	link(q) = p->num;
+	q->link = p;
 	p = new KernNode(t);
-	p->link->num = q;
+	p->link = q;
 	return vpack(p->num, 0, additional);
 }

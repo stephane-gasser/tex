@@ -1,10 +1,9 @@
 <map id="deletelast" name="deletelast">
-<area shape="rect" id="node1" title=" " alt="" coords="5,157,84,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,84,159"/>
 <area shape="rect" id="node2" href="$impression_8cpp.html#a209bd98968041d00181afd1062c967b8" title=" " alt="" coords="145,5,213,32"/>
 <area shape="rect" id="node3" href="$impression_8cpp.html#ac4413646391b853fe6e86b086a0ab7d9" title=" " alt="" coords="147,56,212,83"/>
 <area shape="rect" id="node4" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="155,107,203,133"/>
-<area shape="rect" id="node5" href="$noeud_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="132,283,227,309"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="287,183,330,209"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="275,257,343,284"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="285,320,332,347"/>
+<area shape="rect" id="node5" href="$noeud_8cpp.html#a82091fa45f60c083502da6514a00763b" title=" " alt="" coords="132,232,227,259"/>
+<area shape="rect" id="node6" href="$classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347" title=" " alt="" coords="275,207,436,233"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="321,269,389,296"/>
 </map>

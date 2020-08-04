@@ -282,6 +282,34 @@ class GlueNode : public LinkedNode
 		GlueNode(smallnumber n) : subtype(n+1) { type = glue_node; glue_ptr->num = glue_par(n); glue_ptr->glue_ref_count++; }
 };
 
+class PenaltyNode : public LinkedNode
+{
+	public:
+		int penalty;
+		PenaltyNode(int p = 0) : penalty(p) { type = penalty_node; } 
+};
+
+class RuleNode : public LinkedNode
+{
+	public:
+		quarterword subtype = 0;
+		int width = -(1<<30); //null_flag
+		int depth = -(1<<30); //null_flag
+		int height = -(1<<30); //null_flag
+		RuleNode(void) { type = rule_node; } 
+};
+
+class BoxNode : public RuleNode
+{
+	public:
+		int shift_amount = 0; //!< repositioning distance, in sp
+		LinkedNode *list_ptr = nullptr; //!< beginning of the list inside the box
+		quarterword glue_sign = 0; //normal  //!< stretching or shrinking
+		quarterword glue_order = 0; //normal //!< applicable order of infinity
+		float glue_set = 0.0;
+		BoxNode(void) { type = hlist_node; subtype = 0; width = depth = height = 0; } 
+};
+
 typedef struct
 {
     int modefield; // -203..203

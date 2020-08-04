@@ -1,5 +1,5 @@
 <map id="mathac" name="mathac">
-<area shape="rect" id="node1" title=" " alt="" coords="5,284,71,311"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,259,71,285"/>
 <area shape="rect" id="node2" href="$constantes_8cpp.html#a0b546a77a166ecab4272888cf6ac5dde" title="the accent_chr field of an accent noad" alt="" coords="133,5,219,32"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title="the character code in a char_node" alt="" coords="138,56,214,83"/>
 <area shape="rect" id="node4" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="152,107,200,133"/>
@@ -11,5 +11,4 @@
 <area shape="rect" id="node10" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="142,411,210,437"/>
 <area shape="rect" id="node11" href="$constantes_8cpp.html#a7c168ea5f061757fddf1c55e0ca46911" title="the supscr field of a noad" alt="" coords="145,461,207,488"/>
 <area shape="rect" id="node12" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="132,512,220,539"/>
-<area shape="rect" id="node13" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="153,563,199,589"/>
 </map>

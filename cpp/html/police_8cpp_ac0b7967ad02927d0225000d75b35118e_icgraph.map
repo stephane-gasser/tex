@@ -1,9 +1,7 @@
 <map id="curFontNum" name="curFontNum">
-<area shape="rect" id="node1" title=" " alt="" coords="329,132,424,159"/>
-<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a6e45a273f9cba9e3532fb656a3ee295c" title=" " alt="" coords="157,5,259,32"/>
-<area shape="rect" id="node3" href="$maincontrol_8cpp.html#a00f5f81d53127a5edf3ae005f33a932c" title=" " alt="" coords="5,31,87,57"/>
-<area shape="rect" id="node4" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="135,107,281,133"/>
-<area shape="rect" id="node5" href="$makeaccent_8h.html#aca840bfdce0591976a8d844972501c13" title=" " alt="" coords="161,157,255,184"/>
-<area shape="rect" id="node6" href="$maincontrol_8cpp.html#a88975b51f5ad73bf7aef9609a3ad8253" title="the parameter is either |rt_hit| or |false|" alt="" coords="173,208,243,235"/>
-<area shape="rect" id="node7" href="$lecture_8h.html#ab5468bc60f6a966124d1016ccf7706cb" title=" " alt="" coords="158,259,258,285"/>
+<area shape="rect" id="node1" title=" " alt="" coords="155,81,249,108"/>
+<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a6e45a273f9cba9e3532fb656a3ee295c" title=" " alt="" coords="5,5,107,32"/>
+<area shape="rect" id="node3" href="$makeaccent_8h.html#aca840bfdce0591976a8d844972501c13" title=" " alt="" coords="9,56,103,83"/>
+<area shape="rect" id="node4" href="$maincontrol_8cpp.html#a88975b51f5ad73bf7aef9609a3ad8253" title="the parameter is either |rt_hit| or |false|" alt="" coords="21,107,91,133"/>
+<area shape="rect" id="node5" href="$lecture_8h.html#ab5468bc60f6a966124d1016ccf7706cb" title=" " alt="" coords="6,157,106,184"/>
 </map>

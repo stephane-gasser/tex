@@ -1,7 +1,6 @@
 <map id="overbar" name="overbar">
-<area shape="rect" id="node1" title=" " alt="" coords="5,81,71,108"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,71,83"/>
 <area shape="rect" id="node2" href="$fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="119,5,205,32"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="141,56,183,83"/>
-<area shape="rect" id="node4" href="$noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="127,107,197,133"/>
-<area shape="rect" id="node5" href="$vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="133,157,191,184"/>
+<area shape="rect" id="node4" href="$vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="133,107,191,133"/>
 </map>

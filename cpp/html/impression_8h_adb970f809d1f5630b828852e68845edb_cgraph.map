@@ -1,9 +1,8 @@
 <map id="showcontext" name="showcontext">
-<area shape="rect" id="node1" title=" " alt="" coords="5,113,101,139"/>
-<area shape="rect" id="node2" href="$impression_8cpp.html#a7a622e389fe45f9b10a5918a9d18c57a" title=" " alt="" coords="331,113,370,139"/>
-<area shape="rect" id="node3" href="$parametres_8h.html#a43108f9e5b0a872b47c5d80c52d2d449" title=" " alt="" coords="164,37,267,63"/>
-<area shape="rect" id="node4" href="$impression_8cpp.html#aa9ca4edb7de23b3d0b9a4a38daf4e114" title=" " alt="" coords="149,87,281,114"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="329,163,372,190"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a5f145598c2e272be764bdc5078d738f0" title=" " alt="" coords="180,138,251,165"/>
-<area shape="rect" id="node7" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="196,239,235,266"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,82,101,109"/>
+<area shape="rect" id="node2" href="$impression_8cpp.html#a7a622e389fe45f9b10a5918a9d18c57a" title=" " alt="" coords="329,57,368,84"/>
+<area shape="rect" id="node3" href="$parametres_8h.html#a43108f9e5b0a872b47c5d80c52d2d449" title=" " alt="" coords="164,32,267,58"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#aa9ca4edb7de23b3d0b9a4a38daf4e114" title=" " alt="" coords="149,82,281,109"/>
+<area shape="rect" id="node5" href="$impression_8cpp.html#a5f145598c2e272be764bdc5078d738f0" title=" " alt="" coords="180,133,251,160"/>
+<area shape="rect" id="node6" href="$texte_8cpp.html#a46dac58eb46eaee7b157e59bdef55b1b" title=" " alt="" coords="196,184,235,210"/>
 </map>

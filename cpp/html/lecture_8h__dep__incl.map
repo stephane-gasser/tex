@@ -1,5 +1,5 @@
 <map id="inc/lecture.h" name="inc/lecture.h">
-<area shape="rect" id="node1" title=" " alt="" coords="4286,5,4379,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="4373,5,4466,32"/>
 <area shape="rect" id="node2" href="$aftermath_8cpp.html" title=" " alt="" coords="5,80,129,107"/>
 <area shape="rect" id="node3" href="$alignpeek_8cpp.html" title=" " alt="" coords="153,80,277,107"/>
 <area shape="rect" id="node4" href="$alteraux_8cpp.html" title=" " alt="" coords="302,80,417,107"/>
@@ -48,12 +48,13 @@
 <area shape="rect" id="node47" href="$police_8cpp.html" title=" " alt="" coords="6917,80,7020,107"/>
 <area shape="rect" id="node48" href="$prefixedcommand_8cpp.html" title=" " alt="" coords="7044,80,7216,107"/>
 <area shape="rect" id="node49" href="$resumeafterdisplay_8cpp.html" title=" " alt="" coords="7240,80,7417,107"/>
-<area shape="rect" id="node50" href="$setmathchar_8cpp.html" title=" " alt="" coords="7441,80,7581,107"/>
-<area shape="rect" id="node51" href="$shiftcase_8cpp.html" title=" " alt="" coords="7606,80,7729,107"/>
-<area shape="rect" id="node52" href="$starteqno_8cpp.html" title=" " alt="" coords="7753,80,7875,107"/>
-<area shape="rect" id="node53" href="$startinput_8cpp.html" title=" " alt="" coords="7899,80,8022,107"/>
-<area shape="rect" id="node54" href="$subsup_8cpp.html" title=" " alt="" coords="8047,80,8157,107"/>
-<area shape="rect" id="node55" href="$unpackage_8cpp.html" title=" " alt="" coords="8181,80,8313,107"/>
-<area shape="rect" id="node56" href="$vsplit_8cpp.html" title=" " alt="" coords="8337,80,8437,107"/>
-<area shape="rect" id="node57" href="$writeout_8cpp.html" title=" " alt="" coords="8462,80,8577,107"/>
+<area shape="rect" id="node50" href="$runaway_8cpp.html" title=" " alt="" coords="7441,80,7557,107"/>
+<area shape="rect" id="node51" href="$setmathchar_8cpp.html" title=" " alt="" coords="7581,80,7721,107"/>
+<area shape="rect" id="node52" href="$shiftcase_8cpp.html" title=" " alt="" coords="7746,80,7869,107"/>
+<area shape="rect" id="node53" href="$starteqno_8cpp.html" title=" " alt="" coords="7893,80,8015,107"/>
+<area shape="rect" id="node54" href="$startinput_8cpp.html" title=" " alt="" coords="8039,80,8162,107"/>
+<area shape="rect" id="node55" href="$subsup_8cpp.html" title=" " alt="" coords="8187,80,8297,107"/>
+<area shape="rect" id="node56" href="$unpackage_8cpp.html" title=" " alt="" coords="8321,80,8453,107"/>
+<area shape="rect" id="node57" href="$vsplit_8cpp.html" title=" " alt="" coords="8477,80,8577,107"/>
+<area shape="rect" id="node58" href="$writeout_8cpp.html" title=" " alt="" coords="8602,80,8717,107"/>
 </map>

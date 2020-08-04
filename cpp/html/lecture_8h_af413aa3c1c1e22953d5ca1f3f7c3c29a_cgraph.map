@@ -1,7 +1,11 @@
 <map id="scandelimiter" name="scandelimiter">
-<area shape="rect" id="node1" title=" " alt="" coords="5,81,104,108"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,183,104,209"/>
 <area shape="rect" id="node2" href="$erreur_8cpp.html#a1a6f10754f33b1f6e804a09bde15b56d" title="Back up one token and call error." alt="" coords="221,5,297,32"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#a84299e01b644eaf52252f51a5a9c66f3" title=" " alt="" coords="222,56,297,83"/>
 <area shape="rect" id="node4" href="$lecture_8cpp.html#a4f6e35100d41c2c67769e4bf464b6365" title=" " alt="" coords="152,107,367,133"/>
-<area shape="rect" id="node5" href="$lecture_8cpp.html#a38710b8c72458a2b9a397ef63156a5b1" title=" " alt="" coords="183,157,335,184"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a7e122f4e5dfce28d19baa61d5d42555e" title="character for `‘large’&#39; delimiter" alt="" coords="218,157,301,184"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a5a6ac113a9cf270758c88266321dde59" title="fam for `‘large’&#39; delimiter" alt="" coords="220,208,299,235"/>
+<area shape="rect" id="node7" href="$lecture_8cpp.html#a38710b8c72458a2b9a397ef63156a5b1" title=" " alt="" coords="183,259,335,285"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#a08ab13f102c0df05617b5d0337004a51" title="character for `‘small’&#39; delimiter" alt="" coords="217,309,302,336"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#ab3a81fee92d330d703da6a1cb0819dcb" title="fam for `‘small’&#39; delimiter" alt="" coords="218,360,301,387"/>
 </map>

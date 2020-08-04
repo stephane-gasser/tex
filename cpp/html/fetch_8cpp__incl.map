@@ -1,10 +1,10 @@
 <map id="src/fetch.cpp" name="src/fetch.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="305,5,403,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="247,5,346,32"/>
 <area shape="rect" id="node2" href="$fetch_8h.html" title=" " alt="" coords="5,80,68,107"/>
-<area shape="rect" id="node3" href="$impression_8h.html" title=" " alt="" coords="93,80,189,107"/>
-<area shape="rect" id="node4" href="$erreur_8h.html" title=" " alt="" coords="213,80,279,107"/>
-<area shape="rect" id="node5" href="$charwarning_8h.html" title=" " alt="" coords="303,80,405,107"/>
-<area shape="rect" id="node6" href="$police_8h.html" title=" " alt="" coords="365,155,431,181"/>
-<area shape="rect" id="node7" href="$texte_8h.html" title=" " alt="" coords="481,80,544,107"/>
-<area shape="rect" id="node8" href="$primitive_8h.html" title=" " alt="" coords="569,80,651,107"/>
+<area shape="rect" id="node3" href="$police_8h.html" title=" " alt="" coords="73,155,139,181"/>
+<area shape="rect" id="node4" href="$impression_8h.html" title=" " alt="" coords="143,80,239,107"/>
+<area shape="rect" id="node5" href="$erreur_8h.html" title=" " alt="" coords="264,80,329,107"/>
+<area shape="rect" id="node6" href="$charwarning_8h.html" title=" " alt="" coords="353,80,456,107"/>
+<area shape="rect" id="node7" href="$texte_8h.html" title=" " alt="" coords="480,80,543,107"/>
+<area shape="rect" id="node8" href="$primitive_8h.html" title=" " alt="" coords="567,80,650,107"/>
 </map>

@@ -111,7 +111,7 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a500877cfd35d0b9e721adf879294ae14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dviswap_8h.html#a500877cfd35d0b9e721adf879294ae14">dvi_out</a> (<a class="el" href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>)</td></tr>
+<tr class="memitem:a500877cfd35d0b9e721adf879294ae14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dviswap_8h.html#a500877cfd35d0b9e721adf879294ae14">dvi_out</a> (<a class="el" href="globals_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>)</td></tr>
 <tr class="separator:a500877cfd35d0b9e721adf879294ae14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a590f8af5b9c3c5259b7b86e58bc8b399"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dviswap_8h.html#a590f8af5b9c3c5259b7b86e58bc8b399">dviswap</a> (void)</td></tr>
 <tr class="separator:a590f8af5b9c3c5259b7b86e58bc8b399"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,7 +126,7 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void dvi_out </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="globals_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -186,17 +186,17 @@ Voici le graphe des appelants de cette fonction :</div>
 
 <p class="definition">Définition à la ligne <a class="el" href="dviswap_8cpp_source.html#l00011">11</a> du fichier <a class="el" href="dviswap_8cpp_source.html">dviswap.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#acfcc2389d1fedbc527cac1ede1a8d893">dvilimit</a> == <a class="code" href="tex_8h.html#a5605bd2f7e94e166aadb93e833459447">dvibufsize</a>)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#acfcc2389d1fedbc527cac1ede1a8d893">dvilimit</a> == <a class="code" href="globals_8h.html#a5605bd2f7e94e166aadb93e833459447">dvibufsize</a>)</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="writedvi_8cpp.html#a8f458a73f33b125dbd99a4d8af9d7864">writedvi</a>(0, <a class="code" href="globals_8cpp.html#af870d2312023d29d892dbf147f55c168">halfbuf</a>-1);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="globals_8cpp.html#acfcc2389d1fedbc527cac1ede1a8d893">dvilimit</a> = <a class="code" href="globals_8cpp.html#af870d2312023d29d892dbf147f55c168">halfbuf</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="globals_8cpp.html#aae5b1c72a48fe3ceb88810d646d468e0">dvioffset</a> = <a class="code" href="globals_8cpp.html#aae5b1c72a48fe3ceb88810d646d468e0">dvioffset</a>+<a class="code" href="tex_8h.html#a5605bd2f7e94e166aadb93e833459447">dvibufsize</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="globals_8cpp.html#aae5b1c72a48fe3ceb88810d646d468e0">dvioffset</a> = <a class="code" href="globals_8cpp.html#aae5b1c72a48fe3ceb88810d646d468e0">dvioffset</a>+<a class="code" href="globals_8h.html#a5605bd2f7e94e166aadb93e833459447">dvibufsize</a>;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="globals_8cpp.html#a67adde4a4ed8ccc8ff4920b87b62ab1d">dviptr</a> = 0;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    }</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="writedvi_8cpp.html#a8f458a73f33b125dbd99a4d8af9d7864">writedvi</a>(<a class="code" href="globals_8cpp.html#af870d2312023d29d892dbf147f55c168">halfbuf</a>, <a class="code" href="tex_8h.html#a5605bd2f7e94e166aadb93e833459447">dvibufsize</a>-1);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="globals_8cpp.html#acfcc2389d1fedbc527cac1ede1a8d893">dvilimit</a> = <a class="code" href="tex_8h.html#a5605bd2f7e94e166aadb93e833459447">dvibufsize</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="writedvi_8cpp.html#a8f458a73f33b125dbd99a4d8af9d7864">writedvi</a>(<a class="code" href="globals_8cpp.html#af870d2312023d29d892dbf147f55c168">halfbuf</a>, <a class="code" href="globals_8h.html#a5605bd2f7e94e166aadb93e833459447">dvibufsize</a>-1);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="globals_8cpp.html#acfcc2389d1fedbc527cac1ede1a8d893">dvilimit</a> = <a class="code" href="globals_8h.html#a5605bd2f7e94e166aadb93e833459447">dvibufsize</a>;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    }</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="globals_8cpp.html#afe60b904edfb077f44830e92d5c705a3">dvigone</a> = <a class="code" href="globals_8cpp.html#afe60b904edfb077f44830e92d5c705a3">dvigone</a>+<a class="code" href="globals_8cpp.html#af870d2312023d29d892dbf147f55c168">halfbuf</a>;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
@@ -222,15 +222,15 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="atex_8h_html_a5605bd2f7e94e166aadb93e833459447"><div class="ttname"><a href="tex_8h.html#a5605bd2f7e94e166aadb93e833459447">dvibufsize</a></div><div class="ttdeci">constexpr int dvibufsize</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00026">tex.h:26</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_aae5b1c72a48fe3ceb88810d646d468e0"><div class="ttname"><a href="globals_8cpp.html#aae5b1c72a48fe3ceb88810d646d468e0">dvioffset</a></div><div class="ttdeci">int dvioffset</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00023">globals.cpp:23</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_af870d2312023d29d892dbf147f55c168"><div class="ttname"><a href="globals_8cpp.html#af870d2312023d29d892dbf147f55c168">halfbuf</a></div><div class="ttdeci">dviindex halfbuf</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00143">globals.cpp:143</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a99054c86de98ad23a20cfbd6d4da4474"><div class="ttname"><a href="globals_8cpp.html#a99054c86de98ad23a20cfbd6d4da4474">dvibuf</a></div><div class="ttdeci">eightbits dvibuf[dvibufsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00142">globals.cpp:142</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a5605bd2f7e94e166aadb93e833459447"><div class="ttname"><a href="globals_8h.html#a5605bd2f7e94e166aadb93e833459447">dvibufsize</a></div><div class="ttdeci">constexpr int dvibufsize</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00028">globals.h:28</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_aae5b1c72a48fe3ceb88810d646d468e0"><div class="ttname"><a href="globals_8cpp.html#aae5b1c72a48fe3ceb88810d646d468e0">dvioffset</a></div><div class="ttdeci">int dvioffset</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00022">globals.cpp:22</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_af870d2312023d29d892dbf147f55c168"><div class="ttname"><a href="globals_8cpp.html#af870d2312023d29d892dbf147f55c168">halfbuf</a></div><div class="ttdeci">dviindex halfbuf</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00127">globals.cpp:127</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a99054c86de98ad23a20cfbd6d4da4474"><div class="ttname"><a href="globals_8cpp.html#a99054c86de98ad23a20cfbd6d4da4474">dvibuf</a></div><div class="ttdeci">eightbits dvibuf[dvibufsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00126">globals.cpp:126</a></div></div>
 <div class="ttc" id="adviswap_8cpp_html_a590f8af5b9c3c5259b7b86e58bc8b399"><div class="ttname"><a href="dviswap_8cpp.html#a590f8af5b9c3c5259b7b86e58bc8b399">dviswap</a></div><div class="ttdeci">void dviswap(void)</div><div class="ttdef"><b>Definition:</b> <a href="dviswap_8cpp_source.html#l00011">dviswap.cpp:11</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_afe60b904edfb077f44830e92d5c705a3"><div class="ttname"><a href="globals_8cpp.html#afe60b904edfb077f44830e92d5c705a3">dvigone</a></div><div class="ttdeci">int dvigone</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00024">globals.cpp:24</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_afe60b904edfb077f44830e92d5c705a3"><div class="ttname"><a href="globals_8cpp.html#afe60b904edfb077f44830e92d5c705a3">dvigone</a></div><div class="ttdeci">int dvigone</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00023">globals.cpp:23</a></div></div>
 <div class="ttc" id="awritedvi_8cpp_html_a8f458a73f33b125dbd99a4d8af9d7864"><div class="ttname"><a href="writedvi_8cpp.html#a8f458a73f33b125dbd99a4d8af9d7864">writedvi</a></div><div class="ttdeci">void writedvi(dviindex a, dviindex b)</div><div class="ttdef"><b>Definition:</b> <a href="writedvi_8cpp_source.html#l00003">writedvi.cpp:3</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_acfcc2389d1fedbc527cac1ede1a8d893"><div class="ttname"><a href="globals_8cpp.html#acfcc2389d1fedbc527cac1ede1a8d893">dvilimit</a></div><div class="ttdeci">dviindex dvilimit</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00144">globals.cpp:144</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a67adde4a4ed8ccc8ff4920b87b62ab1d"><div class="ttname"><a href="globals_8cpp.html#a67adde4a4ed8ccc8ff4920b87b62ab1d">dviptr</a></div><div class="ttdeci">dviindex dviptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00145">globals.cpp:145</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_acfcc2389d1fedbc527cac1ede1a8d893"><div class="ttname"><a href="globals_8cpp.html#acfcc2389d1fedbc527cac1ede1a8d893">dvilimit</a></div><div class="ttdeci">dviindex dvilimit</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00128">globals.cpp:128</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_a67adde4a4ed8ccc8ff4920b87b62ab1d"><div class="ttname"><a href="globals_8cpp.html#a67adde4a4ed8ccc8ff4920b87b62ab1d">dviptr</a></div><div class="ttdeci">dviindex dviptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00129">globals.cpp:129</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

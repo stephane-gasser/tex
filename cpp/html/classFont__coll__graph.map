@@ -1,5 +1,7 @@
 <map id="Font" name="Font">
-<area shape="rect" id="node1" title=" " alt="" coords="81,109,129,136"/>
-<area shape="rect" id="node2" href="$structfourquarters.html" title=" " alt="" coords="5,5,96,32"/>
-<area shape="rect" id="node3" title="STL class." alt="" coords="120,5,200,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="289,109,337,136"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node3" href="$structfourquarters.html" title=" " alt="" coords="213,5,303,32"/>
+<area shape="rect" id="node4" href="$classGlueSpec.html" title=" " alt="" coords="328,5,407,32"/>
+<area shape="rect" id="node5" title="STL class." alt="" coords="431,5,511,32"/>
 </map>

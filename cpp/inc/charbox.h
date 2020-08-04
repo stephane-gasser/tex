@@ -4,6 +4,6 @@
 #include "globals.h"
 #include "police.h"
 
-halfword charbox(const Font&, quarterword);
+BoxNode *charbox(const Font&, quarterword);
 
 #endif

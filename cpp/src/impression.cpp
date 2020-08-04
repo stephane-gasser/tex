@@ -749,8 +749,12 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 					oss << ")";
 					break;
 				case penalty_node:
-					oss << esc("penalty ") << penalty(p);
+				{
+					PenaltyNode *P;
+					P->num = p;
+					oss << esc("penalty ") << P->penalty;
 					break;
+				}
 				case disc_node:
 				{
 					DiscNode *d;

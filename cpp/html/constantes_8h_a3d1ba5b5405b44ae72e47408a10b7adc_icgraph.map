@@ -1,8 +1,4 @@
 <map id="leader_ptr" name="leader_ptr">
-<area shape="rect" id="node1" title="pointer to box or rule node for leaders" alt="" coords="275,131,353,157"/>
-<area shape="rect" id="node2" href="$boxend_8h.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="11,105,75,132"/>
-<area shape="rect" id="node3" href="$noeud_8h.html#a10ce09de92566b94c5155b2fd74872f3" title=" " alt="" coords="130,56,225,83"/>
-<area shape="rect" id="node4" href="$noeud_8h.html#a3e570593ced1e6ecba9565f34061a432" title=" " alt="" coords="130,131,225,157"/>
-<area shape="rect" id="node5" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,156,80,183"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="128,232,227,259"/>
+<area shape="rect" id="node1" title="pointer to box or rule node for leaders" alt="" coords="117,5,196,32"/>
+<area shape="rect" id="node2" href="$boxend_8h.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="5,5,69,32"/>
 </map>

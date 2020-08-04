@@ -38,8 +38,8 @@ void makemathaccent(halfword q)
 			}
 		}
 		auto x = cleanbox(nucleus(q), cramped_style(curstyle));
-		scaled w = width(x);
-		scaled h = height(x);
+		auto w = x->width;
+		auto h = x->height;
 		while (true)
 		{
 			if (char_tag(ft.char_info(c)) != list_tag)
@@ -56,34 +56,34 @@ void makemathaccent(halfword q)
 			if (math_type(nucleus(q)) == math_char)
 			{
 				flushnodelist(x);
-				x = newnoad();
-				mem[nucleus(x)] = mem[nucleus(q)];
-				mem[supscr(x)] = mem[supscr(q)];
-				mem[subscr(x)] = mem[subscr(q)];
-				mem[supscr(x)].hh = twohalves{0, 0};
-				mem[subscr(x)].hh = twohalves{0, 0};
+				auto xx = newnoad();
+				mem[nucleus(xx)] = mem[nucleus(q)];
+				mem[supscr(xx)] = mem[supscr(q)];
+				mem[subscr(xx)] = mem[subscr(q)];
+				mem[supscr(xx)].hh = twohalves{0, 0};
+				mem[subscr(xx)].hh = twohalves{0, 0};
 				math_type(nucleus(q)) = sub_mlist;
-				info(nucleus(q)) = x;
+				info(nucleus(q)) = xx;
 				x = cleanbox(nucleus(q), curstyle);
-				delta += height(x)-h;
-				h = height(x);
+				delta += x->height-h;
+				h = x->height;
 			}
 		auto y = charbox(ft, c);
-		shift_amount(y) = s+half(w-width(y));
-		width(y) = 0;
+		y->shift_amount = s+half(w-y->width);
+		y->width = 0;
 		auto p = new KernNode(-delta);
-		p->link->num = x;
-		link(y) = p->num;
-		y = vpack(y, 0, additional);
-		width(y) = width(x);
-		if (height(y) < h)
+		p->link = x;
+		y->link = p;
+		y->num = vpack(y->num, 0, additional);
+		y->width = x->width;
+		if (y->height < h)
 		{
-			p = new KernNode(h-height(y));
-			p->link->num = list_ptr(y);
-			list_ptr(y) = p->num;
-			height(y) = h;
+			p = new KernNode(h-y->height);
+			p->link = y->list_ptr;
+			y->list_ptr = p;
+			y->height = h;
 		}
-		info(nucleus(q)) = y;
+		info(nucleus(q)) = y->num;
 		math_type(nucleus(q)) = sub_box;
 	}
 }

@@ -104,7 +104,7 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a5b487c0636abe1d8f8766696d91829d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="overbar_8h.html#a5b487c0636abe1d8f8766696d91829d6">overbar</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> b, <a class="el" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> k, <a class="el" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> t)</td></tr>
+<tr class="memitem:a5b487c0636abe1d8f8766696d91829d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="overbar_8h.html#a5b487c0636abe1d8f8766696d91829d6">overbar</a> (<a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> b, <a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> k, <a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> t)</td></tr>
 <tr class="separator:a5b487c0636abe1d8f8766696d91829d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
@@ -115,21 +115,21 @@ Fonctions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> overbar </td>
+          <td class="memname"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> overbar </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
           <td class="paramname"><em>b</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>&#160;</td>
           <td class="paramname"><em>k</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>&#160;</td>
           <td class="paramname"><em>t</em>&#160;</td>
         </tr>
         <tr>
@@ -142,24 +142,23 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="overbar_8cpp_source.html#l00006">6</a> du fichier <a class="el" href="overbar_8cpp_source.html">overbar.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>(k);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = b;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">auto</span> p = <span class="keyword">new</span> <a class="code" href="classKernNode.html">KernNode</a>(k);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    p-&gt;link-&gt;num = b;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6">fractionrule</a>(t);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q) = p;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    p = <a class="code" href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a>(t);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = q;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665">vpack</a>(p, 0, <a class="code" href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a>);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q) = p-&gt;num;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    p = <span class="keyword">new</span> <a class="code" href="classKernNode.html">KernNode</a>(t);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    p-&gt;link-&gt;num = q;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665">vpack</a>(p-&gt;num, 0, <a class="code" href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a>);</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="overbar_8h_a5b487c0636abe1d8f8766696d91829d6_cgraph.png" border="0" usemap="#overbar_8h_a5b487c0636abe1d8f8766696d91829d6_cgraph" alt=""/></div>
 <map name="overbar_8h_a5b487c0636abe1d8f8766696d91829d6_cgraph" id="overbar_8h_a5b487c0636abe1d8f8766696d91829d6_cgraph">
-<area shape="rect" title=" " alt="" coords="5,81,71,108"/>
+<area shape="rect" title=" " alt="" coords="5,56,71,83"/>
 <area shape="rect" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="119,5,205,32"/>
 <area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="141,56,183,83"/>
-<area shape="rect" href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="127,107,197,133"/>
-<area shape="rect" href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="133,157,191,184"/>
+<area shape="rect" href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="133,107,191,133"/>
 </map>
 </div>
 <div class="dynheader">
@@ -176,9 +175,9 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b"><div class="ttname"><a href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a></div><div class="ttdeci">@ additional</div><div class="ttdoc">a box dimension is increased from the natural one</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00600">constantes.h:600</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b"><div class="ttname"><a href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a></div><div class="ttdeci">@ additional</div><div class="ttdoc">a box dimension is increased from the natural one</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00580">constantes.h:580</a></div></div>
+<div class="ttc" id="aclassKernNode_html"><div class="ttname"><a href="classKernNode.html">KernNode</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00248">globals.h:248</a></div></div>
 <div class="ttc" id="avpackage_8cpp_html_a9f1d86e5c299878041fb0f88d75d3665"><div class="ttname"><a href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665">vpack</a></div><div class="ttdeci">halfword vpack(halfword p, scaled h, smallnumber m)</div><div class="ttdoc">special case of unconstrained depth</div><div class="ttdef"><b>Definition:</b> <a href="vpackage_8cpp_source.html#l00023">vpackage.cpp:23</a></div></div>
-<div class="ttc" id="anoeud_8cpp_html_af78e07183c617d97a350cc11c9c18d37"><div class="ttname"><a href="noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37">newkern</a></div><div class="ttdeci">halfword newkern(scaled w)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00600">noeud.cpp:600</a></div></div>
 <div class="ttc" id="afractionrule_8cpp_html_aca27d6d4d1ded04c4038c9bca7f136f6"><div class="ttname"><a href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6">fractionrule</a></div><div class="ttdeci">halfword fractionrule(scaled t)</div><div class="ttdef"><b>Definition:</b> <a href="fractionrule_8cpp_source.html#l00004">fractionrule.cpp:4</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
 <!-- start footer part -->

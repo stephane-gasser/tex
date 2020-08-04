@@ -212,8 +212,9 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 					{
 						while (link(q))
 							q = link(q);
-						link(q) = newrule();
-						width(link(q)) = overfull_rule();
+						auto R = new RuleNode;
+						R->width = overfull_rule();
+						link(q) = R->num;
 					}
 					print("\nOverfull \\hbox ("+asScaled(-x-totalshrink[0])+"pt too wide");
 					goto50(r);

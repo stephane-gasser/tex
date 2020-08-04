@@ -412,7 +412,7 @@ void mlisttohlist(void)
 			rtype = q->link->type;
 			if (rtype != penalty_node && rtype != rel_noad)
 			{
-				z->num = newpenalty(pen);
+				z = new PenaltyNode(pen);
 				p->link = z;
 				p = z;
 			}

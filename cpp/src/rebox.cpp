@@ -3,30 +3,30 @@
 #include "noeud.h"
 #include "police.h"
 
-halfword rebox(halfword b, scaled w)
+BoxNode* rebox(BoxNode *b, scaled w)
 {
-	if (width(b) != w && list_ptr(b))
+	if (b->width != w && b->list_ptr)
 	{
-		if (type(b) == vlist_node)
-			b = hpack(b, 0, additional);
-		LinkedNode *p;
-		p->num = list_ptr(b);
+		if (b->type == vlist_node)
+			b->num = hpack(b->num, 0, additional);
+		auto p = b->list_ptr;
 		if (p->is_char_node() && p->link == nullptr)
 		{
-			scaled v = dynamic_cast<CharNode*>(p)->font.char_width(dynamic_cast<CharNode*>(p)->character);
-			if (v != width(b))
-				p->link = new KernNode(width(b)-v);
+			auto P = dynamic_cast<CharNode*>(p);
+			scaled v = P->font.char_width(P->character);
+			if (v != b->width)
+				p->link = new KernNode(b->width-v);
 		}
-		freenode(b, box_node_size);
+		delete b;
 		auto g = new GlueNode(ss_glue);
-		b = g->num;
-		link(b) = p->num;
+		g->link = p;
 		while (p->link)
 			p = p->link;
 		p->link = new GlueNode(ss_glue);
-		return hpack(b, w, exactly);
+		b->num = hpack(g->num, w, exactly);
+		return b;
 	}
-	width(b) = w;
+	b->width = w;
 	return b;
 }
 

@@ -658,26 +658,6 @@ halfword newnullbox(void)
 	return p;
 }
 
-halfword newpenalty(int m)
-{
-	auto p = getnode(small_node_size);
-	type(p) = penalty_node;
-	//subtype(p) = 0; //the |subtype| is not used
-	penalty(p) = m;
-	return p;
-}
-
-halfword newrule(void)
-{
-	auto p = getnode(rule_node_size);
-	type(p) = rule_node;
-	subtype(p) = 0;
-	width(p) = null_flag;
-	depth(p) = null_flag;
-	height(p) = null_flag;
-	return p;
-}
-
 void newsavelevel(groupcode c)
 {
 	check_full_save_stack();
@@ -845,7 +825,7 @@ void appendkern(halfword s)
 
 void appendpenalty(void)
 {
-	tail_append(newpenalty(scanint()));
+	tail_append(new PenaltyNode(scanint()));
 	if (mode == vmode)
 		buildpage();
 }

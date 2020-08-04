@@ -1,20 +1,11 @@
 <map id="character" name="character">
-<area shape="rect" id="node1" title="the character code in a char_node" alt="" coords="633,435,709,461"/>
-<area shape="rect" id="node2" href="$hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="480,29,544,56"/>
-<area shape="rect" id="node3" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="483,131,541,157"/>
-<area shape="rect" id="node4" href="$makeaccent_8h.html#aca840bfdce0591976a8d844972501c13" title=" " alt="" coords="274,131,367,157"/>
-<area shape="rect" id="node5" href="$cesure_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="279,257,362,284"/>
-<area shape="rect" id="node6" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="125,333,199,360"/>
-<area shape="rect" id="node7" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="5,359,73,385"/>
-<area shape="rect" id="node8" href="$maincontrol_8cpp.html#a6e45a273f9cba9e3532fb656a3ee295c" title=" " alt="" coords="270,739,371,765"/>
-<area shape="rect" id="node9" href="$maincontrol_8cpp.html#a00f5f81d53127a5edf3ae005f33a932c" title=" " alt="" coords="121,713,203,740"/>
-<area shape="rect" id="node10" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="439,435,585,461"/>
-<area shape="rect" id="node11" href="$maincontrol_8cpp.html#a1c4fbceeb0a6504e980d70aea5dc2ad9" title=" " alt="" coords="251,460,391,487"/>
-<area shape="rect" id="node12" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="478,536,546,563"/>
-<area shape="rect" id="node13" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="476,587,548,613"/>
-<area shape="rect" id="node14" href="$mathac_8h.html#af402080aef2ef90e17e7e16d0b66b218" title=" " alt="" coords="479,637,545,664"/>
-<area shape="rect" id="node15" href="$noeud_8h.html#a1178b2d9577d7ff8057e501c4def33ed" title=" " alt="" coords="462,181,562,208"/>
-<area shape="rect" id="node16" href="$reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="467,283,557,309"/>
-<area shape="rect" id="node17" href="$impression_8h.html#a190dbb1f454e717590536284ba1d88be" title=" " alt="" coords="466,813,558,840"/>
-<area shape="rect" id="node18" href="$maincontrol_8cpp.html#a89c5ef2add7ff812965c651e7fac6c32" title=" " alt="" coords="480,739,544,765"/>
+<area shape="rect" id="node1" title="the character code in a char_node" alt="" coords="259,207,335,233"/>
+<area shape="rect" id="node2" href="$hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="137,29,201,56"/>
+<area shape="rect" id="node3" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="141,80,198,107"/>
+<area shape="rect" id="node4" href="$cesure_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="128,131,211,157"/>
+<area shape="rect" id="node5" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,181,80,208"/>
+<area shape="rect" id="node6" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="135,232,203,259"/>
+<area shape="rect" id="node7" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="133,283,205,309"/>
+<area shape="rect" id="node8" href="$mathac_8h.html#af402080aef2ef90e17e7e16d0b66b218" title=" " alt="" coords="137,333,202,360"/>
+<area shape="rect" id="node9" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="135,384,204,411"/>
 </map>

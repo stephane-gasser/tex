@@ -5,7 +5,7 @@
 #include "xovern.h"
 #include "police.h"
 
-halfword cleanbox(halfword p, smallnumber s)
+BoxNode *cleanbox(halfword p, smallnumber s)
 {
 	LinkedNode *q;
 	do
@@ -24,7 +24,7 @@ halfword cleanbox(halfword p, smallnumber s)
 				curmlist = info(p);
 				break;
 			default:
-				q->num = newnullbox();
+				q = new BoxNode;
 				continue;
 		}
 		auto savestyle = curstyle;
@@ -40,15 +40,15 @@ halfword cleanbox(halfword p, smallnumber s)
 		curmu = xovern(math_quad(cursize), 18);
 		break;
 	} while (false);
-	LinkedNode *x;
+	BoxNode *x;
 	if (q->is_char_node() || q == nullptr)
 		x->num = hpack(q->num, 0, additional);
 	else 
-		if (q->link == nullptr && q->type <= vlist_node && shift_amount(q->num) == 0)
-			x = q;
+		if (q->link == nullptr && q->type <= vlist_node && dynamic_cast<BoxNode*>(q)->shift_amount == 0)
+			x = dynamic_cast<BoxNode*>(q);
 		else
 			x->num = hpack(q->num, 0, additional);
-	q->num = list_ptr(x->num);
+	q = x->list_ptr;
 	if (q->is_char_node())
 	{
 		auto r = q->link;
@@ -58,5 +58,5 @@ halfword cleanbox(halfword p, smallnumber s)
 			q->link = 0;
 		}
 	}
-	return x->num;
+	return x;
 }

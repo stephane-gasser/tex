@@ -145,32 +145,29 @@ Fonctions</h2></td></tr>
 <p>Undoes one token of input. </p>
 <p>Sometimes TeX has read too far and wants to `&lsquo;unscan&rsquo;' what it has seen. The <em>back_input</em> procedure takes care of this by putting the token just scanned back into the input stream, ready to be read again. This procedure can be used only if <em>cur_tok</em> represents the token to be replaced. Some applications of TeX use this procedure a lot, so it has been slightly optimized for speed. </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="backinput_8cpp_source.html#l00013">13</a> du fichier <a class="el" href="backinput_8cpp_source.html">backinput.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">while</span> (<a class="code" href="constantes_8cpp.html#a902b4928286612d69880d4d792924804">state</a> == <a class="code" href="constantes_8h.html#ad9f24960a276b15f7205ca4399901474a07e7bd1dd1449b71dd55b32bed878701">token_list</a> &amp;&amp; <a class="code" href="constantes_8cpp.html#a6f95e0997ad54677f04a9ad712fc69d3">loc</a> == 0 &amp;&amp; <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a> != <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da168b1fb93329ad466f004a52af74df30">v_template</a>)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="lecture_8cpp.html#ad2e3230595ca73c26847af5794f01651">endtokenlist</a>();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7">getavail</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(p) = t.<a class="code" href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">tok</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">if</span> (t.<a class="code" href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">tok</a> &lt; <a class="code" href="constantes_8h.html#a18288a9f3b96cfa4701bc11f7ef29707ad4df554584f67e2e1193b9f348f1f7e1">right_brace_limit</a>)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">if</span> (t.<a class="code" href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">tok</a> &lt; <a class="code" href="constantes_8h.html#a18288a9f3b96cfa4701bc11f7ef29707a71aa9b916a6a6dfaa767819e7139d2c0">left_brace_limit</a>)</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="globals_8cpp.html#ab366184edc7e8b986e320e1e0e61483f">alignstate</a>--;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <a class="code" href="globals_8cpp.html#ab366184edc7e8b986e320e1e0e61483f">alignstate</a>++;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96">push_input</a>();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="constantes_8cpp.html#a902b4928286612d69880d4d792924804">state</a> = <a class="code" href="constantes_8h.html#ad9f24960a276b15f7205ca4399901474a07e7bd1dd1449b71dd55b32bed878701">token_list</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a> = p;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a> = <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da02689a437cf4ef3a57d725d967caebd3">backed_up</a>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="constantes_8cpp.html#a6f95e0997ad54677f04a9ad712fc69d3">loc</a> = p;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="backinput_8cpp_source.html#l00010">10</a> du fichier <a class="el" href="backinput_8cpp_source.html">backinput.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">while</span> (<a class="code" href="constantes_8cpp.html#a902b4928286612d69880d4d792924804">state</a> == <a class="code" href="constantes_8h.html#ad9f24960a276b15f7205ca4399901474a07e7bd1dd1449b71dd55b32bed878701">token_list</a> &amp;&amp; <a class="code" href="constantes_8h.html#aec7b29124dade1d0d4634aa233cfe6ea">Loc</a> == <span class="keyword">nullptr</span> &amp;&amp; <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a> != <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da168b1fb93329ad466f004a52af74df30">v_template</a>)</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="lecture_8cpp.html#ad2e3230595ca73c26847af5794f01651">endtokenlist</a>();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">auto</span> p = <span class="keyword">new</span> <a class="code" href="classTokenNode.html">TokenNode</a>(t.<a class="code" href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">tok</a>);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">if</span> (t.<a class="code" href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">tok</a> &lt; <a class="code" href="constantes_8h.html#a18288a9f3b96cfa4701bc11f7ef29707ad4df554584f67e2e1193b9f348f1f7e1">right_brace_limit</a>)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">if</span> (t.<a class="code" href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">tok</a> &lt; <a class="code" href="constantes_8h.html#a18288a9f3b96cfa4701bc11f7ef29707a71aa9b916a6a6dfaa767819e7139d2c0">left_brace_limit</a>)</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="globals_8cpp.html#ab366184edc7e8b986e320e1e0e61483f">alignstate</a>--;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <a class="code" href="globals_8cpp.html#ab366184edc7e8b986e320e1e0e61483f">alignstate</a>++;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96">push_input</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="constantes_8cpp.html#a902b4928286612d69880d4d792924804">state</a> = <a class="code" href="constantes_8h.html#ad9f24960a276b15f7205ca4399901474a07e7bd1dd1449b71dd55b32bed878701">token_list</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="constantes_8h.html#a05b8061454490c8be2257db8d7ce5650">Start</a> = <a class="code" href="constantes_8h.html#aec7b29124dade1d0d4634aa233cfe6ea">Loc</a> = p;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a> = <a class="code" href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da02689a437cf4ef3a57d725d967caebd3">backed_up</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="backinput_8h_a392740cb5627508a84b39f4f3e773e1f_cgraph.png" border="0" usemap="#backinput_8h_a392740cb5627508a84b39f4f3e773e1f_cgraph" alt=""/></div>
 <map name="backinput_8h_a392740cb5627508a84b39f4f3e773e1f_cgraph" id="backinput_8h_a392740cb5627508a84b39f4f3e773e1f_cgraph">
-<area shape="rect" title="Undoes one token of input." alt="" coords="5,56,84,83"/>
+<area shape="rect" title="Undoes one token of input." alt="" coords="5,31,84,57"/>
 <area shape="rect" href="lecture_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="132,5,224,32"/>
-<area shape="rect" href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="145,56,211,83"/>
-<area shape="rect" href="pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="135,107,221,133"/>
+<area shape="rect" href="pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="135,56,221,83"/>
 </map>
 </div>
 <div class="dynheader">
@@ -178,50 +175,49 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="backinput_8h_a392740cb5627508a84b39f4f3e773e1f_icgraph.png" border="0" usemap="#backinput_8h_a392740cb5627508a84b39f4f3e773e1f_icgraph" alt=""/></div>
 <map name="backinput_8h_a392740cb5627508a84b39f4f3e773e1f_icgraph" id="backinput_8h_a392740cb5627508a84b39f4f3e773e1f_icgraph">
-<area shape="rect" title="Undoes one token of input." alt="" coords="891,548,969,575"/>
-<area shape="rect" href="erreur_8h.html#afdd8a3016379ef19d8801474309a0993" title="Back up one token and call error." alt="" coords="763,269,839,296"/>
-<area shape="rect" href="expand_8h.html#a6c77eceb3e53fd876d329ec10048f5da" title=" " alt="" coords="614,168,678,195"/>
-<area shape="rect" href="macrocall_8h.html#ad5520fcbd165ce5f2e863199df9c14b3" title=" " alt="" coords="607,320,685,347"/>
-<area shape="rect" href="prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="143,193,268,220"/>
-<area shape="rect" href="maincontrol_8h.html#a07452457cef4e38d7b5e617473cb2dcf" title=" " alt="" coords="5,700,95,727"/>
-<area shape="rect" href="lecture_8h.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="614,219,678,245"/>
-<area shape="rect" href="doextension_8h.html#ae0fe82d31e33a0b4f09cd522245dd4f4" title=" " alt="" coords="439,459,531,485"/>
-<area shape="rect" href="lecture_8h.html#adefa9e2e73b623f6a19242a1b365ddf0" title=" " alt="" coords="443,143,528,169"/>
-<area shape="rect" href="lecture_8h.html#a8d0725a7a3aa2859106e2c77c6ed6567" title=" " alt="" coords="316,117,391,144"/>
-<area shape="rect" href="handlerightbrace_8h.html#a6c7743f430eb9379c2e5db3eddacae10" title=" " alt="" coords="587,725,705,752"/>
-<area shape="rect" href="headforvmode_8h.html#aaf41c00d9238599e20b07116c28a7a7e" title=" " alt="" coords="594,827,698,853"/>
-<area shape="rect" href="initcol_8h.html#ab7e29cf2ab3aaae9d790fed64ad5e623" title=" " alt="" coords="773,573,829,600"/>
-<area shape="rect" href="initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="319,548,387,575"/>
-<area shape="rect" href="erreur_8h.html#ac6d124019b64b6127e40eaffcf203772" title=" " alt="" coords="769,624,834,651"/>
-<area shape="rect" href="insertdollarsign_8h.html#a2bba3cf0297c0dfbeb88ff51d77c2a2f" title=" " alt="" coords="591,675,701,701"/>
-<area shape="rect" href="insertrelax_8h.html#a7d2e6b249c13dfc9b72e3692ba27716a" title=" " alt="" coords="760,776,843,803"/>
-<area shape="rect" href="itsallover_8h.html#a12797c86dc948db2d4fbac4f83b8fed8" title=" " alt="" coords="168,928,243,955"/>
-<area shape="rect" href="makeaccent_8h.html#aca840bfdce0591976a8d844972501c13" title=" " alt="" coords="439,979,532,1005"/>
-<area shape="rect" href="offsave_8h.html#a42fa661419e3e9de8d6579fc8a906292" title=" " alt="" coords="769,877,834,904"/>
-<area shape="rect" href="resumeafterdisplay_8h.html#aedb7f1751e8a6abd96431df364ccbdae" title=" " alt="" coords="580,1080,712,1107"/>
-<area shape="rect" href="lecture_8h.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="597,472,695,499"/>
-<area shape="rect" href="unsave_8h.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="769,1029,833,1056"/>
+<area shape="rect" title="Undoes one token of input." alt="" coords="908,559,987,586"/>
+<area shape="rect" href="erreur_8h.html#afdd8a3016379ef19d8801474309a0993" title="Back up one token and call error." alt="" coords="781,281,857,307"/>
+<area shape="rect" href="expand_8h.html#a6c77eceb3e53fd876d329ec10048f5da" title=" " alt="" coords="471,166,535,193"/>
+<area shape="rect" href="macrocall_8h.html#ad5520fcbd165ce5f2e863199df9c14b3" title=" " alt="" coords="624,230,703,257"/>
+<area shape="rect" href="prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="143,306,268,333"/>
+<area shape="rect" href="maincontrol_8h.html#a07452457cef4e38d7b5e617473cb2dcf" title=" " alt="" coords="5,762,95,789"/>
+<area shape="rect" href="lecture_8h.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="631,382,695,409"/>
+<area shape="rect" href="doextension_8h.html#ae0fe82d31e33a0b4f09cd522245dd4f4" title=" " alt="" coords="457,521,549,547"/>
+<area shape="rect" href="lecture_8h.html#adefa9e2e73b623f6a19242a1b365ddf0" title=" " alt="" coords="461,331,546,358"/>
+<area shape="rect" href="lecture_8h.html#a8d0725a7a3aa2859106e2c77c6ed6567" title=" " alt="" coords="325,281,400,307"/>
+<area shape="rect" href="handlerightbrace_8h.html#a6c7743f430eb9379c2e5db3eddacae10" title=" " alt="" coords="605,787,722,814"/>
+<area shape="rect" href="headforvmode_8h.html#aaf41c00d9238599e20b07116c28a7a7e" title=" " alt="" coords="611,838,715,865"/>
+<area shape="rect" href="initcol_8h.html#ab7e29cf2ab3aaae9d790fed64ad5e623" title=" " alt="" coords="791,585,847,611"/>
+<area shape="rect" href="initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="329,635,397,662"/>
+<area shape="rect" href="erreur_8h.html#ac6d124019b64b6127e40eaffcf203772" title=" " alt="" coords="786,686,851,713"/>
+<area shape="rect" href="insertdollarsign_8h.html#a2bba3cf0297c0dfbeb88ff51d77c2a2f" title=" " alt="" coords="609,737,718,763"/>
+<area shape="rect" href="insertrelax_8h.html#a7d2e6b249c13dfc9b72e3692ba27716a" title=" " alt="" coords="777,78,860,105"/>
+<area shape="rect" href="itsallover_8h.html#a12797c86dc948db2d4fbac4f83b8fed8" title=" " alt="" coords="168,939,243,966"/>
+<area shape="rect" href="makeaccent_8h.html#aca840bfdce0591976a8d844972501c13" title=" " alt="" coords="316,990,409,1017"/>
+<area shape="rect" href="offsave_8h.html#a42fa661419e3e9de8d6579fc8a906292" title=" " alt="" coords="786,889,851,915"/>
+<area shape="rect" href="resumeafterdisplay_8h.html#aedb7f1751e8a6abd96431df364ccbdae" title=" " alt="" coords="597,1091,729,1118"/>
+<area shape="rect" href="lecture_8h.html#a0becb84f937ba96fb9a96e489e5ea0f1" title=" " alt="" coords="614,483,713,510"/>
+<area shape="rect" href="unsave_8h.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="787,1041,851,1067"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_ad9f24960a276b15f7205ca4399901474a07e7bd1dd1449b71dd55b32bed878701"><div class="ttname"><a href="constantes_8h.html#ad9f24960a276b15f7205ca4399901474a07e7bd1dd1449b71dd55b32bed878701">token_list</a></div><div class="ttdeci">@ token_list</div><div class="ttdoc">state code when scanning a token list</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00465">constantes.h:465</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0d"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a></div><div class="ttdeci">token_type</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00481">constantes.h:481</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00587">constantes.h:587</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a18288a9f3b96cfa4701bc11f7ef29707ad4df554584f67e2e1193b9f348f1f7e1"><div class="ttname"><a href="constantes_8h.html#a18288a9f3b96cfa4701bc11f7ef29707ad4df554584f67e2e1193b9f348f1f7e1">right_brace_limit</a></div><div class="ttdeci">@ right_brace_limit</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00455">constantes.h:455</a></div></div>
-<div class="ttc" id="agetavail_8cpp_html_a954ade667e3184eb61ed18e925b628c7"><div class="ttname"><a href="getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7">getavail</a></div><div class="ttdeci">halfword getavail(void)</div><div class="ttdef"><b>Definition:</b> <a href="getavail_8cpp_source.html#l00005">getavail.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_ad9f24960a276b15f7205ca4399901474a07e7bd1dd1449b71dd55b32bed878701"><div class="ttname"><a href="constantes_8h.html#ad9f24960a276b15f7205ca4399901474a07e7bd1dd1449b71dd55b32bed878701">token_list</a></div><div class="ttdeci">@ token_list</div><div class="ttdoc">state code when scanning a token list</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00445">constantes.h:445</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0d"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a></div><div class="ttdeci">token_type</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00461">constantes.h:461</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_aec7b29124dade1d0d4634aa233cfe6ea"><div class="ttname"><a href="constantes_8h.html#aec7b29124dade1d0d4634aa233cfe6ea">Loc</a></div><div class="ttdeci">TokenNode * Loc</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00824">constantes.h:824</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a18288a9f3b96cfa4701bc11f7ef29707ad4df554584f67e2e1193b9f348f1f7e1"><div class="ttname"><a href="constantes_8h.html#a18288a9f3b96cfa4701bc11f7ef29707ad4df554584f67e2e1193b9f348f1f7e1">right_brace_limit</a></div><div class="ttdeci">@ right_brace_limit</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00435">constantes.h:435</a></div></div>
 <div class="ttc" id="apushinput_8cpp_html_a6c38405ba74f1488201842d119ceef96"><div class="ttname"><a href="pushinput_8cpp.html#a6c38405ba74f1488201842d119ceef96">push_input</a></div><div class="ttdeci">void push_input(void)</div><div class="ttdoc">//enter a new input level, save the old</div><div class="ttdef"><b>Definition:</b> <a href="pushinput_8cpp_source.html#l00005">pushinput.cpp:5</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a96e97edb510aa677a07ef606c639c8a0"><div class="ttname"><a href="constantes_8cpp.html#a96e97edb510aa677a07ef606c639c8a0">start</a></div><div class="ttdeci">halfword &amp; start</div><div class="ttdoc">starting position in buffer</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00152">constantes.cpp:152</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0da168b1fb93329ad466f004a52af74df30"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da168b1fb93329ad466f004a52af74df30">v_template</a></div><div class="ttdeci">@ v_template</div><div class="ttdoc">token_type code for  template</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00485">constantes.h:485</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0da02689a437cf4ef3a57d725d967caebd3"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da02689a437cf4ef3a57d725d967caebd3">backed_up</a></div><div class="ttdeci">@ backed_up</div><div class="ttdoc">token_type code for text to be reread</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00486">constantes.h:486</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a6f95e0997ad54677f04a9ad712fc69d3"><div class="ttname"><a href="constantes_8cpp.html#a6f95e0997ad54677f04a9ad712fc69d3">loc</a></div><div class="ttdeci">halfword &amp; loc</div><div class="ttdoc">location of first unread character in buffer</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00149">constantes.cpp:149</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a902b4928286612d69880d4d792924804"><div class="ttname"><a href="constantes_8cpp.html#a902b4928286612d69880d4d792924804">state</a></div><div class="ttdeci">quarterword &amp; state</div><div class="ttdoc">current scanner state</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00150">constantes.cpp:150</a></div></div>
-<div class="ttc" id="aclassToken_html_a42e39e1654b904922c25a3b4b47c9957"><div class="ttname"><a href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">Token::tok</a></div><div class="ttdeci">halfword tok</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00026">globals.h:26</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a18288a9f3b96cfa4701bc11f7ef29707a71aa9b916a6a6dfaa767819e7139d2c0"><div class="ttname"><a href="constantes_8h.html#a18288a9f3b96cfa4701bc11f7ef29707a71aa9b916a6a6dfaa767819e7139d2c0">left_brace_limit</a></div><div class="ttdeci">@ left_brace_limit</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00456">constantes.h:456</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_ad2e3230595ca73c26847af5794f01651"><div class="ttname"><a href="lecture_8cpp.html#ad2e3230595ca73c26847af5794f01651">endtokenlist</a></div><div class="ttdeci">void endtokenlist(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l01179">lecture.cpp:1179</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_ab366184edc7e8b986e320e1e0e61483f"><div class="ttname"><a href="globals_8cpp.html#ab366184edc7e8b986e320e1e0e61483f">alignstate</a></div><div class="ttdeci">int alignstate</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00015">globals.cpp:15</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0da168b1fb93329ad466f004a52af74df30"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da168b1fb93329ad466f004a52af74df30">v_template</a></div><div class="ttdeci">@ v_template</div><div class="ttdoc">token_type code for  template</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00465">constantes.h:465</a></div></div>
+<div class="ttc" id="aclassTokenNode_html"><div class="ttname"><a href="classTokenNode.html">TokenNode</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00177">globals.h:177</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0da02689a437cf4ef3a57d725d967caebd3"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da02689a437cf4ef3a57d725d967caebd3">backed_up</a></div><div class="ttdeci">@ backed_up</div><div class="ttdoc">token_type code for text to be reread</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00466">constantes.h:466</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a902b4928286612d69880d4d792924804"><div class="ttname"><a href="constantes_8cpp.html#a902b4928286612d69880d4d792924804">state</a></div><div class="ttdeci">quarterword &amp; state</div><div class="ttdoc">current scanner state</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00148">constantes.cpp:148</a></div></div>
+<div class="ttc" id="aclassToken_html_a42e39e1654b904922c25a3b4b47c9957"><div class="ttname"><a href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">Token::tok</a></div><div class="ttdeci">halfword tok</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00338">globals.h:338</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a18288a9f3b96cfa4701bc11f7ef29707a71aa9b916a6a6dfaa767819e7139d2c0"><div class="ttname"><a href="constantes_8h.html#a18288a9f3b96cfa4701bc11f7ef29707a71aa9b916a6a6dfaa767819e7139d2c0">left_brace_limit</a></div><div class="ttdeci">@ left_brace_limit</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00436">constantes.h:436</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_ad2e3230595ca73c26847af5794f01651"><div class="ttname"><a href="lecture_8cpp.html#ad2e3230595ca73c26847af5794f01651">endtokenlist</a></div><div class="ttdeci">void endtokenlist(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l01172">lecture.cpp:1172</a></div></div>
+<div class="ttc" id="aglobals_8cpp_html_ab366184edc7e8b986e320e1e0e61483f"><div class="ttname"><a href="globals_8cpp.html#ab366184edc7e8b986e320e1e0e61483f">alignstate</a></div><div class="ttdeci">int alignstate</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00014">globals.cpp:14</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a05b8061454490c8be2257db8d7ce5650"><div class="ttname"><a href="constantes_8h.html#a05b8061454490c8be2257db8d7ce5650">Start</a></div><div class="ttdeci">TokenNode * Start</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00823">constantes.h:823</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

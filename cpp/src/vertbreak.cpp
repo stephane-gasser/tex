@@ -52,8 +52,12 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 						pi = 0;
 					break;
 				case penalty_node: //12
-					pi = penalty(p);
+				{
+					PenaltyNode *P;
+					P->num = p;
+					pi = P->penalty;
 					break;
+				}
 				case mark_node: //4
 				case ins_node: //3
 					break;

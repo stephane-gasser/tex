@@ -154,7 +154,7 @@ void postlinebreak(int finalwidowpenalty)
 				pen += broken_penalty();
 			if (pen)
 			{
-				r->num = newpenalty(pen);
+				r = new PenaltyNode(pen);
 				tail_append(r);
 			}
 		}

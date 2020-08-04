@@ -154,7 +154,7 @@ void aftermath(void)
 			if (p && !p->is_char_node() && p->type == glue_node)
 				d = 0;
 		}
-		tail_append(newpenalty(pre_display_penalty()));
+		tail_append(new PenaltyNode(pre_display_penalty()));
 		smallnumber g1 = 5, g2 = 6;
 		if (d+s <= pre_display_size() || l)
 		{
@@ -165,7 +165,7 @@ void aftermath(void)
 		{
 			shift_amount(a) = s;
 			appendtovlist(a);
-			tail_append(newpenalty(10000));
+			tail_append(new PenaltyNode(10000));
 		}
 		else
 			tail_append(new GlueNode(g1));
@@ -190,7 +190,7 @@ void aftermath(void)
 		appendtovlist(b);
 		if (a && e == 0 && !l)
 		{
-			tail_append(newpenalty(10000));
+			tail_append(new PenaltyNode(10000));
 			shift_amount(a) = s+z-width(a);
 			appendtovlist(a);
 			g2 = 0;
@@ -200,7 +200,7 @@ void aftermath(void)
 			tail->link = adjust_head->link;
 			tail->num = tt;
 		}
-		tail_append(newpenalty(post_display_penalty()));
+		tail_append(new PenaltyNode(post_display_penalty()));
 		if (g2 > 0)
 			tail_append(new GlueNode(g2));
 		resumeafterdisplay(t);

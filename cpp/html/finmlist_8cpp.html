@@ -97,7 +97,7 @@ Graphe des dépendances par inclusion de finmlist.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:af4215f599c5ab41d37100fb19ee858af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af">finmlist</a> (<a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p)</td></tr>
+<tr class="memitem:af4215f599c5ab41d37100fb19ee858af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af">finmlist</a> (<a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p)</td></tr>
 <tr class="separator:af4215f599c5ab41d37100fb19ee858af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
@@ -108,9 +108,9 @@ Fonctions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> finmlist </td>
+          <td class="memname"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> finmlist </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
           <td class="paramname"><em>p</em></td><td>)</td>
           <td></td>
         </tr>
@@ -119,41 +119,42 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="finmlist_8cpp_source.html#l00005">5</a> du fichier <a class="el" href="finmlist_8cpp_source.html">finmlist.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> q;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>)</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="classLinkedNode.html">LinkedNode</a> *q;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>)</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="globals_8cpp.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>+3) = 3;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="globals_8cpp.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>+3) = <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a>);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="constantes_8h.html#acfd168283e0375316338c74b2d61186f">math_type</a>(<a class="code" href="constantes_8cpp.html#a71611c1f90a6379e7e1ecc5c27a886d4">denominator</a>(<a class="code" href="globals_8h.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>)) = <a class="code" href="constantes_8h.html#acfd168283e0375316338c74b2d61186fa7c550baf16b009aa63037aa0ad244af4">sub_mlist</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="constantes_8cpp.html#a71611c1f90a6379e7e1ecc5c27a886d4">denominator</a>(<a class="code" href="globals_8h.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>)) = <a class="code" href="globals_8h.html#a87be2395199ed7d315738373369c5463">head</a>-&gt;link-&gt;num;</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">if</span> (p == 0)</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            q = <a class="code" href="globals_8cpp.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            q-&gt;<a class="code" href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">num</a> = <a class="code" href="globals_8h.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            q = <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="globals_8cpp.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>+2);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(q) != 30)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            q-&gt;<a class="code" href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">num</a> = <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="constantes_8cpp.html#a020cf18aa03f370b9b08654d818610af">numerator</a>(<a class="code" href="globals_8h.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>));</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordflow">if</span> (q-&gt;<a class="code" href="classAnyNode.html#a7c6e327aa4efb168ee9cca654ad83ece">type</a> != <a class="code" href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a23f515364f451e6ea71f5b4ed3ee73ce">left_noad</a>)</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                <a class="code" href="erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada">confusion</a>(<span class="stringliteral">&quot;right&quot;</span>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="globals_8cpp.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>+2) = <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(q) = <a class="code" href="globals_8cpp.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="globals_8cpp.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>) = p;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="constantes_8cpp.html#a020cf18aa03f370b9b08654d818610af">numerator</a>(<a class="code" href="globals_8h.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>)) = q-&gt;<a class="code" href="classLinkedNode.html#a358cc3997316f4534240d08aca86d410">link</a>-&gt;<a class="code" href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">num</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            q-&gt;<a class="code" href="classLinkedNode.html#a358cc3997316f4534240d08aca86d410">link</a>-&gt;<a class="code" href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">num</a> = <a class="code" href="globals_8h.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="globals_8h.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>) = p;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        }</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) = p;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        q = <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="globals_8h.html#afa3c03c28a565f057102d45e7fad8e6c">tail</a>-&gt;link-&gt;num = p;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        q = <a class="code" href="globals_8h.html#a87be2395199ed7d315738373369c5463">head</a>-&gt;link;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc">popnest</a>();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">return</span> q;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">return</span> q-&gt;<a class="code" href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">num</a>;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="finmlist_8cpp_af4215f599c5ab41d37100fb19ee858af_cgraph.png" border="0" usemap="#finmlist_8cpp_af4215f599c5ab41d37100fb19ee858af_cgraph" alt=""/></div>
 <map name="finmlist_8cpp_af4215f599c5ab41d37100fb19ee858af_cgraph" id="finmlist_8cpp_af4215f599c5ab41d37100fb19ee858af_cgraph">
-<area shape="rect" title=" " alt="" coords="5,81,69,108"/>
-<area shape="rect" href="erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="117,5,196,32"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="244,81,287,108"/>
-<area shape="rect" href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="123,107,191,133"/>
-<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="133,157,180,184"/>
+<area shape="rect" title=" " alt="" coords="5,107,69,133"/>
+<area shape="rect" href="erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="125,5,203,32"/>
+<area shape="rect" href="constantes_8cpp.html#a71611c1f90a6379e7e1ecc5c27a886d4" title="denominator field in a fraction noad" alt="" coords="117,56,211,83"/>
+<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="143,107,185,133"/>
+<area shape="rect" href="constantes_8cpp.html#a020cf18aa03f370b9b08654d818610af" title="numerator field in a fraction noad" alt="" coords="124,157,204,184"/>
+<area shape="rect" href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="130,208,198,235"/>
 </map>
 </div>
 <div class="dynheader">
@@ -172,15 +173,22 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aglobals_8cpp_html_aa5839c674f8a4ff6fd198113fb1b2d40"><div class="ttname"><a href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a></div><div class="ttdeci">halfword &amp; head</div><div class="ttdoc">header node of current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00083">globals.cpp:83</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00587">constantes.h:587</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a61289b930ea7064c00ed49a27406ba52"><div class="ttname"><a href="globals_8cpp.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a></div><div class="ttdeci">int &amp; incompleat_noad</div><div class="ttdoc">the name of aux in math mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00081">globals.cpp:81</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00084">globals.cpp:84</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a020cf18aa03f370b9b08654d818610af"><div class="ttname"><a href="constantes_8cpp.html#a020cf18aa03f370b9b08654d818610af">numerator</a></div><div class="ttdeci">halfword numerator(halfword p)</div><div class="ttdoc">numerator field in a fraction noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00095">constantes.cpp:95</a></div></div>
+<div class="ttc" id="aglobals_8h_html_afa3c03c28a565f057102d45e7fad8e6c"><div class="ttname"><a href="globals_8h.html#afa3c03c28a565f057102d45e7fad8e6c">tail</a></div><div class="ttdeci">auto &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00296">globals.h:296</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00567">constantes.h:567</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a71611c1f90a6379e7e1ecc5c27a886d4"><div class="ttname"><a href="constantes_8cpp.html#a71611c1f90a6379e7e1ecc5c27a886d4">denominator</a></div><div class="ttdeci">halfword denominator(halfword p)</div><div class="ttdoc">denominator field in a fraction noad</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00096">constantes.cpp:96</a></div></div>
+<div class="ttc" id="aclassLinkedNode_html"><div class="ttname"><a href="classLinkedNode.html">LinkedNode</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00162">globals.h:162</a></div></div>
+<div class="ttc" id="aclassAnyNode_html_a0717a5389aff4c552dd4556b1d5fa667"><div class="ttname"><a href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">AnyNode::num</a></div><div class="ttdeci">halfword num</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00157">globals.h:157</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_acfd168283e0375316338c74b2d61186f"><div class="ttname"><a href="constantes_8h.html#acfd168283e0375316338c74b2d61186f">math_type</a></div><div class="ttdeci">math_type</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00583">constantes.h:583</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_acfd168283e0375316338c74b2d61186fa7c550baf16b009aa63037aa0ad244af4"><div class="ttname"><a href="constantes_8h.html#acfd168283e0375316338c74b2d61186fa7c550baf16b009aa63037aa0ad244af4">sub_mlist</a></div><div class="ttdeci">@ sub_mlist</div><div class="ttdoc">math_type when the attribute is a formula</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00587">constantes.h:587</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a61289b930ea7064c00ed49a27406ba52"><div class="ttname"><a href="globals_8h.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a></div><div class="ttdeci">int &amp; incompleat_noad</div><div class="ttdoc">the name of aux in math mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00300">globals.h:300</a></div></div>
 <div class="ttc" id="aerreur_8cpp_html_ac5ea395839fed78d642282ef1e945ada"><div class="ttname"><a href="erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada">confusion</a></div><div class="ttdeci">void confusion(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00197">erreur.cpp:197</a></div></div>
 <div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a87be2395199ed7d315738373369c5463"><div class="ttname"><a href="globals_8h.html#a87be2395199ed7d315738373369c5463">head</a></div><div class="ttdeci">auto &amp; head</div><div class="ttdoc">header node of current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00295">globals.h:295</a></div></div>
 <div class="ttc" id="apopnest_8cpp_html_a847b0a324f6f62ba4e7f679bd16f10dc"><div class="ttname"><a href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc">popnest</a></div><div class="ttdeci">void popnest(void)</div><div class="ttdef"><b>Definition:</b> <a href="popnest_8cpp_source.html#l00003">popnest.cpp:3</a></div></div>
-<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00044">tex.h:44</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
+<div class="ttc" id="aclassAnyNode_html_a7c6e327aa4efb168ee9cca654ad83ece"><div class="ttname"><a href="classAnyNode.html#a7c6e327aa4efb168ee9cca654ad83ece">AnyNode::type</a></div><div class="ttdeci">quarterword type</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00158">globals.h:158</a></div></div>
+<div class="ttc" id="aclassLinkedNode_html_a358cc3997316f4534240d08aca86d410"><div class="ttname"><a href="classLinkedNode.html#a358cc3997316f4534240d08aca86d410">LinkedNode::link</a></div><div class="ttdeci">LinkedNode * link</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00165">globals.h:165</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a23f515364f451e6ea71f5b4ed3ee73ce"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a23f515364f451e6ea71f5b4ed3ee73ce">left_noad</a></div><div class="ttdeci">@ left_noad</div><div class="ttdoc">type of a noad for \left</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00225">globals.h:225</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

@@ -1,5 +1,6 @@
 <map id="sortavail" name="sortavail">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,76,57"/>
-<area shape="rect" id="node2" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="124,5,192,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="240,31,283,57"/>
+<area shape="rect" id="node1" title="sorts the available variable&#45;size nodes by location" alt="" coords="5,31,76,57"/>
+<area shape="rect" id="node2" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="124,31,192,57"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a1d478b50b817866786b1bc1dc81a08b0" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="241,5,286,32"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="240,68,287,95"/>
 </map>

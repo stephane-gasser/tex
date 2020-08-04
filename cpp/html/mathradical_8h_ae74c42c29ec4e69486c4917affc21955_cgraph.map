@@ -1,5 +1,5 @@
 <map id="mathradical" name="mathradical">
-<area shape="rect" id="node1" title=" " alt="" coords="5,233,95,260"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,208,95,235"/>
 <area shape="rect" id="node2" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="158,5,226,32"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256" title="first delimiter field of a noad" alt="" coords="144,56,240,83"/>
 <area shape="rect" id="node4" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="159,107,225,133"/>
@@ -9,5 +9,4 @@
 <area shape="rect" id="node8" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="158,309,226,336"/>
 <area shape="rect" id="node9" href="$constantes_8cpp.html#a7c168ea5f061757fddf1c55e0ca46911" title="the supscr field of a noad" alt="" coords="161,360,223,387"/>
 <area shape="rect" id="node10" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="148,411,236,437"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="169,461,215,488"/>
 </map>

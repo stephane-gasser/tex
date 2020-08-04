@@ -1,7 +1,5 @@
 <map id="pack_lig" name="pack_lig">
-<area shape="rect" id="node1" title="the parameter is either |rt_hit| or |false|" alt="" coords="5,81,76,108"/>
+<area shape="rect" id="node1" title="the parameter is either |rt_hit| or |false|" alt="" coords="5,31,76,57"/>
 <area shape="rect" id="node2" href="$police_8cpp.html#ac0b7967ad02927d0225000d75b35118e" title=" " alt="" coords="124,5,219,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="150,56,193,83"/>
-<area shape="rect" id="node4" href="$noeud_8cpp.html#a1a2276ecb780325b9754cb9934e421bf" title=" " alt="" coords="127,107,215,133"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="137,157,205,184"/>
+<area shape="rect" id="node3" href="$noeud_8cpp.html#a1a2276ecb780325b9754cb9934e421bf" title=" " alt="" coords="127,56,215,83"/>
 </map>

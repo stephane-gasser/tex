@@ -1,34 +1,30 @@
 <map id="fincol" name="fincol">
-<area shape="rect" id="node1" title=" " alt="" coords="5,765,59,792"/>
-<area shape="rect" id="node2" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="306,1424,385,1451"/>
-<area shape="rect" id="node3" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="156,5,204,32"/>
-<area shape="rect" id="node4" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="324,44,367,71"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#aec4fc83cd999f662fb64c719dffa7b8d" title="info to remember during template" alt="" coords="306,120,385,147"/>
-<area shape="rect" id="node6" href="$erreur_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="143,208,217,235"/>
-<area shape="rect" id="node7" href="$getavail_8cpp.html#a954ade667e3184eb61ed18e925b628c7" title=" " alt="" coords="312,1221,379,1248"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="450,1069,493,1096"/>
-<area shape="rect" id="node9" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="311,917,379,944"/>
-<area shape="rect" id="node10" href="$lecture_8cpp.html#abe20aa0d4fde9e11c8f0830f7671847a" title=" " alt="" coords="107,411,253,437"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#a29957fb6e1765b7267f0323079b8a9a4" title="applicable order of infinity" alt="" coords="304,512,387,539"/>
-<area shape="rect" id="node12" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="437,487,505,513"/>
-<area shape="rect" id="node13" href="$constantes_8cpp.html#afdd839d64f5055eb2e3870458ebe6d39" title="pointer to a glue specification" alt="" coords="311,1019,379,1045"/>
-<area shape="rect" id="node14" href="$constantes_8cpp.html#a541d64f748c1fd959bd0c9a9b0d4e06f" title="total shrink in an unset node" alt="" coords="301,360,389,387"/>
-<area shape="rect" id="node15" href="$constantes_8cpp.html#a05f8e0f2f0457601538099ef8afd013a" title="stretching or shrinking" alt="" coords="307,664,384,691"/>
-<area shape="rect" id="node16" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="448,588,495,615"/>
-<area shape="rect" id="node17" href="$constantes_8cpp.html#ac3d11fd6581239a8bce32f06696b4085" title="total stretch in an unset node" alt="" coords="133,765,227,792"/>
-<area shape="rect" id="node18" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="317,715,374,741"/>
-<area shape="rect" id="node19" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="151,563,209,589"/>
-<area shape="rect" id="node20" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="319,867,372,893"/>
-<area shape="rect" id="node21" href="$initcol_8cpp.html#a41d2394c556d0d0c5d9d045c55e2ad53" title=" " alt="" coords="152,157,208,184"/>
-<area shape="rect" id="node22" href="$constantes_8cpp.html#aaf20e812e87e3a5c9570bdd9459891ae" title="pointer to &#160;token list" alt="" coords="316,221,375,248"/>
-<area shape="rect" id="node23" href="$initspan_8cpp.html#a1c347985717caccf5068d06b952b2a47" title=" " alt="" coords="147,1069,213,1096"/>
-<area shape="rect" id="node24" href="$noeud_8cpp.html#a42d1502b38c0f25378f1d603fa359f72" title=" " alt="" coords="145,1120,215,1147"/>
-<area shape="rect" id="node25" href="$noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="137,1171,223,1197"/>
-<area shape="rect" id="node26" href="$noeud_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="129,1221,231,1248"/>
-<area shape="rect" id="node27" href="$popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="311,1069,379,1096"/>
-<area shape="rect" id="node28" href="$constantes_8cpp.html#ad60115bfe4ec34d9de22730b30a0a1b0" title="indicates the number of spanned columns" alt="" coords="135,1323,225,1349"/>
-<area shape="rect" id="node29" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="301,1120,389,1147"/>
-<area shape="rect" id="node30" href="$unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="148,1525,212,1552"/>
-<area shape="rect" id="node31" href="$constantes_8cpp.html#af09afca5b50a4e405dcf3d71f3f3a184" title="pointer to &#160;token list" alt="" coords="151,1475,209,1501"/>
-<area shape="rect" id="node32" href="$vpackage_8cpp.html#a67d4c487177aa349f7595ddb33aa9534" title=" " alt="" coords="141,715,219,741"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,715,59,741"/>
+<area shape="rect" id="node2" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="306,56,385,83"/>
+<area shape="rect" id="node3" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="156,664,204,691"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="324,715,367,741"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#aec4fc83cd999f662fb64c719dffa7b8d" title="info to remember during template" alt="" coords="306,765,385,792"/>
+<area shape="rect" id="node6" href="$erreur_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b" title=" " alt="" coords="143,917,217,944"/>
+<area shape="rect" id="node7" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="311,157,379,184"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="439,183,482,209"/>
+<area shape="rect" id="node9" href="$lecture_8cpp.html#abe20aa0d4fde9e11c8f0830f7671847a" title=" " alt="" coords="107,968,253,995"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#a29957fb6e1765b7267f0323079b8a9a4" title="applicable order of infinity" alt="" coords="304,309,387,336"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#a541d64f748c1fd959bd0c9a9b0d4e06f" title="total shrink in an unset node" alt="" coords="301,613,389,640"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#a05f8e0f2f0457601538099ef8afd013a" title="stretching or shrinking" alt="" coords="307,563,384,589"/>
+<area shape="rect" id="node13" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="437,537,484,564"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#ac3d11fd6581239a8bce32f06696b4085" title="total stretch in an unset node" alt="" coords="133,1019,227,1045"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="317,360,374,387"/>
+<area shape="rect" id="node16" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="151,461,209,488"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="319,411,372,437"/>
+<area shape="rect" id="node18" href="$initcol_8cpp.html#a41d2394c556d0d0c5d9d045c55e2ad53" title=" " alt="" coords="152,816,208,843"/>
+<area shape="rect" id="node19" href="$constantes_8cpp.html#aaf20e812e87e3a5c9570bdd9459891ae" title="pointer to &#160;token list" alt="" coords="316,841,375,868"/>
+<area shape="rect" id="node20" href="$initspan_8cpp.html#a1c347985717caccf5068d06b952b2a47" title=" " alt="" coords="147,1069,213,1096"/>
+<area shape="rect" id="node21" href="$noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="137,1120,223,1147"/>
+<area shape="rect" id="node22" href="$noeud_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="129,1171,231,1197"/>
+<area shape="rect" id="node23" href="$popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="146,1221,214,1248"/>
+<area shape="rect" id="node24" href="$constantes_8cpp.html#ad60115bfe4ec34d9de22730b30a0a1b0" title="indicates the number of spanned columns" alt="" coords="135,1272,225,1299"/>
+<area shape="rect" id="node25" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="136,1323,224,1349"/>
+<area shape="rect" id="node26" href="$unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="148,5,212,32"/>
+<area shape="rect" id="node27" href="$constantes_8cpp.html#af09afca5b50a4e405dcf3d71f3f3a184" title="pointer to &#160;token list" alt="" coords="151,1373,209,1400"/>
+<area shape="rect" id="node28" href="$vpackage_8cpp.html#a67d4c487177aa349f7595ddb33aa9534" title=" " alt="" coords="141,259,219,285"/>
 </map>

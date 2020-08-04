@@ -166,7 +166,7 @@ void finalign(halfword &loop)
 							if (glue_sign(p->num) == shrinking && V->shrink_order == glue_order(p->num))
 								t -= round(glue_set(p->num)*V->shrink);
 						s = s->link;
-						u->link->num = newnullbox();
+						u->link = new BoxNode;
 						u = u->link;
 						t += width(s->num);
 						if (mode == -vmode)
@@ -295,12 +295,12 @@ void finalign(halfword &loop)
 				backerror(tk, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
 		popnest();
-		tail_append(newpenalty(pre_display_penalty()));
+		tail_append(new PenaltyNode(pre_display_penalty()));
 		tail_append(new GlueNode(above_display_skip_code));
 		tail->link = p;
 		if (p)
 			tail = q;
-		tail_append(newpenalty(post_display_penalty()));
+		tail_append(new PenaltyNode(post_display_penalty()));
 		tail_append(new GlueNode(below_display_skip_code));
 		aux = auxsave;
 		resumeafterdisplay(tk);

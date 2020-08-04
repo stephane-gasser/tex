@@ -1,49 +1,51 @@
 <map id="error" name="error">
-<area shape="rect" id="node1" title=" " alt="" coords="1151,1184,1199,1211"/>
+<area shape="rect" id="node1" title=" " alt="" coords="1151,1336,1199,1363"/>
 <area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="867,44,945,71"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a07452457cef4e38d7b5e617473cb2dcf" title=" " alt="" coords="5,1767,95,1793"/>
-<area shape="rect" id="node4" href="$erreur_8h.html#afdd8a3016379ef19d8801474309a0993" title="Back up one token and call error." alt="" coords="1022,449,1098,476"/>
-<area shape="rect" id="node5" href="$conditional_8h.html#af06c6a5f754b740b4e414ab6fd713b34" title=" " alt="" coords="523,728,607,755"/>
-<area shape="rect" id="node6" href="$initalign_8h.html#ae5436ada4a7d8caedde979626059113a" title=" " alt="" coords="873,95,939,121"/>
-<area shape="rect" id="node7" href="$macrocall_8h.html#ad5520fcbd165ce5f2e863199df9c14b3" title=" " alt="" coords="867,703,945,729"/>
-<area shape="rect" id="node8" href="$prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="145,373,271,400"/>
-<area shape="rect" id="node9" href="$lecture_8h.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="874,500,938,527"/>
-<area shape="rect" id="node10" href="$doregistercommand_8h.html#a0e5f002692416d323271f288f343fc9e" title=" " alt="" coords="322,411,458,437"/>
-<area shape="rect" id="node11" href="$noeud_8h.html#a55499cc477d95c4c351b76b513273a75" title=" " alt="" coords="699,348,767,375"/>
-<area shape="rect" id="node12" href="$lecture_8h.html#adefa9e2e73b623f6a19242a1b365ddf0" title=" " alt="" coords="691,601,776,628"/>
-<area shape="rect" id="node13" href="$lecture_8h.html#a8d0725a7a3aa2859106e2c77c6ed6567" title=" " alt="" coords="528,500,603,527"/>
-<area shape="rect" id="node14" href="$beginbox_8h.html#a5d2232e425baeebf8283ae33b954f08b" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="696,1665,771,1692"/>
-<area shape="rect" id="node15" href="$begininsertoradjust_8h.html#a0397aefaf4c8edc7a44aae63e8092729" title=" " alt="" coords="143,968,273,995"/>
-<area shape="rect" id="node16" href="$erreur_8h.html#a720a9ce186456b42385f307b1b854384" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="1025,1108,1095,1135"/>
-<area shape="rect" id="node17" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="879,1057,933,1084"/>
-<area shape="rect" id="node18" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="695,1057,772,1084"/>
-<area shape="rect" id="node19" href="$handlerightbrace_8h.html#a6c7743f430eb9379c2e5db3eddacae10" title=" " alt="" coords="507,1159,624,1185"/>
-<area shape="rect" id="node20" href="$builddiscretionary_8h.html#a50a018e2c9932a40bcbfd39ab987d22c" title=" " alt="" coords="672,1285,795,1312"/>
-<area shape="rect" id="node21" href="$getnext_8cpp.html#aa0038e1b6e34116cdee777ae4be03554" title=" " alt="" coords="843,804,969,831"/>
-<area shape="rect" id="node22" href="$getnext_8h.html#a9e036f0ff44e818c889dfad5e8734eae" title=" " alt="" coords="701,804,766,831"/>
-<area shape="rect" id="node23" href="$deletelast_8h.html#afd195bc9dfc56563619558a8486c1026" title=" " alt="" coords="169,1716,247,1743"/>
-<area shape="rect" id="node24" href="$extrarightbrace_8h.html#a55bb7dd2ab5dc63f37ba9b7233fea3e3" title=" " alt="" coords="679,1488,787,1515"/>
-<area shape="rect" id="node25" href="$erreur_8h.html#ad1091e83aeb17dc7dbf8efd0c8f5589a" title=" " alt="" coords="1037,1209,1083,1236"/>
-<area shape="rect" id="node26" href="$fetch_8h.html#aee1d069ba584076de270d547f3ddfc71" title=" " alt="" coords="1035,1260,1085,1287"/>
-<area shape="rect" id="node27" href="$fincol_8h.html#ac49c9c100529a1aa1f3c13a583cde844" title=" " alt="" coords="1033,1311,1087,1337"/>
-<area shape="rect" id="node28" href="$finiteshrink_8h.html#a44e34bae9b7e036aec3f59c776c36c1c" title=" " alt="" coords="1017,1361,1103,1388"/>
-<area shape="rect" id="node29" href="$headforvmode_8h.html#aaf41c00d9238599e20b07116c28a7a7e" title=" " alt="" coords="854,1919,958,1945"/>
-<area shape="rect" id="node30" href="$erreur_8h.html#ac6d124019b64b6127e40eaffcf203772" title=" " alt="" coords="1027,855,1093,881"/>
-<area shape="rect" id="node31" href="$erreur_8h.html#a9c34b3a6acb347ba2776e928c8ca44bb" title=" " alt="" coords="1029,1513,1091,1540"/>
-<area shape="rect" id="node32" href="$issuemessage_8h.html#a7bdb13b5d820035a0959f55c61782777" title=" " alt="" coords="512,1767,619,1793"/>
-<area shape="rect" id="node33" href="$mathac_8h.html#af402080aef2ef90e17e7e16d0b66b218" title=" " alt="" coords="357,1817,423,1844"/>
-<area shape="rect" id="node34" href="$mathfraction_8h.html#a3c8f862dade1570bfb325004e7f9bfc5" title=" " alt="" coords="161,1868,255,1895"/>
-<area shape="rect" id="node35" href="$mathleftright_8h.html#a1e6c4856691215c5d125a2c0625b855b" title=" " alt="" coords="859,2020,953,2047"/>
-<area shape="rect" id="node36" href="$mathlimitswitch_8h.html#aea6316fe4ff491ea3f83ad8124499c43" title=" " alt="" coords="509,2071,622,2097"/>
-<area shape="rect" id="node37" href="$noeud_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="321,145,459,172"/>
-<area shape="rect" id="node38" href="$cesure_8h.html#af3221e6f99f98209e26c1279926a7a37" title=" " alt="" coords="343,247,437,273"/>
-<area shape="rect" id="node39" href="$offsave_8h.html#a42fa661419e3e9de8d6579fc8a906292" title=" " alt="" coords="1027,1969,1093,1996"/>
-<area shape="rect" id="node40" href="$erreur_8h.html#a1c5fcdb98711ac4c5421e750193f3f63" title=" " alt="" coords="332,2121,448,2148"/>
-<area shape="rect" id="node41" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="1028,1057,1092,1084"/>
-<area shape="rect" id="node42" href="$impression_8h.html#aa9b445abac2f3d8c73fcb21352eb68e8" title=" " alt="" coords="155,2172,261,2199"/>
-<area shape="rect" id="node43" href="$subsup_8h.html#a87cbd92361e60e63d4c3a5aebda417e0" title=" " alt="" coords="533,2223,597,2249"/>
-<area shape="rect" id="node44" href="$unpackage_8h.html#a07d4079611ef78decceb4266d53c2595" title=" " alt="" coords="347,2273,433,2300"/>
-<area shape="rect" id="node45" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="1022,1463,1098,1489"/>
-<area shape="rect" id="node46" href="$vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="879,1615,933,1641"/>
-<area shape="rect" id="node47" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="1026,2324,1094,2351"/>
+<area shape="rect" id="node3" href="$maincontrol_8h.html#a07452457cef4e38d7b5e617473cb2dcf" title=" " alt="" coords="5,1969,95,1996"/>
+<area shape="rect" id="node4" href="$erreur_8h.html#afdd8a3016379ef19d8801474309a0993" title="Back up one token and call error." alt="" coords="1022,272,1098,299"/>
+<area shape="rect" id="node5" href="$conditional_8h.html#af06c6a5f754b740b4e414ab6fd713b34" title=" " alt="" coords="523,449,607,476"/>
+<area shape="rect" id="node6" href="$expand_8h.html#a6c77eceb3e53fd876d329ec10048f5da" title=" " alt="" coords="358,323,422,349"/>
+<area shape="rect" id="node7" href="$initalign_8h.html#ae5436ada4a7d8caedde979626059113a" title=" " alt="" coords="873,95,939,121"/>
+<area shape="rect" id="node8" href="$macrocall_8h.html#ad5520fcbd165ce5f2e863199df9c14b3" title=" " alt="" coords="867,348,945,375"/>
+<area shape="rect" id="node9" href="$prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="145,753,271,780"/>
+<area shape="rect" id="node10" href="$lecture_8h.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="874,703,938,729"/>
+<area shape="rect" id="node11" href="$doregistercommand_8h.html#a0e5f002692416d323271f288f343fc9e" title=" " alt="" coords="322,855,458,881"/>
+<area shape="rect" id="node12" href="$police_8h.html#a2d5c68a412768a9eb384c13d641b68f6" title=" " alt="" coords="683,551,783,577"/>
+<area shape="rect" id="node13" href="$noeud_8h.html#a55499cc477d95c4c351b76b513273a75" title=" " alt="" coords="699,703,767,729"/>
+<area shape="rect" id="node14" href="$lecture_8h.html#adefa9e2e73b623f6a19242a1b365ddf0" title=" " alt="" coords="691,753,776,780"/>
+<area shape="rect" id="node15" href="$lecture_8h.html#a8d0725a7a3aa2859106e2c77c6ed6567" title=" " alt="" coords="528,804,603,831"/>
+<area shape="rect" id="node16" href="$beginbox_8h.html#a5d2232e425baeebf8283ae33b954f08b" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="696,1919,771,1945"/>
+<area shape="rect" id="node17" href="$begininsertoradjust_8h.html#a0397aefaf4c8edc7a44aae63e8092729" title=" " alt="" coords="143,1209,273,1236"/>
+<area shape="rect" id="node18" href="$erreur_8h.html#a720a9ce186456b42385f307b1b854384" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="1025,1260,1095,1287"/>
+<area shape="rect" id="node19" href="$fireup_8h.html#ade38ae51e1786b80735353c508effd8d" title=" " alt="" coords="879,1209,933,1236"/>
+<area shape="rect" id="node20" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="695,1311,772,1337"/>
+<area shape="rect" id="node21" href="$handlerightbrace_8h.html#a6c7743f430eb9379c2e5db3eddacae10" title=" " alt="" coords="507,1361,624,1388"/>
+<area shape="rect" id="node22" href="$builddiscretionary_8h.html#a50a018e2c9932a40bcbfd39ab987d22c" title=" " alt="" coords="672,1513,795,1540"/>
+<area shape="rect" id="node23" href="$getnext_8cpp.html#aa0038e1b6e34116cdee777ae4be03554" title=" " alt="" coords="843,500,969,527"/>
+<area shape="rect" id="node24" href="$getnext_8h.html#a9e036f0ff44e818c889dfad5e8734eae" title=" " alt="" coords="701,449,766,476"/>
+<area shape="rect" id="node25" href="$deletelast_8h.html#afd195bc9dfc56563619558a8486c1026" title=" " alt="" coords="169,1843,247,1869"/>
+<area shape="rect" id="node26" href="$extrarightbrace_8h.html#a55bb7dd2ab5dc63f37ba9b7233fea3e3" title=" " alt="" coords="679,1716,787,1743"/>
+<area shape="rect" id="node27" href="$erreur_8h.html#ad1091e83aeb17dc7dbf8efd0c8f5589a" title=" " alt="" coords="1037,1412,1083,1439"/>
+<area shape="rect" id="node28" href="$fetch_8h.html#a4795c1d8d98f04d29451b91aa956b95c" title=" " alt="" coords="1035,1463,1085,1489"/>
+<area shape="rect" id="node29" href="$fincol_8h.html#ac49c9c100529a1aa1f3c13a583cde844" title=" " alt="" coords="1033,1513,1087,1540"/>
+<area shape="rect" id="node30" href="$linebreak_8cpp.html#a9331a0e0787317b59dd9f334144b7cee" title=" " alt="" coords="1017,1564,1103,1591"/>
+<area shape="rect" id="node31" href="$headforvmode_8h.html#aaf41c00d9238599e20b07116c28a7a7e" title=" " alt="" coords="854,2020,958,2047"/>
+<area shape="rect" id="node32" href="$erreur_8h.html#ac6d124019b64b6127e40eaffcf203772" title=" " alt="" coords="1027,601,1093,628"/>
+<area shape="rect" id="node33" href="$erreur_8h.html#a9c34b3a6acb347ba2776e928c8ca44bb" title=" " alt="" coords="1029,1716,1091,1743"/>
+<area shape="rect" id="node34" href="$issuemessage_8h.html#a7bdb13b5d820035a0959f55c61782777" title=" " alt="" coords="337,1969,443,1996"/>
+<area shape="rect" id="node35" href="$mathac_8h.html#af402080aef2ef90e17e7e16d0b66b218" title=" " alt="" coords="175,2071,241,2097"/>
+<area shape="rect" id="node36" href="$mathfraction_8h.html#a3c8f862dade1570bfb325004e7f9bfc5" title=" " alt="" coords="518,2121,613,2148"/>
+<area shape="rect" id="node37" href="$mathleftright_8h.html#a1e6c4856691215c5d125a2c0625b855b" title=" " alt="" coords="859,2223,953,2249"/>
+<area shape="rect" id="node38" href="$mathlimitswitch_8h.html#aea6316fe4ff491ea3f83ad8124499c43" title=" " alt="" coords="333,2273,447,2300"/>
+<area shape="rect" id="node39" href="$noeud_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="321,1032,459,1059"/>
+<area shape="rect" id="node40" href="$cesure_8h.html#af3221e6f99f98209e26c1279926a7a37" title=" " alt="" coords="519,145,612,172"/>
+<area shape="rect" id="node41" href="$offsave_8h.html#a42fa661419e3e9de8d6579fc8a906292" title=" " alt="" coords="1027,2172,1093,2199"/>
+<area shape="rect" id="node42" href="$erreur_8h.html#a1c5fcdb98711ac4c5421e750193f3f63" title=" " alt="" coords="150,2324,266,2351"/>
+<area shape="rect" id="node43" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="1028,1159,1092,1185"/>
+<area shape="rect" id="node44" href="$impression_8h.html#aa9b445abac2f3d8c73fcb21352eb68e8" title=" " alt="" coords="512,2375,619,2401"/>
+<area shape="rect" id="node45" href="$subsup_8h.html#a87cbd92361e60e63d4c3a5aebda417e0" title=" " alt="" coords="358,2425,422,2452"/>
+<area shape="rect" id="node46" href="$unpackage_8h.html#a07d4079611ef78decceb4266d53c2595" title=" " alt="" coords="165,2476,251,2503"/>
+<area shape="rect" id="node47" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="1022,1665,1098,1692"/>
+<area shape="rect" id="node48" href="$vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="879,1868,933,1895"/>
+<area shape="rect" id="node49" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="1026,2527,1094,2553"/>
 </map>

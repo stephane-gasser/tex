@@ -1,7 +1,6 @@
 <map id="shiftcase" name="shiftcase">
-<area shape="rect" id="node1" title=" " alt="" coords="5,81,80,108"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,80,83"/>
 <area shape="rect" id="node2" href="$lecture_8cpp.html#aa4f2c84d586bb3fdf92a2ea0fe7f6349" title="backs up a simple token list" alt="" coords="128,5,203,32"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="139,56,192,83"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="144,107,187,133"/>
-<area shape="rect" id="node5" href="$lecture_8cpp.html#ad36faf6ff80348cd2aa487cdd13cae7c" title=" " alt="" coords="128,157,203,184"/>
+<area shape="rect" id="node4" href="$lecture_8cpp.html#a84a72a97ca02ae52bd49c6e1396cec47" title=" " alt="" coords="128,107,203,133"/>
 </map>

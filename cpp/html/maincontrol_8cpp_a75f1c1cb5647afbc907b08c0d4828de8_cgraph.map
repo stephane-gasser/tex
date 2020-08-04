@@ -1,9 +1,8 @@
 <map id="main_loop_move_2" name="main_loop_move_2">
-<area shape="rect" id="node1" title=" " alt="" coords="5,132,140,159"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,140,133"/>
 <area shape="rect" id="node2" href="$police_8cpp.html#ab6c4faf0c701bd19f346dd0fb23494fb" title=" " alt="" coords="217,5,306,32"/>
 <area shape="rect" id="node3" href="$charwarning_8cpp.html#a9cccb75e207cc62192f9a8aa2b29e727" title=" " alt="" coords="215,56,307,83"/>
-<area shape="rect" id="node4" href="$police_8cpp.html#a1fe5eebc7eb782b4144dfe036ed70bb9" title=" " alt="" coords="227,107,296,133"/>
-<area shape="rect" id="node5" href="$getavail_8cpp.html#a57e5861075197f4fe65695ad0b9d4fbb" title="single&#45;word node liberation" alt="" coords="222,157,301,184"/>
-<area shape="rect" id="node6" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="188,208,335,235"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="217,259,305,285"/>
+<area shape="rect" id="node4" href="$police_8cpp.html#a1fe5eebc7eb782b4144dfe036ed70bb9" title=" " alt="" coords="383,132,452,159"/>
+<area shape="rect" id="node5" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="188,157,335,184"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="217,208,305,235"/>
 </map>

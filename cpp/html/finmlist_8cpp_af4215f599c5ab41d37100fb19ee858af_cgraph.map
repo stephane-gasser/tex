@@ -1,7 +1,8 @@
 <map id="finmlist" name="finmlist">
-<area shape="rect" id="node1" title=" " alt="" coords="5,81,69,108"/>
-<area shape="rect" id="node2" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="117,5,196,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="244,81,287,108"/>
-<area shape="rect" id="node4" href="$popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="123,107,191,133"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="133,157,180,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,69,133"/>
+<area shape="rect" id="node2" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="125,5,203,32"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a71611c1f90a6379e7e1ecc5c27a886d4" title="denominator field in a fraction noad" alt="" coords="117,56,211,83"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="143,107,185,133"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a020cf18aa03f370b9b08654d818610af" title="numerator field in a fraction noad" alt="" coords="124,157,204,184"/>
+<area shape="rect" id="node6" href="$popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="130,208,198,235"/>
 </map>

@@ -1,8 +1,6 @@
 <map id="kern_break" name="kern_break">
-<area shape="rect" id="node1" title=" " alt="" coords="5,107,92,133"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#aa0355678d828c2e2f836409b82366625" title=" " alt="" coords="140,5,239,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="292,69,335,96"/>
-<area shape="rect" id="node4" href="$trybreak_8cpp.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="155,157,224,184"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="290,132,337,159"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="287,195,340,221"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,92,83"/>
+<area shape="rect" id="node2" href="$classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347" title=" " alt="" coords="140,5,301,32"/>
+<area shape="rect" id="node3" href="$trybreak_8cpp.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="186,56,255,83"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="349,81,403,108"/>
 </map>

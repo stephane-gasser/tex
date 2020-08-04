@@ -1,19 +1,18 @@
 <map id="loadfmtfile" name="loadfmtfile">
-<area shape="rect" id="node1" title=" " alt="" coords="5,370,88,397"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,345,88,372"/>
 <area shape="rect" id="node2" href="$loadfmtfile_8cpp.html#ab7eaa77d62aa84ad388a37b25d793c95" title=" " alt="" coords="329,41,421,68"/>
-<area shape="rect" id="node3" href="$police_8h.html#a78d525eb2bc4654ae0528e0a6a83d17b" title=" " alt="" coords="173,193,239,220"/>
-<area shape="rect" id="node4" href="$police_8h.html#a424ff50928214e91519fabeeb26962fe" title=" " alt="" coords="181,244,231,270"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="354,320,397,346"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a1d478b50b817866786b1bc1dc81a08b0" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="183,396,229,422"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a32cfafb65118c24464dc5287104ff994" title="the size field in empty variable&#45;size nodes" alt="" coords="165,446,247,473"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="183,345,229,372"/>
-<area shape="rect" id="node9" href="$cesure_8h.html#a6d839112ab4724d97a90ce378a5e527e" title=" " alt="" coords="186,497,226,524"/>
-<area shape="rect" id="node10" href="$cesure_8h.html#ad439adcfa9eafe7cd6ed2a4cde107ac7" title=" " alt="" coords="177,548,235,574"/>
-<area shape="rect" id="node11" href="$loadfmtfile_8cpp.html#a658cbbe3ce0046e4906c0275703a25ce" title=" " alt="" coords="172,41,240,68"/>
-<area shape="rect" id="node12" href="$loadfmtfile_8cpp.html#a532fcd3ad757838442c4f7ba1a6f50f7" title=" " alt="" coords="331,92,420,118"/>
-<area shape="rect" id="node13" href="$loadfmtfile_8cpp.html#a78ba94bbc60f42a3951ee8da85b185ae" title=" " alt="" coords="136,649,276,676"/>
-<area shape="rect" id="node14" href="$loadfmtfile_8cpp.html#a94d42be323d632a5bb66611d48466bca" title=" " alt="" coords="324,624,427,650"/>
-<area shape="rect" id="node15" href="$loadfmtfile_8cpp.html#a31b6f74be098cb00f6498522429945e4" title=" " alt="" coords="161,700,251,726"/>
-<area shape="rect" id="node16" href="$loadfmtfile_8cpp.html#a5df143d7dd884d7c9d59b4e5806fb1da" title=" " alt="" coords="157,92,255,118"/>
-<area shape="rect" id="node17" href="$loadfmtfile_8cpp.html#a8a02cb64d6405797b245372478382dc3" title=" " alt="" coords="160,750,252,777"/>
+<area shape="rect" id="node3" href="$police_8h.html#a424ff50928214e91519fabeeb26962fe" title=" " alt="" coords="181,193,231,220"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="354,269,397,296"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a1d478b50b817866786b1bc1dc81a08b0" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="183,345,229,372"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a32cfafb65118c24464dc5287104ff994" title="the size field in empty variable&#45;size nodes" alt="" coords="165,396,247,422"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a0ff16d87a8a4c3f267ad883394ffda67" title="right link in doubly&#45;linked list of empty nodes" alt="" coords="183,244,229,270"/>
+<area shape="rect" id="node8" href="$cesure_8h.html#a6d839112ab4724d97a90ce378a5e527e" title=" " alt="" coords="186,446,226,473"/>
+<area shape="rect" id="node9" href="$cesure_8h.html#ad439adcfa9eafe7cd6ed2a4cde107ac7" title=" " alt="" coords="177,497,235,524"/>
+<area shape="rect" id="node10" href="$loadfmtfile_8cpp.html#a658cbbe3ce0046e4906c0275703a25ce" title=" " alt="" coords="172,92,240,118"/>
+<area shape="rect" id="node11" href="$loadfmtfile_8cpp.html#a532fcd3ad757838442c4f7ba1a6f50f7" title=" " alt="" coords="331,92,420,118"/>
+<area shape="rect" id="node12" href="$loadfmtfile_8cpp.html#a78ba94bbc60f42a3951ee8da85b185ae" title=" " alt="" coords="136,548,276,574"/>
+<area shape="rect" id="node13" href="$loadfmtfile_8cpp.html#a94d42be323d632a5bb66611d48466bca" title=" " alt="" coords="324,573,427,600"/>
+<area shape="rect" id="node14" href="$loadfmtfile_8cpp.html#a31b6f74be098cb00f6498522429945e4" title=" " alt="" coords="161,649,251,676"/>
+<area shape="rect" id="node15" href="$loadfmtfile_8cpp.html#a5df143d7dd884d7c9d59b4e5806fb1da" title=" " alt="" coords="157,41,255,68"/>
+<area shape="rect" id="node16" href="$loadfmtfile_8cpp.html#a8a02cb64d6405797b245372478382dc3" title=" " alt="" coords="160,700,252,726"/>
 </map>

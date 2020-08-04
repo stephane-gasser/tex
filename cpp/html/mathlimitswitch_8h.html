@@ -125,8 +125,8 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="mathlimitswitch_8cpp_source.html#l00006">6</a> du fichier <a class="el" href="mathlimitswitch_8cpp_source.html">mathlimitswitch.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a> != <a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a> &amp;&amp; <a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) == <a class="code" href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a728b33856663972f27ca0021405a521d">op_noad</a>)</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(<a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a>) = t.chr;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#a87be2395199ed7d315738373369c5463">head</a> != <a class="code" href="globals_8h.html#afa3c03c28a565f057102d45e7fad8e6c">tail</a> &amp;&amp; <a class="code" href="globals_8h.html#afa3c03c28a565f057102d45e7fad8e6c">tail</a>-&gt;type == <a class="code" href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a728b33856663972f27ca0021405a521d">op_noad</a>)</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(<a class="code" href="globals_8h.html#afa3c03c28a565f057102d45e7fad8e6c">tail</a>-&gt;num) = t.chr;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<span class="stringliteral">&quot;Limit controls must follow a math operator&quot;</span>, <span class="stringliteral">&quot;I&#39;m ignoring this misplaced \\limits or \\nolimits command.&quot;</span>);</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
@@ -135,10 +135,9 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="mathlimitswitch_8h_aea6316fe4ff491ea3f83ad8124499c43_cgraph.png" border="0" usemap="#mathlimitswitch_8h_aea6316fe4ff491ea3f83ad8124499c43_cgraph" alt=""/></div>
 <map name="mathlimitswitch_8h_aea6316fe4ff491ea3f83ad8124499c43_cgraph" id="mathlimitswitch_8h_aea6316fe4ff491ea3f83ad8124499c43_cgraph">
-<area shape="rect" title=" " alt="" coords="5,56,119,83"/>
+<area shape="rect" title=" " alt="" coords="5,31,119,57"/>
 <area shape="rect" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="177,5,225,32"/>
 <area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="167,56,235,83"/>
-<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="177,107,224,133"/>
 </map>
 </div>
 <div class="dynheader">
@@ -154,12 +153,11 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aglobals_8cpp_html_aa5839c674f8a4ff6fd198113fb1b2d40"><div class="ttname"><a href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a></div><div class="ttdeci">halfword &amp; head</div><div class="ttdoc">header node of current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00083">globals.cpp:83</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00084">globals.cpp:84</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_abc6126af1d45847bc59afa0aa3216b04a728b33856663972f27ca0021405a521d"><div class="ttname"><a href="constantes_8h.html#abc6126af1d45847bc59afa0aa3216b04a728b33856663972f27ca0021405a521d">op_noad</a></div><div class="ttdeci">@ op_noad</div><div class="ttdoc">type of a noad classified Op</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00103">constantes.h:103</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00016">constantes.cpp:16</a></div></div>
+<div class="ttc" id="aglobals_8h_html_afa3c03c28a565f057102d45e7fad8e6c"><div class="ttname"><a href="globals_8h.html#afa3c03c28a565f057102d45e7fad8e6c">tail</a></div><div class="ttdeci">auto &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00296">globals.h:296</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a87be2395199ed7d315738373369c5463"><div class="ttname"><a href="globals_8h.html#a87be2395199ed7d315738373369c5463">head</a></div><div class="ttdeci">auto &amp; head</div><div class="ttdoc">header node of current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00295">globals.h:295</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00015">constantes.cpp:15</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a728b33856663972f27ca0021405a521d"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a728b33856663972f27ca0021405a521d">op_noad</a></div><div class="ttdeci">@ op_noad</div><div class="ttdoc">type of a noad classified Op</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00212">globals.h:212</a></div></div>
 <div class="ttc" id="aerreur_8cpp_html_ac7643d2431e40f0ac7a89ec84f1bda70"><div class="ttname"><a href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a></div><div class="ttdeci">void error(const std::string &amp;msg, const std::string &amp;hlp, bool deletionsallowed)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00014">erreur.cpp:14</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00011">constantes.cpp:11</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

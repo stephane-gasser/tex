@@ -1,12 +1,7 @@
 <map id="rem_byte" name="rem_byte">
-<area shape="rect" id="node1" title=" " alt="" coords="348,208,424,235"/>
-<area shape="rect" id="node2" href="$classFont.html#a52362afa44bf263d8a61b4e4b55b3bdf" title=" " alt="" coords="171,5,284,32"/>
-<area shape="rect" id="node3" href="$classFont.html#ad6c44ab47e2af47c1d66c5fb721f4915" title=" " alt="" coords="155,56,300,83"/>
-<area shape="rect" id="node4" href="$maincontrol_8cpp.html#a6e45a273f9cba9e3532fb656a3ee295c" title=" " alt="" coords="5,107,107,133"/>
-<area shape="rect" id="node5" href="$classFont.html#a14162f7ec01f8942285362b19f64a898" title="beginning of lig/kern program" alt="" coords="160,157,295,184"/>
-<area shape="rect" id="node6" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="166,208,289,235"/>
-<area shape="rect" id="node7" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="193,259,261,285"/>
-<area shape="rect" id="node8" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="191,309,263,336"/>
-<area shape="rect" id="node9" href="$reconstitute_8h.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="182,360,273,387"/>
-<area shape="rect" id="node10" href="$vardelimiter_8h.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="183,411,272,437"/>
+<area shape="rect" id="node1" title=" " alt="" coords="176,81,252,108"/>
+<area shape="rect" id="node2" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="5,5,128,32"/>
+<area shape="rect" id="node3" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="33,56,101,83"/>
+<area shape="rect" id="node4" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="31,107,103,133"/>
+<area shape="rect" id="node5" href="$vardelimiter_8h.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="22,157,111,184"/>
 </map>

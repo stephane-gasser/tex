@@ -54,7 +54,7 @@ void linebreak(int finalwidowpenalty)
 	packbeginline = mode_line;
 	temp_head->link = head->link;
 	if (tail->is_char_node() || tail->type != glue_node)
-		tail_append(newpenalty(inf_penalty));
+		tail_append(new PenaltyNode(inf_penalty));
 	else 
 	{
 		auto Tail = dynamic_cast<GlueNode*>(tail);
@@ -62,7 +62,7 @@ void linebreak(int finalwidowpenalty)
 		flushnodelist(Tail->leader_ptr);
 		// delete tail ?
 		tail->type = penalty_node;
-		penalty(tail->num) = inf_penalty;
+		dynamic_cast<PenaltyNode*>(tail)->penalty = inf_penalty;
 	}
 	tail->link = new GlueNode(par_fill_skip_code);
 	initcurlang = prev_graf%(1<<16);
@@ -477,7 +477,7 @@ void linebreak(int finalwidowpenalty)
 					kern_break(autobreaking);
 					break;
 				case penalty_node: 
-					trybreak(penalty(curp->num), unhyphenated);
+					trybreak(dynamic_cast<PenaltyNode*>(curp)->penalty, unhyphenated);
 					break;
 				case mark_node:
 				case ins_node:

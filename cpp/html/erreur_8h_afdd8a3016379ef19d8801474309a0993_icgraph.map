@@ -1,15 +1,15 @@
 <map id="backerror" name="backerror">
-<area shape="rect" id="node1" title="Back up one token and call error." alt="" coords="473,308,549,335"/>
+<area shape="rect" id="node1" title="Back up one token and call error." alt="" coords="473,284,549,311"/>
 <area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="337,5,415,32"/>
-<area shape="rect" id="node3" href="$boxend_8h.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="344,56,408,83"/>
-<area shape="rect" id="node4" href="$lecture_8h.html#aa55fd6127abdd3158956b73f47b47105" title=" " alt="" coords="193,107,264,133"/>
-<area shape="rect" id="node5" href="$prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="5,347,131,373"/>
-<area shape="rect" id="node6" href="$conditional_8h.html#af06c6a5f754b740b4e414ab6fd713b34" title=" " alt="" coords="187,208,271,235"/>
-<area shape="rect" id="node7" href="$expand_8h.html#a6c77eceb3e53fd876d329ec10048f5da" title=" " alt="" coords="344,283,408,309"/>
-<area shape="rect" id="node8" href="$finalign_8h.html#a2e7bd762c3e9f00f351e47d29e39e854" title=" " alt="" coords="345,333,407,360"/>
-<area shape="rect" id="node9" href="$initalign_8h.html#ae5436ada4a7d8caedde979626059113a" title=" " alt="" coords="343,384,409,411"/>
-<area shape="rect" id="node10" href="$macrocall_8h.html#ad5520fcbd165ce5f2e863199df9c14b3" title=" " alt="" coords="337,435,415,461"/>
-<area shape="rect" id="node11" href="$lecture_8h.html#af413aa3c1c1e22953d5ca1f3f7c3c29a" title=" " alt="" coords="327,485,425,512"/>
-<area shape="rect" id="node12" href="$lecture_8h.html#ab5468bc60f6a966124d1016ccf7706cb" title=" " alt="" coords="179,587,279,613"/>
-<area shape="rect" id="node13" href="$lecture_8h.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="344,157,408,184"/>
+<area shape="rect" id="node3" href="$boxend_8h.html#ab117f732884eb7b16cf3f02456d51b66" title=" " alt="" coords="344,157,408,184"/>
+<area shape="rect" id="node4" href="$lecture_8h.html#aa55fd6127abdd3158956b73f47b47105" title=" " alt="" coords="193,157,264,184"/>
+<area shape="rect" id="node5" href="$prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="5,132,131,159"/>
+<area shape="rect" id="node6" href="$conditional_8h.html#af06c6a5f754b740b4e414ab6fd713b34" title=" " alt="" coords="187,411,271,437"/>
+<area shape="rect" id="node7" href="$expand_8h.html#a6c77eceb3e53fd876d329ec10048f5da" title=" " alt="" coords="36,512,100,539"/>
+<area shape="rect" id="node8" href="$finalign_8h.html#a2e7bd762c3e9f00f351e47d29e39e854" title=" " alt="" coords="345,309,407,336"/>
+<area shape="rect" id="node9" href="$initalign_8h.html#ae5436ada4a7d8caedde979626059113a" title=" " alt="" coords="343,360,409,387"/>
+<area shape="rect" id="node10" href="$macrocall_8h.html#ad5520fcbd165ce5f2e863199df9c14b3" title=" " alt="" coords="189,512,268,539"/>
+<area shape="rect" id="node11" href="$lecture_8h.html#af413aa3c1c1e22953d5ca1f3f7c3c29a" title=" " alt="" coords="327,461,425,488"/>
+<area shape="rect" id="node12" href="$lecture_8h.html#ab5468bc60f6a966124d1016ccf7706cb" title=" " alt="" coords="179,107,279,133"/>
+<area shape="rect" id="node13" href="$lecture_8h.html#ab6c507fd0d143723b1f2aa7d183f5d76" title="Sets curval to an integer." alt="" coords="344,259,408,285"/>
 </map>

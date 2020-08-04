@@ -1,33 +1,31 @@
 <map id="buildpage" name="buildpage">
-<area shape="rect" id="node1" title="Append contributions to the current page." alt="" coords="5,764,83,790"/>
-<area shape="rect" id="node2" href="$badness_8cpp.html#af030be7eeb32202d38457203594ed062" title="Compute badness, given &#160;t &gt;= 0" alt="" coords="322,718,393,745"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a86534cacd907643eb3c4fd09e6abf05b" title="the optimum most recent insertion" alt="" coords="311,110,404,137"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="465,161,507,188"/>
-<area shape="rect" id="node5" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="318,1225,397,1252"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#aa4f5de8947dd2acc9c92b9e3c5bca186" title=" " alt="" coords="164,212,219,238"/>
-<area shape="rect" id="node7" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="309,1124,405,1150"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="465,1124,507,1150"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="330,465,385,492"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#a62dfd822e2efc4e5ce043e64b17f01fb" title=" " alt="" coords="163,434,220,461"/>
-<area shape="rect" id="node11" href="$ensurevbox_8cpp.html#a4141a72a8b4663b9cd1d99b2a7293bea" title=" " alt="" coords="313,161,402,188"/>
-<area shape="rect" id="node12" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="463,414,509,441"/>
-<area shape="rect" id="node13" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="333,313,381,340"/>
-<area shape="rect" id="node14" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="465,313,507,340"/>
-<area shape="rect" id="node15" href="$fireup_8cpp.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="164,485,219,512"/>
-<area shape="rect" id="node16" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="329,617,386,644"/>
-<area shape="rect" id="node17" href="$constantes_8cpp.html#a61f4b23e21019dba50e313b7cd705be8" title="the most recent insertion for this subtype" alt="" coords="313,566,402,593"/>
-<area shape="rect" id="node18" href="$constantes_8cpp.html#a765fb197a183d02c528ad03d46cee17f" title="the added cost of breaking a list here" alt="" coords="325,668,389,694"/>
-<area shape="rect" id="node19" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="323,769,391,796"/>
-<area shape="rect" id="node20" href="$noeud_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="144,1320,239,1346"/>
-<area shape="rect" id="node21" href="$constantes_8cpp.html#afdd839d64f5055eb2e3870458ebe6d39" title="pointer to a glue specification" alt="" coords="323,1389,391,1416"/>
-<area shape="rect" id="node22" href="$freezepagespecs_8cpp.html#a2aa1093216c5bb54bcd0b746aa225f33" title=" " alt="" coords="131,1042,252,1069"/>
-<area shape="rect" id="node23" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="157,1472,225,1498"/>
-<area shape="rect" id="node24" href="$noeud_8cpp.html#a8511a3c5feb7efdf85ba943f6aea2b93" title=" " alt="" coords="138,1144,245,1170"/>
-<area shape="rect" id="node25" href="$noeud_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="320,921,395,948"/>
-<area shape="rect" id="node26" href="$constantes_8h.html#a40ebcb357219356c4866d033cd52ab5b" title=" " alt="" coords="300,972,415,998"/>
-<area shape="rect" id="node27" href="$constantes_8cpp.html#ad06551159ef3096eb7d534df06098bb4" title="order of infinity for shrinking" alt="" coords="311,1022,404,1049"/>
-<area shape="rect" id="node28" href="$constantes_8cpp.html#ac68f709360c4e8efd4782a7b5a594bf8" title="mem location of glue specification" alt="" coords="168,1370,215,1397"/>
-<area shape="rect" id="node29" href="$vertbreak_8cpp.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="153,789,229,816"/>
-<area shape="rect" id="node30" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="331,1073,384,1100"/>
-<area shape="rect" id="node31" href="$xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="161,1522,222,1549"/>
+<area shape="rect" id="node1" title="Append contributions to the current page." alt="" coords="5,812,83,838"/>
+<area shape="rect" id="node2" href="$badness_8cpp.html#af030be7eeb32202d38457203594ed062" title="Compute badness, given &#160;t &gt;= 0" alt="" coords="322,1040,393,1066"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a86534cacd907643eb3c4fd09e6abf05b" title="the optimum most recent insertion" alt="" coords="311,381,404,408"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="465,482,507,509"/>
+<area shape="rect" id="node5" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="318,178,397,205"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#aa4f5de8947dd2acc9c92b9e3c5bca186" title=" " alt="" coords="164,1242,219,1269"/>
+<area shape="rect" id="node7" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="309,229,405,256"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="465,254,507,281"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="330,736,385,762"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#a62dfd822e2efc4e5ce043e64b17f01fb" title=" " alt="" coords="163,1293,220,1320"/>
+<area shape="rect" id="node11" href="$ensurevbox_8cpp.html#a4141a72a8b4663b9cd1d99b2a7293bea" title=" " alt="" coords="313,482,402,509"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="463,584,509,610"/>
+<area shape="rect" id="node13" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="333,989,381,1016"/>
+<area shape="rect" id="node14" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="465,989,507,1016"/>
+<area shape="rect" id="node15" href="$fireup_8cpp.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="164,558,219,585"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="329,786,386,813"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#a61f4b23e21019dba50e313b7cd705be8" title="the most recent insertion for this subtype" alt="" coords="313,280,402,306"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#a765fb197a183d02c528ad03d46cee17f" title="the added cost of breaking a list here" alt="" coords="325,837,389,864"/>
+<area shape="rect" id="node19" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="323,77,391,104"/>
+<area shape="rect" id="node20" href="$noeud_8cpp.html#a82091fa45f60c083502da6514a00763b" title=" " alt="" coords="144,152,239,178"/>
+<area shape="rect" id="node21" href="$freezepagespecs_8cpp.html#a2aa1093216c5bb54bcd0b746aa225f33" title=" " alt="" coords="131,1344,252,1370"/>
+<area shape="rect" id="node22" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="157,26,225,53"/>
+<area shape="rect" id="node23" href="$noeud_8cpp.html#a71ae2342d6990c121f728dd9ee487dfb" title=" " alt="" coords="138,1394,245,1421"/>
+<area shape="rect" id="node24" href="$noeud_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="320,1090,395,1117"/>
+<area shape="rect" id="node25" href="$constantes_8h.html#a40ebcb357219356c4866d033cd52ab5b" title=" " alt="" coords="300,1141,415,1168"/>
+<area shape="rect" id="node26" href="$constantes_8cpp.html#ac68f709360c4e8efd4782a7b5a594bf8" title="mem location of glue specification" alt="" coords="168,1445,215,1472"/>
+<area shape="rect" id="node27" href="$vertbreak_8cpp.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="153,888,229,914"/>
+<area shape="rect" id="node28" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="331,1192,384,1218"/>
+<area shape="rect" id="node29" href="$xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="161,1496,222,1522"/>
 </map>

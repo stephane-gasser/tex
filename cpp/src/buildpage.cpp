@@ -40,7 +40,7 @@ void buildpage(void)
 		{
 			lastglue = nullptr;
 			if (p->type == penalty_node) //12
-				lastpenalty = penalty(p->num);
+				lastpenalty = dynamic_cast<PenaltyNode*>(p)->penalty;
 			else 
 				if (p->type == kern_node) //11
 					lastkern = dynamic_cast<KernNode*>(p)->width;
@@ -103,7 +103,7 @@ void buildpage(void)
 					flushnodelist(p);
 					continue;
 				}
-				pi = penalty(p->num);
+				pi = dynamic_cast<PenaltyNode*>(p)->penalty;
 				break;
 			case mark_node: //4
 				break;

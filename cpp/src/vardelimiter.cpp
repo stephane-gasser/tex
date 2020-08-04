@@ -10,15 +10,15 @@ static quarterword ext_bot(fourquarters q) { return q.b2; } //!< |bot| piece in 
 static quarterword ext_rep(fourquarters q) { return q.b3; } //!< |rep| piece in a recipe
 static int null_delimiter_space(void) { return dimen_par(null_delimiter_space_code); }
 
-static void stackintobox(halfword b, const Font &ft, quarterword c)
+static void stackintobox(BoxNode *b, const Font &ft, quarterword c)
 {
 	auto p = charbox(ft, c);
-	link(p) = list_ptr(b);
-	list_ptr(b) = p;
-	height(b) = height(p);
+	p->link = b->list_ptr;
+	b->list_ptr = p;
+	b->height = p->height;
 }
 
-halfword vardelimiter(halfword d, smallnumber s, scaled v)
+BoxNode *vardelimiter(halfword d, smallnumber s, scaled v)
 {
 	internalfontnumber f = null_font;
 	scaled w = 0;
@@ -88,18 +88,18 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 			x = large_char(d);
 		}
 	}
-	halfword b;
+	BoxNode *b;
 	if (auto &ft = fonts[f]; f != null_font)
 		if (char_tag(q) == ext_tag)
 		{
-			b = newnullbox();
-			type(b) = vlist_node;
+			b = new BoxNode;
+			b->type = vlist_node;
 			fourquarters r = Font::infos(ft.extenbase+rem_byte(q));
 			c = ext_rep(r);
 			auto u = ft.heightplusdepth(c);
 			w = 0;
 			//q = ft.char_info(c);
-			width(b) = ft.char_width(c)+ft.char_italic(c);
+			b->width = ft.char_width(c)+ft.char_italic(c);
 			c = ext_bot(r);
 			if (c)
 				w += ft.heightplusdepth(c);
@@ -135,15 +135,15 @@ halfword vardelimiter(halfword d, smallnumber s, scaled v)
 			c = ext_top(r);
 			if (c)
 				stackintobox(b, ft, c);
-			depth(b) = w-height(b);
+			b->depth = w-b->height;
 		}
 		else
 			b = charbox(ft, c);
 	else
 	{
-		b = newnullbox();
-		width(b) = null_delimiter_space();
+		b = new BoxNode;
+		b->width = null_delimiter_space();
 	}
-	shift_amount(b) = half(height(b)-depth(b))-axis_height(s);
+	b->shift_amount = half(b->height-b->depth)-axis_height(s);
 	return b;
 }

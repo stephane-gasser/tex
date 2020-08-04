@@ -1,14 +1,13 @@
 <map id="newpatterns" name="newpatterns">
-<area shape="rect" id="node1" title=" " alt="" coords="5,259,99,285"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,233,99,260"/>
 <area shape="rect" id="node2" href="$parametres_8h.html#a07535a18a8328a1c21de6acc81e23278" title=" " alt="" coords="162,5,231,32"/>
 <area shape="rect" id="node3" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="173,56,221,83"/>
-<area shape="rect" id="node4" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="295,95,337,121"/>
-<area shape="rect" id="node5" href="$flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a" title=" " alt="" coords="163,157,230,184"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="295,171,337,197"/>
-<area shape="rect" id="node7" href="$lecture_8cpp.html#a8011f7e4fce89d03b8863f49b45f4c57" title=" " alt="" coords="157,259,236,285"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#a8bf0c89280513a147dbbe155ebdd1d01" title=" " alt="" coords="163,309,230,336"/>
-<area shape="rect" id="node9" href="$cesure_8cpp.html#a8023c9c96a124c4d7a09141cb18a452f" title=" " alt="" coords="157,360,236,387"/>
-<area shape="rect" id="node10" href="$lecture_8cpp.html#a76530ea732b536c303881ed81b0d98a3" title=" " alt="" coords="147,411,247,437"/>
-<area shape="rect" id="node11" href="$lecture_8cpp.html#ad36faf6ff80348cd2aa487cdd13cae7c" title=" " alt="" coords="159,461,234,488"/>
-<area shape="rect" id="node12" href="$cesure_8h.html#a289e5d0b2176dcb8385e8a6f6250e2d7" title=" " alt="" coords="161,512,232,539"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="295,81,337,108"/>
+<area shape="rect" id="node5" href="$noeud_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a" title=" " alt="" coords="163,157,230,184"/>
+<area shape="rect" id="node6" href="$lecture_8cpp.html#a8011f7e4fce89d03b8863f49b45f4c57" title=" " alt="" coords="157,208,236,235"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a8bf0c89280513a147dbbe155ebdd1d01" title=" " alt="" coords="163,259,230,285"/>
+<area shape="rect" id="node8" href="$cesure_8cpp.html#a8023c9c96a124c4d7a09141cb18a452f" title=" " alt="" coords="157,309,236,336"/>
+<area shape="rect" id="node9" href="$lecture_8cpp.html#a76530ea732b536c303881ed81b0d98a3" title=" " alt="" coords="147,360,247,387"/>
+<area shape="rect" id="node10" href="$lecture_8cpp.html#a84a72a97ca02ae52bd49c6e1396cec47" title=" " alt="" coords="159,411,234,437"/>
+<area shape="rect" id="node11" href="$cesure_8h.html#a289e5d0b2176dcb8385e8a6f6250e2d7" title=" " alt="" coords="161,461,232,488"/>
 </map>

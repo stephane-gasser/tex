@@ -1,10 +1,12 @@
 <map id="Font::char_info" name="Font::char_info">
-<area shape="rect" id="node1" title=" " alt="" coords="176,157,285,184"/>
-<area shape="rect" id="node2" href="$classFont.html#aabdccc63f9bdd0e7bc8e4a7d5d8ad1a7" title=" " alt="" coords="7,5,127,32"/>
-<area shape="rect" id="node3" href="$classFont.html#a97746aee45c48d26ddbf6b02dc39dd68" title=" " alt="" coords="5,56,128,83"/>
-<area shape="rect" id="node4" href="$classFont.html#a4c56cf3633a6b9aad7be06058b74cb80" title=" " alt="" coords="5,107,128,133"/>
-<area shape="rect" id="node5" href="$classFont.html#a5ef4f56ab07b1dee543b834811bf951c" title=" " alt="" coords="9,157,124,184"/>
-<area shape="rect" id="node6" href="$classFont.html#a75bab7b46a0de6a4442dbe91091c7709" title=" " alt="" coords="13,208,120,235"/>
-<area shape="rect" id="node7" href="$classFont.html#ab1179f907a9f22ce14250b76bc8a9bad" title=" " alt="" coords="7,259,126,285"/>
-<area shape="rect" id="node8" href="$police_8cpp.html#a920d3c13c78fc561407c58f0eef6154e" title=" " alt="" coords="7,309,127,336"/>
+<area shape="rect" id="node1" title=" " alt="" coords="315,208,424,235"/>
+<area shape="rect" id="node2" href="$classFont.html#aabdccc63f9bdd0e7bc8e4a7d5d8ad1a7" title=" " alt="" coords="145,5,265,32"/>
+<area shape="rect" id="node3" href="$classFont.html#a97746aee45c48d26ddbf6b02dc39dd68" title=" " alt="" coords="144,56,267,83"/>
+<area shape="rect" id="node4" href="$classFont.html#a4c56cf3633a6b9aad7be06058b74cb80" title=" " alt="" coords="144,107,267,133"/>
+<area shape="rect" id="node5" href="$classFont.html#a5ef4f56ab07b1dee543b834811bf951c" title=" " alt="" coords="148,157,263,184"/>
+<area shape="rect" id="node6" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="8,183,93,209"/>
+<area shape="rect" id="node7" href="$classFont.html#a75bab7b46a0de6a4442dbe91091c7709" title=" " alt="" coords="152,259,259,285"/>
+<area shape="rect" id="node8" href="$classFont.html#ab1179f907a9f22ce14250b76bc8a9bad" title=" " alt="" coords="146,309,265,336"/>
+<area shape="rect" id="node9" href="$police_8cpp.html#a920d3c13c78fc561407c58f0eef6154e" title=" " alt="" coords="145,360,265,387"/>
+<area shape="rect" id="node10" href="$police_8h.html#af923ea1b9fc83c4c6a610d50e43c599d" title=" " alt="" coords="5,385,96,412"/>
 </map>

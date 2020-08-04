@@ -1,5 +1,8 @@
 #ifndef REBOX_H
 #define REBOX_H
+
 #include "globals.h"
-halfword rebox(halfword b, scaled w);
+
+BoxNode *rebox(BoxNode*, scaled);
+
 #endif

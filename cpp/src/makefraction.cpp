@@ -24,10 +24,10 @@ void makefraction(halfword q)
 		thickness(q) = default_rule_thickness();
 	auto x = cleanbox(q+2, num_style(curstyle));
 	auto z = cleanbox(q+3, denom_style(curstyle));
-	if (width(x) < width(z))
-		x = rebox(x, width(z));
+	if (x->width < z->width)
+		x = rebox(x, z->width);
 	else
-		z = rebox(z, width(x));
+		z = rebox(z, x->width);
 	scaled shiftup, shiftdown;
 	if (curstyle < 2)
 	{
@@ -49,7 +49,7 @@ void makefraction(halfword q)
 			clr = 7*default_rule_thickness();
 		else
 			clr = 3*default_rule_thickness();
-		delta = half(clr-((shiftup-depth(x))-(height(z)-shiftdown)));
+		delta = half(clr-((shiftup-x->depth)-(z->height-shiftdown)));
 		if (delta > 0)
 		{
 			shiftup += delta;
@@ -63,42 +63,42 @@ void makefraction(halfword q)
 		else
 			clr = thickness(q);
 		delta = half(thickness(q));
-		scaled delta1 = clr-(shiftup-depth(x)-(axis_height(cursize)+delta));
-		scaled delta2 = clr-(axis_height(cursize)-delta-(height(z)-shiftdown));
+		scaled delta1 = clr-(shiftup-x->depth-(axis_height(cursize)+delta));
+		scaled delta2 = clr-(axis_height(cursize)-delta-(z->height-shiftdown));
 		if (delta1 > 0)
 			shiftup += delta1;
 		if (delta2 > 0)
 			shiftdown += delta2;
 	}
-	auto v = newnullbox();
-	type(v) = vlist_node;
-	height(v) = shiftup+height(x);
-	depth(v) = depth(z)+shiftdown;
-	width(v) = width(x);
-	LinkedNode *p;
+	auto v = new BoxNode;
+	v->type = vlist_node;
+	v->height = shiftup+x->height;
+	v->depth = z->depth+shiftdown;
+	v->width = x->width;
+	KernNode *p;
 	if (thickness(q) == 0)
 	{
-		p = new KernNode((shiftup-depth(x))-(height(z)-shiftdown));
-		p->link->num = z;
+		p = new KernNode((shiftup-x->depth)-(z->height-shiftdown));
+		p->link = z;
 	}
 	else
 	{
 		auto y = fractionrule(thickness(q));
-		p = new KernNode((axis_height(cursize)-delta)-(height(z)-shiftdown));
-		link(y) = p->num;
-		p->link->num = z;
-		p = new KernNode((shiftup-depth(x))-(axis_height(cursize)+delta));
-		p->link->num = y;
+		p = new KernNode((axis_height(cursize)-delta)-(z->height-shiftdown));
+		y->link = p;
+		p->link = z;
+		p = new KernNode((shiftup-x->depth)-(axis_height(cursize)+delta));
+		p->link = y;
 	}
-	link(x) = p->num;
-	list_ptr(v) = x;
+	x->link = p;
+	v->list_ptr = x;
 	if (curstyle < 2)
 		delta = delim1(cursize);
 	else
 		delta = delim2(cursize);
 	x = vardelimiter(left_delimiter(q), cursize, delta);
-	link(x) = v;
+	x->link = v;
 	z = vardelimiter(right_delimiter(q), cursize, delta);
-	link(v) = z;
-	thickness(q) = hpack(x, 0, additional);
+	v->link = z;
+	new_hlist(q) = hpack(x->num, 0, additional);
 }

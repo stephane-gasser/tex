@@ -34,22 +34,22 @@ void makescripts(halfword q, scaled delta)
 		freenode(z, box_node_size);
 	}
 	scaled clr;
-	halfword x;
+	BoxNode *x;
 	if (math_type(supscr(q)) == 0)
 	{
 		x = cleanbox(subscr(q), sub_style(curstyle));
-		width(x) += script_space();
+		x->width += script_space();
 		if (shiftdown < sub1(cursize))
 			shiftdown = sub1(cursize);
-		clr = height(x)-(math_x_height(cursize)*4)/5;
+		clr = x->height-(math_x_height(cursize)*4)/5;
 		if (shiftdown < clr)
 			shiftdown = clr;
-		shift_amount(x) = shiftdown;
+		x->shift_amount = shiftdown;
 	}
 	else
 	{
 		x = cleanbox(supscr(q), sup_style(curstyle));
-		width(x) += script_space();
+		x->width += script_space();
 		if (curstyle%2)
 			clr = sup3(cursize);
 		else 
@@ -59,43 +59,43 @@ void makescripts(halfword q, scaled delta)
 				clr = sup2(cursize);
 		if (shiftup < clr)
 			shiftup = clr;
-		clr = depth(x)+abs(math_x_height(cursize))/4;
+		clr = x->depth+abs(math_x_height(cursize))/4;
 		if (shiftup < clr)
 			shiftup = clr;
 		if (math_type(subscr(q)) == 0)
-			shift_amount(x) = -shiftup;
+			x->shift_amount = -shiftup;
 		else
 		{
 			auto y = cleanbox(subscr(q), sub_style(curstyle));
-			width(y) += script_space();
+			y->width += script_space();
 			if (shiftdown < sub2(cursize))
 				shiftdown = sub2(cursize);
-			clr = 4*default_rule_thickness()-(shiftup-depth(x)-(height(y)-shiftdown));
+			clr = 4*default_rule_thickness()-(shiftup-x->depth-(y->height-shiftdown));
 			if (clr > 0)
 			{
 				shiftdown += clr;
-				clr = (abs(math_x_height(cursize)*4)/5)-(shiftup-depth(x));
+				clr = (abs(math_x_height(cursize)*4)/5)-(shiftup-x->depth);
 				if (clr > 0)
 				{
 					shiftup += clr;
 					shiftdown -= clr;
 				}
 			}
-			shift_amount(x) = delta;
-			p = new KernNode(shiftup-depth(x)-(height(y)-shiftdown));
-			link(x) = p->num;
-			p->link->num = y;
-			x = vpack(x, 0, additional);
-			shift_amount(x) = shiftdown;
+			x->shift_amount = delta;
+			p = new KernNode(shiftup-x->depth-(y->height-shiftdown));
+			x->link = p;
+			p->link = y;
+			x->num = vpack(x->num, 0, additional);
+			x->shift_amount = shiftdown;
 		}
 	}
 	if (new_hlist(q) == 0)
-		new_hlist(q) = x;
+		new_hlist(q) = x->num;
 	else
 	{
 		p->num = new_hlist(q);
 		while (p->link)
 			p = p->link;
-		p->link->num = x;
+		p->link = x;
 	}
 }

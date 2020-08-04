@@ -1,4 +1,5 @@
 <map id="liststaterecord" name="liststaterecord">
-<area shape="rect" id="node1" title=" " alt="" coords="5,95,109,121"/>
-<area shape="rect" id="node2" href="$unionmemoryword.html" title=" " alt="" coords="9,5,106,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="42,109,146,136"/>
+<area shape="rect" id="node2" href="$unionmemoryword.html" title=" " alt="" coords="5,5,103,32"/>
+<area shape="rect" id="node3" href="$classLinkedNode.html" title=" " alt="" coords="127,5,218,32"/>
 </map>

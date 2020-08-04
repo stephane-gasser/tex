@@ -1,12 +1,11 @@
 <map id="makeunder" name="makeunder">
-<area shape="rect" id="node1" title=" " alt="" coords="5,198,92,225"/>
-<area shape="rect" id="node2" href="$cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="179,46,253,73"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="352,9,395,36"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="340,72,407,98"/>
-<area shape="rect" id="node5" href="$police_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="140,148,292,174"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="346,198,401,225"/>
-<area shape="rect" id="node7" href="$fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="173,249,259,276"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="345,274,402,301"/>
-<area shape="rect" id="node9" href="$noeud_8cpp.html#af78e07183c617d97a350cc11c9c18d37" title=" " alt="" coords="181,350,251,377"/>
-<area shape="rect" id="node10" href="$vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="187,401,245,428"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,172,92,198"/>
+<area shape="rect" id="node2" href="$cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="179,45,253,72"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="352,8,395,34"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="340,70,407,97"/>
+<area shape="rect" id="node5" href="$police_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="140,146,292,173"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="346,197,401,224"/>
+<area shape="rect" id="node7" href="$fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="173,248,259,274"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="345,273,402,300"/>
+<area shape="rect" id="node9" href="$vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="187,349,245,376"/>
 </map>

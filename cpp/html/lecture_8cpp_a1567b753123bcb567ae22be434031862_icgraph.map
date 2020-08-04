@@ -1,15 +1,15 @@
 <map id="begintokenlist" name="begintokenlist">
-<area shape="rect" id="node1" title=" " alt="" coords="269,308,372,335"/>
-<area shape="rect" id="node2" href="$beginbox_8h.html#a5d2232e425baeebf8283ae33b954f08b" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="145,5,219,32"/>
-<area shape="rect" id="node3" href="$maincontrol_8h.html#a07452457cef4e38d7b5e617473cb2dcf" title=" " alt="" coords="5,333,95,360"/>
-<area shape="rect" id="node4" href="$expand_8h.html#a6c77eceb3e53fd876d329ec10048f5da" title=" " alt="" coords="150,131,214,157"/>
-<area shape="rect" id="node5" href="$finrow_8h.html#ad741ef8b1ae1c8ca9aa89932cc0c0e0e" title=" " alt="" coords="153,181,211,208"/>
-<area shape="rect" id="node6" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="155,232,209,259"/>
-<area shape="rect" id="node7" href="$getnext_8h.html#a9e036f0ff44e818c889dfad5e8734eae" title=" " alt="" coords="149,283,215,309"/>
-<area shape="rect" id="node8" href="$initalign_8h.html#ae5436ada4a7d8caedde979626059113a" title=" " alt="" coords="149,333,215,360"/>
-<area shape="rect" id="node9" href="$initcol_8h.html#ab7e29cf2ab3aaae9d790fed64ad5e623" title=" " alt="" coords="154,384,210,411"/>
-<area shape="rect" id="node10" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="148,435,216,461"/>
-<area shape="rect" id="node11" href="$macrocall_8h.html#ad5520fcbd165ce5f2e863199df9c14b3" title=" " alt="" coords="143,485,221,512"/>
-<area shape="rect" id="node12" href="$starteqno_8h.html#ae0e9092a925f8e57e50aa36d55f7ef0c" title=" " alt="" coords="144,536,220,563"/>
-<area shape="rect" id="node13" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="148,587,216,613"/>
+<area shape="rect" id="node1" title=" " alt="" coords="269,284,372,311"/>
+<area shape="rect" id="node2" href="$beginbox_8h.html#a5d2232e425baeebf8283ae33b954f08b" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="145,107,219,133"/>
+<area shape="rect" id="node3" href="$maincontrol_8h.html#a07452457cef4e38d7b5e617473cb2dcf" title=" " alt="" coords="5,107,95,133"/>
+<area shape="rect" id="node4" href="$expand_8h.html#a6c77eceb3e53fd876d329ec10048f5da" title=" " alt="" coords="18,487,82,513"/>
+<area shape="rect" id="node5" href="$finrow_8h.html#ad741ef8b1ae1c8ca9aa89932cc0c0e0e" title=" " alt="" coords="153,157,211,184"/>
+<area shape="rect" id="node6" href="$fireup_8h.html#ade38ae51e1786b80735353c508effd8d" title=" " alt="" coords="155,208,209,235"/>
+<area shape="rect" id="node7" href="$getnext_8h.html#a9e036f0ff44e818c889dfad5e8734eae" title=" " alt="" coords="149,259,215,285"/>
+<area shape="rect" id="node8" href="$initalign_8h.html#ae5436ada4a7d8caedde979626059113a" title=" " alt="" coords="149,411,215,437"/>
+<area shape="rect" id="node9" href="$initcol_8h.html#ab7e29cf2ab3aaae9d790fed64ad5e623" title=" " alt="" coords="154,360,210,387"/>
+<area shape="rect" id="node10" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="148,5,216,32"/>
+<area shape="rect" id="node11" href="$macrocall_8h.html#ad5520fcbd165ce5f2e863199df9c14b3" title=" " alt="" coords="143,461,221,488"/>
+<area shape="rect" id="node12" href="$starteqno_8h.html#ae0e9092a925f8e57e50aa36d55f7ef0c" title=" " alt="" coords="144,56,220,83"/>
+<area shape="rect" id="node13" href="$writeout_8h.html#af4ea630b8dd30f3aba2b94725891a4af" title=" " alt="" coords="148,563,216,589"/>
 </map>

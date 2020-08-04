@@ -33,10 +33,10 @@ scaled makeop(halfword q)
 		delta = ft.char_italic(curc);
 		auto x = cleanbox(nucleus(q), curstyle);
 		if (math_type(subscr(q)) && subtype(q) != limits)
-		width(x) -= delta;
-		shift_amount(x) = half(height(x)-depth(x))-axis_height(cursize);
+		x->width -= delta;
+		x->shift_amount = half(x->height-x->depth)-axis_height(cursize);
 		math_type(nucleus(q)) = sub_box;
-		info(nucleus(q)) = x;
+		info(nucleus(q)) = x->num;
 	}
 	else
 		delta = 0;
@@ -45,49 +45,49 @@ scaled makeop(halfword q)
 		auto x = cleanbox(supscr(q), sup_style(curstyle));
 		auto y = cleanbox(nucleus(q), curstyle);
 		auto z = cleanbox(subscr(q), sub_style(curstyle));
-		auto v = newnullbox();
-		type(v) = vlist_node;
-		width(v) = std::max(std::max(width(x), width(y)), width(z));
-		x = rebox(x, width(v));
-		y = rebox(y, width(v));
-		z = rebox(z, width(v));
-		shift_amount(x) = half(delta);
-		shift_amount(z) = -shift_amount(x);
-		height(v) = height(y);
-		depth(v) = depth(y);
+		auto v = new BoxNode;
+		v->type = vlist_node;
+		v->width = std::max(std::max(x->width, y->width), z->width);
+		x = rebox(x, v->width);
+		y = rebox(y, v->width);
+		z = rebox(z, v->width);
+		x->shift_amount = half(delta);
+		z->shift_amount = -x->shift_amount;
+		v->height = y->height;
+		v->depth = y->depth;
 		if (math_type(supscr(q)) == 0)
 		{
-			freenode(x, box_node_size);
-			list_ptr(v) = y;
+			freenode(x->num, box_node_size);
+			v->list_ptr = y;
 		}
 		else
 		{
-			scaled shiftup = big_op_spacing3()-depth(x);
+			scaled shiftup = big_op_spacing3()-x->depth;
 			if (shiftup < big_op_spacing1())
 				shiftup = big_op_spacing1();
 			auto p = new KernNode(shiftup);
-			p->link->num = y;
-			link(x) = p->num;
+			p->link = y;
+			x->link = p;
 			p = new KernNode(big_op_spacing5());
-			p->link->num = x;
-			list_ptr(v) = p->num;
-			height(v) += mathex(big_op_spacing5())+height(x)+depth(x)+shiftup;
+			p->link = x;
+			v->list_ptr = p;
+			v->height += mathex(big_op_spacing5())+x->height+x->depth+shiftup;
 		}
 		if (math_type(subscr(q)) == 0)
-			freenode(z, box_node_size);
+			freenode(z->num, box_node_size);
 		else
 		{
-			scaled shiftdown = big_op_spacing4()-height(z);
+			scaled shiftdown = big_op_spacing4()-z->height;
 			if (shiftdown < big_op_spacing2())
 				shiftdown = big_op_spacing2();
 			auto p = new KernNode(shiftdown);
-			link(y) = p->num;
-			p->link->num = z;
+			y->link = p;
+			p->link = z;
 			p = new KernNode(big_op_spacing5());
-			link(z) = p->num;
-			depth(v) += big_op_spacing5()+height(z)+depth(z)+shiftdown;
+			z->link = p;
+			v->depth += big_op_spacing5()+z->height+z->depth+shiftdown;
 		}
-		new_hlist(q) = v;
+		new_hlist(q) = v->num;
 	}
 	return delta;
 }

@@ -19,6 +19,6 @@ smallnumber makeleftright(halfword q, smallnumber style, scaled maxd, scaled  ma
 	delta2 = 2*delta1-delimiter_shortfall();
 	if (delta < delta2)
 		delta = delta2;
-	width(q) = vardelimiter(delimiter(q), cursize, delta);
-	return type(q)-10;
+	new_hlist(q) = vardelimiter(delimiter(q), cursize, delta)->num;
+	return type(q)-(left_noad-open_noad);
 }

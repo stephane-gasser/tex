@@ -117,20 +117,19 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="flushmath_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="flushmath_8cpp_source.html">flushmath.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="noeud_8cpp.html#ac21b7321bdce857532739166ad281729">flushnodelist</a>(<a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a>));</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="noeud_8cpp.html#ac21b7321bdce857532739166ad281729">flushnodelist</a>(<a class="code" href="globals_8cpp.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>);</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(<a class="code" href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a>) = 0;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a> = <a class="code" href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a>;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="globals_8cpp.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a> = 0;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="noeud_8cpp.html#a82091fa45f60c083502da6514a00763b">flushnodelist</a>(<a class="code" href="globals_8h.html#a87be2395199ed7d315738373369c5463">head</a>-&gt;link);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="noeud_8cpp.html#a82091fa45f60c083502da6514a00763b">flushnodelist</a>(<a class="code" href="globals_8h.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="globals_8h.html#a87be2395199ed7d315738373369c5463">head</a>-&gt;link = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="globals_8h.html#afa3c03c28a565f057102d45e7fad8e6c">tail</a> = <a class="code" href="globals_8h.html#a87be2395199ed7d315738373369c5463">head</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="globals_8h.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a> = 0;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="flushmath_8cpp_a1772b477ad136aede8aa56b92b4d67ef_cgraph.png" border="0" usemap="#flushmath_8cpp_a1772b477ad136aede8aa56b92b4d67ef_cgraph" alt=""/></div>
 <map name="flushmath_8cpp_a1772b477ad136aede8aa56b92b4d67ef_cgraph" id="flushmath_8cpp_a1772b477ad136aede8aa56b92b4d67ef_cgraph">
-<area shape="rect" title=" " alt="" coords="5,55,84,81"/>
-<area shape="rect" href="noeud_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="132,29,227,56"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="275,55,317,81"/>
+<area shape="rect" title=" " alt="" coords="5,29,84,56"/>
+<area shape="rect" href="noeud_8cpp.html#a82091fa45f60c083502da6514a00763b" title=" " alt="" coords="132,29,227,56"/>
 </map>
 </div>
 <div class="dynheader">
@@ -147,11 +146,10 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aglobals_8cpp_html_aa5839c674f8a4ff6fd198113fb1b2d40"><div class="ttname"><a href="globals_8cpp.html#aa5839c674f8a4ff6fd198113fb1b2d40">head</a></div><div class="ttdeci">halfword &amp; head</div><div class="ttdoc">header node of current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00083">globals.cpp:83</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a61289b930ea7064c00ed49a27406ba52"><div class="ttname"><a href="globals_8cpp.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a></div><div class="ttdeci">int &amp; incompleat_noad</div><div class="ttdoc">the name of aux in math mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00081">globals.cpp:81</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_a6b51a86c79527801129f34713d6fc01e"><div class="ttname"><a href="globals_8cpp.html#a6b51a86c79527801129f34713d6fc01e">tail</a></div><div class="ttdeci">halfword &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00084">globals.cpp:84</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
-<div class="ttc" id="anoeud_8cpp_html_ac21b7321bdce857532739166ad281729"><div class="ttname"><a href="noeud_8cpp.html#ac21b7321bdce857532739166ad281729">flushnodelist</a></div><div class="ttdeci">void flushnodelist(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00128">noeud.cpp:128</a></div></div>
+<div class="ttc" id="aglobals_8h_html_afa3c03c28a565f057102d45e7fad8e6c"><div class="ttname"><a href="globals_8h.html#afa3c03c28a565f057102d45e7fad8e6c">tail</a></div><div class="ttdeci">auto &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00296">globals.h:296</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a61289b930ea7064c00ed49a27406ba52"><div class="ttname"><a href="globals_8h.html#a61289b930ea7064c00ed49a27406ba52">incompleat_noad</a></div><div class="ttdeci">int &amp; incompleat_noad</div><div class="ttdoc">the name of aux in math mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00300">globals.h:300</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a87be2395199ed7d315738373369c5463"><div class="ttname"><a href="globals_8h.html#a87be2395199ed7d315738373369c5463">head</a></div><div class="ttdeci">auto &amp; head</div><div class="ttdoc">header node of current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00295">globals.h:295</a></div></div>
+<div class="ttc" id="anoeud_8cpp_html_a82091fa45f60c083502da6514a00763b"><div class="ttname"><a href="noeud_8cpp.html#a82091fa45f60c083502da6514a00763b">flushnodelist</a></div><div class="ttdeci">void flushnodelist(LinkedNode *p)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00159">noeud.cpp:159</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

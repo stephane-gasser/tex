@@ -29,7 +29,7 @@ bool scankeyword(const std::string &);
 [[nodiscard]] Token scanleftbrace(void);
 void scanmath(halfword);
 void scanoptionalequals(void);
-halfword scanrulespec(Token);
+RuleNode *scanrulespec(Token);
 [[nodiscard]] Token scanspec(groupcode, bool);
 TokenNode* scantoks(bool, bool, Token);
 void convtoks(Token);

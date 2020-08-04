@@ -1,5 +1,6 @@
 <map id="break_node" name="break_node">
-<area shape="rect" id="node1" title="pointer to the corresponding passive node" alt="" coords="245,5,335,32"/>
-<area shape="rect" id="node2" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,5,80,32"/>
-<area shape="rect" id="node3" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="128,31,197,57"/>
+<area shape="rect" id="node1" title="pointer to the corresponding passive node" alt="" coords="275,22,364,49"/>
+<area shape="rect" id="node2" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,22,80,49"/>
+<area shape="rect" id="node3" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="128,22,227,49"/>
+<area shape="rect" id="node4" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="143,73,212,99"/>
 </map>

@@ -1,22 +1,21 @@
 <map id="hyphenate" name="hyphenate">
-<area shape="rect" id="node1" title=" " alt="" coords="5,485,88,512"/>
-<area shape="rect" id="node2" href="$cesure_8cpp.html#a5be03f6d6f4fa8d3a73b15c3124fb561" title=" " alt="" coords="284,5,419,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="479,252,521,279"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title="the character code in a char_node" alt="" coords="313,688,389,715"/>
-<area shape="rect" id="node5" href="$flushlist_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a" title=" " alt="" coords="153,107,219,133"/>
-<area shape="rect" id="node6" href="$noeud_8cpp.html#ac21b7321bdce857532739166ad281729" title=" " alt="" coords="139,333,233,360"/>
-<area shape="rect" id="node7" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="315,435,387,461"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#a70439cd64a1f5a3242e5510c755e3ac3" title="the list of characters" alt="" coords="323,536,380,563"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#ad058da1b3e7e4027797ff16b1e5a6c32" title="the word where the ligature is to be found" alt="" coords="467,688,533,715"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#a65e055dfd7fea1ac8c6c735f76e87825" title="text that precedes a discretionary break" alt="" coords="312,227,391,253"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="317,283,385,309"/>
-<area shape="rect" id="node12" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="328,384,375,411"/>
-<area shape="rect" id="node13" href="$constantes_8cpp.html#a2537c13195b22342fd09b94a05323a04" title="the font code in a char_node" alt="" coords="329,587,373,613"/>
-<area shape="rect" id="node14" href="$police_8h.html#a424ff50928214e91519fabeeb26962fe" title=" " alt="" coords="326,637,377,664"/>
-<area shape="rect" id="node15" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="152,157,220,184"/>
-<area shape="rect" id="node16" href="$constantes_8cpp.html#aa0355678d828c2e2f836409b82366625" title=" " alt="" coords="137,739,235,765"/>
-<area shape="rect" id="node17" href="$noeud_8cpp.html#a6e07886dd6173debb4827256ca3327df" title=" " alt="" coords="136,637,236,664"/>
-<area shape="rect" id="node18" href="$reconstitute_8cpp.html#adc682e3d92de18b020d76eeb651db859" title=" " alt="" coords="141,485,231,512"/>
-<area shape="rect" id="node19" href="$constantes_8cpp.html#ac68f709360c4e8efd4782a7b5a594bf8" title="mem location of glue specification" alt="" coords="163,891,209,917"/>
-<area shape="rect" id="node20" href="$cesure_8h.html#ad439adcfa9eafe7cd6ed2a4cde107ac7" title=" " alt="" coords="157,941,215,968"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,460,88,487"/>
+<area shape="rect" id="node2" href="$cesure_8cpp.html#a5be03f6d6f4fa8d3a73b15c3124fb561" title=" " alt="" coords="297,5,432,32"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="505,157,548,184"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a35ad8cf1209527546283eddbd84437de" title="the character code in a char_node" alt="" coords="148,107,224,133"/>
+<area shape="rect" id="node5" href="$noeud_8cpp.html#ab1fa9ce35cc927b9620ecb5ed0dbc63a" title=" " alt="" coords="331,157,398,184"/>
+<area shape="rect" id="node6" href="$noeud_8cpp.html#a82091fa45f60c083502da6514a00763b" title=" " alt="" coords="139,333,233,360"/>
+<area shape="rect" id="node7" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="329,208,401,235"/>
+<area shape="rect" id="node8" href="$classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347" title=" " alt="" coords="284,276,445,303"/>
+<area shape="rect" id="node9" href="$constantes_8cpp.html#a70439cd64a1f5a3242e5510c755e3ac3" title="the list of characters" alt="" coords="336,485,393,512"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#ad058da1b3e7e4027797ff16b1e5a6c32" title="the word where the ligature is to be found" alt="" coords="493,511,560,537"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="331,345,399,372"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="341,421,388,448"/>
+<area shape="rect" id="node13" href="$constantes_8cpp.html#a2537c13195b22342fd09b94a05323a04" title="the font code in a char_node" alt="" coords="164,587,208,613"/>
+<area shape="rect" id="node14" href="$police_8h.html#a424ff50928214e91519fabeeb26962fe" title=" " alt="" coords="339,739,390,765"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#aa0355678d828c2e2f836409b82366625" title=" " alt="" coords="137,688,235,715"/>
+<area shape="rect" id="node16" href="$noeud_8cpp.html#a36e989102af07168b47706964447b727" title=" " alt="" coords="136,739,236,765"/>
+<area shape="rect" id="node17" href="$cesure_8cpp.html#a9b9c350531887053bdb3790e1ef45383" title=" " alt="" coords="141,637,231,664"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#ac68f709360c4e8efd4782a7b5a594bf8" title="mem location of glue specification" alt="" coords="163,840,209,867"/>
+<area shape="rect" id="node19" href="$cesure_8h.html#ad439adcfa9eafe7cd6ed2a4cde107ac7" title=" " alt="" coords="157,891,215,917"/>
 </map>

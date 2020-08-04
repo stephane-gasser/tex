@@ -78,13 +78,18 @@ $(function() {
 <div class="contents">
 <a href="fetch_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef FETCH_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define FETCH_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="globals_8h.html">globals.h</a>&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keywordtype">void</span> <a class="code" href="fetch_8h.html#aee1d069ba584076de270d547f3ddfc71">fetch</a>(<a class="code" href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> a);</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="globals_8h.html">globals.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="police_8h.html">police.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;[[nodiscard]] std::tuple&lt;Font, quarterword&gt; <a class="code" href="fetch_8h.html#a4795c1d8d98f04d29451b91aa956b95c">fetch</a>(<a class="code" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aglobals_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00054">globals.h:54</a></div></div>
 <div class="ttc" id="aglobals_8h_html"><div class="ttname"><a href="globals_8h.html">globals.h</a></div></div>
-<div class="ttc" id="atex_8h_html_ab9d7610bf862878bf966d79b3e08e6dd"><div class="ttname"><a href="tex_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a></div><div class="ttdeci">std::uint16_t halfword</div><div class="ttdef"><b>Definition:</b> <a href="tex_8h_source.html#l00044">tex.h:44</a></div></div>
-<div class="ttc" id="afetch_8h_html_aee1d069ba584076de270d547f3ddfc71"><div class="ttname"><a href="fetch_8h.html#aee1d069ba584076de270d547f3ddfc71">fetch</a></div><div class="ttdeci">void fetch(halfword a)</div><div class="ttdef"><b>Definition:</b> <a href="fetch_8cpp_source.html#l00009">fetch.cpp:9</a></div></div>
+<div class="ttc" id="apolice_8h_html"><div class="ttname"><a href="police_8h.html">police.h</a></div></div>
+<div class="ttc" id="afetch_8h_html_a4795c1d8d98f04d29451b91aa956b95c"><div class="ttname"><a href="fetch_8h.html#a4795c1d8d98f04d29451b91aa956b95c">fetch</a></div><div class="ttdeci">std::tuple&lt; Font, quarterword &gt; fetch(halfword)</div><div class="ttdef"><b>Definition:</b> <a href="fetch_8cpp_source.html#l00009">fetch.cpp:9</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

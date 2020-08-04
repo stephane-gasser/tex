@@ -26,8 +26,10 @@ void fireup(halfword c)
 	scaled savevfuzz;
 	if (type(bestpagebreak) == penalty_node) //12
 	{
-		geqworddefine(int_base+output_penalty_code, penalty(bestpagebreak));
-		penalty(bestpagebreak) = inf_penalty;
+		PenaltyNode *Bestpagebreak;
+		Bestpagebreak->num = bestpagebreak;
+		geqworddefine(int_base+output_penalty_code, Bestpagebreak->penalty);
+		Bestpagebreak->penalty = inf_penalty;
 	}
 	else
 		geqworddefine(int_base+output_penalty_code, inf_penalty);
@@ -56,7 +58,10 @@ void fireup(halfword c)
 				n = subtype(r->num);
 				ensurevbox(n);
 				if (box(n) == 0)
-					box(n) = newnullbox();
+				{
+					auto B = new BoxNode;
+					box(n) = B->num;
+				}
 				auto p = box(n)+list_offset;
 				while (link(p))
 					p = link(p);

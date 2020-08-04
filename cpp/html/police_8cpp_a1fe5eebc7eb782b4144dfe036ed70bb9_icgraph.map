@@ -1,10 +1,11 @@
 <map id="cur_font" name="cur_font">
-<area shape="rect" id="node1" title=" " alt="" coords="517,157,587,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="517,183,587,209"/>
 <area shape="rect" id="node2" href="$maincontrol_8cpp.html#a9f30a40513260466869edf92a1bc72e2" title=" " alt="" coords="317,5,469,32"/>
 <area shape="rect" id="node3" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="359,56,427,83"/>
 <area shape="rect" id="node4" href="$maincontrol_8cpp.html#a6e45a273f9cba9e3532fb656a3ee295c" title=" " alt="" coords="151,183,253,209"/>
 <area shape="rect" id="node5" href="$maincontrol_8cpp.html#a00f5f81d53127a5edf3ae005f33a932c" title=" " alt="" coords="5,183,87,209"/>
-<area shape="rect" id="node6" href="$maincontrol_8cpp.html#a75f1c1cb5647afbc907b08c0d4828de8" title=" " alt="" coords="135,284,269,311"/>
-<area shape="rect" id="node7" href="$makeaccent_8h.html#aca840bfdce0591976a8d844972501c13" title=" " alt="" coords="347,259,440,285"/>
-<area shape="rect" id="node8" href="$maincontrol_8cpp.html#a89c5ef2add7ff812965c651e7fac6c32" title=" " alt="" coords="361,157,425,184"/>
+<area shape="rect" id="node6" href="$maincontrol_8cpp.html#ab85855138937fbe73c98108d1ee440a8" title=" " alt="" coords="320,360,467,387"/>
+<area shape="rect" id="node7" href="$maincontrol_8cpp.html#a75f1c1cb5647afbc907b08c0d4828de8" title=" " alt="" coords="135,259,269,285"/>
+<area shape="rect" id="node8" href="$makeaccent_8h.html#aca840bfdce0591976a8d844972501c13" title=" " alt="" coords="347,309,440,336"/>
+<area shape="rect" id="node9" href="$maincontrol_8cpp.html#a89c5ef2add7ff812965c651e7fac6c32" title=" " alt="" coords="361,208,425,235"/>
 </map>

@@ -30,7 +30,7 @@ bool fincol(Token t, halfword &loop)
 	if (p == nullptr && extra_info(curalign) < cr_code)
 		if (loop)
 		{
-			q->link->num = newnullbox();
+			q->link = new BoxNode;
 			p = q->link;
 			info(p->num) = end_span->num;
 			width(p->num) = null_flag;

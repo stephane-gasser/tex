@@ -1,9 +1,9 @@
 <map id="mark_ptr" name="mark_ptr">
-<area shape="rect" id="node1" title="head of the token list for a mark" alt="" coords="152,180,225,207"/>
-<area shape="rect" id="node2" href="$noeud_8h.html#a10ce09de92566b94c5155b2fd74872f3" title=" " alt="" coords="7,29,102,56"/>
-<area shape="rect" id="node3" href="$fireup_8h.html#a879a3a31fce785d1c89813502132ffe2" title=" " alt="" coords="27,80,82,107"/>
-<area shape="rect" id="node4" href="$noeud_8h.html#a3e570593ced1e6ecba9565f34061a432" title=" " alt="" coords="7,155,102,181"/>
-<area shape="rect" id="node5" href="$makemark_8h.html#ab64ff159f059107cbc2f5d985c97d6e2" title=" " alt="" coords="13,205,96,232"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="5,256,104,283"/>
-<area shape="rect" id="node7" href="$vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="28,307,81,333"/>
+<area shape="rect" id="node1" title="head of the token list for a mark" alt="" coords="152,156,225,183"/>
+<area shape="rect" id="node2" href="$noeud_8h.html#a8fde8034bf645cba363de9042d370906" title=" " alt="" coords="7,5,102,32"/>
+<area shape="rect" id="node3" href="$fireup_8h.html#ade38ae51e1786b80735353c508effd8d" title=" " alt="" coords="27,56,82,83"/>
+<area shape="rect" id="node4" href="$noeud_8h.html#ab201b2eb12dc16893f974717a655d736" title=" " alt="" coords="7,131,102,157"/>
+<area shape="rect" id="node5" href="$makemark_8h.html#ab64ff159f059107cbc2f5d985c97d6e2" title=" " alt="" coords="13,181,96,208"/>
+<area shape="rect" id="node6" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="5,232,104,259"/>
+<area shape="rect" id="node7" href="$vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50" title=" " alt="" coords="28,283,81,309"/>
 </map>

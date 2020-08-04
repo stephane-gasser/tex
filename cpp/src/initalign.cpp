@@ -64,7 +64,8 @@ void initalign(Token t, halfword &loop)
 					p = dynamic_cast<TokenNode*>(p->link);
 				}
 		}
-		link(curalign) = newnullbox();
+		auto B = new BoxNode;
+		link(curalign) = B->num;
 		curalign = link(curalign);
 		info(curalign) = end_span->num;
 		width(curalign) = null_flag;

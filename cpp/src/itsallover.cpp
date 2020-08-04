@@ -11,10 +11,11 @@ bool itsallover(Token t)
 		if (page_head->num == pagetail && head == tail && deadcycles == 0)
 			return true;
 		backinput(t);
-		tail_append(newnullbox());
-		width(tail->num) = hsize();
+		auto b = new BoxNode;
+		b->width = hsize();
+		tail_append(b);
 		tail_append(new GlueNode(fill_glue));
-		tail_append(newpenalty(null_flag));
+		tail_append(new PenaltyNode(null_flag));
 		buildpage();
 	}
 	return false;

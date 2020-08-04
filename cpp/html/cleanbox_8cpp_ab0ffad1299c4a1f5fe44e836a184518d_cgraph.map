@@ -1,14 +1,15 @@
 <map id="cleanbox" name="cleanbox">
-<area shape="rect" id="node1" title=" " alt="" coords="5,311,80,338"/>
-<area shape="rect" id="node2" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="410,159,482,186"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="543,185,585,211"/>
-<area shape="rect" id="node4" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="277,109,335,135"/>
-<area shape="rect" id="node5" href="$constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title="repositioning distance, in sp" alt="" coords="397,7,495,34"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="423,261,469,287"/>
-<area shape="rect" id="node7" href="$police_8cpp.html#af9289b57d2744238aa244ac1f60c85c5" title="18mu" alt="" coords="263,58,349,85"/>
-<area shape="rect" id="node8" href="$mlisttohlist_8cpp.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="129,235,214,262"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="273,311,339,338"/>
-<area shape="rect" id="node10" href="$xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="275,362,337,389"/>
-<area shape="rect" id="node11" href="$noeud_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52" title=" " alt="" coords="134,514,209,541"/>
-<area shape="rect" id="node12" href="$noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="128,565,215,591"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,317,80,343"/>
+<area shape="rect" id="node2" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="485,291,557,318"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="617,127,660,154"/>
+<area shape="rect" id="node4" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="352,178,409,205"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="490,77,551,103"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#abfa740d034cf0b8f72d93eb12cd445ab" title="repositioning distance, in sp" alt="" coords="472,127,569,154"/>
+<area shape="rect" id="node7" href="$classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347" title=" " alt="" coords="128,279,289,306"/>
+<area shape="rect" id="node8" href="$police_8cpp.html#af9289b57d2744238aa244ac1f60c85c5" title="18mu" alt="" coords="337,243,424,270"/>
+<area shape="rect" id="node9" href="$mlisttohlist_8cpp.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="166,354,251,381"/>
+<area shape="rect" id="node10" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="347,379,414,406"/>
+<area shape="rect" id="node11" href="$xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="350,430,411,457"/>
+<area shape="rect" id="node12" href="$noeud_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52" title=" " alt="" coords="171,557,246,583"/>
+<area shape="rect" id="node13" href="$noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="165,607,252,634"/>
 </map>
