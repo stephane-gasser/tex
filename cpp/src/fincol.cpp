@@ -3,8 +3,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "unsave.h"
-#include "hpack.h"
-#include "vpackage.h"
+#include "boite.h"
 #include "initspan.h"
 #include "popnest.h"
 #include "lecture.h"
@@ -15,7 +14,6 @@ bool fincol(Token t, halfword &loop)
 {
 	halfword s;
 	BoxNode *u;
-	#warning pas le bon type ??
 	LinkedNode *q;
 	scaled w;
 	glueord o;
@@ -80,7 +78,7 @@ bool fincol(Token t, halfword &loop)
 		}
 		else
 		{
-			u->num = vpackage(head->link->num, 0, additional, 0);
+			u = vpackage(head->link, 0, additional, 0);
 			w = u->height;
 		}
 		n = 0;

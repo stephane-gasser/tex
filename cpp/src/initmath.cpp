@@ -29,9 +29,9 @@ void initmath(void)
 		else
 		{
 			linebreak(display_widow_penalty());
-			v = shift_amount(justbox)+2*cur_font().quad();
+			v = justbox->shift_amount+2*cur_font().quad();
 			w = -max_dimen;
-			p->num = list_ptr(justbox);
+			p = justbox->list_ptr;
 			while (p)
 			{
 				if (p->is_char_node())
@@ -86,14 +86,14 @@ void initmath(void)
 						auto g = dynamic_cast<GlueNode*>(p);
 						auto q = g->glue_ptr;
 						d = q->width;
-						if (glue_sign(justbox) == stretching)
+						if (justbox->glue_sign == stretching)
 						{
-							if (glue_order(justbox) == q->stretch_order && q->stretch)
+							if (justbox->glue_order == q->stretch_order && q->stretch)
 								v = max_dimen;
 						}
 						else 
-							if (glue_sign(justbox) == shrinking)
-								if (glue_order(justbox) == q->shrink_order && q->shrink)
+							if (justbox->glue_sign == shrinking)
+								if (justbox->glue_order == q->shrink_order && q->shrink)
 									v = max_dimen;
 						if (g->subtype >= a_leaders)
 						{

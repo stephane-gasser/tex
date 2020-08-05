@@ -1,7 +1,6 @@
 #include "makeunder.h"
 #include "noeud.h"
 #include "boite.h"
-#include "vpackage.h"
 #include "fractionrule.h"
 
 void makeunder(halfword q)
@@ -10,10 +9,10 @@ void makeunder(halfword q)
 	auto p = new KernNode(3*default_rule_thickness());
 	x->link = p;
 	p->link = fractionrule(default_rule_thickness());
-	auto y = vpack(x->num, 0, additional);
-	scaled delta = height(y)+depth(y)+default_rule_thickness();
-	height(y) = x->height;
-	depth(y) = delta-height(y);
-	info(nucleus(q)) = y;
+	auto y = vpack(x, 0, additional);
+	scaled delta = y->height+y->depth+default_rule_thickness();
+	y->height = x->height;
+	y->depth = delta-y->height;
+	info(nucleus(q)) = y->num;
 	math_type(nucleus(q)) = sub_box;
 }

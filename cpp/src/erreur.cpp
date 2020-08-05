@@ -177,9 +177,9 @@ void backerror(Token t, const std::string &msg, const std::string &hlp)
 void boxerror(eightbits n, const std::string &msg, const std::string &hlp)
 {
 	error(msg, hlp);
-	diagnostic("\rThe following box has been deleted:"+showbox(box(n))+"\n");
-	flushnodelist(box(n));
-	box(n) = 0;
+	diagnostic("\rThe following box has been deleted:"+showbox(box[n])+"\n");
+	flushnodelist(box[n]);
+	box[n] = nullptr;
 }
 
 void fatal(const std::string &msg, const std::string &hlp)

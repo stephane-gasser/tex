@@ -5,7 +5,7 @@
 #include "extrarightbrace.h"
 #include "package.h"
 #include "endgraf.h"
-#include "vpackage.h"
+#include "boite.h"
 #include "popnest.h"
 #include "deleteglueref.h"
 #include "buildpage.h"
@@ -23,7 +23,7 @@ static int floating_penalty(void) { return int_par(floating_penalty_code); }
 
 void handlerightbrace(Token t, halfword &loop)
 {
-	halfword p;
+	BoxNode *p;
 	GlueSpec *q;
 	scaled d;
 	int f;
@@ -63,28 +63,28 @@ void handlerightbrace(Token t, halfword &loop)
 			f = floating_penalty();
 			unsave();
 			saveptr--;
-			p = vpack(head->link->num, 0, additional);
+			p = vpack(head->link, 0, additional);
 			popnest();
 			if (saved(0) < 255)
 			{
-				tail_append(getnode(ins_node_size));
-				tail->type = ins_node;
-				subtype(tail->num) = saved(0);
-				height(tail->num) = height(p)+depth(p);
-				ins_ptr(tail->num) = list_ptr(p);
-				split_top_ptr(tail->num) = q->num;
-				depth(tail->num) = d;
-				float_cost(tail->num) = f;
+				auto ins = new InsNode;
+				ins->subtype = saved(0);
+				ins->height = p->height+p->depth;
+				ins->ins_ptr = p->list_ptr;
+				ins->split_top_ptr = q;
+				ins->depth = d;
+				ins->float_cost = f;
+				tail_append(ins);
 			}
 			else
 			{
 				tail_append(getnode(small_node_size));
 				tail->type = adjust_node; //5
 				subtype(tail->num) = 0;
-				adjust_ptr(tail->num) = list_ptr(p);
+				adjust_ptr(tail->num) = p->list_ptr->num;
 				deleteglueref(q);
 			}
-			freenode(p, box_node_size);
+			delete p;
 			if (nestptr == 0)
 				buildpage();
 			break;
@@ -101,7 +101,7 @@ void handlerightbrace(Token t, halfword &loop)
 			unsave();
 			outputactive = false;
 			insertpenalties = 0;
-			if (box(255))
+			if (box[255])
 				boxerror(255, "Output routine didn't use all of "+esc("box255"), "Your \\output commands should empty \\box255,\ne.g., by saying `\\shipout\\box255'.\nProceed; I'll discard its present contents.");
 			if (tail != head)
 			{
@@ -137,12 +137,12 @@ void handlerightbrace(Token t, halfword &loop)
 			endgraf();
 			unsave();
 			saveptr -= 2;
-			p = vpack(head->link->num, saved(1), saved(0));
+			p = vpack(head->link, saved(1), saved(0));
 			popnest();
 			tail_append(newnoad());
 			tail->type = vcenter_noad;
 			math_type(nucleus(tail->num)) = sub_box;
-			info(nucleus(tail->num)) = p;
+			info(nucleus(tail->num)) = p->num;
 			break;
 		case math_choice_group:
 			buildchoices(t);
@@ -151,28 +151,28 @@ void handlerightbrace(Token t, halfword &loop)
 			unsave();
 			saveptr--;
 			math_type(saved(0)) = sub_mlist;
-			p = finmlist(0);
-			info(saved(0)) = p;
-			if (p && link(p) == 0)
-				if (type(p) == ord_noad)
+			p->num = finmlist(0);
+			info(saved(0)) = p->num;
+			if (p && p->link == nullptr)
+				if (p->type == ord_noad)
 				{
-					if (math_type(subscr(p)) == 0 && math_type(supscr(p)) == 0)
+					if (math_type(subscr(p->num)) == 0 && math_type(supscr(p->num)) == 0)
 					{
-						mem[saved(0)] = mem[nucleus(p)];
-						freenode(p, noad_size);
+						mem[saved(0)] = mem[nucleus(p->num)];
+						delete p;
 					}
 				}
 				else 
-					if (type(p) == accent_noad)
+					if (p->type == accent_noad)
 						if (saved(0) == nucleus(tail->num))
 							if (tail->type == ord_noad)
 							{
 								auto q = head;
 								while (q->link != tail)
 									q = q->link;
-								q->link->num = p;
+								q->link = p;
 								freenode(tail->num, noad_size);
-								tail->num = p;
+								tail = p;
 							}
 			break;
 		default: 

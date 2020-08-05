@@ -108,6 +108,8 @@ void buildpage(void)
 			case mark_node: //4
 				break;
 			case ins_node: //3
+			{
+				auto P = dynamic_cast<InsNode*>(p);
 				if (pagecontents == 0)
 					freezepagespecs(inserts_only);
 				n = subtype(p->num);
@@ -116,43 +118,44 @@ void buildpage(void)
 					r = r->link;
 				if (subtype(r->num) != n)
 				{
-					q->num = getnode(page_ins_node_size);
-					q->link = r->link;
-					r->link = q;
-					r = q;
-					subtype(r->num) = n;
+					auto Q = new PageInsNode;
+					Q->link = r->link;
+					r->link = Q;
+					r = Q; //r: PageInsNode
+					Q->subtype = n;
 					r->type = inserting;
 					ensurevbox(n);
-					if (box(n) == 0)
-						height(r->num) = 0;
+					if (box[n] == nullptr)
+						Q->height = 0;
 					else
-						height(r->num) = height(box(n))+depth(box(n));
-					best_ins_ptr(r->num) = 0;
-					q->num = skip(n);
+						Q->height = box[n]->height+box[n]->depth;
+					Q->best_ins_ptr = 0;
+					auto q = skip[n];
 					if (count(n) == 1000)
-						h = height(r->num);
+						h = Q->height;
 					else
-						h = xovern(height(r->num), 1000)*count(n);
-					page_goal -= h+width(q->num);
-					pagesofar[2+q->type] += depth(q->num);
-					page_shrink += height(q->num);
-					if (subtype(q->num) && height(q->num))
+						h = xovern(Q->height, 1000)*count(n);
+					page_goal -= h+q->width;
+					pagesofar[2+q->stretch_order] += q->stretch;
+					page_shrink += q->shrink;
+					if (q->shrink_order && q->shrink)
 						error("Infinite glue shrinkage inserted from "+esc("skip")+std::to_string(n), "The correction glue for page breaking with insertions\nmust have finite shrinkability. But you may proceed,\nsince the offensive shrinkability has been made finite.");
 				}
-				if (r->type == vlist_node)
-					insertpenalties += width(p->num);
+				if (r->type == split_up)
+					insertpenalties += P->float_cost;
 				else
 				{
-					last_ins_ptr(r->num) = p->num;
+					auto R = dynamic_cast<PageInsNode*>(r);
+					R->last_ins_ptr = p;
 					delta = page_goal-page_total-page_depth+page_shrink;
 					if (count(n) == 1000)
-						h = height(p->num);
+						h = P->height;
 					else
-						h = xovern(height(p->num), 1000)*count(n);
-					if ((h <= 0 || h <= delta) && height(p->num)+height(r->num) <= dimen(n))
+						h = xovern(P->height, 1000)*count(n);
+					if ((h <= 0 || h <= delta) && P->height+R->height <= dimen(n))
 					{
 						page_goal -= h;
-						height(r->num) += height(p->num);
+						R->height += P->height;
 					}
 					else
 					{
@@ -167,21 +170,22 @@ void buildpage(void)
 						if (w > dimen(n)-height(r->num))
 							w = dimen(n)-height(r->num);
 						q->num = vertbreak(info(p->num+4), w, depth(p->num));
-						height(r->num) += bestheightplusdepth;
+						R->height += bestheightplusdepth;
 						if (count(n) != 1000)
 							bestheightplusdepth = xovern(bestheightplusdepth, 1000)*count(n);
 						page_goal -= bestheightplusdepth;
-						r->type = 1;
-						link(r->num+1) = q->num;
-						info(r->num+1) = p->num;
+						r->type = split_up;
+						R->broken_ptr = q;
+						R->broken_ins = p;
 						if (q == nullptr)
 							insertpenalties += eject_penalty;
 						else 
-							if (q->type == 12)
-								insertpenalties += width(q->num);
+							if (q->type == penalty_node)
+								insertpenalties += dynamic_cast<PenaltyNode*>(q)->penalty;
 					}
 				}
 				break;
+			}
 			default: 
 				confusion("page");
 		}

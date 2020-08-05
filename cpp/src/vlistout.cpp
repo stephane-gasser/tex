@@ -38,11 +38,13 @@ void vlistout(void)
 			{
 				case hlist_node:
 				case vlist_node:
-					if (list_ptr(p->num) == 0)
-						curv += height(p->num)+depth(p->num);
+				{
+					auto P = dynamic_cast<BoxNode*>(p);
+					if (P->list_ptr == nullptr)
+						curv += P->height+P->depth;
 					else
 					{
-						curv += height(p->num);
+						curv += P->height;
 						if (curv != dviv)
 						{
 							movement(curv-dviv, down1);
@@ -58,14 +60,17 @@ void vlistout(void)
 							hlistout();
 						dvih = saveh;
 						dviv = savev;
-						curv = savev+depth(p->num);
+						curv = savev+P->depth;
 						curh = leftedge;
 					}
 					break;
+				}
 				case rule_node:
-					ruleht = height(p->num);
-					ruledp = depth(p->num);
-					rulewd = width(p->num);
+				{
+					auto P = dynamic_cast<RuleNode*>(p);
+					ruleht = P->height;
+					ruledp = P->depth;
+					rulewd = P->width;
 					if (is_running(rulewd))
 						rulewd = width(thisbox);
 					ruleht += ruledp;
@@ -80,6 +85,7 @@ void vlistout(void)
 					}
 					p = p->link;
 					continue;
+				}
 				case whatsit_node:
 					outwhat(p->num);
 					break;

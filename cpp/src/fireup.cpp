@@ -4,7 +4,6 @@
 #include "boite.h"
 #include "noeud.h"
 #include "prunepagetop.h"
-#include "vpackage.h"
 #include "deleteglueref.h"
 #include "erreur.h"
 #include "pushnest.h"
@@ -44,7 +43,7 @@ void fireup(halfword c)
 	}
 	if (c == bestpagebreak)
 		bestpagebreak = 0;
-	if (box(255))
+	if (box[255])
 		boxerror(255, esc("box")+"255 is not void", "You shouldn't use \\box255 except in \\output routines.\nProceed, and I'll discard its present contents.");
 	insertpenalties = 0;
 	auto savesplittopskip = split_top_skip;
@@ -57,15 +56,12 @@ void fireup(halfword c)
 			{
 				n = subtype(r->num);
 				ensurevbox(n);
-				if (box(n) == 0)
-				{
-					auto B = new BoxNode;
-					box(n) = B->num;
-				}
-				auto p = box(n)+list_offset;
-				while (link(p))
-					p = link(p);
-				last_ins_ptr(r->num) = p;
+				if (box[n] == nullptr)
+					box[n] = new BoxNode;
+				auto p = box[n]->list_ptr;
+				while (p->link)
+					p = p->link;
+				last_ins_ptr(r->num) = p->num;
 			}
 			r = r->link;
 		}
@@ -78,47 +74,49 @@ void fireup(halfword c)
 	{
 		if (p->type == ins_node) //3
 		{
+			auto P = dynamic_cast<InsNode*>(p);
 			if (holding_inserts() <= 0)
 			{
-				auto r = page_ins_head->link;
-				while (subtype(r->num) != subtype(p->num))
-					r = r->link;
-				if (best_ins_ptr(r->num) == 0)
+				auto r = dynamic_cast<PageInsNode*>(page_ins_head->link);
+				while (r->subtype != P->subtype)
+					r = dynamic_cast<PageInsNode*>(r->link);
+				if (r->best_ins_ptr == nullptr)
 					wait = true;
 				else
 				{
 					wait = false;
-					s = last_ins_ptr(r->num);
-					link(s) = ins_ptr(p->num);
-					if (best_ins_ptr(r->num) == p->num)
+					s = r->last_ins_ptr->num;
+					link(s) = P->ins_ptr->num;
+					if (r->best_ins_ptr == p)
 					{
 						if (r->type == split_up) //1
-						if (broken_ins(r->num) == p->num && broken_ptr(r->num))
+						if (r->broken_ins == p && r->broken_ptr)
 						{
-							while (link(s) != broken_ptr(r->num))
+							while (link(s) != r->broken_ptr->num)
 								s = link(s);
 							link(s) = 0;
-							split_top_skip->num = split_top_ptr(p->num);
-							ins_ptr(p->num) = prunepagetop(broken_ptr(r->num))->num;
-							if (ins_ptr(p->num))
+							split_top_skip = P->split_top_ptr;
+							P->ins_ptr = prunepagetop(r->broken_ptr);
+							if (P->ins_ptr)
 							{
-								tempptr = vpack(ins_ptr(p->num), 0, additional);
-								height(p->num) = height(tempptr)+depth(tempptr);
-								freenode(tempptr, box_node_size);
+								auto ins = P->ins_ptr;
+								auto tempptr = vpack(ins, 0, additional);
+								P->height = tempptr->height+tempptr->depth;
+								delete tempptr;
 								wait = true;
 							}
 						}
-						best_ins_ptr(r->num) = 0;
-						n = subtype(r->num);
-						tempptr = list_ptr(box(n));
-						freenode(box(n), box_node_size);
-						box(n) = vpack(tempptr, 0, additional);
+						r->best_ins_ptr = nullptr;
+						n = r->subtype;
+						auto tempptr = box[n]->list_ptr;
+						delete box[n];
+						box[n] = vpack(tempptr, 0, additional);
 					}
 					else
 					{
 						while (link(s))
 							s = link(s);
-						last_ins_ptr(r->num) = s;
+						r->last_ins_ptr->num = s;
 					}
 				}
 				prevp->link = p->link;
@@ -132,7 +130,7 @@ void fireup(halfword c)
 				else
 				{
 					deleteglueref(split_top_ptr(p->num));
-					freenode(p->num, ins_node_size);
+					delete p;
 				}
 				p = prevp;
 			}
@@ -168,7 +166,7 @@ void fireup(halfword c)
 	vbadness() = inf_bad;
 	savevfuzz = vfuzz();
 	vfuzz() = max_dimen;
-	box(255) = vpackage(page_head->link->num, bestsize, exactly, pagemaxdepth);
+	box[255] = vpackage(page_head->link, bestsize, exactly, pagemaxdepth);
 	vbadness() = savevbadness;
 	vfuzz() = savevfuzz;
 	if (lastglue)
@@ -190,7 +188,7 @@ void fireup(halfword c)
 	while (r != page_ins_head)
 	{
 		q = r->link;
-		freenode(r->num, page_ins_node_size);
+		delete r;
 		r = q;
 	}
 	page_ins_head->link = page_ins_head;
@@ -229,6 +227,6 @@ void fireup(halfword c)
 		page_head->link = nullptr;
 		pagetail = page_head->num;
 	}
-	shipout(box(255));
-	box(255) = 0;
+	shipout(box[255]->num);
+	box[255] = nullptr;
 }

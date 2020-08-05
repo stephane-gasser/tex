@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-LinkedNode* prunepagetop(halfword);
+LinkedNode *prunepagetop(LinkedNode*);
 
 #endif

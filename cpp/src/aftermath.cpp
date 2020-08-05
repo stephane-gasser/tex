@@ -6,7 +6,7 @@
 #include "finmlist.h"
 #include "mlisttohlist.h"
 #include "unsave.h"
-#include "hpack.h"
+#include "boite.h"
 #include "noeud.h"
 #include "half.h"
 #include "resumeafterdisplay.h"

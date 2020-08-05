@@ -890,6 +890,15 @@ std::string showbox(halfword p)
 	return shownodelist(p, "")+"\n";
 }
 
+std::string showbox(BoxNode *p)
+{  
+	depththreshold = show_box_depth();
+	breadthmax = show_box_breadth();
+	if (breadthmax <= 0)
+		breadthmax = 5;
+	return shownodelist(p->num, "")+"\n";
+}
+
 static int error_context_lines(void) { return int_par(error_context_lines_code); }
 
 std::string showcontext(void)
@@ -1088,7 +1097,7 @@ static std::string showactivities(void)
 				oss << "\r### current page:";
 				if (outputactive)
 					oss << " (held over for link output)";
-				oss << showbox(page_head->link->num);
+				oss << showbox(dynamic_cast<BoxNode*>(page_head->link));
 				if (pagecontents > 0)
 				{
 					oss << "\rtotal height " << asScaled(page_total) << plus(2, "") << plus(3, "fil") << plus(4, "fill") << plus(5, "filll") << (page_shrink ? " minus "+asScaled(page_shrink) : "");
@@ -1116,7 +1125,7 @@ static std::string showactivities(void)
 			if (contrib_head->link)
 				oss << "\r### recent contributions:";
 		}
-		oss <<showbox(nest[p].headfield->link->num);
+		oss <<showbox(dynamic_cast<BoxNode*>(nest[p].headfield->link));
 		switch (abs(m))
 		{
 			//case 0:
@@ -1154,7 +1163,7 @@ void showwhatever(Token t)
 			break;
 		case show_box_code:
 			val = scaneightbitint();
-			diagnostic("\r> \\box"+std::to_string(val)+"="+(box(val) == 0 ? "void" : showbox(box(val)))+"\n");
+			diagnostic("\r> \\box"+std::to_string(val)+"="+(box[val] == nullptr ? "void" : showbox(box[val]))+"\n");
 			print_err("OK");
 			if (selector == term_and_log && tracing_online() <= 0)
 				selector = term_only;

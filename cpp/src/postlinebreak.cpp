@@ -1,6 +1,6 @@
 #include "postlinebreak.h"
 #include "deleteglueref.h"
-#include "hpack.h"
+#include "boite.h"
 #include "noeud.h"
 #include "erreur.h"
 
@@ -134,9 +134,9 @@ void postlinebreak(int finalwidowpenalty)
 				curindent = mem[par_shape_ptr()+2*curline-1].int_;
 			}
 		adjusttail = adjust_head->num;
-		justbox = hpack(q, curwidth, 0)->num;
-		shift_amount(justbox) = curindent;
-		appendtovlist(justbox);
+		justbox = hpack(q, curwidth, 0);
+		justbox->shift_amount = curindent;
+		appendtovlist(justbox->num);
 		if (adjust_head->num != adjusttail)
 		{
 			tail->link = adjust_head->link;

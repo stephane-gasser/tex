@@ -21,7 +21,7 @@ void builddiscretionary(Token t)
 		if (!p->is_char_node() && p->type > rule_node && p->type != kern_node && p->type != ligature_node)
 		{
 			error("Improper discretionary list", "Discretionary lists must contain only boxes and kerns.");
-			diagnostic("\rThe following discretionary sublist has been deleted:"+showbox(p->num)+"\n");
+			diagnostic("\rThe following discretionary sublist has been deleted:"+showbox(dynamic_cast<BoxNode*>(p))+"\n");
 			flushnodelist(p);
 			q->link = nullptr;
 			break;

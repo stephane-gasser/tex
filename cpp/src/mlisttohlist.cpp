@@ -1,7 +1,7 @@
 #include "mlisttohlist.h"
 #include "xovern.h"
 #include "makefraction.h"
-#include "hpack.h"
+#include "boite.h"
 #include "makeop.h"
 #include "makeradical.h"
 #include "makeover.h"
@@ -13,7 +13,6 @@
 #include "mathkern.h"
 #include "erreur.h"
 #include "fetch.h"
-#include "hpack.h"
 #include "makeord.h"
 #include "makescripts.h"
 #include "noeud.h"
@@ -373,7 +372,7 @@ void mlisttohlist(void)
 				p->link = q;
 				p = q;
 				q = q->link;
-				p->link = 0;
+				p->link = nullptr;
 				continue;
 			default: 
 				confusion("mlist3");

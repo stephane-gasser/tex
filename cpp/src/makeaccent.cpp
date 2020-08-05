@@ -3,7 +3,7 @@
 #include "noeud.h"
 #include "doassignments.h"
 #include "backinput.h"
-#include "hpack.h"
+#include "boite.h"
 #include "police.h"
 #include <cmath>
 

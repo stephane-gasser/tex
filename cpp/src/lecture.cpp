@@ -60,7 +60,7 @@ void scanbox(int boxcontext)
 	else 
 		if (boxcontext > leader_flag && (t.cmd == hrule || t.cmd == vrule))
 		{
-			curbox = scanrulespec(t)->num;
+			curbox = dynamic_cast<BoxNode*>(scanrulespec(t));
 			boxend(boxcontext);
 		}
 		else
@@ -734,7 +734,7 @@ RuleNode *scanrulespec(Token t)
 }
 
 //! |mem| location of math glue spec
-static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
+//static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 
 [[nodiscard]] std::tuple<int, int> scansomethinginternal(smallnumber level, bool negative, Token t)
 {
@@ -848,7 +848,19 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 			break;
 		case set_box_dimen:
 			val = scaneightbitint();
-			val = box(val) == 0 ? 0 : mem[box(val)+m].int_;
+			val = 0;
+			if (box[val])
+				switch (m)
+				{
+					case width_offset:
+						val = box[val]->width;
+						break;
+					case height_offset:
+						val = box[val]->height;
+						break;
+					case depth_offset:
+						val = box[val]->depth;
+				}
 			lev = dimen_val;
 		break;
 		case char_given:
@@ -876,10 +888,10 @@ static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
 					val = dimen(scaneightbitint());
 					break;
 				case glue_val: 
-					val = skip(scaneightbitint());
+					val = skip[scaneightbitint()]->num;
 					break;
 				case mu_val: 
-					val = mu_skip(scaneightbitint());
+					val = mu_skip[scaneightbitint()]->num;
 			}
 			lev = m;
 			break;

@@ -127,7 +127,6 @@ void expand(Token tk)
 					iflimit = type(p->num);
 					condptr = link(p->num);
 					delete p;
-					freenode(p->num, 2);
 				}
 				break;
 			case input:

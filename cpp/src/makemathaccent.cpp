@@ -4,7 +4,6 @@
 #include "half.h"
 #include "noeud.h"
 #include "police.h"
-#include "vpackage.h"
 
 void makemathaccent(halfword q)
 {
@@ -73,7 +72,7 @@ void makemathaccent(halfword q)
 		auto p = new KernNode(-delta);
 		p->link = x;
 		y->link = p;
-		y->num = vpack(y->num, 0, additional);
+		y = vpack(y, 0, additional);
 		y->width = x->width;
 		if (y->height < h)
 		{

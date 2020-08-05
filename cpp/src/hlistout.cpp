@@ -66,25 +66,29 @@ void hlistout(void)
 			{
 				case hlist_node:
 				case vlist_node:
-					if (list_ptr(p) == hlist_node)
-						curh += width(p);
+				{
+					BoxNode *P;
+					P->num = p;
+					if (P->list_ptr->num == hlist_node)
+						curh += P->width;
 					else
 					{
 						auto saveh = dvih;
 						auto savev = dviv;
-						curv = baseline+shift_amount(p);
+						curv = baseline+P->shift_amount;
 						tempptr = p;
 						auto edge = curh;
-						if (type(p) == vlist_node)
+						if (P->type == vlist_node)
 							vlistout();
 						else
 							hlistout();
 						dvih = saveh;
 						dviv = savev;
-						curh = edge+width(p);
+						curh = edge+P->width;
 						curv = baseline;
 					}
 					break;
+				}
 				case rule_node:
 					ruleht = height(p);
 					ruledp = depth(p);

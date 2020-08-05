@@ -754,12 +754,12 @@ halfword& token_ref_count(halfword); //!< reference count preceding a token list
 quarterword& eq_level(halfword);
 quarterword& eq_type(halfword); //!< command code for equivalent
 halfword& equiv(halfword); //!< equivalent value
-halfword& skip(halfword); //!< \a mem location of glue specification
+//halfword& skip(halfword); //!< \a mem location of glue specification
 halfword& par_shape_ptr(void); 
 halfword& every_math(void); 
 halfword& every_cr(void); 
 halfword& err_help(void);
-halfword& box(halfword); 
+//halfword& box(halfword); 
 halfword& cat_code(halfword);
 halfword& lc_code(halfword p);
 halfword& sf_code(halfword p);

@@ -56,7 +56,7 @@ scaled makeop(halfword q)
 		v->depth = y->depth;
 		if (math_type(supscr(q)) == 0)
 		{
-			freenode(x->num, box_node_size);
+			delete x;
 			v->list_ptr = y;
 		}
 		else
@@ -73,7 +73,7 @@ scaled makeop(halfword q)
 			v->height += mathex(big_op_spacing5())+x->height+x->depth+shiftup;
 		}
 		if (math_type(subscr(q)) == 0)
-			freenode(z->num, box_node_size);
+			delete z;
 		else
 		{
 			scaled shiftdown = big_op_spacing4()-z->height;

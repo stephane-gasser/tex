@@ -1,8 +1,6 @@
 #include "makescripts.h"
-#include "hpack.h"
 #include "boite.h"
 #include "noeud.h"
-#include "vpackage.h"
 #include "police.h"
 
 static int script_space(void) { return dimen_par(script_space_code); }
@@ -85,7 +83,7 @@ void makescripts(halfword q, scaled delta)
 			p = new KernNode(shiftup-x->depth-(y->height-shiftdown));
 			x->link = p;
 			p->link = y;
-			x->num = vpack(x->num, 0, additional);
+			x = vpack(x, 0, additional);
 			x->shift_amount = shiftdown;
 		}
 	}

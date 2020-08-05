@@ -253,6 +253,32 @@ class KernNode : public LinkedNode
 		KernNode(scaled w, quarterword s = 0) : width(w), subtype(s) { type = kern_node; }
 };
 
+class GlueSpec;
+
+class InsNode : public LinkedNode
+{
+	public:
+		quarterword subtype; //corresponding box number
+		scaled height; //natural height plus depth of the vertical list being inserted
+		scaled depth; //|split_max_depth| to be used in case this insertion is split
+		GlueSpec *split_top_ptr; //the |split_top_skip| to be used
+		int float_cost; //the |floating_penalty| to be used
+		LinkedNode *ins_ptr; //the vertical list to be inserted
+		InsNode(void) { type = ins_node; }
+};
+
+class PageInsNode : public LinkedNode
+{
+	public:
+		quarterword subtype; 
+		scaled height;
+		LinkedNode *broken_ptr; // an insertion for this class will break here if anywhere
+		LinkedNode* broken_ins; // this insertion might break at |broken_ptr|
+		LinkedNode *last_ins_ptr; // the most recent insertion for this |subtype|
+		LinkedNode* best_ins_ptr;// the optimum most recent insertion
+		PageInsNode(void) {}
+};
+
 halfword& glue_ref_count(halfword);
 int& width(halfword); //!< width of the box, in sp
 int& stretch(halfword); //!< the stretchability of this glob of glue
@@ -282,6 +308,9 @@ class GlueNode : public LinkedNode
 		GlueNode(smallnumber n) : subtype(n+1) { type = glue_node; glue_ptr->num = glue_par(n); glue_ptr->glue_ref_count++; }
 };
 
+inline std::vector<GlueSpec*> skip(256);
+inline std::vector<GlueSpec*> mu_skip(256);
+
 class PenaltyNode : public LinkedNode
 {
 	public:
@@ -309,6 +338,10 @@ class BoxNode : public RuleNode
 		float glue_set = 0.0;
 		BoxNode(void) { type = hlist_node; subtype = 0; width = depth = height = 0; } 
 };
+
+inline std::vector<BoxNode*> box(256);
+inline BoxNode *justbox;
+inline BoxNode *curbox;
 
 typedef struct
 {
@@ -510,7 +543,6 @@ extern bool mlistpenalties;
 extern halfword curalign;
 extern halfword curspan;
 extern halfword alignptr;
-extern halfword justbox;
 extern halfword passive;
 extern halfword printednode;
 extern halfword passnumber;
@@ -563,7 +595,6 @@ extern halfword bchar;
 extern halfword falsebchar;
 extern bool cancelboundary;
 extern bool insdisc;
-extern halfword curbox;
 extern bool longhelpseen;
 extern wordfile fmtfile;
 extern alphafile writefile[16];

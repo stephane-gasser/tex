@@ -1,8 +1,7 @@
 #include "finrow.h"
-#include "hpack.h"
 #include "popnest.h"
 #include "noeud.h"
-#include "vpackage.h"
+#include "boite.h"
 #include "alignpeek.h"
 #include "lecture.h"
 
@@ -22,7 +21,7 @@ void finrow(halfword &loop)
 	}
 	else
 	{
-		p->num = vpack(head->link->num, 0, additional);
+		p = vpack(head->link, 0, additional);
 		popnest();
 		tail->link = p;
 		tail = p;

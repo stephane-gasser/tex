@@ -109,7 +109,7 @@ void conditional(Token t)
 		case if_void_code:
 		case if_hbox_code:
 		case if_vbox_code:
-			p = box(scaneightbitint());
+			p = box[scaneightbitint()]->num;
 			if (thisif == if_void_code)
 				b = p == 0;
 			else 

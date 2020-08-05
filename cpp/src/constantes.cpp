@@ -77,8 +77,8 @@ int& count(halfword p) { return eqtb[count_base+p].int_; }
 int& dimen(halfword p) { return eqtb[scaled_base+p].int_; }
 int& del_code(halfword p) { return eqtb[del_code_base+p].int_; }
 halfword& cat_code(halfword p) { return equiv(cat_code_base+p); }
-halfword& skip(halfword p) { return equiv(skip_base+p); }
-halfword& box(halfword p) { return equiv(box_base+p); }
+//halfword& skip(halfword p) { return equiv(skip_base+p); }
+//halfword& box(halfword p) { return equiv(box_base+p); }
 halfword& par_shape_ptr(void) { return equiv(par_shape_loc); }
 halfword& every_math(void) { return equiv(every_math_loc); }
 halfword& every_cr(void) { return equiv(every_cr_loc); }

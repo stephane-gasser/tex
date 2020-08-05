@@ -2,8 +2,7 @@
 #include "unsave.h"
 #include "deleteglueref.h"
 #include "noeud.h"
-#include "hpack.h"
-#include "vpackage.h"
+#include "boite.h"
 #include "popalignment.h"
 #include "popnest.h"
 #include "impression.h"
@@ -14,7 +13,6 @@
 #include "buildpage.h"
 #include "noeud.h"
 #include <cmath>
-#include "texte.h"
 
 void finalign(halfword &loop)
 {
@@ -107,7 +105,7 @@ void finalign(halfword &loop)
 			width(q->num) = 0;
 			q = q->link->link;
 		} while (q);
-		p->num = vpack(preamble->num, saved(1), saved(0));
+		p = vpack(preamble, saved(1), saved(0));
 		q = preamble->link;
 		do
 		{
@@ -258,12 +256,14 @@ void finalign(halfword &loop)
 			else 
 				if (q->type == rule_node)
 				{
-					if (is_running(width(q->num)))
-						width(q->num) = width(p->num);
-					if (is_running(height(q->num)))
-						height(q->num) = height(p->num);
-					if (is_running(depth(q->num)))
-						depth(q->num) = depth(p->num);
+					auto Q = dynamic_cast<RuleNode*>(q);
+					auto P = dynamic_cast<RuleNode*>(p);
+					if (is_running(Q->width))
+						Q->width = P->width;
+					if (is_running(Q->height))
+						Q->height = P->height;
+					if (is_running(Q->depth))
+						Q->depth = P->depth;
 					if (o)
 					{
 						auto r = q->link;
