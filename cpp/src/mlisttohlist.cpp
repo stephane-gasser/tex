@@ -43,7 +43,8 @@ void mlisttohlist(void)
 	curmu = xovern(math_quad(cursize), 18);
 	quarterword curc;
 	Font ft;
-	LinkedNode *p, *z;
+	LinkedNode *p;
+	BoxNode *z;
 	while (q)
 	{
 		delta = 0;
@@ -82,33 +83,41 @@ void mlisttohlist(void)
 				q = q->link;
 				continue;
 			case fraction_noad:
+			{
 				makefraction(q->num);
-				z->num = hpack(new_hlist(q->num), 0, additional);
-				if (height(z->num) > maxh)
-					maxh = height(z->num);
-				if (depth(z->num) > maxd)
-					maxd = depth(z->num);
-				freenode(z->num, box_node_size);
+				LinkedNode* h;
+				h->num = new_hlist(q->num);
+				z = hpack(h, 0, additional);
+				if (z->height > maxh)
+					maxh = z->height;
+				if (z->depth > maxd)
+					maxd = z->depth;
+				delete z;
 				r = q;
 				rtype = r->type;
 				q = q->link;
 				continue;
+			}
 			case op_noad:
+			{
 				delta = makeop(q->num);
 				if (subtype(q->num) == 1)
 				{
-					z->num = hpack(new_hlist(q->num), 0, additional);
-					if (height(z->num) > maxh)
-						maxh = height(z->num);
-					if (depth(z->num) > maxd)
-						maxd = depth(z->num);
-					freenode(z->num, box_node_size);
+					LinkedNode *h;
+					h->num = new_hlist(q->num);
+					z = hpack(h, 0, additional);
+					if (z->height > maxh)
+						maxh = z->height;
+					if (z->depth > maxd)
+						maxd = z->depth;
+					delete z;
 					r = q;
 					rtype = r->type;
 					q = q->link;
 					continue;
 				}
 				break;
+			}
 			case ord_noad: 
 				makeord(q->num);
 				break;
@@ -172,7 +181,7 @@ void mlisttohlist(void)
 				depth(q->num) = 0;
 				if (p)
 				{
-					z = q->link;
+					auto z = q->link;
 					q->link = p;
 					while (p->link)
 						p = p->link;
@@ -266,7 +275,7 @@ void mlisttohlist(void)
 				else
 					cursize = 16*((curstyle-text_style)/2);
 				curmu = xovern(math_quad(cursize), 18);
-				p->num = hpack(temp_head->link->num, 0, additional);
+				p = hpack(temp_head->link, 0, additional);
 				break;
 			default: 
 				confusion("mlist2");
@@ -274,12 +283,14 @@ void mlisttohlist(void)
 		new_hlist(q->num) = p->num;
 		if (math_type(subscr(q->num)) || math_type(supscr(q->num)))
 			makescripts(q->num, delta);
-		z->num = hpack(new_hlist(q->num), 0, additional);
-		if (height(z->num) > maxh)
-			maxh = height(z->num);
-		if (depth(z->num) > maxd)
-			maxd = depth(z->num);
-		freenode(z->num, box_node_size);
+		LinkedNode *h;
+		h->num = new_hlist(q->num);
+		z = hpack(h, 0, additional);
+		if (z->height > maxh)
+			maxh = z->height;
+		if (z->depth > maxd)
+			maxd = z->depth;
+		delete z;
 		r = q;
 		rtype = r->type;
 		q = q->link;
@@ -394,8 +405,8 @@ void mlisttohlist(void)
 				y = mathglue(glue_par(x), curmu);
 				auto g = new GlueSpec(y);
 				g->glue_ref_count = 0;
-				z = new GlueNode(g);
-				dynamic_cast<GlueNode*>(z)->subtype = x+1;
+				auto z = new GlueNode(g);
+				z->subtype = x+1;
 				p->link = z;
 				p = z;
 			}
@@ -412,7 +423,7 @@ void mlisttohlist(void)
 			rtype = q->link->type;
 			if (rtype != penalty_node && rtype != rel_noad)
 			{
-				z = new PenaltyNode(pen);
+				auto z = new PenaltyNode(pen);
 				p->link = z;
 				p = z;
 			}

@@ -134,7 +134,7 @@ void postlinebreak(int finalwidowpenalty)
 				curindent = mem[par_shape_ptr()+2*curline-1].int_;
 			}
 		adjusttail = adjust_head->num;
-		justbox = hpack(q->num, curwidth, 0);
+		justbox = hpack(q, curwidth, 0)->num;
 		shift_amount(justbox) = curindent;
 		appendtovlist(justbox);
 		if (adjust_head->num != adjusttail)

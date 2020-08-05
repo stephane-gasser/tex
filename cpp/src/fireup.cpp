@@ -1,7 +1,7 @@
 #include "fireup.h"
 #include "geqworddefine.h"
 #include "impression.h"
-#include "ensurevbox.h"
+#include "boite.h"
 #include "noeud.h"
 #include "prunepagetop.h"
 #include "vpackage.h"

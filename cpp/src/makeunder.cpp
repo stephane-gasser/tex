@@ -1,6 +1,6 @@
 #include "makeunder.h"
 #include "noeud.h"
-#include "cleanbox.h"
+#include "boite.h"
 #include "vpackage.h"
 #include "fractionrule.h"
 

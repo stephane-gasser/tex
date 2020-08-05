@@ -7,7 +7,7 @@
 static int hbadness(void) { return int_par(hbadness_code); }
 static int hfuzz(void) { return dimen_par(hfuzz_code); }
 
-static void goto50(halfword r)
+static void goto50(BoxNode *r)
 {
 	if (outputactive)
 		print(") has occurred while \\output is active");
@@ -18,19 +18,19 @@ static void goto50(halfword r)
 			print(") detected at line"+std::to_string(line));
 	println();
 	fontinshortdisplay = fonts[null_font];
-	print(shortdisplay(list_ptr(r))+"\n");
-	diagnostic(showbox(r)+"\n");
+	print(shortdisplay(r->list_ptr->num)+"\n");
+	diagnostic(showbox(r->num)+"\n");
 }
 
-halfword hpack(halfword p, scaled w, smallnumber m)
+BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 {
 	lastbadness = 0;
-	auto r = getnode(box_node_size);
-	type(r) = 0;
-	subtype(r) = 0;
-	glue_shrink(r) = 0;
-	auto q = r+5;
-	list_ptr(r) = p;
+	auto r = new BoxNode;
+	r->type = hlist_node;
+	r->subtype = 0;
+	r->shift_amount = 0;
+	auto q = r->list_ptr;
+	r->list_ptr = p;
 	scaled h = 0;
 	scaled d = 0;
 	scaled x = 0;
@@ -46,105 +46,114 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 	{
 		scaled s;
 		glueord o;
-		while (is_char_node(p))
+		while (p->is_char_node())
 		{
-			f = type(p);
-			x += fonts[f].char_width(character(p));
-			s = fonts[f].char_height(character(p));
+			auto P = dynamic_cast<CharNode*>(p);
+			auto ft = P->font;
+			x += ft.char_width(P->character);
+			s = ft.char_height(P->character);
 			if (s > h)
 				h = s;
-			s = fonts[f].char_depth(character(p));
+			s = ft.char_depth(P->character);
 			if (s > d)
 				d = s;
-			p = link(p);
+			p = p->link;
 		}
 		if (p)
 		{
-			switch (type(p))
+			switch (p->type)
 			{
 				case hlist_node:
 				case vlist_node:
 				case rule_node:
 				case unset_node:
-					x += width(p);
-					if (type(p) >= rule_node)
+				{
+					auto P = dynamic_cast<RuleNode*>(p);
+					x += P->width;
+					if (p->type >= rule_node)
 						s = 0;
 					else
-						s = shift_amount(p);
-					if (height(p)-s > h)
-						h = height(p)-s;
-					if (depth(p) > d)
-						d = depth(p)+s;
+						s = dynamic_cast<BoxNode*>(p)->shift_amount;
+					if (P->height-s > h)
+						h = P->height-s;
+					if (P->depth > d)
+						d = P->depth+s;
 					break;
+				}
 				case ins_node:
 				case mark_node:
 				case adjust_node: 
 					if (adjusttail)
 					{
-						while (link(q) != p)
-							q = link(q);
-						if (type(p) == adjust_node)
+						while (q->link != p)
+							q = q->link;
+						if (p->type == adjust_node)
 						{
-							link(adjusttail) = adjust_ptr(p);
+							link(adjusttail) = adjust_ptr(p->num);
 							while (link(adjusttail))
 								adjusttail = link(adjusttail);
-							p = link(p);
-							freenode(link(q), 2);
+							p = p->link;
+							delete q->link;
 						}
 						else
 						{
-							link(adjusttail) = p;
-							adjusttail = p;
-							p = link(p);
+							link(adjusttail) = p->num;
+							adjusttail = p->num;
+							p = p->link;
 						}
-						link(q) = p;
+						q->link = p;
 						p = q;
 					}
 					break;
 				case whatsit_node:
 					break;
 				case glue_node:
-					g = info(p+1);
-					x += width(g);
-					o = type(g);
-					totalstretch[o] += stretch(g);
-					o = subtype(g);
-					totalshrink[o] += shrink(g);
-					if (subtype(p) >= 100)
+				{
+					auto P = dynamic_cast<GlueNode*>(p);
+					auto g = P->glue_ptr;
+					x += g->width;
+					o = g->stretch_order;
+					totalstretch[o] += g->stretch;
+					o = g->shrink_order;
+					totalshrink[o] += g->shrink;
+					if (P->subtype >= 100)
 					{
-						g = link(p+1);
-						if (shrink(g) > h)
-							h = shrink(g);
-						if (stretch(g) > d)
-							d = stretch(g);
+						auto g = dynamic_cast<RuleNode*>(P->leader_ptr);
+						if (g->height > h)
+							h = g->height;
+						if (g->depth > d)
+							d = g->depth;
 					}
 					break;
+				}
 				case kern_node:
+					x += dynamic_cast<KernNode*>(p)->width;
+					break;
 				case math_node: 
-					x += width(p);
+					x += width(p->num);
 					break;
 				case ligature_node:
-					mem[lig_trick->num] = mem[lig_char(p)];
-					lig_trick->link->num = link(p);
-					p = lig_trick->num;
+					mem[lig_trick->num] = mem[lig_char(p->num)];
+					lig_trick->link = p->link;
+					p = lig_trick;
 					continue;
 			}
-			p = link(p);
+			p = p->link;
 		}
 	}
 	if (adjusttail)
 		link(adjusttail) = 0;
-	height(r) = h;
-	depth(r) = d;
+	r->height = h;
+	r->depth = d;
 	if (m == additional)
 		w += x;
-	width(r) = w;
+	r->width = w;
 	x = w-x;
 	if (x == 0)
 	{
-		glue_sign(r) = normal;
-		glue_order(r) = 0;
-		glue_set(r) = 0.0;
+		r->glue_sign = normal;
+		r->glue_order = 0;
+		r->glue_set = 0.0;
 	}
 	else 
 		if (x > 0)
@@ -160,16 +169,16 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 						o = 1;
 					else
 						o = 0;
-			glue_order(r) = o;
-			glue_sign(r) = stretching;
+			r->glue_order = o;
+			r->glue_sign = stretching;
 			if (totalstretch[o])
-				glue_set(r) = x/totalstretch[o];
+				r->glue_set = x/totalstretch[o];
 			else
 			{
-				glue_sign(r) = normal;
-				glue_set(r) = 0.0;
+				r->glue_sign = normal;
+				r->glue_set = 0.0;
 			}
-			if (o == 0 && list_ptr(r))
+			if (o == 0 && r->list_ptr)
 			{
 				lastbadness = badness(x, totalstretch[0]);
 				if (lastbadness > hbadness())
@@ -193,28 +202,28 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 						o = 1;
 					else
 						o = 0;
-			glue_order(r) = o;
-			glue_sign(r) = shrinking;
+			r->glue_order = o;
+			r->glue_sign = shrinking;
 			if (totalshrink[o])
-				glue_set(r) = (-x)/totalshrink[o];
+				r->glue_set = (-x)/totalshrink[o];
 			else
 			{
-				glue_sign(r) = normal;
-				glue_set(r) = 0.0;
+				r->glue_sign = normal;
+				r->glue_set = 0.0;
 			}
-			if (totalshrink[o] < -x && o == 0 && list_ptr(r))
+			if (totalshrink[o] < -x && o == 0 && r->list_ptr)
 			{
 				lastbadness = 1000000;
-				glue_set(r) = 1.0;
+				r->glue_set = 1.0;
 				if (-x-totalshrink[0] > hfuzz() || hbadness() < 100)
 				{
 					if (overfull_rule() > 0 && -x-totalshrink[0] > hfuzz())
 					{
-						while (link(q))
-							q = link(q);
+						while (q->link)
+							q = q->link;
 						auto R = new RuleNode;
 						R->width = overfull_rule();
-						link(q) = R->num;
+						q->link = R;
 					}
 					print("\nOverfull \\hbox ("+asScaled(-x-totalshrink[0])+"pt too wide");
 					goto50(r);
@@ -222,7 +231,7 @@ halfword hpack(halfword p, scaled w, smallnumber m)
 			}
 			else 
 				if (o == 0)
-					if (list_ptr(r))
+					if (r->list_ptr)
 					{
 						lastbadness = badness(-x, totalshrink[0]);
 						if (lastbadness > hbadness())

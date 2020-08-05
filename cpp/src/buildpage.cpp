@@ -1,7 +1,6 @@
 #include "buildpage.h"
 #include "freezepagespecs.h"
 #include "deleteglueref.h"
-#include "ensurevbox.h"
 #include "xovern.h"
 #include "impression.h"
 #include "erreur.h"
@@ -11,6 +10,7 @@
 #include "fireup.h"
 #include "noeud.h"
 #include "texte.h"
+#include "boite.h"
 
 //! Append contributions to the current page.
 void buildpage(void)

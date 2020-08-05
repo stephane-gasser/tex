@@ -1,6 +1,6 @@
 #include "makescripts.h"
 #include "hpack.h"
-#include "cleanbox.h"
+#include "boite.h"
 #include "noeud.h"
 #include "vpackage.h"
 #include "police.h"
@@ -27,11 +27,11 @@ void makescripts(halfword q, scaled delta)
 	}
 	else
 	{
-		auto z = hpack(p->num, 0, additional);
+		auto z = hpack(p, 0, additional);
 		smallnumber t = curstyle < script_style ? script_size : script_script_size;
-		shiftup = height(z)-sup_drop(t);
-		shiftdown = depth(z)+sub_drop(t);
-		freenode(z, box_node_size);
+		shiftup = z->height-sup_drop(t);
+		shiftdown = z->depth+sub_drop(t);
+		delete z;
 	}
 	scaled clr;
 	BoxNode *x;

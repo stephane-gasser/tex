@@ -1,6 +1,5 @@
 #include "makefraction.h"
-#include "cleanbox.h"
-#include "rebox.h"
+#include "boite.h"
 #include "half.h"
 #include "noeud.h"
 #include "fractionrule.h"
@@ -100,5 +99,5 @@ void makefraction(halfword q)
 	x->link = v;
 	z = vardelimiter(right_delimiter(q), cursize, delta);
 	v->link = z;
-	new_hlist(q) = hpack(x->num, 0, additional);
+	new_hlist(q) = hpack(x, 0, additional)->num;
 }

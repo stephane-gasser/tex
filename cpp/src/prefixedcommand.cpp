@@ -12,12 +12,12 @@
 #include "alteraux.h"
 #include "alterprevgraf.h"
 #include "alterpagesofar.h"
-#include "alterboxdimen.h"
 #include "alterinteger.h"
 #include "noeud.h"
 #include "texte.h"
 #include "cesure.h"
 #include "police.h"
+#include "boite.h"
 
 void prefixedcommand(Token t, bool setboxallowed)
 {

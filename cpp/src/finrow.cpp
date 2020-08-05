@@ -11,7 +11,7 @@ void finrow(halfword &loop)
 	LinkedNode *p;
 	if (mode == -hmode)
 	{
-		p->num = hpack(head->link->num, 0, additional);
+		p = hpack(head->link, 0, additional);
 		popnest();
 		appendtovlist(p->num);
 		if (curhead != curtail)

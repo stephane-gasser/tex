@@ -9,12 +9,12 @@
 
 void makeaccent(Token t)
 {
-	auto p = newcharacter(curFontNum(), scancharnum());
+	LinkedNode *p = newcharacter(curFontNum(), scancharnum());
 	if (p)
 	{
 		auto x = cur_font().x_height();
 		auto s = cur_font().slant()/float(unity);
-		auto a = cur_font().char_width(p->character);
+		auto a = cur_font().char_width(dynamic_cast<CharNode*>(p)->character);
 		doassignments();
 		CharNode *q = nullptr;
 		if (t.cmd == letter || t.cmd == other_char || t.cmd == char_given)
@@ -31,7 +31,7 @@ void makeaccent(Token t)
 			auto h = cur_font().char_height(q->character);
 			if (h != x)
 			{
-				p->num = hpack(p->num, 0, additional);
+				p = hpack(p, 0, additional);
 				shift_amount(p->num) = x-h;
 			}
 			auto delta = round((w-a)/2.0+h*t-x*s);

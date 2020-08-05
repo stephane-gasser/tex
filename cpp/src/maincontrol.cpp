@@ -1,4 +1,5 @@
 #include "maincontrol.h"
+#include "boite.h"
 #include "police.h"
 #include "cesure.h"
 #include "fixlanguage.h"
@@ -10,7 +11,6 @@
 #include "unsave.h"
 #include "offsave.h"
 #include "handlerightbrace.h"
-#include "beginbox.h"
 #include "indentinhmode.h"
 #include "normalparagraph.h"
 #include "buildpage.h"

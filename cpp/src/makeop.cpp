@@ -1,9 +1,8 @@
 #include "makeop.h"
 #include "fetch.h"
-#include "cleanbox.h"
+#include "boite.h"
 #include "half.h"
 #include "noeud.h"
-#include "rebox.h"
 #include "police.h"
 
 static int big_op_spacing1(void) { return mathex(9); } //!< minimum clearance above a displayed op

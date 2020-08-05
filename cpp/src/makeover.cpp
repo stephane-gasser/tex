@@ -1,5 +1,5 @@
 #include "makeover.h"
-#include "cleanbox.h"
+#include "boite.h"
 #include "overbar.h"
 
 void makeover(halfword q)

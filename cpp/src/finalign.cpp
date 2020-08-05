@@ -95,7 +95,7 @@ void finalign(halfword &loop)
 	{
 		scaled rulesave = overfull_rule();
 		overfull_rule() = 0;
-		p->num = hpack(preamble->num, saved(1), saved(0));
+		p = hpack(preamble, saved(1), saved(0));
 		overfull_rule() = rulesave;
 	}
 	else
@@ -268,8 +268,8 @@ void finalign(halfword &loop)
 					{
 						auto r = q->link;
 						q->link = nullptr;
-						q->num = hpack(q->num, 0, additional);
-						shift_amount(q->num) = o;
+						q = hpack(q, 0, additional);
+						dynamic_cast<BoxNode*>(q)->shift_amount = o;
 						q->link = r;
 						s->link = q;
 					}

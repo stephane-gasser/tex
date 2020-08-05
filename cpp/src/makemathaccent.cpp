@@ -1,7 +1,6 @@
 #include "makemathaccent.h"
-#include "cleanbox.h"
+#include "boite.h"
 #include "fetch.h"
-#include "charbox.h"
 #include "half.h"
 #include "noeud.h"
 #include "police.h"

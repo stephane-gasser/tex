@@ -3,7 +3,7 @@
 #include "unsave.h"
 #include "vpackage.h"
 #include "popnest.h"
-#include "boxend.h"
+#include "boite.h"
 
 static int box_max_depth(void) { return dimen_par(box_max_depth_code); }
 
@@ -13,7 +13,7 @@ void package(smallnumber c, Token t)
 	unsave();
 	saveptr -= 3;
 	if (mode == -hmode)
-		curbox = hpack(head->link->num, saved(2), saved(1));
+		curbox = hpack(head->link, saved(2), saved(1))->num;
 	else
 	{
 		curbox = vpackage(head->link->num, saved(2), saved(1), d);

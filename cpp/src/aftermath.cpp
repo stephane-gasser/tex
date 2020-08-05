@@ -46,7 +46,7 @@ void aftermath(void)
 	LinkedNode *p;
 	p->num = finmlist(0);
 	Token t;
-	halfword a; // box containing equation number
+	BoxNode *a; // box containing equation number
 	if (mode == -m)
 	{
 		t = getxtoken();
@@ -55,7 +55,7 @@ void aftermath(void)
 		curstyle = 2;
 		mlistpenalties = false;
 		mlisttohlist();
-		a = hpack(temp_head->link->num, 0, additional);
+		a = hpack(temp_head->link, 0, additional);
 		unsave();
 		saveptr--;
 		if (saved(0) == 1)
@@ -111,11 +111,11 @@ void aftermath(void)
 		mlisttohlist();
 		p = temp_head->link;
 		adjusttail = adjust_head->num;
-		auto b = hpack(p->num, 0, additional);
-		p->num = list_ptr(b);
+		auto b = hpack(p, 0, additional);
+		p = b->list_ptr;
 		auto tt = adjusttail;
 		adjusttail = 0;
-		auto w = width(b);
+		auto w = b->width;
 		auto z = display_width();
 		auto s = display_indent();
 		scaled e, q;
@@ -126,26 +126,26 @@ void aftermath(void)
 		}
 		else
 		{
-			e = width(a);
+			e = a->width;
 			q = e+math_quad(0);
 		}
 		if (w+q > z)
 		{
 			if (e && (w-totalshrink[0]+q <= z || totalshrink[1] || totalshrink[2] || totalshrink[3]))
 			{
-				freenode(b, box_node_size);
-				b = hpack(p->num, z-q, exactly);
+				delete b;
+				b = hpack(p, z-q, exactly);
 			}
 			else
 			{
 				e = 0;
 				if (w > z)
 				{
-					freenode(b, box_node_size);
-					b = hpack(p->num, z, exactly);
+					delete b;
+					b = hpack(p, z, exactly);
 				}
 			}
-			w = width(b);
+			w = b->width;
 		}
 		auto d = half(z-w);
 		if (e > 0 && d < 2*e)
@@ -163,8 +163,8 @@ void aftermath(void)
 		}
 		if (l && e == 0)
 		{
-			shift_amount(a) = s;
-			appendtovlist(a);
+			a->shift_amount = s;
+			appendtovlist(a->num);
 			tail_append(new PenaltyNode(10000));
 		}
 		else
@@ -174,25 +174,25 @@ void aftermath(void)
 			auto r = new KernNode(z-w-e-d);
 			if (l)
 			{
-				link(a) = r->num;
-				r->link->num = b;
+				a->link = r;
+				r->link = b;
 				b = a;
 				d = 0;
 			}
 			else
 			{
-				link(b) = r->num;
-				r->link->num = a;
+				b->link = r;
+				r->link = a;
 			}
 			b = hpack(b, 0, additional);
 		}
-		shift_amount(b) = s+d;
-		appendtovlist(b);
+		b->shift_amount = s+d;
+		appendtovlist(b->num);
 		if (a && e == 0 && !l)
 		{
 			tail_append(new PenaltyNode(10000));
-			shift_amount(a) = s+z-width(a);
-			appendtovlist(a);
+			a->shift_amount = s+z-a->width;
+			appendtovlist(a->num);
 			g2 = 0;
 		}
 		if (tt != adjust_head->num)

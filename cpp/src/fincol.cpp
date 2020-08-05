@@ -13,7 +13,8 @@
 
 bool fincol(Token t, halfword &loop)
 {
-	halfword s, u;
+	halfword s;
+	BoxNode *u;
 	#warning pas le bon type ??
 	LinkedNode *q;
 	scaled w;
@@ -72,15 +73,15 @@ bool fincol(Token t, halfword &loop)
 		if (mode == -hmode)
 		{
 			adjusttail = curtail->num;
-			u = hpack(head->link->num, 0, additional);
-			w = width(u);
+			u = hpack(head->link, 0, additional);
+			w = u->width;
 			curtail->num = adjusttail;
 			adjusttail = 0;
 		}
 		else
 		{
-			u = vpackage(head->link->num, 0, additional, 0);
-			w = height(u);
+			u->num = vpackage(head->link->num, 0, additional, 0);
+			w = u->height;
 		}
 		n = 0;
 		if (curspan != curalign)
@@ -111,8 +112,8 @@ bool fincol(Token t, halfword &loop)
 		else 
 			if (w > width(curalign))
 				width(curalign) = w;
-		type(u) = unset_node;
-		span_count(u) = n;
+		u->type = unset_node;
+		span_count(u->num) = n;
 		if (totalstretch[3])
 			o = 3;
 			else 
@@ -123,8 +124,8 @@ bool fincol(Token t, halfword &loop)
 						o = 1;
 					else
 						o = 0;
-		glue_order(u) = o;
-		glue_stretch(u) = totalstretch[o];
+		u->glue_order = o;
+		glue_stretch(u->num) = totalstretch[o];
 		if (totalshrink[3])
 			o = 3;
 		else 
@@ -135,11 +136,11 @@ bool fincol(Token t, halfword &loop)
 					o = 1;
 				else
 					o = 0;
-		glue_sign(u) = o;
-		glue_shrink(u) = totalshrink[o];
+		u->glue_sign = o;
+		glue_shrink(u->num) = totalshrink[o];
 		popnest();
-		tail->link->num = u;
-		tail->num = u;
+		tail->link = u;
+		tail = u;
 		GlueNode *Curalign;
 		Curalign->num = curalign;
 		auto G = new GlueNode(Curalign->glue_ptr);

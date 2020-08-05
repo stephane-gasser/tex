@@ -1,6 +1,6 @@
 #include "vardelimiter.h"
 #include "noeud.h"
-#include "charbox.h"
+#include "boite.h"
 #include "police.h"
 #include "half.h"
 
