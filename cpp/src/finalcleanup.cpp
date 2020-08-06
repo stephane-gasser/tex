@@ -44,9 +44,9 @@ void finalcleanup(Token t)
 	}
 	if (c == 1)
 	{
-		for (c = top_mark_code; c <= split_bot_mark_code; c++)
-		if (curmark[c])
-			deletetokenref(curmark[c]);
+		for (auto m: curmark)
+			if (m)
+				deletetokenref(m);
 		if (lastglue)
 			deleteglueref(lastglue);
 		storefmtfile();

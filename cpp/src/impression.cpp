@@ -300,7 +300,7 @@ static std::string asMark(int p)
 	return "{"+(p < himemmin || p > memend ? esc("CLOBBERED.") : tokenlist(link(p), 0, maxprintline-10))+"}";
 }
 
-std::string meaning(Token t) { return cmdchr(t)+(t.cmd >= call ? ":\n"+tokenshow(t.chr) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); }
+std::string meaning(Token t) { return cmdchr(t)+(t.cmd >= call ? ":\n"+tokenshow(t.chr) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]->num) : ""); }
 
 std::string asMode(int m)
 {
@@ -385,31 +385,39 @@ std::string asSpec(int p, const std::string &s = "")
 	return asScaled(width(p))+s+(stretch(p) ? " plus "+glue(stretch(p), type(p), s) : "")+(shrink(p) ? " minus "+glue(shrink(p), subtype(p), s) : "");
 }
 
-static std::string shownodelist(halfword p, const std::string &);
+static std::string shownodelist(LinkedNode*, const std::string &);
 
 //! Display a noad field.
-static std::string subsidiarydata(halfword p, char c, const std::string &symbol)
+static std::string subsidiarydata(LinkedNode *p, char c, const std::string &symbol)
 {
 	if (cur_length() >= depththreshold)
 	{
-		if (math_type(p))
+		if (math_type(p->num))
 			return " []";
 		return "";
 	}
 	std::ostringstream oss;
-	switch (math_type(p))
+	switch (math_type(p->num))
 	{
 		case math_char:
-			oss << "\n" << symbol << c << famandchar(p);
+			oss << "\n" << symbol << c << famandchar(p->num);
 			break;
 		case sub_box: 
-			oss << shownodelist(info(p), symbol+c);
+		{
+			LinkedNode *i;
+			i->num = info(p->num);
+			oss << shownodelist(i, symbol+c);
 			break;
+		}
 		case sub_mlist:
-			if (info(p) == 0)
+			if (info(p->num) == 0)
 				oss << "\n" << symbol << c << "{}";
 			else
-				oss << shownodelist(info(p), symbol+c);
+			{
+				LinkedNode *i;
+				i->num = info(p->num);
+				oss << shownodelist(i, symbol+c);
+			}
 	}
 	return oss.str();
 }
@@ -577,7 +585,7 @@ std::string shortdisplay(int P)
 	return oss.str();
 }
 
-static std::string shownodelist(halfword p, const std::string &symbol)
+static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 {
 	if (cur_length() > depththreshold)
 	{
@@ -587,48 +595,50 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 	}
 	int n = 0;
 	std::ostringstream oss;
-	while (p > memmin)
+	while (/*p > memmin*/true)
 	{
 		oss << "\n" << symbol;
-		if (p > memend)
-			return oss.str()+"Bad link, display aborted.";
+		/*if (p > memend)
+			return oss.str()+"Bad link, display aborted.";*/
 		n++;
 		if (n > breadthmax)
 			return oss.str()+"etc.";
-		if (is_char_node(p))
-			oss << fontandchar(p);
+		if (p->is_char_node())
+			oss << fontandchar(p->num);
 		else
-			switch (type(p))
+			switch (p->type)
 			{
 				case hlist_node:
 				case vlist_node:
 				case unset_node:
-					if (type(p) == hlist_node)
+				{
+					auto P = dynamic_cast<BoxNode*>(p);
+					if (p->type == hlist_node)
 						oss << esc("hbox");
 					else 
-						if (type(p) == vlist_node)
+						if (p->type == vlist_node)
 							oss << esc("vbox");
 						else
 							oss << esc("unsetbox");
-					oss << "(" << asScaled(height(p)) << "+" << asScaled(depth(p)) << ")x" << asScaled(width(p));
-					if (type(p) == unset_node)
+					oss << "(" << asScaled(P->height) << "+" << asScaled(P->depth) << ")x" << asScaled(P->width);
+					if (p->type == unset_node)
 					{
-						if (span_count(p))
-							oss << " (" << span_count(p)+1 << " columns)";
-						if (glue_stretch(p))
-							oss << ", stretch " << glue(glue_stretch(p), glue_order(p));
-						if (glue_shrink(p))
-							oss << ", shrink " << glue(glue_shrink(p), glue_sign(p));
+						if (span_count(p->num))
+							oss << " (" << span_count(p->num)+1 << " columns)";
+						if (glue_stretch(p->num))
+							oss << ", stretch " << glue(glue_stretch(p->num), P->glue_order);
+						if (glue_shrink(p->num))
+							oss << ", shrink " << glue(glue_shrink(p->num), P->glue_sign);
 					}
 					else
 					{
-						g = glue_set(p);
-						if (g && glue_sign(p))
+						g = P->glue_set;
+						if (g && P->glue_sign)
 						{
 							oss << ", glue set ";
-							if (glue_sign(p) == shrinking)
+							if (P->glue_sign == shrinking)
 								oss << "- ";
-							if (!std::isfinite(glue_set(p)))
+							if (!std::isfinite(P->glue_set))
 								oss << "?.?";
 							else 
 								if (abs(g) > 20000.0)
@@ -637,41 +647,48 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 										oss << ">";
 									else
 										oss << "< -";
-									oss << glue(20000*unity, glue_order(p));
+									oss << glue(20000*unity, P->glue_order);
 								}
 								else
-									oss << glue(round(unity*g), glue_order(p));
+									oss << glue(round(unity*g), P->glue_order);
 						}
-						if (shift_amount(p))
-							oss << ", shifted " << asScaled(shift_amount(p));
+						if (P->shift_amount)
+							oss << ", shifted " << asScaled(P->shift_amount);
 					}
-					shownodelist(list_ptr(p), symbol+".");
+					shownodelist(P->list_ptr, symbol+".");
 					break;
+				}
 				case rule_node:
-					oss << esc("rule") << "(" << ruledimen(width(p)) << "+" << ruledimen(depth(p)) << ")x" << ruledimen(width(p));
+				{
+					auto P = dynamic_cast<RuleNode*>(p);
+					oss << esc("rule") << "(" << ruledimen(P->width) << "+" << ruledimen(P->depth) << ")x" << ruledimen(P->width);
 					break;
+				}
 				case ins_node:
-					oss << esc("insert") << subtype(p) << ", natural size " << asScaled(height(p)) << "; split("
-						<< asSpec(split_top_ptr(p)) << "," << asScaled(depth(p)) << "); float cost " << float_cost(p)
-						<< shownodelist(ins_ptr(p), symbol+".");
+				{
+					auto P = dynamic_cast<InsNode*>(p);
+					oss << esc("insert") << P->subtype << ", natural size " << asScaled(P->height) << "; split("
+						<< asSpec(P->split_top_ptr->num) << "," << asScaled(P->depth) << "); float cost " << P->float_cost
+						<< shownodelist(P->ins_ptr, symbol+".");
 					break;
+				}
 				case whatsit_node:
-					switch (subtype(p))
+					switch (subtype(p->num))
 					{
 						case open_node:
-							oss << writewhatsit("openout", p) << "=" << asFilename(TXT(open_name(p)), TXT(open_area(p)), TXT(open_ext(p)));
+							oss << writewhatsit("openout", p->num) << "=" << asFilename(TXT(open_name(p->num)), TXT(open_area(p->num)), TXT(open_ext(p->num)));
 							break;
 						case write_node:
-							oss << writewhatsit("write", p) << asMark(write_tokens(p));
+							oss << writewhatsit("write", p->num) << asMark(write_tokens(p->num));
 							break;
 						case close_node: 
-							oss << writewhatsit("closeout", p); 
+							oss << writewhatsit("closeout", p->num); 
 							break;
 						case special_node:
-							oss << esc("special") << asMark(write_tokens(p));
+							oss << esc("special") << asMark(write_tokens(p->num));
 							break;
 						case language_node:
-							oss << esc("setlanguage") <<what_lang(p) << " (hyphenmin" << what_lhm(p) << "," << what_rhm(p) << ")";
+							oss << esc("setlanguage") <<what_lang(p->num) << " (hyphenmin" << what_lhm(p->num) << "," << what_rhm(p->num) << ")";
 							break;
 						default: 
 							oss << "whatsit?";
@@ -679,15 +696,14 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 					break;
 				case glue_node:
 				{
-					GlueNode* pp;
-					pp->num = p;
+					auto pp = dynamic_cast<GlueNode*>(p);
 					if (pp->subtype >= a_leaders)
 						oss << esc(pp->subtype == c_leaders ? "cleaders" : pp->subtype == x_leaders ? "xleaders" : "leaders ") 
-							<< asSpec(pp->glue_ptr->num) << shownodelist(pp->leader_ptr->num, symbol+".");
+							<< asSpec(pp->glue_ptr->num) << shownodelist(pp->leader_ptr, symbol+".");
 					else
 					{
 						oss << esc("glue");
-						int n = subtype(p)-1;
+						int n = pp->subtype-1;
 						auto &glueNames = primName[assign_glue];
 						auto &muGlueNames = primName[assign_mu_glue];
 						switch (n+1)
@@ -718,79 +734,76 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 					break;
 				}
 				case kern_node:
-					switch(subtype(p))
+				{
+					auto P = dynamic_cast<KernNode*>(p);
+					switch(P->subtype)
 					{
 						case normal:
-							oss << esc("kern") << asScaled(width(p));
+							oss << esc("kern") << asScaled(P->width);
 							break;
 						case mu_glue:
-							oss << esc("mkern") << asScaled(width(p)) << "mu";
+							oss << esc("mkern") << asScaled(P->width) << "mu";
 							break;
 						case acc_kern:
-							oss << esc("kern") << " " << asScaled(width(p)) << " (for accent)";
+							oss << esc("kern") << " " << asScaled(P->width) << " (for accent)";
 							break;
 						default:
-							oss << esc("kern") << " " << asScaled(width(p));
+							oss << esc("kern") << " " << asScaled(P->width);
 					}
 					break;
+				}
 				case math_node:
-					oss << esc("math") << (subtype(p) == before ? "on" : "off");
-					if (width(p))
-						oss << ", surrounded " << asScaled(width(p));
+					oss << esc("math") << (subtype(p->num) == before ? "on" : "off");
+					if (width(p->num))
+						oss << ", surrounded " << asScaled(width(p->num));
 					break;
 				case ligature_node:
-					oss << fontandchar(lig_char(p)) << " (ligature ";
-					if (subtype(p) > 1)
+					oss << fontandchar(lig_char(p->num)) << " (ligature ";
+					if (subtype(p->num) > 1)
 						oss << "|";
-					fontinshortdisplay = fonts[font(lig_char(p))];
-					oss << shortdisplay(lig_char(p));
-					if (subtype(p)%2)
+					fontinshortdisplay = fonts[font(lig_char(p->num))];
+					oss << shortdisplay(lig_char(p->num));
+					if (subtype(p->num)%2)
 						oss << "|";
 					oss << ")";
 					break;
 				case penalty_node:
-				{
-					PenaltyNode *P;
-					P->num = p;
-					oss << esc("penalty ") << P->penalty;
+					oss << esc("penalty ") << dynamic_cast<PenaltyNode*>(p)->penalty;
 					break;
-				}
 				case disc_node:
 				{
-					DiscNode *d;
-					d->num = p;
+					auto d = dynamic_cast<DiscNode*>(p);
 					oss << esc("discretionary");
 					if (d->replace_count > 0)
 						oss << " replacing " << d->replace_count;
-					oss << shownodelist(d->pre_break->num, symbol+".");
-					oss << shownodelist(d->post_break->num, symbol+"|");
+					oss << shownodelist(d->pre_break, symbol+".");
+					oss << shownodelist(d->post_break, symbol+"|");
 					break;
 				}
 				case mark_node:
 				{
-					MarkNode *P;
-					P->num = p;
-					oss << esc("mark") << asMark(P->mark_ptr->num);
+					oss << esc("mark") << asMark(dynamic_cast<MarkNode*>(p)->mark_ptr->num);
 					break;
 				}
 				case adjust_node:
-					oss << esc("vadjust") << shownodelist(adjust_ptr(p), symbol+".");
+				{
+					oss << esc("vadjust") << shownodelist(dynamic_cast<AdjustNode*>(p)->adjust_ptr, symbol+".");
 					break;
+				}
 				case style_node:
-					if (primName[math_style].find(subtype(p)) != primName[math_style].end())
-						oss << esc(primName[math_style][subtype(p)]);
+					if (primName[math_style].find(subtype(p->num)) != primName[math_style].end())
+						oss << esc(primName[math_style][subtype(p->num)]);
 					else
 						oss << "Unknown style!";
 					break;
 				case choice_node:
 				{
-					ChoiceNode *P;
-					P->num = p;
+					auto P = dynamic_cast<ChoiceNode*>(p);
 					oss << esc("mathchoice");
-					oss << shownodelist(P->display_mlist->num, symbol+"D");
-					oss << shownodelist(P->text_mlist->num, symbol+"T");
-					oss << shownodelist(P->script_mlist->num, symbol+"S");
-					oss << shownodelist(P->script_script_mlist->num, symbol+"s");
+					oss << shownodelist(P->display_mlist, symbol+"D");
+					oss << shownodelist(P->text_mlist, symbol+"T");
+					oss << shownodelist(P->script_mlist, symbol+"S");
+					oss << shownodelist(P->script_script_mlist, symbol+"s");
 					break;
 				}
 				case ord_noad:
@@ -808,7 +821,8 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 				case accent_noad:
 				case left_noad:
 				case right_noad:
-					switch (type(p))
+				{
+					switch (p->type)
 					{
 						case ord_noad: 
 							oss << esc("mathord");
@@ -844,40 +858,52 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 							oss << esc("vcenter");
 							break;
 						case radical_noad:
-							oss << esc("radical") << asDelimiter(left_delimiter(p));
+							oss << esc("radical") << asDelimiter(left_delimiter(p->num));
 							break;
 						case accent_noad:
-							oss << esc("accent") << famandchar(accent_chr(p));
+							oss << esc("accent") << famandchar(accent_chr(p->num));
 							break;
 						case left_noad:
-							oss << esc("left") << asDelimiter(delimiter(p));
+							oss << esc("left") << asDelimiter(delimiter(p->num));
 							break;
 						case right_noad:
-							oss << esc("right") << asDelimiter(delimiter(p));
+							oss << esc("right") << asDelimiter(delimiter(p->num));
 					}
-					if (subtype(p))
-						if (subtype(p) == limits)
+					if (subtype(p->num))
+						if (subtype(p->num) == limits)
 							oss << esc("limits");
 						else
 							oss << esc("nolimits");
-					if (type(p) < left_noad)
-						oss << subsidiarydata(nucleus(p), '.', symbol);
-					oss << subsidiarydata(supscr(p), '^', symbol);
-					oss << subsidiarydata(subscr(p), '_', symbol);
+					LinkedNode *l;
+					if (p->type < left_noad)
+					{
+						l->num = nucleus(p->num);
+						oss << subsidiarydata(l, '.', symbol);
+					}
+					l->num = supscr(p->num);
+					oss << subsidiarydata(l, '^', symbol);
+					l->num = subscr(p->num);
+					oss << subsidiarydata(l, '_', symbol);
 					break;
+				}
 				case fraction_noad:
-					oss << esc("fraction, thickness ") << (new_hlist(p) == default_code ? "= default": asScaled(new_hlist(p)));
-					if (small_fam(left_delimiter(p)) || small_char(left_delimiter(p)) || large_fam(left_delimiter(p)) || large_char(left_delimiter(p)))
-						oss << ", left-delimiter " << asDelimiter(left_delimiter(p));
-					if (small_fam(right_delimiter(p)) || small_char(right_delimiter(p)) || large_fam(right_delimiter(p)) || large_char(right_delimiter(p)))
-						oss << ", right-delimiter " << asDelimiter(right_delimiter(p));
-					oss << subsidiarydata(numerator(p), '\\', symbol);
-					oss << subsidiarydata(denominator(p), '/', symbol);
+				{
+					oss << esc("fraction, thickness ") << (new_hlist(p->num) == default_code ? "= default": asScaled(new_hlist(p->num)));
+					if (small_fam(left_delimiter(p->num)) || small_char(left_delimiter(p->num)) || large_fam(left_delimiter(p->num)) || large_char(left_delimiter(p->num)))
+						oss << ", left-delimiter " << asDelimiter(left_delimiter(p->num));
+					if (small_fam(right_delimiter(p->num)) || small_char(right_delimiter(p->num)) || large_fam(right_delimiter(p->num)) || large_char(right_delimiter(p->num)))
+						oss << ", right-delimiter " << asDelimiter(right_delimiter(p->num));
+					LinkedNode *l;
+					l->num = numerator(p->num);
+					oss << subsidiarydata(l, '\\', symbol);
+					l->num = denominator(p->num);
+					oss << subsidiarydata(l, '/', symbol);
 					break;
+				}
 				default: 
 					oss << "Unknown node type!";
 			}
-		p = link(p);
+		p = p->link;
 	}
 	return oss.str();
 }
@@ -887,11 +913,9 @@ static int show_box_depth(void) { return int_par(show_box_depth_code); }
 
 std::string showbox(halfword p)
 {  
-	depththreshold = show_box_depth();
-	breadthmax = show_box_breadth();
-	if (breadthmax <= 0)
-		breadthmax = 5;
-	return shownodelist(p, "")+"\n";
+	BoxNode *b;
+	b->num = p;
+	return showbox(b);
 }
 
 std::string showbox(BoxNode *p)
@@ -900,7 +924,7 @@ std::string showbox(BoxNode *p)
 	breadthmax = show_box_breadth();
 	if (breadthmax <= 0)
 		breadthmax = 5;
-	return shownodelist(p->num, "")+"\n";
+	return shownodelist(p, "")+"\n";
 }
 
 static int error_context_lines(void) { return int_par(error_context_lines_code); }
@@ -1096,7 +1120,7 @@ static std::string showactivities(void)
 			oss << " (\\output routine)";
 		if (p == 0)
 		{
-			if (page_head->num != pagetail)
+			if (page_head != pagetail)
 			{
 				oss << "\r### current page:";
 				if (outputactive)

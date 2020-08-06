@@ -37,9 +37,9 @@ void fireup(halfword c)
 		if (top_mark)
 			deletetokenref(top_mark);
 		top_mark = bot_mark;
-		info(top_mark)++;
+		top_mark->token_ref_count++;
 		deletetokenref(first_mark);
-		first_mark = 0;
+		first_mark = nullptr;
 	}
 	if (c == bestpagebreak)
 		bestpagebreak = 0;
@@ -137,16 +137,16 @@ void fireup(halfword c)
 		}
 		else if (p->type == mark_node) //4
 		{
-			auto P = dynamic_cast<MarkNode*>(p);
-			if (first_mark == 0)
+			auto m = dynamic_cast<MarkNode*>(p)->mark_ptr;
+			if (first_mark == nullptr)
 			{
-				first_mark = P->mark_ptr->num;
-				P->mark_ptr->token_ref_count++;
+				first_mark = m;
+				first_mark->token_ref_count++;
 			}
 			if (bot_mark)
 				deletetokenref(bot_mark);
-			bot_mark = P->mark_ptr->num;
-			P->mark_ptr->token_ref_count++;
+			bot_mark = m;
+			bot_mark->token_ref_count++;
 		}
 		prevp = p;
 		p = prevp->link;
@@ -156,10 +156,10 @@ void fireup(halfword c)
 	{
 		if (contrib_head->link == nullptr)
 			if (nestptr == 0)
-				tail->num = pagetail;
+				tail = pagetail;
 			else
 				contrib_tail = pagetail;
-		link(pagetail) = contrib_head->link->num;
+		pagetail->link = contrib_head->link;
 		contrib_head->link = p;
 		prevp->link = nullptr;
 	}
@@ -173,7 +173,7 @@ void fireup(halfword c)
 	if (lastglue)
 		delete lastglue;
 	pagecontents = 0;
-	pagetail = page_head->num;
+	pagetail = page_head;
 	page_head->link = nullptr;
 	lastglue = nullptr;
 	lastpenalty = 0;
@@ -183,7 +183,7 @@ void fireup(halfword c)
 	if (q != hold_head)
 	{
 		page_head->link = hold_head->link;
-		pagetail = q->num;
+		pagetail = q;
 	}
 	auto r = page_ins_head->link;
 	while (r != page_ins_head)
@@ -193,10 +193,10 @@ void fireup(halfword c)
 		r = q;
 	}
 	page_ins_head->link = page_ins_head;
-	if (top_mark && first_mark == 0)
+	if (top_mark && first_mark == nullptr)
 	{
 		first_mark = top_mark;
-		info(top_mark)++;
+		top_mark->token_ref_count++;
 	}
 	if (output_routine())
 		if (deadcycles >= max_dead_cycles())
@@ -219,15 +219,15 @@ void fireup(halfword c)
 	{
 		if (contrib_head->link == nullptr)
 			if (nestptr == 0)
-				tail->num = pagetail;
+				tail = pagetail;
 			else
 				contrib_tail = pagetail;
 		else
-			link(pagetail) = contrib_head->link->num;
+			pagetail->link = contrib_head->link;
 		contrib_head->link = page_head->link;
 		page_head->link = nullptr;
-		pagetail = page_head->num;
+		pagetail = page_head;
 	}
-	shipout(box[255]->num);
+	shipout(box[255]);
 	box[255] = nullptr;
 }

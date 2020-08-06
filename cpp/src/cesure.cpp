@@ -182,9 +182,9 @@ quarterword newtrieop(smallnumber d, smallnumber n, quarterword v)
 	return trieOp[l].val;
 }
 
-static void advance_major_tail(halfword &majortail, int &rcount)
+static void advance_major_tail(LinkedNode *majortail, int &rcount)
 {
-	majortail = link(majortail);
+	majortail = majortail->link;
 	rcount++;
 }
 
@@ -630,7 +630,7 @@ void hyphenate(void)
 				auto majortail = r;
 				auto rcount = 0;
 				while (majortail->link)
-					advance_major_tail(majortail->num, rcount);
+					advance_major_tail(majortail, rcount);
 				i = hyphenpassed;
 				hyf[i] = 0;
 				LinkedNode *minortail = nullptr;
@@ -700,7 +700,7 @@ void hyphenate(void)
 						j = reconstitute(j, hn, bchar, non_char)+1;
 						majortail->link = hold_head->link;
 						while (majortail->link)
-							advance_major_tail(majortail->num, rcount);
+							advance_major_tail(majortail, rcount);
 					}
 				}
 				if (rcount > 127)

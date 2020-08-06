@@ -16,22 +16,22 @@
 
 void finalign(halfword &loop)
 {
-	LinkedNode *p, *u, *v;
-	scaled t, w;
-	halfword n;
+	scaled t, w; // width of column
+	halfword n; // matching span amount
 	if (curgroup != 6)
 		confusion("align1");
 	unsave();
 	if (curgroup != 6)
 		confusion("align0"); 
 	unsave();
-	scaled o = nest[nestptr-1].modefield == mmode ? display_indent() : 0;
+	scaled o = nest[nestptr-1].modefield == mmode ? display_indent() : 0; // shift offset for unset boxes
 	auto q = preamble->link;
 	do
 	{
-		flushlist(u_part(q->num)); 
+		// q: AlignNode ??
+		flushlist(u_part(q->num));
 		flushlist(v_part(q->num));
-		p = q->link->link;
+		auto p = q->link->link;
 		if (is_running(width(q->num)))
 		{
 			width(q->num) = 0;
@@ -47,48 +47,52 @@ void finalign(halfword &loop)
 		if (info(q->num) != end_span->num)
 		{
 			t = width(q->num)+dynamic_cast<GlueNode*>(q->link)->glue_ptr->width;
-			LinkedNode *r, *s;
+			SpanNode *r;
+			SpanNode *s;
 			r->num = info(q->num);
 			s = end_span;
-			info(s->num) = p->num;
+			s->info->num = p->num;
 			n = 1;
 			do
 			{
-				width(r->num) -= t;
-				u->num = info(r->num);
-				while (r->link->num > n)
+				r->width -= t;
+				SpanNode *u;
+				u = r->info;
+				while (r->link > n)
 				{
-					s->num = info(s->num);
-					n = link(info(s->num))+1;
+					s = s->info;
+					n = s->info->link+1;
 				}
-				if (r->link->num < n)
+				if (r->link < n)
 				{
-					info(r->num) = info(s->num);
-					info(s->num) = r->num;
-					r->link->num--;
+					r->info = s->info;
+					s->info = r;
+					r->link--;
 					s = r;
 				}
 				else
 				{
-					if (width(r->num) > width(info(s->num)))
-						width(info(s->num)) = width(r->num);
-					freenode(r->num, span_node_size);
+					if (r->width > s->info->width)
+						s->info->width = r->width;
+					delete r;
 				}
 				r = u;
 			} while (r != end_span);
 		}
 		q->type = unset_node;
-		span_count(q->num) = 0;
-		height(q->num) = 0;
-		depth(q->num) = 0;
-		glue_order(q->num) = 0;
-		glue_sign(q->num) = 0;
-		glue_stretch(q->num) = 0;
-		glue_shrink(q->num) = 0;
+		auto Q = dynamic_cast<UnsetNode*>(q);
+		Q->span_count = 0;
+		Q->height = 0;
+		Q->depth = 0;
+		Q->glue_order = 0;
+		Q->glue_sign = 0;
+		Q->glue_stretch = 0;
+		Q->glue_shrink = 0;
 		q = p;
 	} while (q);
 	saveptr -= 2;
 	packbeginline = -mode_line;
+	BoxNode *p;
 	if (mode == -vmode)
 	{
 		scaled rulesave = overfull_rule();
@@ -99,18 +103,19 @@ void finalign(halfword &loop)
 	else
 	{
 		q = preamble->link;
+		auto Q = dynamic_cast<UnsetNode*>(q);
 		do
 		{
-			height(q->num) = width(q->num);
-			width(q->num) = 0;
+			Q->height = Q->width;
+			Q->width = 0;
 			q = q->link->link;
 		} while (q);
 		p = vpack(preamble, saved(1), saved(0));
 		q = preamble->link;
 		do
 		{
-			width(q->num) = height(q->num);
-			height(q->num) = 0;
+			Q->width = Q->height;
+			Q->height = 0;
 			q = q->link->link;
 		} while (q);
 	}
@@ -122,29 +127,32 @@ void finalign(halfword &loop)
 		if (!q->is_char_node())
 			if (q->type == unset_node)
 			{
+				auto Q = dynamic_cast<UnsetNode*>(q);
 				if (mode == -vmode)
 				{
-					q->type = hlist_node;
-					width(q->num) = width(p->num);
+					Q->type = hlist_node;
+					Q->width = width(p->num);
 				}
 				else
 				{
-					q->type = vlist_node;
-					height(q->num) = height(p->num);
+					Q->type = vlist_node;
+					Q->height = height(p->num);
 				}
-				glue_order(q->num) = glue_order(p->num);
-				glue_sign(q->num) = glue_sign(p->num);
-				glue_set(q->num) = glue_set(p->num);
-				shift_amount(q->num) = o;
-				LinkedNode *r;
-				r->num = link(list_ptr(q->num));
-				s->num = link(list_ptr(p->num));
+				Q->glue_order = glue_order(p->num);
+				Q->glue_sign = glue_sign(p->num);
+				Q->glue_set = glue_set(p->num);
+				Q->shift_amount = o;
+				auto r = Q->list_ptr->link;
+				s = Q->list_ptr->link;
 				do
 				{
-					n = span_count(r->num);
-					t = width(s->num);
+					auto R = dynamic_cast<UnsetNode*>(r);
+					auto S = dynamic_cast<BoxNode*>(s);
+					auto P = dynamic_cast<BoxNode*>(p);
+					n = R->span_count;
+					t = S->width;
 					w = t;
-					u = hold_head;
+					auto u = hold_head;
 					while (n > 0)
 					{
 						n--;
@@ -155,94 +163,96 @@ void finalign(halfword &loop)
 						u->link = g;
 						u = u->link;
 						t += V->width;
-						if (glue_sign(p->num) == stretching)
+						if (P->glue_sign == stretching)
 						{
-							if (V->stretch_order == glue_order(p->num))
-								t += round(glue_set(p->num)*V->stretch);
+							if (V->stretch_order == P->glue_order)
+								t += round(P->glue_set*V->stretch);
 						}
 						else 
-							if (glue_sign(p->num) == shrinking && V->shrink_order == glue_order(p->num))
-								t -= round(glue_set(p->num)*V->shrink);
+							if (P->glue_sign == shrinking && V->shrink_order == P->glue_order)
+								t -= round(P->glue_set*V->shrink);
 						s = s->link;
+						S = dynamic_cast<BoxNode*>(s);
 						u->link = new BoxNode;
 						u = u->link;
-						t += width(s->num);
+						t += S->width;
+						auto U = dynamic_cast<BoxNode*>(u);
 						if (mode == -vmode)
-							width(u->num) = width(s->num);
+							U->width = S->width;
 						else
 						{
 							u->type = vlist_node;
-							height(u->num) = height(s->num);
+							U->height = S->height;
 						}
 					}
 					if (mode == -vmode)
 					{
-						height(r->num) = height(q->num);
-						depth(r->num) = depth(q->num);
-						if (t == width(r->num))
+						R->height = Q->height;
+						R->depth = Q->depth;
+						if (t == R->width)
 						{
-							glue_sign(r->num) = 0;
-							glue_order(r->num) = 0;
-							glue_set(r->num) = 0.0;
+							R->glue_sign = 0;
+							R->glue_order = 0;
+							R->glue_set = 0.0;
 						}
 						else 
-							if (t > width(r->num))
+							if (t > R->width)
 							{
-								glue_sign(r->num) = stretching;
-								if (glue_stretch(r->num) == 0)
-									glue_set(r->num) = 0.0;
+								R->glue_sign = stretching;
+								if (R->glue_stretch == 0)
+									R->glue_set = 0.0;
 								else
-									glue_set(r->num) = (t-width(r->num))/glue_stretch(r->num);
+									R->glue_set = (t-R->width)/R->glue_stretch;
 							}
 							else
 							{
-								glue_order(r->num) = glue_sign(r->num);
-								glue_sign(r->num) = shrinking;
-								if (glue_shrink(r->num) == 0)
-									glue_set(r->num) = 0.0;
+								R->glue_order = R->glue_sign;
+								R->glue_sign = shrinking;
+								if (R->glue_shrink == 0)
+									R->glue_set = 0.0;
 								else 
-									if (glue_order(r->num) == 0 && width(r->num)-t > glue_shrink(r->num))
-										glue_set(r->num) = 1.0;
+									if (R->glue_order == 0 && R->width-t > R->glue_shrink)
+										R->glue_set = 1.0;
 									else
-										glue_set(r->num) = (width(r->num)-t) / glue_shrink(r->num);
+										R->glue_set = (R->width-t)/R->glue_shrink;
 							}
-						width(r->num) = w;
-						r->type = 0;
+						R->width = w;
+						r->type = hlist_node;
 					}
 					else
 					{
-						width(r->num) = width(q->num);
-						if (t == height(r->num))
+						R->width = Q->width;
+						if (t == R->height)
 						{
-							glue_sign(r->num) = 0;
-							glue_order(r->num) = 0;
-							glue_set(r->num) = 0.0;
+							R->glue_sign = 0;
+							R->glue_order = 0;
+							R->glue_set = 0.0;
 						}
 						else 
-							if (t > height(r->num))
+							if (t > R->height)
 							{
-								glue_sign(r->num) = stretching;
-								if (glue_stretch(r->num) == 0)
-									glue_set(r->num) = 0.0;
+								R->glue_sign = stretching;
+								if (R->glue_stretch == 0)
+									R->glue_set = 0.0;
 								else
-									glue_set(r->num) = (t-height(r->num)) / glue_stretch(r->num);
+									R->glue_set = (t-R->height)/R->glue_stretch;
 							}
 							else
 							{
-								glue_order(r->num) = glue_sign(r->num);
-								glue_sign(r->num) = shrinking;
-								if (glue_shrink(r->num) == 0)
-									glue_set(r->num) = 0.0;
+								R->glue_order = R->glue_sign;
+								R->glue_sign = shrinking;
+								if (R->glue_shrink == 0)
+									R->glue_set = 0.0;
 								else 
-									if (glue_order(r->num) == 0 && height(r->num)-t > glue_shrink(r->num))
-										glue_set(r->num) = 1.0;
+									if (R->glue_order == 0 && R->height-t > R->glue_shrink)
+										R->glue_set = 1.0;
 									else
-										glue_set(r->num) = (height(r->num)-t) / glue_shrink(r->num);
+										R->glue_set = (R->height-t)/R->glue_shrink;
 							}
-						height(r->num) = w;
-						type(r->num) = vlist_node;
+						R->height = w;
+						r->type = vlist_node;
 					}
-					shift_amount(r->num) = 0;
+					dynamic_cast<BoxNode*>(r)->shift_amount = 0;
 					if (u != hold_head)
 					{
 						u->link = r->link;
@@ -280,7 +290,7 @@ void finalign(halfword &loop)
 	flushnodelist(p);
 	popalignment(loop);
 	auto auxsave = aux;
-	p = head->link;
+	auto pp = head->link;
 	q = tail;
 	popnest(); 
 	if (mode == mmode)
@@ -297,8 +307,8 @@ void finalign(halfword &loop)
 		popnest();
 		tail_append(new PenaltyNode(pre_display_penalty()));
 		tail_append(new GlueNode(above_display_skip_code));
-		tail->link = p;
-		if (p)
+		tail->link = pp;
+		if (pp)
 			tail = q;
 		tail_append(new PenaltyNode(post_display_penalty()));
 		tail_append(new GlueNode(below_display_skip_code));
@@ -308,8 +318,8 @@ void finalign(halfword &loop)
 	else
 	{
 		aux = auxsave;
-		tail->link = p;
-		if (p)
+		tail->link = pp;
+		if (pp)
 			tail = q;
 		if (mode == vmode)
 			buildpage();

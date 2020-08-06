@@ -79,7 +79,7 @@ void buildpage(void)
 					flushnodelist(p);
 					continue;
 				}
-				if (precedes_break(pagetail))
+				if (precedes_break(pagetail->num))
 					pi = 0;
 				break;
 			case kern_node: //11
@@ -112,11 +112,11 @@ void buildpage(void)
 				auto P = dynamic_cast<InsNode*>(p);
 				if (pagecontents == 0)
 					freezepagespecs(inserts_only);
-				n = subtype(p->num);
+				n = P->subtype;
 				r = page_ins_head;
-				while (n >= subtype(r->link->num))
+				while (n >= dynamic_cast<InsNode*>(r->link)->subtype)
 					r = r->link;
-				if (subtype(r->num) != n)
+				if (dynamic_cast<PageInsNode*>(r)->subtype != n)
 				{
 					auto Q = new PageInsNode;
 					Q->link = r->link;
@@ -189,7 +189,7 @@ void buildpage(void)
 			default: 
 				confusion("page");
 		}
-		if ((p->type == glue_node && type(pagetail) < 9) || (p->type ==  kern_node && p->link->type == glue_node) || p->type == penalty_node)
+		if ((p->type == glue_node && precedes_break(pagetail->num)) || (p->type ==  kern_node && p->link->type == glue_node) || p->type == penalty_node)
 			if (pi < 10000)
 			{
 				if (page_total < page_goal)
@@ -262,13 +262,13 @@ void buildpage(void)
 			page_total += page_depth-pagemaxdepth;
 			page_depth = pagemaxdepth;
 		}
-		link(pagetail) = p->num;
-		pagetail = p->num;
+		pagetail->link = p;
+		pagetail = p;
 		contrib_head->link = p->link;
 		p->link = nullptr;
 	} while (contrib_head->link);
 	if (nestptr == 0)
 		tail = contrib_head;
 	else
-		contrib_tail = contrib_head->num;
+		contrib_tail = contrib_head;
 }

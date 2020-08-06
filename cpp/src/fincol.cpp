@@ -30,7 +30,7 @@ bool fincol(Token t, halfword &loop)
 		if (loop)
 		{
 			q->link = new BoxNode;
-			p = q->link;
+			p = q->link; // a new alignrecord
 			info(p->num) = end_span->num;
 			width(p->num) = null_flag;
 			loop = link(loop);
@@ -70,11 +70,11 @@ bool fincol(Token t, halfword &loop)
 		newsavelevel(6);
 		if (mode == -hmode)
 		{
-			adjusttail = curtail->num;
+			adjusttail = curtail;
 			u = hpack(head->link, 0, additional);
 			w = u->width;
-			curtail->num = adjusttail;
-			adjusttail = 0;
+			curtail = adjusttail;
+			adjusttail = nullptr;
 		}
 		else
 		{

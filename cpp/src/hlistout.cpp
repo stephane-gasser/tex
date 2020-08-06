@@ -10,14 +10,13 @@
 #include "police.h"
 #include <cmath>
 
-void hlistout(void)
+void hlistout(BoxNode *thisbox)
 {
 	scaled curg = 0;
 	float curglue = 0.0;
-	auto thisbox = tempptr;
-	glueord gorder = glue_order(thisbox);
-	char gsign = glue_sign(thisbox);
-	halfword p = list_ptr(thisbox);
+	glueord gorder = thisbox->glue_order;
+	char gsign = thisbox->glue_sign;
+	auto p = thisbox->list_ptr;
 	curs++;
 	if (curs > 0)
 		dvi_out(push);
@@ -27,20 +26,21 @@ void hlistout(void)
 	scaled baseline = curv;
 	scaled leftedge = curh;
 	while (p)
-		if (is_char_node(p))
+		if (p->is_char_node())
 		{
 			synch_h();
 			synch_v();
+			auto P = dynamic_cast<CharNode*>(p);
 			do
 			{
-				f = type(p);
-				c = character(p);
+				auto ft = P->font;
+				c = P->character;
 				if (f != dvif)
 				{
-					if (!fonts[f].used)
+					if (!ft.used)
 					{
 						dvifontdef(f);
-						fonts[f].used = true;
+						ft.used = true;
 					}
 					if (f <= 64+font_base)
 						dvi_out(f-font_base-1+fnt_num_0);
@@ -55,20 +55,19 @@ void hlistout(void)
 				if (c >= 128)
 					dvi_out(set1);
 				dvi_out(c);
-				curh += fonts[f].char_width(c);
-				p = link(p);
-			} while (is_char_node(p));
+				curh += ft.char_width(c);
+				p = p->link;
+			} while (p->is_char_node());
 			dvih = curh;
 		}
 		else
 		{
-			switch (type(p))
+			switch (p->type)
 			{
 				case hlist_node:
 				case vlist_node:
 				{
-					BoxNode *P;
-					P->num = p;
+					auto P = dynamic_cast<BoxNode*>(p);
 					if (P->list_ptr->num == hlist_node)
 						curh += P->width;
 					else
@@ -76,12 +75,12 @@ void hlistout(void)
 						auto saveh = dvih;
 						auto savev = dviv;
 						curv = baseline+P->shift_amount;
-						tempptr = p;
+						//tempptr = p;
 						auto edge = curh;
 						if (P->type == vlist_node)
-							vlistout();
+							vlistout(P);
 						else
-							hlistout();
+							hlistout(P);
 						dvih = saveh;
 						dviv = savev;
 						curh = edge+P->width;
@@ -90,13 +89,15 @@ void hlistout(void)
 					break;
 				}
 				case rule_node:
-					ruleht = height(p);
-					ruledp = depth(p);
-					rulewd = width(p);
+				{
+					auto P = dynamic_cast<RuleNode*>(p);
+					ruleht = P->height;
+					ruledp = P->depth;
+					rulewd = P->width;
 					if (is_running(ruleht))
-						ruleht = height(thisbox);
+						ruleht = thisbox->height;
 					if (is_running(ruledp))
-						ruledp = depth(thisbox);
+						ruledp = thisbox->depth;
 					ruleht += ruledp;
 					if (ruleht > 0 && rulewd > 0)
 					{
@@ -110,41 +111,44 @@ void hlistout(void)
 						dvih = dvih+rulewd;
 					}
 					curh = curh+rulewd;
-					p = link(p);
+					p = p->link;
 					continue;
+				}
 				case whatsit_node:
-					outwhat(p);
+					outwhat(p->num);
 					break;
 				case glue_node:
-					g = info(p+1);
-					rulewd = width(g)-curg;
+				{
+					auto P = dynamic_cast<GlueNode*>(p);
+					auto g = P->glue_ptr;
+					rulewd = g->width-curg;
 					if (gsign)
 						if (gsign == 1)
 						{
-							if (type(g) == gorder)
+							if (g->stretch_order == gorder)
 							{
-								curglue += stretch(g);
-								curg = round(vet_glue(glue_set(thisbox)*curglue));
+								curglue += g->stretch;
+								curg = round(vet_glue(thisbox->glue_set*curglue));
 							}
 						}
 						else 
-							if (subtype(g) == gorder)
+							if (g->shrink_order == gorder)
 							{
-								curglue -= shrink(g);
-								curg = round(vet_glue(glue_set(thisbox)*curglue));
+								curglue -= g->shrink;
+								curg = round(vet_glue(thisbox->glue_set*curglue));
 							}
 					rulewd += curg;
-					if (subtype(p) >= 100)
+					if (P->subtype >= a_leaders)
 					{
-						halfword leaderbox = link(p+1);
-						if (type(leaderbox) == 2)
+						auto leaderbox = dynamic_cast<BoxNode*>(P->leader_ptr);
+						if (leaderbox->type == rule_node)
 						{
-							ruleht = height(leaderbox);
-							ruledp = depth(leaderbox);
+							ruleht = leaderbox->height;
+							ruledp = leaderbox->depth;
 							if (is_running(ruleht))
-								ruleht = height(thisbox);
+								ruleht = thisbox->height;
 							if (is_running(ruledp))
-								ruledp = depth(thisbox);
+								ruledp = thisbox->depth;
 							ruleht += ruledp;
 							if (ruleht > 0 && rulewd > 0)
 							{
@@ -158,16 +162,16 @@ void hlistout(void)
 								dvih = dvih+rulewd;
 							}
 							curh = curh+rulewd;
-							p = link(p);
+							p = p->link;
 							continue;
 						}
-						scaled leaderwd = width(leaderbox);
+						scaled leaderwd = leaderbox->width;
 						if (leaderwd > 0 && rulewd > 0)
 						{
 							rulewd = rulewd+10;
 							auto edge = curh+rulewd;
 							scaled lx = 0;
-							if (subtype(p) == 100)
+							if (P->subtype == a_leaders)
 							{
 								auto saveh = curh;
 								curh = leftedge+leaderwd*((curh-leftedge)/leaderwd);
@@ -178,7 +182,7 @@ void hlistout(void)
 							{
 								lq = rulewd/leaderwd;
 								lr = rulewd%leaderwd;
-								if (subtype(p) == 101)
+								if (P->subtype == c_leaders)
 									curh += lr/2;
 								else
 								{
@@ -188,18 +192,18 @@ void hlistout(void)
 							}
 							while (curh+leaderwd <= edge)
 							{
-								curv = baseline+shift_amount(leaderbox);
+								curv = baseline+leaderbox->shift_amount;
 								synch_v();
 								auto savev = dviv;
 								synch_h();
 								auto saveh = dvih;
-								tempptr = leaderbox;
+								//tempptr = leaderbox->num;
 								bool outerdoingleaders = doingleaders;
 								doingleaders = true;
-								if (type(leaderbox) == vlist_node)
-									vlistout();
+								if (leaderbox->type == vlist_node)
+									vlistout(leaderbox);
 								else
-									hlistout();
+									hlistout(leaderbox);
 								doingleaders = outerdoingleaders;
 								dviv = savev;
 								dvih = saveh;
@@ -207,24 +211,27 @@ void hlistout(void)
 								curh = saveh+leaderwd+lx;
 							}
 							curh = edge-10;
-							p = link(p);
+							p = p->link;
 							continue;
 						}
 					}
 					curh = curh+rulewd;
-					p = link(p);
+					p = p->link;
 					continue;
+				}
 				case kern_node:
+					curh += dynamic_cast<KernNode*>(p)->width;
+					break;
 				case math_node: 
-					curh += width(p);
+					curh += width(p->num);
 					break;
 				case ligature_node:
-					mem[lig_trick->num] = mem[lig_char(p)];
-					lig_trick->link->num = link(p);
-					p = lig_trick->num;
+					mem[lig_trick->num] = mem[lig_char(p->num)];
+					lig_trick->link = p->link;
+					p = lig_trick;
 					continue;
 			}
-			p = link(p);
+			p = p->link;
 			continue;
 		}
 	prunemovements(saveloc);

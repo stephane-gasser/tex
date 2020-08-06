@@ -138,9 +138,13 @@ LinkedNode* copynodelist(LinkedNode *p)
 					words = small_node_size;
 					break;
 				case adjust_node:
-					r->num = getnode(small_node_size);
-					adjust_ptr(r->num) = copynodelist(adjust_ptr(p->num));
+				{
+					auto R = new AdjustNode;
+					auto P = dynamic_cast<AdjustNode*>(p);
+					R->adjust_ptr = dynamic_cast<TokenListNode*>(copynodelist(P->adjust_ptr));
+					r = R;
 					break;
+				}
 				default: 
 					confusion("copying");
 			}
@@ -232,8 +236,8 @@ void flushnodelist(LinkedNode *p)
 					break;
 				}
 				case adjust_node: 
-					flushnodelist(adjust_ptr(p->num));
-					freenode(p->num, small_node_size);
+					flushnodelist(dynamic_cast<AdjustNode*>(p)->adjust_ptr);
+					delete p;
 					break;
 				case style_node:
 					freenode(p->num, style_node_size);

@@ -28,10 +28,10 @@ int& glue_stretch(halfword p) { return mem[p+glue_offset].int_; }
 int& glue_shrink(halfword p) { return mem[p+4].int_; }
 int& u_part(halfword p) { return mem[p+height_offset].int_; }
 int&v_part(halfword p) { return mem[p+depth_offset].int_; }
-int& penalty(halfword p) { return mem[p+1].int_; }
-int& float_cost(halfword p) { return mem[p+1].int_; }
+//int& penalty(halfword p) { return mem[p+1].int_; }
+//int& float_cost(halfword p) { return mem[p+1].int_; }
 //int& mark_ptr(halfword p) { return mem[p+1].int_; }
-int& adjust_ptr(halfword p) { return mem[p+1].int_; }
+//int& adjust_ptr(halfword p) { return mem[p+1].int_; }
 quarterword& small_fam(halfword p) { return mem[p].qqqq.b0; }
 quarterword& small_char(halfword p) { return mem[p].qqqq.b1; }
 quarterword& large_fam(halfword p) { return mem[p].qqqq.b2; }
@@ -137,10 +137,9 @@ void append_to_name(int &k, char c)
 float vet_glue(float g)
 {
 	constexpr float billion = 1000000000.;
-	float gluetemp = g;
-	if (gluetemp > billion)
+	if (g > billion)
 		return billion;
-	if (gluetemp < -billion)
+	if (g < -billion)
 		return -billion;
 	return g;
 }
@@ -153,10 +152,3 @@ scaled &page_goal = pagesofar[0];
 scaled &page_total = pagesofar[1];
 scaled &page_shrink = pagesofar[6];
 scaled &page_depth = pagesofar[7];
-halfword &top_mark = curmark[top_mark_code];
-halfword &first_mark = curmark[first_mark_code];
-halfword &bot_mark = curmark[bot_mark_code];
-halfword &split_first_mark = curmark[split_first_mark_code];
-halfword &split_bot_mark = curmark[split_bot_mark_code];
-halfword &contrib_tail = nest[0].tailfield->num;
-

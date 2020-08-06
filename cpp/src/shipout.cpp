@@ -32,7 +32,7 @@ static void ensure_dvi_open(void)
 	}
 }
 
-void shipout(halfword p)
+void shipout(BoxNode *p)
 {
 	if (tracing_output())
 		printnl("\nCompleted box being shipped out"+std::string(termoffset > maxprintline-9 ? "\n" : termoffset > 0 || fileoffset > 0 ? " " : ""));
@@ -52,9 +52,9 @@ void shipout(halfword p)
 		print("]");
 		diagnostic(showbox(p)+"\n");
 	}
-	if (height(p) > max_dimen || depth(p) > max_dimen 
-	 || height(p)+depth(p)+v_offset() > max_dimen 
-	 || width(p)+h_offset() > max_dimen)
+	if (p->height > max_dimen || p->depth > max_dimen 
+	 || p->height+p->depth+v_offset() > max_dimen 
+	 || p->width+h_offset() > max_dimen)
 	{
 		error("Huge page cannot be shipped out", "The page just created is more than 18 feet tall or\nmore than 18 feet wide, so I suspect something went wrong.");
 		if (tracing_output() <= 0)
@@ -67,10 +67,10 @@ void shipout(halfword p)
 		flushnodelist(p);
 		return;
 	}
-	if (height(p)+depth(p)+v_offset() > maxv)
-		maxv = height(p)+depth(p)+v_offset();
-	if (width(p)+h_offset() > maxh)
-		maxh = width(p)+h_offset();
+	if (p->height+p->depth+v_offset() > maxv)
+		maxv = p->height+p->depth+v_offset();
+	if (p->width+h_offset() > maxh)
+		maxh = p->width+h_offset();
 	dvih = 0;
 	dviv = 0;
 	curh = h_offset();
@@ -94,12 +94,11 @@ void shipout(halfword p)
 		dvifour(count(k));
 	dvifour(lastbop);
 	lastbop = pageloc;
-	curv = height(p)+v_offset();
-	tempptr = p;
-	if (type(p) == vlist_node)
-		vlistout();
+	curv = p->height+v_offset();
+	if (p->type == vlist_node)
+		vlistout(p);
 	else
-		hlistout();
+		hlistout(p);
 	dvi_out(eop);
 	totalpages++;
 	curs = -1;

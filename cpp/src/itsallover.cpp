@@ -8,7 +8,7 @@ bool itsallover(Token t)
 {
 	if (privileged(t))
 	{
-		if (page_head->num == pagetail && head == tail && deadcycles == 0)
+		if (page_head == pagetail && head == tail && deadcycles == 0)
 			return true;
 		backinput(t);
 		auto b = new BoxNode;

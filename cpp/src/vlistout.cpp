@@ -10,15 +10,13 @@
 #include "erreur.h"
 #include <cmath>
 
-void vlistout(void)
+void vlistout(BoxNode *thisbox)
 {
 	scaled curg = 0;
 	float curglue = 0.0;
-	auto thisbox = tempptr;
-	glueord gorder = glue_order(thisbox);
-	char gsign = glue_sign(thisbox);
-	LinkedNode *p;
-	p->num = list_ptr(thisbox);
+	glueord gorder = thisbox->glue_order;
+	char gsign = thisbox->glue_sign;
+	auto p = thisbox->list_ptr;
 	curs++;
 	if (curs > 0)
 		dvi_out(push);
@@ -26,7 +24,7 @@ void vlistout(void)
 		maxpush = curs;
 	int saveloc = dvioffset+dviptr;
 	auto leftedge = curh;
-	curv -= height(thisbox);
+	curv -= thisbox->height;
 	auto topedge = curv;
 	while (p)
 	{
@@ -53,11 +51,10 @@ void vlistout(void)
 						auto saveh = dvih;
 						auto savev = dviv;
 						curh = leftedge+shift_amount(p->num);
-						tempptr = p->num;
 						if (p->type == vlist_node)
-							vlistout();
+							vlistout(P);
 						else
-							hlistout();
+							hlistout(P);
 						dvih = saveh;
 						dviv = savev;
 						curv = savev+P->depth;
@@ -72,7 +69,7 @@ void vlistout(void)
 					ruledp = P->depth;
 					rulewd = P->width;
 					if (is_running(rulewd))
-						rulewd = width(thisbox);
+						rulewd = thisbox->width;
 					ruleht += ruledp;
 					curv += ruleht;
 					if (ruleht > 0 &&rulewd > 0)
@@ -100,25 +97,25 @@ void vlistout(void)
 							if (g->stretch_order == gorder)
 							{
 								curglue += g->stretch;
-								curg = round(vet_glue(glue_set(thisbox)*curglue));
+								curg = round(vet_glue(thisbox->glue_set*curglue));
 							}
 						}
 						else 
 							if (g->shrink_order == gorder)
 							{
 								curglue -= g->shrink;
-								curg = round(vet_glue(glue_set(thisbox)*curglue));
+								curg = round(vet_glue(thisbox->glue_set*curglue));
 							}
 					ruleht += curg;
 					if (pp->subtype >= a_leaders)
 					{
-						auto leaderbox = pp->leader_ptr;
+						auto leaderbox = dynamic_cast<RuleNode*>(pp->leader_ptr);
 						if (leaderbox->type == rule_node)
 						{
-							rulewd = width(leaderbox->num);
+							rulewd = leaderbox->width;
 							ruledp = 0;
 							if (is_running(rulewd))
-								rulewd = width(thisbox);
+								rulewd = thisbox->width;
 							ruleht += ruledp;
 							curv += ruleht;
 							if (ruleht > 0 &&rulewd > 0)
@@ -132,7 +129,7 @@ void vlistout(void)
 							p = p->link;
 							continue;
 						}
-						auto leaderht = height(leaderbox->num)+depth(leaderbox->num);
+						auto leaderht = leaderbox->height+leaderbox->depth;
 						if ((leaderht > 0) and (ruleht > 0))
 						{
 							ruleht += 10;
@@ -159,19 +156,19 @@ void vlistout(void)
 							}
 							while (curv+leaderht <= edge)
 							{
-								curh = leftedge+shift_amount(leaderbox->num);
+								auto Leaderbox = dynamic_cast<BoxNode*>(leaderbox);
+								curh = leftedge+Leaderbox->shift_amount;
 								synch_h();
 								auto saveh = dvih;
-								curv += height(leaderbox->num);
+								curv += leaderbox->height;
 								synch_v();
 								auto savev = dviv;
-								tempptr = leaderbox->num;
 								bool outerdoingleaders = doingleaders;
 								doingleaders = true;
 								if (leaderbox->type == vlist_node)
-									vlistout();
+									vlistout(Leaderbox);
 								else
-									hlistout();
+									hlistout(Leaderbox);
 								doingleaders = outerdoingleaders;
 								dviv = savev;
 								dvih = saveh;

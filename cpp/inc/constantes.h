@@ -166,22 +166,22 @@ enum
 	hi_mem_stat_min = mem_top-13 //!< smallest statically allocated word in
 };
 
-inline std::vector<CharNode> heads;
+inline std::vector<AnyNode> heads;
 
-inline LinkedNode * const page_ins_head = &heads[0]; //!< list of insertion data for current page
-inline LinkedNode * const contrib_head = &heads[1]; //!< vlist of items not yet on current page
-inline LinkedNode * const page_head = &heads[2]; //!< vlist for current page
-inline LinkedNode * const temp_head = &heads[3]; //!< head of a temporary list of some kind
-inline LinkedNode * const hold_head = &heads[4]; //!< head of a temporary list of another kind
-inline LinkedNode * const adjust_head = &heads[5]; //!< head of adjustment list returned by \a hpack
-inline LinkedNode * const active = &heads[7]; //!< head of active list in \a line_break, needs two words
-inline LinkedNode * const align_head = &heads[8]; //!< head of preamble list for alignments
-inline LinkedNode * const end_span = &heads[9]; //!< tail of spanned-width lists
-inline TokenNode * const omit_template = dynamic_cast<TokenNode*>(&heads[10]); //!< a constant token list
-inline LinkedNode * const null_list = &heads[11]; //!< permanently empty list
-inline LinkedNode * const lig_trick = &heads[12]; //!< a ligature masquerading as a \a char_node
-inline LinkedNode * const garbage = &heads[12]; //!< used for scrap information
-inline LinkedNode * const backup_head = &heads[13]; //!< head of token list built by \a scan_keyword
+inline PageInsNode *page_ins_head; //!< list of insertion data for current page
+inline LinkedNode *contrib_head; //!< vlist of items not yet on current page
+inline LinkedNode *page_head; //!< vlist for current page
+inline LinkedNode *temp_head; //!< head of a temporary list of some kind
+inline LinkedNode *hold_head; //!< head of a temporary list of another kind
+inline LinkedNode *adjust_head; //!< head of adjustment list returned by \a hpack
+inline LinkedNode * const active = dynamic_cast<LinkedNode*>(&heads[7]); //!< head of active list in \a line_break, needs two words
+inline LinkedNode * const align_head = dynamic_cast<LinkedNode*>(&heads[8]); //!< head of preamble list for alignments
+inline SpanNode * const end_span = dynamic_cast<SpanNode*>(&heads[9]); //!< tail of spanned-width lists
+inline TokenNode * omit_template; //!< a constant token list
+inline LinkedNode *null_list; //!< permanently empty list
+inline LinkedNode *lig_trick; //!< a ligature masquerading as a \a char_node
+inline LinkedNode *garbage; //!< used for scrap information
+inline LinkedNode *backup_head; //!< head of token list built by \a scan_keyword
 
 constexpr int hi_mem_stat_usage = 14; //!< the number of one-word nodes always present
 
@@ -476,15 +476,6 @@ enum token_type
 	every_cr_text = 13, //!< \a token_type code for \\everycr
 	mark_text = 14, //!< \a token_type code for \\topmark, etc.
 	write_text = 15 //!< \a token_type code for \\write
-};
-
-enum
-{
-	top_mark_code = 0, //!< the mark in effect at the previous page break
-	first_mark_code = 1, //!< the first mark between \a top_mark and \a bot_mark
-	bot_mark_code = 2, //!< the mark in effect at the current page break
-	split_first_mark_code = 3, //!< the first mark found by \\vsplit
-	split_bot_mark_code = 4 //!< the last mark found by \\vsplit
 };
 
 enum 
@@ -826,17 +817,12 @@ inline TokenNode *Loc;
 extern quarterword &state; //!< current scanner state
 extern quarterword &index; //!< reference for buffer information
 extern std::string &name; //!< name of the current file
-extern halfword &top_mark; 
-extern halfword &first_mark;
-extern halfword &bot_mark;
-extern halfword &split_first_mark;
-extern halfword &split_bot_mark;
 extern scaled &act_width; //!< length from first active node to current node
 extern scaled &page_goal; //!< desired height of information on page being built
 extern scaled &page_total; //!< height of the current page
 extern scaled &page_shrink; //!< shrinkability of the current page
 extern scaled &page_depth; //!< depth of the current page
-extern halfword &contrib_tail; //!< tail of the contribution list
+//extern halfword &contrib_tail; //!< tail of the contribution list
 
 inline bool precedes_break(halfword p) { return type(p) <math_node; }
 inline void add_glue_ref(halfword p) { glue_ref_count(p)++; } //!< new reference to a glue spec

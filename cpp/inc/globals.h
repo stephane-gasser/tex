@@ -58,7 +58,6 @@ typedef int dviindex; // 0..dvibufsize
 typedef int triepointer; // 0..triesize
 typedef int hyphpointer; //0..307
 
-
 typedef struct
 {
     std::uint16_t rh;
@@ -149,14 +148,21 @@ class Font
 		bool operator != (const Font &f) { return this != &f; } 
 };
 
-
-
 class AnyNode
 {
 	public:
 		halfword num = 0; // bidon
 		quarterword type = 0;
 		virtual bool is_char_node(void) { return false; }
+};
+
+class SpanNode : public AnyNode
+{
+	public:
+		halfword link;
+		SpanNode *info;
+		scaled width;
+		SpanNode() {}
 };
 
 class LinkedNode : public AnyNode
@@ -276,6 +282,12 @@ class MarkNode : public LinkedNode
 		MarkNode(void) { type = mark_node; }
 };
 
+class AdjustNode : public LinkedNode
+{
+	public:
+		TokenListNode *adjust_ptr;
+		AdjustNode(void) { type = adjust_node; }
+};
 
 class PageInsNode : public LinkedNode
 {
@@ -349,6 +361,16 @@ class BoxNode : public RuleNode
 		BoxNode(void) { type = hlist_node; subtype = 0; width = depth = height = 0; } 
 };
 
+class UnsetNode : public BoxNode
+{
+	public:
+		quarterword &span_count = BoxNode::subtype;
+		// pas de glue_set ni de shift_amount
+		scaled glue_shrink;
+		scaled glue_stretch;
+		UnsetNode(void) : BoxNode() { type = unset_node; span_count = 0; } 
+};
+
 inline std::vector<BoxNode*> box(256);
 inline BoxNode *justbox;
 inline BoxNode *curbox;
@@ -413,6 +435,9 @@ class Token
 inline Token aftertoken;
 inline Font fontinshortdisplay;
 inline GlueSpec *lastglue;
+
+inline LinkedNode *adjusttail;
+inline LinkedNode *pagetail;
 
 inline LinkedNode *curp;
 
@@ -482,6 +507,10 @@ extern halfword avail;
 extern halfword memend;
 extern halfword rover;
 extern liststaterecord nest[nestsize+1];
+
+inline LinkedNode *contrib_tail = nest[0].tailfield;
+
+
 extern char nestptr; //0..nestsize
 extern char maxneststack; // 0..nestsize
 extern liststaterecord curlist;
@@ -512,7 +541,23 @@ extern unsigned char baseptr; // 0..stacksize
 extern halfword parloc;
 extern halfword partoken;
 extern bool forceeof;
-extern halfword curmark[5];
+inline std::vector<TokenListNode*> curmark(5, nullptr);
+
+enum
+{
+	top_mark_code = 0, //!< the mark in effect at the previous page break
+	first_mark_code = 1, //!< the first mark between \a top_mark and \a bot_mark
+	bot_mark_code = 2, //!< the mark in effect at the current page break
+	split_first_mark_code = 3, //!< the first mark found by \\vsplit
+	split_bot_mark_code = 4 //!< the last mark found by \\vsplit
+};
+
+inline TokenListNode *top_mark = curmark[top_mark_code];
+inline TokenListNode *first_mark = curmark[first_mark_code];
+inline TokenListNode *bot_mark = curmark[bot_mark_code];
+inline TokenListNode *split_first_mark = curmark[split_first_mark_code];
+inline TokenListNode *split_bot_mark = curmark[split_bot_mark_code];
+
 extern char longstate; // 111..114
 extern smallnumber radix;
 extern glueord curorder;
@@ -544,7 +589,6 @@ extern scaled dvih, dviv;
 extern scaled curh, curv;
 extern internalfontnumber dvif;
 extern scaled totalstretch[4], totalshrink[4];
-extern halfword adjusttail;
 extern halfword curmlist;
 extern smallnumber curstyle;
 extern smallnumber cursize;
@@ -593,7 +637,6 @@ extern hyphpointer hyphcount;
 extern std::map<ASCIIcode, quarterword> trieused;
 extern bool trienotready;
 extern scaled bestheightplusdepth;
-extern halfword pagetail;
 extern char pagecontents; // 0..2
 extern scaled pagemaxdepth;
 extern halfword bestpagebreak;

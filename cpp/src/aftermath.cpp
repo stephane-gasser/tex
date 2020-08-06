@@ -110,11 +110,11 @@ void aftermath(void)
 		mlistpenalties = false;
 		mlisttohlist();
 		p = temp_head->link;
-		adjusttail = adjust_head->num;
+		adjusttail = adjust_head;
 		auto b = hpack(p, 0, additional);
 		p = b->list_ptr;
 		auto tt = adjusttail;
-		adjusttail = 0;
+		adjusttail = nullptr;
 		auto w = b->width;
 		auto z = display_width();
 		auto s = display_indent();
@@ -195,10 +195,10 @@ void aftermath(void)
 			appendtovlist(a->num);
 			g2 = 0;
 		}
-		if (tt != adjust_head->num)
+		if (tt != adjust_head)
 		{
 			tail->link = adjust_head->link;
-			tail->num = tt;
+			tail = tt;
 		}
 		tail_append(new PenaltyNode(post_display_penalty()));
 		if (g2 > 0)

@@ -133,16 +133,16 @@ void postlinebreak(int finalwidowpenalty)
 				curwidth = mem[par_shape_ptr()+2*curline].int_;
 				curindent = mem[par_shape_ptr()+2*curline-1].int_;
 			}
-		adjusttail = adjust_head->num;
+		adjusttail = adjust_head;
 		justbox = hpack(q, curwidth, 0);
 		justbox->shift_amount = curindent;
 		appendtovlist(justbox->num);
-		if (adjust_head->num != adjusttail)
+		if (adjust_head != adjusttail)
 		{
 			tail->link = adjust_head->link;
-			tail->num = adjusttail;
+			tail = adjusttail;
 		}
-		adjusttail = 0;
+		adjusttail = nullptr;
 		if (curline+1 != bestline)
 		{
 			pen = inter_line_penalty();

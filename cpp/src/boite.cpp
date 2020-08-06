@@ -131,9 +131,9 @@ void boxend(int boxcontext)
 				appendtovlist(curbox->num);
 				if (adjusttail)
 				{
-					if (adjust_head->num != adjusttail)
+					if (adjust_head != adjusttail)
 						tail_append(adjust_head);
-					adjusttail = 0;
+					adjusttail = nullptr;
 				}
 				if (mode > 0)
 					buildpage();
@@ -177,7 +177,7 @@ void boxend(int boxcontext)
 			}
 
 	else
-	shipout(curbox->num);
+	shipout(curbox);
 }
 
 static halfword& every_hbox(void) { return equiv(every_hbox_loc); }
@@ -573,25 +573,27 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 				}
 				case ins_node:
 				case mark_node:
+					if (adjusttail)
+					{
+						while (q->link != p)
+							q = q->link;
+						adjusttail->link = p;
+						adjusttail = p;
+						p = p->link;
+						q->link = p;
+						p = q;
+					}
+					break;
 				case adjust_node: 
 					if (adjusttail)
 					{
 						while (q->link != p)
 							q = q->link;
-						if (p->type == adjust_node)
-						{
-							link(adjusttail) = adjust_ptr(p->num);
-							while (link(adjusttail))
-								adjusttail = link(adjusttail);
-							p = p->link;
-							delete q->link;
-						}
-						else
-						{
-							link(adjusttail) = p->num;
-							adjusttail = p->num;
-							p = p->link;
-						}
+						adjusttail->link = dynamic_cast<AdjustNode*>(p)->adjust_ptr;
+						while (adjusttail->link)
+							adjusttail = adjusttail->link;
+						p = p->link;
+						delete q->link;
 						q->link = p;
 						p = q;
 					}
@@ -633,7 +635,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 		}
 	}
 	if (adjusttail)
-		link(adjusttail) = 0;
+		adjusttail->link = nullptr;
 	r->height = h;
 	r->depth = d;
 	if (m == additional)

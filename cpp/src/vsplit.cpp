@@ -13,9 +13,9 @@ BoxNode* vsplit(eightbits n, scaled h)
 	if (split_first_mark)
 	{
 		deletetokenref(split_first_mark);
-		split_first_mark = 0;
+		split_first_mark = nullptr;
 		deletetokenref(split_bot_mark);
-		split_bot_mark = 0;
+		split_bot_mark = nullptr;
 	}
 	if (v == nullptr)
 		return 0;
@@ -35,15 +35,15 @@ BoxNode* vsplit(eightbits n, scaled h)
 			if (p->type == mark_node) //4
 			{
 				auto P = dynamic_cast<MarkNode*>(p);
-				if (split_first_mark == 0)
+				if (split_first_mark == nullptr)
 				{
-					split_bot_mark = split_first_mark = P->mark_ptr->num;
+					split_bot_mark = split_first_mark = P->mark_ptr;
 					P->mark_ptr->token_ref_count += 2;
 				}
 				else
 				{
 					deletetokenref(split_bot_mark);
-					split_bot_mark = P->mark_ptr->num;
+					split_bot_mark = P->mark_ptr;
 					P->mark_ptr->token_ref_count++;
 				}
 			}

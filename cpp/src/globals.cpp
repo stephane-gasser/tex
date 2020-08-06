@@ -99,7 +99,6 @@ unsigned char baseptr; // 0..stacksize
 halfword parloc;
 halfword partoken;
 bool forceeof;
-halfword curmark[5];
 char longstate; // 111..114
 smallnumber radix;
 glueord curorder;
@@ -131,7 +130,6 @@ halfword downptr, rightptr;
 scaled dvih, dviv;
 scaled curh, curv;
 scaled totalstretch[4], totalshrink[4];
-halfword adjusttail;
 halfword curmlist;
 smallnumber curstyle;
 smallnumber cursize;
@@ -180,7 +178,6 @@ hyphpointer hyphcount;
 std::map<ASCIIcode, quarterword> trieused;
 bool trienotready;
 scaled bestheightplusdepth;
-halfword pagetail;
 char pagecontents; // 0..2
 scaled pagemaxdepth;
 halfword bestpagebreak; 

@@ -44,7 +44,7 @@ void handlerightbrace(Token t, halfword &loop)
 			package(0, t);
 			break;
 		case adjusted_hbox_group:
-			adjusttail = adjust_head->num;
+			adjusttail = adjust_head;
 			package(0, t);
 			break;
 		case vbox_group:
@@ -78,10 +78,9 @@ void handlerightbrace(Token t, halfword &loop)
 			}
 			else
 			{
-				tail_append(getnode(small_node_size));
-				tail->type = adjust_node; //5
-				subtype(tail->num) = 0;
-				adjust_ptr(tail->num) = p->list_ptr->num;
+				auto a = new AdjustNode;
+				a->adjust_ptr = dynamic_cast<TokenListNode*>(p->list_ptr);
+				tail_append(a);
 				deleteglueref(q);
 			}
 			delete p;
@@ -105,17 +104,17 @@ void handlerightbrace(Token t, halfword &loop)
 				boxerror(255, "Output routine didn't use all of "+esc("box255"), "Your \\output commands should empty \\box255,\ne.g., by saying `\\shipout\\box255'.\nProceed; I'll discard its present contents.");
 			if (tail != head)
 			{
-				link(pagetail) = head->link->num;
-				pagetail = tail->num;
+				pagetail->link = head->link;
+				pagetail = tail;
 			}
 			if (page_head->link)
 			{
 				if (contrib_head->link == nullptr)
 					contrib_tail = pagetail;
-				link(pagetail) = contrib_head->link->num;
+				pagetail->link = contrib_head->link;
 				contrib_head->link = page_head->link;
 				page_head->link = nullptr;
-				pagetail = page_head->num;
+				pagetail = page_head;
 			}
 			popnest();
 			buildpage();
