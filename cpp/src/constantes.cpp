@@ -30,7 +30,7 @@ int& u_part(halfword p) { return mem[p+height_offset].int_; }
 int&v_part(halfword p) { return mem[p+depth_offset].int_; }
 int& penalty(halfword p) { return mem[p+1].int_; }
 int& float_cost(halfword p) { return mem[p+1].int_; }
-int& mark_ptr(halfword p) { return mem[p+1].int_; }
+//int& mark_ptr(halfword p) { return mem[p+1].int_; }
 int& adjust_ptr(halfword p) { return mem[p+1].int_; }
 quarterword& small_fam(halfword p) { return mem[p].qqqq.b0; }
 quarterword& small_char(halfword p) { return mem[p].qqqq.b1; }

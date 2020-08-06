@@ -267,6 +267,16 @@ class InsNode : public LinkedNode
 		InsNode(void) { type = ins_node; }
 };
 
+extern TokenListNode *defref;
+
+class MarkNode : public LinkedNode
+{
+	public:
+		TokenListNode *mark_ptr = defref;
+		MarkNode(void) { type = mark_node; }
+};
+
+
 class PageInsNode : public LinkedNode
 {
 	public:

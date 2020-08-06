@@ -133,8 +133,8 @@ LinkedNode* copynodelist(LinkedNode *p)
 					break;
 				}
 				case mark_node:
-					r->num = getnode(small_node_size);
-					info(mark_ptr(p->num))++;
+					r = new MarkNode;
+					dynamic_cast<MarkNode*>(p)->mark_ptr->token_ref_count++;
 					words = small_node_size;
 					break;
 				case adjust_node:
@@ -144,6 +144,7 @@ LinkedNode* copynodelist(LinkedNode *p)
 				default: 
 					confusion("copying");
 			}
+		// à redispatcher dans chaque type de noeud
 		for (;words > 0; words--)
 			mem[r->num+words] = mem[p->num+words];
 		q->link = r;
@@ -219,8 +220,8 @@ void flushnodelist(LinkedNode *p)
 					freenode(p->num, small_node_size);
 					break;
 				case mark_node: 
-					deletetokenref(mark_ptr(p->num));
-					freenode(p->num, small_node_size);
+					deletetokenref(dynamic_cast<MarkNode*>(p)->mark_ptr);
+					delete p;
 					break;
 				case disc_node:
 				{
@@ -584,9 +585,10 @@ void newgraf(bool indented)
 	prev_graf = (normmin(left_hyphen_min())<<6+normmin(right_hyphen_min()))<<16+curlang;
 	if (indented)
 	{
-		tail->num = newnullbox();
+		auto b = new BoxNode;
+		b->width = par_indent();
+		tail = b;
 		head->link = tail;
-		width(tail->num) = par_indent();
 	}
 	if (every_par())
 		begintokenlist(every_par(), every_par_text);
@@ -639,22 +641,6 @@ halfword newnoad(void)
 	mem[nucleus(p)].hh = twohalves{0, 0};
 	mem[subscr(p)].hh = twohalves{0, 0};
 	mem[supscr(p)].hh = twohalves{0, 0};
-	return p;
-}
-
-halfword newnullbox(void)
-{
-	halfword p = getnode(box_node_size);
-	type(p) = hlist_node;
-	subtype(p) = 0;
-	width(p) = 0;
-	depth(p) = 0;
-	height(p) = 0;
-	shift_amount(p) = 0;
-	list_ptr(p) = 0;
-	glue_sign(p) = normal;
-	glue_order(p) = normal;
-	glue_set(p) = 0.0;
 	return p;
 }
 

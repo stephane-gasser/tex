@@ -736,7 +736,7 @@ bool is_running(int); //!< tests for a running dimension
 int& float_cost(halfword); //!< the \a floating_penalty to be used
 halfword& ins_ptr(halfword); //!< the vertical list to be inserted
 halfword& split_top_ptr(halfword); //!< the \a split_top_skip to be used
-int& mark_ptr(halfword); //!< head of the token list for a mark
+//int& mark_ptr(halfword); //!< head of the token list for a mark
 int& adjust_ptr(halfword); //!< vertical list to be moved out of horizontal list
 halfword lig_char(halfword); //!< the word where the ligature is to be found
 halfword& lig_ptr(halfword); //!< the list of characters

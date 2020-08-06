@@ -767,8 +767,12 @@ static std::string shownodelist(halfword p, const std::string &symbol)
 					break;
 				}
 				case mark_node:
-					oss << esc("mark") << asMark(mark_ptr(p));
+				{
+					MarkNode *P;
+					P->num = p;
+					oss << esc("mark") << asMark(P->mark_ptr->num);
 					break;
+				}
 				case adjust_node:
 					oss << esc("vadjust") << shownodelist(adjust_ptr(p), symbol+".");
 					break;

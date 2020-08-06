@@ -137,15 +137,16 @@ void fireup(halfword c)
 		}
 		else if (p->type == mark_node) //4
 		{
+			auto P = dynamic_cast<MarkNode*>(p);
 			if (first_mark == 0)
 			{
-				first_mark = mark_ptr(p->num);
-				info(first_mark)++;
+				first_mark = P->mark_ptr->num;
+				P->mark_ptr->token_ref_count++;
 			}
 			if (bot_mark)
 				deletetokenref(bot_mark);
-			bot_mark = mark_ptr(p->num);
-			info(bot_mark)++;
+			bot_mark = P->mark_ptr->num;
+			P->mark_ptr->token_ref_count++;
 		}
 		prevp = p;
 		p = prevp->link;
