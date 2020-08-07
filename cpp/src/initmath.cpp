@@ -15,7 +15,6 @@ void initmath(void)
 {
 	scaled w, l, s;
 	LinkedNode *p;
-//	internalfontnumber f;
 	int n;
 	scaled v, d;
 	auto t = gettoken();
@@ -70,11 +69,15 @@ void initmath(void)
 						}
 						p = p->link;
 						continue;
-					case ligature_node: //6
-						mem[lig_trick->num] = mem[lig_char(p->num)];
+					case ligature_node:
+					{
+						auto P = dynamic_cast<LigatureNode*>(p);
+						lig_trick->font = P->lig_char.font;
+						lig_trick->character = P->lig_char.character;
 						lig_trick->link = p->link;
 						p = lig_trick;
 						continue;
+					}
 					case kern_node: //11
 						d = dynamic_cast<KernNode*>(p)->width;
 						break;

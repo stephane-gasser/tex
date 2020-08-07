@@ -179,7 +179,7 @@ inline LinkedNode * const align_head = dynamic_cast<LinkedNode*>(&heads[8]); //!
 inline SpanNode * const end_span = dynamic_cast<SpanNode*>(&heads[9]); //!< tail of spanned-width lists
 inline TokenNode * omit_template; //!< a constant token list
 inline LinkedNode *null_list; //!< permanently empty list
-inline LinkedNode *lig_trick; //!< a ligature masquerading as a \a char_node
+inline CharNode *lig_trick; //!< a ligature masquerading as a \a char_node
 inline LinkedNode *garbage; //!< used for scrap information
 inline LinkedNode *backup_head; //!< head of token list built by \a scan_keyword
 
@@ -728,9 +728,9 @@ bool is_running(int); //!< tests for a running dimension
 //halfword& ins_ptr(halfword); //!< the vertical list to be inserted
 //halfword& split_top_ptr(halfword); //!< the \a split_top_skip to be used
 //int& mark_ptr(halfword); //!< head of the token list for a mark
-int& adjust_ptr(halfword); //!< vertical list to be moved out of horizontal list
-halfword lig_char(halfword); //!< the word where the ligature is to be found
-halfword& lig_ptr(halfword); //!< the list of characters
+//int& adjust_ptr(halfword); //!< vertical list to be moved out of horizontal list
+//halfword lig_char(halfword); //!< the word where the ligature is to be found
+//halfword& lig_ptr(halfword); //!< the list of characters
 halfword& leader_ptr(halfword); //!< pointer to box or rule node for leaders
 halfword& glue_ref_count(halfword); //!< reference count of a glue specification
 int& stretch(halfword); //!< the stretchability of this glob of glue

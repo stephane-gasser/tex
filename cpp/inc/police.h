@@ -3,9 +3,6 @@
 
 #include "globals.h"
 
-inline std::vector<memoryword> Font::info(7);
-inline std::vector<Font> fonts(1);
-
 Font& cur_font(void);
 int curFontNum(void);
 int char_tag(fourquarters);

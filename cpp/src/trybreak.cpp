@@ -123,9 +123,12 @@ void trybreak(int pi, smallnumber breaktype)
 									switch (v->type)
 									{
 										case ligature_node:
-											f = font(lig_char(v->num));
-											breakwidth[1] += -fonts[f].char_width(character(lig_char(v->num)));
+										{
+											auto V = dynamic_cast<LigatureNode*>(v);
+											auto ft = V->lig_char.font;
+											breakwidth[1] += -ft.char_width(V->lig_char.character);
 											break;
+										}
 										case hlist_node:
 										case vlist_node:
 										case rule_node:
@@ -150,9 +153,12 @@ void trybreak(int pi, smallnumber breaktype)
 									switch (s->type)
 									{
 										case ligature_node:
-											f = font(lig_char(s->num));
-											breakwidth[1] += fonts[f].char_width(character(lig_char(s->num)));
+										{
+											auto S = dynamic_cast<LigatureNode*>(s);
+											auto ft = S->lig_char.font;
+											breakwidth[1] += ft.char_width(S->lig_char.character);
 											break;
+										}
 										case hlist_node:
 										case vlist_node:
 										case rule_node:

@@ -626,10 +626,14 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 					x += width(p->num);
 					break;
 				case ligature_node:
-					mem[lig_trick->num] = mem[lig_char(p->num)];
+				{
+					auto P = dynamic_cast<LigatureNode*>(p);
+					lig_trick->font = P->lig_char.font;
+					lig_trick->character = P->lig_char.character;
 					lig_trick->link = p->link;
 					p = lig_trick;
 					continue;
+				}
 			}
 			p = p->link;
 		}

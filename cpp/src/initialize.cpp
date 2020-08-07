@@ -100,13 +100,6 @@ void Initialize(void)
 		writeopen[k] = false;
 	for (int k = 1; k < 20; k++)
 		mem[k].int_ = 0;
-/*	for (int k = 0; k <= lo_mem_stat_max; k += glue_spec_size)
-	{
-		glue_ref_count(k) = 1;
-		stretch_order(k) = normal;
-		shrink_order(k) = normal;
-	}*/
-	
 	fil_glue->stretch = unity;
 	fil_glue->stretch_order = fil;
 	fill_glue->stretch = unity;
@@ -142,7 +135,7 @@ void Initialize(void)
 	hold_head = new LinkedNode;
 	adjust_head = new LinkedNode;
 	null_list = new LinkedNode;
-	lig_trick = new LinkedNode;
+	lig_trick = new CharNode(fonts[null_font], 0);
 	garbage = new LinkedNode;
 	backup_head = new LinkedNode;
 	avail = 0;

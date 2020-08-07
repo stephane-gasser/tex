@@ -198,16 +198,15 @@ static void wrap_lig(bool test, LinkedNode *t)
 {
 	if (ligaturepresent)
 	{
-		CharNode *p; // Ligature
-		p->num = newligature(hf, curl, curq->link->num);
+		auto p = new LigatureNode(fonts[hf], curl, curq->link);
 		if (lfthit)
 		{
-			p->/*subtype*/character = 2;
+			p->subtype = 2;
 			lfthit = false;
 		}
 		if (test && ligstack == nullptr)
 		{
-			p->character/*subtype*/++;
+			p->subtype++;
 			rthit = false;
 		}
 		curq->link = p;
@@ -218,9 +217,9 @@ static void wrap_lig(bool test, LinkedNode *t)
 
 static void pop_lig_stack(smallnumber &j, LinkedNode *t)
 {
-	if (lig_ptr(ligstack->num) > 0)
+	if (ligstack->lig_ptr)
 	{
-		t->link->num = lig_ptr(ligstack->num);
+		t->link = ligstack->lig_ptr;
 		t = t->link;
 		j++;
 	}
@@ -326,24 +325,24 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 								case 6:
 									curr = Font::rem_byte(k);
 									if (ligstack)
-										ligstack->character = curr;
+										ligstack->lig_char.character = curr;
 									else
 									{
-										ligstack->num = newligitem(curr);
+										ligstack = new LigatureNode(curr);
 										if (j == n)
 											bchar = non_char;
 										else
 										{
 											p = new CharNode(fonts[hf], hu[j+1]);
-											lig_ptr(ligstack->num) = p->num;
+											ligstack->lig_ptr = p;
 										}
 									}
 									break;
 								// AB -> ACB (symbole |=:|)
 								case 3:
 									curr = Font::rem_byte(k);
-									p = ligstack;
-									ligstack->num = newligitem(curr);
+									p = &ligstack->lig_char;
+									ligstack = new LigatureNode(curr);
 									ligstack->link = p;
 									break;
 								// AB -> ACB (symboles |=:|> et |=:|>>)
@@ -361,13 +360,13 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 									if (ligstack)
 									{
 										pop_lig_stack(j, t);
-										p = ligstack;
-										ligstack = dynamic_cast<CharNode*>(p->link);
+										p = &ligstack->lig_char;
+										ligstack = dynamic_cast<LigatureNode*>(p->link);
 										delete p;
 										if (ligstack == nullptr)
 											set_cur_r(j, n, curr, currh, hchar);
 										else
-											curr = ligstack->character;
+											curr = ligstack->lig_char.character;
 									}
 									else 
 										if (j == n)
@@ -421,16 +420,16 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 		if (ligstack)
 		{
 			curq = t;
-			curl = ligstack->character;
+			curl = ligstack->lig_char.character;
 			ligaturepresent = true;
 			pop_lig_stack(j, t);
-			p = ligstack;
-			ligstack = dynamic_cast<CharNode*>(p->link);
+			p = &ligstack->lig_char;
+			ligstack = dynamic_cast<LigatureNode*>(p->link);
 			delete p;
 			if (ligstack == nullptr)
 				set_cur_r(j, n, curr, currh, hchar);
 			else
-				curr = ligstack->character;
+				curr = ligstack->lig_char.character;
 			recommence = true;
 			continue;
 		}
@@ -533,21 +532,20 @@ void hyphenate(void)
 	bool fini = true;
 	for (j = lhyf; j <= hn-rhyf; j++)
 		if (hyf[j]%2)
-			fini = false;
+			fini = false; 
 	if (fini)
 		return;
-	auto q = link(hb);
-	link(hb) = 0;
-	LinkedNode *r;
-	r->num = link(ha);
-	link(ha) = 0;
+	auto q = hb->link;
+	hb->link = nullptr;
+	auto r = ha->link;
+	ha->link = nullptr;
 	auto bchar = hyfbchar;
 	do
 	{
-		if (is_char_node(ha))
-			if (font(ha) != hf)
+		if (ha->is_char_node())
+			if (dynamic_cast<CharNode*>(ha)->font != fonts[hf])
 			{
-				s->num = ha;
+				s = ha;
 				j = 0;
 				hu[0] = 256;
 				initlig = false;
@@ -556,15 +554,15 @@ void hyphenate(void)
 			}
 			else
 			{
-				initlist->num = ha;
+				initlist = dynamic_cast<CharNode*>(ha);
 				initlig = false;
-				hu[0] = character(ha);
+				hu[0] = dynamic_cast<CharNode*>(ha)->character;
 			}
 		else 
-			if (type(ha) == ligature_node)
-				if (font(lig_char(ha)) != hf)
+			if (ha->type == ligature_node)
+				if (dynamic_cast<LigatureNode*>(ha)->lig_char.font != fonts[hf])
 				{
-					s->num = ha;
+					s = ha;
 					j = 0;
 					hu[0] = 256;
 					initlig = false;
@@ -573,22 +571,22 @@ void hyphenate(void)
 				}
 				else
 				{
-					initlist->num = lig_ptr(ha);
+					initlist = dynamic_cast<CharNode*>(dynamic_cast<LigatureNode*>(ha)->lig_ptr);
 					initlig = true;
-					initlft = subtype(ha) > 1;
-					hu[0] = character(lig_char(ha));
+					initlft = dynamic_cast<LigatureNode*>(ha)->subtype > 1;
+					hu[0] = dynamic_cast<LigatureNode*>(ha)->lig_char.character;
 					if (initlist == nullptr && initlft)
 					{
 						hu[0] = 256;
 						initlig = false;
 					}
-					freenode(ha, small_node_size);
+					delete ha;
 				}
 			else
 			{
-				if (!r->is_char_node() && r->type == ligature_node && subtype(r->num) > 1)
+				if (!r->is_char_node() && r->type == ligature_node && dynamic_cast<LigatureNode*>(r)->subtype > 1)
 				{
-					s->num = ha;
+					s = ha;
 					j = 0;
 					hu[0] = 256;
 					initlig = false;
@@ -596,12 +594,12 @@ void hyphenate(void)
 					break;
 				}
 				j = 1;
-				s->num = ha;
+				s = ha;
 				initlist = nullptr;
 				break;
 			}
 		s = curp;
-		while (s->link->num != ha)
+		while (s->link != ha)
 			s = s->link;
 		j = 0;
 	} while (false);
@@ -719,7 +717,7 @@ void hyphenate(void)
 				hold_head->link = nullptr;
 			} while (hyf[j-1]%2);
 	} while (j <= hn);
-	s->link->num = q;
+	s->link = q;
 	flushlist(initlist);
 }
 

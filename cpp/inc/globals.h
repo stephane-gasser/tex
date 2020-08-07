@@ -148,6 +148,9 @@ class Font
 		bool operator != (const Font &f) { return this != &f; } 
 };
 
+inline std::vector<memoryword> Font::info(7);
+inline std::vector<Font> fonts(1);
+
 class AnyNode
 {
 	public:
@@ -225,6 +228,18 @@ enum
 	left_noad = vcenter_noad+1, //!< \a type of a noad for \\left
 	right_noad = left_noad+1 //!< \a type of a noad for \\right
 };
+
+class LigatureNode : public LinkedNode
+{
+	public:
+		CharNode lig_char;
+		LinkedNode *lig_ptr;
+		quarterword subtype;
+		LigatureNode(const Font &f, quarterword c, LinkedNode*q) : subtype(0), lig_char(f, c), lig_ptr(q) { type = ligature_node; }
+		//newligitem
+		LigatureNode(quarterword c) : subtype(0), lig_char(fonts[0], c), lig_ptr(nullptr) { type = ligature_node; }
+};
+
 
 class ChoiceNode : public LinkedNode
 {
@@ -363,6 +378,13 @@ class UnsetNode : public BoxNode
 		scaled glue_shrink;
 		scaled glue_stretch;
 		UnsetNode(void) : BoxNode() { type = unset_node; span_count = 0; } 
+};
+
+class StyleNode : public LinkedNode
+{
+	public:
+		quarterword subtype;
+		StyleNode(smallnumber s) : subtype(s) { type = style_node; }
 };
 
 inline std::vector<BoxNode*> box(256);
@@ -613,11 +635,6 @@ extern scaled firstindent;
 extern scaled secondindent;
 extern halfword bestbet;
 extern halfword bestline;
-extern int hc[66]; // of 0..256
-extern smallnumber hn;
-extern halfword ha, hb;
-extern internalfontnumber hf;
-extern int hu[64]; // of 0..256
 extern ASCIIcode curlang, initcurlang;
 extern halfword hyfbchar;
 extern char hyf[65]; // of 0..9

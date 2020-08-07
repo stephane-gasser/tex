@@ -139,7 +139,7 @@ void mlisttohlist(void)
 				makevcenter(q->num);
 				break;
 			case style_node:
-				curstyle = subtype(q->num);
+				curstyle = dynamic_cast<StyleNode*>(q)->subtype;
 				if (curstyle < script_style)
 					cursize = text_size;
 				else
@@ -147,7 +147,6 @@ void mlisttohlist(void)
 				curmu = xovern(math_quad(cursize), 18);
 				q = q->link;
 				continue;
-				break;
 			case choice_node:
 			{
 				auto Q = dynamic_cast<ChoiceNode*>(q);
@@ -174,10 +173,8 @@ void mlisttohlist(void)
 				flushnodelist(Q->script_mlist);
 				flushnodelist(Q->script_script_mlist);
 				// delete q ? q = new StyleNode ?
-				q->type = style_node;
-				subtype(q->num) = curstyle;
-				width(q->num) = 0;
-				depth(q->num) = 0;
+				auto st = new StyleNode(curstyle);
+				q = st;
 				if (p)
 				{
 					auto z = q->link;
@@ -348,7 +345,7 @@ void mlisttohlist(void)
 				t = makeleftright(q->num, style, maxd, maxh);
 				break;
 			case style_node:
-				curstyle = q->type;
+				curstyle = dynamic_cast<StyleNode*>(q)->subtype;
 				s = style_node_size;
 				if (curstyle < script_style)
 					cursize = text_size;
@@ -357,9 +354,8 @@ void mlisttohlist(void)
 				curmu = xovern(math_quad(cursize), 18);
 				r = q;
 				q = q->link;
-				freenode(r->num, s);
+				delete r;
 				continue;
-				break;
 			case whatsit_node:
 			case penalty_node:
 			case rule_node:

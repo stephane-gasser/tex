@@ -3,7 +3,13 @@
 
 #include "globals.h"
 
-inline CharNode *ligstack;
+inline int hc[66]; // of 0..256
+inline smallnumber hn;
+inline LinkedNode *ha, *hb;
+inline internalfontnumber hf;
+inline int hu[64]; // of 0..256
+
+inline LigatureNode *ligstack;
 inline LinkedNode * curq;
 
 void inittrie(void);

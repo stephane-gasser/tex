@@ -126,10 +126,12 @@ LinkedNode* copynodelist(LinkedNode *p)
 					words = 2;
 					break;
 				case ligature_node:
-					r->num = getnode(small_node_size);
-					mem[lig_char(r->num)] = mem[lig_char(p->num)];
-					lig_ptr(r->num) = copynodelist(lig_ptr(p->num));
+				{
+					auto P = dynamic_cast<LigatureNode*>(p);
+					auto R = new LigatureNode(P->lig_char.font, P->lig_char.character, copynodelist(P->lig_ptr));
+					r = R;
 					break;
+				}
 				case disc_node:
 				{
 					auto P = dynamic_cast<DiscNode*>(p);
@@ -168,6 +170,7 @@ LinkedNode* copynodelist(LinkedNode *p)
 	return q;
 }
 
+// destructeur !!
 void flushnodelist(LinkedNode *p)
 {
 	while (p)
@@ -225,13 +228,17 @@ void flushnodelist(LinkedNode *p)
 					break;
 				}
 				case kern_node:
+					delete p;
+					break;
 				case math_node:
-				case penalty_node: 
 					freenode(p->num, small_node_size);
 					break;
+				case penalty_node: 
+					delete p;
+					break;
 				case ligature_node: 
-					flushnodelist(lig_ptr(p->num));
-					freenode(p->num, small_node_size);
+					flushnodelist(dynamic_cast<LigatureNode*>(p)->lig_ptr);
+					delete p;
 					break;
 				case mark_node: 
 					deletetokenref(dynamic_cast<MarkNode*>(p)->mark_ptr);
@@ -250,7 +257,7 @@ void flushnodelist(LinkedNode *p)
 					delete p;
 					break;
 				case style_node:
-					freenode(p->num, style_node_size);
+					delete p;
 					break;
 				case choice_node:
 				{
@@ -302,7 +309,6 @@ void flushnodelist(LinkedNode *p)
 		p = q;
 	}
 }
-
 
 [[deprecated]] void flushnodelist(halfword p)
 {
@@ -619,25 +625,6 @@ void newinteraction(Token t)
 		selector += 2;
 }
 
-halfword newligature(quarterword f, quarterword c, halfword q)
-{
-	auto p = getnode(small_node_size);
-	type(p) = ligature_node;
-	font(lig_char(p)) = f;
-	character(lig_char(p)) = c;
-	lig_ptr(p) = q;
-	subtype(p) = 0;
-	return p;
-}
-
-halfword newligitem(quarterword c)
-{
-	auto p = getnode(small_node_size);
-	character(p) = c;
-	lig_ptr(p) = 0;
-	return p;
-}
-
 halfword newmath(scaled w, smallnumber s)
 { 
 	auto p = getnode(small_node_size);
@@ -701,16 +688,6 @@ GlueSpec *newspec(GlueSpec *p)
 	q->shrink_order = p->shrink_order;
 	q->glue_ref_count = 0;
 	return q;
-}
-
-halfword newstyle(smallnumber s)
-{
-	auto p = getnode(style_node_size);
-	type(p) = style_node;
-	subtype(p) = s;
-	width(p) = 0;
-	depth(p) = 0;
-	return p;
 }
 
 void newwhatsit(smallnumber s, smallnumber w)
@@ -811,7 +788,7 @@ void appenditaliccorrection(void)
 			p = dynamic_cast<CharNode*>(tail);
 		else 
 			if (tail->type == ligature_node)
-				p->num = lig_char(tail->num);
+				p = &dynamic_cast<LigatureNode*>(tail)->lig_char;
 			else
 				return;
 		tail_append(new KernNode(p->font.char_italic(p->character), explicit_));

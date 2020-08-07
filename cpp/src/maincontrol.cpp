@@ -48,22 +48,22 @@
 static fontindex maink; //!< index into |font_info|
 //static fourquarters mainj; //!<ligature/kern command
 //static fourquarters maini; //!<character information bytes for |cur_l|
-static CharNode *mainp; //!<temporary register for list manipulation
+static LigatureNode *mainp; //!<temporary register for list manipulation
 
 static halfword& every_job(void) { return equiv(every_job_loc); }
 
 //! the parameter is either |rt_hit| or |false|
 static void pack_lig(bool z)
 {
-	mainp->num = newligature(curFontNum(), curl, curq->link->num);
+	mainp = new LigatureNode(cur_font(), curl, curq->link);
 	if (lfthit)
 	{
-		mainp->/*subtype*/character = 2;
+		mainp->subtype = 2;
 		lfthit = false;
 	}
 	if (z && ligstack == nullptr)
 	{
-		mainp->/*subtype*/character++;
+		mainp->subtype++;
 		rthit = false;
 	}
 	curq->link = mainp;
@@ -128,14 +128,14 @@ static void main_loop_lookahead(void)
 	//main_loop_lookahead_1
 	adjust_space_factor(t.chr);
 	curr = t.chr;
-	ligstack = new CharNode(cur_font(), curr);
+	ligstack = new LigatureNode(cur_font(), curr, nullptr);
 	if (curr == falsebchar)
 		curr = non_char;
 }
 
 static void main_loop_move_lig(void)
 {
-	mainp->num = lig_ptr(ligstack->num);
+	mainp = dynamic_cast<LigatureNode*>(ligstack->lig_ptr);
 	if (mainp)
 		tail_append(mainp);
 	tempptr = ligstack->num;
@@ -148,7 +148,7 @@ static void main_loop_move_lig(void)
 		else
 			curr = bchar;
 	else
-		curr = ligstack->character;
+		curr = ligstack->lig_char.character;
 }
 
 [[nodiscard]] static Token append_normal_space(void)
@@ -209,7 +209,7 @@ static bool main_loop_move(halfword chr)
 	if (ligstack == nullptr)
 		return true;
 	curq = dynamic_cast<CharNode*>(tail);
-	curl = ligstack->character;
+	curl = ligstack->lig_char.character;
 	return main_loop_move_1(chr);
 }
 
@@ -247,15 +247,15 @@ static bool main_loop_wrapup(halfword chr)
 							insdisc = true;
 						if (ligaturepresent)
 						{
-							mainp->num = newligature(curFontNum(), curl, curq->link->num);
+							mainp = new LigatureNode(cur_font(), curl, curq->link);
 							if (lfthit)
 							{
-								mainp->/*subtype*/character = 2;
+								mainp->subtype = 2;
 								lfthit = false;
 							}
 							if (rthit && ligstack == nullptr)
 							{
-								mainp->/*subtype*/character++;
+								mainp->subtype++;
 								rthit = false;
 							}
 							curq->link = mainp;
@@ -295,24 +295,24 @@ static bool main_loop_wrapup(halfword chr)
 						curr = Font::rem_byte(maink);
 						if (ligstack == nullptr)
 						{
-							ligstack->num = newligitem(curr);
+							ligstack = new LigatureNode(curr);
 							bchar = non_char;
 						}
 						else 
-							if (is_char_node(ligstack->num))
+							if (ligstack->is_char_node())
 							{
 								mainp = ligstack;
-								ligstack->num = newligitem(curr);
-								lig_ptr(ligstack->num) = mainp->num;
+								ligstack = new LigatureNode(curr);
+								ligstack->lig_ptr = mainp;
 							}
 							else
-								ligstack->character = curr;
+								ligstack->lig_char.character = curr;
 						break;
 					// AB -> ACB (symbole |=:|)
 					case 3: //a=0 b=1 c=1
 						curr = Font::rem_byte(maink);
 						mainp = ligstack;
-						ligstack->num = newligitem(curr);
+						ligstack = new LigatureNode(curr);
 						ligstack->link = mainp;
 						break;
 					// AB -> ACB (symboles |=:|> et |=:|>>)
@@ -377,7 +377,7 @@ static void main_loop(Token t)
 	if (mode > 0 && language() != clang)
 		fixlanguage();
 	curl = t.chr;
-	ligstack = new CharNode(cur_font(), curl);
+	ligstack = new LigatureNode(cur_font(), curl, nullptr);
 	curq = dynamic_cast<CharNode*>(tail);
 	maink = cancelboundary ? non_address : cur_font().bcharlabel;
 	cancelboundary = false;
@@ -712,7 +712,7 @@ Token maincontrol(void)
 				begintokenlist(every_vbox(), every_vbox_text);
 				break;
 			case mmode+math_style:
-				tail_append(newstyle(t.chr));
+				tail_append(new StyleNode(t.chr));
 				break;
 			case mmode+non_script:
 			{

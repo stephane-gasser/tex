@@ -160,11 +160,6 @@ scaled firstindent;
 scaled secondindent;
 halfword bestbet;
 halfword bestline;
-int hc[66]; // of 0..256
-smallnumber hn;
-halfword ha, hb;
-internalfontnumber hf;
-int hu[64]; // of 0..256
 ASCIIcode curlang, initcurlang;
 halfword hyfbchar;
 char hyf[65]; // of 0..9

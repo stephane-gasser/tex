@@ -573,7 +573,7 @@ std::string shortdisplay(int P)
 					oss << "$";
 					break;
 				case ligature_node:
-					oss << shortdisplay(lig_ptr(p->num));
+					oss << shortdisplay(dynamic_cast<LigatureNode*>(p)->lig_ptr->num);
 					break;
 				case disc_node:
 				{
@@ -772,15 +772,18 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 						oss << ", surrounded " << asScaled(width(p->num));
 					break;
 				case ligature_node:
-					oss << fontandchar(lig_char(p->num)) << " (ligature ";
+				{
+					auto P = dynamic_cast<LigatureNode*>(p);
+					oss << fontandchar(P->lig_char.num) << " (ligature ";
 					if (subtype(p->num) > 1)
 						oss << "|";
-					fontinshortdisplay = fonts[font(lig_char(p->num))];
-					oss << shortdisplay(lig_char(p->num));
-					if (subtype(p->num)%2)
+					fontinshortdisplay = P->lig_char.font;
+					oss << shortdisplay(P->lig_char.num);
+					if (P->subtype%2)
 						oss << "|";
 					oss << ")";
 					break;
+				}
 				case penalty_node:
 					oss << esc("penalty ") << dynamic_cast<PenaltyNode*>(p)->penalty;
 					break;
@@ -805,11 +808,14 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 					break;
 				}
 				case style_node:
-					if (primName[math_style].find(subtype(p->num)) != primName[math_style].end())
-						oss << esc(primName[math_style][subtype(p->num)]);
+				{
+					auto P = dynamic_cast<StyleNode*>(p);
+					if (primName[math_style].find(P->subtype) != primName[math_style].end())
+						oss << esc(primName[math_style][P->subtype]);
 					else
 						oss << "Unknown style!";
 					break;
+				}
 				case choice_node:
 				{
 					auto P = dynamic_cast<ChoiceNode*>(p);
@@ -1183,7 +1189,7 @@ static std::string showactivities(void)
 				break;
 			case mmode:
 				if (a.int_)
-					oss << "this will be denominator of:" << showbox(a.int_);
+					oss << "this will be denominator of:" << showbox(box[a.int_]);
 		}
 	}
 	oss << "\n";

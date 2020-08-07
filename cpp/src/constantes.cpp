@@ -41,7 +41,6 @@ halfword& what_lang(halfword p) { return link(p+1); }
 halfword& rlink(halfword p) { return link(p+1); }
 halfword& break_node(halfword p) { return link(p+1); }
 halfword& leader_ptr(halfword p) { return link(p+1); }
-halfword& lig_ptr(halfword p) { return link(lig_char(p)); }
 halfword& write_tokens(halfword p) { return link(p+1); }
 halfword& last_ins_ptr(halfword p) { return link(p+2); }
 halfword& open_name(halfword p) { return link(p+1); }
@@ -66,8 +65,6 @@ int& count(halfword p) { return eqtb[count_base+p].int_; }
 int& dimen(halfword p) { return eqtb[scaled_base+p].int_; }
 int& del_code(halfword p) { return eqtb[del_code_base+p].int_; }
 halfword& cat_code(halfword p) { return equiv(cat_code_base+p); }
-//halfword& skip(halfword p) { return equiv(skip_base+p); }
-//halfword& box(halfword p) { return equiv(box_base+p); }
 halfword& par_shape_ptr(void) { return equiv(par_shape_loc); }
 halfword& every_math(void) { return equiv(every_math_loc); }
 halfword& every_cr(void) { return equiv(every_cr_loc); }
@@ -85,7 +82,6 @@ halfword numerator(halfword p) { return p+2; }
 halfword denominator(halfword p) { return p+3; }
 halfword supscr(halfword p) { return p+2; }
 halfword subscr(halfword p) { return p+3; }
-halfword lig_char(halfword p) { return p+1; }
 
 halfword& text(halfword p) { return hash[p].rh; }
 
