@@ -16,22 +16,14 @@ quarterword& subtype(halfword p) { return mem[p].hh.b1; }
 quarterword& character(halfword p) { return mem[p].hh.b1; }
 quarterword& fitness(halfword p) { return mem[p].hh.b1; } 
 quarterword& shrink_order(halfword p) { return mem[p].hh.b1; }
-int& shift_amount(halfword p) { return mem[p+4].int_; }
 int& stretch(halfword p) { return mem[p+2].int_; }
 int& shrink(halfword p) { return mem[p+3].int_; }
-float &glue_set(halfword p) { return mem[p+glue_offset].gr; }
 int& width(halfword p) { return mem[p+width_offset].int_; }
 int& thickness(halfword p) { return mem[p+width_offset].int_; }
 int& depth(halfword p) { return mem[p+depth_offset].int_; }
 int& height(halfword p) { return mem[p+height_offset].int_; }
-int& glue_stretch(halfword p) { return mem[p+glue_offset].int_; }
-int& glue_shrink(halfword p) { return mem[p+4].int_; }
 int& u_part(halfword p) { return mem[p+height_offset].int_; }
 int&v_part(halfword p) { return mem[p+depth_offset].int_; }
-//int& penalty(halfword p) { return mem[p+1].int_; }
-//int& float_cost(halfword p) { return mem[p+1].int_; }
-//int& mark_ptr(halfword p) { return mem[p+1].int_; }
-//int& adjust_ptr(halfword p) { return mem[p+1].int_; }
 quarterword& small_fam(halfword p) { return mem[p].qqqq.b0; }
 quarterword& small_char(halfword p) { return mem[p].qqqq.b1; }
 quarterword& large_fam(halfword p) { return mem[p].qqqq.b2; }
@@ -45,12 +37,10 @@ quarterword& what_rhm(halfword p) { return subtype(p+1); }
 quarterword& glue_order(halfword p) { return subtype(p+list_offset); }
 quarterword& what_lhm(halfword p) { return type(p+1); }
 quarterword& glue_sign(halfword p) { return type(p+list_offset); }
-halfword& list_ptr(halfword p) { return link(p+list_offset); }
 halfword& what_lang(halfword p) { return link(p+1); }
 halfword& rlink(halfword p) { return link(p+1); }
 halfword& break_node(halfword p) { return link(p+1); }
 halfword& leader_ptr(halfword p) { return link(p+1); }
-halfword& split_top_ptr(halfword p) { return link(p+4); }
 halfword& lig_ptr(halfword p) { return link(lig_char(p)); }
 halfword& write_tokens(halfword p) { return link(p+1); }
 halfword& last_ins_ptr(halfword p) { return link(p+2); }
@@ -61,7 +51,6 @@ halfword& line_number(halfword p) { return info(p+1); }
 halfword& llink(halfword p) { return info(p+1); }
 halfword& broken_ins(halfword p) { return info(p+1); }
 halfword& best_ins_ptr(halfword p) { return info(p+2); }
-halfword& ins_ptr(halfword p) { return info(p+4); }
 halfword& write_stream(halfword p) { return info(p+1); }
 halfword& open_area(halfword p) { return info(p+2); } 
 

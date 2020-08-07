@@ -26,6 +26,6 @@ void runaway(void)
 				print("text");
 				p = defref;
 		}
-		print("?\n"+tokenlist(p->link->num, 0, errorline-10));
+		print("?\n"+tokenlist(dynamic_cast<TokenNode*>(p->link), nullptr, errorline-10));
 	}
 }

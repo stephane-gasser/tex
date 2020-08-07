@@ -9,7 +9,7 @@
 void issuemessage(Token t)
 {
 	garbage->link = scantoks(false, true, t);
-	auto s = tokenshow(defref->num);
+	auto s = tokenshow(defref);
 	flushlist(defref);
 	if (t.chr == 0)
 	{

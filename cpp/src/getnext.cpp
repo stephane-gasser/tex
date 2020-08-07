@@ -390,7 +390,7 @@ static void removeFromEnd(int &k, int d)
 							alignstate--;
 							break;
 						case out_param:
-							begintokenlist(paramstack[limit+t.chr-1]->num, 0);
+							begintokenlist(paramstack[limit+t.chr-1], 0);
 							restart = true;
 					}
 				}

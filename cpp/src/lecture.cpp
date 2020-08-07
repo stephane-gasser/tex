@@ -435,7 +435,7 @@ void scanfilename(void)
 	return null_font;
 }
 
-[[nodiscard]] int scanglue(smallnumber level)
+[[nodiscard]] GlueSpec* scanglue(smallnumber level)
 {
 	bool mu = level == 3;
 	bool negative = false;
@@ -457,7 +457,9 @@ void scanfilename(void)
 		{
 			if (lev != level)
 				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
-			return val;
+			GlueSpec *g;
+			g->num = val;
+			return g;
 		}
 		if (lev == 0)
 			val = scandimen(mu, false, true);
@@ -484,7 +486,7 @@ void scanfilename(void)
 		q->shrink = scandimen(mu, true, false);
 		q->shrink_order = curorder;
 	}
-	return q->num;
+	return q;
 }
 
 //! Sets \a curval to an integer.
@@ -1025,9 +1027,9 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 {
 	scannerstatus = macrodef ? defining : absorbing;
 	warningindex = tk.cs;
-	defref = new TokenListNode;
+	defref = new TokenNode;
 	defref->token_ref_count = 0;
-	LinkedNode *p = dynamic_cast<LinkedNode*>(defref);
+	auto *p = defref;
 	halfword hashbrace = 0;
 	halfword t = zero_token;
 	bool l40 = false;
@@ -1134,7 +1136,7 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 	scannerstatus = 0;
 	if (hashbrace)
 		p = store_new_token(p, hashbrace);
-	return dynamic_cast<TokenNode*>(p);
+	return p;
 }
 
 //! backs up a simple token list
@@ -1145,39 +1147,46 @@ void ins_list(halfword p) { begintokenlist(p, inserted); }
 
 void begintokenlist(halfword p, quarterword t)
 {
+	TokenNode *P;
+	P->num = p;
+	begintokenlist(P, t);
+}
+
+void begintokenlist(TokenNode *P, quarterword t)
+{
 	push_input();
 	state = token_list;
-	Start->num = p;
+	Start = P;
 	index = t;
 	Token tk;
 	if (t >= macro) //the token list starts with a reference count
 	{
-		add_token_ref(p);
+		P->token_ref_count++;
 		if (t == macro)
 			param_start = paramptr;
 		else
 		{
-			loc = link(p);
+			Loc = dynamic_cast<TokenNode*>(P->link);
 			if (tracing_macros() > 1)
 			{
 				switch (t)
 				{
 					case mark_text: 
-						diagnostic("\r"+esc("mark")+"->"+tokenshow(p));
+						diagnostic("\r"+esc("mark")+"->"+tokenshow(P));
 						break;
 					case write_text: 
-						diagnostic("\r"+esc("write")+"->"+tokenshow(p));
+						diagnostic("\r"+esc("write")+"->"+tokenshow(P));
 						break;
 					default:
 						tk.cmd = assign_toks;
 						tk.chr = t-output_text+output_routine_loc;
-						diagnostic("\r"+cmdchr(tk)+"->"+tokenshow(p));
+						diagnostic("\r"+cmdchr(tk)+"->"+tokenshow(P));
 				}
 			}
 		}
 	}
 	else
-		loc = p;
+		Loc = P;
 }
 
 void endtokenlist(void)
@@ -1219,12 +1228,12 @@ void endtokenlist(void)
 
 void deletetokenref(halfword p)
 {
-	TokenListNode *P;
+	TokenNode *P;
 	P->num = p;
 	deletetokenref(P);
 }
 
-void deletetokenref(TokenListNode *p)
+void deletetokenref(TokenNode *p)
 {
 	if (p->token_ref_count == 0)
 		flushlist(p);
@@ -1295,7 +1304,7 @@ Token getpreambletoken(void)
 		if (t.cmd != assign_glue || t.chr != glue_base+tab_skip_code)
 			return t;
 		scanoptionalequals();
-		(global_defs() > 0 ? geqdefine : eqdefine)(glue_base+tab_skip_code, glue_ref, scanglue(glue_val));
+		(global_defs() > 0 ? geqdefine : eqdefine)(glue_base+tab_skip_code, glue_ref, scanglue(glue_val)->num);
 	}
 }
 
@@ -1322,11 +1331,11 @@ void insthetoks(void)
 	ins_list(temp_head->link->num);
 }
 
-[[nodiscard]] TokenListNode* readtoks(int n, halfword r)
+[[nodiscard]] TokenNode* readtoks(int n, halfword r)
 {
 	scannerstatus = defining;
 	warningindex = r;
-	defref = new TokenListNode;
+	defref = new TokenNode;
 	defref->token_ref_count = 0;
 	LinkedNode *p = defref;
 	p = store_new_token(p, end_match_token);
@@ -1489,12 +1498,20 @@ TokenNode* thetoks(void)
 			strings.push_back(asScaled(val)+"pt");
 			break;
 		case glue_val:
-			strings.push_back(asSpec(val, "pt"));
-			deleteglueref(val);
+		{
+			GlueSpec *g;
+			g->num = val;
+			strings.push_back(asSpec(g, "pt"));
+			deleteglueref(g);
 			break;
+		}
 		case mu_val:
-			strings.push_back(asSpec(val, "mu"));
-			deleteglueref(val);
+		{
+			GlueSpec *g;
+			g->num = val;
+			strings.push_back(asSpec(g, "mu"));
+			deleteglueref(g);
+		}
 	}
 	return strtoks();
 }

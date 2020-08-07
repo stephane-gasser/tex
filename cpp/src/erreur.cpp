@@ -73,7 +73,11 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 					break;
 				case 'H':
 					if (useerrhelp)
-						print(tokenshow(err_help()));
+					{
+						TokenNode *t;
+						t->num = err_help();
+						print(tokenshow(t));
+					}
 					else
 						print((helpline == "" ? "Sorry, I don't know how to help in this situation.\nMaybe you should try asking a human?" : helpline)+"\n");
 					useerrhelp = false;
@@ -140,7 +144,11 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 	if (interaction > batch_mode)
 		selector--;
 	if (useerrhelp)
-		print("\n"+tokenshow(err_help())+"\n");
+	{
+		TokenNode *t;
+		t->num = err_help();
+		print("\n"+tokenshow(t)+"\n");
+	}
 	else
 		if (helpline != "")
 		{

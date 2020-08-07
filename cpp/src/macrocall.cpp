@@ -12,9 +12,9 @@ void macrocall(Token t)
 	auto savescannerstatus = scannerstatus;
 	auto savewarningindex = warningindex;
 	warningindex = t.cs;
-	halfword refcount = t.chr;
-	TokenNode *r;
-	r->num = link(refcount);
+	TokenNode *refcount;
+	refcount->num = t.chr;
+	auto r = dynamic_cast<TokenNode*>(refcount->link);
 	smallnumber n = 0;
 	if (tracing_macros() > 0)
 		diagnostic("\n"+cs(warningindex)+tokenshow(refcount));
@@ -108,7 +108,7 @@ void macrocall(Token t)
 							runaway();
 							backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 						}
-						pstack[n] = temp_head->link;
+						pstack[n] = dynamic_cast<TokenNode*>(temp_head->link);
 						alignstate -= unbalance;
 						for (int m = 0; m <= n; m++)
 							flushlist(pstack[m]);
@@ -134,7 +134,7 @@ void macrocall(Token t)
 										runaway();
 										backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 									}
-									pstack[n] = temp_head->link;
+									pstack[n] = dynamic_cast<TokenNode*>(temp_head->link);
 									alignstate -= unbalance;
 									for (int m = 0; m <= n; m++)
 										flushlist(pstack[m]);
@@ -187,14 +187,14 @@ void macrocall(Token t)
 					rbraceptr->link = nullptr;
 					delete p;
 					p = dynamic_cast<TokenNode*>(temp_head->link);
-					pstack[n] = p->link;
+					pstack[n] = dynamic_cast<TokenNode*>(p->link);
 					delete p;
 				}
 				else
-					pstack[n] = temp_head->link;
+					pstack[n] = dynamic_cast<TokenNode*>(temp_head->link);
 				n++;
 				if (tracing_macros() > 0)
-					diagnostic(std::string(1, matchchr)+"\n"+std::to_string(n)+"<-"+tokenlist(pstack[n-1]->num, 0, 1000));
+					diagnostic(std::string(1, matchchr)+"\n"+std::to_string(n)+"<-"+tokenlist(dynamic_cast<TokenNode*>(pstack[n-1]), nullptr, 1000));
 			}
 		} while (r->token != end_match_token); 
 	}

@@ -79,7 +79,7 @@ void handlerightbrace(Token t, halfword &loop)
 			else
 			{
 				auto a = new AdjustNode;
-				a->adjust_ptr = dynamic_cast<TokenListNode*>(p->list_ptr);
+				a->adjust_ptr = dynamic_cast<TokenNode*>(p->list_ptr);
 				tail_append(a);
 				deleteglueref(q);
 			}

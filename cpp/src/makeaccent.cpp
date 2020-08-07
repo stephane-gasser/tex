@@ -32,7 +32,7 @@ void makeaccent(Token t)
 			if (h != x)
 			{
 				p = hpack(p, 0, additional);
-				shift_amount(p->num) = x-h;
+				dynamic_cast<BoxNode*>(p)->shift_amount = x-h;
 			}
 			auto delta = round((w-a)/2.0+h*t-x*s);
 			auto r = new KernNode(delta, acc_kern);

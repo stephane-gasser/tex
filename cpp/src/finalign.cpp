@@ -34,6 +34,7 @@ void finalign(halfword &loop)
 		auto p = q->link->link;
 		if (is_running(width(q->num)))
 		{
+			//Nullify |width(q)| and the tabskip glue following this column
 			width(q->num) = 0;
 			auto r = dynamic_cast<GlueNode*>(q->link);
 			auto s = r->glue_ptr;
@@ -46,6 +47,7 @@ void finalign(halfword &loop)
 		}
 		if (info(q->num) != end_span->num)
 		{
+			//Merge the widths in the span nodes of |q| with those of |p|, destroying the span nodes of |q|
 			t = width(q->num)+dynamic_cast<GlueNode*>(q->link)->glue_ptr->width;
 			SpanNode *r;
 			SpanNode *s;
@@ -131,16 +133,17 @@ void finalign(halfword &loop)
 				if (mode == -vmode)
 				{
 					Q->type = hlist_node;
-					Q->width = width(p->num);
+					Q->width = p->width;
 				}
 				else
 				{
 					Q->type = vlist_node;
-					Q->height = height(p->num);
+					Q->height = p->height;
 				}
-				Q->glue_order = glue_order(p->num);
-				Q->glue_sign = glue_sign(p->num);
-				Q->glue_set = glue_set(p->num);
+				//q : BoxNode
+				Q->glue_order = p->glue_order;
+				Q->glue_sign = p->glue_sign;
+				Q->glue_set = p->glue_set;
 				Q->shift_amount = o;
 				auto r = Q->list_ptr->link;
 				s = Q->list_ptr->link;

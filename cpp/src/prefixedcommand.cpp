@@ -184,10 +184,15 @@ void prefixedcommand(Token t, bool setboxallowed)
 			n = t.cmd;
 			scanoptionalequals();
 			if (n == assign_mu_glue)
-				val = scanglue(3);
+			{
+				auto g = trapzeroglue(scanglue(mu_val));
+				val = g->num;
+			}
 			else
-				val = scanglue(2);
-			trapzeroglue(val);
+			{
+				auto g = trapzeroglue(scanglue(glue_val));
+				val = g->num;
+			}
 			define(a, p, glue_ref, val);
 			break;
 		case def_code:

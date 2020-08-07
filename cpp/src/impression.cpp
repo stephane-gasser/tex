@@ -295,12 +295,17 @@ void println(void)
 	}
 }
 
-static std::string asMark(int p)
+static std::string asMark(TokenNode *p)
 {
-	return "{"+(p < himemmin || p > memend ? esc("CLOBBERED.") : tokenlist(link(p), 0, maxprintline-10))+"}";
+	return "{"+(/*p < himemmin || p > memend ? esc("CLOBBERED.") :*/ tokenlist(dynamic_cast<TokenNode*>(p->link), nullptr, maxprintline-10))+"}";
 }
 
-std::string meaning(Token t) { return cmdchr(t)+(t.cmd >= call ? ":\n"+tokenshow(t.chr) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]->num) : ""); }
+std::string meaning(Token t) 
+{
+	TokenNode *T;
+	T->num = t.chr;
+	return cmdchr(t)+(t.cmd >= call ? ":\n"+tokenshow(T) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); 
+}
 
 std::string asMode(int m)
 {
@@ -378,11 +383,11 @@ std::string asScaled(scaled s)
 	return std::to_string(double(s)/unity);
 }
 
-std::string asSpec(int p, const std::string &s = "")
+std::string asSpec(GlueSpec *p, const std::string &s = "")
 {
-	if (p < memmin || p >= lomemmax)
-		return "*";
-	return asScaled(width(p))+s+(stretch(p) ? " plus "+glue(stretch(p), type(p), s) : "")+(shrink(p) ? " minus "+glue(shrink(p), subtype(p), s) : "");
+/*	if (p < memmin || p >= lomemmax)
+		return "*";*/
+	return asScaled(p->width)+s+(p->stretch ? " plus "+glue(p->stretch, p->stretch_order, s) : "")+(p->shrink ? " minus "+glue(p->shrink, p->shrink_order, s) : "");
 }
 
 static std::string shownodelist(LinkedNode*, const std::string &);
@@ -449,7 +454,7 @@ void print_err(const std::string &s)
 	printnl("! "+s);
 }
 
-std::string tokenlist(int p, int q, int l)
+std::string tokenlist(TokenNode *p, TokenNode *q, int l)
 {
 	std::ostringstream oss;
 	ASCIIcode matchchr = '#';
@@ -461,15 +466,15 @@ std::string tokenlist(int p, int q, int l)
 			firstcount = oss.str().size();
 			trickcount = std::max(firstcount+1+errorline-halferrorline, errorline);
 		}
-		if (p < himemmin || p > memend)
-			return oss.str()+esc("CLOBBERED.");
-		if (info(p) >= cs_token_flag)
-			oss << cs(info(p)-cs_token_flag);
+/*		if (p < himemmin || p > memend)
+			return oss.str()+esc("CLOBBERED.");*/
+		if (p->token >= cs_token_flag)
+			oss << cs(p->token-cs_token_flag);
 		else
 		{
-			int m = info(p)>>8;
-			int c = info(p)%(1<<8);
-			if (info(p) < 0)
+			int m = p->token>>8;
+			int c = p->token%(1<<8);
+			if (p->token < 0)
 				oss << esc("BAD.");
 			else
 				switch (m)
@@ -507,16 +512,16 @@ std::string tokenlist(int p, int q, int l)
 			  			oss << esc("BAD.");
 				}
 		}
-		p = link(p);
+		p = dynamic_cast<TokenNode*>(p->link);
 	}
 	if (p)
 		oss << esc("ETC.");
 	return oss.str();
 }
 
-std::string tokenshow(halfword p)
+std::string tokenshow(TokenNode *p)
 {
-	return p ? tokenlist(link(p), 0, 10000000) : "";
+	return p ? tokenlist(dynamic_cast<TokenNode*>(p->link), 0, 10000000) : "";
 }
 
 //! a frozen font identifier's name
@@ -623,12 +628,13 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 					oss << "(" << asScaled(P->height) << "+" << asScaled(P->depth) << ")x" << asScaled(P->width);
 					if (p->type == unset_node)
 					{
-						if (span_count(p->num))
-							oss << " (" << span_count(p->num)+1 << " columns)";
-						if (glue_stretch(p->num))
-							oss << ", stretch " << glue(glue_stretch(p->num), P->glue_order);
-						if (glue_shrink(p->num))
-							oss << ", shrink " << glue(glue_shrink(p->num), P->glue_sign);
+						auto P = dynamic_cast<UnsetNode*>(p);
+						if (P->span_count)
+							oss << " (" << P->span_count+1 << " columns)";
+						if (P->glue_stretch)
+							oss << ", stretch " << glue(P->glue_stretch, P->glue_order);
+						if (P->glue_shrink)
+							oss << ", shrink " << glue(P->glue_shrink, P->glue_sign);
 					}
 					else
 					{
@@ -668,7 +674,7 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 				{
 					auto P = dynamic_cast<InsNode*>(p);
 					oss << esc("insert") << P->subtype << ", natural size " << asScaled(P->height) << "; split("
-						<< asSpec(P->split_top_ptr->num) << "," << asScaled(P->depth) << "); float cost " << P->float_cost
+						<< asSpec(P->split_top_ptr) << "," << asScaled(P->depth) << "); float cost " << P->float_cost
 						<< shownodelist(P->ins_ptr, symbol+".");
 					break;
 				}
@@ -679,14 +685,22 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 							oss << writewhatsit("openout", p->num) << "=" << asFilename(TXT(open_name(p->num)), TXT(open_area(p->num)), TXT(open_ext(p->num)));
 							break;
 						case write_node:
-							oss << writewhatsit("write", p->num) << asMark(write_tokens(p->num));
+						{
+							TokenNode *t;
+							t->num = write_tokens(p->num);
+							oss << writewhatsit("write", p->num) << asMark(t);
 							break;
+						}
 						case close_node: 
 							oss << writewhatsit("closeout", p->num); 
 							break;
 						case special_node:
-							oss << esc("special") << asMark(write_tokens(p->num));
+						{
+							TokenNode *t;
+							t->num = write_tokens(p->num);
+							oss << esc("special") << asMark(t);
 							break;
+						}
 						case language_node:
 							oss << esc("setlanguage") <<what_lang(p->num) << " (hyphenmin" << what_lhm(p->num) << "," << what_rhm(p->num) << ")";
 							break;
@@ -699,7 +713,7 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 					auto pp = dynamic_cast<GlueNode*>(p);
 					if (pp->subtype >= a_leaders)
 						oss << esc(pp->subtype == c_leaders ? "cleaders" : pp->subtype == x_leaders ? "xleaders" : "leaders ") 
-							<< asSpec(pp->glue_ptr->num) << shownodelist(pp->leader_ptr, symbol+".");
+							<< asSpec(pp->glue_ptr) << shownodelist(pp->leader_ptr, symbol+".");
 					else
 					{
 						oss << esc("glue");
@@ -709,26 +723,26 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 						switch (n+1)
 						{
 							case normal:
-								oss << esc("glue") << " " << asSpec(pp->glue_ptr->num);
+								oss << esc("glue") << " " << asSpec(pp->glue_ptr);
 								break;
 							case cond_math_glue:
 								oss << esc("glue") << "(" << esc("nonscript") << ")";
 								break;
 							case mu_glue:
-								oss << esc("glue") << "(" << esc("mskip") << ") " << asSpec(pp->glue_ptr->num, "mu");
+								oss << esc("glue") << "(" << esc("mskip") << ") " << asSpec(pp->glue_ptr, "mu");
 								break;
 							default:
 								if (glueNames.find(n) != glueNames.end())
 								{
-									oss << esc("glue") << "(" << esc(glueNames[n]) << ") " << asSpec(pp->glue_ptr->num);
+									oss << esc("glue") << "(" << esc(glueNames[n]) << ") " << asSpec(pp->glue_ptr);
 									break;
 								}
 								if (muGlueNames.find(n) != muGlueNames.end())
 								{
-									oss << esc("glue") << "(" << esc(muGlueNames[n]) << ") " << asSpec(pp->glue_ptr->num);
+									oss << esc("glue") << "(" << esc(muGlueNames[n]) << ") " << asSpec(pp->glue_ptr);
 									break;
 								}
-								oss << esc("glue") << "(" << "[unknown glue parameter!]" << ") " << asSpec(pp->glue_ptr->num);
+								oss << esc("glue") << "(" << "[unknown glue parameter!]" << ") " << asSpec(pp->glue_ptr);
 						}
 					}
 					break;
@@ -782,7 +796,7 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 				}
 				case mark_node:
 				{
-					oss << esc("mark") << asMark(dynamic_cast<MarkNode*>(p)->mark_ptr->num);
+					oss << esc("mark") << asMark(dynamic_cast<MarkNode*>(p)->mark_ptr);
 					break;
 				}
 				case adjust_node:
@@ -1029,7 +1043,7 @@ std::string showcontext(void)
 					l = oss.str().size()-l;
 					tally = 0;
 					trickcount = 1000000;
-					for (auto c: tokenlist(token_type < macro ? Start->num : Start->link->num, Loc->num, 100000));
+					for (auto c: tokenlist(dynamic_cast<TokenNode*>(token_type < macro ? Start : Start->link), Loc, 100000));
 						if (tally < trickcount)
 							trickbuf[tally%errorline] = c;
 						tally++;
@@ -1204,7 +1218,7 @@ void showwhatever(Token t)
 			break;
 		default:
 			thetoks();
-			printnl("> "+tokenshow(temp_head->num));
+			printnl("> "+tokenshow(dynamic_cast<TokenNode*>(temp_head)));
 			flushlist(temp_head->link);
 			break;
 	}

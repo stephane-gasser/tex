@@ -40,7 +40,7 @@ void writeout(halfword p)
 			selector = log_only;
 		printnl("");
 	}
-	print(tokenshow(defref->num)+"\n");
+	print(tokenshow(defref)+"\n");
 	flushlist(defref);
 	selector = oldsetting;
 }

@@ -65,23 +65,30 @@ LinkedNode* copynodelist(LinkedNode *p)
 				case hlist_node:
 				case vlist_node:
 				case unset_node:
-					r->num = getnode(box_node_size);
+				{
+					auto R = new BoxNode;
 					mem[r->num+6] = mem[p->num+6];
 					mem[r->num+5] = mem[p->num+5];
-					list_ptr(r->num) = copynodelist(list_ptr(p->num));
+					R->list_ptr = copynodelist(dynamic_cast<BoxNode*>(p)->list_ptr);
+					r = R;
 					words = 5;
 					break;
+				}
 				case rule_node:
-					r->num = getnode(rule_node_size);
+					r = new RuleNode;
 					words = rule_node_size;
 					break;
 				case ins_node:
-					r->num = getnode(ins_node_size);
+				{
+					auto P = dynamic_cast<InsNode*>(p);
+					auto R = new InsNode;
 					mem[r->num+4] = mem[p->num+4];
-					add_glue_ref(split_top_ptr(p->num));
-					ins_ptr(r->num) = copynodelist(ins_ptr(p->num));
+					P->split_top_ptr->glue_ref_count++;
+					R->ins_ptr = copynodelist(P->ins_ptr);
 					words = ins_node_size-1;
+					r = R;
 					break;
+				}
 				case whatsit_node:
 					switch (subtype(p->num))
 					{
@@ -141,7 +148,7 @@ LinkedNode* copynodelist(LinkedNode *p)
 				{
 					auto R = new AdjustNode;
 					auto P = dynamic_cast<AdjustNode*>(p);
-					R->adjust_ptr = dynamic_cast<TokenListNode*>(copynodelist(P->adjust_ptr));
+					R->adjust_ptr = dynamic_cast<TokenNode*>(copynodelist(P->adjust_ptr));
 					r = R;
 					break;
 				}
@@ -175,17 +182,20 @@ void flushnodelist(LinkedNode *p)
 				case hlist_node:
 				case vlist_node:
 				case unset_node:
-					flushnodelist(list_ptr(p->num));
-					freenode(p->num, box_node_size);
+					flushnodelist(dynamic_cast<BoxNode*>(p)->list_ptr);
+					delete p;
 					break;
 				case rule_node:
-					freenode(p->num, rule_node_size);
+					delete p;
 					break;
 				case ins_node:
-					flushnodelist(ins_ptr(p->num));
-					deleteglueref(ins_ptr(p->num));
-					freenode(p->num, ins_node_size);
+				{
+					auto P = dynamic_cast<InsNode*>(p);
+					flushnodelist(P->ins_ptr);
+					deleteglueref(P->split_top_ptr);
+					delete p;
 					break;
+				}
 				case whatsit_node:
 					switch (subtype(p->num))
 					{
@@ -776,14 +786,14 @@ void appendglue(halfword s)
 			break;
 		case skip_code:
 		{
-			auto g = new GlueSpec(scanglue(mu_val));
+			auto g = scanglue(mu_val);
 			g->glue_ref_count--;
 			tail_append(new GlueNode(g));
 			break;
 		}
 		case mskip_code: 
 		{
-			auto g = new GlueSpec(scanglue(mu_val));
+			auto g = scanglue(mu_val);
 			g->glue_ref_count--;
 			auto G = new GlueNode(g);
 			G->subtype = mu_glue;

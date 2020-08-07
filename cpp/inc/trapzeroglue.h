@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void trapzeroglue(int &);
+GlueSpec *trapzeroglue(GlueSpec *);
 
 #endif

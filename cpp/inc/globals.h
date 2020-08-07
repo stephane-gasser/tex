@@ -186,12 +186,6 @@ class TokenNode : public LinkedNode
 		TokenNode(void) : token(0) {}
 		TokenNode(halfword t) : token(t) {}
 		halfword token; // info
-		virtual bool is_char_node(void) { return true; }
-};
-
-class TokenListNode : public LinkedNode
-{
-	public:
 		halfword token_ref_count; // info
 		virtual bool is_char_node(void) { return true; }
 };
@@ -273,19 +267,19 @@ class InsNode : public LinkedNode
 		InsNode(void) { type = ins_node; }
 };
 
-extern TokenListNode *defref;
+extern TokenNode *defref;
 
 class MarkNode : public LinkedNode
 {
 	public:
-		TokenListNode *mark_ptr = defref;
+		TokenNode *mark_ptr = defref;
 		MarkNode(void) { type = mark_node; }
 };
 
 class AdjustNode : public LinkedNode
 {
 	public:
-		TokenListNode *adjust_ptr;
+		TokenNode *adjust_ptr;
 		AdjustNode(void) { type = adjust_node; }
 };
 
@@ -407,8 +401,8 @@ typedef struct
 
 inline instaterecord curinput;
 
-inline LinkedNode *pstack[9];
-inline LinkedNode *paramstack[paramsize+1];
+inline TokenNode *pstack[9];
+inline TokenNode *paramstack[paramsize+1];
 
 inline std::string hyphword[308];
 inline std::string helpline;
@@ -541,7 +535,7 @@ extern unsigned char baseptr; // 0..stacksize
 extern halfword parloc;
 extern halfword partoken;
 extern bool forceeof;
-inline std::vector<TokenListNode*> curmark(5, nullptr);
+inline std::vector<TokenNode*> curmark(5, nullptr);
 
 enum
 {
@@ -552,11 +546,11 @@ enum
 	split_bot_mark_code = 4 //!< the last mark found by \\vsplit
 };
 
-inline TokenListNode *top_mark = curmark[top_mark_code];
-inline TokenListNode *first_mark = curmark[first_mark_code];
-inline TokenListNode *bot_mark = curmark[bot_mark_code];
-inline TokenListNode *split_first_mark = curmark[split_first_mark_code];
-inline TokenListNode *split_bot_mark = curmark[split_bot_mark_code];
+inline TokenNode *top_mark = curmark[top_mark_code];
+inline TokenNode *first_mark = curmark[first_mark_code];
+inline TokenNode *bot_mark = curmark[bot_mark_code];
+inline TokenNode *split_first_mark = curmark[split_first_mark_code];
+inline TokenNode *split_bot_mark = curmark[split_bot_mark_code];
 
 extern char longstate; // 111..114
 extern smallnumber radix;

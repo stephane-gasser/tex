@@ -7,7 +7,7 @@
 
 void finrow(halfword &loop)
 {
-	LinkedNode *p;
+	BoxNode *p;
 	if (mode == -hmode)
 	{
 		p = hpack(head->link, 0, additional);
@@ -28,7 +28,7 @@ void finrow(halfword &loop)
 		space_factor = 1000;
 	}
 	p->type = unset_node;
-	glue_stretch(p->num) = 0;
+	dynamic_cast<UnsetNode*>(p)->glue_stretch = 0;
 	if (every_cr())
 		begintokenlist(every_cr(), every_cr_text);
 	alignpeek(loop);

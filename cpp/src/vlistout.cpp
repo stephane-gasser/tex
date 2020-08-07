@@ -50,7 +50,7 @@ void vlistout(BoxNode *thisbox)
 						}
 						auto saveh = dvih;
 						auto savev = dviv;
-						curh = leftedge+shift_amount(p->num);
+						curh = leftedge+P->shift_amount;
 						if (p->type == vlist_node)
 							vlistout(P);
 						else

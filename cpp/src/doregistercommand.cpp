@@ -14,137 +14,166 @@
 #include "texte.h"
 
 void doregistercommand(smallnumber a, Token t)
+//t.cmd: register_ / advance /multiply / divide
 {
 	halfword l, q, r, s;
 	halfword p;
 	q = t.cmd;
-	do 
+	if (q != register_)
+		t = getxtoken();
+	switch (t.cmd)
 	{
-		if (q != register_)
-		{
-			t = getxtoken();
-			if (t.cmd >= assign_int && t.cmd <= assign_mu_glue) // assign_int, assign_dimen, assign_int, assign_mu_glue
+		case assign_int:
+		case assign_dimen:
+		case assign_glue:
+		case assign_mu_glue:
+			l = t.chr;
+			p = t.cmd-assign_int;
+			break;
+		case register_:
+			switch (p = t.chr)
 			{
-				l = t.chr;
-				p = t.cmd-assign_int;
-				continue;
+				case int_val: 
+					l = scaneightbitint()+count_base;
+					break;
+				case dimen_val: 
+					l = scaneightbitint()+scaled_base;
+					break;
+				case glue_val: 
+					l = scaneightbitint()+skip_base;
+					break;
+				case mu_val: 
+					l = scaneightbitint()+mu_skip_base;
 			}
-			if (t.cmd != register_)
-			{
-				Token tk;
-				tk.cmd = q;
-				tk.chr = 0;
-				error("You can't use `"+cmdchr(t)+"' after "+cmdchr(tk), "I'm forgetting what you said and not changing anything.");
-				return;
-			}
-		}
-		p = t.chr;
-		switch (p)
+			break;
+		default:
 		{
-			case int_val: 
-				l = scaneightbitint()+count_base;
-				break;
-			case dimen_val: 
-				l = scaneightbitint()+scaled_base;
-				break;
-			case glue_val: 
-				l = scaneightbitint()+skip_base;
-				break;
-			case mu_val: 
-				l = scaneightbitint()+mu_skip_base;
-				break;
+			Token tk;
+			tk.cmd = q;
+			tk.chr = 0;
+			error("You can't use `"+cmdchr(t)+"' after "+cmdchr(tk), "I'm forgetting what you said and not changing anything.");
+			return;
 		}
-	} while (false);
+	}
 	if (q == register_)
 		scanoptionalequals();
 	else 
 		if (scankeyword("by"))
 			aritherror = false;
 	int val;
-	if (q < multiply)
-		if (p < glue_val)
-		{
-			if (p == int_val)
-				val = scanint();
-			else
-				val = scan_normal_dimen();
-			if (q == advance)
-				val += eqtb[l].int_;
-		}
-		else
-		{
-			val = scanglue(p);
-			if (q == advance)
-			{
-				q = newspec(val);
-				r = equiv(l);
-				deleteglueref(val);
-				width(q) += width(r);
-				if (stretch(q) == 0)
-					stretch_order(q) = 0;
-				if (stretch_order(q) == stretch_order(r))
-					stretch(q) += stretch(r);
-				else 
-					if (stretch_order(q) < stretch_order(r) && stretch(r))
-					{
-						stretch(q) = stretch(r);
-						stretch_order(q) = stretch_order(r);
-					}
-				if (shrink(q) == 0)
-					shrink_order(q) = 0;
-				if (shrink_order(q) == shrink_order(r))
-					shrink(q) += shrink(r);
-				else 
-					if (shrink_order(q) < shrink_order(r) && shrink(r))
-					{
-						shrink(q) = shrink(r);
-						shrink_order(q) = shrink_order(r);
-					}
-				val = q;
-			}
-		}
-	else
+	GlueSpec *g;
+	switch (q)
 	{
+		case register_:
+			switch (p)
+			{
+				case int_val: 
+					val = scanint();
+					break;
+				case dimen_val: 
+					val = scan_normal_dimen();
+					break;
+				case glue_val: 
+				case mu_val: 
+					g = scanglue(p);
+			}
+			break;
+		case advance:
+			switch (p)
+			{
+				case int_val: 
+					val = scanint()+eqtb[l].int_;
+					break;
+				case dimen_val: 
+					val = scan_normal_dimen()+eqtb[l].int_;
+					break;
+				case glue_val: 
+				case mu_val: 
+					g = newspec(scanglue(p));
+					r = equiv(l);
+					GlueSpec *R;
+					R->num = r;
+					deleteglueref(g);
+					g->width += R->width;
+					if (g->stretch == 0)
+						g->stretch_order = 0;
+					if (g->stretch_order == R->stretch_order)
+						g->stretch += R->stretch;
+					else 
+						if (g->stretch_order < R->stretch_order && R->stretch)
+						{
+							g->stretch = R->stretch;
+							g->stretch_order = R->stretch_order;
+						}
+					if (g->shrink == 0)
+						g->shrink_order = 0;
+					if (g->shrink_order == R->shrink_order)
+						g->shrink += R->shrink;
+					else 
+						if (g->shrink_order < R->shrink_order && R->shrink)
+						{
+							g->shrink = R->shrink;
+							g->shrink_order = R->shrink_order;
+						}
+			}
+			break;
+	case multiply:
 		val = scanint();
-		if (p < glue_val)
-			if (q == multiply)
-				if (p == int_val)
-					val = mult_integers(eqtb[l].int_, val);
-				else
-					val = nx_plus_y(eqtb[l].int_, val, 0);
-			else
-				val = xovern(eqtb[l].int_, val);
-		else
+		switch (p)
 		{
-			s = equiv(l);
-			r = newspec(s);
-			if (q == multiply)
-			{
-				width(r) = nx_plus_y(width(s), val, 0);
-				depth(r) = nx_plus_y(depth(s), val, 0);
-				height(r) = nx_plus_y(height(s), val, 0);;
-			}
-			else
-			{
-				width(r) = xovern(width(s), val);
-				depth(r) = xovern(depth(s), val);
-				height(r) = xovern(height(s), val);
-			}
-			val = r;
+			case int_val: 
+				val = mult_integers(eqtb[l].int_, val);
+				break;
+			case dimen_val: 
+				val = nx_plus_y(eqtb[l].int_, val, 0);
+				break;
+			case glue_val: 
+			case mu_val: 
+				s = equiv(l);
+				GlueSpec *S;
+				S->num = s;
+				g = newspec(S);
+				r = g->num;
+				g->width = nx_plus_y(S->width, val, 0);
+				g->stretch = nx_plus_y(S->stretch, val, 0);
+				g->shrink = nx_plus_y(S->shrink, val, 0);
+		}
+		break;
+	case divide:
+		val = scanint();
+		switch (p)
+		{
+			case int_val: 
+			case dimen_val: 
+				val = xovern(eqtb[l].int_, val);
+				break;
+			case glue_val:
+			case mu_val:
+				s = equiv(l);
+				GlueSpec *S;
+				S->num = s;
+				g = newspec(S);
+				g->width = xovern(S->width, val);
+				g->stretch = xovern(S->stretch, val);
+				g->shrink = xovern(S->shrink, val);
 		}
 	}
 	if (aritherror)
 	{
 		error("Arithmetic overflow", "I can't carry out that multiplication or division,\nsince the result is out of range.");
-		if (p >= 2)
+		if (p >= glue_val)
 			deleteglueref(val);
 		return;
 	}
-	if (p < 2)
-		word_define(a, l, val);
-	else
+	switch (p)
 	{
-		trapzeroglue(val);
-		define(a, l, glue_ref, val);
+		case int_val: 
+		case dimen_val: 
+			word_define(a, l, val);
+			break;
+		case glue_val:
+		case mu_val:
+			g = trapzeroglue(g);
+			define(a, l, glue_ref, g->num);
 	}
 }

@@ -4,7 +4,7 @@
 #include "globals.h"
 #include <tuple>
 
-inline TokenListNode * defref;
+inline TokenNode * defref;
 
 [[nodiscard]] int scanint(void);
 [[nodiscard]] int scancharnum(void);
@@ -16,8 +16,8 @@ inline TokenListNode * defref;
 [[nodiscard]] int scan_normal_dimen(void);
 [[nodiscard]] int scanfontident(void);
 [[nodiscard]] std::tuple<int, int> scansomethinginternal(smallnumber, bool, Token);
-[[nodiscard]] int scanglue(smallnumber);
-[[nodiscard]] TokenListNode* readtoks(int, halfword);
+[[nodiscard]] GlueSpec *scanglue(smallnumber);
+[[nodiscard]] TokenNode* readtoks(int, halfword);
 [[nodiscard]] Token gettoken(void);
 [[nodiscard]] Token getxtoken(void);
 [[nodiscard]] Token xtoken(Token);
@@ -35,9 +35,10 @@ TokenNode* scantoks(bool, bool, Token);
 void convtoks(Token);
 void back_list(halfword);
 void ins_list(halfword);
-void begintokenlist(halfword, quarterword);
+[[deprecated]] void begintokenlist(halfword, quarterword);
+void begintokenlist(TokenNode*, quarterword);
 void deletetokenref(halfword);
-void deletetokenref(TokenListNode*);
+void deletetokenref(TokenNode*);
 void endtokenlist(void);
 Token getpreambletoken(void);
 void insthetoks(void);

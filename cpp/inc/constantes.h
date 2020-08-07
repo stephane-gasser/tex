@@ -171,7 +171,7 @@ inline std::vector<AnyNode> heads;
 inline PageInsNode *page_ins_head; //!< list of insertion data for current page
 inline LinkedNode *contrib_head; //!< vlist of items not yet on current page
 inline LinkedNode *page_head; //!< vlist for current page
-inline LinkedNode *temp_head; //!< head of a temporary list of some kind
+inline TokenNode *temp_head; //!< head of a temporary list of some kind
 inline LinkedNode *hold_head; //!< head of a temporary list of another kind
 inline LinkedNode *adjust_head; //!< head of adjustment list returned by \a hpack
 inline LinkedNode * const active = dynamic_cast<LinkedNode*>(&heads[7]); //!< head of active list in \a line_break, needs two words
@@ -718,15 +718,15 @@ quarterword& character(halfword); //!< the character code in a \a char_node
 int& width(halfword); //!< width of the box, in sp
 int& depth(halfword); //!< depth of the box, in sp
 int& height(halfword); //!< height of the box, in sp
-int& shift_amount(halfword); //!< repositioning distance, in sp
-halfword& list_ptr(halfword); //!< beginning of the list inside the box
+//int& shift_amount(halfword); //!< repositioning distance, in sp
+//halfword& list_ptr(halfword); //!< beginning of the list inside the box
 quarterword& glue_order(halfword); //!< applicable order of infinity
 quarterword& glue_sign(halfword); //!< stretching or shrinking
 float &glue_set(halfword);
 bool is_running(int); //!< tests for a running dimension
-int& float_cost(halfword); //!< the \a floating_penalty to be used
-halfword& ins_ptr(halfword); //!< the vertical list to be inserted
-halfword& split_top_ptr(halfword); //!< the \a split_top_skip to be used
+//int& float_cost(halfword); //!< the \a floating_penalty to be used
+//halfword& ins_ptr(halfword); //!< the vertical list to be inserted
+//halfword& split_top_ptr(halfword); //!< the \a split_top_skip to be used
 //int& mark_ptr(halfword); //!< head of the token list for a mark
 int& adjust_ptr(halfword); //!< vertical list to be moved out of horizontal list
 halfword lig_char(halfword); //!< the word where the ligature is to be found

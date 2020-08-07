@@ -129,7 +129,7 @@ void fireup(halfword c)
 				}
 				else
 				{
-					deleteglueref(split_top_ptr(p->num));
+					deleteglueref(P->split_top_ptr);
 					delete p;
 				}
 				p = prevp;

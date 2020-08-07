@@ -111,7 +111,7 @@ bool fincol(Token t, halfword &loop)
 			if (w > width(curalign))
 				width(curalign) = w;
 		u->type = unset_node;
-		span_count(u->num) = n;
+		dynamic_cast<UnsetNode*>(u)->span_count = n;
 		if (totalstretch[3])
 			o = 3;
 			else 
@@ -123,7 +123,7 @@ bool fincol(Token t, halfword &loop)
 					else
 						o = 0;
 		u->glue_order = o;
-		glue_stretch(u->num) = totalstretch[o];
+		dynamic_cast<UnsetNode*>(u)->glue_stretch = totalstretch[o];
 		if (totalshrink[3])
 			o = 3;
 		else 
@@ -135,7 +135,7 @@ bool fincol(Token t, halfword &loop)
 				else
 					o = 0;
 		u->glue_sign = o;
-		glue_shrink(u->num) = totalshrink[o];
+		dynamic_cast<UnsetNode*>(u)->glue_shrink = totalshrink[o];
 		popnest();
 		tail->link = u;
 		tail = u;
