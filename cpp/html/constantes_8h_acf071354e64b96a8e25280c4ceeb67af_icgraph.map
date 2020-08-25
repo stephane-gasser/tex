@@ -1,9 +1,4 @@
 <map id="is_char_node" name="is_char_node">
-<area shape="rect" id="node1" title=" " alt="" coords="337,156,436,183"/>
-<area shape="rect" id="node2" href="$hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="190,29,254,56"/>
-<area shape="rect" id="node3" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="193,80,251,107"/>
-<area shape="rect" id="node4" href="$cesure_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="181,131,263,157"/>
-<area shape="rect" id="node5" href="$maincontrol_8cpp.html#a6e45a273f9cba9e3532fb656a3ee295c" title=" " alt="" coords="5,207,107,233"/>
-<area shape="rect" id="node6" href="$maincontrol_8cpp.html#a6d9b3efd703a25b854db49794349ad4f" title=" " alt="" coords="155,232,289,259"/>
-<area shape="rect" id="node7" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="173,283,271,309"/>
+<area shape="rect" id="node1" title=" " alt="" coords="188,5,287,32"/>
+<area shape="rect" id="node2" href="$maincontrol_8cpp.html#a6d9b3efd703a25b854db49794349ad4f" title=" " alt="" coords="5,5,140,32"/>
 </map>

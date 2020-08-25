@@ -1,7 +1,7 @@
 <map id="loadfmtfile" name="loadfmtfile">
 <area shape="rect" id="node1" title=" " alt="" coords="5,345,88,372"/>
 <area shape="rect" id="node2" href="$loadfmtfile_8cpp.html#ab7eaa77d62aa84ad388a37b25d793c95" title=" " alt="" coords="329,41,421,68"/>
-<area shape="rect" id="node3" href="$police_8h.html#a424ff50928214e91519fabeeb26962fe" title=" " alt="" coords="181,193,231,220"/>
+<area shape="rect" id="node3" href="$globals_8h.html#a424ff50928214e91519fabeeb26962fe" title=" " alt="" coords="181,193,231,220"/>
 <area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="354,269,397,296"/>
 <area shape="rect" id="node5" href="$constantes_8cpp.html#a1d478b50b817866786b1bc1dc81a08b0" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="183,345,229,372"/>
 <area shape="rect" id="node6" href="$constantes_8cpp.html#a32cfafb65118c24464dc5287104ff994" title="the size field in empty variable&#45;size nodes" alt="" coords="165,396,247,422"/>

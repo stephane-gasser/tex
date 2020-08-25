@@ -1,11 +1,10 @@
 <map id="info" name="info">
-<area shape="rect" id="node1" title="the info field of a memory word" alt="" coords="151,183,193,209"/>
+<area shape="rect" id="node1" title="the info field of a memory word" alt="" coords="151,157,193,184"/>
 <area shape="rect" id="node2" href="$constantes_8h.html#ac7c1ff2fc3a392cbb44fa0b6681e55ed" title="the optimum most recent insertion" alt="" coords="7,5,101,32"/>
 <area shape="rect" id="node3" href="$constantes_8h.html#a1a87f1c2232ae2ba94e399ffc28ffeee" title="this insertion might break at broken_ptr" alt="" coords="11,56,97,83"/>
 <area shape="rect" id="node4" href="$constantes_8h.html#aae540bb62c3b924da1b1fc77f6df412b" title="info to remember during template" alt="" coords="15,107,93,133"/>
-<area shape="rect" id="node5" href="$constantes_8h.html#a3cc2a36abc9debb4c3a0e516a4f010ab" title="the vertical list to be inserted" alt="" coords="23,157,85,184"/>
-<area shape="rect" id="node6" href="$constantes_8h.html#af6fb5e448d524c8bb0d95d0f99b641f2" title="line that begins at this breakpoint" alt="" coords="8,208,100,235"/>
-<area shape="rect" id="node7" href="$constantes_8h.html#a0a799aba21e1af22bd3845bbd4b4624e" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="31,259,77,285"/>
-<area shape="rect" id="node8" href="$constantes_8h.html#aa6b6597d186c78ca4d9d5bc50003a89c" title="string number of file area for open_name" alt="" coords="13,309,95,336"/>
-<area shape="rect" id="node9" href="$constantes_8h.html#a56e7a2ead8a7ce36c9d51907f060126c" title="stream number (0 to 17)" alt="" coords="5,360,103,387"/>
+<area shape="rect" id="node5" href="$constantes_8h.html#af6fb5e448d524c8bb0d95d0f99b641f2" title="line that begins at this breakpoint" alt="" coords="8,157,100,184"/>
+<area shape="rect" id="node6" href="$constantes_8h.html#a0a799aba21e1af22bd3845bbd4b4624e" title="left link in doubly&#45;linked list of empty nodes" alt="" coords="31,208,77,235"/>
+<area shape="rect" id="node7" href="$constantes_8h.html#aa6b6597d186c78ca4d9d5bc50003a89c" title="string number of file area for open_name" alt="" coords="13,259,95,285"/>
+<area shape="rect" id="node8" href="$constantes_8h.html#a56e7a2ead8a7ce36c9d51907f060126c" title="stream number (0 to 17)" alt="" coords="5,309,103,336"/>
 </map>

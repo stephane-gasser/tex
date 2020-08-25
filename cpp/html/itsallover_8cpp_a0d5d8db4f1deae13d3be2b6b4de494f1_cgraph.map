@@ -1,11 +1,8 @@
 <map id="itsallover" name="itsallover">
-<area shape="rect" id="node1" title=" " alt="" coords="5,183,80,209"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,80,133"/>
 <area shape="rect" id="node2" href="$backinput_8cpp.html#ada79b16970afac693692125a26a780ae" title="Undoes one token of input." alt="" coords="133,5,211,32"/>
 <area shape="rect" id="node3" href="$buildpage_8cpp.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="133,56,211,83"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="264,81,317,108"/>
-<area shape="rect" id="node5" href="$parametres_8h.html#a45cc0a02877c99457cd993ff3f374e05" title=" " alt="" coords="145,157,199,184"/>
-<area shape="rect" id="node6" href="$noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="129,208,215,235"/>
-<area shape="rect" id="node7" href="$noeud_8cpp.html#a391ee2979062801a9a3d066cb9bfafd3" title=" " alt="" coords="128,259,216,285"/>
-<area shape="rect" id="node8" href="$erreur_8cpp.html#a6381e3680e52f4577897ad5e42263ce9" title=" " alt="" coords="133,309,211,336"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="128,360,216,387"/>
+<area shape="rect" id="node4" href="$parametres_8h.html#a45cc0a02877c99457cd993ff3f374e05" title=" " alt="" coords="145,107,199,133"/>
+<area shape="rect" id="node5" href="$erreur_8cpp.html#a6381e3680e52f4577897ad5e42263ce9" title=" " alt="" coords="133,157,211,184"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="128,208,216,235"/>
 </map>

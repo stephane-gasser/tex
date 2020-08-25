@@ -1,7 +1,5 @@
 <map id="glue_stretch" name="glue_stretch">
-<area shape="rect" id="node1" title="total stretch in an unset node" alt="" coords="152,81,245,108"/>
-<area shape="rect" id="node2" href="$finalign_8h.html#a2e7bd762c3e9f00f351e47d29e39e854" title=" " alt="" coords="23,5,86,32"/>
-<area shape="rect" id="node3" href="$fincol_8h.html#ac49c9c100529a1aa1f3c13a583cde844" title=" " alt="" coords="28,56,81,83"/>
-<area shape="rect" id="node4" href="$finrow_8h.html#ad741ef8b1ae1c8ca9aa89932cc0c0e0e" title=" " alt="" coords="26,107,83,133"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="5,157,104,184"/>
+<area shape="rect" id="node1" title="total stretch in an unset node" alt="" coords="111,31,204,57"/>
+<area shape="rect" id="node2" href="$fincol_8h.html#ac49c9c100529a1aa1f3c13a583cde844" title=" " alt="" coords="7,5,61,32"/>
+<area shape="rect" id="node3" href="$finrow_8h.html#ad741ef8b1ae1c8ca9aa89932cc0c0e0e" title=" " alt="" coords="5,56,63,83"/>
 </map>

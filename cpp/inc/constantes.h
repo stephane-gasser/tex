@@ -1,8 +1,6 @@
 #ifndef CONSTANTES_H
 #define CONSTANTES_H
 
-#include "parametres.h"
-
 enum command_code
 {
 	number_code = 0, // //command code for \number
@@ -135,6 +133,8 @@ enum
 	ss_glue = fill_glue+glue_spec_size, //!< 0pt plus 1fil minus 1fil
 	fil_neg_glue = ss_glue+glue_spec_size //!< 0pt plus -1fil minus 0pt
 };*/
+
+#include "parametres.h"
 
 inline std::vector<GlueSpec> glues(5);
 
@@ -833,6 +833,5 @@ inline int cramped_style(int c) { return 2*(c/2)+cramped; } //!< cramp the style
 inline int sub_style(int c) { return 2*(c/4)+script_style+cramped; } //!< smaller and cramped
 inline int sup_style(int c) { return 2*(c/4)+script_style+c%2; } //!< smaller
 inline void add_token_ref(halfword p) { token_ref_count(p)++; } //!< new reference to a token list
-
 
 #endif

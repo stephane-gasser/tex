@@ -1,18 +1,20 @@
 <map id="AnyNode::is_char_node" name="AnyNode::is_char_node">
-<area shape="rect" id="node1" title=" " alt="" coords="533,360,695,387"/>
-<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="399,5,477,32"/>
-<area shape="rect" id="node3" href="$beginbox_8h.html#a5d2232e425baeebf8283ae33b954f08b" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="401,56,475,83"/>
-<area shape="rect" id="node4" href="$cleanbox_8h.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="401,107,475,133"/>
-<area shape="rect" id="node5" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="247,132,340,159"/>
-<area shape="rect" id="node6" href="$noeud_8h.html#a8fde8034bf645cba363de9042d370906" title=" " alt="" coords="391,208,485,235"/>
-<area shape="rect" id="node7" href="$deletelast_8h.html#afd195bc9dfc56563619558a8486c1026" title=" " alt="" coords="254,321,333,348"/>
-<area shape="rect" id="node8" href="$noeud_8h.html#ab201b2eb12dc16893f974717a655d736" title=" " alt="" coords="391,435,485,461"/>
-<area shape="rect" id="node9" href="$cesure_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="252,384,335,411"/>
-<area shape="rect" id="node10" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="121,460,196,487"/>
-<area shape="rect" id="node11" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="5,372,73,399"/>
-<area shape="rect" id="node12" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="244,485,343,512"/>
-<area shape="rect" id="node13" href="$linebreak_8cpp.html#a7c6cf5fe8506c32f31be9ec53a4d994e" title=" " alt="" coords="250,536,337,563"/>
-<area shape="rect" id="node14" href="$rebox_8h.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="411,637,465,664"/>
-<area shape="rect" id="node15" href="$impression_8h.html#a190dbb1f454e717590536284ba1d88be" title=" " alt="" coords="392,712,484,739"/>
-<area shape="rect" id="node16" href="$vlistout_8h.html#a3b7f5977b02df14e04c260d562556897" title=" " alt="" coords="406,787,470,813"/>
+<area shape="rect" id="node1" title=" " alt="" coords="559,428,720,455"/>
+<area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="273,49,351,76"/>
+<area shape="rect" id="node3" href="$boite_8h.html#a5d2232e425baeebf8283ae33b954f08b" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="423,580,497,607"/>
+<area shape="rect" id="node4" href="$boite_8h.html#a9dbc5011449030dc6352db6889c1436c" title=" " alt="" coords="275,151,349,177"/>
+<area shape="rect" id="node5" href="$makescripts_8h.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="121,100,215,127"/>
+<area shape="rect" id="node6" href="$noeud_8h.html#a8fde8034bf645cba363de9042d370906" title=" " alt="" coords="413,631,507,657"/>
+<area shape="rect" id="node7" href="$deletelast_8h.html#afd195bc9dfc56563619558a8486c1026" title=" " alt="" coords="273,377,351,404"/>
+<area shape="rect" id="node8" href="$noeud_8h.html#ab201b2eb12dc16893f974717a655d736" title=" " alt="" coords="413,327,507,353"/>
+<area shape="rect" id="node9" href="$cesure_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="271,276,353,303"/>
+<area shape="rect" id="node10" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="131,377,205,404"/>
+<area shape="rect" id="node11" href="$initmath_8h.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="5,453,73,480"/>
+<area shape="rect" id="node12" href="$postlinebreak_8h.html#ab1ec3a2d9d40be209089880ab8f115b9" title=" " alt="" coords="263,213,361,240"/>
+<area shape="rect" id="node13" href="$boite_8h.html#a33d79b1625f6900ddf7a66877bac32e3" title=" " alt="" coords="431,100,489,127"/>
+<area shape="rect" id="node14" href="$linebreak_8cpp.html#a7c6cf5fe8506c32f31be9ec53a4d994e" title=" " alt="" coords="269,428,355,455"/>
+<area shape="rect" id="node15" href="$maincontrol_8cpp.html#a6e45a273f9cba9e3532fb656a3ee295c" title=" " alt="" coords="409,681,511,708"/>
+<area shape="rect" id="node16" href="$impression_8h.html#a190dbb1f454e717590536284ba1d88be" title=" " alt="" coords="414,756,506,783"/>
+<area shape="rect" id="node17" href="$impression_8cpp.html#a40cf16d292374630401f363bf16ddf6c" title=" " alt="" coords="263,781,361,808"/>
+<area shape="rect" id="node18" href="$boite_8h.html#aef650d60b64d8795d28b25c7c9460122" title=" " alt="" coords="421,857,499,884"/>
 </map>

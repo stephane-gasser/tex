@@ -1,5 +1,4 @@
 <map id="broken_ins" name="broken_ins">
-<area shape="rect" id="node1" title="this insertion might break at broken_ptr" alt="" coords="159,31,244,57"/>
-<area shape="rect" id="node2" href="$fireup_8h.html#ade38ae51e1786b80735353c508effd8d" title=" " alt="" coords="31,5,85,32"/>
-<area shape="rect" id="node3" href="$impression_8cpp.html#adf229d61e9473738af7cc7c3a120b334" title=" " alt="" coords="5,56,111,83"/>
+<area shape="rect" id="node1" title="this insertion might break at broken_ptr" alt="" coords="159,5,244,32"/>
+<area shape="rect" id="node2" href="$impression_8cpp.html#adf229d61e9473738af7cc7c3a120b334" title=" " alt="" coords="5,5,111,32"/>
 </map>

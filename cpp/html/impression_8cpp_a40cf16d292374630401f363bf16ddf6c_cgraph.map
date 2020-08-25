@@ -1,0 +1,43 @@
+<map id="shownodelist" name="shownodelist">
+<area shape="rect" id="node1" title=" " alt="" coords="5,968,104,995"/>
+<area shape="rect" id="node2" href="$constantes_8cpp.html#a0b546a77a166ecab4272888cf6ac5dde" title="the accent_chr field of an accent noad" alt="" coords="162,5,249,32"/>
+<area shape="rect" id="node3" href="$impression_8cpp.html#a9a6370b738f7aa4dfc2fc57da50970ef" title=" " alt="" coords="161,157,249,184"/>
+<area shape="rect" id="node4" href="$constantes_8cpp.html#a7e122f4e5dfce28d19baa61d5d42555e" title="character for `‘large’&#39; delimiter" alt="" coords="346,63,429,89"/>
+<area shape="rect" id="node5" href="$constantes_8cpp.html#a5a6ac113a9cf270758c88266321dde59" title="fam for `‘large’&#39; delimiter" alt="" coords="348,120,427,147"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a08ab13f102c0df05617b5d0337004a51" title="character for `‘small’&#39; delimiter" alt="" coords="345,183,430,209"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#ab3a81fee92d330d703da6a1cb0819dcb" title="fam for `‘small’&#39; delimiter" alt="" coords="346,233,429,260"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#a0aab991d51193c009fd6bb6c720abb2f" title=" " alt="" coords="161,309,250,336"/>
+<area shape="rect" id="node9" href="$impression_8cpp.html#a15163ab9dc3dc4889819494367939996" title=" " alt="" coords="173,360,238,387"/>
+<area shape="rect" id="node10" href="$impression_8cpp.html#a31a15345027ce954e1ff8fa40f149d17" title=" " alt="" coords="516,487,592,513"/>
+<area shape="rect" id="node11" href="$impression_8cpp.html#a50d298fbb073c173245ec4ac0147a5da" title=" " alt="" coords="172,461,239,488"/>
+<area shape="rect" id="node12" href="$impression_8cpp.html#ae510fed7b37448b7a8111a9acbf3f1c9" title=" " alt="" coords="364,512,411,539"/>
+<area shape="rect" id="node13" href="$constantes_8cpp.html#aa4c3887078a0917e85a82b9a6b3cb8a6" title=" " alt="" coords="346,917,429,944"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#ab4ec8c380b0078d5e0d647f400e95ae3" title="delimiter field in left and right noads" alt="" coords="170,613,241,640"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#a71611c1f90a6379e7e1ecc5c27a886d4" title="denominator field in a fraction noad" alt="" coords="159,664,252,691"/>
+<area shape="rect" id="node16" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="533,1651,575,1677"/>
+<area shape="rect" id="node17" href="$impression_8cpp.html#a6bdec7509b22f08b592106c1ee6aecbf" title=" " alt="" coords="342,867,433,893"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="520,816,588,843"/>
+<area shape="rect" id="node19" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="531,1373,577,1400"/>
+<area shape="rect" id="node20" href="$impression_8cpp.html#a0c08bcb388c17d81fc2ef1f790568d3d" title=" " alt="" coords="342,1272,433,1299"/>
+<area shape="rect" id="node21" href="$classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347" title=" " alt="" coords="307,1531,468,1557"/>
+<area shape="rect" id="node22" href="$constantes_8cpp.html#aac4ee1f610e90b2f8a5eaf39f1e66256" title="first delimiter field of a noad" alt="" coords="157,1019,253,1045"/>
+<area shape="rect" id="node23" href="$constantes_8cpp.html#a5bb851b8f5d5d2f2fd4e39f0b770e89a" title="the translation of an mlist" alt="" coords="167,1069,244,1096"/>
+<area shape="rect" id="node24" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="354,1019,421,1045"/>
+<area shape="rect" id="node25" href="$constantes_8cpp.html#a020cf18aa03f370b9b08654d818610af" title="numerator field in a fraction noad" alt="" coords="165,1171,245,1197"/>
+<area shape="rect" id="node26" href="$constantes_8cpp.html#abb80aa4c5261fe7de19b43bacb971589" title="string number of file area for open_name" alt="" coords="164,1221,247,1248"/>
+<area shape="rect" id="node27" href="$constantes_8cpp.html#ac181bafc02293b2e0c53747b6f28b416" title="string number of file extension for open_name" alt="" coords="168,1272,243,1299"/>
+<area shape="rect" id="node28" href="$constantes_8cpp.html#a9b1e6377ed45d9ced213accc0d8c90ae" title="string number of file name to open" alt="" coords="161,1323,250,1349"/>
+<area shape="rect" id="node29" href="$constantes_8h.html#aa136ffb1f0c22397910be6c1d2119eb6" title="the added cost of breaking a list here" alt="" coords="173,1373,237,1400"/>
+<area shape="rect" id="node30" href="$constantes_8cpp.html#ad5b1f1dc7fa85e49de3d8eb8edcc9b35" title="second delimiter field of a fraction noad" alt="" coords="154,1424,257,1451"/>
+<area shape="rect" id="node31" href="$impression_8cpp.html#af841ed5b09d84f0d769c1aa8f9bc13cb" title=" " alt="" coords="348,563,427,589"/>
+<area shape="rect" id="node32" href="$impression_8cpp.html#ad3e19643e52c9c9d072a7761d05b6c95" title=" " alt="" coords="159,1651,251,1677"/>
+<area shape="rect" id="node33" href="$constantes_8cpp.html#af3b3f58f78af4dd1fd2db67eaa6f6124" title="the subscr field of a noad" alt="" coords="175,1576,236,1603"/>
+<area shape="rect" id="node34" href="$impression_8cpp.html#a5159028fd6254c59d609976fc62ca484" title="Display a noad field." alt="" coords="152,867,259,893"/>
+<area shape="rect" id="node35" href="$constantes_8cpp.html#a7c168ea5f061757fddf1c55e0ca46911" title="the supscr field of a noad" alt="" coords="175,1701,236,1728"/>
+<area shape="rect" id="node36" href="$constantes_8cpp.html#a33d8f944ea440e7b549bba9c8d59b7fc" title="language number, in the range 0..255" alt="" coords="165,1752,246,1779"/>
+<area shape="rect" id="node37" href="$constantes_8cpp.html#ab0ad9017d47db7dbdd4a56de61cf1ab4" title="minimum left fragment, in the range 1..63" alt="" coords="166,1803,245,1829"/>
+<area shape="rect" id="node38" href="$constantes_8cpp.html#a3a9a841425d1132288c369576f00edb1" title="minimum right fragment, in the range 1..63" alt="" coords="348,715,427,741"/>
+<area shape="rect" id="node39" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="179,1904,232,1931"/>
+<area shape="rect" id="node40" href="$constantes_8cpp.html#a177ed5e89b8c5da61476a30ad8d3384b" title="reference count of token list to write" alt="" coords="157,1955,253,1981"/>
+<area shape="rect" id="node41" href="$impression_8cpp.html#a2a779072060e50671c1da678c47cdceb" title=" " alt="" coords="341,1777,433,1804"/>
+</map>

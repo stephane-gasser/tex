@@ -1,43 +1,40 @@
 <map id="mlisttohlist" name="mlisttohlist">
-<area shape="rect" id="node1" title=" " alt="" coords="5,1789,91,1816"/>
-<area shape="rect" id="node2" href="$mlisttohlist_8cpp.html#aff94ae7300779c28cc52252c81791137" title=" " alt="" coords="279,473,388,500"/>
-<area shape="rect" id="node3" href="$police_8cpp.html#ab6c4faf0c701bd19f346dd0fb23494fb" title=" " alt="" coords="603,803,693,829"/>
-<area shape="rect" id="node4" href="$classFont.html#a0fa84adb18a4b33e611b3582ca89d01a" title=" " alt="" coords="443,296,552,323"/>
-<area shape="rect" id="node5" href="$classFont.html#a5ef4f56ab07b1dee543b834811bf951c" title=" " alt="" coords="276,321,391,348"/>
-<area shape="rect" id="node6" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="609,1967,687,1993"/>
-<area shape="rect" id="node7" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="600,473,696,500"/>
-<area shape="rect" id="node8" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="744,1511,816,1537"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="621,2955,675,2981"/>
-<area shape="rect" id="node10" href="$police_8cpp.html#aad1788b536fcd0c08958fb6a8470ae1a" title=" " alt="" coords="615,397,681,424"/>
-<area shape="rect" id="node11" href="$fetch_8cpp.html#a37bcc0ca3cd28c6eb8440dd41f401c8a" title=" " alt="" coords="472,803,523,829"/>
-<area shape="rect" id="node12" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="614,1739,682,1765"/>
-<area shape="rect" id="node13" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="625,2245,671,2272"/>
-<area shape="rect" id="node14" href="$noeud_8cpp.html#a82091fa45f60c083502da6514a00763b" title=" " alt="" coords="450,1283,545,1309"/>
-<area shape="rect" id="node15" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="615,1536,681,1563"/>
-<area shape="rect" id="node16" href="$constantes_8cpp.html#af3b3f58f78af4dd1fd2db67eaa6f6124" title="the subscr field of a noad" alt="" coords="617,1005,679,1032"/>
-<area shape="rect" id="node17" href="$constantes_8cpp.html#a7c168ea5f061757fddf1c55e0ca46911" title="the supscr field of a noad" alt="" coords="617,1157,679,1184"/>
-<area shape="rect" id="node18" href="$parametres_8cpp.html#a0c534032188829d3f6273b3d90e3c64c" title=" " alt="" coords="298,524,369,551"/>
-<area shape="rect" id="node19" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="619,2613,677,2640"/>
-<area shape="rect" id="node20" href="$hpack_8cpp.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="469,2701,526,2728"/>
-<area shape="rect" id="node21" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="621,3233,675,3260"/>
-<area shape="rect" id="node22" href="$makefraction_8cpp.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="285,2688,382,2715"/>
-<area shape="rect" id="node23" href="$makeleftright_8cpp.html#a76b4391a42af986372484ba3094dcb8a" title=" " alt="" coords="449,3309,546,3336"/>
-<area shape="rect" id="node24" href="$makemathaccent_8cpp.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="272,1208,395,1235"/>
-<area shape="rect" id="node25" href="$makeop_8cpp.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="299,1688,367,1715"/>
-<area shape="rect" id="node26" href="$constantes_8cpp.html#a5bb851b8f5d5d2f2fd4e39f0b770e89a" title="the translation of an mlist" alt="" coords="459,1536,536,1563"/>
-<area shape="rect" id="node27" href="$makeord_8cpp.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="297,828,369,855"/>
-<area shape="rect" id="node28" href="$makeover_8cpp.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="294,1587,373,1613"/>
-<area shape="rect" id="node29" href="$makeradical_8cpp.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="287,2536,379,2563"/>
-<area shape="rect" id="node30" href="$makescripts_8cpp.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="287,2384,380,2411"/>
-<area shape="rect" id="node31" href="$makeunder_8cpp.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="454,2955,541,2981"/>
-<area shape="rect" id="node32" href="$makevcenter_8cpp.html#a6e5d002d0820c0eb0efc867f638396aa" title=" " alt="" coords="449,2245,546,2272"/>
-<area shape="rect" id="node33" href="$police_8cpp.html#af9289b57d2744238aa244ac1f60c85c5" title="18mu" alt="" coords="290,575,377,601"/>
-<area shape="rect" id="node34" href="$mathglue_8cpp.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="296,3461,371,3488"/>
-<area shape="rect" id="node35" href="$xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="467,3512,528,3539"/>
-<area shape="rect" id="node36" href="$mathkern_8cpp.html#a18dcff153c06b9a7be19334ba64191ca" title=" " alt="" coords="295,3411,371,3437"/>
-<area shape="rect" id="node37" href="$mlisttohlist_8cpp.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="139,1891,224,1917"/>
-<area shape="rect" id="node38" href="$noeud_8cpp.html#a36e989102af07168b47706964447b727" title=" " alt="" coords="283,2891,383,2917"/>
-<area shape="rect" id="node39" href="$noeud_8cpp.html#a391ee2979062801a9a3d066cb9bfafd3" title=" " alt="" coords="289,2941,377,2968"/>
-<area shape="rect" id="node40" href="$mlisttohlist_8cpp.html#ab819e34895b063c15085750c16d75fbc" title=" " alt="" coords="291,2992,376,3019"/>
-<area shape="rect" id="node41" href="$classFont.html#a5f88292162ff2de68278f44ac8592f80" title="normal space between words" alt="" coords="288,3043,379,3069"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,1611,91,1638"/>
+<area shape="rect" id="node2" href="$mlisttohlist_8cpp.html#aff94ae7300779c28cc52252c81791137" title=" " alt="" coords="279,496,388,523"/>
+<area shape="rect" id="node3" href="$police_8cpp.html#ab6c4faf0c701bd19f346dd0fb23494fb" title=" " alt="" coords="603,523,693,550"/>
+<area shape="rect" id="node4" href="$classFont.html#a0fa84adb18a4b33e611b3582ca89d01a" title=" " alt="" coords="443,219,552,246"/>
+<area shape="rect" id="node5" href="$classFont.html#a5ef4f56ab07b1dee543b834811bf951c" title=" " alt="" coords="276,344,391,371"/>
+<area shape="rect" id="node6" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="609,2143,687,2170"/>
+<area shape="rect" id="node7" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="600,1206,696,1232"/>
+<area shape="rect" id="node8" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="470,2320,525,2347"/>
+<area shape="rect" id="node9" href="$police_8cpp.html#aad1788b536fcd0c08958fb6a8470ae1a" title=" " alt="" coords="615,270,681,296"/>
+<area shape="rect" id="node10" href="$fetch_8cpp.html#a37bcc0ca3cd28c6eb8440dd41f401c8a" title=" " alt="" coords="472,523,523,550"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="614,1332,682,1359"/>
+<area shape="rect" id="node12" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="625,1788,671,1815"/>
+<area shape="rect" id="node13" href="$noeud_8cpp.html#a82091fa45f60c083502da6514a00763b" title=" " alt="" coords="450,1206,545,1232"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="615,1662,681,1688"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#af3b3f58f78af4dd1fd2db67eaa6f6124" title="the subscr field of a noad" alt="" coords="617,979,679,1006"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#a7c168ea5f061757fddf1c55e0ca46911" title="the supscr field of a noad" alt="" coords="617,726,679,752"/>
+<area shape="rect" id="node17" href="$parametres_8cpp.html#a0c534032188829d3f6273b3d90e3c64c" title=" " alt="" coords="298,547,369,574"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="469,2371,526,2398"/>
+<area shape="rect" id="node19" href="$boite_8cpp.html#a7e3dbecf17681bd6e942256d9d996608" title=" " alt="" coords="469,1459,526,1486"/>
+<area shape="rect" id="node20" href="$makefraction_8cpp.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="285,1611,382,1638"/>
+<area shape="rect" id="node21" href="$constantes_8cpp.html#a5bb851b8f5d5d2f2fd4e39f0b770e89a" title="the translation of an mlist" alt="" coords="459,1662,536,1688"/>
+<area shape="rect" id="node22" href="$makeleftright_8cpp.html#a76b4391a42af986372484ba3094dcb8a" title=" " alt="" coords="285,1763,382,1790"/>
+<area shape="rect" id="node23" href="$makemathaccent_8cpp.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="272,851,395,878"/>
+<area shape="rect" id="node24" href="$makeop_8cpp.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="299,952,367,979"/>
+<area shape="rect" id="node25" href="$makeord_8cpp.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="297,750,369,776"/>
+<area shape="rect" id="node26" href="$makeover_8cpp.html#a156674c83d6a15f5959b89cfa8a223df" title=" " alt="" coords="294,1712,373,1739"/>
+<area shape="rect" id="node27" href="$makeradical_8cpp.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="287,1662,379,1688"/>
+<area shape="rect" id="node28" href="$makescripts_8cpp.html#a871fb542a6687f8539449cf95658d479" title=" " alt="" coords="287,1104,380,1131"/>
+<area shape="rect" id="node29" href="$makeunder_8cpp.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="290,1814,377,1840"/>
+<area shape="rect" id="node30" href="$makevcenter_8cpp.html#a6e5d002d0820c0eb0efc867f638396aa" title=" " alt="" coords="285,2270,382,2296"/>
+<area shape="rect" id="node31" href="$police_8cpp.html#af9289b57d2744238aa244ac1f60c85c5" title="18mu" alt="" coords="290,2118,377,2144"/>
+<area shape="rect" id="node32" href="$mathglue_8cpp.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="296,2523,371,2550"/>
+<area shape="rect" id="node33" href="$xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="467,2472,528,2499"/>
+<area shape="rect" id="node34" href="$mathkern_8cpp.html#a18dcff153c06b9a7be19334ba64191ca" title=" " alt="" coords="295,2067,371,2094"/>
+<area shape="rect" id="node35" href="$mlisttohlist_8cpp.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="139,1510,224,1536"/>
+<area shape="rect" id="node36" href="$noeud_8cpp.html#a36e989102af07168b47706964447b727" title=" " alt="" coords="283,2320,383,2347"/>
+<area shape="rect" id="node37" href="$mlisttohlist_8cpp.html#ab819e34895b063c15085750c16d75fbc" title=" " alt="" coords="291,2371,376,2398"/>
+<area shape="rect" id="node38" href="$classFont.html#a5f88292162ff2de68278f44ac8592f80" title="normal space between words" alt="" coords="288,2422,379,2448"/>
 </map>

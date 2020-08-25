@@ -1,9 +1,10 @@
 <map id="showbox" name="showbox">
-<area shape="rect" id="node1" title=" " alt="" coords="331,132,405,159"/>
+<area shape="rect" id="node1" title=" " alt="" coords="331,157,405,184"/>
 <area shape="rect" id="node2" href="$erreur_8h.html#a720a9ce186456b42385f307b1b854384" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="187,5,256,32"/>
 <area shape="rect" id="node3" href="$builddiscretionary_8h.html#a50a018e2c9932a40bcbfd39ab987d22c" title=" " alt="" coords="160,56,283,83"/>
-<area shape="rect" id="node4" href="$hpack_8cpp.html#aca1b4ef43cf99ba30e2d0bc481431dce" title=" " alt="" coords="191,107,252,133"/>
-<area shape="rect" id="node5" href="$shipout_8h.html#ae283fcc352db29dfff9dcc79eedbce0a" title=" " alt="" coords="189,157,253,184"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#adf229d61e9473738af7cc7c3a120b334" title=" " alt="" coords="169,208,274,235"/>
-<area shape="rect" id="node7" href="$impression_8h.html#aa9b445abac2f3d8c73fcb21352eb68e8" title=" " alt="" coords="5,233,112,260"/>
+<area shape="rect" id="node4" href="$boite_8cpp.html#a3478435d735893a864da8ff84a604275" title=" " alt="" coords="187,107,255,133"/>
+<area shape="rect" id="node5" href="$boite_8cpp.html#a4471b2834c4459123a2735165ec60d1e" title=" " alt="" coords="187,157,255,184"/>
+<area shape="rect" id="node6" href="$shipout_8h.html#a5db6470cefc7f4c81b3800af0cb10812" title=" " alt="" coords="189,208,253,235"/>
+<area shape="rect" id="node7" href="$impression_8cpp.html#adf229d61e9473738af7cc7c3a120b334" title=" " alt="" coords="169,259,274,285"/>
+<area shape="rect" id="node8" href="$impression_8h.html#aa9b445abac2f3d8c73fcb21352eb68e8" title=" " alt="" coords="5,284,112,311"/>
 </map>

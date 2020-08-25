@@ -14,7 +14,7 @@ quarterword& stretch_order(halfword p) { return mem[p].hh.b0; }
 quarterword& span_count(halfword p) { return mem[p].hh.b1; }
 quarterword& subtype(halfword p) { return mem[p].hh.b1; }
 quarterword& character(halfword p) { return mem[p].hh.b1; }
-quarterword& fitness(halfword p) { return mem[p].hh.b1; } 
+quarterword& fitness(halfword p) { return mem[p].hh.b1; }  
 quarterword& shrink_order(halfword p) { return mem[p].hh.b1; }
 int& stretch(halfword p) { return mem[p+2].int_; }
 int& shrink(halfword p) { return mem[p+3].int_; }

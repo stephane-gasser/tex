@@ -1,8 +1,5 @@
 <map id="font" name="font">
-<area shape="rect" id="node1" title="the font code in a char_node" alt="" coords="275,107,319,133"/>
-<area shape="rect" id="node2" href="$cesure_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="136,5,219,32"/>
-<area shape="rect" id="node3" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,56,80,83"/>
-<area shape="rect" id="node4" href="$rebox_8h.html#aef583d5662dfa34c0be76e74439fae59" title=" " alt="" coords="150,107,205,133"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#a6c5ed092b0d17504ebf23a63b7eeb131" title=" " alt="" coords="128,157,227,184"/>
-<area shape="rect" id="node6" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="143,208,212,235"/>
+<area shape="rect" id="node1" title="the font code in a char_node" alt="" coords="259,31,303,57"/>
+<area shape="rect" id="node2" href="$cesure_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="128,5,211,32"/>
+<area shape="rect" id="node3" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,31,80,57"/>
 </map>

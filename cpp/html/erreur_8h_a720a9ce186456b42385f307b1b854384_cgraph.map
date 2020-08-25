@@ -1,8 +1,8 @@
 <map id="boxerror" name="boxerror">
 <area shape="rect" id="node1" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="5,107,75,133"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="149,5,191,32"/>
+<area shape="rect" id="node2" href="$globals_8h.html#a90d951dcd6c50010a0d62f179275f1c0" title=" " alt="" coords="149,5,191,32"/>
 <area shape="rect" id="node3" href="$impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba" title="Do some tracing." alt="" coords="129,56,211,83"/>
 <area shape="rect" id="node4" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="146,107,194,133"/>
 <area shape="rect" id="node5" href="$noeud_8cpp.html#a82091fa45f60c083502da6514a00763b" title=" " alt="" coords="123,181,217,208"/>
-<area shape="rect" id="node6" href="$impression_8cpp.html#a51297bd2565e1d8124048a7aea9c7aa6" title=" " alt="" coords="133,232,207,259"/>
+<area shape="rect" id="node6" href="$impression_8cpp.html#a51297bd2565e1d8124048a7aea9c7aa6" title=" " alt="" coords="133,256,207,283"/>
 </map>

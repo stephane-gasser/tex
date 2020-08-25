@@ -93,9 +93,9 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <div class="dyncontent">
 <div class="center"><img src="vsplit_8h__dep__incl.png" border="0" usemap="#inc_2vsplit_8hdep" alt=""/></div>
 <map name="inc_2vsplit_8hdep" id="inc_2vsplit_8hdep">
-<area shape="rect" title=" " alt="" coords="90,5,175,32"/>
-<area shape="rect" href="beginbox_8cpp.html" title=" " alt="" coords="5,80,127,107"/>
-<area shape="rect" href="vsplit_8cpp.html" title=" " alt="" coords="151,80,251,107"/>
+<area shape="rect" title=" " alt="" coords="73,5,158,32"/>
+<area shape="rect" href="boite_8cpp.html" title=" " alt="" coords="5,80,103,107"/>
+<area shape="rect" href="vsplit_8cpp.html" title=" " alt="" coords="127,80,227,107"/>
 </map>
 </div>
 </div>
@@ -103,27 +103,27 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a6abd164e6260de2a9dbddae1e970bb50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vsplit_8h.html#a6abd164e6260de2a9dbddae1e970bb50">vsplit</a> (<a class="el" href="globals_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a> n, <a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> h)</td></tr>
-<tr class="separator:a6abd164e6260de2a9dbddae1e970bb50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a178313bf4198a8983c7c5e078e7d3dc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBoxNode.html">BoxNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vsplit_8h.html#a178313bf4198a8983c7c5e078e7d3dc4">vsplit</a> (<a class="el" href="globals_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>, <a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>)</td></tr>
+<tr class="separator:a178313bf4198a8983c7c5e078e7d3dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a6abd164e6260de2a9dbddae1e970bb50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6abd164e6260de2a9dbddae1e970bb50">&#9670;&nbsp;</a></span>vsplit()</h2>
+<a id="a178313bf4198a8983c7c5e078e7d3dc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a178313bf4198a8983c7c5e078e7d3dc4">&#9670;&nbsp;</a></span>vsplit()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> vsplit </td>
+          <td class="memname"><a class="el" href="classBoxNode.html">BoxNode</a>* vsplit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="globals_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>&#160;</td>
-          <td class="paramname"><em>n</em>, </td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>&#160;</td>
-          <td class="paramname"><em>h</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -133,114 +133,108 @@ Fonctions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="vsplit_8cpp_source.html#l00011">11</a> du fichier <a class="el" href="vsplit_8cpp_source.html">vsplit.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">auto</span> v = <a class="code" href="constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90">box</a>(n);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a9036e78ebf012214395e466a70a20e90">split_first_mark</a>)</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="lecture_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc">deletetokenref</a>(<a class="code" href="constantes_8cpp.html#a9036e78ebf012214395e466a70a20e90">split_first_mark</a>);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="constantes_8cpp.html#a9036e78ebf012214395e466a70a20e90">split_first_mark</a> = 0;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="lecture_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc">deletetokenref</a>(<a class="code" href="constantes_8cpp.html#a8effeef762b89dbef013b63d4fcf797f">split_bot_mark</a>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="constantes_8cpp.html#a8effeef762b89dbef013b63d4fcf797f">split_bot_mark</a> = 0;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">if</span> (v == 0)</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(v) != <a class="code" href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310add1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a>)</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<a class="code" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a>(<span class="stringliteral">&quot;vsplit&quot;</span>)+<span class="stringliteral">&quot; needs a &quot;</span>+<a class="code" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a>(<span class="stringliteral">&quot;vbox&quot;</span>), <span class="stringliteral">&quot;The box you are trying to split is an \\hbox.\nI can&#39;t split such a box, so I&#39;ll leave it alone.&quot;</span>);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="vertbreak_8cpp.html#a27d1046d2223e3c4761aac09af998f36">vertbreak</a>(<a class="code" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a>(v), h, <a class="code" href="parametres_8h.html#a7aebc7cf16b9ed666cd6ccc40ea4d45c">split_max_depth</a>());</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a>(v);</div>
+<p class="definition">Définition à la ligne <a class="el" href="vsplit_8cpp_source.html#l00010">10</a> du fichier <a class="el" href="vsplit_8cpp_source.html">vsplit.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">auto</span> v = <a class="code" href="globals_8h.html#a90d951dcd6c50010a0d62f179275f1c0">box</a>[n];</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#aa709bbaf1fd916a90212cc6485d79531">split_first_mark</a>)</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="lecture_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc">deletetokenref</a>(<a class="code" href="globals_8h.html#aa709bbaf1fd916a90212cc6485d79531">split_first_mark</a>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="globals_8h.html#aa709bbaf1fd916a90212cc6485d79531">split_first_mark</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="lecture_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc">deletetokenref</a>(<a class="code" href="globals_8h.html#a2874ddb15b8516b17138c4c45a7c8443">split_bot_mark</a>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="globals_8h.html#a2874ddb15b8516b17138c4c45a7c8443">split_bot_mark</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    }</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordflow">if</span> (v == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">if</span> (v-&gt;type != <a class="code" href="globals_8h.html#aaf8fd5f0e57d456151c951e0f3715fc4add1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a>)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<a class="code" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a>(<span class="stringliteral">&quot;vsplit&quot;</span>)+<span class="stringliteral">&quot; needs a &quot;</span>+<a class="code" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a>(<span class="stringliteral">&quot;vbox&quot;</span>), <span class="stringliteral">&quot;The box you are trying to split is an \\hbox.\nI can&#39;t split such a box, so I&#39;ll leave it alone.&quot;</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classLinkedNode.html">LinkedNode</a> *q;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    q-&gt;<a class="code" href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">num</a> = <a class="code" href="vertbreak_8cpp.html#a27d1046d2223e3c4761aac09af998f36">vertbreak</a>(v-&gt;list_ptr-&gt;num, h, <a class="code" href="parametres_8h.html#a7aebc7cf16b9ed666cd6ccc40ea4d45c">split_max_depth</a>());</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">auto</span> p = v-&gt;list_ptr;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordflow">if</span> (p == q)</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a>(v) = 0;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        v-&gt;list_ptr = <span class="keyword">nullptr</span>;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">else</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordflow">while</span> (<span class="keyword">true</span>)</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a>(p) == <a class="code" href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a147a7b1ce522f138b5e428aaba89b66c">mark_node</a>) <span class="comment">//4</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a9036e78ebf012214395e466a70a20e90">split_first_mark</a> == 0)</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                    <a class="code" href="constantes_8cpp.html#a9036e78ebf012214395e466a70a20e90">split_first_mark</a> = <a class="code" href="constantes_8cpp.html#a34ccce0f3beee6b21f6c62506bb33dd4">mark_ptr</a>(p);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                    <a class="code" href="constantes_8cpp.html#a8effeef762b89dbef013b63d4fcf797f">split_bot_mark</a> = <a class="code" href="constantes_8cpp.html#a9036e78ebf012214395e466a70a20e90">split_first_mark</a>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                    <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="constantes_8cpp.html#a9036e78ebf012214395e466a70a20e90">split_first_mark</a>) += 2;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                }</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                    <a class="code" href="lecture_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc">deletetokenref</a>(<a class="code" href="constantes_8cpp.html#a8effeef762b89dbef013b63d4fcf797f">split_bot_mark</a>);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                    <a class="code" href="constantes_8cpp.html#a8effeef762b89dbef013b63d4fcf797f">split_bot_mark</a> = <a class="code" href="constantes_8cpp.html#a34ccce0f3beee6b21f6c62506bb33dd4">mark_ptr</a>(p);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                    <a class="code" href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a>(<a class="code" href="constantes_8cpp.html#a8effeef762b89dbef013b63d4fcf797f">split_bot_mark</a>)++;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                }</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) == q)</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p) = 0;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            p = <a class="code" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a>(p);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    q = <a class="code" href="prunepagetop_8cpp.html#af813f2d85d52bf286660a0bb1bde0ff5">prunepagetop</a>(q)-&gt;<a class="code" href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">num</a>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    p = <a class="code" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a>(v);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848">freenode</a>(v, <a class="code" href="constantes_8h.html#a99fb83031ce9923c84392b4e92f956b5a6df9dd882fd123c9df206f853ce48a47">box_node_size</a>);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90">box</a>(n) = q == 0 ? 0 : <a class="code" href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665">vpack</a>(q, 0, <a class="code" href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a>);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="vpackage_8cpp.html#a67d4c487177aa349f7595ddb33aa9534">vpackage</a>(p, h, <a class="code" href="constantes_8h.html#a7af749228c77476a095745bb0e434857a8143a69b177e745d76ddebee5cb1b7c8">exactly</a>, <a class="code" href="parametres_8h.html#a7aebc7cf16b9ed666cd6ccc40ea4d45c">split_max_depth</a>());</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="keywordflow">if</span> (p-&gt;type == <a class="code" href="globals_8h.html#aaf8fd5f0e57d456151c951e0f3715fc4a147a7b1ce522f138b5e428aaba89b66c">mark_node</a>) <span class="comment">//4</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                <span class="keyword">auto</span> P = <span class="keyword">dynamic_cast&lt;</span><a class="code" href="classMarkNode.html">MarkNode</a>*<span class="keyword">&gt;</span>(p);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#aa709bbaf1fd916a90212cc6485d79531">split_first_mark</a> == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                    <a class="code" href="globals_8h.html#a2874ddb15b8516b17138c4c45a7c8443">split_bot_mark</a> = <a class="code" href="globals_8h.html#aa709bbaf1fd916a90212cc6485d79531">split_first_mark</a> = P-&gt;mark_ptr;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                    P-&gt;mark_ptr-&gt;<a class="code" href="classTokenNode.html#a4bbceea4068ef5f4d593ae523d068d71">token_ref_count</a> += 2;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                    <a class="code" href="lecture_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc">deletetokenref</a>(<a class="code" href="globals_8h.html#a2874ddb15b8516b17138c4c45a7c8443">split_bot_mark</a>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                    <a class="code" href="globals_8h.html#a2874ddb15b8516b17138c4c45a7c8443">split_bot_mark</a> = P-&gt;mark_ptr;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                    P-&gt;mark_ptr-&gt;<a class="code" href="classTokenNode.html#a4bbceea4068ef5f4d593ae523d068d71">token_ref_count</a>++;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordflow">if</span> (p-&gt;link == q)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                p-&gt;link = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            p = p-&gt;link;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    q = <a class="code" href="prunepagetop_8cpp.html#a41768bc470e6d7db8246e36998e0d0d1">prunepagetop</a>(q);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    p = v-&gt;list_ptr;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">delete</span> v;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="globals_8h.html#a90d951dcd6c50010a0d62f179275f1c0">box</a>[n] = q == <span class="keyword">nullptr</span> ? nullptr : <a class="code" href="boite_8cpp.html#a4c51ff2073e1812c0c14bf20b0d112ce">vpack</a>(q, 0, <a class="code" href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a>);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="boite_8cpp.html#a94ca77ecdba2ced086eb52d9e8e85e23">vpackage</a>(p, h, <a class="code" href="constantes_8h.html#a7af749228c77476a095745bb0e434857a8143a69b177e745d76ddebee5cb1b7c8">exactly</a>, <a class="code" href="parametres_8h.html#a7aebc7cf16b9ed666cd6ccc40ea4d45c">split_max_depth</a>());</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="vsplit_8h_a6abd164e6260de2a9dbddae1e970bb50_cgraph.png" border="0" usemap="#vsplit_8h_a6abd164e6260de2a9dbddae1e970bb50_cgraph" alt=""/></div>
-<map name="vsplit_8h_a6abd164e6260de2a9dbddae1e970bb50_cgraph" id="vsplit_8h_a6abd164e6260de2a9dbddae1e970bb50_cgraph">
-<area shape="rect" title=" " alt="" coords="5,385,59,412"/>
-<area shape="rect" href="constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="144,5,187,32"/>
+<div class="center"><img src="vsplit_8h_a178313bf4198a8983c7c5e078e7d3dc4_cgraph.png" border="0" usemap="#vsplit_8h_a178313bf4198a8983c7c5e078e7d3dc4_cgraph" alt=""/></div>
+<map name="vsplit_8h_a178313bf4198a8983c7c5e078e7d3dc4_cgraph" id="vsplit_8h_a178313bf4198a8983c7c5e078e7d3dc4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,208,59,235"/>
+<area shape="rect" href="globals_8h.html#a90d951dcd6c50010a0d62f179275f1c0" title=" " alt="" coords="144,5,187,32"/>
 <area shape="rect" href="lecture_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="113,56,217,83"/>
 <area shape="rect" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="287,157,335,184"/>
-<area shape="rect" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="408,132,451,159"/>
-<area shape="rect" href="noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="275,360,347,387"/>
-<area shape="rect" href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="508,360,551,387"/>
-<area shape="rect" href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="399,512,460,539"/>
-<area shape="rect" href="constantes_8cpp.html#a34ccce0f3beee6b21f6c62506bb33dd4" title="head of the token list for a mark" alt="" coords="129,613,202,640"/>
-<area shape="rect" href="prunepagetop_8cpp.html#af813f2d85d52bf286660a0bb1bde0ff5" title=" " alt="" coords="115,664,215,691"/>
-<area shape="rect" href="parametres_8h.html#a7aebc7cf16b9ed666cd6ccc40ea4d45c" title=" " alt="" coords="107,715,224,741"/>
-<area shape="rect" href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="406,411,453,437"/>
-<area shape="rect" href="vertbreak_8cpp.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="127,233,203,260"/>
-<area shape="rect" href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="137,512,194,539"/>
-<area shape="rect" href="vpackage_8cpp.html#a67d4c487177aa349f7595ddb33aa9534" title=" " alt="" coords="272,461,351,488"/>
+<area shape="rect" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="399,132,441,159"/>
+<area shape="rect" href="prunepagetop_8cpp.html#a41768bc470e6d7db8246e36998e0d0d1" title=" " alt="" coords="115,208,215,235"/>
+<area shape="rect" href="parametres_8h.html#a7aebc7cf16b9ed666cd6ccc40ea4d45c" title=" " alt="" coords="107,259,224,285"/>
+<area shape="rect" href="vertbreak_8cpp.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="127,309,203,336"/>
+<area shape="rect" href="boite_8cpp.html#a4c51ff2073e1812c0c14bf20b0d112ce" title="special case of unconstrained depth" alt="" coords="137,360,194,387"/>
+<area shape="rect" href="boite_8cpp.html#a94ca77ecdba2ced086eb52d9e8e85e23" title=" " alt="" coords="272,385,351,412"/>
 </map>
 </div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="vsplit_8h_a6abd164e6260de2a9dbddae1e970bb50_icgraph.png" border="0" usemap="#vsplit_8h_a6abd164e6260de2a9dbddae1e970bb50_icgraph" alt=""/></div>
-<map name="vsplit_8h_a6abd164e6260de2a9dbddae1e970bb50_icgraph" id="vsplit_8h_a6abd164e6260de2a9dbddae1e970bb50_icgraph">
+<div class="center"><img src="vsplit_8h_a178313bf4198a8983c7c5e078e7d3dc4_icgraph.png" border="0" usemap="#vsplit_8h_a178313bf4198a8983c7c5e078e7d3dc4_icgraph" alt=""/></div>
+<map name="vsplit_8h_a178313bf4198a8983c7c5e078e7d3dc4_icgraph" id="vsplit_8h_a178313bf4198a8983c7c5e078e7d3dc4_icgraph">
 <area shape="rect" title=" " alt="" coords="128,5,181,32"/>
-<area shape="rect" href="beginbox_8h.html#a5d2232e425baeebf8283ae33b954f08b" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="5,5,80,32"/>
+<area shape="rect" href="boite_8h.html#a5d2232e425baeebf8283ae33b954f08b" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="5,5,80,32"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310add1a01657fdcecb418a4ddfdc7686fdb"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310add1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a></div><div class="ttdeci">@ vlist_node</div><div class="ttdoc">type of vlist nodes</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00196">globals.h:196</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a2874ddb15b8516b17138c4c45a7c8443"><div class="ttname"><a href="globals_8h.html#a2874ddb15b8516b17138c4c45a7c8443">split_bot_mark</a></div><div class="ttdeci">TokenNode * split_bot_mark</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00575">globals.h:575</a></div></div>
+<div class="ttc" id="aglobals_8h_html_aaf8fd5f0e57d456151c951e0f3715fc4add1a01657fdcecb418a4ddfdc7686fdb"><div class="ttname"><a href="globals_8h.html#aaf8fd5f0e57d456151c951e0f3715fc4add1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a></div><div class="ttdeci">@ vlist_node</div><div class="ttdoc">type of vlist nodes</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00199">globals.h:199</a></div></div>
 <div class="ttc" id="avertbreak_8cpp_html_a27d1046d2223e3c4761aac09af998f36"><div class="ttname"><a href="vertbreak_8cpp.html#a27d1046d2223e3c4761aac09af998f36">vertbreak</a></div><div class="ttdeci">halfword vertbreak(halfword p, scaled h, scaled d)</div><div class="ttdef"><b>Definition:</b> <a href="vertbreak_8cpp_source.html#l00015">vertbreak.cpp:15</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_a3c55e9084d0faf34ec2828d0bcf247cc"><div class="ttname"><a href="lecture_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc">deletetokenref</a></div><div class="ttdeci">void deletetokenref(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l01209">lecture.cpp:1209</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a7b16a542aaeea764362f9dc2249ae63c"><div class="ttname"><a href="constantes_8h.html#a7b16a542aaeea764362f9dc2249ae63c">info</a></div><div class="ttdeci">info</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00567">constantes.h:567</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b"><div class="ttname"><a href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a></div><div class="ttdeci">@ additional</div><div class="ttdoc">a box dimension is increased from the natural one</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00580">constantes.h:580</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a7af749228c77476a095745bb0e434857a8143a69b177e745d76ddebee5cb1b7c8"><div class="ttname"><a href="constantes_8h.html#a7af749228c77476a095745bb0e434857a8143a69b177e745d76ddebee5cb1b7c8">exactly</a></div><div class="ttdeci">@ exactly</div><div class="ttdoc">a box dimension is pre-specified</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00579">constantes.h:579</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a1a8d96395f07ed201dbe429302697b90"><div class="ttname"><a href="constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90">box</a></div><div class="ttdeci">halfword &amp; box(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00081">constantes.cpp:81</a></div></div>
+<div class="ttc" id="aglobals_8h_html_aa709bbaf1fd916a90212cc6485d79531"><div class="ttname"><a href="globals_8h.html#aa709bbaf1fd916a90212cc6485d79531">split_first_mark</a></div><div class="ttdeci">TokenNode * split_first_mark</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00574">globals.h:574</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_a3c55e9084d0faf34ec2828d0bcf247cc"><div class="ttname"><a href="lecture_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc">deletetokenref</a></div><div class="ttdeci">void deletetokenref(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l01229">lecture.cpp:1229</a></div></div>
+<div class="ttc" id="aprunepagetop_8cpp_html_a41768bc470e6d7db8246e36998e0d0d1"><div class="ttname"><a href="prunepagetop_8cpp.html#a41768bc470e6d7db8246e36998e0d0d1">prunepagetop</a></div><div class="ttdeci">LinkedNode * prunepagetop(LinkedNode *p)</div><div class="ttdef"><b>Definition:</b> <a href="prunepagetop_8cpp_source.html#l00005">prunepagetop.cpp:5</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b"><div class="ttname"><a href="constantes_8h.html#a7af749228c77476a095745bb0e434857a24e4e46a51132d023783361532a48c4b">additional</a></div><div class="ttdeci">@ additional</div><div class="ttdoc">a box dimension is increased from the natural one</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00571">constantes.h:571</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a7af749228c77476a095745bb0e434857a8143a69b177e745d76ddebee5cb1b7c8"><div class="ttname"><a href="constantes_8h.html#a7af749228c77476a095745bb0e434857a8143a69b177e745d76ddebee5cb1b7c8">exactly</a></div><div class="ttdeci">@ exactly</div><div class="ttdoc">a box dimension is pre-specified</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00570">constantes.h:570</a></div></div>
+<div class="ttc" id="aclassLinkedNode_html"><div class="ttname"><a href="classLinkedNode.html">LinkedNode</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00171">globals.h:171</a></div></div>
 <div class="ttc" id="aclassAnyNode_html_a0717a5389aff4c552dd4556b1d5fa667"><div class="ttname"><a href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">AnyNode::num</a></div><div class="ttdeci">halfword num</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00157">globals.h:157</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a34ccce0f3beee6b21f6c62506bb33dd4"><div class="ttname"><a href="constantes_8cpp.html#a34ccce0f3beee6b21f6c62506bb33dd4">mark_ptr</a></div><div class="ttdeci">int &amp; mark_ptr(halfword p)</div><div class="ttdoc">head of the token list for a mark</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00033">constantes.cpp:33</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ae506bbae1bdb1f143ed3873325de216b"><div class="ttname"><a href="constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b">list_ptr</a></div><div class="ttdeci">halfword &amp; list_ptr(halfword p)</div><div class="ttdoc">beginning of the list inside the box</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00048">constantes.cpp:48</a></div></div>
-<div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a147a7b1ce522f138b5e428aaba89b66c"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a147a7b1ce522f138b5e428aaba89b66c">mark_node</a></div><div class="ttdeci">@ mark_node</div><div class="ttdoc">type of a mark node</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00199">globals.h:199</a></div></div>
-<div class="ttc" id="avpackage_8cpp_html_a9f1d86e5c299878041fb0f88d75d3665"><div class="ttname"><a href="vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665">vpack</a></div><div class="ttdeci">halfword vpack(halfword p, scaled h, smallnumber m)</div><div class="ttdoc">special case of unconstrained depth</div><div class="ttdef"><b>Definition:</b> <a href="vpackage_8cpp_source.html#l00023">vpackage.cpp:23</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a99fb83031ce9923c84392b4e92f956b5a6df9dd882fd123c9df206f853ce48a47"><div class="ttname"><a href="constantes_8h.html#a99fb83031ce9923c84392b4e92f956b5a6df9dd882fd123c9df206f853ce48a47">box_node_size</a></div><div class="ttdeci">@ box_node_size</div><div class="ttdoc">number of words to allocate for a box node</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00053">constantes.h:53</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a8effeef762b89dbef013b63d4fcf797f"><div class="ttname"><a href="constantes_8cpp.html#a8effeef762b89dbef013b63d4fcf797f">split_bot_mark</a></div><div class="ttdeci">halfword &amp; split_bot_mark</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00160">constantes.cpp:160</a></div></div>
+<div class="ttc" id="aglobals_8h_html_aaf8fd5f0e57d456151c951e0f3715fc4a147a7b1ce522f138b5e428aaba89b66c"><div class="ttname"><a href="globals_8h.html#aaf8fd5f0e57d456151c951e0f3715fc4a147a7b1ce522f138b5e428aaba89b66c">mark_node</a></div><div class="ttdeci">@ mark_node</div><div class="ttdoc">type of a mark node</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00202">globals.h:202</a></div></div>
 <div class="ttc" id="aparametres_8h_html_a7aebc7cf16b9ed666cd6ccc40ea4d45c"><div class="ttname"><a href="parametres_8h.html#a7aebc7cf16b9ed666cd6ccc40ea4d45c">split_max_depth</a></div><div class="ttdeci">int split_max_depth(void)</div><div class="ttdef"><b>Definition:</b> <a href="parametres_8h_source.html#l00159">parametres.h:159</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a82b682647a658e24e6001307cf953773"><div class="ttname"><a href="constantes_8cpp.html#a82b682647a658e24e6001307cf953773">link</a></div><div class="ttdeci">halfword &amp; link(halfword p)</div><div class="ttdoc">the link field of a memory word</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00004">constantes.cpp:4</a></div></div>
-<div class="ttc" id="avpackage_8cpp_html_a67d4c487177aa349f7595ddb33aa9534"><div class="ttname"><a href="vpackage_8cpp.html#a67d4c487177aa349f7595ddb33aa9534">vpackage</a></div><div class="ttdeci">halfword vpackage(halfword p, scaled h, smallnumber m, scaled l)</div><div class="ttdef"><b>Definition:</b> <a href="vpackage_8cpp_source.html#l00028">vpackage.cpp:28</a></div></div>
+<div class="ttc" id="aclassTokenNode_html_a4bbceea4068ef5f4d593ae523d068d71"><div class="ttname"><a href="classTokenNode.html#a4bbceea4068ef5f4d593ae523d068d71">TokenNode::token_ref_count</a></div><div class="ttdeci">halfword token_ref_count</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00192">globals.h:192</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a90d951dcd6c50010a0d62f179275f1c0"><div class="ttname"><a href="globals_8h.html#a90d951dcd6c50010a0d62f179275f1c0">box</a></div><div class="ttdeci">std::vector&lt; BoxNode * &gt; box(256)</div></div>
 <div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00236">impression.cpp:236</a></div></div>
-<div class="ttc" id="aprunepagetop_8cpp_html_af813f2d85d52bf286660a0bb1bde0ff5"><div class="ttname"><a href="prunepagetop_8cpp.html#af813f2d85d52bf286660a0bb1bde0ff5">prunepagetop</a></div><div class="ttdeci">LinkedNode * prunepagetop(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="prunepagetop_8cpp_source.html#l00005">prunepagetop.cpp:5</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a9036e78ebf012214395e466a70a20e90"><div class="ttname"><a href="constantes_8cpp.html#a9036e78ebf012214395e466a70a20e90">split_first_mark</a></div><div class="ttdeci">halfword &amp; split_first_mark</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00159">constantes.cpp:159</a></div></div>
+<div class="ttc" id="aboite_8cpp_html_a4c51ff2073e1812c0c14bf20b0d112ce"><div class="ttname"><a href="boite_8cpp.html#a4c51ff2073e1812c0c14bf20b0d112ce">vpack</a></div><div class="ttdeci">BoxNode * vpack(LinkedNode *p, scaled h, smallnumber m)</div><div class="ttdoc">special case of unconstrained depth</div><div class="ttdef"><b>Definition:</b> <a href="boite_8cpp_source.html#l00326">boite.cpp:326</a></div></div>
+<div class="ttc" id="aboite_8cpp_html_a94ca77ecdba2ced086eb52d9e8e85e23"><div class="ttname"><a href="boite_8cpp.html#a94ca77ecdba2ced086eb52d9e8e85e23">vpackage</a></div><div class="ttdeci">BoxNode * vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)</div><div class="ttdef"><b>Definition:</b> <a href="boite_8cpp_source.html#l00331">boite.cpp:331</a></div></div>
 <div class="ttc" id="aerreur_8cpp_html_ac7643d2431e40f0ac7a89ec84f1bda70"><div class="ttname"><a href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a></div><div class="ttdeci">void error(const std::string &amp;msg, const std::string &amp;hlp, bool deletionsallowed)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00014">erreur.cpp:14</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aeea581cbcf2f8c6bc29adf5736f0be62"><div class="ttname"><a href="constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62">type</a></div><div class="ttdeci">quarterword &amp; type(halfword p)</div><div class="ttdoc">identifies what kind of node this is</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00010">constantes.cpp:10</a></div></div>
-<div class="ttc" id="anoeud_8cpp_html_a3c9c1ec42afdd2ebe5e5b67a90021848"><div class="ttname"><a href="noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848">freenode</a></div><div class="ttdeci">void freenode(halfword p, halfword s)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00299">noeud.cpp:299</a></div></div>
+<div class="ttc" id="aclassMarkNode_html"><div class="ttname"><a href="classMarkNode.html">MarkNode</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00287">globals.h:287</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

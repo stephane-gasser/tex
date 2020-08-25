@@ -1,6 +1,6 @@
 <map id="cmdchr" name="cmdchr">
 <area shape="rect" id="node1" title=" " alt="" coords="500,308,565,334"/>
-<area shape="rect" id="node2" href="$beginbox_8h.html#a5d2232e425baeebf8283ae33b954f08b" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="168,10,243,37"/>
+<area shape="rect" id="node2" href="$boite_8h.html#a5d2232e425baeebf8283ae33b954f08b" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="168,10,243,37"/>
 <area shape="rect" id="node3" href="$maincontrol_8h.html#a07452457cef4e38d7b5e617473cb2dcf" title=" " alt="" coords="5,308,95,334"/>
 <area shape="rect" id="node4" href="$getnext_8cpp.html#aa0038e1b6e34116cdee777ae4be03554" title=" " alt="" coords="321,105,447,132"/>
 <area shape="rect" id="node5" href="$conditional_8h.html#af06c6a5f754b740b4e414ab6fd713b34" title=" " alt="" coords="342,156,426,182"/>

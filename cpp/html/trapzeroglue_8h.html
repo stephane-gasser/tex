@@ -104,20 +104,20 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a5f399c16d56146b4cb466bcaa186a172"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trapzeroglue_8h.html#a5f399c16d56146b4cb466bcaa186a172">trapzeroglue</a> (int &amp;)</td></tr>
-<tr class="separator:a5f399c16d56146b4cb466bcaa186a172"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb77275a1fb21524965791f25536f88c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGlueSpec.html">GlueSpec</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="trapzeroglue_8h.html#aeb77275a1fb21524965791f25536f88c">trapzeroglue</a> (<a class="el" href="classGlueSpec.html">GlueSpec</a> *)</td></tr>
+<tr class="separator:aeb77275a1fb21524965791f25536f88c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a5f399c16d56146b4cb466bcaa186a172"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f399c16d56146b4cb466bcaa186a172">&#9670;&nbsp;</a></span>trapzeroglue()</h2>
+<a id="aeb77275a1fb21524965791f25536f88c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb77275a1fb21524965791f25536f88c">&#9670;&nbsp;</a></span>trapzeroglue()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void trapzeroglue </td>
+          <td class="memname"><a class="el" href="classGlueSpec.html">GlueSpec</a>* trapzeroglue </td>
           <td>(</td>
-          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classGlueSpec.html">GlueSpec</a> *&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -126,20 +126,19 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="trapzeroglue_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="trapzeroglue_8cpp_source.html">trapzeroglue.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="classGlueSpec.html">GlueSpec</a> *Val;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    Val-&gt;<a class="code" href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">num</a> = val;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (Val-&gt;<a class="code" href="classGlueSpec.html#aab33c7159691e17bbf7de28910b0380a">width</a> == 0 &amp;&amp; Val-&gt;<a class="code" href="classGlueSpec.html#ae7df20ac450c0fd21a706551079573d3">stretch</a> == 0 &amp;&amp; Val-&gt;<a class="code" href="classGlueSpec.html#ae534faadae45e433571725f8cf22bf2d">shrink</a> == 0)</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="constantes_8h.html#a06e9ad33a9332475b3177557b654087e">zero_glue</a>-&gt;glue_ref_count++;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d">deleteglueref</a>(Val);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        Val = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    }</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordflow">if</span> (Val-&gt;width == 0 &amp;&amp; Val-&gt;stretch == 0 &amp;&amp; Val-&gt;shrink == 0)</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <a class="code" href="constantes_8h.html#a06e9ad33a9332475b3177557b654087e">zero_glue</a>-&gt;glue_ref_count++;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d">deleteglueref</a>(Val);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    }</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">return</span> Val;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="trapzeroglue_8h_a5f399c16d56146b4cb466bcaa186a172_cgraph.png" border="0" usemap="#trapzeroglue_8h_a5f399c16d56146b4cb466bcaa186a172_cgraph" alt=""/></div>
-<map name="trapzeroglue_8h_a5f399c16d56146b4cb466bcaa186a172_cgraph" id="trapzeroglue_8h_a5f399c16d56146b4cb466bcaa186a172_cgraph">
+<div class="center"><img src="trapzeroglue_8h_aeb77275a1fb21524965791f25536f88c_cgraph.png" border="0" usemap="#trapzeroglue_8h_aeb77275a1fb21524965791f25536f88c_cgraph" alt=""/></div>
+<map name="trapzeroglue_8h_aeb77275a1fb21524965791f25536f88c_cgraph" id="trapzeroglue_8h_aeb77275a1fb21524965791f25536f88c_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,99,32"/>
 <area shape="rect" href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="147,5,243,32"/>
 </map>
@@ -147,8 +146,8 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="trapzeroglue_8h_a5f399c16d56146b4cb466bcaa186a172_icgraph.png" border="0" usemap="#trapzeroglue_8h_a5f399c16d56146b4cb466bcaa186a172_icgraph" alt=""/></div>
-<map name="trapzeroglue_8h_a5f399c16d56146b4cb466bcaa186a172_icgraph" id="trapzeroglue_8h_a5f399c16d56146b4cb466bcaa186a172_icgraph">
+<div class="center"><img src="trapzeroglue_8h_aeb77275a1fb21524965791f25536f88c_icgraph.png" border="0" usemap="#trapzeroglue_8h_aeb77275a1fb21524965791f25536f88c_icgraph" alt=""/></div>
+<map name="trapzeroglue_8h_aeb77275a1fb21524965791f25536f88c_icgraph" id="trapzeroglue_8h_aeb77275a1fb21524965791f25536f88c_icgraph">
 <area shape="rect" title=" " alt="" coords="363,31,456,57"/>
 <area shape="rect" href="doregistercommand_8h.html#a0e5f002692416d323271f288f343fc9e" title=" " alt="" coords="179,5,315,32"/>
 <area shape="rect" href="prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="5,31,131,57"/>
@@ -159,11 +158,6 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="aconstantes_8h_html_a06e9ad33a9332475b3177557b654087e"><div class="ttname"><a href="constantes_8h.html#a06e9ad33a9332475b3177557b654087e">zero_glue</a></div><div class="ttdeci">auto zero_glue</div><div class="ttdoc">specification for 0pt plus 0pt minus 0pt</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00141">constantes.h:141</a></div></div>
-<div class="ttc" id="aclassGlueSpec_html_ae7df20ac450c0fd21a706551079573d3"><div class="ttname"><a href="classGlueSpec.html#ae7df20ac450c0fd21a706551079573d3">GlueSpec::stretch</a></div><div class="ttdeci">scaled stretch</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00267">globals.h:267</a></div></div>
-<div class="ttc" id="aclassAnyNode_html_a0717a5389aff4c552dd4556b1d5fa667"><div class="ttname"><a href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">AnyNode::num</a></div><div class="ttdeci">halfword num</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00157">globals.h:157</a></div></div>
-<div class="ttc" id="aclassGlueSpec_html_aab33c7159691e17bbf7de28910b0380a"><div class="ttname"><a href="classGlueSpec.html#aab33c7159691e17bbf7de28910b0380a">GlueSpec::width</a></div><div class="ttdeci">scaled width</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00267">globals.h:267</a></div></div>
-<div class="ttc" id="aclassGlueSpec_html_ae534faadae45e433571725f8cf22bf2d"><div class="ttname"><a href="classGlueSpec.html#ae534faadae45e433571725f8cf22bf2d">GlueSpec::shrink</a></div><div class="ttdeci">scaled shrink</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00267">globals.h:267</a></div></div>
-<div class="ttc" id="aclassGlueSpec_html"><div class="ttname"><a href="classGlueSpec.html">GlueSpec</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00263">globals.h:263</a></div></div>
 <div class="ttc" id="adeleteglueref_8cpp_html_a0e9fe66112a2a6fa95a1570e7ca6082d"><div class="ttname"><a href="deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d">deleteglueref</a></div><div class="ttdeci">void deleteglueref(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="deleteglueref_8cpp_source.html#l00004">deleteglueref.cpp:4</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

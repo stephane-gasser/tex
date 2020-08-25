@@ -1,5 +1,7 @@
 <map id="Font::char_width" name="Font::char_width">
-<area shape="rect" id="node1" title=" " alt="" coords="147,31,265,57"/>
-<area shape="rect" id="node2" href="$charbox_8h.html#a6163959d7f739ca129f74c8f98a5ddfe" title=" " alt="" coords="18,5,86,32"/>
-<area shape="rect" id="node3" href="$makeaccent_8h.html#aca840bfdce0591976a8d844972501c13" title=" " alt="" coords="5,56,99,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="263,81,381,108"/>
+<area shape="rect" id="node2" href="$boite_8h.html#a1de322441b1c1cef7dec6e27db860de6" title=" " alt="" coords="147,5,215,32"/>
+<area shape="rect" id="node3" href="$boite_8h.html#a33d79b1625f6900ddf7a66877bac32e3" title=" " alt="" coords="152,107,209,133"/>
+<area shape="rect" id="node4" href="$makeaccent_8h.html#aca840bfdce0591976a8d844972501c13" title=" " alt="" coords="5,81,99,108"/>
+<area shape="rect" id="node5" href="$boite_8h.html#aecce9eacc8602aaf0f01ed188073ae2e" title=" " alt="" coords="25,144,79,171"/>
 </map>

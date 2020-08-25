@@ -231,7 +231,7 @@ void flushnodelist(LinkedNode *p)
 					delete p;
 					break;
 				case math_node:
-					freenode(p->num, small_node_size);
+					delete p;
 					break;
 				case penalty_node: 
 					delete p;
@@ -625,20 +625,11 @@ void newinteraction(Token t)
 		selector += 2;
 }
 
-halfword newmath(scaled w, smallnumber s)
-{ 
-	auto p = getnode(small_node_size);
-	type(p) = math_node;
-	subtype(p) = s;
-	width(p) = w;
-	return p;
-}
-
 halfword newnoad(void)
 {
 	auto p = getnode(noad_size);
 	type(p) = ord_noad;
-	subtype(p) = normal;
+	subtype(p) = normal; 
 	mem[nucleus(p)].hh = twohalves{0, 0};
 	mem[subscr(p)].hh = twohalves{0, 0};
 	mem[supscr(p)].hh = twohalves{0, 0};

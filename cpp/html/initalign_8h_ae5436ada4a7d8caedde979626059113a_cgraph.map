@@ -1,5 +1,5 @@
 <map id="initalign" name="initalign">
-<area shape="rect" id="node1" title=" " alt="" coords="5,411,72,437"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,385,72,412"/>
 <area shape="rect" id="node2" href="$alignpeek_8cpp.html#a015dc86dbb4807af6d5575339cb94be0" title=" " alt="" coords="144,5,221,32"/>
 <area shape="rect" id="node3" href="$noeud_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="293,31,395,57"/>
 <area shape="rect" id="node4" href="$erreur_8cpp.html#a1a6f10754f33b1f6e804a09bde15b56d" title="Back up one token and call error." alt="" coords="145,107,221,133"/>
@@ -9,12 +9,11 @@
 <area shape="rect" id="node8" href="$constantes_8cpp.html#a60c965218c52394aaa95513c326eafbc" title=" " alt="" coords="147,309,219,336"/>
 <area shape="rect" id="node9" href="$flushmath_8cpp.html#a1772b477ad136aede8aa56b92b4d67ef" title=" " alt="" coords="143,360,222,387"/>
 <area shape="rect" id="node10" href="$lecture_8cpp.html#a084bee41d2b6b6f338d5dabf01336cd4" title=" " alt="" coords="120,411,245,437"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="323,512,365,539"/>
-<area shape="rect" id="node12" href="$noeud_8cpp.html#a4b66b8f6553ae965a55cdcdf20ebe732" title=" " alt="" coords="139,512,226,539"/>
-<area shape="rect" id="node13" href="$pushalignment_8cpp.html#a5bbb1dcedd1209946dbbafb9979b0f5e" title=" " alt="" coords="129,563,236,589"/>
-<area shape="rect" id="node14" href="$pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="145,613,220,640"/>
-<area shape="rect" id="node15" href="$lecture_8cpp.html#a8603de7031868d80be30ff64845ac096" title=" " alt="" coords="143,664,222,691"/>
-<area shape="rect" id="node16" href="$constantes_8cpp.html#aaf20e812e87e3a5c9570bdd9459891ae" title="pointer to &#160;token list" alt="" coords="153,715,212,741"/>
-<area shape="rect" id="node17" href="$constantes_8cpp.html#af09afca5b50a4e405dcf3d71f3f3a184" title="pointer to &#160;token list" alt="" coords="153,765,212,792"/>
-<area shape="rect" id="node18" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="156,816,209,843"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="323,487,365,513"/>
+<area shape="rect" id="node12" href="$pushalignment_8cpp.html#a5bbb1dcedd1209946dbbafb9979b0f5e" title=" " alt="" coords="129,512,236,539"/>
+<area shape="rect" id="node13" href="$pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="145,563,220,589"/>
+<area shape="rect" id="node14" href="$lecture_8cpp.html#a8603de7031868d80be30ff64845ac096" title=" " alt="" coords="143,613,222,640"/>
+<area shape="rect" id="node15" href="$constantes_8cpp.html#aaf20e812e87e3a5c9570bdd9459891ae" title="pointer to &#160;token list" alt="" coords="153,664,212,691"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#af09afca5b50a4e405dcf3d71f3f3a184" title="pointer to &#160;token list" alt="" coords="153,715,212,741"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="156,765,209,792"/>
 </map>

@@ -95,18 +95,18 @@ Graphe des dépendances par inclusion de fractionrule.cpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:aca27d6d4d1ded04c4038c9bca7f136f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6">fractionrule</a> (<a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> t)</td></tr>
-<tr class="separator:aca27d6d4d1ded04c4038c9bca7f136f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a46ae68bccabf9e35a711519efbf052"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRuleNode.html">RuleNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fractionrule_8cpp.html#a2a46ae68bccabf9e35a711519efbf052">fractionrule</a> (<a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> t)</td></tr>
+<tr class="separator:a2a46ae68bccabf9e35a711519efbf052"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="aca27d6d4d1ded04c4038c9bca7f136f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca27d6d4d1ded04c4038c9bca7f136f6">&#9670;&nbsp;</a></span>fractionrule()</h2>
+<a id="a2a46ae68bccabf9e35a711519efbf052"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a46ae68bccabf9e35a711519efbf052">&#9670;&nbsp;</a></span>fractionrule()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> fractionrule </td>
+          <td class="memname"><a class="el" href="classRuleNode.html">RuleNode</a>* fractionrule </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>&#160;</td>
           <td class="paramname"><em>t</em></td><td>)</td>
@@ -117,40 +117,28 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="fractionrule_8cpp_source.html#l00004">4</a> du fichier <a class="el" href="fractionrule_8cpp_source.html">fractionrule.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">auto</span> p = <a class="code" href="noeud_8cpp.html#adde749bc3235334488b223590d8e4a87">newrule</a>();</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a>(p) = t;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a>(p) = 0;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keyword">auto</span> p = <span class="keyword">new</span> <a class="code" href="classRuleNode.html">RuleNode</a>;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    p-&gt;<a class="code" href="classRuleNode.html#a6720a78cbf5360186fae45fb1270ae4d">height</a> = t;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    p-&gt;depth = 0;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">return</span> p;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="fractionrule_8cpp_aca27d6d4d1ded04c4038c9bca7f136f6_cgraph.png" border="0" usemap="#fractionrule_8cpp_aca27d6d4d1ded04c4038c9bca7f136f6_cgraph" alt=""/></div>
-<map name="fractionrule_8cpp_aca27d6d4d1ded04c4038c9bca7f136f6_cgraph" id="fractionrule_8cpp_aca27d6d4d1ded04c4038c9bca7f136f6_cgraph">
-<area shape="rect" title=" " alt="" coords="5,56,92,83"/>
-<area shape="rect" href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="146,5,201,32"/>
-<area shape="rect" href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="145,56,202,83"/>
-<area shape="rect" href="noeud_8cpp.html#adde749bc3235334488b223590d8e4a87" title=" " alt="" coords="140,107,207,133"/>
-</map>
-</div>
-<div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="fractionrule_8cpp_aca27d6d4d1ded04c4038c9bca7f136f6_icgraph.png" border="0" usemap="#fractionrule_8cpp_aca27d6d4d1ded04c4038c9bca7f136f6_icgraph" alt=""/></div>
-<map name="fractionrule_8cpp_aca27d6d4d1ded04c4038c9bca7f136f6_icgraph" id="fractionrule_8cpp_aca27d6d4d1ded04c4038c9bca7f136f6_icgraph">
+<div class="center"><img src="fractionrule_8cpp_a2a46ae68bccabf9e35a711519efbf052_icgraph.png" border="0" usemap="#fractionrule_8cpp_a2a46ae68bccabf9e35a711519efbf052_icgraph" alt=""/></div>
+<map name="fractionrule_8cpp_a2a46ae68bccabf9e35a711519efbf052_icgraph" id="fractionrule_8cpp_a2a46ae68bccabf9e35a711519efbf052_icgraph">
 <area shape="rect" title=" " alt="" coords="151,56,237,83"/>
 <area shape="rect" href="makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,5,103,32"/>
 <area shape="rect" href="makeunder_8h.html#a58c147fd1f2c2c876fc5209b0978eb47" title=" " alt="" coords="11,56,97,83"/>
-<area shape="rect" href="overbar_8h.html#a5b487c0636abe1d8f8766696d91829d6" title=" " alt="" coords="21,107,87,133"/>
+<area shape="rect" href="overbar_8h.html#a502415e2f848fe0c921b011a9f3a7142" title=" " alt="" coords="21,107,87,133"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8cpp_html_a4df565ae653d5dfdd476957e92b6a61c"><div class="ttname"><a href="constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c">depth</a></div><div class="ttdeci">int &amp; depth(halfword p)</div><div class="ttdoc">depth of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00025">constantes.cpp:25</a></div></div>
-<div class="ttc" id="anoeud_8cpp_html_adde749bc3235334488b223590d8e4a87"><div class="ttname"><a href="noeud_8cpp.html#adde749bc3235334488b223590d8e4a87">newrule</a></div><div class="ttdeci">halfword newrule(void)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00670">noeud.cpp:670</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_aaf95f6a6992031770009c02b8d2b4071"><div class="ttname"><a href="constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071">height</a></div><div class="ttdeci">int &amp; height(halfword p)</div><div class="ttdoc">height of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00026">constantes.cpp:26</a></div></div>
+<div class="ttc" id="aclassRuleNode_html"><div class="ttname"><a href="classRuleNode.html">RuleNode</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00352">globals.h:352</a></div></div>
+<div class="ttc" id="aclassRuleNode_html_a6720a78cbf5360186fae45fb1270ae4d"><div class="ttname"><a href="classRuleNode.html#a6720a78cbf5360186fae45fb1270ae4d">RuleNode::height</a></div><div class="ttdeci">int height</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00358">globals.h:358</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

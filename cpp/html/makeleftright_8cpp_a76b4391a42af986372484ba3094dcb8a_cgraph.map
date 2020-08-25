@@ -1,10 +1,10 @@
 <map id="makeleftright" name="makeleftright">
-<area shape="rect" id="node1" title=" " alt="" coords="5,144,103,171"/>
-<area shape="rect" id="node2" href="$police_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708" title="height of fraction lines above the baseline" alt="" coords="323,5,411,32"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#ab4ec8c380b0078d5e0d647f400e95ae3" title="delimiter field in left and right noads" alt="" coords="177,195,248,221"/>
-<area shape="rect" id="node4" href="$makeleftright_8cpp.html#a345d2aded743d518f1b2bf5d48801623" title=" " alt="" coords="157,245,268,272"/>
-<area shape="rect" id="node5" href="$makeleftright_8cpp.html#a576a6c3bd7c3cc2db83a43e8c85669f7" title=" " alt="" coords="151,296,275,323"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="343,68,390,95"/>
-<area shape="rect" id="node7" href="$vardelimiter_8cpp.html#a6584b3fbe08181419dfed854b56a1bea" title=" " alt="" coords="168,93,257,120"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="340,119,393,145"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,137,103,164"/>
+<area shape="rect" id="node2" href="$police_8cpp.html#a1b7ae8e4e9bf30bd3b1f9c970d985708" title="height of fraction lines above the baseline" alt="" coords="323,137,411,164"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#ab4ec8c380b0078d5e0d647f400e95ae3" title="delimiter field in left and right noads" alt="" coords="177,36,248,63"/>
+<area shape="rect" id="node4" href="$makeleftright_8cpp.html#a345d2aded743d518f1b2bf5d48801623" title=" " alt="" coords="157,87,268,113"/>
+<area shape="rect" id="node5" href="$makeleftright_8cpp.html#a576a6c3bd7c3cc2db83a43e8c85669f7" title=" " alt="" coords="151,137,275,164"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a5bb851b8f5d5d2f2fd4e39f0b770e89a" title="the translation of an mlist" alt="" coords="174,188,251,215"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="189,239,236,265"/>
+<area shape="rect" id="node8" href="$vardelimiter_8cpp.html#a3060d1c27418fa6e1f73449de3917550" title=" " alt="" coords="168,289,257,316"/>
 </map>

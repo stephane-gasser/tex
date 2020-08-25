@@ -1,17 +1,18 @@
 <map id="finalcleanup" name="finalcleanup">
-<area shape="rect" id="node1" title=" " alt="" coords="5,339,96,366"/>
-<area shape="rect" id="node2" href="$impression_8cpp.html#ac4413646391b853fe6e86b086a0ab7d9" title=" " alt="" coords="163,35,229,62"/>
-<area shape="rect" id="node3" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="311,35,353,62"/>
-<area shape="rect" id="node4" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="148,137,244,163"/>
-<area shape="rect" id="node5" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="296,86,368,113"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="418,162,461,189"/>
-<area shape="rect" id="node7" href="$lecture_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="144,466,248,493"/>
-<area shape="rect" id="node8" href="$endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="145,517,247,543"/>
-<area shape="rect" id="node9" href="$lecture_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="150,567,242,594"/>
-<area shape="rect" id="node10" href="$constantes_8cpp.html#ad43c4d5b6754d502967c5c05796d32de" title=" " alt="" coords="153,618,239,645"/>
-<area shape="rect" id="node11" href="$openlogfile_8cpp.html#aa093bac5d614a1706a24856de98e0c7d" title=" " alt="" coords="154,365,238,391"/>
-<area shape="rect" id="node12" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="416,365,463,391"/>
-<area shape="rect" id="node13" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="303,339,361,366"/>
-<area shape="rect" id="node14" href="$storefmtfile_8cpp.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="153,263,239,290"/>
-<area shape="rect" id="node15" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="162,669,230,695"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,385,96,412"/>
+<area shape="rect" id="node2" href="$impression_8cpp.html#ac4413646391b853fe6e86b086a0ab7d9" title=" " alt="" coords="163,5,229,32"/>
+<area shape="rect" id="node3" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="311,56,353,83"/>
+<area shape="rect" id="node4" href="$globals_8h.html#a515b41de8f4272e1ec7c256585630987" title=" " alt="" coords="161,487,231,513"/>
+<area shape="rect" id="node5" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="148,208,244,235"/>
+<area shape="rect" id="node6" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="296,157,368,184"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="418,183,461,209"/>
+<area shape="rect" id="node8" href="$lecture_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="144,537,248,564"/>
+<area shape="rect" id="node9" href="$endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="145,588,247,615"/>
+<area shape="rect" id="node10" href="$lecture_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="150,639,242,665"/>
+<area shape="rect" id="node11" href="$constantes_8cpp.html#ad43c4d5b6754d502967c5c05796d32de" title=" " alt="" coords="153,689,239,716"/>
+<area shape="rect" id="node12" href="$openlogfile_8cpp.html#aa093bac5d614a1706a24856de98e0c7d" title=" " alt="" coords="154,385,238,412"/>
+<area shape="rect" id="node13" href="$impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9" title=" " alt="" coords="416,385,463,412"/>
+<area shape="rect" id="node14" href="$impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5" title=" " alt="" coords="303,360,361,387"/>
+<area shape="rect" id="node15" href="$storefmtfile_8cpp.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="153,284,239,311"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="162,740,230,767"/>
 </map>

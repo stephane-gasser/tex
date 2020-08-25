@@ -1,11 +1,8 @@
 <map id="makeunder" name="makeunder">
-<area shape="rect" id="node1" title=" " alt="" coords="5,172,92,198"/>
-<area shape="rect" id="node2" href="$cleanbox_8cpp.html#ab0ffad1299c4a1f5fe44e836a184518d" title=" " alt="" coords="179,45,253,72"/>
-<area shape="rect" id="node3" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="352,8,395,34"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="340,70,407,97"/>
-<area shape="rect" id="node5" href="$police_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="140,146,292,173"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="346,197,401,224"/>
-<area shape="rect" id="node7" href="$fractionrule_8cpp.html#aca27d6d4d1ded04c4038c9bca7f136f6" title=" " alt="" coords="173,248,259,274"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="345,273,402,300"/>
-<area shape="rect" id="node9" href="$vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="187,349,245,376"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,92,133"/>
+<area shape="rect" id="node2" href="$boite_8cpp.html#a06107561cb28baaa101c60e022168602" title=" " alt="" coords="179,5,253,32"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="340,31,407,57"/>
+<area shape="rect" id="node4" href="$police_8cpp.html#a2de34adfc920d4404fe640b371ff91a6" title="thickness of \over bars" alt="" coords="140,107,292,133"/>
+<area shape="rect" id="node5" href="$fractionrule_8cpp.html#a2a46ae68bccabf9e35a711519efbf052" title=" " alt="" coords="173,157,259,184"/>
+<area shape="rect" id="node6" href="$boite_8cpp.html#a4c51ff2073e1812c0c14bf20b0d112ce" title="special case of unconstrained depth" alt="" coords="187,208,245,235"/>
 </map>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['discnode_2065',['DiscNode',['../classDiscNode.html',1,'']]]
+  ['charnode_2054',['CharNode',['../classCharNode.html',1,'']]],
+  ['choicenode_2055',['ChoiceNode',['../classChoiceNode.html',1,'']]]
 ];

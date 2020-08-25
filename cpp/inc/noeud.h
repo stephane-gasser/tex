@@ -10,7 +10,6 @@ void newfont(smallnumber);
 void newgraf(bool);
 void newhyphexceptions(void);
 void newinteraction(Token);
-halfword newmath(scaled, smallnumber);
 halfword newnoad(void);
 void newsavelevel(groupcode);
 GlueNode* newskipparam(smallnumber);

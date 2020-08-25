@@ -1,44 +1,33 @@
 <map id="handlerightbrace" name="handlerightbrace">
-<area shape="rect" id="node1" title=" " alt="" coords="5,1069,123,1096"/>
-<area shape="rect" id="node2" href="$constantes_8cpp.html#a9b1a0fe0853bd25a8d74737dfe51ed77" title="vertical list to be moved out of horizontal list" alt="" coords="193,5,271,32"/>
-<area shape="rect" id="node3" href="$alignpeek_8cpp.html#a015dc86dbb4807af6d5575339cb94be0" title=" " alt="" coords="193,56,271,83"/>
-<area shape="rect" id="node4" href="$backinput_8cpp.html#ada79b16970afac693692125a26a780ae" title="Undoes one token of input." alt="" coords="493,233,571,260"/>
-<area shape="rect" id="node5" href="$lecture_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="627,157,719,184"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a1a8d96395f07ed201dbe429302697b90" title=" " alt="" coords="368,411,411,437"/>
-<area shape="rect" id="node7" href="$erreur_8cpp.html#aaa5e5762314112fc9c118ea4b4eaa620" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="197,411,267,437"/>
-<area shape="rect" id="node8" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="365,360,413,387"/>
-<area shape="rect" id="node9" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="511,461,553,488"/>
-<area shape="rect" id="node10" href="$lecture_8cpp.html#ae925ce9cf3090fd9fc647fbc60dbb07c" title=" " alt="" coords="496,169,568,196"/>
-<area shape="rect" id="node11" href="$buildchoices_8cpp.html#abe65f646d930a673e047cb75a95b33f6" title=" " alt="" coords="185,765,279,792"/>
-<area shape="rect" id="node12" href="$finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af" title=" " alt="" coords="357,816,421,843"/>
-<area shape="rect" id="node13" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="493,867,571,893"/>
-<area shape="rect" id="node14" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="651,1551,694,1577"/>
-<area shape="rect" id="node15" href="$popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="498,1272,566,1299"/>
-<area shape="rect" id="node16" href="$constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9" title=" " alt="" coords="503,715,561,741"/>
-<area shape="rect" id="node17" href="$unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="357,715,421,741"/>
-<area shape="rect" id="node18" href="$builddiscretionary_8cpp.html#adfae548fe7d418d5d37ed1760575c2fe" title=" " alt="" coords="171,639,293,665"/>
-<area shape="rect" id="node19" href="$buildpage_8cpp.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="193,968,271,995"/>
-<area shape="rect" id="node20" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="341,1120,437,1147"/>
-<area shape="rect" id="node21" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="496,1525,568,1552"/>
-<area shape="rect" id="node22" href="$constantes_8cpp.html#a4df565ae653d5dfdd476957e92b6a61c" title="depth of the box, in sp" alt="" coords="362,1171,417,1197"/>
-<area shape="rect" id="node23" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="355,1576,423,1603"/>
-<area shape="rect" id="node24" href="$constantes_8cpp.html#aaf95f6a6992031770009c02b8d2b4071" title="height of the box, in sp" alt="" coords="361,1373,418,1400"/>
-<area shape="rect" id="node25" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="355,917,423,944"/>
-<area shape="rect" id="node26" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="366,1323,413,1349"/>
-<area shape="rect" id="node27" href="$endgraf_8cpp.html#abee47be02d4d2b4c7bdb494f59a5a8bc" title=" " alt="" coords="357,1424,422,1451"/>
-<area shape="rect" id="node28" href="$extrarightbrace_8cpp.html#a55bb7dd2ab5dc63f37ba9b7233fea3e3" title=" " alt="" coords="178,309,286,336"/>
-<area shape="rect" id="node29" href="$constantes_8cpp.html#a245837c2bcaa255b371ee0aa7c217eca" title="the floating_penalty to be used" alt="" coords="193,1424,271,1451"/>
-<area shape="rect" id="node30" href="$handlerightbrace_8cpp.html#a06149cd2216cb7e097e35f9292a37f28" title=" " alt="" coords="175,1475,289,1501"/>
-<area shape="rect" id="node31" href="$constantes_8cpp.html#ae0ed24bf553e8dc5306f6f0a1b0b258c" title="the vertical list to be inserted" alt="" coords="201,1525,263,1552"/>
-<area shape="rect" id="node32" href="$erreur_8cpp.html#a5333c08b8118c1efbeb2fde844465f4f" title=" " alt="" coords="199,259,265,285"/>
-<area shape="rect" id="node33" href="$constantes_8cpp.html#ae506bbae1bdb1f143ed3873325de216b" title="beginning of the list inside the box" alt="" coords="359,1627,420,1653"/>
-<area shape="rect" id="node34" href="$noeud_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52" title=" " alt="" coords="195,1677,269,1704"/>
-<area shape="rect" id="node35" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="199,1728,265,1755"/>
-<area shape="rect" id="node36" href="$package_8cpp.html#a07ead128a9fc54b66c3f2131fca8ae2c" title=" " alt="" coords="197,1120,267,1147"/>
-<area shape="rect" id="node37" href="$parametres_8h.html#a7aebc7cf16b9ed666cd6ccc40ea4d45c" title=" " alt="" coords="173,1829,291,1856"/>
-<area shape="rect" id="node38" href="$constantes_8cpp.html#a9f167cbb0384d96e6e214a8b6520b305" title="the split_top_skip to be used" alt="" coords="485,1728,579,1755"/>
-<area shape="rect" id="node39" href="$constantes_8cpp.html#af3b3f58f78af4dd1fd2db67eaa6f6124" title="the subscr field of a noad" alt="" coords="201,1931,263,1957"/>
-<area shape="rect" id="node40" href="$constantes_8cpp.html#a7c168ea5f061757fddf1c55e0ca46911" title="the supscr field of a noad" alt="" coords="201,1981,263,2008"/>
-<area shape="rect" id="node41" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="188,2032,276,2059"/>
-<area shape="rect" id="node42" href="$vpackage_8cpp.html#a9f1d86e5c299878041fb0f88d75d3665" title="special case of unconstrained depth" alt="" coords="203,2083,261,2109"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,892,123,919"/>
+<area shape="rect" id="node2" href="$alignpeek_8cpp.html#a015dc86dbb4807af6d5575339cb94be0" title=" " alt="" coords="193,5,271,32"/>
+<area shape="rect" id="node3" href="$backinput_8cpp.html#ada79b16970afac693692125a26a780ae" title="Undoes one token of input." alt="" coords="485,360,564,387"/>
+<area shape="rect" id="node4" href="$lecture_8cpp.html#ad2e3230595ca73c26847af5794f01651" title=" " alt="" coords="612,208,704,235"/>
+<area shape="rect" id="node5" href="$globals_8h.html#a90d951dcd6c50010a0d62f179275f1c0" title=" " alt="" coords="368,968,411,995"/>
+<area shape="rect" id="node6" href="$erreur_8cpp.html#aaa5e5762314112fc9c118ea4b4eaa620" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="197,968,267,995"/>
+<area shape="rect" id="node7" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="365,917,413,944"/>
+<area shape="rect" id="node8" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="503,867,546,893"/>
+<area shape="rect" id="node9" href="$lecture_8cpp.html#ae925ce9cf3090fd9fc647fbc60dbb07c" title=" " alt="" coords="489,993,561,1020"/>
+<area shape="rect" id="node10" href="$buildchoices_8cpp.html#abe65f646d930a673e047cb75a95b33f6" title=" " alt="" coords="185,387,279,413"/>
+<area shape="rect" id="node11" href="$finmlist_8cpp.html#af4215f599c5ab41d37100fb19ee858af" title=" " alt="" coords="357,512,421,539"/>
+<area shape="rect" id="node12" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="485,664,564,691"/>
+<area shape="rect" id="node13" href="$popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="491,512,559,539"/>
+<area shape="rect" id="node14" href="$constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9" title=" " alt="" coords="496,309,553,336"/>
+<area shape="rect" id="node15" href="$unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="357,360,421,387"/>
+<area shape="rect" id="node16" href="$builddiscretionary_8cpp.html#adfae548fe7d418d5d37ed1760575c2fe" title=" " alt="" coords="171,613,293,640"/>
+<area shape="rect" id="node17" href="$buildpage_8cpp.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="193,1069,271,1096"/>
+<area shape="rect" id="node18" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="341,1120,437,1147"/>
+<area shape="rect" id="node19" href="$noeud_8cpp.html#a3c9c1ec42afdd2ebe5e5b67a90021848" title=" " alt="" coords="489,1171,561,1197"/>
+<area shape="rect" id="node20" href="$endgraf_8cpp.html#abee47be02d4d2b4c7bdb494f59a5a8bc" title=" " alt="" coords="357,411,422,437"/>
+<area shape="rect" id="node21" href="$extrarightbrace_8cpp.html#a55bb7dd2ab5dc63f37ba9b7233fea3e3" title=" " alt="" coords="178,867,286,893"/>
+<area shape="rect" id="node22" href="$handlerightbrace_8cpp.html#a06149cd2216cb7e097e35f9292a37f28" title=" " alt="" coords="175,1272,289,1299"/>
+<area shape="rect" id="node23" href="$erreur_8cpp.html#a5333c08b8118c1efbeb2fde844465f4f" title=" " alt="" coords="199,664,265,691"/>
+<area shape="rect" id="node24" href="$noeud_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52" title=" " alt="" coords="195,1323,269,1349"/>
+<area shape="rect" id="node25" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="199,1373,265,1400"/>
+<area shape="rect" id="node26" href="$package_8cpp.html#a07ead128a9fc54b66c3f2131fca8ae2c" title=" " alt="" coords="197,335,267,361"/>
+<area shape="rect" id="node27" href="$parametres_8h.html#a7aebc7cf16b9ed666cd6ccc40ea4d45c" title=" " alt="" coords="173,1424,291,1451"/>
+<area shape="rect" id="node28" href="$constantes_8cpp.html#af3b3f58f78af4dd1fd2db67eaa6f6124" title="the subscr field of a noad" alt="" coords="201,1475,263,1501"/>
+<area shape="rect" id="node29" href="$constantes_8cpp.html#a7c168ea5f061757fddf1c55e0ca46911" title="the supscr field of a noad" alt="" coords="201,1525,263,1552"/>
+<area shape="rect" id="node30" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="188,1576,276,1603"/>
+<area shape="rect" id="node31" href="$boite_8cpp.html#a4c51ff2073e1812c0c14bf20b0d112ce" title="special case of unconstrained depth" alt="" coords="203,1627,261,1653"/>
 </map>

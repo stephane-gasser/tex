@@ -85,7 +85,7 @@ void aftermath(void)
 		a = 0;
 	if (m < 0)
 	{
-		tail_append(newmath(math_surround(), before));
+		tail_append(new MathNode(math_surround(), before));
 		curmlist = p->num;
 		curstyle = 2;
 		mlistpenalties = mode > 0;
@@ -93,7 +93,7 @@ void aftermath(void)
 		tail->link = temp_head->link;
 		while (tail->link)
 			tail = tail->link;
-		tail_append(newmath(math_surround(), after));
+		tail_append(new MathNode(math_surround(), after));
 		space_factor = 1000;
 		unsave();
 	}

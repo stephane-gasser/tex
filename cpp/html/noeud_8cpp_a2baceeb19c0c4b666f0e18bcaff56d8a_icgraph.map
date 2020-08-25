@@ -1,21 +1,16 @@
 <map id="getnode" name="getnode">
-<area shape="rect" id="node1" title=" " alt="" coords="344,436,412,463"/>
-<area shape="rect" id="node2" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="195,5,272,32"/>
-<area shape="rect" id="node3" href="$handlerightbrace_8h.html#a6c7743f430eb9379c2e5db3eddacae10" title=" " alt="" coords="5,31,123,57"/>
-<area shape="rect" id="node4" href="$conditional_8h.html#af06c6a5f754b740b4e414ab6fd713b34" title=" " alt="" coords="191,107,275,133"/>
-<area shape="rect" id="node5" href="$noeud_8h.html#a8fde8034bf645cba363de9042d370906" title=" " alt="" coords="186,157,281,184"/>
-<area shape="rect" id="node6" href="$fincol_8h.html#ac49c9c100529a1aa1f3c13a583cde844" title=" " alt="" coords="37,259,91,285"/>
-<area shape="rect" id="node7" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="205,259,262,285"/>
-<area shape="rect" id="node8" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="27,841,101,868"/>
-<area shape="rect" id="node9" href="$makemark_8h.html#ab64ff159f059107cbc2f5d985c97d6e2" title=" " alt="" coords="192,360,275,387"/>
-<area shape="rect" id="node10" href="$mathac_8h.html#af402080aef2ef90e17e7e16d0b66b218" title=" " alt="" coords="201,411,266,437"/>
-<area shape="rect" id="node11" href="$mathfraction_8h.html#a3c8f862dade1570bfb325004e7f9bfc5" title=" " alt="" coords="186,461,281,488"/>
-<area shape="rect" id="node12" href="$mathglue_8h.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="196,512,271,539"/>
-<area shape="rect" id="node13" href="$mathradical_8h.html#ae74c42c29ec4e69486c4917affc21955" title=" " alt="" coords="189,563,278,589"/>
-<area shape="rect" id="node14" href="$movement_8h.html#a20866aa1f5e095a472254bcf4c6d5e03" title=" " alt="" coords="192,613,275,640"/>
-<area shape="rect" id="node15" href="$prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="171,664,296,691"/>
-<area shape="rect" id="node16" href="$pushalignment_8h.html#a423bd156ecaca36ce80e724b8178080b" title=" " alt="" coords="180,715,287,741"/>
-<area shape="rect" id="node17" href="$sortavail_8h.html#aed193e67812d69956547fdf4d4ae0e53" title="sorts the available variable&#45;size nodes by location" alt="" coords="198,765,269,792"/>
-<area shape="rect" id="node18" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="199,816,268,843"/>
-<area shape="rect" id="node19" href="$vpackage_8h.html#acf3dde3f65c4430283151d9f9ce761fd" title=" " alt="" coords="194,309,273,336"/>
+<area shape="rect" id="node1" title=" " alt="" coords="301,309,369,336"/>
+<area shape="rect" id="node2" href="$conditional_8h.html#af06c6a5f754b740b4e414ab6fd713b34" title=" " alt="" coords="149,5,233,32"/>
+<area shape="rect" id="node3" href="$noeud_8h.html#a8fde8034bf645cba363de9042d370906" title=" " alt="" coords="143,56,238,83"/>
+<area shape="rect" id="node4" href="$fincol_8h.html#ac49c9c100529a1aa1f3c13a583cde844" title=" " alt="" coords="164,107,217,133"/>
+<area shape="rect" id="node5" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,385,80,412"/>
+<area shape="rect" id="node6" href="$mathac_8h.html#af402080aef2ef90e17e7e16d0b66b218" title=" " alt="" coords="158,208,223,235"/>
+<area shape="rect" id="node7" href="$mathfraction_8h.html#a3c8f862dade1570bfb325004e7f9bfc5" title=" " alt="" coords="143,259,238,285"/>
+<area shape="rect" id="node8" href="$mathglue_8h.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="153,309,228,336"/>
+<area shape="rect" id="node9" href="$mathradical_8h.html#ae74c42c29ec4e69486c4917affc21955" title=" " alt="" coords="146,360,235,387"/>
+<area shape="rect" id="node10" href="$movement_8h.html#a20866aa1f5e095a472254bcf4c6d5e03" title=" " alt="" coords="149,411,232,437"/>
+<area shape="rect" id="node11" href="$prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="128,461,253,488"/>
+<area shape="rect" id="node12" href="$pushalignment_8h.html#a423bd156ecaca36ce80e724b8178080b" title=" " alt="" coords="137,512,244,539"/>
+<area shape="rect" id="node13" href="$sortavail_8h.html#aed193e67812d69956547fdf4d4ae0e53" title="sorts the available variable&#45;size nodes by location" alt="" coords="155,563,226,589"/>
+<area shape="rect" id="node14" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="156,613,225,640"/>
 </map>

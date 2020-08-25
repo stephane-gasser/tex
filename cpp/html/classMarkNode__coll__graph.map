@@ -1,0 +1,5 @@
+<map id="MarkNode" name="MarkNode">
+<area shape="rect" id="node1" title=" " alt="" coords="15,171,97,197"/>
+<area shape="rect" id="node2" href="$classLinkedNode.html" title=" " alt="" coords="5,5,96,32"/>
+<area shape="rect" id="node3" href="$classTokenNode.html" title=" " alt="" coords="72,81,160,108"/>
+</map>

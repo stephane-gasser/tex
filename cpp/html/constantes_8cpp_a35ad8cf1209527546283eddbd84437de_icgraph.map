@@ -1,11 +1,9 @@
 <map id="character" name="character">
-<area shape="rect" id="node1" title="the character code in a char_node" alt="" coords="259,207,335,233"/>
-<area shape="rect" id="node2" href="$hlistout_8h.html#a7ace644ac544d9b67d962f83c7e5ad15" title=" " alt="" coords="137,29,201,56"/>
-<area shape="rect" id="node3" href="$hpack_8h.html#ad7ca7a1c0695329834e990548241b497" title=" " alt="" coords="141,80,198,107"/>
-<area shape="rect" id="node4" href="$cesure_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="128,131,211,157"/>
-<area shape="rect" id="node5" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,181,80,208"/>
-<area shape="rect" id="node6" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="135,232,203,259"/>
-<area shape="rect" id="node7" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="133,283,205,309"/>
-<area shape="rect" id="node8" href="$mathac_8h.html#af402080aef2ef90e17e7e16d0b66b218" title=" " alt="" coords="137,333,202,360"/>
-<area shape="rect" id="node9" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="135,384,204,411"/>
+<area shape="rect" id="node1" title="the character code in a char_node" alt="" coords="269,132,345,159"/>
+<area shape="rect" id="node2" href="$cesure_8h.html#ad2ec39c3db4249f202c32daca895f4da" title=" " alt="" coords="133,5,216,32"/>
+<area shape="rect" id="node3" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,31,80,57"/>
+<area shape="rect" id="node4" href="$makeaccent_8h.html#aca840bfdce0591976a8d844972501c13" title=" " alt="" coords="128,107,221,133"/>
+<area shape="rect" id="node5" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="141,157,209,184"/>
+<area shape="rect" id="node6" href="$makeord_8h.html#ab110be19e92defefe733e986767822ff" title=" " alt="" coords="139,208,211,235"/>
+<area shape="rect" id="node7" href="$mathac_8h.html#af402080aef2ef90e17e7e16d0b66b218" title=" " alt="" coords="142,259,207,285"/>
 </map>
