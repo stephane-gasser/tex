@@ -203,16 +203,16 @@ void flushnodelist(LinkedNode *p)
 					switch (subtype(p->num))
 					{
 						case open_node:
-							freenode(p->num, open_node_size);
+							delete p;
 							break;
 						case write_node:
 						case special_node:
-							deletetokenref(write_tokens(p->num));
-							freenode(p->num, write_node_size);
+							deletetokenref(dynamic_cast<NotOpenWriteWhatsitNode*>(p)->write_tokens);
+							delete p;
 							break;
 						case close_node:
 						case language_node: 
-							freenode(p->num, small_node_size);
+							delete p;
 							break;
 						default: 
 							confusion("ext3");
@@ -679,31 +679,6 @@ GlueSpec *newspec(GlueSpec *p)
 	q->shrink_order = p->shrink_order;
 	q->glue_ref_count = 0;
 	return q;
-}
-
-void newwhatsit(smallnumber s, smallnumber w)
-{
-	auto p = getnode(w);
-	type(p) = whatsit_node;
-	subtype(p) = s;
-	tail_append(p);
-}
-
-void newwritewhatsit(smallnumber w, Token t)
-{
-	newwhatsit(t.chr, w);
-	if (w != write_node_size)
-		write_stream(tail->num) = scanfourbitint();
-	else
-	{
-		int val = scanint();
-		if (val < 0)
-			val = 17;
-		else 
-			if (val > 15)
-				val = 16;
-		write_stream(tail->num) = val;
-	}
 }
 
 void appendchoices(void)

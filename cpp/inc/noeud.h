@@ -15,8 +15,6 @@ void newsavelevel(groupcode);
 GlueNode* newskipparam(smallnumber);
 [[deprecated]] halfword newspec(halfword);
 GlueSpec *newspec(GlueSpec*);
-void newwhatsit(smallnumber, smallnumber);
-void newwritewhatsit(smallnumber, Token);
 [[deprecated]] halfword copynodelist(halfword);
 LinkedNode* copynodelist(LinkedNode*);
 [[deprecated]] void flushnodelist(halfword);

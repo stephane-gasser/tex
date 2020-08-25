@@ -15,28 +15,42 @@ void doextension(Token t)
 	switch (t.chr)
 	{
 		case open_node:
-			newwritewhatsit(open_node_size, t);
+		{
+			auto ww = new OpenWriteWhatsitNode;
+			ww->write_stream = scanfourbitint();
 			scanoptionalequals();
 			scanfilename();
-			open_name(tail->num) = txt(curname);
-			open_area(tail->num) = txt(curarea);
-			open_ext(tail->num) = txt(curext);
+			ww->open_name = curname;
+			ww->open_area = curarea;
+			ww->open_ext = curext;
+			tail_append(ww);
 			break;
+		}
 		case write_node:
-			newwritewhatsit(write_node_size, t);
-			p = scantoks(false, false, t);
-			write_tokens(tail->num) = defref->num;
-			break;
 		case close_node:
-			newwritewhatsit(write_node_size, t);
-			write_tokens(tail->num) = 0;
-			break;
 		case special_node:
-			newwhatsit(special_node, write_node_size);
-			write_stream(tail->num) = 0;
-			p = scantoks(false, true, t);
-			write_tokens(tail->num) = defref->num;
+		{
+			auto ww = new NotOpenWriteWhatsitNode(t.chr);
+			ww->write_stream = 0;
+			if (t.chr != special_node)
+			{
+				int val = scanint();
+				if (val < 0)
+					val = 17;
+				else 
+					if (val > 15)
+						val = 16;
+				ww->write_stream = val;
+			}
+			ww->write_tokens = nullptr;
+			if (t.chr != close_node)
+			{
+				p = scantoks(false, t.chr == special_node, t);
+				ww->write_tokens = defref;
+			}
+			tail_append(ww);
 			break;
+		}
 		case immediate_code:
 			t = getxtoken();
 			if (t.cmd == extension && t.chr <= 2)
@@ -56,13 +70,13 @@ void doextension(Token t)
 				reportillegalcase(t);
 			else
 			{
-				newwhatsit(language_node, small_node_size);
 				clang = scanint();
 				if (clang <= 0 || clang > 255)
 						clang = 0;
-				what_lang(tail->num) = clang;
-				what_lhm(tail->num) = normmin(left_hyphen_min());
-				what_rhm(tail->num) = normmin(right_hyphen_min());
+				auto w = new LanguageWhatsitNode(clang);
+				w->what_lhm = normmin(left_hyphen_min());
+				w->what_rhm = normmin(right_hyphen_min());
+				tail_append(w);
 			}
 			break;
 		default: 

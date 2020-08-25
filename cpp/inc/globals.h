@@ -399,6 +399,45 @@ class MathNode : public LinkedNode
 		MathNode(scaled w, smallnumber s) : subtype(s), width(w) { type = math_node; }
 };
 
+class WhatsitNode : public LinkedNode
+{
+	public:
+		quarterword subtype;
+		WhatsitNode(smallnumber s) : subtype(s) { type = whatsit_node; }
+};
+
+class WriteWhatsitNode : public WhatsitNode
+{
+	public:
+		halfword write_stream;
+		WriteWhatsitNode(smallnumber s) : WhatsitNode(s) {}
+};
+
+class OpenWriteWhatsitNode : public WriteWhatsitNode
+{
+	public:
+		std::string open_name;
+		std::string open_area;
+		std::string open_ext;
+		OpenWriteWhatsitNode(void) : WriteWhatsitNode(/*open_node*/0) {}
+};
+
+class NotOpenWriteWhatsitNode : public WriteWhatsitNode
+{
+	public:
+		TokenNode *write_tokens;
+		NotOpenWriteWhatsitNode(smallnumber s) : WriteWhatsitNode(s) {}
+};
+
+class LanguageWhatsitNode : public WhatsitNode
+{
+	public:
+		halfword what_lang;
+		quarterword what_lhm;
+		quarterword what_rhm;
+		LanguageWhatsitNode(ASCIIcode l) : WhatsitNode(/*language_node*/4), what_lang(l) {}
+};
+
 typedef struct
 {
     int modefield; // -203..203
