@@ -1,17 +1,13 @@
 #include "closefilesandterminate.h"
 #include "impression.h"
-#include "dvifour.h"
+#include "dvi.h"
 #include "preparemag.h"
-#include "dvifontdef.h"
-#include "writedvi.h"
-#include "dviswap.h"
 #include "fichier.h"
 #include "police.h"
 
 void closefilesandterminate(void)
 {
-	int k; 
-	for (k = 0; k <= 15; k++)
+	for (int k = 0; k <= 15; k++)
 		if (writeopen[k])
 			aclose(writefile[k]);
 	while (curs > -1)
@@ -38,22 +34,22 @@ void closefilesandterminate(void)
 		dvifour(mag());
 		dvifour(maxv);
 		dvifour(maxh);
-		dvi_out(maxpush/0x1'00);
-		dvi_out(maxpush%0x1'00);
-		dvi_out((totalpages/0x1'00)%0x1'00);
-		dvi_out(totalpages%0x1'00);
+		dvi_out(maxpush>>8);
+		dvi_out(maxpush%(1<<8));
+		dvi_out((totalpages>>8)%(1<<8));
+		dvi_out(totalpages%(1<<8));
 		for (; fonts.size(); fonts.pop_back())
 			if (fonts.back().used)
 				dvifontdef(fonts.size()+1);
 		dvi_out(post_post);
 		dvifour(lastbop);
 		dvi_out(id_byte);
-		for (k = 4+(dvibufsize-dviptr)%4; k > 0; k--)
+		for (int k = 4+(dvibufsize-dviptr)%4; k > 0; k--)
 			dvi_out(223);
 		if (dvilimit == halfbuf)
-			writedvi(halfbuf, dvibufsize-1);
+			writedvi(halfbuf, dvibufsize);
 		if (dviptr > 0)
-			writedvi(0, dviptr-1);
+			writedvi(0, dviptr);
 		printnl("Output written on "+outputfilename+"// ("+std::to_string(totalpages)+" page"+(totalpages == 1 ? "" : "s")+", "+std::to_string(dvioffset+dviptr)+" bytes).");
 		bclose(dvifile);
 	}

@@ -8,8 +8,7 @@
 #include "openlogfile.h"
 #include "packjobname.h"
 #include "promptfilename.h"
-#include "dviswap.h"
-#include "dvifour.h"
+#include "dvi.h"
 #include "vlistout.h"
 #include "hlistout.h"
 #include <iostream>

@@ -1,11 +1,6 @@
 #include "hlistout.h"
-#include "dviswap.h"
-#include "movement.h"
-#include "prunemovements.h"
-#include "dvifontdef.h"
-#include "dvifour.h"
 #include "vlistout.h"
-#include "dvipop.h"
+#include "dvi.h"
 #include "outwhat.h"
 #include "erreur.h"
 #include <cmath>
