@@ -665,7 +665,7 @@ Token maincontrol(void)
 						offsave(t);
 				break;
 			case mmode+left_brace:
-				tail_append(newnoad());
+				tail_append(new Noad);
 				backinput(t);
 				scanmath(nucleus(tail->num));
 				break;
@@ -688,7 +688,7 @@ Token maincontrol(void)
 				setmathchar(scantwentysevenbitint()>>12, t);
 				break;
 			case mmode+math_comp:
-				tail_append(newnoad());
+				tail_append(new Noad);
 				tail->type = t.chr;
 				scanmath(nucleus(tail->num));
 				break;

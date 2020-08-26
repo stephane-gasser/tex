@@ -766,7 +766,7 @@ int& saved(halfword);
 alphafile& cur_file(void); //!< the current \a alpha_file variable
 int& if_line_field(halfword); 
 void append_to_name(int&, char); 
-int& location(halfword); //!< DVI byte number for a movement command
+//int& location(halfword); //!< DVI byte number for a movement command
 float vet_glue(float);
 halfword nucleus(halfword); //!< the \a nucleus field of a noad
 halfword supscr(halfword); //!< the \a supscr field of a noad

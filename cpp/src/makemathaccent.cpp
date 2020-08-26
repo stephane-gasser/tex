@@ -12,7 +12,9 @@ void makemathaccent(halfword q)
 	{
 		auto c = curc;
 		scaled s = 0;
-		if (math_type(nucleus(q)) == math_char)
+		Noad *Q;
+		Q->num = q;
+		if (Q->nucleus.math_type == math_char)
 		{
 			std::tie(ft, curc) = fetch(nucleus(q));
 			if (char_tag(ft.char_info(curc)) == lig_tag)
@@ -50,18 +52,22 @@ void makemathaccent(halfword q)
 			c = y;
 		}
 		scaled delta = std::min(h, ft.x_height());
-		if (math_type(supscr(q)) || math_type(subscr(q)))
-			if (math_type(nucleus(q)) == math_char)
+		if (Q->supscr.math_type || Q->subscr.math_type)
+			if (Q->nucleus.math_type == math_char)
 			{
 				flushnodelist(x);
-				auto xx = newnoad();
-				mem[nucleus(xx)] = mem[nucleus(q)];
-				mem[supscr(xx)] = mem[supscr(q)];
-				mem[subscr(xx)] = mem[subscr(q)];
-				mem[supscr(xx)].hh = twohalves{0, 0};
-				mem[subscr(xx)].hh = twohalves{0, 0};
-				math_type(nucleus(q)) = sub_mlist;
-				info(nucleus(q)) = xx;
+				auto n = new Noad;
+				n->nucleus = Q->nucleus;
+				n->supscr = Q->supscr;
+				n->subscr = Q->subscr;
+				Q->subscr.math_type = 0;
+				// fam/character = 0
+				Q->supscr.math_type = 0;
+				// fam/character = 0
+				//mem[supscr(q)].hh = twohalves{0, 0};
+				//mem[subscr(q)].hh = twohalves{0, 0};
+				Q->nucleus.math_type = sub_mlist;
+				Q->nucleus.info = n;
 				x = cleanbox(nucleus(q), curstyle);
 				delta += x->height-h;
 				h = x->height;
@@ -81,7 +87,7 @@ void makemathaccent(halfword q)
 			y->list_ptr = p;
 			y->height = h;
 		}
-		info(nucleus(q)) = y->num;
-		math_type(nucleus(q)) = sub_box;
+		Q->nucleus.math_type = sub_box;
+		Q->nucleus.info = y;
 	}
 }

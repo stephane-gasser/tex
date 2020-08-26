@@ -32,7 +32,6 @@ int& new_hlist(halfword p) { return mem[nucleus(p)].int_; }
 int& if_line_field(halfword p) { return mem[p+1].int_; }
 int& total_demerits(halfword p) { return mem[p+2].int_; }
 bool is_char_node(halfword p) { return p >= himemmin; }
-int& location(halfword p) { return mem[p+2].int_; }
 halfword& rlink(halfword p) { return link(p+1); }
 halfword& break_node(halfword p) { return link(p+1); }
 halfword& leader_ptr(halfword p) { return link(p+1); }

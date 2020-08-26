@@ -4,6 +4,8 @@
 
 void makeover(halfword q)
 {
-	info(nucleus(q)) = overbar(cleanbox(nucleus(q), cramped_style(curstyle))->num, 3*default_rule_thickness(), default_rule_thickness())->num;
-	math_type(nucleus(q)) = sub_box;
+	Noad *Q;
+	Q->num = q;
+	Q->nucleus.math_type = sub_box;
+	Q->nucleus.info = overbar(cleanbox(nucleus(q), cramped_style(curstyle))->num, 3*default_rule_thickness(), default_rule_thickness());
 }

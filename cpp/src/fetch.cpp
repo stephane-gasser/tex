@@ -8,8 +8,8 @@
 
 [[nodiscard]] std::tuple<Font, quarterword> fetch(halfword a)
 {
-	auto curc = subtype(a);
-	auto curf = fam_fnt(type(a)+cursize);
+	auto curc = character(a);
+	auto curf = fam_fnt(fam(a)+cursize);
 	auto &ft = fonts[curf];
 	try
 	{

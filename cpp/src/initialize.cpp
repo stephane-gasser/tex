@@ -67,13 +67,8 @@ void Initialize(void)
 	doingleaders = false;
 	deadcycles = 0;
 	curs = -1;
-	halfbuf = dvibufsize/2;
-	dvilimit = dvibufsize;
 	dviptr = 0;
 	dvioffset = 0;
-	dvigone = 0;
-	downptr = 0;
-	rightptr = 0;
 	adjusttail = nullptr;
 	lastbadness = 0;
 	packbeginline = 0;

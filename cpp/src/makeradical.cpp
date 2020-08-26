@@ -7,6 +7,8 @@
 
 void makeradical(halfword q)
 {
+	Noad *Q;
+	Q->num = q;
 	auto x = cleanbox(nucleus(q), cramped_style(curstyle));
 	scaled clr;
 	if (curstyle < text_style)
@@ -22,6 +24,6 @@ void makeradical(halfword q)
 		clr += half(delta);
 	y->shift_amount = -(x->height+clr);
 	y->link = overbar(x->num, clr, y->height);
-	info(nucleus(q)) = hpack(y, 0, additional)->num;
-	link(nucleus(q)) = sub_box;
+	Q->nucleus.math_type = sub_box;
+	Q->nucleus.info = hpack(y, 0, additional);
 }

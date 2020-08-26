@@ -25,7 +25,6 @@ constexpr int poolsize = 32000;
 constexpr int savesize = 600;
 constexpr int triesize = 8000;
 constexpr int trieopsize = 500;
-constexpr int dvibufsize = 800;
 constexpr int filenamesize = 40;
 constexpr int CHECKSUM = 117275187;
 constexpr int mem_bot = 0; //!<  smallest index in the \a mem array dumped by INITEX
@@ -439,6 +438,25 @@ class LanguageWhatsitNode : public WhatsitNode
 		LanguageWhatsitNode(ASCIIcode l) : WhatsitNode(/*language_node*/4), what_lang(l) {}
 };
 
+class NoadContent : public AnyNode
+{
+	public:
+		halfword math_type = 0;
+		LinkedNode *info = nullptr;
+		quarterword character = 0;
+		quarterword fam = 0;
+};
+
+class Noad : public LinkedNode
+{
+	public:
+		quarterword subtype;
+		NoadContent nucleus;
+		NoadContent subscr;
+		NoadContent supscr;
+		Noad(void) : subtype(0/*normal*/) { type = ord_noad; }
+};
+
 typedef struct
 {
     int modefield; // -203..203
@@ -531,7 +549,6 @@ inline int lastbop;
 inline int deadcycles;
 inline int lq, lr;
 inline int dvioffset;
-inline int dvigone;
 inline int curs;
 inline int lastbadness;
 inline int packbeginline;
@@ -647,11 +664,7 @@ inline bool doingleaders;
 inline quarterword c, f; // ????????????????
 inline scaled ruleht, ruledp, rulewd;
 inline halfword g; // ??????????????
-inline eightbits dvibuf[dvibufsize+1];
-inline dviindex halfbuf;
-inline dviindex dvilimit;
 inline dviindex dviptr;
-inline halfword downptr, rightptr;
 inline scaled dvih, dviv;
 inline scaled curh, curv;
 inline internalfontnumber dvif;

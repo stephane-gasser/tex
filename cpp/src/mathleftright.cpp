@@ -25,7 +25,7 @@ void mathleftright(Token tk)
 	else
 	{
 		LinkedNode *p;
-		p->num = newnoad();
+		p = new Noad;
 		p->type = t;
 		scandelimiter(delimiter(p->num), false, tk);
 		if (t == left_noad)
@@ -38,10 +38,11 @@ void mathleftright(Token tk)
 		{
 			p->num = finmlist(p->num);
 			unsave();
-			tail_append(newnoad());
-			tail->type = inner_noad;
-			math_type(nucleus(tail->num)) = sub_mlist;
-			info(nucleus(tail->num)) = p->num;
+			auto n = new Noad;
+			n->type = inner_noad;
+			n->nucleus.math_type = sub_mlist;
+			n->nucleus.info = p;
+			tail_append(n);
 		}
 	}
 }

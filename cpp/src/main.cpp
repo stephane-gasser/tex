@@ -11,7 +11,7 @@
 #include "fichier.h"
 #include "maincontrol.h"
 #include "finalcleanup.h"
-#include "closefilesandterminate.h"
+#include "dvi.h"
 #include <iostream>
 
 int main()

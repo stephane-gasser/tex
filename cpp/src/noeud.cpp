@@ -291,17 +291,20 @@ void flushnodelist(LinkedNode *p)
 				case under_noad:
 				case vcenter_noad:
 				case accent_noad:
-					if (math_type(nucleus(p->num)) >= sub_box)
-						flushnodelist(nucleus(p->num));
-					if (math_type(supscr(p->num)) >= sub_box)
-						flushnodelist(info(supscr(p->num)));
-					if (math_type(subscr(p->num)) >= sub_box)
-						flushnodelist(info(subscr(p->num)));
-					if (type(p->num) == radical_noad || type(p->num) == accent_noad)
+				{
+					auto P = dynamic_cast<Noad*>(p);
+					if (P->nucleus.math_type >= sub_box)
+						flushnodelist(P->nucleus.info);
+					if (P->supscr.math_type >= sub_box)
+						flushnodelist(P->supscr.info);
+					if (P->subscr.math_type >= sub_box)
+						flushnodelist(P->subscr.info);
+					if (p->type == radical_noad || p->type == accent_noad)
 						freenode(p->num, radical_noad_size);
 					else
-						freenode(p->num, noad_size);
+						delete p;
 					break;
+				}
 				case left_noad:
 				case right_noad:
 					freenode(p->num, noad_size);
@@ -632,17 +635,6 @@ void newinteraction(Token t)
 	selector = interaction == batch_mode ? no_print : term_only;
 	if (logopened)
 		selector += 2;
-}
-
-halfword newnoad(void)
-{
-	auto p = getnode(noad_size);
-	type(p) = ord_noad;
-	subtype(p) = normal; 
-	mem[nucleus(p)].hh = twohalves{0, 0};
-	mem[subscr(p)].hh = twohalves{0, 0};
-	mem[supscr(p)].hh = twohalves{0, 0};
-	return p;
 }
 
 void newsavelevel(groupcode c)

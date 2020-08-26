@@ -3,7 +3,7 @@
 #include "packfilename.h"
 #include "fichier.h"
 #include "promptfilename.h"
-#include "specialout.h"
+#include "dvi.h"
 #include "erreur.h"
 #include "texte.h"
 

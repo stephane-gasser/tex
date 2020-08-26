@@ -44,20 +44,25 @@ BoxNode* rebox(BoxNode *b, scaled w)
 
 BoxNode *cleanbox(halfword p, smallnumber s)
 {
-	LinkedNode *q;
+	LinkedNode *q; //beginning of a list to be boxed
 	do
 	{
-		switch (link(p))
+		NoadContent *P;
+		P->num = p;
+		switch (P->math_type)
 		{
-			case 1:
-				curmlist = newnoad();
+			case math_char:
+			{
+				auto n = new Noad;
+				curmlist = n->num;
 				mem[nucleus(curmlist)] = mem[p];
 				break;
-			case 2:
+			}
+			case sub_box:
 				q->num = info(p);
 				continue;
 				break;
-			case 3: 
+			case sub_mlist: 
 				curmlist = info(p);
 				break;
 			default:
@@ -120,7 +125,6 @@ void alterboxdimen(Token t)
 
 void boxend(int boxcontext)
 {
-	halfword p; //\a ord_noad for new box in math mode
 	if (boxcontext < box_flag)
 	{
 		if (curbox)
@@ -144,10 +148,10 @@ void boxend(int boxcontext)
 					space_factor = 1000;
 				else
 				{
-					p = newnoad();
-					math_type(nucleus(p)) = sub_box;
-					info(nucleus(p)) = curbox->num;
-					curbox->num = p;
+					auto p = new Noad; //\a ord_noad for new box in math mode
+					p->nucleus.math_type = sub_box;
+					p->nucleus.info = curbox;
+					curbox = dynamic_cast<BoxNode*>(p);
 				}
 				tail_append(curbox);
 			}

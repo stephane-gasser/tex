@@ -19,7 +19,7 @@ void subsup(eightbits cmd)
 		}
 	if (p == 0 || t)
 	{
-		tail_append(newnoad());
+		tail_append(new Noad);
 		p = supscr(tail->num)+cmd-sup_mark;
 		if (t)
 		{

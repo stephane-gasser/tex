@@ -11,10 +11,10 @@ void indentinhmode(Token t)
 			space_factor = 1000;
 		else
 		{
-			auto q = newnoad();
-			math_type(nucleus(q)) = sub_box;
-			info(nucleus(q)) = p->num;
-			p->num = q;
+			auto q = new Noad;
+			q->nucleus.math_type = sub_box;
+			q->nucleus.info = p;
+			p = dynamic_cast<BoxNode*>(q);
 		}
 		tail_append(p);
 	}

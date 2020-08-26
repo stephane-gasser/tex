@@ -13,6 +13,8 @@ void makeunder(halfword q)
 	scaled delta = y->height+y->depth+default_rule_thickness();
 	y->height = x->height;
 	y->depth = delta-y->height;
-	info(nucleus(q)) = y->num;
-	math_type(nucleus(q)) = sub_box;
+	Noad *Q;
+	Q->num = q;
+	Q->nucleus.math_type = sub_box;
+	Q->nucleus.info = y;
 }

@@ -133,16 +133,19 @@ void handlerightbrace(Token t, halfword &loop)
 			alignpeek(loop);
 			break;
 		case vcenter_group:
+		{
 			endgraf();
 			unsave();
 			saveptr -= 2;
 			p = vpack(head->link, saved(1), saved(0));
 			popnest();
-			tail_append(newnoad());
-			tail->type = vcenter_noad;
-			math_type(nucleus(tail->num)) = sub_box;
-			info(nucleus(tail->num)) = p->num;
+			auto n = new Noad;
+			n->type = vcenter_noad;
+			n->nucleus.math_type = sub_box;
+			n->nucleus.info = p;
+			tail_append(n);
 			break;
+		}
 		case math_choice_group:
 			buildchoices(t);
 			break;
@@ -155,7 +158,8 @@ void handlerightbrace(Token t, halfword &loop)
 			if (p && p->link == nullptr)
 				if (p->type == ord_noad)
 				{
-					if (math_type(subscr(p->num)) == 0 && math_type(supscr(p->num)) == 0)
+					auto P = dynamic_cast<Noad*>(p);
+					if (P->subscr.math_type == 0 && P->supscr.math_type == 0)
 					{
 						mem[saved(0)] = mem[nucleus(p->num)];
 						delete p;
@@ -170,7 +174,7 @@ void handlerightbrace(Token t, halfword &loop)
 								while (q->link != tail)
 									q = q->link;
 								q->link = p;
-								freenode(tail->num, noad_size);
+								delete tail;
 								tail = p;
 							}
 			break;

@@ -393,36 +393,28 @@ std::string asSpec(GlueSpec *p, const std::string &s = "")
 static std::string shownodelist(LinkedNode*, const std::string &);
 
 //! Display a noad field.
-static std::string subsidiarydata(LinkedNode *p, char c, const std::string &symbol)
+static std::string subsidiarydata(const NoadContent &p, char c, const std::string &symbol)
 {
 	if (cur_length() >= depththreshold)
 	{
-		if (math_type(p->num))
+		if (p.math_type)
 			return " []";
 		return "";
 	}
 	std::ostringstream oss;
-	switch (math_type(p->num))
+	switch (p.math_type)
 	{
 		case math_char:
-			oss << "\n" << symbol << c << famandchar(p->num);
+			oss << "\n" << symbol << c << famandchar(p.num);
 			break;
 		case sub_box: 
-		{
-			LinkedNode *i;
-			i->num = info(p->num);
-			oss << shownodelist(i, symbol+c);
+			oss << shownodelist(p.info, symbol+c);
 			break;
-		}
 		case sub_mlist:
-			if (info(p->num) == 0)
+			if (p.info == nullptr)
 				oss << "\n" << symbol << c << "{}";
 			else
-			{
-				LinkedNode *i;
-				i->num = info(p->num);
-				oss << shownodelist(i, symbol+c);
-			}
+				oss << shownodelist(p.info, symbol+c);
 	}
 	return oss.str();
 }
@@ -891,21 +883,16 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 						case right_noad:
 							oss << esc("right") << asDelimiter(delimiter(p->num));
 					}
-					if (subtype(p->num))
-						if (subtype(p->num) == limits)
+					auto P = dynamic_cast<Noad*>(p);
+					if (P->subtype)
+						if (P->subtype == limits)
 							oss << esc("limits");
 						else
 							oss << esc("nolimits");
-					LinkedNode *l;
 					if (p->type < left_noad)
-					{
-						l->num = nucleus(p->num);
-						oss << subsidiarydata(l, '.', symbol);
-					}
-					l->num = supscr(p->num);
-					oss << subsidiarydata(l, '^', symbol);
-					l->num = subscr(p->num);
-					oss << subsidiarydata(l, '_', symbol);
+						oss << subsidiarydata(P->nucleus, '.', symbol);
+					oss << subsidiarydata(P->supscr, '^', symbol);
+					oss << subsidiarydata(P->subscr, '_', symbol);
 					break;
 				}
 				case fraction_noad:
@@ -915,10 +902,10 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 						oss << ", left-delimiter " << asDelimiter(left_delimiter(p->num));
 					if (small_fam(right_delimiter(p->num)) || small_char(right_delimiter(p->num)) || large_fam(right_delimiter(p->num)) || large_char(right_delimiter(p->num)))
 						oss << ", right-delimiter " << asDelimiter(right_delimiter(p->num));
-					LinkedNode *l;
-					l->num = numerator(p->num);
+					NoadContent l;
+					l.num = numerator(p->num);
 					oss << subsidiarydata(l, '\\', symbol);
-					l->num = denominator(p->num);
+					l.num = denominator(p->num);
 					oss << subsidiarydata(l, '/', symbol);
 					break;
 				}

@@ -14,10 +14,12 @@ static int big_op_spacing5(void) { return mathex(13); } //!< padding above and b
 
 scaled makeop(halfword q)
 {
-	if (subtype(q) == normal && curstyle < text_style)
-		subtype(q) = limits;
+	Noad *Q;
+	Q->num = q;
+	if (Q->subtype == normal && curstyle < text_style)
+		Q->subtype = limits;
 	scaled delta;
-	if (math_type(nucleus(q)) == math_char)
+	if (Q->nucleus.math_type == math_char)
 	{
 		auto [ft, curc] = fetch(nucleus(q));
 		if (curstyle < text_style && char_tag(ft.char_info(curc)) == list_tag)
@@ -26,20 +28,20 @@ scaled makeop(halfword q)
 			if (char_exists(ft.char_info(c)))
 			{
 				curc = c;
-				character(nucleus(q)) = c;
+				Q->nucleus.character = c;
 			}
 		}
 		delta = ft.char_italic(curc);
 		auto x = cleanbox(nucleus(q), curstyle);
-		if (math_type(subscr(q)) && subtype(q) != limits)
+		if (Q->subscr.math_type && Q->subtype != limits)
 		x->width -= delta;
 		x->shift_amount = half(x->height-x->depth)-axis_height(cursize);
-		math_type(nucleus(q)) = sub_box;
-		info(nucleus(q)) = x->num;
+		Q->nucleus.math_type = sub_box;
+		Q->nucleus.info = x;
 	}
 	else
 		delta = 0;
-	if (subtype(q) == limits)
+	if (Q->subtype == limits)
 	{
 		auto x = cleanbox(supscr(q), sup_style(curstyle));
 		auto y = cleanbox(nucleus(q), curstyle);
@@ -54,7 +56,7 @@ scaled makeop(halfword q)
 		z->shift_amount = -x->shift_amount;
 		v->height = y->height;
 		v->depth = y->depth;
-		if (math_type(supscr(q)) == 0)
+		if (Q->supscr.math_type == 0)
 		{
 			delete x;
 			v->list_ptr = y;
@@ -72,7 +74,7 @@ scaled makeop(halfword q)
 			v->list_ptr = p;
 			v->height += mathex(big_op_spacing5())+x->height+x->depth+shiftup;
 		}
-		if (math_type(subscr(q)) == 0)
+		if (Q->subscr.math_type == 0)
 			delete z;
 		else
 		{

@@ -234,7 +234,8 @@ void mlisttohlist(void)
 			default: 
 				confusion("mlist1");
 		}
-		switch (math_type(nucleus(q->num)))
+		auto Q = dynamic_cast<Noad*>(q);
+		switch (Q->nucleus.math_type)
 		{
 			case math_char:
 			case math_text_char:
@@ -242,10 +243,10 @@ void mlisttohlist(void)
 				if (char_exists(ft.char_info(curc)))
 				{
 					delta = ft.char_italic(curc);
-					p = newcharacter(fam_fnt(type(nucleus(q->num))+cursize), curc);
-					if (math_type(nucleus(q->num)) == math_text_char && ft.space())
+					p = newcharacter(fam_fnt(Q->nucleus.fam+cursize), curc);
+					if (Q->nucleus.math_type == math_text_char && ft.space())
 						delta = 0;
-					if (math_type(subscr(q->num)) == 0 && delta)
+					if (Q->subscr.math_type == 0 && delta)
 					{
 						p->link = new KernNode(delta);
 						delta = 0;
@@ -258,10 +259,10 @@ void mlisttohlist(void)
 				p = nullptr;
 				break;
 			case sub_box: 
-				p->num = info(nucleus(q->num));
+				p = Q->nucleus.info;
 				break;
 			case sub_mlist:
-				curmlist = info(nucleus(q->num));
+				curmlist = Q->nucleus.info->num;
 				savestyle = curstyle;
 				mlistpenalties = false;
 				mlisttohlist();

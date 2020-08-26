@@ -15,18 +15,18 @@ void setmathchar(int c, Token t)
 	}
 	else
 	{
-		auto p = newnoad();
-		math_type(nucleus(p)) = math_char;
-		character(nucleus(p)) = c%(1<<8);
-		fam(nucleus(p)) = (c>>8)%(1<<4);
+		auto p = new Noad;
+		p->nucleus.math_type = math_char;
+		p->nucleus.character = c%(1<<8);
+		p->nucleus.fam = (c>>8)%(1<<4);
 		if (c >= var_code)
 		{
 			if (fam_in_range())
-				fam(nucleus(p)) = cur_fam();
-			type(p) = ord_noad;
+				p->nucleus.fam = cur_fam();
+			p->type = ord_noad;
 		}
 		else
-			type(p) = ord_noad+(c>>12);
+			p->type = ord_noad+(c>>12);
 		tail_append(p);
 	}
 }
