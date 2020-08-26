@@ -13,8 +13,6 @@ void newinteraction(Token);
 halfword newnoad(void);
 void newsavelevel(groupcode);
 GlueNode* newskipparam(smallnumber);
-[[deprecated]] halfword newspec(halfword);
-GlueSpec *newspec(GlueSpec*);
 [[deprecated]] halfword copynodelist(halfword);
 LinkedNode* copynodelist(LinkedNode*);
 [[deprecated]] void flushnodelist(halfword);

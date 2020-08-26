@@ -3,14 +3,12 @@
 #include "erreur.h"
 #include "dvi.h"
 
-void specialout(halfword p)
+void specialout(NotOpenWriteWhatsitNode *p)
 {
 	synch_h();
 	synch_v();
 	auto oldsetting = selector;
-	TokenNode *t;
-	t->num = link(write_tokens(p));
-	auto s = tokenlist(t, 0, poolsize/*-poolptr*/);
+	auto s = tokenlist(dynamic_cast<TokenNode*>(p->write_tokens->link), 0, poolsize/*-poolptr*/);
 	if (cur_length() < 256)
 	{
 		dvi_out(xxx1);

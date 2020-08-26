@@ -159,7 +159,7 @@ static void main_loop_move_lig(void)
 		GlueSpec *Mainp = cur_font().glue;
 		if (mainp == nullptr)
 		{
-			Mainp = newspec(zero_glue);
+			Mainp = new GlueSpec(zero_glue);
 			maink = cur_font().parambase+space_code;
 			Mainp->width = cur_font().space();
 			Mainp->stretch = cur_font().space_stretch();

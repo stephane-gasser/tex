@@ -3,9 +3,9 @@
 #include "xnoverd.h"
 #include "multandadd.h"
 
-void mathkern(halfword p, scaled m)
+void mathkern(KernNode *p, scaled m)
 {
-	if (subtype(p) == mu_glue)
+	if (p->subtype == mu_glue)
 	{
 		int n = xovern(m, unity);
 		scaled f = remainder_;
@@ -14,7 +14,7 @@ void mathkern(halfword p, scaled m)
 			n--;
 			f += unity;
 		}
-		width(p) = mu_mult(n, width(p));
-		subtype(p) = 1;
+		p->width = mu_mult(n, p->width);
+		p->subtype = 1;
 	}
 }

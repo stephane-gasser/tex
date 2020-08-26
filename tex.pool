@@ -525,8 +525,8 @@
 23Missing = inserted for 
 48I was expecting to see `<', `=', or `>'. Didn't.
 06{case 
-10TeXinputs:
-09TeXfonts:
+10TeXinputs/
+09TeXfonts/
 04.fmt
 15input file name
 19I can't find file `
@@ -1042,4 +1042,4 @@
 59On this page there's a \write with fewer real {'s than }'s.
 04ext4
 16output file name
-*117275187
+*335740648

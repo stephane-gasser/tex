@@ -474,7 +474,7 @@ void scanfilename(void)
 		if (negative)
 			val = -val;
 	}
-	auto q = newspec(zero_glue);
+	auto q = new GlueSpec(zero_glue);
 	q->width = val;
 	if (scankeyword("plus"))
 	{
@@ -967,7 +967,7 @@ RuleNode *scanrulespec(Token t)
 		if (lev >= glue_val)
 		{
 			GlueSpec old(val);
-			auto g = newspec(&old);
+			auto g = new GlueSpec(&old);
 			g->width = -old.width;
 			g->stretch = -old.stretch;
 			g->shrink = -old.shrink;

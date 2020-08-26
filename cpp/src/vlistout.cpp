@@ -79,7 +79,7 @@ void vlistout(BoxNode *thisbox)
 					continue;
 				}
 				case whatsit_node:
-					outwhat(p->num);
+					outwhat(dynamic_cast<WhatsitNode*>(p));
 					break;
 				case glue_node:
 				{

@@ -7,42 +7,51 @@
 #include "erreur.h"
 #include "texte.h"
 
-void outwhat(halfword p)
+void outwhat(WhatsitNode *P)
 {
-	switch (subtype(p))
+	switch (P->subtype)
 	{
-		case open_node:
-		case write_node:
-		case close_node:
+		case open_node: 
 			if (!doingleaders)
 			{
-				smallnumber j = info(p+1);
-				if (subtype(p) == 1)
-					writeout(p);
-				else
+				auto Q = dynamic_cast<OpenWriteWhatsitNode*>(P);
+				smallnumber j = Q->write_stream;
+				if (writeopen[j])
+					aclose(writefile[j]);
+				if (j < 16)
 				{
-					if (writeopen[j])
-						aclose(writefile[j]);
-					if (subtype(p) == 2)
-						writeopen[j] = false;
-					else 
-						if (j < 16)
-						{
-							curname = link(p+1);
-							curarea = info(p+2);
-							curext = link(p+2);
-							if (curext == "")
-								curext = ".tex";
-							pack_cur_name();
-							while (!aopenout(writefile[j]))
-							promptfilename("output file name", ".tex"); 
-							writeopen[j] = true;
-						}
+					curname = Q->open_name;
+					curarea = Q->open_area;
+					curext = Q->open_ext;
+					if (curext == "")
+						curext = ".tex";
+					pack_cur_name();
+					while (!aopenout(writefile[j]))
+					promptfilename("output file name", ".tex"); 
+					writeopen[j] = true;
 				}
 			}
 			break;
+		case write_node:
+			if (!doingleaders)
+			{
+				auto Q = dynamic_cast<NotOpenWriteWhatsitNode*>(P);
+				smallnumber j = Q->write_stream;
+				writeout(Q);
+			}
+			break;
+		case close_node:
+			if (!doingleaders)
+			{
+				auto Q = dynamic_cast<NotOpenWriteWhatsitNode*>(P);
+				smallnumber j = Q->write_stream;
+				if (writeopen[j])
+					aclose(writefile[j]);
+				writeopen[j] = false;
+			}
+			break;
 		case special_node: 
-			specialout(p);
+			specialout(dynamic_cast<NotOpenWriteWhatsitNode*>(P));
 			break;
 		case language_node:
 			break;

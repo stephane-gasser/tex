@@ -228,7 +228,7 @@ void mlisttohlist(void)
 				continue;
 			}
 			case kern_node:
-				mathkern(q->num, curmu);
+				mathkern(dynamic_cast<KernNode*>(q), curmu);
 				q = q->link;
 				continue;
 			default: 

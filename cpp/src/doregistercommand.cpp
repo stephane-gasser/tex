@@ -89,7 +89,7 @@ void doregistercommand(smallnumber a, Token t)
 					break;
 				case glue_val: 
 				case mu_val: 
-					g = newspec(scanglue(p));
+					g = new GlueSpec(scanglue(p));
 					r = equiv(l);
 					GlueSpec *R;
 					R->num = r;
@@ -132,7 +132,7 @@ void doregistercommand(smallnumber a, Token t)
 				s = equiv(l);
 				GlueSpec *S;
 				S->num = s;
-				g = newspec(S);
+				g = new GlueSpec(S);
 				r = g->num;
 				g->width = nx_plus_y(S->width, val, 0);
 				g->stretch = nx_plus_y(S->stretch, val, 0);
@@ -152,7 +152,7 @@ void doregistercommand(smallnumber a, Token t)
 				s = equiv(l);
 				GlueSpec *S;
 				S->num = s;
-				g = newspec(S);
+				g = new GlueSpec(S);
 				g->width = xovern(S->width, val);
 				g->stretch = xovern(S->stretch, val);
 				g->shrink = xovern(S->shrink, val);

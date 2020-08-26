@@ -90,21 +90,24 @@ LinkedNode* copynodelist(LinkedNode *p)
 					break;
 				}
 				case whatsit_node:
-					switch (subtype(p->num))
+					switch (dynamic_cast<WhatsitNode*>(p)->subtype)
 					{
 						case open_node:
-							r->num = getnode(open_node_size);
+							r = new OpenWriteWhatsitNode;
 							words = open_node_size;
 							break;
 						case write_node:
 						case special_node:
-							r->num = getnode(write_node_size);
-							add_token_ref(write_tokens(p->num));
+							r = new NotOpenWriteWhatsitNode(dynamic_cast<WhatsitNode*>(p)->subtype);
+							dynamic_cast<NotOpenWriteWhatsitNode*>(p)->write_tokens->token_ref_count++;
 							words = write_node_size;
 							break;
 						case close_node:
+							r = new NotOpenWriteWhatsitNode(close_node);
+							words = small_node_size;
+							break;
 						case language_node:
-							r->num = getnode(small_node_size);
+							r = new LanguageWhatsitNode(clang/* langue de p ? */);
 							words = small_node_size;
 							break;
 						default:
@@ -120,9 +123,15 @@ LinkedNode* copynodelist(LinkedNode *p)
 					break;
 				}
 				case kern_node:
+					r = new KernNode(0);
+					words = 2;
+					break;
 				case math_node:
+					r = new MathNode(0, 0);
+					words = 2;
+					break;
 				case penalty_node:
-					r->num = getnode(small_node_size);
+					r = new PenaltyNode;
 					words = 2;
 					break;
 				case ligature_node:
@@ -200,7 +209,7 @@ void flushnodelist(LinkedNode *p)
 					break;
 				}
 				case whatsit_node:
-					switch (subtype(p->num))
+					switch (dynamic_cast<WhatsitNode*>(p)->subtype)
 					{
 						case open_node:
 							delete p;
@@ -211,7 +220,7 @@ void flushnodelist(LinkedNode *p)
 							delete p;
 							break;
 						case close_node:
-						case language_node: 
+						case language_node:
 							delete p;
 							break;
 						default: 
@@ -652,33 +661,10 @@ void newsavelevel(groupcode c)
 
 GlueNode* newskipparam(smallnumber n)
 {
-	auto p = new GlueNode(newspec(glueParams[n]));
+	auto p = new GlueNode(new GlueSpec(glueParams[n]));
 	p->glue_ptr->glue_ref_count = 0;
 	p->subtype = n+1;
 	return p;
-}
-
-[[deprecated]] halfword newspec(halfword p)
-{
-	auto q = getnode(glue_spec_size);
-	mem[q] = mem[p];
-	glue_ref_count(q) = 0;
-	width(q) = width(p);
-	stretch(q) = stretch(p);
-	shrink(q) = shrink(p);
-	return q;
-}
-
-GlueSpec *newspec(GlueSpec *p)
-{
-	auto q = new GlueSpec;
-	q->width = p->width;
-	q->stretch = p->stretch;
-	q->shrink = p->shrink;
-	q->stretch_order = p->stretch_order;
-	q->shrink_order = p->shrink_order;
-	q->glue_ref_count = 0;
-	return q;
 }
 
 void appendchoices(void)
@@ -812,7 +798,7 @@ void appspace(halfword &mainp, fontindex &maink)
 			Mainp = cur_font().glue;
 			if (Mainp == nullptr)
 			{
-				Mainp = newspec(zero_glue);
+				Mainp = new GlueSpec(zero_glue);
 				maink = space_code+cur_font().parambase;
 				Mainp->width = cur_font().space();
 				Mainp->stretch = cur_font().space_stretch();
@@ -820,7 +806,7 @@ void appspace(halfword &mainp, fontindex &maink)
 				cur_font().glue = Mainp;
 			}
 		}
-		Mainp = newspec(Mainp);
+		Mainp = new GlueSpec(Mainp);
 		// Modify the glue specification in \a main_p according to the space factor
 		if (space_factor >= 2000)
 			Mainp->width += cur_font().extra_space();

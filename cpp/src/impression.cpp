@@ -251,13 +251,13 @@ std::string asFilename(const std::string &n, const std::string &a, const std::st
 	return a+n+e;
 }
 
-static std::string fontandchar(int p)
+static std::string fontandchar(CharNode *p)
 {
-	if (p > memend)
-		return esc("CLOBBERED.");
-	if (type(p) < 0 || type(p) > fontmax)
-		return "*"+esc("FONT")+" "+TXT(subtype(p));
-	return esc(TXT(text(frozen_null_font+type(p))))+esc("FONT")+" "+TXT(subtype(p));
+/*	if (p > memend)
+		return esc("CLOBBERED.");*/
+	if (&p->font == nullptr)
+		return "*"+esc("FONT")+" "+char(p->character);
+	return esc(p->font.name)+esc("FONT")+" "+char(p->character);
 }
 
 static std::string glue(scaled d, int order, const std::string &s = "")
@@ -436,9 +436,9 @@ std::string twoDigits(int n)
 	return s;
 }
 
-static std::string writewhatsit(const std::string &s, halfword p)
+static std::string writewhatsit(const std::string &s, WriteWhatsitNode *p)
 {
-	return esc(s)+(write_stream(p) < 16 ? std::to_string(write_stream(p)) : write_stream(p) == 16 ? "*" : "-");
+	return esc(s)+(p->write_stream < 16 ? std::to_string(p->write_stream) : p->write_stream == 16 ? "*" : "-");
 }
 
 void slowprint(int s)
@@ -527,12 +527,10 @@ std::string tokenshow(TokenNode *p)
 //! a frozen font identifier's name
 static halfword& font_id_text(halfword p) { return text(font_id_base+p); }
 
-std::string shortdisplay(int P)
+std::string shortdisplay(LinkedNode *p)
 {
-	LinkedNode *p;
-	p->num = P;
 	std::ostringstream oss;
-	while (/*p > memmin*/true)
+	while (p)
 	{
 		if (p->is_char_node())
 		{
@@ -544,7 +542,7 @@ std::string shortdisplay(int P)
 					if (/*pp->font < 0 || pp->font > fontmax*/true)
 						oss << "* ";
 					else
-						oss << esc(TXT(font_id_text(p->num))) << " ";
+						oss << esc(TXT(font_id_text(p->num/*pp->font*/))) << " ";
 					fontinshortdisplay = pp->font;
 				}
 				oss << pp->character;
@@ -573,12 +571,12 @@ std::string shortdisplay(int P)
 					oss << "$";
 					break;
 				case ligature_node:
-					oss << shortdisplay(dynamic_cast<LigatureNode*>(p)->lig_ptr->num);
+					oss << shortdisplay(dynamic_cast<LigatureNode*>(p)->lig_ptr);
 					break;
 				case disc_node:
 				{
 					auto d = dynamic_cast<DiscNode*>(p);
-					oss << shortdisplay(d->pre_break->num) << shortdisplay(d->post_break->num);
+					oss << shortdisplay(d->pre_break) << shortdisplay(d->post_break);
 					LinkedNode *q = d;
 					for (int n = d->replace_count; n > 0; n--)
 						if (q->link)
@@ -609,7 +607,7 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 		if (n > breadthmax)
 			return oss.str()+"etc.";
 		if (p->is_char_node())
-			oss << fontandchar(p->num);
+			oss << fontandchar(dynamic_cast<CharNode*>(p));
 		else
 			switch (p->type)
 			{
@@ -682,28 +680,32 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 					switch (subtype(p->num))
 					{
 						case open_node:
-							oss << writewhatsit("openout", p->num) << "=" << asFilename(TXT(open_name(p->num)), TXT(open_area(p->num)), TXT(open_ext(p->num)));
+						{
+							auto P = dynamic_cast<OpenWriteWhatsitNode*>(p);
+							oss << writewhatsit("openout", P) << "=" << asFilename(P->open_name, P->open_area, P->open_ext);
 							break;
+						}
 						case write_node:
 						{
-							TokenNode *t;
-							t->num = write_tokens(p->num);
-							oss << writewhatsit("write", p->num) << asMark(t);
+							auto P = dynamic_cast<NotOpenWriteWhatsitNode*>(p);
+							oss << writewhatsit("write", P) << asMark(P->write_tokens);
 							break;
 						}
 						case close_node: 
-							oss << writewhatsit("closeout", p->num); 
+							oss << writewhatsit("closeout", dynamic_cast<WriteWhatsitNode*>(p));
 							break;
 						case special_node:
 						{
-							TokenNode *t;
-							t->num = write_tokens(p->num);
-							oss << esc("special") << asMark(t);
+							auto P = dynamic_cast<NotOpenWriteWhatsitNode*>(p);
+							oss << esc("special") << asMark(P->write_tokens);
 							break;
 						}
 						case language_node:
-							oss << esc("setlanguage") <<what_lang(p->num) << " (hyphenmin" << what_lhm(p->num) << "," << what_rhm(p->num) << ")";
+						{
+							auto P = dynamic_cast<LanguageWhatsitNode*>(p);
+							oss << esc("setlanguage") << P->what_lang << " (hyphenmin" << P->what_lhm << "," << P->what_rhm << ")";
 							break;
+						}
 						default: 
 							oss << "whatsit?";
 					}
@@ -774,11 +776,11 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 				case ligature_node:
 				{
 					auto P = dynamic_cast<LigatureNode*>(p);
-					oss << fontandchar(P->lig_char.num) << " (ligature ";
+					oss << fontandchar(&P->lig_char) << " (ligature ";
 					if (subtype(p->num) > 1)
 						oss << "|";
 					fontinshortdisplay = P->lig_char.font;
-					oss << shortdisplay(P->lig_char.num);
+					oss << shortdisplay(&P->lig_char);
 					if (P->subtype%2)
 						oss << "|";
 					oss << ")";
