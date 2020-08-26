@@ -6,15 +6,15 @@
 
 constexpr int end_write_token = cs_token_flag+end_write;
 
-void writeout(halfword p)
+void writeout(NotOpenWriteWhatsitNode *p)
 {
 	auto q = new TokenNode(right_brace_token+'}');
 	auto r = new TokenNode(end_write_token);
 	q->link = r;
 	ins_list(q->num);
-	begintokenlist(write_tokens(p), write_text);
+	begintokenlist(p->write_tokens, write_text);
 	q = new TokenNode(left_brace_token+'{');
-	ins_list(q->num);
+	ins_list(q->num); 
 	int oldmode = mode;
 	mode = 0;
 	Token t;
@@ -31,7 +31,7 @@ void writeout(halfword p)
 	mode = oldmode;
 	endtokenlist();
 	auto oldsetting = selector;
-	auto j = write_stream(p);
+	auto j = p->write_stream;
 	if (writeopen[j])
 		selector = j;
 	else

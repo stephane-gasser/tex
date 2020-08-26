@@ -13,7 +13,7 @@ static GlueSpec *finiteshrink(GlueSpec *p)
 	if (noshrinkerroryet)
 		error("Infinite glue shrinkage found in a paragraph", "The paragraph just ended includes some glue that has\ninfinite shrinkability, e.g., `\\hskip 0pt minus 1fil'.\nSuch glue doesn't belong there---it allows a paragraph\nof any length to fit on one line. But it's safe to proceed,\nsince the offensive shrinkability has been made finite.");
 	noshrinkerroryet = false;
-	auto q = newspec(p);
+	auto q = new GlueSpec(p);
 	q->shrink_order = normal;
 	deleteglueref(p);
 	return q;
@@ -190,11 +190,12 @@ void linebreak(int finalwidowpenalty)
 					act_width += width(curp->num);
 					break;
 				case whatsit_node:
-					if (subtype(curp->num) == language_node)
+					if (dynamic_cast<WhatsitNode*>(curp)->subtype == language_node)
 					{
-						curlang = what_lang(curp->num);
-						lhyf = what_lhm(curp->num);
-						rhyf = what_rhm(curp->num);
+						auto Curp = dynamic_cast<LanguageWhatsitNode*>(curp);
+						curlang = Curp->what_lang;
+						lhyf = Curp->what_lhm;
+						rhyf = Curp->what_rhm;
 					}
 					break;
 				case glue_node:
@@ -252,11 +253,12 @@ void linebreak(int finalwidowpenalty)
 										else 
 											if (s->type == whatsit_node)
 											{
-												if (subtype(s->num) == language_node)
+												if (dynamic_cast<WhatsitNode*>(s)->subtype == language_node)
 												{
-													curlang = what_lang(s->num);
-													lhyf = what_lhm(s->num);
-													rhyf = what_rhm(s->num);
+													auto S = dynamic_cast<LanguageWhatsitNode*>(s);
+													curlang = S->what_lang;
+													lhyf = S->what_lhm;
+													rhyf = S->what_rhm;
 												}
 												prevs = s;
 												s = prevs->link;

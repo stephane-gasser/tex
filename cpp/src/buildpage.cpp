@@ -248,7 +248,7 @@ void buildpage(void)
 			if (q->shrink_order && q->shrink)
 			{
 				error("Infinite glue shrinkage found on current page", "The page about to be output contains some infinitely\nshrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.\nSuch glue doesn't belong there; but you can safely proceed,\nsince the offensive shrinkability has been made finite.");
-				auto r = newspec(q);
+				auto r = new GlueSpec(q);
 				r->shrink_order = normal;
 				deleteglueref(q);
 				dynamic_cast<GlueNode*>(p)->glue_ptr = r;

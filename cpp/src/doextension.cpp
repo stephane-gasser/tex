@@ -57,7 +57,7 @@ void doextension(Token t)
 			{
 				p = dynamic_cast<TokenNode*>(tail);
 				doextension(t);
-				outwhat(tail->num);
+				outwhat(dynamic_cast<WhatsitNode*>(tail));
 				flushnodelist(tail);
 				tail = p;
 				p->link = nullptr;

@@ -324,6 +324,7 @@ class GlueSpec : public AnyNode
 		scaled width = 0, stretch = 0, shrink = 0;
 		glueord stretch_order = 0, shrink_order = 0; // normal/fil/fill/filll
 		GlueSpec(void) {}
+		GlueSpec(GlueSpec *p) { width = p->width; stretch = p->stretch; shrink = p->shrink; stretch_order = p->stretch_order; shrink_order = p->shrink_order; glue_ref_count = 0; }
 		GlueSpec(halfword v) { glue_ref_count = ::glue_ref_count(v); width = ::width(v); stretch = ::stretch(v); shrink = ::shrink(v); stretch_order = ::stretch_order(v); shrink_order = ::shrink_order(v); }
 };
 
@@ -409,32 +410,32 @@ class WhatsitNode : public LinkedNode
 class WriteWhatsitNode : public WhatsitNode
 {
 	public:
-		halfword write_stream;
+		halfword write_stream; //!< stream number (0 to 17)
 		WriteWhatsitNode(smallnumber s) : WhatsitNode(s) {}
 };
 
 class OpenWriteWhatsitNode : public WriteWhatsitNode
 {
 	public:
-		std::string open_name;
-		std::string open_area;
-		std::string open_ext;
+		std::string open_name; //!< string number of file name to open
+		std::string open_area; //!< string number of file area for \a open_name
+		std::string open_ext; //!< string number of file extension for \a open_name
 		OpenWriteWhatsitNode(void) : WriteWhatsitNode(/*open_node*/0) {}
 };
 
 class NotOpenWriteWhatsitNode : public WriteWhatsitNode
 {
 	public:
-		TokenNode *write_tokens;
+		TokenNode *write_tokens; //!< reference count of token list to write
 		NotOpenWriteWhatsitNode(smallnumber s) : WriteWhatsitNode(s) {}
 };
 
 class LanguageWhatsitNode : public WhatsitNode
 {
 	public:
-		halfword what_lang;
-		quarterword what_lhm;
-		quarterword what_rhm;
+		halfword what_lang; //!< language number, in the range 0..255
+		quarterword what_lhm; //!< minimum left fragment, in the range 1..63
+		quarterword what_rhm; //!< minimum right fragment, in the range 1..63
 		LanguageWhatsitNode(ASCIIcode l) : WhatsitNode(/*language_node*/4), what_lang(l) {}
 };
 

@@ -720,8 +720,8 @@ int& depth(halfword); //!< depth of the box, in sp
 int& height(halfword); //!< height of the box, in sp
 //int& shift_amount(halfword); //!< repositioning distance, in sp
 //halfword& list_ptr(halfword); //!< beginning of the list inside the box
-quarterword& glue_order(halfword); //!< applicable order of infinity
-quarterword& glue_sign(halfword); //!< stretching or shrinking
+//quarterword& glue_order(halfword); //!< applicable order of infinity
+//quarterword& glue_sign(halfword); //!< stretching or shrinking
 float &glue_set(halfword);
 bool is_running(int); //!< tests for a running dimension
 //int& float_cost(halfword); //!< the \a floating_penalty to be used
@@ -797,14 +797,14 @@ void set_cur_lang(void);
 halfword& broken_ins(halfword p); //!< this insertion might break at \a broken_ptr
 halfword& last_ins_ptr(halfword p); //!< the most recent insertion for this \a subtype
 halfword& best_ins_ptr(halfword); //!< the optimum most recent insertion
-halfword& what_lang(halfword); //!< language number, in the range 0..255
-quarterword& what_lhm(halfword); //!< minimum left fragment, in the range 1..63
-quarterword& what_rhm(halfword); //!< minimum right fragment, in the range 1..63
-halfword& write_tokens(halfword); //!< reference count of token list to write
-halfword& write_stream(halfword); //!< stream number (0 to 17)
-halfword& open_name(halfword); //!< string number of file name to open
-halfword& open_area(halfword); //!< string number of file area for \a open_name
-halfword& open_ext(halfword); //!< string number of file extension for \a open_name
+//halfword& what_lang(halfword); //!< language number, in the range 0..255
+//quarterword& what_lhm(halfword); //!< minimum left fragment, in the range 1..63
+//quarterword& what_rhm(halfword); //!< minimum right fragment, in the range 1..63
+//halfword& write_tokens(halfword); //!< reference count of token list to write
+//halfword& write_stream(halfword); //!< stream number (0 to 17)
+//halfword& open_name(halfword); //!< string number of file name to open
+//halfword& open_area(halfword); //!< string number of file area for \a open_name
+//halfword& open_ext(halfword); //!< string number of file extension for \a open_name
 halfword& every_vbox(void); 
 
 inline auto start = curinput.startfield; //!< starting position in \a buffer

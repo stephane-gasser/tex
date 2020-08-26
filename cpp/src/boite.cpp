@@ -509,7 +509,7 @@ static void goto50h(BoxNode *r)
 			print(") detected at line"+std::to_string(line));
 	println();
 	fontinshortdisplay = fonts[null_font];
-	print(shortdisplay(r->list_ptr->num)+"\n");
+	print(shortdisplay(r->list_ptr)+"\n");
 	diagnostic(showbox(r)+"\n");
 }
 

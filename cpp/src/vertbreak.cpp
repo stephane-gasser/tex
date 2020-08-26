@@ -110,7 +110,7 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 			if (q->shrink_order && q->shrink)
 			{
 				error("Infinite glue shrinkage found in box being split", "The box you are \\vsplitting contains some infinitely\nshrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.\nSuch glue doesn't belong there; but you can safely proceed,\nsince the offensive shrinkability has been made finite.");
-				auto r = newspec(q);
+				auto r = new GlueSpec(q);
 				r->shrink_order = 0;
 				deleteglueref(q);
 				P->glue_ptr = r;
