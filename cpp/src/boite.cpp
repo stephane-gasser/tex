@@ -1,7 +1,7 @@
 #include "boite.h"
 #include "noeud.h"
 #include "police.h"
-#include "mlisttohlist.h"
+#include "formule.h"
 #include "xovern.h"
 #include "lecture.h"
 #include "buildpage.h"
@@ -42,7 +42,65 @@ BoxNode* rebox(BoxNode *b, scaled w)
 	return b;
 }
 
-BoxNode *cleanbox(halfword p, smallnumber s)
+BoxNode *cleanbox(NoadContent &P, smallnumber s)
+{
+	LinkedNode *q; //beginning of a list to be boxed
+	do
+	{
+		switch (P.math_type)
+		{
+			case math_char:
+			{
+				auto n = new Noad;
+				curmlist = n->num;
+				n->nucleus = P;
+				break;
+			}
+			case sub_box:
+				q = P.info;
+				continue;
+				break;
+			case sub_mlist: 
+				curmlist = P.info->num;
+				break;
+			default:
+				q = new BoxNode;
+				continue;
+		}
+		auto savestyle = curstyle;
+		curstyle = s;
+		mlistpenalties = false;
+		mlisttohlist();
+		q = temp_head->link;
+		curstyle = savestyle;
+		if (curstyle < 4)
+			cursize = 0;
+		else
+			cursize = 16*((curstyle-2)/2);
+		curmu = xovern(math_quad(cursize), 18);
+	} while (false);
+	BoxNode *x;
+	if (q->is_char_node() || q == nullptr)
+		x = hpack(q, 0, additional);
+	else 
+		if (q->link == nullptr && q->type <= vlist_node && dynamic_cast<BoxNode*>(q)->shift_amount == 0)
+			x = dynamic_cast<BoxNode*>(q);
+		else
+			x = hpack(q, 0, additional);
+	q = x->list_ptr;
+	if (q->is_char_node())
+	{
+		auto r = q->link;
+		if (r && r->link == nullptr && !r->is_char_node() && r->type == kern_node)
+		{
+			delete r;
+			q->link = 0;
+		}
+	}
+	return x;
+}
+
+[[deprecated]] BoxNode *cleanbox(halfword p, smallnumber s)
 {
 	LinkedNode *q; //beginning of a list to be boxed
 	do

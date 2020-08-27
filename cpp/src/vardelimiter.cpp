@@ -147,5 +147,3 @@ BoxNode *vardelimiter(Delimiter &d, smallnumber s, scaled v)
 	b->shift_amount = half(b->height-b->depth)-axis_height(s);
 	return b;
 }
-
-

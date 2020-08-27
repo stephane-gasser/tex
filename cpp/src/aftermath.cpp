@@ -4,7 +4,7 @@
 #include "flushmath.h"
 #include "lecture.h"
 #include "finmlist.h"
-#include "mlisttohlist.h"
+#include "formule.h"
 #include "unsave.h"
 #include "boite.h"
 #include "noeud.h"
@@ -43,8 +43,7 @@ void aftermath(void)
 		}
 	int m = mode; // \a mmode or \a -mmode
 	bool l = false; // `\\leqno' instead of `\\eqno'
-	LinkedNode *p;
-	p->num = finmlist(0);
+	auto p = finmlist(nullptr);
 	Token t;
 	BoxNode *a; // box containing equation number
 	if (mode == -m)
@@ -79,7 +78,7 @@ void aftermath(void)
 				danger = true;
 			}
 		m = mode;
-		p->num = finmlist(0);
+		p = finmlist(nullptr);
 	}
 	else
 		a = 0;
@@ -109,7 +108,7 @@ void aftermath(void)
 		curstyle = 0;
 		mlistpenalties = false;
 		mlisttohlist();
-		p = temp_head->link;
+		auto p = temp_head->link;
 		adjusttail = adjust_head;
 		auto b = hpack(p, 0, additional);
 		p = b->list_ptr;

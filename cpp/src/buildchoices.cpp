@@ -7,8 +7,7 @@
 void buildchoices(Token t)
 {
 	unsave();
-	LinkedNode *p;
-	p->num = finmlist(0); // the current mlist
+	auto p = finmlist(nullptr); // the current mlist
 	auto Tail = dynamic_cast<ChoiceNode*>(tail);
 	switch (saved(-1))
 	{

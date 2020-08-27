@@ -150,10 +150,11 @@ void handlerightbrace(Token t, halfword &loop)
 			buildchoices(t);
 			break;
 		case math_group:
+		{
 			unsave();
 			saveptr--;
 			math_type(saved(0)) = sub_mlist;
-			p->num = finmlist(0);
+			auto p = finmlist(nullptr);
 			info(saved(0)) = p->num;
 			if (p && p->link == nullptr)
 				if (p->type == ord_noad)
@@ -178,6 +179,7 @@ void handlerightbrace(Token t, halfword &loop)
 								tail = p;
 							}
 			break;
+		}
 		default: 
 			confusion("rightbrace");
 	}

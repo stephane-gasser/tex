@@ -27,7 +27,10 @@ quarterword& small_fam(halfword p) { return mem[p].qqqq.b0; }
 quarterword& small_char(halfword p) { return mem[p].qqqq.b1; }
 quarterword& large_fam(halfword p) { return mem[p].qqqq.b2; }
 quarterword& large_char(halfword p) { return mem[p].qqqq.b3; }
-int& new_hlist(halfword p) { return mem[nucleus(p)].int_; }
+
+//int& new_hlist(halfword p) { return mem[nucleus(p)].int_; }
+LinkedNode *new_hlist(Noad *p) { return p->nucleus.info; }
+
 int& if_line_field(halfword p) { return mem[p+1].int_; }
 int& total_demerits(halfword p) { return mem[p+2].int_; }
 bool is_char_node(halfword p) { return p >= himemmin; }

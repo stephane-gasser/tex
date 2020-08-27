@@ -35,12 +35,12 @@ void mathleftright(Token tk)
 		}
 		else
 		{
-			p->num = finmlist(p->num);
+			auto P = finmlist(p);
 			unsave();
 			auto n = new Noad;
 			n->type = inner_noad;
 			n->nucleus.math_type = sub_mlist;
-			n->nucleus.info = p;
+			n->nucleus.info = P;
 			tail_append(n);
 		}
 	}

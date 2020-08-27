@@ -4,7 +4,8 @@
 #include "globals.h"
 
 BoxNode *rebox(BoxNode*, scaled);
-BoxNode *cleanbox(halfword, smallnumber);
+[[deprecated]] BoxNode *cleanbox(halfword, smallnumber);
+BoxNode *cleanbox(NoadContent&, smallnumber);
 void alterboxdimen(Token);
 void beginbox(int, Token);
 void boxend(int);

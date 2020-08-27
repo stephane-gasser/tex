@@ -764,7 +764,10 @@ quarterword& large_char(halfword); //!< \a character for ``large'' delimiter
 //halfword accent_chr(halfword); //!< the \a accent_chr field of an accent noad
 //halfword delimiter(halfword); //!< \a delimiter field in left and right noads
 int default_rule_thickness(void); //!< thickness of \\over bars
-int& new_hlist(halfword); //!< the translation of an mlist
+//int& new_hlist(halfword); //!< the translation of an mlist
+class LinkedNode;
+class Noad;
+LinkedNode *new_hlist(Noad*); //!< the translation of an mlist
 int& u_part(halfword); //!< pointer to \f$<u_j\f$ token list
 int&v_part(halfword); //!< pointer to \f$<v_j\f$ token list
 halfword& extra_info(halfword); //!< info to remember during template
