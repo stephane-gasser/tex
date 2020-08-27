@@ -16,7 +16,7 @@ void shiftcase(Token tk)
 		}
 		p = dynamic_cast<TokenNode*>(p->link);
 	}
-	back_list(defref->link->num);
+	back_list(dynamic_cast<TokenNode*>(defref->link));
 	delete defref;
 	defref = nullptr;
 }

@@ -29,8 +29,11 @@ void finalign(halfword &loop)
 	do
 	{
 		// q: AlignNode ??
-		flushlist(u_part(q->num));
-		flushlist(v_part(q->num));
+		LinkedNode *l;
+		l->num = u_part(q->num);
+		flushnodelist(l);
+		l->num = v_part(q->num);
+		flushnodelist(l);
 		auto p = q->link->link;
 		if (is_running(width(q->num)))
 		{

@@ -19,7 +19,6 @@ quarterword& shrink_order(halfword p) { return mem[p].hh.b1; }
 int& stretch(halfword p) { return mem[p+2].int_; }
 int& shrink(halfword p) { return mem[p+3].int_; }
 int& width(halfword p) { return mem[p+width_offset].int_; }
-int& thickness(halfword p) { return mem[p+width_offset].int_; }
 int& depth(halfword p) { return mem[p+depth_offset].int_; }
 int& height(halfword p) { return mem[p+height_offset].int_; }
 int& u_part(halfword p) { return mem[p+height_offset].int_; }
@@ -55,8 +54,13 @@ int& dimen(halfword p) { return eqtb[scaled_base+p].int_; }
 int& del_code(halfword p) { return eqtb[del_code_base+p].int_; }
 halfword& cat_code(halfword p) { return equiv(cat_code_base+p); }
 halfword& par_shape_ptr(void) { return equiv(par_shape_loc); }
-halfword& every_math(void) { return equiv(every_math_loc); }
-halfword& every_cr(void) { return equiv(every_cr_loc); }
+//halfword& every_math(void) { return equiv(every_math_loc); }
+static TokenNode mth;
+TokenNode* every_math(void) { return &mth; }
+//halfword& every_cr(void) { return equiv(every_cr_loc); }
+static TokenNode crn;//!< points to token list for \\everyvbox
+TokenNode* every_cr(void) { return &crn; }
+
 halfword& err_help(void) { return equiv(err_help_loc); }
 halfword& lc_code(halfword p) { return equiv(lc_code_base+p); }
 halfword& sf_code(halfword p) { return equiv(sf_code_base+p); }
@@ -65,9 +69,6 @@ halfword& math_code(halfword p) { return equiv(math_code_base+p); }
 halfword left_delimiter(halfword p) { return p+4; }
 halfword right_delimiter(halfword p) { return p+5; }
 halfword nucleus(halfword p) { return p+1; }
-halfword delimiter(halfword p) { return p+1; }
-halfword numerator(halfword p) { return p+2; }
-halfword denominator(halfword p) { return p+3; }
 halfword supscr(halfword p) { return p+2; }
 halfword subscr(halfword p) { return p+3; }
 
@@ -77,7 +78,10 @@ int length(halfword p) { return strings[p].size(); }
 int cur_length(void) { return currentString.size(); }
 bool is_running(int d) { return d == null_flag; }
 alphafile& cur_file(void) { return inputfile[index]; }
-halfword& every_vbox(void) { return equiv(every_vbox_loc); }
+//halfword& every_vbox(void) { return equiv(every_vbox_loc); }
+static TokenNode vb;//!< points to token list for \\everyvbox
+TokenNode* every_vbox(void) { return &vb; }
+
 void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : language(); }
 void append_char(ASCIIcode c) { currentString += c; }
 void flush_char(void) { currentString.pop_back(); }

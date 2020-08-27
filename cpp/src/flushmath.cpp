@@ -7,6 +7,6 @@ void flushmath(void)
 	flushnodelist(incompleat_noad);
 	head->link = nullptr;
 	tail = head;
-	incompleat_noad = 0;
+	incompleat_noad = nullptr;
 }
 

@@ -96,7 +96,7 @@ void expand(Token tk)
 					tk.cs = null_cs;
 				else
 					tk.cs = single_base+buffer[First];
-				flushlist(r);
+				flushnodelist(r);
 				if (eq_type(tk.cs) == undefined_cs)
 					eqdefine(tk.cs, relax, 256);
 				tk.tok = tk.cs+cs_token_flag;

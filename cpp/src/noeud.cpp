@@ -20,315 +20,28 @@
 #include "cesure.h"
 #include "runaway.h"
 
-[[deprecated]] void flushlist(halfword p)
-{
-	if (p)
-	{
-		auto q = p;
-		while (link(q))
-			q = link(q);
-		link(q) = avail;
-		avail = p;
-	}
-}
-
-void flushlist(LinkedNode *p)
-{
-	while (p)
-	{
-		auto q = p;
-		p = p->link;
-		delete q;
-	}
-}
-
-[[deprecated]] halfword copynodelist(halfword p)
-{
-	LinkedNode *P;
-	P->num = p;
-	return copynodelist(P)->num;
-}
-
 LinkedNode* copynodelist(LinkedNode *p)
 {
 	auto h = new LinkedNode;
 	auto q = h;
-	while (p)
+	for (;p; p->link)
 	{
-		int words = 1;
-		LinkedNode *r;
-		if (p->is_char_node())
-			r = new LinkedNode;
-		else
-			switch (p->type)
-			{
-				case hlist_node:
-				case vlist_node:
-				case unset_node:
-				{
-					auto P = dynamic_cast<BoxNode*>(p);
-					auto R = new BoxNode;
-					R->glue_set = P->glue_set;
-					R->glue_sign = P->glue_sign;
-					R->glue_order = P->glue_order;
-					R->list_ptr = copynodelist(P->list_ptr);
-					r = R;
-					words = 5;
-					break;
-				}
-				case rule_node:
-					r = new RuleNode;
-					words = rule_node_size;
-					break;
-				case ins_node:
-				{
-					auto P = dynamic_cast<InsNode*>(p);
-					auto R = new InsNode;
-					mem[r->num+4] = mem[p->num+4];
-					P->split_top_ptr->glue_ref_count++;
-					R->ins_ptr = copynodelist(P->ins_ptr);
-					words = ins_node_size-1;
-					r = R;
-					break;
-				}
-				case whatsit_node:
-					switch (dynamic_cast<WhatsitNode*>(p)->subtype)
-					{
-						case open_node:
-							r = new OpenWriteWhatsitNode;
-							words = open_node_size;
-							break;
-						case write_node:
-						case special_node:
-							r = new NotOpenWriteWhatsitNode(dynamic_cast<WhatsitNode*>(p)->subtype);
-							dynamic_cast<NotOpenWriteWhatsitNode*>(p)->write_tokens->token_ref_count++;
-							words = write_node_size;
-							break;
-						case close_node:
-							r = new NotOpenWriteWhatsitNode(close_node);
-							words = small_node_size;
-							break;
-						case language_node:
-							r = new LanguageWhatsitNode(clang/* langue de p ? */);
-							words = small_node_size;
-							break;
-						default:
-							confusion("ext2");
-					}
-					break;
-				case glue_node:
-				{
-					auto P = dynamic_cast<GlueNode*>(p);
-					auto R = new GlueNode(P->glue_ptr);
-					R->leader_ptr = copynodelist(P->leader_ptr);
-					r = R;
-					break;
-				}
-				case kern_node:
-					r = new KernNode(0);
-					words = 2;
-					break;
-				case math_node:
-					r = new MathNode(0, 0);
-					words = 2;
-					break;
-				case penalty_node:
-					r = new PenaltyNode;
-					words = 2;
-					break;
-				case ligature_node:
-				{
-					auto P = dynamic_cast<LigatureNode*>(p);
-					auto R = new LigatureNode(P->lig_char.font, P->lig_char.character, copynodelist(P->lig_ptr));
-					r = R;
-					break;
-				}
-				case disc_node:
-				{
-					auto P = dynamic_cast<DiscNode*>(p);
-					auto R = new DiscNode;
-					R->pre_break = copynodelist(P->pre_break);
-					R->post_break = copynodelist(P->post_break);
-					r = R;
-					break;
-				}
-				case mark_node:
-					r = new MarkNode;
-					dynamic_cast<MarkNode*>(p)->mark_ptr->token_ref_count++;
-					words = small_node_size;
-					break;
-				case adjust_node:
-				{
-					auto R = new AdjustNode;
-					auto P = dynamic_cast<AdjustNode*>(p);
-					R->adjust_ptr = dynamic_cast<TokenNode*>(copynodelist(P->adjust_ptr));
-					r = R;
-					break;
-				}
-				default: 
-					confusion("copying");
-			}
-		// à redispatcher dans chaque type de noeud
-		for (;words > 0; words--)
-			mem[r->num+words] = mem[p->num+words];
-		q->link = r;
-		q = r;
-		p = p->link;
+		q->link = p->copy();
+		q = q->link;
 	}
 	q->link = nullptr;
 	q = h->link;
 	delete h;
 	return q;
 }
-
-// destructeur !!
 void flushnodelist(LinkedNode *p)
 {
 	while (p)
 	{
 		auto q = p->link;
-		if (p->is_char_node())
-			delete p;
-		else
-		{
-			switch (p->type)
-			{
-				case hlist_node:
-				case vlist_node:
-				case unset_node:
-//					flushnodelist(dynamic_cast<BoxNode*>(p)->list_ptr);
-					delete p;
-					break;
-				case rule_node:
-					delete p;
-					break;
-				case ins_node:
-				{
-/*					auto P = dynamic_cast<InsNode*>(p);
-					flushnodelist(P->ins_ptr);
-					deleteglueref(P->split_top_ptr);*/
-					delete p;
-					break;
-				}
-				case whatsit_node:
-					switch (dynamic_cast<WhatsitNode*>(p)->subtype)
-					{
-						case open_node:
-							delete p;
-							break;
-						case write_node:
-						case special_node:
-//							deletetokenref(dynamic_cast<NotOpenWriteWhatsitNode*>(p)->write_tokens);
-							delete p;
-							break;
-						case close_node:
-						case language_node:
-							delete p;
-							break;
-						default: 
-							confusion("ext3");
-					}
-					break;
-				case glue_node:
-				{
-/*					auto P = dynamic_cast<GlueNode*>(p);
-					delete P->glue_ptr;
-					if (P->leader_ptr)
-						flushnodelist(P->leader_ptr);*/
-					delete p;
-					break;
-				}
-				case kern_node:
-					delete p;
-					break;
-				case math_node:
-					delete p;
-					break;
-				case penalty_node: 
-					delete p;
-					break;
-				case ligature_node: 
-					//flushnodelist(dynamic_cast<LigatureNode*>(p)->lig_ptr);
-					delete p;
-					break;
-				case mark_node: 
-//					deletetokenref(dynamic_cast<MarkNode*>(p)->mark_ptr);
-					delete p;
-					break;
-				case disc_node:
-				{
-/*					auto P = dynamic_cast<DiscNode*>(p);
-					flushnodelist(P->pre_break);
-					flushnodelist(P->post_break);*/
-					delete p;
-					break;
-				}
-				case adjust_node: 
-//					flushnodelist(dynamic_cast<AdjustNode*>(p)->adjust_ptr);
-					delete p;
-					break;
-				case style_node:
-					delete p;
-					break;
-				case choice_node:
-				{
-/*					auto P = dynamic_cast<ChoiceNode*>(p);
-					flushnodelist(P->display_mlist);
-					flushnodelist(P->text_mlist);
-					flushnodelist(P->script_mlist);
-					flushnodelist(P->script_script_mlist);*/
-					delete p;
-					break;
-				}
-				case ord_noad:
-				case op_noad:
-				case bin_noad:
-				case rel_noad:
-				case open_noad:
-				case close_noad:
-				case punct_noad:
-				case inner_noad:
-				case radical_noad:
-				case over_noad:
-				case under_noad:
-				case vcenter_noad:
-				case accent_noad:
-				{
-/*					auto P = dynamic_cast<Noad*>(p);
-					if (P->nucleus.math_type >= sub_box)
-						flushnodelist(P->nucleus.info);
-					if (P->supscr.math_type >= sub_box)
-						flushnodelist(P->supscr.info);
-					if (P->subscr.math_type >= sub_box)
-						flushnodelist(P->subscr.info);*/
-					delete p;
-					break;
-				}
-				case left_noad:
-				case right_noad:
-					delete p;
-					break;
-				case fraction_noad:
-				{
-/*					auto P = dynamic_cast<FractionNoad*>(p);
-					flushnodelist(P->numerator.info);
-					flushnodelist(P->denominator.info);*/
-					delete p;
-					break;
-				}
-				default: 
-					confusion("flushing"); 
-			}
-		}
+		delete p;
 		p = q;
 	}
-}
-
-[[deprecated]] void flushnodelist(halfword p)
-{
-	LinkedNode *P;
-	P->num = p;
-	flushnodelist(P);
 }
 
 void freenode(halfword p, halfword s)
@@ -604,7 +317,9 @@ void newfont(smallnumber a)
 	text(frozen_null_font+f) = txt(t);
 }
 
-static halfword& every_par(void) { return equiv(every_par_loc); }
+/*static halfword& every_par(void) { return equiv(every_par_loc); }*/
+static TokenNode ep;//!< points to token list for \\everypar
+static TokenNode* every_par(void) { return &ep; } 
 
 void newgraf(bool indented)
 {

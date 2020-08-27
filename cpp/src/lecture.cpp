@@ -99,37 +99,6 @@ void scandelimiter(Delimiter &p, bool r, Token t)
 	p.large_char = val%(1<<8);
 }
 
-[[deprecated]] void scandelimiter(halfword p, bool r, Token t)
-{
-	int val;
-	if (r)
-		val = scantwentysevenbitint();
-	else
-	{
-		t = getXTokenSkipSpaceAndEscape();
-		switch (t.cmd)
-		{
-			case letter:
-			case other_char: 
-				val = del_code(t.chr);
-				break;
-			case delim_num: 
-				val = scantwentysevenbitint();
-				break;
-			default: 
-				val = -1;
-		}
-	}
-	if (val < 0)
-	{
-		backerror(t, "Missing delimiter (. inserted)", "I was expecting to see something like `(' or `\\{' or\n`\\}' here. If you typed, e.g., `{' instead of `\\{', you\nshould probably delete the `{' by typing `1' now, so that\nbraces don't get unbalanced. Otherwise just proceed.\nAcceptable delimiters are characters whose \\delcode is\nnonnegative, or you can use `\\delimiter <delimiter code>'.");
-		val = 0;
-	}
-	small_fam(p) = (val>>20)%(1<<4);
-	small_char(p) = (val>>12)%(1<<8);
-	large_fam(p) = (val>>8)%(1<<4);
-	large_char(p) = val%(1<<8);
-}
 
 [[nodiscard]] int scandimen(bool mu, bool inf, bool shortcut)
 {
@@ -650,11 +619,11 @@ bool scankeyword(const std::string &s)
 			{
 				backinput(t);
 				if (p != backup_head)
-					back_list(backup_head->link->num);
+					back_list(dynamic_cast<TokenNode*>(backup_head->link));
 				return false;
 			}
 	}
-	flushlist(backup_head->link);
+	flushnodelist(backup_head->link);
 	return true;
 }
 
@@ -670,60 +639,6 @@ bool scankeyword(const std::string &s)
 		alignstate++;
 	}
 	return t;
-}
-
-[[deprecated]] void scanmath(halfword p)
-{
-	auto t = getXTokenSkipSpaceAndEscape();
-	bool label21;
-	do
-	{
-		label21 = false;
-		int c;
-		switch (t.cmd)
-		{
-			case letter:
-			case other_char:
-			case char_given:
-				c = math_code(t.chr);
-				if (c == 0x80'00)
-				{
-					t.cs = t.chr+1;
-					t.cmd = eq_type(t.cs);
-					t.chr = equiv(t.cs);
-					t = xtoken(t);
-					backinput(t);
-					t = getXTokenSkipSpaceAndEscape();
-					label21 = true;
-					continue;
-				}
-				break;
-			case char_num:
-				t.chr = scancharnum();
-				t.cmd = char_given;
-				label21 = true;
-				continue;
-			case math_char_num:
-				c = scanfifteenbitint();
-				break;
-			case math_given: 
-				c = t.chr;
-				break;
-			case delim_num:
-				c = scantwentysevenbitint()>>12;
-				break;
-			default:
-				backinput(t);
-				t = scanleftbrace();
-				saved(0) = p;
-				saveptr++;
-				pushmath(math_group);
-				return;
-		}
-	} while (label21);
-	math_type(p) = math_char;
-	character(p) = c%0x1'00;
-	fam(p) = (c >= var_code && fam_in_range() ? cur_fam() : (c>>8)%0x10);
 }
 
 void scanmath(NoadContent &p)
@@ -1226,17 +1141,10 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 }
 
 //! backs up a simple token list
-void back_list(halfword p) { begintokenlist(p, backed_up); }
+void back_list(TokenNode *p) { begintokenlist(p, backed_up); }
 
 //! inserts a simple token list
-void ins_list(halfword p) { begintokenlist(p, inserted); }
-
-void begintokenlist(halfword p, quarterword t)
-{
-	TokenNode *P;
-	P->num = p;
-	begintokenlist(P, t);
-}
+void ins_list(TokenNode *p) { begintokenlist(p, inserted); }
 
 void begintokenlist(TokenNode *P, quarterword t)
 {
@@ -1290,12 +1198,12 @@ void endtokenlist(void)
 			break;
 		case backed_up:
 		case inserted:
-			flushlist(Start);
+			flushnodelist(Start);
 			break;
 		case macro:
 			deletetokenref(Start->num);
 			for (;paramptr > param_start; paramptr--)
-				flushlist(paramstack[paramptr]);
+				flushnodelist(paramstack[paramptr]);
 			break;
 		case output_text:
 		case every_par_text:
@@ -1322,7 +1230,7 @@ void deletetokenref(halfword p)
 void deletetokenref(TokenNode *p)
 {
 	if (p->token_ref_count == 0)
-		flushlist(p);
+		flushnodelist(p);
 	else
 		p->token_ref_count--;
 }
@@ -1414,7 +1322,7 @@ Token getpreambletoken(void)
 void insthetoks(void)
 {
 	garbage->link = thetoks();
-	ins_list(temp_head->link->num);
+	ins_list(dynamic_cast<TokenNode*>(temp_head->link));
 }
 
 [[nodiscard]] TokenNode* readtoks(int n, halfword r)
@@ -1550,7 +1458,7 @@ void convtoks(Token t)
 			strings.push_back(jobname);
 	}
 	garbage->link = strtoks();
-	ins_list(temp_head->link->num);
+	ins_list(dynamic_cast<TokenNode*>(temp_head->link));
 }
 
 TokenNode* thetoks(void)

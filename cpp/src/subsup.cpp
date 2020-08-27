@@ -5,22 +5,23 @@
 #include "lecture.h"
 #include "texte.h"
 
-static bool scripts_allowed(halfword tail) { return type(tail) >= ord_noad && type(tail) < left_noad; }
+static bool scripts_allowed(LinkedNode *tail) { return tail->type >= ord_noad && tail->type < left_noad; }
 
-void subsup(eightbits cmd)
+void subsup(eightbits cmd) //sub_mark || sup_mark
 {
 	smallnumber t = 0;
-	halfword p = 0;
-	if (tail != head)
-		if (scripts_allowed(tail->num))
-		{
-			p = supscr(tail->num)+cmd-sup_mark;
-			t = link(p);
-		}
-	if (p == 0 || t)
+	NoadContent *p = nullptr;
+	if (tail != head && scripts_allowed(tail))
 	{
-		tail_append(new Noad);
-		p = supscr(tail->num)+cmd-sup_mark;
+		auto Tail = dynamic_cast<Noad*>(tail);
+		p = cmd == sup_mark ? &Tail->supscr : &Tail->subscr;
+		t = p->math_type;
+	}
+	if (p == nullptr || t)
+	{
+		auto n = new Noad;
+		p = cmd == sup_mark ? &n->supscr : &n->subscr;
+		tail_append(n);
 		if (t)
 		{
 			if (cmd == sup_mark)
@@ -29,5 +30,5 @@ void subsup(eightbits cmd)
 				error("Double subscript", "I treat `x_1_2' essentially like `x_1{}_2'.");
 		}
 	}
-	scanmath(p);
+	scanmath(*p);
 }

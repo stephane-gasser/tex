@@ -14,7 +14,9 @@
 
 static halfword& broken_ptr(halfword p) { return link(p+1); }
 static int holding_inserts(void) { return int_par(holding_inserts_code); }
-static halfword& output_routine(void) { return equiv(output_routine_loc); }
+//static halfword& output_routine(void) { return equiv(output_routine_loc); }
+static TokenNode rtn;
+static TokenNode *output_routine(void) { return &rtn; }
 
 void fireup(halfword c)
 {

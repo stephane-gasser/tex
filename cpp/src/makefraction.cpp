@@ -18,8 +18,10 @@ static int num_style(int c) { return c+2-2*(c/6); } //!< smaller unless already 
 
 void makefraction(halfword q)
 {
-	if (thickness(q) == default_code)
-		thickness(q) = default_rule_thickness();
+	FractionNoad *Q;
+	Q->num = q;
+	if (Q->thickness == default_code)
+		Q->thickness = default_rule_thickness();
 	auto x = cleanbox(q+2, num_style(curstyle));
 	auto z = cleanbox(q+3, denom_style(curstyle));
 	if (x->width < z->width)
@@ -35,13 +37,13 @@ void makefraction(halfword q)
 	else
 	{
 		shiftdown = denom2(cursize);
-		if (thickness(q))
+		if (Q->thickness)
 			shiftup = num2(cursize);
 		else
 			shiftup = num3(cursize);
 	}
 	scaled clr, delta;
-	if (thickness(q) == 0)
+	if (Q->thickness == 0)
 	{
 		if (curstyle < 2)
 			clr = 7*default_rule_thickness();
@@ -57,10 +59,10 @@ void makefraction(halfword q)
 	else
 	{
 		if (curstyle < 2)
-			clr = 3*thickness(q);
+			clr = 3*Q->thickness;
 		else
-			clr = thickness(q);
-		delta = half(thickness(q));
+			clr = Q->thickness;
+		delta = half(Q->thickness);
 		scaled delta1 = clr-(shiftup-x->depth-(axis_height(cursize)+delta));
 		scaled delta2 = clr-(axis_height(cursize)-delta-(z->height-shiftdown));
 		if (delta1 > 0)
@@ -74,14 +76,14 @@ void makefraction(halfword q)
 	v->depth = z->depth+shiftdown;
 	v->width = x->width;
 	KernNode *p;
-	if (thickness(q) == 0)
+	if (Q->thickness == 0)
 	{
 		p = new KernNode((shiftup-x->depth)-(z->height-shiftdown));
 		p->link = z;
 	}
 	else
 	{
-		auto y = fractionrule(thickness(q));
+		auto y = fractionrule(Q->thickness);
 		p = new KernNode((axis_height(cursize)-delta)-(z->height-shiftdown));
 		y->link = p;
 		p->link = z;
@@ -94,9 +96,9 @@ void makefraction(halfword q)
 		delta = delim1(cursize);
 	else
 		delta = delim2(cursize);
-	x = vardelimiter(left_delimiter(q), cursize, delta);
+	x = vardelimiter(Q->left_delimiter, cursize, delta);
 	x->link = v;
-	z = vardelimiter(right_delimiter(q), cursize, delta);
+	z = vardelimiter(Q->right_delimiter, cursize, delta);
 	v->link = z;
 	new_hlist(q) = hpack(x, 0, additional)->num;
 }

@@ -50,7 +50,9 @@ static fontindex maink; //!< index into |font_info|
 //static fourquarters maini; //!<character information bytes for |cur_l|
 static LigatureNode *mainp; //!<temporary register for list manipulation
 
-static halfword& every_job(void) { return equiv(every_job_loc); }
+//static halfword& every_job(void) { return equiv(every_job_loc); }
+TokenNode jb;
+static TokenNode* every_job(void) { return &jb; }
 
 //! the parameter is either |rt_hit| or |false|
 static void pack_lig(bool z)
@@ -705,11 +707,11 @@ Token maincontrol(void)
 			case mmode+vcenter:
 				t = scanspec(vcenter_group, false);
 				normalparagraph();
-				pushnest();
+				pushnest(); 
 				mode = -vmode;
 				prev_depth = ignore_depth;
 				if (every_vbox())
-				begintokenlist(every_vbox(), every_vbox_text);
+					begintokenlist(every_vbox(), every_vbox_text);
 				break;
 			case mmode+math_style:
 				tail_append(new StyleNode(t.chr));

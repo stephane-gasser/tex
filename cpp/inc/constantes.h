@@ -728,8 +728,6 @@ quarterword& eq_type(halfword); //!< command code for equivalent
 halfword& equiv(halfword); //!< equivalent value
 //halfword& skip(halfword); //!< \a mem location of glue specification
 halfword& par_shape_ptr(void); 
-halfword& every_math(void); 
-halfword& every_cr(void); 
 halfword& err_help(void);
 //halfword& box(halfword); 
 halfword& cat_code(halfword);
@@ -760,11 +758,11 @@ quarterword& small_fam(halfword); //!< \a fam for ``small'' delimiter
 quarterword& small_char(halfword); //!< \a character for ``small'' delimiter
 quarterword& large_fam(halfword); //!< \a fam for ``large'' delimiter
 quarterword& large_char(halfword); //!< \a character for ``large'' delimiter
-int& thickness(halfword); //!< \a thickness field in a fraction noad
-halfword numerator(halfword); //!< \a numerator field in a fraction noad
-halfword denominator(halfword); //!< \a denominator field in a fraction noad
+//int& thickness(halfword); //!< \a thickness field in a fraction noad
+//halfword numerator(halfword); //!< \a numerator field in a fraction noad
+//halfword denominator(halfword); //!< \a denominator field in a fraction noad
 //halfword accent_chr(halfword); //!< the \a accent_chr field of an accent noad
-halfword delimiter(halfword); //!< \a delimiter field in left and right noads
+//halfword delimiter(halfword); //!< \a delimiter field in left and right noads
 int default_rule_thickness(void); //!< thickness of \\over bars
 int& new_hlist(halfword); //!< the translation of an mlist
 int& u_part(halfword); //!< pointer to \f$<u_j\f$ token list
@@ -786,7 +784,17 @@ halfword& best_ins_ptr(halfword); //!< the optimum most recent insertion
 //halfword& open_name(halfword); //!< string number of file name to open
 //halfword& open_area(halfword); //!< string number of file area for \a open_name
 //halfword& open_ext(halfword); //!< string number of file extension for \a open_name
-halfword& every_vbox(void); 
+
+//halfword& every_vbox(void);
+class TokenNode; 
+TokenNode *every_vbox(void);  
+
+//halfword& every_cr(void); 
+TokenNode *every_cr(void);
+
+//halfword& every_math(void); 
+TokenNode *every_math(void); 
+
 
 inline auto start = curinput.startfield; //!< starting position in \a buffer
 inline auto limit = curinput.limitfield; //!< end of current line in \a buffer

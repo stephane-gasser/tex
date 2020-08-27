@@ -1218,7 +1218,7 @@ void showwhatever(Token t)
 		default:
 			thetoks();
 			printnl("> "+tokenshow(dynamic_cast<TokenNode*>(temp_head)));
-			flushlist(temp_head->link);
+			flushnodelist(temp_head->link);
 			break;
 	}
 	if (interaction < error_stop_mode)

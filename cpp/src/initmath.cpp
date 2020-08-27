@@ -8,8 +8,11 @@
 #include "backinput.h"
 #include "police.h"
 
-static int display_widow_penalty(void) { return int_par(display_widow_penalty_code); }
-static halfword& every_display(void) { return equiv(every_display_loc); }
+static int display_widow_penalty(void) { return int_par(display_widow_penalty_code); } 
+
+//static halfword& every_display(void) { return equiv(every_display_loc); }
+static TokenNode disp;
+static TokenNode *every_display(void) { return &disp; }
 
 void initmath(void)
 {

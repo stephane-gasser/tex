@@ -10,6 +10,8 @@ void initcol(Token t)
 	else
 	{
 		backinput(t);
-		begintokenlist(u_part(curalign), u_template);
+		TokenNode *T;
+		T->num = u_part(curalign);
+		begintokenlist(T, u_template);
 	}
 }

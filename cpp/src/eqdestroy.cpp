@@ -15,24 +15,25 @@ static quarterword eq_type_field(memoryword w)
 
 void eqdestroy(memoryword w)
 {
-	halfword q;
+	halfword q = equiv_field(w);
+	AnyNode *Q;
+	Q->num = q;
 	switch (w.hh.b0)
 	{
 		case call:
 		case long_call:
 		case outer_call:
 		case long_outer_call: 
-			deletetokenref(equiv_field(w));
+			deletetokenref(dynamic_cast<TokenNode*>(Q));
 			break;
-		case glue_ref: 
-			deleteglueref(equiv_field(w));
+		case glue_ref:
+			deleteglueref(dynamic_cast<GlueSpec*>(Q));
 			break;
 		case shape_ref:
-			q = equiv_field(w);
-			if (q)
+			if (Q)
 				freenode(q, 2*info(q)+1);
 			break;
 		case box_ref: 
-			flushnodelist(equiv_field(w));
+			flushnodelist(dynamic_cast<BoxNode*>(Q));
 	}
 }

@@ -184,7 +184,9 @@ void boxend(int boxcontext)
 	shipout(curbox);
 }
 
-static halfword& every_hbox(void) { return equiv(every_hbox_loc); }
+//static halfword& every_hbox(void) { return equiv(every_hbox_loc); }
+static TokenNode hb;//!< points to token list for \\everyhbox
+static TokenNode* every_hbox(void) { return &hb; }
 
 //! Now that we can see what eventually happens to boxes, we can consider
 //! the first steps in their creation. The \a begin_box routine is called when

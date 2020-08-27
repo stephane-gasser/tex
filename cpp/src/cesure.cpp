@@ -718,7 +718,7 @@ void hyphenate(void)
 			} while (hyf[j-1]%2);
 	} while (j <= hn);
 	s->link = q;
-	flushlist(initlist);
+	flushnodelist(initlist);
 }
 
 void newpatterns(Token t)
@@ -841,7 +841,7 @@ void newpatterns(Token t)
 	{
 		error("Too late for "+esc("patterns"), "All patterns must be given before typesetting begins.");
 		garbage->link = scantoks(false, false, t);
-		flushlist(defref);
+		flushnodelist(defref);
 	}
 }
 

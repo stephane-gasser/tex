@@ -111,7 +111,7 @@ void macrocall(Token t)
 						pstack[n] = dynamic_cast<TokenNode*>(temp_head->link);
 						alignstate -= unbalance;
 						for (int m = 0; m <= n; m++)
-							flushlist(pstack[m]);
+							flushnodelist(pstack[m]);
 						scannerstatus = savescannerstatus;
 						warningindex = savewarningindex;
 						return;
@@ -137,7 +137,7 @@ void macrocall(Token t)
 									pstack[n] = dynamic_cast<TokenNode*>(temp_head->link);
 									alignstate -= unbalance;
 									for (int m = 0; m <= n; m++)
-										flushlist(pstack[m]);
+										flushnodelist(pstack[m]);
 									scannerstatus = savescannerstatus;
 									warningindex = savewarningindex;
 									return;

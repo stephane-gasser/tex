@@ -9,12 +9,10 @@ constexpr int end_write_token = cs_token_flag+end_write;
 void writeout(NotOpenWriteWhatsitNode *p)
 {
 	auto q = new TokenNode(right_brace_token+'}');
-	auto r = new TokenNode(end_write_token);
-	q->link = r;
-	ins_list(q->num);
+	q->link = new TokenNode(end_write_token);
+	ins_list(q);
 	begintokenlist(p->write_tokens, write_text);
-	q = new TokenNode(left_brace_token+'{');
-	ins_list(q->num); 
+	ins_list(new TokenNode(left_brace_token+'{'));
 	int oldmode = mode;
 	mode = 0;
 	Token t;
@@ -41,6 +39,6 @@ void writeout(NotOpenWriteWhatsitNode *p)
 		printnl("");
 	}
 	print(tokenshow(defref)+"\n");
-	flushlist(defref);
+	flushnodelist(defref);
 	selector = oldsetting;
 }

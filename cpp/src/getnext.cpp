@@ -21,10 +21,7 @@
 	if (t.cs)
 	{
 		if (state == token_list || txt(name) < 1 || txt(name) > 17)
-		{
-			auto p = new TokenNode(cs_token_flag+t.cs);
-			back_list(p->num);
-		}
+			back_list(new TokenNode(cs_token_flag+t.cs));
 		t.cmd = spacer;
 		t.chr = ' ';
 	}
@@ -39,29 +36,30 @@
 	else
 	{
 		runaway();
-		TokenNode *p;
 		switch (scannerstatus)
 		{
 			case defining:
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				p  = new TokenNode(right_brace_token+'}');
+				ins_list(new TokenNode(right_brace_token+'}'));
 				break;
 			case matching:
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				p = new TokenNode(partoken);
+				ins_list(new TokenNode(partoken));
 				longstate = outer_call;
 				break;
 			case aligning:
+			{
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				p = new TokenNode(frozen_cr+cs_token_flag);
+				auto p = new TokenNode(frozen_cr+cs_token_flag);
 				p->link = new TokenNode(right_brace_token+'}');
+				ins_list(p);
 				alignstate = -1000000;
 				break;
+			}
 			case absorbing:
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				p = new TokenNode(right_brace_token+'}');
+				ins_list(new TokenNode(right_brace_token+'}'));
 		}
-		ins_list(p->num);
 	}
 	t.cs = 0;
 	return t;
@@ -406,7 +404,9 @@ static void removeFromEnd(int &k, int d)
 				fatalerror("(interwoven alignment preambles are not allowed)");
 			t.cmd = extra_info(curalign);
 			extra_info(curalign) = t.chr;
-			begintokenlist(t.cmd == omit ? omit_template->num : v_part(curalign), v_template);
+			TokenNode *T;
+			T->num = t.cmd == omit ? omit_template->num : v_part(curalign);
+			begintokenlist(T, v_template);
 			alignstate = 1000000;
 			restart = true;
 		}
