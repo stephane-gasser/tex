@@ -18,7 +18,6 @@ std::string tokenshow(TokenNode*);
 std::string meaning(Token);
 std::string romanint(int);
 std::string twoDigits(int);
-[[deprecated]] std::string showbox(halfword);
 std::string showbox(BoxNode*);
 std::string showcontext(void);
 void diagnostic(const std::string &);

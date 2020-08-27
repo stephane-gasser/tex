@@ -162,7 +162,7 @@ void doregistercommand(smallnumber a, Token t)
 	{
 		error("Arithmetic overflow", "I can't carry out that multiplication or division,\nsince the result is out of range.");
 		if (p >= glue_val)
-			deleteglueref(val);
+			deleteglueref(g);
 		return;
 	}
 	switch (p)

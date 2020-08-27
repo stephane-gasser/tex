@@ -4,6 +4,5 @@
 #include "globals.h"
 
 BoxNode *vardelimiter(Delimiter&, smallnumber, scaled);
-[[deprecated]] BoxNode *vardelimiter(halfword, smallnumber, scaled);
 
 #endif

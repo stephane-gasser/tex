@@ -22,17 +22,15 @@
 
 LinkedNode* copynodelist(LinkedNode *p)
 {
-	auto h = new LinkedNode;
-	auto q = h;
+	static LinkedNode head;
+	auto q = &head;
 	for (;p; p->link)
 	{
 		q->link = p->copy();
 		q = q->link;
 	}
 	q->link = nullptr;
-	q = h->link;
-	delete h;
-	return q;
+	return head.link;
 }
 void flushnodelist(LinkedNode *p)
 {

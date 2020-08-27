@@ -924,13 +924,6 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 static int show_box_breadth(void) { return int_par(show_box_breadth_code); }
 static int show_box_depth(void) { return int_par(show_box_depth_code); }
 
-std::string showbox(halfword p)
-{  
-	BoxNode *b;
-	b->num = p;
-	return showbox(b);
-}
-
 std::string showbox(BoxNode *p)
 {  
 	depththreshold = show_box_depth();
