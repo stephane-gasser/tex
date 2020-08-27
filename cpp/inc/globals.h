@@ -150,48 +150,6 @@ class Font
 inline std::vector<memoryword> Font::info(7);
 inline std::vector<Font> fonts(1);
 
-class AnyNode
-{
-	public:
-		halfword num = 0; // bidon
-		quarterword type = 0;
-		virtual bool is_char_node(void) { return false; }
-};
-
-class SpanNode : public AnyNode
-{
-	public:
-		halfword link;
-		SpanNode *info;
-		scaled width;
-		SpanNode(void) {}
-};
-
-class LinkedNode : public AnyNode
-{
-	public:
-		LinkedNode *link = nullptr;
-};
-
-class CharNode : public LinkedNode
-{
-	public:
-		Font font; //type
-		quarterword character; //subtype
-		virtual bool is_char_node(void) { return true; }
-		CharNode(const Font &f, quarterword c) : font(f), character(c) {}
-};
-
-class TokenNode : public LinkedNode
-{
-	public:
-		TokenNode(void) : token(0) {}
-		TokenNode(halfword t) : token(t) {}
-		halfword token; // info
-		halfword token_ref_count; // info
-		virtual bool is_char_node(void) { return true; }
-};
-
 enum
 {
 	hlist_node = 0, //!< \a type of hlist nodes
@@ -228,274 +186,7 @@ enum
 	right_noad = left_noad+1 //!< \a type of a noad for \\right
 };
 
-class LigatureNode : public LinkedNode
-{
-	public:
-		CharNode lig_char;
-		LinkedNode *lig_ptr;
-		quarterword subtype;
-		LigatureNode(const Font &f, quarterword c, LinkedNode*q) : subtype(0), lig_char(f, c), lig_ptr(q) { type = ligature_node; }
-		//newligitem
-		LigatureNode(quarterword c) : subtype(0), lig_char(fonts[0], c), lig_ptr(nullptr) { type = ligature_node; }
-};
-
-
-class ChoiceNode : public LinkedNode
-{
-	public:
-		LinkedNode *display_mlist = nullptr; //!< mlist to be used in display style
-		LinkedNode *text_mlist = nullptr; //!< mlist to be used in text style
-		LinkedNode *script_mlist = nullptr; //!< mlist to be used in script style
-		LinkedNode *script_script_mlist = nullptr; //!< mlist to be used in scriptscript style
-		ChoiceNode(void) { type = choice_node; }
-};
-
-class DiscNode : public LinkedNode
-{
-	public:
-		quarterword replace_count = 0; //!< how many subsequent nodes to replace
-		LinkedNode *pre_break = nullptr; //!< text that precedes a discretionary break
-		LinkedNode *post_break = nullptr; //!< text that follows a discretionary break
-		DiscNode(void) { type = disc_node; }
-};
-
-class KernNode : public LinkedNode
-{
-	public:
-		quarterword subtype; // normal/explicit_/acc_kern/mu_glue
-		scaled width; //(normally negative) amount of spacing
-		KernNode(scaled w, quarterword s = 0) : width(w), subtype(s) { type = kern_node; }
-};
-
-class GlueSpec;
-
-class InsNode : public LinkedNode
-{
-	public:
-		quarterword subtype; //corresponding box number
-		scaled height; //natural height plus depth of the vertical list being inserted
-		scaled depth; //|split_max_depth| to be used in case this insertion is split
-		GlueSpec *split_top_ptr; //the |split_top_skip| to be used
-		int float_cost; //the |floating_penalty| to be used
-		LinkedNode *ins_ptr; //the vertical list to be inserted
-		InsNode(void) { type = ins_node; }
-};
-
-extern TokenNode *defref;
-
-class MarkNode : public LinkedNode
-{
-	public:
-		TokenNode *mark_ptr = defref;
-		MarkNode(void) { type = mark_node; }
-};
-
-class AdjustNode : public LinkedNode
-{
-	public:
-		TokenNode *adjust_ptr;
-		AdjustNode(void) { type = adjust_node; }
-};
-
-class PageInsNode : public LinkedNode
-{
-	public:
-		quarterword subtype; 
-		scaled height;
-		LinkedNode *broken_ptr; // an insertion for this class will break here if anywhere
-		LinkedNode* broken_ins; // this insertion might break at |broken_ptr|
-		LinkedNode *last_ins_ptr; // the most recent insertion for this |subtype|
-		LinkedNode* best_ins_ptr;// the optimum most recent insertion
-		PageInsNode(void) {}
-};
-
-halfword& glue_ref_count(halfword);
-int& width(halfword); //!< width of the box, in sp
-int& stretch(halfword); //!< the stretchability of this glob of glue
-int& shrink(halfword); //!< the shrinkability of this glob of glue
-quarterword& stretch_order(halfword); //!< order of infinity for stretching
-quarterword& shrink_order(halfword); //!< order of infinity for shrinking
-
-class GlueSpec : public AnyNode
-{
-	public:
-		halfword glue_ref_count = 1;
-		scaled width = 0, stretch = 0, shrink = 0;
-		glueord stretch_order = 0, shrink_order = 0; // normal/fil/fill/filll
-		GlueSpec(void) {}
-		GlueSpec(GlueSpec *p) { width = p->width; stretch = p->stretch; shrink = p->shrink; stretch_order = p->stretch_order; shrink_order = p->shrink_order; glue_ref_count = 0; }
-		GlueSpec(halfword v) { glue_ref_count = ::glue_ref_count(v); width = ::width(v); stretch = ::stretch(v); shrink = ::shrink(v); stretch_order = ::stretch_order(v); shrink_order = ::shrink_order(v); }
-};
-
-halfword& glue_par(halfword);
-
-class GlueNode : public LinkedNode
-{
-	public:
-		quarterword subtype;
-		LinkedNode *leader_ptr = nullptr; //!< pointer to box or rule node for leaders
-		GlueSpec *glue_ptr; //!< pointer to a glue specification
-		GlueNode(GlueSpec *g) : subtype(0), glue_ptr(g) { type = glue_node; g->glue_ref_count++; }
-		GlueNode(smallnumber n) : subtype(n+1) { type = glue_node; glue_ptr->num = glue_par(n); glue_ptr->glue_ref_count++; }
-};
-
-inline std::vector<GlueSpec*> skip(256);
-inline std::vector<GlueSpec*> mu_skip(256);
-
-class PenaltyNode : public LinkedNode
-{
-	public:
-		int penalty;
-		PenaltyNode(int p = 0) : penalty(p) { type = penalty_node; } 
-};
-
-class RuleNode : public LinkedNode
-{
-	public:
-		quarterword subtype = 0;
-		int width = -(1<<30); //null_flag
-		int depth = -(1<<30); //null_flag
-		int height = -(1<<30); //null_flag
-		RuleNode(void) { type = rule_node; } 
-};
-
-class BoxNode : public RuleNode
-{
-	public:
-		int shift_amount = 0; //!< repositioning distance, in sp
-		LinkedNode *list_ptr = nullptr; //!< beginning of the list inside the box
-		quarterword glue_sign = 0; //normal  //!< stretching or shrinking
-		quarterword glue_order = 0; //normal //!< applicable order of infinity
-		float glue_set = 0.0;
-		BoxNode(void) { type = hlist_node; subtype = 0; width = depth = height = 0; } 
-};
-
-class UnsetNode : public BoxNode
-{
-	public:
-		quarterword &span_count = BoxNode::subtype;
-		// pas de glue_set ni de shift_amount
-		scaled glue_shrink;
-		scaled glue_stretch;
-		UnsetNode(void) : BoxNode() { type = unset_node; span_count = 0; } 
-};
-
-class StyleNode : public LinkedNode
-{
-	public:
-		quarterword subtype;
-		StyleNode(smallnumber s) : subtype(s) { type = style_node; }
-};
-
-inline std::vector<BoxNode*> box(256);
-inline BoxNode *justbox;
-inline BoxNode *curbox;
-
-class MathNode : public LinkedNode
-{
-	public:
-		quarterword subtype;
-		int width;
-		MathNode(scaled w, smallnumber s) : subtype(s), width(w) { type = math_node; }
-};
-
-class WhatsitNode : public LinkedNode
-{
-	public:
-		quarterword subtype;
-		WhatsitNode(smallnumber s) : subtype(s) { type = whatsit_node; }
-};
-
-class WriteWhatsitNode : public WhatsitNode
-{
-	public:
-		halfword write_stream; //!< stream number (0 to 17)
-		WriteWhatsitNode(smallnumber s) : WhatsitNode(s) {}
-};
-
-class OpenWriteWhatsitNode : public WriteWhatsitNode
-{
-	public:
-		std::string open_name; //!< string number of file name to open
-		std::string open_area; //!< string number of file area for \a open_name
-		std::string open_ext; //!< string number of file extension for \a open_name
-		OpenWriteWhatsitNode(void) : WriteWhatsitNode(/*open_node*/0) {}
-};
-
-class NotOpenWriteWhatsitNode : public WriteWhatsitNode
-{
-	public:
-		TokenNode *write_tokens; //!< reference count of token list to write
-		NotOpenWriteWhatsitNode(smallnumber s) : WriteWhatsitNode(s) {}
-};
-
-class LanguageWhatsitNode : public WhatsitNode
-{
-	public:
-		halfword what_lang; //!< language number, in the range 0..255
-		quarterword what_lhm; //!< minimum left fragment, in the range 1..63
-		quarterword what_rhm; //!< minimum right fragment, in the range 1..63
-		LanguageWhatsitNode(ASCIIcode l) : WhatsitNode(/*language_node*/4), what_lang(l) {}
-};
-
-class NoadContent : public AnyNode
-{
-	public:
-		halfword math_type = 0;
-		LinkedNode *info = nullptr;
-		quarterword character = 0;
-		quarterword fam = 0;
-};
-
-class Noad : public LinkedNode
-{
-	public:
-		quarterword subtype;
-		NoadContent nucleus;
-		NoadContent subscr;
-		NoadContent supscr;
-		Noad(void) : subtype(0/*normal*/) { type = ord_noad; }
-};
-
-class Delimiter
-{
-	public:
-		quarterword small_fam; //|fam| for ``small'' delimiter
-		quarterword small_char; //|character| for ``small'' delimiter
-		quarterword large_fam; //|fam| for ``large'' delimiter
-		quarterword large_char; //|character| for ``large'' delimiter
-};
-
-class RadicalNoad : public Noad
-{
-	public:
-		Delimiter left_delimiter;
-		RadicalNoad(void) { type = radical_noad; subtype = 0/*normal*/; }
-};
-
-class FractionNoad : public RadicalNoad
-{
-	public:
-		Delimiter right_delimiter;
-		NoadContent &numerator = supscr; // |numerator| field in a fraction noad
-		NoadContent &denominator = subscr; // |denominator| field in a fraction noad
-		scaled thickness;
-		FractionNoad(void) { type = fraction_noad; subtype = 0/*normal*/; }
-};
-
-class LeftRightNoad : public Noad
-{
-	public:
-		Delimiter delimiter; //!< \a delimiter field in left and right noads
-		LeftRightNoad(quarterword t) { type = t; }
-};
-
-class AccentNoad : public Noad
-{
-	public:
-		NoadContent accent_chr; //!< the \a accent_chr field of an accent noad
-		AccentNoad(void) { type = accent_noad; subtype = 0/*normal*/; accent_chr.math_type = 1/*math_char*/; }
-};
+class LinkedNode;
 
 typedef struct
 {
@@ -512,8 +203,6 @@ inline auto &tail = curlist.tailfield; //!< final node on current list
 inline int& prev_depth = aux.int_; //!< the name of \a aux in vertical mode
 inline halfword& space_factor = aux.hh.lh; //!< part of \a aux in horizontal mode
 inline halfword& clang = aux.hh.rh;  //!< the other part of \a aux in horizontal mode
-//inline int &incompleat_noad = aux.int_; //!< the name of \a aux in math mode
-inline FractionNoad *incompleat_noad; //!< the name of \a aux in math mode
 inline int& mode = curlist.modefield; //!< current mode
 inline int& prev_graf = curlist.pgfield; //!< number of paragraph lines accumulated
 inline int& mode_line = curlist.mlfield; //!< source file line number at beginning of list
@@ -529,9 +218,6 @@ typedef struct
 } instaterecord;
 
 inline instaterecord curinput;
-
-inline TokenNode *pstack[9];
-inline TokenNode *paramstack[paramsize+1];
 
 inline std::string hyphword[308];
 inline std::string helpline;
@@ -666,7 +352,6 @@ inline unsigned char baseptr; // 0..stacksize
 inline halfword parloc;
 inline halfword partoken;
 inline bool forceeof;
-inline std::vector<TokenNode*> curmark(5, nullptr);
 
 enum
 {
@@ -676,12 +361,6 @@ enum
 	split_first_mark_code = 3, //!< the first mark found by \\vsplit
 	split_bot_mark_code = 4 //!< the last mark found by \\vsplit
 };
-
-inline TokenNode *top_mark = curmark[top_mark_code];
-inline TokenNode *first_mark = curmark[first_mark_code];
-inline TokenNode *bot_mark = curmark[bot_mark_code];
-inline TokenNode *split_first_mark = curmark[split_first_mark_code];
-inline TokenNode *split_bot_mark = curmark[split_bot_mark_code];
 
 inline char longstate; // 111..114
 inline smallnumber radix;
@@ -771,5 +450,6 @@ inline bool writeopen[18];
 inline halfword writeloc;
 
 #include "constantes.h"
+#include "noeud.h"
 
 #endif

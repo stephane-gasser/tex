@@ -1,4 +1,5 @@
 #include "insertrelax.h"
+#include "noeud.h"
 #include "backinput.h"
 
 static Token makeCS(halfword cs)

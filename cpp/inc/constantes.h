@@ -166,23 +166,6 @@ enum
 	hi_mem_stat_min = mem_top-13 //!< smallest statically allocated word in
 };
 
-inline std::vector<AnyNode> heads;
-
-inline PageInsNode *page_ins_head; //!< list of insertion data for current page
-inline LinkedNode *contrib_head; //!< vlist of items not yet on current page
-inline LinkedNode *page_head; //!< vlist for current page
-inline TokenNode *temp_head; //!< head of a temporary list of some kind
-inline LinkedNode *hold_head; //!< head of a temporary list of another kind
-inline LinkedNode *adjust_head; //!< head of adjustment list returned by \a hpack
-inline LinkedNode * const active = dynamic_cast<LinkedNode*>(&heads[7]); //!< head of active list in \a line_break, needs two words
-inline LinkedNode * const align_head = dynamic_cast<LinkedNode*>(&heads[8]); //!< head of preamble list for alignments
-inline SpanNode * const end_span = dynamic_cast<SpanNode*>(&heads[9]); //!< tail of spanned-width lists
-inline TokenNode * omit_template; //!< a constant token list
-inline LinkedNode *null_list; //!< permanently empty list
-inline CharNode *lig_trick; //!< a ligature masquerading as a \a char_node
-inline LinkedNode *garbage; //!< used for scrap information
-inline LinkedNode *backup_head; //!< head of token list built by \a scan_keyword
-
 constexpr int hi_mem_stat_usage = 14; //!< the number of one-word nodes always present
 
 enum
@@ -696,8 +679,6 @@ enum
 constexpr int delta_node = 2; //!< \a type field in a delta node
 constexpr int split_up = 1; //!< an overflowed insertion class
 
-inline LinkedNode *preamble = align_head->link; //!< the current preamble list
-
 int length(halfword); //!< the number of characters
 int cur_length(void); 
 void append_char(ASCIIcode); //!< put \a ASCII_code # at the end of \a str_pool
@@ -811,8 +792,6 @@ inline auto start = curinput.startfield; //!< starting position in \a buffer
 inline auto limit = curinput.limitfield; //!< end of current line in \a buffer
 inline auto param_start = limit; //!< base of macro parameters in \a param_stack
 inline auto loc = curinput.locfield; //!< location of first unread character in \a buffer
-inline TokenNode *Start;
-inline TokenNode *Loc;
 
 extern quarterword &state; //!< current scanner state
 extern quarterword &index; //!< reference for buffer information

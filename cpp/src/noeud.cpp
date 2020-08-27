@@ -196,7 +196,7 @@ void flushnodelist(LinkedNode *p)
 				case hlist_node:
 				case vlist_node:
 				case unset_node:
-					flushnodelist(dynamic_cast<BoxNode*>(p)->list_ptr);
+//					flushnodelist(dynamic_cast<BoxNode*>(p)->list_ptr);
 					delete p;
 					break;
 				case rule_node:
@@ -204,9 +204,9 @@ void flushnodelist(LinkedNode *p)
 					break;
 				case ins_node:
 				{
-					auto P = dynamic_cast<InsNode*>(p);
+/*					auto P = dynamic_cast<InsNode*>(p);
 					flushnodelist(P->ins_ptr);
-					deleteglueref(P->split_top_ptr);
+					deleteglueref(P->split_top_ptr);*/
 					delete p;
 					break;
 				}
@@ -218,7 +218,7 @@ void flushnodelist(LinkedNode *p)
 							break;
 						case write_node:
 						case special_node:
-							deletetokenref(dynamic_cast<NotOpenWriteWhatsitNode*>(p)->write_tokens);
+//							deletetokenref(dynamic_cast<NotOpenWriteWhatsitNode*>(p)->write_tokens);
 							delete p;
 							break;
 						case close_node:
@@ -231,10 +231,10 @@ void flushnodelist(LinkedNode *p)
 					break;
 				case glue_node:
 				{
-					auto P = dynamic_cast<GlueNode*>(p);
+/*					auto P = dynamic_cast<GlueNode*>(p);
 					delete P->glue_ptr;
 					if (P->leader_ptr)
-						flushnodelist(P->leader_ptr);
+						flushnodelist(P->leader_ptr);*/
 					delete p;
 					break;
 				}
@@ -248,23 +248,23 @@ void flushnodelist(LinkedNode *p)
 					delete p;
 					break;
 				case ligature_node: 
-					flushnodelist(dynamic_cast<LigatureNode*>(p)->lig_ptr);
+					//flushnodelist(dynamic_cast<LigatureNode*>(p)->lig_ptr);
 					delete p;
 					break;
 				case mark_node: 
-					deletetokenref(dynamic_cast<MarkNode*>(p)->mark_ptr);
+//					deletetokenref(dynamic_cast<MarkNode*>(p)->mark_ptr);
 					delete p;
 					break;
 				case disc_node:
 				{
-					auto P = dynamic_cast<DiscNode*>(p);
+/*					auto P = dynamic_cast<DiscNode*>(p);
 					flushnodelist(P->pre_break);
-					flushnodelist(P->post_break);
+					flushnodelist(P->post_break);*/
 					delete p;
 					break;
 				}
 				case adjust_node: 
-					flushnodelist(dynamic_cast<AdjustNode*>(p)->adjust_ptr);
+//					flushnodelist(dynamic_cast<AdjustNode*>(p)->adjust_ptr);
 					delete p;
 					break;
 				case style_node:
@@ -272,11 +272,11 @@ void flushnodelist(LinkedNode *p)
 					break;
 				case choice_node:
 				{
-					auto P = dynamic_cast<ChoiceNode*>(p);
+/*					auto P = dynamic_cast<ChoiceNode*>(p);
 					flushnodelist(P->display_mlist);
 					flushnodelist(P->text_mlist);
 					flushnodelist(P->script_mlist);
-					flushnodelist(P->script_script_mlist);
+					flushnodelist(P->script_script_mlist);*/
 					delete p;
 					break;
 				}
@@ -294,13 +294,13 @@ void flushnodelist(LinkedNode *p)
 				case vcenter_noad:
 				case accent_noad:
 				{
-					auto P = dynamic_cast<Noad*>(p);
+/*					auto P = dynamic_cast<Noad*>(p);
 					if (P->nucleus.math_type >= sub_box)
 						flushnodelist(P->nucleus.info);
 					if (P->supscr.math_type >= sub_box)
 						flushnodelist(P->supscr.info);
 					if (P->subscr.math_type >= sub_box)
-						flushnodelist(P->subscr.info);
+						flushnodelist(P->subscr.info);*/
 					delete p;
 					break;
 				}
@@ -310,9 +310,9 @@ void flushnodelist(LinkedNode *p)
 					break;
 				case fraction_noad:
 				{
-					auto P = dynamic_cast<FractionNoad*>(p);
+/*					auto P = dynamic_cast<FractionNoad*>(p);
 					flushnodelist(P->numerator.info);
-					flushnodelist(P->denominator.info);
+					flushnodelist(P->denominator.info);*/
 					delete p;
 					break;
 				}
