@@ -153,7 +153,7 @@ int main()
 		auto t = maincontrol();
 		finalcleanup(t);
 	}
-	catch(const std::string &msg)
+	catch (const std::string &msg)
 	{
 		if (msg == "jumpout")
 			closefilesandterminate();

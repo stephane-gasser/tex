@@ -16,7 +16,7 @@ void makeord(halfword q)
 			if (p && p->type >= ord_noad && p->type <= punct_noad && p->nucleus.math_type == math_char && p->nucleus.fam == Q->nucleus.fam)
 			{
 				Q->nucleus.math_type = math_text_char;
-				auto [ft, curc] = fetch(nucleus(q));
+				auto [ft, curc] = fetch(Q->nucleus);
 				if (char_tag(ft.char_info(curc)) == lig_tag)
 				{
 					int a = ft.lig_kern_start(ft.char_info(curc));

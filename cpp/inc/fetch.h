@@ -4,6 +4,6 @@
 #include "globals.h"
 #include "police.h"
 
-[[nodiscard]] std::tuple<Font, quarterword> fetch(halfword);
+[[nodiscard]] std::tuple<Font, quarterword> fetch(NoadContent&);
 
 #endif

@@ -6,10 +6,10 @@
 #include "primitive.h"
 #include "police.h"
 
-[[nodiscard]] std::tuple<Font, quarterword> fetch(halfword a)
+[[nodiscard]] std::tuple<Font, quarterword> fetch(NoadContent &a)
 {
-	auto curc = character(a);
-	auto curf = fam_fnt(fam(a)+cursize);
+	auto curc = a.character;
+	auto curf = fam_fnt(a.fam+cursize);
 	auto &ft = fonts[curf];
 	try
 	{
@@ -23,10 +23,11 @@
 	catch (int e)
 	{
 		if (e == 1)
-			error(esc(primName[def_family][cursize])+" "+std::to_string(type(a))+" is undefined (character "+char(curc)+")", "Somewhere in the math formula just ended, you used the\nstated character from an undefined font family. For example,\nplain TeX doesn't allow \\it or \\sl in subscripts. Proceed,\nand I'll try to forget that I needed that character.");
+			error(esc(primName[def_family][cursize])+" "+std::to_string(a.fam)+" is undefined (character "+char(curc)+")", "Somewhere in the math formula just ended, you used the\nstated character from an undefined font family. For example,\nplain TeX doesn't allow \\it or \\sl in subscripts. Proceed,\nand I'll try to forget that I needed that character.");
 		else
 			charwarning(ft, curc);
-		link(a) = 0;
+		a.fam = 0;
+		a.character = 0;
 	}
 	return std::tuple(ft, curc);
 }

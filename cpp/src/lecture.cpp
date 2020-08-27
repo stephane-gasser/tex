@@ -67,7 +67,39 @@ void scanbox(int boxcontext)
 			backerror(t, "A <box> was supposed to be here", "I was expecting to see \\hbox or \\vbox or \\copy or \\box or\nsomething like that. So you might find something missing in\nyour output. But keep trying; you can fix this later.");
 }
 
-void scandelimiter(halfword p, bool r, Token t)
+void scandelimiter(Delimiter &p, bool r, Token t)
+{
+	int val;
+	if (r)
+		val = scantwentysevenbitint();
+	else
+	{
+		t = getXTokenSkipSpaceAndEscape();
+		switch (t.cmd)
+		{
+			case letter:
+			case other_char: 
+				val = del_code(t.chr);
+				break;
+			case delim_num: 
+				val = scantwentysevenbitint();
+				break;
+			default: 
+				val = -1;
+		}
+	}
+	if (val < 0)
+	{
+		backerror(t, "Missing delimiter (. inserted)", "I was expecting to see something like `(' or `\\{' or\n`\\}' here. If you typed, e.g., `{' instead of `\\{', you\nshould probably delete the `{' by typing `1' now, so that\nbraces don't get unbalanced. Otherwise just proceed.\nAcceptable delimiters are characters whose \\delcode is\nnonnegative, or you can use `\\delimiter <delimiter code>'.");
+		val = 0;
+	}
+	p.small_fam = (val>>20)%(1<<4);
+	p.small_char = (val>>12)%(1<<8);
+	p.large_fam = (val>>8)%(1<<4);
+	p.large_char = val%(1<<8);
+}
+
+[[deprecated]] void scandelimiter(halfword p, bool r, Token t)
 {
 	int val;
 	if (r)
@@ -640,7 +672,7 @@ bool scankeyword(const std::string &s)
 	return t;
 }
 
-void scanmath(halfword p)
+[[deprecated]] void scanmath(halfword p)
 {
 	auto t = getXTokenSkipSpaceAndEscape();
 	bool label21;
@@ -692,6 +724,60 @@ void scanmath(halfword p)
 	math_type(p) = math_char;
 	character(p) = c%0x1'00;
 	fam(p) = (c >= var_code && fam_in_range() ? cur_fam() : (c>>8)%0x10);
+}
+
+void scanmath(NoadContent &p)
+{
+	auto t = getXTokenSkipSpaceAndEscape();
+	bool label21;
+	do
+	{
+		label21 = false;
+		int c;
+		switch (t.cmd)
+		{
+			case letter:
+			case other_char:
+			case char_given:
+				c = math_code(t.chr);
+				if (c == 0x80'00)
+				{
+					t.cs = t.chr+1;
+					t.cmd = eq_type(t.cs);
+					t.chr = equiv(t.cs);
+					t = xtoken(t);
+					backinput(t);
+					t = getXTokenSkipSpaceAndEscape();
+					label21 = true;
+					continue;
+				}
+				break;
+			case char_num:
+				t.chr = scancharnum();
+				t.cmd = char_given;
+				label21 = true;
+				continue;
+			case math_char_num:
+				c = scanfifteenbitint();
+				break;
+			case math_given: 
+				c = t.chr;
+				break;
+			case delim_num:
+				c = scantwentysevenbitint()>>12;
+				break;
+			default:
+				backinput(t);
+				t = scanleftbrace();
+				saved(0) = p.num;
+				saveptr++;
+				pushmath(math_group);
+				return;
+		}
+	} while (label21);
+	p.math_type = math_char;
+	p.character = c%0x1'00;
+	p.fam = (c >= var_code && fam_in_range() ? cur_fam() : (c>>8)%0x10);
 }
 
 void scanoptionalequals(void)

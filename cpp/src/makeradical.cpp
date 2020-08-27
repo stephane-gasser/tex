@@ -7,7 +7,7 @@
 
 void makeradical(halfword q)
 {
-	Noad *Q;
+	RadicalNoad *Q;
 	Q->num = q;
 	auto x = cleanbox(nucleus(q), cramped_style(curstyle));
 	scaled clr;
@@ -18,7 +18,7 @@ void makeradical(halfword q)
 		clr = default_rule_thickness();
 		clr += abs(clr)/4;
 	}
-	auto y = vardelimiter(left_delimiter(q), cursize, x->height+x->depth+clr+default_rule_thickness());
+	auto y = vardelimiter(Q->left_delimiter, cursize, x->height+x->depth+clr+default_rule_thickness());
 	scaled delta = y->depth-(x->height+x->depth+clr);
 	if (delta > 0)
 		clr += half(delta);

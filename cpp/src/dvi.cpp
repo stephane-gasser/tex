@@ -4,7 +4,6 @@
 #include "fichier.h"
 #include "impression.h"
 
-constexpr int dvibufsize = 800;
 constexpr dviindex halfbuf = dvibufsize/2;
 
 static eightbits dvibuf[dvibufsize+1];

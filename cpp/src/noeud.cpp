@@ -66,10 +66,12 @@ LinkedNode* copynodelist(LinkedNode *p)
 				case vlist_node:
 				case unset_node:
 				{
+					auto P = dynamic_cast<BoxNode*>(p);
 					auto R = new BoxNode;
-					mem[r->num+6] = mem[p->num+6];
-					mem[r->num+5] = mem[p->num+5];
-					R->list_ptr = copynodelist(dynamic_cast<BoxNode*>(p)->list_ptr);
+					R->glue_set = P->glue_set;
+					R->glue_sign = P->glue_sign;
+					R->glue_order = P->glue_order;
+					R->list_ptr = copynodelist(P->list_ptr);
 					r = R;
 					words = 5;
 					break;
@@ -299,21 +301,21 @@ void flushnodelist(LinkedNode *p)
 						flushnodelist(P->supscr.info);
 					if (P->subscr.math_type >= sub_box)
 						flushnodelist(P->subscr.info);
-					if (p->type == radical_noad || p->type == accent_noad)
-						freenode(p->num, radical_noad_size);
-					else
-						delete p;
+					delete p;
 					break;
 				}
 				case left_noad:
 				case right_noad:
-					freenode(p->num, noad_size);
+					delete p;
 					break;
 				case fraction_noad:
-					flushnodelist(info(numerator(p->num)));
-					flushnodelist(info(denominator(p->num)));
-					freenode(p->num, fraction_noad_size);
+				{
+					auto P = dynamic_cast<FractionNoad*>(p);
+					flushnodelist(P->numerator.info);
+					flushnodelist(P->denominator.info);
+					delete p;
 					break;
+				}
 				default: 
 					confusion("flushing"); 
 			}

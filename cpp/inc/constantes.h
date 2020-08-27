@@ -782,7 +782,7 @@ quarterword& large_char(halfword); //!< \a character for ``large'' delimiter
 int& thickness(halfword); //!< \a thickness field in a fraction noad
 halfword numerator(halfword); //!< \a numerator field in a fraction noad
 halfword denominator(halfword); //!< \a denominator field in a fraction noad
-halfword accent_chr(halfword); //!< the \a accent_chr field of an accent noad
+//halfword accent_chr(halfword); //!< the \a accent_chr field of an accent noad
 halfword delimiter(halfword); //!< \a delimiter field in left and right noads
 int default_rule_thickness(void); //!< thickness of \\over bars
 int& new_hlist(halfword); //!< the translation of an mlist

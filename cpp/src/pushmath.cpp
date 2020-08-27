@@ -6,6 +6,6 @@ void pushmath(groupcode c)
 {
 	pushnest();
 	mode = -mmode;
-	incompleat_noad = 0;
+	incompleat_noad = nullptr;
 	newsavelevel(c);
 }

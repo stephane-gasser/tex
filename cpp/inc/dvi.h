@@ -3,6 +3,8 @@
 
 #include "globals.h"
 
+constexpr int dvibufsize = 800;
+
 void dvifontdef(internalfontnumber);
 void dvifour(uint32_t);
 void dvipop(int);

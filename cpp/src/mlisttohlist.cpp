@@ -239,7 +239,7 @@ void mlisttohlist(void)
 		{
 			case math_char:
 			case math_text_char:
-				std::tie(ft, curc) = fetch(nucleus(q->num));
+				std::tie(ft, curc) = fetch(Q->nucleus);
 				if (char_exists(ft.char_info(curc)))
 				{
 					delta = ft.char_italic(curc);

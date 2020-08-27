@@ -7,7 +7,9 @@
 
 void makemathaccent(halfword q)
 {
-	auto [ft, curc] = fetch(accent_chr(q));
+	AccentNoad *Q;
+	Q->num = q;
+	auto [ft, curc] = fetch(Q->accent_chr);
 	if (char_exists(ft.char_info(curc)))
 	{
 		auto c = curc;
@@ -16,7 +18,7 @@ void makemathaccent(halfword q)
 		Q->num = q;
 		if (Q->nucleus.math_type == math_char)
 		{
-			std::tie(ft, curc) = fetch(nucleus(q));
+			std::tie(ft, curc) = fetch(Q->nucleus);
 			if (char_tag(ft.char_info(curc)) == lig_tag)
 			{
 				int a = ft.lig_kern_start(ft.char_info(curc));

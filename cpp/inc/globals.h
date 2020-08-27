@@ -457,6 +457,46 @@ class Noad : public LinkedNode
 		Noad(void) : subtype(0/*normal*/) { type = ord_noad; }
 };
 
+class Delimiter
+{
+	public:
+		quarterword small_fam; //|fam| for ``small'' delimiter
+		quarterword small_char; //|character| for ``small'' delimiter
+		quarterword large_fam; //|fam| for ``large'' delimiter
+		quarterword large_char; //|character| for ``large'' delimiter
+};
+
+class RadicalNoad : public Noad
+{
+	public:
+		Delimiter left_delimiter;
+		RadicalNoad(void) { type = radical_noad; subtype = 0/*normal*/; }
+};
+
+class FractionNoad : public RadicalNoad
+{
+	public:
+		Delimiter right_delimiter;
+		NoadContent &numerator = supscr; // |numerator| field in a fraction noad
+		NoadContent &denominator = subscr; // |denominator| field in a fraction noad
+		scaled thickness;
+		FractionNoad(void) { type = fraction_noad; subtype = 0/*normal*/; }
+};
+
+class LeftRightNoad : public Noad
+{
+	public:
+		Delimiter delimiter; //!< \a delimiter field in left and right noads
+		LeftRightNoad(quarterword t) { type = t; }
+};
+
+class AccentNoad : public Noad
+{
+	public:
+		NoadContent accent_chr; //!< the \a accent_chr field of an accent noad
+		AccentNoad(void) { type = accent_noad; subtype = 0/*normal*/; accent_chr.math_type = 1/*math_char*/; }
+};
+
 typedef struct
 {
     int modefield; // -203..203
@@ -472,7 +512,8 @@ inline auto &tail = curlist.tailfield; //!< final node on current list
 inline int& prev_depth = aux.int_; //!< the name of \a aux in vertical mode
 inline halfword& space_factor = aux.hh.lh; //!< part of \a aux in horizontal mode
 inline halfword& clang = aux.hh.rh;  //!< the other part of \a aux in horizontal mode
-inline int &incompleat_noad = aux.int_; //!< the name of \a aux in math mode
+//inline int &incompleat_noad = aux.int_; //!< the name of \a aux in math mode
+inline FractionNoad *incompleat_noad; //!< the name of \a aux in math mode
 inline int& mode = curlist.modefield; //!< current mode
 inline int& prev_graf = curlist.pgfield; //!< number of paragraph lines accumulated
 inline int& mode_line = curlist.mlfield; //!< source file line number at beginning of list

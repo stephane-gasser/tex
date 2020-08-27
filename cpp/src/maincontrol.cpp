@@ -667,7 +667,7 @@ Token maincontrol(void)
 			case mmode+left_brace:
 				tail_append(new Noad);
 				backinput(t);
-				scanmath(nucleus(tail->num));
+				scanmath(dynamic_cast<Noad*>(tail)->nucleus);
 				break;
 			case mmode+letter:
 			case mmode+other_char:
@@ -690,7 +690,7 @@ Token maincontrol(void)
 			case mmode+math_comp:
 				tail_append(new Noad);
 				tail->type = t.chr;
-				scanmath(nucleus(tail->num));
+				scanmath(dynamic_cast<Noad*>(tail)->nucleus);
 				break;
 			case mmode+limit_switch: 
 				mathlimitswitch(t);

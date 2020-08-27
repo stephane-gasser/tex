@@ -5,7 +5,7 @@
 static int delimiter_factor(void) { return int_par(delimiter_factor_code); }
 static int delimiter_shortfall(void) { return dimen_par(delimiter_shortfall_code); }
 
-smallnumber makeleftright(halfword q, smallnumber style, scaled maxd, scaled  maxh)
+smallnumber makeleftright(halfword q, smallnumber style, scaled maxd, scaled maxh)
 {
 	if (style < 4)
 		cursize = 0;
@@ -19,6 +19,8 @@ smallnumber makeleftright(halfword q, smallnumber style, scaled maxd, scaled  ma
 	delta2 = 2*delta1-delimiter_shortfall();
 	if (delta < delta2)
 		delta = delta2;
-	new_hlist(q) = vardelimiter(delimiter(q), cursize, delta)->num;
+	LeftRightNoad *Q;
+	Q->num = q;
+	new_hlist(q) = vardelimiter(Q->delimiter, cursize, delta)->num;
 	return type(q)-(left_noad-open_noad);
 }

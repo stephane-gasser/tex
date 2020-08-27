@@ -62,7 +62,6 @@ halfword& lc_code(halfword p) { return equiv(lc_code_base+p); }
 halfword& sf_code(halfword p) { return equiv(sf_code_base+p); }
 halfword& math_code(halfword p) { return equiv(math_code_base+p); }
 
-halfword accent_chr(halfword p) { return p+4; }
 halfword left_delimiter(halfword p) { return p+4; }
 halfword right_delimiter(halfword p) { return p+5; }
 halfword nucleus(halfword p) { return p+1; }

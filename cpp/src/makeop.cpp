@@ -21,7 +21,7 @@ scaled makeop(halfword q)
 	scaled delta;
 	if (Q->nucleus.math_type == math_char)
 	{
-		auto [ft, curc] = fetch(nucleus(q));
+		auto [ft, curc] = fetch(Q->nucleus);
 		if (curstyle < text_style && char_tag(ft.char_info(curc)) == list_tag)
 		{
 			auto c = rem_byte(ft.char_info(curc));

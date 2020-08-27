@@ -11,8 +11,9 @@ void mathfraction(halfword c, Token t)
 	{
 		if (c >= delimited_code)
 		{
-			scandelimiter(garbage->num, false, t);
-			scandelimiter(garbage->num, false, t);
+			Delimiter dummy;
+			scandelimiter(dummy, false, t);
+			scandelimiter(dummy, false, t);
 		}
 		if (c%delimited_code == 0)
 			int _ = scan_normal_dimen();
@@ -20,31 +21,29 @@ void mathfraction(halfword c, Token t)
 	}
 	else
 	{
-		incompleat_noad = getnode(fraction_noad_size);
-		type(incompleat_noad) = fraction_noad;
-		subtype(incompleat_noad) = normal;
-		link(numerator(incompleat_noad)) = 3;
-		info(numerator(incompleat_noad)) = head->link->num;
-		mem[denominator(incompleat_noad)].hh = twohalves{0, 0};
-		mem[left_delimiter(incompleat_noad)].qqqq = fourquarters{0, 0, 0, 0};
-		mem[right_delimiter(incompleat_noad)].qqqq = fourquarters{0, 0, 0, 0};
+		incompleat_noad = new FractionNoad;
+		incompleat_noad->numerator.math_type = sub_mlist;
+		incompleat_noad->numerator.info = head->link;
+		incompleat_noad->denominator.math_type = 0; // = twohalves{0, 0};
+		incompleat_noad->left_delimiter = Delimiter{0, 0, 0, 0};
+		incompleat_noad->right_delimiter = Delimiter{0, 0, 0, 0};
 		head->link = nullptr;
 		tail = head;
 		if (c >= delimited_code)
 		{
-			scandelimiter(left_delimiter(incompleat_noad), false, t);
-			scandelimiter(right_delimiter(incompleat_noad), false, t);
+			scandelimiter(incompleat_noad->left_delimiter, false, t);
+			scandelimiter(incompleat_noad->right_delimiter, false, t);
 		}
 		switch (c%delimited_code)
 		{
 			case above_code:
-				thickness(incompleat_noad) = scan_normal_dimen();
+				incompleat_noad->thickness = scan_normal_dimen();
 				break;
 			case over_code: 
-				thickness(incompleat_noad) = default_code;
+				incompleat_noad->thickness = default_code;
 				break;
 			case atop_code: 
-				thickness(incompleat_noad) = 0;
+				incompleat_noad->thickness = 0;
 				break;
 		}
 	}

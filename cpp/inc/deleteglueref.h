@@ -3,7 +3,7 @@
 
 #include "globals.h"
 
-void deleteglueref(halfword);
+[[deprecated]] void deleteglueref(halfword);
 void deleteglueref(GlueSpec *);
 
 #endif

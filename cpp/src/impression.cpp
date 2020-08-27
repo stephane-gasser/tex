@@ -233,6 +233,12 @@ static std::string asDelimiter(halfword p)
 	return a < 0 ? std::to_string(a) : hex(a);
 }
 
+static std::string asDelimiter(Delimiter p)
+{
+	int a = (p.small_fam<<20)+(p.small_char<<12)+(p.large_fam<<8)+p.large_char;
+	return a < 0 ? std::to_string(a) : hex(a);
+}
+
 std::string esc(const std::string &s) 
 {
 	auto &c = escape_char();
@@ -241,9 +247,9 @@ std::string esc(const std::string &s)
 	return s;
 }
 
-static std::string famandchar(halfword p)
+static std::string famandchar(const NoadContent &p)
 {
-	return esc("fam")+std::to_string(type(p))+" "+TXT(subtype(p));
+	return esc("fam")+std::to_string(p.fam)+" "+TXT(p.character);
 }
 
 std::string asFilename(const std::string &n, const std::string &a, const std::string &e)
@@ -405,7 +411,7 @@ static std::string subsidiarydata(const NoadContent &p, char c, const std::strin
 	switch (p.math_type)
 	{
 		case math_char:
-			oss << "\n" << symbol << c << famandchar(p.num);
+			oss << "\n" << symbol << c << famandchar(p);
 			break;
 		case sub_box: 
 			oss << shownodelist(p.info, symbol+c);
@@ -872,16 +878,16 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 							oss << esc("vcenter");
 							break;
 						case radical_noad:
-							oss << esc("radical") << asDelimiter(left_delimiter(p->num));
+							oss << esc("radical") << asDelimiter(dynamic_cast<RadicalNoad*>(p)->left_delimiter);
 							break;
 						case accent_noad:
-							oss << esc("accent") << famandchar(accent_chr(p->num));
+							oss << esc("accent") << famandchar(dynamic_cast<AccentNoad*>(p)->accent_chr);
 							break;
 						case left_noad:
-							oss << esc("left") << asDelimiter(delimiter(p->num));
+							oss << esc("left") << asDelimiter(dynamic_cast<LeftRightNoad*>(p)->delimiter);
 							break;
 						case right_noad:
-							oss << esc("right") << asDelimiter(delimiter(p->num));
+							oss << esc("right") << asDelimiter(dynamic_cast<LeftRightNoad*>(p)->delimiter);
 					}
 					auto P = dynamic_cast<Noad*>(p);
 					if (P->subtype)
@@ -897,16 +903,14 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 				}
 				case fraction_noad:
 				{
+					auto P = dynamic_cast<FractionNoad*>(p);
 					oss << esc("fraction, thickness ") << (new_hlist(p->num) == default_code ? "= default": asScaled(new_hlist(p->num)));
-					if (small_fam(left_delimiter(p->num)) || small_char(left_delimiter(p->num)) || large_fam(left_delimiter(p->num)) || large_char(left_delimiter(p->num)))
-						oss << ", left-delimiter " << asDelimiter(left_delimiter(p->num));
-					if (small_fam(right_delimiter(p->num)) || small_char(right_delimiter(p->num)) || large_fam(right_delimiter(p->num)) || large_char(right_delimiter(p->num)))
-						oss << ", right-delimiter " << asDelimiter(right_delimiter(p->num));
-					NoadContent l;
-					l.num = numerator(p->num);
-					oss << subsidiarydata(l, '\\', symbol);
-					l.num = denominator(p->num);
-					oss << subsidiarydata(l, '/', symbol);
+					if (P->left_delimiter.small_fam || P->left_delimiter.small_char || P->left_delimiter.large_fam || P->left_delimiter.large_char)
+						oss << ", left-delimiter " << asDelimiter(P->left_delimiter);
+					if (P->right_delimiter.small_fam || P->right_delimiter.small_char || P->right_delimiter.large_fam || P->right_delimiter.large_char)
+						oss << ", right-delimiter " << asDelimiter(P->right_delimiter);
+					oss << subsidiarydata(P->numerator, '\\', symbol);
+					oss << subsidiarydata(P->denominator, '/', symbol);
 					break;
 				}
 				default: 

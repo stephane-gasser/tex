@@ -23,7 +23,7 @@ void initalign(Token t, halfword &loop)
 	if (mode == mmode)
 	{
 		mode = -1;
-		incompleat_noad = nest[nestptr-2].auxfield.int_;
+		incompleat_noad->num = nest[nestptr-2].auxfield.int_;
 	}
 	else 
 		if (mode > 0)

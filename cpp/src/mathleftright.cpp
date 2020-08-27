@@ -16,7 +16,8 @@ void mathleftright(Token tk)
 	{
 		if (curgroup == math_shift_group)
 		{
-			scandelimiter(garbage->num, false, tk);
+			Delimiter dummy;
+			scandelimiter(dummy, false, tk);
 			error("Extra "+esc("right"), "I'm ignoring a \\right that had no matching \\left.");
 		}
 		else
@@ -24,10 +25,8 @@ void mathleftright(Token tk)
 	}
 	else
 	{
-		LinkedNode *p;
-		p = new Noad;
-		p->type = t;
-		scandelimiter(delimiter(p->num), false, tk);
+		auto p = new LeftRightNoad(t);
+		scandelimiter(p->delimiter, false, tk);
 		if (t == left_noad)
 		{
 			pushmath(math_left_group);
