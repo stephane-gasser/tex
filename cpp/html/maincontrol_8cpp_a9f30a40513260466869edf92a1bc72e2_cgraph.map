@@ -1,10 +1,9 @@
 <map id="append_normal_space" name="append_normal_space">
-<area shape="rect" id="node1" title=" " alt="" coords="5,157,157,184"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,157,159"/>
 <area shape="rect" id="node2" href="$police_8cpp.html#a1fe5eebc7eb782b4144dfe036ed70bb9" title=" " alt="" coords="240,5,309,32"/>
 <area shape="rect" id="node3" href="$lecture_8cpp.html#a8011f7e4fce89d03b8863f49b45f4c57" title=" " alt="" coords="235,56,314,83"/>
-<area shape="rect" id="node4" href="$noeud_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="237,107,312,133"/>
-<area shape="rect" id="node5" href="$classFont.html#a5f88292162ff2de68278f44ac8592f80" title="normal space between words" alt="" coords="229,157,320,184"/>
-<area shape="rect" id="node6" href="$classFont.html#a13d5b718ac41dacf05a499fa9e0d2e25" title="shrink between words" alt="" coords="208,208,341,235"/>
-<area shape="rect" id="node7" href="$classFont.html#aceacc9471c2b41afc283c36e98944277" title="stretch between words" alt="" coords="205,259,344,285"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="231,309,319,336"/>
+<area shape="rect" id="node4" href="$classFont.html#a5f88292162ff2de68278f44ac8592f80" title="normal space between words" alt="" coords="229,107,320,133"/>
+<area shape="rect" id="node5" href="$classFont.html#a13d5b718ac41dacf05a499fa9e0d2e25" title="shrink between words" alt="" coords="208,157,341,184"/>
+<area shape="rect" id="node6" href="$classFont.html#aceacc9471c2b41afc283c36e98944277" title="stretch between words" alt="" coords="205,208,344,235"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="231,259,319,285"/>
 </map>

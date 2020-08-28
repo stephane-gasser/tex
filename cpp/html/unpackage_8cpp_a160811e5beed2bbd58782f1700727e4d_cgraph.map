@@ -1,7 +1,7 @@
 <map id="unpackage" name="unpackage">
-<area shape="rect" id="node1" title=" " alt="" coords="5,105,91,132"/>
-<area shape="rect" id="node2" href="$globals_8h.html#a90d951dcd6c50010a0d62f179275f1c0" title=" " alt="" coords="171,5,213,32"/>
-<area shape="rect" id="node3" href="$noeud_8cpp.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="145,80,239,107"/>
-<area shape="rect" id="node4" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="168,131,216,157"/>
-<area shape="rect" id="node5" href="$lecture_8cpp.html#a5582312d4ec520bdb117d4bd96c59e9f" title=" " alt="" coords="139,181,245,208"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,81,91,108"/>
+<area shape="rect" id="node2" href="$noeud_8h.html#a90d951dcd6c50010a0d62f179275f1c0" title=" " alt="" coords="171,5,213,32"/>
+<area shape="rect" id="node3" href="$noeud_8cpp.html#a0eb9d2ef37190216125d843472d39047" title=" " alt="" coords="145,56,239,83"/>
+<area shape="rect" id="node4" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="168,107,216,133"/>
+<area shape="rect" id="node5" href="$lecture_8cpp.html#a5582312d4ec520bdb117d4bd96c59e9f" title=" " alt="" coords="139,157,245,184"/>
 </map>

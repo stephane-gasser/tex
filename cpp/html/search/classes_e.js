@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['unsetnode_2080',['UnsetNode',['../classUnsetNode.html',1,'']]]
+  ['spannode_2072',['SpanNode',['../classSpanNode.html',1,'']]],
+  ['stylenode_2073',['StyleNode',['../classStyleNode.html',1,'']]]
 ];

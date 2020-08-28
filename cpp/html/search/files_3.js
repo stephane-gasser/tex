@@ -12,12 +12,6 @@ var searchData=
   ['doextension_2eh_2136',['doextension.h',['../doextension_8h.html',1,'']]],
   ['doregistercommand_2ecpp_2137',['doregistercommand.cpp',['../doregistercommand_8cpp.html',1,'']]],
   ['doregistercommand_2eh_2138',['doregistercommand.h',['../doregistercommand_8h.html',1,'']]],
-  ['dvifontdef_2ecpp_2139',['dvifontdef.cpp',['../dvifontdef_8cpp.html',1,'']]],
-  ['dvifontdef_2eh_2140',['dvifontdef.h',['../dvifontdef_8h.html',1,'']]],
-  ['dvifour_2ecpp_2141',['dvifour.cpp',['../dvifour_8cpp.html',1,'']]],
-  ['dvifour_2eh_2142',['dvifour.h',['../dvifour_8h.html',1,'']]],
-  ['dvipop_2ecpp_2143',['dvipop.cpp',['../dvipop_8cpp.html',1,'']]],
-  ['dvipop_2eh_2144',['dvipop.h',['../dvipop_8h.html',1,'']]],
-  ['dviswap_2ecpp_2145',['dviswap.cpp',['../dviswap_8cpp.html',1,'']]],
-  ['dviswap_2eh_2146',['dviswap.h',['../dviswap_8h.html',1,'']]]
+  ['dvi_2ecpp_2139',['dvi.cpp',['../dvi_8cpp.html',1,'']]],
+  ['dvi_2eh_2140',['dvi.h',['../dvi_8h.html',1,'']]]
 ];

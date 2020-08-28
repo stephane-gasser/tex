@@ -116,7 +116,8 @@ void finalign(halfword &loop)
 		{
 			Q->height = Q->width;
 			Q->width = 0;
-			q = q->link->link;
+			next(q);
+			next(q);
 		} while (q);
 		p = vpack(preamble, s1, s0);
 		q = preamble->link;
@@ -124,7 +125,8 @@ void finalign(halfword &loop)
 		{
 			Q->width = Q->height;
 			Q->height = 0;
-			q = q->link->link;
+			next(q);
+			next(q);
 		} while (q);
 	}
 	packbeginline = 0;
@@ -165,7 +167,7 @@ void finalign(halfword &loop)
 					while (n > 0)
 					{
 						n--;
-						s = s->link;
+						next(s);
 						auto V = dynamic_cast<GlueNode*>(s)->glue_ptr;
 						auto g = new GlueNode(V);
 						g->subtype = tab_skip_code+1;
@@ -180,7 +182,7 @@ void finalign(halfword &loop)
 						else 
 							if (P->glue_sign == shrinking && V->shrink_order == P->glue_order)
 								t -= round(P->glue_set*V->shrink);
-						s = s->link;
+						next(s);
 						S = dynamic_cast<BoxNode*>(s);
 						u->link = new BoxNode;
 						u = u->link;
@@ -268,8 +270,10 @@ void finalign(halfword &loop)
 						r->link = hold_head->link;
 						r = u;
 					}
-					r = r->link->link;
-					s = s->link->link;
+					next(r);
+					next(r);
+					next(s);
+					next(s);
 				} while (r);
 			}
 			else 
@@ -294,7 +298,7 @@ void finalign(halfword &loop)
 					}
 				}
 		s = q;
-		q = q->link;
+		next(q);
 	}
 	flushnodelist(p);
 	popalignment(loop);

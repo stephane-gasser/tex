@@ -328,7 +328,7 @@ void linebreak(int finalwidowpenalty)
 												j++;
 												hu[j] = c;
 												hc[j] = lc_code(c);
-												q = q->link;
+												next(q);
 											}
 											hb = s;
 											hn = j;
@@ -345,7 +345,7 @@ void linebreak(int finalwidowpenalty)
 											}
 											else
 												break;
-									s = s->link;
+									next(s);
 								}
 								if (hn < lhyf+rhyf)
 									break;
@@ -376,7 +376,7 @@ void linebreak(int finalwidowpenalty)
 												label31 = true;
 												break;
 										}
-									s = s->link;
+									next(s);
 								}
 								if (!label31)
 									hyphenate();
@@ -440,7 +440,7 @@ void linebreak(int finalwidowpenalty)
 									default: 
 										confusion("disc3");
 								}
-							s = s->link;
+							next(s);
 						} while (s);
 						act_width += discwidth;
 						trybreak(hyphen_penalty(), 1);
@@ -478,7 +478,7 @@ void linebreak(int finalwidowpenalty)
 									confusion("disc4");
 							}
 						r--;
-						s = s->link;
+						next(s);
 					}
 					prevp = curp;
 					curp = s;
@@ -506,17 +506,13 @@ void linebreak(int finalwidowpenalty)
 			trybreak(eject_penalty, hyphenated);
 			if (active->link != active)
 			{
-				auto r = active->link;
 				fewestdemerits = max_dimen;
-				do
-				{
+				for (auto r = active->link; r != active; next(r))
 					if (r->type != rule_node && total_demerits(r->num) < fewestdemerits)
 					{
 						fewestdemerits = total_demerits(r->num);
 						bestbet = r->num;
 					}
-					r = r->link;
-				} while (r != active);
 				bestline = line_number(bestbet);
 				if (looseness() == 0)
 				{
@@ -541,8 +537,8 @@ void linebreak(int finalwidowpenalty)
 					packbeginline = 0;
 					return;
 				}
-				r = active->link;
 				actuallooseness = 0;
+				auto r = active->link;
 				do
 				{
 					if (r->type != 2)
@@ -561,7 +557,7 @@ void linebreak(int finalwidowpenalty)
 								fewestdemerits = total_demerits(r->num);
 							}
 					}
-					r = r->link;
+					next(r);
 				} while (r != active);
 				bestline = line_number(bestbet);
 				if (actuallooseness == looseness() || finalpass)

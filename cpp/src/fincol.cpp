@@ -94,7 +94,7 @@ bool fincol(Token t, halfword &loop)
 				confusion("256 spans");
 			q->num = curspan;
 			while (q->link->link->num < n)
-				q = q->link;
+				next(q);
 			if (q->link->link->num > n)
 			{
 				s = getnode(span_node_size);

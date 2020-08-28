@@ -1011,34 +1011,16 @@ RuleNode *scanrulespec(Token t)
 
 [[nodiscard]] Token scanspec(groupcode c, int s)
 {
-	int speccode;
-	int val;
-	if (scankeyword("to"))
-	{
-		speccode = exactly;
-		val = scan_normal_dimen();
-	}
-	else
-	{
-		speccode = additional;
-		val = scankeyword("spread") ? scan_normal_dimen() : 0;
-	}
 	memoryword m;
 	m.int_ = s;
 	savestack.push_back(m);
-	m.int_ = speccode;
-	savestack.push_back(m);
-	m.int_ = val;
-	savestack.push_back(m);
-	newsavelevel(c);
-	return scanleftbrace();
+	return scanspec(c);
 }
 
-[[nodiscard]] static TokenNode* store_new_token(LinkedNode *p, halfword t)
+static void store_new_token(TokenNode* &p, halfword t)
 {
-	auto q = new TokenNode(t);
-	p->link = q; 
-	return q;
+	p->link = new TokenNode(t);
+	p = dynamic_cast<TokenNode*>(p->link);
 }
 
 TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
@@ -1058,7 +1040,7 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 			tk = gettoken();
 			if (tk.tok < right_brace_limit)
 			{
-				p = store_new_token(p, end_match_token);
+				store_new_token(p, end_match_token);
 				if (tk.cmd == right_brace)
 				{
 					error("Missing { inserted", "Where was the left brace? You said something like `\\def\\a}',\nwhich I'm going to interpret as `\\def\\a{}'.");
@@ -1075,8 +1057,8 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 				if (tk.cmd == left_brace)
 				{
 					hashbrace = tk.tok;
-					p = store_new_token(p, tk.tok);
-					p = store_new_token(p, end_match_token);
+					store_new_token(p, tk.tok);
+					store_new_token(p, end_match_token);
 					break;
 				}
 				if (t == zero_token+9)
@@ -1089,7 +1071,7 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 					tk.tok = s;
 				}
 			}
-			p = store_new_token(p, tk.tok);
+			store_new_token(p, tk.tok);
 		}
 	}
 	else
@@ -1149,11 +1131,11 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 						else
 							tk.tok = out_param_token-'0'+tk.chr;
 				}
-		p = store_new_token(p, tk.tok);
+		store_new_token(p, tk.tok);
 	}
 	scannerstatus = 0;
 	if (hashbrace)
-		p = store_new_token(p, hashbrace);
+		store_new_token(p, hashbrace);
 	return p;
 }
 
@@ -1348,8 +1330,8 @@ void insthetoks(void)
 	warningindex = r;
 	defref = new TokenNode;
 	defref->token_ref_count = 0;
-	LinkedNode *p = defref;
-	p = store_new_token(p, end_match_token);
+	auto p = defref;
+	store_new_token(p, end_match_token);
 	smallnumber m = (n < 0 || n > 15) ? 16 : n;
 	auto s = alignstate;
 	alignstate = 1000000;
@@ -1438,7 +1420,7 @@ static TokenNode* strtoks(void)
 			t = space_token;
 		else
 			t += other_token;
-		p = store_new_token(p, t);
+		store_new_token(p, t);
 	}
 	return p;
 }
@@ -1482,26 +1464,30 @@ TokenNode* thetoks(void)
 {
 	auto t = getxtoken();
 	auto [val, lev] = scansomethinginternal(tok_val, false, t);
-	if (lev >= ident_val)
+	switch (lev)
 	{
-		auto p = dynamic_cast<TokenNode*>(temp_head);
-		p->link = nullptr;
-		if (lev == ident_val)
-			p = store_new_token(p, cs_token_flag+val);
-		else 
+		case ident_val:
+		{
+			auto p = dynamic_cast<TokenNode*>(temp_head);
+			p->link = nullptr;
+			store_new_token(p, cs_token_flag+val);
+			return p;
+		}
+		case tok_val:
+		{
+			auto p = dynamic_cast<TokenNode*>(temp_head);
+			p->link = nullptr;
 			if (val)
 			{
 				auto r = link(val);
 				while (r)
 				{
-					p = store_new_token(p, info(r));
+					store_new_token(p, info(r));
 					r = link(r);
 				}
 			}
-		return p;
-	}
-	switch (lev)
-	{
+			return p;
+		}
 		case int_val: 
 			strings.push_back(std::to_string(val));
 			break;

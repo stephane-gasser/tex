@@ -1,7 +1,8 @@
 <map id="scanfourbitint" name="scanfourbitint">
-<area shape="rect" id="node1" title=" " alt="" coords="329,81,429,108"/>
+<area shape="rect" id="node1" title=" " alt="" coords="329,131,429,157"/>
 <area shape="rect" id="node2" href="$conditional_8h.html#af06c6a5f754b740b4e414ab6fd713b34" title=" " alt="" coords="188,5,272,32"/>
-<area shape="rect" id="node3" href="$openorclosein_8h.html#a35cb066074c059af9e989724e3913707" title=" " alt="" coords="179,56,281,83"/>
-<area shape="rect" id="node4" href="$prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="5,132,131,159"/>
-<area shape="rect" id="node5" href="$lecture_8h.html#ab5468bc60f6a966124d1016ccf7706cb" title=" " alt="" coords="180,157,280,184"/>
+<area shape="rect" id="node3" href="$doextension_8h.html#ae0fe82d31e33a0b4f09cd522245dd4f4" title=" " alt="" coords="184,80,276,107"/>
+<area shape="rect" id="node4" href="$openorclosein_8h.html#a35cb066074c059af9e989724e3913707" title=" " alt="" coords="179,131,281,157"/>
+<area shape="rect" id="node5" href="$prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="5,207,131,233"/>
+<area shape="rect" id="node6" href="$lecture_8h.html#ab5468bc60f6a966124d1016ccf7706cb" title=" " alt="" coords="180,232,280,259"/>
 </map>

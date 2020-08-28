@@ -75,7 +75,7 @@ void vlistout(BoxNode *thisbox)
 						dvifour(ruleht);
 						dvifour(rulewd);
 					}
-					p = p->link;
+					next(p);
 					continue;
 				}
 				case whatsit_node:
@@ -121,7 +121,7 @@ void vlistout(BoxNode *thisbox)
 								dvifour(ruleht);
 								dvifour(rulewd);
 							}
-							p = p->link;
+							next(p);
 							continue;
 						}
 						auto leaderht = leaderbox->height+leaderbox->depth;
@@ -171,18 +171,18 @@ void vlistout(BoxNode *thisbox)
 								curv = savev-height(leaderbox->num)+leaderht+lx;
 							}
 							curv = edge-10;
-							p = p->link;
+							next(p);
 							continue;
 						}
 					}
 					curv = curv+ruleht;
-					p = p->link;
+					next(p);
 					continue;
 				}
 				case kern_node: 
 					curv += dynamic_cast<KernNode*>(p)->width;
 			}
-			p = p->link;
+			next(p);
 			continue;
 		}
 	}

@@ -115,7 +115,7 @@ void buildpage(void)
 				n = P->subtype;
 				r = page_ins_head;
 				while (n >= dynamic_cast<InsNode*>(r->link)->subtype)
-					r = r->link;
+					next(r);
 				if (dynamic_cast<PageInsNode*>(r)->subtype != n)
 				{
 					auto Q = new PageInsNode;
@@ -223,7 +223,7 @@ void buildpage(void)
 					while (r != page_ins_head)
 					{
 						best_ins_ptr(r->num) = last_ins_ptr(r->num);
-						r = r->link;
+						next(r);
 					}
 				}
 				if (c == awful_bad || pi <= eject_penalty)

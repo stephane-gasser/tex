@@ -141,8 +141,7 @@ void trybreak(int pi, smallnumber breaktype)
 											confusion("disc1");
 									}
 							}
-							while (s)
-							{
+							for ( ;s; next(s))
 								if (s->is_char_node())
 								{
 									auto S = dynamic_cast<CharNode*>(s);
@@ -170,8 +169,6 @@ void trybreak(int pi, smallnumber breaktype)
 										default: 
 											confusion("disc2");
 									}
-								s = s->link;
-							}
 							breakwidth[1] += discwidth;
 							if (Curp->post_break == nullptr)
 								s = v->link;
@@ -207,7 +204,7 @@ void trybreak(int pi, smallnumber breaktype)
 							default: 
 								continue;
 						}
-						s = s->link;
+						next(s);
 					}
 				}
 				if (prevr->type == delta_node)

@@ -1,10 +1,10 @@
 <map id="half" name="half">
 <area shape="rect" id="node1" title=" " alt="" coords="321,157,364,184"/>
 <area shape="rect" id="node2" href="$aftermath_8h.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="173,5,251,32"/>
-<area shape="rect" id="node3" href="$makefraction_8h.html#a5d26759cdbf7f3955d2dbfd8efd47469" title=" " alt="" coords="5,171,103,197"/>
-<area shape="rect" id="node4" href="$makemathaccent_8h.html#a778d4d122f7cb9afef24753d23da2121" title=" " alt="" coords="151,107,273,133"/>
-<area shape="rect" id="node5" href="$makeop_8h.html#a057103961b459cd04d41725c3851cb3a" title=" " alt="" coords="178,157,246,184"/>
-<area shape="rect" id="node6" href="$makeradical_8h.html#aee8e565f2f8cfddc65a2be4e12542da8" title=" " alt="" coords="8,247,100,273"/>
-<area shape="rect" id="node7" href="$makevcenter_8h.html#a6e5d002d0820c0eb0efc867f638396aa" title=" " alt="" coords="163,259,261,285"/>
-<area shape="rect" id="node8" href="$vardelimiter_8h.html#aa006478ee990c484800035399081fd9d" title=" " alt="" coords="167,208,257,235"/>
+<area shape="rect" id="node3" href="$formule_8h.html#ac4a9a12968d390990be955eedd7fd25c" title=" " alt="" coords="5,171,103,197"/>
+<area shape="rect" id="node4" href="$formule_8h.html#ab3d3314cbdddc35fd101d12aac5fe36c" title=" " alt="" coords="151,107,273,133"/>
+<area shape="rect" id="node5" href="$formule_8h.html#a35fcb719ebad0c099f0f16d742dddaf4" title=" " alt="" coords="178,157,246,184"/>
+<area shape="rect" id="node6" href="$formule_8h.html#a0ee3802dd9cf13b887d433762d337c46" title=" " alt="" coords="8,247,100,273"/>
+<area shape="rect" id="node7" href="$formule_8h.html#a2f599b46a319743803bf5fe16dd8d41d" title=" " alt="" coords="163,259,261,285"/>
+<area shape="rect" id="node8" href="$vardelimiter_8h.html#ab81e65250111fce446156074608f4a5e" title=" " alt="" coords="167,208,257,235"/>
 </map>

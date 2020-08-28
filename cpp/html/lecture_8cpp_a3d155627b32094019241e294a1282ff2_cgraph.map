@@ -1,10 +1,9 @@
 <map id="scanglue" name="scanglue">
-<area shape="rect" id="node1" title=" " alt="" coords="5,153,80,180"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,119,80,145"/>
 <area shape="rect" id="node2" href="$backinput_8cpp.html#ada79b16970afac693692125a26a780ae" title="Undoes one token of input." alt="" coords="298,5,377,32"/>
-<area shape="rect" id="node3" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="313,59,361,85"/>
-<area shape="rect" id="node4" href="$lecture_8cpp.html#abe20aa0d4fde9e11c8f0830f7671847a" title=" " alt="" coords="264,116,411,143"/>
-<area shape="rect" id="node5" href="$noeud_8cpp.html#a4955c32e0e2232a371f5907fc7c0b865" title=" " alt="" coords="133,305,208,332"/>
-<area shape="rect" id="node6" href="$lecture_8cpp.html#afb3ae291f8450923d94fda3c7236dc86" title=" " alt="" coords="128,153,213,180"/>
-<area shape="rect" id="node7" href="$lecture_8cpp.html#a43aca68ab3d8d89081c43615a91307e4" title=" " alt="" coords="288,179,387,205"/>
-<area shape="rect" id="node8" href="$lecture_8cpp.html#afdc3c9198bb79b5c0d87d85d1da98992" title="|mem| location of math glue spec" alt="" coords="261,229,413,256"/>
+<area shape="rect" id="node3" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="313,68,361,95"/>
+<area shape="rect" id="node4" href="$lecture_8cpp.html#abe20aa0d4fde9e11c8f0830f7671847a" title=" " alt="" coords="264,144,411,171"/>
+<area shape="rect" id="node5" href="$lecture_8cpp.html#afb3ae291f8450923d94fda3c7236dc86" title=" " alt="" coords="128,93,213,120"/>
+<area shape="rect" id="node6" href="$lecture_8cpp.html#a43aca68ab3d8d89081c43615a91307e4" title=" " alt="" coords="288,195,387,221"/>
+<area shape="rect" id="node7" href="$lecture_8cpp.html#afdc3c9198bb79b5c0d87d85d1da98992" title="|mem| location of math glue spec" alt="" coords="261,245,413,272"/>
 </map>

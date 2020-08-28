@@ -1,8 +1,8 @@
 <map id="fireup" name="fireup">
 <area shape="rect" id="node1" title=" " alt="" coords="5,664,60,691"/>
-<area shape="rect" id="node2" href="$lecture_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="120,5,223,32"/>
+<area shape="rect" id="node2" href="$lecture_8cpp.html#a118c5895c6b39177ff15a8a89c6e9cf1" title=" " alt="" coords="120,5,223,32"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#a86534cacd907643eb3c4fd09e6abf05b" title="the optimum most recent insertion" alt="" coords="125,56,218,83"/>
-<area shape="rect" id="node4" href="$globals_8h.html#a90d951dcd6c50010a0d62f179275f1c0" title=" " alt="" coords="427,259,470,285"/>
+<area shape="rect" id="node4" href="$noeud_8h.html#a90d951dcd6c50010a0d62f179275f1c0" title=" " alt="" coords="427,259,470,285"/>
 <area shape="rect" id="node5" href="$erreur_8cpp.html#aaa5e5762314112fc9c118ea4b4eaa620" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="287,208,357,235"/>
 <area shape="rect" id="node6" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="425,183,473,209"/>
 <area shape="rect" id="node7" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="536,601,579,628"/>
@@ -16,7 +16,7 @@
 <area shape="rect" id="node15" href="$parametres_8h.html#a25c00c4beaaee40a26711fd1530430d2" title=" " alt="" coords="108,664,235,691"/>
 <area shape="rect" id="node16" href="$noeud_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="121,715,222,741"/>
 <area shape="rect" id="node17" href="$normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="112,765,231,792"/>
-<area shape="rect" id="node18" href="$fireup_8cpp.html#af673c8575b43040fb7fcaa5aef2c6ddb" title=" " alt="" coords="119,816,223,843"/>
+<area shape="rect" id="node18" href="$fireup_8cpp.html#a5c80e3271bf17cb243b9f67c579be5bb" title=" " alt="" coords="119,816,223,843"/>
 <area shape="rect" id="node19" href="$prunepagetop_8cpp.html#a41768bc470e6d7db8246e36998e0d0d1" title=" " alt="" coords="121,867,221,893"/>
 <area shape="rect" id="node20" href="$pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="134,917,209,944"/>
 <area shape="rect" id="node21" href="$lecture_8cpp.html#a76530ea732b536c303881ed81b0d98a3" title=" " alt="" coords="121,968,221,995"/>

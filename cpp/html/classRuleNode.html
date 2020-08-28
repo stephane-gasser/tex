@@ -77,7 +77,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="globals_8h_source.html">globals.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="noeud_8h_source.html">noeud.h</a>&gt;</code></p>
 <div class="dynheader">
 Graphe d'héritage de RuleNode:</div>
 <div class="dyncontent">
@@ -102,9 +102,16 @@ Graphe de collaboration de RuleNode:</div>
 Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:ae724a933a9cd8f220e590e4fcda108cc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRuleNode.html#ae724a933a9cd8f220e590e4fcda108cc">RuleNode</a> (void)</td></tr>
 <tr class="separator:ae724a933a9cd8f220e590e4fcda108cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e364a44dc148497b245fd4b234a2421"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classRuleNode.html">RuleNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRuleNode.html#a6e364a44dc148497b245fd4b234a2421">copy</a> (void)</td></tr>
+<tr class="separator:a6e364a44dc148497b245fd4b234a2421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classLinkedNode"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classLinkedNode')"><img src="closed.png" alt="-"/>&#160;Fonctions membres publiques hérités de <a class="el" href="classLinkedNode.html">LinkedNode</a></td></tr>
+<tr class="memitem:ac158635e9745955585762c860ffbccc6 inherit pub_methods_classLinkedNode"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLinkedNode.html#ac158635e9745955585762c860ffbccc6">~LinkedNode</a> (void)</td></tr>
+<tr class="separator:ac158635e9745955585762c860ffbccc6 inherit pub_methods_classLinkedNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classAnyNode"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classAnyNode')"><img src="closed.png" alt="-"/>&#160;Fonctions membres publiques hérités de <a class="el" href="classAnyNode.html">AnyNode</a></td></tr>
 <tr class="memitem:aec646c16667f1613eb7246eb0c4c0347 inherit pub_methods_classAnyNode"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347">is_char_node</a> (void)</td></tr>
 <tr class="separator:aec646c16667f1613eb7246eb0c4c0347 inherit pub_methods_classAnyNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a051c56f40013ef19f5ed3c5b7c438b6b inherit pub_methods_classAnyNode"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAnyNode.html#a051c56f40013ef19f5ed3c5b7c438b6b">~AnyNode</a> (void)</td></tr>
+<tr class="separator:a051c56f40013ef19f5ed3c5b7c438b6b inherit pub_methods_classAnyNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Attributs publics</h2></td></tr>
@@ -127,7 +134,7 @@ Attributs publics</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock">
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00352">352</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="noeud_8h_source.html#l00195">195</a> du fichier <a class="el" href="noeud_8h_source.html">noeud.h</a>.</p>
 </div><h2 class="groupheader">Documentation des constructeurs et destructeur</h2>
 <a id="ae724a933a9cd8f220e590e4fcda108cc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae724a933a9cd8f220e590e4fcda108cc">&#9670;&nbsp;</a></span>RuleNode()</h2>
@@ -153,9 +160,61 @@ Attributs publics</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00359">359</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;{ <a class="code" href="classAnyNode.html#a7c6e327aa4efb168ee9cca654ad83ece">type</a> = <a class="code" href="globals_8h.html#aaf8fd5f0e57d456151c951e0f3715fc4a4843d30c07f93e78341777a80da30eb5">rule_node</a>; } </div>
-</div><!-- fragment -->
+<p class="definition">Définition à la ligne <a class="el" href="noeud_8h_source.html#l00202">202</a> du fichier <a class="el" href="noeud_8h_source.html">noeud.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;{ <a class="code" href="classAnyNode.html#a7c6e327aa4efb168ee9cca654ad83ece">type</a> = <a class="code" href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a4843d30c07f93e78341777a80da30eb5">rule_node</a>; } </div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="classRuleNode_ae724a933a9cd8f220e590e4fcda108cc_icgraph.png" border="0" usemap="#classRuleNode_ae724a933a9cd8f220e590e4fcda108cc_icgraph" alt=""/></div>
+<map name="classRuleNode_ae724a933a9cd8f220e590e4fcda108cc_icgraph" id="classRuleNode_ae724a933a9cd8f220e590e4fcda108cc_icgraph">
+<area shape="rect" title=" " alt="" coords="169,5,316,32"/>
+<area shape="rect" href="classRuleNode.html#a6e364a44dc148497b245fd4b234a2421" title=" " alt="" coords="5,5,121,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="a6e364a44dc148497b245fd4b234a2421"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e364a44dc148497b245fd4b234a2421">&#9670;&nbsp;</a></span>copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classRuleNode.html">RuleNode</a>* RuleNode::copy </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Réimplémentée à partir de <a class="el" href="classLinkedNode.html#af0c8d7a7d0b6d2f243d8b6d5fc15a2b1">LinkedNode</a>.</p>
+
+<p>Réimplémentée dans <a class="el" href="classUnsetNode.html#ab90a5136c535ac320556cbccbcba7711">UnsetNode</a>, et <a class="el" href="classBoxNode.html#a1466e2078617562996e79a31925638ac">BoxNode</a>.</p>
+
+<p class="definition">Définition à la ligne <a class="el" href="noeud_8h_source.html#l00203">203</a> du fichier <a class="el" href="noeud_8h_source.html">noeud.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;{ <span class="keyword">auto</span> r = <span class="keyword">new</span> <a class="code" href="classRuleNode.html#ae724a933a9cd8f220e590e4fcda108cc">RuleNode</a>; r-&gt;width = <a class="code" href="classRuleNode.html#ab5c4d7917b2a297af9834c949cd3d46a">width</a>; r-&gt;depth = <a class="code" href="classRuleNode.html#a58c2d9237e896001cdca639ed61b422e">depth</a>; r-&gt;height = <a class="code" href="classRuleNode.html#a6720a78cbf5360186fae45fb1270ae4d">height</a>; <span class="keywordflow">return</span> r; }</div>
+</div><!-- fragment --><div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="classRuleNode_a6e364a44dc148497b245fd4b234a2421_cgraph.png" border="0" usemap="#classRuleNode_a6e364a44dc148497b245fd4b234a2421_cgraph" alt=""/></div>
+<map name="classRuleNode_a6e364a44dc148497b245fd4b234a2421_cgraph" id="classRuleNode_a6e364a44dc148497b245fd4b234a2421_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,121,32"/>
+<area shape="rect" href="classRuleNode.html#ae724a933a9cd8f220e590e4fcda108cc" title=" " alt="" coords="169,5,316,32"/>
+</map>
+</div>
+
 </div>
 </div>
 <h2 class="groupheader">Documentation des données membres</h2>
@@ -171,7 +230,7 @@ Attributs publics</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00357">357</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="noeud_8h_source.html#l00200">200</a> du fichier <a class="el" href="noeud_8h_source.html">noeud.h</a>.</p>
 
 </div>
 </div>
@@ -187,7 +246,7 @@ Attributs publics</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00358">358</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="noeud_8h_source.html#l00201">201</a> du fichier <a class="el" href="noeud_8h_source.html">noeud.h</a>.</p>
 
 </div>
 </div>
@@ -203,7 +262,7 @@ Attributs publics</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00355">355</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="noeud_8h_source.html#l00198">198</a> du fichier <a class="el" href="noeud_8h_source.html">noeud.h</a>.</p>
 
 </div>
 </div>
@@ -219,16 +278,20 @@ Attributs publics</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00356">356</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="noeud_8h_source.html#l00199">199</a> du fichier <a class="el" href="noeud_8h_source.html">noeud.h</a>.</p>
 
 </div>
 </div>
 <hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
-<li>inc/<a class="el" href="globals_8h_source.html">globals.h</a></li>
+<li>inc/<a class="el" href="noeud_8h_source.html">noeud.h</a></li>
 </ul>
 </div><!-- contents -->
-<div class="ttc" id="aglobals_8h_html_aaf8fd5f0e57d456151c951e0f3715fc4a4843d30c07f93e78341777a80da30eb5"><div class="ttname"><a href="globals_8h.html#aaf8fd5f0e57d456151c951e0f3715fc4a4843d30c07f93e78341777a80da30eb5">rule_node</a></div><div class="ttdeci">@ rule_node</div><div class="ttdoc">type of rule nodes</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00200">globals.h:200</a></div></div>
-<div class="ttc" id="aclassAnyNode_html_a7c6e327aa4efb168ee9cca654ad83ece"><div class="ttname"><a href="classAnyNode.html#a7c6e327aa4efb168ee9cca654ad83ece">AnyNode::type</a></div><div class="ttdeci">quarterword type</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00158">globals.h:158</a></div></div>
+<div class="ttc" id="aclassRuleNode_html_ab5c4d7917b2a297af9834c949cd3d46a"><div class="ttname"><a href="classRuleNode.html#ab5c4d7917b2a297af9834c949cd3d46a">RuleNode::width</a></div><div class="ttdeci">int width</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00199">noeud.h:199</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a4843d30c07f93e78341777a80da30eb5"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a4843d30c07f93e78341777a80da30eb5">rule_node</a></div><div class="ttdeci">@ rule_node</div><div class="ttdoc">type of rule nodes</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00157">globals.h:157</a></div></div>
+<div class="ttc" id="aclassRuleNode_html_a58c2d9237e896001cdca639ed61b422e"><div class="ttname"><a href="classRuleNode.html#a58c2d9237e896001cdca639ed61b422e">RuleNode::depth</a></div><div class="ttdeci">int depth</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00200">noeud.h:200</a></div></div>
+<div class="ttc" id="aclassRuleNode_html_ae724a933a9cd8f220e590e4fcda108cc"><div class="ttname"><a href="classRuleNode.html#ae724a933a9cd8f220e590e4fcda108cc">RuleNode::RuleNode</a></div><div class="ttdeci">RuleNode(void)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00202">noeud.h:202</a></div></div>
+<div class="ttc" id="aclassRuleNode_html_a6720a78cbf5360186fae45fb1270ae4d"><div class="ttname"><a href="classRuleNode.html#a6720a78cbf5360186fae45fb1270ae4d">RuleNode::height</a></div><div class="ttdeci">int height</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00201">noeud.h:201</a></div></div>
+<div class="ttc" id="aclassAnyNode_html_a7c6e327aa4efb168ee9cca654ad83ece"><div class="ttname"><a href="classAnyNode.html#a7c6e327aa4efb168ee9cca654ad83ece">AnyNode::type</a></div><div class="ttdeci">quarterword type</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00012">noeud.h:12</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

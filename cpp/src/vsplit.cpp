@@ -52,7 +52,7 @@ BoxNode* vsplit(eightbits n, scaled h)
 				p->link = nullptr;
 				break;
 			}
-			p = p->link;
+			next(p);
 		}
 	q = prunepagetop(q);
 	p = v->list_ptr;

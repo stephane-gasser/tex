@@ -528,8 +528,7 @@ static halfword& font_id_text(halfword p) { return text(font_id_base+p); }
 std::string shortdisplay(LinkedNode *p)
 {
 	std::ostringstream oss;
-	while (p)
-	{
+	for (; p; next(p))
 		if (p->is_char_node())
 		{
 			if (/*p <= memend*/true)
@@ -578,11 +577,9 @@ std::string shortdisplay(LinkedNode *p)
 					LinkedNode *q = d;
 					for (int n = d->replace_count; n > 0; n--)
 						if (q->link)
-							q = q->link;
+							next(q);
 				}
 			}
-		p = p->link;
-	}
 	return oss.str();
 }
 
@@ -916,7 +913,7 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 				default: 
 					oss << "Unknown node type!";
 			}
-		p = p->link;
+		next(p);
 	}
 	return oss.str();
 }
@@ -1146,13 +1143,13 @@ static std::string showactivities(void)
 							int t = 0;
 							do
 							{
-								q = q->link;
+								next(q);
 								if (q->type == ins_node && subtype(q->num) == subtype(r->num))
 									t++;
 							} while (q->num != broken_ins(r->num));
 							oss << ", #"+std::to_string(t)+" might split";
 						}
-						r = r->link;
+						next(r);
 					}
 				}
 			}

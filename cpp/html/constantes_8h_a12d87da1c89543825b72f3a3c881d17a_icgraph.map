@@ -1,8 +1,7 @@
 <map id="depth" name="depth">
-<area shape="rect" id="node1" title="depth of the box, in sp" alt="" coords="284,107,339,133"/>
-<area shape="rect" id="node2" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="9,157,87,184"/>
-<area shape="rect" id="node3" href="$makevcenter_8h.html#a6e5d002d0820c0eb0efc867f638396aa" title=" " alt="" coords="139,5,236,32"/>
-<area shape="rect" id="node4" href="$mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,31,91,57"/>
-<area shape="rect" id="node5" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="153,157,222,184"/>
-<area shape="rect" id="node6" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="149,208,225,235"/>
+<area shape="rect" id="node1" title="depth of the box, in sp" alt="" coords="264,77,319,103"/>
+<area shape="rect" id="node2" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="5,65,83,91"/>
+<area shape="rect" id="node3" href="$formule_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="131,51,216,78"/>
+<area shape="rect" id="node4" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="139,102,208,129"/>
+<area shape="rect" id="node5" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="135,153,211,179"/>
 </map>

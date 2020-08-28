@@ -1,9 +1,4 @@
 <map id="copynodelist" name="copynodelist">
-<area shape="rect" id="node1" title=" " alt="" coords="5,156,100,183"/>
-<area shape="rect" id="node2" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="189,5,268,32"/>
-<area shape="rect" id="node3" href="$noeud_8cpp.html#a0da50ca4e5e2ecbc1d7d628263bea77a" title=" " alt="" coords="181,80,276,107"/>
-<area shape="rect" id="node4" href="$noeud_8cpp.html#a2baceeb19c0c4b666f0e18bcaff56d8a" title=" " alt="" coords="195,131,263,157"/>
-<area shape="rect" id="node5" href="$classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347" title=" " alt="" coords="148,181,309,208"/>
-<area shape="rect" id="node6" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="195,232,263,259"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a177ed5e89b8c5da61476a30ad8d3384b" title="reference count of token list to write" alt="" coords="181,283,277,309"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,100,32"/>
+<area shape="rect" id="node2" href="$classLinkedNode.html#af0c8d7a7d0b6d2f243d8b6d5fc15a2b1" title=" " alt="" coords="148,5,275,32"/>
 </map>

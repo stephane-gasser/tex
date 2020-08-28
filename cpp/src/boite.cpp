@@ -35,7 +35,7 @@ BoxNode* rebox(BoxNode *b, scaled w)
 		delete b;
 		auto g = new GlueNode(ss_glue);
 		g->link = p;
-		followUntilBeforeTarget(&p);
+		followUntilBeforeTarget(p);
 		p->link = new GlueNode(ss_glue);
 		return hpack(g, w, exactly);
 	}
@@ -222,13 +222,13 @@ void beginbox(int boxcontext, Token t)
 					[[fallthrough]];
 				default:
 					if (!tail->is_char_node() && tail->type <= vlist_node)
-						for (auto p = head; true; p = p->link) // run through the current list
+						for (auto p = head; true; next(p)) // run through the current list
 						{
 							if (!p->is_char_node() && p->type == disc_node)
 							{
 								auto rep = dynamic_cast<DiscNode*>(p)->replace_count;
 								for (int m = 0; m < rep; m++)
-									p = p->link;
+									next(p);
 								if (p == tail)
 									break;
 							}
@@ -265,7 +265,7 @@ void beginbox(int boxcontext, Token t)
 				case vmode:
 					t = scanspec(vbox_group, boxcontext);
 					normalparagraph();
-					break;
+					break; 
 				default:
 					t = scanspec(vtop_group, boxcontext);
 					k = vmode;
@@ -410,7 +410,7 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 					d = 0;
 				}
 			}
-		p = p->link;
+		next(p);
 	}
 	r->width = w;
 	r->depth = std::min(l, d);
@@ -520,7 +520,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 	std::fill(totalshrink, totalshrink+4, 0);
 	while (p)
 	{
-		for (;p->is_char_node(); p = p->link)
+		for (;p->is_char_node(); next(p))
 		{
 			auto P = dynamic_cast<CharNode*>(p);
 			auto ft = P->font;
@@ -555,10 +555,10 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 				case mark_node:
 					if (adjusttail)
 					{
-						followUntilBeforeTarget(&q, p);
+						followUntilBeforeTarget(q, p);
 						adjusttail->link = p;
 						adjusttail = p;
-						p = p->link;
+						next(p);
 						q->link = p;
 						p = q;
 					}
@@ -566,10 +566,10 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 				case adjust_node: 
 					if (adjusttail)
 					{
-						followUntilBeforeTarget(&q, p);
+						followUntilBeforeTarget(q, p);
 						adjusttail->link = dynamic_cast<AdjustNode*>(p)->adjust_ptr;
-						followUntilBeforeTarget(&adjusttail);
-						p = p->link;
+						followUntilBeforeTarget(adjusttail);
+						next(p);
 						delete q->link;
 						q->link = p;
 						p = q;
@@ -610,7 +610,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 					continue;
 				}
 			}
-			p = p->link;
+			next(p);
 		}
 	}
 	if (adjusttail)
@@ -671,7 +671,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 				{
 					if (overfull_rule() > 0 && -x-totalshrink[0] > hfuzz())
 					{
-						followUntilBeforeTarget(&q);
+						followUntilBeforeTarget(q);
 						auto R = new RuleNode;
 						R->width = overfull_rule();
 						q->link = R;
@@ -744,5 +744,5 @@ void unpackage(halfword c)
 		box[val] = nullptr;
 		delete p;
 	}
-	followUntilBeforeTarget(&tail);
+	followUntilBeforeTarget(tail);
 }

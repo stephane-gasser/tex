@@ -387,7 +387,7 @@ void makescripts(Noad *q, scaled delta)
 	else
 	{
 		p = new_hlist(q);
-		followUntilBeforeTarget(&p);
+		followUntilBeforeTarget(p);
 		p->link = x;
 	}
 }
@@ -595,14 +595,14 @@ void mlisttohlist(void)
 				{
 					r = q;
 					rtype = r->type;
-					q = q->link;
+					next(q);
 					continue;
 				}
 				break;
 			case left_noad: 
 				r = q;
 				rtype = r->type;
-				q = q->link;
+				next(q);
 				continue;
 			case fraction_noad:
 			{
@@ -617,7 +617,7 @@ void mlisttohlist(void)
 				delete z;
 				r = q;
 				rtype = r->type;
-				q = q->link;
+				next(q);
 				continue;
 			}
 			case op_noad:
@@ -635,7 +635,7 @@ void mlisttohlist(void)
 					delete z;
 					r = q;
 					rtype = r->type;
-					q = q->link;
+					next(q);
 					continue;
 				}
 				break;
@@ -668,7 +668,7 @@ void mlisttohlist(void)
 				else
 					cursize = 16*((curstyle-2)/2);
 				curmu = xovern(math_quad(cursize), 18);
-				q = q->link;
+				next(q);
 				continue;
 			case choice_node:
 			{
@@ -702,10 +702,10 @@ void mlisttohlist(void)
 				{
 					auto z = q->link;
 					q->link = p;
-					followUntilBeforeTarget(&p);
+					followUntilBeforeTarget(p);
 					p->link = z;
 				}
-				q = q->link;
+				next(q);
 				continue;
 			}
 			case ins_node:
@@ -714,14 +714,14 @@ void mlisttohlist(void)
 			case whatsit_node:
 			case penalty_node:
 			case disc_node: 
-				q = q->link;
+				next(q);
 				continue;
 			case rule_node:
 				if (height(q->num) > maxh)
 					maxh = height(q->num);
 				if (depth(q->num) > maxd)
 					maxd = depth(q->num);
-				q = q->link;
+				next(q);
 				continue;
 			case glue_node:
 			{
@@ -746,12 +746,12 @@ void mlisttohlist(void)
 								flushnodelist(p);
 							}
 					}
-				q = q->link;
+				next(q);
 				continue;
 			}
 			case kern_node:
 				mathkern(dynamic_cast<KernNode*>(q), curmu);
-				q = q->link;
+				next(q);
 				continue;
 			default: 
 				confusion("mlist1");
@@ -811,7 +811,7 @@ void mlisttohlist(void)
 		delete z;
 		r = q;
 		rtype = r->type;
-		q = q->link;
+		next(q);
 	}
 	if (rtype == bin_noad)
 		r->type = ord_noad;
@@ -875,7 +875,7 @@ void mlisttohlist(void)
 					cursize = 16*((curstyle-2)/2);
 				curmu = xovern(math_quad(cursize), 18);
 				r = q;
-				q = q->link;
+				next(q);
 				delete r;
 				continue;
 			case whatsit_node:
@@ -889,7 +889,7 @@ void mlisttohlist(void)
 			case kern_node:
 				p->link = q;
 				p = q;
-				q = q->link;
+				next(q);
 				p->link = nullptr;
 				continue;
 			default: 
@@ -931,7 +931,7 @@ void mlisttohlist(void)
 		if (new_hlist(dynamic_cast<Noad*>(q)))
 		{
 			p->link = new_hlist(dynamic_cast<Noad*>(q));
-			followUntilBeforeTarget(&p);
+			followUntilBeforeTarget(p);
 		}
 		if (penalties && q->link && pen < inf_penalty)
 		{

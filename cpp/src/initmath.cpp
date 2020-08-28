@@ -51,7 +51,7 @@ void initmath(void)
 						w = max_dimen;
 						break;
 					}
-					p = p->link;
+					next(p);
 					continue;
 				}
 				switch (p->type)
@@ -70,7 +70,7 @@ void initmath(void)
 							w = max_dimen;
 							break;
 						}
-						p = p->link;
+						next(p);
 						continue;
 					case ligature_node:
 					{
@@ -113,7 +113,7 @@ void initmath(void)
 								w = max_dimen;
 								break;
 							}
-							p = p->link;
+							next(p);
 							continue;
 						}
 						break;
@@ -126,7 +126,7 @@ void initmath(void)
 				}
 				if (v < max_dimen)
 					v += d;
-				p = p->link;
+				next(p);
 				continue;
 			}
 		}

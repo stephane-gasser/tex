@@ -26,7 +26,7 @@ void hlistout(BoxNode *thisbox)
 			synch_h();
 			synch_v();
 			auto P = dynamic_cast<CharNode*>(p);
-			do
+			for (; p->is_char_node(); next(p))
 			{
 				auto ft = P->font;
 				c = P->character;
@@ -51,8 +51,7 @@ void hlistout(BoxNode *thisbox)
 					dvi_out(set1);
 				dvi_out(c);
 				curh += ft.char_width(c);
-				p = p->link;
-			} while (p->is_char_node());
+			}
 			dvih = curh;
 		}
 		else
@@ -106,7 +105,7 @@ void hlistout(BoxNode *thisbox)
 						dvih = dvih+rulewd;
 					}
 					curh = curh+rulewd;
-					p = p->link;
+					next(p);
 					continue;
 				}
 				case whatsit_node:
@@ -157,7 +156,7 @@ void hlistout(BoxNode *thisbox)
 								dvih = dvih+rulewd;
 							}
 							curh = curh+rulewd;
-							p = p->link;
+							next(p);
 							continue;
 						}
 						scaled leaderwd = leaderbox->width;
@@ -206,19 +205,19 @@ void hlistout(BoxNode *thisbox)
 								curh = saveh+leaderwd+lx;
 							}
 							curh = edge-10;
-							p = p->link;
+							next(p);
 							continue;
 						}
 					}
 					curh = curh+rulewd;
-					p = p->link;
+					next(p);
 					continue;
 				}
 				case kern_node:
 					curh += dynamic_cast<KernNode*>(p)->width;
 					break;
 				case math_node: 
-					curh += width(p->num);
+					curh += dynamic_cast<MathNode*>(p)->width;
 					break;
 				case ligature_node:
 				{
@@ -230,7 +229,7 @@ void hlistout(BoxNode *thisbox)
 					continue;
 				}
 			}
-			p = p->link;
+			next(p);
 			continue;
 		}
 	prunemovements(saveloc);

@@ -51,21 +51,21 @@ void fireup(halfword c)
 	auto savesplittopskip = split_top_skip;
 	if (holding_inserts() <= 0)
 	{
-		auto r = page_ins_head->link;
+		auto r = dynamic_cast<PageInsNode*>(page_ins_head->link);
 		while (r != page_ins_head)
 		{
-			if (best_ins_ptr(r->num))
+			if (r->best_ins_ptr)
 			{
-				n = subtype(r->num);
+				n = r->subtype;
 				ensurevbox(n);
 				if (box[n] == nullptr)
 					box[n] = new BoxNode;
 				auto p = box[n]->list_ptr;
 				while (p->link)
-					p = p->link;
-				last_ins_ptr(r->num) = p->num;
+					next(p);
+				r->last_ins_ptr = p;
 			}
-			r = r->link;
+			next(r);
 		}
 	}
 	auto q = hold_head;
@@ -81,7 +81,7 @@ void fireup(halfword c)
 			{
 				auto r = dynamic_cast<PageInsNode*>(page_ins_head->link);
 				while (r->subtype != P->subtype)
-					r = dynamic_cast<PageInsNode*>(r->link);
+					next(r);
 				if (r->best_ins_ptr == nullptr)
 					wait = true;
 				else

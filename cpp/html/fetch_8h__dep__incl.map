@@ -1,8 +1,5 @@
 <map id="inc/fetch.h" name="inc/fetch.h">
-<area shape="rect" id="node1" title=" " alt="" coords="339,5,421,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="77,5,160,32"/>
 <area shape="rect" id="node2" href="$fetch_8cpp.html" title=" " alt="" coords="5,80,104,107"/>
-<area shape="rect" id="node3" href="$makemathaccent_8cpp.html" title=" " alt="" coords="129,80,298,107"/>
-<area shape="rect" id="node4" href="$makeop_8cpp.html" title=" " alt="" coords="323,80,437,107"/>
-<area shape="rect" id="node5" href="$makeord_8cpp.html" title=" " alt="" coords="462,80,581,107"/>
-<area shape="rect" id="node6" href="$mlisttohlist_8cpp.html" title=" " alt="" coords="605,80,737,107"/>
+<area shape="rect" id="node3" href="$formule_8cpp.html" title=" " alt="" coords="128,80,240,107"/>
 </map>

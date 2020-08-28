@@ -179,7 +179,7 @@ void handlerightbrace(Token t, halfword &loop)
 						if (tail->type == ord_noad && n == dynamic_cast<Noad*>(tail)->nucleus)
 						{
 							auto q = head;
-							followUntilBeforeTarget(&q, tail);
+							followUntilBeforeTarget(q, tail);
 							q->link = p;
 							delete tail;
 							tail = p;

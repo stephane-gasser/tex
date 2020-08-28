@@ -399,6 +399,9 @@ void appendpenalty(void);
 void appendtovlist(halfword);
 void appspace(halfword &, fontindex &);
 
-void followUntilBeforeTarget(LinkedNode**, LinkedNode* = nullptr);
+void followUntilBeforeTarget(LinkedNode*&, LinkedNode* = nullptr);
+
+template<class T> void next(T* &p) { p = dynamic_cast<T*>(p->link); }
+
 
 #endif

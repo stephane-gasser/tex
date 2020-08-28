@@ -97,13 +97,16 @@ Attributs publics</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock">
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00441">441</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00234">234</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 </div><h2 class="groupheader">Documentation des fonctions membres</h2>
 <a id="ab97c8b51123aea04ce0915b4b612959c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab97c8b51123aea04ce0915b4b612959c">&#9670;&nbsp;</a></span>make_tok()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Token::make_tok </td>
@@ -113,15 +116,20 @@ Attributs publics</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8cpp_source.html#l00193">193</a> du fichier <a class="el" href="globals_8cpp_source.html">globals.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;{</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="classToken.html#ac81ba9165babf3984846d3b8506b521d">cs</a> == 0)</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <a class="code" href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">tok</a> = (<a class="code" href="classToken.html#afe783bc9ed18e3c542043d2582f2b62d">cmd</a>&lt;&lt;8)+<a class="code" href="classToken.html#aa2a1655995674faef2f5690e0c29aaaf">chr</a>;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <a class="code" href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">tok</a> = <a class="code" href="constantes_8h.html#a80155586fa275b28773c9b203f52cabaa8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a>+<a class="code" href="classToken.html#ac81ba9165babf3984846d3b8506b521d">cs</a>;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00241">241</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classToken.html#ac81ba9165babf3984846d3b8506b521d">cs</a> == 0)</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                <a class="code" href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">tok</a> = (<a class="code" href="classToken.html#afe783bc9ed18e3c542043d2582f2b62d">cmd</a>&lt;&lt;8)+<a class="code" href="classToken.html#aa2a1655995674faef2f5690e0c29aaaf">chr</a>;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                <a class="code" href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">tok</a> = <a class="code" href="classToken.html#ac81ba9165babf3984846d3b8506b521d">cs</a>+<span class="comment">/*cs_token_flag*/</span>(1&lt;&lt;12)-1;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -138,7 +146,7 @@ Attributs publics</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00445">445</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00238">238</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -154,7 +162,7 @@ Attributs publics</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00444">444</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00237">237</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -170,7 +178,7 @@ Attributs publics</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00446">446</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00239">239</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -186,20 +194,18 @@ Attributs publics</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00447">447</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00240">240</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
-<hr/>La documentation de cette classe a été générée à partir des fichiers suivants :<ul>
+<hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
 <li>inc/<a class="el" href="globals_8h_source.html">globals.h</a></li>
-<li>src/<a class="el" href="globals_8cpp_source.html">globals.cpp</a></li>
 </ul>
 </div><!-- contents -->
-<div class="ttc" id="aclassToken_html_ac81ba9165babf3984846d3b8506b521d"><div class="ttname"><a href="classToken.html#ac81ba9165babf3984846d3b8506b521d">Token::cs</a></div><div class="ttdeci">halfword cs</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00446">globals.h:446</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a80155586fa275b28773c9b203f52cabaa8382990150c1cad5a49285b51f27fbeb"><div class="ttname"><a href="constantes_8h.html#a80155586fa275b28773c9b203f52cabaa8382990150c1cad5a49285b51f27fbeb">cs_token_flag</a></div><div class="ttdeci">@ cs_token_flag</div><div class="ttdoc">amount added to the eqtb location in a token that stands for a control sequence; is a multiple of 256...</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00599">constantes.h:599</a></div></div>
-<div class="ttc" id="aclassToken_html_a42e39e1654b904922c25a3b4b47c9957"><div class="ttname"><a href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">Token::tok</a></div><div class="ttdeci">halfword tok</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00447">globals.h:447</a></div></div>
-<div class="ttc" id="aclassToken_html_afe783bc9ed18e3c542043d2582f2b62d"><div class="ttname"><a href="classToken.html#afe783bc9ed18e3c542043d2582f2b62d">Token::cmd</a></div><div class="ttdeci">eightbits cmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00444">globals.h:444</a></div></div>
-<div class="ttc" id="aclassToken_html_aa2a1655995674faef2f5690e0c29aaaf"><div class="ttname"><a href="classToken.html#aa2a1655995674faef2f5690e0c29aaaf">Token::chr</a></div><div class="ttdeci">halfword chr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00445">globals.h:445</a></div></div>
+<div class="ttc" id="aclassToken_html_ac81ba9165babf3984846d3b8506b521d"><div class="ttname"><a href="classToken.html#ac81ba9165babf3984846d3b8506b521d">Token::cs</a></div><div class="ttdeci">halfword cs</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00239">globals.h:239</a></div></div>
+<div class="ttc" id="aclassToken_html_a42e39e1654b904922c25a3b4b47c9957"><div class="ttname"><a href="classToken.html#a42e39e1654b904922c25a3b4b47c9957">Token::tok</a></div><div class="ttdeci">halfword tok</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00240">globals.h:240</a></div></div>
+<div class="ttc" id="aclassToken_html_afe783bc9ed18e3c542043d2582f2b62d"><div class="ttname"><a href="classToken.html#afe783bc9ed18e3c542043d2582f2b62d">Token::cmd</a></div><div class="ttdeci">eightbits cmd</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00237">globals.h:237</a></div></div>
+<div class="ttc" id="aclassToken_html_aa2a1655995674faef2f5690e0c29aaaf"><div class="ttname"><a href="classToken.html#aa2a1655995674faef2f5690e0c29aaaf">Token::chr</a></div><div class="ttdeci">halfword chr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00238">globals.h:238</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

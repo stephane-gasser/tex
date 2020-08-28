@@ -1,14 +1,14 @@
 <map id="int_par" name="int_par">
 <area shape="rect" id="node1" title="an integer parameter" alt="" coords="220,1272,281,1299"/>
 <area shape="rect" id="node2" href="$trybreak_8cpp.html#aef12e2fa676a70ba536af505ec2b421a" title=" " alt="" coords="41,5,137,32"/>
-<area shape="rect" id="node3" href="$mlisttohlist_8cpp.html#aff94ae7300779c28cc52252c81791137" title=" " alt="" coords="34,56,143,83"/>
+<area shape="rect" id="node3" href="$formule_8cpp.html#aff94ae7300779c28cc52252c81791137" title=" " alt="" coords="34,56,143,83"/>
 <area shape="rect" id="node4" href="$postlinebreak_8cpp.html#a84928da97329ba274b7460bbcd2166c6" title=" " alt="" coords="33,107,144,133"/>
 <area shape="rect" id="node5" href="$postlinebreak_8cpp.html#a3b5a79955359c07cdbd76dc5f3736aba" title=" " alt="" coords="41,157,136,184"/>
 <area shape="rect" id="node6" href="$parametres_8h.html#a07535a18a8328a1c21de6acc81e23278" title=" " alt="" coords="54,208,123,235"/>
 <area shape="rect" id="node7" href="$parametres_8h.html#a63c31f79d6ff9ae942a27ddf8bfdd258" title=" " alt="" coords="67,259,110,285"/>
 <area shape="rect" id="node8" href="$parametres_8h.html#afcd9579a845a1d3203331bfd7471c8fc" title=" " alt="" coords="17,309,160,336"/>
 <area shape="rect" id="node9" href="$police_8cpp.html#a9752987ba30435a7fe036bb03eb6b8f5" title=" " alt="" coords="23,360,154,387"/>
-<area shape="rect" id="node10" href="$makeleftright_8cpp.html#a345d2aded743d518f1b2bf5d48801623" title=" " alt="" coords="33,411,144,437"/>
+<area shape="rect" id="node10" href="$formule_8cpp.html#a345d2aded743d518f1b2bf5d48801623" title=" " alt="" coords="33,411,144,437"/>
 <area shape="rect" id="node11" href="$initmath_8cpp.html#adde54801154d26c9932c4f9707560f30" title=" " alt="" coords="11,461,167,488"/>
 <area shape="rect" id="node12" href="$trybreak_8cpp.html#a63766e51ab6e3a39b1e36f679176ebaa" title=" " alt="" coords="5,512,172,539"/>
 <area shape="rect" id="node13" href="$parametres_8h.html#a43108f9e5b0a872b47c5d80c52d2d449" title=" " alt="" coords="37,563,140,589"/>
@@ -35,7 +35,7 @@
 <area shape="rect" id="node34" href="$parametres_8h.html#afdfc1f218d70fcda1b9849fa42af26f4" title=" " alt="" coords="17,1627,161,1653"/>
 <area shape="rect" id="node35" href="$parametres_8h.html#abbac3c2889a79e811c3e7f30ed1ed895" title=" " alt="" coords="20,1677,157,1704"/>
 <area shape="rect" id="node36" href="$linebreak_8cpp.html#a897dc855935293cd546f4e5e5c03e6e5" title=" " alt="" coords="42,1728,135,1755"/>
-<area shape="rect" id="node37" href="$mlisttohlist_8cpp.html#ab819e34895b063c15085750c16d75fbc" title=" " alt="" coords="46,1779,131,1805"/>
+<area shape="rect" id="node37" href="$formule_8cpp.html#ab819e34895b063c15085750c16d75fbc" title=" " alt="" coords="46,1779,131,1805"/>
 <area shape="rect" id="node38" href="$parametres_8h.html#a2fc0c04efd473c3bbe785f4f12c22ab9" title=" " alt="" coords="27,1829,151,1856"/>
 <area shape="rect" id="node39" href="$impression_8cpp.html#af095a39219867cefc1cdd1b67eb533ea" title=" " alt="" coords="23,1880,154,1907"/>
 <area shape="rect" id="node40" href="$impression_8cpp.html#a6ed823de34a4e8218dcd5691254c834b" title=" " alt="" coords="29,1931,149,1957"/>

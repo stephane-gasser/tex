@@ -93,9 +93,9 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <div class="dyncontent">
 <div class="center"><img src="mathkern_8h__dep__incl.png" border="0" usemap="#inc_2mathkern_8hdep" alt=""/></div>
 <map name="inc_2mathkern_8hdep" id="inc_2mathkern_8hdep">
-<area shape="rect" title=" " alt="" coords="89,5,197,32"/>
-<area shape="rect" href="mathkern_8cpp.html" title=" " alt="" coords="5,80,128,107"/>
-<area shape="rect" href="mlisttohlist_8cpp.html" title=" " alt="" coords="153,80,285,107"/>
+<area shape="rect" title=" " alt="" coords="78,5,186,32"/>
+<area shape="rect" href="formule_8cpp.html" title=" " alt="" coords="5,80,117,107"/>
+<area shape="rect" href="mathkern_8cpp.html" title=" " alt="" coords="141,80,264,107"/>
 </map>
 </div>
 </div>
@@ -103,12 +103,12 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a18dcff153c06b9a7be19334ba64191ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathkern_8h.html#a18dcff153c06b9a7be19334ba64191ca">mathkern</a> (<a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> p, <a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> m)</td></tr>
-<tr class="separator:a18dcff153c06b9a7be19334ba64191ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad27d0a0691c5637432f6ae8e4266c52f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mathkern_8h.html#ad27d0a0691c5637432f6ae8e4266c52f">mathkern</a> (<a class="el" href="classKernNode.html">KernNode</a> *, <a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>)</td></tr>
+<tr class="separator:ad27d0a0691c5637432f6ae8e4266c52f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a18dcff153c06b9a7be19334ba64191ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18dcff153c06b9a7be19334ba64191ca">&#9670;&nbsp;</a></span>mathkern()</h2>
+<a id="ad27d0a0691c5637432f6ae8e4266c52f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad27d0a0691c5637432f6ae8e4266c52f">&#9670;&nbsp;</a></span>mathkern()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -116,14 +116,14 @@ Fonctions</h2></td></tr>
         <tr>
           <td class="memname">void mathkern </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td>
-          <td class="paramname"><em>p</em>, </td>
+          <td class="paramtype"><a class="el" href="classKernNode.html">KernNode</a> *&#160;</td>
+          <td class="paramname">, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>&#160;</td>
-          <td class="paramname"><em>m</em>&#160;</td>
+          <td class="paramname">&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -135,52 +135,48 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="mathkern_8cpp_source.html#l00006">6</a> du fichier <a class="el" href="mathkern_8cpp_source.html">mathkern.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(p) == <a class="code" href="constantes_8h.html#a61dadd085c1777f559549e05962b2c9ea5a5784e20dbe8e093bbc4b0e90e51a74">mu_glue</a>)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (p-&gt;subtype == <a class="code" href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635a5a5784e20dbe8e093bbc4b0e90e51a74">mu_glue</a>)</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    {</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordtype">int</span> n = <a class="code" href="xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008">xovern</a>(m, <a class="code" href="constantes_8h.html#ac9c615a219b0c2977e7e676eb10d2505">unity</a>);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> <a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a> = <a class="code" href="globals_8cpp.html#af71f2d57a4ea7d4f39b34bd230dc531d">remainder_</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a> &lt; 0)</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a> <a class="code" href="globals_8h.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a> = <a class="code" href="globals_8h.html#af71f2d57a4ea7d4f39b34bd230dc531d">remainder_</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a> &lt; 0)</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        {</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;            n--;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <a class="code" href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a> += <a class="code" href="constantes_8h.html#ac9c615a219b0c2977e7e676eb10d2505">unity</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;            <a class="code" href="globals_8h.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a> += <a class="code" href="constantes_8h.html#ac9c615a219b0c2977e7e676eb10d2505">unity</a>;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        }</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(p) = <a class="code" href="multandadd_8cpp.html#af927a08050f5f57f75bd896b66ec87bd">mu_mult</a>(n, <a class="code" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a>(p));</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a>(p) = 1;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        p-&gt;width = <a class="code" href="multandadd_8cpp.html#af927a08050f5f57f75bd896b66ec87bd">mu_mult</a>(n, p-&gt;width);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        p-&gt;subtype = 1;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    }</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="mathkern_8h_a18dcff153c06b9a7be19334ba64191ca_cgraph.png" border="0" usemap="#mathkern_8h_a18dcff153c06b9a7be19334ba64191ca_cgraph" alt=""/></div>
-<map name="mathkern_8h_a18dcff153c06b9a7be19334ba64191ca_cgraph" id="mathkern_8h_a18dcff153c06b9a7be19334ba64191ca_cgraph">
-<area shape="rect" title=" " alt="" coords="5,81,81,108"/>
+<div class="center"><img src="mathkern_8h_ad27d0a0691c5637432f6ae8e4266c52f_cgraph.png" border="0" usemap="#mathkern_8h_ad27d0a0691c5637432f6ae8e4266c52f_cgraph" alt=""/></div>
+<map name="mathkern_8h_ad27d0a0691c5637432f6ae8e4266c52f_cgraph" id="mathkern_8h_ad27d0a0691c5637432f6ae8e4266c52f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,81,57"/>
 <area shape="rect" href="multandadd_8cpp.html#af927a08050f5f57f75bd896b66ec87bd" title=" " alt="" coords="129,5,201,32"/>
-<area shape="rect" href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="131,56,199,83"/>
-<area shape="rect" href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="139,107,192,133"/>
-<area shape="rect" href="xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="135,157,196,184"/>
+<area shape="rect" href="xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="135,56,196,83"/>
 </map>
 </div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="mathkern_8h_a18dcff153c06b9a7be19334ba64191ca_icgraph.png" border="0" usemap="#mathkern_8h_a18dcff153c06b9a7be19334ba64191ca_icgraph" alt=""/></div>
-<map name="mathkern_8h_a18dcff153c06b9a7be19334ba64191ca_icgraph" id="mathkern_8h_a18dcff153c06b9a7be19334ba64191ca_icgraph">
+<div class="center"><img src="mathkern_8h_ad27d0a0691c5637432f6ae8e4266c52f_icgraph.png" border="0" usemap="#mathkern_8h_ad27d0a0691c5637432f6ae8e4266c52f_icgraph" alt=""/></div>
+<map name="mathkern_8h_ad27d0a0691c5637432f6ae8e4266c52f_icgraph" id="mathkern_8h_ad27d0a0691c5637432f6ae8e4266c52f_icgraph">
 <area shape="rect" title=" " alt="" coords="139,29,215,56"/>
-<area shape="rect" href="mlisttohlist_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,29,91,56"/>
+<area shape="rect" href="formule_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,29,91,56"/>
 </map>
 </div>
 
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aconstantes_8h_html_a61dadd085c1777f559549e05962b2c9ea5a5784e20dbe8e093bbc4b0e90e51a74"><div class="ttname"><a href="constantes_8h.html#a61dadd085c1777f559549e05962b2c9ea5a5784e20dbe8e093bbc4b0e90e51a74">mu_glue</a></div><div class="ttdeci">@ mu_glue</div><div class="ttdoc">subtype for math glue</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00108">constantes.h:108</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_acee72cc7eac7224c7335fd7da8b4d54a"><div class="ttname"><a href="globals_8cpp.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a></div><div class="ttdeci">quarterword f</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00122">globals.cpp:122</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ab33acc2fa20ce6456e914293914ff9ba"><div class="ttname"><a href="constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba">width</a></div><div class="ttdeci">int &amp; width(halfword p)</div><div class="ttdoc">width of the box, in sp</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00021">constantes.cpp:21</a></div></div>
-<div class="ttc" id="aglobals_8h_html_a76970135ed45e872cd47aff06bc1dd33"><div class="ttname"><a href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a></div><div class="ttdeci">int scaled</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00050">globals.h:50</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a726ca809ffd3d67ab4b8476646f26635a5a5784e20dbe8e093bbc4b0e90e51a74"><div class="ttname"><a href="constantes_8h.html#a726ca809ffd3d67ab4b8476646f26635a5a5784e20dbe8e093bbc4b0e90e51a74">mu_glue</a></div><div class="ttdeci">@ mu_glue</div><div class="ttdoc">subtype for math glue</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00106">constantes.h:106</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a76970135ed45e872cd47aff06bc1dd33"><div class="ttname"><a href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a></div><div class="ttdeci">int scaled</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00049">globals.h:49</a></div></div>
+<div class="ttc" id="aglobals_8h_html_acee72cc7eac7224c7335fd7da8b4d54a"><div class="ttname"><a href="globals_8h.html#acee72cc7eac7224c7335fd7da8b4d54a">f</a></div><div class="ttdeci">quarterword f</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00384">globals.h:384</a></div></div>
 <div class="ttc" id="axovern_8cpp_html_aaffb851bbe3d2ea46e6bb5a2981a8008"><div class="ttname"><a href="xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008">xovern</a></div><div class="ttdeci">scaled xovern(scaled x, int n)</div><div class="ttdef"><b>Definition:</b> <a href="xovern_8cpp_source.html#l00003">xovern.cpp:3</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a01f991c685cde0f8caaf1118f3f503b0"><div class="ttname"><a href="constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0">subtype</a></div><div class="ttdeci">quarterword &amp; subtype(halfword p)</div><div class="ttdoc">secondary identification in some cases</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00015">constantes.cpp:15</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_ac9c615a219b0c2977e7e676eb10d2505"><div class="ttname"><a href="constantes_8h.html#ac9c615a219b0c2977e7e676eb10d2505">unity</a></div><div class="ttdeci">constexpr int unity</div><div class="ttdoc">, represents 1.00000</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00655">constantes.h:655</a></div></div>
-<div class="ttc" id="aglobals_8cpp_html_af71f2d57a4ea7d4f39b34bd230dc531d"><div class="ttname"><a href="globals_8cpp.html#af71f2d57a4ea7d4f39b34bd230dc531d">remainder_</a></div><div class="ttdeci">scaled remainder_</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00064">globals.cpp:64</a></div></div>
+<div class="ttc" id="aglobals_8h_html_af71f2d57a4ea7d4f39b34bd230dc531d"><div class="ttname"><a href="globals_8h.html#af71f2d57a4ea7d4f39b34bd230dc531d">remainder_</a></div><div class="ttdeci">scaled remainder_</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00314">globals.h:314</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_ac9c615a219b0c2977e7e676eb10d2505"><div class="ttname"><a href="constantes_8h.html#ac9c615a219b0c2977e7e676eb10d2505">unity</a></div><div class="ttdeci">constexpr int unity</div><div class="ttdoc">, represents 1.00000</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00638">constantes.h:638</a></div></div>
 <div class="ttc" id="amultandadd_8cpp_html_af927a08050f5f57f75bd896b66ec87bd"><div class="ttname"><a href="multandadd_8cpp.html#af927a08050f5f57f75bd896b66ec87bd">mu_mult</a></div><div class="ttdeci">scaled mu_mult(int n, scaled x)</div><div class="ttdef"><b>Definition:</b> <a href="multandadd_8cpp_source.html#l00024">multandadd.cpp:24</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

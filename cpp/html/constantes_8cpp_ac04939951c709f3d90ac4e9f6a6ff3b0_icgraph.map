@@ -1,13 +1,12 @@
 <map id="text" name="text">
-<area shape="rect" id="node1" title="string number for control sequence name" alt="" coords="263,233,307,260"/>
+<area shape="rect" id="node1" title="string number for control sequence name" alt="" coords="263,208,307,235"/>
 <area shape="rect" id="node2" href="$impression_8h.html#aff5beadbf72096c5a8ea0b4da97cba5b" title=" " alt="" coords="150,5,189,32"/>
 <area shape="rect" id="node3" href="$impression_8cpp.html#a5cb3277bcad679a466a4b8eb8d606947" title="a frozen font identifier&#39;s name" alt="" coords="124,56,215,83"/>
-<area shape="rect" id="node4" href="$impression_8cpp.html#a0c08bcb388c17d81fc2ef1f790568d3d" title=" " alt="" coords="124,107,215,133"/>
-<area shape="rect" id="node5" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="134,157,205,184"/>
-<area shape="rect" id="node6" href="$primitive_8h.html#abde711ba40d4351c0038699319bef517" title=" " alt="" coords="5,183,76,209"/>
-<area shape="rect" id="node7" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="134,259,205,285"/>
-<area shape="rect" id="node8" href="$initprim_8h.html#a00fac4d433de0ce408e745ad03051386" title=" " alt="" coords="137,309,201,336"/>
-<area shape="rect" id="node9" href="$noeud_8h.html#a55499cc477d95c4c351b76b513273a75" title=" " alt="" coords="135,360,203,387"/>
-<area shape="rect" id="node10" href="$impression_8h.html#a86b1ac564da9c7c2aebf4628a734483c" title=" " alt="" coords="148,411,191,437"/>
-<area shape="rect" id="node11" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="126,461,213,488"/>
+<area shape="rect" id="node4" href="$idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="134,107,205,133"/>
+<area shape="rect" id="node5" href="$primitive_8h.html#abde711ba40d4351c0038699319bef517" title=" " alt="" coords="5,132,76,159"/>
+<area shape="rect" id="node6" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="134,208,205,235"/>
+<area shape="rect" id="node7" href="$initprim_8h.html#a00fac4d433de0ce408e745ad03051386" title=" " alt="" coords="137,259,201,285"/>
+<area shape="rect" id="node8" href="$noeud_8h.html#a55499cc477d95c4c351b76b513273a75" title=" " alt="" coords="135,309,203,336"/>
+<area shape="rect" id="node9" href="$impression_8h.html#a86b1ac564da9c7c2aebf4628a734483c" title=" " alt="" coords="148,360,191,387"/>
+<area shape="rect" id="node10" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="126,411,213,437"/>
 </map>

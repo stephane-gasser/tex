@@ -1,11 +1,8 @@
 <map id="fixlanguage" name="fixlanguage">
-<area shape="rect" id="node1" title=" " alt="" coords="5,183,93,209"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,107,93,133"/>
 <area shape="rect" id="node2" href="$parametres_8h.html#a8ef2e71026f578228f44fdef3dae36fe" title=" " alt="" coords="166,5,241,32"/>
 <area shape="rect" id="node3" href="$parametres_8h.html#a26f198c381967e7bcc507a080c7062f3" title=" " alt="" coords="145,56,262,83"/>
-<area shape="rect" id="node4" href="$noeud_8cpp.html#a1261952612c9c3237400b8b77065f964" title=" " alt="" coords="159,107,247,133"/>
-<area shape="rect" id="node5" href="$normmin_8cpp.html#af805df9a180597e0b529dfec14c1dd7a" title=" " alt="" coords="167,157,239,184"/>
-<area shape="rect" id="node6" href="$parametres_8h.html#a2fc0c04efd473c3bbe785f4f12c22ab9" title=" " alt="" coords="141,208,265,235"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a33d8f944ea440e7b549bba9c8d59b7fc" title="language number, in the range 0..255" alt="" coords="163,259,244,285"/>
-<area shape="rect" id="node8" href="$constantes_8cpp.html#ab0ad9017d47db7dbdd4a56de61cf1ab4" title="minimum left fragment, in the range 1..63" alt="" coords="164,309,243,336"/>
-<area shape="rect" id="node9" href="$constantes_8cpp.html#a3a9a841425d1132288c369576f00edb1" title="minimum right fragment, in the range 1..63" alt="" coords="164,360,243,387"/>
+<area shape="rect" id="node4" href="$normmin_8cpp.html#af805df9a180597e0b529dfec14c1dd7a" title=" " alt="" coords="167,107,239,133"/>
+<area shape="rect" id="node5" href="$parametres_8h.html#a2fc0c04efd473c3bbe785f4f12c22ab9" title=" " alt="" coords="141,157,265,184"/>
+<area shape="rect" id="node6" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="159,208,247,235"/>
 </map>

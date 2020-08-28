@@ -131,7 +131,7 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="setmathchar_8cpp_source.html#l00006">6</a> du fichier <a class="el" href="setmathchar_8cpp_source.html">setmathchar.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a> &gt;= 0x80<span class="stringliteral">&#39;00)</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a> &gt;= 0x80<span class="stringliteral">&#39;00)</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="stringliteral">    {</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="stringliteral">        t.cs = t.chr+active_base;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="stringliteral">        t.cmd = eq_type(t.cs);</span></div>
@@ -141,18 +141,18 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="stringliteral">    }</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="stringliteral">    else</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="stringliteral">    {</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral">        auto p = newnoad();</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">        math_type(nucleus(p)) = math_char;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">        character(nucleus(p)) = c%(1&lt;&lt;8);</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">        fam(nucleus(p)) = (c&gt;&gt;8)%(1&lt;&lt;4);</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral">        auto p = new Noad;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">        p-&gt;nucleus.math_type = math_char;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">        p-&gt;nucleus.character = c%(1&lt;&lt;8);</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">        p-&gt;nucleus.fam = (c&gt;&gt;8)%(1&lt;&lt;4);</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral">        if (c &gt;= var_code)</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral">        {</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="stringliteral">            if (fam_in_range())</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">                fam(nucleus(p)) = cur_fam();</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="stringliteral">            type(p) = ord_noad;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">                p-&gt;nucleus.fam = cur_fam();</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="stringliteral">            p-&gt;type = ord_noad;</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="stringliteral">        }</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="stringliteral">        else</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="stringliteral">            type(p) = ord_noad+(c&gt;&gt;12);</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="stringliteral">            p-&gt;type = ord_noad+(c&gt;&gt;12);</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="stringliteral">        tail_append(p);</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="stringliteral">    }</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="stringliteral">}</span></div>
@@ -169,7 +169,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aglobals_8cpp_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8cpp.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8cpp_source.html#l00122">globals.cpp:122</a></div></div>
+<div class="ttc" id="aglobals_8h_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00384">globals.h:384</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

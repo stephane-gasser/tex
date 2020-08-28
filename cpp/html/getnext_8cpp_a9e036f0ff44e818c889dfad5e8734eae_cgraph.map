@@ -1,6 +1,6 @@
 <map id="getnext" name="getnext">
 <area shape="rect" id="node1" title=" " alt="" coords="5,664,71,691"/>
-<area shape="rect" id="node2" href="$lecture_8cpp.html#a1567b753123bcb567ae22be434031862" title=" " alt="" coords="145,5,247,32"/>
+<area shape="rect" id="node2" href="$lecture_8cpp.html#a118c5895c6b39177ff15a8a89c6e9cf1" title=" " alt="" coords="145,5,247,32"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#ab70b4a53caf71f4da20a6f8a0c65ff20" title=" " alt="" coords="159,56,233,83"/>
 <area shape="rect" id="node4" href="$constantes_8cpp.html#acb82808d11d8a4270965a5d0c662c9ed" title="equivalent value" alt="" coords="346,81,399,108"/>
 <area shape="rect" id="node5" href="$getnext_8cpp.html#aa0038e1b6e34116cdee777ae4be03554" title=" " alt="" coords="133,360,259,387"/>
@@ -25,6 +25,6 @@
 <area shape="rect" id="node24" href="$getnext_8cpp.html#ad3bafa79daafcbf65d9f3c7c08eb20e1" title=" " alt="" coords="145,1120,247,1147"/>
 <area shape="rect" id="node25" href="$getnext_8cpp.html#aa8d6cecc16cbce722190176639d7403b" title=" " alt="" coords="123,1171,269,1197"/>
 <area shape="rect" id="node26" href="$getnext_8cpp.html#a43c857ded74c0a729d21b687b46546cb" title=" " alt="" coords="137,1221,255,1248"/>
-<area shape="rect" id="node27" href="$globals_8h.html#ae10d5f6888c39731ac53abddc66f1469" title=" " alt="" coords="173,1272,219,1299"/>
+<area shape="rect" id="node27" href="$noeud_8h.html#ae10d5f6888c39731ac53abddc66f1469" title=" " alt="" coords="173,1272,219,1299"/>
 <area shape="rect" id="node28" href="$constantes_8cpp.html#af09afca5b50a4e405dcf3d71f3f3a184" title="pointer to &#160;token list" alt="" coords="167,1323,225,1349"/>
 </map>

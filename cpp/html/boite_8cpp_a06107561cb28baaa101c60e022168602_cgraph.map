@@ -1,11 +1,9 @@
 <map id="cleanbox" name="cleanbox">
-<area shape="rect" id="node1" title=" " alt="" coords="5,183,80,210"/>
-<area shape="rect" id="node2" href="$boite_8cpp.html#a7e3dbecf17681bd6e942256d9d996608" title=" " alt="" coords="276,33,333,59"/>
-<area shape="rect" id="node3" href="$classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347" title=" " alt="" coords="396,7,557,34"/>
-<area shape="rect" id="node4" href="$constantes_8cpp.html#a82b682647a658e24e6001307cf953773" title="the link field of a memory word" alt="" coords="149,310,192,337"/>
-<area shape="rect" id="node5" href="$police_8cpp.html#af9289b57d2744238aa244ac1f60c85c5" title="18mu" alt="" coords="261,101,348,127"/>
-<area shape="rect" id="node6" href="$mlisttohlist_8cpp.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="128,158,213,185"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="271,170,338,197"/>
-<area shape="rect" id="node8" href="$xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="274,246,335,273"/>
-<area shape="rect" id="node9" href="$noeud_8cpp.html#a7d8404f21a8d8195c82810f73b0e8a52" title=" " alt="" coords="133,361,208,387"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,137,80,164"/>
+<area shape="rect" id="node2" href="$boite_8cpp.html#a7e3dbecf17681bd6e942256d9d996608" title=" " alt="" coords="276,37,333,64"/>
+<area shape="rect" id="node3" href="$classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347" title=" " alt="" coords="396,12,557,39"/>
+<area shape="rect" id="node4" href="$police_8cpp.html#af9289b57d2744238aa244ac1f60c85c5" title="18mu" alt="" coords="261,124,348,151"/>
+<area shape="rect" id="node5" href="$formule_8cpp.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="128,112,213,139"/>
+<area shape="rect" id="node6" href="$xovern_8cpp.html#aaffb851bbe3d2ea46e6bb5a2981a8008" title=" " alt="" coords="274,200,335,227"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="137,264,204,291"/>
 </map>

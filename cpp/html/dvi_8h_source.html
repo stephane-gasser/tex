@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>myTeX:  Fichier source de inc/dvi.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">myTeX
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">dvi.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="dvi_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef DVI_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define DVI_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="globals_8h.html">globals.h</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="dvi_8h.html#a5605bd2f7e94e166aadb93e833459447">    6</a></span>&#160;constexpr <span class="keywordtype">int</span> <a class="code" href="dvi_8h.html#a5605bd2f7e94e166aadb93e833459447">dvibufsize</a> = 800;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dvi_8h.html#a8ef6f9295908e24feb3897eeb23d3f47">dvifontdef</a>(<a class="code" href="globals_8h.html#a31e60baff034e87efe01cbf977b72a39">internalfontnumber</a>);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dvi_8h.html#a810706f4157431705e0baf728b7e26ff">dvifour</a>(uint32_t);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dvi_8h.html#ae2a010ecf949ee63a4774696876e6001">dvipop</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dvi_8h.html#a500877cfd35d0b9e721adf879294ae14">dvi_out</a>(<a class="code" href="globals_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dvi_8h.html#ae23497fd0ab208a967aa005d5e753615">writedvi</a>(<a class="code" href="globals_8h.html#a063e9934f2314ff53f600b67ce857026">dviindex</a>, <a class="code" href="globals_8h.html#a063e9934f2314ff53f600b67ce857026">dviindex</a>);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dvi_8h.html#a20866aa1f5e095a472254bcf4c6d5e03">movement</a>(<a class="code" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>, <a class="code" href="globals_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a>);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dvi_8h.html#acf0daf3f4ad468bc8ae8eedc1817b29a">synch_v</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dvi_8h.html#a387f370c790b0d1fd76ddc3c2faee3bd">synch_h</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dvi_8h.html#a4addee4d6112615276067ca87cd286dc">prunemovements</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dvi_8h.html#afeea3b8d09112570a258cce09bd0aade">closefilesandterminate</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> <a class="code" href="dvi_8h.html#adcbd3290ae835519f4ac420189ec772c">specialout</a>(<a class="code" href="classNotOpenWriteWhatsitNode.html">NotOpenWriteWhatsitNode</a> *);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aglobals_8h_html_a063e9934f2314ff53f600b67ce857026"><div class="ttname"><a href="globals_8h.html#a063e9934f2314ff53f600b67ce857026">dviindex</a></div><div class="ttdeci">int dviindex</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00056">globals.h:56</a></div></div>
+<div class="ttc" id="aglobals_8h_html_abc49fad02b91822e61ddf562d8fa9c27"><div class="ttname"><a href="globals_8h.html#abc49fad02b91822e61ddf562d8fa9c27">eightbits</a></div><div class="ttdeci">std::uint8_t eightbits</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00042">globals.h:42</a></div></div>
+<div class="ttc" id="advi_8h_html_a8ef6f9295908e24feb3897eeb23d3f47"><div class="ttname"><a href="dvi_8h.html#a8ef6f9295908e24feb3897eeb23d3f47">dvifontdef</a></div><div class="ttdeci">void dvifontdef(internalfontnumber)</div><div class="ttdef"><b>Definition:</b> <a href="dvi_8cpp_source.html#l00053">dvi.cpp:53</a></div></div>
+<div class="ttc" id="advi_8h_html_a387f370c790b0d1fd76ddc3c2faee3bd"><div class="ttname"><a href="dvi_8h.html#a387f370c790b0d1fd76ddc3c2faee3bd">synch_h</a></div><div class="ttdeci">void synch_h(void)</div><div class="ttdef"><b>Definition:</b> <a href="dvi_8cpp_source.html#l00258">dvi.cpp:258</a></div></div>
+<div class="ttc" id="advi_8h_html_a810706f4157431705e0baf728b7e26ff"><div class="ttname"><a href="dvi_8h.html#a810706f4157431705e0baf728b7e26ff">dvifour</a></div><div class="ttdeci">void dvifour(uint32_t)</div><div class="ttdef"><b>Definition:</b> <a href="dvi_8cpp_source.html#l00043">dvi.cpp:43</a></div></div>
+<div class="ttc" id="advi_8h_html_acf0daf3f4ad468bc8ae8eedc1817b29a"><div class="ttname"><a href="dvi_8h.html#acf0daf3f4ad468bc8ae8eedc1817b29a">synch_v</a></div><div class="ttdeci">void synch_v(void)</div><div class="ttdef"><b>Definition:</b> <a href="dvi_8cpp_source.html#l00266">dvi.cpp:266</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a76970135ed45e872cd47aff06bc1dd33"><div class="ttname"><a href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a></div><div class="ttdeci">int scaled</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00049">globals.h:49</a></div></div>
+<div class="ttc" id="aglobals_8h_html"><div class="ttname"><a href="globals_8h.html">globals.h</a></div></div>
+<div class="ttc" id="advi_8h_html_a4addee4d6112615276067ca87cd286dc"><div class="ttname"><a href="dvi_8h.html#a4addee4d6112615276067ca87cd286dc">prunemovements</a></div><div class="ttdeci">void prunemovements(int)</div><div class="ttdef"><b>Definition:</b> <a href="dvi_8cpp_source.html#l00274">dvi.cpp:274</a></div></div>
+<div class="ttc" id="advi_8h_html_a20866aa1f5e095a472254bcf4c6d5e03"><div class="ttname"><a href="dvi_8h.html#a20866aa1f5e095a472254bcf4c6d5e03">movement</a></div><div class="ttdeci">void movement(scaled, eightbits)</div><div class="ttdef"><b>Definition:</b> <a href="dvi_8cpp_source.html#l00103">dvi.cpp:103</a></div></div>
+<div class="ttc" id="advi_8h_html_ae23497fd0ab208a967aa005d5e753615"><div class="ttname"><a href="dvi_8h.html#ae23497fd0ab208a967aa005d5e753615">writedvi</a></div><div class="ttdeci">void writedvi(dviindex, dviindex)</div><div class="ttdef"><b>Definition:</b> <a href="dvi_8cpp_source.html#l00013">dvi.cpp:13</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a31e60baff034e87efe01cbf977b72a39"><div class="ttname"><a href="globals_8h.html#a31e60baff034e87efe01cbf977b72a39">internalfontnumber</a></div><div class="ttdeci">char internalfontnumber</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00054">globals.h:54</a></div></div>
+<div class="ttc" id="advi_8h_html_a5605bd2f7e94e166aadb93e833459447"><div class="ttname"><a href="dvi_8h.html#a5605bd2f7e94e166aadb93e833459447">dvibufsize</a></div><div class="ttdeci">constexpr int dvibufsize</div><div class="ttdef"><b>Definition:</b> <a href="dvi_8h_source.html#l00006">dvi.h:6</a></div></div>
+<div class="ttc" id="advi_8h_html_afeea3b8d09112570a258cce09bd0aade"><div class="ttname"><a href="dvi_8h.html#afeea3b8d09112570a258cce09bd0aade">closefilesandterminate</a></div><div class="ttdeci">void closefilesandterminate(void)</div><div class="ttdef"><b>Definition:</b> <a href="dvi_8cpp_source.html#l00294">dvi.cpp:294</a></div></div>
+<div class="ttc" id="advi_8h_html_ae2a010ecf949ee63a4774696876e6001"><div class="ttname"><a href="dvi_8h.html#ae2a010ecf949ee63a4774696876e6001">dvipop</a></div><div class="ttdeci">void dvipop(int)</div><div class="ttdef"><b>Definition:</b> <a href="dvi_8cpp_source.html#l00070">dvi.cpp:70</a></div></div>
+<div class="ttc" id="advi_8h_html_adcbd3290ae835519f4ac420189ec772c"><div class="ttname"><a href="dvi_8h.html#adcbd3290ae835519f4ac420189ec772c">specialout</a></div><div class="ttdeci">void specialout(NotOpenWriteWhatsitNode *)</div><div class="ttdef"><b>Definition:</b> <a href="dvi_8cpp_source.html#l00352">dvi.cpp:352</a></div></div>
+<div class="ttc" id="advi_8h_html_a500877cfd35d0b9e721adf879294ae14"><div class="ttname"><a href="dvi_8h.html#a500877cfd35d0b9e721adf879294ae14">dvi_out</a></div><div class="ttdeci">void dvi_out(eightbits)</div><div class="ttdef"><b>Definition:</b> <a href="dvi_8cpp_source.html#l00036">dvi.cpp:36</a></div></div>
+<div class="ttc" id="aclassNotOpenWriteWhatsitNode_html"><div class="ttname"><a href="classNotOpenWriteWhatsitNode.html">NotOpenWriteWhatsitNode</a></div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00276">noeud.h:276</a></div></div>
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

@@ -58,7 +58,7 @@ void postlinebreak(int finalwidowpenalty)
 						r = q;
 						while (t > 1)
 						{
-							r = r->link;
+							next(r);
 							t--;
 						}
 						s = r->link;
@@ -70,7 +70,7 @@ void postlinebreak(int finalwidowpenalty)
 					if (Q->post_break)
 					{
 						s = Q->post_break;
-						followUntilBeforeTarget(&s);
+						followUntilBeforeTarget(s);
 						s->link = r;
 						r = Q->post_break;
 						Q->post_break = nullptr;
@@ -80,7 +80,7 @@ void postlinebreak(int finalwidowpenalty)
 					{
 						s = Q->pre_break;
 						q->link = s;
-						followUntilBeforeTarget(&s);
+						followUntilBeforeTarget(s);
 						Q->pre_break = nullptr;
 						q = s;
 					}
@@ -98,7 +98,7 @@ void postlinebreak(int finalwidowpenalty)
 		else
 		{
 			q = temp_head;
-			followUntilBeforeTarget(&q);
+			followUntilBeforeTarget(q);
 			r = new GlueNode(right_skip_code);
 			r->link = q->link;
 			q->link = r;

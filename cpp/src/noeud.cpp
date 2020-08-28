@@ -25,10 +25,10 @@ LinkedNode* copynodelist(LinkedNode *p)
 {
 	static LinkedNode head;
 	auto q = &head;
-	for (;p; p->link)
+	for (; p; next(p))
 	{
 		q->link = p->copy();
-		q = q->link;
+		next(q);
 	}
 	q->link = nullptr;
 	return head.link;
@@ -515,8 +515,8 @@ void appspace(halfword &mainp, fontindex &maink)
 	tail_append(q);
 }
 
-void followUntilBeforeTarget(LinkedNode **running, LinkedNode *target)
+void followUntilBeforeTarget(LinkedNode* &running, LinkedNode *target)
 {
-	while ((*running)->link != target)
-		*running = (*running)->link;
+	while (running->link != target)
+		next(running);
 }
