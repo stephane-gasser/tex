@@ -316,21 +316,20 @@ void beginbox(int boxcontext, Token t)
 		default:
 		{
 			halfword k = t.chr-4; // 0 or vmode or hmode
-			saved(0) = boxcontext;
 			switch (k)
 			{
 				case hmode:
 					if (boxcontext < box_flag && abs(mode) == vmode)
-						t = scanspec(adjusted_hbox_group, true);
+						t = scanspec(adjusted_hbox_group, boxcontext);
 					else
-						t = scanspec(hbox_group, true);
+						t = scanspec(hbox_group, boxcontext);
 					break;
 				case vmode:
-					t = scanspec(vbox_group, true);
+					t = scanspec(vbox_group, boxcontext);
 					normalparagraph();
 					break;
 				default:
-					t = scanspec(vtop_group, true);
+					t = scanspec(vtop_group, boxcontext);
 					k = vmode;
 					normalparagraph();
 			}

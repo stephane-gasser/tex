@@ -15,5 +15,6 @@ void makeunder(Noad*);
 void makevcenter(Noad*);
 smallnumber makeleftright(LeftRightNoad*, smallnumber, scaled, scaled);
 void mlisttohlist(void);
+Noad *finmlist(Noad*);
 
 #endif

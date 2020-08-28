@@ -1,5 +1,5 @@
 #include "builddiscretionary.h"
-#include "unsave.h"
+#include "sauvegarde.h"
 #include "impression.h"
 #include "erreur.h"
 #include "popnest.h"
@@ -32,7 +32,7 @@ void builddiscretionary(Token t)
 	}
 	p = head->link;
 	popnest();
-	switch (saved(-1))
+	switch (savestack.back().int_)
 	{
 		case 0: 
 			dynamic_cast<DiscNode*>(tail)->pre_break = p;
@@ -55,10 +55,10 @@ void builddiscretionary(Token t)
 				error("Discretionary list is too long", "Wow---I never thought anybody would tweak me here.\nYou can't seriously need such a huge discretionary list?");
 			if (n > 0)
 				tail = q;
-			saveptr--;
+			savestack.pop_back();
 			return;
 	}
-	saved(-1)++;
+	savestack.back().int_++;
 	newsavelevel(10);
 	t = scanleftbrace();
 	pushnest();

@@ -1,4 +1,3 @@
-#include "constantes.h"
 #include "globals.h"
 
 halfword& link(halfword p) { return mem[p].hh.rh; }
@@ -43,12 +42,6 @@ halfword& line_number(halfword p) { return info(p+1); }
 halfword& llink(halfword p) { return info(p+1); }
 halfword& broken_ins(halfword p) { return info(p+1); }
 halfword& best_ins_ptr(halfword p) { return info(p+2); }
-
-quarterword& save_type(halfword p) { return savestack[p].hh.b0; }
-quarterword& save_level(halfword p) { return savestack[p].hh.b1; }
-halfword& save_index(halfword p) { return savestack[p].hh.rh; }
-int& saved(halfword p) { return savestack[saveptr+p].int_; }
-
 quarterword& eq_level(halfword p) { return eqtb[p].hh.b1; }
 quarterword& eq_type(halfword p) { return eqtb[p].hh.b0; }
 halfword& equiv(halfword p) { return eqtb[p].hh.rh; }

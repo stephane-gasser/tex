@@ -1,5 +1,5 @@
 #include "finalign.h"
-#include "unsave.h"
+#include "sauvegarde.h"
 #include "deleteglueref.h"
 #include "noeud.h"
 #include "boite.h"
@@ -95,14 +95,17 @@ void finalign(halfword &loop)
 		Q->glue_shrink = 0;
 		q = p;
 	} while (q);
-	saveptr -= 2;
+	auto s1 = savestack.back().int_;
+	savestack.pop_back();
+	auto s0 = savestack.back().int_;
+	savestack.pop_back();
 	packbeginline = -mode_line;
 	BoxNode *p;
 	if (mode == -vmode)
 	{
 		scaled rulesave = overfull_rule();
 		overfull_rule() = 0;
-		p = hpack(preamble, saved(1), saved(0));
+		p = hpack(preamble, s1, s0);
 		overfull_rule() = rulesave;
 	}
 	else
@@ -115,7 +118,7 @@ void finalign(halfword &loop)
 			Q->width = 0;
 			q = q->link->link;
 		} while (q);
-		p = vpack(preamble, saved(1), saved(0));
+		p = vpack(preamble, s1, s0);
 		q = preamble->link;
 		do
 		{

@@ -1,31 +1,30 @@
 #include "buildchoices.h"
-#include "unsave.h"
-#include "finmlist.h"
+#include "sauvegarde.h"
+#include "formule.h"
 #include "pushmath.h"
 #include "lecture.h"
 
 void buildchoices(Token t)
 {
 	unsave();
-	auto p = finmlist(nullptr); // the current mlist
 	auto Tail = dynamic_cast<ChoiceNode*>(tail);
-	switch (saved(-1))
+	switch (savestack.back().int_)
 	{
 		case 0: 
-			Tail->display_mlist = p;
+			Tail->display_mlist = finmlist(nullptr);
 			break;
 		case 1: 
-			Tail->text_mlist = p;
+			Tail->text_mlist = finmlist(nullptr);
 			break;
 		case 2: 
-			Tail->script_mlist = p;
+			Tail->script_mlist = finmlist(nullptr);
 			break;
 		case 3:
-			Tail->script_script_mlist = p;
-			saveptr--;
+			Tail->script_script_mlist = finmlist(nullptr);
+			savestack.pop_back();
 			return;
 	}
-	saved(-1)++;
+	savestack.back().int_++;
 	pushmath(math_choice_group);
 	t = scanleftbrace();
 }

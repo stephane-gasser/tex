@@ -300,6 +300,7 @@ class NoadContent : public AnyNode
 		quarterword character = 0;
 		quarterword fam = 0;
 		~NoadContent(void) { if (math_type >= /*sub_box*/2) flushnodelist(info); }
+		bool operator == (const NoadContent &n) { return std::tuple(math_type, info, character, fam) == std::tuple(n.math_type, n.info, n.character, n.fam); }
 };
 
 class Noad : public LinkedNode
@@ -386,7 +387,6 @@ void newfont(smallnumber);
 void newgraf(bool);
 void newhyphexceptions(void);
 void newinteraction(Token);
-void newsavelevel(groupcode);
 GlueNode* newskipparam(smallnumber);
 void freenode(halfword, halfword);
 halfword getnode(int);

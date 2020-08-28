@@ -1,5 +1,5 @@
 #include "handlerightbrace.h"
-#include "unsave.h"
+#include "sauvegarde.h"
 #include "impression.h"
 #include "erreur.h"
 #include "extrarightbrace.h"
@@ -16,7 +16,7 @@
 #include "alignpeek.h"
 #include "noeud.h"
 #include "buildchoices.h"
-#include "finmlist.h"
+#include "formule.h"
 #include "texte.h"
 
 static int floating_penalty(void) { return int_par(floating_penalty_code); }
@@ -56,19 +56,21 @@ void handlerightbrace(Token t, halfword &loop)
 			package(vtop_code, t);
 			break;
 		case insert_group:
+		{
 			endgraf();
 			q = split_top_skip;
 			q->glue_ref_count++;
 			d = split_max_depth();
 			f = floating_penalty();
 			unsave();
-			saveptr--;
+			auto s0 = savestack.back().int_;
+			savestack.pop_back();
 			p = vpack(head->link, 0, additional);
 			popnest();
-			if (saved(0) < 255)
+			if (s0 < 255)
 			{
 				auto ins = new InsNode;
-				ins->subtype = saved(0);
+				ins->subtype = s0;
 				ins->height = p->height+p->depth;
 				ins->ins_ptr = p->list_ptr;
 				ins->split_top_ptr = q;
@@ -87,6 +89,7 @@ void handlerightbrace(Token t, halfword &loop)
 			if (nestptr == 0)
 				buildpage();
 			break;
+		}
 		case output_group:
 			if (loc || (token_type != output_text && token_type != backed_up))
 			{
@@ -136,8 +139,11 @@ void handlerightbrace(Token t, halfword &loop)
 		{
 			endgraf();
 			unsave();
-			saveptr -= 2;
-			p = vpack(head->link, saved(1), saved(0));
+			auto s1 = savestack.back().int_;
+			savestack.pop_back();
+			auto s0 = savestack.back().int_;
+			savestack.pop_back();
+			p = vpack(head->link, s1, s0);
 			popnest();
 			auto n = new Noad;
 			n->type = vcenter_noad;
@@ -152,32 +158,34 @@ void handlerightbrace(Token t, halfword &loop)
 		case math_group:
 		{
 			unsave();
-			saveptr--;
-			math_type(saved(0)) = sub_mlist;
+			auto s0 = savestack.back().int_; //NoadContent
+			savestack.pop_back();
+			NoadContent n;
+			n.num = s0;
+			n.math_type = sub_mlist;
 			auto p = finmlist(nullptr);
-			info(saved(0)) = p->num;
+			n.info = p;
 			if (p && p->link == nullptr)
 				if (p->type == ord_noad)
 				{
 					auto P = dynamic_cast<Noad*>(p);
 					if (P->subscr.math_type == 0 && P->supscr.math_type == 0)
 					{
-						mem[saved(0)] = mem[nucleus(p->num)];
+						n = P->nucleus;
 						delete p;
 					}
 				}
-				else 
+				else
 					if (p->type == accent_noad)
-						if (saved(0) == nucleus(tail->num))
-							if (tail->type == ord_noad)
-							{
-								auto q = head;
-								while (q->link != tail)
-									q = q->link;
-								q->link = p;
-								delete tail;
-								tail = p;
-							}
+						if (tail->type == ord_noad && n == dynamic_cast<Noad*>(tail)->nucleus)
+						{
+							auto q = head;
+							while (q->link != tail)
+								q = q->link;
+							q->link = p;
+							delete tail;
+							tail = p;
+						}
 			break;
 		}
 		default: 

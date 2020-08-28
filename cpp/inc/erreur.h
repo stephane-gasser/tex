@@ -12,7 +12,6 @@ void fatal(const std::string &, const std::string &);
 void fatalerror(const std::string &);
 void interror(int, const std::string &, const std::string &);
 void overflow(const std::string &, int);
-void check_full_save_stack(void);
 void reportillegalcase(Token);
 bool privileged(Token);
 void confusion(const std::string &);

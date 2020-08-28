@@ -1,5 +1,5 @@
 #include "package.h"
-#include "unsave.h"
+#include "sauvegarde.h"
 #include "popnest.h"
 #include "boite.h"
 
@@ -8,12 +8,17 @@ static int box_max_depth(void) { return dimen_par(box_max_depth_code); }
 void package(smallnumber c, Token t)
 {
 	unsave();
-	saveptr -= 3;
+	auto s2 = savestack.back().int_;
+	savestack.pop_back();
+	auto s1 = savestack.back().int_;
+	savestack.pop_back();
+	auto s0 = savestack.back().int_;
+	savestack.pop_back();
 	if (mode == -hmode)
-		curbox = hpack(head->link, saved(2), saved(1));
+		curbox = hpack(head->link, s2, s1);
 	else
 	{
-		curbox = vpackage(head->link, saved(2), saved(1), box_max_depth());
+		curbox = vpackage(head->link, s2, s1, box_max_depth());
 		if (c == 4)
 		{
 			scaled h = 0;
@@ -25,5 +30,5 @@ void package(smallnumber c, Token t)
 		}
 	}
 	popnest();
-	boxend(saved(0));
+	boxend(s0);
 }

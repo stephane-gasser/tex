@@ -332,9 +332,7 @@ inline quarterword xeqlevel[6107]; // débute à 5263
 inline twohalves hash[2881]; // débute à 514
 inline halfword hashused;
 inline bool nonewcontrolsequence;
-inline memoryword savestack[savesize+1];
-inline int saveptr; //0..savesize
-inline int maxsavestack; // 0..savesize
+inline std::vector<memoryword> savestack;
 inline quarterword curlevel;
 inline groupcode curgroup;
 inline int curboundary; // 0..savesize

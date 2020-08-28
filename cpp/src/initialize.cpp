@@ -38,11 +38,9 @@ void Initialize(void)
 	hash[514].rh = 0;
 	for (int k = 515; k < 2881; k++)
 	    hash[k] = hash[514];
-	saveptr = 0;
 	curlevel = 1;
 	curgroup = 0;
 	curboundary = 0;
-	maxsavestack = 0;
 	magset = 0;
 	radix = 0;
 	curorder = 0;

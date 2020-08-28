@@ -223,16 +223,6 @@ void fatalerror(const std::string &s)
 	fatal("Emergency stop", s);
 }
 
-void check_full_save_stack(void)
-{
-	if (saveptr > maxsavestack)
-	{
-		maxsavestack = saveptr; 
-		if (maxsavestack> savesize-6) 
-			overflow("save size",savesize);
-	}
-}
-
 void interror(int n, const std::string &msg, const std::string &hlp) { error(msg+" ("+std::to_string(n)+")", hlp); }
 void reportillegalcase(Token t) { error("You can't use `"+cmdchr(t)+"' in "+asMode(mode), "Sorry, but I'm not programmed to handle this case;\nI'll just pretend that you didn't ask for it.\nIf you're in the wrong mode, you might be able to\nreturn to the right one by typing `I}' or `I$' or `I\\par'."); }
 

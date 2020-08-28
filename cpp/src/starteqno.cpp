@@ -5,8 +5,9 @@
 
 void starteqno(Token t)
 {
-	saved(0) = t.chr;
-	saveptr++;
+	memoryword m;
+	m.int_ = t.chr;
+	savestack.push_back(m);
 	pushmath(math_shift_group);
 	eqworddefine(int_base+cur_fam_code, -1);
 	if (every_math())

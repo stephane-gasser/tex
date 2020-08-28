@@ -33,6 +33,7 @@
 #include "inputln.h"
 #include "runaway.h"
 #include "openlogfile.h"
+#include "sauvegarde.h"
 
 Token getXTokenSkipSpace(void)
 {
@@ -682,12 +683,15 @@ void scanmath(NoadContent &p)
 				c = scantwentysevenbitint()>>12;
 				break;
 			default:
+			{
 				backinput(t);
 				t = scanleftbrace();
-				saved(0) = p.num;
-				saveptr++;
+				memoryword m;
+				m.int_ = p.num;
+				savestack.push_back(m);
 				pushmath(math_group);
 				return;
+			}
 		}
 	} while (label21);
 	p.math_type = math_char;
@@ -982,11 +986,8 @@ RuleNode *scanrulespec(Token t)
 	return {val, lev};
 }
 
-[[nodiscard]] Token scanspec(groupcode c, bool threecodes)
+[[nodiscard]] Token scanspec(groupcode c)
 {
-	int s;
-	if (threecodes)
-		s = saved(0);
 	int speccode;
 	int val;
 	if (scankeyword("to"))
@@ -994,25 +995,41 @@ RuleNode *scanrulespec(Token t)
 		speccode = exactly;
 		val = scan_normal_dimen();
 	}
-	else 
-		if (scankeyword("spread"))
-		{
-			speccode = additional;
-			val = scan_normal_dimen();
-		}
-		else
-		{
-			speccode = additional;
-			val = 0;
-		}
-	if (threecodes)
+	else
 	{
-		saved(0) = s;
-		saveptr++;
+		speccode = additional;
+		val = scankeyword("spread") ? scan_normal_dimen() : 0;
 	}
-	saved(0) = speccode;
-	saved(1) = val;
-	saveptr += 2;
+	memoryword m;
+	m.int_ = speccode;
+	savestack.push_back(m);
+	m.int_ = val;
+	savestack.push_back(m);
+	newsavelevel(c);
+	return scanleftbrace();
+}
+
+[[nodiscard]] Token scanspec(groupcode c, int s)
+{
+	int speccode;
+	int val;
+	if (scankeyword("to"))
+	{
+		speccode = exactly;
+		val = scan_normal_dimen();
+	}
+	else
+	{
+		speccode = additional;
+		val = scankeyword("spread") ? scan_normal_dimen() : 0;
+	}
+	memoryword m;
+	m.int_ = s;
+	savestack.push_back(m);
+	m.int_ = speccode;
+	savestack.push_back(m);
+	m.int_ = val;
+	savestack.push_back(m);
 	newsavelevel(c);
 	return scanleftbrace();
 }

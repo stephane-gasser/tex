@@ -3,9 +3,8 @@
 #include "erreur.h"
 #include "flushmath.h"
 #include "lecture.h"
-#include "finmlist.h"
 #include "formule.h"
-#include "unsave.h"
+#include "sauvegarde.h"
 #include "boite.h"
 #include "noeud.h"
 #include "half.h"
@@ -56,8 +55,9 @@ void aftermath(void)
 		mlisttohlist();
 		a = hpack(temp_head->link, 0, additional);
 		unsave();
-		saveptr--;
-		if (saved(0) == 1)
+		auto s0 = savestack.back().int_;
+		savestack.pop_back();
+		if (s0 == 1)
 			l = true;
 		danger = false;
 		if (fonts[fam_fnt(2+text_size)].params < total_mathsy_params 

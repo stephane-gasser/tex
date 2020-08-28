@@ -2,7 +2,7 @@
 #include "lecture.h"
 #include "impression.h"
 #include "erreur.h"
-#include "noeud.h"
+#include "sauvegarde.h"
 #include "normalparagraph.h"
 #include "pushnest.h"
 #include "texte.h"
@@ -19,8 +19,9 @@ void begininsertoradjust(Token t)
 			val = 0;
 		}
 	}
-	saved(0) = val;
-	saveptr++;
+	memoryword m;
+	m.int_ = val;
+	savestack.push_back(m);
 	newsavelevel(insert_group);
 	t = scanleftbrace();
 	normalparagraph();

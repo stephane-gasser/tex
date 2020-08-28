@@ -18,6 +18,7 @@
 #include "texte.h"
 #include "deleteglueref.h"
 #include "cesure.h"
+#include "sauvegarde.h"
 #include "runaway.h"
 
 LinkedNode* copynodelist(LinkedNode *p)
@@ -352,20 +353,6 @@ void newinteraction(Token t)
 		selector += 2;
 }
 
-void newsavelevel(groupcode c)
-{
-	check_full_save_stack();
-	save_type(saveptr) = level_boundary;
-	save_level(saveptr) = curgroup;
-	save_index(saveptr) = curboundary;
-	if (curlevel == 255)
-		overflow("grouping levels", 255);
-	curboundary = saveptr;
-	curlevel++;
-	saveptr++;
-	curgroup = c;
-}
-
 GlueNode* newskipparam(smallnumber n)
 {
 	auto p = new GlueNode(new GlueSpec(glueParams[n]));
@@ -377,8 +364,9 @@ GlueNode* newskipparam(smallnumber n)
 void appendchoices(void)
 {
 	tail_append(new ChoiceNode);
-	saved(0) = 0;
-	saveptr++;
+	memoryword m;
+	m.int_ = 0;
+	savestack.push_back(m);
 	pushmath(math_choice_group);
 	auto _ = scanleftbrace();
 }
@@ -394,8 +382,9 @@ void appenddiscretionary(halfword s)
 	}
 	else
 	{
-		saved(0) = 0;
-		saveptr++;
+		memoryword m;
+		m.int_ = 0;
+		savestack.push_back(m);
 		newsavelevel(disc_group);
 		auto _ = scanleftbrace();
 		pushnest();

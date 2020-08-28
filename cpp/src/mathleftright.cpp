@@ -5,8 +5,8 @@
 #include "offsave.h"
 #include "noeud.h"
 #include "pushmath.h"
-#include "unsave.h"
-#include "finmlist.h"
+#include "sauvegarde.h"
+#include "formule.h"
 #include "texte.h"
 
 void mathleftright(Token tk)

@@ -8,7 +8,7 @@
 #include "backinput.h"
 #include "erreur.h"
 #include "insertdollarsign.h"
-#include "unsave.h"
+#include "sauvegarde.h"
 #include "offsave.h"
 #include "handlerightbrace.h"
 #include "indentinhmode.h"
@@ -38,7 +38,6 @@
 #include "mathleftright.h"
 #include "aftermath.h"
 #include "prefixedcommand.h"
-#include "saveforafter.h"
 #include "issuemessage.h"
 #include "openorclosein.h"
 #include "impression.h"
@@ -705,7 +704,7 @@ Token maincontrol(void)
 				mathac(t.cmd);
 				break;
 			case mmode+vcenter:
-				t = scanspec(vcenter_group, false);
+				t = scanspec(vcenter_group);
 				normalparagraph();
 				pushnest(); 
 				mode = -vmode;

@@ -5,7 +5,7 @@
 #include "lecture.h"
 #include "pushalignment.h"
 #include "pushnest.h"
-#include "noeud.h"
+#include "sauvegarde.h"
 #include "alignpeek.h"
 #include "texte.h"
 
@@ -28,7 +28,7 @@ void initalign(Token t, halfword &loop)
 	else 
 		if (mode > 0)
 		mode = -mode;
-	t = scanspec(align_group, false);
+	t = scanspec(align_group);
 	align_head->link = nullptr;
 	curalign = align_head->num;
 	loop = 0;
