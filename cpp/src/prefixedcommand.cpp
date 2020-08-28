@@ -264,7 +264,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			alterinteger(t);
 			break;
 		case set_box_dimen: 
-			alterboxdimen(t);
+			alterboxdimen(t.chr);
 			break;
 		case set_shape:
 			scanoptionalequals();

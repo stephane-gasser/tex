@@ -313,14 +313,6 @@ enum modes
 	mmode = hmode+max_command+1 //!< math mode
 };
 
-enum save_type
-{
-	restore_old_value = 0, //!< \a save_type when a value should be restored later
-	restore_zero = 1, //!< \a save_type when an undefined entry should be restored
-	insert_token = 2, //!< \a save_type when a token is being saved for later use
-	level_boundary = 3 //!< \a save_type corresponding to beginning of group
-};
-
 enum groups
 {
 	bottom_level = 0, //!< group code for the outside world

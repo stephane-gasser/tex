@@ -399,4 +399,6 @@ void appendpenalty(void);
 void appendtovlist(halfword);
 void appspace(halfword &, fontindex &);
 
+void followUntilBeforeTarget(LinkedNode**, LinkedNode* = nullptr);
+
 #endif

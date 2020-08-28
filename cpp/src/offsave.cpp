@@ -35,6 +35,6 @@ void offsave(Token t)
 			p = new TokenNode(right_brace_token+'}');
 			error("Missing } inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
 	}
-	temp_head->link = dynamic_cast<LinkedNode*>(p);
-	ins_list(dynamic_cast<TokenNode*>(temp_head->link));
+	temp_head->link = p;
+	ins_list(p);
 }

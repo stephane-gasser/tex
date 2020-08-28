@@ -15,7 +15,7 @@ void alignpeek(halfword &loop)
 		if (t.cmd == no_align)
 		{
 			t = scanleftbrace();
-			newsavelevel(7);
+			newsavelevel(no_align_group);
 			if (mode == -vmode)
 				normalparagraph();
 		}

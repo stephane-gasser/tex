@@ -1,55 +1,51 @@
 #include "sauvegarde.h"
 #include "erreur.h"
+#include "backinput.h"
+#include "eqdestroy.h"
 
-/*quarterword& save_type(halfword p) { return savestack[p].hh.b0; }
-quarterword& save_level(halfword p) { return savestack[p].hh.b1; }
-halfword& save_index(halfword p) { return savestack[p].hh.rh; }
-int& saved(halfword p) { return savestack[saveptr+p].int_; }*/
+enum save_type
+{
+	restore_old_value = 0, //!< \a save_type when a value should be restored later
+	restore_zero = 1, //!< \a save_type when an undefined entry should be restored
+	insert_token = 2, //!< \a save_type when a token is being saved for later use
+	level_boundary = 3 //!< \a save_type corresponding to beginning of group
+};
+
+static memoryword memory(quarterword type, quarterword level, halfword index)
+{
+	memoryword m;
+	m.hh.b0 = type;
+	m.hh.b1 = level;
+	m.hh.rh = index;
+	return m;
+}
 
 void eqsave(halfword p, quarterword l)
 {
-	memoryword m;
 	if (l == level_zero)
-		/*type*/m.hh.b0 = restore_zero;
+		savestack.push_back(memory(restore_zero, l, p));
 	else
 	{
 		savestack.push_back(eqtb[p]);
-		/*type*/m.hh.b0 = restore_old_value;
+		savestack.push_back(memory(restore_old_value, l, p));
 	}
-	/*level*/m.hh.b1 = l;
-	/*index*/m.hh.rh = p;
-	savestack.push_back(m);
 }
 
 void saveforafter(halfword t)
 {
 	if (curlevel > level_one)
-	{
-		memoryword m;
-		/*type*/m.hh.b0 = insert_token;
-		/*level*/m.hh.b1 = level_zero;
-		/*index*/m.hh.rh = t;
-		savestack.push_back(m);
-	}
+		savestack.push_back(memory(insert_token, level_zero, t));
 }
 
 void newsavelevel(groupcode c)
 {
-	memoryword m;
-	/*type*/m.hh.b0 = level_boundary;
-	/*level*/m.hh.b1 = curgroup;
-	/*index*/m.hh.rh = curboundary;
 	if (curlevel == 255)
 		overflow("grouping levels", 255);
+	savestack.push_back(memory(level_boundary, curgroup, curboundary));
 	curboundary = savestack.size();
 	curlevel++;
-	savestack.push_back(m);
 	curgroup = c;
 }
-
-#include "backinput.h"
-#include "eqdestroy.h"
-#include "erreur.h"
 
 void unsave(void)
 {

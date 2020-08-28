@@ -3,7 +3,6 @@
 #include "impression.h"
 #include "erreur.h"
 #include "extrarightbrace.h"
-#include "package.h"
 #include "endgraf.h"
 #include "boite.h"
 #include "popnest.h"
@@ -139,9 +138,9 @@ void handlerightbrace(Token t, halfword &loop)
 		{
 			endgraf();
 			unsave();
-			auto s1 = savestack.back().int_;
+			auto s1 = savestack.back().int_; //scaled
 			savestack.pop_back();
-			auto s0 = savestack.back().int_;
+			auto s0 = savestack.back().int_; //smallnumber
 			savestack.pop_back();
 			p = vpack(head->link, s1, s0);
 			popnest();
@@ -180,8 +179,7 @@ void handlerightbrace(Token t, halfword &loop)
 						if (tail->type == ord_noad && n == dynamic_cast<Noad*>(tail)->nucleus)
 						{
 							auto q = head;
-							while (q->link != tail)
-								q = q->link;
+							followUntilBeforeTarget(&q, tail);
 							q->link = p;
 							delete tail;
 							tail = p;

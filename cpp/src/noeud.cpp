@@ -514,3 +514,9 @@ void appspace(halfword &mainp, fontindex &maink)
 	}
 	tail_append(q);
 }
+
+void followUntilBeforeTarget(LinkedNode **running, LinkedNode *target)
+{
+	while ((*running)->link != target)
+		*running = (*running)->link;
+}

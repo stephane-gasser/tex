@@ -59,7 +59,7 @@ void builddiscretionary(Token t)
 			return;
 	}
 	savestack.back().int_++;
-	newsavelevel(10);
+	newsavelevel(disc_group);
 	t = scanleftbrace();
 	pushnest();
 	mode = -hmode;

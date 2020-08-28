@@ -90,8 +90,7 @@ void aftermath(void)
 		mlistpenalties = mode > 0;
 		mlisttohlist();
 		tail->link = temp_head->link;
-		while (tail->link)
-			tail = tail->link;
+		followUntilBeforeTarget(&tail);
 		tail_append(new MathNode(math_surround(), after));
 		space_factor = 1000;
 		unsave();

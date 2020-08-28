@@ -15,6 +15,8 @@
 #include "pushnest.h"
 #include "erreur.h"
 #include "badness.h"
+#include "sauvegarde.h"
+#include "popnest.h"
 
 BoxNode* rebox(BoxNode *b, scaled w)
 {
@@ -33,8 +35,7 @@ BoxNode* rebox(BoxNode *b, scaled w)
 		delete b;
 		auto g = new GlueNode(ss_glue);
 		g->link = p;
-		while (p->link)
-			p = p->link;
+		followUntilBeforeTarget(&p);
 		p->link = new GlueNode(ss_glue);
 		return hpack(g, w, exactly);
 	}
@@ -94,90 +95,28 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 		if (r && r->link == nullptr && !r->is_char_node() && r->type == kern_node)
 		{
 			delete r;
-			q->link = 0;
+			q->link = nullptr;
 		}
 	}
 	return x;
 }
 
-[[deprecated]] BoxNode *cleanbox(halfword p, smallnumber s)
+void alterboxdimen(halfword c)
 {
-	LinkedNode *q; //beginning of a list to be boxed
-	do
-	{
-		NoadContent *P;
-		P->num = p;
-		switch (P->math_type)
-		{
-			case math_char:
-			{
-				auto n = new Noad;
-				curmlist = n->num;
-				mem[nucleus(curmlist)] = mem[p];
-				break;
-			}
-			case sub_box:
-				q->num = info(p);
-				continue;
-				break;
-			case sub_mlist: 
-				curmlist = info(p);
-				break;
-			default:
-				q = new BoxNode;
-				continue;
-		}
-		auto savestyle = curstyle;
-		curstyle = s;
-		mlistpenalties = false;
-		mlisttohlist();
-		q = temp_head->link;
-		curstyle = savestyle;
-		if (curstyle < 4)
-			cursize = 0;
-		else
-			cursize = 16*((curstyle-2)/2);
-		curmu = xovern(math_quad(cursize), 18);
-		break;
-	} while (false);
-	BoxNode *x;
-	if (q->is_char_node() || q == nullptr)
-		x = hpack(q, 0, additional);
-	else 
-		if (q->link == nullptr && q->type <= vlist_node && dynamic_cast<BoxNode*>(q)->shift_amount == 0)
-			x = dynamic_cast<BoxNode*>(q);
-		else
-			x = hpack(q, 0, additional);
-	q = x->list_ptr;
-	if (q->is_char_node())
-	{
-		auto r = q->link;
-		if (r && r->link == nullptr && !r->is_char_node() && r->type == kern_node)
-		{
-			delete r;
-			q->link = 0;
-		}
-	}
-	return x;
-}
-
-void alterboxdimen(Token t)
-{
-	auto c = t.chr;
-	auto b = scaneightbitint();
+	auto b = box[scaneightbitint()];
 	scanoptionalequals();
-	if (box[b] == nullptr)
+	if (b == nullptr)
 		return;
 	switch (c)
 	{
 		case width_offset:
-			box[b]->width = scan_normal_dimen();
+			b->width = scan_normal_dimen();
 			break;
 		case height_offset:
-			box[b]->height = scan_normal_dimen();
+			b->height = scan_normal_dimen();
 			break;
 		case depth_offset:
-			box[b]->depth = scan_normal_dimen();
+			b->depth = scan_normal_dimen();
 	}
 }
 
@@ -252,8 +191,6 @@ static TokenNode* every_hbox(void) { return &hb; }
 //! box desired, and <em> cur_cmd=make_box </em>.
 void beginbox(int boxcontext, Token t)
 {
-	LinkedNode *p, *q; // run through the current list
-	quarterword m; // the length of a replacement list
 	switch (t.chr)
 	{
 		case box_code:
@@ -270,40 +207,41 @@ void beginbox(int boxcontext, Token t)
 			// If the current list ends with a box node, delete it from 
 			// the list and make |cur_box| point to it; otherwise set |cur_box:=null|
 			curbox = nullptr;
-			if (abs(mode) == mmode)
-				error("You can't use `"+cmdchr(t)+"' in "+asMode(mode), "Sorry; this \\lastbox will be void.");
-			else 
-				if (mode == vmode && head == tail)
-					error("You can't use `"+cmdchr(t)+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page.\nThis \\lastbox will therefore be void.");
-				else 
-					if (!tail->is_char_node())
-						if (tail->type == hlist_node || tail->type == vlist_node)
+			switch (mode)
+			{
+				case mmode:
+				case -mmode:
+					error("You can't use `"+cmdchr(t)+"' in "+asMode(mode), "Sorry; this \\lastbox will be void.");
+					break;
+				case vmode:
+					if (head == tail)
+					{
+						error("You can't use `"+cmdchr(t)+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page.\nThis \\lastbox will therefore be void.");
+						break;
+					}
+					[[fallthrough]];
+				default:
+					if (!tail->is_char_node() && tail->type <= vlist_node)
+						for (auto p = head; true; p = p->link) // run through the current list
 						{
-							q = head;
-							bool brk = false;
-							do
+							if (!p->is_char_node() && p->type == disc_node)
 							{
-								p = q;
-								if (!q->is_char_node() && q->type == disc_node) // 7
-								{
-									for (m = 1 ; m <= subtype(q->num); m++)
-										p = p->link;
-									if (p == tail)
-									{
-										brk = true;
-										break;
-									}
-								}
-								q = p->link;
-							} while (q != tail);
-							if (!brk)
+								auto rep = dynamic_cast<DiscNode*>(p)->replace_count;
+								for (int m = 0; m < rep; m++)
+									p = p->link;
+								if (p == tail)
+									break;
+							}
+							if (p->link == tail)
 							{
 								curbox = dynamic_cast<BoxNode*>(tail);
 								curbox->shift_amount = 0;
 								tail = p;
-								p->link = nullptr;
+								tail->link = nullptr;
+								break;
 							}
 						}
+			}
 			break;
 		case vsplit_code:
 		{
@@ -391,6 +329,22 @@ BoxNode *vpack(LinkedNode *p, scaled h, smallnumber m)
 	return vpackage(p, h, m, max_dimen);
 }
 
+static glueord getOrder(scaled *total)
+{
+	glueord o;
+	if (total[3])
+		o = 3;
+	else 
+		if (total[2])
+			o = 2;
+		else 
+			if (total[1])
+				o = 1;
+			else
+				o = 0;
+	return o;
+}
+
 BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 {
 	lastbadness = 0;
@@ -410,8 +364,6 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 	totalshrink[2] = 0;
 	totalstretch[3] = 0;
 	totalshrink[3] = 0;
-	scaled s;
-	glueord o;
 	while (p)
 	{
 		if (p->is_char_node())
@@ -421,18 +373,20 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 			{
 				case hlist_node:
 				case vlist_node:
+				{
+					auto P = dynamic_cast<BoxNode*>(p);
+					x += d+P->height;
+					d = P->depth;
+					w = std::max(P->width+P->shift_amount, w);
+					break;
+				}
 				case rule_node:
 				case unset_node:
 				{
 					auto P = dynamic_cast<RuleNode*>(p);
 					x += d+P->height;
 					d = P->depth;
-					if (p->type >= rule_node) // rule_node ou unset_node
-						s = 0;
-					else
-						s = dynamic_cast<BoxNode*>(p)->shift_amount;
-					if (P->width+s > w)
-						w = P->width+s;
+					w = std::max(P->width, w);
 					break;
 				}
 				case whatsit_node:
@@ -444,10 +398,8 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 					d = 0;
 					auto g = P->glue_ptr;
 					x += g->width;
-					o = g->stretch_order;
-					totalstretch[o] += g->stretch;
-					o = g->shrink_order;
-					totalshrink[o] += g->shrink;
+					totalstretch[g->stretch_order] += g->stretch;
+					totalshrink[g->shrink_order] += g->shrink;
 					if (P->subtype >= a_leaders && g->width > w)
 						w = g->width;
 					break;
@@ -461,13 +413,9 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 		p = p->link;
 	}
 	r->width = w;
+	r->depth = std::min(l, d);
 	if (d > l)
-	{
 		x += d-l;
-		r->depth = l;
-	}
-	else
-		r->depth = d;
 	if (m == additional)
 		h += x;
 	r->height = h;
@@ -481,17 +429,7 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 	else 
 		if (x > 0)
 		{
-			glueord o;
-			if (totalstretch[3])
-				o = 3;
-			else 
-				if (totalstretch[2])
-					o = 2;
-				else 
-					if (totalstretch[1])
-						o = 1;
-					else 
-						o = 0;
+			auto o = getOrder(totalstretch);
 			r->glue_order = o;
 			r->glue_sign = stretching;
 			if (totalstretch[o])
@@ -514,17 +452,7 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 		}
 		else
 		{
-			glueord o;
-			if (totalshrink[3])
-				o = 3;
-			else 
-				if (totalshrink[2])
-					o = 2;
-				else 
-					if (totalshrink[1])
-						o = 1;
-					else
-						o = 0;
+			auto o = getOrder(totalshrink);
 			r->glue_order = o;
 			r->glue_sign = shrinking;
 			if (totalshrink[o])
@@ -583,35 +511,22 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 	r->type = hlist_node;
 	r->subtype = 0;
 	r->shift_amount = 0;
-	auto q = r->list_ptr;
 	r->list_ptr = p;
+	auto q = r->list_ptr;
 	scaled h = 0;
 	scaled d = 0;
 	scaled x = 0;
-	totalstretch[0] = 0;
-	totalshrink[0] = 0;
-	totalstretch[1] = 0;
-	totalshrink[1] = 0;
-	totalstretch[2] = 0;
-	totalshrink[2] = 0;
-	totalstretch[3] = 0;
-	totalshrink[3] = 0;
+	std::fill(totalstretch, totalstretch+4, 0);
+	std::fill(totalshrink, totalshrink+4, 0);
 	while (p)
 	{
-		scaled s;
-		glueord o;
-		while (p->is_char_node())
+		for (;p->is_char_node(); p = p->link)
 		{
 			auto P = dynamic_cast<CharNode*>(p);
 			auto ft = P->font;
 			x += ft.char_width(P->character);
-			s = ft.char_height(P->character);
-			if (s > h)
-				h = s;
-			s = ft.char_depth(P->character);
-			if (s > d)
-				d = s;
-			p = p->link;
+			h = std::max(ft.char_height(P->character), h);
+			d = std::max(ft.char_depth(P->character), d);
 		}
 		if (p)
 		{
@@ -619,27 +534,28 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 			{
 				case hlist_node:
 				case vlist_node:
+				{
+					auto P = dynamic_cast<BoxNode*>(p);
+					x += P->width;
+					scaled s = P->shift_amount;
+					h = std::max(P->height-s, h);
+					d = std::max(P->depth+s, d);
+					break;
+				}
 				case rule_node:
 				case unset_node:
 				{
 					auto P = dynamic_cast<RuleNode*>(p);
 					x += P->width;
-					if (p->type >= rule_node)
-						s = 0;
-					else
-						s = dynamic_cast<BoxNode*>(p)->shift_amount;
-					if (P->height-s > h)
-						h = P->height-s;
-					if (P->depth > d)
-						d = P->depth+s;
+					h = std::max(P->height, h);
+					d = std::max(P->depth, d);
 					break;
 				}
 				case ins_node:
 				case mark_node:
 					if (adjusttail)
 					{
-						while (q->link != p)
-							q = q->link;
+						followUntilBeforeTarget(&q, p);
 						adjusttail->link = p;
 						adjusttail = p;
 						p = p->link;
@@ -650,11 +566,9 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 				case adjust_node: 
 					if (adjusttail)
 					{
-						while (q->link != p)
-							q = q->link;
+						followUntilBeforeTarget(&q, p);
 						adjusttail->link = dynamic_cast<AdjustNode*>(p)->adjust_ptr;
-						while (adjusttail->link)
-							adjusttail = adjusttail->link;
+						followUntilBeforeTarget(&adjusttail);
 						p = p->link;
 						delete q->link;
 						q->link = p;
@@ -668,10 +582,8 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 					auto P = dynamic_cast<GlueNode*>(p);
 					auto g = P->glue_ptr;
 					x += g->width;
-					o = g->stretch_order;
-					totalstretch[o] += g->stretch;
-					o = g->shrink_order;
-					totalshrink[o] += g->shrink;
+					totalstretch[g->stretch_order] += g->stretch;
+					totalshrink[g->shrink_order] += g->shrink;
 					if (P->subtype >= 100)
 					{
 						auto g = dynamic_cast<RuleNode*>(P->leader_ptr);
@@ -718,17 +630,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 	else 
 		if (x > 0)
 		{
-			glueord o;
-			if (totalstretch[3])
-				o = 3;
-			else 
-				if (totalstretch[2])
-					o = 2;
-				else 
-					if (totalstretch[1])
-						o = 1;
-					else
-						o = 0;
+			auto o = getOrder(totalstretch);
 			r->glue_order = o;
 			r->glue_sign = stretching;
 			if (totalstretch[o])
@@ -751,17 +653,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 		}
 		else
 		{
-			glueord o;
-			if (totalshrink[3])
-				o = 3;
-			else 
-				if (totalshrink[2])
-					o = 2;
-				else 
-					if (totalshrink[1])
-						o = 1;
-					else
-						o = 0;
+			auto o = getOrder(totalshrink);
 			r->glue_order = o;
 			r->glue_sign = shrinking;
 			if (totalshrink[o])
@@ -779,8 +671,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 				{
 					if (overfull_rule() > 0 && -x-totalshrink[0] > hfuzz())
 					{
-						while (q->link)
-							q = q->link;
+						followUntilBeforeTarget(&q);
 						auto R = new RuleNode;
 						R->width = overfull_rule();
 						q->link = R;
@@ -802,4 +693,56 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 					}
 		}
 	return r;
+}
+
+static int box_max_depth(void) { return dimen_par(box_max_depth_code); }
+
+void package(smallnumber c, Token t)
+{
+	unsave();
+	auto s2 = savestack.back().int_;
+	savestack.pop_back();
+	auto s1 = savestack.back().int_;
+	savestack.pop_back();
+	auto s0 = savestack.back().int_;
+	savestack.pop_back();
+	if (mode == -hmode)
+		curbox = hpack(head->link, s2, s1);
+	else
+	{
+		curbox = vpackage(head->link, s2, s1, box_max_depth());
+		if (c == vtop_code)
+		{
+			scaled h = 0;
+			auto p = dynamic_cast<RuleNode*>(curbox->list_ptr);
+			if (p && p->type <= rule_node)
+				h = p->height;
+			curbox->height = h;
+			curbox->depth += curbox->height-h;
+		}
+	}
+	popnest();
+	boxend(s0);
+}
+
+void unpackage(halfword c)
+{
+	int val = scaneightbitint();
+	auto p = box[val];
+	if (p == nullptr)
+		return;
+	if (abs(mode) == mmode || (abs(mode) == vmode && p->type != vlist_node) || (abs(mode) == hmode && p->type != hlist_node))
+	{
+		error("Incompatible list can't be unboxed", "Sorry, Pandora. (You sneaky devil.)\nI refuse to unbox an \\hbox in vertical mode or vice versa.\nAnd I can't open any boxes in math mode.");
+		return;
+	}
+	if (c == copy_code)
+		tail->link = copynodelist(p->list_ptr);
+	else
+	{
+		tail->link = p->list_ptr;
+		box[val] = nullptr;
+		delete p;
+	}
+	followUntilBeforeTarget(&tail);
 }

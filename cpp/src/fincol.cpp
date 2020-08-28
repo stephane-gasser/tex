@@ -67,7 +67,7 @@ bool fincol(Token t, halfword &loop)
 	if (extra_info(curalign) != span_code)
 	{
 		unsave();
-		newsavelevel(6);
+		newsavelevel(align_group);
 		if (mode == -hmode)
 		{
 			adjusttail = curtail;

@@ -599,8 +599,7 @@ void hyphenate(void)
 				break;
 			}
 		s = curp;
-		while (s->link != ha)
-			s = s->link;
+		followUntilBeforeTarget(&s, ha);
 		j = 0;
 	} while (false);
 	flushnodelist(r);
@@ -611,8 +610,7 @@ void hyphenate(void)
 		if (hyphenpassed == 0)
 		{
 			s->link = hold_head->link;
-			while (s->link)
-				s = s->link;
+			followUntilBeforeTarget(&s);
 			if (hyf[j-1]%2)
 			{
 				l = j;
@@ -652,8 +650,7 @@ void hyphenate(void)
 						else
 							minortail->link = hold_head->link;
 						minortail = hold_head->link;
-						while (minortail->link)
-							minortail = minortail->link;
+						followUntilBeforeTarget(&minortail);
 					}
 				}
 				if (hyfnode)

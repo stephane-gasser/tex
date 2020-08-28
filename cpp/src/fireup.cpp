@@ -212,7 +212,7 @@ void fireup(halfword c)
 			prev_depth = ignore_depth;
 			mode_line = -line;
 			begintokenlist(output_routine(), 6);
-			newsavelevel(8);
+			newsavelevel(output_group);
 			normalparagraph();
 			auto t = scanleftbrace();
 			return;

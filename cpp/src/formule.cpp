@@ -387,8 +387,7 @@ void makescripts(Noad *q, scaled delta)
 	else
 	{
 		p = new_hlist(q);
-		while (p->link)
-			p = p->link;
+		followUntilBeforeTarget(&p);
 		p->link = x;
 	}
 }
@@ -703,8 +702,7 @@ void mlisttohlist(void)
 				{
 					auto z = q->link;
 					q->link = p;
-					while (p->link)
-						p = p->link;
+					followUntilBeforeTarget(&p);
 					p->link = z;
 				}
 				q = q->link;
@@ -933,9 +931,7 @@ void mlisttohlist(void)
 		if (new_hlist(dynamic_cast<Noad*>(q)))
 		{
 			p->link = new_hlist(dynamic_cast<Noad*>(q));
-			do
-				p = p->link;
-			while (p->link);
+			followUntilBeforeTarget(&p);
 		}
 		if (penalties && q->link && pen < inf_penalty)
 		{

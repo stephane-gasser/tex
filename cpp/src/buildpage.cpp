@@ -21,7 +21,7 @@ void buildpage(void)
 	scaled delta, h, w;
 	if (contrib_head->link == nullptr || outputactive)
 		return;
-	do
+	while (contrib_head->link)
 	{
 		p = contrib_head->link;
 		if (lastglue)
@@ -266,7 +266,7 @@ void buildpage(void)
 		pagetail = p;
 		contrib_head->link = p->link;
 		p->link = nullptr;
-	} while (contrib_head->link);
+	}
 	if (nestptr == 0)
 		tail = contrib_head;
 	else
