@@ -676,7 +676,6 @@ int cur_length(void);
 void append_char(ASCIIcode); //!< put \a ASCII_code # at the end of \a str_pool
 void flush_char(void); //!< forget the last character in the pool
 void flush_string(void); 
-void tail_append(halfword); 
 void tail_append(LinkedNode*);
 halfword& node_size(halfword); //!< the size field in empty variable-size nodes
 halfword& llink(halfword); //!< left link in doubly-linked list of empty nodes

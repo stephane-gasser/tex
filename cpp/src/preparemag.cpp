@@ -1,7 +1,7 @@
 #include "preparemag.h"
 #include "impression.h"
 #include "erreur.h"
-#include "geqworddefine.h"
+#include "equivalent.h"
 #include "texte.h"
 
 void preparemag(void)

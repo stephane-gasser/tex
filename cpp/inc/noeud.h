@@ -35,6 +35,13 @@ class LinkedNode : public AnyNode
 		virtual LinkedNode *copy(void) { confusion("copying"); return new LinkedNode; }
 };
 
+class ShapeNode : public LinkedNode
+{
+	public:
+		std::vector<int> values; // info = .size()/2
+		ShapeNode(int n) : values(2*n) {}
+};
+
 class CharNode : public LinkedNode
 {
 	public:
@@ -396,13 +403,15 @@ void appendglue(halfword);
 void appenditaliccorrection(void);
 void appendkern(halfword);
 void appendpenalty(void);
-void appendtovlist(halfword);
-void appspace(halfword &, fontindex &);
+void appendtovlist(BoxNode*);
+void appspace(LinkedNode*, fontindex&);
 
 void followUntilBeforeTarget(LinkedNode*&, LinkedNode* = nullptr);
 
 template<class T> void next(T* &p) { p = dynamic_cast<T*>(p->link); }
 inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }
 
+inline LinkedNode *curmlist;
+inline LinkedNode *bestpagebreak;
 
 #endif

@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void fireup(halfword);
+void fireup(LinkedNode*);
 
 #endif

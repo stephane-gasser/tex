@@ -4,7 +4,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "idlookup.h"
-#include "eqdefine.h"
+#include "equivalent.h"
 #include "conditional.h"
 #include "insertrelax.h"
 #include "passtext.h"

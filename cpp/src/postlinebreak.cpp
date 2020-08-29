@@ -133,7 +133,7 @@ void postlinebreak(int finalwidowpenalty)
 		adjusttail = adjust_head;
 		justbox = hpack(q, curwidth, 0);
 		justbox->shift_amount = curindent;
-		appendtovlist(justbox->num);
+		appendtovlist(justbox);
 		if (adjust_head != adjusttail)
 		{
 			tail->link = adjust_head->link;

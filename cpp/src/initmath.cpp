@@ -3,7 +3,7 @@
 #include "popnest.h"
 #include "linebreak.h"
 #include "pushmath.h"
-#include "eqworddefine.h"
+#include "equivalent.h"
 #include "buildpage.h"
 #include "backinput.h"
 #include "police.h"

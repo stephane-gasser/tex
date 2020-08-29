@@ -555,8 +555,7 @@ void mlisttohlist(void)
 	auto mlist = curmlist;
 	auto penalties = mlistpenalties;
 	auto style = curstyle;
-	LinkedNode *q;
-	q->num = mlist;
+	auto q = mlist;
 	LinkedNode *r = nullptr;
 	smallnumber rtype = op_noad;
 	scaled maxh = 0;
@@ -784,7 +783,7 @@ void mlisttohlist(void)
 				p = Q->nucleus.info;
 				break;
 			case sub_mlist:
-				curmlist = Q->nucleus.info->num;
+				curmlist = Q->nucleus.info;
 				savestyle = curstyle;
 				mlistpenalties = false;
 				mlisttohlist();
@@ -817,7 +816,7 @@ void mlisttohlist(void)
 		r->type = ord_noad;
 	p = dynamic_cast<CharNode*>(temp_head);
 	p->link = nullptr;
-	q->num = mlist;
+	q = mlist;
 	rtype = 0;
 	curstyle = style;
 	if (curstyle < script_style)

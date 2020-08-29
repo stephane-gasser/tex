@@ -5,8 +5,7 @@
 #include "xovern.h"
 #include "lecture.h"
 #include "buildpage.h"
-#include "eqdefine.h"
-#include "geqdefine.h"
+#include "equivalent.h"
 #include "impression.h"
 #include "shipout.h"
 #include "erreur.h"
@@ -52,9 +51,8 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 		{
 			case math_char:
 			{
-				auto n = new Noad;
-				curmlist = n->num;
-				n->nucleus = P;
+				curmlist = new Noad;
+				dynamic_cast<Noad*>(curmlist)->nucleus = P;
 				break;
 			}
 			case sub_box:
@@ -62,7 +60,7 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 				continue;
 				break;
 			case sub_mlist: 
-				curmlist = P.info->num;
+				curmlist = P.info;
 				break;
 			default:
 				q = new BoxNode;
@@ -129,7 +127,7 @@ void boxend(int boxcontext)
 			curbox->shift_amount = boxcontext;
 			if (abs(mode) == vmode)
 			{
-				appendtovlist(curbox->num);
+				appendtovlist(curbox);
 				if (adjusttail)
 				{
 					if (adjust_head != adjusttail)
@@ -167,8 +165,9 @@ void boxend(int boxcontext)
 				if ((t.cmd == hskip && abs(mode) != vmode) || (t.cmd == vskip && abs(mode) == vmode))
 				{
 					appendglue(t.chr);
-					subtype(tail->num) = boxcontext-(leader_flag-a_leaders);
-					dynamic_cast<GlueNode*>(tail)->leader_ptr = curbox;
+					auto Tail = dynamic_cast<GlueNode*>(tail);
+					Tail->subtype = boxcontext-(leader_flag-a_leaders);
+					Tail->leader_ptr = curbox;
 				}
 				else
 				{
@@ -598,7 +597,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 					x += dynamic_cast<KernNode*>(p)->width;
 					break;
 				case math_node: 
-					x += width(p->num);
+					x += dynamic_cast<MathNode*>(p)->width;
 					break;
 				case ligature_node:
 				{

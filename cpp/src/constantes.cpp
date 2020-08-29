@@ -82,12 +82,6 @@ void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : 
 void append_char(ASCIIcode c) { currentString += c; }
 void flush_char(void) { currentString.pop_back(); }
 
-void tail_append(halfword p) 
-{
-	tail->link->num = p;
-	tail = tail->link;
-}
-
 void tail_append(LinkedNode *p) 
 {
 	tail->link = p;

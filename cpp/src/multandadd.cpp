@@ -12,6 +12,7 @@ scaled multandadd(int n, scaled x, scaled y, scaled maxanswer)
 		return y;
 	if (x <= (maxanswer-y)/n && -x <= (maxanswer+y)/n)
 		return n*x+y;
+	throw ArithException();
 	aritherror = true;
 	return 0;
 }

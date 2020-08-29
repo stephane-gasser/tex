@@ -1,12 +1,9 @@
 #include "prefixedcommand.h"
 #include "impression.h"
 #include "erreur.h"
-#include "geqdefine.h"
-#include "eqdefine.h"
+#include "equivalent.h"
 #include "backinput.h"
-#include "eqworddefine.h"
 #include "trapzeroglue.h"
-#include "geqworddefine.h"
 #include "doregistercommand.h"
 #include "lecture.h"
 #include "alteraux.h"
@@ -47,7 +44,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 	int val;
 	fontindex k;
 	TokenNode *q;
-	halfword p, old;
+//	halfword p, old;
 	int n;
 	switch (t.cmd)
 	{
@@ -55,16 +52,19 @@ void prefixedcommand(Token t, bool setboxallowed)
 			define(a, cur_font_loc, data, t.chr);
 			break;
 		case def:
+		{
 			if (t.chr%2 & a < 4 && global_defs() >= 0)
 				a += 4;
-			p = getrtoken();
+			auto p = getrtoken();
 			Token tk;
 			tk.cs = p;
 			q = scantoks(true, t.chr >= 2, tk);
 			define(a, p, call+a%4, defref->num); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
+		}
 		case let:
-			p = getrtoken();
+		{
+			auto p = getrtoken();
 			if (t.chr == 0)
 			{
 				t = getXTokenSkipSpace();
@@ -86,8 +86,10 @@ void prefixedcommand(Token t, bool setboxallowed)
 				info(t.chr)++;
 			define(a, p, t.cmd, t.chr);
 			break;
+		}
 		case shorthand_def:
-			p = getrtoken();
+		{
+			auto p = getrtoken();
 			define(a, p, relax, 256);
 			scanoptionalequals();
 			switch (t.chr)
@@ -114,17 +116,21 @@ void prefixedcommand(Token t, bool setboxallowed)
 					define(a, p, assign_toks, toks_base+scaneightbitint());
 			}
 			break;
+		}
 		case read_to_cs:
+		{
 			n = scanint();
 			if (!scankeyword("to")) 
 				error("Missing `to' inserted", "You should have said `\\read<number> to \\cs'.\nI'm going to look for the \\cs now.");
-			p = getrtoken();
+			auto p = getrtoken();
 			define(a, p, call, readtoks(n, p)->num);
 			break;
+		}
 		case toks_register:
 		case assign_toks:
-			old = t.cs;
-			p = t.cmd == toks_register ? toks_base+scaneightbitint() : t.chr;
+		{
+			auto old = t.cs;
+			auto p = t.cmd == toks_register ? toks_base+scaneightbitint() : t.chr;
 			scanoptionalequals();
 			t = getXTokenSkipSpaceAndEscape();
 			if (t.cmd != left_brace)
@@ -148,6 +154,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 				}
 			}
 			backinput(t);
+			Token tk;
 			tk.cs = old;
 			q = scantoks(false, false, tk);
 			if (defref->link == nullptr)
@@ -168,19 +175,25 @@ void prefixedcommand(Token t, bool setboxallowed)
 				define(a, p, call, defref->num);
 			}
 			break;
+		}
 		case assign_int:
-			p = t.chr;
+		{
+			auto p = t.chr;
 			scanoptionalequals();
 			word_define(a, p, scanint());
 			break;
+		}
 		case assign_dimen:
-			p = t.chr;
+		{
+			auto p = t.chr;
 			scanoptionalequals();
 			word_define(a, p, scandimen(false, false, false));
 			break;
+		}
 		case assign_glue:
 		case assign_mu_glue:
-			p = t.chr;
+		{
+			auto p = t.chr;
 			n = t.cmd;
 			scanoptionalequals();
 			if (n == assign_mu_glue)
@@ -195,7 +208,9 @@ void prefixedcommand(Token t, bool setboxallowed)
 			}
 			define(a, p, glue_ref, val);
 			break;
+		}
 		case def_code:
+		{
 			switch (t.chr)
 			{
 				case cat_code_base:
@@ -213,7 +228,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 				default:
 					n = 0xFF;
 			}
-			p = t.chr+scancharnum();
+			auto p = t.chr+scancharnum();
 			scanoptionalequals();
 			val = scanint();
 			if ((val < 0 && p < del_code_base) || val > n)
@@ -229,12 +244,14 @@ void prefixedcommand(Token t, bool setboxallowed)
 				else 
 					word_define(a, p, val);
 			break;
+		}
 		case def_family:
-			p = t.chr;
-			p += scanfourbitint();
+		{	
+			auto p = t.chr+scanfourbitint();
 			scanoptionalequals();
 			define(a, p, data, scanfontident());
 			break;
+		}
 		case register_:
 		case advance:
 		case multiply:
@@ -267,19 +284,21 @@ void prefixedcommand(Token t, bool setboxallowed)
 			alterboxdimen(t.chr);
 			break;
 		case set_shape:
+		{
 			scanoptionalequals();
 			n = scanint();
-			if (n <= 0)
-				p = 0;
+			ShapeNode *p;
+			if (n <= 0) 
+				p = nullptr;
 			else
 			{
-				p = getnode(2*n+1);
-				info(p) = n;
-				for (int j = p+1; j < p+2*n+1; j++)
-					mem[j].int_ = scan_normal_dimen();
+				p = new ShapeNode(n);
+				for (int j = 0; j < 2*n; j++)
+					p->values.push_back(scan_normal_dimen());
 			}
-			define(a, par_shape_loc, shape_ref, p);
+			define(a, par_shape_loc, shape_ref, p->num);
 			break;
+		}
 		case hyph_data:
 			if (t.chr == 1)
 				newpatterns(t);

@@ -109,18 +109,20 @@ void conditional(Token t)
 		case if_void_code:
 		case if_hbox_code:
 		case if_vbox_code:
-			p = box[scaneightbitint()]->num;
+		{
+			auto p = box[scaneightbitint()];
 			if (thisif == if_void_code)
-				b = p == 0;
+				b = p == nullptr;
 			else 
-				if (p == 0)
+				if (p == nullptr)
 					b = false;
 				else 
 					if (thisif == if_hbox_code)
-						b = type(p) == 0;
+						b = p->type == hlist_node;
 					else
-						b = type(p) == 1;
+						b = p->type == vlist_node;
 			break;
+		}
 		case ifx_code:
 			savescannerstatus = scannerstatus;
 			scannerstatus = 0;

@@ -49,7 +49,7 @@ void aftermath(void)
 	{
 		t = getxtoken();
 		backerror(t, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
-		curmlist = p->num;
+		curmlist = p;
 		curstyle = 2;
 		mlistpenalties = false;
 		mlisttohlist();
@@ -85,7 +85,7 @@ void aftermath(void)
 	if (m < 0)
 	{
 		tail_append(new MathNode(math_surround(), before));
-		curmlist = p->num;
+		curmlist = p;
 		curstyle = 2;
 		mlistpenalties = mode > 0;
 		mlisttohlist();
@@ -103,7 +103,7 @@ void aftermath(void)
 			if (t.cmd != math_shift)
 				backerror(t, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
-		curmlist = p->num;
+		curmlist = p; 
 		curstyle = 0;
 		mlistpenalties = false;
 		mlisttohlist();
@@ -162,7 +162,7 @@ void aftermath(void)
 		if (l && e == 0)
 		{
 			a->shift_amount = s;
-			appendtovlist(a->num);
+			appendtovlist(a);
 			tail_append(new PenaltyNode(10000));
 		}
 		else
@@ -185,12 +185,12 @@ void aftermath(void)
 			b = hpack(b, 0, additional);
 		}
 		b->shift_amount = s+d;
-		appendtovlist(b->num);
+		appendtovlist(b);
 		if (a && e == 0 && !l)
 		{
 			tail_append(new PenaltyNode(10000));
 			a->shift_amount = s+z-a->width;
-			appendtovlist(a->num);
+			appendtovlist(a);
 			g2 = 0;
 		}
 		if (tt != adjust_head)

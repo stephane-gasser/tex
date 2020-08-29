@@ -5,6 +5,7 @@ scaled xovern(scaled x, int n)
 	bool negative = false;
 	if (n == 0)
 	{
+		throw ArithException();
 		aritherror = true;
 		remainder_ = x;
 		return 0;

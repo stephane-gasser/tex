@@ -1,6 +1,5 @@
 #include "normalparagraph.h"
-#include "eqworddefine.h"
-#include "eqdefine.h"
+#include "equivalent.h"
 
 void normalparagraph(void)
 {

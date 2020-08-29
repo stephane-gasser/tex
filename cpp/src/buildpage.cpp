@@ -50,6 +50,8 @@ void buildpage(void)
 			case hlist_node: //0
 			case vlist_node: //1
 			case rule_node:  //2
+			{
+				auto P = dynamic_cast<RuleNode*>(p);
 				if (pagecontents < box_there)
 				{
 					if (pagecontents == 0)
@@ -58,17 +60,15 @@ void buildpage(void)
 						pagecontents = box_there;
 					q = newskipparam(top_skip_code);
 					auto g = dynamic_cast<GlueNode*>(q)->glue_ptr;
-					if (g->width > height(p->num))
-						g->width -= height(p->num);
-					else
-						g->width = 0;
+					g->width = std::max(g->width-P->height, 0);
 					q->link = p;
 					contrib_head->link = q;
 					continue;
 				}
-				page_total += page_depth+height(p->num);
-				page_depth = depth(p->num);
+				page_total += page_depth+P->height;
+				page_depth = P->depth;
 				break;
+			}
 			case whatsit_node: //8
 				break;
 			case glue_node: //10
@@ -167,8 +167,7 @@ void buildpage(void)
 							if (count(n) != 1000)
 								w = xovern(w, count(n))*1000;
 						}
-						if (w > dimen(n)-height(r->num))
-							w = dimen(n)-height(r->num);
+						w = std::min(dimen(n)-R->height, w);
 						LinkedNode* a = P->ins_ptr;
 						halfword b;
 						q = vertbreak(P->ins_ptr, w, P->depth);
@@ -218,19 +217,20 @@ void buildpage(void)
 					c = awful_bad;
 				if (c <= leastpagecost)
 				{
-					bestpagebreak = p->num;
+					bestpagebreak = p;
 					bestsize = page_goal;
 					leastpagecost = c;
 					r = page_ins_head->link;
 					while (r != page_ins_head)
 					{
-						best_ins_ptr(r->num) = last_ins_ptr(r->num);
+						auto R = dynamic_cast<PageInsNode*>(r);
+						R->best_ins_ptr = R->last_ins_ptr;
 						next(r);
 					}
 				}
 				if (c == awful_bad || pi <= eject_penalty)
 				{
-					fireup(p->num);
+					fireup(p);
 					if (outputactive)
 						return;
 					continue;
@@ -239,7 +239,7 @@ void buildpage(void)
 		if (p->type == kern_node)
 		{
 			q = p;
-			page_total += page_depth+width(q->num);
+			page_total += page_depth+dynamic_cast<KernNode*>(q)->width;
 			page_depth = 0;
 		}
 		if (p->type == glue_node)

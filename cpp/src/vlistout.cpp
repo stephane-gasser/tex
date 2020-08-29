@@ -160,15 +160,12 @@ void vlistout(BoxNode *thisbox)
 								auto savev = dviv;
 								bool outerdoingleaders = doingleaders;
 								doingleaders = true;
-								if (leaderbox->type == vlist_node)
-									vlistout(Leaderbox);
-								else
-									hlistout(Leaderbox);
+								(leaderbox->type == vlist_node ? vlistout : hlistout)(Leaderbox);
 								doingleaders = outerdoingleaders;
 								dviv = savev;
 								dvih = saveh;
 								curh = leftedge;
-								curv = savev-height(leaderbox->num)+leaderht+lx;
+								curv = savev-leaderbox->height+leaderht+lx;
 							}
 							curv = edge-10;
 							next(p);

@@ -3,8 +3,7 @@
 #include "charwarning.h"
 #include "openlogfile.h"
 #include "impression.h"
-#include "geqdefine.h"
-#include "eqdefine.h"
+#include "equivalent.h"
 #include "lecture.h"
 #include "erreur.h"
 #include "xnoverd.h"
@@ -459,11 +458,11 @@ static int line_skip_limit(void) { return dimen_par(line_skip_limit_code); }
 
 //! When a box is being appended to the current vertical list, the
 //! baselineskip calculation is handled by the \a append_to_vlist routine.
-void appendtovlist(halfword b)
+void appendtovlist(BoxNode *b)
 {
 	if (prev_depth > ignore_depth)
 	{
-		scaled d = baseline_skip->width-prev_depth-height(b);
+		scaled d = baseline_skip->width-prev_depth-b->height;
 		GlueNode *p;
 		if (d < line_skip_limit())
 			p = new GlueNode(line_skip);
@@ -475,15 +474,14 @@ void appendtovlist(halfword b)
 		tail_append(p);
 	}
 	tail_append(b);
-	prev_depth = depth(b);
+	prev_depth = b->depth;
 }
 
 //! Handle spaces when <em> space_factor != 1000 </em>.
-void appspace(halfword &mainp, fontindex &maink)
+void appspace(LinkedNode *mainp, fontindex &maink)
 {
-	GlueNode *q; // glue node
 	if (space_factor >= 2000 && xspace_skip != zero_glue)
-		q = new GlueNode(xspace_skip);
+		mainp = new GlueNode(xspace_skip);
 	else
 	{
 		GlueSpec *Mainp;
@@ -508,11 +506,10 @@ void appspace(halfword &mainp, fontindex &maink)
 			Mainp->width += cur_font().extra_space();
 		Mainp->stretch = xnoverd(Mainp->stretch, space_factor, 1000);
 		Mainp->shrink = xnoverd(Mainp->shrink, 1000, space_factor);
-		q = new GlueNode(Mainp);
+		mainp = new GlueNode(Mainp);
 		Mainp->glue_ref_count = 0;
-		mainp = Mainp->num;
 	}
-	tail_append(q);
+	tail_append(mainp);
 }
 
 void followUntilBeforeTarget(LinkedNode* &running, LinkedNode *target)

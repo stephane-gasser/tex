@@ -1,5 +1,5 @@
 #include "fireup.h"
-#include "geqworddefine.h"
+#include "equivalent.h"
 #include "impression.h"
 #include "boite.h"
 #include "sauvegarde.h"
@@ -18,17 +18,15 @@ static int holding_inserts(void) { return int_par(holding_inserts_code); }
 static TokenNode rtn;
 static TokenNode *output_routine(void) { return &rtn; }
 
-void fireup(halfword c)
+void fireup(LinkedNode *c)
 {
-	halfword s;
 	unsigned char n;
 	bool wait;
 	int savevbadness;
 	scaled savevfuzz;
-	if (type(bestpagebreak) == penalty_node) //12
+	if (bestpagebreak->type == penalty_node) //12
 	{
-		PenaltyNode *Bestpagebreak;
-		Bestpagebreak->num = bestpagebreak;
+		auto Bestpagebreak = dynamic_cast<PenaltyNode*>(bestpagebreak);
 		geqworddefine(int_base+output_penalty_code, Bestpagebreak->penalty);
 		Bestpagebreak->penalty = inf_penalty;
 	}
@@ -44,7 +42,7 @@ void fireup(halfword c)
 		first_mark = nullptr;
 	}
 	if (c == bestpagebreak)
-		bestpagebreak = 0;
+		bestpagebreak = nullptr;
 	if (box[255])
 		boxerror(255, esc("box")+"255 is not void", "You shouldn't use \\box255 except in \\output routines.\nProceed, and I'll discard its present contents.");
 	insertpenalties = 0;
@@ -72,7 +70,7 @@ void fireup(halfword c)
 	q->link = nullptr;
 	auto prevp = page_head;
 	auto p = prevp->link;
-	while (p->num != bestpagebreak)
+	while (p != bestpagebreak)
 	{
 		if (p->type == ins_node) //3
 		{
@@ -87,38 +85,36 @@ void fireup(halfword c)
 				else
 				{
 					wait = false;
-					s = r->last_ins_ptr->num;
-					link(s) = P->ins_ptr->num;
+					auto s = r->last_ins_ptr;
+					s->link = P->ins_ptr;
 					if (r->best_ins_ptr == p)
 					{
 						if (r->type == split_up) //1
 						if (r->broken_ins == p && r->broken_ptr)
 						{
-							while (link(s) != r->broken_ptr->num)
-								s = link(s);
-							link(s) = 0;
+							followUntilBeforeTarget(s, r->broken_ptr);
+							s->link = nullptr;
 							split_top_skip = P->split_top_ptr;
 							P->ins_ptr = prunepagetop(r->broken_ptr);
 							if (P->ins_ptr)
 							{
 								auto ins = P->ins_ptr;
-								auto tempptr = vpack(ins, 0, additional);
-								P->height = tempptr->height+tempptr->depth;
-								delete tempptr;
+								auto pck = vpack(ins, 0, additional);
+								P->height = pck->height+pck->depth;
+								delete pck;
 								wait = true;
 							}
 						}
 						r->best_ins_ptr = nullptr;
 						n = r->subtype;
-						auto tempptr = box[n]->list_ptr;
+						auto liste = box[n]->list_ptr;
 						delete box[n];
-						box[n] = vpack(tempptr, 0, additional);
+						box[n] = vpack(liste, 0, additional);
 					}
 					else
 					{
-						while (link(s))
-							s = link(s);
-						r->last_ins_ptr->num = s;
+						followUntilBeforeTarget(s);
+						r->last_ins_ptr = s;
 					}
 				}
 				prevp->link = p->link;

@@ -308,9 +308,8 @@ static std::string asMark(TokenNode *p)
 
 std::string meaning(Token t) 
 {
-	TokenNode *T;
-	T->num = t.chr;
-	return cmdchr(t)+(t.cmd >= call ? ":\n"+tokenshow(T) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); 
+	TokenNode T(t.chr);
+	return cmdchr(t)+(t.cmd >= call ? ":\n"+tokenshow(&T) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); 
 }
 
 std::string asMode(int m)
@@ -672,7 +671,7 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 					break;
 				}
 				case whatsit_node:
-					switch (subtype(p->num))
+					switch (dynamic_cast<WhatsitNode*>(p)->subtype)
 					{
 						case open_node:
 						{
@@ -764,15 +763,18 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 					break;
 				}
 				case math_node:
-					oss << esc("math") << (subtype(p->num) == before ? "on" : "off");
-					if (width(p->num))
-						oss << ", surrounded " << asScaled(width(p->num));
+				{
+					auto P = dynamic_cast<MathNode*>(p);
+					oss << esc("math") << (P->subtype == before ? "on" : "off");
+					if (P->width)
+						oss << ", surrounded " << asScaled(P->width);
 					break;
+				}
 				case ligature_node:
 				{
 					auto P = dynamic_cast<LigatureNode*>(p);
 					oss << fontandchar(&P->lig_char) << " (ligature ";
-					if (subtype(p->num) > 1)
+					if (P->subtype > 1)
 						oss << "|";
 					fontinshortdisplay = P->lig_char.font;
 					oss << shortdisplay(&P->lig_char);
@@ -1136,7 +1138,8 @@ static std::string showactivities(void)
 					auto r = page_ins_head->link;
 					while (r != page_ins_head)
 					{
-						oss << "\n" << esc("insert") << subtype(r->num) << " adds " << asScaled(count(subtype(r->num)) == 1000 ? height(r->num) : xovern(height(r->num), 1000)*count(subtype(r->num)));
+						auto R = dynamic_cast<PageInsNode*>(r);
+						oss << "\n" << esc("insert") << R->subtype << " adds " << asScaled(count(R->subtype) == 1000 ? R->height : xovern(R->height, 1000)*count(R->subtype));
 						if (r->type == vlist_node)
 						{
 							auto q = page_head;
@@ -1144,9 +1147,9 @@ static std::string showactivities(void)
 							do
 							{
 								next(q);
-								if (q->type == ins_node && subtype(q->num) == subtype(r->num))
+								if (q->type == ins_node && dynamic_cast<InsNode*>(q)->subtype == R->subtype)
 									t++;
-							} while (q->num != broken_ins(r->num));
+							} while (q != R->broken_ins);
 							oss << ", #"+std::to_string(t)+" might split";
 						}
 						next(r);

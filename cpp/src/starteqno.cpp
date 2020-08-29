@@ -1,6 +1,6 @@
 #include "starteqno.h"
 #include "pushmath.h"
-#include "eqworddefine.h"
+#include "equivalent.h"
 #include "lecture.h"
 
 void starteqno(Token t)

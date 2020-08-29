@@ -46,7 +46,7 @@
 static fontindex maink; //!< index into |font_info|
 //static fourquarters mainj; //!<ligature/kern command
 //static fourquarters maini; //!<character information bytes for |cur_l|
-static LigatureNode *mainp; //!<temporary register for list manipulation
+static LinkedNode *mainp; //!<temporary register for list manipulation
 
 //static halfword& every_job(void) { return equiv(every_job_loc); }
 TokenNode jb;
@@ -58,12 +58,12 @@ static void pack_lig(bool z)
 	mainp = new LigatureNode(cur_font(), curl, curq->link);
 	if (lfthit)
 	{
-		mainp->subtype = 2;
+		dynamic_cast<LigatureNode*>(mainp)->subtype = 2;
 		lfthit = false;
 	}
 	if (z && ligstack == nullptr)
 	{
-		mainp->subtype++;
+		dynamic_cast<LigatureNode*>(mainp)->subtype++;
 		rthit = false;
 	}
 	curq->link = mainp;
@@ -138,9 +138,9 @@ static void main_loop_move_lig(void)
 	mainp = dynamic_cast<LigatureNode*>(ligstack->lig_ptr);
 	if (mainp)
 		tail_append(mainp);
-	tempptr = ligstack->num;
-	ligstack->num = link(tempptr);
-	freenode(tempptr, small_node_size);
+	auto temp = ligstack;
+	next(ligstack);
+	delete temp;
 	ligaturepresent = true;
 	if (ligstack == nullptr)
 		if (mainp)
@@ -153,7 +153,6 @@ static void main_loop_move_lig(void)
 
 [[nodiscard]] static Token append_normal_space(void)
 {
-	GlueNode *g;
 	if (space_skip == zero_glue)
 	{
 		GlueSpec *Mainp = cur_font().glue;
@@ -166,13 +165,11 @@ static void main_loop_move_lig(void)
 			Mainp->shrink = cur_font().space_shrink();
 			cur_font().glue = Mainp;
 		}
-		mainp->num = Mainp->num;
-		g = new GlueNode(Mainp);
+		mainp = new GlueNode(Mainp);
+		tail_append(mainp);
 	}
 	else
-		g = new GlueNode(space_skip);
-//		tempptr = g->num;
-	tail_append(g);
+		tail_append(new GlueNode(space_skip));
 	return getxtoken();
 }
 
@@ -196,7 +193,7 @@ static bool main_loop_move_2(halfword chr)
 static bool main_loop_move_1(halfword chr)
 {
 
-	if (!is_char_node(ligstack->num))
+	if (!ligstack->is_char_node())
 		main_loop_move_lig();
 	else
 		if (main_loop_move_2(chr))
@@ -250,12 +247,12 @@ static bool main_loop_wrapup(halfword chr)
 							mainp = new LigatureNode(cur_font(), curl, curq->link);
 							if (lfthit)
 							{
-								mainp->subtype = 2;
+								dynamic_cast<LigatureNode*>(mainp)->subtype = 2;
 								lfthit = false;
 							}
 							if (rthit && ligstack == nullptr)
 							{
-								mainp->subtype++;
+								dynamic_cast<LigatureNode*>(mainp)->subtype++;
 								rthit = false;
 							}
 							curq->link = mainp;
@@ -429,7 +426,7 @@ Token maincontrol(void)
 					t = append_normal_space();
 					continue;
 				}
-				appspace(mainp->num, maink);
+				appspace(mainp, maink);
 				break;
 			case hmode+ex_space:
 			case mmode+ex_space: 

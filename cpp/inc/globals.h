@@ -312,7 +312,6 @@ inline char errorcount; // -1..100
 inline bool useerrhelp;
 inline bool aritherror;
 inline scaled remainder_;
-inline halfword tempptr;
 inline memoryword mem[memmax+1];
 inline halfword lomemmax;
 inline halfword himemmin;
@@ -387,7 +386,6 @@ inline scaled dvih, dviv;
 inline scaled curh, curv;
 inline internalfontnumber dvif;
 inline scaled totalstretch[4], totalshrink[4];
-inline halfword curmlist;
 inline smallnumber curstyle;
 inline smallnumber cursize;
 inline scaled curmu;
@@ -432,7 +430,6 @@ inline bool trienotready;
 inline scaled bestheightplusdepth;
 inline char pagecontents; // 0..2
 inline scaled pagemaxdepth;
-inline halfword bestpagebreak;
 inline scaled bestsize;
 inline scaled pagesofar[8];
 inline scaled lastkern;
@@ -449,5 +446,11 @@ inline halfword writeloc;
 
 #include "constantes.h"
 #include "noeud.h"
+
+class ArithException : public std::exception 
+{
+	public:
+		const char * what () const throw () { return "C++ Exception"; }
+};
 
 #endif

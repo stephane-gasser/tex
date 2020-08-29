@@ -204,7 +204,7 @@ void linebreak(int finalwidowpenalty)
 						if (prevp->is_char_node())
 							trybreak(0, unhyphenated);
 						else 
-							if (precedes_break(prevp->num))
+							if (precedes_break(prevp))
 								trybreak(0, unhyphenated);
 							else 
 								if (prevp->type == kern_node && dynamic_cast<KernNode*>(prevp)->subtype != explicit_)

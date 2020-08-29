@@ -32,9 +32,9 @@ void finalcleanup(Token t)
 		printnl("("+esc("end")+" occurred when "+cmdchr(tk)+(ifline ? " on line "+std::to_string(ifline) : "")+" was incomplete)");
 		ifline = if_line_field(condptr);
 		curif = subtype(condptr);
-		tempptr = condptr;
+		auto temp = condptr;
 		condptr = link(condptr);
-		freenode(tempptr, if_node_size);
+		freenode(temp, if_node_size);
 	}
 	if (history && (history == warning_issued || interaction < error_stop_mode) && selector == term_and_log)
 	{

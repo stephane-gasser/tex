@@ -12,7 +12,7 @@ void finrow(halfword &loop)
 	{
 		p = hpack(head->link, 0, additional);
 		popnest();
-		appendtovlist(p->num);
+		appendtovlist(p);
 		if (curhead != curtail)
 		{
 			tail->link = curhead->link;

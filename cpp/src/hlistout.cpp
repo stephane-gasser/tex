@@ -69,7 +69,6 @@ void hlistout(BoxNode *thisbox)
 						auto saveh = dvih;
 						auto savev = dviv;
 						curv = baseline+P->shift_amount;
-						//tempptr = p;
 						auto edge = curh;
 						if (P->type == vlist_node)
 							vlistout(P);
@@ -191,7 +190,6 @@ void hlistout(BoxNode *thisbox)
 								auto savev = dviv;
 								synch_h();
 								auto saveh = dvih;
-								//tempptr = leaderbox->num;
 								bool outerdoingleaders = doingleaders;
 								doingleaders = true;
 								if (leaderbox->type == vlist_node)
