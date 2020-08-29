@@ -806,7 +806,6 @@ extern scaled &page_shrink; //!< shrinkability of the current page
 extern scaled &page_depth; //!< depth of the current page
 //extern halfword &contrib_tail; //!< tail of the contribution list
 
-inline bool precedes_break(halfword p) { return type(p) <math_node; }
 inline void add_glue_ref(halfword p) { glue_ref_count(p)++; } //!< new reference to a glue spec
 inline bool terminal_input(const std::string &name) { return name == ""; } //!< are we reading from the terminal?
 inline quarterword &token_type = index; //!< type of current token list

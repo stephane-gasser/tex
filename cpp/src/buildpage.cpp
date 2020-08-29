@@ -79,7 +79,7 @@ void buildpage(void)
 					flushnodelist(p);
 					continue;
 				}
-				if (precedes_break(pagetail->num))
+				if (precedes_break(pagetail))
 					pi = 0;
 				break;
 			case kern_node: //11
@@ -169,7 +169,9 @@ void buildpage(void)
 						}
 						if (w > dimen(n)-height(r->num))
 							w = dimen(n)-height(r->num);
-						q->num = vertbreak(info(p->num+4), w, depth(p->num));
+						LinkedNode* a = P->ins_ptr;
+						halfword b;
+						q = vertbreak(P->ins_ptr, w, P->depth);
 						R->height += bestheightplusdepth;
 						if (count(n) != 1000)
 							bestheightplusdepth = xovern(bestheightplusdepth, 1000)*count(n);
@@ -189,7 +191,7 @@ void buildpage(void)
 			default: 
 				confusion("page");
 		}
-		if ((p->type == glue_node && precedes_break(pagetail->num)) || (p->type ==  kern_node && p->link->type == glue_node) || p->type == penalty_node)
+		if ((p->type == glue_node && precedes_break(pagetail)) || (p->type ==  kern_node && p->link->type == glue_node) || p->type == penalty_node)
 			if (pi < 10000)
 			{
 				if (page_total < page_goal)

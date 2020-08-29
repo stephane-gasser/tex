@@ -402,6 +402,7 @@ void appspace(halfword &, fontindex &);
 void followUntilBeforeTarget(LinkedNode*&, LinkedNode* = nullptr);
 
 template<class T> void next(T* &p) { p = dynamic_cast<T*>(p->link); }
+inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }
 
 
 #endif

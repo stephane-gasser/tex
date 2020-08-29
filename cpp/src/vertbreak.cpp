@@ -12,31 +12,32 @@ scaled &cur_height = active_height[1]; //!< the natural height
 //! initialize the height to zero
 static void set_height_zero(int i) { active_height[i] = 0; }
 
-halfword vertbreak(halfword p, scaled h, scaled d)
+LinkedNode *vertbreak(LinkedNode *p, scaled h, scaled d)
 {
-	halfword prevp, q, r;
-	int pi, b, leastcost;
-	halfword bestplace;
-	scaled prevdp;
+	LinkedNode *prevp = p, *q, *r;
+	int pi, b;
+	LinkedNode *bestplace;
 	smallnumber t;
-	prevp = p;
-	leastcost = max_dimen;
+	int leastcost = max_dimen;
 	for (int i = 1; i <= 6; i++)
 		set_height_zero(i);
-	prevdp = 0;
-	while (true)
+	scaled prevdp = 0;
+	for (; true; next(p))
 	{
-		if (p == 0)
+		if (p == nullptr)
 			pi = eject_penalty;
 		else
-			switch (type(p))
+			switch (p->type)
 			{
 				case hlist_node: //0
 				case vlist_node: //1
 				case rule_node: //2
-					cur_height += prevdp+height(p);
-					prevdp = depth(p);
+				{
+					auto P = dynamic_cast<RuleNode*>(p);
+					cur_height += prevdp+P->height;
+					prevdp = P->depth;
 					break;
+				}
 				case whatsit_node: //8
 					break;
 				case glue_node:  //10
@@ -44,17 +45,16 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 						pi = 0;
 					break;
 				case kern_node: //11
-					if (link(p) == 0)
+					if (p->link == nullptr)
 						t = penalty_node; //12
 					else
-						t = type(link(p));
+						t = p->link->type;
 					if (t == glue_node) //10
 						pi = 0;
 					break;
 				case penalty_node: //12
 				{
-					PenaltyNode *P;
-					P->num = p;
+					auto P = dynamic_cast<PenaltyNode*>(p);
 					pi = P->penalty;
 					break;
 				}
@@ -64,27 +64,15 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 				default: 
 					confusion("vertbreak");
 			}
-		if (p == 0 || (type(p) == glue_node && type(prevp) < 9) || (type(p) == kern_node && t == glue_node) || type(p) == penalty_node)
+		if (p == nullptr || (p->type == glue_node && precedes_break(prevp)) || (p->type == kern_node && t == glue_node) || p->type == penalty_node)
 			if (pi < 10000)
 			{
 				if (cur_height < h)
-					if (active_height[3] || active_height[4] || active_height[5])
-						b = 0;
-					else
-					b = badness(h-cur_height, active_height[2]);
+					b = active_height[3] || active_height[4] || active_height[5] ? 0 : badness(h-cur_height, active_height[2]);
 				else 
-					if (cur_height-h > active_height[6])
-						b = max_dimen;
-					else
-						b = badness(cur_height-h, active_height[6]);
+					b = cur_height-h > active_height[6] ? max_dimen : badness(cur_height-h, active_height[6]);
 				if (b < awful_bad)
-					if (pi <= eject_penalty)
-						b = pi;
-					else 
-						if (b < 10000)
-							b += pi;
-						else
-							b = 100000;
+					b = pi <= eject_penalty ? pi : b < 10000 ? b+pi : 100000;
 				if (b <= leastcost)
 				{
 					bestplace = p;
@@ -94,16 +82,15 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 				if (b == awful_bad || pi <= eject_penalty)
 					return bestplace;
 			}
-		if (type(p) == kern_node)
+		if (p->type == kern_node)
 		{
 			q = p;
-			cur_height += prevdp+width(q);
+			cur_height += prevdp+dynamic_cast<KernNode*>(q)->width;
 			prevdp = 0;
 		}
-		if (type(p) == glue_node)
+		if (p->type == glue_node)
 		{
-			GlueNode *P;
-			P->num = p;
+			auto P = dynamic_cast<GlueNode*>(p);
 			auto q = P->glue_ptr;
 			active_height[2+q->stretch_order] += q->stretch;
 			active_height[6] += q->shrink;
@@ -125,7 +112,6 @@ halfword vertbreak(halfword p, scaled h, scaled d)
 			prevdp = d;
 		}
 		prevp = p;
-		p = link(prevp);
 	}
 	return bestplace;
 }
