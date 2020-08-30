@@ -798,11 +798,11 @@ RuleNode *scanrulespec(Token t)
 			lev = dimen_val;
 			break;
 		case assign_glue:
-			val = eqtb[m].int_;
+			val = eqtb_glue[m-glue_base].int_; //GlueSpec *
 			lev = glue_val;
 			break;
 		case assign_mu_glue:
-			val = eqtb[m].int_;
+			val = eqtb_glue[m-glue_base].int_; //GlueSpec *
 			lev = mu_val;
 			break;
 		case set_aux:

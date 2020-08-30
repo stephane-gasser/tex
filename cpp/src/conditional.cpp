@@ -13,12 +13,11 @@
 [[nodiscard]] static Token get_x_token_or_active_char(void)
 { 
 	auto t = getxtoken(); 
-	if (t.cmd == relax)
-		if (t.chr == no_expand_flag)
-		{
-			t.cmd = active_char; 
-			t.chr = t.tok-cs_token_flag-active_base; 
-		}
+	if (t.cmd == relax && t.chr == no_expand_flag)
+	{
+		t.cmd = active_char; 
+		t.chr = t.tok-cs_token_flag-active_base; 
+	}
 	return t;
 }
 
@@ -38,37 +37,38 @@ void conditional(Token t)
 	halfword q;
 	int r;
 	bool b;
-	int m, n;
 	smallnumber savescannerstatus;
 	switch (thisif)
 	{
 		case if_char_code:
-		case if_cat_code:
+		{
 			t = get_x_token_or_active_char();
-			if (t.cmd > active_char || t.chr > 255)
-			{
-				m = relax;
-				n = 256;
-			}
-			else
-			{
-				m = t.cmd;
-				n = t.chr;
-			}
+			int n = t.cmd > active_char || t.chr > 255 ? 256 : t.chr;
 			t = get_x_token_or_active_char();
 			if (t.cmd > active_char || t.chr > 255)
 			{
 				t.cmd = relax;
 				t.chr = 256;
 			}
-			if (thisif == if_char_code)
-				b = n == t.chr;
-			else
-				b = m == t.cmd;
+			b = n == t.chr;
 			break;
+		}
+		case if_cat_code:
+		{
+			t = get_x_token_or_active_char();
+			int m = t.cmd > active_char || t.chr > 255 ? relax : t.cmd;
+			t = get_x_token_or_active_char();
+			if (t.cmd > active_char || t.chr > 255)
+			{
+				t.cmd = relax;
+				t.chr = 256;
+			}
+			b = m == t.cmd;
+			break;
+		}
 		case if_int_code:
-		case if_dim_code:
-			n = thisif == if_int_code ? scanint() : scan_normal_dimen();
+		{
+			int n = scanint();
 			t = getXTokenSkipSpace();
 			if (t.tok >= other_token+'<' && t.tok <= other_token+'>')
 				r = t.tok-other_token;
@@ -76,22 +76,50 @@ void conditional(Token t)
 			{
 				Token tk;
 				tk.cmd = if_test;
-				tk.chr = thisif;
+				tk.chr = if_int_code;
 				backerror(t, "Missing = inserted for "+cmdchr(tk), "I was expecting to see `<', `=', or `>'. Didn't.");
 				r = '=';
 			}
 			switch (r)
 			{
 				case '<': 
-					b = thisif == if_int_code ? n < scanint() : n < scan_normal_dimen();
+					b = n < scanint();
 					break;
 				case '=': 
-					b = thisif == if_int_code ? n == scanint() : n == scan_normal_dimen();
+					b = n == scanint();
 					break;
 				case '>': 
-					b = thisif == if_int_code ? n > scanint() : n > scan_normal_dimen();
+					b = n > scanint();
 			}
 			break;
+		}
+		case if_dim_code:
+		{
+			int n = scan_normal_dimen();
+			t = getXTokenSkipSpace();
+			if (t.tok >= other_token+'<' && t.tok <= other_token+'>')
+				r = t.tok-other_token;
+			else
+			{
+				Token tk;
+				tk.cmd = if_test;
+				tk.chr = if_dim_code;
+				backerror(t, "Missing = inserted for "+cmdchr(tk), "I was expecting to see `<', `=', or `>'. Didn't.");
+				r = '=';
+			}
+			switch (r)
+			{
+				case '<': 
+					b = n < scan_normal_dimen();
+					break;
+				case '=': 
+					b = n == scan_normal_dimen();
+					break;
+				case '>': 
+					b = n > scan_normal_dimen();
+			}
+			break;
+		}
 		case if_odd_code:
 			b = scanint()%2;
 			break;
@@ -108,29 +136,34 @@ void conditional(Token t)
 			b = mode < 0;
 			break;
 		case if_void_code:
+			b = box[scaneightbitint()] == nullptr;
+			break;
 		case if_hbox_code:
+		{
+			auto p = box[scaneightbitint()];
+			if (p == nullptr)
+				b = false;
+			else 
+				b = p->type == hlist_node;
+			break;
+		}
 		case if_vbox_code:
 		{
 			auto p = box[scaneightbitint()];
-			if (thisif == if_void_code)
-				b = p == nullptr;
+			if (p == nullptr)
+				b = false;
 			else 
-				if (p == nullptr)
-					b = false;
-				else 
-					if (thisif == if_hbox_code)
-						b = p->type == hlist_node;
-					else
-						b = p->type == vlist_node;
+				b = p->type == vlist_node;
 			break;
 		}
 		case ifx_code:
+		{
 			savescannerstatus = scannerstatus;
-			scannerstatus = 0;
+			scannerstatus = normal;
 			t = getnext();
+			int n = t.cs;
 			p = t.cmd;
 			q = t.chr;
-			r = t.cs;
 			t = getnext();
 			if (t.cmd != p)
 				b = false;
@@ -140,7 +173,10 @@ void conditional(Token t)
 				else
 				{
 					p = link(t.chr);
-					q = link(eqtb[n].index->num);
+					if (n < hash_base)
+						q = link(eqtb_cs[n-hash_base].index->num);
+					else
+						q = link(eqtb_active[n-active_base].index->num);
 					if (p == q)
 						b = true;
 					else
@@ -158,6 +194,7 @@ void conditional(Token t)
 				}
 			scannerstatus = savescannerstatus;
 			break;
+		}
 		case if_eof_code:
 			b = readopen[scanfourbitint()] == 2;
 			break;
@@ -168,7 +205,8 @@ void conditional(Token t)
 			b = false;
 			break;
 		case if_case_code:
-			n = scanint();
+		{
+			int n = scanint();
 			if (tracing_commands() > 1)
 				diagnostic("{case "+std::to_string(n)+"}");
 			while (n)
@@ -205,6 +243,7 @@ void conditional(Token t)
 			}
 			changeiflimit(4, savecondptr);
 			return;
+		}
 	}
 	if (tracing_commands() > 1)
 		diagnostic(b ? "{true}" : "{false}");

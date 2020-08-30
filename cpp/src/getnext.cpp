@@ -17,7 +17,7 @@
 
 [[nodiscard]] static Token checkoutervalidity(Token t)
 {
-	if (scannerstatus == 0)
+	if (scannerstatus == normal)
 		return t;
 	if (t.cs)
 	{
@@ -143,7 +143,11 @@ static void removeFromEnd(int &k, int d)
 								break;
 							case ANY_STATE_PLUS(escape):
 								if (loc > limit)
+								{
 									t.cs = null_cs;
+									t.cmd = eqtb_active[null_cs-active_base].type;
+									t.chr = eqtb_active[null_cs-active_base].int_;
+								}
 								else
 								{
 									bool superscript, identifiant;
@@ -184,6 +188,8 @@ static void removeFromEnd(int &k, int d)
 													for (int i = loc; i <= k; i++)
 														s += buffer[i];
 													t.cs = idlookup(s);
+													t.cmd = eqtb_cs[t.cs-hash_base].type;
+													t.chr = eqtb_cs[t.cs-hash_base].int_;
 													loc = k;
 													identifiant = true;
 												}
@@ -205,11 +211,11 @@ static void removeFromEnd(int &k, int d)
 									if (!identifiant)
 									{
 										t.cs = single_base+buffer[loc];
+										t.cmd = eqtb_active[t.cs-active_base].type;
+										t.chr = eqtb_active[t.cs-active_base].int_;
 										loc++;
 									}
 								}
-								t.cmd = eqtb[t.cs].type;
-								t.chr = eqtb[t.cs].int_;
 								if (t.cmd >= outer_call)
 									t = checkoutervalidity(t);
 								break;
