@@ -79,7 +79,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="builddiscretionary_8h_source.html">builddiscretionary.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="unsave_8h_source.html">unsave.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sauvegarde_8h_source.html">sauvegarde.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="impression_8h_source.html">impression.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="erreur_8h_source.html">erreur.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="popnest_8h_source.html">popnest.h</a>&quot;</code><br />
@@ -92,16 +92,16 @@ Graphe des dépendances par inclusion de builddiscretionary.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="builddiscretionary_8cpp__incl.png" border="0" usemap="#src_2builddiscretionary_8cpp" alt=""/></div>
 <map name="src_2builddiscretionary_8cpp" id="src_2builddiscretionary_8cpp">
-<area shape="rect" title=" " alt="" coords="426,5,594,32"/>
+<area shape="rect" title=" " alt="" coords="451,5,619,32"/>
 <area shape="rect" href="builddiscretionary_8h.html" title=" " alt="" coords="5,80,137,107"/>
-<area shape="rect" href="unsave_8h.html" title=" " alt="" coords="162,80,237,107"/>
-<area shape="rect" href="impression_8h.html" title=" " alt="" coords="261,80,357,107"/>
-<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="381,80,447,107"/>
-<area shape="rect" href="popnest_8h.html" title=" " alt="" coords="471,80,549,107"/>
-<area shape="rect" href="noeud_8h.html" title=" " alt="" coords="573,80,641,107"/>
-<area shape="rect" href="lecture_8h.html" title=" " alt="" coords="666,80,738,107"/>
-<area shape="rect" href="pushnest_8h.html" title=" " alt="" coords="763,80,849,107"/>
-<area shape="rect" href="texte_8h.html" title=" " alt="" coords="873,80,936,107"/>
+<area shape="rect" href="sauvegarde_8h.html" title=" " alt="" coords="161,80,261,107"/>
+<area shape="rect" href="impression_8h.html" title=" " alt="" coords="286,80,382,107"/>
+<area shape="rect" href="erreur_8h.html" title=" " alt="" coords="407,80,472,107"/>
+<area shape="rect" href="popnest_8h.html" title=" " alt="" coords="496,80,575,107"/>
+<area shape="rect" href="noeud_8h.html" title=" " alt="" coords="599,80,667,107"/>
+<area shape="rect" href="lecture_8h.html" title=" " alt="" coords="691,80,763,107"/>
+<area shape="rect" href="pushnest_8h.html" title=" " alt="" coords="788,80,875,107"/>
+<area shape="rect" href="texte_8h.html" title=" " alt="" coords="899,80,961,107"/>
 </map>
 </div>
 </div>
@@ -131,7 +131,7 @@ Fonctions</h2></td></tr>
 
 <p class="definition">Définition à la ligne <a class="el" href="builddiscretionary_8cpp_source.html#l00011">11</a> du fichier <a class="el" href="builddiscretionary_8cpp_source.html">builddiscretionary.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc">unsave</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="sauvegarde_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc">unsave</a>();</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">// Prune the current list, if necessary, until it contains only |char_node|, |kern_node|, |hlist_node|, |vlist_node|, |rule_node|,</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">//  and |ligature_node| items; set |n| to the length of the list, and set |q| to the list&#39;s tail</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">auto</span> q = <a class="code" href="globals_8h.html#a87be2395199ed7d315738373369c5463">head</a>;</div>
@@ -153,7 +153,7 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    p = <a class="code" href="globals_8h.html#a87be2395199ed7d315738373369c5463">head</a>-&gt;link;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc">popnest</a>();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">switch</span> (<a class="code" href="constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9">saved</a>(-1))</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">switch</span> (<a class="code" href="globals_8h.html#a419e89ae356f15983d0de33f80232c62">savestack</a>.back().int_)</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">case</span> 0: </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="keyword">dynamic_cast&lt;</span><a class="code" href="classDiscNode.html">DiscNode</a>*<span class="keyword">&gt;</span>(<a class="code" href="globals_8h.html#afa3c03c28a565f057102d45e7fad8e6c">tail</a>)-&gt;pre_break = p;</div>
@@ -176,11 +176,11 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<span class="stringliteral">&quot;Discretionary list is too long&quot;</span>, <span class="stringliteral">&quot;Wow---I never thought anybody would tweak me here.\nYou can&#39;t seriously need such a huge discretionary list?&quot;</span>);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keywordflow">if</span> (n &gt; 0)</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <a class="code" href="globals_8h.html#afa3c03c28a565f057102d45e7fad8e6c">tail</a> = q;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <a class="code" href="globals_8h.html#aa326562731b81df3c428077a9343c00f">saveptr</a>--;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <a class="code" href="globals_8h.html#a419e89ae356f15983d0de33f80232c62">savestack</a>.pop_back();</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9">saved</a>(-1)++;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="noeud_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a>(10);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="globals_8h.html#a419e89ae356f15983d0de33f80232c62">savestack</a>.back().int_++;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="sauvegarde_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a>(<a class="code" href="constantes_8h.html#ab4f376eec312633ef8f5e75bd891291dae6fcb55058e052cde0be27135a7c5a3e">disc_group</a>);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    t = <a class="code" href="lecture_8cpp.html#a76530ea732b536c303881ed81b0d98a3">scanleftbrace</a>();</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309">pushnest</a>();</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="globals_8h.html#a7efa36ab31730808a677766db6df868e">mode</a> = -<a class="code" href="constantes_8h.html#a811fe196a5d9d37857c2f8adeeaac3c6a23ed1cf2add8386ccd9683ae2bc098b8">hmode</a>;</div>
@@ -191,18 +191,17 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="builddiscretionary_8cpp_adfae548fe7d418d5d37ed1760575c2fe_cgraph.png" border="0" usemap="#builddiscretionary_8cpp_adfae548fe7d418d5d37ed1760575c2fe_cgraph" alt=""/></div>
 <map name="builddiscretionary_8cpp_adfae548fe7d418d5d37ed1760575c2fe_cgraph" id="builddiscretionary_8cpp_adfae548fe7d418d5d37ed1760575c2fe_cgraph">
-<area shape="rect" title=" " alt="" coords="5,259,128,285"/>
+<area shape="rect" title=" " alt="" coords="5,233,128,260"/>
 <area shape="rect" href="impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba" title="Do some tracing." alt="" coords="186,5,267,32"/>
 <area shape="rect" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="203,56,251,83"/>
-<area shape="rect" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="333,81,375,108"/>
+<area shape="rect" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="325,81,368,108"/>
 <area shape="rect" href="noeud_8cpp.html#a82091fa45f60c083502da6514a00763b" title=" " alt="" coords="179,157,274,184"/>
-<area shape="rect" href="noeud_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="176,208,277,235"/>
+<area shape="rect" href="sauvegarde_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="176,208,277,235"/>
 <area shape="rect" href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc" title=" " alt="" coords="193,259,261,285"/>
 <area shape="rect" href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="189,309,264,336"/>
-<area shape="rect" href="constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9" title=" " alt="" coords="325,436,383,463"/>
-<area shape="rect" href="lecture_8cpp.html#a76530ea732b536c303881ed81b0d98a3" title=" " alt="" coords="177,411,277,437"/>
-<area shape="rect" href="impression_8cpp.html#a81e39ccf5250c86e5b7e8dc56c7667e2" title=" " alt="" coords="189,461,264,488"/>
-<area shape="rect" href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="195,512,259,539"/>
+<area shape="rect" href="lecture_8cpp.html#a76530ea732b536c303881ed81b0d98a3" title=" " alt="" coords="177,360,277,387"/>
+<area shape="rect" href="impression_8cpp.html#a81e39ccf5250c86e5b7e8dc56c7667e2" title=" " alt="" coords="189,411,264,437"/>
+<area shape="rect" href="sauvegarde_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="195,461,259,488"/>
 </map>
 </div>
 <div class="dynheader">
@@ -218,25 +217,25 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div>
 </div><!-- contents -->
-<div class="ttc" id="aunsave_8cpp_html_a107d881e47e06a5ebd5fd6332f972bcc"><div class="ttname"><a href="unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc">unsave</a></div><div class="ttdeci">void unsave(void)</div><div class="ttdef"><b>Definition:</b> <a href="unsave_8cpp_source.html#l00006">unsave.cpp:6</a></div></div>
 <div class="ttc" id="aglobals_8h_html_afa3c03c28a565f057102d45e7fad8e6c"><div class="ttname"><a href="globals_8h.html#afa3c03c28a565f057102d45e7fad8e6c">tail</a></div><div class="ttdeci">auto &amp; tail</div><div class="ttdoc">final node on current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00202">globals.h:202</a></div></div>
-<div class="ttc" id="anoeud_8cpp_html_afad44a60dc27690826030e3d7bfe80a0"><div class="ttname"><a href="noeud_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a></div><div class="ttdeci">void newsavelevel(groupcode c)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00355">noeud.cpp:355</a></div></div>
-<div class="ttc" id="aclassBoxNode_html"><div class="ttname"><a href="classBoxNode.html">BoxNode</a></div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00206">noeud.h:206</a></div></div>
-<div class="ttc" id="aclassDiscNode_html"><div class="ttname"><a href="classDiscNode.html">DiscNode</a></div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00083">noeud.h:83</a></div></div>
+<div class="ttc" id="aclassBoxNode_html"><div class="ttname"><a href="classBoxNode.html">BoxNode</a></div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00213">noeud.h:213</a></div></div>
+<div class="ttc" id="aclassDiscNode_html"><div class="ttname"><a href="classDiscNode.html">DiscNode</a></div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00090">noeud.h:90</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a4843d30c07f93e78341777a80da30eb5"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a4843d30c07f93e78341777a80da30eb5">rule_node</a></div><div class="ttdeci">@ rule_node</div><div class="ttdoc">type of rule nodes</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00157">globals.h:157</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310af6b4d8d8351410f64abfca85c1954049"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310af6b4d8d8351410f64abfca85c1954049">kern_node</a></div><div class="ttdeci">@ kern_node</div><div class="ttdoc">type of a kern node</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00166">globals.h:166</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a0472a8839991d28cfa74dd6602fe4d3e"><div class="ttname"><a href="globals_8h.html#a0472a8839991d28cfa74dd6602fe4d3e">space_factor</a></div><div class="ttdeci">halfword &amp; space_factor</div><div class="ttdoc">part of aux in horizontal mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00204">globals.h:204</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ae372924277c9636b7b76c2f3573917b9"><div class="ttname"><a href="constantes_8cpp.html#ae372924277c9636b7b76c2f3573917b9">saved</a></div><div class="ttdeci">int &amp; saved(halfword p)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00050">constantes.cpp:50</a></div></div>
-<div class="ttc" id="aglobals_8h_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8h.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00336">globals.h:336</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_adeb7fc965be26e52bb3d9b60342f8fba"><div class="ttname"><a href="impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba">diagnostic</a></div><div class="ttdeci">void diagnostic(const std::string &amp;s)</div><div class="ttdoc">Do some tracing.</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01087">impression.cpp:1087</a></div></div>
+<div class="ttc" id="asauvegarde_8cpp_html_a107d881e47e06a5ebd5fd6332f972bcc"><div class="ttname"><a href="sauvegarde_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc">unsave</a></div><div class="ttdeci">void unsave(void)</div><div class="ttdef"><b>Definition:</b> <a href="sauvegarde_8cpp_source.html#l00050">sauvegarde.cpp:50</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_adeb7fc965be26e52bb3d9b60342f8fba"><div class="ttname"><a href="impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba">diagnostic</a></div><div class="ttdeci">void diagnostic(const std::string &amp;s)</div><div class="ttdoc">Do some tracing.</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01081">impression.cpp:1081</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a419e89ae356f15983d0de33f80232c62"><div class="ttname"><a href="globals_8h.html#a419e89ae356f15983d0de33f80232c62">savestack</a></div><div class="ttdeci">std::vector&lt; memoryword &gt; savestack</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00332">globals.h:332</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a811fe196a5d9d37857c2f8adeeaac3c6a775fe7fdc53fa6d74fbbf2bd3ccf30a6"><div class="ttname"><a href="constantes_8h.html#a811fe196a5d9d37857c2f8adeeaac3c6a775fe7fdc53fa6d74fbbf2bd3ccf30a6">mmode</a></div><div class="ttdeci">@ mmode</div><div class="ttdoc">math mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00313">constantes.h:313</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a87be2395199ed7d315738373369c5463"><div class="ttname"><a href="globals_8h.html#a87be2395199ed7d315738373369c5463">head</a></div><div class="ttdeci">auto &amp; head</div><div class="ttdoc">header node of current list</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00201">globals.h:201</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a811fe196a5d9d37857c2f8adeeaac3c6a23ed1cf2add8386ccd9683ae2bc098b8"><div class="ttname"><a href="constantes_8h.html#a811fe196a5d9d37857c2f8adeeaac3c6a23ed1cf2add8386ccd9683ae2bc098b8">hmode</a></div><div class="ttdeci">@ hmode</div><div class="ttdoc">horizontal mode</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00312">constantes.h:312</a></div></div>
+<div class="ttc" id="asauvegarde_8cpp_html_afad44a60dc27690826030e3d7bfe80a0"><div class="ttname"><a href="sauvegarde_8cpp.html#afad44a60dc27690826030e3d7bfe80a0">newsavelevel</a></div><div class="ttdeci">void newsavelevel(groupcode c)</div><div class="ttdef"><b>Definition:</b> <a href="sauvegarde_8cpp_source.html#l00040">sauvegarde.cpp:40</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310abac053db67b162d24f18c3e52ff89c13"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310abac053db67b162d24f18c3e52ff89c13">ligature_node</a></div><div class="ttdeci">@ ligature_node</div><div class="ttdoc">type of a ligature node</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00161">globals.h:161</a></div></div>
 <div class="ttc" id="apopnest_8cpp_html_a847b0a324f6f62ba4e7f679bd16f10dc"><div class="ttname"><a href="popnest_8cpp.html#a847b0a324f6f62ba4e7f679bd16f10dc">popnest</a></div><div class="ttdeci">void popnest(void)</div><div class="ttdef"><b>Definition:</b> <a href="popnest_8cpp_source.html#l00003">popnest.cpp:3</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8h.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00206">globals.h:206</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a81e39ccf5250c86e5b7e8dc56c7667e2"><div class="ttname"><a href="impression_8cpp.html#a81e39ccf5250c86e5b7e8dc56c7667e2">showbox</a></div><div class="ttdeci">std::string showbox(BoxNode *p)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00927">impression.cpp:927</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00242">impression.cpp:242</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a81e39ccf5250c86e5b7e8dc56c7667e2"><div class="ttname"><a href="impression_8cpp.html#a81e39ccf5250c86e5b7e8dc56c7667e2">showbox</a></div><div class="ttdeci">std::string showbox(BoxNode *p)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00921">impression.cpp:921</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00237">impression.cpp:237</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_ab4f376eec312633ef8f5e75bd891291dae6fcb55058e052cde0be27135a7c5a3e"><div class="ttname"><a href="constantes_8h.html#ab4f376eec312633ef8f5e75bd891291dae6fcb55058e052cde0be27135a7c5a3e">disc_group</a></div><div class="ttdeci">@ disc_group</div><div class="ttdoc">code for ‘\discretionary\grp\grp\grp’</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00328">constantes.h:328</a></div></div>
 <div class="ttc" id="apushnest_8cpp_html_a67fd485afd94f32c6e7f6dcea9e6b309"><div class="ttname"><a href="pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309">pushnest</a></div><div class="ttdeci">void pushnest(void)</div><div class="ttdef"><b>Definition:</b> <a href="pushnest_8cpp_source.html#l00005">pushnest.cpp:5</a></div></div>
 <div class="ttc" id="anoeud_8cpp_html_a82091fa45f60c083502da6514a00763b"><div class="ttname"><a href="noeud_8cpp.html#a82091fa45f60c083502da6514a00763b">flushnodelist</a></div><div class="ttdeci">void flushnodelist(LinkedNode *p)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00035">noeud.cpp:35</a></div></div>
 <div class="ttc" id="alecture_8cpp_html_a76530ea732b536c303881ed81b0d98a3"><div class="ttname"><a href="lecture_8cpp.html#a76530ea732b536c303881ed81b0d98a3">scanleftbrace</a></div><div class="ttdeci">Token scanleftbrace(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l00630">lecture.cpp:630</a></div></div>

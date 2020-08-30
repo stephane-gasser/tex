@@ -1,10 +1,12 @@
 #include "loadfmtfile.h"
 #include "cesure.h"
 #include "police.h"
+#include "equivalent.h"
 #include <iostream>
 
 void undump_hh(twohalves &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
 void undump_wd(memoryword &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
+void undump_wd(MemoryNode &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
 void undump_qqqq(fourquarters &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
 void undump_int(int &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
 

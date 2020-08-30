@@ -1,7 +1,5 @@
 <map id="depth" name="depth">
-<area shape="rect" id="node1" title="depth of the box, in sp" alt="" coords="264,77,319,103"/>
-<area shape="rect" id="node2" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="5,65,83,91"/>
-<area shape="rect" id="node3" href="$formule_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="131,51,216,78"/>
-<area shape="rect" id="node4" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="139,102,208,129"/>
-<area shape="rect" id="node5" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="135,153,211,179"/>
+<area shape="rect" id="node1" title="depth of the box, in sp" alt="" coords="139,55,193,81"/>
+<area shape="rect" id="node2" href="$formule_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,29,91,56"/>
+<area shape="rect" id="node3" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="13,80,83,107"/>
 </map>

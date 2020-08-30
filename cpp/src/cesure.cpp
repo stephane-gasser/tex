@@ -4,6 +4,7 @@
 #include "lecture.h"
 #include "impression.h"
 #include "police.h" 
+#include "equivalent.h" 
 
 static std::map<TrieNode, triepointer> tnMap;
 

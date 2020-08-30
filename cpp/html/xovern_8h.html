@@ -144,24 +144,25 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="keywordtype">bool</span> negative = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordflow">if</span> (n == 0)</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <a class="code" href="globals_8h.html#aed4ff51e59c4db5651870a2ef2b48356">aritherror</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="globals_8h.html#af71f2d57a4ea7d4f39b34bd230dc531d">remainder_</a> = x;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    }</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordflow">if</span> (n &lt; 0)</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        x = -x;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        n = -n;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        negative = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordflow">if</span> (x &gt;= 0)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="globals_8h.html#af71f2d57a4ea7d4f39b34bd230dc531d">remainder_</a> = negative ? -x%n : x%n;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordflow">return</span> x/n;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="globals_8h.html#af71f2d57a4ea7d4f39b34bd230dc531d">remainder_</a> = negative ? (-x)%n : -((-x)%n);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">return</span> -((-x)/n);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        <span class="keywordflow">throw</span> <a class="code" href="classArithException.html">ArithException</a>();</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <a class="code" href="globals_8h.html#aed4ff51e59c4db5651870a2ef2b48356">aritherror</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="globals_8h.html#af71f2d57a4ea7d4f39b34bd230dc531d">remainder_</a> = x;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    }</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">if</span> (n &lt; 0)</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        x = -x;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        n = -n;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        negative = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordflow">if</span> (x &gt;= 0)</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="globals_8h.html#af71f2d57a4ea7d4f39b34bd230dc531d">remainder_</a> = negative ? -x%n : x%n;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">return</span> x/n;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="globals_8h.html#af71f2d57a4ea7d4f39b34bd230dc531d">remainder_</a> = negative ? (-x)%n : -((-x)%n);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordflow">return</span> -((-x)/n);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
@@ -171,7 +172,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="291,5,368,32"/>
 <area shape="rect" href="boite_8h.html#a719c482b3eba60e421616cd2840ea932" title=" " alt="" coords="5,132,80,159"/>
 <area shape="rect" href="doregistercommand_8h.html#a0e5f002692416d323271f288f343fc9e" title=" " alt="" coords="261,107,397,133"/>
-<area shape="rect" href="mathglue_8h.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="292,157,367,184"/>
+<area shape="rect" href="formule_8cpp.html#a1b3e1a24ffc86abc5e92e2b7a27b14b0" title=" " alt="" coords="292,157,367,184"/>
 <area shape="rect" href="formule_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="128,183,213,209"/>
 <area shape="rect" href="mathkern_8h.html#ad27d0a0691c5637432f6ae8e4266c52f" title=" " alt="" coords="291,259,367,285"/>
 <area shape="rect" href="impression_8cpp.html#adf229d61e9473738af7cc7c3a120b334" title=" " alt="" coords="277,309,382,336"/>
@@ -183,6 +184,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><!-- contents -->
 <div class="ttc" id="aglobals_8h_html_aed4ff51e59c4db5651870a2ef2b48356"><div class="ttname"><a href="globals_8h.html#aed4ff51e59c4db5651870a2ef2b48356">aritherror</a></div><div class="ttdeci">bool aritherror</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00313">globals.h:313</a></div></div>
 <div class="ttc" id="aglobals_8h_html_af71f2d57a4ea7d4f39b34bd230dc531d"><div class="ttname"><a href="globals_8h.html#af71f2d57a4ea7d4f39b34bd230dc531d">remainder_</a></div><div class="ttdeci">scaled remainder_</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00314">globals.h:314</a></div></div>
+<div class="ttc" id="aclassArithException_html"><div class="ttname"><a href="classArithException.html">ArithException</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00448">globals.h:448</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

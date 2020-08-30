@@ -2,14 +2,15 @@
 #include "lecture.h"
 #include "noeud.h"
 #include "backinput.h"
+#include "equivalent.h"
 
 void setmathchar(int c, Token t)
 {
 	if (c >= 0x80'00)
 	{
 		t.cs = t.chr+active_base;
-		t.cmd = eq_type(t.cs);
-		t.chr = equiv(t.cs);
+		t.cmd = eqtb_active[t.chr].type;
+		t.chr = eqtb_active[t.chr].int_;
 		t = xtoken(t);
 		backinput(t);
 	}

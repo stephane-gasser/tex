@@ -8,6 +8,7 @@
 #include "erreur.h"
 #include "primitive.h"
 #include "police.h"
+#include "equivalent.h"
 #include <sstream> 
 
 static void printchar(ASCIIcode s)
@@ -225,12 +226,6 @@ std::string scs(halfword p)
 		return std::string(1, p-active_base);
 	}
 	return esc(TXT(text(p)));
-}
-
-static std::string asDelimiter(halfword p)
-{
-	int a = (small_fam(p)<<20)+(small_char(p)<<12)+(large_fam(p)<<8)+large_char(p);
-	return a < 0 ? std::to_string(a) : hex(a);
 }
 
 static std::string asDelimiter(Delimiter p)

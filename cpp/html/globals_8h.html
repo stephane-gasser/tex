@@ -119,6 +119,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classToken.html">Token</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classArithException.html">ArithException</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Définitions de type</h2></td></tr>
@@ -474,8 +476,6 @@ Variables</h2></td></tr>
 <tr class="separator:aed4ff51e59c4db5651870a2ef2b48356"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af71f2d57a4ea7d4f39b34bd230dc531d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#af71f2d57a4ea7d4f39b34bd230dc531d">remainder_</a></td></tr>
 <tr class="separator:af71f2d57a4ea7d4f39b34bd230dc531d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a466d730c3cc260dc5b88ae5f115d53c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a466d730c3cc260dc5b88ae5f115d53c0">tempptr</a></td></tr>
-<tr class="separator:a466d730c3cc260dc5b88ae5f115d53c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5038b616b1201aeb12a176eb4b4513a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionmemoryword.html">memoryword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a5038b616b1201aeb12a176eb4b4513a8">mem</a> [<a class="el" href="globals_8h.html#a4d80dc1c318f88a198f2813c45f8f8ee">memmax</a>+1]</td></tr>
 <tr class="separator:a5038b616b1201aeb12a176eb4b4513a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74a81f693ecceeb1d9b283811d1cc814"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a74a81f693ecceeb1d9b283811d1cc814">lomemmax</a></td></tr>
@@ -500,22 +500,14 @@ Variables</h2></td></tr>
 <tr class="separator:a086c6e12ecf105952f92495759dd4f71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5144e9be7698585335fc96f2811b5406"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a5144e9be7698585335fc96f2811b5406">oldsetting</a></td></tr>
 <tr class="separator:a5144e9be7698585335fc96f2811b5406"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a455b41a95f9f40569c9066e2a78a1106"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionmemoryword.html">memoryword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a455b41a95f9f40569c9066e2a78a1106">eqtb</a> [6107]</td></tr>
-<tr class="separator:a455b41a95f9f40569c9066e2a78a1106"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9">xeqlevel</a> [6107]</td></tr>
-<tr class="separator:a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6de07defa89031626954e09d4394ff81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtwohalves.html">twohalves</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a6de07defa89031626954e09d4394ff81">hash</a> [2881]</td></tr>
 <tr class="separator:a6de07defa89031626954e09d4394ff81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed0a426f1e7a3d4a8106d44c2dcf91e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#aed0a426f1e7a3d4a8106d44c2dcf91e6">hashused</a></td></tr>
 <tr class="separator:aed0a426f1e7a3d4a8106d44c2dcf91e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab3b73a872173cfe0a6956c0e8e60e65a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#ab3b73a872173cfe0a6956c0e8e60e65a">nonewcontrolsequence</a></td></tr>
 <tr class="separator:ab3b73a872173cfe0a6956c0e8e60e65a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67efc5cbda00d9fe23a1c6d931742de5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionmemoryword.html">memoryword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a67efc5cbda00d9fe23a1c6d931742de5">savestack</a> [<a class="el" href="globals_8h.html#a0851bb8aafb5048d795782a1027dbdd7">savesize</a>+1]</td></tr>
-<tr class="separator:a67efc5cbda00d9fe23a1c6d931742de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa326562731b81df3c428077a9343c00f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#aa326562731b81df3c428077a9343c00f">saveptr</a></td></tr>
-<tr class="separator:aa326562731b81df3c428077a9343c00f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ece84ab93a4020fd88922f894a642bd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a5ece84ab93a4020fd88922f894a642bd">maxsavestack</a></td></tr>
-<tr class="separator:a5ece84ab93a4020fd88922f894a642bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a419e89ae356f15983d0de33f80232c62"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="unionmemoryword.html">memoryword</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a419e89ae356f15983d0de33f80232c62">savestack</a></td></tr>
+<tr class="separator:a419e89ae356f15983d0de33f80232c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4df4dd4a8b0898dfb786074b600c956"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#aa4df4dd4a8b0898dfb786074b600c956">curlevel</a></td></tr>
 <tr class="separator:aa4df4dd4a8b0898dfb786074b600c956"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85ef1f882d9456051bd7b436978858d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#a0ec16c400565c6116800a29aa391e610">groupcode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a85ef1f882d9456051bd7b436978858d0">curgroup</a></td></tr>
@@ -616,8 +608,6 @@ Variables</h2></td></tr>
 <tr class="separator:aa030cb8c2acdb284168a22f06dd6b96c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab647b5dd2639b671dec1827d8152c2e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#ab647b5dd2639b671dec1827d8152c2e2">totalshrink</a> [4]</td></tr>
 <tr class="separator:ab647b5dd2639b671dec1827d8152c2e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4985180bd96ca72ff28532556eae5fca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a4985180bd96ca72ff28532556eae5fca">curmlist</a></td></tr>
-<tr class="separator:a4985180bd96ca72ff28532556eae5fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a7b1f013c94afa2d1a5b5fd7243f852"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a6a7b1f013c94afa2d1a5b5fd7243f852">curstyle</a></td></tr>
 <tr class="separator:a6a7b1f013c94afa2d1a5b5fd7243f852"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2746f146b2673dd893350b5c44da8abd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#a3fbb1f4fdb63be986c6debacfb88b62b">smallnumber</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a2746f146b2673dd893350b5c44da8abd">cursize</a></td></tr>
@@ -712,8 +702,6 @@ Variables</h2></td></tr>
 <tr class="separator:aae2a13aa6428277a3bcfb653ffdc4768"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ff5642644350de6308fd939213fc8cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a0ff5642644350de6308fd939213fc8cc">pagemaxdepth</a></td></tr>
 <tr class="separator:a0ff5642644350de6308fd939213fc8cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9868ca1e5a7c40dc2548c11626c459d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a9868ca1e5a7c40dc2548c11626c459d4">bestpagebreak</a></td></tr>
-<tr class="separator:a9868ca1e5a7c40dc2548c11626c459d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ef8e36e03056e43984f9546a74196dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a8ef8e36e03056e43984f9546a74196dc">bestsize</a></td></tr>
 <tr class="separator:a8ef8e36e03056e43984f9546a74196dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19f0a38a7e1be2cefd5f55d77e115136"><td class="memItemLeft" align="right" valign="top"><a class="el" href="globals_8h.html#a76970135ed45e872cd47aff06bc1dd33">scaled</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="globals_8h.html#a19f0a38a7e1be2cefd5f55d77e115136">pagesofar</a> [8]</td></tr>
@@ -1203,14 +1191,14 @@ Variables</h2></td></tr>
 </td></tr>
 </table>
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00356">356</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;{</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    <a class="code" href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a9f1ff55a0d46b9fab6c2387eba4ebe54">top_mark_code</a> = 0, </div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <a class="code" href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a11f7ed9a259520329ec39a276a13af7a">first_mark_code</a> = 1, </div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <a class="code" href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a8687ec376e8ea620c89a8d7fd3929584">bot_mark_code</a> = 2, </div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <a class="code" href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a63fa39e9692262113c0769492b40f27a">split_first_mark_code</a> = 3, </div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <a class="code" href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18ae19e65fbfa375ed84b5cbab18d88f9a9">split_bot_mark_code</a> = 4 </div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;};</div>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00351">351</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;{</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <a class="code" href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a9f1ff55a0d46b9fab6c2387eba4ebe54">top_mark_code</a> = 0, </div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <a class="code" href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a11f7ed9a259520329ec39a276a13af7a">first_mark_code</a> = 1, </div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <a class="code" href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a8687ec376e8ea620c89a8d7fd3929584">bot_mark_code</a> = 2, </div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <a class="code" href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a63fa39e9692262113c0769492b40f27a">split_first_mark_code</a> = 3, </div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    <a class="code" href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18ae19e65fbfa375ed84b5cbab18d88f9a9">split_bot_mark_code</a> = 4 </div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1291,7 +1279,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00403">403</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00397">397</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1387,7 +1375,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00399">399</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00393">393</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1435,7 +1423,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00373">373</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00368">368</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1509,7 +1497,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00319">319</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00318">318</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1533,7 +1521,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00405">405</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00399">399</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1607,7 +1595,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00351">351</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00346">346</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1631,7 +1619,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00442">442</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00435">435</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1655,7 +1643,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00420">420</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00414">414</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1679,7 +1667,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00434">434</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00428">428</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1703,31 +1691,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00421">421</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
-<a id="a9868ca1e5a7c40dc2548c11626c459d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9868ca1e5a7c40dc2548c11626c459d4">&#9670;&nbsp;</a></span>bestpagebreak</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> bestpagebreak</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00437">437</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00415">415</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1751,7 +1715,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00411">411</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00405">405</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1775,7 +1739,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00412">412</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00406">406</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1799,7 +1763,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00438">438</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00431">431</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1847,7 +1811,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00406">406</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00400">400</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1919,7 +1883,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00384">384</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00379">379</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -1943,7 +1907,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00444">444</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00437">437</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2017,7 +1981,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00370">370</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00365">365</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2041,7 +2005,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00324">324</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00323">323</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2089,7 +2053,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00404">404</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00398">398</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2113,7 +2077,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00397">397</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00391">391</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2161,7 +2125,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00340">340</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00335">335</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2209,7 +2173,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00339">339</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00334">334</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2233,7 +2197,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00389">389</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00384">384</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2281,7 +2245,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00372">372</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00367">367</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2329,7 +2293,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00426">426</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00420">420</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2353,7 +2317,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00422">422</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00416">416</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2377,7 +2341,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00338">338</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00333">333</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2405,30 +2369,6 @@ Voici le graphe des appelants de cette fonction :</div>
 
 </div>
 </div>
-<a id="a4985180bd96ca72ff28532556eae5fca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4985180bd96ca72ff28532556eae5fca">&#9670;&nbsp;</a></span>curmlist</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> curmlist</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00392">392</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
 <a id="a95ef3c6a7bc175dbb2ff3d467ea9f52b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a95ef3c6a7bc175dbb2ff3d467ea9f52b">&#9670;&nbsp;</a></span>curmu</h2>
 
@@ -2449,7 +2389,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00395">395</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00389">389</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2497,7 +2437,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00367">367</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00362">362</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2537,7 +2477,7 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00426">426</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00420">420</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2609,7 +2549,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00394">394</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00388">388</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2633,7 +2573,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00398">398</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00392">392</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2657,7 +2597,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00393">393</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00387">387</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2689,7 +2629,7 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00389">389</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00384">384</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2785,7 +2725,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00413">413</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00407">407</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2809,7 +2749,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00383">383</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00378">378</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2833,7 +2773,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00390">390</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00385">385</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2857,7 +2797,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00378">378</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00373">373</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2881,7 +2821,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00388">388</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00383">383</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2929,7 +2869,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00387">387</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00382">382</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2945,7 +2885,7 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00388">388</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00383">383</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -2985,31 +2925,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00414">414</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
-<a id="a455b41a95f9f40569c9066e2a78a1106"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a455b41a95f9f40569c9066e2a78a1106">&#9670;&nbsp;</a></span>eqtb</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="unionmemoryword.html">memoryword</a> eqtb[6107]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00330">330</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00408">408</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3081,7 +2997,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00374">374</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00369">369</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3097,7 +3013,7 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00384">384</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00379">379</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3121,7 +3037,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00443">443</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00436">436</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3217,7 +3133,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00409">409</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00403">403</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3289,7 +3205,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00418">418</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00412">412</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3313,7 +3229,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00416">416</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00410">410</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3337,7 +3253,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00447">447</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00440">440</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3459,7 +3375,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00354">354</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00349">349</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3507,7 +3423,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00386">386</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00381">381</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3555,7 +3471,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00332">332</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00329">329</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3631,7 +3547,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00333">333</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00330">330</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3705,7 +3621,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00318">318</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00317">317</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3753,7 +3669,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00424">424</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00418">418</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3777,7 +3693,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00423">423</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00417">417</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3851,7 +3767,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00431">431</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00425">425</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3875,7 +3791,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00425">425</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00419">419</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3899,7 +3815,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00430">430</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00424">424</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3947,7 +3863,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00371">371</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00366">366</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -3987,7 +3903,7 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00422">422</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00416">416</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4043,7 +3959,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00344">344</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00339">339</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4067,7 +3983,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00346">346</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00341">341</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4091,7 +4007,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00342">342</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00337">337</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4115,7 +4031,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00341">341</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00336">336</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4139,7 +4055,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00445">445</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00438">438</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4331,7 +4247,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00440">440</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00433">433</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4379,7 +4295,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00415">415</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00409">409</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4427,7 +4343,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00428">428</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00422">422</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4475,7 +4391,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00427">427</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00421">421</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4547,7 +4463,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00347">347</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00342">342</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4619,7 +4535,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00377">377</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00372">372</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4643,7 +4559,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00317">317</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00316">316</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4667,7 +4583,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00446">446</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00439">439</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4691,7 +4607,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00365">365</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00360">360</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4803,7 +4719,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00382">382</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00377">377</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4851,7 +4767,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00343">343</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00338">338</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4875,7 +4791,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00327">327</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00326">326</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -4951,30 +4867,6 @@ Voici le graphe des appelants de cette fonction :</div>
 
 </div>
 </div>
-<a id="a5ece84ab93a4020fd88922f894a642bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ece84ab93a4020fd88922f894a642bd">&#9670;&nbsp;</a></span>maxsavestack</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int maxsavestack</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00337">337</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
 <a id="a3582974df29b2fceed93bc159b768e30"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3582974df29b2fceed93bc159b768e30">&#9670;&nbsp;</a></span>maxstrings</h2>
 
@@ -5019,7 +4911,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00381">381</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00376">376</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5043,7 +4935,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00316">316</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00315">315</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5119,7 +5011,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00320">320</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00319">319</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5191,7 +5083,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00410">410</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00404">404</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5239,7 +5131,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00396">396</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00390">390</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5315,7 +5207,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00376">376</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00371">371</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5387,7 +5279,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00322">322</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00321">321</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5411,7 +5303,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00326">326</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00325">325</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5459,7 +5351,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00334">334</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00331">331</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5483,7 +5375,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00407">407</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00401">401</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5507,7 +5399,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00380">380</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00375">375</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5531,7 +5423,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00329">329</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00328">328</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5555,7 +5447,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00345">345</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00340">340</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5579,7 +5471,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00429">429</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00423">423</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5603,7 +5495,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00441">441</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00434">434</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5675,7 +5567,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00435">435</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00429">429</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5699,7 +5591,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00436">436</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00430">430</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5723,7 +5615,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00439">439</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00432">432</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5771,7 +5663,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00350">350</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00345">345</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5819,7 +5711,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00352">352</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00347">347</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5843,7 +5735,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00353">353</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00348">348</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5867,7 +5759,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00400">400</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00394">394</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -5891,7 +5783,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00402">402</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00396">396</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6015,7 +5907,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00401">401</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00395">395</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6039,7 +5931,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00366">366</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00361">361</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6063,7 +5955,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00368">368</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00363">363</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6087,7 +5979,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00369">369</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00364">364</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6175,7 +6067,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00321">321</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00320">320</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6191,7 +6083,7 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00428">428</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00422">422</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6207,7 +6099,7 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00385">385</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00380">380</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6231,7 +6123,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00385">385</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00380">380</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6247,31 +6139,7 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00385">385</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
-<a id="aa326562731b81df3c428077a9343c00f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa326562731b81df3c428077a9343c00f">&#9670;&nbsp;</a></span>saveptr</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int saveptr</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00336">336</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00380">380</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6299,8 +6167,8 @@ Voici le graphe des appelants de cette fonction :</div>
 
 </div>
 </div>
-<a id="a67efc5cbda00d9fe23a1c6d931742de5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67efc5cbda00d9fe23a1c6d931742de5">&#9670;&nbsp;</a></span>savestack</h2>
+<a id="a419e89ae356f15983d0de33f80232c62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a419e89ae356f15983d0de33f80232c62">&#9670;&nbsp;</a></span>savestack</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -6309,7 +6177,7 @@ Voici le graphe des appelants de cette fonction :</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="unionmemoryword.html">memoryword</a> savestack[<a class="el" href="globals_8h.html#a0851bb8aafb5048d795782a1027dbdd7">savesize</a>+1]</td>
+          <td class="memname">std::vector&lt;<a class="el" href="unionmemoryword.html">memoryword</a>&gt; savestack</td>
         </tr>
       </table>
   </td>
@@ -6319,7 +6187,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00335">335</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00332">332</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6343,7 +6211,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00348">348</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00343">343</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6367,7 +6235,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00419">419</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00413">413</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6391,7 +6259,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00408">408</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00402">402</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6415,7 +6283,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00417">417</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00411">411</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6463,7 +6331,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00328">328</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00327">327</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6615,30 +6483,6 @@ Voici le graphe des appelants de cette fonction :</div>
 
 </div>
 </div>
-<a id="a466d730c3cc260dc5b88ae5f115d53c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a466d730c3cc260dc5b88ae5f115d53c0">&#9670;&nbsp;</a></span>tempptr</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="globals_8h.html#ab9d7610bf862878bf966d79b3e08e6dd">halfword</a> tempptr</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00315">315</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
 <a id="a80da2d8616bf844c40be541d5f76e724"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a80da2d8616bf844c40be541d5f76e724">&#9670;&nbsp;</a></span>termoffset</h2>
 
@@ -6683,7 +6527,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00375">375</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00370">370</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6707,7 +6551,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00379">379</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00374">374</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6771,7 +6615,7 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00391">391</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00386">386</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6795,7 +6639,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00391">391</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00386">386</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6867,7 +6711,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00433">433</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00427">427</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -6939,7 +6783,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00432">432</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00426">426</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -7011,7 +6855,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00349">349</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00344">344</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -7035,7 +6879,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00448">448</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00441">441</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -7059,7 +6903,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00450">450</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00443">443</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -7083,7 +6927,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00449">449</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00442">442</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -7108,30 +6952,6 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><div class="memdoc">
 
 <p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00294">294</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
-
-</div>
-</div>
-<a id="a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a641b6ee0d3f5e5e4f7a7c8db3e7ed9b9">&#9670;&nbsp;</a></span>xeqlevel</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="globals_8h.html#aaef48c5c65cb13f3e50745390b269155">quarterword</a> xeqlevel[6107]</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Définition à la ligne <a class="el" href="globals_8h_source.html#l00331">331</a> du fichier <a class="el" href="globals_8h_source.html">globals.h</a>.</p>
 
 </div>
 </div>
@@ -7162,8 +6982,8 @@ Voici le graphe des appelants de cette fonction :</div>
 </div><!-- contents -->
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310add1a01657fdcecb418a4ddfdc7686fdb"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310add1a01657fdcecb418a4ddfdc7686fdb">vlist_node</a></div><div class="ttdeci">@ vlist_node</div><div class="ttdoc">type of vlist nodes</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00156">globals.h:156</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310ac10730825af91f4d3848a5d8f273466a"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310ac10730825af91f4d3848a5d8f273466a">glue_node</a></div><div class="ttdeci">@ glue_node</div><div class="ttdoc">type of node that points to a glue specification</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00165">globals.h:165</a></div></div>
-<div class="ttc" id="aglobals_8h_html_ae4d5251432e1a9e6803c0240cc492e18a8687ec376e8ea620c89a8d7fd3929584"><div class="ttname"><a href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a8687ec376e8ea620c89a8d7fd3929584">bot_mark_code</a></div><div class="ttdeci">@ bot_mark_code</div><div class="ttdoc">the mark in effect at the current page break</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00360">globals.h:360</a></div></div>
-<div class="ttc" id="aglobals_8h_html_ae4d5251432e1a9e6803c0240cc492e18ae19e65fbfa375ed84b5cbab18d88f9a9"><div class="ttname"><a href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18ae19e65fbfa375ed84b5cbab18d88f9a9">split_bot_mark_code</a></div><div class="ttdeci">@ split_bot_mark_code</div><div class="ttdoc">the last mark found by \vsplit</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00362">globals.h:362</a></div></div>
+<div class="ttc" id="aglobals_8h_html_ae4d5251432e1a9e6803c0240cc492e18a8687ec376e8ea620c89a8d7fd3929584"><div class="ttname"><a href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a8687ec376e8ea620c89a8d7fd3929584">bot_mark_code</a></div><div class="ttdeci">@ bot_mark_code</div><div class="ttdoc">the mark in effect at the current page break</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00355">globals.h:355</a></div></div>
+<div class="ttc" id="aglobals_8h_html_ae4d5251432e1a9e6803c0240cc492e18ae19e65fbfa375ed84b5cbab18d88f9a9"><div class="ttname"><a href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18ae19e65fbfa375ed84b5cbab18d88f9a9">split_bot_mark_code</a></div><div class="ttdeci">@ split_bot_mark_code</div><div class="ttdoc">the last mark found by \vsplit</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00357">globals.h:357</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a8956fe7aa7f1bb741883573e65cfeefc"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a8956fe7aa7f1bb741883573e65cfeefc">math_node</a></div><div class="ttdeci">@ math_node</div><div class="ttdoc">type of a math node</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00164">globals.h:164</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a4843d30c07f93e78341777a80da30eb5"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a4843d30c07f93e78341777a80da30eb5">rule_node</a></div><div class="ttdeci">@ rule_node</div><div class="ttdoc">type of rule nodes</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00157">globals.h:157</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a0182ef5296529d5fafe8d6e0e2812ba8"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a0182ef5296529d5fafe8d6e0e2812ba8">style_node</a></div><div class="ttdeci">@ style_node</div><div class="ttdoc">type of a style node</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00169">globals.h:169</a></div></div>
@@ -7172,8 +6992,8 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310af6714aca7228145b009fed9e5dad1587"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310af6714aca7228145b009fed9e5dad1587">over_noad</a></div><div class="ttdeci">@ over_noad</div><div class="ttdoc">type of a noad for overlining</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00182">globals.h:182</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310af6b4d8d8351410f64abfca85c1954049"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310af6b4d8d8351410f64abfca85c1954049">kern_node</a></div><div class="ttdeci">@ kern_node</div><div class="ttdoc">type of a kern node</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00166">globals.h:166</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a87cfcdafee301d8adfa3c1fe21ad47fa"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a87cfcdafee301d8adfa3c1fe21ad47fa">open_noad</a></div><div class="ttdeci">@ open_noad</div><div class="ttdoc">type of a noad classified Ope</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00175">globals.h:175</a></div></div>
-<div class="ttc" id="aglobals_8h_html_ae4d5251432e1a9e6803c0240cc492e18a9f1ff55a0d46b9fab6c2387eba4ebe54"><div class="ttname"><a href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a9f1ff55a0d46b9fab6c2387eba4ebe54">top_mark_code</a></div><div class="ttdeci">@ top_mark_code</div><div class="ttdoc">the mark in effect at the previous page break</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00358">globals.h:358</a></div></div>
-<div class="ttc" id="aglobals_8h_html_ae4d5251432e1a9e6803c0240cc492e18a63fa39e9692262113c0769492b40f27a"><div class="ttname"><a href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a63fa39e9692262113c0769492b40f27a">split_first_mark_code</a></div><div class="ttdeci">@ split_first_mark_code</div><div class="ttdoc">the first mark found by \vsplit</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00361">globals.h:361</a></div></div>
+<div class="ttc" id="aglobals_8h_html_ae4d5251432e1a9e6803c0240cc492e18a9f1ff55a0d46b9fab6c2387eba4ebe54"><div class="ttname"><a href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a9f1ff55a0d46b9fab6c2387eba4ebe54">top_mark_code</a></div><div class="ttdeci">@ top_mark_code</div><div class="ttdoc">the mark in effect at the previous page break</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00353">globals.h:353</a></div></div>
+<div class="ttc" id="aglobals_8h_html_ae4d5251432e1a9e6803c0240cc492e18a63fa39e9692262113c0769492b40f27a"><div class="ttname"><a href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a63fa39e9692262113c0769492b40f27a">split_first_mark_code</a></div><div class="ttdeci">@ split_first_mark_code</div><div class="ttdoc">the first mark found by \vsplit</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00356">globals.h:356</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a9b488cebbe7158d1c1ed6b55fff4bd43"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a9b488cebbe7158d1c1ed6b55fff4bd43">accent_noad</a></div><div class="ttdeci">@ accent_noad</div><div class="ttdoc">type of a noad for accented subformulas</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00183">globals.h:183</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a22bfb25cb5fda3e66ee34f8ede6475a6"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a22bfb25cb5fda3e66ee34f8ede6475a6">hlist_node</a></div><div class="ttdeci">@ hlist_node</div><div class="ttdoc">type of hlist nodes</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00155">globals.h:155</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a092379389531beaac7c51274096e8c07"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a092379389531beaac7c51274096e8c07">inner_noad</a></div><div class="ttdeci">@ inner_noad</div><div class="ttdoc">type of a noad classified Inn</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00178">globals.h:178</a></div></div>
@@ -7190,7 +7010,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a0066025c72cf92faab892b6c68480c5f"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a0066025c72cf92faab892b6c68480c5f">punct_noad</a></div><div class="ttdeci">@ punct_noad</div><div class="ttdoc">type of a noad classified Pun</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00177">globals.h:177</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310ac6d0c0a5e5a588c17fdb92b5ec8a003d"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310ac6d0c0a5e5a588c17fdb92b5ec8a003d">rel_noad</a></div><div class="ttdeci">@ rel_noad</div><div class="ttdoc">type of a noad classified Rel</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00174">globals.h:174</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a26e62d150a8829503babb8d7f5cba925"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a26e62d150a8829503babb8d7f5cba925">unset_node</a></div><div class="ttdeci">@ unset_node</div><div class="ttdoc">type for an unset node</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00168">globals.h:168</a></div></div>
-<div class="ttc" id="aglobals_8h_html_ae4d5251432e1a9e6803c0240cc492e18a11f7ed9a259520329ec39a276a13af7a"><div class="ttname"><a href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a11f7ed9a259520329ec39a276a13af7a">first_mark_code</a></div><div class="ttdeci">@ first_mark_code</div><div class="ttdoc">the first mark between top_mark and bot_mark</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00359">globals.h:359</a></div></div>
+<div class="ttc" id="aglobals_8h_html_ae4d5251432e1a9e6803c0240cc492e18a11f7ed9a259520329ec39a276a13af7a"><div class="ttname"><a href="globals_8h.html#ae4d5251432e1a9e6803c0240cc492e18a11f7ed9a259520329ec39a276a13af7a">first_mark_code</a></div><div class="ttdeci">@ first_mark_code</div><div class="ttdoc">the first mark between top_mark and bot_mark</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00354">globals.h:354</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310aa9049a231e3c0cd3c4773c3dbb0a6eda"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310aa9049a231e3c0cd3c4773c3dbb0a6eda">under_noad</a></div><div class="ttdeci">@ under_noad</div><div class="ttdoc">type of a noad for underlining</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00181">globals.h:181</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310ace22c9289d0cf46e2cf4d33c7182bd38"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310ace22c9289d0cf46e2cf4d33c7182bd38">ins_node</a></div><div class="ttdeci">@ ins_node</div><div class="ttdoc">type of insertion nodes</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00158">globals.h:158</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a94798fdadfbf49a7c658ace669a1d310a728b33856663972f27ca0021405a521d"><div class="ttname"><a href="globals_8h.html#a94798fdadfbf49a7c658ace669a1d310a728b33856663972f27ca0021405a521d">op_noad</a></div><div class="ttdeci">@ op_noad</div><div class="ttdoc">type of a noad classified Op</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00172">globals.h:172</a></div></div>

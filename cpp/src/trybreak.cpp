@@ -3,6 +3,7 @@
 #include "noeud.h"
 #include "badness.h"
 #include "police.h"
+#include "equivalent.h"
 
 static void copy_to_cur_active(void) 
 {
@@ -274,10 +275,10 @@ void trybreak(int pi, smallnumber breaktype)
 				if (l > lastspecialline)
 					linewidth = secondwidth;
 				else 
-					if (par_shape_ptr() == 0)
+					if (par_shape_ptr() == nullptr)
 						linewidth = firstwidth;
 					else
-						linewidth = mem[par_shape_ptr()+2*l].int_;
+						linewidth = par_shape_ptr()->values[2*l-1];
 			}
 		}
 		auto artificialdemerits = false;

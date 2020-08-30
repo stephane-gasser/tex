@@ -49,7 +49,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 	switch (t.cmd)
 	{
 		case set_font:
-			define(a, cur_font_loc, data, t.chr);
+			define(a, &eqtb_local[cur_font_loc-local_base], data, t.chr);
 			break;
 		case def:
 		{
@@ -59,7 +59,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			Token tk;
 			tk.cs = p;
 			q = scantoks(true, t.chr >= 2, tk);
-			define(a, p, call+a%4, defref->num); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
+			define(a, &eqtb_cs[p-hash_base], call+a%4, defref->num); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		}
 		case let:
@@ -84,36 +84,36 @@ void prefixedcommand(Token t, bool setboxallowed)
 			}
 			if (t.cmd >= call)
 				info(t.chr)++;
-			define(a, p, t.cmd, t.chr);
+			define(a, &eqtb_cs[p-hash_base], t.cmd, t.chr);
 			break;
 		}
 		case shorthand_def:
 		{
 			auto p = getrtoken();
-			define(a, p, relax, 256);
+			define(a, &eqtb_cs[p-hash_base], relax, 256);
 			scanoptionalequals();
 			switch (t.chr)
 			{
 				case 0:
-					define(a, p, char_given, scancharnum());
+					define(a, &eqtb_cs[p-hash_base], char_given, scancharnum());
 					break;
 				case 1:
-					define(a, p, math_given, scanfifteenbitint());
+					define(a, &eqtb_cs[p-hash_base], math_given, scanfifteenbitint());
 					break;
 				case 2: 
-					define(a, p, assign_int, count_base+scaneightbitint());
+					define(a, &eqtb_cs[p-hash_base], assign_int, count_base+scaneightbitint());
 					break;
 				case 3: 
-					define(a, p, assign_dimen, scaled_base+scaneightbitint());
+					define(a, &eqtb_cs[p-hash_base], assign_dimen, scaled_base+scaneightbitint());
 					break;
 				case 4: 
-					define(a, p, assign_glue, skip_base+scaneightbitint());
+					define(a, &eqtb_cs[p-hash_base], assign_glue, skip_base+scaneightbitint());
 					break;
 				case 5: 
-					define(a, p, assign_mu_glue, mu_skip_base+scaneightbitint());
+					define(a, &eqtb_cs[p-hash_base], assign_mu_glue, mu_skip_base+scaneightbitint());
 					break;
 				case 6: 
-					define(a, p, assign_toks, toks_base+scaneightbitint());
+					define(a, &eqtb_cs[p-hash_base], assign_toks, toks_base+scaneightbitint());
 			}
 			break;
 		}
@@ -123,7 +123,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			if (!scankeyword("to")) 
 				error("Missing `to' inserted", "You should have said `\\read<number> to \\cs'.\nI'm going to look for the \\cs now.");
 			auto p = getrtoken();
-			define(a, p, call, readtoks(n, p)->num);
+			define(a, &eqtb_cs[p-hash_base], call, readtoks(n, p)->num);
 			break;
 		}
 		case toks_register:
@@ -142,13 +142,13 @@ void prefixedcommand(Token t, bool setboxallowed)
 				}
 				if (t.cmd == assign_toks)
 				{
-					q->num = equiv(t.chr);
+					q = dynamic_cast<TokenNode*>(eqtb_local[t.chr-local_base].index);
 					if (q == nullptr)
-						define(a, p, undefined_cs, 0);
+						define(a, &eqtb_local[p-local_base], undefined_cs, 0);
 					else
 					{
-						add_token_ref(q->num);
-						define(a, p, call, q->num);
+						q->token_ref_count++;
+						define(a, &eqtb_local[p-local_base], call, q->num);
 					}
 					break;
 				}
@@ -159,7 +159,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			q = scantoks(false, false, tk);
 			if (defref->link == nullptr)
 			{
-				define(a, p, undefined_cs, 0);
+				define(a, &eqtb_local[p-local_base], undefined_cs, 0);
 				delete defref;
 			}
 			else
@@ -172,7 +172,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 					q->link = defref->link;
 					defref->link = q;
 				}
-				define(a, p, call, defref->num);
+				define(a, &eqtb_local[p-local_base], call, defref->num);
 			}
 			break;
 		}
@@ -180,14 +180,14 @@ void prefixedcommand(Token t, bool setboxallowed)
 		{
 			auto p = t.chr;
 			scanoptionalequals();
-			word_define(a, p, scanint());
+			word_define(a, &eqtb_int[p-int_base], scanint());
 			break;
 		}
 		case assign_dimen:
 		{
 			auto p = t.chr;
 			scanoptionalequals();
-			word_define(a, p, scandimen(false, false, false));
+			word_define(a, &eqtb_dimen[p-dimen_base], scandimen(false, false, false));
 			break;
 		}
 		case assign_glue:
@@ -196,17 +196,8 @@ void prefixedcommand(Token t, bool setboxallowed)
 			auto p = t.chr;
 			n = t.cmd;
 			scanoptionalequals();
-			if (n == assign_mu_glue)
-			{
-				auto g = trapzeroglue(scanglue(mu_val));
-				val = g->num;
-			}
-			else
-			{
-				auto g = trapzeroglue(scanglue(glue_val));
-				val = g->num;
-			}
-			define(a, p, glue_ref, val);
+			auto g = trapzeroglue(scanglue(n == assign_mu_glue ? mu_val : glue_val));
+			define(a, &eqtb_glue[p-glue_base], glue_ref, g->num);
 			break;
 		}
 		case def_code:
@@ -237,19 +228,19 @@ void prefixedcommand(Token t, bool setboxallowed)
 				val = 0;
 			}
 			if (p < math_code_base)
-				define(a, p, data, val);
+				define(a, &eqtb_local[p-local_base], data, val);
 			else 
 				if (p < del_code_base)
-					define(a, p, data, val);
+					define(a, &eqtb_local[p-local_base], data, val);
 				else 
-					word_define(a, p, val);
+					word_define(a, &eqtb_int[p-int_base], val);
 			break;
 		}
 		case def_family:
 		{	
 			auto p = t.chr+scanfourbitint();
 			scanoptionalequals();
-			define(a, p, data, scanfontident());
+			define(a, &eqtb_local[p-local_base], data, scanfontident());
 			break;
 		}
 		case register_:
@@ -296,7 +287,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 				for (int j = 0; j < 2*n; j++)
 					p->values.push_back(scan_normal_dimen());
 			}
-			define(a, par_shape_loc, shape_ref, p->num);
+			define(a, &eqtb_local[par_shape_loc-local_base], shape_ref, p->num);
 			break;
 		}
 		case hyph_data:

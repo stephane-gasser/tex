@@ -1,18 +1,20 @@
 <map id="postlinebreak" name="postlinebreak">
-<area shape="rect" id="node1" title=" " alt="" coords="5,360,104,387"/>
-<area shape="rect" id="node2" href="$noeud_8cpp.html#a7018c33b1ef8cb50dd66430b241ccb32" title="When a box is being appended to the current vertical list, the baselineskip calculation is handled by..." alt="" coords="164,5,263,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,411,104,437"/>
+<area shape="rect" id="node2" href="$noeud_8cpp.html#ac2981d7f0dc5e86bd0f58cf6e1cb4b95" title="When a box is being appended to the current vertical list, the baselineskip calculation is handled by..." alt="" coords="164,5,263,32"/>
 <area shape="rect" id="node3" href="$constantes_8cpp.html#a098afd72061033385d2dbfa0419c6314" title="pointer to the corresponding passive node" alt="" coords="169,56,258,83"/>
 <area shape="rect" id="node4" href="$postlinebreak_8cpp.html#a84928da97329ba274b7460bbcd2166c6" title=" " alt="" coords="158,107,269,133"/>
 <area shape="rect" id="node5" href="$postlinebreak_8cpp.html#a3b5a79955359c07cdbd76dc5f3736aba" title=" " alt="" coords="166,157,261,184"/>
 <area shape="rect" id="node6" href="$erreur_8cpp.html#ac5ea395839fed78d642282ef1e945ada" title=" " alt="" coords="174,208,253,235"/>
 <area shape="rect" id="node7" href="$deleteglueref_8cpp.html#a0e9fe66112a2a6fa95a1570e7ca6082d" title=" " alt="" coords="165,259,261,285"/>
 <area shape="rect" id="node8" href="$noeud_8cpp.html#a82091fa45f60c083502da6514a00763b" title=" " alt="" coords="166,309,261,336"/>
-<area shape="rect" id="node9" href="$boite_8cpp.html#a7e3dbecf17681bd6e942256d9d996608" title=" " alt="" coords="185,411,242,437"/>
-<area shape="rect" id="node10" href="$classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347" title=" " alt="" coords="323,385,484,412"/>
-<area shape="rect" id="node11" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="377,436,430,463"/>
-<area shape="rect" id="node12" href="$postlinebreak_8cpp.html#a7616503daa38a227c6bc27d355c0d51a" title=" " alt="" coords="152,512,275,539"/>
-<area shape="rect" id="node13" href="$constantes_8cpp.html#acd8e2010495121e1bcaa7765b0cacdfc" title=" " alt="" coords="161,563,265,589"/>
-<area shape="rect" id="node14" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="179,613,247,640"/>
-<area shape="rect" id="node15" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="169,664,257,691"/>
-<area shape="rect" id="node16" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="190,715,237,741"/>
+<area shape="rect" id="node9" href="$noeud_8cpp.html#a668e7388c639dce1c3bf5bb8b2cf0f2f" title=" " alt="" coords="325,373,482,400"/>
+<area shape="rect" id="node10" href="$boite_8cpp.html#a7e3dbecf17681bd6e942256d9d996608" title=" " alt="" coords="185,461,242,488"/>
+<area shape="rect" id="node11" href="$classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347" title=" " alt="" coords="323,436,484,463"/>
+<area shape="rect" id="node12" href="$noeud_8h.html#a72a773ad8412c27b0af75456a83cdd78" title=" " alt="" coords="380,563,427,589"/>
+<area shape="rect" id="node13" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="377,487,430,513"/>
+<area shape="rect" id="node14" href="$postlinebreak_8cpp.html#a7616503daa38a227c6bc27d355c0d51a" title=" " alt="" coords="152,613,275,640"/>
+<area shape="rect" id="node15" href="$equivalent_8cpp.html#acd8e2010495121e1bcaa7765b0cacdfc" title=" " alt="" coords="161,664,265,691"/>
+<area shape="rect" id="node16" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="179,715,247,741"/>
+<area shape="rect" id="node17" href="$constantes_8cpp.html#a03959739100366e5d4472f0c0264bd42" title=" " alt="" coords="169,563,257,589"/>
+<area shape="rect" id="node18" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="190,816,237,843"/>
 </map>

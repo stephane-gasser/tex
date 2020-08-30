@@ -11,6 +11,7 @@
 #include "noeud.h"
 #include "texte.h"
 #include "boite.h"
+#include "equivalent.h"
 
 //! Append contributions to the current page.
 void buildpage(void)

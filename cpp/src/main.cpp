@@ -12,6 +12,7 @@
 #include "maincontrol.h"
 #include "finalcleanup.h"
 #include "dvi.h"
+#include "equivalent.h"
 #include <iostream>
 
 int main()

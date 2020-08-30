@@ -2,6 +2,7 @@
 #include "impression.h" 
 #include "erreur.h"
 #include "jumpout.h"
+#include "equivalent.h"
 #include "makestring.h"
 #include "packjobname.h"
 #include "promptfilename.h"
@@ -16,6 +17,7 @@ constexpr char format_extension[] = ".fmt"; //!< the extension, as a WEB constan
 
 static void dump_hh(twohalves num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
 static void dump_wd(memoryword num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
+static void dump_wd(MemoryNode num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
 static void dump_qqqq(fourquarters num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
 static void dump_int(std::uint32_t num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
 static int& tracing_stats(void) { return int_par(tracing_stats_code); }
@@ -113,7 +115,7 @@ void storefmtfile(void)
 	{
 		bool found1 = false;
 		for (j = k; j < int_base-1; j++)
-			if (equiv(j) == equiv(j+1) && eq_type(j) == eq_type(j+1) && eq_level(j) == eq_level(j+1))
+			if (eqtb[j] == eqtb[j+1])
 			{
 				found1 = true;
 				break;
@@ -123,7 +125,7 @@ void storefmtfile(void)
 			j++;
 			l = j;
 			for (;j < int_base-1; j++)
-				if (equiv(j) != equiv(j+1) || eq_type(j) != eq_type(j+1) || eq_level(j) != eq_level(j+1))
+				if (eqtb[j] != eqtb[j+1])
 					break;
 		}
 		else

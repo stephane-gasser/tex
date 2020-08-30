@@ -343,51 +343,51 @@ enum levels
 enum memory
 {
 	active_base = 1, //!< beginning of region 1, for active character equivalents
-	single_base = active_base+256, //!< equivalents of one-character control sequences
-		null_cs = single_base+256, //!< equivalent of \\csname\\endcsname
+		single_base = active_base+256, //!< equivalents of one-character control sequences
+			null_cs = single_base+256, //!< equivalent of \\csname\\endcsname
 	hash_base = null_cs+1, //!< beginning of region 2, for the hash table
-		frozen_control_sequence = hash_base+hash_size, //!< for error recovery
-		frozen_protection = frozen_control_sequence, //!< inaccessible but definable
-		frozen_cr = frozen_control_sequence+1, //!< permanent `\\cr'
-		frozen_end_group = frozen_control_sequence+2, //!< permanent `\\endgroup'
-		frozen_right = frozen_control_sequence+3, //!< permanent `\\right'
-		frozen_fi = frozen_control_sequence+4, //!< permanent `\\fi'
-		frozen_end_template = frozen_control_sequence+5, //!< permanent `\\endtemplate'
-		frozen_endv = frozen_control_sequence+6, //!< second permanent `\\endtemplate'
-		frozen_relax = frozen_control_sequence+7, //!< permanent `\\relax'
-		end_write = frozen_control_sequence+8, //!< permanent `\\endwrite'
-		frozen_dont_expand = frozen_control_sequence+9,
-		frozen_null_font = frozen_control_sequence+10,
-	font_id_base = frozen_null_font-font_base,
-		undefined_control_sequence = frozen_null_font+257, //!< dummy location
+			frozen_control_sequence = hash_base+hash_size, //!< for error recovery
+			frozen_protection = frozen_control_sequence, //!< inaccessible but definable
+			frozen_cr = frozen_control_sequence+1, //!< permanent `\\cr'
+			frozen_end_group = frozen_control_sequence+2, //!< permanent `\\endgroup'
+			frozen_right = frozen_control_sequence+3, //!< permanent `\\right'
+			frozen_fi = frozen_control_sequence+4, //!< permanent `\\fi'
+			frozen_end_template = frozen_control_sequence+5, //!< permanent `\\endtemplate'
+			frozen_endv = frozen_control_sequence+6, //!< second permanent `\\endtemplate'
+			frozen_relax = frozen_control_sequence+7, //!< permanent `\\relax'
+			end_write = frozen_control_sequence+8, //!< permanent `\\endwrite'
+			frozen_dont_expand = frozen_control_sequence+9,
+			frozen_null_font = frozen_control_sequence+10,
+		font_id_base = frozen_null_font-font_base,
+			undefined_control_sequence = frozen_null_font+257, //!< dummy location
 	glue_base = undefined_control_sequence+1, //!< beginning of region 3
-	skip_base = glue_base+glue_pars, //!< table of 256 ``skip'' registers
-	mu_skip_base = skip_base+256, //!< table of 256 ``muskip'' registers
+		skip_base = glue_base+glue_pars, //!< table of 256 ``skip'' registers
+		mu_skip_base = skip_base+256, //!< table of 256 ``muskip'' registers
 	local_base = mu_skip_base+256, //!< beginning of region 4
-		par_shape_loc = local_base, //!< specifies paragraph shape
-		output_routine_loc = local_base+1, //!< points to token list for \\output
-		every_par_loc = local_base+2, //!< points to token list for \\everypar
-		every_math_loc = local_base+3, //!< points to token list for \\everymath
-		every_display_loc = local_base+4, //!< points to token list for \\everydisplay
-		every_hbox_loc = local_base+5, //!< points to token list for \\everyhbox
-		every_vbox_loc = local_base+6, //!< points to token list for \\everyvbox
-		every_job_loc = local_base+7, //!< points to token list for \\everyjob
-		every_cr_loc = local_base+8, //!< points to token list for \\everycr
-		err_help_loc = local_base+9, //!< points to token list for \\errhelp
-	toks_base = local_base+10, //!< table of 256 token list registers
-	box_base = toks_base+256, //!< table of 256 box registers
-		cur_font_loc = box_base+256, //!< internal font number outside math mode
-	math_font_base = cur_font_loc+1, //!< table of 48 math font numbers
-	cat_code_base = math_font_base+48,
-	lc_code_base = cat_code_base+256, //!< table of 256 lowercase mappings
-	uc_code_base = lc_code_base+256, //!< table of 256 uppercase mappings
-	sf_code_base = uc_code_base+256, //!< table of 256 spacefactor mappings
-	math_code_base = sf_code_base+256, //!< table of 256 math mode mappings
+			par_shape_loc = local_base, //!< specifies paragraph shape
+			output_routine_loc = local_base+1, //!< points to token list for \\output
+			every_par_loc = local_base+2, //!< points to token list for \\everypar
+			every_math_loc = local_base+3, //!< points to token list for \\everymath
+			every_display_loc = local_base+4, //!< points to token list for \\everydisplay
+			every_hbox_loc = local_base+5, //!< points to token list for \\everyhbox
+			every_vbox_loc = local_base+6, //!< points to token list for \\everyvbox
+			every_job_loc = local_base+7, //!< points to token list for \\everyjob
+			every_cr_loc = local_base+8, //!< points to token list for \\everycr
+			err_help_loc = local_base+9, //!< points to token list for \\errhelp
+		toks_base = local_base+10, //!< table of 256 token list registers
+		box_base = toks_base+256, //!< table of 256 box registers
+			cur_font_loc = box_base+256, //!< internal font number outside math mode
+		math_font_base = cur_font_loc+1, //!< table of 48 math font numbers
+		cat_code_base = math_font_base+48,
+		lc_code_base = cat_code_base+256, //!< table of 256 lowercase mappings
+		uc_code_base = lc_code_base+256, //!< table of 256 uppercase mappings
+		sf_code_base = uc_code_base+256, //!< table of 256 spacefactor mappings
+		math_code_base = sf_code_base+256, //!< table of 256 math mode mappings
 	int_base = math_code_base+256, //!< beginning of region 5
-	count_base = int_base+int_pars, //!< 256 user \\count registers
-	del_code_base = count_base+256, //!< 256 delimiter code mappings
+		count_base = int_base+int_pars, //!< 256 user \\count registers
+		del_code_base = count_base+256, //!< 256 delimiter code mappings
 	dimen_base = del_code_base+256, //!< beginning of region 6
-	scaled_base = dimen_base+dimen_pars,
+		scaled_base = dimen_base+dimen_pars,
 	eqtb_size = scaled_base+255 //!< largest subscript of \a eqtb
 };
 
@@ -714,20 +714,10 @@ int& glue_stretch(halfword); //!< total stretch in an unset node
 int& glue_shrink(halfword); //!< total shrink in an unset node
 quarterword& span_count(halfword); //!< indicates the number of spanned columns
 halfword& token_ref_count(halfword); //!< reference count preceding a token list
-quarterword& eq_level(halfword);
-quarterword& eq_type(halfword); //!< command code for equivalent
-halfword& equiv(halfword); //!< equivalent value
 //halfword& skip(halfword); //!< \a mem location of glue specification
-halfword& par_shape_ptr(void); 
-halfword& err_help(void);
+//halfword& par_shape_ptr(void); 
+int& err_help(void);
 //halfword& box(halfword); 
-halfword& cat_code(halfword);
-halfword& lc_code(halfword p);
-halfword& sf_code(halfword p);
-halfword& math_code(halfword p);
-int& del_code(halfword p);
-int& count(halfword p);
-int& dimen(halfword);
 halfword& text(halfword); //!< string number for control sequence name
 quarterword& save_type(halfword); //!< classifies a \a save_stack entry
 quarterword& save_level(halfword);
@@ -738,17 +728,17 @@ int& if_line_field(halfword);
 void append_to_name(int&, char); 
 //int& location(halfword); //!< DVI byte number for a movement command
 float vet_glue(float);
-halfword nucleus(halfword); //!< the \a nucleus field of a noad
-halfword supscr(halfword); //!< the \a supscr field of a noad
-halfword subscr(halfword); //!< the \a subscr field of a noad
-halfword& math_type(halfword); //!< a \a halfword in \a mem
-quarterword& fam(halfword); //!< a \a quarterword in \a mem
-halfword left_delimiter(halfword); //!< first delimiter field of a noad
-halfword right_delimiter(halfword); //!< second delimiter field of a fraction noad
-quarterword& small_fam(halfword); //!< \a fam for ``small'' delimiter
-quarterword& small_char(halfword); //!< \a character for ``small'' delimiter
-quarterword& large_fam(halfword); //!< \a fam for ``large'' delimiter
-quarterword& large_char(halfword); //!< \a character for ``large'' delimiter
+//halfword nucleus(halfword); //!< the \a nucleus field of a noad
+//halfword supscr(halfword); //!< the \a supscr field of a noad
+//halfword subscr(halfword); //!< the \a subscr field of a noad
+//halfword& math_type(halfword); //!< a \a halfword in \a mem
+//quarterword& fam(halfword); //!< a \a quarterword in \a mem
+//halfword left_delimiter(halfword); //!< first delimiter field of a noad
+//halfword right_delimiter(halfword); //!< second delimiter field of a fraction noad
+//quarterword& small_fam(halfword); //!< \a fam for ``small'' delimiter
+//quarterword& small_char(halfword); //!< \a character for ``small'' delimiter
+//quarterword& large_fam(halfword); //!< \a fam for ``large'' delimiter
+//quarterword& large_char(halfword); //!< \a character for ``large'' delimiter
 //int& thickness(halfword); //!< \a thickness field in a fraction noad
 //halfword numerator(halfword); //!< \a numerator field in a fraction noad
 //halfword denominator(halfword); //!< \a denominator field in a fraction noad
@@ -812,6 +802,6 @@ inline bool end_line_char_inactive() { return end_line_char() < 0 || end_line_ch
 inline int cramped_style(int c) { return 2*(c/2)+cramped; } //!< cramp the style
 inline int sub_style(int c) { return 2*(c/4)+script_style+cramped; } //!< smaller and cramped
 inline int sup_style(int c) { return 2*(c/4)+script_style+c%2; } //!< smaller
-inline void add_token_ref(halfword p) { token_ref_count(p)++; } //!< new reference to a token list
+//inline void add_token_ref(halfword p) { token_ref_count(p)++; } //!< new reference to a token list
 
 #endif

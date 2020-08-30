@@ -19,8 +19,8 @@ void begininsertoradjust(Token t)
 			val = 0;
 		}
 	}
-	memoryword m;
-	m.int_ = val;
+	auto m = new MemoryNode;
+	m->int_ = val;
 	savestack.push_back(m);
 	newsavelevel(insert_group);
 	t = scanleftbrace();

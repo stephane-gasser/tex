@@ -13,6 +13,7 @@
 #include "noeud.h"
 #include "runaway.h"
 #include "police.h"
+#include "equivalent.h" 
 
 [[nodiscard]] static Token checkoutervalidity(Token t)
 {
@@ -207,15 +208,15 @@ static void removeFromEnd(int &k, int d)
 										loc++;
 									}
 								}
-								t.cmd = eq_type(t.cs);
-								t.chr = equiv(t.cs);
+								t.cmd = eqtb[t.cs].type;
+								t.chr = eqtb[t.cs].int_;
 								if (t.cmd >= outer_call)
 									t = checkoutervalidity(t);
 								break;
 							case ANY_STATE_PLUS(active_char):
-								t.cs = t.chr+1;
-								t.cmd = eq_type(t.cs);
-								t.chr = equiv(t.cs);
+								t.cs = t.chr+active_base;
+								t.cmd = eqtb_active[t.cs-active_base].type;
+								t.chr = eqtb_active[t.cs-active_base].int_;
 								state = mid_line;
 								if (t.cmd >= outer_call)
 									t = checkoutervalidity(t);
@@ -250,8 +251,8 @@ static void removeFromEnd(int &k, int d)
 							case new_line+car_ret:
 								loc = limit+1;
 								t.cs = parloc;
-								t.cmd = eq_type(t.cs);
-								t.chr = equiv(t.cs);
+								t.cmd = eqtb[t.cs].type;
+								t.chr = eqtb[t.cs].int_;
 								if (t.cmd >= outer_call)
 									t = checkoutervalidity(t);
 								break;
@@ -357,15 +358,15 @@ static void removeFromEnd(int &k, int d)
 				if (tt >= cs_token_flag)
 				{
 					t.cs = tt-cs_token_flag;
-					t.cmd = eq_type(t.cs);
-					t.chr = equiv(t.cs);
+					t.cmd = eqtb[t.cs].type;
+					t.chr = eqtb[t.cs].int_;
 					if (t.cmd >= outer_call)
 						if (t.cmd == dont_expand)
 						{
 							t.cs = Loc->token-cs_token_flag;
 							Loc = nullptr;
-							t.cmd = eq_type(t.cs);
-							t.chr = equiv(t.cs);
+							t.cmd = eqtb[t.cs].type;
+							t.chr = eqtb[t.cs].int_;
 							if (t.cmd > max_command)
 							{
 								t.cmd = relax;

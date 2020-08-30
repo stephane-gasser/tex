@@ -62,7 +62,7 @@ void handlerightbrace(Token t, halfword &loop)
 			d = split_max_depth();
 			f = floating_penalty();
 			unsave();
-			auto s0 = savestack.back().int_;
+			auto s0 = savestack.back()->int_;
 			savestack.pop_back();
 			p = vpack(head->link, 0, additional);
 			popnest();
@@ -138,9 +138,9 @@ void handlerightbrace(Token t, halfword &loop)
 		{
 			endgraf();
 			unsave();
-			auto s1 = savestack.back().int_; //scaled
+			auto s1 = savestack.back()->int_; //scaled
 			savestack.pop_back();
-			auto s0 = savestack.back().int_; //smallnumber
+			auto s0 = savestack.back()->int_; //smallnumber
 			savestack.pop_back();
 			p = vpack(head->link, s1, s0);
 			popnest();
@@ -157,7 +157,7 @@ void handlerightbrace(Token t, halfword &loop)
 		case math_group:
 		{
 			unsave();
-			auto s0 = savestack.back().int_; //NoadContent
+			auto s0 = savestack.back()->int_; //NoadContent
 			savestack.pop_back();
 			NoadContent n;
 			n.num = s0;

@@ -12,7 +12,7 @@
 #include "vlistout.h"
 #include "hlistout.h"
 #include <iostream>
-#include "texte.h"
+#include "equivalent.h"
 
 static int h_offset(void) { return dimen_par(h_offset_code); }
 static int v_offset(void) { return dimen_par(v_offset_code); }

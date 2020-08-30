@@ -4,15 +4,10 @@
 #include "deleteglueref.h"
 #include "noeud.h"
 
-static quarterword eq_type_field(memoryword w) { return w.hh.b0; }
-static halfword equiv_field(memoryword w) { return w.hh.rh; }
-
-void eqdestroy(memoryword w)
+void eqdestroy(MemoryNode *w)
 {
-	halfword q = equiv_field(w);
-	AnyNode *Q;
-	Q->num = q;
-	switch (eq_type_field(w))
+	auto Q = w->index;
+	switch (w->type)
 	{
 		case call:
 		case long_call:
@@ -31,41 +26,59 @@ void eqdestroy(memoryword w)
 			flushnodelist(dynamic_cast<BoxNode*>(Q));
 	}
 }
-void define(int a, halfword p, quarterword t, halfword e) { (a >= 4 ? geqdefine : eqdefine)(p, t, e); }
-void word_define(int a, halfword p, int w) { (a >= 4 ? geqworddefine : eqworddefine)(p, w); }
+void define(int a, MemoryNode *p, quarterword t, halfword e) { (a >= 4 ? geqdefine : eqdefine)(p, t, e); }
 
-void eqdefine(halfword p, quarterword t, halfword e)
+void eqdefine(MemoryNode *p, quarterword t, halfword e)
 {
-	if (eq_level(p) == curlevel)
-		eqdestroy(eqtb[p]);
+	if (p->level == curlevel)
+		eqdestroy(p);
 	else 
 		if (curlevel > 1)
-			eqsave(p, eq_level(p));
-	eq_level(p) = curlevel;
-	eq_type(p) = t;
-	equiv(p) = e;
+			eqsave(p, p->level);
+	p->level = curlevel;
+	p->type = t;
+	p->index->num = e;
 }
 
-void geqdefine(halfword p, quarterword t, halfword e)
+void geqdefine(MemoryNode *p, quarterword t, halfword e)
 {
-	eqdestroy(eqtb[p]);
-	subtype(p) = 1;
-	type(p) = t;
-	equiv(p) = e;
+	eqdestroy(p);
+	p->level = 1;
+	p->type = t;
+	p->index->num = e;
 }
 
-void eqworddefine(halfword p, int w)
+void word_define(int a, MemoryNode *p, int w) { (a >= 4 ? geqworddefine : eqworddefine)(p, w); }
+
+void eqworddefine(MemoryNode *p, int w)
 {
-	if (xeqlevel[p] != curlevel)
+	if (p->/*xeq*/level != curlevel)
 	{
-		eqsave(p, xeqlevel[p]);
-		xeqlevel[p] = curlevel;
+		eqsave(p, p->/*xeq*/level);
+		p->/*xeq*/level = curlevel;
 	}
-	eqtb[p].int_ = w;
+	p->int_ = w;
 }
 
-void geqworddefine(halfword p, int w)
+void geqworddefine(MemoryNode *p, int w)
 {
-	eqtb[p].int_ = w;
-	xeqlevel[p] = 1;
+	p->int_ = w;
+	p->/*xeq*/level = 1;
 }
+
+int& count(halfword p) { return eqtb_int[p+count_base-int_base].int_; }
+int& dimen(halfword p) { return eqtb_dimen[p+scaled_base-dimen_base].int_; }
+int& del_code(halfword p) { return eqtb_int[p+del_code_base-int_base].int_; }
+int& cat_code(halfword p) { return eqtb_local[p+cat_code_base-local_base].int_; }
+ShapeNode* par_shape_ptr(void) { return dynamic_cast<ShapeNode*>(eqtb_local[par_shape_loc-local_base].index); }
+TokenNode* every_math(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_math_loc-local_base].index); }
+TokenNode* every_cr(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_cr_loc-local_base].index); } //!< points to token list for \\everyvbox
+TokenNode* every_vbox(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_vbox_loc-local_base].index); } //!< points to token list for \\everyvbox
+int& err_help(void) { return eqtb_local[err_help_loc-local_base].int_; }
+int& lc_code(halfword p) { return eqtb_local[p+lc_code_base-local_base].int_; }
+int& sf_code(halfword p) { return eqtb_local[p+sf_code_base-local_base].int_; }
+int& math_code(halfword p) { return eqtb_local[p+math_code_base-local_base].int_; }
+int& int_par(halfword p) { return eqtb_int[p].int_; }
+GlueSpec* glue_par(halfword p) { return dynamic_cast<GlueSpec*>(eqtb_glue[p].index); }
+int& dimen_par(halfword p) { return eqtb_dimen[p].int_; }
+

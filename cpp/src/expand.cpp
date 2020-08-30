@@ -73,8 +73,7 @@ void expand(Token tk)
 				if (tk.cmd != end_cs_name)
 					backerror(tk, "Missing "+esc("endcsname")+" inserted", "The control sequence marked <to be read again> should\nnot appear between \\csname and \\endcsname.");
 				j = First;
-				p = dynamic_cast<TokenNode*>(r->link);
-				while (p)
+				for (p = dynamic_cast<TokenNode*>(r->link); p; next(p))
 				{
 					if (j >= maxbufstack)
 					{
@@ -83,7 +82,6 @@ void expand(Token tk)
 							overflow("buffer size", bufsize);
 					};
 					buffer[j++] = p->token%(1<<8);
-					p = dynamic_cast<TokenNode*>(p->link);
 				}
 				if (j > First+1)
 				{
@@ -91,14 +89,14 @@ void expand(Token tk)
 					tk.cs = idlookup(std::string(buffer+First, buffer+j+1));
 					nonewcontrolsequence = true;
 				}
-				else 
-					if (j == First)
-					tk.cs = null_cs;
 				else
-					tk.cs = single_base+buffer[First];
+					if (j == First)
+						tk.cs = null_cs;
+					else
+						tk.cs = single_base+buffer[First];
 				flushnodelist(r);
-				if (eq_type(tk.cs) == undefined_cs)
-					eqdefine(tk.cs, relax, 256);
+				if (eqtb_active[tk.cs-active_base].type == undefined_cs)
+					eqdefine(&eqtb_active[tk.cs-active_base], relax, 256);
 				tk.tok = tk.cs+cs_token_flag;
 				backinput(tk);
 				break;

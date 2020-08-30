@@ -3,6 +3,7 @@
 #include "boite.h"
 #include "noeud.h"
 #include "erreur.h"
+#include "equivalent.h"
 
 static int broken_penalty(void) { return int_par(broken_penalty_code); }
 static int club_penalty(void) { return int_par(club_penalty_code); }
@@ -120,15 +121,15 @@ void postlinebreak(int finalwidowpenalty)
 			curindent = secondindent;
 		}
 		else 
-			if (par_shape_ptr() == 0)
+			if (par_shape_ptr() == nullptr)
 			{
 				curwidth = firstwidth;
 				curindent = firstindent;
 			}
 			else
 			{
-				curwidth = mem[par_shape_ptr()+2*curline].int_;
-				curindent = mem[par_shape_ptr()+2*curline-1].int_;
+				curwidth = par_shape_ptr()->values[2*curline-1];
+				curindent = par_shape_ptr()->values[2*curline-2];
 			}
 		adjusttail = adjust_head;
 		justbox = hpack(q, curwidth, 0);

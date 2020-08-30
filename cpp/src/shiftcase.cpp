@@ -1,5 +1,6 @@
 #include "shiftcase.h"
 #include "lecture.h"
+#include "equivalent.h"
 
 void shiftcase(Token tk)
 {
@@ -8,11 +9,11 @@ void shiftcase(Token tk)
 	while (p)
 	{
 		auto t = p->token;
-		if (t < cs_token_flag+single_base)
+		if (t < single_base+cs_token_flag)
 		{
 			eightbits c = t%(1<<8);
-			if (equiv(tk.chr+c))
-				p->token = t-c+equiv(tk.chr+c);
+			if (eqtb[tk.chr+c].int_)
+				p->token = t-c+eqtb[tk.chr+c].int_;
 		}
 		p = dynamic_cast<TokenNode*>(p->link);
 	}

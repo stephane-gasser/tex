@@ -7,11 +7,35 @@
 #include "fractionrule.h"
 #include "fetch.h"
 #include "xovern.h"
-#include "mathglue.h"
+#include "multandadd.h"
 #include "deleteglueref.h"
 #include "mathkern.h"
 #include "erreur.h"
 #include "popnest.h"
+
+static GlueSpec *mathglue(GlueSpec *g, scaled m)
+{
+	int n = xovern(m, unity);
+	scaled f = remainder_;
+	if (f < 0)
+	{
+		n--;
+		f += unity;
+	}
+	auto p = new GlueSpec;
+	p->width = mu_mult(n, g->width);
+	p->stretch_order = g->stretch_order;
+	if (p->stretch_order == normal)
+		p->stretch = mu_mult(n, g->stretch);
+	else
+		p->stretch = g->stretch;
+	p->shrink_order = g->shrink_order;
+	if (p->shrink_order == normal)
+		p->shrink = mu_mult(n, g->shrink);
+	else
+		p->shrink = g->shrink;
+	return p;
+}
 
 void makeradical(RadicalNoad *Q)
 {
@@ -382,8 +406,7 @@ void makescripts(Noad *q, scaled delta)
 		}
 	}
 	if (new_hlist(q) == 0)
-//		new_hlist(q->num) = x->num;
-		q->nucleus.info = x;
+		q->nucleus.info = x; // new_hlist(q) = x;
 	else
 	{
 		p = new_hlist(q);
@@ -515,8 +538,7 @@ scaled makeop(Noad *Q)
 			z->link = p;
 			v->depth += big_op_spacing5()+z->height+z->depth+shiftdown;
 		}
-		//new_hlist(Q) = v;
-		Q->nucleus.info = v;
+		Q->nucleus.info = v; //new_hlist(Q) = v
 	}
 	return delta;
 }
@@ -728,7 +750,7 @@ void mlisttohlist(void)
 				if (Q->subtype == mu_glue)
 				{
 					auto x = Q->glue_ptr;
-					y = mathglue(x->num, curmu);
+					y = mathglue(x, curmu)->num;
 					deleteglueref(x);
 					Q->glue_ptr->num = y;
 					Q->subtype = 0;
@@ -918,13 +940,12 @@ void mlisttohlist(void)
 			}
 			if (x)
 			{
-				y = mathglue(glue_par(x), curmu);
-				auto g = new GlueSpec(y);
+				auto g = new GlueSpec(mathglue(glue_par(x), curmu));
 				g->glue_ref_count = 0;
 				auto z = new GlueNode(g);
 				z->subtype = x+1;
 				p->link = z;
-				p = z;
+				next(p);
 			}
 		}
 		if (new_hlist(dynamic_cast<Noad*>(q)))

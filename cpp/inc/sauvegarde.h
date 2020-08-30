@@ -2,9 +2,10 @@
 #define SAUVEGARDE_H
 
 #include "globals.h"
+#include "equivalent.h"
 
-void eqsave(halfword, quarterword);
-void saveforafter(halfword);
+void eqsave(AnyNode*, quarterword);
+void saveforafter(AnyNode *t);
 void newsavelevel(groupcode);
 void unsave(void);
 

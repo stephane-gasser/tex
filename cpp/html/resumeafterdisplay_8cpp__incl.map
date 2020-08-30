@@ -1,11 +1,11 @@
 <map id="src/resumeafterdisplay.cpp" name="src/resumeafterdisplay.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="367,5,545,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="391,5,569,32"/>
 <area shape="rect" id="node2" href="$resumeafterdisplay_8h.html" title=" " alt="" coords="5,80,147,107"/>
 <area shape="rect" id="node3" href="$erreur_8h.html" title=" " alt="" coords="171,80,237,107"/>
-<area shape="rect" id="node4" href="$unsave_8h.html" title=" " alt="" coords="261,80,336,107"/>
-<area shape="rect" id="node5" href="$pushnest_8h.html" title=" " alt="" coords="361,80,447,107"/>
-<area shape="rect" id="node6" href="$lecture_8h.html" title=" " alt="" coords="472,80,544,107"/>
-<area shape="rect" id="node7" href="$normmin_8h.html" title=" " alt="" coords="568,80,651,107"/>
-<area shape="rect" id="node8" href="$buildpage_8h.html" title=" " alt="" coords="675,80,763,107"/>
-<area shape="rect" id="node9" href="$backinput_8h.html" title=" " alt="" coords="787,80,877,107"/>
+<area shape="rect" id="node4" href="$sauvegarde_8h.html" title=" " alt="" coords="261,80,361,107"/>
+<area shape="rect" id="node5" href="$pushnest_8h.html" title=" " alt="" coords="385,80,471,107"/>
+<area shape="rect" id="node6" href="$lecture_8h.html" title=" " alt="" coords="496,80,568,107"/>
+<area shape="rect" id="node7" href="$normmin_8h.html" title=" " alt="" coords="592,80,675,107"/>
+<area shape="rect" id="node8" href="$buildpage_8h.html" title=" " alt="" coords="699,80,787,107"/>
+<area shape="rect" id="node9" href="$backinput_8h.html" title=" " alt="" coords="811,80,901,107"/>
 </map>

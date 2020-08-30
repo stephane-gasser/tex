@@ -7,6 +7,7 @@
 #include "erreur.h"
 #include "police.h"
 #include "postlinebreak.h"
+#include "equivalent.h"
 
 static GlueSpec *finiteshrink(GlueSpec *p)
 {
@@ -120,9 +121,9 @@ void linebreak(int finalwidowpenalty)
 		}
 	else
 	{
-		lastspecialline = info(par_shape_ptr())-1;
-		secondwidth = mem[par_shape_ptr()+2*(lastspecialline+1)].int_;
-		secondindent = mem[par_shape_ptr()+2*lastspecialline+1].int_;
+		lastspecialline = par_shape_ptr()->values.size()/2-1;
+		secondwidth = par_shape_ptr()->values[2*lastspecialline+1];
+		secondindent = par_shape_ptr()->values[2*lastspecialline];
 	}
 	if (looseness() == 0)
 		easyline = lastspecialline;

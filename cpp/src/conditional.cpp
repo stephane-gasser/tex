@@ -8,6 +8,7 @@
 #include "changeiflimit.h"
 #include "erreur.h"
 #include "texte.h"
+#include "equivalent.h"
 
 [[nodiscard]] static Token get_x_token_or_active_char(void)
 { 
@@ -139,7 +140,7 @@ void conditional(Token t)
 				else
 				{
 					p = link(t.chr);
-					q = link(equiv(n));
+					q = link(eqtb[n].index->num);
 					if (p == q)
 						b = true;
 					else

@@ -1,11 +1,9 @@
 <map id="getnode" name="getnode">
-<area shape="rect" id="node1" title=" " alt="" coords="301,183,369,209"/>
-<area shape="rect" id="node2" href="$conditional_8h.html#af06c6a5f754b740b4e414ab6fd713b34" title=" " alt="" coords="149,5,233,32"/>
-<area shape="rect" id="node3" href="$fincol_8h.html#ac49c9c100529a1aa1f3c13a583cde844" title=" " alt="" coords="164,56,217,83"/>
-<area shape="rect" id="node4" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,233,80,260"/>
-<area shape="rect" id="node5" href="$mathglue_8h.html#a787ad3758546efdfe92c438ecc6ade66" title=" " alt="" coords="153,157,228,184"/>
-<area shape="rect" id="node6" href="$prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="128,208,253,235"/>
-<area shape="rect" id="node7" href="$pushalignment_8h.html#a423bd156ecaca36ce80e724b8178080b" title=" " alt="" coords="137,259,244,285"/>
-<area shape="rect" id="node8" href="$sortavail_8h.html#aed193e67812d69956547fdf4d4ae0e53" title="sorts the available variable&#45;size nodes by location" alt="" coords="155,309,226,336"/>
-<area shape="rect" id="node9" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="156,360,225,387"/>
+<area shape="rect" id="node1" title=" " alt="" coords="283,132,351,159"/>
+<area shape="rect" id="node2" href="$conditional_8h.html#af06c6a5f754b740b4e414ab6fd713b34" title=" " alt="" coords="139,5,223,32"/>
+<area shape="rect" id="node3" href="$fincol_8h.html#ac49c9c100529a1aa1f3c13a583cde844" title=" " alt="" coords="155,56,208,83"/>
+<area shape="rect" id="node4" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="5,183,80,209"/>
+<area shape="rect" id="node5" href="$pushalignment_8h.html#a423bd156ecaca36ce80e724b8178080b" title=" " alt="" coords="128,157,235,184"/>
+<area shape="rect" id="node6" href="$sortavail_8h.html#aed193e67812d69956547fdf4d4ae0e53" title="sorts the available variable&#45;size nodes by location" alt="" coords="146,208,217,235"/>
+<area shape="rect" id="node7" href="$trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="147,259,216,285"/>
 </map>

@@ -2,8 +2,9 @@
 #include "texte.h"
 #include "cesure.h"
 #include "police.h"
+#include "equivalent.h"
 
-static halfword& uc_code(halfword p) { return equiv(uc_code_base+p); }
+static int& uc_code(halfword p) { return eqtb_local[p+uc_code_base-local_base].int_; }
 
 void Initialize(void)
 {
@@ -40,7 +41,6 @@ void Initialize(void)
 	    hash[k] = hash[514];
 	curlevel = 1;
 	curgroup = 0;
-	curboundary = 0;
 	magset = 0;
 	radix = 0;
 	curorder = 0;
@@ -136,37 +136,39 @@ void Initialize(void)
 	himemmin = hi_mem_stat_min;
 	varused = 20;
 	dynused = hi_mem_stat_usage;
-	eq_type(undefined_control_sequence) = undefined_cs;
-	equiv(undefined_control_sequence) = 0;
-	eq_level(undefined_control_sequence) = 0;
-	for (int k = 1; k < undefined_control_sequence; k++)
-		eqtb[k] = eqtb[undefined_control_sequence];
-	equiv(glue_base) = 0;
-	eq_level(glue_base) = 1;
-	eq_type(glue_base) = glue_ref;
-	for (int k = glue_base+1; k < local_base; k++)
-		eqtb[k] = eqtb[glue_base];
+	eqtb_cs[undefined_control_sequence-hash_base].type = undefined_cs;
+	eqtb_cs[undefined_control_sequence-hash_base].level = level_zero;
+	eqtb_cs[undefined_control_sequence-hash_base].index = /*0*/nullptr;
+	for (int k = 0; k < hash_base-active_base; k++)
+		eqtb_active[k] = eqtb_cs[undefined_control_sequence-hash_base];
+	for (int k = 0; k < undefined_control_sequence-hash_base; k++)
+		eqtb_cs[k] = eqtb_cs[undefined_control_sequence-hash_base];
+	eqtb_glue[0].index = zero_glue;
+	eqtb_glue[0].level = level_one;
+	eqtb_glue[0].type = glue_ref;
+	for (int k = 1; k < local_base-glue_base; k++)
+		eqtb_glue[k] = eqtb_glue[0];
 	zero_glue->glue_ref_count += local_base-glue_base;
-	equiv(local_base) = 0;
-	eq_type(local_base) = shape_ref;
-	eq_level(local_base) = 1;
-	for (int k = local_base+1; k < box_base; k++)
-		eqtb[k] = eqtb[undefined_control_sequence];
-	equiv(box_base) = 0;
-	eq_type(box_base) = box_ref;
-	eq_level(box_base) = 1;
+	eqtb_local[0].index = /*shape 0 ??*/nullptr;
+	eqtb_local[0].type = shape_ref;
+	eqtb_local[0].level = level_one;
+	for (int k = 1; k < box_base-local_base; k++)
+		eqtb_local[k] = eqtb_cs[undefined_control_sequence-local_base];
+	eqtb_local[box_base-local_base].index = /*box[0] ??*/nullptr;
+	eqtb_local[box_base-local_base].type = box_ref;
+	eqtb_local[box_base-local_base].level = level_one;
 	for (int k = box_base+1; k < cur_font_loc; k++)
-		eqtb[k] = eqtb[box_base];
-	equiv(cur_font_loc) = null_font;
-	eq_type(cur_font_loc) = data;
-	eq_level(cur_font_loc) = 1;
+		eqtb_local[k-local_base] = eqtb_local[box_base-local_base];
+	eqtb_local[cur_font_loc-local_base].index = /*null_font*/nullptr;
+	eqtb_local[cur_font_loc-local_base].type = data;
+	eqtb_local[cur_font_loc-local_base].level = level_one;
 	for (int k = cur_font_loc+1; k < cat_code_base; k++)
-		eqtb[k] = eqtb[cur_font_loc];
-	equiv(cat_code_base) = 0;
-	eq_type(cat_code_base) = data;
-	eq_level(cat_code_base) = 1;
+		eqtb_local[k-local_base] = eqtb_local[cur_font_loc-local_base];
+	eqtb_local[cat_code_base-local_base].index = /*0 ?*/nullptr;
+	eqtb_local[cat_code_base-local_base].type = data;
+	eqtb_local[cat_code_base-local_base].level = level_one;
 	for (int k = cat_code_base+1; k < int_base; k++)
-		eqtb[k] = eqtb[cat_code_base];
+		eqtb_local[k-local_base] = eqtb_local[cat_code_base-local_base];
 	for (int k = 0; k < 256; k++)
 	{
 		cat_code(k) = other_char;
@@ -193,8 +195,8 @@ void Initialize(void)
 		uc_code(k+'a'-'A') = k;
 		sf_code(k) = 999;
 	}
-	for (int k = int_base; k < del_code_base; k++)
-		eqtb[k].int_ = 0;
+	for (int k = 0; k < del_code_base-int_base; k++)
+		eqtb_int[k].int_ = 0;
 	mag() = 1000;
 	tolerance() = 10000;
 	hang_after() = 1;
@@ -204,11 +206,11 @@ void Initialize(void)
 	for (int k = 0; k < 256; k++)
 		del_code(k) = -1;
 	del_code('.') = 0;
-	for (int k = dimen_base; k <= eqtb_size; k++)
-		eqtb[k].int_ = 0;
+	for (int k = 0; k <= eqtb_size-dimen_base; k++)
+		eqtb_dimen[k].int_ = 0;
 	hashused = frozen_control_sequence;
 	cscount = 0;
-	eq_type(frozen_dont_expand) = dont_expand;
+	eqtb_cs[frozen_dont_expand-hash_base].type = dont_expand;
 	text(frozen_dont_expand) = txt("notexpanded:");
 	fonts[null_font].name = "nullfont"; 
 	fonts[null_font].area = "";
@@ -240,7 +242,7 @@ void Initialize(void)
 	text(frozen_control_sequence) = txt("inaccessible");
 	formatident = " (INITEX)";
 	text(end_write) = txt("endwrite");
-	eq_level(end_write) = 1;
-	eq_type(end_write) = outer_call;
-	equiv(end_write) = 0;
+	eqtb_cs[end_write-hash_base].level = level_one;
+	eqtb_cs[end_write-hash_base].type = outer_call;
+	eqtb_cs[end_write-hash_base].index = /*0*/nullptr;
 }

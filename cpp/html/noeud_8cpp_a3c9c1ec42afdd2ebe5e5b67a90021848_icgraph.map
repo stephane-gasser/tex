@@ -1,10 +1,8 @@
 <map id="freenode" name="freenode">
-<area shape="rect" id="node1" title=" " alt="" coords="332,157,404,184"/>
-<area shape="rect" id="node2" href="$conditional_8h.html#af06c6a5f754b740b4e414ab6fd713b34" title=" " alt="" coords="172,5,256,32"/>
-<area shape="rect" id="node3" href="$deleteglueref_8h.html#a9eb930d18b9ff7685915ff2104a73713" title=" " alt="" coords="166,157,262,184"/>
-<area shape="rect" id="node4" href="$eqdestroy_8h.html#a06ca8ddf74d2d157842099a64ecf138e" title=" " alt="" coords="11,69,90,96"/>
-<area shape="rect" id="node5" href="$finalcleanup_8h.html#a30a8c1b2a9ea2537af67bddd3c80fb1f" title=" " alt="" coords="5,132,96,159"/>
-<area shape="rect" id="node6" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="13,183,88,209"/>
-<area shape="rect" id="node7" href="$maincontrol_8cpp.html#a1c4fbceeb0a6504e980d70aea5dc2ad9" title=" " alt="" coords="144,259,284,285"/>
-<area shape="rect" id="node8" href="$popalignment_8h.html#a31448c1b54b5695150d757b697c415d4" title=" " alt="" coords="165,309,263,336"/>
+<area shape="rect" id="node1" title=" " alt="" coords="291,107,363,133"/>
+<area shape="rect" id="node2" href="$conditional_8h.html#af06c6a5f754b740b4e414ab6fd713b34" title=" " alt="" coords="151,5,235,32"/>
+<area shape="rect" id="node3" href="$deleteglueref_8h.html#a9eb930d18b9ff7685915ff2104a73713" title=" " alt="" coords="145,107,241,133"/>
+<area shape="rect" id="node4" href="$finalcleanup_8h.html#a30a8c1b2a9ea2537af67bddd3c80fb1f" title=" " alt="" coords="5,81,96,108"/>
+<area shape="rect" id="node5" href="$linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="13,132,88,159"/>
+<area shape="rect" id="node6" href="$popalignment_8h.html#a31448c1b54b5695150d757b697c415d4" title=" " alt="" coords="144,208,243,235"/>
 </map>

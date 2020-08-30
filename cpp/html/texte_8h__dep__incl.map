@@ -1,5 +1,5 @@
 <map id="inc/texte.h" name="inc/texte.h">
-<area shape="rect" id="node1" title=" " alt="" coords="4025,5,4107,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="3946,5,4029,32"/>
 <area shape="rect" id="node2" href="$aftermath_8cpp.html" title=" " alt="" coords="5,80,129,107"/>
 <area shape="rect" id="node3" href="$alteraux_8cpp.html" title=" " alt="" coords="154,80,269,107"/>
 <area shape="rect" id="node4" href="$alterprevgraf_8cpp.html" title=" " alt="" coords="293,80,434,107"/>
@@ -46,10 +46,9 @@
 <area shape="rect" id="node45" href="$preparemag_8cpp.html" title=" " alt="" coords="6739,80,6876,107"/>
 <area shape="rect" id="node46" href="$primitive_8cpp.html" title=" " alt="" coords="6900,80,7019,107"/>
 <area shape="rect" id="node47" href="$promptfilename_8cpp.html" title=" " alt="" coords="7043,80,7201,107"/>
-<area shape="rect" id="node48" href="$shipout_8cpp.html" title=" " alt="" coords="7225,80,7336,107"/>
-<area shape="rect" id="node49" href="$startinput_8cpp.html" title=" " alt="" coords="7361,80,7483,107"/>
-<area shape="rect" id="node50" href="$storefmtfile_8cpp.html" title=" " alt="" coords="7508,80,7643,107"/>
-<area shape="rect" id="node51" href="$subsup_8cpp.html" title=" " alt="" coords="7667,80,7777,107"/>
-<area shape="rect" id="node52" href="$texte_8cpp.html" title=" " alt="" coords="7802,80,7901,107"/>
-<area shape="rect" id="node53" href="$vertbreak_8cpp.html" title=" " alt="" coords="7925,80,8047,107"/>
+<area shape="rect" id="node48" href="$startinput_8cpp.html" title=" " alt="" coords="7226,80,7349,107"/>
+<area shape="rect" id="node49" href="$storefmtfile_8cpp.html" title=" " alt="" coords="7373,80,7508,107"/>
+<area shape="rect" id="node50" href="$subsup_8cpp.html" title=" " alt="" coords="7532,80,7643,107"/>
+<area shape="rect" id="node51" href="$texte_8cpp.html" title=" " alt="" coords="7667,80,7766,107"/>
+<area shape="rect" id="node52" href="$vertbreak_8cpp.html" title=" " alt="" coords="7790,80,7913,107"/>
 </map>

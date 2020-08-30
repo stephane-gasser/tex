@@ -133,8 +133,6 @@ Fonctions</h2></td></tr>
 <tr class="separator:a9bca71d1f000d89550daacde5c539d5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3104c2391b36a315ae82b5ad0b67fa6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="erreur_8cpp.html#a3104c2391b36a315ae82b5ad0b67fa6b">fatalerror</a> (const std::string &amp;s)</td></tr>
 <tr class="separator:a3104c2391b36a315ae82b5ad0b67fa6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63c87df7fc9c2697a41f1824e984ff28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="erreur_8cpp.html#a63c87df7fc9c2697a41f1824e984ff28">check_full_save_stack</a> (void)</td></tr>
-<tr class="separator:a63c87df7fc9c2697a41f1824e984ff28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e4be46a4276e7ab8bae6246144187a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="erreur_8cpp.html#a4e4be46a4276e7ab8bae6246144187a4">interror</a> (int n, const std::string &amp;msg, const std::string &amp;hlp)</td></tr>
 <tr class="separator:a4e4be46a4276e7ab8bae6246144187a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a432e2d6beb1b9921b4481d81b1f42c19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="erreur_8cpp.html#a432e2d6beb1b9921b4481d81b1f42c19">reportillegalcase</a> (<a class="el" href="classToken.html">Token</a> t)</td></tr>
@@ -278,55 +276,8 @@ Voici le graphe des appelants de cette fonction :</div>
 <map name="erreur_8cpp_aaa5e5762314112fc9c118ea4b4eaa620_icgraph" id="erreur_8cpp_aaa5e5762314112fc9c118ea4b4eaa620_icgraph">
 <area shape="rect" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="273,56,343,83"/>
 <area shape="rect" href="boite_8h.html#a5f06bd1a417b76946ad819115c347fc8" title=" " alt="" coords="122,5,211,32"/>
-<area shape="rect" href="fireup_8h.html#ade38ae51e1786b80735353c508effd8d" title=" " alt="" coords="5,31,60,57"/>
+<area shape="rect" href="fireup_8h.html#a275b57985f893b42be1d431a9c27d2d9" title=" " alt="" coords="5,31,60,57"/>
 <area shape="rect" href="handlerightbrace_8h.html#a6c7743f430eb9379c2e5db3eddacae10" title=" " alt="" coords="108,107,225,133"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a63c87df7fc9c2697a41f1824e984ff28"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63c87df7fc9c2697a41f1824e984ff28">&#9670;&nbsp;</a></span>check_full_save_stack()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void check_full_save_stack </td>
-          <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Définition à la ligne <a class="el" href="erreur_8cpp_source.html#l00226">226</a> du fichier <a class="el" href="erreur_8cpp_source.html">erreur.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;{</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#aa326562731b81df3c428077a9343c00f">saveptr</a> &gt; <a class="code" href="globals_8h.html#a5ece84ab93a4020fd88922f894a642bd">maxsavestack</a>)</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    {</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <a class="code" href="globals_8h.html#a5ece84ab93a4020fd88922f894a642bd">maxsavestack</a> = <a class="code" href="globals_8h.html#aa326562731b81df3c428077a9343c00f">saveptr</a>; </div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#a5ece84ab93a4020fd88922f894a642bd">maxsavestack</a>&gt; <a class="code" href="globals_8h.html#a0851bb8aafb5048d795782a1027dbdd7">savesize</a>-6) </div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;            <a class="code" href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a>(<span class="stringliteral">&quot;save size&quot;</span>,<a class="code" href="globals_8h.html#a0851bb8aafb5048d795782a1027dbdd7">savesize</a>);</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    }</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;}</div>
-</div><!-- fragment --><div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="erreur_8cpp_a63c87df7fc9c2697a41f1824e984ff28_cgraph.png" border="0" usemap="#erreur_8cpp_a63c87df7fc9c2697a41f1824e984ff28_cgraph" alt=""/></div>
-<map name="erreur_8cpp_a63c87df7fc9c2697a41f1824e984ff28_cgraph" id="erreur_8cpp_a63c87df7fc9c2697a41f1824e984ff28_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,160,32"/>
-<area shape="rect" href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d" title=" " alt="" coords="208,5,279,32"/>
-</map>
-</div>
-<div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="erreur_8cpp_a63c87df7fc9c2697a41f1824e984ff28_icgraph.png" border="0" usemap="#erreur_8cpp_a63c87df7fc9c2697a41f1824e984ff28_icgraph" alt=""/></div>
-<map name="erreur_8cpp_a63c87df7fc9c2697a41f1824e984ff28_icgraph" id="erreur_8cpp_a63c87df7fc9c2697a41f1824e984ff28_icgraph">
-<area shape="rect" title=" " alt="" coords="144,31,299,57"/>
-<area shape="rect" href="eqsave_8h.html#a03e055f6df96e78ec9670bc1b6651617" title=" " alt="" coords="19,5,83,32"/>
-<area shape="rect" href="saveforafter_8h.html#aae407f09853a167eea959b30dda12a67" title=" " alt="" coords="5,56,96,83"/>
 </map>
 </div>
 
@@ -381,7 +332,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <area shape="rect" href="classWhatsitNode.html#ad0285910a21da5cdd04da7fb987cb988" title=" " alt="" coords="464,601,599,628"/>
 <area shape="rect" href="doextension_8h.html#ae0fe82d31e33a0b4f09cd522245dd4f4" title=" " alt="" coords="296,665,388,692"/>
 <area shape="rect" href="fincol_8h.html#ac49c9c100529a1aa1f3c13a583cde844" title=" " alt="" coords="315,449,369,476"/>
-<area shape="rect" href="finmlist_8h.html#ada38b3ef0bd925a493010e9b5473f829" title=" " alt="" coords="310,95,374,121"/>
+<area shape="rect" href="formule_8h.html#ada38b3ef0bd925a493010e9b5473f829" title=" " alt="" coords="310,95,374,121"/>
 <area shape="rect" href="linebreak_8h.html#a8c52495746dbf2b4dfb65a42d7c3f547" title=" " alt="" coords="305,855,379,881"/>
 <area shape="rect" href="formule_8h.html#a2f599b46a319743803bf5fe16dd8d41d" title=" " alt="" coords="483,1007,580,1033"/>
 <area shape="rect" href="formule_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="299,981,385,1008"/>
@@ -391,8 +342,8 @@ Voici le graphe des appelants de cette fonction :</div>
 <area shape="rect" href="prefixedcommand_8h.html#a4e9e72780cee42be462853805c802b26" title=" " alt="" coords="469,1057,594,1084"/>
 <area shape="rect" href="prunepagetop_8h.html#ad45cc3ae2bbcfbc19f1f5fbeec5e15de" title=" " alt="" coords="481,1108,581,1135"/>
 <area shape="rect" href="trybreak_8h.html#a346d2f1791ce78e6c3d59093d4f304ce" title=" " alt="" coords="497,905,566,932"/>
-<area shape="rect" href="unsave_8h.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="499,297,563,324"/>
-<area shape="rect" href="vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="493,247,569,273"/>
+<area shape="rect" href="sauvegarde_8h.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="499,297,563,324"/>
+<area shape="rect" href="vertbreak_8h.html#a2d5cceb4c3f8c7d891e5fc8a91cb4e33" title=" " alt="" coords="493,247,569,273"/>
 <area shape="rect" href="boite_8h.html#aef650d60b64d8795d28b25c7c9460122" title=" " alt="" coords="492,449,571,476"/>
 <area shape="rect" href="classLinkedNode.html#ac158635e9745955585762c860ffbccc6" title=" " alt="" coords="443,1159,619,1185"/>
 <area shape="rect" href="classWhatsitNode.html#a4deaabe9fcdf338b4c5645738d1da264" title=" " alt="" coords="436,1209,627,1236"/>
@@ -497,7 +448,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                    <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#a431400406085427c06eefbf1f215daf8">useerrhelp</a>)</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                    {</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                        <a class="code" href="classTokenNode.html">TokenNode</a> *t;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        t-&gt;<a class="code" href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">num</a> = <a class="code" href="constantes_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598">err_help</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        t-&gt;<a class="code" href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">num</a> = <a class="code" href="equivalent_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598">err_help</a>();</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                        <a class="code" href="impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9">print</a>(<a class="code" href="impression_8cpp.html#ac962fe630d66a4b7f731058e01df9a7a">tokenshow</a>(t));</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                    }</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                    <span class="keywordflow">else</span></div>
@@ -568,7 +519,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#a431400406085427c06eefbf1f215daf8">useerrhelp</a>)</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    {</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <a class="code" href="classTokenNode.html">TokenNode</a> *t;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        t-&gt;<a class="code" href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">num</a> = <a class="code" href="constantes_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598">err_help</a>();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        t-&gt;<a class="code" href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">num</a> = <a class="code" href="equivalent_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598">err_help</a>();</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <a class="code" href="impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9">print</a>(<span class="stringliteral">&quot;\n&quot;</span>+<a class="code" href="impression_8cpp.html#ac962fe630d66a4b7f731058e01df9a7a">tokenshow</a>(t)+<span class="stringliteral">&quot;\n&quot;</span>);</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    }</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordflow">else</span></div>
@@ -589,7 +540,7 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="rect" title=" " alt="" coords="5,335,53,361"/>
 <area shape="rect" href="beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="101,5,213,32"/>
 <area shape="rect" href="endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96" title=" " alt="" coords="106,56,209,83"/>
-<area shape="rect" href="constantes_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598" title=" " alt="" coords="123,107,191,133"/>
+<area shape="rect" href="equivalent_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598" title=" " alt="" coords="123,107,191,133"/>
 <area shape="rect" href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="136,157,179,184"/>
 <area shape="rect" href="lecture_8cpp.html#ae925ce9cf3090fd9fc647fbc60dbb07c" title=" " alt="" coords="121,208,193,235"/>
 <area shape="rect" href="jumpout_8cpp.html#adeb1545ae01b6cbf0a224dc6a207876e" title=" " alt="" coords="123,259,191,285"/>
@@ -626,7 +577,7 @@ Voici le graphe des appelants de cette fonction :</div>
 <area shape="rect" href="boite_8h.html#a5d2232e425baeebf8283ae33b954f08b" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="696,1919,771,1945"/>
 <area shape="rect" href="begininsertoradjust_8h.html#a0397aefaf4c8edc7a44aae63e8092729" title=" " alt="" coords="143,1209,273,1236"/>
 <area shape="rect" href="erreur_8h.html#a720a9ce186456b42385f307b1b854384" title="At certain times box 255 is supposed to be void (i.e., |null|), or an insertion box is supposed to be..." alt="" coords="1025,1260,1095,1287"/>
-<area shape="rect" href="fireup_8h.html#ade38ae51e1786b80735353c508effd8d" title=" " alt="" coords="879,1209,933,1236"/>
+<area shape="rect" href="fireup_8h.html#a275b57985f893b42be1d431a9c27d2d9" title=" " alt="" coords="879,1209,933,1236"/>
 <area shape="rect" href="buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="695,1311,772,1337"/>
 <area shape="rect" href="handlerightbrace_8h.html#a6c7743f430eb9379c2e5db3eddacae10" title=" " alt="" coords="507,1361,624,1388"/>
 <area shape="rect" href="builddiscretionary_8h.html#a50a018e2c9932a40bcbfd39ab987d22c" title=" " alt="" coords="672,1513,795,1540"/>
@@ -653,8 +604,8 @@ Voici le graphe des appelants de cette fonction :</div>
 <area shape="rect" href="shipout_8h.html#a5db6470cefc7f4c81b3800af0cb10812" title=" " alt="" coords="1028,1159,1092,1185"/>
 <area shape="rect" href="impression_8h.html#aa9b445abac2f3d8c73fcb21352eb68e8" title=" " alt="" coords="512,2375,619,2401"/>
 <area shape="rect" href="subsup_8h.html#a87cbd92361e60e63d4c3a5aebda417e0" title=" " alt="" coords="358,2425,422,2452"/>
-<area shape="rect" href="unpackage_8h.html#a07d4079611ef78decceb4266d53c2595" title=" " alt="" coords="165,2476,251,2503"/>
-<area shape="rect" href="vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="1022,1665,1098,1692"/>
+<area shape="rect" href="boite_8h.html#a07d4079611ef78decceb4266d53c2595" title=" " alt="" coords="165,2476,251,2503"/>
+<area shape="rect" href="vertbreak_8h.html#a2d5cceb4c3f8c7d891e5fc8a91cb4e33" title=" " alt="" coords="1022,1665,1098,1692"/>
 <area shape="rect" href="vsplit_8h.html#a178313bf4198a8983c7c5e078e7d3dc4" title=" " alt="" coords="879,1868,933,1895"/>
 <area shape="rect" href="writeout_8h.html#aa84dfb1aa155bfbd0a513aaeabd917fc" title=" " alt="" coords="1026,2527,1094,2553"/>
 </map>
@@ -874,8 +825,8 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="erreur_8cpp_source.html#l00236">236</a> du fichier <a class="el" href="erreur_8cpp_source.html">erreur.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;{ <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(msg+<span class="stringliteral">&quot; (&quot;</span>+std::to_string(n)+<span class="stringliteral">&quot;)&quot;</span>, hlp); }</div>
+<p class="definition">Définition à la ligne <a class="el" href="erreur_8cpp_source.html#l00226">226</a> du fichier <a class="el" href="erreur_8cpp_source.html">erreur.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;{ <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(msg+<span class="stringliteral">&quot; (&quot;</span>+std::to_string(n)+<span class="stringliteral">&quot;)&quot;</span>, hlp); }</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
@@ -950,18 +901,18 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="erreur_8cpp_a9bca71d1f000d89550daacde5c539d5d_icgraph.png" border="0" usemap="#erreur_8cpp_a9bca71d1f000d89550daacde5c539d5d_icgraph" alt=""/></div>
 <map name="erreur_8cpp_a9bca71d1f000d89550daacde5c539d5d_icgraph" id="erreur_8cpp_a9bca71d1f000d89550daacde5c539d5d_icgraph">
-<area shape="rect" title=" " alt="" coords="368,259,439,285"/>
-<area shape="rect" href="beginfilereading_8h.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="5,56,117,83"/>
-<area shape="rect" href="erreur_8h.html#a63c87df7fc9c2697a41f1824e984ff28" title=" " alt="" coords="165,56,320,83"/>
-<area shape="rect" href="expand_8h.html#a6c77eceb3e53fd876d329ec10048f5da" title=" " alt="" coords="29,360,93,387"/>
-<area shape="rect" href="cesure_8cpp.html#ab7f240ad772c94f43a6319fa5a15ff10" title=" " alt="" coords="215,157,270,184"/>
-<area shape="rect" href="noeud_8h.html#ad3c141fb77490fa494144810dec64a00" title=" " alt="" coords="209,208,277,235"/>
-<area shape="rect" href="idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="207,461,278,488"/>
-<area shape="rect" href="inputln_8h.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="213,309,273,336"/>
-<area shape="rect" href="macrocall_8h.html#ad5520fcbd165ce5f2e863199df9c14b3" title=" " alt="" coords="203,259,282,285"/>
-<area shape="rect" href="noeud_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="174,411,311,437"/>
-<area shape="rect" href="pushinput_8h.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="200,5,285,32"/>
-<area shape="rect" href="pushnest_8h.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="205,512,280,539"/>
+<area shape="rect" title=" " alt="" coords="351,259,421,285"/>
+<area shape="rect" href="beginfilereading_8h.html#af501832c4c8d2d3ee398905b7857c4b1" title="The begin_file_reading procedure starts a new level of input for lines of characters to be read from ..." alt="" coords="5,385,117,412"/>
+<area shape="rect" href="expand_8h.html#a6c77eceb3e53fd876d329ec10048f5da" title=" " alt="" coords="29,56,93,83"/>
+<area shape="rect" href="cesure_8cpp.html#ab7f240ad772c94f43a6319fa5a15ff10" title=" " alt="" coords="207,107,261,133"/>
+<area shape="rect" href="noeud_8h.html#ad3c141fb77490fa494144810dec64a00" title=" " alt="" coords="200,157,268,184"/>
+<area shape="rect" href="idlookup_8h.html#a9cdf6c5d006f4bb53bf45403e792c947" title=" " alt="" coords="199,5,269,32"/>
+<area shape="rect" href="inputln_8h.html#a573557735f9381745c6510fc8729c35b" title=" " alt="" coords="204,259,264,285"/>
+<area shape="rect" href="macrocall_8h.html#ad5520fcbd165ce5f2e863199df9c14b3" title=" " alt="" coords="195,56,273,83"/>
+<area shape="rect" href="noeud_8h.html#ac6fac5c7230a3401019812b6144560bb" title=" " alt="" coords="165,360,303,387"/>
+<area shape="rect" href="sauvegarde_8h.html#a7db8c494f276b55a971ce8b3ee7c7044" title=" " alt="" coords="183,411,285,437"/>
+<area shape="rect" href="pushinput_8h.html#a6c38405ba74f1488201842d119ceef96" title="//enter a new input level, save the old" alt="" coords="191,309,277,336"/>
+<area shape="rect" href="pushnest_8h.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="197,512,271,539"/>
 </map>
 </div>
 
@@ -983,13 +934,13 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="erreur_8cpp_source.html#l00239">239</a> du fichier <a class="el" href="erreur_8cpp_source.html">erreur.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;{</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#a7efa36ab31730808a677766db6df868e">mode</a> &gt; 0)</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <a class="code" href="erreur_8cpp.html#a432e2d6beb1b9921b4481d81b1f42c19">reportillegalcase</a>(t);</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="erreur_8cpp_source.html#l00229">229</a> du fichier <a class="el" href="erreur_8cpp_source.html">erreur.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;{</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="globals_8h.html#a7efa36ab31730808a677766db6df868e">mode</a> &gt; 0)</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <a class="code" href="erreur_8cpp.html#a432e2d6beb1b9921b4481d81b1f42c19">reportillegalcase</a>(t);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;}</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
@@ -1028,8 +979,8 @@ Voici le graphe des appelants de cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="erreur_8cpp_source.html#l00237">237</a> du fichier <a class="el" href="erreur_8cpp_source.html">erreur.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;{ <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<span class="stringliteral">&quot;You can&#39;t use `&quot;</span>+<a class="code" href="impression_8cpp.html#ac4413646391b853fe6e86b086a0ab7d9">cmdchr</a>(t)+<span class="stringliteral">&quot;&#39; in &quot;</span>+<a class="code" href="impression_8cpp.html#a209bd98968041d00181afd1062c967b8">asMode</a>(<a class="code" href="globals_8h.html#a7efa36ab31730808a677766db6df868e">mode</a>), <span class="stringliteral">&quot;Sorry, but I&#39;m not programmed to handle this case;\nI&#39;ll just pretend that you didn&#39;t ask for it.\nIf you&#39;re in the wrong mode, you might be able to\nreturn to the right one by typing `I}&#39; or `I$&#39; or `I\\par&#39;.&quot;</span>); }</div>
+<p class="definition">Définition à la ligne <a class="el" href="erreur_8cpp_source.html#l00227">227</a> du fichier <a class="el" href="erreur_8cpp_source.html">erreur.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;{ <a class="code" href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a>(<span class="stringliteral">&quot;You can&#39;t use `&quot;</span>+<a class="code" href="impression_8cpp.html#ac4413646391b853fe6e86b086a0ab7d9">cmdchr</a>(t)+<span class="stringliteral">&quot;&#39; in &quot;</span>+<a class="code" href="impression_8cpp.html#a209bd98968041d00181afd1062c967b8">asMode</a>(<a class="code" href="globals_8h.html#a7efa36ab31730808a677766db6df868e">mode</a>), <span class="stringliteral">&quot;Sorry, but I&#39;m not programmed to handle this case;\nI&#39;ll just pretend that you didn&#39;t ask for it.\nIf you&#39;re in the wrong mode, you might be able to\nreturn to the right one by typing `I}&#39; or `I$&#39; or `I\\par&#39;.&quot;</span>); }</div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
@@ -1060,60 +1011,56 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="ttc" id="aterminput_8cpp_html_aacbc6794f9371128ce624765a5915df9"><div class="ttname"><a href="terminput_8cpp.html#aacbc6794f9371128ce624765a5915df9">terminput</a></div><div class="ttdeci">void terminput(void)</div><div class="ttdef"><b>Definition:</b> <a href="terminput_8cpp_source.html#l00007">terminput.cpp:7</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a99fb83031ce9923c84392b4e92f956b5a847000ebc3e036c9740102b4d9ec0732"><div class="ttname"><a href="constantes_8h.html#a99fb83031ce9923c84392b4e92f956b5a847000ebc3e036c9740102b4d9ec0732">fatal_error_stop</a></div><div class="ttdeci">@ fatal_error_stop</div><div class="ttdoc">history value when termination was premature</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00045">constantes.h:45</a></div></div>
 <div class="ttc" id="anormalizeselector_8cpp_html_a1d7f85ee04947a7fe6ffa54bbe4ed2a5"><div class="ttname"><a href="normalizeselector_8cpp.html#a1d7f85ee04947a7fe6ffa54bbe4ed2a5">normalizeselector</a></div><div class="ttdeci">void normalizeselector(void)</div><div class="ttdef"><b>Definition:</b> <a href="normalizeselector_8cpp_source.html#l00004">normalizeselector.cpp:4</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_ab3861f4cf087b5c29d2e1c2d6f31f5b9"><div class="ttname"><a href="impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9">print</a></div><div class="ttdeci">void print(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00071">impression.cpp:71</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a905b2a0f8af7bf9047cf8d5ddaeec874"><div class="ttname"><a href="constantes_8h.html#a905b2a0f8af7bf9047cf8d5ddaeec874">limit</a></div><div class="ttdeci">auto limit</div><div class="ttdoc">end of current line in buffer</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00803">constantes.h:803</a></div></div>
-<div class="ttc" id="aerreur_8cpp_html_a432e2d6beb1b9921b4481d81b1f42c19"><div class="ttname"><a href="erreur_8cpp.html#a432e2d6beb1b9921b4481d81b1f42c19">reportillegalcase</a></div><div class="ttdeci">void reportillegalcase(Token t)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00237">erreur.cpp:237</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_ab3861f4cf087b5c29d2e1c2d6f31f5b9"><div class="ttname"><a href="impression_8cpp.html#ab3861f4cf087b5c29d2e1c2d6f31f5b9">print</a></div><div class="ttdeci">void print(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00072">impression.cpp:72</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a905b2a0f8af7bf9047cf8d5ddaeec874"><div class="ttname"><a href="constantes_8h.html#a905b2a0f8af7bf9047cf8d5ddaeec874">limit</a></div><div class="ttdeci">auto limit</div><div class="ttdoc">end of current line in buffer</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00784">constantes.h:784</a></div></div>
+<div class="ttc" id="aerreur_8cpp_html_a432e2d6beb1b9921b4481d81b1f42c19"><div class="ttname"><a href="erreur_8cpp.html#a432e2d6beb1b9921b4481d81b1f42c19">reportillegalcase</a></div><div class="ttdeci">void reportillegalcase(Token t)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00227">erreur.cpp:227</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a10a3fcd824154f6545a843a16ebf7abb"><div class="ttname"><a href="globals_8h.html#a10a3fcd824154f6545a843a16ebf7abb">First</a></div><div class="ttdeci">int First</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00298">globals.h:298</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_ade95d1e83389e3e6b2095c8b149d1fc2"><div class="ttname"><a href="constantes_8cpp.html#ade95d1e83389e3e6b2095c8b149d1fc2">name</a></div><div class="ttdeci">std::string &amp; name</div><div class="ttdoc">name of the current file</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00129">constantes.cpp:129</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_ad9f24960a276b15f7205ca4399901474a07e7bd1dd1449b71dd55b32bed878701"><div class="ttname"><a href="constantes_8h.html#ad9f24960a276b15f7205ca4399901474a07e7bd1dd1449b71dd55b32bed878701">token_list</a></div><div class="ttdeci">@ token_list</div><div class="ttdoc">state code when scanning a token list</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00428">constantes.h:428</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_ade95d1e83389e3e6b2095c8b149d1fc2"><div class="ttname"><a href="constantes_8cpp.html#ade95d1e83389e3e6b2095c8b149d1fc2">name</a></div><div class="ttdeci">std::string &amp; name</div><div class="ttdoc">name of the current file</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00081">constantes.cpp:81</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_ad9f24960a276b15f7205ca4399901474a07e7bd1dd1449b71dd55b32bed878701"><div class="ttname"><a href="constantes_8h.html#ad9f24960a276b15f7205ca4399901474a07e7bd1dd1449b71dd55b32bed878701">token_list</a></div><div class="ttdeci">@ token_list</div><div class="ttdoc">state code when scanning a token list</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00420">constantes.h:420</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a093b121866a6168a986e7ff004ddc5c4"><div class="ttname"><a href="constantes_8h.html#a093b121866a6168a986e7ff004ddc5c4">selector</a></div><div class="ttdeci">selector</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00022">constantes.h:22</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0d"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a></div><div class="ttdeci">token_type</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00444">constantes.h:444</a></div></div>
-<div class="ttc" id="aerreur_8cpp_html_a9bca71d1f000d89550daacde5c539d5d"><div class="ttname"><a href="erreur_8cpp.html#a9bca71d1f000d89550daacde5c539d5d">overflow</a></div><div class="ttdeci">void overflow(const std::string &amp;s, int n)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00214">erreur.cpp:214</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0d"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0d">token_type</a></div><div class="ttdeci">token_type</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00436">constantes.h:436</a></div></div>
 <div class="ttc" id="abackinput_8cpp_html_ada79b16970afac693692125a26a780ae"><div class="ttname"><a href="backinput_8cpp.html#ada79b16970afac693692125a26a780ae">backinput</a></div><div class="ttdeci">void backinput(Token t)</div><div class="ttdoc">Undoes one token of input.</div><div class="ttdef"><b>Definition:</b> <a href="backinput_8cpp_source.html#l00010">backinput.cpp:10</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a42890966701709fc2bc63068689ed518a8b6e5947264532204d9fe39c29db0631"><div class="ttname"><a href="constantes_8h.html#a42890966701709fc2bc63068689ed518a8b6e5947264532204d9fe39c29db0631">error_stop_mode</a></div><div class="ttdeci">@ error_stop_mode</div><div class="ttdoc">stops at every opportunity to interact</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00037">constantes.h:37</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a42890966701709fc2bc63068689ed518ae429dc15ce11ca55980a82ac82b0309c"><div class="ttname"><a href="constantes_8h.html#a42890966701709fc2bc63068689ed518ae429dc15ce11ca55980a82ac82b0309c">scroll_mode</a></div><div class="ttdeci">@ scroll_mode</div><div class="ttdoc">omits error stops</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00036">constantes.h:36</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a209bd98968041d00181afd1062c967b8"><div class="ttname"><a href="impression_8cpp.html#a209bd98968041d00181afd1062c967b8">asMode</a></div><div class="ttdeci">std::string asMode(int m)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00316">impression.cpp:316</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00336">impression.cpp:336</a></div></div>
-<div class="ttc" id="alecture_8cpp_html_ae925ce9cf3090fd9fc647fbc60dbb07c"><div class="ttname"><a href="lecture_8cpp.html#ae925ce9cf3090fd9fc647fbc60dbb07c">gettoken</a></div><div class="ttdeci">Token gettoken(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l01238">lecture.cpp:1238</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a209bd98968041d00181afd1062c967b8"><div class="ttname"><a href="impression_8cpp.html#a209bd98968041d00181afd1062c967b8">asMode</a></div><div class="ttdeci">std::string asMode(int m)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00310">impression.cpp:310</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a9facfbf7b673e7a2bcd6ff35750f0aa5"><div class="ttname"><a href="impression_8cpp.html#a9facfbf7b673e7a2bcd6ff35750f0aa5">printnl</a></div><div class="ttdeci">void printnl(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00330">impression.cpp:330</a></div></div>
+<div class="ttc" id="alecture_8cpp_html_ae925ce9cf3090fd9fc647fbc60dbb07c"><div class="ttname"><a href="lecture_8cpp.html#ae925ce9cf3090fd9fc647fbc60dbb07c">gettoken</a></div><div class="ttdeci">Token gettoken(void)</div><div class="ttdef"><b>Definition:</b> <a href="lecture_8cpp_source.html#l01236">lecture.cpp:1236</a></div></div>
 <div class="ttc" id="aerreur_8cpp_html_a7ab186ce8a58960ce2ad26f8c41e826b"><div class="ttname"><a href="erreur_8cpp.html#a7ab186ce8a58960ce2ad26f8c41e826b">fatal</a></div><div class="ttdeci">void fatal(const std::string &amp;msg, const std::string &amp;hlp)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00193">erreur.cpp:193</a></div></div>
-<div class="ttc" id="aglobals_8h_html_a9a13aa7125bf33b3f002c6a9d14ede3d"><div class="ttname"><a href="globals_8h.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a></div><div class="ttdeci">unsigned char inputptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00342">globals.h:342</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_a97ac5a04e54c21dc17aae6b1102f7389"><div class="ttname"><a href="constantes_8h.html#a97ac5a04e54c21dc17aae6b1102f7389">loc</a></div><div class="ttdeci">auto loc</div><div class="ttdoc">location of first unread character in buffer</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00805">constantes.h:805</a></div></div>
+<div class="ttc" id="aglobals_8h_html_a9a13aa7125bf33b3f002c6a9d14ede3d"><div class="ttname"><a href="globals_8h.html#a9a13aa7125bf33b3f002c6a9d14ede3d">inputptr</a></div><div class="ttdeci">unsigned char inputptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00337">globals.h:337</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_a97ac5a04e54c21dc17aae6b1102f7389"><div class="ttname"><a href="constantes_8h.html#a97ac5a04e54c21dc17aae6b1102f7389">loc</a></div><div class="ttdeci">auto loc</div><div class="ttdoc">location of first unread character in buffer</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00786">constantes.h:786</a></div></div>
 <div class="ttc" id="aclassAnyNode_html_a0717a5389aff4c552dd4556b1d5fa667"><div class="ttname"><a href="classAnyNode.html#a0717a5389aff4c552dd4556b1d5fa667">AnyNode::num</a></div><div class="ttdeci">halfword num</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00011">noeud.h:11</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a21ef095e590aba62bbf6d3e637d0a19a"><div class="ttname"><a href="globals_8h.html#a21ef095e590aba62bbf6d3e637d0a19a">helpline</a></div><div class="ttdeci">std::string helpline</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00223">globals.h:223</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a2715dcea36ae0bf1f96b9d1b10923598"><div class="ttname"><a href="constantes_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598">err_help</a></div><div class="ttdeci">halfword &amp; err_help(void)</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00067">constantes.cpp:67</a></div></div>
-<div class="ttc" id="aclassTokenNode_html"><div class="ttname"><a href="classTokenNode.html">TokenNode</a></div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00048">noeud.h:48</a></div></div>
+<div class="ttc" id="aclassTokenNode_html"><div class="ttname"><a href="classTokenNode.html">TokenNode</a></div><div class="ttdef"><b>Definition:</b> <a href="noeud_8h_source.html#l00055">noeud.h:55</a></div></div>
 <div class="ttc" id="anoeud_8h_html_a90d951dcd6c50010a0d62f179275f1c0"><div class="ttname"><a href="noeud_8h.html#a90d951dcd6c50010a0d62f179275f1c0">box</a></div><div class="ttdeci">std::vector&lt; BoxNode * &gt; box(256)</div></div>
 <div class="ttc" id="aglobals_8h_html_a72e27dee31b1c4c6a504fbed29542d97"><div class="ttname"><a href="globals_8h.html#a72e27dee31b1c4c6a504fbed29542d97">last</a></div><div class="ttdeci">int last</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00299">globals.h:299</a></div></div>
-<div class="ttc" id="aglobals_8h_html_aa326562731b81df3c428077a9343c00f"><div class="ttname"><a href="globals_8h.html#aa326562731b81df3c428077a9343c00f">saveptr</a></div><div class="ttdeci">int saveptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00336">globals.h:336</a></div></div>
+<div class="ttc" id="aequivalent_8cpp_html_a2715dcea36ae0bf1f96b9d1b10923598"><div class="ttname"><a href="equivalent_8cpp.html#a2715dcea36ae0bf1f96b9d1b10923598">err_help</a></div><div class="ttdeci">halfword &amp; err_help(void)</div><div class="ttdef"><b>Definition:</b> <a href="equivalent_8cpp_source.html#l00090">equivalent.cpp:90</a></div></div>
 <div class="ttc" id="aglobals_8h_html_ab83428f90f6421c7dad8f3aea11430b3"><div class="ttname"><a href="globals_8h.html#ab83428f90f6421c7dad8f3aea11430b3">ASCIIcode</a></div><div class="ttdeci">std::uint8_t ASCIIcode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00041">globals.h:41</a></div></div>
-<div class="ttc" id="aglobals_8h_html_a5ece84ab93a4020fd88922f894a642bd"><div class="ttname"><a href="globals_8h.html#a5ece84ab93a4020fd88922f894a642bd">maxsavestack</a></div><div class="ttdeci">int maxsavestack</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00337">globals.h:337</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_adeb7fc965be26e52bb3d9b60342f8fba"><div class="ttname"><a href="impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba">diagnostic</a></div><div class="ttdeci">void diagnostic(const std::string &amp;s)</div><div class="ttdoc">Do some tracing.</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01087">impression.cpp:1087</a></div></div>
-<div class="ttc" id="aconstantes_8cpp_html_a902b4928286612d69880d4d792924804"><div class="ttname"><a href="constantes_8cpp.html#a902b4928286612d69880d4d792924804">state</a></div><div class="ttdeci">quarterword &amp; state</div><div class="ttdoc">current scanner state</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00127">constantes.cpp:127</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00280">impression.cpp:280</a></div></div>
-<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765">inserted</a></div><div class="ttdeci">@ inserted</div><div class="ttdoc">token_type code for inserted texts</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00450">constantes.h:450</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_adeb7fc965be26e52bb3d9b60342f8fba"><div class="ttname"><a href="impression_8cpp.html#adeb7fc965be26e52bb3d9b60342f8fba">diagnostic</a></div><div class="ttdeci">void diagnostic(const std::string &amp;s)</div><div class="ttdoc">Do some tracing.</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l01081">impression.cpp:1081</a></div></div>
+<div class="ttc" id="aconstantes_8cpp_html_a902b4928286612d69880d4d792924804"><div class="ttname"><a href="constantes_8cpp.html#a902b4928286612d69880d4d792924804">state</a></div><div class="ttdeci">quarterword &amp; state</div><div class="ttdoc">current scanner state</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8cpp_source.html#l00079">constantes.cpp:79</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_ac52ac3c4e4f907c35038591b801f7191"><div class="ttname"><a href="impression_8cpp.html#ac52ac3c4e4f907c35038591b801f7191">println</a></div><div class="ttdeci">void println(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00275">impression.cpp:275</a></div></div>
+<div class="ttc" id="aconstantes_8h_html_afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765"><div class="ttname"><a href="constantes_8h.html#afe5ef662303b6b710ea6ee1a944bad0da88c7ff5381a6ecc763d7d1c843e17765">inserted</a></div><div class="ttdeci">@ inserted</div><div class="ttdoc">token_type code for inserted texts</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00442">constantes.h:442</a></div></div>
 <div class="ttc" id="aendfilereading_8cpp_html_a305fe4c17f929987d609b10d7bbd4d96"><div class="ttname"><a href="endfilereading_8cpp.html#a305fe4c17f929987d609b10d7bbd4d96">endfilereading</a></div><div class="ttdeci">void endfilereading(void)</div><div class="ttdef"><b>Definition:</b> <a href="endfilereading_8cpp_source.html#l00006">endfilereading.cpp:6</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_ac962fe630d66a4b7f731058e01df9a7a"><div class="ttname"><a href="impression_8cpp.html#ac962fe630d66a4b7f731058e01df9a7a">tokenshow</a></div><div class="ttdeci">std::string tokenshow(TokenNode *p)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00520">impression.cpp:520</a></div></div>
-<div class="ttc" id="aglobals_8h_html_aed2bd6a0a774ec6f59c3b0add5adc8f0"><div class="ttname"><a href="globals_8h.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a></div><div class="ttdeci">instaterecord inputstack[stacksize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00341">globals.h:341</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_ac962fe630d66a4b7f731058e01df9a7a"><div class="ttname"><a href="impression_8cpp.html#ac962fe630d66a4b7f731058e01df9a7a">tokenshow</a></div><div class="ttdeci">std::string tokenshow(TokenNode *p)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00514">impression.cpp:514</a></div></div>
+<div class="ttc" id="aglobals_8h_html_aed2bd6a0a774ec6f59c3b0add5adc8f0"><div class="ttname"><a href="globals_8h.html#aed2bd6a0a774ec6f59c3b0add5adc8f0">inputstack</a></div><div class="ttdeci">instaterecord inputstack[stacksize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00336">globals.h:336</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a3c3e28898a9b7414a6f1126a6bddfd29"><div class="ttname"><a href="globals_8h.html#a3c3e28898a9b7414a6f1126a6bddfd29">errorcount</a></div><div class="ttdeci">char errorcount</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00311">globals.h:311</a></div></div>
 <div class="ttc" id="aglobals_8h_html_ab366184edc7e8b986e320e1e0e61483f"><div class="ttname"><a href="globals_8h.html#ab366184edc7e8b986e320e1e0e61483f">alignstate</a></div><div class="ttdeci">int alignstate</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00270">globals.h:270</a></div></div>
-<div class="ttc" id="aglobals_8h_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00384">globals.h:384</a></div></div>
+<div class="ttc" id="aglobals_8h_html_abf7fa430b0a324301d86a65764c322ef"><div class="ttname"><a href="globals_8h.html#abf7fa430b0a324301d86a65764c322ef">c</a></div><div class="ttdeci">quarterword c</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00379">globals.h:379</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a7efa36ab31730808a677766db6df868e"><div class="ttname"><a href="globals_8h.html#a7efa36ab31730808a677766db6df868e">mode</a></div><div class="ttdeci">int &amp; mode</div><div class="ttdoc">current mode</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00206">globals.h:206</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_ac4413646391b853fe6e86b086a0ab7d9"><div class="ttname"><a href="impression_8cpp.html#ac4413646391b853fe6e86b086a0ab7d9">cmdchr</a></div><div class="ttdeci">std::string cmdchr(Token t)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00095">impression.cpp:95</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_ac4413646391b853fe6e86b086a0ab7d9"><div class="ttname"><a href="impression_8cpp.html#ac4413646391b853fe6e86b086a0ab7d9">cmdchr</a></div><div class="ttdeci">std::string cmdchr(Token t)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00096">impression.cpp:96</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a431400406085427c06eefbf1f215daf8"><div class="ttname"><a href="globals_8h.html#a431400406085427c06eefbf1f215daf8">useerrhelp</a></div><div class="ttdeci">bool useerrhelp</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00312">globals.h:312</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a81e39ccf5250c86e5b7e8dc56c7667e2"><div class="ttname"><a href="impression_8cpp.html#a81e39ccf5250c86e5b7e8dc56c7667e2">showbox</a></div><div class="ttdeci">std::string showbox(BoxNode *p)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00927">impression.cpp:927</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a81e39ccf5250c86e5b7e8dc56c7667e2"><div class="ttname"><a href="impression_8cpp.html#a81e39ccf5250c86e5b7e8dc56c7667e2">showbox</a></div><div class="ttdeci">std::string showbox(BoxNode *p)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00921">impression.cpp:921</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a99fb83031ce9923c84392b4e92f956b5a18e0e76773327634f35d3b33af22fd08"><div class="ttname"><a href="constantes_8h.html#a99fb83031ce9923c84392b4e92f956b5a18e0e76773327634f35d3b33af22fd08">error_message_issued</a></div><div class="ttdeci">@ error_message_issued</div><div class="ttdoc">history value when error has been called</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00044">constantes.h:44</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00242">impression.cpp:242</a></div></div>
-<div class="ttc" id="aglobals_8h_html_ac2e4effa98b7dc9b20259bdbd8a7bdc5"><div class="ttname"><a href="globals_8h.html#ac2e4effa98b7dc9b20259bdbd8a7bdc5">logopened</a></div><div class="ttdeci">bool logopened</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00377">globals.h:377</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a49b2d6a2982d94cfea73a4d4f8d8c39c"><div class="ttname"><a href="impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c">esc</a></div><div class="ttdeci">std::string esc(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00237">impression.cpp:237</a></div></div>
+<div class="ttc" id="aglobals_8h_html_ac2e4effa98b7dc9b20259bdbd8a7bdc5"><div class="ttname"><a href="globals_8h.html#ac2e4effa98b7dc9b20259bdbd8a7bdc5">logopened</a></div><div class="ttdeci">bool logopened</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00372">globals.h:372</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a0489286d29b84691df49ff88e8487b1a"><div class="ttname"><a href="globals_8h.html#a0489286d29b84691df49ff88e8487b1a">interaction</a></div><div class="ttdeci">char interaction</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00308">globals.h:308</a></div></div>
-<div class="ttc" id="aglobals_8h_html_af1ef163efc9d771f4a9f7f61c269cc97"><div class="ttname"><a href="globals_8h.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a></div><div class="ttdeci">unsigned char baseptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00351">globals.h:351</a></div></div>
+<div class="ttc" id="aglobals_8h_html_af1ef163efc9d771f4a9f7f61c269cc97"><div class="ttname"><a href="globals_8h.html#af1ef163efc9d771f4a9f7f61c269cc97">baseptr</a></div><div class="ttdeci">unsigned char baseptr</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00346">globals.h:346</a></div></div>
 <div class="ttc" id="abeginfilereading_8cpp_html_af501832c4c8d2d3ee398905b7857c4b1"><div class="ttname"><a href="beginfilereading_8cpp.html#af501832c4c8d2d3ee398905b7857c4b1">beginfilereading</a></div><div class="ttdeci">void beginfilereading(void)</div><div class="ttdoc">The begin_file_reading procedure starts a new level of input for lines of characters to be read from ...</div><div class="ttdef"><b>Definition:</b> <a href="beginfilereading_8cpp_source.html#l00009">beginfilereading.cpp:9</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a6f24c68dc4ffde288d61dcb71d93170e"><div class="ttname"><a href="impression_8cpp.html#a6f24c68dc4ffde288d61dcb71d93170e">slowprint</a></div><div class="ttdeci">void slowprint(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00065">impression.cpp:65</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a6f24c68dc4ffde288d61dcb71d93170e"><div class="ttname"><a href="impression_8cpp.html#a6f24c68dc4ffde288d61dcb71d93170e">slowprint</a></div><div class="ttdeci">void slowprint(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00066">impression.cpp:66</a></div></div>
 <div class="ttc" id="aconstantes_8h_html_a42890966701709fc2bc63068689ed518a7201b2420ef1bbe2703d8ae30ae61b20"><div class="ttname"><a href="constantes_8h.html#a42890966701709fc2bc63068689ed518a7201b2420ef1bbe2703d8ae30ae61b20">batch_mode</a></div><div class="ttdeci">@ batch_mode</div><div class="ttdoc">omits all stops and omits terminal output</div><div class="ttdef"><b>Definition:</b> <a href="constantes_8h_source.html#l00034">constantes.h:34</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_a27f6b6c256d6682247b1fbdd82d30194"><div class="ttname"><a href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a></div><div class="ttdeci">void print_err(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00450">impression.cpp:450</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_a27f6b6c256d6682247b1fbdd82d30194"><div class="ttname"><a href="impression_8cpp.html#a27f6b6c256d6682247b1fbdd82d30194">print_err</a></div><div class="ttdeci">void print_err(const std::string &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00444">impression.cpp:444</a></div></div>
 <div class="ttc" id="anoeud_8cpp_html_a82091fa45f60c083502da6514a00763b"><div class="ttname"><a href="noeud_8cpp.html#a82091fa45f60c083502da6514a00763b">flushnodelist</a></div><div class="ttdeci">void flushnodelist(LinkedNode *p)</div><div class="ttdef"><b>Definition:</b> <a href="noeud_8cpp_source.html#l00035">noeud.cpp:35</a></div></div>
 <div class="ttc" id="aglobals_8h_html_ab5d92e4cca25128ab62895809b500972"><div class="ttname"><a href="globals_8h.html#ab5d92e4cca25128ab62895809b500972">history</a></div><div class="ttdeci">char history</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00310">globals.h:310</a></div></div>
-<div class="ttc" id="aglobals_8h_html_a0851bb8aafb5048d795782a1027dbdd7"><div class="ttname"><a href="globals_8h.html#a0851bb8aafb5048d795782a1027dbdd7">savesize</a></div><div class="ttdeci">constexpr int savesize</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00025">globals.h:25</a></div></div>
-<div class="ttc" id="aimpression_8cpp_html_adb970f809d1f5630b828852e68845edb"><div class="ttname"><a href="impression_8cpp.html#adb970f809d1f5630b828852e68845edb">showcontext</a></div><div class="ttdeci">std::string showcontext(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00938">impression.cpp:938</a></div></div>
+<div class="ttc" id="aimpression_8cpp_html_adb970f809d1f5630b828852e68845edb"><div class="ttname"><a href="impression_8cpp.html#adb970f809d1f5630b828852e68845edb">showcontext</a></div><div class="ttdeci">std::string showcontext(void)</div><div class="ttdef"><b>Definition:</b> <a href="impression_8cpp_source.html#l00932">impression.cpp:932</a></div></div>
 <div class="ttc" id="aerreur_8cpp_html_ac7643d2431e40f0ac7a89ec84f1bda70"><div class="ttname"><a href="erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70">error</a></div><div class="ttdeci">void error(const std::string &amp;msg, const std::string &amp;hlp, bool deletionsallowed)</div><div class="ttdef"><b>Definition:</b> <a href="erreur_8cpp_source.html#l00014">erreur.cpp:14</a></div></div>
 <div class="ttc" id="aglobals_8h_html_aa56995a66771b46ca1620d77d1872caa"><div class="ttname"><a href="globals_8h.html#aa56995a66771b46ca1620d77d1872caa">buffer</a></div><div class="ttdeci">ASCIIcode buffer[bufsize+1]</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00297">globals.h:297</a></div></div>
 <div class="ttc" id="aglobals_8h_html_a41ebd28ef1d7c6ade45642cb6acc1039"><div class="ttname"><a href="globals_8h.html#a41ebd28ef1d7c6ade45642cb6acc1039">line</a></div><div class="ttdeci">int line</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00268">globals.h:268</a></div></div>

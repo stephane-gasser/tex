@@ -326,15 +326,11 @@ inline char nestptr; //0..nestsize
 inline char maxneststack; // 0..nestsize
 inline int shownmode; //-203..203
 inline char oldsetting; // 0..21
-inline memoryword eqtb[6107]; // débute à 1
-inline quarterword xeqlevel[6107]; // débute à 5263
 inline twohalves hash[2881]; // débute à 514
 inline halfword hashused;
 inline bool nonewcontrolsequence;
-inline std::vector<memoryword> savestack;
 inline quarterword curlevel;
 inline groupcode curgroup;
-inline int curboundary; // 0..savesize
 inline instaterecord inputstack[stacksize+1];
 inline unsigned char inputptr; // 0..stacksize
 inline unsigned char maxinstack; // 0..stacksize

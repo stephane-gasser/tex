@@ -4,45 +4,38 @@
 #include "equivalent.h"
 
 enum save_type
-{
+{ 
 	restore_old_value = 0, //!< \a save_type when a value should be restored later
 	restore_zero = 1, //!< \a save_type when an undefined entry should be restored
 	insert_token = 2, //!< \a save_type when a token is being saved for later use
 	level_boundary = 3 //!< \a save_type corresponding to beginning of group
 };
 
-static memoryword memory(quarterword type, quarterword level, halfword index)
-{
-	memoryword m;
-	m.hh.b0 = type;
-	m.hh.b1 = level;
-	m.hh.rh = index;
-	return m;
-}
-
-void eqsave(halfword p, quarterword l)
+void eqsave(AnyNode *p, quarterword l)
 {
 	if (l == level_zero)
-		savestack.push_back(memory(restore_zero, l, p));
+		savestack.push_back(new MemoryNode(restore_zero, l, p));
 	else
 	{
-		savestack.push_back(eqtb[p]);
-		savestack.push_back(memory(restore_old_value, l, p));
+		savestack.push_back(dynamic_cast<MemoryNode*>(p));
+		savestack.push_back(new MemoryNode(restore_old_value, l, p));
 	}
 }
 
-void saveforafter(halfword t)
+void saveforafter(AnyNode *t)
 {
 	if (curlevel > level_one)
-		savestack.push_back(memory(insert_token, level_zero, t));
+		savestack.push_back(new MemoryNode(insert_token, level_zero, t));
 }
+
+static AnyNode *curboundary = nullptr; // 0..savesize
 
 void newsavelevel(groupcode c)
 {
 	if (curlevel == 255)
 		overflow("grouping levels", 255);
-	savestack.push_back(memory(level_boundary, curgroup, curboundary));
-	curboundary = savestack.size();
+	savestack.push_back(new MemoryNode(level_boundary, curgroup, curboundary));
+	curboundary = savestack.back();
 	curlevel++;
 	curgroup = c;
 }
@@ -56,22 +49,22 @@ void unsave(void)
 	}
 	curlevel--;
 	quarterword slevel;
-	halfword sindex;
+	AnyNode *sindex;
 	while (true)
 	{
 		auto m = savestack.back();
-		auto stype = m.hh.b0;
-		slevel = m.hh.b1;
-		sindex = m.hh.rh;
+		auto stype = m->type;
+		slevel = m->level;
+		sindex = m->index;
 		savestack.pop_back();
 		if (stype == level_boundary)
 			break;
-		halfword p = sindex;
+		auto p = sindex;
 		quarterword l;
 		if (stype == insert_token)
 		{
 			Token t;
-			t.tok = p;
+			t.tok = p->num;
 			backinput(t);
 		}
 		else
@@ -80,31 +73,31 @@ void unsave(void)
 			{
 				l = slevel;
 				m = savestack.back();
-				stype = m.hh.b0;
-				slevel = m.hh.b1;
-				sindex = m.hh.rh;
+				stype = m->type;
+				slevel = m->level;
+				sindex = m->index;
 				savestack.pop_back();
 			}
 			else
 			{
-				m = eqtb[undefined_control_sequence];
-				stype = m.hh.b0;
-				slevel = m.hh.b1;
-				sindex = m.hh.rh;
+				m = &eqtb_cs[undefined_control_sequence-hash_base];
+				stype = m->type;
+				slevel = m->level;
+				sindex = m->index;
 			}
-			if (p < int_base)
-				if (eq_level(p) == level_one)
+			if (p->num < int_base) // dans eqtb
+				if (dynamic_cast<MemoryNode*>(p)->level == level_one)
 					eqdestroy(m);
 				else
 				{
-					eqdestroy(eqtb[p]);
-					eqtb[p] = m;
+					eqdestroy(dynamic_cast<MemoryNode*>(p));
+					*p = *m;
 				}
 			else 
-				if (xeqlevel[p] != level_one)
+				if (dynamic_cast<MemoryNode*>(p)->level/*xeqlevel[p]*/ != level_one) //dans xeqlevel
 				{
-					eqtb[p] = m;
-					xeqlevel[p] = l;
+					*p = *m; //eqtb [p] = m;
+					dynamic_cast<MemoryNode*>(p)->level = l;//xeqlevel[p] = l;
 				}
 		}
 	}	

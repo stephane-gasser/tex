@@ -19,6 +19,6 @@ int math_x_height(smallnumber); //!< height of `x'
 int math_quad(smallnumber); //!< 18mu
 internalfontnumber readfontinfo(halfword, const std::string &, const std::string &, scaled);
 [[nodiscard]] int findfontdimen(bool);
-halfword& fam_fnt(halfword);
+int& fam_fnt(halfword);
 
 #endif

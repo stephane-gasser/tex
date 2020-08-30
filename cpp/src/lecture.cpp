@@ -23,9 +23,8 @@
 #include "endname.h"
 #include "pushinput.h"
 #include "popinput.h"
-#include "geqdefine.h"
-#include "eqdefine.h"
-#include "macrocall.h"
+#include "equivalent.h"
+#include "macrocall.h" 
 #include "fichier.h"
 #include "terminput.h"
 #include "beginfilereading.h"
@@ -129,8 +128,9 @@ void scandelimiter(Delimiter &p, bool r, Token t)
 					std::tie(val, lev) = scansomethinginternal(mu_val, false, t);
 					if (lev >= glue_val)
 					{
-						auto v = width(val);
-						deleteglueref(val);
+						auto G = dynamic_cast<GlueSpec*>(eqtb_glue[val-glue_base].index);
+						auto v = G->width;
+						deleteglueref(G);
 						val = v;
 					}
 					if (lev == mu_val)
@@ -208,18 +208,19 @@ void scandelimiter(Delimiter &p, bool r, Token t)
 		{
 			if (mu)
 			{
-				std::tie(val, lev) = scansomethinginternal(3, false, t);
-				if (lev >= 2)
+				std::tie(val, lev) = scansomethinginternal(mu_val, false, t);
+				if (lev >= glue_val)
 				{
-					auto v = width(val);
-					deleteglueref(val);
+					auto G = dynamic_cast<GlueSpec*>(eqtb_glue[val-glue_base].index);
+					auto v = G->width;
+					deleteglueref(G);
 					val = v;
 				}
-				if (lev != 3)
+				if (lev != mu_val)
 					error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
 			}
 			else
-				std::tie(val, lev) = scansomethinginternal(1, false, t);
+				std::tie(val, lev) = scansomethinginternal(dimen_val, false, t);
 			auto v = val;
 			val = nx_plus_y(saveval, v, xnoverd(v, f, 0x1'00'00));
 			break;
@@ -431,7 +432,7 @@ void scanfilename(void)
 		case set_font:
 			return t.chr;
 		case def_family:
-			return equiv(t.chr+scanfourbitint());
+			return eqtb_local[t.chr+scanfourbitint()-local_base].int_;
 	}
 	backerror(t, "Missing font identifier", "I was looking for a control sequence whose\ncurrent meaning has been defined by \\font.");
 	return null_font;
@@ -540,7 +541,7 @@ void scanfilename(void)
 	}
 	else 
 		if (t.cmd >= min_internal && t.cmd <= max_internal)
-			std::tie(val, lev) = scansomethinginternal(0, false, t);
+			std::tie(val, lev) = scansomethinginternal(int_val, false, t);
 		else
 		{
 			radix = 10;
@@ -658,9 +659,9 @@ void scanmath(NoadContent &p)
 				c = math_code(t.chr);
 				if (c == 0x80'00)
 				{
-					t.cs = t.chr+1;
-					t.cmd = eq_type(t.cs);
-					t.chr = equiv(t.cs);
+					t.cs = t.chr+active_base;
+					t.cmd = eqtb_active[t.chr].type;
+					t.chr = eqtb_active[t.chr].int_;
 					t = xtoken(t);
 					backinput(t);
 					t = getXTokenSkipSpaceAndEscape();
@@ -686,8 +687,8 @@ void scanmath(NoadContent &p)
 			{
 				backinput(t);
 				t = scanleftbrace();
-				memoryword m;
-				m.int_ = p.num;
+				auto m = new MemoryNode;
+				m->index = &p;
 				savestack.push_back(m);
 				pushmath(math_group);
 				return;
@@ -740,9 +741,6 @@ RuleNode *scanrulespec(Token t)
 	return q;
 }
 
-//! |mem| location of math glue spec
-//static halfword& mu_skip(halfword p) { return equiv(mu_skip_base+p); }
-
 [[nodiscard]] std::tuple<int, int> scansomethinginternal(smallnumber level, bool negative, Token t)
 {
 	///////////////////////////////
@@ -759,9 +757,9 @@ RuleNode *scanrulespec(Token t)
 				val = math_code(scancharnum());
 			else 
 				if (m < math_code_base)
-					val = equiv(m+scancharnum());
+					val = eqtb_local[m+scancharnum()-local_base].int_;
 				else
-					val = eqtb[m+scancharnum()].int_;
+					val = eqtb_int[m+scancharnum()-int_base].int_;
 			break;
 		case toks_register:
 		case assign_toks:
@@ -774,7 +772,7 @@ RuleNode *scanrulespec(Token t)
 			}
 			if (t.cmd == toks_register)
 				m = toks_base+scaneightbitint();
-			val = equiv(m);
+			val = eqtb_local[m-local_base].int_;
 			lev = tok_val;
 			break;
 		case def_family:
@@ -792,19 +790,19 @@ RuleNode *scanrulespec(Token t)
 			lev = ident_val;
 			break;
 		case assign_int:
-			val = eqtb[m].int_;
+			val = eqtb_int[m-int_base].int_;
 			lev = int_val;
 			break;
 		case assign_dimen:
-			val = eqtb[m].int_;
+			val = eqtb_dimen[m-dimen_base].int_;
 			lev = dimen_val;
 			break;
 		case assign_glue:
-			val = equiv(m);
+			val = eqtb[m].int_;
 			lev = glue_val;
 			break;
 		case assign_mu_glue:
-			val = equiv(m);
+			val = eqtb[m].int_;
 			lev = mu_val;
 			break;
 		case set_aux:
@@ -850,7 +848,7 @@ RuleNode *scanrulespec(Token t)
 		case set_shape:
 			val = 0;
 			if (par_shape_ptr())
-				val = info(par_shape_ptr());
+				val = par_shape_ptr()->values.size()/2;
 			lev = int_val;
 			break;
 		case set_box_dimen:
@@ -1000,10 +998,11 @@ RuleNode *scanrulespec(Token t)
 		speccode = additional;
 		val = scankeyword("spread") ? scan_normal_dimen() : 0;
 	}
-	memoryword m;
-	m.int_ = speccode;
+	auto m = new MemoryNode;
+	m->int_ = speccode;
 	savestack.push_back(m);
-	m.int_ = val;
+	m = new MemoryNode;
+	m->int_ = val;
 	savestack.push_back(m);
 	newsavelevel(c);
 	return scanleftbrace();
@@ -1011,8 +1010,8 @@ RuleNode *scanrulespec(Token t)
 
 [[nodiscard]] Token scanspec(groupcode c, int s)
 {
-	memoryword m;
-	m.int_ = s;
+	auto m = new MemoryNode;
+	m->int_ = s;
 	savestack.push_back(m);
 	return scanspec(c);
 }
@@ -1297,7 +1296,7 @@ Token getpreambletoken(void)
 		if (t.cmd != assign_glue || t.chr != glue_base+tab_skip_code)
 			return t;
 		scanoptionalequals();
-		(global_defs() > 0 ? geqdefine : eqdefine)(glue_base+tab_skip_code, glue_ref, scanglue(glue_val)->num);
+		(global_defs() > 0 ? geqdefine : eqdefine)(&eqtb_glue[tab_skip_code], glue_ref, scanglue(glue_val)->num);
 	}
 }
 

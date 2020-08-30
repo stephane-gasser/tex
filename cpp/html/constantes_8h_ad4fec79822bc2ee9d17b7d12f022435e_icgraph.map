@@ -1,9 +1,4 @@
 <map id="height" name="height">
-<area shape="rect" id="node1" title="height of the box, in sp" alt="" coords="284,133,341,160"/>
-<area shape="rect" id="node2" href="$buildpage_8h.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="5,96,83,122"/>
-<area shape="rect" id="node3" href="$formule_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="141,57,226,84"/>
-<area shape="rect" id="node4" href="$package_8h.html#aa92f716ba4e8d513b69751203047c324" title=" " alt="" coords="148,108,219,134"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#adf229d61e9473738af7cc7c3a120b334" title=" " alt="" coords="131,158,236,185"/>
-<area shape="rect" id="node6" href="$vertbreak_8h.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="145,209,221,236"/>
-<area shape="rect" id="node7" href="$vlistout_8h.html#a2a63f58c4f8b65ab246a5e6f40cd43dd" title=" " alt="" coords="151,284,215,310"/>
+<area shape="rect" id="node1" title="height of the box, in sp" alt="" coords="139,29,196,56"/>
+<area shape="rect" id="node2" href="$formule_8h.html#abcf0210b35693d639cd8862f6270e38f" title=" " alt="" coords="5,29,91,56"/>
 </map>

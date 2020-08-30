@@ -1,5 +1,5 @@
 <map id="LinkedNode" name="LinkedNode">
-<area shape="rect" id="node1" title=" " alt="" coords="129,436,220,463"/>
+<area shape="rect" id="node1" title=" " alt="" coords="129,461,220,488"/>
 <area shape="rect" id="node3" href="$classAdjustNode.html" title=" " alt="" coords="280,5,371,32"/>
 <area shape="rect" id="node4" href="$classCharNode.html" title=" " alt="" coords="285,56,366,83"/>
 <area shape="rect" id="node5" href="$classChoiceNode.html" title=" " alt="" coords="278,107,373,133"/>
@@ -15,8 +15,9 @@
 <area shape="rect" id="node15" href="$classPageInsNode.html" title=" " alt="" coords="275,613,376,640"/>
 <area shape="rect" id="node16" href="$classPenaltyNode.html" title=" " alt="" coords="277,664,374,691"/>
 <area shape="rect" id="node17" href="$classRuleNode.html" title=" " alt="" coords="285,715,365,741"/>
-<area shape="rect" id="node18" href="$classStyleNode.html" title=" " alt="" coords="284,765,367,792"/>
-<area shape="rect" id="node19" href="$classTokenNode.html" title=" " alt="" coords="281,816,369,843"/>
-<area shape="rect" id="node20" href="$classWhatsitNode.html" title=" " alt="" coords="276,867,375,893"/>
-<area shape="rect" id="node2" href="$classAnyNode.html" title=" " alt="" coords="5,436,81,463"/>
+<area shape="rect" id="node18" href="$classShapeNode.html" title=" " alt="" coords="280,765,371,792"/>
+<area shape="rect" id="node19" href="$classStyleNode.html" title=" " alt="" coords="284,816,367,843"/>
+<area shape="rect" id="node20" href="$classTokenNode.html" title=" " alt="" coords="281,867,369,893"/>
+<area shape="rect" id="node21" href="$classWhatsitNode.html" title=" " alt="" coords="276,917,375,944"/>
+<area shape="rect" id="node2" href="$classAnyNode.html" title=" " alt="" coords="5,461,81,488"/>
 </map>

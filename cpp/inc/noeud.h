@@ -174,7 +174,7 @@ class PageInsNode : public LinkedNode
 		PageInsNode(void) {}
 };
 
-halfword& glue_par(halfword);
+GlueSpec *glue_par(halfword);
 
 class GlueNode : public LinkedNode
 {
@@ -183,13 +183,10 @@ class GlueNode : public LinkedNode
 		LinkedNode *leader_ptr = nullptr; //!< pointer to box or rule node for leaders
 		GlueSpec *glue_ptr; //!< pointer to a glue specification
 		GlueNode(GlueSpec *g) : subtype(0), glue_ptr(g) { type = glue_node; g->glue_ref_count++; }
-		GlueNode(smallnumber n) : subtype(n+1) { type = glue_node; glue_ptr->num = glue_par(n); glue_ptr->glue_ref_count++; }
+		GlueNode(smallnumber n) : subtype(n+1) { type = glue_node; glue_ptr = glue_par(n); glue_ptr->glue_ref_count++; }
 		~GlueNode(void) { deleteglueref(glue_ptr); flushnodelist(leader_ptr); }
 		virtual GlueNode *copy(void) { auto g = new GlueNode(glue_ptr); g->leader_ptr = copynodelist(leader_ptr); return g; }
 };
-
-inline std::vector<GlueSpec*> skip(256);
-inline std::vector<GlueSpec*> mu_skip(256);
 
 class PenaltyNode : public LinkedNode
 {

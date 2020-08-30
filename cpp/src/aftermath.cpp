@@ -55,7 +55,7 @@ void aftermath(void)
 		mlisttohlist();
 		a = hpack(temp_head->link, 0, additional);
 		unsave();
-		auto s0 = savestack.back().int_;
+		auto s0 = savestack.back()->int_;
 		savestack.pop_back();
 		if (s0 == 1)
 			l = true;

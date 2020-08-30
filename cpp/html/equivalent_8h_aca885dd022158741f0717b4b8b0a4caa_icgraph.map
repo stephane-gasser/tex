@@ -1,0 +1,10 @@
+<map id="eq_type" name="eq_type">
+<area shape="rect" id="node1" title="command code for equivalent" alt="" coords="252,157,320,184"/>
+<area shape="rect" id="node2" href="$equivalent_8h.html#a4f9657182abb3c8c499ccd689be3f647" title=" " alt="" coords="125,5,196,32"/>
+<area shape="rect" id="node3" href="$expand_8h.html#a6c77eceb3e53fd876d329ec10048f5da" title=" " alt="" coords="5,31,69,57"/>
+<area shape="rect" id="node4" href="$getnext_8h.html#a9e036f0ff44e818c889dfad5e8734eae" title=" " alt="" coords="128,107,193,133"/>
+<area shape="rect" id="node5" href="$initialize_8h.html#a7f34e789c6e833bd0e987f5f5cfca365" title=" " alt="" coords="125,157,196,184"/>
+<area shape="rect" id="node6" href="$initprim_8h.html#a00fac4d433de0ce408e745ad03051386" title=" " alt="" coords="5,233,69,260"/>
+<area shape="rect" id="node7" href="$primitive_8h.html#ac40275ffd4fe9539344c66bd4d2b151a" title=" " alt="" coords="125,259,196,285"/>
+<area shape="rect" id="node8" href="$storefmtfile_8h.html#a9bb55785bfd50f4b225dbd3cd9aed2f8" title=" " alt="" coords="117,309,204,336"/>
+</map>

@@ -254,8 +254,12 @@ void newfont(smallnumber a)
 		openlogfile();
 	auto u = getrtoken();
 	if (u >= hash_base)
+	{
 		t = TXT(text(u));
+		define(a, &eqtb_cs[u-hash_base], set_font, null_font);
+	}
 	else 
+	{
 		if (u >= single_base)
 			if (u == txt("char"))
 				t = "FONT";
@@ -263,7 +267,8 @@ void newfont(smallnumber a)
 				t = char(u-single_base);
 		else
 			t = "FONT"+char(u-1);
-	define(a, u, set_font, null_font);
+		define(a, &eqtb_active[u-active_base], set_font, null_font);
+	}
 	scanoptionalequals();
 	scanfilename();
 	nameinprogress = true;
@@ -310,8 +315,8 @@ void newfont(smallnumber a)
 		}
 	if (f >= fonts.size())
 		f = readfontinfo(u, curname, curarea, s);
-	equiv(u) = f;
-	eqtb[frozen_null_font+f] = eqtb[u];
+	eqtb[u].int_ = f; // index : Font*
+	eqtb_cs[f+frozen_null_font-hash_base] = eqtb[u];
 	text(frozen_null_font+f) = txt(t);
 }
 
@@ -363,8 +368,8 @@ GlueNode* newskipparam(smallnumber n)
 void appendchoices(void)
 {
 	tail_append(new ChoiceNode);
-	memoryword m;
-	m.int_ = 0;
+	auto m = new MemoryNode;
+	m->int_ = 0;
 	savestack.push_back(m);
 	pushmath(math_choice_group);
 	auto _ = scanleftbrace();
@@ -381,8 +386,8 @@ void appenddiscretionary(halfword s)
 	}
 	else
 	{
-		memoryword m;
-		m.int_ = 0;
+		auto m = new MemoryNode;
+		m->int_ = 0;
 		savestack.push_back(m);
 		newsavelevel(disc_group);
 		auto _ = scanleftbrace();

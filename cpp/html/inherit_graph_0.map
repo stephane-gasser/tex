@@ -1,9 +1,9 @@
 <map id="Graphe hiérarchique des classes" name="Graphe hiérarchique des classes">
-<area shape="rect" id="node1" href="$classAnyNode.html" title=" " alt="" coords="5,461,81,488"/>
-<area shape="rect" id="node2" href="$classGlueSpec.html" title=" " alt="" coords="139,385,218,412"/>
-<area shape="rect" id="node3" href="$classLinkedNode.html" title=" " alt="" coords="133,436,224,463"/>
-<area shape="rect" id="node32" href="$classNoadContent.html" title=" " alt="" coords="129,487,228,513"/>
-<area shape="rect" id="node33" href="$classSpanNode.html" title=" " alt="" coords="137,537,220,564"/>
+<area shape="rect" id="node1" href="$classAnyNode.html" title=" " alt="" coords="5,487,81,513"/>
+<area shape="rect" id="node2" href="$classGlueSpec.html" title=" " alt="" coords="139,411,218,437"/>
+<area shape="rect" id="node3" href="$classLinkedNode.html" title=" " alt="" coords="133,461,224,488"/>
+<area shape="rect" id="node33" href="$classNoadContent.html" title=" " alt="" coords="129,512,228,539"/>
+<area shape="rect" id="node34" href="$classSpanNode.html" title=" " alt="" coords="137,563,220,589"/>
 <area shape="rect" id="node4" href="$classAdjustNode.html" title=" " alt="" coords="288,5,379,32"/>
 <area shape="rect" id="node5" href="$classCharNode.html" title=" " alt="" coords="293,56,374,83"/>
 <area shape="rect" id="node6" href="$classChoiceNode.html" title=" " alt="" coords="286,107,381,133"/>
@@ -19,17 +19,18 @@
 <area shape="rect" id="node20" href="$classPageInsNode.html" title=" " alt="" coords="283,613,384,640"/>
 <area shape="rect" id="node21" href="$classPenaltyNode.html" title=" " alt="" coords="285,664,382,691"/>
 <area shape="rect" id="node22" href="$classRuleNode.html" title=" " alt="" coords="293,715,373,741"/>
-<area shape="rect" id="node25" href="$classStyleNode.html" title=" " alt="" coords="292,765,375,792"/>
-<area shape="rect" id="node26" href="$classTokenNode.html" title=" " alt="" coords="289,816,377,843"/>
-<area shape="rect" id="node27" href="$classWhatsitNode.html" title=" " alt="" coords="284,867,383,893"/>
+<area shape="rect" id="node25" href="$classShapeNode.html" title=" " alt="" coords="288,765,379,792"/>
+<area shape="rect" id="node26" href="$classStyleNode.html" title=" " alt="" coords="292,816,375,843"/>
+<area shape="rect" id="node27" href="$classTokenNode.html" title=" " alt="" coords="289,867,377,893"/>
+<area shape="rect" id="node28" href="$classWhatsitNode.html" title=" " alt="" coords="284,917,383,944"/>
 <area shape="rect" id="node16" href="$classAccentNoad.html" title=" " alt="" coords="469,512,563,539"/>
 <area shape="rect" id="node17" href="$classLeftRightNoad.html" title=" " alt="" coords="463,563,569,589"/>
 <area shape="rect" id="node18" href="$classRadicalNoad.html" title=" " alt="" coords="467,613,565,640"/>
 <area shape="rect" id="node19" href="$classFractionNoad.html" title=" " alt="" coords="681,613,781,640"/>
 <area shape="rect" id="node23" href="$classBoxNode.html" title=" " alt="" coords="478,715,554,741"/>
 <area shape="rect" id="node24" href="$classUnsetNode.html" title=" " alt="" coords="687,715,775,741"/>
-<area shape="rect" id="node28" href="$classLanguageWhatsitNode.html" title=" " alt="" coords="439,841,593,868"/>
-<area shape="rect" id="node29" href="$classWriteWhatsitNode.html" title=" " alt="" coords="452,892,580,919"/>
-<area shape="rect" id="node30" href="$classNotOpenWriteWhatsitNode.html" title=" " alt="" coords="641,867,821,893"/>
-<area shape="rect" id="node31" href="$classOpenWriteWhatsitNode.html" title=" " alt="" coords="652,917,811,944"/>
+<area shape="rect" id="node29" href="$classLanguageWhatsitNode.html" title=" " alt="" coords="439,892,593,919"/>
+<area shape="rect" id="node30" href="$classWriteWhatsitNode.html" title=" " alt="" coords="452,943,580,969"/>
+<area shape="rect" id="node31" href="$classNotOpenWriteWhatsitNode.html" title=" " alt="" coords="641,917,821,944"/>
+<area shape="rect" id="node32" href="$classOpenWriteWhatsitNode.html" title=" " alt="" coords="652,968,811,995"/>
 </map>

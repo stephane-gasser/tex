@@ -1,8 +1,9 @@
 <map id="shortdisplay" name="shortdisplay">
-<area shape="rect" id="node1" title=" " alt="" coords="5,117,97,144"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,137,97,164"/>
 <area shape="rect" id="node2" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="345,5,387,32"/>
-<area shape="rect" id="node3" href="$impression_8cpp.html#a5cb3277bcad679a466a4b8eb8d606947" title="a frozen font identifier&#39;s name" alt="" coords="321,68,411,95"/>
-<area shape="rect" id="node4" href="$classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347" title=" " alt="" coords="285,143,447,169"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#aabfaf0fb2c63e20450a46dfd966137c4" title=" " alt="" coords="145,117,237,144"/>
-<area shape="rect" id="node6" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="343,205,389,232"/>
+<area shape="rect" id="node3" href="$impression_8cpp.html#a5cb3277bcad679a466a4b8eb8d606947" title="a frozen font identifier&#39;s name" alt="" coords="321,75,411,101"/>
+<area shape="rect" id="node4" href="$classAnyNode.html#aec646c16667f1613eb7246eb0c4c0347" title=" " alt="" coords="285,163,447,189"/>
+<area shape="rect" id="node5" href="$noeud_8h.html#a72a773ad8412c27b0af75456a83cdd78" title=" " alt="" coords="343,213,389,240"/>
+<area shape="rect" id="node6" href="$impression_8cpp.html#aabfaf0fb2c63e20450a46dfd966137c4" title=" " alt="" coords="145,112,237,139"/>
+<area shape="rect" id="node7" href="$texte_8cpp.html#aaf77e9a4be9dd623634503ecf8b8223c" title=" " alt="" coords="343,264,389,291"/>
 </map>

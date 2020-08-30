@@ -1,4 +1,5 @@
 #include "police.h"
+#include "equivalent.h"
 #include "impression.h"
 #include "erreur.h"
 #include "packfilename.h"
@@ -34,9 +35,9 @@ int& Font::quad(void) const { return param(quad_code); }
 int Font::char_tag(smallnumber q) { return char_info(q).b2%4; }
 bool Font::char_exists(smallnumber q) { return char_info(q).b0 > 0; }
 
-Font& cur_font(void) { return fonts[equiv(cur_font_loc)]; }
-int curFontNum(void) { return equiv(cur_font_loc); }
-halfword& fam_fnt(halfword p) { return equiv(math_font_base+p); }
+Font& cur_font(void) { return fonts[curFontNum()]; }
+int curFontNum(void) { return eqtb_local[cur_font_loc-local_base].int_; }  // index : Font*
+int& fam_fnt(halfword p) { return eqtb_local[p+math_font_base-local_base].int_; }
 int mathex(smallnumber p) { return fonts[fam_fnt(3+cursize)].param(p); }
 int mathsy(smallnumber p, smallnumber c) { return fonts[fam_fnt(2+c)].param(p); }
 int default_rule_thickness(void) { return mathex(8); }

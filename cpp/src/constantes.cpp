@@ -1,13 +1,11 @@
 #include "globals.h"
 
 halfword& link(halfword p) { return mem[p].hh.rh; }
-halfword& math_type(halfword p) { return mem[p].hh.rh; }
 halfword& glue_ref_count(halfword p) { return mem[p].hh.rh; }
 halfword& info(halfword p) { return mem[p].hh.lh; }
 halfword& token_ref_count(halfword p) { return mem[p].hh.lh; }
 halfword& node_size(halfword p) { return mem[p].hh.lh; }
 quarterword& type(halfword p) { return mem[p].hh.b0; }
-quarterword& fam(halfword p) { return mem[p].hh.b0; }
 quarterword& font(halfword p) { return mem[p].hh.b0; }
 quarterword& stretch_order(halfword p) { return mem[p].hh.b0; }
 quarterword& span_count(halfword p) { return mem[p].hh.b1; }
@@ -22,12 +20,7 @@ int& depth(halfword p) { return mem[p+depth_offset].int_; }
 int& height(halfword p) { return mem[p+height_offset].int_; }
 int& u_part(halfword p) { return mem[p+height_offset].int_; }
 int&v_part(halfword p) { return mem[p+depth_offset].int_; }
-quarterword& small_fam(halfword p) { return mem[p].qqqq.b0; }
-quarterword& small_char(halfword p) { return mem[p].qqqq.b1; }
-quarterword& large_fam(halfword p) { return mem[p].qqqq.b2; }
-quarterword& large_char(halfword p) { return mem[p].qqqq.b3; }
 
-//int& new_hlist(halfword p) { return mem[nucleus(p)].int_; }
 LinkedNode *new_hlist(Noad *p) { return p->nucleus.info; }
 
 int& if_line_field(halfword p) { return mem[p+1].int_; }
@@ -42,31 +35,6 @@ halfword& line_number(halfword p) { return info(p+1); }
 halfword& llink(halfword p) { return info(p+1); }
 halfword& broken_ins(halfword p) { return info(p+1); }
 halfword& best_ins_ptr(halfword p) { return info(p+2); }
-quarterword& eq_level(halfword p) { return eqtb[p].hh.b1; }
-quarterword& eq_type(halfword p) { return eqtb[p].hh.b0; }
-halfword& equiv(halfword p) { return eqtb[p].hh.rh; }
-int& count(halfword p) { return eqtb[count_base+p].int_; }
-int& dimen(halfword p) { return eqtb[scaled_base+p].int_; }
-int& del_code(halfword p) { return eqtb[del_code_base+p].int_; }
-halfword& cat_code(halfword p) { return equiv(cat_code_base+p); }
-halfword& par_shape_ptr(void) { return equiv(par_shape_loc); }
-//halfword& every_math(void) { return equiv(every_math_loc); }
-static TokenNode mth;
-TokenNode* every_math(void) { return &mth; }
-//halfword& every_cr(void) { return equiv(every_cr_loc); }
-static TokenNode crn;//!< points to token list for \\everyvbox
-TokenNode* every_cr(void) { return &crn; }
-
-halfword& err_help(void) { return equiv(err_help_loc); }
-halfword& lc_code(halfword p) { return equiv(lc_code_base+p); }
-halfword& sf_code(halfword p) { return equiv(sf_code_base+p); }
-halfword& math_code(halfword p) { return equiv(math_code_base+p); }
-
-halfword left_delimiter(halfword p) { return p+4; }
-halfword right_delimiter(halfword p) { return p+5; }
-halfword nucleus(halfword p) { return p+1; }
-halfword supscr(halfword p) { return p+2; }
-halfword subscr(halfword p) { return p+3; }
 
 halfword& text(halfword p) { return hash[p].rh; }
 
@@ -74,9 +42,6 @@ int length(halfword p) { return strings[p].size(); }
 int cur_length(void) { return currentString.size(); }
 bool is_running(int d) { return d == null_flag; }
 alphafile& cur_file(void) { return inputfile[index]; }
-//halfword& every_vbox(void) { return equiv(every_vbox_loc); }
-static TokenNode vb;//!< points to token list for \\everyvbox
-TokenNode* every_vbox(void) { return &vb; }
 
 void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : language(); }
 void append_char(ASCIIcode c) { currentString += c; }
@@ -85,7 +50,7 @@ void flush_char(void) { currentString.pop_back(); }
 void tail_append(LinkedNode *p) 
 {
 	tail->link = p;
-	tail = tail->link;
+	next(tail);
 }
 
 void flush_string(void)

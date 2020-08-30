@@ -8,7 +8,7 @@ void buildchoices(Token t)
 {
 	unsave();
 	auto Tail = dynamic_cast<ChoiceNode*>(tail);
-	switch (savestack.back().int_)
+	switch (savestack.back()->int_)
 	{
 		case 0: 
 			Tail->display_mlist = finmlist(nullptr);
@@ -24,7 +24,7 @@ void buildchoices(Token t)
 			savestack.pop_back();
 			return;
 	}
-	savestack.back().int_++;
+	savestack.back()->int_++;
 	pushmath(math_choice_group);
 	t = scanleftbrace();
 }

@@ -3,7 +3,7 @@
 #include "popnest.h"
 #include "linebreak.h"
 #include "pushmath.h"
-#include "equivalent.h"
+#include "equivalent.h" 
 #include "buildpage.h"
 #include "backinput.h"
 #include "police.h"
@@ -17,7 +17,6 @@ static TokenNode *every_display(void) { return &disp; }
 void initmath(void)
 {
 	scaled w, l, s;
-	LinkedNode *p;
 	int n;
 	scaled v, d;
 	auto t = gettoken();
@@ -33,7 +32,7 @@ void initmath(void)
 			linebreak(display_widow_penalty());
 			v = justbox->shift_amount+2*cur_font().quad();
 			w = -max_dimen;
-			p = justbox->list_ptr;
+			auto p = justbox->list_ptr;
 			while (p)
 			{
 				if (p->is_char_node())
@@ -130,7 +129,7 @@ void initmath(void)
 				continue;
 			}
 		}
-		if (par_shape_ptr() == 0)
+		if (par_shape_ptr() == nullptr)
 			if (hang_indent() && ((hang_after() >= 0 && prev_graf+2 > hang_after()) || prev_graf+1 < -hang_after()))
 			{
 				l = hsize()-abs(hang_indent());
@@ -143,20 +142,17 @@ void initmath(void)
 			}
 		else
 		{
-			n = info(par_shape_ptr());
-			if (prev_graf+2 >= n)
-				p->num = par_shape_ptr()+2*n;
-			else
-				p->num = par_shape_ptr()+2*(prev_graf+2);
-			s = mem[p->num-1].int_;
-			l = mem[p->num].int_;
+			int idx = par_shape_ptr()->values.size();
+			idx = std::min(idx, 2*(prev_graf+2));
+			s = par_shape_ptr()->values[idx-2];
+			l = par_shape_ptr()->values[idx-1];
 		}
 		pushmath(math_shift_group);
 		mode = mmode;
-		eqworddefine(int_base+cur_fam_code, -1);
-		eqworddefine(dimen_base+pre_display_size_code, w);
-		eqworddefine(dimen_base+display_width_code, l);
-		eqworddefine(dimen_base+display_indent_code, s);
+		eqworddefine(&eqtb_int[cur_fam_code], -1);
+		eqworddefine(&eqtb_dimen[pre_display_size_code], w);
+		eqworddefine(&eqtb_dimen[display_width_code], l);
+		eqworddefine(&eqtb_dimen[display_indent_code], s);
 		if (every_display())
 			begintokenlist(every_display(), 9);
 		if (nestptr == 1)
@@ -166,7 +162,7 @@ void initmath(void)
 	{
 		backinput(t);
 		pushmath(math_shift_group);
-		eqworddefine(int_base+cur_fam_code, -1);
+		eqworddefine(&eqtb_int[cur_fam_code], -1);
 		if (every_math())
 			begintokenlist(every_math(), 8);
 	}

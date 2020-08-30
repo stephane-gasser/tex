@@ -1,5 +1,6 @@
 #include "maincontrol.h"
 #include "boite.h"
+#include "equivalent.h" 
 #include "police.h"
 #include "cesure.h"
 #include "fixlanguage.h"
@@ -773,9 +774,13 @@ Token maincontrol(void)
 				aftertoken = t = gettoken();
 				break;
 			case ANY_MODE(after_group):
+			{
 				t = gettoken();
-				saveforafter(t.tok);
+				auto tk = new TokenNode;
+				tk->token = t.tok;
+				saveforafter(tk);
 				break;
+			}
 			case ANY_MODE(in_stream):
 				openorclosein(t.chr);
 				break;

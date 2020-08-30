@@ -138,17 +138,20 @@ Fonctions</h2></td></tr>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="stringliteral">    int u = (x/0x80&#39;</span>00)*n+t/0x80<span class="stringliteral">&#39;00;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="stringliteral">    int v = (u%d)*0x80&#39;</span>00+t%0x80<span class="stringliteral">&#39;00;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="stringliteral">    if (u/d &gt;= 0x80&#39;</span>00)</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="globals_8h.html#aed4ff51e59c4db5651870a2ef2b48356">aritherror</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        u = 0x80<span class="stringliteral">&#39;00*(u/d)+v/d;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="stringliteral">    if (positive)</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="stringliteral">    {</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="stringliteral">        remainder_ = v%d;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral">        return u;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">    }</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">    remainder_ = -(v%d);</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">    return -u;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral">}</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">throw</span> <a class="code" href="classArithException.html">ArithException</a>();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="globals_8h.html#aed4ff51e59c4db5651870a2ef2b48356">aritherror</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    }</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        u = 0x80<span class="stringliteral">&#39;00*(u/d)+v/d;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="stringliteral">    if (positive)</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="stringliteral">    {</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="stringliteral">        remainder_ = v%d;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="stringliteral">        return u;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="stringliteral">    }</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="stringliteral">    remainder_ = -(v%d);</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="stringliteral">    return -u;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="stringliteral">}</span></div>
 </div><!-- fragment --><div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
@@ -165,6 +168,7 @@ Voici le graphe des appelants de cette fonction :</div>
 </div>
 </div><!-- contents -->
 <div class="ttc" id="aglobals_8h_html_aed4ff51e59c4db5651870a2ef2b48356"><div class="ttname"><a href="globals_8h.html#aed4ff51e59c4db5651870a2ef2b48356">aritherror</a></div><div class="ttdeci">bool aritherror</div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00313">globals.h:313</a></div></div>
+<div class="ttc" id="aclassArithException_html"><div class="ttname"><a href="classArithException.html">ArithException</a></div><div class="ttdef"><b>Definition:</b> <a href="globals_8h_source.html#l00448">globals.h:448</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Généré par &#160;<a href="http://www.doxygen.org/index.html">

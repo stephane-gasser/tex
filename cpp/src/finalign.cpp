@@ -95,9 +95,9 @@ void finalign(halfword &loop)
 		Q->glue_shrink = 0;
 		q = p;
 	} while (q);
-	auto s1 = savestack.back().int_;
+	auto s1 = savestack.back()->int_;
 	savestack.pop_back();
-	auto s0 = savestack.back().int_;
+	auto s0 = savestack.back()->int_;
 	savestack.pop_back();
 	packbeginline = -mode_line;
 	BoxNode *p;

@@ -155,9 +155,9 @@ void boxend(int boxcontext)
 	else 
 		if (boxcontext < ship_out_flag) // Store (c) \a cur_box in a box register
 			if (boxcontext < box_flag+256)
-				eqdefine(boxcontext-box_flag+box_base, box_ref, curbox->num);
+				eqdefine(&eqtb_local[boxcontext-box_flag+box_base-local_base], box_ref, curbox->num);
 			else
-				geqdefine(boxcontext-box_flag-256+box_base, box_ref, curbox->num);
+				geqdefine(&eqtb_local[boxcontext-box_flag-256+box_base-local_base], box_ref, curbox->num);
 		else 
 			if (curbox && boxcontext > ship_out_flag) // Append a new leader node that uses \a cur_box
 			{
@@ -699,11 +699,11 @@ static int box_max_depth(void) { return dimen_par(box_max_depth_code); }
 void package(smallnumber c, Token t)
 {
 	unsave();
-	auto s2 = savestack.back().int_;
+	auto s2 = savestack.back()->int_;
 	savestack.pop_back();
-	auto s1 = savestack.back().int_;
+	auto s1 = savestack.back()->int_;
 	savestack.pop_back();
-	auto s0 = savestack.back().int_;
+	auto s0 = savestack.back()->int_;
 	savestack.pop_back();
 	if (mode == -hmode)
 		curbox = hpack(head->link, s2, s1);

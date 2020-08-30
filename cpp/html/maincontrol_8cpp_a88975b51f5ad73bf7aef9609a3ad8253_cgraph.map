@@ -1,4 +1,5 @@
 <map id="pack_lig" name="pack_lig">
-<area shape="rect" id="node1" title="the parameter is either |rt_hit| or |false|" alt="" coords="5,5,76,32"/>
+<area shape="rect" id="node1" title="the parameter is either |rt_hit| or |false|" alt="" coords="5,31,76,57"/>
 <area shape="rect" id="node2" href="$police_8cpp.html#a1fe5eebc7eb782b4144dfe036ed70bb9" title=" " alt="" coords="124,5,193,32"/>
+<area shape="rect" id="node3" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="125,56,193,83"/>
 </map>

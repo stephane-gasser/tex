@@ -32,7 +32,7 @@ void builddiscretionary(Token t)
 	}
 	p = head->link;
 	popnest();
-	switch (savestack.back().int_)
+	switch (savestack.back()->int_)
 	{
 		case 0: 
 			dynamic_cast<DiscNode*>(tail)->pre_break = p;
@@ -58,7 +58,7 @@ void builddiscretionary(Token t)
 			savestack.pop_back();
 			return;
 	}
-	savestack.back().int_++;
+	savestack.back()->int_++;
 	newsavelevel(disc_group);
 	t = scanleftbrace();
 	pushnest();

@@ -67,32 +67,32 @@ void doregistercommand(smallnumber a, Token t)
 				switch (q)
 				{
 					case register_:
-						word_define(a, l, scanint());
+						word_define(a, &eqtb_int[l-int_base], scanint());
 						break;
 					case advance:
-						word_define(a, l, scanint()+eqtb[l].int_);
+						word_define(a, &eqtb_int[l-int_base], scanint()+eqtb_int[l-int_base].int_);
 						break;
 					case multiply:
-						word_define(a, l, mult_integers(eqtb[l].int_, scanint()));
+						word_define(a, &eqtb_int[l-int_base], mult_integers(eqtb_int[l-int_base].int_, scanint()));
 						break;
 					case divide:
-						word_define(a, l, xovern(eqtb[l].int_, scanint()));
+						word_define(a, &eqtb_int[l-int_base], xovern(eqtb_int[l-int_base].int_, scanint()));
 				}
 				break;
 			case dimen_val: 
 				switch (q)
 				{
 					case register_:
-						word_define(a, l, scan_normal_dimen());
+						word_define(a, &eqtb_dimen[l-dimen_base], scan_normal_dimen());
 						break;
 					case advance:
-						word_define(a, l, scan_normal_dimen()+eqtb[l].int_);
+						word_define(a, &eqtb_dimen[l-dimen_base], scan_normal_dimen()+eqtb_dimen[l-dimen_base].int_);
 						break;
 					case multiply:
-						word_define(a, l, nx_plus_y(eqtb[l].int_, scanint(), 0));
+						word_define(a, &eqtb_dimen[l-dimen_base], nx_plus_y(eqtb_dimen[l-dimen_base].int_, scanint(), 0));
 						break;
 					case divide:
-						word_define(a, l, xovern(eqtb[l].int_, scanint()));
+						word_define(a, &eqtb_dimen[l-dimen_base], xovern(eqtb_dimen[l-dimen_base].int_, scanint()));
 				}
 				break;
 			case glue_val: 
@@ -102,9 +102,9 @@ void doregistercommand(smallnumber a, Token t)
 						g = scanglue(p);
 						break;
 					case advance:
+					{
 						g = new GlueSpec(scanglue(p));
-						GlueSpec *R;
-						R->num = equiv(l);
+						auto R = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						deleteglueref(g);
 						g->width += R->width;
 						if (g->stretch == 0)
@@ -128,11 +128,11 @@ void doregistercommand(smallnumber a, Token t)
 								g->shrink_order = R->shrink_order;
 							}
 						break;
+					}
 					case multiply:
 					{
 						auto val = scanint();
-						GlueSpec *S;
-						S->num = equiv(l);
+						auto S = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						g = new GlueSpec(S);
 						g->width = nx_plus_y(S->width, val, 0);
 						g->stretch = nx_plus_y(S->stretch, val, 0);
@@ -142,8 +142,7 @@ void doregistercommand(smallnumber a, Token t)
 					case divide:
 					{
 						auto val = scanint();
-						GlueSpec *S;
-						S->num = equiv(l);
+						auto S = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						g = new GlueSpec(S);
 						g->width = xovern(S->width, val);
 						g->stretch = xovern(S->stretch, val);
@@ -151,7 +150,7 @@ void doregistercommand(smallnumber a, Token t)
 					}
 				}
 				g = trapzeroglue(g);
-				define(a, l, glue_ref, g->num);
+				define(a, &eqtb_glue[l-glue_base], glue_ref, g->num);
 				break;
 			case mu_val: 
 				switch (q)
@@ -160,9 +159,9 @@ void doregistercommand(smallnumber a, Token t)
 						g = scanglue(p);
 						break;
 					case advance:
+					{
 						g = new GlueSpec(scanglue(p));
-						GlueSpec *R;
-						R->num = equiv(l);
+						auto R = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						deleteglueref(g);
 						g->width += R->width;
 						if (g->stretch == 0)
@@ -186,11 +185,11 @@ void doregistercommand(smallnumber a, Token t)
 								g->shrink_order = R->shrink_order;
 							}
 						break;
+					}
 					case multiply:
 					{
 						auto val = scanint();
-						GlueSpec *S;
-						S->num = equiv(l);
+						auto S = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						g = new GlueSpec(S);
 						g->width = nx_plus_y(S->width, val, 0);
 						g->stretch = nx_plus_y(S->stretch, val, 0);
@@ -200,8 +199,7 @@ void doregistercommand(smallnumber a, Token t)
 					case divide:
 					{
 						auto val = scanint();
-						GlueSpec *S;
-						S->num = equiv(l);
+						auto S = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						g = new GlueSpec(S);
 						g->width = xovern(S->width, val);
 						g->stretch = xovern(S->stretch, val);
@@ -209,7 +207,7 @@ void doregistercommand(smallnumber a, Token t)
 					}
 				}
 				g = trapzeroglue(g);
-				define(a, l, glue_ref, g->num);
+				define(a, &eqtb_glue[l-glue_base], glue_ref, g->num);
 		}
 	}
 	catch(ArithException &e)

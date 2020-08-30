@@ -1,13 +1,13 @@
 <map id="maincontrol" name="maincontrol">
-<area shape="rect" id="node1" title=" " alt="" coords="5,1848,95,1875"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,1823,95,1849"/>
 <area shape="rect" id="node2" href="$aftermath_8cpp.html#a80105e67be2fe00fcfbe1ff33feefdd1" title="Action procedure for use in maincontrol()" alt="" coords="180,1949,257,1976"/>
-<area shape="rect" id="node3" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="761,2355,809,2381"/>
-<area shape="rect" id="node4" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="917,1341,960,1368"/>
-<area shape="rect" id="node5" href="$lecture_8cpp.html#ae925ce9cf3090fd9fc647fbc60dbb07c" title=" " alt="" coords="903,2811,975,2837"/>
-<area shape="rect" id="node6" href="$lecture_8cpp.html#a8011f7e4fce89d03b8863f49b45f4c57" title=" " alt="" coords="563,1265,642,1292"/>
-<area shape="rect" id="node7" href="$constantes_8cpp.html#a79c6dd981ca9096a229688c57fc324ca" title=" " alt="" coords="372,1747,460,1773"/>
-<area shape="rect" id="node8" href="$unsave_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="384,1949,448,1976"/>
-<area shape="rect" id="node9" href="$backinput_8cpp.html#ada79b16970afac693692125a26a780ae" title="Undoes one token of input." alt="" coords="563,2025,642,2052"/>
+<area shape="rect" id="node3" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="761,2456,809,2483"/>
+<area shape="rect" id="node4" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="917,1468,960,1495"/>
+<area shape="rect" id="node5" href="$lecture_8cpp.html#ae925ce9cf3090fd9fc647fbc60dbb07c" title=" " alt="" coords="903,2785,975,2812"/>
+<area shape="rect" id="node6" href="$lecture_8cpp.html#a8011f7e4fce89d03b8863f49b45f4c57" title=" " alt="" coords="563,1088,642,1115"/>
+<area shape="rect" id="node7" href="$constantes_8cpp.html#a03959739100366e5d4472f0c0264bd42" title=" " alt="" coords="372,1747,460,1773"/>
+<area shape="rect" id="node8" href="$sauvegarde_8cpp.html#a107d881e47e06a5ebd5fd6332f972bcc" title=" " alt="" coords="384,2000,448,2027"/>
+<area shape="rect" id="node9" href="$backinput_8cpp.html#ada79b16970afac693692125a26a780ae" title="Undoes one token of input." alt="" coords="563,2076,642,2103"/>
 <area shape="rect" id="node10" href="$maincontrol_8cpp.html#a9f30a40513260466869edf92a1bc72e2" title=" " alt="" coords="143,1419,295,1445"/>
 <area shape="rect" id="node11" href="$noeud_8cpp.html#a8f7ed45d5a9980b4d2dd4739091bedff" title=" " alt="" coords="164,456,273,483"/>
 <area shape="rect" id="node12" href="$noeud_8cpp.html#a3c3eb131fa9765de818cfd1bedba36ec" title=" " alt="" coords="149,507,288,533"/>
@@ -15,62 +15,61 @@
 <area shape="rect" id="node14" href="$noeud_8cpp.html#afb675d8990e6a5ffb4ea8c78e8d929a0" title=" " alt="" coords="145,608,293,635"/>
 <area shape="rect" id="node15" href="$noeud_8cpp.html#ae0f599c889bdf07839ec12a169308615" title=" " alt="" coords="174,659,263,685"/>
 <area shape="rect" id="node16" href="$noeud_8cpp.html#a82e3f6f58b17cb079cbca728f3c09d8b" title=" " alt="" coords="165,709,272,736"/>
-<area shape="rect" id="node17" href="$noeud_8cpp.html#a9c707281d9750ee2873ef686c1bdd82e" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="179,760,258,787"/>
-<area shape="rect" id="node18" href="$boite_8cpp.html#a2c454f1131585a4c20280083aa635be3" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="565,733,640,760"/>
+<area shape="rect" id="node17" href="$noeud_8cpp.html#a18c63a7091ad040a8a266d26f6005681" title="Handle spaces when &#160;space_factor != 1000 ." alt="" coords="179,760,258,787"/>
+<area shape="rect" id="node18" href="$boite_8cpp.html#a2c454f1131585a4c20280083aa635be3" title="Now that we can see what eventually happens to boxes, we can consider the first steps in their creati..." alt="" coords="565,1139,640,1165"/>
 <area shape="rect" id="node19" href="$lecture_8cpp.html#a118c5895c6b39177ff15a8a89c6e9cf1" title=" " alt="" coords="734,632,837,659"/>
-<area shape="rect" id="node20" href="$impression_8cpp.html#ac4413646391b853fe6e86b086a0ab7d9" title=" " alt="" coords="753,987,818,1013"/>
-<area shape="rect" id="node21" href="$constantes_8cpp.html#afbeacb925f2438a6e3dc7b875ad168b6" title=" " alt="" coords="741,708,830,735"/>
+<area shape="rect" id="node20" href="$impression_8cpp.html#ac4413646391b853fe6e86b086a0ab7d9" title=" " alt="" coords="753,1177,818,1204"/>
+<area shape="rect" id="node21" href="$equivalent_8cpp.html#afbeacb925f2438a6e3dc7b875ad168b6" title=" " alt="" coords="741,1101,830,1128"/>
 <area shape="rect" id="node22" href="$normalparagraph_8cpp.html#ab732d4db0ce00747da0bdb0fff3c7af9" title=" " alt="" coords="726,228,845,255"/>
 <area shape="rect" id="node23" href="$pushnest_8cpp.html#a67fd485afd94f32c6e7f6dcea9e6b309" title=" " alt="" coords="748,279,823,305"/>
-<area shape="rect" id="node24" href="$lecture_8cpp.html#acd91137563c568c716525074e0b5ef8b" title=" " alt="" coords="716,3115,855,3141"/>
-<area shape="rect" id="node25" href="$lecture_8cpp.html#a8603de7031868d80be30ff64845ac096" title=" " alt="" coords="746,380,825,407"/>
+<area shape="rect" id="node24" href="$lecture_8cpp.html#acd91137563c568c716525074e0b5ef8b" title=" " alt="" coords="716,3343,855,3369"/>
+<area shape="rect" id="node25" href="$lecture_8cpp.html#abfc276ff8fe9ea20cd55b5603480e43d" title=" " alt="" coords="746,380,825,407"/>
 <area shape="rect" id="node26" href="$begininsertoradjust_8cpp.html#a31e0412490daa3fdd03bab658f6e1e83" title=" " alt="" coords="537,152,668,179"/>
-<area shape="rect" id="node27" href="$noeud_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="735,177,836,204"/>
-<area shape="rect" id="node28" href="$buildpage_8cpp.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="564,2291,641,2317"/>
-<area shape="rect" id="node29" href="$deletelast_8cpp.html#ac4f77cae401f0be1684d4b4ffef00003" title=" " alt="" coords="563,1595,642,1621"/>
-<area shape="rect" id="node30" href="$doendv_8cpp.html#a092f2443bd42792887f86d8b05dc7492" title=" " alt="" coords="187,1064,251,1091"/>
-<area shape="rect" id="node31" href="$endgraf_8cpp.html#abee47be02d4d2b4c7bdb494f59a5a8bc" title=" " alt="" coords="383,835,449,861"/>
-<area shape="rect" id="node32" href="$offsave_8cpp.html#a1c0f3d8620b83e9da459a832904c4552" title=" " alt="" coords="383,936,449,963"/>
-<area shape="rect" id="node33" href="$doextension_8cpp.html#a1627c8393f107515ac23e80309ff7b45" title=" " alt="" coords="173,1493,265,1520"/>
-<area shape="rect" id="node34" href="$erreur_8cpp.html#a432e2d6beb1b9921b4481d81b1f42c19" title=" " alt="" coords="545,1443,661,1469"/>
+<area shape="rect" id="node27" href="$sauvegarde_8cpp.html#afad44a60dc27690826030e3d7bfe80a0" title=" " alt="" coords="735,177,836,204"/>
+<area shape="rect" id="node28" href="$buildpage_8cpp.html#a515bfa0ddd5208e294f2d657e702528d" title="Append contributions to the current page." alt="" coords="564,2355,641,2381"/>
+<area shape="rect" id="node29" href="$deletelast_8cpp.html#ac4f77cae401f0be1684d4b4ffef00003" title=" " alt="" coords="563,1240,642,1267"/>
+<area shape="rect" id="node30" href="$doendv_8cpp.html#a092f2443bd42792887f86d8b05dc7492" title=" " alt="" coords="187,963,251,989"/>
+<area shape="rect" id="node31" href="$endgraf_8cpp.html#abee47be02d4d2b4c7bdb494f59a5a8bc" title=" " alt="" coords="383,784,449,811"/>
+<area shape="rect" id="node32" href="$offsave_8cpp.html#a1c0f3d8620b83e9da459a832904c4552" title=" " alt="" coords="383,885,449,912"/>
+<area shape="rect" id="node33" href="$doextension_8cpp.html#a1627c8393f107515ac23e80309ff7b45" title=" " alt="" coords="173,1544,265,1571"/>
+<area shape="rect" id="node34" href="$erreur_8cpp.html#a432e2d6beb1b9921b4481d81b1f42c19" title=" " alt="" coords="545,1493,661,1520"/>
 <area shape="rect" id="node35" href="$maincontrol_8cpp.html#acd9ee34e4ce095e3b134b6c2a82c65c9" title=" " alt="" coords="179,1696,258,1723"/>
-<area shape="rect" id="node36" href="$lecture_8cpp.html#abe20aa0d4fde9e11c8f0830f7671847a" title=" " alt="" coords="343,1240,489,1267"/>
-<area shape="rect" id="node37" href="$handlerightbrace_8cpp.html#aa986c1436a4447fa6869a1ab2cf1f078" title=" " alt="" coords="160,2405,277,2432"/>
-<area shape="rect" id="node38" href="$erreur_8cpp.html#a5333c08b8118c1efbeb2fde844465f4f" title=" " alt="" coords="383,2355,449,2381"/>
-<area shape="rect" id="node39" href="$constantes_8cpp.html#a9242983f21f2b16d36d1fd5f955b185e" title="the nucleus field of a noad" alt="" coords="383,2608,449,2635"/>
-<area shape="rect" id="node40" href="$headforvmode_8cpp.html#a86220650003cf29102a15533e2f1825c" title=" " alt="" coords="167,1165,271,1192"/>
-<area shape="rect" id="node41" href="$indentinhmode_8cpp.html#a8622b8f1293c67fecadce463898b02aa" title=" " alt="" coords="165,1848,272,1875"/>
-<area shape="rect" id="node42" href="$initalign_8cpp.html#ac708f0d258bdf9b902597b6091e5ab19" title=" " alt="" coords="569,304,636,331"/>
-<area shape="rect" id="node43" href="$initmath_8cpp.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="382,2203,450,2229"/>
-<area shape="rect" id="node44" href="$insertdollarsign_8cpp.html#a2ad76c2a6c052da3b213282e9e92b036" title=" " alt="" coords="164,2355,273,2381"/>
-<area shape="rect" id="node45" href="$issuemessage_8cpp.html#ab28b58011eebacc8550ce6dc30becfea" title=" " alt="" coords="549,3115,656,3141"/>
-<area shape="rect" id="node46" href="$itsallover_8cpp.html#a0d5d8db4f1deae13d3be2b6b4de494f1" title=" " alt="" coords="181,1899,256,1925"/>
-<area shape="rect" id="node47" href="$erreur_8cpp.html#a6381e3680e52f4577897ad5e42263ce9" title=" " alt="" coords="377,1544,455,1571"/>
-<area shape="rect" id="node48" href="$maincontrol_8cpp.html#a00f5f81d53127a5edf3ae005f33a932c" title=" " alt="" coords="375,1088,457,1115"/>
-<area shape="rect" id="node49" href="$makeaccent_8cpp.html#a43e95a1f334e7a2f27f45fca24fedf07" title=" " alt="" coords="172,2051,265,2077"/>
-<area shape="rect" id="node50" href="$lecture_8cpp.html#a824233e29e5992b41ed05977a24f256f" title=" " alt="" coords="366,2861,466,2888"/>
-<area shape="rect" id="node51" href="$makemark_8cpp.html#a48c4f5b343a7e47e5e5a85cbad865d44" title=" " alt="" coords="177,1645,260,1672"/>
-<area shape="rect" id="node52" href="$constantes_8cpp.html#afae596361a6f56764d80e73ae5b32a08" title=" " alt="" coords="175,2747,262,2773"/>
-<area shape="rect" id="node53" href="$mathac_8cpp.html#a80119641009cb9a6245133b3a9031f41" title=" " alt="" coords="186,3000,251,3027"/>
-<area shape="rect" id="node54" href="$lecture_8cpp.html#a8ba445bd6b28ee2fbafb8bd8f83b2773" title=" " alt="" coords="359,3267,473,3293"/>
-<area shape="rect" id="node55" href="$mathfraction_8cpp.html#a71e2913171eeee857cf581afb4672eba" title=" " alt="" coords="555,3165,650,3192"/>
-<area shape="rect" id="node56" href="$mathleftright_8cpp.html#a0e6aa64492e1d9ef7a11b0437e7595bb" title=" " alt="" coords="171,1747,266,1773"/>
-<area shape="rect" id="node57" href="$mathlimitswitch_8cpp.html#a1d3b77447e0d00c821c399d27f9b10c5" title=" " alt="" coords="359,3317,473,3344"/>
-<area shape="rect" id="node58" href="$mathradical_8cpp.html#a5afe1f24d57a2c0c512a60d85a86d7d5" title=" " alt="" coords="174,2696,263,2723"/>
-<area shape="rect" id="node59" href="$lecture_8cpp.html#aee42ec54219e762029f154e16e628ca9" title=" " alt="" coords="377,3419,455,3445"/>
-<area shape="rect" id="node60" href="$noeud_8cpp.html#a32eeb6c6a88201e95a9a86b0c110dc4c" title=" " alt="" coords="185,3152,253,3179"/>
-<area shape="rect" id="node61" href="$openorclosein_8cpp.html#a8b7800e8b6d9c59bc2cf9bb0d2ecef4a" title=" " alt="" coords="167,3203,270,3229"/>
-<area shape="rect" id="node62" href="$prefixedcommand_8cpp.html#a61218c134377f1145091fe2236b31fbd" title=" " alt="" coords="156,2645,281,2672"/>
-<area shape="rect" id="node63" href="$lecture_8cpp.html#ae91617805c525de8f7b7679aa48faa8f" title=" " alt="" coords="381,2659,451,2685"/>
-<area shape="rect" id="node64" href="$lecture_8cpp.html#a13021fd73f234b6afbd41939c0b781e8" title=" " alt="" coords="553,2659,652,2685"/>
-<area shape="rect" id="node65" href="$saveforafter_8cpp.html#aae407f09853a167eea959b30dda12a67" title=" " alt="" coords="173,3405,264,3432"/>
-<area shape="rect" id="node66" href="$lecture_8cpp.html#a38710b8c72458a2b9a397ef63156a5b1" title=" " alt="" coords="143,3456,295,3483"/>
-<area shape="rect" id="node67" href="$setmathchar_8cpp.html#aeaa1d7bb2c2a0eda68824fb4ba0d5866" title=" " alt="" coords="171,3507,266,3533"/>
-<area shape="rect" id="node68" href="$shiftcase_8cpp.html#ae49b430dbb7eff9b527b420abd80100c" title=" " alt="" coords="181,3557,256,3584"/>
-<area shape="rect" id="node69" href="$impression_8cpp.html#ac2ad69ea5a90147bfa9b937f41625a85" title=" " alt="" coords="545,809,660,836"/>
-<area shape="rect" id="node70" href="$impression_8cpp.html#a64602ec0db31b36cb29098e2eee91954" title=" " alt="" coords="549,3267,656,3293"/>
-<area shape="rect" id="node71" href="$starteqno_8cpp.html#a2d5e7cf0dfdb3bbbcd3903771d7b45c5" title=" " alt="" coords="565,493,641,520"/>
-<area shape="rect" id="node72" href="$subsup_8cpp.html#ab4b39cfb83f0d65169d77f1dd8765af6" title=" " alt="" coords="187,3304,251,3331"/>
-<area shape="rect" id="node73" href="$parametres_8h.html#afd293e731aa5f183146f50f71405e79c" title=" " alt="" coords="153,3811,285,3837"/>
-<area shape="rect" id="node74" href="$unpackage_8cpp.html#a160811e5beed2bbd58782f1700727e4d" title=" " alt="" coords="560,2709,645,2736"/>
+<area shape="rect" id="node36" href="$lecture_8cpp.html#abe20aa0d4fde9e11c8f0830f7671847a" title=" " alt="" coords="343,1189,489,1216"/>
+<area shape="rect" id="node37" href="$handlerightbrace_8cpp.html#aa986c1436a4447fa6869a1ab2cf1f078" title=" " alt="" coords="160,2203,277,2229"/>
+<area shape="rect" id="node38" href="$erreur_8cpp.html#a5333c08b8118c1efbeb2fde844465f4f" title=" " alt="" coords="383,2507,449,2533"/>
+<area shape="rect" id="node39" href="$headforvmode_8cpp.html#a86220650003cf29102a15533e2f1825c" title=" " alt="" coords="167,1368,271,1395"/>
+<area shape="rect" id="node40" href="$indentinhmode_8cpp.html#a8622b8f1293c67fecadce463898b02aa" title=" " alt="" coords="165,1848,272,1875"/>
+<area shape="rect" id="node41" href="$initalign_8cpp.html#ac708f0d258bdf9b902597b6091e5ab19" title=" " alt="" coords="569,304,636,331"/>
+<area shape="rect" id="node42" href="$initmath_8cpp.html#ae444646d648e1e73f40e2762f9bbe529" title=" " alt="" coords="382,2253,450,2280"/>
+<area shape="rect" id="node43" href="$insertdollarsign_8cpp.html#a2ad76c2a6c052da3b213282e9e92b036" title=" " alt="" coords="164,2253,273,2280"/>
+<area shape="rect" id="node44" href="$issuemessage_8cpp.html#ab28b58011eebacc8550ce6dc30becfea" title=" " alt="" coords="363,3317,469,3344"/>
+<area shape="rect" id="node45" href="$itsallover_8cpp.html#a0d5d8db4f1deae13d3be2b6b4de494f1" title=" " alt="" coords="181,1899,256,1925"/>
+<area shape="rect" id="node46" href="$erreur_8cpp.html#a6381e3680e52f4577897ad5e42263ce9" title=" " alt="" coords="377,1595,455,1621"/>
+<area shape="rect" id="node47" href="$maincontrol_8cpp.html#a00f5f81d53127a5edf3ae005f33a932c" title=" " alt="" coords="375,987,457,1013"/>
+<area shape="rect" id="node48" href="$makeaccent_8cpp.html#a43e95a1f334e7a2f27f45fca24fedf07" title=" " alt="" coords="172,2101,265,2128"/>
+<area shape="rect" id="node49" href="$lecture_8cpp.html#a824233e29e5992b41ed05977a24f256f" title=" " alt="" coords="366,2861,466,2888"/>
+<area shape="rect" id="node50" href="$makemark_8cpp.html#a48c4f5b343a7e47e5e5a85cbad865d44" title=" " alt="" coords="177,1645,260,1672"/>
+<area shape="rect" id="node51" href="$equivalent_8cpp.html#afae596361a6f56764d80e73ae5b32a08" title=" " alt="" coords="175,2684,262,2711"/>
+<area shape="rect" id="node52" href="$mathac_8cpp.html#a80119641009cb9a6245133b3a9031f41" title=" " alt="" coords="186,3292,251,3319"/>
+<area shape="rect" id="node53" href="$lecture_8cpp.html#a8ba445bd6b28ee2fbafb8bd8f83b2773" title=" " alt="" coords="359,3368,473,3395"/>
+<area shape="rect" id="node54" href="$mathfraction_8cpp.html#a71e2913171eeee857cf581afb4672eba" title=" " alt="" coords="555,3419,650,3445"/>
+<area shape="rect" id="node55" href="$mathleftright_8cpp.html#a0e6aa64492e1d9ef7a11b0437e7595bb" title=" " alt="" coords="171,1747,266,1773"/>
+<area shape="rect" id="node56" href="$mathlimitswitch_8cpp.html#a1d3b77447e0d00c821c399d27f9b10c5" title=" " alt="" coords="546,3165,659,3192"/>
+<area shape="rect" id="node57" href="$mathradical_8cpp.html#a5afe1f24d57a2c0c512a60d85a86d7d5" title=" " alt="" coords="174,2887,263,2913"/>
+<area shape="rect" id="node58" href="$lecture_8cpp.html#aee42ec54219e762029f154e16e628ca9" title=" " alt="" coords="377,3115,455,3141"/>
+<area shape="rect" id="node59" href="$noeud_8cpp.html#a32eeb6c6a88201e95a9a86b0c110dc4c" title=" " alt="" coords="185,3089,253,3116"/>
+<area shape="rect" id="node60" href="$openorclosein_8cpp.html#a8b7800e8b6d9c59bc2cf9bb0d2ecef4a" title=" " alt="" coords="167,3140,270,3167"/>
+<area shape="rect" id="node61" href="$prefixedcommand_8cpp.html#a61218c134377f1145091fe2236b31fbd" title=" " alt="" coords="156,2633,281,2660"/>
+<area shape="rect" id="node62" href="$lecture_8cpp.html#ae91617805c525de8f7b7679aa48faa8f" title=" " alt="" coords="381,2608,451,2635"/>
+<area shape="rect" id="node63" href="$lecture_8cpp.html#a13021fd73f234b6afbd41939c0b781e8" title=" " alt="" coords="553,2861,652,2888"/>
+<area shape="rect" id="node64" href="$sauvegarde_8cpp.html#aae407f09853a167eea959b30dda12a67" title=" " alt="" coords="173,3343,264,3369"/>
+<area shape="rect" id="node65" href="$lecture_8cpp.html#a38710b8c72458a2b9a397ef63156a5b1" title=" " alt="" coords="143,3393,295,3420"/>
+<area shape="rect" id="node66" href="$setmathchar_8cpp.html#aeaa1d7bb2c2a0eda68824fb4ba0d5866" title=" " alt="" coords="171,3444,266,3471"/>
+<area shape="rect" id="node67" href="$shiftcase_8cpp.html#ae49b430dbb7eff9b527b420abd80100c" title=" " alt="" coords="181,3495,256,3521"/>
+<area shape="rect" id="node68" href="$impression_8cpp.html#ac2ad69ea5a90147bfa9b937f41625a85" title=" " alt="" coords="545,936,660,963"/>
+<area shape="rect" id="node69" href="$impression_8cpp.html#a64602ec0db31b36cb29098e2eee91954" title=" " alt="" coords="549,3520,656,3547"/>
+<area shape="rect" id="node70" href="$starteqno_8cpp.html#a2d5e7cf0dfdb3bbbcd3903771d7b45c5" title=" " alt="" coords="565,632,641,659"/>
+<area shape="rect" id="node71" href="$subsup_8cpp.html#ab4b39cfb83f0d65169d77f1dd8765af6" title=" " alt="" coords="187,2836,251,2863"/>
+<area shape="rect" id="node72" href="$parametres_8h.html#afd293e731aa5f183146f50f71405e79c" title=" " alt="" coords="153,3748,285,3775"/>
+<area shape="rect" id="node73" href="$boite_8cpp.html#a160811e5beed2bbd58782f1700727e4d" title=" " alt="" coords="373,2963,459,2989"/>
 </map>

@@ -1,12 +1,13 @@
 <map id="vsplit" name="vsplit">
-<area shape="rect" id="node1" title=" " alt="" coords="5,208,59,235"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,233,59,260"/>
 <area shape="rect" id="node2" href="$noeud_8h.html#a90d951dcd6c50010a0d62f179275f1c0" title=" " alt="" coords="144,5,187,32"/>
 <area shape="rect" id="node3" href="$lecture_8cpp.html#a3c55e9084d0faf34ec2828d0bcf247cc" title=" " alt="" coords="113,56,217,83"/>
 <area shape="rect" id="node4" href="$erreur_8cpp.html#ac7643d2431e40f0ac7a89ec84f1bda70" title=" " alt="" coords="287,157,335,184"/>
-<area shape="rect" id="node5" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="399,132,441,159"/>
-<area shape="rect" id="node6" href="$prunepagetop_8cpp.html#a41768bc470e6d7db8246e36998e0d0d1" title=" " alt="" coords="115,208,215,235"/>
-<area shape="rect" id="node7" href="$parametres_8h.html#a7aebc7cf16b9ed666cd6ccc40ea4d45c" title=" " alt="" coords="107,259,224,285"/>
-<area shape="rect" id="node8" href="$vertbreak_8cpp.html#a27d1046d2223e3c4761aac09af998f36" title=" " alt="" coords="127,309,203,336"/>
-<area shape="rect" id="node9" href="$boite_8cpp.html#a4c51ff2073e1812c0c14bf20b0d112ce" title="special case of unconstrained depth" alt="" coords="137,360,194,387"/>
-<area shape="rect" id="node10" href="$boite_8cpp.html#a94ca77ecdba2ced086eb52d9e8e85e23" title=" " alt="" coords="272,385,351,412"/>
+<area shape="rect" id="node5" href="$impression_8cpp.html#a49b2d6a2982d94cfea73a4d4f8d8c39c" title=" " alt="" coords="401,132,443,159"/>
+<area shape="rect" id="node6" href="$noeud_8h.html#a72a773ad8412c27b0af75456a83cdd78" title=" " alt="" coords="399,259,445,285"/>
+<area shape="rect" id="node7" href="$prunepagetop_8cpp.html#a41768bc470e6d7db8246e36998e0d0d1" title=" " alt="" coords="115,411,215,437"/>
+<area shape="rect" id="node8" href="$parametres_8h.html#a7aebc7cf16b9ed666cd6ccc40ea4d45c" title=" " alt="" coords="107,461,224,488"/>
+<area shape="rect" id="node9" href="$vertbreak_8cpp.html#a4425269dfe0225a024f93ba82dd87522" title=" " alt="" coords="127,208,203,235"/>
+<area shape="rect" id="node10" href="$boite_8cpp.html#a4c51ff2073e1812c0c14bf20b0d112ce" title="special case of unconstrained depth" alt="" coords="137,360,194,387"/>
+<area shape="rect" id="node11" href="$boite_8cpp.html#a94ca77ecdba2ced086eb52d9e8e85e23" title=" " alt="" coords="272,309,351,336"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="trybreak" name="trybreak">
-<area shape="rect" id="node1" title=" " alt="" coords="5,664,75,691"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,689,75,716"/>
 <area shape="rect" id="node2" href="$trybreak_8cpp.html#aef12e2fa676a70ba536af505ec2b421a" title=" " alt="" coords="158,5,254,32"/>
 <area shape="rect" id="node3" href="$badness_8cpp.html#af030be7eeb32202d38457203594ed062" title="Compute badness, given &#160;t &gt;= 0" alt="" coords="171,56,241,83"/>
 <area shape="rect" id="node4" href="$constantes_8cpp.html#a098afd72061033385d2dbfa0419c6314" title="pointer to the corresponding passive node" alt="" coords="161,107,251,133"/>
@@ -18,13 +18,14 @@
 <area shape="rect" id="node17" href="$trybreak_8cpp.html#aa39b689cc66b6ec47f247b0dd8626bfe" title=" " alt="" coords="161,765,251,792"/>
 <area shape="rect" id="node18" href="$trybreak_8cpp.html#aec505e770eb005e158ef22d80fcd0921" title=" " alt="" coords="129,817,283,858"/>
 <area shape="rect" id="node19" href="$trybreak_8cpp.html#af353f49deda36da79b5d34641e819d50" title=" " alt="" coords="137,882,275,923"/>
-<area shape="rect" id="node20" href="$constantes_8cpp.html#acd8e2010495121e1bcaa7765b0cacdfc" title=" " alt="" coords="154,948,258,975"/>
-<area shape="rect" id="node21" href="$trybreak_8cpp.html#a9d77ac6b4ab9c24cdf8cd23bdfaceb02" title=" " alt="" coords="139,999,273,1041"/>
-<area shape="rect" id="node22" href="$trybreak_8cpp.html#ac9f7590477d9c9cc3827edc920f9397b" title=" " alt="" coords="142,1065,270,1092"/>
-<area shape="rect" id="node23" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="172,1116,240,1143"/>
-<area shape="rect" id="node24" href="$constantes_8cpp.html#a9f6a59c3609f308351f1ecbb9cd040e0" title="the quantity that \TeX\ minimizes" alt="" coords="154,1167,258,1193"/>
-<area shape="rect" id="node25" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="183,1217,229,1244"/>
-<area shape="rect" id="node26" href="$trybreak_8cpp.html#abaddc8083ad9fca508d9c8324b614d6b" title=" " alt="" coords="155,1268,257,1295"/>
-<area shape="rect" id="node27" href="$trybreak_8cpp.html#aa3ba25a66bb38ab56141c6a6f8bca599" title=" " alt="" coords="157,1319,255,1345"/>
-<area shape="rect" id="node28" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="179,1369,233,1396"/>
+<area shape="rect" id="node20" href="$noeud_8h.html#a72a773ad8412c27b0af75456a83cdd78" title=" " alt="" coords="183,948,229,975"/>
+<area shape="rect" id="node21" href="$equivalent_8cpp.html#acd8e2010495121e1bcaa7765b0cacdfc" title=" " alt="" coords="154,999,258,1025"/>
+<area shape="rect" id="node22" href="$trybreak_8cpp.html#a9d77ac6b4ab9c24cdf8cd23bdfaceb02" title=" " alt="" coords="139,1050,273,1091"/>
+<area shape="rect" id="node23" href="$trybreak_8cpp.html#ac9f7590477d9c9cc3827edc920f9397b" title=" " alt="" coords="142,1116,270,1143"/>
+<area shape="rect" id="node24" href="$constantes_8cpp.html#a01f991c685cde0f8caaf1118f3f503b0" title="secondary identification in some cases" alt="" coords="172,1167,240,1193"/>
+<area shape="rect" id="node25" href="$constantes_8cpp.html#a9f6a59c3609f308351f1ecbb9cd040e0" title="the quantity that \TeX\ minimizes" alt="" coords="154,1217,258,1244"/>
+<area shape="rect" id="node26" href="$constantes_8cpp.html#aeea581cbcf2f8c6bc29adf5736f0be62" title="identifies what kind of node this is" alt="" coords="183,1268,229,1295"/>
+<area shape="rect" id="node27" href="$trybreak_8cpp.html#abaddc8083ad9fca508d9c8324b614d6b" title=" " alt="" coords="155,1319,257,1345"/>
+<area shape="rect" id="node28" href="$trybreak_8cpp.html#aa3ba25a66bb38ab56141c6a6f8bca599" title=" " alt="" coords="157,1369,255,1396"/>
+<area shape="rect" id="node29" href="$constantes_8cpp.html#ab33acc2fa20ce6456e914293914ff9ba" title="width of the box, in sp" alt="" coords="179,1420,233,1447"/>
 </map>

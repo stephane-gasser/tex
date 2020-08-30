@@ -4,11 +4,11 @@
 void normalparagraph(void)
 {
 	if (looseness())
-		eqworddefine(int_base+looseness_code, 0);
+		eqworddefine(&eqtb_int[looseness_code], 0);
 	if (hang_indent())
-		eqworddefine(dimen_base+hang_indent_code, 0);
+		eqworddefine(&eqtb_dimen[hang_indent_code], 0);
 	if (hang_after() != 1)
-		eqworddefine(int_base+hang_after_code, 1);
+		eqworddefine(&eqtb_int[hang_after_code], 1);
 	if (par_shape_ptr())
-		eqdefine(par_shape_loc, shape_ref, 0);
+		eqdefine(&eqtb_local[par_shape_loc-local_base], shape_ref, 0);
 }

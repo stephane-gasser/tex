@@ -1,5 +1,6 @@
 <map id="rebox" name="rebox">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,60,32"/>
-<area shape="rect" id="node2" href="$classFont.html#ab1179f907a9f22ce14250b76bc8a9bad" title=" " alt="" coords="213,5,332,32"/>
-<area shape="rect" id="node3" href="$boite_8cpp.html#a7e3dbecf17681bd6e942256d9d996608" title=" " alt="" coords="108,31,165,57"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,60,57"/>
+<area shape="rect" id="node2" href="$classFont.html#ab1179f907a9f22ce14250b76bc8a9bad" title=" " alt="" coords="233,5,351,32"/>
+<area shape="rect" id="node3" href="$noeud_8cpp.html#a668e7388c639dce1c3bf5bb8b2cf0f2f" title=" " alt="" coords="213,68,371,95"/>
+<area shape="rect" id="node4" href="$boite_8cpp.html#a7e3dbecf17681bd6e942256d9d996608" title=" " alt="" coords="108,31,165,57"/>
 </map>
