@@ -4,6 +4,7 @@
 #include "boite.h"
 #include "alignpeek.h"
 #include "lecture.h"
+#include "equivalent.h"
 
 void finrow(halfword &loop)
 {

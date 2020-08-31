@@ -40,6 +40,28 @@ static void store_background(void)
 		activewidth[i] = background[i];
 }
 
+class PassiveNode : public LinkedNode
+{
+	public:
+		LinkedNode *cur_break;
+		LinkedNode *prev_break;
+		halfword serial;
+};
+
+class ActiveNode : public LinkedNode
+{
+	public:
+		quarterword fitness = decent_fit;
+		PassiveNode *break_node = nullptr;
+		halfword line_number;
+		int total_demerits = 0;
+		ActiveNode(int prev_graf, LinkedNode *active) : line_number(prev_graf+1)
+		{
+			type = unhyphenated;
+			link = active;
+		}
+};
+
 void linebreak(int finalwidowpenalty)
 {
 	bool autobreaking;
@@ -142,14 +164,7 @@ void linebreak(int finalwidowpenalty)
 			lhyf = initlhyf;
 			rhyf = initrhyf;
 		}
-		LinkedNode *q;
-		q->num = getnode(active_node_size);
-		q->type = unhyphenated;
-		fitness(q->num) = decent_fit;
-		q->link = active;
-		break_node(q->num) = 0;
-		line_number(q->num) = prev_graf+1;
-		total_demerits(q->num) = 0;
+		LinkedNode *q = new ActiveNode(prev_graf, active);
 		active->link = q;
 		store_background();
 		passive = 0;
