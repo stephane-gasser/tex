@@ -71,19 +71,13 @@ void linebreak(int finalwidowpenalty)
 	auto q = left_skip();
 	auto r = right_skip();
 	background[1] = q->width+r->width;
-	background[2] = 0;
-	background[3] = 0;
-	background[4] = 0;
-	background[5] = 0;
+	std::fill(background+2, background+6, 0);
 	background[2+q->stretch_order] = q->stretch;
 	background[2+r->stretch_order] += r->stretch;
 	background[6] = q->shrink+r->shrink;
 	minimumdemerits = max_dimen;
-	minimaldemerits[3] = max_dimen;
-	minimaldemerits[2] = max_dimen;
-	minimaldemerits[1] = max_dimen;
-	minimaldemerits[0] = max_dimen;
-	if (par_shape_ptr() == 0)
+	std::fill(minimaldemerits, minimaldemerits+4, max_dimen);
+	if (par_shape_ptr() == nullptr)
 		if (hang_indent() == 0)
 		{
 			lastspecialline = 0;
@@ -183,7 +177,7 @@ void linebreak(int finalwidowpenalty)
 				case hlist_node:
 				case vlist_node:
 				case rule_node: 
-					act_width += width(curp->num);
+					act_width += dynamic_cast<RuleNode*>(curp)->width;
 					break;
 				case whatsit_node:
 					if (dynamic_cast<WhatsitNode*>(curp)->subtype == language_node)
@@ -328,7 +322,7 @@ void linebreak(int finalwidowpenalty)
 											}
 											hb = s;
 											hn = j;
-											if (subtype(s->num)%2)
+											if (S->subtype%2)
 												hyfbchar = fonts[hf].bchar;
 											else
 												hyfbchar = 256;
@@ -428,7 +422,7 @@ void linebreak(int finalwidowpenalty)
 									case hlist_node:
 									case vlist_node:
 									case rule_node:
-										discwidth += width(s->num);
+										discwidth += dynamic_cast<RuleNode*>(s)->width;
 										break;
 									case kern_node: 
 										discwidth += dynamic_cast<KernNode*>(s)->width;
@@ -481,7 +475,7 @@ void linebreak(int finalwidowpenalty)
 					continue;
 				}
 				case math_node:
-					autobreaking = subtype(curp->num) == after;
+					autobreaking = dynamic_cast<MathNode*>(curp)->subtype == after;
 					kern_break(autobreaking);
 					break;
 				case penalty_node: 

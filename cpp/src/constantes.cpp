@@ -16,7 +16,6 @@ int& depth(halfword p) { return mem[p+depth_offset].int_; }
 int& height(halfword p) { return mem[p+height_offset].int_; }
 int& u_part(halfword p) { return mem[p+height_offset].int_; }
 int&v_part(halfword p) { return mem[p+depth_offset].int_; }
-int& if_line_field(halfword p) { return mem[p+1].int_; }
 int& total_demerits(halfword p) { return mem[p+2].int_; }
 halfword& rlink(halfword p) { return link(p+1); }
 halfword& break_node(halfword p) { return link(p+1); }
