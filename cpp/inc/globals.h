@@ -360,7 +360,7 @@ inline smallnumber radix;
 inline glueord curorder;
 inline alphafile readfile[16];
 inline char readopen[17]; // of 0..2
-inline halfword condptr;
+//inline halfword condptr;
 inline char iflimit; // 0..4
 inline smallnumber curif;
 inline poolpointer areadelimiter;

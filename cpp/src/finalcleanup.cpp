@@ -6,6 +6,7 @@
 #include "lecture.h"
 #include "storefmtfile.h"
 #include "deleteglueref.h"
+#include "conditional.h"
 
 void finalcleanup(Token t)
 {
@@ -30,11 +31,11 @@ void finalcleanup(Token t)
 		tk.cmd = if_test;
 		tk.chr = curif;
 		printnl("("+esc("end")+" occurred when "+cmdchr(tk)+(ifline ? " on line "+std::to_string(ifline) : "")+" was incomplete)");
-		ifline = if_line_field(condptr);
-		curif = subtype(condptr);
+		ifline = condptr->if_line_field;
+		curif = condptr->subtype;
 		auto temp = condptr;
-		condptr = link(condptr);
-		freenode(temp, if_node_size);
+		next(condptr);
+		delete temp;
 	}
 	if (history && (history == warning_issued || interaction < error_stop_mode) && selector == term_and_log)
 	{

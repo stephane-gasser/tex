@@ -119,11 +119,11 @@ void expand(Token tk)
 				{
 					while (tk.chr != 2)
 						passtext();
-					p->num = condptr;
-					ifline = if_line_field(p->num);
-					curif = subtype(p->num);
-					iflimit = type(p->num);
-					condptr = link(p->num);
+					auto p = condptr;
+					ifline = p->if_line_field;
+					curif = p->subtype;
+					iflimit = p->type;
+					next(condptr);
 					delete p;
 				}
 				break;

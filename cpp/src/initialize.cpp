@@ -44,7 +44,6 @@ void Initialize(void)
 	curorder = 0;
 	for (int k = 0; k < 17; k++)
 	    readopen[k] = closed;
-	condptr = 0;
 	iflimit = 0;
 	curif = 0;
 	ifline = 0;

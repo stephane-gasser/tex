@@ -5,7 +5,6 @@
 #include "lecture.h"
 #include "getnext.h"
 #include "passtext.h"
-#include "changeiflimit.h"
 #include "erreur.h"
 #include "texte.h"
 #include "equivalent.h"
@@ -21,13 +20,32 @@
 	return t;
 }
 
+static void changeiflimit(smallnumber l, ConditionalNode *p)
+{
+	if (p == condptr) 
+		iflimit = l;
+	else
+	{
+		auto q = condptr;
+		while (true)
+		{
+			if (q == nullptr)
+				confusion("if");
+			if (q->link == p)
+			{
+				q->type = l;
+				return;
+			}
+			next(q);
+		}
+	}
+}
+
 void conditional(Token t)
 {
-	auto p = getnode(2);
-	link(p) = condptr;
-	type(p) = iflimit;
-	subtype(p) = curif;
-	if_line_field(p) = ifline;
+	auto p = new ConditionalNode(curif);
+	p->link = condptr; 
+	p->if_line_field = ifline;
 	condptr = p;
 	curif = t.chr;
 	iflimit = 1;
@@ -158,45 +176,41 @@ void conditional(Token t)
 		}
 		case ifx_code:
 		{
+			//Test if two tokens match
 			savescannerstatus = scannerstatus;
 			scannerstatus = normal;
 			t = getnext();
 			int n = t.cs;
-			p = t.cmd;
-			q = t.chr;
-			t = getnext();
-			if (t.cmd != p)
+			auto t2 = getnext();
+			if (t2.cmd != t.cmd)
 				b = false;
 			else 
-				if (t.cmd < call)
-					b = t.chr == q;
+				if (t2.cmd < call)
+					b = t2.chr == t.chr;
 				else
 				{
-					p = link(t.chr);
-					if (n < hash_base)
-						q = link(eqtb_cs[n-hash_base].index->num);
-					else
-						q = link(eqtb_active[n-active_base].index->num);
+					auto p = dynamic_cast<TokenNode*>(t2.chr < hash_base ? eqtb_active[t2.chr-active_base].index : eqtb_cs[t2.chr-hash_base].index);
+					auto q = dynamic_cast<TokenNode*>(t.chr < hash_base ? eqtb_active[t.chr-active_base].index : eqtb_cs[t.chr-hash_base].index);
 					if (p == q)
 						b = true;
 					else
 					{
 						while (p && q)
-							if (info(p) != info(q))
-								p = 0;
+							if (p->token != q->token)
+								p = nullptr;
 							else
 							{
-								p = link(p);
-								q = link(q);
+								next(p);
+								next(q);
 							}
-						b = p == 0 && q == 0;
+						b = p == nullptr && q == nullptr;
 					}
 				}
 			scannerstatus = savescannerstatus;
 			break;
 		}
 		case if_eof_code:
-			b = readopen[scanfourbitint()] == 2;
+			b = readopen[scanfourbitint()] == closed;
 			break;
 		case if_true_code: 
 			b = true;
@@ -213,35 +227,35 @@ void conditional(Token t)
 			{
 				passtext();
 				if (condptr == savecondptr)
-					if (t.chr == 4)
+					if (t.chr == or_code)
 						n--;
 					else
 					{
-						if (t.chr == 2)
+						if (t.chr == fi_code)
 						{
 							p = condptr;
-							ifline = if_line_field(p);
-							curif = subtype(p);
-							iflimit = type(p);
-							condptr = link(p);
-							freenode(p, 2);
+							ifline = p->if_line_field;
+							curif = p->subtype;
+							iflimit = p->type;
+							next(condptr);
+							delete p;
 						}
 						else
-							iflimit = 2;
+							iflimit = fi_code;
 						return;
 					}
 				else 
-					if (t.chr == 2)
+					if (t.chr == fi_code)
 					{
 						p = condptr;
-						ifline = if_line_field(p);
-						curif = subtype(p);
-						iflimit = type(p);
-						condptr = link(p);
-						freenode(p, 2);
+						ifline = p->if_line_field;
+						curif = p->subtype;
+						iflimit = p->type;
+						next(condptr);
+						delete p;
 					}
 			}
-			changeiflimit(4, savecondptr);
+			changeiflimit(or_code, savecondptr);
 			return;
 		}
 	}
@@ -249,7 +263,7 @@ void conditional(Token t)
 		diagnostic(b ? "{true}" : "{false}");
 	if (b)
 	{
-		changeiflimit(3, savecondptr);
+		changeiflimit(else_code, savecondptr);
 		return;
 	}
 	while (true)
@@ -257,19 +271,19 @@ void conditional(Token t)
 		passtext();
 		if (condptr == savecondptr)
 		{
-			if (t.chr != 4)
+			if (t.chr != or_code)
 			{
-				if (t.chr == 2)
+				if (t.chr == fi_code)
 				{
 					p = condptr;
-					ifline = if_line_field(p);
-					curif = subtype(p);
-					iflimit = type(p);
-					condptr = link(p);
-					freenode(p, 2);
+					ifline = p->if_line_field;
+					curif = p->subtype;
+					iflimit = p->type;
+					next(condptr);
+					delete p;
 				}
 				else
-					iflimit = 2;
+					iflimit = fi_code;
 				return;
 			}
 			error("Extra "+esc("or"), "I'm ignoring this; it doesn't match any \\if.");
@@ -278,11 +292,11 @@ void conditional(Token t)
 			if (t.chr == 2)
 			{
 				p = condptr;
-				ifline = if_line_field(p);
-				curif = subtype(p);
-				iflimit = type(p);
-				condptr = link(p);
-				freenode(p, 2);
+				ifline = p->if_line_field;
+				curif = p->subtype;
+				iflimit = p->type;
+				next(condptr);
+				delete p;
 			}
 	}
 }
