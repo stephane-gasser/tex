@@ -20,7 +20,6 @@ static void dump_wd(memoryword num) { fmtfile.write(reinterpret_cast<const char 
 static void dump_wd(MemoryNode num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
 static void dump_qqqq(fourquarters num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
 static void dump_int(std::uint32_t num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
-static int& tracing_stats(void) { return int_par(tracing_stats_code); }
 
 static std::string pool;
 

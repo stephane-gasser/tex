@@ -1,5 +1,6 @@
 #include "macrocall.h"
 #include "impression.h"
+#include "equivalent.h"
 #include "noeud.h"
 #include "runaway.h"
 #include "backinput.h"

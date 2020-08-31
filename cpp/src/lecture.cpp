@@ -647,10 +647,10 @@ void scanmath(NoadContent &p)
 {
 	auto t = getXTokenSkipSpaceAndEscape();
 	bool label21;
+	int c;
 	do
 	{
 		label21 = false;
-		int c;
 		switch (t.cmd)
 		{
 			case letter:
@@ -854,17 +854,17 @@ RuleNode *scanrulespec(Token t)
 		case set_box_dimen:
 			val = scaneightbitint();
 			val = 0;
-			if (box[val])
+			if (box(val))
 				switch (m)
 				{
 					case width_offset:
-						val = box[val]->width;
+						val = box(val)->width;
 						break;
 					case height_offset:
-						val = box[val]->height;
+						val = box(val)->height;
 						break;
 					case depth_offset:
-						val = box[val]->depth;
+						val = box(val)->depth;
 				}
 			lev = dimen_val;
 		break;
@@ -893,10 +893,10 @@ RuleNode *scanrulespec(Token t)
 					val = dimen(scaneightbitint());
 					break;
 				case glue_val: 
-					val = skip[scaneightbitint()]->num;
+					val = skip(scaneightbitint())->num;
 					break;
 				case mu_val: 
-					val = mu_skip[scaneightbitint()]->num;
+					val = mu_skip(scaneightbitint())->num;
 			}
 			lev = m;
 			break;
@@ -969,18 +969,23 @@ RuleNode *scanrulespec(Token t)
 	if (negative)
 		if (lev >= glue_val)
 		{
-			GlueSpec old(val);
-			auto g = new GlueSpec(&old);
-			g->width = -old.width;
-			g->stretch = -old.stretch;
-			g->shrink = -old.shrink;
+			GlueSpec *old;
+			old->num = val;
+			auto g = new GlueSpec(old);
+			g->width = -old->width;
+			g->stretch = -old->stretch;
+			g->shrink = -old->shrink;
 			val = g->num;
 		}
 		else
 			val = -val;
 	else 
 		if (lev >= glue_val && lev <= mu_val)
-			add_glue_ref(val);
+		{
+			GlueSpec *g;
+			g->num = val;
+			g->glue_ref_count++;
+		}
 	return {val, lev};
 }
 

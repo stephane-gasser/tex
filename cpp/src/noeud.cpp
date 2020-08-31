@@ -19,6 +19,8 @@
 #include "cesure.h"
 #include "sauvegarde.h"
 #include "runaway.h"
+#include "xovern.h"
+#include "multandadd.h"
 
 LinkedNode* copynodelist(LinkedNode *p)
 {
@@ -313,16 +315,13 @@ void newfont(smallnumber a)
 				if (ft.size == xnoverd(ft.dsize, -s, 1000))
 					break;
 		}
+	int f; //ft
 	if (f >= fonts.size())
 		f = readfontinfo(u, curname, curarea, s);
 	eqtb[u].int_ = f; // index : Font*
 	eqtb_cs[f+frozen_null_font-hash_base] = eqtb[u];
 	text(frozen_null_font+f) = txt(t);
 }
-
-/*static halfword& every_par(void) { return equiv(every_par_loc); }*/
-static TokenNode ep;//!< points to token list for \\everypar
-static TokenNode* every_par(void) { return &ep; } 
 
 void newgraf(bool indented)
 {
@@ -359,7 +358,7 @@ void newinteraction(Token t)
 
 GlueNode* newskipparam(smallnumber n)
 {
-	auto p = new GlueNode(new GlueSpec(glueParams[n]));
+	auto p = new GlueNode(new GlueSpec(glue_par(n)));
 	p->glue_ptr->glue_ref_count = 0;
 	p->subtype = n+1;
 	return p;
@@ -459,18 +458,16 @@ void appendpenalty(void)
 		buildpage();
 }
 
-static int line_skip_limit(void) { return dimen_par(line_skip_limit_code); }
-
 //! When a box is being appended to the current vertical list, the
 //! baselineskip calculation is handled by the \a append_to_vlist routine.
 void appendtovlist(BoxNode *b)
 {
 	if (prev_depth > ignore_depth)
 	{
-		scaled d = baseline_skip->width-prev_depth-b->height;
+		scaled d = baseline_skip()->width-prev_depth-b->height;
 		GlueNode *p;
 		if (d < line_skip_limit())
-			p = new GlueNode(line_skip);
+			p = new GlueNode(line_skip());
 		else
 		{
 			p = newskipparam(baseline_skip_code);
@@ -485,13 +482,13 @@ void appendtovlist(BoxNode *b)
 //! Handle spaces when <em> space_factor != 1000 </em>.
 void appspace(LinkedNode *mainp, fontindex &maink)
 {
-	if (space_factor >= 2000 && xspace_skip != zero_glue)
-		mainp = new GlueNode(xspace_skip);
+	if (space_factor >= 2000 && xspace_skip() != zero_glue)
+		mainp = new GlueNode(xspace_skip());
 	else
 	{
 		GlueSpec *Mainp;
-		if (space_skip != zero_glue)
-			Mainp = space_skip;
+		if (space_skip() != zero_glue)
+			Mainp = space_skip();
 		else // Find the glue specification, \a main_p, for text spaces in the current font
 		{
 			Mainp = cur_font().glue;
@@ -522,3 +519,20 @@ void followUntilBeforeTarget(LinkedNode* &running, LinkedNode *target)
 	while (running->link != target)
 		next(running);
 }
+
+void KernNode::mathkern(scaled m)
+{
+	if (subtype == mu_glue)
+	{
+		int n = xovern(m, unity);
+		scaled f = remainder_;
+		if (f < 0)
+		{
+			n--;
+			f += unity;
+		}
+		width = mu_mult(n, width, f);
+		subtype = 1;
+	}
+}
+

@@ -79,13 +79,10 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 		curmu = xovern(math_quad(cursize), 18);
 	} while (false);
 	BoxNode *x;
-	if (q->is_char_node() || q == nullptr)
-		x = hpack(q, 0, additional);
-	else 
-		if (q->link == nullptr && q->type <= vlist_node && dynamic_cast<BoxNode*>(q)->shift_amount == 0)
-			x = dynamic_cast<BoxNode*>(q);
-		else
+	if (q == nullptr || q->is_char_node() || q->link || q->type > vlist_node || dynamic_cast<BoxNode*>(q)->shift_amount)
 			x = hpack(q, 0, additional);
+		else
+			x = dynamic_cast<BoxNode*>(q);
 	q = x->list_ptr;
 	if (q->is_char_node())
 	{
@@ -101,7 +98,7 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 
 void alterboxdimen(halfword c)
 {
-	auto b = box[scaneightbitint()];
+	auto b = box(scaneightbitint());
 	scanoptionalequals();
 	if (b == nullptr)
 		return;
@@ -180,10 +177,6 @@ void boxend(int boxcontext)
 	shipout(curbox);
 }
 
-//static halfword& every_hbox(void) { return equiv(every_hbox_loc); }
-static TokenNode hb;//!< points to token list for \\everyhbox
-static TokenNode* every_hbox(void) { return &hb; }
-
 //! Now that we can see what eventually happens to boxes, we can consider
 //! the first steps in their creation. The \a begin_box routine is called when
 //! \a box_context is a context specification, \a cur_chr specifies the type of
@@ -195,12 +188,12 @@ void beginbox(int boxcontext, Token t)
 		case box_code:
 		{
 			int val = scaneightbitint();
-			curbox = box[val];
-			box[val] = nullptr; // the box becomes void, at the same level
+			curbox = box(val);
+			setBox(val, nullptr); // the box becomes void, at the same level
 			break;
 		}
 		case copy_code:
-			curbox = dynamic_cast<BoxNode*>(copynodelist(box[scaneightbitint()]));
+			curbox = dynamic_cast<BoxNode*>(copynodelist(box(scaneightbitint())));
 			break;
 		case last_box_code:
 			// If the current list ends with a box node, delete it from 
@@ -302,7 +295,7 @@ BoxNode* charbox(const Font &ft, quarterword c)
 
 void ensurevbox(eightbits n)
 {
-	auto p = box[n];
+	auto p = box(n);
 	if (p && p->type == hlist_node)
 		boxerror(n, "Insertions can only be added to a vbox", "Tut tut: You're trying to \\insert into a\n\\box register that now contains an \\hbox.\nProceed, and I'll discard its present contents.");
 }
@@ -484,9 +477,6 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 		}
 	return r;
 }
-
-static int hbadness(void) { return int_par(hbadness_code); }
-static int hfuzz(void) { return dimen_par(hfuzz_code); }
 
 static void goto50h(BoxNode *r)
 {
@@ -694,8 +684,6 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 	return r;
 }
 
-static int box_max_depth(void) { return dimen_par(box_max_depth_code); }
-
 void package(smallnumber c, Token t)
 {
 	unsave();
@@ -727,7 +715,7 @@ void package(smallnumber c, Token t)
 void unpackage(halfword c)
 {
 	int val = scaneightbitint();
-	auto p = box[val];
+	auto p = box(val);
 	if (p == nullptr)
 		return;
 	if (abs(mode) == mmode || (abs(mode) == vmode && p->type != vlist_node) || (abs(mode) == hmode && p->type != hlist_node))
@@ -740,7 +728,7 @@ void unpackage(halfword c)
 	else
 	{
 		tail->link = p->list_ptr;
-		box[val] = nullptr;
+		setBox(val, nullptr);
 		delete p;
 	}
 	followUntilBeforeTarget(tail);

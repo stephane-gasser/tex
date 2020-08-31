@@ -1,4 +1,5 @@
 #include "indentinhmode.h"
+#include "equivalent.h"
 #include "noeud.h"
 
 void indentinhmode(Token t)

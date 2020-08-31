@@ -9,6 +9,7 @@
 #include "noeud.h"
 #include "endfilereading.h"
 #include "normalizeselector.h"
+#include "equivalent.h"
 #include <iostream>
 
 void error(const std::string &msg, const std::string &hlp, bool deletionsallowed)
@@ -73,11 +74,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 					break;
 				case 'H':
 					if (useerrhelp)
-					{
-						TokenNode *t;
-						t->num = err_help();
-						print(tokenshow(t));
-					}
+						print(tokenshow(err_help()));
 					else
 						print((helpline == "" ? "Sorry, I don't know how to help in this situation.\nMaybe you should try asking a human?" : helpline)+"\n");
 					useerrhelp = false;
@@ -144,11 +141,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 	if (interaction > batch_mode)
 		selector--;
 	if (useerrhelp)
-	{
-		TokenNode *t;
-		t->num = err_help();
-		print("\n"+tokenshow(t)+"\n");
-	}
+		print("\n"+tokenshow(err_help())+"\n");
 	else
 		if (helpline != "")
 		{
@@ -185,9 +178,9 @@ void backerror(Token t, const std::string &msg, const std::string &hlp)
 void boxerror(eightbits n, const std::string &msg, const std::string &hlp)
 {
 	error(msg, hlp);
-	diagnostic("\rThe following box has been deleted:"+showbox(box[n])+"\n");
-	flushnodelist(box[n]);
-	box[n] = nullptr;
+	diagnostic("\rThe following box has been deleted:"+showbox(box(n))+"\n");
+	flushnodelist(box(n));
+	setBox(n, nullptr);
 }
 
 void fatal(const std::string &msg, const std::string &hlp)

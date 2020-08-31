@@ -49,10 +49,6 @@ static fontindex maink; //!< index into |font_info|
 //static fourquarters maini; //!<character information bytes for |cur_l|
 static LinkedNode *mainp; //!<temporary register for list manipulation
 
-//static halfword& every_job(void) { return equiv(every_job_loc); }
-TokenNode jb;
-static TokenNode* every_job(void) { return &jb; }
-
 //! the parameter is either |rt_hit| or |false|
 static void pack_lig(bool z)
 {
@@ -154,7 +150,7 @@ static void main_loop_move_lig(void)
 
 [[nodiscard]] static Token append_normal_space(void)
 {
-	if (space_skip == zero_glue)
+	if (space_skip() == zero_glue)
 	{
 		GlueSpec *Mainp = cur_font().glue;
 		if (mainp == nullptr)
@@ -170,7 +166,7 @@ static void main_loop_move_lig(void)
 		tail_append(mainp);
 	}
 	else
-		tail_append(new GlueNode(space_skip));
+		tail_append(new GlueNode(space_skip()));
 	return getxtoken();
 }
 

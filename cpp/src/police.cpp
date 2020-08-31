@@ -53,8 +53,6 @@ quarterword rem_byte(fourquarters q) { return q.b3; }
 
 constexpr char TEX_font_area[] = "TeXfonts:";
 
-static int default_skew_char(void) { return int_par(default_skew_char_code); }
-
 template<class T> static void read_sixteen(T &z)
 {
 	z = tfmfile.get();
@@ -300,6 +298,7 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 		fonts.push_back(ft);
 		if (fileopened)
 			bclose(tfmfile);
+		int f; //ft
 		return f;
 	}
 	catch (int e)
@@ -328,6 +327,7 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 		}
 		if (n > ft.params)
 		{
+			int f; //ft
 			if (f == fonts.size()-1)
 			{
 				for (; ft.params <= n; ft.params++)
@@ -344,6 +344,6 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 			val = n+ft.parambase;
 	}
 	if (val == Font::info.size()-1)
-		error("Font "+esc(TXT(hash[font_id_base+f].rh))+" has only "+std::to_string(ft.params)+" fontdimen parameters", "To increase the number of font parameters, you must\nuse \\fontdimen immediately after the \\font is loaded.");
+		error("Font "+esc(ft.name)+" has only "+std::to_string(ft.params)+" fontdimen parameters", "To increase the number of font parameters, you must\nuse \\fontdimen immediately after the \\font is loaded.");
 	return val;
 }

@@ -4,8 +4,6 @@
 #include "police.h"
 #include "equivalent.h"
 
-static int& uc_code(halfword p) { return eqtb_local[p+uc_code_base-local_base].int_; }
-
 void Initialize(void)
 {
 	for (int i = 0; i < 256; i++)

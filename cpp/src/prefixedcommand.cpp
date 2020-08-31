@@ -44,7 +44,6 @@ void prefixedcommand(Token t, bool setboxallowed)
 	int val;
 	fontindex k;
 	TokenNode *q;
-//	halfword p, old;
 	int n;
 	switch (t.cmd)
 	{
@@ -302,11 +301,13 @@ void prefixedcommand(Token t, bool setboxallowed)
 			Font::info[k].int_ = scan_normal_dimen();
 			break;
 		case assign_font_int:
+		{
 			n = t.chr;
-			f = scanfontident();
+			auto f = scanfontident();
 			scanoptionalequals();
 			(n == 0 ? fonts[f].hyphenchar : fonts[f].skewchar) = scanint();
 			break;
+		}
 		case def_font: 
 			newfont(a);
 			break;

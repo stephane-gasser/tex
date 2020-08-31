@@ -12,10 +12,6 @@
 #include "texte.h"
 #include "police.h"
 
-static int display_width(void) { return dimen_par(display_width_code); }
-static int math_surround(void) { return dimen_par(math_surround_code); }
-static int pre_display_size(void) { return dimen_par(pre_display_size_code); }
-
 constexpr int total_mathsy_params = 22;
 constexpr int total_mathex_params = 13;
 

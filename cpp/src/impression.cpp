@@ -625,7 +625,7 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 					}
 					else
 					{
-						g = P->glue_set;
+						auto g = P->glue_set;
 						if (g && P->glue_sign)
 						{
 							oss << ", glue set ";
@@ -915,9 +915,6 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 	return oss.str();
 }
 
-static int show_box_breadth(void) { return int_par(show_box_breadth_code); }
-static int show_box_depth(void) { return int_par(show_box_depth_code); }
-
 std::string showbox(BoxNode *p)
 {  
 	depththreshold = show_box_depth();
@@ -926,8 +923,6 @@ std::string showbox(BoxNode *p)
 		breadthmax = 5;
 	return shownodelist(p, "")+"\n";
 }
-
-static int error_context_lines(void) { return int_par(error_context_lines_code); }
 
 std::string showcontext(void)
 {
@@ -1029,7 +1024,7 @@ std::string showcontext(void)
 					l = oss.str().size()-l;
 					tally = 0;
 					trickcount = 1000000;
-					for (auto c: tokenlist(dynamic_cast<TokenNode*>(token_type < macro ? Start : Start->link), Loc, 100000));
+					for (auto c: tokenlist(dynamic_cast<TokenNode*>(token_type < macro ? Start : Start->link), Loc, 100000))
 						if (tally < trickcount)
 							trickbuf[tally%errorline] = c;
 						tally++;
@@ -1170,7 +1165,7 @@ static std::string showactivities(void)
 				break;
 			case mmode:
 				if (a.int_)
-					oss << "this will be denominator of:" << showbox(box[a.int_]);
+					oss << "this will be denominator of:" << showbox(box(a.int_));
 		}
 	}
 	oss << "\n";
@@ -1192,7 +1187,7 @@ void showwhatever(Token t)
 			break;
 		case show_box_code:
 			val = scaneightbitint();
-			diagnostic("\r> \\box"+std::to_string(val)+"="+(box[val] == nullptr ? "void" : showbox(box[val]))+"\n");
+			diagnostic("\r> \\box"+std::to_string(val)+"="+(box(val) == nullptr ? "void" : showbox(box(val)))+"\n");
 			print_err("OK");
 			if (selector == term_and_log && tracing_online() <= 0)
 				selector = term_only;

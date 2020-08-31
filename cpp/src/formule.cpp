@@ -9,9 +9,9 @@
 #include "xovern.h"
 #include "multandadd.h"
 #include "deleteglueref.h"
-#include "mathkern.h"
 #include "erreur.h"
 #include "popnest.h"
+#include "equivalent.h"
 
 static GlueSpec *mathglue(GlueSpec *g, scaled m)
 {
@@ -22,18 +22,13 @@ static GlueSpec *mathglue(GlueSpec *g, scaled m)
 		n--;
 		f += unity;
 	}
+	// m = unity * n + f
 	auto p = new GlueSpec;
-	p->width = mu_mult(n, g->width);
+	p->width = mu_mult(n, g->width, f); // = (m *g->width) / unity;
 	p->stretch_order = g->stretch_order;
-	if (p->stretch_order == normal)
-		p->stretch = mu_mult(n, g->stretch);
-	else
-		p->stretch = g->stretch;
+	p->stretch = p->stretch_order == normal ? mu_mult(n, g->stretch, f) : g->stretch;
 	p->shrink_order = g->shrink_order;
-	if (p->shrink_order == normal)
-		p->shrink = mu_mult(n, g->shrink);
-	else
-		p->shrink = g->shrink;
+	p->shrink = p->shrink_order == normal ? mu_mult(n, g->shrink, f) : g->shrink;
 	return p;
 }
 
@@ -322,7 +317,6 @@ void makeord(Noad *Q)
 	} while (label20);
 }
 
-static int script_space(void) { return dimen_par(script_space_code); }
 
 static int sup1(smallnumber c) { return mathsy(13, c); } //!< superscript shift-up in uncramped display style 
 static int sup2(smallnumber c) { return mathsy(14, c); } //!< superscript shift-up in uncramped non-display
@@ -543,8 +537,6 @@ scaled makeop(Noad *Q)
 	return delta;
 }
 
-static int delimiter_factor(void) { return int_par(delimiter_factor_code); }
-static int delimiter_shortfall(void) { return dimen_par(delimiter_shortfall_code); }
 
 smallnumber makeleftright(LeftRightNoad *q, smallnumber style, scaled maxd, scaled maxh)
 {
@@ -564,14 +556,9 @@ smallnumber makeleftright(LeftRightNoad *q, smallnumber style, scaled maxd, scal
 	return q->type-(left_noad-open_noad);
 }
 
-constexpr char math_spacing[] = "0234000122*4000133**3**344*0400400*000000234000111*1111112341011";
-
-static int bin_op_penalty(void) { return int_par(bin_op_penalty_code); }
-static int rel_penalty(void) { return int_par(rel_penalty_code); }
-
 void mlisttohlist(void)
 {
-	halfword x, y;
+	halfword y;
 	scaled delta;
 	smallnumber s, t, savestyle;
 	auto mlist = curmlist;
@@ -771,7 +758,7 @@ void mlisttohlist(void)
 				continue;
 			}
 			case kern_node:
-				mathkern(dynamic_cast<KernNode*>(q), curmu);
+				dynamic_cast<KernNode*>(q)->mathkern(curmu);
 				next(q);
 				continue;
 			default: 
@@ -918,6 +905,8 @@ void mlisttohlist(void)
 		}
 		if (rtype > 0)
 		{
+			constexpr char math_spacing[] = "0234000122*4000133**3**344*0400400*000000234000111*1111112341011";
+			halfword x;
 			switch (math_spacing[(rtype-ord_noad)*8+t-ord_noad])
 			{
 				case '0': 
@@ -933,7 +922,7 @@ void mlisttohlist(void)
 					x = curstyle < script_style ? med_mu_skip_code : 0;
 					break;
 				case '4': 
-					x = curstyle < script_style ? thick_mu_skip_code: 0;
+					x = curstyle < script_style ? thick_mu_skip_code : 0;
 					break;
 				default: 
 					confusion("mlist4");

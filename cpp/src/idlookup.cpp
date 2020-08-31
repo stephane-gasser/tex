@@ -1,4 +1,5 @@
 #include "idlookup.h"
+#include "equivalent.h"
 #include "erreur.h"
 
 //! test if all positions are occupied

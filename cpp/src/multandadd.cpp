@@ -22,7 +22,7 @@ scaled nx_plus_y(int n, scaled x, scaled y)
 	return multandadd(n, x, y, max_dimen);
 }
 
-scaled mu_mult(int n, scaled x)
+scaled mu_mult(int n, scaled x, int f)
 {
 	return nx_plus_y(n, x, xnoverd(x, f, unity));
 }

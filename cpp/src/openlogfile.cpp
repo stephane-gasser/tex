@@ -4,7 +4,7 @@
 #include "promptfilename.h"
 #include "amakenamestring.h"
 #include "impression.h"
-#include "texte.h"
+#include "equivalent.h"
 
 void openlogfile(void)
 {

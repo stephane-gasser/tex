@@ -3,12 +3,12 @@
 #include "boite.h"
 #include "police.h"
 #include "half.h"
+#include "equivalent.h"
 
 static quarterword ext_top(fourquarters q) { return q.b0; } //!< |top| piece in a recipe
 static quarterword ext_mid(fourquarters q) { return q.b1; } //!< |mid| pie1ce in a recipe
 static quarterword ext_bot(fourquarters q) { return q.b2; } //!< |bot| piece in a recipe
 static quarterword ext_rep(fourquarters q) { return q.b3; } //!< |rep| piece in a recipe
-static int null_delimiter_space(void) { return dimen_par(null_delimiter_space_code); }
 
 static void stackintobox(BoxNode *b, const Font &ft, quarterword c)
 {
@@ -25,6 +25,7 @@ BoxNode *vardelimiter(Delimiter &d, smallnumber s, scaled v)
 	bool largeattempt = false;
 	smallnumber z = d.small_fam;
 	quarterword x = d.small_char;
+	quarterword c;
 	bool label40 = false;
 	fourquarters q;
 	while (true)
@@ -35,7 +36,7 @@ BoxNode *vardelimiter(Delimiter &d, smallnumber s, scaled v)
 			do
 			{
 				z -= 16;
-				g = fam_fnt(z);
+				auto g = fam_fnt(z);
 				if (g != null_font)
 				{
 					auto y = x;

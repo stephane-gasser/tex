@@ -5,10 +5,6 @@
 #include "erreur.h"
 #include "equivalent.h"
 
-static int broken_penalty(void) { return int_par(broken_penalty_code); }
-static int club_penalty(void) { return int_par(club_penalty_code); }
-static int inter_line_penalty(void) { return int_par(inter_line_penalty_code); }
-
 auto prev_break = llink; //points to passive node that should precede this one
 auto next_break = prev_break; //new name for |prev_break| after links are reversed
 auto cur_break = rlink; //in passive node, points to position of this breakpoint
@@ -41,7 +37,7 @@ void postlinebreak(int finalwidowpenalty)
 			{
 				auto Q = dynamic_cast<GlueNode*>(q);
 				deleteglueref(Q->glue_ptr);
-				Q->glue_ptr = right_skip;
+				Q->glue_ptr = right_skip();
 				Q->glue_ptr->glue_ref_count++;
 				Q->subtype = right_skip_code+1;
 			}
@@ -111,7 +107,7 @@ void postlinebreak(int finalwidowpenalty)
 		temp_head->link = r;
 		if (left_skip)
 		{
-			r = new GlueNode(left_skip);
+			r = new GlueNode(left_skip());
 			r->link = q;
 			q = r;
 		}

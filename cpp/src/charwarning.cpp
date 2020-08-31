@@ -1,8 +1,7 @@
 #include "charwarning.h"
 #include "impression.h"
 #include "police.h"
-
-static int tracing_lost_chars(void) { return int_par(tracing_lost_chars_code); }
+#include "equivalent.h"
 
 void charwarning(const Font &ft, eightbits c)
 {

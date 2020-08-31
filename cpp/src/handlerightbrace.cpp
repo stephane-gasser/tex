@@ -18,8 +18,6 @@
 #include "formule.h"
 #include "texte.h"
 
-static int floating_penalty(void) { return int_par(floating_penalty_code); }
-
 void handlerightbrace(Token t, halfword &loop)
 {
 	BoxNode *p;
@@ -57,7 +55,7 @@ void handlerightbrace(Token t, halfword &loop)
 		case insert_group:
 		{
 			endgraf();
-			q = split_top_skip;
+			q = split_top_skip();
 			q->glue_ref_count++;
 			d = split_max_depth();
 			f = floating_penalty();
@@ -102,7 +100,7 @@ void handlerightbrace(Token t, halfword &loop)
 			unsave();
 			outputactive = false;
 			insertpenalties = 0;
-			if (box[255])
+			if (box(255))
 				boxerror(255, "Output routine didn't use all of "+esc("box255"), "Your \\output commands should empty \\box255,\ne.g., by saying `\\shipout\\box255'.\nProceed; I'll discard its present contents.");
 			if (tail != head)
 			{

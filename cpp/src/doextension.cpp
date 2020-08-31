@@ -5,7 +5,7 @@
 #include "backinput.h"
 #include "erreur.h"
 #include "normmin.h"
-#include "texte.h"
+#include "equivalent.h"
 
 void doextension(Token t)
 {

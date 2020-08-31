@@ -126,12 +126,12 @@ void buildpage(void)
 					Q->subtype = n;
 					r->type = inserting;
 					ensurevbox(n);
-					if (box[n] == nullptr)
+					if (box(n) == nullptr)
 						Q->height = 0;
 					else
-						Q->height = box[n]->height+box[n]->depth;
+						Q->height = box(n)->height+box(n)->depth;
 					Q->best_ins_ptr = 0;
-					auto q = skip[n];
+					auto q = skip(n);
 					if (count(n) == 1000)
 						h = Q->height;
 					else

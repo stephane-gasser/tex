@@ -2,6 +2,7 @@
 #include "impression.h"
 #include "backinput.h"
 #include "erreur.h"
+#include "equivalent.h"
 #include "noeud.h"
 #include "lecture.h"
 #include "texte.h"

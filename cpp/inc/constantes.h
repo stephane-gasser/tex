@@ -340,57 +340,6 @@ enum levels
 	level_one = level_zero+1 //!< outermost level for defined quantities
 };
 
-enum memory
-{
-	active_base = 1, //!< beginning of region 1, for active character equivalents
-		single_base = active_base+256, //!< equivalents of one-character control sequences
-			null_cs = single_base+256, //!< equivalent of \\csname\\endcsname
-	hash_base = null_cs+1, //!< beginning of region 2, for the hash table
-			frozen_control_sequence = hash_base+hash_size, //!< for error recovery
-			frozen_protection = frozen_control_sequence, //!< inaccessible but definable
-			frozen_cr = frozen_control_sequence+1, //!< permanent `\\cr'
-			frozen_end_group = frozen_control_sequence+2, //!< permanent `\\endgroup'
-			frozen_right = frozen_control_sequence+3, //!< permanent `\\right'
-			frozen_fi = frozen_control_sequence+4, //!< permanent `\\fi'
-			frozen_end_template = frozen_control_sequence+5, //!< permanent `\\endtemplate'
-			frozen_endv = frozen_control_sequence+6, //!< second permanent `\\endtemplate'
-			frozen_relax = frozen_control_sequence+7, //!< permanent `\\relax'
-			end_write = frozen_control_sequence+8, //!< permanent `\\endwrite'
-			frozen_dont_expand = frozen_control_sequence+9,
-			frozen_null_font = frozen_control_sequence+10,
-		font_id_base = frozen_null_font-font_base,
-			undefined_control_sequence = frozen_null_font+257, //!< dummy location
-	glue_base = undefined_control_sequence+1, //!< beginning of region 3
-		skip_base = glue_base+glue_pars, //!< table of 256 ``skip'' registers
-		mu_skip_base = skip_base+256, //!< table of 256 ``muskip'' registers
-	local_base = mu_skip_base+256, //!< beginning of region 4
-			par_shape_loc = local_base, //!< specifies paragraph shape
-			output_routine_loc = local_base+1, //!< points to token list for \\output
-			every_par_loc = local_base+2, //!< points to token list for \\everypar
-			every_math_loc = local_base+3, //!< points to token list for \\everymath
-			every_display_loc = local_base+4, //!< points to token list for \\everydisplay
-			every_hbox_loc = local_base+5, //!< points to token list for \\everyhbox
-			every_vbox_loc = local_base+6, //!< points to token list for \\everyvbox
-			every_job_loc = local_base+7, //!< points to token list for \\everyjob
-			every_cr_loc = local_base+8, //!< points to token list for \\everycr
-			err_help_loc = local_base+9, //!< points to token list for \\errhelp
-		toks_base = local_base+10, //!< table of 256 token list registers
-		box_base = toks_base+256, //!< table of 256 box registers
-			cur_font_loc = box_base+256, //!< internal font number outside math mode
-		math_font_base = cur_font_loc+1, //!< table of 48 math font numbers
-		cat_code_base = math_font_base+48,
-		lc_code_base = cat_code_base+256, //!< table of 256 lowercase mappings
-		uc_code_base = lc_code_base+256, //!< table of 256 uppercase mappings
-		sf_code_base = uc_code_base+256, //!< table of 256 spacefactor mappings
-		math_code_base = sf_code_base+256, //!< table of 256 math mode mappings
-	int_base = math_code_base+256, //!< beginning of region 5
-		count_base = int_base+int_pars, //!< 256 user \\count registers
-		del_code_base = count_base+256, //!< 256 delimiter code mappings
-	dimen_base = del_code_base+256, //!< beginning of region 6
-		scaled_base = dimen_base+dimen_pars,
-	eqtb_size = scaled_base+255 //!< largest subscript of \a eqtb
-};
-
 enum special_token
 {
 	out_param_token = out_param<<8, //!< \f$2^8\cdot\textrm{out_param}\f$
@@ -652,7 +601,6 @@ constexpr int cramped = 1; //!< add this to an uncramped style if you want to cr
 constexpr int span_code = 256; //!< distinct from any character
 constexpr int cr_code = 257; //!< distinct from \a span_code and from any character
 constexpr int cr_cr_code = cr_code+1; //!< this distinguishes \\crcr from \\cr
-constexpr int end_template_token = cs_token_flag+frozen_end_template;
 
 enum
 {
@@ -684,7 +632,7 @@ halfword& link(halfword p); //!< the \a link field of a memory word
 halfword& info(halfword p); //!< the \a info field of a memory word
 quarterword& type(halfword p); //!< identifies what kind of node this is
 quarterword& subtype(halfword p); //!< secondary identification in some cases
-bool is_char_node(halfword);
+//bool is_char_node(halfword);
 quarterword& font(halfword); //!< the font code in a \a char_node
 quarterword& character(halfword); //!< the character code in a \a char_node
 int& width(halfword); //!< width of the box, in sp
@@ -703,20 +651,18 @@ bool is_running(int); //!< tests for a running dimension
 //int& adjust_ptr(halfword); //!< vertical list to be moved out of horizontal list
 //halfword lig_char(halfword); //!< the word where the ligature is to be found
 //halfword& lig_ptr(halfword); //!< the list of characters
-halfword& leader_ptr(halfword); //!< pointer to box or rule node for leaders
-halfword& glue_ref_count(halfword); //!< reference count of a glue specification
-int& stretch(halfword); //!< the stretchability of this glob of glue
-int& shrink(halfword); //!< the shrinkability of this glob of glue
-quarterword& stretch_order(halfword); //!< order of infinity for stretching
-quarterword& shrink_order(halfword); //!< order of infinity for shrinking
+//halfword& leader_ptr(halfword); //!< pointer to box or rule node for leaders
+//halfword& glue_ref_count(halfword); //!< reference count of a glue specification
+//int& stretch(halfword); //!< the stretchability of this glob of glue
+//int& shrink(halfword); //!< the shrinkability of this glob of glue
+//quarterword& stretch_order(halfword); //!< order of infinity for stretching
+//quarterword& shrink_order(halfword); //!< order of infinity for shrinking
 int& penalty(halfword); //!< the added cost of breaking a list here
 int& glue_stretch(halfword); //!< total stretch in an unset node
 int& glue_shrink(halfword); //!< total shrink in an unset node
 quarterword& span_count(halfword); //!< indicates the number of spanned columns
 halfword& token_ref_count(halfword); //!< reference count preceding a token list
 //halfword& skip(halfword); //!< \a mem location of glue specification
-//halfword& par_shape_ptr(void); 
-int& err_help(void);
 //halfword& box(halfword); 
 halfword& text(halfword); //!< string number for control sequence name
 quarterword& save_type(halfword); //!< classifies a \a save_stack entry
@@ -745,10 +691,6 @@ float vet_glue(float);
 //halfword accent_chr(halfword); //!< the \a accent_chr field of an accent noad
 //halfword delimiter(halfword); //!< \a delimiter field in left and right noads
 int default_rule_thickness(void); //!< thickness of \\over bars
-//int& new_hlist(halfword); //!< the translation of an mlist
-class LinkedNode;
-class Noad;
-LinkedNode *new_hlist(Noad*); //!< the translation of an mlist
 int& u_part(halfword); //!< pointer to \f$<u_j\f$ token list
 int&v_part(halfword); //!< pointer to \f$<v_j\f$ token list
 halfword& extra_info(halfword); //!< info to remember during template
@@ -757,9 +699,9 @@ halfword& break_node(halfword); //!< pointer to the corresponding passive node
 halfword& line_number(halfword); //!< line that begins at this breakpoint
 int& total_demerits(halfword); //!< the quantity that \\TeX\\ minimizes
 void set_cur_lang(void); 
-halfword& broken_ins(halfword p); //!< this insertion might break at \a broken_ptr
-halfword& last_ins_ptr(halfword p); //!< the most recent insertion for this \a subtype
-halfword& best_ins_ptr(halfword); //!< the optimum most recent insertion
+//halfword& broken_ins(halfword p); //!< this insertion might break at \a broken_ptr
+//halfword& last_ins_ptr(halfword p); //!< the most recent insertion for this \a subtype
+//halfword& best_ins_ptr(halfword); //!< the optimum most recent insertion
 //halfword& what_lang(halfword); //!< language number, in the range 0..255
 //quarterword& what_lhm(halfword); //!< minimum left fragment, in the range 1..63
 //quarterword& what_rhm(halfword); //!< minimum right fragment, in the range 1..63
@@ -768,17 +710,6 @@ halfword& best_ins_ptr(halfword); //!< the optimum most recent insertion
 //halfword& open_name(halfword); //!< string number of file name to open
 //halfword& open_area(halfword); //!< string number of file area for \a open_name
 //halfword& open_ext(halfword); //!< string number of file extension for \a open_name
-
-//halfword& every_vbox(void);
-class TokenNode; 
-TokenNode *every_vbox(void);  
-
-//halfword& every_cr(void); 
-TokenNode *every_cr(void);
-
-//halfword& every_math(void); 
-TokenNode *every_math(void); 
-
 
 inline auto start = curinput.startfield; //!< starting position in \a buffer
 inline auto limit = curinput.limitfield; //!< end of current line in \a buffer
@@ -795,10 +726,9 @@ extern scaled &page_shrink; //!< shrinkability of the current page
 extern scaled &page_depth; //!< depth of the current page
 //extern halfword &contrib_tail; //!< tail of the contribution list
 
-inline void add_glue_ref(halfword p) { glue_ref_count(p)++; } //!< new reference to a glue spec
+//inline void add_glue_ref(halfword p) { glue_ref_count(p)++; } //!< new reference to a glue spec
 inline bool terminal_input(const std::string &name) { return name == ""; } //!< are we reading from the terminal?
 inline quarterword &token_type = index; //!< type of current token list
-inline bool end_line_char_inactive() { return end_line_char() < 0 || end_line_char() > 255; }
 inline int cramped_style(int c) { return 2*(c/2)+cramped; } //!< cramp the style
 inline int sub_style(int c) { return 2*(c/4)+script_style+cramped; } //!< smaller and cramped
 inline int sup_style(int c) { return 2*(c/4)+script_style+c%2; } //!< smaller

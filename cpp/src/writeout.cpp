@@ -2,6 +2,7 @@
 #include "noeud.h"
 #include "lecture.h"
 #include "impression.h"
+#include "equivalent.h"
 #include "erreur.h"
 
 constexpr int end_write_token = cs_token_flag+end_write;

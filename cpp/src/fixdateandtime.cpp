@@ -1,4 +1,5 @@
 #include "fixdateandtime.h"
+#include "equivalent.h"
 
 void fixdateandtime(void)
 {

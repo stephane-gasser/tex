@@ -2,8 +2,7 @@
 #include "popnest.h"
 #include "linebreak.h"
 #include "normalparagraph.h"
-
-static int widow_penalty(void) { return int_par(widow_penalty_code); }
+#include "equivalent.h"
 
 void endgraf(void)
 {

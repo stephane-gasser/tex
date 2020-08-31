@@ -5,11 +5,12 @@
 #include "lecture.h"
 #include "prunepagetop.h"
 #include "noeud.h"
+#include "equivalent.h"
 #include "boite.h"
 
 BoxNode* vsplit(eightbits n, scaled h)
 {
-	auto v = box[n];
+	auto v = box(n);
 	if (split_first_mark)
 	{
 		deletetokenref(split_first_mark);
@@ -56,6 +57,6 @@ BoxNode* vsplit(eightbits n, scaled h)
 	q = prunepagetop(q);
 	p = v->list_ptr;
 	delete v;
-	box[n] = q == nullptr ? nullptr : vpack(q, 0, additional);
+	setBox(n, q == nullptr ? nullptr : vpack(q, 0, additional));
 	return vpackage(p, h, exactly, split_max_depth());
 }

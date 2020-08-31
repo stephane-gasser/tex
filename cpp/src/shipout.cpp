@@ -14,10 +14,6 @@
 #include <iostream>
 #include "equivalent.h"
 
-static int h_offset(void) { return dimen_par(h_offset_code); }
-static int v_offset(void) { return dimen_par(v_offset_code); }
-static int tracing_output(void) { return int_par(tracing_output_code); }
-
 static void ensure_dvi_open(void)
 {
 	if (outputfilename == "")

@@ -65,11 +65,6 @@ static void update_active(halfword r)
 		activewidth[i] += mem[r+i].int_;
 }
 
-static int adj_demerits(void) { return int_par(adj_demerits_code); }
-static int double_hyphen_demerits(void) { return int_par(double_hyphen_demerits_code); }
-static int final_hyphen_demerits(void) { return int_par(final_hyphen_demerits_code); }
-static int line_penalty(void) { return int_par(line_penalty_code); }
-
 void trybreak(int pi, smallnumber breaktype)
 {
 	if (pi >= 10000)

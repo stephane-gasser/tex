@@ -1,6 +1,7 @@
 #include "fixlanguage.h"
 #include "noeud.h"
 #include "normmin.h"
+#include "equivalent.h"
 
 void fixlanguage(void)
 {

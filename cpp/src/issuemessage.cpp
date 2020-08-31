@@ -2,9 +2,10 @@
 #include "noeud.h"
 #include "impression.h"
 #include "erreur.h"
+#include "erreur.h"
+#include "equivalent.h"
 #include "lecture.h"
 #include <iostream>
-#include "texte.h"
 
 void issuemessage(Token t)
 {

@@ -2,6 +2,7 @@
 #include "backinput.h"
 #include "noeud.h"
 #include "buildpage.h"
+#include "equivalent.h"
 #include "erreur.h"
 
 bool itsallover(Token t)

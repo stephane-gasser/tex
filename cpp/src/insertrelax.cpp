@@ -1,6 +1,7 @@
 #include "insertrelax.h"
 #include "noeud.h"
 #include "backinput.h"
+#include "equivalent.h"
 
 static Token makeCS(halfword cs)
 {

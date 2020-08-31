@@ -136,11 +136,11 @@ void conditional(Token t)
 			b = mode < 0;
 			break;
 		case if_void_code:
-			b = box[scaneightbitint()] == nullptr;
+			b = box(scaneightbitint()) == nullptr;
 			break;
 		case if_hbox_code:
 		{
-			auto p = box[scaneightbitint()];
+			auto p = box(scaneightbitint());
 			if (p == nullptr)
 				b = false;
 			else 
@@ -149,7 +149,7 @@ void conditional(Token t)
 		}
 		case if_vbox_code:
 		{
-			auto p = box[scaneightbitint()];
+			auto p = box(scaneightbitint());
 			if (p == nullptr)
 				b = false;
 			else 

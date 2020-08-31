@@ -1,8 +1,6 @@
 #ifndef PARAMETRES_H
 #define PARAMETRES_H
 
-#include "globals.h"
-
 constexpr int int_pars = 55; //!< total number of integer parameters
 constexpr int glue_pars = 18; //!< total number of glue parameters
 constexpr int dimen_pars = 21; //!< total number of dimension parameters
@@ -112,52 +110,5 @@ enum
 	v_offset_code = 19, //!< amount of vertical offset when shipping pages out
 	emergency_stretch_code = 20 //!< reduces badnesses on final pass of line-breaking
 };
-
-int& int_par(halfword); //!< an integer parameter
-inline int ex_hyphen_penalty(void) { return int_par(ex_hyphen_penalty_code); }
-inline int& tolerance(void) { return int_par(tolerance_code); }
-inline int pre_display_penalty(void) { return int_par(pre_display_penalty_code); }
-inline int post_display_penalty(void) { return int_par(post_display_penalty_code); }
-inline int& mag(void) { return int_par(mag_code); }
-inline int looseness(void) { return int_par(looseness_code); }
-inline int& time(void) { return int_par(time_code); }
-inline int& day(void) { return int_par(day_code); }
-inline int& month(void) { return int_par(month_code); }
-inline int& year(void) { return int_par(year_code); }
-inline int& vbadness(void) { return int_par(vbadness_code); }
-inline int tracing_commands(void) { return int_par(tracing_commands_code); }
-inline int tracing_online(void) { return int_par(tracing_online_code); }
-inline int tracing_macros(void) { return int_par(tracing_macros_code); }
-inline int& max_dead_cycles(void) { return int_par(max_dead_cycles_code); }
-inline int left_hyphen_min(void) { return int_par(left_hyphen_min_code); }
-inline int right_hyphen_min(void) { return int_par(right_hyphen_min_code); }
-inline int language(void) { return int_par(language_code); }
-inline int& end_line_char(void) { return int_par(end_line_char_code); }
-inline int global_defs(void) { return int_par(global_defs_code); }
-inline int& hang_after(void) { return int_par(hang_after_code); }
-inline int& escape_char(void) { return int_par(escape_char_code); }
-inline int cur_fam(void) { return int_par(cur_fam_code); }
-inline bool fam_in_range(void) { return cur_fam() >= 0 && cur_fam() < 16; }
-inline int& new_line_char(void) { return int_par(new_line_char_code); }
-inline int default_hyphen_char(void) { return int_par(default_hyphen_char_code); }
-
-/*halfword& glue_par(halfword);//!< |mem| location of glue specification*/
-inline std::vector<GlueSpec*> glueParams(18);
-inline GlueSpec *left_skip = glueParams[left_skip_code];
-inline GlueSpec *right_skip = glueParams[right_skip_code]; 
-inline GlueSpec *split_top_skip = glueParams[split_top_skip_code];
-inline GlueSpec *space_skip = glueParams[space_skip_code];
-inline GlueSpec *xspace_skip = glueParams[xspace_skip_code];
-inline GlueSpec *baseline_skip = glueParams[baseline_skip_code];
-inline GlueSpec *line_skip = glueParams[line_skip_code];
-
-int& dimen_par(halfword); //! a scaled quantity
-inline int display_indent(void) { return dimen_par(display_indent_code); }
-inline int& overfull_rule(void) { return dimen_par(overfull_rule_code); }
-inline int& vfuzz(void) { return dimen_par(vfuzz_code); }
-inline int hsize(void) { return dimen_par(hsize_code); }
-inline int split_max_depth(void) { return dimen_par(split_max_depth_code); }
-inline int hang_indent(void) { return dimen_par(hang_indent_code); }
-inline int par_indent(void) { return dimen_par(par_indent_code); }
 
 #endif

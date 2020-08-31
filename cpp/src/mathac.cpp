@@ -3,7 +3,7 @@
 #include "erreur.h"
 #include "noeud.h"
 #include "lecture.h"
-#include "texte.h"
+#include "equivalent.h"
 
 void mathac(eightbits cmd)
 {

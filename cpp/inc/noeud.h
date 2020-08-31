@@ -84,7 +84,13 @@ class ChoiceNode : public LinkedNode
 		LinkedNode *script_mlist = nullptr; //!< mlist to be used in script style
 		LinkedNode *script_script_mlist = nullptr; //!< mlist to be used in scriptscript style
 		ChoiceNode(void) { type = choice_node; }
-		~ChoiceNode(void) { flushnodelist(display_mlist); flushnodelist(text_mlist); flushnodelist(script_mlist); flushnodelist(script_script_mlist);/*if (display_mlist) delete display_mlist; if(text_mlist) delete text_mlist; if (script_mlist) delete script_mlist; if (script_script_mlist) delete script_script_mlist;*/ }
+		~ChoiceNode(void) 
+		{ 
+			flushnodelist(display_mlist); 
+			flushnodelist(text_mlist); 
+			flushnodelist(script_mlist); 
+			flushnodelist(script_script_mlist);
+		}
 };
 
 class DiscNode : public LinkedNode
@@ -95,7 +101,13 @@ class DiscNode : public LinkedNode
 		LinkedNode *post_break = nullptr; //!< text that follows a discretionary break
 		DiscNode(void) { type = disc_node; }
 		~DiscNode(void) { flushnodelist(pre_break); flushnodelist(post_break); }
-		DiscNode *copy(void) { auto d = new DiscNode; d->pre_break = copynodelist(pre_break);  d->post_break = copynodelist(post_break); return d; }
+		DiscNode *copy(void) 
+		{ 
+			auto d = new DiscNode; 
+			d->pre_break = copynodelist(pre_break);  
+			d->post_break = copynodelist(post_break); 
+			return d; 
+		}
 };
 
 class KernNode : public LinkedNode
@@ -105,6 +117,7 @@ class KernNode : public LinkedNode
 		scaled width; //(normally negative) amount of spacing
 		KernNode(scaled w, quarterword s = 0) : width(w), subtype(s) { type = kern_node; }
 		virtual KernNode *copy(void) { return new KernNode(width, subtype); }
+		void mathkern(scaled);
 };
 
 void deleteglueref(GlueSpec *);
@@ -122,8 +135,24 @@ class GlueSpec : public AnyNode
 		scaled width = 0, stretch = 0, shrink = 0;
 		glueord stretch_order = 0, shrink_order = 0; // normal/fil/fill/filll
 		GlueSpec(void) {}
-		GlueSpec(GlueSpec *p) { width = p->width; stretch = p->stretch; shrink = p->shrink; stretch_order = p->stretch_order; shrink_order = p->shrink_order; glue_ref_count = 0; }
-		GlueSpec(halfword v) { glue_ref_count = ::glue_ref_count(v); width = ::width(v); stretch = ::stretch(v); shrink = ::shrink(v); stretch_order = ::stretch_order(v); shrink_order = ::shrink_order(v); }
+		GlueSpec(GlueSpec *p) 
+		{ 
+			width = p->width; 
+			stretch = p->stretch; 
+			shrink = p->shrink; 
+			stretch_order = p->stretch_order; 
+			shrink_order = p->shrink_order; 
+			glue_ref_count = 0; 
+		}
+		/*GlueSpec(halfword v) 
+		{ 
+			glue_ref_count = ::glue_ref_count(v); 
+			width = ::width(v); 
+			stretch = ::stretch(v); 
+			shrink = ::shrink(v); 
+			stretch_order = ::stretch_order(v); 
+			shrink_order = ::shrink_order(v); 
+		}*/
 };
 
 class InsNode : public LinkedNode
@@ -238,7 +267,6 @@ class StyleNode : public LinkedNode
 		StyleNode(smallnumber s) : subtype(s) { type = style_node; }
 };
 
-inline std::vector<BoxNode*> box(256);
 inline BoxNode *justbox;
 inline BoxNode *curbox;
 
@@ -410,5 +438,8 @@ inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }
 
 inline LinkedNode *curmlist;
 inline LinkedNode *bestpagebreak;
+
+inline LinkedNode *new_hlist(Noad *p) { return p->nucleus.info; } //!< the translation of an mlist
+
 
 #endif

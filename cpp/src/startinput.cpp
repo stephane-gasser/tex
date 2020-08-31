@@ -11,7 +11,7 @@
 #include "amakenamestring.h"
 #include "inputln.h"
 #include <iostream>
-#include "texte.h"
+#include "equivalent.h"
 
 constexpr char TEX_area[] = "TeXinputs:";
 

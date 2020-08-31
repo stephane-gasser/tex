@@ -40,11 +40,6 @@ static void store_background(void)
 		activewidth[i] = background[i];
 }
 
-static int emergency_stretch(void) { return dimen_par(emergency_stretch_code); }
-static int hyphen_penalty(void) { return int_par(hyphen_penalty_code); }
-static int pretolerance(void) { return int_par(pretolerance_code); }
-static int uc_hyph(void) { return int_par(uc_hyph_code); }
-
 void linebreak(int finalwidowpenalty)
 {
 	bool autobreaking;
@@ -71,10 +66,10 @@ void linebreak(int finalwidowpenalty)
 	initrhyf = (prev_graf>>16)%(1<<6);
 	popnest();
 	noshrinkerroryet = true;
-	left_skip = check_shrinkage(left_skip);
-	right_skip = check_shrinkage(right_skip);
-	auto q = left_skip;
-	auto r = right_skip;
+	setLeftSkip(check_shrinkage(left_skip()));
+	setRightSkip(check_shrinkage(right_skip()));
+	auto q = left_skip();
+	auto r = right_skip();
 	background[1] = q->width+r->width;
 	background[2] = 0;
 	background[3] = 0;

@@ -3,6 +3,7 @@
 #include "preparemag.h"
 #include "fichier.h"
 #include "impression.h"
+#include "equivalent.h"
 
 constexpr dviindex halfbuf = dvibufsize/2;
 

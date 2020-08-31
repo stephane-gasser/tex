@@ -12,12 +12,6 @@
 #include "shipout.h"
 #include "texte.h"
 
-static halfword& broken_ptr(halfword p) { return link(p+1); }
-static int holding_inserts(void) { return int_par(holding_inserts_code); }
-//static halfword& output_routine(void) { return equiv(output_routine_loc); }
-static TokenNode rtn;
-static TokenNode *output_routine(void) { return &rtn; }
-
 void fireup(LinkedNode *c)
 {
 	unsigned char n;
@@ -43,10 +37,10 @@ void fireup(LinkedNode *c)
 	}
 	if (c == bestpagebreak)
 		bestpagebreak = nullptr;
-	if (box[255])
+	if (box(255))
 		boxerror(255, esc("box")+"255 is not void", "You shouldn't use \\box255 except in \\output routines.\nProceed, and I'll discard its present contents.");
 	insertpenalties = 0;
-	auto savesplittopskip = split_top_skip;
+	auto savesplittopskip = split_top_skip();
 	if (holding_inserts() <= 0)
 	{
 		auto r = dynamic_cast<PageInsNode*>(page_ins_head->link);
@@ -56,9 +50,9 @@ void fireup(LinkedNode *c)
 			{
 				n = r->subtype;
 				ensurevbox(n);
-				if (box[n] == nullptr)
-					box[n] = new BoxNode;
-				auto p = box[n]->list_ptr;
+				if (box(n) == nullptr)
+					setBox(n,  new BoxNode);
+				auto p = box(n)->list_ptr;
 				while (p->link)
 					next(p);
 				r->last_ins_ptr = p;
@@ -94,7 +88,7 @@ void fireup(LinkedNode *c)
 						{
 							followUntilBeforeTarget(s, r->broken_ptr);
 							s->link = nullptr;
-							split_top_skip = P->split_top_ptr;
+							setSplitTopSkip(P->split_top_ptr);
 							P->ins_ptr = prunepagetop(r->broken_ptr);
 							if (P->ins_ptr)
 							{
@@ -107,9 +101,9 @@ void fireup(LinkedNode *c)
 						}
 						r->best_ins_ptr = nullptr;
 						n = r->subtype;
-						auto liste = box[n]->list_ptr;
-						delete box[n];
-						box[n] = vpack(liste, 0, additional);
+						auto liste = box(n)->list_ptr;
+						delete box(n);
+						setBox(n, vpack(liste, 0, additional));
 					}
 					else
 					{
@@ -149,7 +143,7 @@ void fireup(LinkedNode *c)
 		prevp = p;
 		p = prevp->link;
 	}
-	split_top_skip = savesplittopskip;
+	setSplitTopSkip(savesplittopskip);
 	if (p)
 	{
 		if (contrib_head->link == nullptr)
@@ -165,7 +159,7 @@ void fireup(LinkedNode *c)
 	vbadness() = inf_bad;
 	savevfuzz = vfuzz();
 	vfuzz() = max_dimen;
-	box[255] = vpackage(page_head->link, bestsize, exactly, pagemaxdepth);
+	setBox(255, vpackage(page_head->link, bestsize, exactly, pagemaxdepth));
 	vbadness() = savevbadness;
 	vfuzz() = savevfuzz;
 	if (lastglue)
@@ -226,6 +220,6 @@ void fireup(LinkedNode *c)
 		page_head->link = nullptr;
 		pagetail = page_head;
 	}
-	shipout(box[255]);
-	box[255] = nullptr;
+	shipout(box(255));
+	setBox(255, nullptr);
 }

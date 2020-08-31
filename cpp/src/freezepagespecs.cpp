@@ -1,6 +1,5 @@
 #include "freezepagespecs.h"
-
-static int vsize(void) { return dimen_par(vsize_code); }
+#include "equivalent.h"
 
 static void set_page_so_far_zero(int i)
 {

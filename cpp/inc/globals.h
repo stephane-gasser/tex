@@ -30,7 +30,7 @@ constexpr int CHECKSUM = 117275187;
 constexpr int mem_bot = 0; //!<  smallest index in the \a mem array dumped by INITEX
 constexpr int mem_top = 30000; //!<  largest index in the \a mem array dumped by INITEX
 constexpr int font_base = 0; //!<  smallest internal font number; must not be less
-constexpr int hash_size = 2100; //!<  maximum number of control sequences; it should be at most
+constexpr int hash_size = 2100; //!<  maximum number of control sequences; it should be at most about |(mem_max-mem_min)/10|}
 constexpr int hash_prime = 1777; //!<  a prime number equal to about 85% of \a hash_size
 constexpr int hyph_size = 307; //!<  another prime; the number of \\hyphenation exceptions
 constexpr char banner[] ="This is TeX, Version 3.14159265"; //!<  printed when \\TeX starts
@@ -374,9 +374,7 @@ inline fourquarters nullcharacter;
 inline scaled maxv;
 inline scaled maxh;
 inline bool doingleaders;
-inline quarterword c, f; // ????????????????
 inline scaled ruleht, ruledp, rulewd;
-inline halfword g; // ??????????????
 inline dviindex dviptr;
 inline scaled dvih, dviv;
 inline scaled curh, curv;
@@ -446,7 +444,7 @@ inline halfword writeloc;
 class ArithException : public std::exception 
 {
 	public:
-		const char * what () const throw () { return "C++ Exception"; }
+		const char * what () const throw () { return "arithmetic error"; }
 };
 
 #endif

@@ -29,7 +29,8 @@ void hlistout(BoxNode *thisbox)
 			for (; p->is_char_node(); next(p))
 			{
 				auto ft = P->font;
-				c = P->character;
+				auto c = P->character;
+				int f; //ft
 				if (f != dvif)
 				{
 					if (!ft.used)

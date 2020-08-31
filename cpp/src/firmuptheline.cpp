@@ -1,8 +1,7 @@
 #include "firmuptheline.h"
 #include "impression.h"
 #include "terminput.h"
-
-static int pausing(void) { return int_par(pausing_code); }
+#include "equivalent.h"
 
 void firmuptheline(void)
 {
