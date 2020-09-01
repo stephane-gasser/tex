@@ -14,16 +14,6 @@ class AnyNode
 		virtual ~AnyNode(void) {}
 };
 
-class SpanNode : public AnyNode
-{
-	public:
-		halfword link;
-		SpanNode *info;
-		scaled width;
-		SpanNode(void) {}
-		~SpanNode(void) { if (info) delete info; }
-};
-
 void flushnodelist(LinkedNode*);
 LinkedNode* copynodelist(LinkedNode*);
 
@@ -34,6 +24,21 @@ class LinkedNode : public AnyNode
 		~LinkedNode(void) { if (!is_char_node() && type > right_noad) confusion("flushing"); flushnodelist(link); }
 		virtual LinkedNode *copy(void) { confusion("copying"); return new LinkedNode; }
 };
+
+class SpanNode : public LinkedNode
+{
+	public:
+		halfword Link;
+		SpanNode *info;
+		scaled width;
+		SpanNode(void) {}
+		~SpanNode(void) { if (info) delete info; }
+};
+
+inline SpanNode *curspan;
+
+
+
 
 class ShapeNode : public LinkedNode
 {
@@ -384,6 +389,109 @@ class AccentNoad : public Noad
 		NoadContent accent_chr; //!< the \a accent_chr field of an accent noad
 		AccentNoad(void) { type = accent_noad; subtype = 0/*normal*/; accent_chr.math_type = 1/*math_char*/; }
 };
+
+class PassiveNode : public LinkedNode
+{
+	public:
+		LinkedNode *cur_break;
+		LinkedNode *prev_break;
+		LinkedNode* &next_break = prev_break;
+		halfword serial;
+};
+
+inline PassiveNode *passive;
+
+class ActiveNode : public LinkedNode
+{
+	public:
+		quarterword fitness = decent_fit;
+		PassiveNode *break_node = nullptr;
+		halfword line_number;
+		int total_demerits = 0;
+		ActiveNode(int best, LinkedNode *l) : line_number(best+1)
+		{
+			type = unhyphenated;
+			link = l;
+		}
+};
+
+inline ActiveNode *bestbet;
+
+class DeltaNode : public LinkedNode
+{
+	public:
+		quarterword subtype = 0;
+		int width[6];
+		DeltaNode(LinkedNode *r)
+		{
+			link = r;
+			type = delta_node;
+		}
+		void new_delta_to_break_width(void)
+		{
+			for (int i = 1; i <= 6; i++)
+				width[i-1] = breakwidth[i]-curactivewidth[i];
+		}
+		void new_delta_from_break_width(void)
+		{
+			for (int i = 1; i <= 6; i++)
+				width[i-1] = curactivewidth[i]-breakwidth[i];
+		}
+		void update_width(void)
+		{
+			for (int i = 1; i <= 6; i++)
+				curactivewidth[i] += width[i-1];
+		}
+		void update_active(void)
+		{
+			for (int i = 1; i <= 6; i++)
+				activewidth[i] += width[i-1];
+		}
+		void convert_to_break_width(void)
+		{
+			for (int i = 1; i <= 6; i++)
+				width[i-1] += breakwidth[i]-curactivewidth[i];
+		}
+		void downdate_width(void)
+		{
+			for (int i = 1; i <= 6; i++)
+				curactivewidth[i] -= width[i-1];
+		}
+		void combine_two_deltas(DeltaNode *r)
+		{
+			for (int i = 0; i < 6; i++)
+				width[i] += r->width[i];
+		}
+};
+
+class AlignRecordNode : public LinkedNode
+{
+	public:
+		SpanNode *info;
+		halfword extra_info;
+		LinkedNode *u_part;
+		LinkedNode *v_part;
+		scaled width;
+		GlueSpec *glue_ptr; //!< pointer to a glue specification
+};
+
+inline AlignRecordNode *curalign = nullptr;
+
+
+class AlignStackNode : public LinkedNode
+{
+	public:
+		AlignRecordNode *align;
+		LinkedNode *preamble;
+		SpanNode *span;
+		AlignRecordNode *loop;
+		int state;
+		LinkedNode *head;
+		LinkedNode *tail;
+};
+
+inline AlignStackNode *alignptr;
+
 
 //inline int &incompleat_noad = aux.int_; //!< the name of \a aux in math mode
 inline FractionNoad *incompleat_noad; //!< the name of \a aux in math mode

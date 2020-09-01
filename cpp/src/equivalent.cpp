@@ -27,6 +27,27 @@ void eqdestroy(MemoryNode *w)
 	} 
 }
 void define(int a, MemoryNode *p, quarterword t, halfword e) { (a >= 4 ? geqdefine : eqdefine)(p, t, e); }
+void define_(int a, MemoryNode *p, quarterword t, AnyNode *e) { (a >= 4 ? geqdefine_ : eqdefine_)(p, t, e); }
+
+void eqdefine_(MemoryNode *p, quarterword t, AnyNode *e)
+{
+	if (p->level == curlevel)
+		eqdestroy(p);
+	else 
+		if (curlevel > level_one)
+			eqsave(p, p->level);
+	p->level = curlevel;
+	p->type = t;
+	p->index = e;
+}
+
+void geqdefine_(MemoryNode *p, quarterword t, AnyNode *e)
+{
+	eqdestroy(p);
+	p->level = level_one;
+	p->type = t;
+	p->index = e;
+}
 
 void eqdefine(MemoryNode *p, quarterword t, halfword e)
 {
@@ -37,15 +58,15 @@ void eqdefine(MemoryNode *p, quarterword t, halfword e)
 			eqsave(p, p->level);
 	p->level = curlevel;
 	p->type = t;
-	p->index->num = e;
+	p->int_ = e;
 }
 
 void geqdefine(MemoryNode *p, quarterword t, halfword e)
 {
 	eqdestroy(p);
-	p->level = 1;
+	p->level = level_one;
 	p->type = t;
-	p->index->num = e;
+	p->int_ = e;
 }
 
 void word_define(int a, MemoryNode *p, int w) { (a >= 4 ? geqworddefine : eqworddefine)(p, w); }

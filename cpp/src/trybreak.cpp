@@ -5,75 +5,7 @@
 #include "police.h"
 #include "equivalent.h"
 
-static void copy_to_cur_active(void) 
-{
-	for (int i = 1; i <= 6; i++)
-		curactivewidth[i] = activewidth[i];
-}
-
-static void update_width(halfword r)
-{
-	for (int i = 1; i <= 6; i++)
-		curactivewidth[i] += mem[r+i].int_;
-}
-
-static void set_break_width_to_background(void)
-{
-	for (int i = 1; i <= 6; i++)
-		breakwidth[i] = background[i];
-}
-
-static void convert_to_break_width(halfword prev_r)
-{
-	for (int i = 1; i <= 6; i++)
-		mem[prev_r+i].int_ += -curactivewidth[i]+breakwidth[i];
-}
-
-static void store_break_width(void)
-{
-	for (int i = 1; i <= 6; i++)
-		activewidth[i] = breakwidth[i];
-}
-
-static void combine_two_deltas(halfword prev_r, halfword r)
-{
-	for (int i = 1; i <= 6; i++)
-		mem[prev_r+i].int_ += mem[r+i].int_;
-}
-
-static void downdate_width(halfword prev_r)
-{
-	for (int i = 1; i <= 6; i++)
-		curactivewidth[i] -= mem[prev_r+i].int_;
-}
-
-static void update_active(halfword r)
-{
-	for (int i = 1; i <= 6; i++)
-		activewidth[i] += mem[r+i].int_;
-}
-
-class DeltaNode : public LinkedNode
-{
-	public:
-		quarterword subtype = 0;
-		int width[6];
-		DeltaNode(LinkedNode *r)
-		{
-			link = r;
-			type = delta_node;
-		}
-		void new_delta_to_break_width(void)
-		{
-			for (int i = 1; i <= 6; i++)
-				width[i-1] = breakwidth[i]-curactivewidth[i];
-		}
-		void new_delta_from_break_width(void)
-		{
-			for (int i = 1; i <= 6; i++)
-				width[i-1] = curactivewidth[i]-breakwidth[i];
-		}
-};
+static LinkedNode *bestplace[4];
 
 void trybreak(int pi, smallnumber breaktype)
 {
@@ -83,20 +15,20 @@ void trybreak(int pi, smallnumber breaktype)
 	auto nobreakyet = true;
 	auto prevr = active;
 	halfword oldl = 0;
-	copy_to_cur_active();
+	std::copy(activewidth, activewidth+7, curactivewidth);
 	LinkedNode* prevprevr;
 	while (true)
 	{
 		auto r = prevr->link;
 		if (r->type == delta_node)
 		{
-			update_width(r->num);
+			dynamic_cast<DeltaNode*>(r)->update_width();
 			prevprevr = prevr;
 			prevr = r;
 			continue;
 		}
 		char fitclass;
-		auto l = line_number(r->num);
+		auto l = dynamic_cast<ActiveNode*>(r)->line_number;
 		scaled linewidth;
 		halfword b;
 		if (l > oldl)
@@ -106,7 +38,7 @@ void trybreak(int pi, smallnumber breaktype)
 				if (nobreakyet)
 				{
 					nobreakyet = false;
-					set_break_width_to_background();
+					std::copy(background, background+7, breakwidth);
 					auto s = curp;
 					if (breaktype > unhyphenated)
 						if (curp)
@@ -138,7 +70,7 @@ void trybreak(int pi, smallnumber breaktype)
 										case hlist_node:
 										case vlist_node:
 										case rule_node:
-											breakwidth[1] -= width(v->num);
+											breakwidth[1] -= dynamic_cast<RuleNode*>(v)->width;
 											break;
 										case kern_node: 
 											breakwidth[1] -= dynamic_cast<KernNode*>(v)->width;
@@ -167,7 +99,7 @@ void trybreak(int pi, smallnumber breaktype)
 										case hlist_node:
 										case vlist_node:
 										case rule_node:
-											breakwidth[1] += width(s->num);
+											breakwidth[1] += dynamic_cast<RuleNode*>(s)->width;
 											break;
 										case kern_node: 
 											breakwidth[1] += dynamic_cast<KernNode*>(s)->width;
@@ -196,7 +128,7 @@ void trybreak(int pi, smallnumber breaktype)
 							case penalty_node: 
 								break;
 							case math_node: 
-								breakwidth[1] -= width(s->num);
+								breakwidth[1] -= dynamic_cast<MathNode*>(s)->width;
 								break;
 							case kern_node: 
 							{
@@ -214,10 +146,10 @@ void trybreak(int pi, smallnumber breaktype)
 					}
 				}
 				if (prevr->type == delta_node)
-					convert_to_break_width(prevr->num);
+					dynamic_cast<DeltaNode*>(prevr)->convert_to_break_width();
 				else 
 					if (prevr == active)
-						store_break_width();
+						std::copy(breakwidth, breakwidth+7, activewidth);
 					else
 					{
 						auto q = new DeltaNode(r);
@@ -234,20 +166,18 @@ void trybreak(int pi, smallnumber breaktype)
 				{
 					if (minimaldemerits[fitclass] <= minimumdemerits)
 					{
-						auto q = getnode(passive_node_size);
-						link(q) = passive;
+						auto q = new PassiveNode;
+						q->link = passive;
 						passive = q;
-						break_node(q) = curp->num;
-						line_number(q) = bestplace[fitclass];
-						q = getnode(active_node_size);
-						break_node(q) = passive;
-						line_number(q) = bestplline[fitclass]+1;
-						fitness(q) = fitclass;
-						type(q) = breaktype;
-						total_demerits(q) = minimaldemerits[fitclass];
-						link(q) = r->num;
-						prevr->link->num = q;
-						prevr->num = q;
+						q->cur_break = curp;
+						q->prev_break = bestplace[fitclass];
+						auto Q = new ActiveNode(bestplline[fitclass], r);
+						Q->break_node = passive;
+						Q->fitness = fitclass;
+						Q->type = breaktype;
+						Q->total_demerits = minimaldemerits[fitclass];
+						prevr->link = Q;
+						prevr = Q;
 					}
 					minimaldemerits[fitclass] = max_dimen;
 				}
@@ -333,8 +263,8 @@ void trybreak(int pi, smallnumber breaktype)
 						r = active->link;
 						if (r->type == delta_node)
 						{
-							update_active(r->num);
-							copy_to_cur_active();
+							dynamic_cast<DeltaNode*>(r)->update_active();
+							std::copy(activewidth, activewidth+7, curactivewidth);
 							active->link = r->link;
 							delete r;
 						}
@@ -345,7 +275,7 @@ void trybreak(int pi, smallnumber breaktype)
 							r = prevr->link;
 							if (r == active)
 							{
-								downdate_width(prevr->num);
+								dynamic_cast<DeltaNode*>(prevr)->downdate_width();
 								prevprevr->link = active;
 								delete prevr;
 								prevr = prevprevr;
@@ -353,8 +283,8 @@ void trybreak(int pi, smallnumber breaktype)
 							else 
 								if (r->type == delta_node)
 								{
-									update_width(r->num);
-									combine_two_deltas(prevr->num, r->num);
+									dynamic_cast<DeltaNode*>(r)->update_width();
+									dynamic_cast<DeltaNode*>(prevr)->combine_two_deltas(dynamic_cast<DeltaNode*>(r));
 									prevr->link = r->link;
 									delete r;
 								}
@@ -389,14 +319,14 @@ void trybreak(int pi, smallnumber breaktype)
 					d += double_hyphen_demerits();
 				else
 				d += final_hyphen_demerits();
-			if (abs(fitclass-subtype(r->num)) > 1)
+			if (abs(fitclass-dynamic_cast<ActiveNode*>(r)->fitness) > 1)
 				d += adj_demerits();
 		}
-		d += depth(r->num);
+		d += dynamic_cast<ActiveNode*>(r)->total_demerits;
 		if (d <= minimaldemerits[fitclass])
 		{
 			minimaldemerits[fitclass] = d;
-			bestplace[fitclass] = break_node(r->num);
+			bestplace[fitclass] = dynamic_cast<ActiveNode*>(r)->break_node;
 			bestplline[fitclass] = l;
 			if (d < minimumdemerits)
 				minimumdemerits = d;
@@ -410,8 +340,8 @@ void trybreak(int pi, smallnumber breaktype)
 			r = active->link;
 			if (r->type == delta_node)
 			{
-				update_active(r->num);
-				copy_to_cur_active();
+				dynamic_cast<DeltaNode*>(r)->update_active();
+				std::copy(activewidth, activewidth+7, curactivewidth);
 				active->link = r->link;
 				delete r;
 			}
@@ -422,7 +352,7 @@ void trybreak(int pi, smallnumber breaktype)
 				r = prevr->link;
 				if (r == active)
 				{
-					downdate_width(prevr->num);
+					dynamic_cast<DeltaNode*>(prevr)->downdate_width();
 					prevprevr->link = active;
 					delete prevr;
 					prevr = prevprevr;
@@ -430,8 +360,8 @@ void trybreak(int pi, smallnumber breaktype)
 				else 
 					if (r->type == delta_node)
 					{
-						update_width(r->num);
-						combine_two_deltas(prevr->num, r->num);
+						dynamic_cast<DeltaNode*>(r)->update_width();
+						dynamic_cast<DeltaNode*>(prevr)->combine_two_deltas(dynamic_cast<DeltaNode*>(r));
 						prevr->link = r->link;
 						delete r;
 					}

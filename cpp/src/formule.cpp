@@ -725,21 +725,22 @@ void mlisttohlist(void)
 				next(q);
 				continue;
 			case rule_node:
-				if (height(q->num) > maxh)
-					maxh = height(q->num);
-				if (depth(q->num) > maxd)
-					maxd = depth(q->num);
+			{
+				auto Q = dynamic_cast<RuleNode*>(q);
+				maxh = std::max(Q->height, maxh);
+				maxd = std::max(Q->depth, maxd);
 				next(q);
 				continue;
+			}
 			case glue_node:
 			{
 				auto Q = dynamic_cast<GlueNode*>(q);
 				if (Q->subtype == mu_glue)
 				{
 					auto x = Q->glue_ptr;
-					y = mathglue(x, curmu)->num;
+					auto y = mathglue(x, curmu);
 					deleteglueref(x);
-					Q->glue_ptr->num = y;
+					Q->glue_ptr = y;
 					Q->subtype = 0;
 				}
 				else 

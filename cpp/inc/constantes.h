@@ -634,7 +634,7 @@ quarterword& type(halfword p); //!< identifies what kind of node this is
 quarterword& subtype(halfword p); //!< secondary identification in some cases
 //bool is_char_node(halfword);
 quarterword& font(halfword); //!< the font code in a \a char_node
-quarterword& character(halfword); //!< the character code in a \a char_node
+//quarterword& character(halfword); //!< the character code in a \a char_node
 int& width(halfword); //!< width of the box, in sp
 int& depth(halfword); //!< depth of the box, in sp
 int& height(halfword); //!< height of the box, in sp
@@ -694,10 +694,10 @@ int default_rule_thickness(void); //!< thickness of \\over bars
 int& u_part(halfword); //!< pointer to \f$<u_j\f$ token list
 int&v_part(halfword); //!< pointer to \f$<v_j\f$ token list
 halfword& extra_info(halfword); //!< info to remember during template
-quarterword& fitness(halfword); //!< <em> very_loose_fit..tight_fit</em> on final line for this break
-halfword& break_node(halfword); //!< pointer to the corresponding passive node
-halfword& line_number(halfword); //!< line that begins at this breakpoint
-int& total_demerits(halfword); //!< the quantity that \\TeX\\ minimizes
+//quarterword& fitness(halfword); //!< <em> very_loose_fit..tight_fit</em> on final line for this break
+//halfword& break_node(halfword); //!< pointer to the corresponding passive node
+//halfword& line_number(halfword); //!< line that begins at this breakpoint
+//int& total_demerits(halfword); //!< the quantity that \\TeX\\ minimizes
 void set_cur_lang(void); 
 //halfword& broken_ins(halfword p); //!< this insertion might break at \a broken_ptr
 //halfword& last_ins_ptr(halfword p); //!< the most recent insertion for this \a subtype

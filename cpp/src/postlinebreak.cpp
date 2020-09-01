@@ -17,19 +17,19 @@ void postlinebreak(int finalwidowpenalty)
 	int pen;
 	halfword curline;
 	LinkedNode *q, *r, *s;
-	q->num = break_node(bestbet);
+	q = bestbet->break_node;
 	curp = nullptr;
 	do //Reverse the links of the relevant passive nodes, setting |cur_p| to the first breakpoint
 	{
 		r = q;
-		q->num = prev_break(q->num);
-		next_break(r->num) = curp->num;
+		q = dynamic_cast<PassiveNode*>(q)->prev_break;
+		dynamic_cast<PassiveNode*>(r)->next_break = curp;
 		curp = r;
 	} while (q);
 	curline = prev_graf+1;
 	do //Justify the line ending at breakpoint |cur_p|, and append it to the current vertical list, together with associated penalties and other insertions
 	{
-		q->num = cur_break(curp->num);
+		q = dynamic_cast<PassiveNode*>(curp)->cur_break;
 		discbreak = false;
 		postdiscbreak = false;
 		if (q)
@@ -85,8 +85,12 @@ void postlinebreak(int finalwidowpenalty)
 					discbreak = true;
 				}
 				else 
-					if (type(q->num) == math_node || type(q->num) == kern_node)
-						width(q->num) = 0;
+				{
+					if (q->type == math_node)
+						dynamic_cast<MathNode*>(q)->width = 0;
+					if (q->type == kern_node)
+						dynamic_cast<KernNode*>(q)->width = 0;
+				}
 				r = new GlueNode(right_skip_code);
 				r->link = q->link;
 				q->link = r;
@@ -153,7 +157,7 @@ void postlinebreak(int finalwidowpenalty)
 			}
 		}
 		curline++;
-		curp->num = next_break(curp->num);
+		curp = dynamic_cast<PassiveNode*>(curp)->next_break;
 		if (curp)
 			if (!postdiscbreak)
 			{
@@ -161,14 +165,14 @@ void postlinebreak(int finalwidowpenalty)
 				while (true)
 				{
 					q = r->link;
-					if (q->num == cur_break(curp->num))
+					if (q == dynamic_cast<PassiveNode*>(curp)->cur_break)
 						break;
 					if (q->is_char_node())
 						break;
-					if (type(q->num) < math_node) // non_discardable
+					if (q->type < math_node) // non_discardable
 						break;
-					if (type(q->num) == kern_node)
-						if (subtype(q->num) != explicit_)
+					if (q->type == kern_node)
+						if (dynamic_cast<KernNode*>(q)->subtype != explicit_)
 							break;
 					r = q; //now |type(q)=glue_node|, |kern_node|, |math_node| or |penalty_node|
 				}

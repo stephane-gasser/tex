@@ -52,7 +52,7 @@ void initmath(void)
 					case hlist_node: //0
 					case vlist_node: //1
 					case rule_node: //2
-						d = width(p->num);
+						d = dynamic_cast<RuleNode*>(p)->width;
 						if (v < max_dimen)
 						{
 							v += d;
@@ -78,7 +78,7 @@ void initmath(void)
 						d = dynamic_cast<KernNode*>(p)->width;
 						break;
 					case math_node: //9
-						d = width(p->num);
+						d = dynamic_cast<MathNode*>(p)->width;
 						break;
 					case glue_node: //10
 					{

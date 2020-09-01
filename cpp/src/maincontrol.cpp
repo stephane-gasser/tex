@@ -393,7 +393,7 @@ static void main_loop(Token t)
 
 Token maincontrol(void)
 {
-	halfword loop = 0;
+	AlignRecordNode *loop = nullptr;
 	if (every_job())
 		begintokenlist(every_job(), every_job_text);
 	auto t = getxtoken();

@@ -1,17 +1,17 @@
 #include "popalignment.h"
 #include "noeud.h"
 
-void popalignment(halfword &loop)
+void popalignment(AlignRecordNode* &loop)
 {
 	delete curhead; 
+	curtail = alignptr->tail;
+	curhead = alignptr->head;
+	alignstate = alignptr->state;
+	loop = alignptr->loop;
+	curspan = alignptr->span;
+	preamble = alignptr->preamble;
+	curalign = alignptr->align;
 	auto p = alignptr;
-	curtail->num = link(p+4);
-	curhead->num = info(p+4);
-	alignstate = mem[p+3].int_;
-	loop = mem[p+2].int_;
-	curspan = rlink(p);
-	preamble->num = llink(p);
-	curalign = info(p);
-	alignptr = link(p);
-	freenode(p, align_stack_node_size);
+	next(alignptr);
+	delete p;
 }

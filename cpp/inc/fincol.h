@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-bool fincol(Token, halfword &);
+bool fincol(Token, AlignRecordNode*&);
 
 #endif

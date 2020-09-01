@@ -150,7 +150,7 @@ void doregistercommand(smallnumber a, Token t)
 					}
 				}
 				g = trapzeroglue(g);
-				define(a, &eqtb_glue[l-glue_base], glue_ref, g->num);
+				define_(a, &eqtb_glue[l-glue_base], glue_ref, g);
 				break;
 			case mu_val: 
 				switch (q)
@@ -207,7 +207,7 @@ void doregistercommand(smallnumber a, Token t)
 					}
 				}
 				g = trapzeroglue(g);
-				define(a, &eqtb_glue[l-glue_base], glue_ref, g->num);
+				define_(a, &eqtb_glue[l-glue_base], glue_ref, g);
 		}
 	}
 	catch(ArithException &e)

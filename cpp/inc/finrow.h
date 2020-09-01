@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void finrow(halfword &);
+void finrow(AlignRecordNode*&);
 
 #endif

@@ -4,14 +4,12 @@
 
 void initcol(Token t)
 {
-	extra_info(curalign) = t.cmd;
+	curalign->extra_info = t.cmd;
 	if (t.cmd == omit)
 		alignstate = 0;
 	else
 	{
 		backinput(t);
-		TokenNode *T;
-		T->num = u_part(curalign);
-		begintokenlist(T, u_template);
+		begintokenlist(dynamic_cast<TokenNode*>(curalign->u_part), u_template);
 	}
 }

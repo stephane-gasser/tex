@@ -18,7 +18,7 @@
 #include "formule.h"
 #include "texte.h"
 
-void handlerightbrace(Token t, halfword &loop)
+void handlerightbrace(Token t, AlignRecordNode* &loop)
 {
 	BoxNode *p;
 	GlueSpec *q;

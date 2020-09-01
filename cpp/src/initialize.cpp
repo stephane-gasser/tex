@@ -68,7 +68,6 @@ void Initialize(void)
 	lastbadness = 0;
 	packbeginline = 0;
 	alignptr = 0;
-	curalign = 0;
 	curspan = 0;
 	curhead = nullptr;
 	curtail = nullptr;
@@ -111,10 +110,10 @@ void Initialize(void)
 	for (int k = hi_mem_stat_min; k <= mem_top; k++)
 		mem[k] = mem[lomemmax];
 	omit_template = new TokenNode(end_template_token);
-	end_span->link = 256;
+	end_span->Link = 256;
 	end_span->info = nullptr;
 	type(active->num) = 1;
-	line_number(active->num) = empty_flag;
+	dynamic_cast<ActiveNode*>(active)->line_number = empty_flag;
 	subtype(active->num) = 0; // the |subtype| is never examined by the algorithm
 	page_ins_head = new PageInsNode;
 	page_ins_head->subtype = 255;

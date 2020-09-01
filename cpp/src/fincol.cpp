@@ -10,61 +10,55 @@
 #include "initcol.h"
 #include "texte.h"
 
-bool fincol(Token t, halfword &loop)
+bool fincol(Token t, AlignRecordNode* &loop)
 {
-	halfword s;
 	BoxNode *u;
-	LinkedNode *q;
 	scaled w;
 	glueord o;
 	halfword n;
-	if (curalign == 0)
+	if (curalign == nullptr)
 		confusion("endv");
-	q->num = link(curalign);
+	auto q = curalign->link;
 	if (q == nullptr)
 		confusion("endv");
 	if (alignstate < 500000)
 		fatalerror("(interwoven alignment preambles are not allowed)");
-	auto p = q->link;
-	if (p == nullptr && extra_info(curalign) < cr_code)
-		if (loop)
+	auto p = dynamic_cast<AlignRecordNode*>(q->link);
+	//If the preamble list has been traversed, check that the row has ended
+	if (p == nullptr && curalign->extra_info < cr_code)
+		if (loop) //Lengthen the preamble periodically
 		{
-			q->link = new BoxNode;
-			p = q->link; // a new alignrecord
-			info(p->num) = end_span->num;
-			width(p->num) = null_flag;
-			loop = link(loop);
+			p = new AlignRecordNode;
+			q->link = p;
+			p->info = end_span;
+			p->width = null_flag;
+			next(loop);
+			// Copy the templates from node |cur_loop| into node |p|
 			q = hold_head;
-			auto r = u_part(loop);
-			while (r)
+			for (auto r = dynamic_cast<TokenNode*>(loop->u_part); r; next(r))
 			{
-				q->link = new TokenNode(info(r));
-				q = dynamic_cast<TokenNode*>(q->link);
-				r = link(r);
+				q->link = new TokenNode(r->token);
+				next(q);
 			}
 			q->link = nullptr;
-			u_part(p->num) = hold_head->link->num;
+			p->u_part = hold_head->link;
 			q = hold_head;
-			r = v_part(loop);
-			while (r)
+			for (auto r = dynamic_cast<TokenNode*>(loop->v_part); r; next(r))
 			{
-				q->link = new TokenNode(info(r));
-				q = dynamic_cast<TokenNode*>(q->link);
-				r = link(r);
+				q->link = new TokenNode(r->token);
+				next(q);
 			}
 			q->link = nullptr;
-			v_part(p->num) = hold_head->link->num;
-			loop = link(loop);
-			GlueNode *Loop;
-			Loop->num = loop;
-			p->link = new GlueNode(Loop->glue_ptr);
+			p->v_part = hold_head->link;
+			next(loop);
+			p->link = new GlueNode(loop->glue_ptr);
 		}
 		else
 		{
 			error("Extra alignment tab has been changed to "+esc("cr"), "You have given more \\span or & marks than there were\nin the preamble to the \\halign or \\valign now in progress.\nSo I'll assume that you meant to type \\cr instead.");
-			extra_info(curalign) = cr_code;
+			curalign->extra_info = cr_code;
 		}
-	if (extra_info(curalign) != span_code)
+	if (curalign->extra_info != span_code)
 	{
 		unsave();
 		newsavelevel(align_group);
@@ -82,34 +76,34 @@ bool fincol(Token t, halfword &loop)
 			w = u->height;
 		}
 		n = 0;
-		if (curspan != curalign)
+		LinkedNode *q = curspan;
+		if (q != curalign)
 		{
-			q->num = curspan;
 			do
 			{
 				n++;
-				q = dynamic_cast<TokenNode*>(q->link->link);
-			} while (q->num != curalign);
+				next(q);
+				next(q);
+			} while (q != curalign);
 			if (n > 255)
 				confusion("256 spans");
-			q->num = curspan;
-			while (q->link->link->num < n)
+			q = curspan;
+			while (dynamic_cast<SpanNode*>(q->link)->Link < n)
 				next(q);
-			if (q->link->link->num > n)
+			if (dynamic_cast<SpanNode*>(q->link)->Link > n)
 			{
-				s = getnode(span_node_size);
-				info(s) = info(q->num);
-				link(s) = n;
-				info(q->num) = s;
-				width(s) = w;
+				auto s = new SpanNode;
+				s->info = dynamic_cast<AlignRecordNode*>(q)->info;
+				s->Link = n;
+				dynamic_cast<AlignRecordNode*>(q)->info = s;
+				s->width = w;
 			}
 			else 
-				if (width(info(q->num)) < w)
-					width(info(q->num)) = w;
+				if (dynamic_cast<AlignRecordNode*>(q)->info->width < w)
+					dynamic_cast<AlignRecordNode*>(q)->info->width = w;
 		}
 		else 
-			if (w > width(curalign))
-				width(curalign) = w;
+			curalign->width = std::max(w, curalign->width);
 		u->type = unset_node;
 		dynamic_cast<UnsetNode*>(u)->span_count = n;
 		if (totalstretch[3])
@@ -139,18 +133,16 @@ bool fincol(Token t, halfword &loop)
 		popnest();
 		tail->link = u;
 		tail = u;
-		GlueNode *Curalign;
-		Curalign->num = curalign;
-		auto G = new GlueNode(Curalign->glue_ptr);
+		auto G = new GlueNode(curalign->glue_ptr);
 		G->subtype = tab_skip_code+1;
 		tail_append(G);
-		if (extra_info(curalign) >= cr_code)
+		if (curalign->extra_info >= cr_code)
 			return true;
-		initspan(p->num);
+		initspan(dynamic_cast<SpanNode*>(p));
 	}
 	alignstate = 1000000;
 	t = getXTokenSkipSpace();
-	curalign = p->num;
+	curalign = dynamic_cast<AlignRecordNode*>(p);
 	initcol(t);
 	return false;
 }

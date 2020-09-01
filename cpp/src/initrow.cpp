@@ -14,7 +14,7 @@ void initrow(void)
 	auto G = new GlueNode(dynamic_cast<GlueNode*>(preamble)->glue_ptr);
 	G->subtype = tab_skip_code+1;
 	tail_append(G);
-	curalign = preamble->link->num;
+	curalign = dynamic_cast<AlignRecordNode*>(preamble->link);
 	curtail = curhead;
-	initspan(curalign);
+	initspan(dynamic_cast<SpanNode*>(curalign));
 }

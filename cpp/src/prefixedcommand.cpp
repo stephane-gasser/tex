@@ -58,7 +58,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			Token tk;
 			tk.cs = p;
 			q = scantoks(true, t.chr >= 2, tk);
-			define(a, &eqtb_cs[p-hash_base], call+a%4, defref->num); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
+			define_(a, &eqtb_cs[p-hash_base], call+a%4, defref); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		}
 		case let:
@@ -122,7 +122,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			if (!scankeyword("to")) 
 				error("Missing `to' inserted", "You should have said `\\read<number> to \\cs'.\nI'm going to look for the \\cs now.");
 			auto p = getrtoken();
-			define(a, &eqtb_cs[p-hash_base], call, readtoks(n, p)->num);
+			define_(a, &eqtb_cs[p-hash_base], call, readtoks(n, p));
 			break;
 		}
 		case toks_register:
@@ -143,11 +143,11 @@ void prefixedcommand(Token t, bool setboxallowed)
 				{
 					q = dynamic_cast<TokenNode*>(eqtb_local[t.chr-local_base].index);
 					if (q == nullptr)
-						define(a, &eqtb_local[p-local_base], undefined_cs, 0);
+						define_(a, &eqtb_local[p-local_base], undefined_cs, nullptr);
 					else
 					{
 						q->token_ref_count++;
-						define(a, &eqtb_local[p-local_base], call, q->num);
+						define_(a, &eqtb_local[p-local_base], call, q);
 					}
 					break;
 				}
@@ -158,7 +158,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			q = scantoks(false, false, tk);
 			if (defref->link == nullptr)
 			{
-				define(a, &eqtb_local[p-local_base], undefined_cs, 0);
+				define_(a, &eqtb_local[p-local_base], undefined_cs, nullptr);
 				delete defref;
 			}
 			else
@@ -171,7 +171,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 					q->link = defref->link;
 					defref->link = q;
 				}
-				define(a, &eqtb_local[p-local_base], call, defref->num);
+				define_(a, &eqtb_local[p-local_base], call, defref);
 			}
 			break;
 		}
@@ -196,7 +196,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			n = t.cmd;
 			scanoptionalequals();
 			auto g = trapzeroglue(scanglue(n == assign_mu_glue ? mu_val : glue_val));
-			define(a, &eqtb_glue[p-glue_base], glue_ref, g->num);
+			define_(a, &eqtb_glue[p-glue_base], glue_ref, g);
 			break;
 		}
 		case def_code:
@@ -286,7 +286,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 				for (int j = 0; j < 2*n; j++)
 					p->values.push_back(scan_normal_dimen());
 			}
-			define(a, &eqtb_local[par_shape_loc-local_base], shape_ref, p->num);
+			define_(a, &eqtb_local[par_shape_loc-local_base], shape_ref, p);
 			break;
 		}
 		case hyph_data:

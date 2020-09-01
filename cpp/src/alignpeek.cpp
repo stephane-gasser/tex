@@ -6,7 +6,7 @@
 #include "initrow.h"
 #include "initcol.h"
 
-void alignpeek(halfword &loop)
+void alignpeek(AlignRecordNode* &loop)
 {
 	while (true)
 	{

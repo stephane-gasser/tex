@@ -152,9 +152,9 @@ void boxend(int boxcontext)
 	else 
 		if (boxcontext < ship_out_flag) // Store (c) \a cur_box in a box register
 			if (boxcontext < box_flag+256)
-				eqdefine(&eqtb_local[boxcontext-box_flag+box_base-local_base], box_ref, curbox->num);
+				eqdefine_(&eqtb_local[boxcontext-box_flag+box_base-local_base], box_ref, curbox);
 			else
-				geqdefine(&eqtb_local[boxcontext-box_flag-256+box_base-local_base], box_ref, curbox->num);
+				geqdefine_(&eqtb_local[boxcontext-box_flag-256+box_base-local_base], box_ref, curbox);
 		else 
 			if (curbox && boxcontext > ship_out_flag) // Append a new leader node that uses \a cur_box
 			{

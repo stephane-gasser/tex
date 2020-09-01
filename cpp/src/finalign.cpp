@@ -14,7 +14,7 @@
 #include "noeud.h"
 #include <cmath>
 
-void finalign(halfword &loop)
+void finalign(AlignRecordNode* &loop)
 {
 	scaled t, w; // width of column
 	halfword n; // matching span amount
@@ -63,16 +63,16 @@ void finalign(halfword &loop)
 				r->width -= t;
 				SpanNode *u;
 				u = r->info;
-				while (r->link > n)
+				while (r->Link > n)
 				{
 					s = s->info;
-					n = s->info->link+1;
+					n = s->info->Link+1;
 				}
-				if (r->link < n)
+				if (r->Link < n)
 				{
 					r->info = s->info;
 					s->info = r;
-					r->link--;
+					r->Link--;
 					s = r;
 				}
 				else

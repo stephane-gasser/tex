@@ -48,59 +48,54 @@ void unsave(void)
 		return;
 	}
 	curlevel--;
-	quarterword slevel;
-	AnyNode *sindex;
 	while (true)
 	{
 		auto m = savestack.back();
-		auto stype = m->type;
-		slevel = m->level;
-		sindex = m->index;
 		savestack.pop_back();
-		if (stype == level_boundary)
-			break;
-		auto p = sindex;
-		quarterword l;
-		if (stype == insert_token)
+		switch (m->type)
 		{
-			Token t;
-			t.tok = p->num;
-			backinput(t);
-		}
-		else
-		{
-			if (stype == restore_old_value)
+			case level_boundary:
+				curgroup = m->level;
+				curboundary = m->index;
+				return;
+			case insert_token:
 			{
-				l = slevel;
+				Token t;
+				t.tok = dynamic_cast<TokenNode*>(m->index)->token;
+				backinput(t);
+				break;
+			}
+			case restore_old_value:
+			{
+				auto slevel = m->level;
+				auto sindex = dynamic_cast<MemoryNode*>(m->index);
 				m = savestack.back();
-				stype = m->type;
-				slevel = m->level;
-				sindex = m->index;
 				savestack.pop_back();
+				if (sindex->level != level_one)
+				{
+					sindex->type = m->type;
+					sindex->level = m->level;
+					sindex->index = m->index;
+					sindex->int_ = m->int_;
+				}
+				if (sindex->index)
+					eqdestroy(sindex);
+				else 
+					if (sindex->level != level_one) //dans xeqlevel
+						sindex->level = slevel;//xeqlevel[p] = l;
+				break;
 			}
-			else
+			case restore_zero:
 			{
-				m = &eqtb_cs[undefined_control_sequence-hash_base];
-				stype = m->type;
-				slevel = m->level;
-				sindex = m->index;
+				auto sindex = dynamic_cast<MemoryNode*>(m->index);
+				if (sindex->level != level_one)
+				{
+					sindex->type = undefined_cs;
+					sindex->level = level_zero;
+					sindex->index = nullptr;
+					sindex->int_ = 0;
+				}
 			}
-			if (p->num < int_base) // dans eqtb
-				if (dynamic_cast<MemoryNode*>(p)->level == level_one)
-					eqdestroy(m);
-				else
-				{
-					eqdestroy(dynamic_cast<MemoryNode*>(p));
-					*p = *m;
-				}
-			else 
-				if (dynamic_cast<MemoryNode*>(p)->level/*xeqlevel[p]*/ != level_one) //dans xeqlevel
-				{
-					*p = *m; //eqtb [p] = m;
-					dynamic_cast<MemoryNode*>(p)->level = l;//xeqlevel[p] = l;
-				}
 		}
 	}	
-	curgroup = slevel;
-	curboundary = sindex;
 }

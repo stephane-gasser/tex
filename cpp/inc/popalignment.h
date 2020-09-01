@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void popalignment(halfword &);
+void popalignment(AlignRecordNode*&);
 
 #endif

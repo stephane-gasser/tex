@@ -2,7 +2,7 @@
 #include "pushnest.h"
 #include "normalparagraph.h"
 
-void initspan(halfword p)
+void initspan(SpanNode *p)
 {
 	pushnest();
 	if (mode == -hmode)

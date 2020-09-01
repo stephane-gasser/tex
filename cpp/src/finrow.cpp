@@ -6,7 +6,7 @@
 #include "lecture.h"
 #include "equivalent.h"
 
-void finrow(halfword &loop)
+void finrow(AlignRecordNode* &loop)
 {
 	BoxNode *p;
 	if (mode == -hmode)

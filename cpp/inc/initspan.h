@@ -1,5 +1,8 @@
 #ifndef INITSPAN_H
 #define INITSPAN_H
+
 #include "globals.h"
-void initspan(halfword p);
+
+void initspan(SpanNode *p);
+
 #endif

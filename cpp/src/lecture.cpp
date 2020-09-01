@@ -34,6 +34,247 @@
 #include "openlogfile.h"
 #include "sauvegarde.h"
 
+[[nodiscard]] static std::tuple<int, int, GlueSpec*> scansomethinginternal(smallnumber level, bool negative, Token t)
+{
+	// lev/level : tok_val/dimen_val/glue_val/ident_val/int_val/mu_val
+	int val, lev;
+	GlueSpec *gl;
+	auto m = t.chr;
+	switch (t.cmd)
+	{
+		case def_code:
+			lev = int_val;
+			if (m == math_code_base)
+				val = math_code(scancharnum());
+			else 
+				if (m < math_code_base)
+					val = eqtb_local[m+scancharnum()-local_base].int_;
+				else
+					val = eqtb_int[m+scancharnum()-int_base].int_;
+			break;
+		case toks_register:
+		case assign_toks:
+			if (level != tok_val)
+			{
+				backerror(t, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
+				val = 0;
+				lev = dimen_val;
+				break;
+			}
+			if (t.cmd == toks_register)
+				m = toks_base+scaneightbitint();
+			val = eqtb_local[m-local_base].int_;
+			lev = tok_val;
+			break;
+		case def_family:
+		case set_font:
+		case def_font:
+			if (level != tok_val)
+			{
+				backerror(t, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
+				val = 0;
+				lev = dimen_val;
+				break;
+			}
+			backinput(t);
+			val = scanfontident()+frozen_null_font;
+			lev = ident_val;
+			break;
+		case assign_int:
+			val = eqtb_int[m-int_base].int_;
+			lev = int_val;
+			break;
+		case assign_dimen:
+			val = eqtb_dimen[m-dimen_base].int_;
+			lev = dimen_val;
+			break;
+		case assign_glue:
+			gl = dynamic_cast<GlueSpec*>(eqtb_glue[m-glue_base].index); 
+			lev = glue_val;
+			break;
+		case assign_mu_glue:
+			gl = dynamic_cast<GlueSpec*>(eqtb_glue[m-glue_base].index);
+			lev = mu_val;
+			break;
+		case set_aux:
+			if (abs(mode) != m)
+			{
+				error("Improper "+cmdchr(t), "You can refer to \\spacefactor only in horizontal mode;\nyou can refer to \\prevdepth only in vertical mode; and\nneither of these is meaningful inside \\write. So\nI'm forgetting what you said and using zero instead.");
+				val = 0;
+				lev = level == tok_val ? int_val : dimen_val;
+				break;
+			}
+			if (m == vmode)
+			{
+				val = prev_depth;
+				lev = dimen_val;
+				break;
+			}
+			val = space_factor;
+			lev = int_val;
+			break;
+		case set_prev_graf:
+			val = 0;
+			if (mode)
+			{
+				nest[nestptr] = curlist;
+				auto p = nestptr;
+				while (abs(nest[p].modefield) != vmode)
+					p--;
+				val = nest[p].pgfield;
+			}
+			lev = int_val;
+			break;
+		case set_page_int:
+			val =  m == 0 ? deadcycles : insertpenalties;
+			lev = int_val;
+			break;
+		case set_page_dimen:
+			if (pagecontents == 0 && !outputactive)
+				val = m == 0 ? max_dimen : 0;
+			else
+				val = pagesofar[m];
+			lev = dimen_val;
+			break;
+		case set_shape:
+			val = 0;
+			if (par_shape_ptr())
+				val = par_shape_ptr()->values.size()/2;
+			lev = int_val;
+			break;
+		case set_box_dimen:
+			val = scaneightbitint();
+			val = 0;
+			if (box(val))
+				switch (m)
+				{
+					case width_offset:
+						val = box(val)->width;
+						break;
+					case height_offset:
+						val = box(val)->height;
+						break;
+					case depth_offset:
+						val = box(val)->depth;
+				}
+			lev = dimen_val;
+		break;
+		case char_given:
+		case math_given:
+			val = t.chr;
+			lev = int_val;
+			break;
+		case assign_font_dimen:
+			val = findfontdimen(false);
+			Font::info.back().int_ = 0;
+			val = Font::info[val].int_;
+			lev = dimen_val;
+			break;
+		case assign_font_int:
+			val = m == 0 ? fonts[scanfontident()].hyphenchar: fonts[scanfontident()].skewchar;
+			lev = int_val;
+			break;
+		case register_:
+			switch (m)
+			{
+				case int_val: 
+					val = count(scaneightbitint());
+					break;
+				case dimen_val: 
+					val = dimen(scaneightbitint());
+					break;
+				case glue_val: 
+					gl = skip(scaneightbitint());
+					break;
+				case mu_val: 
+					gl = mu_skip(scaneightbitint());
+			}
+			lev = m;
+			break;
+		case last_item:
+			if (t.chr > glue_val)
+			{
+				val = t.chr == input_line_no_code ? line : lastbadness;
+				lev = int_val;
+				break;
+			}
+			if (t.chr == glue_val)
+			{
+				gl = zero_glue;
+				lev = glue_val;
+			}
+			else
+			{
+				val = 0;
+				lev = t.chr;
+			}
+			if (!tail->is_char_node() && mode)
+				switch (t.chr)
+				{
+					case int_val:
+						if (tail->type == penalty_node)
+							val = dynamic_cast<PenaltyNode*>(tail)->penalty;
+						break;
+					case dimen_val: 
+						if (tail->type == kern_node)
+							val = dynamic_cast<KernNode*>(tail)->width;
+						break;
+					case glue_val: 
+						if (tail->type == glue_node)
+						{
+							auto Tail = dynamic_cast<GlueNode*>(tail);
+							gl = Tail->glue_ptr;
+							if (Tail->subtype == mu_glue)
+								lev = mu_val;
+						}
+				}
+			else 
+				if (mode == vmode && tail == head)
+					switch (t.chr)
+					{
+						case int_val: 
+							val = lastpenalty;
+							break;
+						case dimen_val: 
+							val = lastkern;
+							break;
+						case glue_val: 
+							if (lastglue)
+								gl = lastglue;
+					}
+			break;
+		default:
+			error("You can't use `"+cmdchr(t)+"' after "+esc("the"), "I'm forgetting what you said and using zero instead.");
+			val = 0;
+			lev = level == tok_val ? int_val : dimen_val;
+	}
+	while (lev > level)
+	{
+		if (lev == glue_val)
+			val = gl->width;
+		else 
+			if (lev == mu_val)
+				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
+		lev--;
+	}
+	if (negative)
+		if (lev >= glue_val)
+		{
+			gl = new GlueSpec(gl);
+			gl->width = -gl->width;
+			gl->stretch = -gl->stretch;
+			gl->shrink = -gl->shrink;
+		}
+		else
+			val = -val;
+	else 
+		if (lev >= glue_val && lev <= mu_val)
+			gl->glue_ref_count++;
+	return {val, lev, gl};
+}
+
+
+
 Token getXTokenSkipSpace(void)
 {
 	Token t;
@@ -103,6 +344,7 @@ void scandelimiter(Delimiter &p, bool r, Token t)
 [[nodiscard]] int scandimen(bool mu, bool inf, bool shortcut)
 {
 	int val, lev;
+	GlueSpec *gl;
 	int f = 0;
 	aritherror = false;
 	curorder = 0;
@@ -125,12 +367,11 @@ void scandelimiter(Delimiter &p, bool r, Token t)
 			if (t.cmd >= min_internal && t.cmd <= max_internal)
 				if (mu)
 				{
-					std::tie(val, lev) = scansomethinginternal(mu_val, false, t);
+					std::tie(val, lev, gl) = scansomethinginternal(mu_val, false, t);
 					if (lev >= glue_val)
 					{
-						auto G = dynamic_cast<GlueSpec*>(eqtb_glue[val-glue_base].index);
-						auto v = G->width;
-						deleteglueref(G);
+						auto v = gl->width;
+						deleteglueref(gl);
 						val = v;
 					}
 					if (lev == mu_val)
@@ -140,7 +381,7 @@ void scandelimiter(Delimiter &p, bool r, Token t)
 				}
 				else
 				{
-					std::tie(val, lev) = scansomethinginternal(dimen_val, false, t);
+					std::tie(val, lev, gl) = scansomethinginternal(dimen_val, false, t);
 					if (lev == dimen_val)
 						break;
 				}
@@ -208,19 +449,18 @@ void scandelimiter(Delimiter &p, bool r, Token t)
 		{
 			if (mu)
 			{
-				std::tie(val, lev) = scansomethinginternal(mu_val, false, t);
+				std::tie(val, lev, gl) = scansomethinginternal(mu_val, false, t);
 				if (lev >= glue_val)
 				{
-					auto G = dynamic_cast<GlueSpec*>(eqtb_glue[val-glue_base].index);
-					auto v = G->width;
-					deleteglueref(G);
+					auto v = gl->width;
+					deleteglueref(gl);
 					val = v;
 				}
 				if (lev != mu_val)
 					error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
 			}
 			else
-				std::tie(val, lev) = scansomethinginternal(dimen_val, false, t);
+				std::tie(val, lev, gl) = scansomethinginternal(dimen_val, false, t);
 			auto v = val;
 			val = nx_plus_y(saveval, v, xnoverd(v, f, 0x1'00'00));
 			break;
@@ -453,21 +693,20 @@ void scanfilename(void)
 		}
 	} while (t.tok != other_token+'+');
 	int val, lev;
+	GlueSpec *gl;
 	if (t.cmd >= min_internal && t.cmd <= max_internal)
 	{
-		std::tie(val, lev) = scansomethinginternal(level, negative, t);
-		if (lev >= 2)
+		std::tie(val, lev, gl) = scansomethinginternal(level, negative, t);
+		if (lev >= glue_val)
 		{
 			if (lev != level)
 				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
-			GlueSpec *g;
-			g->num = val;
-			return g;
+			return gl;
 		}
-		if (lev == 0)
+		if (lev == int_val)
 			val = scandimen(mu, false, true);
 		else 
-			if (level == 3)
+			if (level == mu_val)
 				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
 	}
 	else
@@ -501,6 +740,7 @@ void scanfilename(void)
 [[nodiscard]] int scanint(void)
 {
 	int val, lev;
+	GlueSpec *gl;
 	radix = 0;
 	bool OKsofar = true; // has an error message been issued?
 	bool negative = false; // should the answer be negated?
@@ -541,7 +781,7 @@ void scanfilename(void)
 	}
 	else 
 		if (t.cmd >= min_internal && t.cmd <= max_internal)
-			std::tie(val, lev) = scansomethinginternal(int_val, false, t);
+			std::tie(val, lev, gl) = scansomethinginternal(int_val, false, t);
 		else
 		{
 			radix = 10;
@@ -739,254 +979,6 @@ RuleNode *scanrulespec(Token t)
 		break;
 	}
 	return q;
-}
-
-[[nodiscard]] std::tuple<int, int> scansomethinginternal(smallnumber level, bool negative, Token t)
-{
-	///////////////////////////////
-	//	val : devrait être un AnyNode 
-	// lev : son type (tok_val/dimen_val/glue_val/ident_val/int_val/mu_val)
-	////////////////////////////////
-	int val, lev;
-	auto m = t.chr;
-	switch (t.cmd)
-	{
-		case def_code:
-			lev = int_val;
-			if (m == math_code_base)
-				val = math_code(scancharnum());
-			else 
-				if (m < math_code_base)
-					val = eqtb_local[m+scancharnum()-local_base].int_;
-				else
-					val = eqtb_int[m+scancharnum()-int_base].int_;
-			break;
-		case toks_register:
-		case assign_toks:
-			if (level != tok_val)
-			{
-				backerror(t, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
-				val = 0;
-				lev = dimen_val;
-				break;
-			}
-			if (t.cmd == toks_register)
-				m = toks_base+scaneightbitint();
-			val = eqtb_local[m-local_base].int_;
-			lev = tok_val;
-			break;
-		case def_family:
-		case set_font:
-		case def_font:
-			if (level != tok_val)
-			{
-				backerror(t, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
-				val = 0;
-				lev = dimen_val;
-				break;
-			}
-			backinput(t);
-			val = scanfontident()+frozen_null_font;
-			lev = ident_val;
-			break;
-		case assign_int:
-			val = eqtb_int[m-int_base].int_;
-			lev = int_val;
-			break;
-		case assign_dimen:
-			val = eqtb_dimen[m-dimen_base].int_;
-			lev = dimen_val;
-			break;
-		case assign_glue:
-			val = eqtb_glue[m-glue_base].int_; //GlueSpec *
-			lev = glue_val;
-			break;
-		case assign_mu_glue:
-			val = eqtb_glue[m-glue_base].int_; //GlueSpec *
-			lev = mu_val;
-			break;
-		case set_aux:
-			if (abs(mode) != m)
-			{
-				error("Improper "+cmdchr(t), "You can refer to \\spacefactor only in horizontal mode;\nyou can refer to \\prevdepth only in vertical mode; and\nneither of these is meaningful inside \\write. So\nI'm forgetting what you said and using zero instead.");
-				val = 0;
-				lev = level == tok_val ? int_val : dimen_val;
-				break;
-			}
-			if (m == vmode)
-			{
-				val = prev_depth;
-				lev = dimen_val;
-				break;
-			}
-			val = space_factor;
-			lev = int_val;
-			break;
-		case set_prev_graf:
-			val = 0;
-			if (mode)
-			{
-				nest[nestptr] = curlist;
-				auto p = nestptr;
-				while (abs(nest[p].modefield) != vmode)
-					p--;
-				val = nest[p].pgfield;
-			}
-			lev = int_val;
-			break;
-		case set_page_int:
-			val =  m == 0 ? deadcycles : insertpenalties;
-			lev = int_val;
-			break;
-		case set_page_dimen:
-			if (pagecontents == 0 && !outputactive)
-				val = m == 0 ? max_dimen : 0;
-			else
-				val = pagesofar[m];
-			lev = dimen_val;
-			break;
-		case set_shape:
-			val = 0;
-			if (par_shape_ptr())
-				val = par_shape_ptr()->values.size()/2;
-			lev = int_val;
-			break;
-		case set_box_dimen:
-			val = scaneightbitint();
-			val = 0;
-			if (box(val))
-				switch (m)
-				{
-					case width_offset:
-						val = box(val)->width;
-						break;
-					case height_offset:
-						val = box(val)->height;
-						break;
-					case depth_offset:
-						val = box(val)->depth;
-				}
-			lev = dimen_val;
-		break;
-		case char_given:
-		case math_given:
-			val = t.chr;
-			lev = int_val;
-			break;
-		case assign_font_dimen:
-			val = findfontdimen(false);
-			Font::info.back().int_ = 0;
-			val = Font::info[val].int_;
-			lev = dimen_val;
-			break;
-		case assign_font_int:
-			val = m == 0 ? fonts[scanfontident()].hyphenchar: fonts[scanfontident()].skewchar;
-			lev = int_val;
-			break;
-		case register_:
-			switch (m)
-			{
-				case int_val: 
-					val = count(scaneightbitint());
-					break;
-				case dimen_val: 
-					val = dimen(scaneightbitint());
-					break;
-				case glue_val: 
-					val = skip(scaneightbitint())->num;
-					break;
-				case mu_val: 
-					val = mu_skip(scaneightbitint())->num;
-			}
-			lev = m;
-			break;
-		case last_item:
-			if (t.chr > glue_val)
-			{
-				val = t.chr == input_line_no_code ? line : lastbadness;
-				lev = int_val;
-				break;
-			}
-			if (t.chr == glue_val)
-			{
-				val = zero_glue->num;
-				lev = glue_val;
-			}
-			else
-			{
-				val = 0;
-				lev = t.chr;
-			}
-			if (!tail->is_char_node() && mode)
-				switch (t.chr)
-				{
-					case int_val:
-						if (tail->type == penalty_node)
-							val = dynamic_cast<PenaltyNode*>(tail)->penalty;
-						break;
-					case dimen_val: 
-						if (tail->type == kern_node)
-							val = dynamic_cast<KernNode*>(tail)->width;
-						break;
-					case glue_val: 
-						if (tail->type == glue_node)
-						{
-							auto g = dynamic_cast<GlueNode*>(tail)->glue_ptr;
-							val = g->num;
-							if (dynamic_cast<GlueNode*>(tail)->subtype == mu_glue)
-								lev = mu_val;
-						}
-				}
-			else 
-				if (mode == vmode && tail == head)
-					switch (t.chr)
-					{
-						case int_val: 
-							val = lastpenalty;
-							break;
-						case dimen_val: 
-							val = lastkern;
-							break;
-						case glue_val: 
-							if (lastglue)
-								val = lastglue->num;
-					}
-			break;
-		default:
-			error("You can't use `"+cmdchr(t)+"' after "+esc("the"), "I'm forgetting what you said and using zero instead.");
-			val = 0;
-			lev = level == tok_val ? int_val : dimen_val;
-	}
-	while (lev > level)
-	{
-		if (lev == glue_val)
-			val = width(val);
-		else 
-			if (lev == mu_val)
-				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
-		lev--;
-	}
-	if (negative)
-		if (lev >= glue_val)
-		{
-			GlueSpec *old;
-			old->num = val;
-			auto g = new GlueSpec(old);
-			g->width = -old->width;
-			g->stretch = -old->stretch;
-			g->shrink = -old->shrink;
-			val = g->num;
-		}
-		else
-			val = -val;
-	else 
-		if (lev >= glue_val && lev <= mu_val)
-		{
-			GlueSpec *g;
-			g->num = val;
-			g->glue_ref_count++;
-		}
-	return {val, lev};
 }
 
 [[nodiscard]] Token scanspec(groupcode c)
@@ -1204,7 +1196,7 @@ void endtokenlist(void)
 			flushnodelist(Start);
 			break;
 		case macro:
-			deletetokenref(Start->num);
+			deletetokenref(Start);
 			for (;paramptr > param_start; paramptr--)
 				flushnodelist(paramstack[paramptr]);
 			break;
@@ -1218,16 +1210,9 @@ void endtokenlist(void)
 		case every_cr_text:
 		case mark_text:
 		case write_text:
-			deletetokenref(Start->num);
+			deletetokenref(Start);
 	}
 	pop_input();
-}
-
-void deletetokenref(halfword p)
-{
-	TokenNode *P;
-	P->num = p;
-	deletetokenref(P);
 }
 
 void deletetokenref(TokenNode *p)
@@ -1301,7 +1286,7 @@ Token getpreambletoken(void)
 		if (t.cmd != assign_glue || t.chr != glue_base+tab_skip_code)
 			return t;
 		scanoptionalequals();
-		(global_defs() > 0 ? geqdefine : eqdefine)(&eqtb_glue[tab_skip_code], glue_ref, scanglue(glue_val)->num);
+		(global_defs() > 0 ? geqdefine_ : eqdefine_)(&eqtb_glue[tab_skip_code], glue_ref, scanglue(glue_val));
 	}
 }
 
@@ -1467,7 +1452,7 @@ void convtoks(Token t)
 TokenNode* thetoks(void)
 {
 	auto t = getxtoken();
-	auto [val, lev] = scansomethinginternal(tok_val, false, t);
+	auto [val, lev, gl] = scansomethinginternal(tok_val, false, t);
 	switch (lev)
 	{
 		case ident_val:
@@ -1500,18 +1485,14 @@ TokenNode* thetoks(void)
 			break;
 		case glue_val:
 		{
-			GlueSpec *g;
-			g->num = val;
-			strings.push_back(asSpec(g, "pt"));
-			deleteglueref(g);
+			strings.push_back(asSpec(gl, "pt"));
+			deleteglueref(gl);
 			break;
 		}
 		case mu_val:
 		{
-			GlueSpec *g;
-			g->num = val;
-			strings.push_back(asSpec(g, "mu"));
-			deleteglueref(g);
+			strings.push_back(asSpec(gl, "mu"));
+			deleteglueref(gl);
 		}
 	}
 	return strtoks();

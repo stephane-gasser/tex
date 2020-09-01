@@ -9,7 +9,7 @@
 #include "alignpeek.h"
 #include "texte.h"
 
-void initalign(Token t, halfword &loop)
+void initalign(Token t, AlignRecordNode* &loop)
 {
 	auto savecsptr = t.cs;
 	pushalignment(loop);
@@ -30,16 +30,15 @@ void initalign(Token t, halfword &loop)
 		mode = -mode;
 	t = scanspec(align_group);
 	align_head->link = nullptr;
-	curalign = align_head->num;
+	curalign = dynamic_cast<AlignRecordNode*>(align_head);
 	loop = 0;
 	scannerstatus = 4;
 	warningindex = savecsptr;
 	alignstate = -1000000;
 	while (true)
 	{
-		auto g = new GlueNode(tab_skip_code);
-		link(curalign) = g->num;
-		curalign = link(curalign);
+		curalign->link = new GlueNode(tab_skip_code);
+		next(curalign);
 		if (t.cmd == car_ret)
 			break;
 		auto p = hold_head;
@@ -64,12 +63,11 @@ void initalign(Token t, halfword &loop)
 					p = dynamic_cast<TokenNode*>(p->link);
 				}
 		}
-		auto B = new BoxNode;
-		link(curalign) = B->num;
-		curalign = link(curalign);
-		info(curalign) = end_span->num;
-		width(curalign) = null_flag;
-		u_part(curalign) = hold_head->link->num;
+		curalign->link = new BoxNode;
+		next(curalign);
+		curalign->info = end_span;
+		curalign->width = null_flag;
+		curalign->u_part = hold_head->link;
 		p = hold_head;
 		p->link = 0;
 		while (true)
@@ -87,7 +85,7 @@ void initalign(Token t, halfword &loop)
 		}
 		p->link = new TokenNode(end_template_token);
 		p = dynamic_cast<TokenNode*>(p->link);
-		v_part(curalign) = hold_head->link->num;
+		curalign->v_part = hold_head->link;
 	}
 	scannerstatus = normal;
 	newsavelevel(align_group);

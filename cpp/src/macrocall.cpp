@@ -14,7 +14,7 @@ void macrocall(Token t)
 	auto savewarningindex = warningindex;
 	warningindex = t.cs;
 	TokenNode *refcount;
-	refcount->num = t.chr;
+	refcount->token = t.chr;
 	auto r = dynamic_cast<TokenNode*>(refcount->link);
 	smallnumber n = 0;
 	if (tracing_macros() > 0)
@@ -203,7 +203,7 @@ void macrocall(Token t)
 		endtokenlist();
 	begintokenlist(refcount, macro);
 	name = warningindex;
-	loc = r->link->num;
+	Loc = dynamic_cast<TokenNode*>(r->link);
 	if (n > 0)
 	{
 		if (paramptr+n > maxparamstack)

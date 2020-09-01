@@ -63,7 +63,7 @@ void hlistout(BoxNode *thisbox)
 				case vlist_node:
 				{
 					auto P = dynamic_cast<BoxNode*>(p);
-					if (P->list_ptr->num == hlist_node)
+					if (P->list_ptr == nullptr)
 						curh += P->width;
 					else
 					{
@@ -71,10 +71,7 @@ void hlistout(BoxNode *thisbox)
 						auto savev = dviv;
 						curv = baseline+P->shift_amount;
 						auto edge = curh;
-						if (P->type == vlist_node)
-							vlistout(P);
-						else
-							hlistout(P);
+						(P->type == vlist_node ? vlistout : hlistout)(P);
 						dvih = saveh;
 						dviv = savev;
 						curh = edge+P->width;

@@ -1,17 +1,16 @@
 #include "pushalignment.h"
 #include "noeud.h"
 
-void pushalignment(halfword loop)
+void pushalignment(AlignRecordNode* loop)
 {
-	auto p = getnode(align_stack_node_size);
-	link(p) = alignptr;
-	info(p) = curalign;
-	llink(p) = preamble->num;
-	rlink(p) = curspan;
-	mem[p+2].int_ = loop;
-	mem[p+3].int_ = alignstate;
-	info(p+4) = curhead->num;
-	link(p+4) = curtail->num;
-	alignptr = p;
+	alignptr = new AlignStackNode;
+	alignptr->link = alignptr;
+	alignptr->align = curalign;
+	alignptr->preamble = preamble;
+	alignptr->span = curspan;
+	alignptr->loop = loop;
+	alignptr->state = alignstate;
+	alignptr->head = curhead;
+	alignptr->tail = curtail;
 	curhead = new LinkedNode;
 }

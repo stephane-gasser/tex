@@ -384,11 +384,7 @@ inline smallnumber curstyle;
 inline smallnumber cursize;
 inline scaled curmu;
 inline bool mlistpenalties;
-inline halfword curalign;
-inline halfword curspan;
-inline halfword alignptr;
-inline halfword passive;
-inline halfword printednode;
+//inline halfword printednode;
 inline halfword passnumber;
 inline scaled activewidth[7]; // commence à 1
 inline scaled curactivewidth[7]; // commence à 1
@@ -398,7 +394,6 @@ inline bool noshrinkerroryet;
 inline bool secondpass;
 inline bool finalpass;
 inline int minimaldemerits[4];
-inline halfword bestplace[4];
 inline halfword bestplline[4];
 inline scaled discwidth;
 inline halfword easyline;
@@ -407,7 +402,6 @@ inline scaled firstwidth;
 inline scaled secondwidth;
 inline scaled firstindent;
 inline scaled secondindent;
-inline halfword bestbet;
 inline halfword bestline;
 inline ASCIIcode curlang, initcurlang;
 inline halfword hyfbchar;

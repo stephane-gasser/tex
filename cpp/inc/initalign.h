@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void initalign(Token, halfword &);
+void initalign(Token, AlignRecordNode* &);
 
 #endif

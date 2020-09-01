@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void handlerightbrace(Token, halfword&);
+void handlerightbrace(Token, AlignRecordNode*&);
 
 #endif

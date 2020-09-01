@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void doendv(Token, halfword &);
+void doendv(Token, AlignRecordNode*&);
 
 #endif

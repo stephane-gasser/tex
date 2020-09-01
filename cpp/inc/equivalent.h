@@ -224,8 +224,11 @@ void eqworddefine(MemoryNode*, int);
 void word_define(int, MemoryNode*, int);
 void geqworddefine(MemoryNode*, int);
 void define(int a, MemoryNode*, quarterword, halfword);
+void define_(int a, MemoryNode*, quarterword, AnyNode*);
 void eqdefine(MemoryNode*, quarterword, halfword);
 void geqdefine(MemoryNode*, quarterword, halfword);
+void eqdefine_(MemoryNode*, quarterword, AnyNode*);
+void geqdefine_(MemoryNode*, quarterword, AnyNode*);
 void eqdestroy(MemoryNode*);
 
 #endif

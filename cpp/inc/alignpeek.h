@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void alignpeek(halfword &);
+void alignpeek(AlignRecordNode*&);
 
 #endif

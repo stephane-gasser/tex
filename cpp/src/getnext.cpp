@@ -407,13 +407,11 @@ static void removeFromEnd(int &k, int d)
 			}
 		if (!restart && t.cmd <= out_param && t.cmd >= tab_mark && alignstate == 0)
 		{
-			if (scannerstatus == aligning || curalign == 0)
+			if (scannerstatus == aligning || curalign == nullptr)
 				fatalerror("(interwoven alignment preambles are not allowed)");
-			t.cmd = extra_info(curalign);
-			extra_info(curalign) = t.chr;
-			TokenNode *T;
-			T->num = t.cmd == omit ? omit_template->num : v_part(curalign);
-			begintokenlist(T, v_template);
+			t.cmd = curalign->extra_info;
+			curalign->extra_info = t.chr;
+			begintokenlist(dynamic_cast<TokenNode*>(t.cmd == omit ? omit_template : curalign->v_part), v_template);
 			alignstate = 1000000;
 			restart = true;
 		}

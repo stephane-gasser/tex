@@ -27,40 +27,29 @@ static GlueSpec *check_shrinkage(GlueSpec *p)
 	return p;
 }
 
-static void kern_break(bool autobreaking)
+static void kern_break(bool autobreaking, int w)
 {
 	if (!curp->link->is_char_node() && autobreaking && curp->link->type == glue_node)
 		trybreak(0, unhyphenated);
-	act_width += width(curp->num);
+	act_width += w;
 }
 
-static void store_background(void)
+static void flushAfterActive(void)
 {
-	for (int i = 1; i <= 6; i++)
-		activewidth[i] = background[i];
+	LinkedNode *q;
+	for (q = active->link; q != active; )
+	{
+		curp = q->link;
+		delete q;
+		q = curp;
+	}
+	for (q = passive; q; )
+	{
+		curp = q->link;
+		delete q;
+		q = curp;
+	}
 }
-
-class PassiveNode : public LinkedNode
-{
-	public:
-		LinkedNode *cur_break;
-		LinkedNode *prev_break;
-		halfword serial;
-};
-
-class ActiveNode : public LinkedNode
-{
-	public:
-		quarterword fitness = decent_fit;
-		PassiveNode *break_node = nullptr;
-		halfword line_number;
-		int total_demerits = 0;
-		ActiveNode(int prev_graf, LinkedNode *active) : line_number(prev_graf+1)
-		{
-			type = unhyphenated;
-			link = active;
-		}
-};
 
 void linebreak(int finalwidowpenalty)
 {
@@ -166,9 +155,8 @@ void linebreak(int finalwidowpenalty)
 		}
 		LinkedNode *q = new ActiveNode(prev_graf, active);
 		active->link = q;
-		store_background();
-		passive = 0;
-		printednode = temp_head->num;
+		std::copy(background, background+7, activewidth);
+		passive = nullptr;
 		passnumber = 0;
 		fontinshortdisplay = fonts[null_font];
 		curp = temp_head->link;
@@ -395,7 +383,7 @@ void linebreak(int finalwidowpenalty)
 				{
 					auto Curp = dynamic_cast<KernNode*>(curp);
 					if (Curp->subtype == explicit_)
-						kern_break(autobreaking);
+						kern_break(autobreaking, Curp->width);
 					else
 						act_width += Curp->width;
 					break;
@@ -490,9 +478,12 @@ void linebreak(int finalwidowpenalty)
 					continue;
 				}
 				case math_node:
-					autobreaking = dynamic_cast<MathNode*>(curp)->subtype == after;
-					kern_break(autobreaking);
+				{
+					auto Curp = dynamic_cast<MathNode*>(curp);
+					autobreaking = Curp->subtype == after;
+					kern_break(autobreaking, Curp->width);
 					break;
+				}
 				case penalty_node: 
 					trybreak(dynamic_cast<PenaltyNode*>(curp)->penalty, unhyphenated);
 					break;
@@ -513,32 +504,16 @@ void linebreak(int finalwidowpenalty)
 			{
 				fewestdemerits = max_dimen;
 				for (auto r = active->link; r != active; next(r))
-					if (r->type != rule_node && total_demerits(r->num) < fewestdemerits)
+					if (r->type != rule_node && dynamic_cast<ActiveNode*>(r)->total_demerits < fewestdemerits)
 					{
-						fewestdemerits = total_demerits(r->num);
-						bestbet = r->num;
+						bestbet = dynamic_cast<ActiveNode*>(r);
+						fewestdemerits = bestbet->total_demerits;
 					}
-				bestline = line_number(bestbet);
+				bestline = bestbet->line_number;
 				if (looseness() == 0)
 				{
 					postlinebreak(finalwidowpenalty);
-					auto q = active->link;
-					while (q != active)
-					{
-						curp = q->link;
-						if (q->type == delta_node)
-							freenode(q->num, delta_node_size);
-						else
-							freenode(q->num, active_node_size);
-						q = curp;
-					}
-					q->num = passive;
-					while (q)
-					{
-						curp = q->link;
-						freenode(q->num, passive_node_size);
-						q = curp;
-					}
+					flushAfterActive();
 					packbeginline = 0;
 					return;
 				}
@@ -546,67 +521,36 @@ void linebreak(int finalwidowpenalty)
 				auto r = active->link;
 				do
 				{
-					if (r->type != 2)
+					if (r->type != delta_node)
 					{
-						linediff = line_number(r->num)-bestline;
+						auto R = dynamic_cast<ActiveNode*>(r);
+						linediff = R->line_number-bestline;
 						if ((linediff < actuallooseness && looseness() <= linediff) || (linediff > actuallooseness && looseness() >= linediff))
 						{
-							bestbet = r->num;
+							bestbet = R;
 							actuallooseness = linediff;
-							fewestdemerits = total_demerits(r->num);
+							fewestdemerits = R->total_demerits;
 						}
 						else 
-							if (linediff == actuallooseness && total_demerits(r->num) < fewestdemerits)
+							if (linediff == actuallooseness && R->total_demerits < fewestdemerits)
 							{
-								bestbet = r->num;
-								fewestdemerits = total_demerits(r->num);
+								bestbet = R;
+								fewestdemerits = R->total_demerits;
 							}
 					}
 					next(r);
 				} while (r != active);
-				bestline = line_number(bestbet);
+				bestline = bestbet->line_number;
 				if (actuallooseness == looseness() || finalpass)
 				{
 					postlinebreak(finalwidowpenalty);
-					auto q = active->link;
-					while (q != active)
-					{
-						curp = q->link;
-						if (q->type == delta_node)
-							freenode(q->num, delta_node_size);
-						else
-							freenode(q->num, active_node_size);
-						q = curp;
-					}
-					q->num = passive;
-					while (q)
-					{
-						curp = q->link;
-						freenode(q->num, passive_node_size);
-						q = curp;
-					}
+					flushAfterActive();
 					packbeginline = 0;
 					return;
 				}
 			}
 		}
-		q = active->link;
-		while (q != active)
-		{
-			curp = q->link;
-			if (q->type == delta_node)
-				freenode(q->num, delta_node_size);
-			else
-				freenode(q->num, active_node_size);
-			q = curp;
-		}
-		q->num = passive;
-		while (q)
-		{
-			curp = q->link;
-			freenode(q->num, passive_node_size);
-			q = curp;
-		}
+		flushAfterActive();
 		if (!secondpass)
 		{
 			threshold = tolerance();
@@ -620,22 +564,6 @@ void linebreak(int finalwidowpenalty)
 		}
 	}
 	postlinebreak(finalwidowpenalty);
-	auto qq = active->link;
-	while (qq != active)
-	{
-		curp = qq->link;
-		if (qq->type == delta_node)
-			freenode(qq->num, delta_node_size);
-		else
-			freenode(qq->num, active_node_size);
-		qq = curp;
-	}
-	qq->num = passive;
-	while (qq)
-	{
-		curp = qq->link;
-		freenode(qq->num, passive_node_size);
-		qq = curp;
-	}
+	flushAfterActive();
 	packbeginline = 0;
 }
