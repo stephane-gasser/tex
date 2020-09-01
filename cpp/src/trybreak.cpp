@@ -13,7 +13,7 @@ void trybreak(int pi, smallnumber breaktype)
 		return;
 	pi = std::max(pi, -10000);
 	auto nobreakyet = true;
-	auto prevr = active;
+	LinkedNode *prevr = active;
 	halfword oldl = 0;
 	std::copy(activewidth, activewidth+7, curactivewidth);
 	LinkedNode* prevprevr;

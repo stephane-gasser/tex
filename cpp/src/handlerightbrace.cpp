@@ -12,7 +12,7 @@
 #include "buildpage.h"
 #include "builddiscretionary.h"
 #include "backinput.h"
-#include "alignpeek.h"
+#include "alignement.h"
 #include "noeud.h"
 #include "buildchoices.h"
 #include "formule.h"

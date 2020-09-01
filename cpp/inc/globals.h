@@ -207,8 +207,6 @@ inline int& mode = curlist.modefield; //!< current mode
 inline int& prev_graf = curlist.pgfield; //!< number of paragraph lines accumulated
 inline int& mode_line = curlist.mlfield; //!< source file line number at beginning of list
 
-inline LinkedNode *curhead, *curtail;
-
 typedef struct
 {
     quarterword statefield, indexfield;

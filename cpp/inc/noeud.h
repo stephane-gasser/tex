@@ -25,21 +25,6 @@ class LinkedNode : public AnyNode
 		virtual LinkedNode *copy(void) { confusion("copying"); return new LinkedNode; }
 };
 
-class SpanNode : public LinkedNode
-{
-	public:
-		halfword Link;
-		SpanNode *info;
-		scaled width;
-		SpanNode(void) {}
-		~SpanNode(void) { if (info) delete info; }
-};
-
-inline SpanNode *curspan;
-
-
-
-
 class ShapeNode : public LinkedNode
 {
 	public:
@@ -464,35 +449,6 @@ class DeltaNode : public LinkedNode
 		}
 };
 
-class AlignRecordNode : public LinkedNode
-{
-	public:
-		SpanNode *info;
-		halfword extra_info;
-		LinkedNode *u_part;
-		LinkedNode *v_part;
-		scaled width;
-		GlueSpec *glue_ptr; //!< pointer to a glue specification
-};
-
-inline AlignRecordNode *curalign = nullptr;
-
-
-class AlignStackNode : public LinkedNode
-{
-	public:
-		AlignRecordNode *align;
-		LinkedNode *preamble;
-		SpanNode *span;
-		AlignRecordNode *loop;
-		int state;
-		LinkedNode *head;
-		LinkedNode *tail;
-};
-
-inline AlignStackNode *alignptr;
-
-
 //inline int &incompleat_noad = aux.int_; //!< the name of \a aux in math mode
 inline FractionNoad *incompleat_noad; //!< the name of \a aux in math mode
 inline TokenNode *pstack[9];
@@ -510,9 +466,8 @@ inline LinkedNode *page_head; //!< vlist for current page
 inline TokenNode *temp_head; //!< head of a temporary list of some kind
 inline LinkedNode *hold_head; //!< head of a temporary list of another kind
 inline LinkedNode *adjust_head; //!< head of adjustment list returned by \a hpack
-inline LinkedNode * const active = dynamic_cast<LinkedNode*>(&heads[7]); //!< head of active list in \a line_break, needs two words
+inline ActiveNode * const active = dynamic_cast<ActiveNode*>(&heads[7]); //!< head of active list in \a line_break, needs two words
 inline LinkedNode * const align_head = dynamic_cast<LinkedNode*>(&heads[8]); //!< head of preamble list for alignments
-inline SpanNode * const end_span = dynamic_cast<SpanNode*>(&heads[9]); //!< tail of spanned-width lists
 inline TokenNode * omit_template; //!< a constant token list
 inline LinkedNode *null_list; //!< permanently empty list
 inline CharNode *lig_trick; //!< a ligature masquerading as a \a char_node

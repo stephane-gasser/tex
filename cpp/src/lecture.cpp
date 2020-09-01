@@ -1129,7 +1129,7 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 				}
 		store_new_token(p, tk.tok);
 	}
-	scannerstatus = 0;
+	scannerstatus = normal;
 	if (hashbrace)
 		store_new_token(p, hashbrace);
 	return p;
@@ -1394,7 +1394,7 @@ void insthetoks(void)
 		}
 		endfilereading();
 	} while (alignstate != 1000000);
-	scannerstatus = 0;
+	scannerstatus = normal;
 	alignstate = s;
 	return defref;
 }
@@ -1435,7 +1435,7 @@ void convtoks(Token t)
 			break;
 		case meaning_code:
 			savescannerstatus = scannerstatus;
-			scannerstatus = 0;
+			scannerstatus = normal;
 			t = gettoken();
 			scannerstatus = savescannerstatus;
 			strings.push_back(meaning(t));

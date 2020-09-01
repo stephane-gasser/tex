@@ -110,7 +110,7 @@ int main()
 			First--;
 		}
 		while (First);
-		scannerstatus = 0;
+		scannerstatus = normal;
 		warningindex = 0;
 		First = 1;
 		state = new_line;

@@ -3,6 +3,7 @@
 #include "cesure.h"
 #include "police.h"
 #include "equivalent.h"
+#include "alignement.h"
 
 void Initialize(void)
 {
@@ -67,10 +68,6 @@ void Initialize(void)
 	adjusttail = nullptr;
 	lastbadness = 0;
 	packbeginline = 0;
-	alignptr = 0;
-	curspan = 0;
-	curhead = nullptr;
-	curtail = nullptr;
 	for (int z = 0; z < 308; z++)
 	{
 		hyphword[z] = "";
@@ -112,9 +109,8 @@ void Initialize(void)
 	omit_template = new TokenNode(end_template_token);
 	end_span->Link = 256;
 	end_span->info = nullptr;
-	type(active->num) = 1;
-	dynamic_cast<ActiveNode*>(active)->line_number = empty_flag;
-	subtype(active->num) = 0; // the |subtype| is never examined by the algorithm
+	active->type = hyphenated;
+	active->line_number = empty_flag;
 	page_ins_head = new PageInsNode;
 	page_ins_head->subtype = 255;
 	page_ins_head->type = split_up;

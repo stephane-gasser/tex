@@ -45,7 +45,7 @@ void expand(Token tk)
 				break;
 			case no_expand:
 				savescannerstatus = scannerstatus;
-				scannerstatus = 0;
+				scannerstatus = normal;
 				tk = gettoken();
 				scannerstatus = savescannerstatus;
 				backinput(tk);
