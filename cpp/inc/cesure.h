@@ -54,4 +54,15 @@ class TrieOp
 
 inline std::vector<TrieOp> trieOp(1);
 
+void newhyphexceptions(void);
+
+class HyphenNode : public LinkedNode
+{
+	public:
+		int pos;
+};
+
+inline std::vector<HyphenNode*> hyphlist(308);
+
+
 #endif

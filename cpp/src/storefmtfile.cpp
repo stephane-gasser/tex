@@ -218,7 +218,7 @@ void storefmtfile(void)
 		{
 			dump_int(k);
 			dump_int(txt(hyphword[k]));
-			dump_int(hyphlist[k]);
+			dump_int(hyphlist[k]->num);
 		}
 	println();
 	print(std::to_string(hyphcount)+" hyphenation exception"+(hyphcount == 1 ? "" : "s"));

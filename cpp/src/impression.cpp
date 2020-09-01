@@ -898,7 +898,7 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 				case fraction_noad:
 				{
 					auto P = dynamic_cast<FractionNoad*>(p);
-					oss << esc("fraction, thickness ") << (new_hlist(P)->num == default_code ? "= default": asScaled(new_hlist(P)->num));
+					oss << esc("fraction, thickness ") << (P->thickness == default_code ? "= default": asScaled(P->thickness));
 					if (P->left_delimiter.small_fam || P->left_delimiter.small_char || P->left_delimiter.large_fam || P->left_delimiter.large_char)
 						oss << ", left-delimiter " << asDelimiter(P->left_delimiter);
 					if (P->right_delimiter.small_fam || P->right_delimiter.small_char || P->right_delimiter.large_fam || P->right_delimiter.large_char)

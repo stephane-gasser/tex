@@ -5,6 +5,7 @@
 #include "impression.h"
 #include "police.h" 
 #include "equivalent.h" 
+#include "makestring.h" 
 
 static std::map<TrieNode, triepointer> tnMap;
 
@@ -185,9 +186,11 @@ quarterword newtrieop(smallnumber d, smallnumber n, quarterword v)
 
 static void advance_major_tail(LinkedNode *majortail, int &rcount)
 {
-	majortail = majortail->link;
+	next(majortail);
 	rcount++;
 }
+
+static char hyf[65]; // of 0..9 //odd values indicate discretionary hyphens
 
 static void set_cur_r(int j, int n, halfword &curr, halfword &currh, halfword hchar)
 {
@@ -450,7 +453,6 @@ void hyphenate(void)
 	for (j = 2; j <= hn; j++)
 		h = (2*h+hc[j])%hyph_size;
 	bool skip = false;
-	LinkedNode *s; // HyphenPositionNode
 	for (bool keepIn = true; keepIn;)
 	{
 		if (hyphword[h] == "")
@@ -480,9 +482,9 @@ void hyphenate(void)
 				j++;
 				u++;
 			} while (j <= hn);
-			s->num = hyphlist[h];
-			for ( ;s; next(s))
-				hyf[info(s->num)] = 1;
+			HyphenNode *s;
+			for (s = hyphlist[h]; s; next(s))
+				hyf[s->pos] = 1;
 			hn--;
 			skip = true;
 			break;
@@ -538,6 +540,7 @@ void hyphenate(void)
 	auto r = ha->link;
 	ha->link = nullptr;
 	auto bchar = hyfbchar;
+	LinkedNode *s; 
 	do
 	{
 		if (ha->is_char_node())
@@ -840,3 +843,115 @@ void newpatterns(Token t)
 	}
 }
 
+void newhyphexceptions(void)
+{
+	char n, j;
+	hyphpointer h;
+	poolpointer u, v;
+	auto t = scanleftbrace();
+	curlang = cur_fam();
+	if (curlang < 0 || curlang > 255)
+		curlang = 0;
+	n = 0;
+	HyphenNode *p = nullptr;
+	t = getxtoken();
+	while (true)
+	{
+		switch (t.cmd)
+		{
+			case letter:
+			case other_char:
+			case char_given:
+				if (t.chr == '-')
+				{
+					if (n < 63)
+					{
+						auto q = new HyphenNode;
+						q->link = p;
+						q->pos = n;
+						p = q;
+					}
+				}
+				else 
+					if (lc_code(t.chr) == 0)
+						error("Not a letter", "Letters in \\hyphenation words must have \\lccode>0.\nProceed; I'll ignore the character I just read.");
+					else 
+						if (n < 63)
+						{
+							n++;
+							hc[n] = lc_code(t.chr);
+						}
+				break;
+			case char_num:
+				t.chr = scancharnum();
+				t.cmd = char_given;
+				continue;
+			case spacer:
+			case right_brace:
+				if (n > 1)
+				{
+					n++;
+					hc[n] = curlang;
+					h = 0;
+					for (j = 1; j <= n; j++)
+					{
+						h = (2*h+hc[j])%hyph_size;
+						append_char(hc[j]);
+					}
+					auto s = makestring();
+					if (hyphcount == hyph_size)
+						overflow("exception dictionary", hyph_size);
+					hyphcount++;
+					while (hyphword[h] != "")
+					{
+						if (hyphword[h].size() < s.size())
+						{
+							std::swap(hyphlist[h], p);
+							std::swap(hyphword[h], s);
+						}
+						else 
+							if (hyphword[h].size() == s.size())
+							{
+								u = 0;
+								v = 0;
+								bool label45 = false;
+								do
+								{
+									if (hyphword[h][u] < s[v])
+									{
+										std::swap(hyphlist[h], p);
+										std::swap(hyphword[h], s);
+										label45 = true;
+									}
+									if (hyphword[h][u] > s[v])
+										label45 = true;
+									if (label45)
+										break;
+									u++;
+									v++;
+								} while (u < hyphword[h].size());
+								if (!label45)
+								{
+									std::swap(hyphlist[h], p);
+									std::swap(hyphword[h], s);
+								}
+							}
+						if (h > 0)
+							h--;
+						else
+							h = hyph_size;
+					}
+					hyphword[h] = s;
+					hyphlist[h] = p;
+				}
+				if (t.cmd == right_brace)
+					return;
+				n = 0;
+				p = 0;
+				break;
+			default:
+				error("Improper "+esc("hyphenation")+" will be flushed", "Hyphenation exceptions must contain only letters\nand hyphens. But continue; I'll forgive and forget.");
+		}
+		t = getxtoken();
+	}
+}

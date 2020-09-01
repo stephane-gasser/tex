@@ -179,7 +179,7 @@ bool loadfmtfile(void)
 		{
 			j = undump(0, hyph_size);
 			hyphword[j] = undump(0, strptr);
-			hyphlist[j] = undump(0, 1<<16-1);
+			hyphlist[j]->num = undump(0, 1<<16-1);
 		}
 		j = undump_size(0, triesize, "trie size");
 		trie.resize(j+1);

@@ -16,7 +16,7 @@
 #include "police.h"
 #include "boite.h"
 
-void prefixedcommand(Token t, bool setboxallowed)
+void prefixedcommand(Token t, bool setboxallowed) 
 {
 	smallnumber a = 0;
 	while (t.cmd == prefix)

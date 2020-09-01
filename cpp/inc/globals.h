@@ -403,13 +403,11 @@ inline scaled secondindent;
 inline halfword bestline;
 inline ASCIIcode curlang, initcurlang;
 inline halfword hyfbchar;
-inline char hyf[65]; // of 0..9
 inline smallnumber hyphenpassed;
 inline halfword curl, curr;
 inline bool ligaturepresent;
 inline bool lfthit, rthit;
 inline std::map<ASCIIcode, int> opstart; //of 0..trieopsize
-inline halfword hyphlist[308];
 inline hyphpointer hyphcount;
 inline std::map<ASCIIcode, quarterword> trieused;
 inline bool trienotready;

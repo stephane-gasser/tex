@@ -71,7 +71,7 @@ void Initialize(void)
 	for (int z = 0; z < 308; z++)
 	{
 		hyphword[z] = "";
-		hyphlist[z] = 0;
+		hyphlist[z] = nullptr;
 	}
 	hyphcount = 0;
 	outputactive = false;
