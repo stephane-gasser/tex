@@ -1225,9 +1225,7 @@ void deletetokenref(TokenNode *p)
 
 [[nodiscard]] Token gettoken(void)
 {
-	nonewcontrolsequence = false;
-	auto t = getnext();
-	nonewcontrolsequence = true;
+	auto t = getnext(false);
 	t.make_tok();
 	return t; 
 }

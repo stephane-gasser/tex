@@ -33,7 +33,6 @@ void Initialize(void)
 	pagemaxdepth = 0;
 	for (int k = int_base; k < 6107; k++)
     	xeqlevel[k] = 1;
-	nonewcontrolsequence = true;
 	curlevel = 1;
 	curgroup = 0;
 	magset = 0;

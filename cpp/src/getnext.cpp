@@ -14,6 +14,7 @@
 #include "runaway.h"
 #include "police.h"
 #include "equivalent.h" 
+#include "alignement.h" 
 
 [[nodiscard]] static Token checkoutervalidity(Token t)
 {
@@ -111,7 +112,7 @@ static void removeFromEnd(int &k, int d)
 #define ANY_STATE_PLUS(cmd) mid_line+cmd: case skip_blanks+cmd: case new_line+cmd
 #define ADD_DELIMS_TO(state) state+math_shift: case state+tab_mark: case state+mac_param: case state+sub_mark: case state+letter: case state+other_char 
 
-[[nodiscard]] Token getnext(void)
+[[nodiscard]] Token getnext(bool nonewcontrolsequence)
 {
 	Token t;
 	bool restart;
@@ -187,7 +188,7 @@ static void removeFromEnd(int &k, int d)
 													std::string s;
 													for (int i = loc; i <= k; i++)
 														s += buffer[i];
-													t.cs = idlookup(s);
+													t.cs = idlookup(s, nonewcontrolsequence);
 													t.cmd = eqtb_cs[t.cs-hash_base].type;
 													t.chr = eqtb_cs[t.cs-hash_base].int_;
 													loc = k;

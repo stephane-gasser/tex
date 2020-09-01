@@ -18,7 +18,7 @@ int primitive(ASCIIcode s, quarterword c, halfword o)
 int primitive(const std::string &t, quarterword c, halfword o)
 {
 	primName[c][o] = t;
-	int val = idlookup(t);
+	int val = idlookup(t, false);
 	flush_string();
 	eqtb_cs[val-hash_base].text = t;
 	eqtb_cs[val-hash_base].level = level_one;

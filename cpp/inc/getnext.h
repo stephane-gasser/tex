@@ -4,5 +4,5 @@
 #include "globals.h"
 #include <tuple>
 
-[[nodiscard]] Token getnext(void);
+[[nodiscard]] Token getnext(bool = true);
 #endif

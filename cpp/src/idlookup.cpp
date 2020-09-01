@@ -8,7 +8,7 @@ static bool hash_is_full(void) { return hashused == hash_base; } //! test if all
 
 static std::map<std::string, halfword> numero;
 
-halfword idlookup(const std::string &s)
+halfword idlookup(const std::string &s, bool nonewcontrolsequence)
 {
 	if (numero.find(s) != numero.end())
 		return numero[s];

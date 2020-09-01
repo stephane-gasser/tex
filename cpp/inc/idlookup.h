@@ -4,7 +4,7 @@
 #include "globals.h"
 #include "equivalent.h"
 
-halfword idlookup(const std::string &);
+halfword idlookup(const std::string &, bool = true);
 
 inline halfword hashused = frozen_control_sequence;
 inline std::vector<twohalves> hash(2881, {0, 0}); // débute à 514

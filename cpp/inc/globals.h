@@ -324,7 +324,6 @@ inline char nestptr; //0..nestsize
 inline char maxneststack; // 0..nestsize
 inline int shownmode; //-203..203
 inline char oldsetting; // 0..21
-inline bool nonewcontrolsequence;
 inline quarterword curlevel;
 inline groupcode curgroup;
 inline instaterecord inputstack[stacksize+1];

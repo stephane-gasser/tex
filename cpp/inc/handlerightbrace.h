@@ -2,6 +2,7 @@
 #define HANDLERIGHTBRACE_H
 
 #include "globals.h"
+#include "alignement.h"
 
 void handlerightbrace(Token, AlignRecordNode*&);
 

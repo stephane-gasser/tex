@@ -84,11 +84,7 @@ void expand(Token tk)
 					buffer[j++] = p->token%(1<<8);
 				}
 				if (j > First+1)
-				{
-					nonewcontrolsequence = false;
-					tk.cs = idlookup(std::string(buffer+First, buffer+j+1));
-					nonewcontrolsequence = true;
-				}
+					tk.cs = idlookup(std::string(buffer+First, buffer+j+1), false);
 				else
 					if (j == First)
 						tk.cs = null_cs;

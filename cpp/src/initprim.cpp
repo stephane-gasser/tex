@@ -5,7 +5,6 @@
 
 void initprim(void)
 {
-	nonewcontrolsequence = false;
 	// assign_glue
 	primitive("lineskip", assign_glue, glue_base+line_skip_code);
 	primitive("baselineskip", assign_glue, glue_base+baseline_skip_code); 
@@ -436,5 +435,4 @@ void initprim(void)
 	primitive("special", extension, special_node); 
 	primitive("immediate", extension, immediate_code); 
 	primitive("setlanguage", extension, set_language_code);
-	nonewcontrolsequence = true;
 }
