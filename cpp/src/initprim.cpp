@@ -140,7 +140,6 @@ void initprim(void)
 	primitive("endcsname", end_cs_name, 0);
 	// end_group
 	eqtb_cs[frozen_end_group-hash_base] = eqtb_cs[primitive("endgroup", end_group, 0)-hash_base]; 
-	text(frozen_end_group) = txt("endgroup");
 	// expand_after
 	primitive("expandafter", expand_after, 0); 
 	// def_font
@@ -187,7 +186,6 @@ void initprim(void)
 	primitive("read", read_to_cs, 0);
 	// relax
 	eqtb_cs[frozen_relax-hash_base] = eqtb_cs[primitive("relax", relax, 256)-hash_base]; 
-	text(frozen_relax) = txt("relax"); 
 	// set_box
 	primitive("setbox", set_box, 0); 
 	// the
@@ -262,21 +260,17 @@ void initprim(void)
 	primitive("ifcase", if_test, if_case_code); 
 	// fi_or_else
 	eqtb_cs[frozen_fi-hash_base] = eqtb_cs[primitive("fi", fi_or_else, fi_code)-hash_base];
-	text(frozen_fi) = txt("fi");
 	primitive("or", fi_or_else, or_code); 
 	primitive("else", fi_or_else, else_code); 
 	// set_font
 	eqtb_cs[frozen_null_font-hash_base] = eqtb_cs[primitive("nullfont", set_font, null_font)-hash_base];
-	text(frozen_null_font) = txt("nullfont");
 	// tab_mark
 	primitive("span", tab_mark, span_code); 
 	// car_ret
 	eqtb_cs[frozen_cr-hash_base] = eqtb_cs[primitive("cr", car_ret, cr_code)-hash_base]; 
-	text(frozen_cr) = txt("cr");
 	primitive("crcr", car_ret, cr_cr_code);
 	// endv
-	text(frozen_end_template) = txt("endtemplate");
-	text(frozen_endv) = txt("endtemplate");
+	eqtb_cs[frozen_endv-hash_base].text = "endtemplate";
 	eqtb_cs[frozen_endv-hash_base].type = endv;
 	eqtb_cs[frozen_endv-hash_base].index = null_list;
 	eqtb_cs[frozen_endv-hash_base].level = level_one;
@@ -379,7 +373,6 @@ void initprim(void)
 	// left_right
 	primitive("left", left_right, left_noad); 
 	eqtb_cs[frozen_right-hash_base] = eqtb_cs[primitive("right", left_right, right_noad)-hash_base];
-	text(frozen_right) = txt("right");
 	// prefix
 	primitive("long", prefix, 1); 
 	primitive("outer", prefix, 2); 

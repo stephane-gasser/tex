@@ -4,21 +4,8 @@
 halfword& link(halfword p) { return mem[p].hh.rh; }
 halfword& info(halfword p) { return mem[p].hh.lh; }
 halfword& node_size(halfword p) { return mem[p].hh.lh; }
-quarterword& type(halfword p) { return mem[p].hh.b0; }
-quarterword& font(halfword p) { return mem[p].hh.b0; }
-quarterword& span_count(halfword p) { return mem[p].hh.b1; }
-quarterword& subtype(halfword p) { return mem[p].hh.b1; }
-int& width(halfword p) { return mem[p+width_offset].int_; }
-int& depth(halfword p) { return mem[p+depth_offset].int_; }
-int& height(halfword p) { return mem[p+height_offset].int_; }
-int& u_part(halfword p) { return mem[p+height_offset].int_; }
-int&v_part(halfword p) { return mem[p+depth_offset].int_; }
 halfword& rlink(halfword p) { return link(p+1); }
-halfword& extra_info(halfword p) { return info(p+list_offset); }
 halfword& llink(halfword p) { return info(p+1); }
-
-halfword& text(halfword p) { return hash[p].rh; }
-
 int cur_length(void) { return currentString.size(); }
 bool is_running(int d) { return d == null_flag; }
 alphafile& cur_file(void) { return inputfile[index]; }

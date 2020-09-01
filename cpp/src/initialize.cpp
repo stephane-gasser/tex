@@ -34,10 +34,6 @@ void Initialize(void)
 	for (int k = int_base; k < 6107; k++)
     	xeqlevel[k] = 1;
 	nonewcontrolsequence = true;
-	hash[514].lh = 0;
-	hash[514].rh = 0;
-	for (int k = 515; k < 2881; k++)
-	    hash[k] = hash[514];
 	curlevel = 1;
 	curgroup = 0;
 	magset = 0;
@@ -200,10 +196,9 @@ void Initialize(void)
 	del_code('.') = 0;
 	for (int k = 0; k <= eqtb_size-dimen_base; k++)
 		eqtb_dimen[k].int_ = 0;
-	hashused = frozen_control_sequence;
 	cscount = 0;
 	eqtb_cs[frozen_dont_expand-hash_base].type = dont_expand;
-	text(frozen_dont_expand) = txt("notexpanded:");
+	eqtb_cs[frozen_dont_expand-hash_base].text = "notexpanded:";
 	fonts[null_font].name = "nullfont"; 
 	fonts[null_font].area = "";
 	fonts[null_font].hyphenchar = '-';
@@ -231,9 +226,9 @@ void Initialize(void)
 	trienotready = true; 
 	trie_root = 0;
 	trieNode[0].c = 0;
-	text(frozen_control_sequence) = txt("inaccessible");
+	eqtb_cs[frozen_control_sequence-hash_base].text = "inaccessible";
 	formatident = " (INITEX)";
-	text(end_write) = txt("endwrite");
+	eqtb_cs[end_write-hash_base].text = "endwrite";
 	eqtb_cs[end_write-hash_base].level = level_one;
 	eqtb_cs[end_write-hash_base].type = outer_call;
 	eqtb_cs[end_write-hash_base].index = /*0*/nullptr;

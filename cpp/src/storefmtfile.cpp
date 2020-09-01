@@ -12,6 +12,7 @@
 #include "police.h"
 #include "fichier.h"
 #include "texte.h"
+#include "idlookup.h"
 
 constexpr char format_extension[] = ".fmt"; //!< the extension, as a WEB constant
 
@@ -206,7 +207,7 @@ void storefmtfile(void)
 		dump_int(ft.bchar);
 		dump_int(ft.falsebchar);
 		printnl("\\font");
-		print(esc(TXT(text(font_id_base+k)))+esc("FONT")+"="+asFilename(ft.name, ft.area, ""));
+		print(esc(eqtb_cs[k+font_id_base-hash_base].text)+esc("FONT")+"="+asFilename(ft.name, ft.area, ""));
 		if (ft.size != ft.dsize)
 			print(" at "+asScaled(ft.size)+"pt");
 	}

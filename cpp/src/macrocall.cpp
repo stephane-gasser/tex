@@ -24,7 +24,7 @@ void macrocall(Token t)
 	{
 		scannerstatus = matching;
 		halfword unbalance = 0;
-		longstate = type(t.cs);
+		longstate = t.cs >= hash_base ? eqtb_cs[t.cs-hash_base].type : eqtb_active[t.cs-active_base].type;
 		if (longstate >= outer_call)
 			longstate -= 2;
 		do

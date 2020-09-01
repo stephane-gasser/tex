@@ -208,9 +208,7 @@ std::string cs(int p)
 	}
 	if (p >= undefined_control_sequence)
 		return esc("IMPOSSIBLE.");
-	if (text(p) < 0 || text(p) >= strings.size())
-		return esc("NONEXISTENT.");
-	return esc(TXT(hash[p].rh))+" ";
+	return esc(eqtb_cs[p-hash_base].text)+" ";
 }
 
 std::string scs(halfword p)
@@ -225,7 +223,7 @@ std::string scs(halfword p)
 		}
 		return std::string(1, p-active_base);
 	}
-	return esc(TXT(text(p)));
+	return esc(eqtb_cs[p-hash_base].text);
 }
 
 static std::string asDelimiter(Delimiter p)
@@ -516,8 +514,7 @@ std::string tokenshow(TokenNode *p)
 	return p ? tokenlist(dynamic_cast<TokenNode*>(p->link), 0, 10000000) : "";
 }
 
-//! a frozen font identifier's name
-static halfword& font_id_text(halfword p) { return text(font_id_base+p); }
+//static halfword& font_id_text(halfword p) { return text(font_id_base+p); } //! a frozen font identifier's name
 
 std::string shortdisplay(LinkedNode *p)
 {
@@ -533,7 +530,7 @@ std::string shortdisplay(LinkedNode *p)
 					if (/*pp->font < 0 || pp->font > fontmax*/true)
 						oss << "* ";
 					else
-						oss << esc(TXT(font_id_text(p->num/*pp->font*/))) << " ";
+						oss << esc(pp->font.name) << " ";
 					fontinshortdisplay = pp->font;
 				}
 				oss << pp->character;

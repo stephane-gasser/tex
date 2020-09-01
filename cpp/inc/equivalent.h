@@ -63,6 +63,7 @@ class MemoryNode : public AnyNode
 		quarterword type; //!< command code for equivalent
 		quarterword level; //!< level of definition
 		AnyNode *index; //!< equivalent value
+		std::string text;
 		int int_; //!< equivalent value
 		MemoryNode(quarterword t = 0, quarterword l = 0, AnyNode *i = nullptr) : type(t), level(l), index(i) {}
 		bool operator == (const MemoryNode &m) { return std::tuple(type, level, index, int_) == std::tuple(m.type, m.level, m.index, m.int_); }

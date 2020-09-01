@@ -2,6 +2,7 @@
 #include "cesure.h"
 #include "police.h"
 #include "equivalent.h"
+#include "idlookup.h"
 #include <iostream>
 
 void undump_hh(twohalves &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }

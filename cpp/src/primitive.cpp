@@ -20,7 +20,7 @@ int primitive(const std::string &t, quarterword c, halfword o)
 	primName[c][o] = t;
 	int val = idlookup(t);
 	flush_string();
-	text(val) = txt(t);
+	eqtb_cs[val-hash_base].text = t;
 	eqtb_cs[val-hash_base].level = level_one;
 	eqtb_cs[val-hash_base].type = c;
 	eqtb_cs[val-hash_base].int_ = o; //MemoryWord*

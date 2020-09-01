@@ -2,23 +2,32 @@
 #include "equivalent.h"
 #include "erreur.h"
 
-//! test if all positions are occupied
-static bool hash_is_full(void) { return hashused == hash_base; }
+//static halfword& text(halfword p) { return hash[p].rh; }
+static bool hash_is_full(void) { return hashused == hash_base; } //! test if all positions are occupied
+//static halfword& next(halfword p) { return hash[p].lh; } //! link for coalesced lists
 
-//! link for coalesced lists
-static halfword& next(halfword p) { return hash[p].lh; }
+static std::map<std::string, halfword> numero;
 
 halfword idlookup(const std::string &s)
 {
-	int h = 0;
+	if (numero.find(s) != numero.end())
+		return numero[s];
+	if (nonewcontrolsequence)
+		return undefined_control_sequence;
+	if (hash_is_full())
+		overflow("hash size", hash_size);
+	numero[s] = --hashused;
+	strings.push_back(s);
+	eqtb_cs[hashused-hash_base].text = s;
+	return hashused;
+/*	int h = 0;
 	for (unsigned char c: s)
 		h = (2*h+c)%hash_prime;
 	halfword p = h+hash_base;
 	while (true)
 	{
-		if (text(p) > 0)
-			if (strings[text(p)] == s)
-				return p;
+		if (text(p) > 0 && strings[text(p)] == s)
+			return p;
 		if (next(p) == 0)
 		{
 			if (nonewcontrolsequence)
@@ -42,5 +51,5 @@ halfword idlookup(const std::string &s)
 			return p;
 		}
 		p = next(p);
-	}
+	}*/
 }

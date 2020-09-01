@@ -630,14 +630,14 @@ halfword& llink(halfword); //!< left link in doubly-linked list of empty nodes
 halfword& rlink(halfword); //!< right link in doubly-linked list of empty nodes
 halfword& link(halfword p); //!< the \a link field of a memory word
 halfword& info(halfword p); //!< the \a info field of a memory word
-quarterword& type(halfword p); //!< identifies what kind of node this is
-quarterword& subtype(halfword p); //!< secondary identification in some cases
+//quarterword& type(halfword p); //!< identifies what kind of node this is
+//quarterword& subtype(halfword p); //!< secondary identification in some cases
 //bool is_char_node(halfword);
-quarterword& font(halfword); //!< the font code in a \a char_node
+//quarterword& font(halfword); //!< the font code in a \a char_node
 //quarterword& character(halfword); //!< the character code in a \a char_node
-int& width(halfword); //!< width of the box, in sp
-int& depth(halfword); //!< depth of the box, in sp
-int& height(halfword); //!< height of the box, in sp
+//int& width(halfword); //!< width of the box, in sp
+//int& depth(halfword); //!< depth of the box, in sp
+//int& height(halfword); //!< height of the box, in sp
 //int& shift_amount(halfword); //!< repositioning distance, in sp
 //halfword& list_ptr(halfword); //!< beginning of the list inside the box
 //quarterword& glue_order(halfword); //!< applicable order of infinity
@@ -657,14 +657,14 @@ bool is_running(int); //!< tests for a running dimension
 //int& shrink(halfword); //!< the shrinkability of this glob of glue
 //quarterword& stretch_order(halfword); //!< order of infinity for stretching
 //quarterword& shrink_order(halfword); //!< order of infinity for shrinking
-int& penalty(halfword); //!< the added cost of breaking a list here
-int& glue_stretch(halfword); //!< total stretch in an unset node
-int& glue_shrink(halfword); //!< total shrink in an unset node
-quarterword& span_count(halfword); //!< indicates the number of spanned columns
+//int& penalty(halfword); //!< the added cost of breaking a list here
+//int& glue_stretch(halfword); //!< total stretch in an unset node
+//int& glue_shrink(halfword); //!< total shrink in an unset node
+//quarterword& span_count(halfword); //!< indicates the number of spanned columns
 halfword& token_ref_count(halfword); //!< reference count preceding a token list
 //halfword& skip(halfword); //!< \a mem location of glue specification
 //halfword& box(halfword); 
-halfword& text(halfword); //!< string number for control sequence name
+//halfword& text(halfword); //!< string number for control sequence name
 quarterword& save_type(halfword); //!< classifies a \a save_stack entry
 quarterword& save_level(halfword);
 halfword& save_index(halfword); 
@@ -691,9 +691,9 @@ float vet_glue(float);
 //halfword accent_chr(halfword); //!< the \a accent_chr field of an accent noad
 //halfword delimiter(halfword); //!< \a delimiter field in left and right noads
 int default_rule_thickness(void); //!< thickness of \\over bars
-int& u_part(halfword); //!< pointer to \f$<u_j\f$ token list
-int&v_part(halfword); //!< pointer to \f$<v_j\f$ token list
-halfword& extra_info(halfword); //!< info to remember during template
+//int& u_part(halfword); //!< pointer to \f$<u_j\f$ token list
+//int&v_part(halfword); //!< pointer to \f$<v_j\f$ token list
+//halfword& extra_info(halfword); //!< info to remember during template
 //quarterword& fitness(halfword); //!< <em> very_loose_fit..tight_fit</em> on final line for this break
 //halfword& break_node(halfword); //!< pointer to the corresponding passive node
 //halfword& line_number(halfword); //!< line that begins at this breakpoint

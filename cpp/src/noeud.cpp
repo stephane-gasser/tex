@@ -61,7 +61,7 @@ void newfont(smallnumber a)
 	auto u = getrtoken();
 	if (u >= hash_base)
 	{
-		t = TXT(text(u));
+		t = eqtb_cs[u-hash_base].text;
 		define(a, &eqtb_cs[u-hash_base], set_font, null_font);
 	}
 	else 
@@ -124,7 +124,7 @@ void newfont(smallnumber a)
 		f = readfontinfo(u, curname, curarea, s);
 	eqtb[u].int_ = f; // index : Font*
 	eqtb_cs[f+frozen_null_font-hash_base] = eqtb[u];
-	text(frozen_null_font+f) = txt(t);
+	eqtb_cs[f+frozen_null_font-hash_base].text = t;
 }
 
 void newgraf(bool indented)
