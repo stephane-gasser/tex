@@ -7,13 +7,15 @@
 #include "storefmtfile.h"
 #include "deleteglueref.h"
 #include "conditional.h"
+#include "erreur.h"
+#include "equivalent.h"
 
 void finalcleanup(Token t)
 {
 	smallnumber c = t.chr;
 	if (jobname == "")
 		openlogfile();
-	while (inputptr > 0)
+	while (inputstack.size() > 1)
 		if (state == token_list)
 			endtokenlist();
 		else

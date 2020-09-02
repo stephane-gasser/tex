@@ -3,5 +3,6 @@
 //! leave an input level, re-enter the old
 void pop_input(void)
 {  
-	curinput = inputstack[--inputptr]; 
+	inputstack.pop_back();
+	curinput = inputstack.back(); 
 }

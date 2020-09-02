@@ -7,6 +7,16 @@
 
 constexpr dviindex halfbuf = dvibufsize/2;
 
+enum info
+{
+	y_here = 1, //!< \a info when the movement entry points to a \a y command
+	z_here = 2, //!< \a info when the movement entry points to a \a z command
+	yz_OK = 3, //!< \a info corresponding to an unconstrained \a down command
+	y_OK = 4, //!< \a info corresponding to a \a down that can't become a \a z
+	z_OK = 5, //!< \a info corresponding to a \a down that can't become a \a y
+	d_fixed = 6 //!< \a info corresponding to a \a down that can't change
+};
+
 static eightbits dvibuf[dvibufsize+1];
 static dviindex dvilimit = dvibufsize;
 static int dvigone = 0;

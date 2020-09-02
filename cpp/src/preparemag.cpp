@@ -4,6 +4,8 @@
 #include "equivalent.h"
 #include "texte.h"
 
+static int magset = 0;
+
 void preparemag(void)
 {
 	if (magset > 0 && mag() != magset)

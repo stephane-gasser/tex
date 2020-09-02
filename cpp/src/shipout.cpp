@@ -6,7 +6,6 @@
 #include "noeud.h"
 #include "openlogfile.h"
 #include "fichier.h"
-#include "promptfilename.h"
 #include "dvi.h"
 #include "vlistout.h"
 #include "hlistout.h"

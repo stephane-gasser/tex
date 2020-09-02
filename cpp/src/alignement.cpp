@@ -18,6 +18,7 @@
 #include "equivalent.h"
 #include "flushmath.h"
 #include "pushnest.h"
+#include "getnext.h"
 
 static SpanNode *curspan = nullptr; 
 static LinkedNode *curhead = nullptr;
@@ -112,16 +113,16 @@ void initalign(Token t, AlignRecordNode* &loop)
 	auto savecsptr = t.cs;
 	pushalignment(loop);
 	alignstate = -1000000;
-	if (mode == mmode && (tail != head || incompleat_noad))
+	if (mode == mmode && (tail != head || incompleat_noad)) //Check for improper alignment in displayed math
 	{
 		error("Improper "+esc("halign")+" inside $$'s", "Displays can use special alignments (like \\eqalignno)\nonly if nothing but the alignment itself is between $$'s.\nSo I've deleted the formulas that preceded this alignment.");
 		flushmath();
 	}
 	pushnest();
-	if (mode == mmode)
+	if (mode == mmode) // Change current mode to |-vmode| for \.{\\halign}, |-hmode| for \.{\\valign}
 	{
 		mode = -vmode;
-		incompleat_noad->num = nest[nestptr-2].auxfield.int_;
+		prev_depth = nest[nest.size()-3].auxfield.int_;
 	}
 	else 
 		if (mode > 0)
@@ -368,7 +369,7 @@ static void finalign(AlignRecordNode* &loop)
 	if (curgroup != align_group)
 		confusion("align0"); 
 	unsave();
-	scaled o = nest[nestptr-1].modefield == mmode ? display_indent() : 0; // shift offset for unset boxes
+	scaled o = nest[nest.size()-2].modefield == mmode ? display_indent() : 0; // shift offset for unset boxes
 	auto q = preamble->link;
 	do
 	{
@@ -709,10 +710,8 @@ void alignpeek(AlignRecordNode* &loop)
 
 void doendv(Token t, AlignRecordNode* &loop)
 {
-	baseptr = inputptr;
-	inputstack[baseptr] = curinput;
-	while (inputstack[baseptr].indexfield != v_template && inputstack[baseptr].locfield == 0 && inputstack[baseptr].statefield == token_list)
-		baseptr--;
+	inputstack.back() = curinput;
+	for (baseptr = inputstack.size()-1; inputstack[baseptr].indexfield != v_template && inputstack[baseptr].locfield == 0 && inputstack[baseptr].statefield == token_list; baseptr--);
 	if (inputstack[baseptr].indexfield != v_template || inputstack[baseptr].locfield || inputstack[baseptr].statefield != token_list)
 		fatalerror("(interwoven alignment preambles are not allowed)");
 	if (curgroup == align_group)

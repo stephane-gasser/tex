@@ -4,11 +4,7 @@
 //! //enter a new input level, save the old
 void push_input(void)
 {
-	if (inputptr > maxinstack)
-	{
-		maxinstack = inputptr;
-		if (inputptr == stacksize)
+	if (inputstack.size()-1 == stacksize)
 		overflow("input stack size", stacksize);
-	}
-	inputstack[inputptr++] = curinput;
+	inputstack.push_back(curinput);
 }

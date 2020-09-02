@@ -147,7 +147,7 @@ void fireup(LinkedNode *c)
 	if (p)
 	{
 		if (contrib_head->link == nullptr)
-			if (nestptr == 0)
+			if (nest.size() == 1)
 				tail = pagetail;
 			else
 				contrib_tail = pagetail;
@@ -210,7 +210,7 @@ void fireup(LinkedNode *c)
 	if (page_head->link)
 	{
 		if (contrib_head->link == nullptr)
-			if (nestptr == 0)
+			if (nest.size() == 1)
 				tail = pagetail;
 			else
 				contrib_tail = pagetail;

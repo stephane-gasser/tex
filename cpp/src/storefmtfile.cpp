@@ -4,7 +4,6 @@
 #include "jumpout.h"
 #include "equivalent.h"
 #include "makestring.h"
-#include "promptfilename.h"
 #include "sortavail.h"
 #include "cesure.h"
 #include "police.h"

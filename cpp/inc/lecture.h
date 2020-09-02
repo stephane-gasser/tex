@@ -2,8 +2,9 @@
 #define LECTURE_H
 
 #include "globals.h"
-#include <tuple>
 
+inline smallnumber radix = 0;
+inline glueord curorder = 0;
 inline TokenNode * defref;
 
 [[nodiscard]] int scanint(void);

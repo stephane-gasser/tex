@@ -3,6 +3,6 @@
 void popnest(void)
 {
 	delete head;
-	nestptr--;
-	curlist = nest[nestptr];
+	nest.pop_back();
+	curlist = nest.back();
 }

@@ -8,75 +8,21 @@
 void Initialize(void)
 {
 	for (int i = 0; i < 256; i++)
-	{
-		xchr[i] = i < 32 ? ' ' : i < 127 ? i : ' ';
-	    xord[char(i)] = i < 32 ? 127 : i < 127 ? i : 127;
-	}
-	interaction = error_stop_mode;
-	errorcount = 0;
-	useerrhelp = false;
-	nestptr = 0;
-	maxneststack = 0;
+		xchr[i] = ' ';
+	for (int i = -128; i < 127; i++)
+		xord[i] = 127;
+	for (int i = 32; i < 127; i++)
+		xchr[i] = xord[i] = i;
 	mode = vmode;
 	tail = head = contrib_head = new LinkedNode;
-	prev_depth = -0x1'00'00*1000;
+	prev_depth = ignore_depth;
 	mode_line = 0;
 	prev_graf = 0;
-	shownmode = 0;
-	pagecontents = 0;
 	pagetail = page_head;
 	page_head->link = nullptr;
-	lastglue = nullptr;
-	lastpenalty = 0;
-	lastkern = 0;
 	page_depth = 0;
-	pagemaxdepth = 0;
-	for (int k = int_base; k < 6107; k++)
-    	xeqlevel[k] = 1;
-	curlevel = 1;
-	magset = 0;
-	radix = 0;
-	curorder = 0;
-	for (int k = 0; k < 17; k++)
-	    readopen[k] = closed;
-	iflimit = 0;
-	curif = 0;
-	ifline = 0;
 	for (int k = 0; k <= fontmax; k++)
 		fonts[k].used = false;
-	nullcharacter.b0 = 0;
-	nullcharacter.b1 = 0;
-	nullcharacter.b2 = 0;
-	nullcharacter.b3 = 0;
-	totalpages = 0;
-	maxv = 0;
-	maxh = 0;
-	maxpush = 0;
-	lastbop = -1;
-	doingleaders = false;
-	deadcycles = 0;
-	curs = -1;
-	dviptr = 0;
-	dvioffset = 0;
-	adjusttail = nullptr;
-	lastbadness = 0;
-	packbeginline = 0;
-	for (int z = 0; z < 308; z++)
-	{
-		hyphword[z] = "";
-		hyphlist[z] = nullptr;
-	}
-	hyphcount = 0;
-	outputactive = false;
-	insertpenalties = 0;
-	ligaturepresent = false;
-	cancelboundary = false;
-	lfthit = false;
-	rthit = false;
-	insdisc = false;
-	longhelpseen = false;
-	for (int k = 0; k < 18; k++)
-		writeopen[k] = false;
 	for (int k = 1; k < 20; k++)
 		mem[k].int_ = 0;
 	fil_glue->stretch = unity;
@@ -89,12 +35,10 @@ void Initialize(void)
 	ss_glue->shrink_order = fil;
 	fil_neg_glue->stretch = -unity;
 	fil_neg_glue->stretch_order = fil;
-	rover = lo_mem_stat_max+1;
 	link(rover) = empty_flag;
 	node_size(rover) = 1000;
 	llink(rover) = rover;
 	rlink(rover) = rover;
-	lomemmax = rover+1000;
 	link(lomemmax) = 0;
 	info(lomemmax) = 0;
 	for (int k = hi_mem_stat_min; k <= mem_top; k++)
@@ -102,8 +46,6 @@ void Initialize(void)
 	omit_template = new TokenNode(end_template_token);
 	end_span->Link = 256;
 	end_span->info = nullptr;
-	active->type = hyphenated;
-	active->line_number = empty_flag;
 	page_ins_head = new PageInsNode;
 	page_ins_head->subtype = 255;
 	page_ins_head->type = split_up;
@@ -116,11 +58,6 @@ void Initialize(void)
 	lig_trick = new CharNode(fonts[null_font], 0);
 	garbage = new LinkedNode;
 	backup_head = new LinkedNode;
-	avail = 0;
-	memend = mem_top;
-	himemmin = hi_mem_stat_min;
-	varused = 20;
-	dynused = hi_mem_stat_usage;
 	eqtb_cs[undefined_control_sequence-hash_base].type = undefined_cs;
 	eqtb_cs[undefined_control_sequence-hash_base].level = level_zero;
 	eqtb_cs[undefined_control_sequence-hash_base].index = /*0*/nullptr;
@@ -193,7 +130,6 @@ void Initialize(void)
 	del_code('.') = 0;
 	for (int k = 0; k <= eqtb_size-dimen_base; k++)
 		eqtb_dimen[k].int_ = 0;
-	cscount = 0;
 	eqtb_cs[frozen_dont_expand-hash_base].type = dont_expand;
 	eqtb_cs[frozen_dont_expand-hash_base].text = "notexpanded:";
 	fonts[null_font].name = "nullfont"; 
@@ -207,7 +143,7 @@ void Initialize(void)
 	fonts[null_font].ec = 0;
 	fonts[null_font].size = 0;
 	fonts[null_font].dsize = 0;
-	fonts[null_font].glue = nullptr;
+	fonts[null_font].glue = zero_glue/* ou nullptr ?*/;
 	fonts[null_font].params = 7;
 	fonts[null_font].charbase = 0;
 	fonts[null_font].widthbase = 0;
@@ -220,11 +156,9 @@ void Initialize(void)
 	fonts[null_font].parambase = -1;
 	for (auto &fi: Font::info)
 		fi.int_ = 0;
-	trienotready = true; 
 	trie_root = 0;
 	trieNode[0].c = 0;
 	eqtb_cs[frozen_control_sequence-hash_base].text = "inaccessible";
-	formatident = " (INITEX)";
 	eqtb_cs[end_write-hash_base].text = "endwrite";
 	eqtb_cs[end_write-hash_base].level = level_one;
 	eqtb_cs[end_write-hash_base].type = outer_call;

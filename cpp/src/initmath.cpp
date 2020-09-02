@@ -149,7 +149,7 @@ void initmath(void)
 		eqworddefine(&eqtb_dimen[display_indent_code], s);
 		if (every_display())
 			begintokenlist(every_display(), 9);
-		if (nestptr == 1)
+		if (nest.size() == 2)
 			buildpage();
 	}
 	else

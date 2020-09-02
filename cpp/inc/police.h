@@ -20,5 +20,6 @@ int math_quad(smallnumber); //!< 18mu
 internalfontnumber readfontinfo(halfword, const std::string &, const std::string &, scaled);
 [[nodiscard]] int findfontdimen(bool);
 int& fam_fnt(halfword);
+int default_rule_thickness(void); //!< thickness of \\over bars
 
 #endif

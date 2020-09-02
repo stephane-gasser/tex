@@ -3,6 +3,42 @@
 
 #include "globals.h"
 
+enum
+{
+	hlist_node = 0, //!< \a type of hlist nodes
+	vlist_node = 1, //!< \a type of vlist nodes
+	rule_node = 2, //!< \a type of rule nodes
+	ins_node = 3, //!< \a type of insertion nodes
+	mark_node = 4, //!< \a type of a mark node
+	adjust_node = 5, //!< \a type of an adjust node
+	ligature_node = 6, //!< \a type of a ligature node
+	disc_node = 7, //!< \a type of a discretionary node
+	whatsit_node = 8, //!< \a type of special extension nodes
+	math_node = 9, //!< \a type of a math node
+	glue_node = 10, //!< \a type of node that points to a glue specification
+	kern_node = 11, //!< \a type of a kern node
+	penalty_node = 12, //!< \a type of a penalty node
+	unset_node = 13, //!< \a type for an unset node
+	style_node = unset_node+1, //!< \a type of a style node
+	choice_node = unset_node+2, //!< \a type of a choice node
+	ord_noad = unset_node+3, //!< \a type of a noad classified Ord
+	op_noad = ord_noad+1, //!< \a type of a noad classified Op
+	bin_noad = ord_noad+2, //!< \a type of a noad classified Bin
+	rel_noad = ord_noad+3, //!< \a type of a noad classified Rel
+	open_noad = ord_noad+4, //!< \a type of a noad classified Ope
+	close_noad = ord_noad+5, //!< \a type of a noad classified Clo
+	punct_noad = ord_noad+6, //!< \a type of a noad classified Pun
+	inner_noad = ord_noad+7, //!< \a type of a noad classified Inn
+	radical_noad = inner_noad+1, //!< \a type of a noad for square roots
+	fraction_noad = radical_noad+1, //!< \a type of a noad for generalized fractions
+	under_noad = fraction_noad+1, //!< \a type of a noad for underlining
+	over_noad = under_noad+1, //!< \a type of a noad for overlining
+	accent_noad = over_noad+1, //!< \a type of a noad for accented subformulas
+	vcenter_noad = accent_noad+1, //!< \a type of a noad for \\vcenter
+	left_noad = vcenter_noad+1, //!< \a type of a noad for \\left
+	right_noad = left_noad+1 //!< \a type of a noad for \\right
+};
+
 void confusion(const std::string &);
 
 class AnyNode
@@ -375,84 +411,11 @@ class AccentNoad : public Noad
 		AccentNoad(void) { type = accent_noad; subtype = 0/*normal*/; accent_chr.math_type = 1/*math_char*/; }
 };
 
-class PassiveNode : public LinkedNode
-{
-	public:
-		LinkedNode *cur_break;
-		LinkedNode *prev_break;
-		LinkedNode* &next_break = prev_break;
-		halfword serial;
-};
-
-inline PassiveNode *passive;
-
-class ActiveNode : public LinkedNode
-{
-	public:
-		quarterword fitness = decent_fit;
-		PassiveNode *break_node = nullptr;
-		halfword line_number;
-		int total_demerits = 0;
-		ActiveNode(int best, LinkedNode *l) : line_number(best+1)
-		{
-			type = unhyphenated;
-			link = l;
-		}
-};
-
-inline ActiveNode *bestbet;
-
-class DeltaNode : public LinkedNode
-{
-	public:
-		quarterword subtype = 0;
-		int width[6];
-		DeltaNode(LinkedNode *r)
-		{
-			link = r;
-			type = delta_node;
-		}
-		void new_delta_to_break_width(void)
-		{
-			for (int i = 1; i <= 6; i++)
-				width[i-1] = breakwidth[i]-curactivewidth[i];
-		}
-		void new_delta_from_break_width(void)
-		{
-			for (int i = 1; i <= 6; i++)
-				width[i-1] = curactivewidth[i]-breakwidth[i];
-		}
-		void update_width(void)
-		{
-			for (int i = 1; i <= 6; i++)
-				curactivewidth[i] += width[i-1];
-		}
-		void update_active(void)
-		{
-			for (int i = 1; i <= 6; i++)
-				activewidth[i] += width[i-1];
-		}
-		void convert_to_break_width(void)
-		{
-			for (int i = 1; i <= 6; i++)
-				width[i-1] += breakwidth[i]-curactivewidth[i];
-		}
-		void downdate_width(void)
-		{
-			for (int i = 1; i <= 6; i++)
-				curactivewidth[i] -= width[i-1];
-		}
-		void combine_two_deltas(DeltaNode *r)
-		{
-			for (int i = 0; i < 6; i++)
-				width[i] += r->width[i];
-		}
-};
-
 //inline int &incompleat_noad = aux.int_; //!< the name of \a aux in math mode
 inline FractionNoad *incompleat_noad; //!< the name of \a aux in math mode
 inline TokenNode *pstack[9];
-inline TokenNode *paramstack[paramsize+1];
+inline std::vector<TokenNode*> paramstack;
+
 inline std::vector<TokenNode*> curmark(5, nullptr);
 inline TokenNode *top_mark = curmark[top_mark_code];
 inline TokenNode *first_mark = curmark[first_mark_code];
@@ -466,7 +429,6 @@ inline LinkedNode *page_head; //!< vlist for current page
 inline TokenNode *temp_head; //!< head of a temporary list of some kind
 inline LinkedNode *hold_head; //!< head of a temporary list of another kind
 inline LinkedNode *adjust_head; //!< head of adjustment list returned by \a hpack
-inline ActiveNode * const active = dynamic_cast<ActiveNode*>(&heads[7]); //!< head of active list in \a line_break, needs two words
 inline LinkedNode * const align_head = dynamic_cast<LinkedNode*>(&heads[8]); //!< head of preamble list for alignments
 inline TokenNode * omit_template; //!< a constant token list
 inline LinkedNode *null_list; //!< permanently empty list
@@ -476,6 +438,9 @@ inline LinkedNode *backup_head; //!< head of token list built by \a scan_keyword
 inline LinkedNode *preamble = align_head->link; //!< the current preamble list
 inline TokenNode *Start;
 inline TokenNode *Loc;
+inline LinkedNode *curmlist;
+inline LinkedNode *bestpagebreak;
+inline LinkedNode *new_hlist(Noad *p) { return p->nucleus.info; } //!< the translation of an mlist
 
 CharNode* newcharacter(internalfontnumber, eightbits);
 void newfont(smallnumber);
@@ -490,16 +455,9 @@ void appendkern(halfword);
 void appendpenalty(void);
 void appendtovlist(BoxNode*);
 void appspace(LinkedNode*, fontindex&);
-
 void followUntilBeforeTarget(LinkedNode*&, LinkedNode* = nullptr);
 
 template<class T> void next(T* &p) { p = dynamic_cast<T*>(p->link); }
 inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }
-
-inline LinkedNode *curmlist;
-inline LinkedNode *bestpagebreak;
-
-inline LinkedNode *new_hlist(Noad *p) { return p->nucleus.info; } //!< the translation of an mlist
-
 
 #endif

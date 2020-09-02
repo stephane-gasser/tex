@@ -1,6 +1,7 @@
 #include "runaway.h"
 #include "impression.h"
 #include "lecture.h"
+#include "getnext.h"
 
 void runaway(void)
 {

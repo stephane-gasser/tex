@@ -32,6 +32,10 @@ static GlueSpec *mathglue(GlueSpec *g, scaled m)
 	return p;
 }
 
+static int cramped_style(int c) { return 2*(c/2)+cramped; } //!< cramp the style
+static int sub_style(int c) { return 2*(c/4)+script_style+cramped; } //!< smaller and cramped
+static int sup_style(int c) { return 2*(c/4)+script_style+c%2; } //!< smaller
+
 void makeradical(RadicalNoad *Q)
 {
 	auto x = cleanbox(Q->nucleus, cramped_style(curstyle));
@@ -560,7 +564,7 @@ void mlisttohlist(void)
 {
 	halfword y;
 	scaled delta;
-	smallnumber s, t, savestyle;
+	smallnumber t, savestyle;
 	auto mlist = curmlist;
 	auto penalties = mlistpenalties;
 	auto style = curstyle;
@@ -837,7 +841,6 @@ void mlisttohlist(void)
 	while (q)
 	{
 		t = ord_noad;
-		s = noad_size;
 		int pen = inf_penalty;
 		switch (q->type)
 		{
@@ -862,14 +865,11 @@ void mlisttohlist(void)
 			case under_noad:
 				break;
 			case radical_noad: 
-				s = radical_noad_size;
 				break;
 			case accent_noad:
-				s = accent_noad_size;
 				break;
 			case fraction_noad:
 				t = inner_noad;
-				s = fraction_noad_size;
 				break;
 			case left_noad:
 			case right_noad:
@@ -877,7 +877,6 @@ void mlisttohlist(void)
 				break;
 			case style_node:
 				curstyle = dynamic_cast<StyleNode*>(q)->subtype;
-				s = style_node_size;
 				if (curstyle < script_style)
 					cursize = text_size;
 				else

@@ -82,7 +82,7 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 				deleteglueref(q);
 			}
 			delete p;
-			if (nestptr == 0)
+			if (nest.size() == 1)
 				buildpage();
 			break;
 		}

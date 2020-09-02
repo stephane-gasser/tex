@@ -22,6 +22,6 @@ void resumeafterdisplay(Token t)
 	t = getxtoken();
 	if (t.cmd != spacer)
 		backinput(t);
-	if (nestptr == 1)
+	if (nest.size() == 2)
 		buildpage();
 }

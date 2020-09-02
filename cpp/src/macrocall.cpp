@@ -7,6 +7,7 @@
 #include "erreur.h"
 #include "lecture.h"
 #include "texte.h"
+#include "getnext.h"
 
 void macrocall(Token t)
 {
@@ -206,15 +207,10 @@ void macrocall(Token t)
 	Loc = dynamic_cast<TokenNode*>(r->link);
 	if (n > 0)
 	{
-		if (paramptr+n > maxparamstack)
-		{
-			maxparamstack =	paramptr+n;
-			if (maxparamstack > paramsize)
-				overflow("parameter stack size", paramsize);
-		}
+		if (paramstack.size()+n > paramsize)
+			overflow("parameter stack size", paramsize);
 		for (int m = 0; m < n; m++)
-			paramstack[paramptr+m] = pstack[m];
-		paramptr += n;
+			paramstack.push_back(pstack[m]);
 	}
 	scannerstatus = savescannerstatus;
 	warningindex = savewarningindex;

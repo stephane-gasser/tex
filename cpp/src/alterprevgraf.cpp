@@ -6,9 +6,9 @@
 
 void alterprevgraf(void)
 {
-	nest[nestptr] = curlist;
-	auto p = nestptr;
-	while (abs(nest[p].modefield) != 1)
+	nest.back() = curlist;
+	auto p = nest.size()-1;
+	while (abs(nest[p].modefield) != vmode)
 		p--;
 	scanoptionalequals();
 	int val = scanint();
@@ -17,6 +17,6 @@ void alterprevgraf(void)
 	else
 	{
 		nest[p].pgfield = val;
-		curlist = nest[nestptr];
+		curlist = nest.back();
 	}
 }

@@ -6,13 +6,9 @@ halfword& info(halfword p) { return mem[p].hh.lh; }
 halfword& node_size(halfword p) { return mem[p].hh.lh; }
 halfword& rlink(halfword p) { return link(p+1); }
 halfword& llink(halfword p) { return info(p+1); }
-int cur_length(void) { return currentString.size(); }
-bool is_running(int d) { return d == null_flag; }
-alphafile& cur_file(void) { return inputfile[index]; }
 
-void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : language(); }
-void append_char(ASCIIcode c) { currentString += c; }
-void flush_char(void) { currentString.pop_back(); }
+alphafile& cur_file(void) { return inputfile[index]; }
+void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : language(); } 
 
 void tail_append(LinkedNode *p) 
 {
@@ -35,12 +31,3 @@ float vet_glue(float g)
 		return -billion;
 	return g;
 }
-
-quarterword &state = curinput.statefield;
-quarterword &index = curinput.indexfield;
-std::string &name = curinput.namefield;
-scaled &act_width = activewidth[1];
-scaled &page_goal = pagesofar[0];
-scaled &page_total = pagesofar[1];
-scaled &page_shrink = pagesofar[6];
-scaled &page_depth = pagesofar[7];

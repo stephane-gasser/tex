@@ -31,7 +31,6 @@ constexpr int mem_top = 30000; //!<  largest index in the \a mem array dumped by
 constexpr int font_base = 0; //!<  smallest internal font number; must not be less
 constexpr int hash_size = 2100; //!<  maximum number of control sequences; it should be at most about |(mem_max-mem_min)/10|}
 constexpr int hash_prime = 1777; //!<  a prime number equal to about 85% of \a hash_size
-constexpr int hyph_size = 307; //!<  another prime; the number of \\hyphenation exceptions
 constexpr char banner[] ="This is TeX, Version 3.14159265"; //!<  printed when \\TeX starts
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -52,9 +51,7 @@ typedef std::uint8_t quarterword; // 0..255
 typedef std::uint16_t halfword; // 0..0xFF'FF
 typedef char internalfontnumber; //0..fontmax
 typedef int fontindex; // 0..fontmemsize
-typedef int dviindex; // 0..dvibufsize
 typedef int triepointer; // 0..triesize
-typedef int hyphpointer; //0..307
 
 typedef struct
 {
@@ -149,42 +146,6 @@ class Font
 inline std::vector<memoryword> Font::info(7);
 inline std::vector<Font> fonts(1);
 
-enum
-{
-	hlist_node = 0, //!< \a type of hlist nodes
-	vlist_node = 1, //!< \a type of vlist nodes
-	rule_node = 2, //!< \a type of rule nodes
-	ins_node = 3, //!< \a type of insertion nodes
-	mark_node = 4, //!< \a type of a mark node
-	adjust_node = 5, //!< \a type of an adjust node
-	ligature_node = 6, //!< \a type of a ligature node
-	disc_node = 7, //!< \a type of a discretionary node
-	whatsit_node = 8, //!< \a type of special extension nodes
-	math_node = 9, //!< \a type of a math node
-	glue_node = 10, //!< \a type of node that points to a glue specification
-	kern_node = 11, //!< \a type of a kern node
-	penalty_node = 12, //!< \a type of a penalty node
-	unset_node = 13, //!< \a type for an unset node
-	style_node = unset_node+1, //!< \a type of a style node
-	choice_node = unset_node+2, //!< \a type of a choice node
-	ord_noad = unset_node+3, //!< \a type of a noad classified Ord
-	op_noad = ord_noad+1, //!< \a type of a noad classified Op
-	bin_noad = ord_noad+2, //!< \a type of a noad classified Bin
-	rel_noad = ord_noad+3, //!< \a type of a noad classified Rel
-	open_noad = ord_noad+4, //!< \a type of a noad classified Ope
-	close_noad = ord_noad+5, //!< \a type of a noad classified Clo
-	punct_noad = ord_noad+6, //!< \a type of a noad classified Pun
-	inner_noad = ord_noad+7, //!< \a type of a noad classified Inn
-	radical_noad = inner_noad+1, //!< \a type of a noad for square roots
-	fraction_noad = radical_noad+1, //!< \a type of a noad for generalized fractions
-	under_noad = fraction_noad+1, //!< \a type of a noad for underlining
-	over_noad = under_noad+1, //!< \a type of a noad for overlining
-	accent_noad = over_noad+1, //!< \a type of a noad for accented subformulas
-	vcenter_noad = accent_noad+1, //!< \a type of a noad for \\vcenter
-	left_noad = vcenter_noad+1, //!< \a type of a noad for \\left
-	right_noad = left_noad+1 //!< \a type of a noad for \\right
-};
-
 class LinkedNode;
 
 typedef struct
@@ -196,15 +157,15 @@ typedef struct
 } liststaterecord;
 
 inline liststaterecord curlist;
-inline auto &aux = curlist.auxfield; //!< auxiliary data about the current list
-inline auto &head = curlist.headfield; //!< header node of current list
-inline auto &tail = curlist.tailfield; //!< final node on current list
-inline int& prev_depth = aux.int_; //!< the name of \a aux in vertical mode
-inline halfword& space_factor = aux.hh.lh; //!< part of \a aux in horizontal mode
-inline halfword& clang = aux.hh.rh;  //!< the other part of \a aux in horizontal mode
-inline int& mode = curlist.modefield; //!< current mode
-inline int& prev_graf = curlist.pgfield; //!< number of paragraph lines accumulated
-inline int& mode_line = curlist.mlfield; //!< source file line number at beginning of list
+	inline auto &aux = curlist.auxfield; //!< auxiliary data about the current list
+		inline int& prev_depth = aux.int_; //!< the name of \a aux in vertical mode
+		inline halfword& space_factor = aux.hh.lh; //!< part of \a aux in horizontal mode
+		inline halfword& clang = aux.hh.rh;  //!< the other part of \a aux in horizontal mode
+	inline auto &head = curlist.headfield; //!< header node of current list
+	inline auto &tail = curlist.tailfield; //!< final node on current list
+	inline int& mode = curlist.modefield; //!< current mode
+	inline int& prev_graf = curlist.pgfield; //!< number of paragraph lines accumulated
+	inline int& mode_line = curlist.mlfield; //!< source file line number at beginning of list
 
 typedef struct
 {
@@ -216,17 +177,16 @@ typedef struct
 
 inline instaterecord curinput;
 
-inline std::string hyphword[308];
 inline std::string helpline;
 inline std::vector<std::string> strings;
 inline std::string currentString;
 inline std::string curname;
 inline std::string curarea;
 inline std::string curext;
-inline std::string jobname;
-inline std::string outputfilename;
+inline std::string jobname = "";
+inline std::string outputfilename = "";
 inline std::string logname;
-inline std::string formatident;
+inline std::string formatident = " (INITEX)";
 
 class Token
 {
@@ -246,44 +206,31 @@ class Token
 
 inline Token aftertoken;
 inline Font fontinshortdisplay;
-inline GlueSpec *lastglue;
-
-inline LinkedNode *adjusttail;
+inline GlueSpec *lastglue = nullptr;
+inline LinkedNode *adjusttail = nullptr;
 inline LinkedNode *pagetail;
 
-inline LinkedNode *curp;
-
-inline int bad;
-inline int tally;
 inline int trickcount;
 inline int firstcount;
-inline int varused, dynused;
+inline int varused = 20, dynused = 14/**hi_mem_stat_usage*/;
 inline int depththreshold;
 inline int breadthmax;
-inline int cscount;
-inline int magset;
-inline int line;
-inline int maxparamstack;
-inline int alignstate;
-inline int ifline;
+inline int cscount = 0;
+inline int line = 0;
+inline int alignstate = 1000000;
+inline int ifline = 0;
 inline int skipline;
-inline int totalpages;
-inline int maxpush;
-inline int lastbop;
-inline int deadcycles;
+inline int totalpages = 0;
+inline int maxpush = 0;
+inline int deadcycles = 0;
 inline int lq, lr;
-inline int dvioffset;
-inline int curs;
-inline int lastbadness;
-inline int packbeginline;
-inline int fewestdemerits;
+inline int curs = -1;
+inline int packbeginline = 0;
 inline int actuallooseness;
 inline int linediff;
-inline int hyfchar;
-inline int lhyf, rhyf, initlhyf, initrhyf;
 inline int leastpagecost;
-inline int lastpenalty;
-inline int insertpenalties;
+inline int lastpenalty = 0;
+inline int insertpenalties = 0;
 inline int readyalready;
 inline int threshold;
 inline int minimumdemerits;
@@ -291,52 +238,38 @@ inline std::map<char, ASCIIcode> xord;
 inline std::map<ASCIIcode, char> xchr;
 inline std::string nameoffile;// char[filenamesize+1]; // débute à 1
 inline ASCIIcode buffer[bufsize+1]; // débute à 0
-inline int First;// 0..bufsize
+inline int First = 1;// 0..bufsize
 inline int last; // 0..bufsize
-inline int maxbufstack; // 0..bufsize
+inline int maxbufstack = 0; // 0..bufsize
 inline alphafile logfile;
 inline char selector; //0..21
-inline char dig[23]; // of 0..15
-inline char termoffset; // 0..maxprintline
-inline char fileoffset; // 0..maxprintline
+inline char termoffset = 0; // 0..maxprintline
+inline char fileoffset = 0; // 0..maxprintline
 inline ASCIIcode trickbuf[errorline+1];
-inline char interaction; // 0..3
-//extern bool deletionsallowed;
-inline char history; // 0..3
-inline char errorcount; // -1..100
-inline bool useerrhelp;
+inline char interaction = /*error_stop_mode*/3; // 0..3
+inline char errorcount = 0; // -1..100
 inline bool aritherror;
 inline scaled remainder_;
 inline memoryword mem[memmax+1];
-inline halfword lomemmax;
-inline halfword himemmin;
-inline halfword avail;
-inline halfword memend;
-inline halfword rover;
-inline liststaterecord nest[nestsize+1];
-
+inline halfword himemmin = (mem_top-13)/*hi_mem_stat_min*/;
+inline halfword avail = 0;
+inline halfword memend = mem_top;
+inline halfword rover = /*lo_mem_stat_max*/19+1;
+inline halfword lomemmax = /*rover*/20+1000;
+inline std::vector<liststaterecord> nest(1);
 inline LinkedNode *contrib_tail = nest[0].tailfield;
-
-inline char nestptr; //0..nestsize
-inline char maxneststack; // 0..nestsize
-inline int shownmode; //-203..203
+inline int shownmode = 0; //-203..203
+inline unsigned char baseptr; // 0..stacksize
 inline char oldsetting; // 0..21
-inline quarterword curlevel;
 inline groupcode curgroup = 0;
-inline instaterecord inputstack[stacksize+1];
-inline unsigned char inputptr; // 0..stacksize
-inline unsigned char maxinstack; // 0..stacksize
-inline char inopen; // 0..maxinopen
-inline char openparens; // 0..maxinopen
+inline std::vector<instaterecord> inputstack(1);
+inline unsigned char inputptr = 0; // 0..stacksize
+inline char inopen = 0; // 0..maxinopen
+inline char openparens = 0; // 0..maxinopen
 inline alphafile inputfile[maxinopen+1]; // commence à 1
 inline int linestack[maxinopen+1]; // commence à 1
-inline char scannerstatus; // 0..5
-inline halfword warningindex;
-inline char paramptr; // 0..paramsize
-inline unsigned char baseptr; // 0..stacksize
 inline halfword parloc;
 inline halfword partoken;
-inline bool forceeof;
 
 enum
 {
@@ -347,42 +280,25 @@ enum
 	split_bot_mark_code = 4 //!< the last mark found by \\vsplit
 };
 
-inline char longstate; // 111..114
-inline smallnumber radix;
-inline glueord curorder;
 inline alphafile readfile[16];
-inline char readopen[17]; // of 0..2
-//inline halfword condptr;
-inline char iflimit; // 0..4
-inline smallnumber curif;
-inline bool nameinprogress;
-inline bool logopened;
-inline bytefile dvifile;
+inline std::vector<char> readopen(17, 2/*closed*/); // of 0..2
+inline char iflimit = 0; // 0..4
+inline smallnumber curif = 0;
+inline bool logopened = false;
 inline bytefile tfmfile;
-inline fourquarters nullcharacter;
-inline scaled maxv;
-inline scaled maxh;
-inline bool doingleaders;
+inline scaled maxv = 0;
+inline scaled maxh = 0;
+inline bool doingleaders = false;
 inline scaled ruleht, ruledp, rulewd;
-inline dviindex dviptr;
-inline scaled dvih, dviv;
-inline scaled curh, curv;
-inline internalfontnumber dvif;
 inline scaled totalstretch[4], totalshrink[4];
 inline smallnumber curstyle;
 inline smallnumber cursize;
 inline scaled curmu;
 inline bool mlistpenalties;
-//inline halfword printednode;
 inline halfword passnumber;
-inline scaled activewidth[7]; // commence à 1
-inline scaled curactivewidth[7]; // commence à 1
-inline scaled background[7]; // commence à 1 
-inline scaled breakwidth[7]; // commence à 1
 inline bool noshrinkerroryet;
 inline bool secondpass;
 inline bool finalpass;
-inline int minimaldemerits[4];
 inline halfword bestplline[4];
 inline scaled discwidth;
 inline halfword easyline;
@@ -393,29 +309,23 @@ inline scaled firstindent;
 inline scaled secondindent;
 inline halfword bestline;
 inline ASCIIcode curlang, initcurlang;
-inline halfword hyfbchar;
-inline smallnumber hyphenpassed;
 inline halfword curl, curr;
-inline bool ligaturepresent;
-inline bool lfthit, rthit;
-inline std::map<ASCIIcode, int> opstart; //of 0..trieopsize
-inline hyphpointer hyphcount;
-inline std::map<ASCIIcode, quarterword> trieused;
-inline bool trienotready;
+inline bool lfthit = false, rthit = false;
+inline bool trienotready = true;
 inline scaled bestheightplusdepth;
-inline char pagecontents; // 0..2
-inline scaled pagemaxdepth;
+inline char pagecontents = 0; // 0..2
+inline scaled pagemaxdepth = 0;
 inline scaled bestsize;
 inline scaled pagesofar[8];
-inline scaled lastkern;
-inline bool outputactive;
+inline scaled lastkern = 0;
+inline bool outputactive = false;
 inline halfword bchar;
 inline halfword falsebchar;
-inline bool cancelboundary;
-inline bool insdisc;
-inline bool longhelpseen;
+inline bool cancelboundary = false;
+inline bool insdisc = false;
+inline bool longhelpseen = false;
 inline alphafile writefile[16];
-inline bool writeopen[18];
+inline std::vector<bool> writeopen(18, false);
 inline halfword writeloc;
 
 #include "constantes.h"

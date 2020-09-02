@@ -4,7 +4,6 @@
 #include "beginfilereading.h"
 #include "fichier.h"
 #include "endfilereading.h"
-#include "promptfilename.h"
 #include "openlogfile.h"
 #include "impression.h"
 #include "firmuptheline.h"

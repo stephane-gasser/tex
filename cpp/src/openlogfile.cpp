@@ -1,6 +1,5 @@
 #include "openlogfile.h"
 #include "fichier.h"
-#include "promptfilename.h"
 #include "impression.h"
 #include "equivalent.h"
 
@@ -20,10 +19,10 @@ void openlogfile(void)
 	slowprint(formatident);
 	print("  "+std::to_string(day())+" ");
 	char months[] = "JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC";
-	for (int k = 3*month()-2; k<= 3*month(); k++)
+	for (int k = 3*month()-2; k <= 3*month(); k++)
 		logfile << months[k];
 	print(" "+std::to_string(year())+" "+twoDigits(time()/60)+":"+twoDigits(time()%60));
-	inputstack[inputptr] = curinput;
+	inputstack.back() = curinput;
 	printnl("**");
 	int l = inputstack[0].limitfield;
 	if (buffer[l] == end_line_char())

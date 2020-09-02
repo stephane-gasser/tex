@@ -1,7 +1,6 @@
 #include "outwhat.h"
 #include "writeout.h"
 #include "fichier.h"
-#include "promptfilename.h"
 #include "dvi.h"
 #include "erreur.h"
 #include "texte.h"

@@ -12,6 +12,7 @@
 #include "finalcleanup.h"
 #include "dvi.h"
 #include "equivalent.h"
+#include "erreur.h"
 #include <iostream>
 
 int main()
@@ -21,7 +22,7 @@ int main()
 		history = fatal_error_stop;
 		if (readyalready != 314159)
 		{
-			bad = 0;
+			int bad = 0;
 			if (halferrorline < 30 || halferrorline > errorline-15)
 				bad = 1;
 			if (maxprintline < 60)
@@ -73,15 +74,10 @@ int main()
 			if (!getstringsstarted())
 				throw std::string();
 			initprim();
-			//initstrptr = strptr;
-			//initpoolptr = poolptr;
 			fixdateandtime();
 			readyalready = 314159;
 		}
 		selector = term_only;
-		tally = 0;
-		termoffset = 0;
-		fileoffset = 0;
 		std::cout << banner << std::endl;
 		if (formatident == "")
 			std::cout << " (no format preloaded)'" << std::endl;
@@ -91,36 +87,13 @@ int main()
 			println();
 		}
 		std::cout << std::flush;
-		jobname = "";
 		nameinprogress = false;
-		logopened = false;
-		outputfilename = "";
-		inputptr = 0;
-		maxinstack = 0;
-		inopen = 0;
-		openparens = 0;
-		maxbufstack = 0;
-		paramptr = 0;
-		maxparamstack = 0;
-		First = bufsize;
-		do
-		{
-			buffer[First] = 0;
-			First--;
-		}
-		while (First);
-		scannerstatus = normal;
-		warningindex = 0;
-		First = 1;
+		std::fill(buffer, buffer+bufsize+1, 0);
 		state = new_line;
 		start = 1;
 		index = 0;
-		line = 0;
 		name = "";
-		forceeof = false;
-		alignstate = 1000000;
-		if (!initterminal())
-			throw std::string();
+		initterminal();
 		limit = last;
 		First = last+1;
 		if (formatident == "" || buffer[loc] == '&')
@@ -128,18 +101,14 @@ int main()
 			if (formatident != "")
 				Initialize();
 			loadfmtfile();
-			while (loc < limit && buffer[loc] == ' ')
-				loc++;
+			for (; loc < limit && buffer[loc] == ' '; loc++); // trim à droite
 		}
 		if (end_line_char_inactive())
 			limit--;
 		else
 			buffer[limit] = end_line_char();
 		fixdateandtime();
-		if (interaction == batch_mode)
-			selector = no_print;
-		else
-			selector = term_only;
+		selector = interaction == batch_mode ? no_print : term_only;
 		if (loc < limit && cat_code(buffer[loc]))
 			startinput();
 		history = spotless;

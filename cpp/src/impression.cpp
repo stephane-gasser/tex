@@ -11,6 +11,8 @@
 #include "equivalent.h"
 #include <sstream> 
 
+static int tally = 0;
+
 static void printchar(ASCIIcode s)
 {
 	if (s == new_line_char())
@@ -923,20 +925,19 @@ std::string showbox(BoxNode *p)
 
 std::string showcontext(void)
 {
-	baseptr = inputptr;
-	inputstack[baseptr] = curinput; 
+	inputstack.back() = curinput; 
 	int nn = -1;
 	bool bottomline = false;
 	std::ostringstream oss;
-	while (true) 
+	for (baseptr = inputstack.size()-1; !bottomline; baseptr--) 
 	{
 		curinput = inputstack[baseptr];
 		if (state)
 			if (txt(name) > 17 || baseptr == 0)
 				bottomline = true;
-		if (baseptr == inputptr || bottomline || nn < error_context_lines())
+		if (baseptr == inputstack.size()-1 || bottomline || nn < error_context_lines())
 		{
-			if (baseptr == inputptr || state != token_list || token_type != backed_up || loc)
+			if (baseptr == inputstack.size()-1 || state != token_list || token_type != backed_up || loc)
 			{
 				int l = oss.str().size();
 				if (state)
@@ -1061,11 +1062,8 @@ std::string showcontext(void)
 				oss << "\r...";
 				nn++;
 			}
-		if (bottomline)
-			break;
-		baseptr--;
 	}
-	curinput = inputstack[inputptr];
+	curinput = inputstack.back();
 	return oss.str();
 }
 
@@ -1099,9 +1097,9 @@ static std::string plus(int i, const std::string &s)
 static std::string showactivities(void)
 {
 	std::ostringstream oss;
-	nest[nestptr] = curlist;
+	nest.back() = curlist;
 	oss << "\r\n";
-	for (int p = nestptr; p >= 0; p--)
+	for (int p = nest.size()-1; p >= 0; p--)
 	{
 		int m = nest[p].modefield;
 		memoryword a = nest[p].auxfield;

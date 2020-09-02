@@ -233,6 +233,8 @@ static CharNode *initlist;
 static bool initlig;
 static bool initlft;
 
+static smallnumber hyphenpassed;
+
 static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword hchar)
 {
 	CharNode *p;
@@ -441,7 +443,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 	return j;
 }
 
-void hyphenate(void)
+void hyphenate(LinkedNode *curp)
 {
 	char i, j, l;
 	ASCIIcode c;
@@ -600,7 +602,7 @@ void hyphenate(void)
 				break;
 			}
 		s = curp;
-		followUntilBeforeTarget(s, ha); 
+		followUntilBeforeTarget(s, ha);
 		j = 0;
 	} while (false);
 	flushnodelist(r);

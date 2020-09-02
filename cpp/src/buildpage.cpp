@@ -270,7 +270,7 @@ void buildpage(void)
 		contrib_head->link = p->link;
 		p->link = nullptr;
 	}
-	if (nestptr == 0)
+	if (nest.size() == 1)
 		tail = contrib_head;
 	else
 		contrib_tail = contrib_head;

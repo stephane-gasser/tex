@@ -14,12 +14,13 @@
 #include "runaway.h"
 #include "police.h"
 #include "equivalent.h" 
-#include "alignement.h" 
+#include "alignement.h"
+#include "macrocall.h"
 
 [[nodiscard]] static Token checkoutervalidity(Token t)
 {
 	if (scannerstatus == normal)
-		return t;
+		return t; 
 	if (t.cs)
 	{
 		if (state == token_list || txt(name) < 1 || txt(name) > 17)
@@ -321,7 +322,7 @@ static void removeFromEnd(int &k, int d)
 							t.chr = 0;
 							return t;
 						}
-						if (inputptr > 0)
+						if (inputstack.size() > 1)
 						{
 							endfilereading();
 							restart = true;

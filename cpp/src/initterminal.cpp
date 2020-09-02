@@ -2,7 +2,7 @@
 #include "inputln.h"
 #include <iostream>
 
-bool initterminal(void)
+void initterminal(void)
 {
 	while (true)
 	{
@@ -12,13 +12,13 @@ bool initterminal(void)
 		{
 			std::cout << std::endl;
 			std::cout << "! End of file on the terminal... why?'";
-			return false;
+			throw std::string();
 		}
 		loc = First;
 		while (loc < last && buffer[loc] == ' ')
 			loc++;
 		if (loc < last)
-			return true;
+			return;
 		std::cout << "Please type the name of your input file.\n";
 	}
 }

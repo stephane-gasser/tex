@@ -6,6 +6,7 @@
 #include "erreur.h"
 #include "normmin.h"
 #include "equivalent.h"
+#include "fichier.h"
 
 void doextension(Token t)
 {

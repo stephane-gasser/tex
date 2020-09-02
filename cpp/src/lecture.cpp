@@ -10,7 +10,6 @@
 #include "texte.h"
 #include "deleteglueref.h"
 #include "backinput.h"
-#include "rounddecimals.h"
 #include "impression.h"
 #include "xnoverd.h"
 #include "multandadd.h"
@@ -30,6 +29,7 @@
 #include "runaway.h"
 #include "openlogfile.h"
 #include "sauvegarde.h"
+#include <tuple>
 
 [[nodiscard]] static std::tuple<int, int, GlueSpec*> scansomethinginternal(smallnumber level, bool negative, Token t)
 {
@@ -114,10 +114,9 @@
 			val = 0;
 			if (mode)
 			{
-				nest[nestptr] = curlist;
-				auto p = nestptr;
-				while (abs(nest[p].modefield) != vmode)
-					p--;
+				nest.back() = curlist;
+				int p;
+				for (p = nest.size()-1; abs(nest[p].modefield) != vmode; p--);
 				val = nest[p].pgfield;
 			}
 			lev = int_val;
@@ -337,6 +336,18 @@ void scandelimiter(Delimiter &p, bool r, Token t)
 	p.large_char = val%(1<<8);
 }
 
+static char dig[23]; // of 0..15
+
+static scaled rounddecimals(smallnumber k)
+{
+	int a = 0;
+	while (k > 0)
+	{
+		k--;
+		a = (a+dig[k]*two)/10;
+	}
+	return (a+1)/2;
+}
 
 [[nodiscard]] int scandimen(bool mu, bool inf, bool shortcut)
 {
@@ -398,18 +409,18 @@ void scandelimiter(Delimiter &p, bool r, Token t)
 					t.tok = point_token; 
 				if (radix == 10 && t.tok == point_token) 
 				{
-					LinkedNode *p = nullptr;
-					auto _ = gettoken();
-					int k = 0;
-					while (true)
+					t = gettoken();
+					for (int k = 0; true; k++)
 					{
 						t = getxtoken();
 						if (t.tok > zero_token+9 || t.tok < zero_token)
+						{
+							f = rounddecimals(k);
 							break;
+						}
 						if (k < 17)
 							dig[k] = t.tok-zero_token;
 					}
-					f = rounddecimals(k);
 					if (t.cmd != spacer)
 						backinput(t);
 				}
@@ -1129,7 +1140,7 @@ void begintokenlist(TokenNode *P, quarterword t)
 	{
 		P->token_ref_count++;
 		if (t == macro)
-			param_start = paramptr;
+			param_start = paramstack.size();
 		else
 		{
 			Loc = dynamic_cast<TokenNode*>(P->link);
@@ -1174,8 +1185,8 @@ void endtokenlist(void)
 			break;
 		case macro:
 			deletetokenref(Start);
-			for (;paramptr > param_start; paramptr--)
-				flushnodelist(paramstack[paramptr]);
+			for (;paramstack.size() > param_start; paramstack.pop_back())
+				flushnodelist(paramstack.back());
 			break;
 		case output_text:
 		case every_par_text:

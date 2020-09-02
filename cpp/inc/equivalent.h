@@ -218,8 +218,9 @@ inline std::vector<MemoryNode> eqtb_dimen(eqtb_size-dimen_base); // holds the cu
 	// 256 dimen registers
 	inline int& dimen(halfword p) { return eqtb_dimen[p+scaled_base-dimen_base].int_; } 
 
-inline quarterword xeqlevel[6107]; // débute à 5263
+//inline quarterword xeqlevel[6107]; // débute à 5263 ; initialisé à level_one
 inline std::vector<MemoryNode*> savestack;
+inline quarterword curlevel = level_one;
 
 void eqworddefine(MemoryNode*, int);
 void word_define(int, MemoryNode*, int);

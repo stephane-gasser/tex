@@ -3,6 +3,8 @@
 
 #include "globals.h"
 
+inline int lastbadness = 0;
+
 BoxNode *rebox(BoxNode*, scaled);
 BoxNode *cleanbox(NoadContent&, smallnumber);
 void alterboxdimen(halfword);

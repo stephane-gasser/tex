@@ -6,6 +6,7 @@
 #include "equivalent.h"
 #include "lecture.h"
 #include "erreur.h"
+#include "fichier.h"
 #include "xnoverd.h"
 #include "texte.h"
 #include "pushmath.h"
@@ -147,7 +148,7 @@ void newgraf(bool indented)
 	}
 	if (every_par())
 		begintokenlist(every_par(), every_par_text);
-	if (nestptr == 1)
+	if (nest.size() == 2)
 		buildpage();
 }
 

@@ -24,7 +24,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 		while (true)
 		{
 			// clearforerrorprompt
-			while (state != token_list && terminal_input(name) && inputptr > 0 && loc > limit)
+			while (state != token_list && terminal_input(name) && inputstack.size() > 1 && loc > limit)
 				endfilereading();
 			println();
 			std::cin.clear();

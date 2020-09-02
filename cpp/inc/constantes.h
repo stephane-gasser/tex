@@ -39,15 +39,7 @@ enum interactions
 
 enum
 {
-	spotless = 0, //!< \a history value when nothing has been amiss yet
-	warning_issued = 1, //!< \a history value when \a begin_diagnostic has been called
-	error_message_issued = 2, //!< \a history value when \a error has been called
-	fatal_error_stop = 3 //!< \a history value when termination was premature
-};
-
-enum
-{
-	if_node_size = 2, //!<  number of words in stack entry for conditionals
+/*	if_node_size = 2, //!<  number of words in stack entry for conditionals
 	box_node_size = 7, //!<  number of words to allocate for a box node
 	rule_node_size = 4, //!<  number of words to allocate for a rule node
 	ins_node_size = 5, //!<  number of words to allocate for an insertion
@@ -65,7 +57,7 @@ enum
 	noad_size = 4, //!< number of words in a normal noad
 	accent_noad_size = 5, //!< number of \a mem words in an accent noad
 	radical_noad_size = 5, //!< number of \a mem words in a radical noad
-	fraction_noad_size = 6, //!< number of \a mem words in a fraction noad
+	fraction_noad_size = 6, //!< number of \a mem words in a fraction noad*/
 	glue_spec_size = 4 //!< number of words to allocate for a glue specification
 };
 
@@ -74,8 +66,8 @@ enum
 	width_offset = 1, //!< position of \a width field in a box node
 	depth_offset = 2, //!< position of \a depth field in a box node
 	height_offset = 3, //!< position of \a height field in a box node
-	list_offset = 5, //!< position of \a list_ptr field in a box node
-	glue_offset = 6 //!< position of \a glue_set in a box node
+//	list_offset = 5, //!< position of \a list_ptr field in a box node
+//	glue_offset = 6 //!< position of \a glue_set in a box node
 };
 
 enum
@@ -373,15 +365,6 @@ enum state_code
 };
 
 
-enum scanner_status
-{
-	skipping = 1, //!< \a scanner_status when passing conditional text
-	defining = 2, //!< \a scanner_status when reading a macro definition
-	matching = 3, //!< \a scanner_status when reading macro arguments
-	aligning = 4, //!< \a scanner_status when reading an alignment preamble
-	absorbing = 5 //!< \a scanner_status when reading a balanced text
-};
-
 enum token_type
 {
 	parameter = 0, //!< \a token_type code for parameter
@@ -456,37 +439,6 @@ enum
 	x_height_code = 5,
 	quad_code = 6,
 	extra_space_code = 7
-};
-
-enum
-{
-	set1 = 128, //!< typeset a character and move right
-	set_rule = 132, //!< typeset a rule and move right
-	put_rule = 137, //!< typeset a rule
-	bop = 139, //!< beginning of page
-	eop = 140, //!< ending of page
-	push = 141, //!< save the current positions
-	pop = 142, //!< restore previous positions
-	right1 = 143, //!< move right
-	down1 = 157, //!< move down
-	fnt_num_0 = 171, //!< set current font to 0
-	fnt1 = 235, //!< set current font
-	xxx1 = 239, //!< extension to DVI primitives
-	xxx4 = 242, //!< potentially long extension to DVI primitives
-	fnt_def1 = 243, //!< define the meaning of a font number
-	pre = 247, //!< preamble
-	post = 248, //!< postamble beginning
-	post_post = 249 //!< postamble ending
-};
-
-enum info
-{
-	y_here = 1, //!< \a info when the movement entry points to a \a y command
-	z_here = 2, //!< \a info when the movement entry points to a \a z command
-	yz_OK = 3, //!< \a info corresponding to an unconstrained \a down command
-	y_OK = 4, //!< \a info corresponding to a \a down that can't become a \a z
-	z_OK = 5, //!< \a info corresponding to a \a down that can't become a \a y
-	d_fixed = 6 //!< \a info corresponding to a \a down that can't change
 };
 
 enum box_dim
@@ -600,28 +552,30 @@ constexpr int cramped = 1; //!< add this to an uncramped style if you want to cr
 constexpr int span_code = 256; //!< distinct from any character
 constexpr int cr_code = 257; //!< distinct from \a span_code and from any character
 constexpr int cr_cr_code = cr_code+1; //!< this distinguishes \\crcr from \\cr
-
-enum
-{
-	very_loose_fit = 0, //!< fitness classification for lines stretching more than their stretchability
-	loose_fit = 1, //!< fitness classification for lines stretching 0.5 to 1.0 of their stretchability
-	decent_fit = 2, //!< fitness classification for all other lines
-	tight_fit = 3 //!< fitness classification for lines shrinking 0.5 to 1.0 of their stretchability
-};
-
-enum
-{
-	unhyphenated = 0, //!< the \a type of a normal active break node
-	hyphenated = 1 //!< the \a type of an active node that breaks at a \a disc_node
-};
-
 constexpr int delta_node = 2; //!< \a type field in a delta node
 constexpr int split_up = 1; //!< an overflowed insertion class
 
-int length(halfword); //!< the number of characters
-int cur_length(void); 
-void append_char(ASCIIcode); //!< put \a ASCII_code # at the end of \a str_pool
-void flush_char(void); //!< forget the last character in the pool
+inline auto &start = curinput.startfield; //!< starting position in \a buffer
+inline auto &limit = curinput.limitfield; //!< end of current line in \a buffer
+inline auto &param_start = limit; //!< base of macro parameters in \a param_stack
+inline auto &loc = curinput.locfield; //!< location of first unread character in \a buffer
+inline auto &state = curinput.statefield; //!< current scanner state
+inline auto &index = curinput.indexfield; //!< reference for buffer information
+inline auto &token_type = index; //!< type of current token list
+inline auto &name = curinput.namefield; //!< name of the current file
+inline auto &page_goal = pagesofar[0]; //!< desired height of information on page being built
+inline auto &page_total = pagesofar[1]; //!< height of the current page
+inline auto &page_shrink = pagesofar[6]; //!< shrinkability of the current page
+inline auto &page_depth = pagesofar[7]; //!< depth of the current page
+//extern halfword &contrib_tail; //!< tail of the contribution list
+
+inline int cur_length(void) { return currentString.size(); }
+inline void append_char(ASCIIcode c) { currentString += c; } //!< put \a ASCII_code # at the end of \a str_pool
+inline bool is_running(int d) { return d == null_flag; } //!< tests for a running dimension
+inline bool terminal_input(const std::string &name) { return name == ""; } //!< are we reading from the terminal?
+//inline void flush_char(void) { currentString.pop_back(); } //!< forget the last character in the pool
+
+//int length(halfword); //!< the number of characters
 void flush_string(void); 
 void tail_append(LinkedNode*);
 halfword& node_size(halfword); //!< the size field in empty variable-size nodes
@@ -641,8 +595,7 @@ halfword& info(halfword p); //!< the \a info field of a memory word
 //halfword& list_ptr(halfword); //!< beginning of the list inside the box
 //quarterword& glue_order(halfword); //!< applicable order of infinity
 //quarterword& glue_sign(halfword); //!< stretching or shrinking
-float &glue_set(halfword);
-bool is_running(int); //!< tests for a running dimension
+//float &glue_set(halfword);
 //int& float_cost(halfword); //!< the \a floating_penalty to be used
 //halfword& ins_ptr(halfword); //!< the vertical list to be inserted
 //halfword& split_top_ptr(halfword); //!< the \a split_top_skip to be used
@@ -660,14 +613,14 @@ bool is_running(int); //!< tests for a running dimension
 //int& glue_stretch(halfword); //!< total stretch in an unset node
 //int& glue_shrink(halfword); //!< total shrink in an unset node
 //quarterword& span_count(halfword); //!< indicates the number of spanned columns
-halfword& token_ref_count(halfword); //!< reference count preceding a token list
+//halfword& token_ref_count(halfword); //!< reference count preceding a token list
 //halfword& skip(halfword); //!< \a mem location of glue specification
 //halfword& box(halfword); 
 //halfword& text(halfword); //!< string number for control sequence name
-quarterword& save_type(halfword); //!< classifies a \a save_stack entry
-quarterword& save_level(halfword);
-halfword& save_index(halfword); 
-int& saved(halfword); 
+//quarterword& save_type(halfword); //!< classifies a \a save_stack entry
+//quarterword& save_level(halfword);
+//halfword& save_index(halfword); 
+//int& saved(halfword); 
 alphafile& cur_file(void); //!< the current \a alpha_file variable
 //int& if_line_field(halfword); 
 //int& location(halfword); //!< DVI byte number for a movement command
@@ -688,7 +641,6 @@ float vet_glue(float);
 //halfword denominator(halfword); //!< \a denominator field in a fraction noad
 //halfword accent_chr(halfword); //!< the \a accent_chr field of an accent noad
 //halfword delimiter(halfword); //!< \a delimiter field in left and right noads
-int default_rule_thickness(void); //!< thickness of \\over bars
 //int& u_part(halfword); //!< pointer to \f$<u_j\f$ token list
 //int&v_part(halfword); //!< pointer to \f$<v_j\f$ token list
 //halfword& extra_info(halfword); //!< info to remember during template
@@ -708,28 +660,7 @@ void set_cur_lang(void);
 //halfword& open_name(halfword); //!< string number of file name to open
 //halfword& open_area(halfword); //!< string number of file area for \a open_name
 //halfword& open_ext(halfword); //!< string number of file extension for \a open_name
-
-inline auto start = curinput.startfield; //!< starting position in \a buffer
-inline auto limit = curinput.limitfield; //!< end of current line in \a buffer
-inline auto param_start = limit; //!< base of macro parameters in \a param_stack
-inline auto loc = curinput.locfield; //!< location of first unread character in \a buffer
-
-extern quarterword &state; //!< current scanner state
-extern quarterword &index; //!< reference for buffer information
-extern std::string &name; //!< name of the current file
-extern scaled &act_width; //!< length from first active node to current node
-extern scaled &page_goal; //!< desired height of information on page being built
-extern scaled &page_total; //!< height of the current page
-extern scaled &page_shrink; //!< shrinkability of the current page
-extern scaled &page_depth; //!< depth of the current page
-//extern halfword &contrib_tail; //!< tail of the contribution list
-
 //inline void add_glue_ref(halfword p) { glue_ref_count(p)++; } //!< new reference to a glue spec
-inline bool terminal_input(const std::string &name) { return name == ""; } //!< are we reading from the terminal?
-inline quarterword &token_type = index; //!< type of current token list
-inline int cramped_style(int c) { return 2*(c/2)+cramped; } //!< cramp the style
-inline int sub_style(int c) { return 2*(c/4)+script_style+cramped; } //!< smaller and cramped
-inline int sup_style(int c) { return 2*(c/4)+script_style+c%2; } //!< smaller
 //inline void add_token_ref(halfword p) { token_ref_count(p)++; } //!< new reference to a token list
 
 #endif
