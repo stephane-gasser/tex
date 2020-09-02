@@ -18,9 +18,6 @@
 #include "preparemag.h"
 #include "xnoverd.h"
 #include "texte.h"
-#include "beginname.h"
-#include "morename.h"
-#include "endname.h"
 #include "pushinput.h"
 #include "popinput.h"
 #include "equivalent.h"
@@ -641,26 +638,6 @@ int scanfifteenbitint(void)
 	return val;
 }
 
-
-void scanfilename(void)
-{
-	nameinprogress = true;
-	beginname();
-	auto t = getXTokenSkipSpace();
-	while (true)
-	{
-		if (t.cmd > other_char || t.chr > 255)
-		{
-			backinput(t);
-			break;
-		}
-		if (!morename(t.chr))
-			break;
-		t = getxtoken();
-	}
-	endname();
-	nameinprogress = false;
-}
 
 [[nodiscard]] int scanfontident(void)
 {

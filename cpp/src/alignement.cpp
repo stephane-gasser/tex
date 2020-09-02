@@ -362,10 +362,10 @@ static void finalign(AlignRecordNode* &loop)
 {
 	scaled t, w; // width of column
 	halfword n; // matching span amount
-	if (curgroup != 6)
+	if (curgroup != align_group)
 		confusion("align1");
 	unsave();
-	if (curgroup != 6)
+	if (curgroup != align_group)
 		confusion("align0"); 
 	unsave();
 	scaled o = nest[nestptr-1].modefield == mmode ? display_indent() : 0; // shift offset for unset boxes

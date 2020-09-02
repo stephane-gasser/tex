@@ -26,13 +26,6 @@ void flush_string(void)
 	currentString = "";
 }
 
-void append_to_name(int &k, char c)
-{
-	k++;
-	if (k <= filenamesize)
-		nameoffile[k] = xchr[c]; 
-}
-
 float vet_glue(float g)
 {
 	constexpr float billion = 1000000000.;

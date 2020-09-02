@@ -9,7 +9,7 @@
 
 void resumeafterdisplay(Token t)
 {
-	if (curgroup != 15)
+	if (curgroup != math_shift_group)
 		confusion("display");
 	unsave();
 	prev_graf += 3;

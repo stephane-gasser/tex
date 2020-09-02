@@ -1,6 +1,5 @@
 #include "openorclosein.h"
 #include "lecture.h"
-#include "packfilename.h"
 #include "fichier.h"
 #include "texte.h"
 
@@ -18,8 +17,7 @@ void openorclosein(halfword c)
 		scanfilename();
 		if (curext == "") 
 			curext = ".tex";
-		pack_cur_name();
-		if (aopenin(readfile[n]))
+		if (aopenin(readfile[n], pack_cur_name()))
 			readopen[n] = just_open;
 	}
 }

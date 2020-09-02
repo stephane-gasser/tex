@@ -4,7 +4,6 @@
 #include "getstringsstarted.h"
 #include "fixdateandtime.h"
 #include "impression.h"
-#include "openfmtfile.h"
 #include "initterminal.h"
 #include "loadfmtfile.h"
 #include "startinput.h"
@@ -128,14 +127,7 @@ int main()
 		{
 			if (formatident != "")
 				Initialize();
-			if (!openfmtfile())
-				throw std::string();
-			if (!loadfmtfile())
-			{
-				wclose(fmtfile);
-				throw std::string();
-			}
-			wclose(fmtfile);
+			loadfmtfile();
 			while (loc < limit && buffer[loc] == ' ')
 				loc++;
 		}

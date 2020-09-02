@@ -2,7 +2,6 @@
 #include "equivalent.h"
 #include "impression.h"
 #include "erreur.h"
-#include "packfilename.h"
 #include "fichier.h"
 #include "xnoverd.h"
 #include "texte.h"
@@ -110,11 +109,7 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 	bool fileopened = false;
 	try
 	{
-		if (aire == "")
-			packfilename(nom, TEX_font_area, ".tfm");
-		else
-			packfilename(nom, aire, ".tfm");
-		if (!bopenin(tfmfile))
+		if (!bopenin(tfmfile, packfilename(nom, aire == "" ? TEX_font_area : aire, ".tfm")))
 			throw 1;
 		fileopened = true;
 		halfword lf, lh, bc, ec;

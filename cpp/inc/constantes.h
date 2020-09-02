@@ -594,7 +594,6 @@ constexpr int non_char = 256; //!< a \a halfword code that can't match a real ch
 constexpr int non_address = 0; //!< a spurious \a bchar_label
 constexpr int format_default_length = 20; //!< length of the \a TEX_format_default string
 constexpr int format_area_length = 11; //!< length of its area part
-constexpr int format_ext_length = 4; //!< length of its `.fmt' part
 constexpr int id_byte = 2; //!< identifies the kind of DVI files described here
 constexpr int default_code = 1<<30; //!< denotes \a default_rule_thickness
 constexpr int cramped = 1; //!< add this to an uncramped style if you want to cramp it
@@ -671,7 +670,6 @@ halfword& save_index(halfword);
 int& saved(halfword); 
 alphafile& cur_file(void); //!< the current \a alpha_file variable
 //int& if_line_field(halfword); 
-void append_to_name(int&, char);
 //int& location(halfword); //!< DVI byte number for a movement command
 float vet_glue(float);
 //halfword nucleus(halfword); //!< the \a nucleus field of a noad

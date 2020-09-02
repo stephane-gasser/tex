@@ -4,9 +4,7 @@
 #include "jumpout.h"
 #include "equivalent.h"
 #include "makestring.h"
-#include "packjobname.h"
 #include "promptfilename.h"
-#include "wmakenamestring.h"
 #include "sortavail.h"
 #include "cesure.h"
 #include "police.h"
@@ -15,6 +13,8 @@
 #include "idlookup.h"
 
 constexpr char format_extension[] = ".fmt"; //!< the extension, as a WEB constant
+
+static wordfile fmtfile;
 
 static void dump_hh(twohalves num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
 static void dump_wd(memoryword num) { fmtfile.write(reinterpret_cast<const char *>(&num), 4); }
@@ -42,11 +42,11 @@ void storefmtfile(void)
 		fatal("You can't dump_int inside a group", "`{...\\dump_int}' is a no-no.");
 	formatident = " (preloaded format="+jobname+" "+std::to_string(year())+"."+std::to_string(month())+"."+std::to_string(day())+")";
 	selector = interaction == batch_mode ? log_only : term_and_log;
-	packjobname(format_extension);
-	while (!wopenout(fmtfile))
+	std::string fname;
+	while (!wopenout(fmtfile, fname = packjobname(format_extension)))
 		promptfilename("format file name", format_extension); 
 	printnl("Beginning to dump_int on file ");
-	slowprint(wmakenamestring(fmtfile));
+	slowprint(fname);
 	printnl(formatident);
 	dump_int(CHECKSUM);
 	dump_int(mem_bot);

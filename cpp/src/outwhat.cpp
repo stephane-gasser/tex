@@ -1,6 +1,5 @@
 #include "outwhat.h"
 #include "writeout.h"
-#include "packfilename.h"
 #include "fichier.h"
 #include "promptfilename.h"
 #include "dvi.h"
@@ -25,9 +24,8 @@ void outwhat(WhatsitNode *P)
 					curext = Q->open_ext;
 					if (curext == "")
 						curext = ".tex";
-					pack_cur_name();
-					while (!aopenout(writefile[j]))
-					promptfilename("output file name", ".tex"); 
+					while (!aopenout(writefile[j], nameoffile = pack_cur_name()))
+						promptfilename("output file name", ".tex"); 
 					writeopen[j] = true;
 				}
 			}

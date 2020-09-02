@@ -1,6 +1,6 @@
 #include "startinput.h"
 #include "lecture.h"
-#include "packfilename.h"
+#include "fichier.h"
 #include "beginfilereading.h"
 #include "fichier.h"
 #include "endfilereading.h"
@@ -8,7 +8,6 @@
 #include "openlogfile.h"
 #include "impression.h"
 #include "firmuptheline.h"
-#include "amakenamestring.h"
 #include "inputln.h"
 #include <iostream>
 #include "equivalent.h"
@@ -20,22 +19,17 @@ void startinput(void)
 	scanfilename();
 	if (curext == "")
 		curext = ".tex";
-	pack_cur_name();
+	name = pack_cur_name();
 	while (true)
 	{
 		beginfilereading();
-		if (aopenin(cur_file()))
+		if (aopenin(cur_file(), name))
 			break;
-		if (curarea == "")
-		{
-			packfilename(curname, TEX_area, curext);
-			if (aopenin(cur_file()))
-				break;
-		}
+		if (curarea == "" && aopenin(cur_file(), packfilename(curname, TEX_area, curext)))
+			break;
 		endfilereading();
-		promptfilename("input file name", ".tex");
+		name = promptfilename("input file name", ".tex");
 	}
-	name = amakenamestring(cur_file());
 	if (jobname == "")
 	{
 		jobname = curname;

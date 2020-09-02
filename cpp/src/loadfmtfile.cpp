@@ -3,7 +3,40 @@
 #include "police.h"
 #include "equivalent.h"
 #include "idlookup.h"
+#include "fichier.h"
 #include <iostream>
+
+static wordfile fmtfile;
+
+static void openfmtfile(void)
+{
+	auto j = loc;
+	if (buffer[loc] == '&')
+	{
+		loc++;
+		buffer[last] = ' ';
+		for (j = loc; buffer[j] != ' '; j++); //trim à droite
+		auto fname = std::string(buffer+loc, buffer+j);
+		if (wopenin(fmtfile, packbufferedname(none, fname)))
+		{
+			loc = j;
+			return;
+		}
+		if (wopenin(fmtfile, packbufferedname(area, fname)))
+		{
+			loc = j;
+			return;
+		}
+		std::cout << "Sorry, I can't find that format;\n will try PLAIN.\n" << std::flush;
+	}
+	if (wopenin(fmtfile, packbufferedname(area_name, "")))
+	{
+		loc = j;
+		return;
+	}
+	std::cout << "I can't find the PLAIN format file!\n";
+	throw std::string();
+}
 
 void undump_hh(twohalves &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
 void undump_wd(memoryword &num) { fmtfile.read(reinterpret_cast<char *>(&num), 4); }
@@ -55,8 +88,9 @@ void undump_four_ASCII(void)
 	pool.push_back(w.b3);
 }
 
-bool loadfmtfile(void)
+void loadfmtfile(void)
 {
+	openfmtfile();
 	try
 	{
 		int j, k;
@@ -209,11 +243,12 @@ bool loadfmtfile(void)
 		formatident = undump(0, strptr);
 		undump_int(x);
 		badFormatIf(x != 69069 || fmtfile.eof());
-		return true;
 	}
 	catch(...)
 	{
 		std::cout << "(Fatal format file error; I''m stymied\n";
+		wclose(fmtfile);
+		throw std::string();
 	}
-	return false;
+	wclose(fmtfile);
 }

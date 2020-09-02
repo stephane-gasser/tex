@@ -34,7 +34,6 @@ void Initialize(void)
 	for (int k = int_base; k < 6107; k++)
     	xeqlevel[k] = 1;
 	curlevel = 1;
-	curgroup = 0;
 	magset = 0;
 	radix = 0;
 	curorder = 0;
@@ -43,7 +42,6 @@ void Initialize(void)
 	iflimit = 0;
 	curif = 0;
 	ifline = 0;
-	TEXformatdefault = "TeXformats:plain.fmt";
 	for (int k = 0; k <= fontmax; k++)
 		fonts[k].used = false;
 	nullcharacter.b0 = 0;

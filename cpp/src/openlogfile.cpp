@@ -1,8 +1,6 @@
 #include "openlogfile.h"
-#include "packjobname.h"
 #include "fichier.h"
 #include "promptfilename.h"
-#include "amakenamestring.h"
 #include "impression.h"
 #include "equivalent.h"
 
@@ -11,13 +9,11 @@ void openlogfile(void)
 	auto oldsetting = selector;
 	if (jobname == "") 
 		jobname = "texput";
-	packjobname(".log");
-	while (!aopenout(logfile))
+	while (!aopenout(logfile, logname = packjobname(".log")))
 	{
 		selector = term_only;
 		promptfilename(" transcript file name", ".log");
 	}
-	logname = amakenamestring(logfile);
 	selector = log_only;
 	logopened = true;
 	logfile << banner;

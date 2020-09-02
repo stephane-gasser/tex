@@ -7,34 +7,31 @@
 constexpr int stringvacancies = 8000;
 constexpr char poolname[] = "tex.pool";
 
+static alphafile poolfile;
+
 //! Initializes the string pool,
 //! but returns |false| if something goes wrong.
 bool getstringsstarted(void)
 {
-	strings.resize(256);
 	for (int k = 0; k < 256; k++)
 	{
 		if (k < ' ' || k > '~')
 		{
-			strings[k] = "^^";
 			if (k < 64)
-				strings[k] += char(k+64);
+				strings.push_back("^^"+char(k+64));
 			else 
 				if (k < 128)
-					strings[k] += char(k-64);
+					strings.push_back("^^"+char(k-64));
 				else
 				{
-					int l = k/16;
-					strings[k] += char(l < 10 ? l+'0' : l+'a'-10);
-					l = k%16;
-					strings[k] += char(l < 10 ? l+'0' : l+'a'-10);
+					int l = k/16, m = k%16;
+					strings.push_back("^^"+char(l < 10 ? l+'0' : l+'a'-10)+char(m < 10 ? m+'0' : m+'a'-10));
 				}
 		}
 		else
-			strings[k] = char(k);
+			strings.push_back(std::string(1 ,char(k)));
 	}
-	nameoffile = poolname;
-	if (!aopenin(poolfile))
+	if (!aopenin(poolfile, poolname))
 	{
 		std::cout << "! I can't read TEX.POOL." << std::endl;
 		aclose(poolfile);

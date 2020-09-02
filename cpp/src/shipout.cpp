@@ -3,10 +3,9 @@
 #include "erreur.h"
 #include "fichier.h"
 #include "preparemag.h"
-#include "bmakenamestring.h"
 #include "noeud.h"
 #include "openlogfile.h"
-#include "packjobname.h"
+#include "fichier.h"
 #include "promptfilename.h"
 #include "dvi.h"
 #include "vlistout.h"
@@ -20,10 +19,8 @@ static void ensure_dvi_open(void)
 	{
 		if (jobname == "")
 			openlogfile();
-		packjobname(".dvi");
-		while (!bopenout(dvifile))
+		while (!bopenout(dvifile, outputfilename = packjobname(".dvi")))
 			promptfilename("file name for output", ".dvi");
-		outputfilename = bmakenamestring(dvifile); 
 	}
 }
 

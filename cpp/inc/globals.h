@@ -25,7 +25,6 @@ constexpr int poolsize = 32000;
 constexpr int savesize = 600;
 constexpr int triesize = 8000;
 constexpr int trieopsize = 500;
-constexpr int filenamesize = 40;
 constexpr int CHECKSUM = 117275187;
 constexpr int mem_bot = 0; //!<  smallest index in the \a mem array dumped by INITEX
 constexpr int mem_top = 30000; //!<  largest index in the \a mem array dumped by INITEX
@@ -291,12 +290,10 @@ inline int minimumdemerits;
 inline std::map<char, ASCIIcode> xord;
 inline std::map<ASCIIcode, char> xchr;
 inline std::string nameoffile;// char[filenamesize+1]; // débute à 1
-inline char namelength; //0..filenamesize;
 inline ASCIIcode buffer[bufsize+1]; // débute à 0
 inline int First;// 0..bufsize
 inline int last; // 0..bufsize
 inline int maxbufstack; // 0..bufsize
-inline alphafile poolfile;
 inline alphafile logfile;
 inline char selector; //0..21
 inline char dig[23]; // of 0..15
@@ -325,7 +322,7 @@ inline char maxneststack; // 0..nestsize
 inline int shownmode; //-203..203
 inline char oldsetting; // 0..21
 inline quarterword curlevel;
-inline groupcode curgroup;
+inline groupcode curgroup = 0;
 inline instaterecord inputstack[stacksize+1];
 inline unsigned char inputptr; // 0..stacksize
 inline unsigned char maxinstack; // 0..stacksize
@@ -358,9 +355,6 @@ inline char readopen[17]; // of 0..2
 //inline halfword condptr;
 inline char iflimit; // 0..4
 inline smallnumber curif;
-inline poolpointer areadelimiter;
-inline poolpointer extdelimiter;
-inline std::string TEXformatdefault; // commence à 1
 inline bool nameinprogress;
 inline bool logopened;
 inline bytefile dvifile;
@@ -420,7 +414,6 @@ inline halfword falsebchar;
 inline bool cancelboundary;
 inline bool insdisc;
 inline bool longhelpseen;
-inline wordfile fmtfile;
 inline alphafile writefile[16];
 inline bool writeopen[18];
 inline halfword writeloc;
