@@ -4,6 +4,7 @@
 #include "equivalent.h"
 #include "idlookup.h"
 #include "fichier.h"
+#include "makestring.h"
 #include <iostream>
 
 static halfword& link(halfword p) { return mem[p].hh.rh; }

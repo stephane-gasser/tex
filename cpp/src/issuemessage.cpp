@@ -7,6 +7,8 @@
 #include "lecture.h"
 #include <iostream>
 
+static bool longhelpseen = false;
+
 void issuemessage(Token t)
 {
 	garbage->link = scantoks(false, true, t);

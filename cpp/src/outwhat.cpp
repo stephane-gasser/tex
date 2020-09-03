@@ -3,7 +3,26 @@
 #include "fichier.h"
 #include "dvi.h"
 #include "erreur.h"
-#include "texte.h"
+#include "makestring.h"
+#include "impression.h"
+
+static void specialout(NotOpenWriteWhatsitNode *p)
+{
+	synch_h();
+	synch_v();
+	if (cur_length() < 256)
+	{
+		dvi_out(xxx1);
+		dvi_out(cur_length());
+	}
+	else
+	{
+		dvi_out(xxx4);
+		dvifour(cur_length());
+	}
+	for (auto c: tokenlist(dynamic_cast<TokenNode*>(p->write_tokens->link), 0, poolsize/*-poolptr*/))
+		dvi_out(c);
+}
 
 void outwhat(WhatsitNode *P)
 {

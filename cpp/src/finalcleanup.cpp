@@ -1,6 +1,5 @@
 #include "finalcleanup.h"
 #include "openlogfile.h"
-#include "endfilereading.h"
 #include "impression.h"
 #include "noeud.h"
 #include "lecture.h"
@@ -9,6 +8,7 @@
 #include "conditional.h"
 #include "erreur.h"
 #include "equivalent.h"
+#include "fichier.h"
 
 void finalcleanup(Token t)
 {

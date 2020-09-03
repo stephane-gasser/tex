@@ -1,10 +1,9 @@
 #include "idlookup.h"
 #include "equivalent.h"
 #include "erreur.h"
+#include "makestring.h"
 
-//static halfword& text(halfword p) { return hash[p].rh; }
 static bool hash_is_full(void) { return hashused == hash_base; } //! test if all positions are occupied
-//static halfword& next(halfword p) { return hash[p].lh; } //! link for coalesced lists
 
 static std::map<std::string, halfword> numero;
 

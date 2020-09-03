@@ -5,6 +5,7 @@
 #include "cesure.h"
 #include "fixlanguage.h"
 #include "getnext.h"
+#include "fichier.h"
 #include "charwarning.h"
 #include "backinput.h"
 #include "erreur.h"
@@ -38,7 +39,6 @@
 #include "aftermath.h"
 #include "prefixedcommand.h"
 #include "issuemessage.h"
-#include "openorclosein.h"
 #include "impression.h"
 #include "shiftcase.h"
 #include "doextension.h"
@@ -66,6 +66,8 @@ static void pack_lig(bool z)
 	tail = mainp;
 	ligaturepresent = false;
 }
+
+static bool insdisc = false;
 
 static void wrapup(bool z)
 {
@@ -100,6 +102,8 @@ static void adjust_space_factor(halfword chr)
 			space_factor = space_factor < 1000 ? 1000 : mains;
 	}
 }
+
+static halfword falsebchar;
 
 static void main_loop_lookahead(void)
 {
@@ -361,6 +365,8 @@ static bool main_loop_wrapup(halfword chr)
 		is110 = false;
 	}
 }
+
+static bool cancelboundary = false;
 
 static void main_loop(Token t)
 {

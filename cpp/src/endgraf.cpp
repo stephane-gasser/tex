@@ -3,6 +3,7 @@
 #include "linebreak.h"
 #include "normalparagraph.h"
 #include "equivalent.h"
+#include "erreur.h"
 
 void endgraf(void)
 {

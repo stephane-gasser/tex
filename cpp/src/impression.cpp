@@ -10,6 +10,7 @@
 #include "police.h"
 #include "equivalent.h"
 #include "buildpage.h"
+#include "makestring.h"
 #include <sstream> 
 
 static int tally = 0;

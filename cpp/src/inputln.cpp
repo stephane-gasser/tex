@@ -30,7 +30,7 @@ bool inputln(std::istream& f, bool bypasseoln)
 					overflow("buffer size", bufsize); 
 				}
 		}
-		buffer[last++] = xord[c];
+		buffer[last++] = 32 <= c && c < 127 ? c : 127;
 		if (buffer[last-1] != ' ')
 			lastnonblank = last;
 	}

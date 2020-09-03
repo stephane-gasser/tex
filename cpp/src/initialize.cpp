@@ -10,10 +10,8 @@ void Initialize(void)
 {
 	for (int i = 0; i < 256; i++)
 		xchr[i] = ' ';
-	for (int i = -128; i < 127; i++)
-		xord[i] = 127;
 	for (int i = 32; i < 127; i++)
-		xchr[i] = xord[i] = i;
+		xchr[i] = i;
 	mode = vmode;
 	tail = head = contrib_head = new LinkedNode;
 	prev_depth = ignore_depth;

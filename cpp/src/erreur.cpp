@@ -3,14 +3,15 @@
 #include "jumpout.h"
 #include "terminput.h"
 #include "lecture.h"
-#include "beginfilereading.h"
 #include "texte.h"
 #include "backinput.h"
 #include "noeud.h"
-#include "endfilereading.h"
-#include "normalizeselector.h"
+#include "fichier.h"
+#include "openlogfile.h"
 #include "equivalent.h"
 #include <iostream>
+
+static std::string helpline;
 
 void error(const std::string &msg, const std::string &hlp, bool deletionsallowed)
 {
@@ -193,6 +194,18 @@ void fatal(const std::string &msg, const std::string &hlp)
 		print_err(msg);
 	history = fatal_error_stop;
 	jumpout();
+}
+
+static void normalizeselector(void)
+{
+	if (logopened)
+		selector = term_and_log;
+	else
+	selector = term_only;
+	if (jobname == "")
+		openlogfile();
+	if (interaction == batch_mode)
+		selector--;
 }
 
 void confusion(const std::string &s)

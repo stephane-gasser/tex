@@ -4,6 +4,7 @@
 #include "fichier.h"
 #include "impression.h"
 #include "equivalent.h"
+#include "makestring.h"
 
 constexpr dviindex halfbuf = dvibufsize/2;
 
@@ -304,7 +305,7 @@ void prunemovements(int l)
 
 void closefilesandterminate(void)
 {
-	for (int k = 0; k <= 15; k++)
+	for (int k = 0; k < 16; k++)
 		if (writeopen[k])
 			aclose(writefile[k]);
 	while (curs > -1)
@@ -360,20 +361,3 @@ void closefilesandterminate(void)
 	}
 }
 
-void specialout(NotOpenWriteWhatsitNode *p)
-{
-	synch_h();
-	synch_v();
-	if (cur_length() < 256)
-	{
-		dvi_out(xxx1);
-		dvi_out(cur_length());
-	}
-	else
-	{
-		dvi_out(xxx4);
-		dvifour(cur_length());
-	}
-	for (auto c: tokenlist(dynamic_cast<TokenNode*>(p->write_tokens->link), 0, poolsize/*-poolptr*/))
-		dvi_out(c);
-}

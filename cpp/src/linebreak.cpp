@@ -106,6 +106,12 @@ class DeltaNode : public LinkedNode
 };
 
 static LinkedNode *curp;
+static scaled firstwidth;
+static scaled firstindent;
+static scaled secondwidth;
+static scaled secondindent;
+static halfword bestline;
+static halfword lastspecialline;
 
 static void postlinebreak(int finalwidowpenalty)
 {
@@ -289,6 +295,9 @@ static void postlinebreak(int finalwidowpenalty)
 
 static LinkedNode *bestplace[4];
 static int minimaldemerits[4];
+static halfword easyline;
+static bool finalpass;
+static scaled discwidth;
 
 static void trybreak(int pi, smallnumber breaktype)
 {
@@ -652,6 +661,8 @@ static void trybreak(int pi, smallnumber breaktype)
 	}
 }
 
+static bool noshrinkerroryet;
+
 static GlueSpec *finiteshrink(GlueSpec *p)
 {
 	if (noshrinkerroryet)
@@ -697,12 +708,11 @@ static void flushAfterActive(void)
 }
 
 static int fewestdemerits;
+static bool secondpass;
 
 void linebreak(int finalwidowpenalty)
 {
 	bool autobreaking;
-//	halfword s, prevs;
-//	internalfontnumber f;
 	smallnumber j;
 	unsigned char c;
 	packbeginline = mode_line;

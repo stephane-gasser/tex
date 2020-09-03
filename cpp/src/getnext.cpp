@@ -2,7 +2,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "terminput.h"
-#include "endfilereading.h"
+#include "fichier.h"
 #include "openlogfile.h"
 #include "inputln.h"
 #include <iostream>
