@@ -4,6 +4,7 @@
 #include "police.h"
 #include "equivalent.h"
 #include "alignement.h"
+#include "buildpage.h"
 
 void Initialize(void)
 {
@@ -35,14 +36,8 @@ void Initialize(void)
 	ss_glue->shrink_order = fil;
 	fil_neg_glue->stretch = -unity;
 	fil_neg_glue->stretch_order = fil;
-	link(rover) = empty_flag;
-	node_size(rover) = 1000;
-	llink(rover) = rover;
-	rlink(rover) = rover;
-	link(lomemmax) = 0;
-	info(lomemmax) = 0;
 	for (int k = hi_mem_stat_min; k <= mem_top; k++)
-		mem[k] = mem[lomemmax];
+		mem[k].int_ = 0;
 	omit_template = new TokenNode(end_template_token);
 	end_span->Link = 256;
 	end_span->info = nullptr;

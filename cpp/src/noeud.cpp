@@ -23,6 +23,12 @@
 #include "xovern.h"
 #include "multandadd.h"
 
+void tail_append(LinkedNode *p) 
+{
+	tail->link = p;
+	next(tail);
+}
+
 LinkedNode* copynodelist(LinkedNode *p)
 {
 	static LinkedNode head;

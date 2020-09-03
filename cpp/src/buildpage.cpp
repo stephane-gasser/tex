@@ -1,5 +1,4 @@
 #include "buildpage.h"
-#include "freezepagespecs.h"
 #include "deleteglueref.h"
 #include "xovern.h"
 #include "impression.h"
@@ -12,6 +11,18 @@
 #include "texte.h"
 #include "boite.h"
 #include "equivalent.h"
+
+static void set_page_so_far_zero(int i) { pagesofar[i] = 0; }
+
+static void freezepagespecs(smallnumber s)
+{
+	pagecontents = s;
+	page_goal = hsize();
+	pagemaxdepth = vsize();
+	for (int i = 1; i <= 7; i++)
+		set_page_so_far_zero(i);
+	leastpagecost = max_dimen;
+}
 
 //! Append contributions to the current page.
 void buildpage(void)

@@ -2,7 +2,6 @@
 #define EQUIVALENT_H
 
 #include "globals.h"
-#include "parametres.h"
 
 enum memory
 {
@@ -217,6 +216,8 @@ inline std::vector<MemoryNode> eqtb_dimen(eqtb_size-dimen_base); // holds the cu
 		inline int null_delimiter_space(void) { return dimen_par(null_delimiter_space_code); }
 	// 256 dimen registers
 	inline int& dimen(halfword p) { return eqtb_dimen[p+scaled_base-dimen_base].int_; } 
+
+inline void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : language(); }
 
 //inline quarterword xeqlevel[6107]; // débute à 5263 ; initialisé à level_one
 inline std::vector<MemoryNode*> savestack;

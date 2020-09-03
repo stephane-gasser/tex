@@ -423,18 +423,18 @@ inline TokenNode *bot_mark = curmark[bot_mark_code];
 inline TokenNode *split_first_mark = curmark[split_first_mark_code];
 inline TokenNode *split_bot_mark = curmark[split_bot_mark_code];
 inline std::vector<AnyNode> heads;
-inline PageInsNode *page_ins_head; //!< list of insertion data for current page
-inline LinkedNode *contrib_head; //!< vlist of items not yet on current page
-inline LinkedNode *page_head; //!< vlist for current page
-inline TokenNode *temp_head; //!< head of a temporary list of some kind
-inline LinkedNode *hold_head; //!< head of a temporary list of another kind
-inline LinkedNode *adjust_head; //!< head of adjustment list returned by \a hpack
+inline PageInsNode *page_ins_head = nullptr; //!< list of insertion data for current page
+inline LinkedNode *contrib_head = nullptr; //!< vlist of items not yet on current page
+inline LinkedNode *page_head = nullptr; //!< vlist for current page
+inline TokenNode *temp_head = nullptr; //!< head of a temporary list of some kind
+inline LinkedNode *hold_head = nullptr; //!< head of a temporary list of another kind
+inline LinkedNode *adjust_head = nullptr; //!< head of adjustment list returned by \a hpack
 inline LinkedNode * const align_head = dynamic_cast<LinkedNode*>(&heads[8]); //!< head of preamble list for alignments
-inline TokenNode * omit_template; //!< a constant token list
-inline LinkedNode *null_list; //!< permanently empty list
-inline CharNode *lig_trick; //!< a ligature masquerading as a \a char_node
-inline LinkedNode *garbage; //!< used for scrap information
-inline LinkedNode *backup_head; //!< head of token list built by \a scan_keyword
+inline TokenNode * omit_template = nullptr; //!< a constant token list
+inline LinkedNode *null_list = nullptr; //!< permanently empty list
+inline CharNode *lig_trick = nullptr; //!< a ligature masquerading as a \a char_node
+inline LinkedNode *garbage = nullptr; //!< used for scrap information
+inline LinkedNode *backup_head = nullptr; //!< head of token list built by \a scan_keyword
 inline LinkedNode *preamble = align_head->link; //!< the current preamble list
 inline TokenNode *Start;
 inline TokenNode *Loc;
@@ -456,6 +456,7 @@ void appendpenalty(void);
 void appendtovlist(BoxNode*);
 void appspace(LinkedNode*, fontindex&);
 void followUntilBeforeTarget(LinkedNode*&, LinkedNode* = nullptr);
+void tail_append(LinkedNode*);
 
 template<class T> void next(T* &p) { p = dynamic_cast<T*>(p->link); }
 inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }

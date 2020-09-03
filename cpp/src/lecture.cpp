@@ -29,13 +29,14 @@
 #include "runaway.h"
 #include "openlogfile.h"
 #include "sauvegarde.h"
+#include "buildpage.h"
 #include <tuple>
 
-[[nodiscard]] static std::tuple<int, int, GlueSpec*> scansomethinginternal(smallnumber level, bool negative, Token t)
+[[nodiscard]] static std::tuple<int, int, AnyNode*> scansomethinginternal(smallnumber level, bool negative, Token t)
 {
 	// lev/level : tok_val/dimen_val/glue_val/ident_val/int_val/mu_val
 	int val, lev;
-	GlueSpec *gl;
+	AnyNode *gl;
 	auto m = t.chr;
 	switch (t.cmd)
 	{
@@ -60,7 +61,7 @@
 			}
 			if (t.cmd == toks_register)
 				m = toks_base+scaneightbitint();
-			val = eqtb_local[m-local_base].int_;
+			gl = eqtb_local[m-local_base].index;
 			lev = tok_val;
 			break;
 		case def_family:
@@ -247,7 +248,7 @@
 	while (lev > level)
 	{
 		if (lev == glue_val)
-			val = gl->width;
+			val = dynamic_cast<GlueSpec*>(gl)->width;
 		else 
 			if (lev == mu_val)
 				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
@@ -256,16 +257,17 @@
 	if (negative)
 		if (lev >= glue_val)
 		{
-			gl = new GlueSpec(gl);
-			gl->width = -gl->width;
-			gl->stretch = -gl->stretch;
-			gl->shrink = -gl->shrink;
+			auto G = new GlueSpec(dynamic_cast<GlueSpec*>(gl));
+			G->width = -G->width;
+			G->stretch = -G->stretch;
+			G->shrink = -G->shrink;
+			gl = G;
 		}
 		else
 			val = -val;
 	else 
 		if (lev >= glue_val && lev <= mu_val)
-			gl->glue_ref_count++;
+			dynamic_cast<GlueSpec*>(gl)->glue_ref_count++;
 	return {val, lev, gl};
 }
 
@@ -375,7 +377,9 @@ static scaled rounddecimals(smallnumber k)
 			if (t.cmd >= min_internal && t.cmd <= max_internal)
 				if (mu)
 				{
-					std::tie(val, lev, gl) = scansomethinginternal(mu_val, false, t);
+					AnyNode *g;
+					std::tie(val, lev, g) = scansomethinginternal(mu_val, false, t);
+					gl = dynamic_cast<GlueSpec*>(g);
 					if (lev >= glue_val)
 					{
 						auto v = gl->width;
@@ -389,7 +393,9 @@ static scaled rounddecimals(smallnumber k)
 				}
 				else
 				{
-					std::tie(val, lev, gl) = scansomethinginternal(dimen_val, false, t);
+					AnyNode *g;
+					std::tie(val, lev, g) = scansomethinginternal(dimen_val, false, t);
+					gl = dynamic_cast<GlueSpec*>(g);
 					if (lev == dimen_val)
 						break;
 				}
@@ -457,7 +463,9 @@ static scaled rounddecimals(smallnumber k)
 		{
 			if (mu)
 			{
-				std::tie(val, lev, gl) = scansomethinginternal(mu_val, false, t);
+				AnyNode *g;
+				std::tie(val, lev, g) = scansomethinginternal(mu_val, false, t);
+				gl = dynamic_cast<GlueSpec*>(g);
 				if (lev >= glue_val)
 				{
 					auto v = gl->width;
@@ -468,9 +476,12 @@ static scaled rounddecimals(smallnumber k)
 					error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
 			}
 			else
-				std::tie(val, lev, gl) = scansomethinginternal(dimen_val, false, t);
+			{
+				AnyNode *g;
+				std::tie(val, lev, g) = scansomethinginternal(dimen_val, false, t);
+			}
 			auto v = val;
-			val = nx_plus_y(saveval, v, xnoverd(v, f, 0x1'00'00));
+			val = nx_plus_y(saveval, v, xnoverd(v, f, unity));
 			break;
 		}
 		if (!mu)
@@ -684,7 +695,9 @@ int scanfifteenbitint(void)
 	GlueSpec *gl;
 	if (t.cmd >= min_internal && t.cmd <= max_internal)
 	{
-		std::tie(val, lev, gl) = scansomethinginternal(level, negative, t);
+		AnyNode *g;
+		std::tie(val, lev, g) = scansomethinginternal(level, negative, t);
+		gl = dynamic_cast<GlueSpec*>(g);
 		if (lev >= glue_val)
 		{
 			if (lev != level)
@@ -769,7 +782,11 @@ int scanfifteenbitint(void)
 	}
 	else 
 		if (t.cmd >= min_internal && t.cmd <= max_internal)
-			std::tie(val, lev, gl) = scansomethinginternal(int_val, false, t);
+		{
+			AnyNode *g;
+			std::tie(val, lev, g) = scansomethinginternal(int_val, false, t);
+			gl = dynamic_cast<GlueSpec*>(g);
+		}
 		else
 		{
 			radix = 10;
@@ -1452,15 +1469,9 @@ TokenNode* thetoks(void)
 		{
 			auto p = dynamic_cast<TokenNode*>(temp_head);
 			p->link = nullptr;
-			if (val)
-			{
-				auto r = link(val);
-				while (r)
-				{
-					store_new_token(p, info(r));
-					r = link(r);
-				}
-			}
+			if (gl)
+				for (auto r = dynamic_cast<TokenNode*>(dynamic_cast<TokenNode*>(gl)->link); r; next(r))
+					store_new_token(p, r->token);
 			return p;
 		}
 		case int_val: 
@@ -1471,14 +1482,14 @@ TokenNode* thetoks(void)
 			break;
 		case glue_val:
 		{
-			strings.push_back(asSpec(gl, "pt"));
-			deleteglueref(gl);
+			strings.push_back(asSpec(dynamic_cast<GlueSpec*>(gl), "pt"));
+			deleteglueref(dynamic_cast<GlueSpec*>(gl));
 			break;
 		}
 		case mu_val:
 		{
-			strings.push_back(asSpec(gl, "mu"));
-			deleteglueref(gl);
+			strings.push_back(asSpec(dynamic_cast<GlueSpec*>(gl), "mu"));
+			deleteglueref(dynamic_cast<GlueSpec*>(gl));
 		}
 	}
 	return strtoks();

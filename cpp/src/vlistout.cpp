@@ -5,6 +5,16 @@
 #include "erreur.h"
 #include <cmath>
 
+float vet_glue(float g)
+{
+	constexpr float billion = 1000000000.;
+	if (g > billion)
+		return billion;
+	if (g < -billion)
+		return -billion;
+	return g; 
+}
+
 void vlistout(BoxNode *thisbox)
 {
 	scaled curg = 0;

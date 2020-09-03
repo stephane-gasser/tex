@@ -4,12 +4,72 @@
 #include "jumpout.h"
 #include "equivalent.h"
 #include "makestring.h"
-#include "sortavail.h"
 #include "cesure.h"
 #include "police.h"
 #include "fichier.h"
 #include "texte.h"
 #include "idlookup.h"
+
+static halfword& link(halfword p) { return mem[p].hh.rh; }
+static halfword& info(halfword p) { return mem[p].hh.lh; }
+static halfword& rlink(halfword p) { return link(p+1); }
+static halfword& llink(halfword p) { return info(p+1); }
+static halfword& node_size(halfword p) { return mem[p].hh.lh; }
+
+static halfword getnode(void)
+{
+	halfword p = rover;
+	do
+	{ 
+		halfword q;
+		for (q = p+node_size(p); link(q) == empty_flag; q += node_size(q))
+		{
+			auto t = rlink(q);
+			if (q == rover)
+				rover = t;
+			llink(t) = llink(q);
+			rlink(llink(q)) = t;
+		}
+		node_size(p) = q-p;
+		p = rlink(p);
+	} while (p != rover);
+	return empty_flag;
+}
+
+//! sorts the available variable-size nodes by location
+static void sortavail(void)
+{
+	auto p = getnode();
+	p = rlink(rover);
+	rlink(rover) = empty_flag;
+	halfword oldrover = rover;
+	while (p != oldrover)
+		if (p < rover)
+		{
+			auto q = p;
+			p = rlink(q);
+			rlink(q) = rover;
+			rover = q;
+		}
+		else
+		{
+			halfword q = rover;
+			while (rlink(q) < p)
+				q = rlink(q);
+			auto r = rlink(p);
+			rlink(p) = rlink(q);
+			rlink(q) = p;
+			p = r;
+		}
+	p = rover;
+	while (rlink(p) != empty_flag)
+	{
+		llink(rlink(p)) = p;
+		p = rlink(p);
+	}
+	rlink(p) = rover;
+	llink(rover) = p;
+}
 
 constexpr char format_extension[] = ".fmt"; //!< the extension, as a WEB constant
 

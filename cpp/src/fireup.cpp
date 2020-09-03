@@ -10,7 +10,7 @@
 #include "normalparagraph.h"
 #include "lecture.h"
 #include "shipout.h"
-#include "texte.h"
+#include "buildpage.h"
 
 void fireup(LinkedNode *c)
 {

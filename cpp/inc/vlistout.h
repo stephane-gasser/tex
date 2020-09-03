@@ -4,5 +4,6 @@
 #include "globals.h"
 
 void vlistout(BoxNode*);
+float vet_glue(float);
 
 #endif

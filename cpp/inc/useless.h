@@ -170,4 +170,117 @@ breakpoint=888 //place where a breakpoint is desirable*/
 //@ adv_past(#)==@+if subtype(#)=language_node then
 //typedef unsigned int nonnegativeinteger; //0..2147483647
 
+//halfword& node_size(halfword); //!< the size field in empty variable-size nodes
+//halfword& llink(halfword); //!< left link in doubly-linked list of empty nodes
+//halfword& rlink(halfword); //!< right link in doubly-linked list of empty nodes
+//halfword& link(halfword p); //!< the \a link field of a memory word
+//halfword& info(halfword p); //!< the \a info field of a memory word
+//int length(halfword); //!< the number of characters
+//quarterword& type(halfword p); //!< identifies what kind of node this is
+//quarterword& subtype(halfword p); //!< secondary identification in some cases
+//bool is_char_node(halfword);
+//quarterword& font(halfword); //!< the font code in a \a char_node
+//quarterword& character(halfword); //!< the character code in a \a char_node
+//int& width(halfword); //!< width of the box, in sp
+//int& depth(halfword); //!< depth of the box, in sp
+//int& height(halfword); //!< height of the box, in sp
+//int& shift_amount(halfword); //!< repositioning distance, in sp
+//halfword& list_ptr(halfword); //!< beginning of the list inside the box
+//quarterword& glue_order(halfword); //!< applicable order of infinity
+//quarterword& glue_sign(halfword); //!< stretching or shrinking
+//float &glue_set(halfword);
+//int& float_cost(halfword); //!< the \a floating_penalty to be used
+//halfword& ins_ptr(halfword); //!< the vertical list to be inserted
+//halfword& split_top_ptr(halfword); //!< the \a split_top_skip to be used
+//int& mark_ptr(halfword); //!< head of the token list for a mark
+//int& adjust_ptr(halfword); //!< vertical list to be moved out of horizontal list
+//halfword lig_char(halfword); //!< the word where the ligature is to be found
+//halfword& lig_ptr(halfword); //!< the list of characters
+//halfword& leader_ptr(halfword); //!< pointer to box or rule node for leaders
+//halfword& glue_ref_count(halfword); //!< reference count of a glue specification
+//int& stretch(halfword); //!< the stretchability of this glob of glue
+//int& shrink(halfword); //!< the shrinkability of this glob of glue
+//quarterword& stretch_order(halfword); //!< order of infinity for stretching
+//quarterword& shrink_order(halfword); //!< order of infinity for shrinking
+//int& penalty(halfword); //!< the added cost of breaking a list here
+//int& glue_stretch(halfword); //!< total stretch in an unset node
+//int& glue_shrink(halfword); //!< total shrink in an unset node
+//quarterword& span_count(halfword); //!< indicates the number of spanned columns
+//halfword& token_ref_count(halfword); //!< reference count preceding a token list
+//halfword& skip(halfword); //!< \a mem location of glue specification
+//halfword& box(halfword); 
+//halfword& text(halfword); //!< string number for control sequence name
+//quarterword& save_type(halfword); //!< classifies a \a save_stack entry
+//quarterword& save_level(halfword);
+//halfword& save_index(halfword); 
+//int& saved(halfword); 
+//int& if_line_field(halfword); 
+//int& location(halfword); //!< DVI byte number for a movement command
+//halfword nucleus(halfword); //!< the \a nucleus field of a noad
+//halfword supscr(halfword); //!< the \a supscr field of a noad
+//halfword subscr(halfword); //!< the \a subscr field of a noad
+//halfword& math_type(halfword); //!< a \a halfword in \a mem
+//quarterword& fam(halfword); //!< a \a quarterword in \a mem
+//halfword left_delimiter(halfword); //!< first delimiter field of a noad
+//halfword right_delimiter(halfword); //!< second delimiter field of a fraction noad
+//quarterword& small_fam(halfword); //!< \a fam for ``small'' delimiter
+//quarterword& small_char(halfword); //!< \a character for ``small'' delimiter
+//quarterword& large_fam(halfword); //!< \a fam for ``large'' delimiter
+//quarterword& large_char(halfword); //!< \a character for ``large'' delimiter
+//int& thickness(halfword); //!< \a thickness field in a fraction noad
+//halfword numerator(halfword); //!< \a numerator field in a fraction noad
+//halfword denominator(halfword); //!< \a denominator field in a fraction noad
+//halfword accent_chr(halfword); //!< the \a accent_chr field of an accent noad
+//halfword delimiter(halfword); //!< \a delimiter field in left and right noads
+//int& u_part(halfword); //!< pointer to \f$<u_j\f$ token list
+//int&v_part(halfword); //!< pointer to \f$<v_j\f$ token list
+//halfword& extra_info(halfword); //!< info to remember during template
+//quarterword& fitness(halfword); //!< <em> very_loose_fit..tight_fit</em> on final line for this break
+//halfword& break_node(halfword); //!< pointer to the corresponding passive node
+//halfword& line_number(halfword); //!< line that begins at this breakpoint
+//int& total_demerits(halfword); //!< the quantity that \\TeX\\ minimizes
+//halfword& broken_ins(halfword p); //!< this insertion might break at \a broken_ptr
+//halfword& last_ins_ptr(halfword p); //!< the most recent insertion for this \a subtype
+//halfword& best_ins_ptr(halfword); //!< the optimum most recent insertion
+//halfword& what_lang(halfword); //!< language number, in the range 0..255
+//quarterword& what_lhm(halfword); //!< minimum left fragment, in the range 1..63
+//quarterword& what_rhm(halfword); //!< minimum right fragment, in the range 1..63
+//halfword& write_tokens(halfword); //!< reference count of token list to write
+//halfword& write_stream(halfword); //!< stream number (0 to 17)
+//halfword& open_name(halfword); //!< string number of file name to open
+//halfword& open_area(halfword); //!< string number of file area for \a open_name
+//halfword& open_ext(halfword); //!< string number of file extension for \a open_name
+//inline void add_glue_ref(halfword p) { glue_ref_count(p)++; } //!< new reference to a glue spec
+//inline void add_token_ref(halfword p) { token_ref_count(p)++; } //!< new reference to a token list
+//extern halfword &contrib_tail; //!< tail of the contribution list
+//inline void flush_char(void) { currentString.pop_back(); } //!< forget the last character in the pool
+/*enum
+{
+	zero_glue = mem_bot, //!< specification for 0pt plus 0pt minus 0pt
+	fil_glue = zero_glue+glue_spec_size, //!< 0pt plus 1fil minus 0pt
+	fill_glue = fil_glue+glue_spec_size, //!< 0pt plus 1fill minus 0pt
+	ss_glue = fill_glue+glue_spec_size, //!< 0pt plus 1fil minus 1fil
+	fil_neg_glue = ss_glue+glue_spec_size //!< 0pt plus -1fil minus 0pt
+};*/
+
+/*enum
+{
+//	page_ins_head = mem_top, //!< list of insertion data for current page
+//	contrib_head = mem_top-1, //!< vlist of items not yet on current page
+//	page_head = mem_top-2, //!< vlist for current page
+//	temp_head = mem_top-3, //!< head of a temporary list of some kind
+//	hold_head = mem_top-4, //!< head of a temporary list of another kind
+//	adjust_head = mem_top-5, //!< head of adjustment list returned by \a hpack
+//	active = mem_top-7, //!< head of active list in \a line_break, needs two words
+//	align_head = mem_top-8, //!< head of preamble list for alignments
+//	end_span = mem_top-9, //!< tail of spanned-width lists
+//	omit_template = mem_top-10, //!< a constant token list
+//	null_list = mem_top-11, //!< permanently empty list
+//	lig_trick = mem_top-12, //!< a ligature masquerading as a \a char_node
+//	garbage = mem_top-12, //!< used for scrap information
+//	backup_head = mem_top-13, //!< head of token list built by \a scan_keyword
+};*/
+
+
+
 

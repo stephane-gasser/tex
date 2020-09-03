@@ -1,5 +1,6 @@
 #include "alterpagesofar.h"
 #include "lecture.h"
+#include "buildpage.h"
 
 void alterpagesofar(Token t)
 {

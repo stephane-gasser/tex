@@ -6,6 +6,12 @@
 #include "fichier.h"
 #include <iostream>
 
+static halfword& link(halfword p) { return mem[p].hh.rh; }
+static halfword& info(halfword p) { return mem[p].hh.lh; }
+static halfword& rlink(halfword p) { return link(p+1); }
+static halfword& llink(halfword p) { return info(p+1); }
+static halfword& node_size(halfword p) { return mem[p].hh.lh; }
+
 static wordfile fmtfile;
 
 static void openfmtfile(void)
@@ -90,6 +96,10 @@ void undump_four_ASCII(void)
 
 void loadfmtfile(void)
 {
+	link(rover) = empty_flag;
+	node_size(rover) = 1000;
+	llink(rover) = rover;
+	rlink(rover) = rover;
 	openfmtfile();
 	try
 	{

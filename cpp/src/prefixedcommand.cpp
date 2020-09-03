@@ -82,7 +82,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 				backinput(tt);
 			}
 			if (t.cmd >= call)
-				info(t.chr)++;
+				dynamic_cast<TokenNode*>(eqtb_cs[t.chr-hash_base].index)->token_ref_count++;
 			define(a, &eqtb_cs[p-hash_base], t.cmd, t.chr);
 			break;
 		}

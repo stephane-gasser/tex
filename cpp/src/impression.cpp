@@ -9,6 +9,7 @@
 #include "primitive.h"
 #include "police.h"
 #include "equivalent.h"
+#include "buildpage.h"
 #include <sstream> 
 
 static int tally = 0;
