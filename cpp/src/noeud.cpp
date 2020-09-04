@@ -13,7 +13,7 @@
 #include "pushnest.h"
 #include "normmin.h"
 #include "buildpage.h"
-#include "makestring.h"
+#include "chaine.h"
 #include "erreur.h"
 #include "texte.h"
 #include "deleteglueref.h"

@@ -2,9 +2,8 @@
 #include "cesure.h"
 #include "police.h"
 #include "equivalent.h"
-#include "idlookup.h"
+#include "chaine.h"
 #include "fichier.h"
-#include "makestring.h"
 #include <iostream>
 
 static halfword& link(halfword p) { return mem[p].hh.rh; }

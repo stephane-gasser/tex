@@ -3,7 +3,7 @@
 #include "fichier.h"
 #include "dvi.h"
 #include "erreur.h"
-#include "makestring.h"
+#include "chaine.h"
 #include "impression.h"
 
 static void specialout(NotOpenWriteWhatsitNode *p)

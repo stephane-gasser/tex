@@ -3,7 +3,7 @@
 #include "backinput.h"
 #include "impression.h"
 #include "erreur.h"
-#include "idlookup.h"
+#include "chaine.h"
 #include "equivalent.h"
 #include "conditional.h"
 #include "insertrelax.h"

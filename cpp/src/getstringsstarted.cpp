@@ -1,5 +1,5 @@
 #include "getstringsstarted.h"
-#include "makestring.h"
+#include "chaine.h"
 #include "fichier.h"
 #include <iostream>
 #include "texte.h" 

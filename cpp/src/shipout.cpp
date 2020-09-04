@@ -11,7 +11,7 @@
 #include "outwhat.h"
 #include "dvi.h"
 #include "police.h"
-#include "makestring.h"
+#include "chaine.h"
 #include <iostream>
 #include <cmath>
 

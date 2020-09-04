@@ -63,6 +63,7 @@ inline std::vector<TrieOp> trieOp(1);
 inline std::vector<HyphenNode*> hyphlist(308, nullptr);
 inline std::vector<std::string> hyphword(308, "");
 inline hyphpointer hyphcount = 0;
+inline bool trienotready = true;
 
 void inittrie(void);
 quarterword newtrieop(smallnumber, smallnumber, quarterword);

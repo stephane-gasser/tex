@@ -1,6 +1,5 @@
 #include "primitive.h"
-#include "idlookup.h"
-#include "makestring.h"
+#include "chaine.h"
 #include "equivalent.h"
 
 std::map<quarterword, std::map<halfword, std::string>> primName;

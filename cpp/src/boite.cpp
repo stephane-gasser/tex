@@ -1,5 +1,6 @@
 #include "boite.h"
 #include "noeud.h"
+#include "alignement.h"
 #include "police.h"
 #include "formule.h"
 #include "xovern.h"

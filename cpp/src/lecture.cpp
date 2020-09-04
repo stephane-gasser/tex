@@ -1,6 +1,6 @@
 #include "lecture.h"
 #include "boite.h"
-#include "makestring.h"
+#include "chaine.h"
 #include "getnext.h"
 #include "police.h"
 #include "expand.h"

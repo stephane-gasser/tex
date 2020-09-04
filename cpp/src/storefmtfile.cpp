@@ -3,12 +3,11 @@
 #include "erreur.h"
 #include "jumpout.h"
 #include "equivalent.h"
-#include "makestring.h"
+#include "chaine.h"
 #include "cesure.h"
 #include "police.h"
 #include "fichier.h"
 #include "texte.h"
-#include "idlookup.h"
 
 static halfword& link(halfword p) { return mem[p].hh.rh; }
 static halfword& info(halfword p) { return mem[p].hh.lh; }

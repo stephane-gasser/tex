@@ -10,10 +10,26 @@ enum
 	area_name = 2
 };
 
+enum
+{
+	just_open = 1, //!< newly opened, first line not yet read
+	closed = 2 //!< not open, or at end of file
+};
+
 constexpr int format_ext_length = 4; //!< length of its `.fmt' part
 constexpr int filenamesize = 40;
 
 inline bool nameinprogress;
+inline std::string curname;
+inline std::string curarea;
+inline std::string curext;
+inline std::string jobname = "";
+inline std::string outputfilename = "";
+inline std::string logname;
+inline alphafile readfile[16];
+inline std::vector<char> readopen(17, closed); // of 0..2
+inline alphafile writefile[16];
+inline std::vector<bool> writeopen(18, false);
 
 void scanfilename(void);
 std::string packfilename(const std::string &, const std::string &, const std::string &);

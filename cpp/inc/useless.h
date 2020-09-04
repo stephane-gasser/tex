@@ -280,6 +280,28 @@ breakpoint=888 //place where a breakpoint is desirable*/
 //	garbage = mem_top-12, //!< used for scrap information
 //	backup_head = mem_top-13, //!< head of token list built by \a scan_keyword
 };*/
+/*enum
+{
+	if_node_size = 2, //!<  number of words in stack entry for conditionals
+	box_node_size = 7, //!<  number of words to allocate for a box node
+	rule_node_size = 4, //!<  number of words to allocate for a rule node
+	ins_node_size = 5, //!<  number of words to allocate for an insertion
+	small_node_size = 2, //!<  number of words to allocate for most node types
+	movement_node_size = 3, //!<  number of words per entry in the down and right stacks
+	style_node_size = 3, //!<  number of words in a style node
+	align_stack_node_size = 5, //!<  number of \a mem words to save alignment states
+	span_node_size = 2, //!<  number of \a mem words for a span node
+	active_node_size = 3, //!<  number of words in active nodes
+	passive_node_size = 2, //!<  number of words in passive nodes
+	delta_node_size = 7, //!<  number of words in a delta node
+	page_ins_node_size = 4, //!<  number of words for a page insertion node
+	write_node_size = 2, //!< number of words in a write/whatsit node
+	open_node_size = 3, //!< number of words in an open/whatsit node
+	noad_size = 4, //!< number of words in a normal noad
+	accent_noad_size = 5, //!< number of \a mem words in an accent noad
+	radical_noad_size = 5, //!< number of \a mem words in a radical noad
+	fraction_noad_size = 6, //!< number of \a mem words in a fraction noad
+};*/
 
 
 

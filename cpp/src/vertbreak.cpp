@@ -6,7 +6,7 @@
 #include "deleteglueref.h"
 #include "texte.h"
 
-scaled *active_height = active_height; //!< new name for the six distance variables
+scaled active_height[7]; //=activewidth //!< new name for the six distance variables
 scaled &cur_height = active_height[1]; //!< the natural height
 
 //! initialize the height to zero
@@ -53,11 +53,8 @@ LinkedNode *vertbreak(LinkedNode *p, scaled h, scaled d)
 						pi = 0;
 					break;
 				case penalty_node: //12
-				{
-					auto P = dynamic_cast<PenaltyNode*>(p);
-					pi = P->penalty;
+					pi = dynamic_cast<PenaltyNode*>(p)->penalty;
 					break;
-				}
 				case mark_node: //4
 				case ins_node: //3
 					break;

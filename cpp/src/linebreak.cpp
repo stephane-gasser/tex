@@ -298,6 +298,7 @@ static int minimaldemerits[4];
 static halfword easyline;
 static bool finalpass;
 static scaled discwidth;
+static halfword bestplline[4];
 
 static void trybreak(int pi, smallnumber breaktype)
 {
@@ -814,7 +815,6 @@ void linebreak(int finalwidowpenalty)
 		active->link = q;
 		std::copy(background, background+7, activewidth);
 		passive = nullptr;
-		passnumber = 0;
 		fontinshortdisplay = fonts[null_font];
 		curp = temp_head->link;
 		autobreaking = true;

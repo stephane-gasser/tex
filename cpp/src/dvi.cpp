@@ -4,7 +4,7 @@
 #include "fichier.h"
 #include "impression.h"
 #include "equivalent.h"
-#include "makestring.h"
+#include "chaine.h"
 
 constexpr dviindex halfbuf = dvibufsize/2;
 

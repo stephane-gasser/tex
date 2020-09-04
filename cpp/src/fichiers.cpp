@@ -4,7 +4,7 @@
 #include "terminput.h"
 #include "lecture.h"
 #include "backinput.h"
-#include "makestring.h"
+#include "chaine.h"
 #include "popinput.h"
 #include "pushinput.h"
 #include "texte.h"

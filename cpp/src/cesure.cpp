@@ -5,7 +5,7 @@
 #include "impression.h"
 #include "police.h" 
 #include "equivalent.h" 
-#include "makestring.h" 
+#include "chaine.h" 
 
 static std::map<TrieNode, triepointer> tnMap;
 

@@ -46,30 +46,6 @@ enum interactions
 
 enum
 {
-/*	if_node_size = 2, //!<  number of words in stack entry for conditionals
-	box_node_size = 7, //!<  number of words to allocate for a box node
-	rule_node_size = 4, //!<  number of words to allocate for a rule node
-	ins_node_size = 5, //!<  number of words to allocate for an insertion
-	small_node_size = 2, //!<  number of words to allocate for most node types
-	movement_node_size = 3, //!<  number of words per entry in the down and right stacks
-	style_node_size = 3, //!<  number of words in a style node
-	align_stack_node_size = 5, //!<  number of \a mem words to save alignment states
-	span_node_size = 2, //!<  number of \a mem words for a span node
-	active_node_size = 3, //!<  number of words in active nodes
-	passive_node_size = 2, //!<  number of words in passive nodes
-	delta_node_size = 7, //!<  number of words in a delta node
-	page_ins_node_size = 4, //!<  number of words for a page insertion node
-	write_node_size = 2, //!< number of words in a write/whatsit node
-	open_node_size = 3, //!< number of words in an open/whatsit node
-	noad_size = 4, //!< number of words in a normal noad
-	accent_noad_size = 5, //!< number of \a mem words in an accent noad
-	radical_noad_size = 5, //!< number of \a mem words in a radical noad
-	fraction_noad_size = 6, //!< number of \a mem words in a fraction noad*/
-	glue_spec_size = 4 //!< number of words to allocate for a glue specification
-};
-
-enum
-{
 	width_offset = 1, //!< position of \a width field in a box node
 	depth_offset = 2, //!< position of \a depth field in a box node
 	height_offset = 3, //!< position of \a height field in a box node
@@ -361,12 +337,6 @@ enum
 
 enum
 {
-	just_open = 1, //!< newly opened, first line not yet read
-	closed = 2 //!< not open, or at end of file
-};
-
-enum
-{
 	if_char_code = 0, //!<  `\\if' 
 	if_cat_code = 1, //!<  `\\ifcat' 
 	if_int_code = 2, //!<  `\\ifnum' 
@@ -636,6 +606,7 @@ constexpr int hash_size = 2100; //!<  maximum number of control sequences; it sh
 constexpr int hash_prime = 1777; //!<  a prime number equal to about 85% of \a hash_size
 constexpr char banner[] ="This is TeX, Version 3.14159265"; //!<  printed when \\TeX starts
 constexpr int hi_mem_stat_usage = 14; //!< the number of one-word nodes always present
+constexpr int glue_spec_size = 4; //!< number of words to allocate for a glue specification
 constexpr int lo_mem_stat_max = mem_bot+5*glue_spec_size-1; //!< largest statically
 constexpr int hi_mem_stat_min = mem_top-13; //!< smallest statically allocated word in
 constexpr int int_pars = 55; //!< total number of integer parameters
@@ -837,14 +808,6 @@ inline liststaterecord curlist;
 	inline int& prev_graf = curlist.pgfield; //!< number of paragraph lines accumulated
 	inline int& mode_line = curlist.mlfield; //!< source file line number at beginning of list
 inline instaterecord curinput;
-inline std::vector<std::string> strings;
-inline std::string currentString;
-inline std::string curname;
-inline std::string curarea;
-inline std::string curext;
-inline std::string jobname = "";
-inline std::string outputfilename = "";
-inline std::string logname;
 inline std::string formatident = " (INITEX)";
 inline Token aftertoken;
 inline Font fontinshortdisplay;
@@ -910,8 +873,6 @@ inline char openparens = 0; // 0..maxinopen
 inline int linestack[maxinopen+1]; // commence à 1
 inline halfword parloc;
 inline halfword partoken;
-inline alphafile readfile[16];
-inline std::vector<char> readopen(17, 2/*closed*/); // of 0..2
 inline char iflimit = 0; // 0..4
 inline smallnumber curif = 0;
 inline bool logopened = false;
@@ -920,26 +881,16 @@ inline scaled maxv = 0;
 inline scaled maxh = 0;
 inline bool doingleaders = false;
 inline scaled ruleht, ruledp, rulewd;
-inline scaled totalstretch[4], totalshrink[4];
 inline smallnumber curstyle;
 inline smallnumber cursize;
 inline scaled curmu;
 inline bool mlistpenalties;
-inline halfword passnumber;
-inline halfword bestplline[4];
 inline ASCIIcode curlang, initcurlang;
 inline halfword curl, curr;
 inline bool lfthit = false, rthit = false;
-inline bool trienotready = true;
-inline scaled bestheightplusdepth;
-inline char pagecontents = 0; // 0..2
-inline scaled pagemaxdepth = 0;
-inline scaled bestsize;
 inline scaled lastkern = 0;
 inline bool outputactive = false;
 inline halfword bchar;
-inline alphafile writefile[16];
-inline std::vector<bool> writeopen(18, false);
 inline halfword writeloc;
 inline std::vector<GlueSpec> glues(5);
 inline auto	zero_glue = &glues[0]; //!< specification for 0pt plus 0pt minus 0pt
@@ -959,11 +910,8 @@ inline auto &name = curinput.namefield; //!< name of the current file
 ///////////////////////////////////////////////////////////////////////////////
 // fonctions inlines
 ///////////////////////////////////////////////////////////////////////////////
-inline int cur_length(void) { return currentString.size(); }
-inline void append_char(ASCIIcode c) { currentString += c; } //!< put \a ASCII_code # at the end of \a str_pool
 inline bool is_running(int d) { return d == null_flag; } //!< tests for a running dimension
 inline bool terminal_input(const std::string &name) { return name == ""; } //!< are we reading from the terminal?
-inline void flush_string(void) { strings.pop_back(); currentString = ""; }
 
 #include "noeud.h"
 

@@ -5,10 +5,9 @@
 #include "fichier.h"
 #include "openlogfile.h"
 #include "inputln.h"
-#include <iostream>
 #include "firmuptheline.h"
 #include "lecture.h"
-#include "idlookup.h"
+#include "chaine.h"
 #include "texte.h"
 #include "noeud.h"
 #include "runaway.h"
@@ -16,6 +15,7 @@
 #include "equivalent.h" 
 #include "alignement.h"
 #include "macrocall.h"
+#include <iostream>
 
 [[nodiscard]] static Token checkoutervalidity(Token t)
 {

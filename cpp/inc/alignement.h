@@ -27,6 +27,7 @@ class AlignRecordNode : public LinkedNode
 };
 
 inline AlignRecordNode *curalign = nullptr;
+inline scaled totalstretch[4], totalshrink[4];
 
 void alignpeek(AlignRecordNode*&);
 void doendv(Token, AlignRecordNode*&);
