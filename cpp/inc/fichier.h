@@ -30,5 +30,9 @@ bool bopenout(bytefile& f, const std::string&);
 bool wopenin(wordfile& f, const std::string&);
 bool wopenout(wordfile& f, const std::string&);
 std::string promptfilename(const std::string &, const std::string &);
+void beginfilereading(void);
+void endfilereading(void);
+alphafile& cur_file(void);
+void openorclosein(halfword);
 
 #endif

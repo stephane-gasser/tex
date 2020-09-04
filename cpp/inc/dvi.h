@@ -46,6 +46,5 @@ void synch_v(void);
 void synch_h(void);
 void prunemovements(int);
 void closefilesandterminate(void);
-void specialout(NotOpenWriteWhatsitNode *);
 
 #endif

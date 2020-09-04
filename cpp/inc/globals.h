@@ -837,7 +837,6 @@ inline liststaterecord curlist;
 	inline int& prev_graf = curlist.pgfield; //!< number of paragraph lines accumulated
 	inline int& mode_line = curlist.mlfield; //!< source file line number at beginning of list
 inline instaterecord curinput;
-inline std::string helpline;
 inline std::vector<std::string> strings;
 inline std::string currentString;
 inline std::string curname;
@@ -908,7 +907,6 @@ inline std::vector<instaterecord> inputstack(1);
 inline unsigned char inputptr = 0; // 0..stacksize
 inline char inopen = 0; // 0..maxinopen
 inline char openparens = 0; // 0..maxinopen
-inline alphafile inputfile[maxinopen+1]; // commence à 1
 inline int linestack[maxinopen+1]; // commence à 1
 inline halfword parloc;
 inline halfword partoken;
@@ -928,18 +926,7 @@ inline smallnumber cursize;
 inline scaled curmu;
 inline bool mlistpenalties;
 inline halfword passnumber;
-inline bool noshrinkerroryet;
-inline bool secondpass;
-inline bool finalpass;
 inline halfword bestplline[4];
-inline scaled discwidth;
-inline halfword easyline;
-inline halfword lastspecialline;
-inline scaled firstwidth;
-inline scaled secondwidth;
-inline scaled firstindent;
-inline scaled secondindent;
-inline halfword bestline;
 inline ASCIIcode curlang, initcurlang;
 inline halfword curl, curr;
 inline bool lfthit = false, rthit = false;
@@ -951,10 +938,6 @@ inline scaled bestsize;
 inline scaled lastkern = 0;
 inline bool outputactive = false;
 inline halfword bchar;
-inline halfword falsebchar;
-inline bool cancelboundary = false;
-inline bool insdisc = false;
-inline bool longhelpseen = false;
 inline alphafile writefile[16];
 inline std::vector<bool> writeopen(18, false);
 inline halfword writeloc;
@@ -980,7 +963,6 @@ inline int cur_length(void) { return currentString.size(); }
 inline void append_char(ASCIIcode c) { currentString += c; } //!< put \a ASCII_code # at the end of \a str_pool
 inline bool is_running(int d) { return d == null_flag; } //!< tests for a running dimension
 inline bool terminal_input(const std::string &name) { return name == ""; } //!< are we reading from the terminal?
-inline alphafile& cur_file(void) { return inputfile[index]; } //!< the current \a alpha_file variable
 inline void flush_string(void) { strings.pop_back(); currentString = ""; }
 
 #include "noeud.h"
