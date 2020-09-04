@@ -1,13 +1,9 @@
 #include "startinput.h"
 #include "lecture.h"
 #include "fichier.h"
-#include "openlogfile.h"
 #include "impression.h"
-#include "firmuptheline.h"
-#include "inputln.h"
 #include "equivalent.h"
-#include "makestring.h"
-#include "fichier.h"
+#include "chaine.h"
 #include <iostream>
 
 constexpr char TEX_area[] = "TeXinputs:";

@@ -8,6 +8,7 @@
 #include "equivalent.h"
 #include "noeud.h"
 #include "badness.h"
+#include "alignement.h"
 #include "boite.h"
 
 class PassiveNode : public LinkedNode
@@ -295,10 +296,12 @@ static void postlinebreak(int finalwidowpenalty)
 
 static LinkedNode *bestplace[4];
 static int minimaldemerits[4];
+static int minimumdemerits;
 static halfword easyline;
 static bool finalpass;
 static scaled discwidth;
 static halfword bestplline[4];
+static int threshold;
 
 static void trybreak(int pi, smallnumber breaktype)
 {
@@ -710,6 +713,8 @@ static void flushAfterActive(void)
 
 static int fewestdemerits;
 static bool secondpass;
+static int actuallooseness;
+static int linediff;
 
 void linebreak(int finalwidowpenalty)
 {
@@ -730,7 +735,7 @@ void linebreak(int finalwidowpenalty)
 		dynamic_cast<PenaltyNode*>(tail)->penalty = inf_penalty;
 	}
 	tail->link = new GlueNode(par_fill_skip_code);
-	initcurlang = prev_graf%(1<<16);
+	ASCIIcode initcurlang = prev_graf%(1<<16);
 	initlhyf = prev_graf>>22;
 	initrhyf = (prev_graf>>16)%(1<<6);
 	popnest();

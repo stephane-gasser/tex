@@ -1,5 +1,6 @@
 #include "writeout.h"
 #include "noeud.h"
+#include "fichier.h"
 #include "lecture.h"
 #include "impression.h"
 #include "equivalent.h"

@@ -4,14 +4,12 @@
 #include "fichier.h"
 #include "preparemag.h"
 #include "noeud.h"
-#include "openlogfile.h"
-#include "fichier.h"
-#include "dvi.h"
 #include "equivalent.h"
 #include "outwhat.h"
 #include "dvi.h"
 #include "police.h"
 #include "chaine.h"
+#include "buildpage.h"
 #include <iostream>
 #include <cmath>
 
@@ -180,7 +178,7 @@ static void vlistout(BoxNode *thisbox)
 								curv += leaderbox->height;
 								synch_v();
 								auto savev = dviv;
-								bool outerdoingleaders = doingleaders;
+								auto outerdoingleaders = doingleaders;
 								doingleaders = true;
 								(leaderbox->type == vlist_node ? vlistout : hlistout)(Leaderbox);
 								doingleaders = outerdoingleaders;
@@ -396,10 +394,7 @@ static void hlistout(BoxNode *thisbox)
 								auto saveh = dvih;
 								bool outerdoingleaders = doingleaders;
 								doingleaders = true;
-								if (leaderbox->type == vlist_node)
-									vlistout(leaderbox);
-								else
-									hlistout(leaderbox);
+								(leaderbox->type == vlist_node ? vlistout : hlistout)(leaderbox);
 								doingleaders = outerdoingleaders;
 								dviv = savev;
 								dvih = saveh;

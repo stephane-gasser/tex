@@ -1,13 +1,14 @@
 #include "trapzeroglue.h"
+#include "noeud.h"
 #include "deleteglueref.h"
 
-GlueSpec *trapzeroglue(GlueSpec *Val)
+GlueSpec *trapzeroglue(GlueSpec *g)
 {
-	if (Val->width == 0 && Val->stretch == 0 && Val->shrink == 0)
+	if (g->width == 0 && g->stretch == 0 && g->shrink == 0)
 	{
 		zero_glue->glue_ref_count++;
-		deleteglueref(Val);
+		deleteglueref(g);
 		return nullptr;
 	}
-	return Val;
+	return g;
 }

@@ -35,6 +35,11 @@ inline scaled curh, curv;
 inline internalfontnumber dvif;
 inline int dvioffset = 0;
 inline int lastbop = -1;
+inline scaled maxv = 0;
+inline scaled maxh = 0;
+inline int curs = -1;
+inline int totalpages = 0;
+inline int maxpush = 0;
 
 void dvifontdef(internalfontnumber);
 void dvifour(uint32_t);

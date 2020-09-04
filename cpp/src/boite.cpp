@@ -3,7 +3,7 @@
 #include "alignement.h"
 #include "police.h"
 #include "formule.h"
-#include "xovern.h"
+#include "calcul.h"
 #include "lecture.h"
 #include "buildpage.h"
 #include "equivalent.h"
@@ -17,6 +17,7 @@
 #include "badness.h"
 #include "sauvegarde.h"
 #include "popnest.h"
+#include "fichier.h"
 
 BoxNode* rebox(BoxNode *b, scaled w)
 {

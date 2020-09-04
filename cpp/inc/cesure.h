@@ -2,6 +2,8 @@
 #define CESURE_H
 
 #include "globals.h"
+#include "noeud.h"
+#include "equivalent.h"
 
 constexpr int hyph_size = 307; //!<  another prime; the number of \\hyphenation exceptions
 
@@ -64,6 +66,11 @@ inline std::vector<HyphenNode*> hyphlist(308, nullptr);
 inline std::vector<std::string> hyphword(308, "");
 inline hyphpointer hyphcount = 0;
 inline bool trienotready = true;
+inline halfword curl, curr;
+inline halfword bchar;
+inline ASCIIcode curlang;
+
+inline void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : language(); }
 
 void inittrie(void);
 quarterword newtrieop(smallnumber, smallnumber, quarterword);

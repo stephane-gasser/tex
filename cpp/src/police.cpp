@@ -3,9 +3,10 @@
 #include "impression.h"
 #include "erreur.h"
 #include "fichier.h"
-#include "xnoverd.h"
+#include "calcul.h"
 #include "texte.h"
 #include "lecture.h"
+#include "cesure.h"
 #include "deleteglueref.h"
 
 fourquarters& Font::infos(int k) { return Font::info[k].qqqq; }
@@ -36,13 +37,6 @@ bool Font::char_exists(smallnumber q) { return char_info(q).b0 > 0; }
 
 Font& cur_font(void) { return fonts[curFontNum()]; }
 int curFontNum(void) { return eqtb_local[cur_font_loc-local_base].int_; }  // index : Font*
-int& fam_fnt(halfword p) { return eqtb_local[p+math_font_base-local_base].int_; }
-int mathex(smallnumber p) { return fonts[fam_fnt(3+cursize)].param(p); }
-int mathsy(smallnumber p, smallnumber c) { return fonts[fam_fnt(2+c)].param(p); }
-int default_rule_thickness(void) { return mathex(8); }
-int axis_height(smallnumber c) { return mathsy(22, c); }
-int math_x_height(smallnumber c) { return mathsy(5, c); }
-int math_quad(smallnumber c) { return mathsy(6, c); }
 int char_tag(fourquarters q) { return q.b2%4; }
 bool char_exists(fourquarters q) { return q.b0 > 0; }
 quarterword skip_byte(fourquarters q) { return q.b0; }
@@ -51,6 +45,8 @@ quarterword op_byte(fourquarters q) { return q.b2; }
 quarterword rem_byte(fourquarters q) { return q.b3; }
 
 constexpr char TEX_font_area[] = "TeXfonts:";
+
+static bytefile tfmfile;
 
 template<class T> static void read_sixteen(T &z)
 {

@@ -39,7 +39,6 @@ enum
 	right_noad = left_noad+1 //!< \a type of a noad for \\right
 };
 
-void confusion(const std::string &);
 
 class AnyNode
 {
@@ -52,6 +51,7 @@ class AnyNode
 
 void flushnodelist(LinkedNode*);
 LinkedNode* copynodelist(LinkedNode*);
+void confusion(const std::string &);
 
 class LinkedNode : public AnyNode
 {
@@ -87,6 +87,8 @@ class TokenNode : public LinkedNode
 		virtual bool is_char_node(void) { return true; }
 		virtual TokenNode* copy(void) { return new TokenNode(token); }
 };
+
+extern std::vector<Font> fonts;
 
 class LigatureNode : public LinkedNode
 {
@@ -146,14 +148,6 @@ class KernNode : public LinkedNode
 		void mathkern(scaled);
 };
 
-void deleteglueref(GlueSpec *);
-halfword& glue_ref_count(halfword);
-int& width(halfword); //!< width of the box, in sp
-int& stretch(halfword); //!< the stretchability of this glob of glue
-int& shrink(halfword); //!< the shrinkability of this glob of glue
-quarterword& stretch_order(halfword); //!< order of infinity for stretching
-quarterword& shrink_order(halfword); //!< order of infinity for shrinking
-
 class GlueSpec : public AnyNode
 {
 	public:
@@ -170,16 +164,9 @@ class GlueSpec : public AnyNode
 			shrink_order = p->shrink_order; 
 			glue_ref_count = 0; 
 		}
-		/*GlueSpec(halfword v) 
-		{ 
-			glue_ref_count = ::glue_ref_count(v); 
-			width = ::width(v); 
-			stretch = ::stretch(v); 
-			shrink = ::shrink(v); 
-			stretch_order = ::stretch_order(v); 
-			shrink_order = ::shrink_order(v); 
-		}*/
 };
+
+void deleteglueref(GlueSpec *);
 
 class InsNode : public LinkedNode
 {
@@ -415,7 +402,6 @@ class AccentNoad : public Noad
 inline FractionNoad *incompleat_noad; //!< the name of \a aux in math mode
 inline TokenNode *pstack[9];
 inline std::vector<TokenNode*> paramstack;
-
 inline std::vector<TokenNode*> curmark(5, nullptr);
 inline TokenNode *top_mark = curmark[top_mark_code];
 inline TokenNode *first_mark = curmark[first_mark_code];
@@ -440,6 +426,18 @@ inline TokenNode *Start;
 inline TokenNode *Loc;
 inline LinkedNode *curmlist;
 inline LinkedNode *bestpagebreak;
+inline GlueSpec *lastglue = nullptr;
+inline LinkedNode *adjusttail = nullptr;
+inline LinkedNode *pagetail;
+inline std::vector<GlueSpec> glues(5);
+inline auto	zero_glue = &glues[0]; //!< specification for 0pt plus 0pt minus 0pt
+inline auto fil_glue = &glues[1]; //!< 0pt plus 1fil minus 0pt
+inline auto fill_glue = &glues[2]; //!< 0pt plus 1fill minus 0pt
+inline auto ss_glue = &glues[3]; //!< 0pt plus 1fil minus 1fil
+inline auto fil_neg_glue = &glues[4]; //!< 0pt plus -1fil minus 0pt
+
+template<class T> void next(T* &p) { p = dynamic_cast<T*>(p->link); }
+inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }
 inline LinkedNode *new_hlist(Noad *p) { return p->nucleus.info; } //!< the translation of an mlist
 
 CharNode* newcharacter(internalfontnumber, eightbits);
@@ -457,8 +455,5 @@ void appendtovlist(BoxNode*);
 void appspace(LinkedNode*, fontindex&);
 void followUntilBeforeTarget(LinkedNode*&, LinkedNode* = nullptr);
 void tail_append(LinkedNode*);
-
-template<class T> void next(T* &p) { p = dynamic_cast<T*>(p->link); }
-inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }
 
 #endif

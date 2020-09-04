@@ -2,7 +2,10 @@
 #define OUTWHAT_H
 
 #include "globals.h"
+#include "noeud.h"
 
-void outwhat(WhatsitNode *);
+inline bool doingleaders = false;
+
+void outwhat(WhatsitNode*);
 
 #endif

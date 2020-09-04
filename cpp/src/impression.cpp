@@ -1,8 +1,6 @@
 #include "impression.h"
 #include "texte.h"
-#include "xovern.h"
-#include <iostream> 
-#include <cmath>
+#include "calcul.h"
 #include "lecture.h" 
 #include "noeud.h"
 #include "erreur.h"
@@ -11,7 +9,10 @@
 #include "equivalent.h"
 #include "buildpage.h"
 #include "chaine.h"
+#include "fichier.h"
 #include <sstream> 
+#include <iostream> 
+#include <cmath>
 
 static int tally = 0;
 
@@ -394,6 +395,8 @@ std::string asSpec(GlueSpec *p, const std::string &s = "")
 
 static std::string shownodelist(LinkedNode*, const std::string &);
 
+static int depththreshold;
+
 //! Display a noad field.
 static std::string subsidiarydata(const NoadContent &p, char c, const std::string &symbol)
 {
@@ -447,6 +450,9 @@ void print_err(const std::string &s)
 {
 	printnl("! "+s);
 }
+
+static int trickcount;
+static int firstcount;
 
 std::string tokenlist(TokenNode *p, TokenNode *q, int l)
 {
@@ -518,27 +524,19 @@ std::string tokenshow(TokenNode *p)
 	return p ? tokenlist(dynamic_cast<TokenNode*>(p->link), 0, 10000000) : "";
 }
 
-//static halfword& font_id_text(halfword p) { return text(font_id_base+p); } //! a frozen font identifier's name
-
 std::string shortdisplay(LinkedNode *p)
 {
 	std::ostringstream oss;
 	for (; p; next(p))
 		if (p->is_char_node())
 		{
-			if (/*p <= memend*/true)
+			auto pp = dynamic_cast<CharNode*>(p);
+			if (pp->font != fontinshortdisplay)
 			{
-				auto pp = dynamic_cast<CharNode*>(p);
-				if (pp->font != fontinshortdisplay)
-				{
-					if (/*pp->font < 0 || pp->font > fontmax*/true)
-						oss << "* ";
-					else
-						oss << esc(pp->font.name) << " ";
-					fontinshortdisplay = pp->font;
-				}
-				oss << pp->character;
+				oss << esc(pp->font.name) << " ";
+				fontinshortdisplay = pp->font;
 			}
+			oss << pp->character;
 		}
 		else
 			switch (p->type)
@@ -577,6 +575,8 @@ std::string shortdisplay(LinkedNode *p)
 			}
 	return oss.str();
 }
+
+static int breadthmax;
 
 static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 {
@@ -925,6 +925,8 @@ std::string showbox(BoxNode *p)
 	return shownodelist(p, "")+"\n";
 }
 
+static ASCIIcode trickbuf[errorline+1];
+
 std::string showcontext(void)
 {
 	inputstack.back() = curinput; 
@@ -1072,7 +1074,7 @@ std::string showcontext(void)
 //! Do some tracing.
 void diagnostic(const std::string &s)
 {
-	oldsetting = selector;
+	auto oldsetting = selector;
 	if (tracing_online() <= 0 && selector == term_and_log)
 	{
 		selector = log_only;
@@ -1082,6 +1084,8 @@ void diagnostic(const std::string &s)
 	print(s);
 	selector = oldsetting;
 }
+
+static int shownmode = 0; //-203..203
 
 void showcurcmdchr(Token t)
 {

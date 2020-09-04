@@ -1,13 +1,12 @@
 #include "noeud.h"
 #include "police.h"
 #include "charwarning.h"
-#include "openlogfile.h"
 #include "impression.h"
 #include "equivalent.h"
 #include "lecture.h"
 #include "erreur.h"
 #include "fichier.h"
-#include "xnoverd.h"
+#include "calcul.h"
 #include "texte.h"
 #include "pushmath.h"
 #include "pushnest.h"
@@ -20,8 +19,8 @@
 #include "cesure.h"
 #include "sauvegarde.h"
 #include "runaway.h"
-#include "xovern.h"
-#include "multandadd.h"
+#include "calcul.h"
+#include "police.h"
 
 void tail_append(LinkedNode *p) 
 {

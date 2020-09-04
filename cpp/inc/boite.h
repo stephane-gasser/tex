@@ -2,6 +2,7 @@
 #define BOITE_H
 
 #include "globals.h"
+#include "noeud.h"
 
 inline int lastbadness = 0;
 

@@ -8,6 +8,7 @@
 #include "lecture.h"
 #include "texte.h"
 #include "getnext.h"
+#include "alignement.h"
 
 void macrocall(Token t)
 {

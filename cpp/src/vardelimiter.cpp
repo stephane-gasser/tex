@@ -2,6 +2,7 @@
 #include "noeud.h"
 #include "boite.h"
 #include "police.h"
+#include "formule.h"
 #include "half.h"
 #include "equivalent.h"
 

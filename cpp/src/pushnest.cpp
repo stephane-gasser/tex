@@ -1,6 +1,7 @@
 #include "pushnest.h"
 #include "erreur.h"
 #include "noeud.h"
+#include "fichier.h"
 
 void pushnest(void)
 {

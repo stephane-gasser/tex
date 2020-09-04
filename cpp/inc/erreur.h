@@ -14,6 +14,7 @@ enum
 
 inline char history; // 0..3
 inline bool useerrhelp = false;
+inline char errorcount = 0; // -1..100
 
 void error(const std::string &, const std::string &, bool = true);
 void inserror(Token, const std::string &, const std::string &, bool = true);

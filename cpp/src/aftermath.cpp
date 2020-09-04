@@ -9,6 +9,7 @@
 #include "noeud.h"
 #include "half.h"
 #include "resumeafterdisplay.h"
+#include "alignement.h"
 #include "texte.h"
 #include "police.h"
 

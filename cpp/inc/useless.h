@@ -302,7 +302,7 @@ breakpoint=888 //place where a breakpoint is desirable*/
 	radical_noad_size = 5, //!< number of \a mem words in a radical noad
 	fraction_noad_size = 6, //!< number of \a mem words in a fraction noad
 };*/
-
+//static halfword& font_id_text(halfword p) { return text(font_id_base+p); } //! a frozen font identifier's name
 
 
 

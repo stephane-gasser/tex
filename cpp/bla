@@ -1,0 +1,338 @@
+In file included from inc/sauvegarde.h:5,
+                 from src/resumeafterdisplay.cpp:3:
+inc/equivalent.h:60:1: error: expected class-name before ‘{’ token
+   60 | {
+      | ^
+inc/equivalent.h:64:3: error: ‘AnyNode’ does not name a type
+   64 |   AnyNode *index; //!< equivalent value
+      |   ^~~~~~~
+inc/equivalent.h:67:52: error: ‘AnyNode’ has not been declared
+   67 |   MemoryNode(quarterword t = 0, quarterword l = 0, AnyNode *i = nullptr) : type(t), level(l), index(i) {}
+      |                                                    ^~~~~~~
+inc/equivalent.h: In constructor ‘MemoryNode::MemoryNode(quarterword, quarterword, int*)’:
+inc/equivalent.h:67:95: error: class ‘MemoryNode’ does not have any field named ‘index’
+   67 |   MemoryNode(quarterword t = 0, quarterword l = 0, AnyNode *i = nullptr) : type(t), level(l), index(i) {}
+      |                                                                                               ^~~~~
+inc/equivalent.h: In member function ‘bool MemoryNode::operator==(const MemoryNode&)’:
+inc/equivalent.h:68:121: error: ‘const class MemoryNode’ has no member named ‘index’
+   68 |   bool operator == (const MemoryNode &m) { return std::tuple(type, level, index, int_) == std::tuple(m.type, m.level, m.index, m.int_); }
+      |                                                                                                                         ^~~~~
+In file included from inc/sauvegarde.h:5,
+                 from src/resumeafterdisplay.cpp:3:
+inc/equivalent.h:68:134: error: class template argument deduction failed:
+   68 |   bool operator == (const MemoryNode &m) { return std::tuple(type, level, index, int_) == std::tuple(m.type, m.level, m.index, m.int_); }
+      |                                                                                                                                      ^
+inc/equivalent.h: In member function ‘bool MemoryNode::operator!=(const MemoryNode&)’:
+inc/equivalent.h:69:121: error: ‘const class MemoryNode’ has no member named ‘index’
+   69 |   bool operator != (const MemoryNode &m) { return std::tuple(type, level, index, int_) != std::tuple(m.type, m.level, m.index, m.int_); }
+      |                                                                                                                         ^~~~~
+inc/equivalent.h:69:134: error: class template argument deduction failed:
+   69 |   bool operator != (const MemoryNode &m) { return std::tuple(type, level, index, int_) != std::tuple(m.type, m.level, m.index, m.int_); }
+      |                                                                                                                                      ^
+inc/equivalent.h: In function ‘GlueSpec* glue_par(halfword)’:
+inc/equivalent.h:87:86: error: ‘__gnu_cxx::__alloc_traits<std::allocator<MemoryNode>, MemoryNode>::value_type’ {aka ‘class MemoryNode’} has no member named ‘index’
+   87 |  inline GlueSpec* glue_par(halfword p) { return dynamic_cast<GlueSpec*>(eqtb_glue[p].index); } //!< |mem| location of glue specification
+      |                                                                                      ^~~~~
+inc/equivalent.h: In function ‘void setLeftSkip(GlueSpec*)’:
+inc/equivalent.h:89:68: error: ‘__gnu_cxx::__alloc_traits<std::allocator<MemoryNode>, MemoryNode>::value_type’ {aka ‘class MemoryNode’} has no member named ‘index’
+   89 |   inline void setLeftSkip(GlueSpec *g) { eqtb_glue[left_skip_code].index = g; }
+      |                                                                    ^~~~~
+inc/equivalent.h: In function ‘void setRightSkip(GlueSpec*)’:
+inc/equivalent.h:91:70: error: ‘__gnu_cxx::__alloc_traits<std::allocator<MemoryNode>, MemoryNode>::value_type’ {aka ‘class MemoryNode’} has no member named ‘index’
+   91 |   inline void setRightSkip(GlueSpec *g) { eqtb_glue[right_skip_code].index = g; }
+      |                                                                      ^~~~~
+inc/equivalent.h: In function ‘void setSplitTopSkip(GlueSpec*)’:
+inc/equivalent.h:93:77: error: ‘__gnu_cxx::__alloc_traits<std::allocator<MemoryNode>, MemoryNode>::value_type’ {aka ‘class MemoryNode’} has no member named ‘index’
+   93 |   inline void setSplitTopSkip(GlueSpec *g) { eqtb_glue[split_top_skip_code].index = g; }
+      |                                                                             ^~~~~
+inc/equivalent.h: In function ‘GlueSpec* skip(halfword)’:
+inc/equivalent.h:99:102: error: ‘__gnu_cxx::__alloc_traits<std::allocator<MemoryNode>, MemoryNode>::value_type’ {aka ‘class MemoryNode’} has no member named ‘index’
+   99 |  inline GlueSpec* skip(halfword p) { return dynamic_cast<GlueSpec*>(eqtb_glue[p+skip_base-glue_base].index); } //! location of glue spec
+      |                                                                                                      ^~~~~
+inc/equivalent.h: In function ‘GlueSpec* mu_skip(halfword)’:
+inc/equivalent.h:101:108: error: ‘__gnu_cxx::__alloc_traits<std::allocator<MemoryNode>, MemoryNode>::value_type’ {aka ‘class MemoryNode’} has no member named ‘index’
+  101 |  inline GlueSpec* mu_skip(halfword p) { return dynamic_cast<GlueSpec*>(eqtb_glue[p+mu_skip_base-glue_base].index); } //! location of math glue spec
+      |                                                                                                            ^~~~~
+inc/equivalent.h: At global scope:
+inc/equivalent.h:105:9: error: ‘ShapeNode’ does not name a type
+  105 |  inline ShapeNode* par_shape_ptr(void) { return dynamic_cast<ShapeNode*>(eqtb_local[par_shape_loc-local_base].index); }
+      |         ^~~~~~~~~
+inc/equivalent.h:107:9: error: ‘TokenNode’ does not name a type
+  107 |  inline TokenNode* output_routine(void) { return dynamic_cast<TokenNode*>(eqtb_local[output_routine_loc-local_base].index); }
+      |         ^~~~~~~~~
+inc/equivalent.h:108:9: error: ‘TokenNode’ does not name a type
+  108 |  inline TokenNode* every_par(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_par_loc-local_base].index); } //!< points to token list for \\everypar
+      |         ^~~~~~~~~
+inc/equivalent.h:109:9: error: ‘TokenNode’ does not name a type
+  109 |  inline TokenNode* every_math(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_math_loc-local_base].index); }
+      |         ^~~~~~~~~
+inc/equivalent.h:110:9: error: ‘TokenNode’ does not name a type
+  110 |  inline TokenNode *every_display(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_display_loc-local_base].index); }
+      |         ^~~~~~~~~
+inc/equivalent.h:111:9: error: ‘TokenNode’ does not name a type
+  111 |  inline TokenNode* every_hbox(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_hbox_loc-local_base].index); }
+      |         ^~~~~~~~~
+inc/equivalent.h:112:9: error: ‘TokenNode’ does not name a type
+  112 |  inline TokenNode* every_vbox(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_vbox_loc-local_base].index); } //!< points to token list for \\everyvbox
+      |         ^~~~~~~~~
+inc/equivalent.h:113:9: error: ‘TokenNode’ does not name a type
+  113 |  inline TokenNode* every_job(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_job_loc-local_base].index); }
+      |         ^~~~~~~~~
+inc/equivalent.h:114:9: error: ‘TokenNode’ does not name a type
+  114 |  inline TokenNode* every_cr(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_cr_loc-local_base].index); } //!< points to token list for \\everyvbox
+      |         ^~~~~~~~~
+inc/equivalent.h:115:9: error: ‘TokenNode’ does not name a type
+  115 |  inline TokenNode* err_help(void) { return dynamic_cast<TokenNode*>(eqtb_local[err_help_loc-local_base].index); }
+      |         ^~~~~~~~~
+inc/equivalent.h:118:9: error: ‘BoxNode’ does not name a type
+  118 |  inline BoxNode* box(halfword p) { return dynamic_cast<BoxNode*>(eqtb_local[p+box_base-local_base].index); }
+      |         ^~~~~~~
+inc/equivalent.h:119:33: error: ‘BoxNode’ has not been declared
+  119 |  inline void setBox(halfword p, BoxNode *b) { eqtb_local[p+box_base-local_base].index = b; }
+      |                                 ^~~~~~~
+inc/equivalent.h: In function ‘void setBox(halfword, int*)’:
+inc/equivalent.h:119:81: error: ‘__gnu_cxx::__alloc_traits<std::allocator<MemoryNode>, MemoryNode>::value_type’ {aka ‘class MemoryNode’} has no member named ‘index’
+  119 |  inline void setBox(halfword p, BoxNode *b) { eqtb_local[p+box_base-local_base].index = b; }
+      |                                                                                 ^~~~~
+inc/equivalent.h: At global scope:
+inc/equivalent.h:230:47: error: ‘AnyNode’ has not been declared
+  230 | void define_(int a, MemoryNode*, quarterword, AnyNode*);
+      |                                               ^~~~~~~
+inc/equivalent.h:233:42: error: ‘AnyNode’ has not been declared
+  233 | void eqdefine_(MemoryNode*, quarterword, AnyNode*);
+      |                                          ^~~~~~~
+inc/equivalent.h:234:43: error: ‘AnyNode’ has not been declared
+  234 | void geqdefine_(MemoryNode*, quarterword, AnyNode*);
+      |                                           ^~~~~~~
+In file included from src/resumeafterdisplay.cpp:3:
+inc/sauvegarde.h:7:13: error: variable or field ‘eqsave’ declared void
+    7 | void eqsave(AnyNode*, quarterword);
+      |             ^~~~~~~
+inc/sauvegarde.h:7:13: error: ‘AnyNode’ was not declared in this scope
+inc/sauvegarde.h:7:21: error: expected primary-expression before ‘,’ token
+    7 | void eqsave(AnyNode*, quarterword);
+      |                     ^
+inc/sauvegarde.h:7:34: error: expected primary-expression before ‘)’ token
+    7 | void eqsave(AnyNode*, quarterword);
+      |                                  ^
+inc/sauvegarde.h:8:19: error: variable or field ‘saveforafter’ declared void
+    8 | void saveforafter(AnyNode *t);
+      |                   ^~~~~~~
+inc/sauvegarde.h:8:19: error: ‘AnyNode’ was not declared in this scope
+inc/sauvegarde.h:8:28: error: ‘t’ was not declared in this scope; did you mean ‘tm’?
+    8 | void saveforafter(AnyNode *t);
+      |                            ^
+      |                            tm
+In file included from src/resumeafterdisplay.cpp:5:
+inc/lecture.h:8:8: error: ‘TokenNode’ does not name a type
+    8 | inline TokenNode * defref;
+      |        ^~~~~~~~~
+inc/lecture.h:20:15: error: ‘TokenNode’ does not name a type
+   20 | [[nodiscard]] TokenNode* readtoks(int, halfword);
+      |               ^~~~~~~~~
+inc/lecture.h:26:20: error: variable or field ‘scandelimiter’ declared void
+   26 | void scandelimiter(Delimiter &, bool, Token);
+      |                    ^~~~~~~~~
+inc/lecture.h:26:20: error: ‘Delimiter’ was not declared in this scope
+inc/lecture.h:26:31: error: expected primary-expression before ‘,’ token
+   26 | void scandelimiter(Delimiter &, bool, Token);
+      |                               ^
+inc/lecture.h:26:33: error: expected primary-expression before ‘bool’
+   26 | void scandelimiter(Delimiter &, bool, Token);
+      |                                 ^~~~
+inc/lecture.h:26:44: error: expected primary-expression before ‘)’ token
+   26 | void scandelimiter(Delimiter &, bool, Token);
+      |                                            ^
+inc/lecture.h:29:15: error: variable or field ‘scanmath’ declared void
+   29 | void scanmath(NoadContent&);
+      |               ^~~~~~~~~~~
+inc/lecture.h:29:15: error: ‘NoadContent’ was not declared in this scope
+inc/lecture.h:29:27: error: expected primary-expression before ‘)’ token
+   29 | void scanmath(NoadContent&);
+      |                           ^
+inc/lecture.h:31:1: error: ‘RuleNode’ does not name a type
+   31 | RuleNode *scanrulespec(Token);
+      | ^~~~~~~~
+inc/lecture.h:34:1: error: ‘TokenNode’ does not name a type
+   34 | TokenNode* scantoks(bool, bool, Token);
+      | ^~~~~~~~~
+inc/lecture.h:36:16: error: variable or field ‘back_list’ declared void
+   36 | void back_list(TokenNode*);
+      |                ^~~~~~~~~
+inc/lecture.h:36:16: error: ‘TokenNode’ was not declared in this scope
+inc/lecture.h:36:26: error: expected primary-expression before ‘)’ token
+   36 | void back_list(TokenNode*);
+      |                          ^
+inc/lecture.h:37:15: error: variable or field ‘ins_list’ declared void
+   37 | void ins_list(TokenNode*);
+      |               ^~~~~~~~~
+inc/lecture.h:37:15: error: ‘TokenNode’ was not declared in this scope
+inc/lecture.h:37:25: error: expected primary-expression before ‘)’ token
+   37 | void ins_list(TokenNode*);
+      |                         ^
+inc/lecture.h:38:21: error: variable or field ‘begintokenlist’ declared void
+   38 | void begintokenlist(TokenNode*, quarterword);
+      |                     ^~~~~~~~~
+inc/lecture.h:38:21: error: ‘TokenNode’ was not declared in this scope
+inc/lecture.h:38:31: error: expected primary-expression before ‘,’ token
+   38 | void begintokenlist(TokenNode*, quarterword);
+      |                               ^
+inc/lecture.h:38:44: error: expected primary-expression before ‘)’ token
+   38 | void begintokenlist(TokenNode*, quarterword);
+      |                                            ^
+inc/lecture.h:39:21: error: variable or field ‘deletetokenref’ declared void
+   39 | void deletetokenref(TokenNode*);
+      |                     ^~~~~~~~~
+inc/lecture.h:39:21: error: ‘TokenNode’ was not declared in this scope
+inc/lecture.h:39:31: error: expected primary-expression before ‘)’ token
+   39 | void deletetokenref(TokenNode*);
+      |                               ^
+inc/lecture.h:43:1: error: ‘TokenNode’ does not name a type
+   43 | TokenNode* thetoks(void);
+      | ^~~~~~~~~
+In file included from /usr/include/c++/9/vector:67,
+                 from inc/globals.h:6,
+                 from inc/resumeafterdisplay.h:4,
+                 from src/resumeafterdisplay.cpp:1:
+/usr/include/c++/9/bits/stl_vector.h: In instantiation of ‘std::vector<_Tp, _Alloc>::reference std::vector<_Tp, _Alloc>::operator[](std::vector<_Tp, _Alloc>::size_type) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::vector<_Tp, _Alloc>::reference = GlueSpec&; std::vector<_Tp, _Alloc>::size_type = long unsigned int]’:
+inc/globals.h:887:33:   required from here
+/usr/include/c++/9/bits/stl_vector.h:1043:34: error: invalid use of incomplete type ‘class GlueSpec’
+ 1043 |  return *(this->_M_impl._M_start + __n);
+      |          ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+In file included from inc/resumeafterdisplay.h:4,
+                 from src/resumeafterdisplay.cpp:1:
+inc/globals.h:696:7: note: forward declaration of ‘class GlueSpec’
+  696 | class GlueSpec;
+      |       ^~~~~~~~
+In file included from /usr/include/c++/9/vector:67,
+                 from inc/globals.h:6,
+                 from inc/resumeafterdisplay.h:4,
+                 from src/resumeafterdisplay.cpp:1:
+/usr/include/c++/9/bits/stl_vector.h: In instantiation of ‘std::_Vector_base<_Tp, _Alloc>::~_Vector_base() [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>]’:
+/usr/include/c++/9/bits/stl_vector.h:508:47:   required from ‘std::vector<_Tp, _Alloc>::vector(std::vector<_Tp, _Alloc>::size_type, const allocator_type&) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::vector<_Tp, _Alloc>::size_type = long unsigned int; std::vector<_Tp, _Alloc>::allocator_type = std::allocator<GlueSpec>]’
+inc/globals.h:886:37:   required from here
+/usr/include/c++/9/bits/stl_vector.h:333:35: error: invalid use of incomplete type ‘class GlueSpec’
+  333 |         _M_impl._M_end_of_storage - _M_impl._M_start);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~
+In file included from inc/resumeafterdisplay.h:4,
+                 from src/resumeafterdisplay.cpp:1:
+inc/globals.h:696:7: note: forward declaration of ‘class GlueSpec’
+  696 | class GlueSpec;
+      |       ^~~~~~~~
+In file included from /usr/include/c++/9/vector:67,
+                 from inc/globals.h:6,
+                 from inc/resumeafterdisplay.h:4,
+                 from src/resumeafterdisplay.cpp:1:
+/usr/include/c++/9/bits/stl_vector.h: In instantiation of ‘static std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::_S_max_size(const _Tp_alloc_type&) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::vector<_Tp, _Alloc>::size_type = long unsigned int; std::vector<_Tp, _Alloc>::_Tp_alloc_type = std::allocator<GlueSpec>]’:
+/usr/include/c++/9/bits/stl_vector.h:1766:23:   required from ‘static std::vector<_Tp, _Alloc>::size_type std::vector<_Tp, _Alloc>::_S_check_init_len(std::vector<_Tp, _Alloc>::size_type, const allocator_type&) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::vector<_Tp, _Alloc>::size_type = long unsigned int; std::vector<_Tp, _Alloc>::allocator_type = std::allocator<GlueSpec>]’
+/usr/include/c++/9/bits/stl_vector.h:508:32:   required from ‘std::vector<_Tp, _Alloc>::vector(std::vector<_Tp, _Alloc>::size_type, const allocator_type&) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::vector<_Tp, _Alloc>::size_type = long unsigned int; std::vector<_Tp, _Alloc>::allocator_type = std::allocator<GlueSpec>]’
+inc/globals.h:886:37:   required from here
+/usr/include/c++/9/bits/stl_vector.h:1779:54: error: invalid application of ‘sizeof’ to incomplete type ‘GlueSpec’
+ 1779 |    = __gnu_cxx::__numeric_traits<ptrdiff_t>::__max / sizeof(_Tp);
+      |                                                      ^~~~~~~~~~~
+/usr/include/c++/9/bits/stl_vector.h: In instantiation of ‘void std::_Vector_base<_Tp, _Alloc>::_M_create_storage(std::size_t) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::size_t = long unsigned int]’:
+/usr/include/c++/9/bits/stl_vector.h:302:9:   required from ‘std::_Vector_base<_Tp, _Alloc>::_Vector_base(std::size_t, const allocator_type&) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::size_t = long unsigned int; std::_Vector_base<_Tp, _Alloc>::allocator_type = std::allocator<GlueSpec>]’
+/usr/include/c++/9/bits/stl_vector.h:508:47:   required from ‘std::vector<_Tp, _Alloc>::vector(std::vector<_Tp, _Alloc>::size_type, const allocator_type&) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::vector<_Tp, _Alloc>::size_type = long unsigned int; std::vector<_Tp, _Alloc>::allocator_type = std::allocator<GlueSpec>]’
+inc/globals.h:886:37:   required from here
+/usr/include/c++/9/bits/stl_vector.h:360:59: error: invalid use of incomplete type ‘class GlueSpec’
+  360 |  this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
+      |                                    ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+In file included from inc/resumeafterdisplay.h:4,
+                 from src/resumeafterdisplay.cpp:1:
+inc/globals.h:696:7: note: forward declaration of ‘class GlueSpec’
+  696 | class GlueSpec;
+      |       ^~~~~~~~
+In file included from /usr/include/c++/9/vector:66,
+                 from inc/globals.h:6,
+                 from inc/resumeafterdisplay.h:4,
+                 from src/resumeafterdisplay.cpp:1:
+/usr/include/c++/9/bits/stl_uninitialized.h: In instantiation of ‘_ForwardIterator std::__uninitialized_default_n(_ForwardIterator, _Size) [with _ForwardIterator = GlueSpec*; _Size = long unsigned int]’:
+/usr/include/c++/9/bits/stl_uninitialized.h:663:44:   required from ‘_ForwardIterator std::__uninitialized_default_n_a(_ForwardIterator, _Size, std::allocator<_Tp>&) [with _ForwardIterator = GlueSpec*; _Size = long unsigned int; _Tp = GlueSpec]’
+/usr/include/c++/9/bits/stl_vector.h:1603:36:   required from ‘void std::vector<_Tp, _Alloc>::_M_default_initialize(std::vector<_Tp, _Alloc>::size_type) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::vector<_Tp, _Alloc>::size_type = long unsigned int]’
+/usr/include/c++/9/bits/stl_vector.h:509:9:   required from ‘std::vector<_Tp, _Alloc>::vector(std::vector<_Tp, _Alloc>::size_type, const allocator_type&) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::vector<_Tp, _Alloc>::size_type = long unsigned int; std::vector<_Tp, _Alloc>::allocator_type = std::allocator<GlueSpec>]’
+inc/globals.h:886:37:   required from here
+/usr/include/c++/9/bits/stl_uninitialized.h:600:12: error: invalid use of incomplete type ‘std::iterator_traits<GlueSpec*>::value_type’ {aka ‘class GlueSpec’}
+  599 |       return __uninitialized_default_n_1<__is_trivial(_ValueType)
+      |                                          ~~~~~~~~~~~~~~~~~~~~~~~~
+  600 |            && __assignable>::
+      |            ^~~~~~~~~~~~~~~
+In file included from inc/resumeafterdisplay.h:4,
+                 from src/resumeafterdisplay.cpp:1:
+inc/globals.h:696:7: note: forward declaration of ‘std::iterator_traits<GlueSpec*>::value_type’ {aka ‘class GlueSpec’}
+  696 | class GlueSpec;
+      |       ^~~~~~~~
+In file included from /usr/include/x86_64-linux-gnu/c++/9/bits/c++allocator.h:33,
+                 from /usr/include/c++/9/bits/allocator.h:46,
+                 from /usr/include/c++/9/string:41,
+                 from /usr/include/c++/9/bits/locale_classes.h:40,
+                 from /usr/include/c++/9/bits/ios_base.h:41,
+                 from /usr/include/c++/9/ios:42,
+                 from /usr/include/c++/9/istream:38,
+                 from /usr/include/c++/9/fstream:38,
+                 from inc/globals.h:4,
+                 from inc/resumeafterdisplay.h:4,
+                 from src/resumeafterdisplay.cpp:1:
+/usr/include/c++/9/ext/new_allocator.h: In instantiation of ‘void __gnu_cxx::new_allocator<_Tp>::deallocate(__gnu_cxx::new_allocator<_Tp>::pointer, __gnu_cxx::new_allocator<_Tp>::size_type) [with _Tp = GlueSpec; __gnu_cxx::new_allocator<_Tp>::pointer = GlueSpec*; __gnu_cxx::new_allocator<_Tp>::size_type = long unsigned int]’:
+/usr/include/c++/9/bits/alloc_traits.h:470:9:   required from ‘static void std::allocator_traits<std::allocator<_CharT> >::deallocate(std::allocator_traits<std::allocator<_CharT> >::allocator_type&, std::allocator_traits<std::allocator<_CharT> >::pointer, std::allocator_traits<std::allocator<_CharT> >::size_type) [with _Tp = GlueSpec; std::allocator_traits<std::allocator<_CharT> >::allocator_type = std::allocator<GlueSpec>; std::allocator_traits<std::allocator<_CharT> >::pointer = GlueSpec*; std::allocator_traits<std::allocator<_CharT> >::size_type = long unsigned int]’
+/usr/include/c++/9/bits/stl_vector.h:351:19:   required from ‘void std::_Vector_base<_Tp, _Alloc>::_M_deallocate(std::_Vector_base<_Tp, _Alloc>::pointer, std::size_t) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::_Vector_base<_Tp, _Alloc>::pointer = GlueSpec*; std::size_t = long unsigned int]’
+/usr/include/c++/9/bits/stl_vector.h:332:2:   required from ‘std::_Vector_base<_Tp, _Alloc>::~_Vector_base() [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>]’
+/usr/include/c++/9/bits/stl_vector.h:508:47:   required from ‘std::vector<_Tp, _Alloc>::vector(std::vector<_Tp, _Alloc>::size_type, const allocator_type&) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::vector<_Tp, _Alloc>::size_type = long unsigned int; std::vector<_Tp, _Alloc>::allocator_type = std::allocator<GlueSpec>]’
+inc/globals.h:886:37:   required from here
+/usr/include/c++/9/ext/new_allocator.h:122:6: error: invalid application of ‘__alignof__’ to incomplete type ‘GlueSpec’
+  122 |  if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
+      |      ^~~~~~~~~~~~
+/usr/include/c++/9/ext/new_allocator.h:124:46: error: invalid application of ‘__alignof__’ to incomplete type ‘GlueSpec’
+  124 |      ::operator delete(__p, std::align_val_t(alignof(_Tp)));
+      |                                              ^~~~~~~~~~~~
+/usr/include/c++/9/ext/new_allocator.h: In instantiation of ‘_Tp* __gnu_cxx::new_allocator<_Tp>::allocate(__gnu_cxx::new_allocator<_Tp>::size_type, const void*) [with _Tp = GlueSpec; __gnu_cxx::new_allocator<_Tp>::pointer = GlueSpec*; __gnu_cxx::new_allocator<_Tp>::size_type = long unsigned int]’:
+/usr/include/c++/9/bits/alloc_traits.h:444:32:   required from ‘static _Tp* std::allocator_traits<std::allocator<_CharT> >::allocate(std::allocator_traits<std::allocator<_CharT> >::allocator_type&, std::allocator_traits<std::allocator<_CharT> >::size_type) [with _Tp = GlueSpec; std::allocator_traits<std::allocator<_CharT> >::pointer = GlueSpec*; std::allocator_traits<std::allocator<_CharT> >::allocator_type = std::allocator<GlueSpec>; std::allocator_traits<std::allocator<_CharT> >::size_type = long unsigned int]’
+/usr/include/c++/9/bits/stl_vector.h:343:33:   required from ‘std::_Vector_base<_Tp, _Alloc>::pointer std::_Vector_base<_Tp, _Alloc>::_M_allocate(std::size_t) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::_Vector_base<_Tp, _Alloc>::pointer = GlueSpec*; std::size_t = long unsigned int]’
+/usr/include/c++/9/bits/stl_vector.h:358:33:   required from ‘void std::_Vector_base<_Tp, _Alloc>::_M_create_storage(std::size_t) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::size_t = long unsigned int]’
+/usr/include/c++/9/bits/stl_vector.h:302:9:   required from ‘std::_Vector_base<_Tp, _Alloc>::_Vector_base(std::size_t, const allocator_type&) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::size_t = long unsigned int; std::_Vector_base<_Tp, _Alloc>::allocator_type = std::allocator<GlueSpec>]’
+/usr/include/c++/9/bits/stl_vector.h:508:47:   required from ‘std::vector<_Tp, _Alloc>::vector(std::vector<_Tp, _Alloc>::size_type, const allocator_type&) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::vector<_Tp, _Alloc>::size_type = long unsigned int; std::vector<_Tp, _Alloc>::allocator_type = std::allocator<GlueSpec>]’
+inc/globals.h:886:37:   required from here
+/usr/include/c++/9/ext/new_allocator.h:108:6: error: invalid application of ‘__alignof__’ to incomplete type ‘GlueSpec’
+  108 |  if (alignof(_Tp) > __STDCPP_DEFAULT_NEW_ALIGNMENT__)
+      |      ^~~~~~~~~~~~
+/usr/include/c++/9/ext/new_allocator.h:110:47: error: invalid application of ‘__alignof__’ to incomplete type ‘GlueSpec’
+  110 |      std::align_val_t __al = std::align_val_t(alignof(_Tp));
+      |                                               ^~~~~~~~~~~~
+/usr/include/c++/9/ext/new_allocator.h:111:52: error: invalid application of ‘sizeof’ to incomplete type ‘GlueSpec’
+  111 |      return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp), __al));
+      |                                                    ^~~~~~~~~~~
+/usr/include/c++/9/ext/new_allocator.h:114:48: error: invalid application of ‘sizeof’ to incomplete type ‘GlueSpec’
+  114 |  return static_cast<_Tp*>(::operator new(__n * sizeof(_Tp)));
+      |                                                ^~~~~~~~~~~
+/usr/include/c++/9/ext/new_allocator.h: In instantiation of ‘__gnu_cxx::new_allocator<_Tp>::size_type __gnu_cxx::new_allocator<_Tp>::max_size() const [with _Tp = GlueSpec; __gnu_cxx::new_allocator<_Tp>::size_type = long unsigned int]’:
+/usr/include/c++/9/ext/new_allocator.h:104:18:   required from ‘_Tp* __gnu_cxx::new_allocator<_Tp>::allocate(__gnu_cxx::new_allocator<_Tp>::size_type, const void*) [with _Tp = GlueSpec; __gnu_cxx::new_allocator<_Tp>::pointer = GlueSpec*; __gnu_cxx::new_allocator<_Tp>::size_type = long unsigned int]’
+/usr/include/c++/9/bits/alloc_traits.h:444:32:   required from ‘static _Tp* std::allocator_traits<std::allocator<_CharT> >::allocate(std::allocator_traits<std::allocator<_CharT> >::allocator_type&, std::allocator_traits<std::allocator<_CharT> >::size_type) [with _Tp = GlueSpec; std::allocator_traits<std::allocator<_CharT> >::pointer = GlueSpec*; std::allocator_traits<std::allocator<_CharT> >::allocator_type = std::allocator<GlueSpec>; std::allocator_traits<std::allocator<_CharT> >::size_type = long unsigned int]’
+/usr/include/c++/9/bits/stl_vector.h:343:33:   required from ‘std::_Vector_base<_Tp, _Alloc>::pointer std::_Vector_base<_Tp, _Alloc>::_M_allocate(std::size_t) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::_Vector_base<_Tp, _Alloc>::pointer = GlueSpec*; std::size_t = long unsigned int]’
+/usr/include/c++/9/bits/stl_vector.h:358:33:   required from ‘void std::_Vector_base<_Tp, _Alloc>::_M_create_storage(std::size_t) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::size_t = long unsigned int]’
+/usr/include/c++/9/bits/stl_vector.h:302:9:   required from ‘std::_Vector_base<_Tp, _Alloc>::_Vector_base(std::size_t, const allocator_type&) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::size_t = long unsigned int; std::_Vector_base<_Tp, _Alloc>::allocator_type = std::allocator<GlueSpec>]’
+/usr/include/c++/9/bits/stl_vector.h:508:47:   required from ‘std::vector<_Tp, _Alloc>::vector(std::vector<_Tp, _Alloc>::size_type, const allocator_type&) [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>; std::vector<_Tp, _Alloc>::size_type = long unsigned int; std::vector<_Tp, _Alloc>::allocator_type = std::allocator<GlueSpec>]’
+inc/globals.h:886:37:   required from here
+/usr/include/c++/9/ext/new_allocator.h:135:35: error: invalid application of ‘sizeof’ to incomplete type ‘GlueSpec’
+  135 |  return size_t(__PTRDIFF_MAX__) / sizeof(_Tp);
+      |                                   ^~~~~~~~~~~
+In file included from /usr/include/c++/9/vector:65,
+                 from inc/globals.h:6,
+                 from inc/resumeafterdisplay.h:4,
+                 from src/resumeafterdisplay.cpp:1:
+/usr/include/c++/9/bits/stl_construct.h: In instantiation of ‘void std::_Destroy(_ForwardIterator, _ForwardIterator) [with _ForwardIterator = GlueSpec*]’:
+/usr/include/c++/9/bits/stl_construct.h:206:15:   required from ‘void std::_Destroy(_ForwardIterator, _ForwardIterator, std::allocator<_T2>&) [with _ForwardIterator = GlueSpec*; _Tp = GlueSpec]’
+/usr/include/c++/9/bits/stl_vector.h:677:15:   required from ‘std::vector<_Tp, _Alloc>::~vector() [with _Tp = GlueSpec; _Alloc = std::allocator<GlueSpec>]’
+inc/globals.h:886:30:   required from here
+/usr/include/c++/9/bits/stl_construct.h:133:51: error: static assertion failed: value type is destructible
+  133 |       static_assert(is_destructible<_Value_type>::value,
+      |                                                   ^~~~~
+/usr/include/c++/9/bits/stl_construct.h:137:11: error: invalid use of incomplete type ‘std::iterator_traits<GlueSpec*>::value_type’ {aka ‘class GlueSpec’}
+  136 |       std::_Destroy_aux<__has_trivial_destructor(_Value_type)>::
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  137 |  __destroy(__first, __last);
+      |  ~~~~~~~~~^~~~~~~~~~~~~~~~~
+In file included from inc/resumeafterdisplay.h:4,
+                 from src/resumeafterdisplay.cpp:1:
+inc/globals.h:696:7: note: forward declaration of ‘std::iterator_traits<GlueSpec*>::value_type’ {aka ‘class GlueSpec’}
+  696 | class GlueSpec;
+      |       ^~~~~~~~
+make: *** [Makefile:10: obj/resumeafterdisplay.o] Error 1

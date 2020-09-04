@@ -2,6 +2,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "texte.h"
+#include "alignement.h"
 
 void extrarightbrace(void)
 {

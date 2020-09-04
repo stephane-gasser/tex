@@ -2,6 +2,7 @@
 #define LECTURE_H
 
 #include "globals.h"
+#include "noeud.h"
 
 inline smallnumber radix = 0;
 inline glueord curorder = 0;

@@ -4,7 +4,7 @@
 #include "charwarning.h"
 #include "texte.h"
 #include "primitive.h"
-#include "police.h"
+#include "formule.h"
 
 [[nodiscard]] std::tuple<Font, quarterword> fetch(NoadContent &a)
 {

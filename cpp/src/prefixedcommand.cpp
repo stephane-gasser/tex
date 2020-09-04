@@ -15,6 +15,14 @@
 #include "cesure.h"
 #include "police.h"
 #include "boite.h"
+#include "buildpage.h"
+
+static void alterinteger(Token t)
+{
+	char c = t.chr;
+	scanoptionalequals();
+	(c == 0 ? deadcycles : insertpenalties) = scanint();
+}
 
 void prefixedcommand(Token t, bool setboxallowed) 
 {

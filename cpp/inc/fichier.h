@@ -19,6 +19,7 @@ enum
 constexpr int format_ext_length = 4; //!< length of its `.fmt' part
 constexpr int filenamesize = 40;
 
+inline char selector; //0..21
 inline bool nameinprogress;
 inline std::string curname;
 inline std::string curarea;
@@ -26,10 +27,20 @@ inline std::string curext;
 inline std::string jobname = "";
 inline std::string outputfilename = "";
 inline std::string logname;
+inline alphafile logfile;
 inline alphafile readfile[16];
 inline std::vector<char> readopen(17, closed); // of 0..2
 inline alphafile writefile[16];
 inline std::vector<bool> writeopen(18, false);
+inline bool logopened = false;
+inline char inopen = 0; // 0..maxinopen
+inline std::string nameoffile;// char[filenamesize+1]; // débute à 1
+inline ASCIIcode buffer[bufsize+1]; // débute à 0
+inline int First = 1;// 0..bufsize
+inline int last; // 0..bufsize
+inline int maxbufstack = 0; // 0..bufsize
+inline int line = 0;
+inline std::string formatident = " (INITEX)";
 
 void scanfilename(void);
 std::string packfilename(const std::string &, const std::string &, const std::string &);
@@ -50,5 +61,10 @@ void beginfilereading(void);
 void endfilereading(void);
 alphafile& cur_file(void);
 void openorclosein(halfword);
+void openlogfile(void);
+void terminput(void);
+bool inputln(std::istream& f, bool bypasseoln);
+void initterminal(void);
+void firmuptheline(void);
 
 #endif

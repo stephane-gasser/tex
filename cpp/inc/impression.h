@@ -2,7 +2,11 @@
 #define IMPRESSION
 
 #include "globals.h"
+#include "noeud.h"
 #include <string>
+
+inline char termoffset = 0; // 0..maxprintline
+inline char fileoffset = 0; // 0..maxprintline
 
 std::string cmdchr(Token);
 std::string esc(const std::string &);

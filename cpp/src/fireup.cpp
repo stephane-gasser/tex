@@ -11,6 +11,7 @@
 #include "lecture.h"
 #include "shipout.h"
 #include "buildpage.h"
+#include "fichier.h"
 
 void fireup(LinkedNode *c)
 {

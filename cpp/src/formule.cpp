@@ -6,12 +6,20 @@
 #include "noeud.h"
 #include "fractionrule.h"
 #include "fetch.h"
-#include "xovern.h"
-#include "multandadd.h"
+#include "calcul.h"
 #include "deleteglueref.h"
 #include "erreur.h"
 #include "popnest.h"
 #include "equivalent.h"
+
+int mathex(smallnumber p) { return fonts[fam_fnt(3+cursize)].param(p); }
+int default_rule_thickness(void) { return mathex(8); }
+int& fam_fnt(halfword p) { return eqtb_local[p+math_font_base-local_base].int_; }
+int mathsy(smallnumber p, smallnumber c) { return fonts[fam_fnt(2+c)].param(p); }
+int axis_height(smallnumber c) { return mathsy(22, c); }
+int math_x_height(smallnumber c) { return mathsy(5, c); }
+int math_quad(smallnumber c) { return mathsy(6, c); }
+
 
 static GlueSpec *mathglue(GlueSpec *g, scaled m)
 {

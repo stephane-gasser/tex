@@ -782,7 +782,7 @@ class Token
 			if (cs == 0)
 				tok = (cmd<<8)+chr;
 			else
-				tok = cs+/*cs_token_flag*/(1<<12)-1;
+				tok = cs+cs_token_flag;
 		}
 };
 
@@ -795,8 +795,6 @@ class ArithException : public std::exception
 ///////////////////////////////////////////////////////////////////////////////
 // variables globales
 ///////////////////////////////////////////////////////////////////////////////
-inline std::vector<memoryword> Font::info(7);
-inline std::vector<Font> fonts(1);
 inline liststaterecord curlist;
 	inline auto &aux = curlist.auxfield; //!< auxiliary data about the current list
 		inline int& prev_depth = aux.int_; //!< the name of \a aux in vertical mode
@@ -807,112 +805,34 @@ inline liststaterecord curlist;
 	inline int& mode = curlist.modefield; //!< current mode
 	inline int& prev_graf = curlist.pgfield; //!< number of paragraph lines accumulated
 	inline int& mode_line = curlist.mlfield; //!< source file line number at beginning of list
-inline instaterecord curinput;
-inline std::string formatident = " (INITEX)";
-inline Token aftertoken;
-inline Font fontinshortdisplay;
-inline GlueSpec *lastglue = nullptr;
-inline LinkedNode *adjusttail = nullptr;
-inline LinkedNode *pagetail;
-inline int trickcount;
-inline int firstcount;
-inline int varused = 20, dynused = hi_mem_stat_usage;
-inline int depththreshold;
-inline int breadthmax;
-inline int cscount = 0;
-inline int line = 0;
-inline int alignstate = 1000000;
-inline int ifline = 0;
-inline int skipline;
-inline int totalpages = 0;
-inline int maxpush = 0;
-inline int deadcycles = 0;
-inline int lq, lr;
-inline int curs = -1;
-inline int packbeginline = 0;
-inline int actuallooseness;
-inline int linediff;
-inline int leastpagecost;
-inline int lastpenalty = 0;
-inline int insertpenalties = 0;
-inline int readyalready;
-inline int threshold;
-inline int minimumdemerits;
-inline std::map<char, ASCIIcode> xord;
+
 inline std::map<ASCIIcode, char> xchr;
-inline std::string nameoffile;// char[filenamesize+1]; // débute à 1
-inline ASCIIcode buffer[bufsize+1]; // débute à 0
-inline int First = 1;// 0..bufsize
-inline int last; // 0..bufsize
-inline int maxbufstack = 0; // 0..bufsize
-inline alphafile logfile;
-inline char selector; //0..21
-inline char termoffset = 0; // 0..maxprintline
-inline char fileoffset = 0; // 0..maxprintline
-inline ASCIIcode trickbuf[errorline+1];
-inline char interaction = /*error_stop_mode*/3; // 0..3
-inline char errorcount = 0; // -1..100
-inline bool aritherror;
-inline scaled remainder_;
-inline memoryword mem[memmax+1];
-inline halfword himemmin = hi_mem_stat_min;
-inline halfword avail = 0;
-inline halfword memend = mem_top;
-inline halfword rover = lo_mem_stat_max+1;
-inline halfword lomemmax = lo_mem_stat_max+1+1000;
+inline char interaction = error_stop_mode; // 0..3
 inline std::vector<liststaterecord> nest(1);
-inline LinkedNode *contrib_tail = nest[0].tailfield;
-inline int shownmode = 0; //-203..203
-inline unsigned char baseptr; // 0..stacksize
-inline char oldsetting; // 0..21
 inline groupcode curgroup = 0;
-inline std::vector<instaterecord> inputstack(1);
-inline unsigned char inputptr = 0; // 0..stacksize
-inline char inopen = 0; // 0..maxinopen
+inline unsigned char baseptr; // 0..stacksize
 inline char openparens = 0; // 0..maxinopen
-inline int linestack[maxinopen+1]; // commence à 1
 inline halfword parloc;
 inline halfword partoken;
-inline char iflimit = 0; // 0..4
-inline smallnumber curif = 0;
-inline bool logopened = false;
-inline bytefile tfmfile;
-inline scaled maxv = 0;
-inline scaled maxh = 0;
-inline bool doingleaders = false;
-inline scaled ruleht, ruledp, rulewd;
-inline smallnumber curstyle;
-inline smallnumber cursize;
-inline scaled curmu;
-inline bool mlistpenalties;
-inline ASCIIcode curlang, initcurlang;
-inline halfword curl, curr;
 inline bool lfthit = false, rthit = false;
-inline scaled lastkern = 0;
 inline bool outputactive = false;
-inline halfword bchar;
 inline halfword writeloc;
-inline std::vector<GlueSpec> glues(5);
-inline auto	zero_glue = &glues[0]; //!< specification for 0pt plus 0pt minus 0pt
-inline auto fil_glue = &glues[1]; //!< 0pt plus 1fil minus 0pt
-inline auto fill_glue = &glues[2]; //!< 0pt plus 1fill minus 0pt
-inline auto ss_glue = &glues[3]; //!< 0pt plus 1fil minus 1fil
-inline auto fil_neg_glue = &glues[4]; //!< 0pt plus -1fil minus 0pt
-inline auto &start = curinput.startfield; //!< starting position in \a buffer
-inline auto &limit = curinput.limitfield; //!< end of current line in \a buffer
-inline auto &param_start = limit; //!< base of macro parameters in \a param_stack
-inline auto &loc = curinput.locfield; //!< location of first unread character in \a buffer
-inline auto &state = curinput.statefield; //!< current scanner state
-inline auto &index = curinput.indexfield; //!< reference for buffer information
-inline auto &token_type = index; //!< type of current token list
-inline auto &name = curinput.namefield; //!< name of the current file
+
+inline std::vector<instaterecord> inputstack(1);
+inline instaterecord curinput;
+	inline auto &start = curinput.startfield; //!< starting position in \a buffer
+	inline auto &limit = curinput.limitfield; //!< end of current line in \a buffer
+	inline auto &param_start = limit; //!< base of macro parameters in \a param_stack
+	inline auto &loc = curinput.locfield; //!< location of first unread character in \a buffer
+	inline auto &state = curinput.statefield; //!< current scanner state
+	inline auto &index = curinput.indexfield; //!< reference for buffer information
+	inline auto &token_type = index; //!< type of current token list
+	inline auto &name = curinput.namefield; //!< name of the current file
 
 ///////////////////////////////////////////////////////////////////////////////
 // fonctions inlines
 ///////////////////////////////////////////////////////////////////////////////
 inline bool is_running(int d) { return d == null_flag; } //!< tests for a running dimension
 inline bool terminal_input(const std::string &name) { return name == ""; } //!< are we reading from the terminal?
-
-#include "noeud.h"
 
 #endif

@@ -1,14 +1,13 @@
 #include "erreur.h"
 #include "impression.h"
 #include "jumpout.h"
-#include "terminput.h"
 #include "lecture.h"
 #include "texte.h"
 #include "backinput.h"
 #include "noeud.h"
 #include "fichier.h"
-#include "openlogfile.h"
 #include "equivalent.h"
+#include "alignement.h"
 #include <iostream>
 
 static std::string helpline;

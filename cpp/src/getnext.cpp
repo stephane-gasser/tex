@@ -1,11 +1,7 @@
 #include "getnext.h"
 #include "impression.h"
 #include "erreur.h"
-#include "terminput.h"
 #include "fichier.h"
-#include "openlogfile.h"
-#include "inputln.h"
-#include "firmuptheline.h"
 #include "lecture.h"
 #include "chaine.h"
 #include "texte.h"
@@ -15,6 +11,7 @@
 #include "equivalent.h" 
 #include "alignement.h"
 #include "macrocall.h"
+#include "conditional.h"
 #include <iostream>
 
 [[nodiscard]] static Token checkoutervalidity(Token t)

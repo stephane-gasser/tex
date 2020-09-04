@@ -895,12 +895,12 @@ void newhyphexceptions(void)
 					n++;
 					hc[n] = curlang;
 					h = 0;
+					std::string s;
 					for (j = 1; j <= n; j++)
 					{
 						h = (2*h+hc[j])%hyph_size;
-						append_char(hc[j]);
+						s += hc[j];
 					}
-					auto s = makestring();
 					if (hyphcount == hyph_size)
 						overflow("exception dictionary", hyph_size);
 					hyphcount++;

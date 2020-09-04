@@ -2,6 +2,7 @@
 #include "lecture.h"
 #include "noeud.h"
 #include "pushinput.h"
+#include "alignement.h"
 
 //! Undoes one token of input.
 //! Sometimes TeX has read too far and wants to ``unscan'' what it has seen. The \a back_input procedure takes care of this by putting the token

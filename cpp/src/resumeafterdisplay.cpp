@@ -6,6 +6,7 @@
 #include "normmin.h"
 #include "buildpage.h"
 #include "backinput.h"
+#include "cesure.h"
 
 void resumeafterdisplay(Token t)
 {

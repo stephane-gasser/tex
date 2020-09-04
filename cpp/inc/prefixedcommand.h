@@ -3,6 +3,8 @@
 
 #include "globals.h"
 
+inline Token aftertoken;
+
 void prefixedcommand(Token, bool = true);
 
 #endif

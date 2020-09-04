@@ -1,5 +1,6 @@
 #include "passtext.h"
 #include "getnext.h"
+#include "fichier.h"
 
 void passtext(void)
 {

@@ -15,6 +15,7 @@ enum scanner_status
 inline char scannerstatus = normal; // 0..5
 inline halfword warningindex = 0;
 inline bool forceeof = false;
+inline int skipline;
 
 [[nodiscard]] Token getnext(bool = true);
 

@@ -2,7 +2,20 @@
 #define FORMULE_H
 
 #include "globals.h"
+#include "noeud.h"
 
+inline smallnumber curstyle;
+inline smallnumber cursize;
+inline scaled curmu;
+inline bool mlistpenalties;
+
+int mathex(smallnumber);
+int default_rule_thickness(void);
+int& fam_fnt(halfword);
+int mathsy(smallnumber, smallnumber);
+int axis_height(smallnumber);
+int math_x_height(smallnumber);
+int math_quad(smallnumber);
 BoxNode *overbar(BoxNode*, scaled, scaled);
 void makefraction(FractionNoad*);
 void makemathaccent(AccentNoad*);

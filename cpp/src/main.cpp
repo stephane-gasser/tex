@@ -1,11 +1,11 @@
 #include "globals.h"
 #include "initialize.h"
 #include "initprim.h"
-#include "getstringsstarted.h"
+#include "chaine.h"
 #include "fixdateandtime.h"
 #include "impression.h"
-#include "initterminal.h"
-#include "loadfmtfile.h"
+#include "fichier.h"
+#include "fmtfile.h"
 #include "startinput.h"
 #include "fichier.h"
 #include "maincontrol.h"
@@ -14,6 +14,8 @@
 #include "equivalent.h"
 #include "erreur.h"
 #include <iostream>
+
+static int readyalready;
 
 int main()
 {

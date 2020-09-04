@@ -22,8 +22,6 @@ void Initialize(void)
 	page_depth = 0;
 	for (int k = 0; k <= fontmax; k++)
 		fonts[k].used = false;
-	for (int k = 1; k < 20; k++)
-		mem[k].int_ = 0;
 	fil_glue->stretch = unity;
 	fil_glue->stretch_order = fil;
 	fill_glue->stretch = unity;
@@ -34,8 +32,6 @@ void Initialize(void)
 	ss_glue->shrink_order = fil;
 	fil_neg_glue->stretch = -unity;
 	fil_neg_glue->stretch_order = fil;
-	for (int k = hi_mem_stat_min; k <= mem_top; k++)
-		mem[k].int_ = 0;
 	omit_template = new TokenNode(end_template_token);
 	end_span->Link = 256;
 	end_span->info = nullptr;

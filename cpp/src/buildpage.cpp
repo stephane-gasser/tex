@@ -1,9 +1,8 @@
 #include "buildpage.h"
 #include "deleteglueref.h"
-#include "xovern.h"
 #include "impression.h"
 #include "erreur.h"
-#include "xovern.h"
+#include "calcul.h"
 #include "vertbreak.h"
 #include "badness.h"
 #include "fireup.h"
@@ -13,6 +12,8 @@
 #include "equivalent.h"
 
 static void set_page_so_far_zero(int i) { pagesofar[i] = 0; }
+
+static int leastpagecost;
 
 static void freezepagespecs(smallnumber s)
 {

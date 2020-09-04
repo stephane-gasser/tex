@@ -2,6 +2,7 @@
 #define ALIGNEMENT_H
 
 #include "globals.h"
+#include "noeud.h"
 
 class SpanNode : public LinkedNode
 {
@@ -28,6 +29,8 @@ class AlignRecordNode : public LinkedNode
 
 inline AlignRecordNode *curalign = nullptr;
 inline scaled totalstretch[4], totalshrink[4];
+inline int packbeginline = 0;
+inline int alignstate = 1000000;
 
 void alignpeek(AlignRecordNode*&);
 void doendv(Token, AlignRecordNode*&);
