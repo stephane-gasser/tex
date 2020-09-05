@@ -7,14 +7,12 @@
 #include "erreur.h"
 #include "fichier.h"
 #include "calcul.h"
-#include "texte.h"
 #include "pushmath.h"
 #include "pushnest.h"
 #include "normmin.h"
 #include "buildpage.h"
 #include "chaine.h"
 #include "erreur.h"
-#include "texte.h"
 #include "deleteglueref.h"
 #include "cesure.h"
 #include "sauvegarde.h"
@@ -73,7 +71,7 @@ void newfont(smallnumber a)
 	else 
 	{
 		if (u >= single_base)
-			if (u == txt("char"))
+			if (u == null_cs)
 				t = "FONT";
 			else
 				t = char(u-single_base);

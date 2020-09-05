@@ -7,7 +7,6 @@
 #include "calcul.h"
 #include "trapzeroglue.h"
 #include "equivalent.h"
-#include "texte.h"
 
 void doregistercommand(smallnumber a, Token t)
 //t.cmd: register_ / advance /multiply / divide

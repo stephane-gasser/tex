@@ -4,7 +4,6 @@
 #include "erreur.h"
 #include "fichier.h"
 #include "calcul.h"
-#include "texte.h"
 #include "lecture.h"
 #include "cesure.h"
 #include "deleteglueref.h"

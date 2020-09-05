@@ -2,7 +2,6 @@
 #include "impression.h"
 #include "erreur.h"
 #include "equivalent.h"
-#include "texte.h"
 
 static int magset = 0;
 

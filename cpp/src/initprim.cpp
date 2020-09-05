@@ -1,7 +1,6 @@
 #include "initprim.h"
 #include "primitive.h"
 #include "equivalent.h"
-#include "texte.h"
 
 void initprim(void)
 {

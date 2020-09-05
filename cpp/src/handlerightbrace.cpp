@@ -15,7 +15,6 @@
 #include "noeud.h"
 #include "buildchoices.h"
 #include "formule.h"
-#include "texte.h"
 
 void handlerightbrace(Token t, AlignRecordNode* &loop)
 {

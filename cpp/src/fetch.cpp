@@ -2,7 +2,6 @@
 #include "impression.h"
 #include "erreur.h"
 #include "charwarning.h"
-#include "texte.h"
 #include "primitive.h"
 #include "formule.h"
 

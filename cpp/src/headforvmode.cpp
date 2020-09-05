@@ -3,7 +3,6 @@
 #include "impression.h"
 #include "erreur.h"
 #include "backinput.h"
-#include "texte.h"
 
 void headforvmode(Token t)
 {

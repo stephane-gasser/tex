@@ -1,5 +1,4 @@
 #include "impression.h"
-#include "texte.h"
 #include "calcul.h"
 #include "lecture.h" 
 #include "noeud.h"
@@ -76,26 +75,12 @@ void slowprint(const std::string &s)
 
 void print(const std::string &s)
 {
-	if (txt(s))
+	if (s.size() != 1)
 	{
-		if (s.size() != 1)
-		{
-			slowprint(s);
-			return;
-		}
-		unsigned char S = s[0];
-		if (S == new_line_char())
-		{
-			println();
-			return;
-		}
-		int nl = new_line_char();
-		new_line_char() = -1;
 		slowprint(s);
-		new_line_char() = nl;
+		return;
 	}
-	else
-		slowprint("???");
+	printchar(s[0]);
 }
 
 std::string cmdchr(Token t)
@@ -247,7 +232,7 @@ std::string esc(const std::string &s)
 
 static std::string famandchar(const NoadContent &p)
 {
-	return esc("fam")+std::to_string(p.fam)+" "+TXT(p.character);
+	return esc("fam")+std::to_string(p.fam)+" "+std::string(1, p.character);
 }
 
 std::string asFilename(const std::string &n, const std::string &a, const std::string &e)
@@ -270,9 +255,7 @@ static std::string glue(scaled d, int order, const std::string &s = "")
 		return asScaled(d)+"foul";
 	if (order > 0)
 		return asScaled(d)+"fi"+std::string(order, 'l');
-	if (txt(s))
-		return s;
-	return "";
+	return s;
 }
 
 void println(void)
@@ -936,9 +919,8 @@ std::string showcontext(void)
 	for (baseptr = inputstack.size()-1; !bottomline; baseptr--) 
 	{
 		curinput = inputstack[baseptr];
-		if (state)
-			if (txt(name) > 17 || baseptr == 0)
-				bottomline = true;
+		if (state && (name.size() != 1 || name[0] > 17 || baseptr == 0))
+			bottomline = true;
 		if (baseptr == inputstack.size()-1 || bottomline || nn < error_context_lines())
 		{
 			if (baseptr == inputstack.size()-1 || state != token_list || token_type != backed_up || loc)
@@ -946,13 +928,13 @@ std::string showcontext(void)
 				int l = oss.str().size();
 				if (state)
 				{
-					if (txt(name) <= 17)
-						if (terminal_input(name))
-							oss << (baseptr == 0 ? "\r<*> " : "\r<insert>  ");
+					if (terminal_input(name))
+						oss << (baseptr == 0 ? "\r<*> " : "\r<insert>  ");
+					else 
+						if (name.size() == 1 && name[0] <= 17)
+							oss << "\r<read " << (name[0] == 17 ? "*" : std::to_string(name[0]-1))+"> ";
 						else
-							oss << "\r<read " << (txt(name) == 17 ? "*" : std::to_string((txt(name)-1)))+"> ";
-					else
-						oss << "\rl."+std::to_string(line) << " ";
+							oss << "\rl."+std::to_string(line) << " ";
 					l = oss.str().size()-l;
 					tally = 0;
 					trickcount = 1000000;
@@ -988,7 +970,7 @@ std::string showcontext(void)
 							oss << "\r<inserted text> ";
 							break;
 						case macro:
-							oss << "\n" << cs(txt(name));
+							oss << "\n" << name;
 							break;
 						case output_text:
 							oss << "\r<output> ";

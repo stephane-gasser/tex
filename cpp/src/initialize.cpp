@@ -1,5 +1,4 @@
 #include "initialize.h"
-#include "texte.h"
 #include "cesure.h"
 #include "police.h"
 #include "equivalent.h"

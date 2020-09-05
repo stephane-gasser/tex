@@ -13,7 +13,6 @@
 #include "macrocall.h"
 #include "getnext.h"
 #include "fichier.h"
-#include "texte.h"
 
 void expand(Token tk)
 {

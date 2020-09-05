@@ -2,7 +2,6 @@
 #include "impression.h"
 #include "jumpout.h"
 #include "lecture.h"
-#include "texte.h"
 #include "backinput.h"
 #include "noeud.h"
 #include "fichier.h"

@@ -6,7 +6,6 @@
 #include "backinput.h"
 #include "erreur.h"
 #include "lecture.h"
-#include "texte.h"
 #include "getnext.h"
 #include "alignement.h"
 

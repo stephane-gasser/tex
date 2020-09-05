@@ -4,7 +4,6 @@
 #include "fichier.h"
 #include "lecture.h"
 #include "chaine.h"
-#include "texte.h"
 #include "noeud.h"
 #include "runaway.h"
 #include "police.h"
@@ -20,7 +19,7 @@
 		return t; 
 	if (t.cs)
 	{
-		if (state == token_list || txt(name) < 1 || txt(name) > 17)
+		if (state == token_list || name.size() != 1 || name[0] > 17)
 			back_list(new TokenNode(cs_token_flag+t.cs));
 		t.cmd = spacer;
 		t.chr = ' ';
@@ -282,7 +281,7 @@ static void removeFromEnd(int &k, int d)
 				else
 				{
 					state = new_line;
-					if (txt(name) > 17)
+					if (name.size() != 1 || name[0] > 17)
 					{
 						line++;
 						First = start;

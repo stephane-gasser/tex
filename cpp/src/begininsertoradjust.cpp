@@ -5,7 +5,6 @@
 #include "sauvegarde.h"
 #include "normalparagraph.h"
 #include "pushnest.h"
-#include "texte.h"
 
 void begininsertoradjust(Token t)
 {

@@ -2,7 +2,6 @@
 #include "lecture.h"
 #include "impression.h"
 #include "erreur.h"
-#include "texte.h"
 
 void alterprevgraf(void)
 {

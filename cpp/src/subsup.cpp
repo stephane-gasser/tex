@@ -3,7 +3,6 @@
 #include "impression.h"
 #include "erreur.h"
 #include "lecture.h"
-#include "texte.h"
 
 static bool scripts_allowed(LinkedNode *tail) { return tail->type >= ord_noad && tail->type < left_noad; }
 

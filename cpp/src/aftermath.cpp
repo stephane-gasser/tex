@@ -10,7 +10,6 @@
 #include "half.h"
 #include "resumeafterdisplay.h"
 #include "alignement.h"
-#include "texte.h"
 #include "police.h"
 
 constexpr int total_mathsy_params = 22;

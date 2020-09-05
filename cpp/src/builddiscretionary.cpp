@@ -6,7 +6,6 @@
 #include "noeud.h"
 #include "lecture.h"
 #include "pushnest.h"
-#include "texte.h"
 
 void builddiscretionary(Token t)
 {

@@ -6,7 +6,6 @@
 #include "chaine.h"
 #include "popinput.h"
 #include "pushinput.h"
-#include "texte.h"
 #include <iostream>
 
 void firmuptheline(void)
@@ -148,7 +147,7 @@ void endfilereading(void)
 {
 	First = start;
 	line = linestack[index];
-	if (txt(name) > 17)
+	if (name.size() != 1 || name[0] > 17)
 		aclose(cur_file());
 	pop_input();
 	inopen--;
@@ -312,22 +311,22 @@ void aclose(alphafile& f) { f.close(); } //! Close a text file.
 void bclose(bytefile& f) { f.close(); } //! Close a binary file.
 void wclose(wordfile& f) { f.close(); } //! Close a word file.
 
-static bool openin(std::fstream &f, const std::string &name)
+static bool openin(std::fstream &f, const std::string &n)
 {
-	f.open(name, std::ios_base::in);
+	f.open(n, std::ios_base::in);
 	return f.is_open();
 }
 
-static bool openout(std::fstream &f, const std::string &name)
+static bool openout(std::fstream &f, const std::string &n)
 {
-	f.open(name, std::ios_base::out);
+	f.open(n, std::ios_base::out);
 	return f.is_open();
 }
 
-bool aopenin(alphafile& f, const std::string &name) { return openin(f, name); } //! Open a text file for input.
-bool bopenin(bytefile& f, const std::string &name) { return openin(f, name); } //! Open a binary file for input.
-bool wopenin(wordfile& f, const std::string &name) { return openin(f, name); } //! Open a word file for input.
-bool aopenout(alphafile& f, const std::string &name) { return openout(f, name); } //! Open a text file for output.
-bool bopenout(bytefile& f, const std::string &name) { return openout(f, name); } //! Open a binary file for output.
-bool wopenout(wordfile& f, const std::string &name) { return openout(f, name); } //! Open a word file for output.
+bool aopenin(alphafile& f, const std::string &n) { return openin(f, n); } //! Open a text file for input.
+bool bopenin(bytefile& f, const std::string &n) { return openin(f, n); } //! Open a binary file for input.
+bool wopenin(wordfile& f, const std::string &n) { return openin(f, n); } //! Open a word file for input.
+bool aopenout(alphafile& f, const std::string &n) { return openout(f, n); } //! Open a text file for output.
+bool bopenout(bytefile& f, const std::string &n) { return openout(f, n); } //! Open a binary file for output.
+bool wopenout(wordfile& f, const std::string &n) { return openout(f, n); } //! Open a word file for output.
 

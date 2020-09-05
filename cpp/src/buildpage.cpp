@@ -7,7 +7,6 @@
 #include "badness.h"
 #include "fireup.h"
 #include "noeud.h"
-#include "texte.h"
 #include "boite.h"
 #include "equivalent.h"
 

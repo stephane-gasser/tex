@@ -5,7 +5,6 @@
 #include "equivalent.h"
 #include "noeud.h"
 #include "lecture.h"
-#include "texte.h"
 
 void offsave(Token t)
 {

@@ -6,7 +6,6 @@
 #include "getnext.h"
 #include "passtext.h"
 #include "erreur.h"
-#include "texte.h"
 #include "equivalent.h"
 #include "fichier.h"
 

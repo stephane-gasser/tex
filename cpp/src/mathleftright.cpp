@@ -7,7 +7,6 @@
 #include "pushmath.h"
 #include "sauvegarde.h"
 #include "formule.h"
-#include "texte.h"
 
 void mathleftright(Token tk)
 {
