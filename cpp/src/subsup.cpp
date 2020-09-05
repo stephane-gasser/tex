@@ -22,12 +22,10 @@ void subsup(eightbits cmd) //sub_mark || sup_mark
 		p = cmd == sup_mark ? &n->supscr : &n->subscr;
 		tail_append(n);
 		if (t)
-		{
 			if (cmd == sup_mark)
 				error("Double superscript", "I treat `x^1^2' essentially like `x^1{}^2'.");
 			else
 				error("Double subscript", "I treat `x_1_2' essentially like `x_1{}_2'.");
-		}
 	}
 	scanmath(*p);
 }

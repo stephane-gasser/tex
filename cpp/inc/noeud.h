@@ -314,7 +314,7 @@ class OpenWriteWhatsitNode : public WriteWhatsitNode
 		std::string open_name; //!< string number of file name to open
 		std::string open_area; //!< string number of file area for \a open_name
 		std::string open_ext; //!< string number of file extension for \a open_name
-		OpenWriteWhatsitNode(void) : WriteWhatsitNode(/*open_node*/0) {}
+		OpenWriteWhatsitNode(void) : WriteWhatsitNode(open_node) {}
 		virtual OpenWriteWhatsitNode *copy(void) { auto w = new OpenWriteWhatsitNode; w->write_stream = write_stream; w->open_name = open_name; w->open_area = open_area; w->open_ext = open_ext; return w; }
 };
 
@@ -333,7 +333,7 @@ class LanguageWhatsitNode : public WhatsitNode
 		halfword what_lang; //!< language number, in the range 0..255
 		quarterword what_lhm; //!< minimum left fragment, in the range 1..63
 		quarterword what_rhm; //!< minimum right fragment, in the range 1..63
-		LanguageWhatsitNode(ASCIIcode l) : WhatsitNode(/*language_node*/4), what_lang(l) {}
+		LanguageWhatsitNode(ASCIIcode l) : WhatsitNode(language_node), what_lang(l) {}
 		virtual LanguageWhatsitNode *copy(void) { auto l = new LanguageWhatsitNode(what_lang); l->what_lhm = what_lhm; l->what_rhm = what_rhm; return l; }
 };
 
@@ -344,7 +344,7 @@ class NoadContent : public AnyNode
 		LinkedNode *info = nullptr;
 		quarterword character = 0;
 		quarterword fam = 0;
-		~NoadContent(void) { if (math_type >= /*sub_box*/2) flushnodelist(info); }
+		~NoadContent(void) { if (math_type >= sub_box) flushnodelist(info); }
 		bool operator == (const NoadContent &n) { return std::tuple(math_type, info, character, fam) == std::tuple(n.math_type, n.info, n.character, n.fam); }
 };
 
@@ -355,7 +355,7 @@ class Noad : public LinkedNode
 		NoadContent nucleus;
 		NoadContent subscr;
 		NoadContent supscr;
-		Noad(void) : subtype(0/*normal*/) { type = ord_noad; }
+		Noad(void) : subtype(normal) { type = ord_noad; }
 };
 
 class Delimiter
@@ -371,31 +371,32 @@ class RadicalNoad : public Noad
 {
 	public:
 		Delimiter left_delimiter;
-		RadicalNoad(void) { type = radical_noad; subtype = 0/*normal*/; }
+		RadicalNoad(Token);
 };
 
-class FractionNoad : public RadicalNoad
+class FractionNoad : public Noad
 {
 	public:
-		Delimiter right_delimiter;
+		Delimiter left_delimiter = Delimiter{0, 0, 0, 0};
+		Delimiter right_delimiter = Delimiter{0, 0, 0, 0};
 		NoadContent &numerator = supscr; // |numerator| field in a fraction noad
 		NoadContent &denominator = subscr; // |denominator| field in a fraction noad
 		scaled thickness; //!< \a thickness field in a fraction noad
-		FractionNoad(void) { type = fraction_noad; subtype = 0/*normal*/; }
+		FractionNoad(halfword, Token);
 };
 
 class LeftRightNoad : public Noad
 {
 	public:
 		Delimiter delimiter; //!< \a delimiter field in left and right noads
-		LeftRightNoad(quarterword t) { type = t; }
+		LeftRightNoad(Token);
 };
 
 class AccentNoad : public Noad
 {
 	public:
 		NoadContent accent_chr; //!< the \a accent_chr field of an accent noad
-		AccentNoad(void) { type = accent_noad; subtype = 0/*normal*/; accent_chr.math_type = 1/*math_char*/; }
+		AccentNoad(void);
 };
 
 //inline int &incompleat_noad = aux.int_; //!< the name of \a aux in math mode

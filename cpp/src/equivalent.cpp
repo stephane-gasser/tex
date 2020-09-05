@@ -84,6 +84,6 @@ void eqworddefine(MemoryNode *p, int w)
 void geqworddefine(MemoryNode *p, int w)
 {
 	p->int_ = w;
-	p->/*xeq*/level = 1;
+	p->/*xeq*/level = level_one;
 }
 

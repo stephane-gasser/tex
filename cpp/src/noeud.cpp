@@ -38,6 +38,7 @@ LinkedNode* copynodelist(LinkedNode *p)
 	q->link = nullptr;
 	return head.link;
 }
+
 void flushnodelist(LinkedNode *p)
 {
 	while (p)
@@ -342,5 +343,63 @@ void KernNode::mathkern(scaled m)
 		width = mu_mult(n, width, f);
 		subtype = 1;
 	}
+}
+
+AccentNoad::AccentNoad(void)
+{ 
+	type = accent_noad; 
+	subtype = normal; 
+	nucleus.math_type = 0; // twohalves{0, 0};
+	subscr.math_type = 0; // = twohalves{0, 0};
+	supscr.math_type = 0; // = twohalves{0, 0};
+	int val = scanfifteenbitint();
+	accent_chr.math_type = math_char; 
+	accent_chr.character = val%0x1'00;
+	accent_chr.fam = val >= var_code && fam_in_range() ? cur_fam() : (val>>8)%0x10;
+	scanmath(nucleus);
+}
+
+
+RadicalNoad::RadicalNoad(Token t)
+{ 
+	type = radical_noad; 
+	subtype = normal; 
+	nucleus.math_type = 0; // = twohalves{0, 0};
+	subscr.math_type = 0; // = twohalves{0, 0};
+	supscr.math_type = 0; // = twohalves{0, 0};
+	scandelimiter(left_delimiter, true, t);
+	scanmath(nucleus);
+}
+
+FractionNoad::FractionNoad(halfword c, Token t) 
+{ 
+	type = fraction_noad; 
+	subtype = normal; 
+	numerator.math_type = sub_mlist;
+	numerator.info = head->link;
+	denominator.math_type = 0; // = twohalves{0, 0};
+	if (c >= delimited_code)
+	{
+		scandelimiter(left_delimiter, false, t);
+		scandelimiter(right_delimiter, false, t);
+	}
+	switch (c%delimited_code)
+	{
+		case above_code:
+			thickness = scan_normal_dimen();
+			break;
+		case over_code: 
+			thickness = default_code;
+			break;
+		case atop_code: 
+			thickness = 0;
+			break;
+	}
+}
+
+LeftRightNoad::LeftRightNoad(Token t)
+{ 
+	type = t.chr; 
+	scandelimiter(delimiter, false, t);
 }
 

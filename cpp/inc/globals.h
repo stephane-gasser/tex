@@ -814,7 +814,6 @@ inline unsigned char baseptr; // 0..stacksize
 inline char openparens = 0; // 0..maxinopen
 inline halfword parloc;
 inline halfword partoken;
-inline bool lfthit = false, rthit = false;
 inline bool outputactive = false;
 inline halfword writeloc;
 

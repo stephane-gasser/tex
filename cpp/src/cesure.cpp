@@ -166,7 +166,7 @@ void inittrie(void)
 	trienotready = false;
 }
 
-quarterword newtrieop(smallnumber d, smallnumber n, quarterword v)
+static quarterword newtrieop(smallnumber d, smallnumber n, quarterword v)
 {
 	TrieOp to;
 	to.hyfdistance = d;

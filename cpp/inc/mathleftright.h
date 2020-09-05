@@ -3,6 +3,7 @@
 
 #include "globals.h"
 
-void mathleftright(Token);
+void mathleft(Token);
+void mathright(Token);
 
 #endif

@@ -28,8 +28,6 @@
 #include "starteqno.h"
 #include "setmathchar.h"
 #include "mathlimitswitch.h"
-#include "mathac.h"
-#include "mathradical.h"
 #include "lecture.h"
 #include "pushnest.h"
 #include "noeud.h"
@@ -695,11 +693,13 @@ Token maincontrol(void)
 				mathlimitswitch(t);
 				break;
 			case mmode+radical: 
-				mathradical(t);
+				tail_append(new RadicalNoad(t));
 				break;
 			case mmode+accent:
+				error("Please use "+esc("mathaccent")+" for accents in math mode", "I'm changing \\accent to \\mathaccent here; wish me luck.\n(Accents are not the same in formulas as they are in text.)");
+				[[fallthrough]];
 			case mmode+math_accent: 
-				mathac(t.cmd);
+				tail_append(new AccentNoad);
 				break;
 			case mmode+vcenter:
 				t = scanspec(vcenter_group);
@@ -726,12 +726,12 @@ Token maincontrol(void)
 			case mmode+sub_mark:
 			case mmode+sup_mark: 
 				subsup(t.cmd);
-				break;
+				break; 
 			case mmode+above: 
 				mathfraction(t.chr, t);
 				break;
 			case mmode+left_right: 
-				mathleftright(t);
+				(t.chr == left_noad ? mathleft : mathright)(t);
 				break;
 			case mmode+math_shift: 
 				if (curgroup == math_shift_group)

@@ -15,13 +15,6 @@
 #include "boite.h"
 #include "buildpage.h"
 
-static void alterinteger(Token t)
-{
-	char c = t.chr;
-	scanoptionalequals();
-	(c == 0 ? deadcycles : insertpenalties) = scanint();
-}
-
 void prefixedcommand(Token t, bool setboxallowed) 
 {
 	smallnumber a = 0;
@@ -38,18 +31,12 @@ void prefixedcommand(Token t, bool setboxallowed)
 	}
 	if (t.cmd != def && a%4)
 		error("You can't use `"+esc("long")+"' or `"+esc("outer")+"' with `"+cmdchr(t)+"\'", "I'll pretend you didn't say \\long or \\outer here.");
-	if (global_defs())
-		if (global_defs() < 0)
-		{
-			if (a >= 4)
-				a -= 4;
-		}
-		else 
-			if (a < 4)
-				a += 4;
+	if (global_defs() < 0 && a >= 4)
+		a -= 4;
+	if (global_defs() > 0 && a < 4)
+		a += 4;
 	int val;
 	fontindex k;
-	TokenNode *q;
 	int n;
 	switch (t.cmd)
 	{
@@ -63,7 +50,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			auto p = getrtoken();
 			Token tk;
 			tk.cs = p;
-			q = scantoks(true, t.chr >= 2, tk);
+			auto _ = scantoks(true, t.chr >= 2, tk);
 			define_(a, &eqtb_cs[p-hash_base], call+a%4, defref); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		}
@@ -147,8 +134,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 				}
 				if (t.cmd == assign_toks)
 				{
-					q = dynamic_cast<TokenNode*>(eqtb_local[t.chr-local_base].index);
-					if (q == nullptr)
+					if (auto q = dynamic_cast<TokenNode*>(eqtb_local[t.chr-local_base].index); q == nullptr)
 						define_(a, &eqtb_local[p-local_base], undefined_cs, nullptr);
 					else
 					{
@@ -161,7 +147,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			backinput(t);
 			Token tk;
 			tk.cs = old;
-			q = scantoks(false, false, tk);
+			auto q = scantoks(false, false, tk);
 			if (defref->link == nullptr)
 			{
 				define_(a, &eqtb_local[p-local_base], undefined_cs, nullptr);
@@ -274,7 +260,8 @@ void prefixedcommand(Token t, bool setboxallowed)
 			alterpagesofar(t);
 			break;
 		case set_page_int: 
-			alterinteger(t);
+			scanoptionalequals();
+			(t.chr == 0 ? deadcycles : insertpenalties) = scanint();
 			break;
 		case set_box_dimen: 
 			alterboxdimen(t.chr);
@@ -283,15 +270,9 @@ void prefixedcommand(Token t, bool setboxallowed)
 		{
 			scanoptionalequals();
 			n = scanint();
-			ShapeNode *p;
-			if (n <= 0) 
-				p = nullptr;
-			else
-			{
-				p = new ShapeNode(n);
-				for (int j = 0; j < 2*n; j++)
-					p->values.push_back(scan_normal_dimen());
-			}
+			auto p = n <= 0 ? nullptr : new ShapeNode(n);
+			for (int j = 0; j < 2*n; j++)
+				p->values.push_back(scan_normal_dimen());
 			define_(a, &eqtb_local[par_shape_loc-local_base], shape_ref, p);
 			break;
 		}

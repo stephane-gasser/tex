@@ -20,30 +20,8 @@ void mathfraction(halfword c, Token t)
 	}
 	else
 	{
-		incompleat_noad = new FractionNoad;
-		incompleat_noad->numerator.math_type = sub_mlist;
-		incompleat_noad->numerator.info = head->link;
-		incompleat_noad->denominator.math_type = 0; // = twohalves{0, 0};
-		incompleat_noad->left_delimiter = Delimiter{0, 0, 0, 0};
-		incompleat_noad->right_delimiter = Delimiter{0, 0, 0, 0};
+		incompleat_noad = new FractionNoad(c, t);
 		head->link = nullptr;
 		tail = head;
-		if (c >= delimited_code)
-		{
-			scandelimiter(incompleat_noad->left_delimiter, false, t);
-			scandelimiter(incompleat_noad->right_delimiter, false, t);
-		}
-		switch (c%delimited_code)
-		{
-			case above_code:
-				incompleat_noad->thickness = scan_normal_dimen();
-				break;
-			case over_code: 
-				incompleat_noad->thickness = default_code;
-				break;
-			case atop_code: 
-				incompleat_noad->thickness = 0;
-				break;
-		}
 	}
 }

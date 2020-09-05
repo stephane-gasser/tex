@@ -8,39 +8,37 @@
 #include "sauvegarde.h"
 #include "formule.h"
 
-void mathleftright(Token tk)
+void mathleft(Token t)
 {
-	smallnumber t = tk.chr;
-	if (t == right_noad && curgroup != math_left_group)
+	auto p = new LeftRightNoad(t);
+	pushmath(math_left_group);
+	head->link = p;
+	tail = p;
+}
+
+void mathright(Token t)
+{
+	switch (curgroup)
 	{
-		if (curgroup == math_shift_group)
+		case math_shift_group:
 		{
 			Delimiter dummy;
-			scandelimiter(dummy, false, tk);
+			scandelimiter(dummy, false, t);
 			error("Extra "+esc("right"), "I'm ignoring a \\right that had no matching \\left.");
+			break;
 		}
-		else
-			offsave(tk);
-	}
-	else
-	{
-		auto p = new LeftRightNoad(t);
-		scandelimiter(p->delimiter, false, tk);
-		if (t == left_noad)
+		case math_left_group:
 		{
-			pushmath(math_left_group);
-			head->link = p;
-			tail = p;
-		}
-		else
-		{
-			auto P = finmlist(p);
+			auto p = finmlist(new LeftRightNoad(t));
 			unsave();
 			auto n = new Noad;
 			n->type = inner_noad;
 			n->nucleus.math_type = sub_mlist;
-			n->nucleus.info = P;
+			n->nucleus.info = p;
 			tail_append(n);
+			break;
 		}
+		default:
+			offsave(t);
 	}
 }

@@ -69,11 +69,11 @@ inline bool trienotready = true;
 inline halfword curl, curr;
 inline halfword bchar;
 inline ASCIIcode curlang;
+inline bool lfthit = false, rthit = false;
 
 inline void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : language(); }
 
 void inittrie(void);
-quarterword newtrieop(smallnumber, smallnumber, quarterword);
 void hyphenate(LinkedNode*);
 void newpatterns(Token);
 void newhyphexceptions(void);
