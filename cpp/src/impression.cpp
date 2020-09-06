@@ -67,20 +67,10 @@ static std::string hex(int t)
   return oss.str();
 }
 
-void slowprint(const std::string &s)
+void print(const std::string &s)
 {
 	for (auto c: s)
 		printchar(c);
-}
-
-void print(const std::string &s)
-{
-	if (s.size() != 1)
-	{
-		slowprint(s);
-		return;
-	}
-	printchar(s[0]);
 }
 
 std::string cmdchr(Token t)
@@ -419,14 +409,6 @@ std::string twoDigits(int n)
 static std::string writewhatsit(const std::string &s, WriteWhatsitNode *p)
 {
 	return esc(s)+(p->write_stream < 16 ? std::to_string(p->write_stream) : p->write_stream == 16 ? "*" : "-");
-}
-
-void slowprint(int s)
-{
-	if (s >= strings.size() || s < 256)
-		printchar(s);
-	else
-		print(strings[s]);
 }
 
 void print_err(const std::string &s)

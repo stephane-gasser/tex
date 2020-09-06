@@ -80,14 +80,8 @@ int main()
 			readyalready = 314159;
 		}
 		selector = term_only;
-		std::cout << banner << std::endl;
-		if (formatident == "")
-			std::cout << " (no format preloaded)'" << std::endl;
-		else
-		{
-			slowprint(formatident);
-			println();
-		}
+		print(banner);
+		print("\n"+(formatident == "" ? " (no format preloaded)'" : formatident)+"\n");
 		std::cout << std::flush;
 		nameinprogress = false;
 		std::fill(buffer, buffer+bufsize+1, 0);

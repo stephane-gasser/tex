@@ -40,6 +40,7 @@
 #include "impression.h"
 #include "shiftcase.h"
 #include "doextension.h"
+#include "calcul.h"
 
 static fontindex maink; //!< index into |font_info|
 //static fourquarters mainj; //!<ligature/kern command
@@ -149,26 +150,61 @@ static void main_loop_move_lig(void)
 		curr = ligstack->lig_char.character;
 }
 
-[[nodiscard]] static Token append_normal_space(void)
+[[nodiscard]] static Token append_normal_space(LinkedNode *mainp, fontindex &maink)
 {
 	if (space_skip() == zero_glue)
 	{
-		GlueSpec *Mainp = cur_font().glue;
-		if (mainp == nullptr)
+		GlueSpec *g = cur_font().glue;
+		if (g == nullptr)
 		{
-			Mainp = new GlueSpec(zero_glue);
+			g = new GlueSpec(zero_glue);
 			maink = cur_font().parambase+space_code;
-			Mainp->width = cur_font().space();
-			Mainp->stretch = cur_font().space_stretch();
-			Mainp->shrink = cur_font().space_shrink();
-			cur_font().glue = Mainp;
+			g->width = cur_font().space();
+			g->stretch = cur_font().space_stretch();
+			g->shrink = cur_font().space_shrink();
+			cur_font().glue = g;
 		}
-		mainp = new GlueNode(Mainp);
+		mainp = new GlueNode(g);
 		tail_append(mainp);
 	}
 	else
 		tail_append(new GlueNode(space_skip()));
 	return getxtoken();
+}
+
+//! Handle spaces when <em> space_factor != 1000 </em>.
+static void appspace(LinkedNode *mainp, fontindex &maink)
+{
+	if (space_factor >= 2000 && xspace_skip() != zero_glue)
+		mainp = new GlueNode(xspace_skip());
+	else
+	{
+		GlueSpec *g;
+		if (space_skip() != zero_glue)
+			g = space_skip();
+		else // Find the glue specification, \a main_p, for text spaces in the current font
+		{
+			g = cur_font().glue;
+			if (g == nullptr)
+			{
+				g = new GlueSpec(zero_glue);
+				maink = space_code+cur_font().parambase;
+				g->width = cur_font().space();
+				g->stretch = cur_font().space_stretch();
+				g->shrink = cur_font().space_shrink();
+				cur_font().glue = g;
+			}
+		}
+		g = new GlueSpec(g);
+		// Modify the glue specification in \a main_p according to the space factor
+		if (space_factor >= 2000)
+			g->width += cur_font().extra_space();
+		g->stretch = xnoverd(g->stretch, space_factor, 1000);
+		g->shrink = xnoverd(g->shrink, 1000, space_factor);
+		mainp = new GlueNode(g);
+		g->glue_ref_count = 0;
+	}
+	tail_append(mainp);
 }
 
 static bool main_loop_move_2(halfword chr)
@@ -184,7 +220,7 @@ static bool main_loop_move_2(halfword chr)
 	}
 	charwarning(cur_font(), chr);
 	delete ligstack;
-	ligstack = 0;
+	ligstack = nullptr;
 	return true;
 }
 
@@ -406,13 +442,12 @@ Token maincontrol(void)
 			showcurcmdchr(t);
 		switch (abs(mode)+t.cmd)
 		{
+			case hmode+char_num:
+				t.chr = scancharnum();
+				[[fallthrough]];
 			case hmode+letter:
 			case hmode+other_char:
 			case hmode+char_given:
-				main_loop(t);
-				continue;
-			case hmode+char_num:
-				t.chr = scancharnum();
 				main_loop(t);
 				continue;
 			case hmode+no_boundary:
@@ -421,16 +456,15 @@ Token maincontrol(void)
 					cancelboundary = true;
 				continue;
 			case hmode+spacer: 
-				if (space_factor == 1000)
+				if (space_factor != 1000)
 				{
-					t = append_normal_space();
-					continue;
+					appspace(mainp, maink);
+					break;
 				}
-				appspace(mainp, maink);
-				break;
+				[[fallthrough]];
 			case hmode+ex_space:
 			case mmode+ex_space: 
-				t = append_normal_space();
+				t = append_normal_space(mainp, maink);
 				continue;
 			case ANY_MODE(relax):
 			case vmode+spacer:
@@ -485,11 +519,14 @@ Token maincontrol(void)
 			case hmode+vrule:
 			case mmode+vrule:
 				tail_append(scanrulespec(t));
-				if (abs(mode) == vmode)
-					prev_depth = ignore_depth;
-				else 
-					if (abs(mode) == hmode)
+				switch (abs(mode))
+				{
+					case vmode:
+						prev_depth = ignore_depth;
+						break;
+					case hmode:
 						space_factor = 1000;
+				}
 				break;
 			case vmode+vskip:
 			case hmode+hskip:
@@ -499,7 +536,7 @@ Token maincontrol(void)
 				break;
 			case ANY_MODE(kern):
 			case mmode+mkern: 
-				appendkern(t.chr);
+				tail_append(new KernNode(scandimen(t.chr == mu_glue, false, false), t.chr));
 				break;
 			case NON_MATH(left_brace):
 				newsavelevel(simple_group);
@@ -578,7 +615,9 @@ Token maincontrol(void)
 				makemark(t);
 				break;
 			case ANY_MODE(break_penalty):
-				appendpenalty();
+				tail_append(new PenaltyNode(scanint()));
+				if (mode == vmode)
+					buildpage();
 				break;
 			case ANY_MODE(remove_item):
 				deletelast(t);

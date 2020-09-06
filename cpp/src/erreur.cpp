@@ -65,8 +65,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 					if (baseptr > 0)
 					{
 						printnl("You want to edit file ");
-						slowprint(inputstack[baseptr].namefield);
-						print(" at line "+std::to_string(line));
+						print(inputstack[baseptr].namefield+" at line "+std::to_string(line));
 						interaction = scroll_mode;
 						jumpout();
 					}

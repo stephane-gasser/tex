@@ -241,30 +241,17 @@ void appendglue(halfword s)
 
 void appenditaliccorrection(void)
 {
-	if (tail != head)
-	{
-		CharNode *p;
-		if (tail->is_char_node())
-			p = dynamic_cast<CharNode*>(tail);
-		else 
-			if (tail->type == ligature_node)
-				p = &dynamic_cast<LigatureNode*>(tail)->lig_char;
-			else
-				return;
-		tail_append(new KernNode(p->font.char_italic(p->character), explicit_));
-	}
-}
-
-void appendkern(halfword s)
-{
-	tail_append(new KernNode(scandimen(s == mu_glue, false, false), s));
-}
-
-void appendpenalty(void)
-{
-	tail_append(new PenaltyNode(scanint()));
-	if (mode == vmode)
-		buildpage();
+	if (tail == head)
+		return;
+	CharNode *p;
+	if (tail->is_char_node())
+		p = dynamic_cast<CharNode*>(tail);
+	else 
+		if (tail->type == ligature_node)
+			p = &dynamic_cast<LigatureNode*>(tail)->lig_char;
+		else
+			return;
+	tail_append(new KernNode(p->font.char_italic(p->character), explicit_));
 }
 
 //! When a box is being appended to the current vertical list, the
@@ -286,41 +273,6 @@ void appendtovlist(BoxNode *b)
 	}
 	tail_append(b);
 	prev_depth = b->depth;
-}
-
-//! Handle spaces when <em> space_factor != 1000 </em>.
-void appspace(LinkedNode *mainp, fontindex &maink)
-{
-	if (space_factor >= 2000 && xspace_skip() != zero_glue)
-		mainp = new GlueNode(xspace_skip());
-	else
-	{
-		GlueSpec *Mainp;
-		if (space_skip() != zero_glue)
-			Mainp = space_skip();
-		else // Find the glue specification, \a main_p, for text spaces in the current font
-		{
-			Mainp = cur_font().glue;
-			if (Mainp == nullptr)
-			{
-				Mainp = new GlueSpec(zero_glue);
-				maink = space_code+cur_font().parambase;
-				Mainp->width = cur_font().space();
-				Mainp->stretch = cur_font().space_stretch();
-				Mainp->shrink = cur_font().space_shrink();
-				cur_font().glue = Mainp;
-			}
-		}
-		Mainp = new GlueSpec(Mainp);
-		// Modify the glue specification in \a main_p according to the space factor
-		if (space_factor >= 2000)
-			Mainp->width += cur_font().extra_space();
-		Mainp->stretch = xnoverd(Mainp->stretch, space_factor, 1000);
-		Mainp->shrink = xnoverd(Mainp->shrink, 1000, space_factor);
-		mainp = new GlueNode(Mainp);
-		Mainp->glue_ref_count = 0;
-	}
-	tail_append(mainp);
 }
 
 void followUntilBeforeTarget(LinkedNode* &running, LinkedNode *target)

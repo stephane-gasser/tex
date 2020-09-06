@@ -31,7 +31,7 @@ void startinput(void)
 	}
 	print(std::string(termoffset+name.size() > maxprintline-2 ? "\n" : termoffset > 0 || fileoffset > 0 ? " " : "")+"(");
 	openparens++;
-	slowprint(name);
+	print(name);
 	std::cout << std::flush;
 	state = new_line;
 	if (name == strings.back())

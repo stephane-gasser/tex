@@ -450,10 +450,7 @@ void appendchoices(void);
 void appenddiscretionary(halfword);
 void appendglue(halfword);
 void appenditaliccorrection(void);
-void appendkern(halfword);
-void appendpenalty(void);
 void appendtovlist(BoxNode*);
-void appspace(LinkedNode*, fontindex&);
 void followUntilBeforeTarget(LinkedNode*&, LinkedNode* = nullptr);
 void tail_append(LinkedNode*);
 

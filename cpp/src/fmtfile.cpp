@@ -1420,7 +1420,7 @@ void storefmtfile(void)
 	while (!wopenout(fmtfile, fname = packjobname(format_extension)))
 		promptfilename("format file name", format_extension); 
 	printnl("Beginning to dump_int on file ");
-	slowprint(fname);
+	print(fname);
 	printnl(formatident);
 	dump_int(CHECKSUM);
 	dump_int(mem_bot);

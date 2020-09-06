@@ -104,9 +104,8 @@ void openlogfile(void)
 	selector = log_only;
 	logopened = true;
 	logfile << banner;
-	slowprint(formatident);
-	print("  "+std::to_string(day())+" ");
-	char months[] = "JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC";
+	print(formatident+"  "+std::to_string(day())+" ");
+	constexpr char months[] = "JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC";
 	for (int k = 3*month()-2; k <= 3*month(); k++)
 		logfile << months[k];
 	print(" "+std::to_string(year())+" "+twoDigits(time()/60)+":"+twoDigits(time()%60));
