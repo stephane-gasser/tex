@@ -14,13 +14,33 @@
 #include "primitive.h"
 #include "charwarning.h"
 
-int mathex(smallnumber p) { return fonts[fam_fnt(3+cursize)].param(p); }
-int default_rule_thickness(void) { return mathex(8); }
+static int mathex(smallnumber p) { return fonts[fam_fnt(3+cursize)].param(p); }
+	static int default_rule_thickness(void) { return mathex(8); }
+	static int big_op_spacing1(void) { return mathex(9); } //!< minimum clearance above a displayed op
+	static int big_op_spacing2(void) { return mathex(10); } //!< minimum clearance below a displayed op
+	static int big_op_spacing3(void) { return mathex(11); } //!< minimum baselineskip above displayed op
+	static int big_op_spacing4(void) { return mathex(12); } //!< minimum baselineskip below displayed op
+	static int big_op_spacing5(void) { return mathex(13); } //!< padding above and below displayed limits
+static int mathsy(smallnumber p, smallnumber c) { return fonts[fam_fnt(2+c)].param(p); }
+	static int math_x_height(smallnumber c) { return mathsy(5, c); } //!< height of `x'
+	int math_quad(smallnumber c) { return mathsy(6, c); } //!< 18mu
+	static int num1(smallnumber c) { return mathsy(8, c); } //!< numerator shift-up in display styles
+	static int num2(smallnumber c) { return mathsy(9, c); } //!< numerator shift-up in non-display, non-\atop 
+	static int num3(smallnumber c) { return mathsy(10, c); } //!< numerator shift-up in non-display \atop
+	static int denom1(smallnumber c) { return mathsy(11, c); } //!< denominator shift-down in display styles
+	static int denom2(smallnumber c) { return mathsy(12, c); } //!< denominator shift-down in non-display styles
+	static int sup1(smallnumber c) { return mathsy(13, c); } //!< superscript shift-up in uncramped display style 
+	static int sup2(smallnumber c) { return mathsy(14, c); } //!< superscript shift-up in uncramped non-display
+	static int sup3(smallnumber c) { return mathsy(15, c); } //!< superscript shift-up in cramped styles
+	static int sub1(smallnumber c) { return mathsy(16, c); } //!< subscript shift-down if superscript is absent
+	static int sub2(smallnumber c) { return mathsy(17, c); } //!< subscript shift-down if superscript is present
+	static int sup_drop(smallnumber c) { return mathsy(18, c); } //!< superscript baseline below top of large box
+	static int sub_drop(smallnumber c) { return mathsy(19, c); } //!< subscript baseline below bottom of large box
+	static int delim1(smallnumber c) { return mathsy(20, c); } //!< size of \atopwithdelims delimiters
+	static int delim2(smallnumber c) { return mathsy(21, c); } //!< size of \atopwithdelims delimiters in non-displays
+	int axis_height(smallnumber c) { return mathsy(22, c); }  //!< height of fraction lines above the baseline
+
 int& fam_fnt(halfword p) { return eqtb_local[p+math_font_base-local_base].int_; }
-int mathsy(smallnumber p, smallnumber c) { return fonts[fam_fnt(2+c)].param(p); }
-int axis_height(smallnumber c) { return mathsy(22, c); }
-int math_x_height(smallnumber c) { return mathsy(5, c); }
-int math_quad(smallnumber c) { return mathsy(6, c); }
 
 [[nodiscard]] static std::tuple<internalfontnumber, quarterword> fetch(NoadContent &a)
 {
@@ -91,13 +111,6 @@ void makeradical(RadicalNoad *Q)
 	Q->nucleus.math_type = sub_box;
 	Q->nucleus.info = hpack(y, 0, additional);
 }
-static int num1(smallnumber c) { return mathsy(8, c); } //!< numerator shift-up in display styles
-static int num2(smallnumber c) { return mathsy(9, c); } //!< numerator shift-up in non-display, non-\atop 
-static int num3(smallnumber c) { return mathsy(10, c); } //!< numerator shift-up in non-display \atop
-static int denom1(smallnumber c) { return mathsy(11, c); } //!< denominator shift-down in display styles
-static int denom2(smallnumber c) { return mathsy(12, c); } //!< denominator shift-down in non-display styles
-static int delim1(smallnumber c) { return mathsy(20, c); } //!< size of \atopwithdelims delimiters
-static int delim2(smallnumber c) { return mathsy(21, c); } //!< size of \atopwithdelims delimiters in non-displays
 static int denom_style(int c) { return 2*(c/2)+cramped+2-2*(c/6); }  //!< smaller, cramped
 static int num_style(int c) { return c+2-2*(c/6); } //!< smaller unless already script-script
 
@@ -360,13 +373,6 @@ void makeord(Noad *Q)
 }
 
 
-static int sup1(smallnumber c) { return mathsy(13, c); } //!< superscript shift-up in uncramped display style 
-static int sup2(smallnumber c) { return mathsy(14, c); } //!< superscript shift-up in uncramped non-display
-static int sup3(smallnumber c) { return mathsy(15, c); } //!< superscript shift-up in cramped styles
-static int sub1(smallnumber c) { return mathsy(16, c); } //!< subscript shift-down if superscript is absent
-static int sub2(smallnumber c) { return mathsy(17, c); } //!< subscript shift-down if superscript is present
-static int sup_drop(smallnumber c) { return mathsy(18, c); } //!< superscript baseline below top of large box
-static int sub_drop(smallnumber c) { return mathsy(19, c); } //!< subscript baseline below bottom of large box
 
 void makescripts(Noad *q, scaled delta)
 {
@@ -492,13 +498,6 @@ BoxNode* overbar(BoxNode *b, scaled k, scaled t)
 	p->link = q;
 	return vpack(p, 0, additional);
 }
-
-static int big_op_spacing1(void) { return mathex(9); } //!< minimum clearance above a displayed op
-static int big_op_spacing2(void) { return mathex(10); } //!< minimum clearance below a displayed op
-static int big_op_spacing3(void) { return mathex(11); } //!< minimum baselineskip above displayed op
-static int big_op_spacing4(void) { return mathex(12); } //!< minimum baselineskip below displayed op
-static int big_op_spacing5(void) { return mathex(13); } //!< padding above and below displayed limits
-
 
 scaled makeop(Noad *Q)
 {
