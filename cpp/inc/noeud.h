@@ -71,10 +71,10 @@ class ShapeNode : public LinkedNode
 class CharNode : public LinkedNode
 {
 	public:
-		Font font; //type
+		internalfontnumber font; //type
 		quarterword character; //subtype
 		virtual bool is_char_node(void) { return true; }
-		CharNode(const Font &f, quarterword c) : font(f), character(c) {}
+		CharNode(internalfontnumber f, quarterword c) : font(f), character(c) {}
 		virtual CharNode* copy(void) { return new CharNode(font, character); }
 };
 
@@ -96,9 +96,9 @@ class LigatureNode : public LinkedNode
 		CharNode lig_char;
 		LinkedNode *lig_ptr;
 		quarterword subtype;
-		LigatureNode(const Font &f, quarterword c, LinkedNode*q) : subtype(0), lig_char(f, c), lig_ptr(q) { type = ligature_node; }
+		LigatureNode(internalfontnumber f, quarterword c, LinkedNode*q) : subtype(0), lig_char(f, c), lig_ptr(q) { type = ligature_node; }
 		//newligitem
-		LigatureNode(quarterword c) : subtype(0), lig_char(fonts[0], c), lig_ptr(nullptr) { type = ligature_node; }
+		LigatureNode(quarterword c) : subtype(0), lig_char(null_font, c), lig_ptr(nullptr) { type = ligature_node; }
 		~LigatureNode(void) { flushnodelist(lig_ptr); /*if (lig_ptr) delete lig_ptr;*/ }
 		virtual LigatureNode* copy(void) { return new LigatureNode(lig_char.font, lig_char.character, copynodelist(lig_ptr)); }
 };

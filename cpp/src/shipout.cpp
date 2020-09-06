@@ -232,15 +232,14 @@ static void hlistout(BoxNode *thisbox)
 			auto P = dynamic_cast<CharNode*>(p);
 			for (; p->is_char_node(); next(p))
 			{
-				auto ft = P->font;
+				auto f = P->font;
 				auto c = P->character;
-				int f; //ft
 				if (f != dvif)
 				{
-					if (!ft.used)
+					if (!fonts[f].used)
 					{
 						dvifontdef(f);
-						ft.used = true;
+						fonts[f].used = true;
 					}
 					if (f <= 64+font_base)
 						dvi_out(f-font_base-1+fnt_num_0);
@@ -255,7 +254,7 @@ static void hlistout(BoxNode *thisbox)
 				if (c >= 128)
 					dvi_out(set1);
 				dvi_out(c);
-				curh += ft.char_width(c);
+				curh += fonts[f].char_width(c);
 			}
 			dvih = curh;
 		}

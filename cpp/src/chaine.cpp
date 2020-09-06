@@ -5,7 +5,6 @@
 #include <iostream>
 
 int cur_length(void) { return currentString.size(); }
-void flush_string(void) { strings.pop_back(); currentString = ""; }
 void append_char(ASCIIcode c) { currentString += c; } //!< put \a ASCII_code # at the end of \a str_pool
 
 static bool hash_is_full(void) { return hashused == hash_base; } //! test if all positions are occupied

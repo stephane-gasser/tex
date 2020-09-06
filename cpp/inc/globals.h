@@ -747,7 +747,7 @@ class Font
 		int& quad(void) const; //!< one em
 		int char_tag(smallnumber);
 		bool char_exists(smallnumber);
-		bool operator != (const Font &f) { return this != &f; } 
+//		bool operator != (const Font &f) { return this != &f; } 
 };
 
 class LinkedNode;

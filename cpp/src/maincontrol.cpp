@@ -50,7 +50,7 @@ static LinkedNode *mainp; //!<temporary register for list manipulation
 //! the parameter is either |rt_hit| or |false|
 static void pack_lig(bool z)
 {
-	mainp = new LigatureNode(cur_font(), curl, curq->link);
+	mainp = new LigatureNode(curFontNum(), curl, curq->link);
 	if (lfthit)
 	{
 		dynamic_cast<LigatureNode*>(mainp)->subtype = 2;
@@ -127,7 +127,7 @@ static void main_loop_lookahead(void)
 	//main_loop_lookahead_1
 	adjust_space_factor(t.chr);
 	curr = t.chr;
-	ligstack = new LigatureNode(cur_font(), curr, nullptr);
+	ligstack = new LigatureNode(curFontNum(), curr, nullptr);
 	if (curr == falsebchar)
 		curr = non_char;
 }
@@ -278,7 +278,7 @@ static bool main_loop_wrapup(halfword chr)
 							insdisc = true;
 						if (ligaturepresent)
 						{
-							mainp = new LigatureNode(cur_font(), curl, curq->link);
+							mainp = new LigatureNode(curFontNum(), curl, curq->link);
 							if (lfthit)
 							{
 								dynamic_cast<LigatureNode*>(mainp)->subtype = 2;
@@ -410,7 +410,7 @@ static void main_loop(Token t)
 	if (mode > 0 && language() != clang)
 		fixlanguage();
 	curl = t.chr;
-	ligstack = new LigatureNode(cur_font(), curl, nullptr);
+	ligstack = new LigatureNode(curFontNum(), curl, nullptr);
 	curq = dynamic_cast<CharNode*>(tail);
 	maink = cancelboundary ? non_address : cur_font().bcharlabel;
 	cancelboundary = false;

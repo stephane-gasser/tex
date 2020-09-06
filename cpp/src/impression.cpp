@@ -212,7 +212,7 @@ static std::string asDelimiter(Delimiter p)
 	return a < 0 ? std::to_string(a) : hex(a);
 }
 
-std::string esc(const std::string &s) 
+std::string esc(const std::string &s)
 {
 	auto &c = escape_char();
 	if (c >= 0 && c < 256)
@@ -236,7 +236,7 @@ static std::string fontandchar(CharNode *p)
 		return esc("CLOBBERED.");*/
 	if (&p->font == nullptr)
 		return "*"+esc("FONT")+" "+char(p->character);
-	return esc(p->font.name)+esc("FONT")+" "+char(p->character);
+	return esc(fonts[p->font].name)+esc("FONT")+" "+char(p->character);
 }
 
 static std::string glue(scaled d, int order, const std::string &s = "")
@@ -274,7 +274,7 @@ void println(void)
 
 static std::string asMark(TokenNode *p)
 {
-	return "{"+(/*p < himemmin || p > memend ? esc("CLOBBERED.") :*/ tokenlist(dynamic_cast<TokenNode*>(p->link), nullptr, maxprintline-10))+"}";
+	return "{"+(tokenlist(dynamic_cast<TokenNode*>(p->link), nullptr, maxprintline-10))+"}";
 }
 
 std::string meaning(Token t) 
@@ -287,7 +287,7 @@ std::string asMode(int m)
 {
 	switch (m)
 	{
-		case vmode: 
+		case vmode:
 			return "vertical mode";
 		case hmode: 
 			return "horizontal mode";
@@ -498,7 +498,7 @@ std::string shortdisplay(LinkedNode *p)
 			auto pp = dynamic_cast<CharNode*>(p);
 			if (pp->font != fontinshortdisplay)
 			{
-				oss << esc(pp->font.name) << " ";
+				oss << esc(fonts[pp->font].name) << " ";
 				fontinshortdisplay = pp->font;
 			}
 			oss << pp->character;

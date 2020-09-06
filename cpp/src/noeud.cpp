@@ -53,7 +53,7 @@ CharNode* newcharacter(internalfontnumber f, eightbits c)
 {
 	auto &ft = fonts[f];
 	if (ft.bc <= c && ft.ec >= c && skip_byte(ft.char_info(c)) > 0)
-		return new CharNode(ft, c);
+		return new CharNode(f, c);
 	charwarning(ft, c);
 	return nullptr;
 }
@@ -87,7 +87,7 @@ void newfont(smallnumber a)
 	if (scankeyword("at"))
 	{
 		s = scan_normal_dimen();
-		if (s <= 0 || s >= 134217728)
+		if (s <= 0 || s >= 2048*unity)
 		{
 			error("Improper `at' size ("+asScaled(s)+"pt), replaced by 10pt", "I can only handle fonts at positive sizes that are\nless than 2048pt, so I've changed what you said to 10pt.");
 			s = 10*unity;
@@ -97,7 +97,7 @@ void newfont(smallnumber a)
 		if (scankeyword("scaled"))
 		{
 			s = -scanint();
-			if (s >= 0 || s < -0x80'00)
+			if (s >= 0 || s < -(1<<15))
 			{
 				interror(-s, "Illegal magnification has been changed to 1000", "The magnification ratio must be between 1 and 0x80'00.");
 				s = -1000;
@@ -106,27 +106,17 @@ void newfont(smallnumber a)
 		else
 			s = -1000;
 	nameinprogress = false;
-	auto flushablestring = strings.back();
-	for (auto &ft: fonts)
-		if (ft.name == curname && ft.area == curarea)
-		{
-			if (curname == flushablestring)
+	for (size_t f = 0; f < fonts.size(); f++)
+		if (auto &ft = fonts[f]; ft.name == curname && ft.area == curarea)
+			if ((s > 0 && s == ft.size) || (s < 0 && ft.size == xnoverd(ft.dsize, -s, 1000)))
 			{
-				flush_string();
-				curname = ft.name;
+				eqtb[u].int_ = f; // index : Font*
+				eqtb_cs[f+frozen_null_font-hash_base] = eqtb[u];
+				eqtb_cs[f+frozen_null_font-hash_base].text = t;
+				break;
 			}
-			if (s > 0)
-			{
-				if (s == ft.size)
-					break;
-			}
-			else 
-				if (ft.size == xnoverd(ft.dsize, -s, 1000))
-					break;
-		}
 	int f; //ft
-	if (f >= fonts.size())
-		f = readfontinfo(u, curname, curarea, s);
+	f = readfontinfo(u, curname, curarea, s);
 	eqtb[u].int_ = f; // index : Font*
 	eqtb_cs[f+frozen_null_font-hash_base] = eqtb[u];
 	eqtb_cs[f+frozen_null_font-hash_base].text = t;
@@ -251,7 +241,7 @@ void appenditaliccorrection(void)
 			p = &dynamic_cast<LigatureNode*>(tail)->lig_char;
 		else
 			return;
-	tail_append(new KernNode(p->font.char_italic(p->character), explicit_));
+	tail_append(new KernNode(fonts[p->font].char_italic(p->character), explicit_));
 }
 
 //! When a box is being appended to the current vertical list, the

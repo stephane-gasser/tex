@@ -194,12 +194,12 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 			}
 		}
 		int alpha = 16;
-		while (z >= 8388608)
+		while (z >= 1<<23)
 		{
 			z /= 2;
 			alpha *= 2;
 		}
-		int beta = 0x1'00/alpha;
+		int beta = (1<<8)/alpha;
 		alpha *= z;
 		for (int k = ft.widthbase; k < ft.ligkernbase; k++)
 			Font::info[k].int_ = store_scaled(z, beta, k, alpha);
@@ -252,8 +252,8 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 			if (k == 1)
 			{
 				scaled sw = tfmfile.get();
-				if (sw > 127)
-					sw -= 0x1'00;
+				if (sw >= 1<<8)
+					sw -= 1<<8;
 				sw = sw<<8+tfmfile.get();
 				sw = sw<<8+tfmfile.get();
 				ft.param(0) = sw<<4+tfmfile.get()>>4;
@@ -288,8 +288,7 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 		fonts.push_back(ft);
 		if (fileopened)
 			bclose(tfmfile);
-		int f; //ft
-		return f;
+		return fonts.size()-1;
 	}
 	catch (int e)
 	{

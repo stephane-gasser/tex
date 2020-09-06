@@ -11,7 +11,6 @@ inline std::vector<twohalves> hash(2881, {0, 0}); // débute à 514
 
 halfword idlookup(const std::string &, bool = true);
 int cur_length(void);
-void flush_string(void);
 void append_char(ASCIIcode);
 bool getstringsstarted(void);
 

@@ -5,12 +5,14 @@
 #include "police.h"
 #include "noeud.h"
 #include "fractionrule.h"
-#include "fetch.h"
 #include "calcul.h"
 #include "deleteglueref.h"
 #include "erreur.h"
 #include "popnest.h"
 #include "equivalent.h"
+#include "impression.h"
+#include "primitive.h"
+#include "charwarning.h"
 
 int mathex(smallnumber p) { return fonts[fam_fnt(3+cursize)].param(p); }
 int default_rule_thickness(void) { return mathex(8); }
@@ -20,6 +22,31 @@ int axis_height(smallnumber c) { return mathsy(22, c); }
 int math_x_height(smallnumber c) { return mathsy(5, c); }
 int math_quad(smallnumber c) { return mathsy(6, c); }
 
+[[nodiscard]] static std::tuple<internalfontnumber, quarterword> fetch(NoadContent &a)
+{
+	auto curc = a.character;
+	auto curf = fam_fnt(a.fam+cursize);
+	auto &ft = fonts[curf];
+	try
+	{
+		if (curf == null_font)
+			throw 1;
+		if (curc < ft.bc || curc > ft.ec)
+			throw 0;
+		if (!char_exists(ft.char_info(curc)))
+			throw 0;
+	}
+	catch (int e)
+	{
+		if (e == 1)
+			error(esc(primName[def_family][cursize])+" "+std::to_string(a.fam)+" is undefined (character "+char(curc)+")", "Somewhere in the math formula just ended, you used the\nstated character from an undefined font family. For example,\nplain TeX doesn't allow \\it or \\sl in subscripts. Proceed,\nand I'll try to forget that I needed that character.");
+		else
+			charwarning(ft, curc);
+		a.fam = 0;
+		a.character = 0;
+	}
+	return std::tuple(curf, curc);
+}
 
 static GlueSpec *mathglue(GlueSpec *g, scaled m)
 {
@@ -161,15 +188,16 @@ void makefraction(FractionNoad *Q)
 
 void makemathaccent(AccentNoad *Q)
 {
-	auto [ft, curc] = fetch(Q->accent_chr);
-	if (char_exists(ft.char_info(curc)))
+	auto [f, curc] = fetch(Q->accent_chr);
+	if (char_exists(fonts[f].char_info(curc)))
 	{
 		auto c = curc;
 		scaled s = 0;
 		if (Q->nucleus.math_type == math_char)
 		{
-			std::tie(ft, curc) = fetch(Q->nucleus);
-			if (char_tag(ft.char_info(curc)) == lig_tag)
+			std::tie(f, curc) = fetch(Q->nucleus);
+			auto &ft = fonts[f];
+				if (char_tag(ft.char_info(curc)) == lig_tag)
 			{
 				int a = ft.lig_kern_start(ft.char_info(curc));
 				if (skip_byte(Font::infos(a)) > stop_flag)
@@ -192,6 +220,7 @@ void makemathaccent(AccentNoad *Q)
 		auto x = cleanbox(Q->nucleus, cramped_style(curstyle));
 		auto w = x->width;
 		auto h = x->height;
+		auto &ft = fonts[f];
 		while (true)
 		{
 			if (char_tag(ft.char_info(c)) != list_tag)
@@ -224,7 +253,7 @@ void makemathaccent(AccentNoad *Q)
 				delta += x->height-h;
 				h = x->height;
 			}
-		auto y = charbox(ft, c);
+		auto y = charbox(f, c);
 		y->shift_amount = s+half(w-y->width);
 		y->width = 0;
 		auto p = new KernNode(-delta);
@@ -255,7 +284,8 @@ void makeord(Noad *Q)
 			if (p && p->type >= ord_noad && p->type <= punct_noad && p->nucleus.math_type == math_char && p->nucleus.fam == Q->nucleus.fam)
 			{
 				Q->nucleus.math_type = math_text_char;
-				auto [ft, curc] = fetch(Q->nucleus);
+				auto [f, curc] = fetch(Q->nucleus);
+				auto &ft = fonts[f];
 				if (char_tag(ft.char_info(curc)) == lig_tag)
 				{
 					int a = ft.lig_kern_start(ft.char_info(curc));
@@ -477,7 +507,8 @@ scaled makeop(Noad *Q)
 	scaled delta;
 	if (Q->nucleus.math_type == math_char)
 	{
-		auto [ft, curc] = fetch(Q->nucleus);
+		auto [f, curc] = fetch(Q->nucleus);
+		auto &ft = fonts[f];
 		if (curstyle < text_style && char_tag(ft.char_info(curc)) == list_tag)
 		{
 			auto c = rem_byte(ft.char_info(curc));
@@ -584,7 +615,7 @@ void mlisttohlist(void)
 	cursize = curstyle < script_style  ? 0 : 16*((curstyle-text_style)/2);
 	curmu = xovern(math_quad(cursize), 18);
 	quarterword curc;
-	Font ft;
+	internalfontnumber f;
 	LinkedNode *p;
 	BoxNode *z;
 	while (q)
@@ -782,8 +813,8 @@ void mlisttohlist(void)
 		{
 			case math_char:
 			case math_text_char:
-				std::tie(ft, curc) = fetch(Q->nucleus);
-				if (char_exists(ft.char_info(curc)))
+				std::tie(f, curc) = fetch(Q->nucleus);
+				if (auto &ft = fonts[f]; char_exists(ft.char_info(curc)))
 				{
 					delta = ft.char_italic(curc);
 					p = newcharacter(fam_fnt(Q->nucleus.fam+cursize), curc);

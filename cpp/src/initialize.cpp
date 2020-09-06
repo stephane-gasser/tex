@@ -43,7 +43,7 @@ void Initialize(void)
 	hold_head = new LinkedNode;
 	adjust_head = new LinkedNode;
 	null_list = new LinkedNode;
-	lig_trick = new CharNode(fonts[null_font], 0);
+	lig_trick = new CharNode(null_font, 0);
 	garbage = new LinkedNode;
 	backup_head = new LinkedNode;
 	eqtb_cs[undefined_control_sequence-hash_base].type = undefined_cs;

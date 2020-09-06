@@ -34,11 +34,6 @@ void startinput(void)
 	print(name);
 	std::cout << std::flush;
 	state = new_line;
-	if (name == strings.back())
-	{
-		flush_string();
-		name = curname;
-	}
 	line = 1;
 	if (inputln(cur_file(), false))
 		firmuptheline();

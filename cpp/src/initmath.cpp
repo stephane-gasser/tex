@@ -32,8 +32,7 @@ void initmath(void)
 				if (p->is_char_node())
 				{
 					auto c = dynamic_cast<CharNode*>(p);
-					auto ft = c->font;
-					d = ft.char_width(c->character);
+					d = fonts[c->font].char_width(c->character);
 					if (v < max_dimen)
 					{
 						v += d;

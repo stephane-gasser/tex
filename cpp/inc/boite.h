@@ -11,7 +11,7 @@ BoxNode *cleanbox(NoadContent&, smallnumber);
 void alterboxdimen(halfword);
 void beginbox(int, Token);
 void boxend(int);
-BoxNode *charbox(const Font&, quarterword);
+BoxNode *charbox(internalfontnumber, quarterword);
 void ensurevbox(eightbits);
 BoxNode *vpackage(LinkedNode*, scaled, smallnumber, scaled);
 BoxNode *vpack(LinkedNode*, scaled, smallnumber);

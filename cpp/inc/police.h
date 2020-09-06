@@ -5,7 +5,7 @@
 
 inline std::vector<memoryword> Font::info(7);
 inline std::vector<Font> fonts(1);
-inline Font fontinshortdisplay;
+inline internalfontnumber fontinshortdisplay;
 
 Font& cur_font(void);
 int curFontNum(void);

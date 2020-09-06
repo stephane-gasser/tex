@@ -11,9 +11,9 @@ static quarterword ext_mid(fourquarters q) { return q.b1; } //!< |mid| pie1ce in
 static quarterword ext_bot(fourquarters q) { return q.b2; } //!< |bot| piece in a recipe
 static quarterword ext_rep(fourquarters q) { return q.b3; } //!< |rep| piece in a recipe
 
-static void stackintobox(BoxNode *b, const Font &ft, quarterword c)
+static void stackintobox(BoxNode *b, internalfontnumber f, quarterword c)
 {
-	auto p = charbox(ft, c);
+	auto p = charbox(f, c);
 	p->link = b->list_ptr;
 	b->list_ptr = p;
 	b->height = p->height;
@@ -122,25 +122,25 @@ BoxNode *vardelimiter(Delimiter &d, smallnumber s, scaled v)
 				}
 			c = ext_bot(r);
 			if (c)
-				stackintobox(b, ft, c);
+				stackintobox(b, f, c);
 			c = ext_rep(r);
 			for (int m = 1; m <= n; m++)
-				stackintobox(b, ft, c);
+				stackintobox(b, f, c);
 			c = ext_mid(r);
 			if (c)
 			{
-				stackintobox(b, ft, c);
+				stackintobox(b, f, c);
 				c = ext_rep(r);
 				for (int m = 1; m <= n; m++)
-					stackintobox(b, ft, c);
+					stackintobox(b, f, c);
 			}
 			c = ext_top(r);
 			if (c)
-				stackintobox(b, ft, c);
+				stackintobox(b, f, c);
 			b->depth = w-b->height;
 		}
 		else
-			b = charbox(ft, c);
+			b = charbox(f, c);
 	else
 	{
 		b = new BoxNode;
