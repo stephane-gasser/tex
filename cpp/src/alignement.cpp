@@ -16,7 +16,7 @@
 #include "backinput.h"
 #include <cmath>
 #include "equivalent.h"
-#include "flushmath.h"
+#include "flushmath.h" 
 #include "pushnest.h"
 #include "getnext.h"
 
@@ -136,40 +136,47 @@ void initalign(Token t, AlignRecordNode* &loop)
 	alignstate = -1000000;
 	while (true)
 	{
-		curalign->link = new GlueNode(tab_skip_code);
-		next(curalign);
+		appendAtEnd(curalign, new GlueNode(tab_skip_code));
 		if (t.cmd == car_ret)
 			break;
+		hold_head->link = nullptr;
 		auto p = hold_head;
-		p->link = nullptr;
-		while (true)
+		bool keepIn = true;
+		for (t = getpreambletoken(); t.cmd != mac_param && keepIn; t = getpreambletoken())
 		{
-			t = getpreambletoken();
-			if (t.cmd == mac_param)
-				break;
-			if ((t.cmd == tab_mark || t.cmd == out_param) && alignstate == -1000000)
-				if (p == hold_head && loop == 0 && t.cmd == tab_mark)
-					loop = curalign;
-				else
-				{
-					backerror(t, "Missing # inserted in alignment preamble", "There should be exactly one # between &'s, when an\n\\halign or \\valign is being set up. In this case you had\nnone, so I've put one in; maybe that will work.");
+			switch (t.cmd)
+			{
+				case tab_mark:
+					if (alignstate == -1000000)
+						if (p == hold_head && loop == nullptr)
+							loop = curalign;
+						else
+						{
+							backerror(t, "Missing # inserted in alignment preamble", "There should be exactly one # between &'s, when an\n\\halign or \\valign is being set up. In this case you had\nnone, so I've put one in; maybe that will work.");
+							keepIn = false;
+						}
 					break;
-				}
-			else 
-				if (t.cmd != spacer || p != hold_head)
-				{
-					p->link = new TokenNode(t.tok);
-					p = dynamic_cast<TokenNode*>(p->link);
-				}
+				case out_param:
+					if (alignstate == -1000000)
+					{
+						backerror(t, "Missing # inserted in alignment preamble", "There should be exactly one # between &'s, when an\n\\halign or \\valign is being set up. In this case you had\nnone, so I've put one in; maybe that will work.");
+						keepIn = false;
+					}
+					break;
+				case spacer:
+					if (p != hold_head)
+						appendAtEnd(p, new TokenNode(t.tok));
+					break;
+				default:
+					appendAtEnd(p, new TokenNode(t.tok));
+			}
 		}
-		curalign->link = new BoxNode;
-		next(curalign);
+		appendAtEnd(curalign, new BoxNode);
 		curalign->info = end_span;
 		curalign->width = null_flag;
 		curalign->u_part = hold_head->link;
-		p = hold_head;
-		p->link = 0;
-		while (true)
+		hold_head->link = nullptr;
+		for (p = hold_head; true; appendAtEnd(p, new TokenNode(t.tok)))
 		{
 			t = getpreambletoken();
 			if (t.cmd <= out_param && t.cmd >= tab_mark && alignstate == -1000000)
@@ -179,11 +186,8 @@ void initalign(Token t, AlignRecordNode* &loop)
 				error("Only one # is allowed per tab", "There should be exactly one # between &'s, when an\n\\halign or \\valign is being set up. In this case you had\nmore than one, so I'm ignoring all but the first.");
 				continue;
 			}
-			p->link = new TokenNode(t.tok);
-			p = dynamic_cast<TokenNode*>(p->link);
 		}
-		p->link = new TokenNode(end_template_token);
-		p = dynamic_cast<TokenNode*>(p->link);
+		appendAtEnd(p, new TokenNode(end_template_token));
 		curalign->v_part = hold_head->link;
 	}
 	scannerstatus = normal;
@@ -211,8 +215,7 @@ static void finrow(AlignRecordNode* &loop)
 	{
 		p = vpack(head->link, 0, additional);
 		popnest();
-		tail->link = p;
-		tail = p;
+		tail_append(p);
 		space_factor = 1000;
 	}
 	p->type = unset_node;
@@ -248,18 +251,12 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 			// Copy the templates from node |cur_loop| into node |p|
 			q = hold_head;
 			for (auto r = dynamic_cast<TokenNode*>(loop->u_part); r; next(r))
-			{
-				q->link = new TokenNode(r->token);
-				next(q);
-			}
+				appendAtEnd(q, new TokenNode(r->token));
 			q->link = nullptr;
 			p->u_part = hold_head->link;
 			q = hold_head;
 			for (auto r = dynamic_cast<TokenNode*>(loop->v_part); r; next(r))
-			{
-				q->link = new TokenNode(r->token);
-				next(q);
-			}
+				appendAtEnd(q, new TokenNode(r->token));
 			q->link = nullptr;
 			p->v_part = hold_head->link;
 			next(loop);
@@ -343,8 +340,7 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 		u->glue_sign = o;
 		dynamic_cast<UnsetNode*>(u)->glue_shrink = totalshrink[o];
 		popnest();
-		tail->link = u;
-		tail = u;
+		appendAtEnd(tail, u);
 		auto G = new GlueNode(curalign->glue_ptr);
 		G->subtype = tab_skip_code+1;
 		tail_append(G);
@@ -512,8 +508,7 @@ static void finalign(AlignRecordNode* &loop)
 						auto V = dynamic_cast<GlueNode*>(s)->glue_ptr;
 						auto g = new GlueNode(V);
 						g->subtype = tab_skip_code+1;
-						u->link = g;
-						u = u->link;
+						appendAtEnd(u, g);
 						t += V->width;
 						if (P->glue_sign == stretching)
 						{
@@ -525,8 +520,7 @@ static void finalign(AlignRecordNode* &loop)
 								t -= round(P->glue_set*V->shrink);
 						next(s);
 						S = dynamic_cast<BoxNode*>(s);
-						u->link = new BoxNode;
-						u = u->link;
+						appendAtEnd(u, new BoxNode);
 						t += S->width;
 						auto U = dynamic_cast<BoxNode*>(u);
 						if (mode == -vmode)

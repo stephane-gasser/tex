@@ -35,11 +35,9 @@ void makeaccent(Token t)
 				dynamic_cast<BoxNode*>(p)->shift_amount = x-h;
 			}
 			auto delta = round((w-a)/2.0+h*t-x*s);
-			auto r = new KernNode(delta, acc_kern);
-			tail->link = r;
-			r->link = p;
-			tail = new KernNode(-a-delta, acc_kern);
-			p->link = tail;
+			tail_append(new KernNode(delta, acc_kern));
+			tail_append(p);
+			tail_append(new KernNode(-a-delta, acc_kern));
 			p = q;
 		}
 		tail_append(p);

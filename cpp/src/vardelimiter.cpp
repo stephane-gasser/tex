@@ -14,8 +14,7 @@ static quarterword ext_rep(fourquarters q) { return q.b3; } //!< |rep| piece in 
 static void stackintobox(BoxNode *b, internalfontnumber f, quarterword c)
 {
 	auto p = charbox(f, c);
-	p->link = b->list_ptr;
-	b->list_ptr = p;
+	appendAtStart(b->list_ptr, p);
 	b->height = p->height;
 }
 

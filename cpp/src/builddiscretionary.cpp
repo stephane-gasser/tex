@@ -14,8 +14,8 @@ void builddiscretionary(Token t)
 	//  and |ligature_node| items; set |n| to the length of the list, and set |q| to the list's tail
 	auto q = head;
 	auto p = q->link;
-	int n = 0;
-	while (p)
+	int n;
+	for (n = 0; p; n++, next(p))
 	{
 		if (!p->is_char_node() && p->type > rule_node && p->type != kern_node && p->type != ligature_node)
 		{
@@ -26,8 +26,6 @@ void builddiscretionary(Token t)
 			break;
 		}
 		q = p;
-		p = q->link;
-		n++;
 	}
 	p = head->link;
 	popnest();

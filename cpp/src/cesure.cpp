@@ -223,8 +223,7 @@ static void pop_lig_stack(smallnumber &j, LinkedNode *t)
 {
 	if (ligstack->lig_ptr)
 	{
-		t->link = ligstack->lig_ptr;
-		t = t->link;
+		appendAtEnd(t, ligstack->lig_ptr);
 		j++;
 	}
 }
@@ -232,7 +231,6 @@ static void pop_lig_stack(smallnumber &j, LinkedNode *t)
 static CharNode *initlist;
 static bool initlig;
 static bool initlft;
-
 static smallnumber hyphenpassed;
 
 static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword hchar)
@@ -242,30 +240,22 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 	scaled w;
 	fontindex k;
 	hyphenpassed = 0;
-	auto t = hold_head;
 	w = 0;
 	hold_head->link = nullptr;
 	curl = hu[j];
-	curq = t;
+	auto t = hold_head;
+	curq = hold_head;
 	if (j == 0)
 	{
 		ligaturepresent = initlig;
-		p = initlist;
 		if (ligaturepresent)
 			lfthit = initlft;
-		while (p)
-		{
-			t->link = new CharNode(hf, p->character);
-			t = t->link;
-			p = dynamic_cast<CharNode*>(p->link);
-		}
+		for (p = initlist; p; next(p))
+			appendAtEnd(t, new CharNode(hf, p->character));
 	}
 	else 
 		if (curl < non_char)
-		{
-			t->link = new CharNode(hf, curl);
-			t = t->link;
-		}
+			appendAtEnd(t, new CharNode(hf, curl));
 	ligstack = nullptr;
 	set_cur_r(j, n, curr, currh, hchar);
 	bool skipLoop;
@@ -382,8 +372,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 										}
 										else
 										{
-											t->link = new CharNode(hf, curr);
-											t = t->link;
+											appendAtEnd(t, new CharNode(hf, curr));
 											j++;
 											set_cur_r(j, n, curr, currh, hchar);
 										}
@@ -418,11 +407,8 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 			continue;
 		wrap_lig(rthit, t);
 		if (w)
-		{
-			t->link = new KernNode(w);
-			t = dynamic_cast<KernNode*>(t->link);
-			w = 0;
-		}
+			appendAtEnd(t, new KernNode(w));
+		w = 0;
 		if (ligstack)
 		{
 			curq = t;

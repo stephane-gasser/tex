@@ -28,14 +28,14 @@ LinkedNode* prunepagetop(LinkedNode *p)
 			case mark_node:
 			case ins_node:
 				prevp = p;
-				p = prevp->link;
+				next(p);
 				break;
 			case glue_node:
 			case kern_node:
 			case penalty_node:
 			{
 				auto q = p;
-				p = q->link;
+				next(p);
 				q->link = nullptr;
 				prevp->link = p;
 				flushnodelist(q);

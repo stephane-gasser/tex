@@ -882,18 +882,18 @@ bool scankeyword(const std::string &s)
 void scanmath(NoadContent &p)
 {
 	auto t = getXTokenSkipSpaceAndEscape();
-	bool label21;
+	bool another;
 	int c;
 	do
 	{
-		label21 = false;
+		another = false;
 		switch (t.cmd)
 		{
 			case letter:
 			case other_char:
 			case char_given:
 				c = math_code(t.chr);
-				if (c == 0x80'00)
+				if (c == 1<<15)
 				{
 					t.cs = t.chr+active_base;
 					t.cmd = eqtb_active[t.chr].type;
@@ -901,14 +901,14 @@ void scanmath(NoadContent &p)
 					t = xtoken(t);
 					backinput(t);
 					t = getXTokenSkipSpaceAndEscape();
-					label21 = true;
+					another = true;
 					continue;
 				}
 				break;
 			case char_num:
 				t.chr = scancharnum();
 				t.cmd = char_given;
-				label21 = true;
+				another = true;
 				continue;
 			case math_char_num:
 				c = scanfifteenbitint();
@@ -930,10 +930,10 @@ void scanmath(NoadContent &p)
 				return;
 			}
 		}
-	} while (label21);
+	} while (another);
 	p.math_type = math_char;
-	p.character = c%0x1'00;
-	p.fam = (c >= var_code && fam_in_range() ? cur_fam() : (c>>8)%0x10);
+	p.character = c%(1<<8);
+	p.fam = (c >= var_code && fam_in_range() ? cur_fam() : (c>>8)%(1<<4));
 }
 
 void scanoptionalequals(void)
@@ -1012,7 +1012,7 @@ RuleNode *scanrulespec(Token t)
 static void store_new_token(TokenNode* &p, halfword t)
 {
 	p->link = new TokenNode(t);
-	p = dynamic_cast<TokenNode*>(p->link);
+	next(p);
 }
 
 TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
@@ -1021,12 +1021,11 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 	warningindex = tk.cs;
 	defref = new TokenNode;
 	defref->token_ref_count = 0;
-	auto *p = defref;
+	auto p = defref;
 	halfword hashbrace = 0;
 	halfword t = zero_token;
-	bool l40 = false;
+	halfword unbalance = 0;
 	if (macrodef)
-	{
 		while (true)
 		{
 			tk = gettoken();
@@ -1037,8 +1036,7 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 				{
 					error("Missing { inserted", "Where was the left brace? You said something like `\\def\\a}',\nwhich I'm going to interpret as `\\def\\a{}'.");
 					alignstate++;
-					l40 = true;
-					break;
+					unbalance = 1;
 				}
 				break;
 			}
@@ -1065,21 +1063,14 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 			}
 			store_new_token(p, tk.tok);
 		}
-	}
 	else
 		tk = scanleftbrace();
-	halfword unbalance;
-	if (!l40)
-		unbalance = 1;
-	while (!l40)
+	while (unbalance)
 	{
 		if (xpand)
 		{
-			while (true)
+			for (tk = getnext(); tk.cmd > max_command; tk = getnext())
 			{
-				tk = getnext();
-				if (tk.cmd <= max_command)
-					break;
 				if (tk.cmd != the)
 					expand(tk);
 				else
@@ -1096,24 +1087,19 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 		}
 		else
 			tk = gettoken();
-		if (tk.tok < right_brace_limit)
-			if (tk.cmd < right_brace)
+		switch (tk.cmd)
+		{
+			case left_brace:
 				unbalance++;
-			else
-			{
+				break;
+			case right_brace:
 				unbalance--;
-				if (unbalance == 0)
-					break;
-			}
-		else 
-			if (tk.cmd == mac_param)
+				break;
+			case mac_param:
 				if (macrodef)
 				{
 					auto s = tk.tok;
-					if (xpand)
-						tk = getxtoken();
-					else
-						tk = gettoken();
+					tk = xpand ? getxtoken() : gettoken();
 					if (tk.cmd != mac_param)
 						if (tk.tok <= zero_token || tk.tok > t) 
 						{
@@ -1123,7 +1109,9 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 						else
 							tk.tok = out_param_token-'0'+tk.chr;
 				}
-		store_new_token(p, tk.tok);
+		}
+		if (unbalance)
+			store_new_token(p, tk.tok);
 	}
 	scannerstatus = normal;
 	if (hashbrace)
@@ -1131,11 +1119,8 @@ TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
 	return p;
 }
 
-//! backs up a simple token list
-void back_list(TokenNode *p) { begintokenlist(p, backed_up); }
-
-//! inserts a simple token list
-void ins_list(TokenNode *p) { begintokenlist(p, inserted); }
+void back_list(TokenNode *p) { begintokenlist(p, backed_up); } //!< backs up a simple token list
+void ins_list(TokenNode *p) { begintokenlist(p, inserted); } //!< inserts a simple token list
 
 void begintokenlist(TokenNode *P, quarterword t)
 {
@@ -1144,34 +1129,32 @@ void begintokenlist(TokenNode *P, quarterword t)
 	Start = P;
 	index = t;
 	Token tk;
-	if (t >= macro) //the token list starts with a reference count
+	if (t < macro)
 	{
-		P->token_ref_count++;
-		if (t == macro)
-			param_start = paramstack.size();
-		else
-		{
-			Loc = dynamic_cast<TokenNode*>(P->link);
-			if (tracing_macros() > 1)
-			{
-				switch (t)
-				{
-					case mark_text: 
-						diagnostic("\r"+esc("mark")+"->"+tokenshow(P));
-						break;
-					case write_text: 
-						diagnostic("\r"+esc("write")+"->"+tokenshow(P));
-						break;
-					default:
-						tk.cmd = assign_toks;
-						tk.chr = t-output_text+output_routine_loc;
-						diagnostic("\r"+cmdchr(tk)+"->"+tokenshow(P));
-				}
-			}
-		}
-	}
-	else
 		Loc = P;
+		return;
+	}
+	P->token_ref_count++; //the token list starts with a reference count
+	if (t == macro)
+	{
+		param_start = paramstack.size();
+		return;
+	}
+	Loc = dynamic_cast<TokenNode*>(P->link);
+	if (tracing_macros() > 1)
+		switch (t)
+		{
+			case mark_text: 
+				diagnostic("\r"+esc("mark")+"->"+tokenshow(P));
+				break;
+			case write_text: 
+				diagnostic("\r"+esc("write")+"->"+tokenshow(P));
+				break;
+			default:
+				tk.cmd = assign_toks;
+				tk.chr = t-output_text+output_routine_loc;
+				diagnostic("\r"+cmdchr(tk)+"->"+tokenshow(P));
+		}
 }
 
 void endtokenlist(void)
@@ -1229,11 +1212,8 @@ void deletetokenref(TokenNode *p)
 [[nodiscard]] Token getxtoken(void)
 {
 	Token t;
-	while (true)
+	for (t = getnext(); t.cmd > max_command; t = getnext())
 	{
-		t = getnext();
-		if (t.cmd <= max_command)
-			break;
 		if (t.cmd >= call)
 			if (t.cmd < end_template)
 				macrocall(t);
@@ -1275,10 +1255,18 @@ Token getpreambletoken(void)
 				t = gettoken();
 			}
 		}
-		if (t.cmd == endv)
-			fatalerror("(interwoven alignment preambles are not allowed)");
-		if (t.cmd != assign_glue || t.chr != glue_base+tab_skip_code)
-			return t;
+		switch (t.cmd)
+		{
+			case endv:
+				fatalerror("(interwoven alignment preambles are not allowed)");
+				break;
+			case assign_glue:
+				if (t.chr != glue_base+tab_skip_code)
+					return t;
+				break;
+			default:
+				return t;
+		}
 		scanoptionalequals();
 		(global_defs() > 0 ? geqdefine_ : eqdefine_)(&eqtb_glue[tab_skip_code], glue_ref, scanglue(glue_val));
 	}
@@ -1393,11 +1381,11 @@ void insthetoks(void)
 	return defref;
 }
 
-static TokenNode* strtoks(void)
+static TokenNode* strtoks(const std::string &s)
 {
 	auto p = dynamic_cast<TokenNode*>(temp_head);
 	p->link = nullptr;
-	for (halfword t: strings.back())
+	for (halfword t: s)
 	{
 		if (t == ' ')
 			t = space_token;
@@ -1415,31 +1403,30 @@ void convtoks(Token t)
 	switch (t.chr)
 	{
 		case number_code:
-			strings.push_back(std::to_string(scanint()));
+			garbage->link = strtoks(std::to_string(scanint()));
 			break;
 		case roman_numeral_code: 
-			strings.push_back(romanint(scanint()));
+			garbage->link = strtoks(romanint(scanint()));
 			break;
 		case font_name_code: 
 			val = scanfontident();
-			strings.push_back(fonts[val].name+(fonts[val].size != fonts[val].dsize ? " at "+asScaled(fonts[val].size)+"pt" : ""));
+			garbage->link = strtoks(fonts[val].name+(fonts[val].size != fonts[val].dsize ? " at "+asScaled(fonts[val].size)+"pt" : ""));
 			break;
 		case string_code:
-			strings.push_back(t.cs ? scs(t.cs) : std::string(1, t.chr));
+			garbage->link = strtoks(t.cs ? scs(t.cs) : std::string(1, t.chr));
 			break;
 		case meaning_code:
 			savescannerstatus = scannerstatus;
 			scannerstatus = normal;
 			t = gettoken();
 			scannerstatus = savescannerstatus;
-			strings.push_back(meaning(t));
+			garbage->link = strtoks(meaning(t));
 			break;
 		case job_name_code: 
 			if (jobname == "")
 				openlogfile();
-			strings.push_back(jobname);
+			garbage->link = strtoks(jobname);
 	}
-	garbage->link = strtoks();
 	ins_list(dynamic_cast<TokenNode*>(temp_head->link));
 }
 
@@ -1466,23 +1453,19 @@ TokenNode* thetoks(void)
 			return p;
 		}
 		case int_val: 
-			strings.push_back(std::to_string(val));
-			break;
+			return strtoks(std::to_string(val));
 		case dimen_val:
-			strings.push_back(asScaled(val)+"pt");
-			break;
+			return strtoks(asScaled(val)+"pt");
 		case glue_val:
 		{
-			strings.push_back(asSpec(dynamic_cast<GlueSpec*>(gl), "pt"));
 			deleteglueref(dynamic_cast<GlueSpec*>(gl));
-			break;
+			return strtoks(asSpec(dynamic_cast<GlueSpec*>(gl), "pt"));
 		}
-		case mu_val:
+		default: // mu_val
 		{
-			strings.push_back(asSpec(dynamic_cast<GlueSpec*>(gl), "mu"));
 			deleteglueref(dynamic_cast<GlueSpec*>(gl));
+			return strtoks(asSpec(dynamic_cast<GlueSpec*>(gl), "mu"));
 		}
 	}
-	return strtoks();
 }
 

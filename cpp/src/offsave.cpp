@@ -27,8 +27,7 @@ void offsave(Token t)
 			break;
 		case math_left_group:
 			p = new TokenNode(cs_token_flag+frozen_right);
-			p->link = new TokenNode(other_token+'.');
-			p = dynamic_cast<TokenNode*>(p->link);
+			appendAtEnd(p, new TokenNode(other_token+'.'));
 			error("Missing right. inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
 			break;
 		default:

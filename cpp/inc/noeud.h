@@ -441,6 +441,20 @@ template<class T> void next(T* &p) { p = dynamic_cast<T*>(p->link); }
 inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }
 inline LinkedNode *new_hlist(Noad *p) { return p->nucleus.info; } //!< the translation of an mlist
 
+template<class T> void appendAtEnd(T* &p, LinkedNode *q)
+{
+	p->link = q;
+	next(p);
+}
+
+inline void tail_append(LinkedNode*q) { appendAtEnd(tail, q); }
+
+template<class T> void appendAtStart(T* &p, LinkedNode *q)
+{
+	q->link = p;
+	p = dynamic_cast<T*>(q);
+}
+
 CharNode* newcharacter(internalfontnumber, eightbits);
 void newfont(smallnumber);
 void newgraf(bool);
@@ -452,6 +466,5 @@ void appendglue(halfword);
 void appenditaliccorrection(void);
 void appendtovlist(BoxNode*);
 void followUntilBeforeTarget(LinkedNode*&, LinkedNode* = nullptr);
-void tail_append(LinkedNode*);
 
 #endif

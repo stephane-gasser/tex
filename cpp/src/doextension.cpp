@@ -61,7 +61,7 @@ void doextension(Token t)
 				outwhat(dynamic_cast<WhatsitNode*>(tail));
 				flushnodelist(tail);
 				tail = p;
-				p->link = nullptr;
+				tail->link = nullptr;
 			}
 			else
 				backinput(t);

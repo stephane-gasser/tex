@@ -20,7 +20,6 @@
 #include "itsallover.h"
 #include "endgraf.h"
 #include "begininsertoradjust.h"
-#include "makemark.h"
 #include "deletelast.h"
 #include "makeaccent.h"
 #include "alignement.h"
@@ -41,393 +40,11 @@
 #include "shiftcase.h"
 #include "doextension.h"
 #include "calcul.h"
-
-static fontindex maink; //!< index into |font_info|
-//static fourquarters mainj; //!<ligature/kern command
-//static fourquarters maini; //!<character information bytes for |cur_l|
-static LinkedNode *mainp; //!<temporary register for list manipulation
-
-//! the parameter is either |rt_hit| or |false|
-static void pack_lig(bool z)
-{
-	mainp = new LigatureNode(curFontNum(), curl, curq->link);
-	if (lfthit)
-	{
-		dynamic_cast<LigatureNode*>(mainp)->subtype = 2;
-		lfthit = false;
-	}
-	if (z && ligstack == nullptr)
-	{
-		dynamic_cast<LigatureNode*>(mainp)->subtype++;
-		rthit = false;
-	}
-	curq->link = mainp;
-	tail = mainp;
-	ligaturepresent = false;
-}
-
-static bool insdisc = false;
-
-static void wrapup(bool z)
-{
-	if (curl < non_char)
-	{
-		if (curq->link > 0 && dynamic_cast<CharNode*>(tail)->character == cur_font().hyphenchar) 
-			insdisc = true; 
-		if (ligaturepresent)
-			pack_lig(z); 
-		if (insdisc)
-		{
-			insdisc = false;
-			if (mode > 0)
-				tail_append(new DiscNode); 
-		}
-	}
-}
-
-static void adjust_space_factor(halfword chr)
-{
-	int mains = sf_code(chr); //main_s: space factor value
-	switch (mains < 1000 ? -1 : mains > 1000 ? 1 : 0)
-	{
-		case 0: // mains == 1000
-			space_factor = 1000;
-			break;
-		case -1: // mains < 1000
-			if (mains > 0)
-				space_factor = mains;
-			break;
-		case 1: // mains > 1000
-			space_factor = space_factor < 1000 ? 1000 : mains;
-	}
-}
-
-static halfword falsebchar;
-
-static void main_loop_lookahead(void)
-{
-	auto t = getnext();
-	if (t.cmd != letter && t.cmd != other_char && t.cmd != char_given)
-	{
-		t = xtoken(t);
-		if (t.cmd != letter && t.cmd != other_char && t.cmd != char_given)
-		{
-			if (t.cmd == char_num)
-				t.chr = scancharnum();
-			else
-			{
-				if (t.cmd == no_boundary)
-					bchar = non_char;
-				curr = bchar;
-				ligstack = nullptr;
-				return;
-			}
-		}
-	}
-	//main_loop_lookahead_1
-	adjust_space_factor(t.chr);
-	curr = t.chr;
-	ligstack = new LigatureNode(curFontNum(), curr, nullptr);
-	if (curr == falsebchar)
-		curr = non_char;
-}
-
-static void main_loop_move_lig(void)
-{
-	mainp = dynamic_cast<LigatureNode*>(ligstack->lig_ptr);
-	if (mainp)
-		tail_append(mainp);
-	auto temp = ligstack;
-	next(ligstack);
-	delete temp;
-	ligaturepresent = true;
-	if (ligstack == nullptr)
-		if (mainp)
-			main_loop_lookahead();
-		else
-			curr = bchar;
-	else
-		curr = ligstack->lig_char.character;
-}
-
-[[nodiscard]] static Token append_normal_space(LinkedNode *mainp, fontindex &maink)
-{
-	if (space_skip() == zero_glue)
-	{
-		GlueSpec *g = cur_font().glue;
-		if (g == nullptr)
-		{
-			g = new GlueSpec(zero_glue);
-			maink = cur_font().parambase+space_code;
-			g->width = cur_font().space();
-			g->stretch = cur_font().space_stretch();
-			g->shrink = cur_font().space_shrink();
-			cur_font().glue = g;
-		}
-		mainp = new GlueNode(g);
-		tail_append(mainp);
-	}
-	else
-		tail_append(new GlueNode(space_skip()));
-	return getxtoken();
-}
-
-//! Handle spaces when <em> space_factor != 1000 </em>.
-static void appspace(LinkedNode *mainp, fontindex &maink)
-{
-	if (space_factor >= 2000 && xspace_skip() != zero_glue)
-		mainp = new GlueNode(xspace_skip());
-	else
-	{
-		GlueSpec *g;
-		if (space_skip() != zero_glue)
-			g = space_skip();
-		else // Find the glue specification, \a main_p, for text spaces in the current font
-		{
-			g = cur_font().glue;
-			if (g == nullptr)
-			{
-				g = new GlueSpec(zero_glue);
-				maink = space_code+cur_font().parambase;
-				g->width = cur_font().space();
-				g->stretch = cur_font().space_stretch();
-				g->shrink = cur_font().space_shrink();
-				cur_font().glue = g;
-			}
-		}
-		g = new GlueSpec(g);
-		// Modify the glue specification in \a main_p according to the space factor
-		if (space_factor >= 2000)
-			g->width += cur_font().extra_space();
-		g->stretch = xnoverd(g->stretch, space_factor, 1000);
-		g->shrink = xnoverd(g->shrink, 1000, space_factor);
-		mainp = new GlueNode(g);
-		g->glue_ref_count = 0;
-	}
-	tail_append(mainp);
-}
-
-static bool main_loop_move_2(halfword chr)
-{
-	if (cur_font().bc <= chr && chr <= cur_font().ec)
-	{
-		if (cur_font().char_exists(curl))
-		{
-			tail_append(ligstack);
-			main_loop_lookahead();
-			return false;
-		}
-	}
-	charwarning(cur_font(), chr);
-	delete ligstack;
-	ligstack = nullptr;
-	return true;
-}
-
-static bool main_loop_move_1(halfword chr)
-{
-
-	if (!ligstack->is_char_node())
-		main_loop_move_lig();
-	else
-		if (main_loop_move_2(chr))
-			return true;
-	return false;
-}
-
-static bool main_loop_move(halfword chr)
-{
-	if (ligstack == nullptr)
-		return true;
-	curq = dynamic_cast<CharNode*>(tail);
-	curl = ligstack->lig_char.character;
-	return main_loop_move_1(chr);
-}
-
-static bool main_loop_wrapup(halfword chr)
-{
-	wrapup(rthit);
-	return main_loop_move(chr);
-}
-
-[[nodiscard]] static Token main_lig_loop(bool is110, halfword chr)
-{
-	while (true)
-	{
-		if (is110)
-		{
-			if (cur_font().char_tag(curl) != lig_tag || curr == non_char)
-			{
-				if (main_loop_wrapup(chr))
-					return getxtoken();
-				continue;
-			}
-			maink = cur_font().lig_kern_start(cur_font().char_info(curl));
-			if (Font::skip_byte(maink) > stop_flag)
-				maink = cur_font().lig_kern_restart(Font::infos(maink));
-		}
-		//main_lig_loop+2
-		if (Font::next_char(maink) == curr)
-			if (Font::skip_byte(maink) <= stop_flag)
-			{
-				if (Font::op_byte(maink) >= kern_flag) // c'est un kern
-				{
-					if (curl < non_char)
-					{
-						if (curq->link && dynamic_cast<CharNode*>(tail)->character == cur_font().hyphenchar)
-							insdisc = true;
-						if (ligaturepresent)
-						{
-							mainp = new LigatureNode(curFontNum(), curl, curq->link);
-							if (lfthit)
-							{
-								dynamic_cast<LigatureNode*>(mainp)->subtype = 2;
-								lfthit = false;
-							}
-							if (rthit && ligstack == nullptr)
-							{
-								dynamic_cast<LigatureNode*>(mainp)->subtype++;
-								rthit = false;
-							}
-							curq->link = mainp;
-							tail = mainp;
-							ligaturepresent = false;
-						}
-						if (insdisc)
-						{
-							insdisc = false;
-							if (mode > 0)
-								tail_append(new DiscNode);
-						}
-					}
-					tail_append(new KernNode(cur_font().char_kern(Font::infos(maink))));
-					if (main_loop_move(chr))
-						return getxtoken();
-					is110 = true;
-					continue;
-				}
-				// Font::op_byte(maink) < kern_flag => c'est une ligature
-				if (curl == non_char)
-					lfthit = true;
-				else 
-					if (ligstack == nullptr)
-						rthit = true;
-				switch (Font::op_byte(maink))
-				{
-					// AB -> CB (symboles =:| et =:|>)
-					case 1: //a=0 b=0 c=1 => delete current char
-					case 5: //a=1 b=0 c=1 => idem
-						curl = Font::rem_byte(maink);
-						ligaturepresent = true;
-						break;
-					// AB -> AC (symboles |=: et |=:>)
-					case 2: //a=0 b=1 c=0 => delete next char
-					case 6: //a=1 b=1 c=0 => delete next char
-						curr = Font::rem_byte(maink);
-						if (ligstack == nullptr)
-						{
-							ligstack = new LigatureNode(curr);
-							bchar = non_char;
-						}
-						else 
-							if (ligstack->is_char_node())
-							{
-								mainp = ligstack;
-								ligstack = new LigatureNode(curr);
-								ligstack->lig_ptr = mainp;
-							}
-							else
-								ligstack->lig_char.character = curr;
-						break;
-					// AB -> ACB (symbole |=:|)
-					case 3: //a=0 b=1 c=1
-						curr = Font::rem_byte(maink);
-						mainp = ligstack;
-						ligstack = new LigatureNode(curr);
-						ligstack->link = mainp;
-						break;
-					// AB -> ACB (symboles |=:|> et |=:|>>)
-					case 7: //a=1 b=1 c=1
-					case 11://a=2 b=1 c=1
-						wrapup(false);
-						curq = dynamic_cast<CharNode*>(tail);
-						curl = Font::rem_byte(maink);
-						ligaturepresent = true;
-						break;
-					// AB -> C (symbole !=)
-					default:
-						curl = Font::rem_byte(maink);
-						ligaturepresent = true;
-						if (ligstack == nullptr)
-						{
-							if (main_loop_wrapup(chr))
-								return getxtoken();
-						}
-						else
-							if (main_loop_move_1(chr))
-								return getxtoken();
-				}
-				if (Font::op_byte(maink) > 4 && Font::op_byte(maink) != 7) // a>=1 et pas a=1,b=1,c=1
-				{
-					if (main_loop_wrapup(chr))
-						return getxtoken();
-					is110 = true;
-					continue;
-				}
-				if (curl < non_char)
-				{
-					is110 = true;
-					continue;
-				}
-				maink = cur_font().bcharlabel;
-				is110 = false;
-				continue;
-			}
-		if (Font::skip_byte(maink) == 0)
-			maink++;
-		else
-		{
-			if (Font::skip_byte(maink) >= stop_flag)
-			{
-				if (main_loop_wrapup(chr))
-					return getxtoken();
-				is110 = true;
-				continue;
-			}
-			maink += Font::skip_byte(maink)+1;
-		}
-		is110 = false;
-	}
-}
-
-static bool cancelboundary = false;
-
-static void main_loop(Token t)
-{
-	adjust_space_factor(t.chr);
-	bchar = cur_font().bchar;
-	falsebchar = cur_font().falsebchar;
-	if (mode > 0 && language() != clang)
-		fixlanguage();
-	curl = t.chr;
-	ligstack = new LigatureNode(curFontNum(), curl, nullptr);
-	curq = dynamic_cast<CharNode*>(tail);
-	maink = cancelboundary ? non_address : cur_font().bcharlabel;
-	cancelboundary = false;
-	if (maink == non_address)
-		if (main_loop_move_2(t.chr))
-		{
-			t = getxtoken();
-			curr = curl;
-			curl = non_char;
-			t = main_lig_loop(false, t.chr);
-		}
-		else
-			t = main_lig_loop(true, t.chr);
-}
+#include "mainloop.h"
 
 //! for mode-independent commands
 #define ANY_MODE(cmd) vmode+cmd: case hmode+cmd: case mmode+cmd
+//! for non-math commands
 #define NON_MATH(cmd) vmode+cmd: case hmode+cmd
 
 Token maincontrol(void)
@@ -455,16 +72,16 @@ Token maincontrol(void)
 				if (t.cmd == letter || t.cmd == other_char || t.cmd == char_given || t.cmd == char_num)
 					cancelboundary = true;
 				continue;
-			case hmode+spacer: 
+			case hmode+spacer:
 				if (space_factor != 1000)
 				{
-					appspace(mainp, maink);
+					appspace();
 					break;
 				}
 				[[fallthrough]];
 			case hmode+ex_space:
 			case mmode+ex_space: 
-				t = append_normal_space(mainp, maink);
+				t = append_normal_space();
 				continue;
 			case ANY_MODE(relax):
 			case vmode+spacer:
@@ -474,7 +91,7 @@ Token maincontrol(void)
 			case ANY_MODE(ignore_spaces):
 				t = getXTokenSkipSpace();
 				continue;
-			case vmode+stop: 
+			case vmode+stop:
 				if (itsallover(t))
 					return t;
 				break;
@@ -612,8 +229,11 @@ Token maincontrol(void)
 				begininsertoradjust(t);
 				break;
 			case ANY_MODE(mark):
-				makemark(t);
+			{
+				auto _ = scantoks(false, true, t);
+				tail_append(new MarkNode);
 				break;
+			}
 			case ANY_MODE(break_penalty):
 				tail_append(new PenaltyNode(scanint()));
 				if (mode == vmode)

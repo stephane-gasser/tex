@@ -548,8 +548,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 					if (adjusttail)
 					{
 						followUntilBeforeTarget(q, p);
-						adjusttail->link = p;
-						adjusttail = p;
+						appendAtEnd(adjusttail, p);
 						next(p);
 						q->link = p;
 						p = q;

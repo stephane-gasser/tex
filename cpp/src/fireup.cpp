@@ -61,11 +61,11 @@ void fireup(LinkedNode *c)
 			next(r);
 		}
 	}
+	hold_head->link = nullptr;
 	auto q = hold_head;
-	q->link = nullptr;
 	auto prevp = page_head;
-	auto p = prevp->link;
-	while (p != bestpagebreak)
+	auto p = page_head->link;
+	for (; p != bestpagebreak; prevp = p, next(p))
 	{
 		if (p->type == ins_node) //3
 		{
@@ -116,8 +116,7 @@ void fireup(LinkedNode *c)
 				p->link = nullptr;
 				if (wait)
 				{
-					q->link = p;
-					q = p;
+					appendAtEnd(q, p);
 					insertpenalties++;
 				}
 				else
@@ -141,8 +140,6 @@ void fireup(LinkedNode *c)
 			bot_mark = m;
 			bot_mark->token_ref_count++;
 		}
-		prevp = p;
-		p = prevp->link;
 	}
 	setSplitTopSkip(savesplittopskip);
 	if (p)
@@ -185,7 +182,7 @@ void fireup(LinkedNode *c)
 		delete r;
 		r = q;
 	}
-	page_ins_head->link = page_ins_head;
+	next(page_ins_head);
 	if (top_mark && first_mark == nullptr)
 	{
 		first_mark = top_mark;

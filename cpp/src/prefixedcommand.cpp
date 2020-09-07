@@ -50,7 +50,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			auto p = getrtoken();
 			Token tk;
 			tk.cs = p;
-			auto _ = scantoks(true, t.chr >= 2, tk);
+			scantoks(true, t.chr >= 2, tk);
 			define_(a, &eqtb_cs[p-hash_base], call+a%4, defref); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		}
@@ -157,11 +157,8 @@ void prefixedcommand(Token t, bool setboxallowed)
 			{
 				if (p == output_routine_loc) 
 				{
-					q->link = new TokenNode(right_brace_token+'}');
-					q = dynamic_cast<TokenNode*>(q->link);
-					q = new TokenNode(left_brace_token+'{');
-					q->link = defref->link;
-					defref->link = q;
+					appendAtEnd(q, new TokenNode(right_brace_token+'}'));
+					appendAtStart(defref->link, new TokenNode(left_brace_token+'{'));
 				}
 				define_(a, &eqtb_local[p-local_base], call, defref);
 			}
@@ -196,19 +193,19 @@ void prefixedcommand(Token t, bool setboxallowed)
 			switch (t.chr)
 			{
 				case cat_code_base:
-					n = 0x0F;
+					n = (1<<4)-1;
 					break;
 				case math_code_base:
-					n = 0x80'00;
+					n = 1<<15;
 					break;
 				case sf_code_base:
-					n = 0x7F'FF;
+					n = (1<<15)-1;
 					break;
 				case del_code_base:
-					n = 0xFF'FF'FF;
+					n = (1<<24)-1;
 					break;
 				default:
-					n = 0xFF;
+					n = (1<<8)-1;
 			}
 			auto p = t.chr+scancharnum();
 			scanoptionalequals();

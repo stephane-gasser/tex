@@ -52,10 +52,8 @@ void expand(Token tk)
 				backinput(tk);
 				if (tk.tok >= cs_token_flag)
 				{
-					p = new TokenNode(frozen_dont_expand+cs_token_flag);
-					p->link = Loc;
-					Start = p;
-					Loc = p;
+					appendAtStart(Loc, new TokenNode(frozen_dont_expand+cs_token_flag));
+					Start = Loc;
 				}
 				break;
 			case cs_name:
@@ -65,11 +63,7 @@ void expand(Token tk)
 				{
 					tk = getxtoken();
 					if (tk.cs == 0)
-					{
-						q = new TokenNode(tk.tok);
-						p->link = q;
-						p = q;
-					}
+						appendAtEnd(p, new TokenNode(tk.tok));
 				} while (tk.cs == 0);
 				if (tk.cmd != end_cs_name)
 					backerror(tk, "Missing "+esc("endcsname")+" inserted", "The control sequence marked <to be read again> should\nnot appear between \\csname and \\endcsname.");

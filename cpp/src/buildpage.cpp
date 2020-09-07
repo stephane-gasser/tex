@@ -276,8 +276,7 @@ void buildpage(void)
 			page_total += page_depth-pagemaxdepth;
 			page_depth = pagemaxdepth;
 		}
-		pagetail->link = p;
-		pagetail = p;
+		appendAtEnd(pagetail, p);
 		contrib_head->link = p->link;
 		p->link = nullptr;
 	}

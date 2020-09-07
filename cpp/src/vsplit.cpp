@@ -30,7 +30,7 @@ BoxNode* vsplit(eightbits n, scaled h)
 	if (p == q)
 		v->list_ptr = nullptr;
 	else
-		while (true)
+		for (; p; next(p))
 		{
 			if (p->type == mark_node) //4
 			{
@@ -48,11 +48,7 @@ BoxNode* vsplit(eightbits n, scaled h)
 				}
 			}
 			if (p->link == q)
-			{
 				p->link = nullptr;
-				break;
-			}
-			next(p);
 		}
 	q = prunepagetop(q);
 	p = v->list_ptr;

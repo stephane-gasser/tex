@@ -171,22 +171,19 @@ void makefraction(FractionNoad *Q)
 	v->height = shiftup+x->height;
 	v->depth = z->depth+shiftdown;
 	v->width = x->width;
-	KernNode *p;
 	if (Q->thickness == 0)
 	{
-		p = new KernNode((shiftup-x->depth)-(z->height-shiftdown));
-		p->link = z;
+		x->link = new KernNode((shiftup-x->depth)-(z->height-shiftdown));
+		x->link->link = z;
 	}
 	else
 	{
 		auto y = fractionrule(Q->thickness);
-		p = new KernNode((axis_height(cursize)-delta)-(z->height-shiftdown));
-		y->link = p;
-		p->link = z;
-		p = new KernNode((shiftup-x->depth)-(axis_height(cursize)+delta));
-		p->link = y;
+		y->link = new KernNode((axis_height(cursize)-delta)-(z->height-shiftdown));
+		y->link->link = z;
+		x->link = new KernNode((shiftup-x->depth)-(axis_height(cursize)+delta));
+		x->link->link = y;
 	}
-	x->link = p;
 	v->list_ptr = x;
 	if (curstyle < 2)
 		delta = delim1(cursize);
@@ -269,16 +266,13 @@ void makemathaccent(AccentNoad *Q)
 		auto y = charbox(f, c);
 		y->shift_amount = s+half(w-y->width);
 		y->width = 0;
-		auto p = new KernNode(-delta);
-		p->link = x;
-		y->link = p;
+		y->link = new KernNode(-delta);
+		y->link->link = x;
 		y = vpack(y, 0, additional);
 		y->width = x->width;
 		if (y->height < h)
 		{
-			p = new KernNode(h-y->height);
-			p->link = y->list_ptr;
-			y->list_ptr = p;
+			appendAtStart(y->list_ptr, new KernNode(h-y->height));
 			y->height = h;
 		}
 		Q->nucleus.math_type = sub_box;
@@ -312,9 +306,7 @@ void makeord(Noad *Q)
 							if (skip_byte(Font::infos(a)) <= stop_flag)
 								if (op_byte(Font::infos(a)) >= kern_flag)
 								{
-									auto p = new KernNode(ft.char_kern(Font::infos(a)));
-									p->link = Q->link;
-									Q->link = p;
+									appendAtStart(Q->link, new KernNode(ft.char_kern(Font::infos(a))));
 									return;
 								}
 								else
@@ -339,8 +331,7 @@ void makeord(Noad *Q)
 											auto r = new Noad;
 											r->nucleus.character = rem_byte(Font::infos(a));
 											r->nucleus.fam = Q->nucleus.fam;
-											Q->link = r;
-											r->link = p;
+											appendAtStart(Q->link, r);
 											if (op_byte(Font::infos(a)) < 11) // symboles |=:| et |=:|>
 												r->nucleus.math_type = math_char;
 											else // symbole |=:|>>
@@ -440,9 +431,8 @@ void makescripts(Noad *q, scaled delta)
 				}
 			}
 			x->shift_amount = delta;
-			p = new KernNode(shiftup-x->depth-(y->height-shiftdown));
-			x->link = p;
-			p->link = y;
+			x->link = new KernNode(shiftup-x->depth-(y->height-shiftdown));
+			x->link->link = y;
 			x = vpack(x, 0, additional);
 			x->shift_amount = shiftdown;
 		}
@@ -460,9 +450,8 @@ void makescripts(Noad *q, scaled delta)
 void makeunder(Noad *q)
 {
 	auto x = cleanbox(q->nucleus, curstyle);
-	auto p = new KernNode(3*default_rule_thickness());
-	x->link = p;
-	p->link = fractionrule(default_rule_thickness());
+	x->link = new KernNode(3*default_rule_thickness());
+	x->link->link = fractionrule(default_rule_thickness());
 	auto y = vpack(x, 0, additional);
 	scaled delta = y->height+y->depth+default_rule_thickness();
 	y->height = x->height;
@@ -490,12 +479,10 @@ void makeover(Noad *q)
 
 BoxNode* overbar(BoxNode *b, scaled k, scaled t)
 {
-	auto p = new KernNode(k);
-	p->link = b;
-	auto q = fractionrule(t);
-	q->link = p;
-	p = new KernNode(t);
-	p->link = q;
+	auto p = new KernNode(t);
+	p->link = fractionrule(t);
+	p->link->link = new KernNode(k);
+	p->link->link->link = b;
 	return vpack(p, 0, additional);
 }
 
@@ -552,12 +539,10 @@ scaled makeop(Noad *Q)
 			scaled shiftup = big_op_spacing3()-x->depth;
 			if (shiftup < big_op_spacing1())
 				shiftup = big_op_spacing1();
-			auto p = new KernNode(shiftup);
-			p->link = y;
-			x->link = p;
-			p = new KernNode(big_op_spacing5());
-			p->link = x;
-			v->list_ptr = p;
+			x->link = new KernNode(shiftup);
+			x->link->link = y;
+			v->list_ptr = new KernNode(big_op_spacing5());
+			v->list_ptr->link = x;
 			v->height += mathex(big_op_spacing5())+x->height+x->depth+shiftup;
 		}
 		if (Q->subscr.math_type == 0)
@@ -567,11 +552,9 @@ scaled makeop(Noad *Q)
 			scaled shiftdown = big_op_spacing4()-z->height;
 			if (shiftdown < big_op_spacing2())
 				shiftdown = big_op_spacing2();
-			auto p = new KernNode(shiftdown);
-			y->link = p;
-			p->link = z;
-			p = new KernNode(big_op_spacing5());
-			z->link = p;
+			y->link = new KernNode(shiftdown);
+			y->link->link = z;
+			z->link = new KernNode(big_op_spacing5());
 			v->depth += big_op_spacing5()+z->height+z->depth+shiftdown;
 		}
 		Q->nucleus.info = v; //new_hlist(Q) = v
@@ -867,7 +850,7 @@ void mlisttohlist(void)
 	if (rtype == bin_noad)
 		r->type = ord_noad;
 	p = dynamic_cast<CharNode*>(temp_head);
-	p->link = nullptr;
+	temp_head->link = nullptr;
 	q = mlist;
 	rtype = 0;
 	curstyle = style;
@@ -933,8 +916,7 @@ void mlisttohlist(void)
 			case mark_node:
 			case glue_node:
 			case kern_node:
-				p->link = q;
-				p = q;
+				appendAtEnd(p, q);
 				next(q);
 				p->link = nullptr;
 				continue;
@@ -975,20 +957,16 @@ void mlisttohlist(void)
 				next(p);
 			}
 		}
-		if (new_hlist(dynamic_cast<Noad*>(q)))
+		if (auto H = new_hlist(dynamic_cast<Noad*>(q)); H)
 		{
-			p->link = new_hlist(dynamic_cast<Noad*>(q));
+			p->link = H;
 			followUntilBeforeTarget(p);
 		}
 		if (penalties && q->link && pen < inf_penalty)
 		{
 			rtype = q->link->type;
 			if (rtype != penalty_node && rtype != rel_noad)
-			{
-				auto z = new PenaltyNode(pen);
-				p->link = z;
-				p = z;
-			}
+				appendAtEnd(p, new PenaltyNode(pen));
 		}
 		rtype = t;
 	}

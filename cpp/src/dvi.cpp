@@ -117,16 +117,7 @@ void movement(scaled w, eightbits o)
 	auto q = new MovementNode;
 	q->width = w;
 	q->location = dvioffset+dviptr;
-	if (o == down1)
-	{
-		q->link = down_ptr;
-		down_ptr = q;
-	}
-	else
-	{
-		q->link = right_ptr;
-		right_ptr = q;
-	}
+	appendAtStart(o == down1 ? down_ptr : right_ptr, q);
 	auto p = dynamic_cast<MovementNode*>(q->link);
 	smallnumber mstate = 0;
 	bool l40 = false;

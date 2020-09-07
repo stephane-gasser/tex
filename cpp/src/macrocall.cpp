@@ -73,9 +73,7 @@ void macrocall(Token t)
 						bool l22 = false;
 						do
 						{
-							auto q = new TokenNode(tt->token);
-							p->link = q;
-							p = q;
+							appendAtEnd(p, new TokenNode(tt->token));
 							m++;
 							auto u = dynamic_cast<TokenNode*>(tt->link);
 							auto v = dynamic_cast<TokenNode*>(s);
@@ -122,11 +120,9 @@ void macrocall(Token t)
 					if (t.tok < left_brace_limit)
 					{
 						unbalance = 1;
-						while (true)
+						while (unbalance)
 						{
-							auto q = new TokenNode(t.tok);
-							p->link = q;
-							p = q;
+							appendAtEnd(p, new TokenNode(t.tok));
 							t = gettoken();
 							if (t.tok == partoken)
 								if (longstate != long_call)
@@ -148,16 +144,10 @@ void macrocall(Token t)
 								if (t.tok < left_brace_limit)
 									unbalance++;
 								else
-								{
 									unbalance--;
-									if (unbalance == 0)
-										break;
-								}
 						}
 						rbraceptr = dynamic_cast<TokenNode*>(p);
-						auto q = new TokenNode(t.tok);
-						p->link = q;
-						p = q;
+						appendAtEnd(p, new TokenNode(t.tok));
 					}
 					else
 					{
@@ -170,12 +160,9 @@ void macrocall(Token t)
 					}
 				else
 				{
-					if (t.tok == space_token)
-						if (r->token <= end_match_token && r->token >= match_token)
-							continue;
-					auto q = new TokenNode(t.tok);
-					p->link = q;
-					p = q;
+					if (t.tok == space_token && r->token <= end_match_token && r->token >= match_token)
+						continue;
+					appendAtEnd(p, new TokenNode(t.tok));
 				}
 				m++;
 				if (r->token > end_match_token || r->token < match_token)

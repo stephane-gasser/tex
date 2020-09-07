@@ -20,12 +20,6 @@
 #include "calcul.h"
 #include "police.h"
 
-void tail_append(LinkedNode *p) 
-{
-	tail->link = p;
-	next(tail);
-}
-
 LinkedNode* copynodelist(LinkedNode *p)
 {
 	static LinkedNode head;
@@ -344,4 +338,5 @@ LeftRightNoad::LeftRightNoad(Token t)
 	type = t.chr; 
 	scandelimiter(delimiter, false, t);
 }
+
 

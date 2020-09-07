@@ -158,11 +158,8 @@ static void postlinebreak(int finalwidowpenalty)
 					else
 					{
 						r = q;
-						while (t > 1)
-						{
+						for (; t > 1; t--)
 							next(r);
-							t--;
-						}
 						s = r->link;
 						r = s->link;
 						s->link = nullptr;
@@ -211,15 +208,11 @@ static void postlinebreak(int finalwidowpenalty)
 			q = r;
 		}
 		r = q->link;
-		q->link = 0;
+		q->link = nullptr;
 		q = temp_head->link;
 		temp_head->link = r;
 		if (left_skip)
-		{
-			r = new GlueNode(left_skip());
-			r->link = q;
-			q = r;
-		}
+			appendAtStart(q, new GlueNode(left_skip()));
 		if (curline > lastspecialline)
 		{
 			curwidth = secondwidth;
@@ -459,8 +452,7 @@ static void trybreak(int pi, smallnumber breaktype)
 					if (minimaldemerits[fitclass] <= minimumdemerits)
 					{
 						auto q = new PassiveNode;
-						q->link = passive;
-						passive = q;
+						appendAtStart(passive, q);
 						q->cur_break = curp;
 						q->prev_break = bestplace[fitclass];
 						auto Q = new ActiveNode(bestplline[fitclass], r);
@@ -468,8 +460,7 @@ static void trybreak(int pi, smallnumber breaktype)
 						Q->fitness = fitclass;
 						Q->type = breaktype;
 						Q->total_demerits = minimaldemerits[fitclass];
-						prevr->link = Q;
-						prevr = Q;
+						appendAtEnd(prevr, Q);
 					}
 					minimaldemerits[fitclass] = max_dimen;
 				}
@@ -478,6 +469,7 @@ static void trybreak(int pi, smallnumber breaktype)
 				{
 					auto q = new DeltaNode(r);
 					q->new_delta_from_break_width();
+					//comme appendAtEnd(prevr, q) mais avec prevprevr
 					prevr->link = q;
 					prevprevr = prevr;
 					prevr = q;
