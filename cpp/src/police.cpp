@@ -39,7 +39,6 @@ int curFontNum(void) { return eqtb_local[cur_font_loc-local_base].int_; }  // in
 int char_tag(fourquarters q) { return q.b2%4; }
 bool char_exists(fourquarters q) { return q.b0 > 0; }
 quarterword skip_byte(fourquarters q) { return q.b0; }
-quarterword next_char(fourquarters q) { return q.b1; }
 quarterword op_byte(fourquarters q) { return q.b2; }
 quarterword rem_byte(fourquarters q) { return q.b3; }
 

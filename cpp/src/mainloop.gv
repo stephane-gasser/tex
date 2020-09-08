@@ -1,0 +1,13 @@
+digraph
+{
+	wrap_up -> move;
+	move -> {reswitch, move_1};
+	move_1 -> {move_lig, move_2};
+	move_2 -> {bigswitch, lookahead};
+	lookahead -> main;
+	move_lig -> {lookahead, main};
+	main -> {wrap_up, main_2};
+	main_2 -> {wrap_up, move_1, main, main_2};
+	{ rank = source; main_2; move_2; }
+	{ rank = sink; reswitch; bigswitch; }
+}

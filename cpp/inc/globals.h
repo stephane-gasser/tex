@@ -698,7 +698,12 @@ class GlueSpec;
 class Font
 {
 	public:
-		static std::vector<memoryword> info;
+		static std::vector<memoryword> info; //!< the big collection of font data
+		static fourquarters& infos(int);
+		static quarterword skip_byte(int);
+		static quarterword next_char(int);
+		static quarterword op_byte(int);
+		static quarterword rem_byte(int);
 		int charbase; //!< base addresses for |char_info|
 		int widthbase; //!< base addresses for widths
 		int heightbase; //!< base addresses for heights
@@ -723,11 +728,6 @@ class Font
 		fontindex bcharlabel; //!< start of |lig_kern| program for left boundary character, |non_address| if there is none
 		int bchar; //!< right boundary character, |non_char| if there is none
 		int falsebchar; //!< |font_bchar| if it doesn't exist in the font, otherwise |non_char|
-		static fourquarters& infos(int);
-		static quarterword skip_byte(int);
-		static quarterword next_char(int);
-		static quarterword op_byte(int);
-		static quarterword rem_byte(int);
 		fourquarters char_info(smallnumber) const;
 		int char_width(smallnumber) const;
 		int char_height(smallnumber) const;

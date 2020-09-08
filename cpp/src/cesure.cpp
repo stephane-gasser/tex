@@ -321,7 +321,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 								case 6:
 									curr = Font::rem_byte(k);
 									if (ligstack)
-										ligstack->lig_char.character = curr;
+										ligstack->character = curr;
 									else
 									{
 										ligstack = new LigatureNode(curr);
@@ -362,7 +362,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 										if (ligstack == nullptr)
 											set_cur_r(j, n, curr, currh, hchar);
 										else
-											curr = ligstack->lig_char.character;
+											curr = ligstack->character;
 									}
 									else 
 										if (j == n)
@@ -412,7 +412,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 		if (ligstack)
 		{
 			curq = t;
-			curl = ligstack->lig_char.character;
+			curl = ligstack->character;
 			ligaturepresent = true;
 			pop_lig_stack(j, t);
 			p = &ligstack->lig_char;
@@ -421,7 +421,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 			if (ligstack == nullptr)
 				set_cur_r(j, n, curr, currh, hchar);
 			else
-				curr = ligstack->lig_char.character;
+				curr = ligstack->character;
 			recommence = true;
 			continue;
 		}
@@ -549,7 +549,7 @@ void hyphenate(LinkedNode *curp)
 			}
 		else 
 			if (ha->type == ligature_node)
-				if (dynamic_cast<LigatureNode*>(ha)->lig_char.font != hf)
+				if (dynamic_cast<LigatureNode*>(ha)->font != hf)
 				{
 					s = ha;
 					j = 0;
@@ -563,7 +563,7 @@ void hyphenate(LinkedNode *curp)
 					initlist = dynamic_cast<CharNode*>(dynamic_cast<LigatureNode*>(ha)->lig_ptr);
 					initlig = true;
 					initlft = dynamic_cast<LigatureNode*>(ha)->subtype > 1;
-					hu[0] = dynamic_cast<LigatureNode*>(ha)->lig_char.character;
+					hu[0] = dynamic_cast<LigatureNode*>(ha)->character;
 					if (initlist == nullptr && initlft)
 					{
 						hu[0] = 256;

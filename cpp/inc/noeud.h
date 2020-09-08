@@ -94,6 +94,8 @@ class LigatureNode : public LinkedNode
 {
 	public:
 		CharNode lig_char;
+		quarterword &character = lig_char.character;
+		internalfontnumber &font = lig_char.font;
 		LinkedNode *lig_ptr;
 		quarterword subtype;
 		LigatureNode(internalfontnumber f, quarterword c, LinkedNode*q) : subtype(0), lig_char(f, c), lig_ptr(q) { type = ligature_node; }

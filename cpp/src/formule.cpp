@@ -210,20 +210,20 @@ void makemathaccent(AccentNoad *Q)
 				if (char_tag(ft.char_info(curc)) == lig_tag)
 			{
 				int a = ft.lig_kern_start(ft.char_info(curc));
-				if (skip_byte(Font::infos(a)) > stop_flag)
+				if (Font::skip_byte(a) > stop_flag)
 					a = ft.lig_kern_start(Font::infos(a));
 				while (true)
 				{
-					if (next_char(Font::infos(a)) == ft.skewchar)
+					if (Font::next_char(a) == ft.skewchar)
 					{
-						if (op_byte(Font::infos(a)) >= kern_flag)
-							if (skip_byte(Font::infos(a)) <= stop_flag)
+						if (Font::op_byte(a) >= kern_flag)
+							if (Font::skip_byte(a) <= stop_flag)
 								s = ft.char_kern(Font::infos(a));
 						break;
 					}
-					if (skip_byte(Font::infos(a)) >= stop_flag)
+					if (Font::skip_byte(a) >= stop_flag)
 						break;
-					a += skip_byte(Font::infos(a))+1;
+					a += Font::skip_byte(a)+1;
 				}
 			}
 		}
@@ -297,21 +297,21 @@ void makeord(Noad *Q)
 				{
 					int a = ft.lig_kern_start(ft.char_info(curc));
 					curc = p->nucleus.character;
-					if (skip_byte(Font::infos(a)) > stop_flag)
+					if (Font::skip_byte(a) > stop_flag)
 						a = ft.lig_kern_restart(Font::infos(a));
 					while (true)
 					{
 						halfword r;
-						if (next_char(Font::infos(a)) == curc)
-							if (skip_byte(Font::infos(a)) <= stop_flag)
-								if (op_byte(Font::infos(a)) >= kern_flag)
+						if (Font::next_char(a) == curc)
+							if (Font::skip_byte(a) <= stop_flag)
+								if (Font::op_byte(a) >= kern_flag)
 								{
 									appendAtStart(Q->link, new KernNode(ft.char_kern(Font::infos(a))));
 									return;
 								}
 								else
 								{
-									switch (op_byte(Font::infos(a)))
+									switch (Font::op_byte(a))
 									{
 										// AB -> CB (symboles =:| et =:|>)
 										case 1:
@@ -332,7 +332,7 @@ void makeord(Noad *Q)
 											r->nucleus.character = rem_byte(Font::infos(a));
 											r->nucleus.fam = Q->nucleus.fam;
 											appendAtStart(Q->link, r);
-											if (op_byte(Font::infos(a)) < 11) // symboles |=:| et |=:|>
+											if (Font::op_byte(a) < 11) // symboles |=:| et |=:|>
 												r->nucleus.math_type = math_char;
 											else // symbole |=:|>>
 												r->nucleus.math_type = math_text_char;
@@ -346,16 +346,16 @@ void makeord(Noad *Q)
 											Q->supscr = p->supscr;
 											delete p;
 									}
-									if (op_byte(Font::infos(a)) > 3)
+									if (Font::op_byte(a) > 3)
 										return;
 									Q->nucleus.math_type = math_char;
 									label20 = true;
 								}
 						if (label20)
 							break;
-						if (skip_byte(Font::infos(a)) >= stop_flag)
+						if (Font::skip_byte(a) >= stop_flag)
 							return;
-						a += skip_byte(Font::infos(a))+1;
+						a += Font::skip_byte(a)+1;
 					}
 				}
 			}
