@@ -759,7 +759,7 @@ int scanfifteenbitint(void)
 		}
 		else 
 			val = t.tok-cs_token_flag-(t.tok < cs_token_flag+single_base ? active_base : single_base);
-		if (val > 0xFF)
+		if (val >= 1<<8)
 		{
 			backerror(t, "Improper alphabetic constant", "A one-character control sequence belongs after a ` mark.\nSo I'm essentially inserting \\0 here.");
 			val = '0';

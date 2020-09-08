@@ -44,60 +44,67 @@ static void pack_lig(bool z)
 	ligaturepresent = false;
 }
 
-static bool insdisc = false;
 
 static void wrapup(bool z)
 {
 	if (curl < non_char)
 	{
-		if (curq->link > 0 && dynamic_cast<CharNode*>(tail)->character == cur_font().hyphenchar) 
-			insdisc = true; 
+		bool insdisc = curq->link && dynamic_cast<CharNode*>(tail)->character == cur_font().hyphenchar;
 		if (ligaturepresent)
 			pack_lig(z); 
-		if (insdisc)
-		{
-			insdisc = false;
-			if (mode > 0)
-				tail_append(new DiscNode); 
-		}
+		if (insdisc && mode > 0)
+			tail_append(new DiscNode); 
 	}
 }
 
 static halfword falsebchar;
 
-static void main_loop_lookahead(void)
+static void main_loop_lookahead_1(halfword chr) 
 {
-	auto t = getnext();
-	if (t.cmd != letter && t.cmd != other_char && t.cmd != char_given)
-	{
-		t = xtoken(t);
-		if (t.cmd != letter && t.cmd != other_char && t.cmd != char_given)
-		{
-			if (t.cmd == char_num)
-				t.chr = scancharnum();
-			else
-			{
-				if (t.cmd == no_boundary)
-					bchar = non_char;
-				curr = bchar;
-				ligstack = nullptr;
-				return;
-			}
-		}
-	}
-	//main_loop_lookahead_1
-	adjust_space_factor(t.chr);
-	curr = t.chr;
+	adjust_space_factor(chr);
+	curr = chr;
 	ligstack = new LigatureNode(curFontNum(), curr, nullptr);
 	if (curr == falsebchar)
 		curr = non_char;
 }
 
-static void main_loop_move_lig(void)
+static Token main_lig_loop(bool, halfword);
+
+//! Look ahead for another character, or leave |lig_stack| empty if there's none there
+static void main_loop_lookahead(void) //1038
 {
-	auto l = dynamic_cast<LigatureNode*>(ligstack->lig_ptr);
+	auto t = getnext();
+	if (t.cmd == letter || t.cmd == other_char || t.cmd == char_given)
+		main_loop_lookahead_1(t.chr);
+	else	
+	{
+		t = xtoken(t);
+		switch (t.cmd)
+		{
+			case char_num:
+				t.chr = scancharnum();
+			[[fallthrough]];
+			case letter:
+			case other_char:
+			case char_given:
+				main_loop_lookahead_1(t.chr);
+				break;
+			default:
+				if (t.cmd == no_boundary)
+					bchar = non_char;
+				curr = bchar;
+				ligstack = nullptr;
+		}
+	}
+	main_lig_loop(true, t.chr);
+}
+
+//! Move the cursor past a pseudo-ligature, then |goto main_loop_lookahead| or |main_lig_loop|
+static void main_loop_move_lig(halfword chr) // 1037
+{
+	auto l = ligstack->lig_ptr;
 	if (l)
-		tail_append(l);
+		tail_append(l); // append a single character
 	auto temp = ligstack;
 	next(ligstack);
 	delete temp;
@@ -109,63 +116,53 @@ static void main_loop_move_lig(void)
 			curr = bchar;
 	else
 		curr = ligstack->lig_char.character;
+	main_lig_loop(true, chr);
 }
 
-static bool main_loop_move_2(halfword chr)
+static void main_loop_move_2(halfword chr)
 {
-	if (cur_font().bc <= chr && chr <= cur_font().ec)
-	{
-		if (cur_font().char_exists(curl))
-		{
-			tail_append(ligstack);
-			main_loop_lookahead();
-			return false;
-		}
-	}
-	charwarning(cur_font(), chr);
-	delete ligstack;
-	ligstack = nullptr;
-	return true;
+	if (cur_font().bc > chr || chr > cur_font().ec || !cur_font().char_exists(curl))
+		throw 0; // invalid character
+	tail_append(ligstack);
+	main_loop_lookahead();
 }
 
-static bool main_loop_move_1(halfword chr)
+static void main_loop_move_1(halfword chr)
 {
 
 	if (!ligstack->is_char_node())
-		main_loop_move_lig();
+		main_loop_move_lig(chr);
 	else
-		if (main_loop_move_2(chr))
-			return true;
-	return false;
+		main_loop_move_2(chr);
 }
 
-static bool main_loop_move(halfword chr)
+//! If the cursor is immediately followed by the right boundary,  |goto reswitch|; if it's followed by an invalid character, |goto big_switch|;
+//!  otherwise move the cursor one step to the right and |goto main_lig_loop|
+static void main_loop_move(halfword chr) //1036
 {
 	if (ligstack == nullptr)
-		return true;
-	curq = dynamic_cast<CharNode*>(tail);
+		throw 1;
+	curq = tail;
 	curl = ligstack->lig_char.character;
-	return main_loop_move_1(chr);
+	main_loop_move_1(chr);
 }
 
-static bool main_loop_wrapup(halfword chr)
+//! Make a ligature node, if |ligature_present|; insert a null discretionary, if appropriate
+static void main_loop_wrapup(halfword chr) //1035
 {
 	wrapup(rthit);
-	return main_loop_move(chr);
+	main_loop_move(chr);
 }
 
-[[nodiscard]] static Token main_lig_loop(bool is110, halfword chr)
+//! If there's a ligature/kern command relevant to |cur_l| and |cur_r|, adjust the text appropriately; exit to |main_loop_wrapup|
+[[nodiscard]] static Token main_lig_loop(bool doFirstBlock, halfword chr) //1039
 {
 	while (true)
 	{
-		if (is110)
+		if (doFirstBlock)
 		{
 			if (cur_font().char_tag(curl) != lig_tag || curr == non_char)
-			{
-				if (main_loop_wrapup(chr))
-					return getxtoken();
-				continue;
-			}
+				main_loop_wrapup(chr);
 			maink = cur_font().lig_kern_start(cur_font().char_info(curl));
 			if (Font::skip_byte(maink) > stop_flag)
 				maink = cur_font().lig_kern_restart(Font::infos(maink));
@@ -176,23 +173,10 @@ static bool main_loop_wrapup(halfword chr)
 			{
 				if (Font::op_byte(maink) >= kern_flag) // c'est un kern
 				{
-					if (curl < non_char)
-					{
-						if (curq->link && dynamic_cast<CharNode*>(tail)->character == cur_font().hyphenchar)
-							insdisc = true;
-						if (ligaturepresent)
-							pack_lig(rthit);
-						if (insdisc)
-						{
-							insdisc = false;
-							if (mode > 0)
-								tail_append(new DiscNode);
-						}
-					}
+					wrapup(rthit);
 					tail_append(new KernNode(cur_font().char_kern(Font::infos(maink))));
-					if (main_loop_move(chr))
-						return getxtoken();
-					is110 = true;
+					main_loop_move(chr);
+					doFirstBlock = true;
 					continue;
 				}
 				// Font::op_byte(maink) < kern_flag => c'est une ligature
@@ -248,48 +232,29 @@ static bool main_loop_wrapup(halfword chr)
 						curl = Font::rem_byte(maink);
 						ligaturepresent = true;
 						if (ligstack == nullptr)
-						{
-							if (main_loop_wrapup(chr))
-								return getxtoken();
-						}
+							main_loop_wrapup(chr);
 						else
-							if (main_loop_move_1(chr))
-								return getxtoken();
+							main_loop_move_1(chr);
 				}
 				if (Font::op_byte(maink) > 4 && Font::op_byte(maink) != 7) // a>=1 et pas a=1,b=1,c=1
-				{
-					if (main_loop_wrapup(chr))
-						return getxtoken();
-					is110 = true;
-					continue;
-				}
+					main_loop_wrapup(chr);
 				if (curl < non_char)
 				{
-					is110 = true;
+					doFirstBlock = true;
 					continue;
 				}
 				maink = cur_font().bcharlabel;
-				is110 = false;
+				doFirstBlock = false;
 				continue;
 			}
-		if (Font::skip_byte(maink) == 0)
-			maink++;
-		else
-		{
-			if (Font::skip_byte(maink) >= stop_flag)
-			{
-				if (main_loop_wrapup(chr))
-					return getxtoken();
-				is110 = true;
-				continue;
-			}
-			maink += Font::skip_byte(maink)+1;
-		}
-		is110 = false;
+		if (Font::skip_byte(maink) >= stop_flag)
+			main_loop_wrapup(chr);
+		maink += Font::skip_byte(maink)+1;
+		doFirstBlock = false;
 	}
 }
-
-void main_loop(Token t)
+//! Append character |cur_chr| and the following characters (if~any) to the current hlist in the current font; |goto reswitch| when a non-character has been fetched
+void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 {
 	adjust_space_factor(t.chr);
 	bchar = cur_font().bchar;
@@ -298,19 +263,38 @@ void main_loop(Token t)
 		fixlanguage();
 	curl = t.chr;
 	ligstack = new LigatureNode(curFontNum(), curl, nullptr);
-	curq = dynamic_cast<CharNode*>(tail);
+	curq = tail;
 	maink = cancelboundary ? non_address : cur_font().bcharlabel;
 	cancelboundary = false;
-	if (maink == non_address)
-		if (main_loop_move_2(t.chr))
+	if (maink == non_address) 
+	{	//no left boundary processing
+		// main loop move + 2
+		try
 		{
-			t = getxtoken();
-			curr = curl;
-			curl = non_char;
-			t = main_lig_loop(false, t.chr);
-		}
-		else
+			main_loop_move_2(t.chr);
 			t = main_lig_loop(true, t.chr);
+		}
+		catch (int e)
+		{
+			if (e == 0)
+			{
+				charwarning(cur_font(), t.chr);
+				delete ligstack;
+				ligstack = nullptr;
+				// goto big switch
+				t = getxtoken();
+			}
+			// reswitch
+			return;
+		}
+	}
+	else
+	{
+		curr = curl;
+		curl = non_char;
+		//begin with cursor after left boundary
+		//main lig loop + 1
+	}
 }
 
 [[nodiscard]] Token append_normal_space(void)
