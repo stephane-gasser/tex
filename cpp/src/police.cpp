@@ -115,24 +115,26 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 			throw 1;
 		fileopened = true;
 		halfword lf, lh, bc, ec;
-		read_sixteen(lf);
-		read_sixteen(lh);
-		read_sixteen(bc);
-		read_sixteen(ec);
+		read_sixteen(lf); //|lf| words should be loaded into |font_info|
+		read_sixteen(lh); // header
+		read_sixteen(bc); //beginning (smallest) character code
+		read_sixteen(ec); //ending (largest) character code
 		if (bc > ec+1 || ec > 255)
 			throw 1;
-		if (bc > 255)
+		if (bc > 255) // |bc=256| and |ec=255|
+		{
 			bc = 1;
-		ec = 0;
+			ec = 0;
+		}
 		halfword nw, nh, nd, ni, nl, nk, ne, np;
-		read_sixteen(nw);
-		read_sixteen(nh);
-		read_sixteen(nd);
-		read_sixteen(ni);
-		read_sixteen(nl);
-		read_sixteen(nk);
-		read_sixteen(ne);
-		read_sixteen(np);
+		read_sixteen(nw); //widths
+		read_sixteen(nh); //heights
+		read_sixteen(nd); //depths
+		read_sixteen(ni); //italic
+		read_sixteen(nl); //ligature
+		read_sixteen(nk); //kern
+		read_sixteen(ne); //extension
+		read_sixteen(np); //param
 		if (lf != 6+lh+(ec-bc+1)+nw+nh+nd+ni+nl+nk+ne+np || nw == 0 || nh == 0 || nd == 0 || ni == 0)
 			throw 1;
 		lf -= 6+lh;
@@ -147,8 +149,9 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 		ft.depthbase = ft.heightbase+nh;
 		ft.italicbase = ft.depthbase+nd;
 		ft.ligkernbase = ft.italicbase+ni;
-		ft.kernbase = ft.ligkernbase+nl-0x80'00;
-		ft.extenbase = ft.kernbase+0x80'00+nk;
+		constexpr int kern_base_offset = 1<<15;
+		ft.kernbase = ft.ligkernbase-kern_base_offset+nl;
+		ft.extenbase = ft.kernbase+kern_base_offset+nk;
 		ft.parambase = ft.extenbase+ne;
 		if (lh < 2)
 			throw 1;
@@ -160,11 +163,8 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 		z = (z<<4)+(tfmfile.get()>>4);
 		if (z < unity)
 			throw 1;
-		while (lh > 2)
-		{
+		for (;lh > 2; lh--)
 			store_four_quarters(a, b, c, d);
-			lh--;
-		}
 		ft.dsize = z;
 		if (s != -1000)
 			if (s >= 0)
@@ -179,7 +179,7 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 				throw 1;
 			switch (c%4)
 			{
-				case lig_tag: 
+				case lig_tag: //a=skip_byte b=next_char c=op_byte d=rem_byte
 					if (d >= nl)
 						throw 1;
 					break;

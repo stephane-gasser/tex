@@ -578,6 +578,19 @@ enum
 	emergency_stretch_code = 20 //!< reduces badnesses on final pass of line-breaking
 };
 
+enum ligatures
+{
+	AB_C = 0, // symbole != ou LIG
+	AB_CB = 1, //symbole =:| ou LIG/
+	AB_cB = 5, //symbole =:|> ou LIG/>
+	AB_AC = 2, //symbole |=: ou /LIG
+	AB_aC = 6, //symbole |=:> ou /LIG>
+	AB_ACB = 3, // symbole |=:| ou /LIG/
+	AB_aCB = 7, //symbole |=:|> ou /LIG/>
+	AB_acB = 11 //symbole |=:|>> ou /LIG/>>
+};
+
+
 ///////////////////////////////////////////////////////////////////////////////
 // constantes
 ///////////////////////////////////////////////////////////////////////////////

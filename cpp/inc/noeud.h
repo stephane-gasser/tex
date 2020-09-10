@@ -90,19 +90,16 @@ class TokenNode : public LinkedNode
 
 extern std::vector<Font> fonts;
 
-class LigatureNode : public LinkedNode
+class LigatureNode : public CharNode
 {
 	public:
-		CharNode lig_char;
-		quarterword &character = lig_char.character;
-		internalfontnumber &font = lig_char.font;
 		LinkedNode *lig_ptr;
-		quarterword subtype;
-		LigatureNode(internalfontnumber f, quarterword c, LinkedNode*q) : subtype(0), lig_char(f, c), lig_ptr(q) { type = ligature_node; }
-		//newligitem
-		LigatureNode(quarterword c) : subtype(0), lig_char(null_font, c), lig_ptr(nullptr) { type = ligature_node; }
-		~LigatureNode(void) { flushnodelist(lig_ptr); /*if (lig_ptr) delete lig_ptr;*/ }
-		virtual LigatureNode* copy(void) { return new LigatureNode(lig_char.font, lig_char.character, copynodelist(lig_ptr)); }
+		quarterword subtype; // 0: AB, 1: A_ 2: _B 3: __
+		LigatureNode(internalfontnumber f, quarterword c, LinkedNode*q) : subtype(0), CharNode(f, c), lig_ptr(q) { type = ligature_node; }
+		LigatureNode(quarterword c) : subtype(0), CharNode(null_font, c), lig_ptr(nullptr) { type = ligature_node; } //newligitem
+		~LigatureNode(void) { flushnodelist(lig_ptr); }
+		virtual LigatureNode* copy(void) { return new LigatureNode(font, character, copynodelist(lig_ptr)); }
+		virtual bool is_char_node(void) { return false; }
 };
 
 

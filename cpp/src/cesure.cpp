@@ -201,6 +201,8 @@ static void set_cur_r(int j, int n, halfword &curr, halfword &currh, halfword hc
 
 static halfword curl, curr; //!< characters before and after the cursor
 static LinkedNode *curq; //!< where a ligature should be detached
+static CharNode *ligstack; //!< unfinished business to the right of the cursor
+
 
 static void wrap_lig(bool test, LinkedNode *t)
 {
@@ -225,9 +227,9 @@ static void wrap_lig(bool test, LinkedNode *t)
 
 static void pop_lig_stack(smallnumber &j, LinkedNode *t)
 {
-	if (ligstack->lig_ptr)
+	if (auto l = dynamic_cast<LigatureNode*>(ligstack)->lig_ptr; l)
 	{
-		appendAtEnd(t, ligstack->lig_ptr);
+		appendAtEnd(t, l);
 		j++;
 	}
 }
@@ -285,109 +287,100 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 			testchar = currh < non_char ? currh : curr;
 		for (; !skipLoop; k += Font::skip_byte(k)+1)
 		{
-			if (Font::next_char(k) == testchar)
-				if (Font::skip_byte(k) <= stop_flag)
-					if (currh < non_char)
+			if (Font::next_char(k) == testchar && Font::skip_byte(k) <= stop_flag)
+				if (currh < non_char)
+				{
+					hyphenpassed = j;
+					hchar = non_char;
+					currh = non_char;
+					recommence = true;
+					break;
+				}
+				else
+				{
+					if (hchar < non_char && hyf[j]%2)
 					{
 						hyphenpassed = j;
 						hchar = non_char;
-						currh = non_char;
+					}
+					if (Font::op_byte(k) < kern_flag)
+					{
+						if (curl == non_char)
+							lfthit = true;
+						if (j == n && ligstack == nullptr)
+							rthit = true;
+						switch (Font::op_byte(k))
+						{
+							case AB_cB: skipLoop = true; [[fallthrough]];
+							case AB_CB:
+								curl = Font::rem_byte(k);
+								ligaturepresent = true;
+								break;
+							case AB_aC: skipLoop = true; [[fallthrough]];
+							case AB_AC:
+								curr = Font::rem_byte(k);
+								if (ligstack)
+									dynamic_cast<LigatureNode*>(ligstack)->character = curr;
+								else
+								{
+									ligstack = new LigatureNode(curr);
+									if (j == n)
+										bchar = non_char;
+									else
+										dynamic_cast<LigatureNode*>(ligstack)->lig_ptr = new CharNode(hf, hu[j+1]);
+								}
+								break;
+							case AB_ACB:
+							{
+								curr = Font::rem_byte(k);
+								auto p = new CharNode(ligstack->font, ligstack->character);
+								ligstack = new LigatureNode(curr);
+								ligstack->link = p;
+								break;
+							}
+							case AB_acB: skipLoop = true; [[fallthrough]];
+							case AB_aCB:
+								wrap_lig(false, t);
+								curq = t;
+								curl = Font::rem_byte(k);
+								ligaturepresent = true;
+								break;
+							case AB_C:
+								curl = Font::rem_byte(k);
+								ligaturepresent = true;
+								if (ligstack)
+								{
+									pop_lig_stack(j, t);
+									auto p = ligstack;
+									next(ligstack);
+									delete p;
+									if (ligstack == nullptr)
+										set_cur_r(j, n, curr, currh, hchar);
+									else
+										curr = dynamic_cast<LigatureNode*>(ligstack)->character;
+								}
+								else 
+									if (j == n)
+									{
+										skipLoop = true;
+										continue;
+									}
+									else
+									{
+										appendAtEnd(t, new CharNode(hf, curr));
+										j++;
+										set_cur_r(j, n, curr, currh, hchar);
+									}
+						}
+						if (skipLoop)
+							continue;
 						recommence = true;
 						break;
 					}
-					else
-					{
-						if (hchar < non_char && hyf[j]%2)
-						{
-							hyphenpassed = j;
-							hchar = non_char;
-						}
-						if (Font::op_byte(k) < kern_flag)
-						{
-							if (curl == non_char)
-								lfthit = true;
-							if (j == n && ligstack == nullptr)
-								rthit = true;
-							switch (Font::op_byte(k))
-							{
-								// AB -> CB (symboles =:| et =:|>)
-								case 1:
-								case 5:
-									curl = Font::rem_byte(k);
-									ligaturepresent = true;
-									break;
-								// AB -> AC (symboles |=: et |=:>)
-								case 2:
-								case 6:
-									curr = Font::rem_byte(k);
-									if (ligstack)
-										ligstack->character = curr;
-									else
-									{
-										ligstack = new LigatureNode(curr);
-										if (j == n)
-											bchar = non_char;
-										else
-											ligstack->lig_ptr = new CharNode(hf, hu[j+1]);
-									}
-									break;
-								// AB -> ACB (symbole |=:|)
-								case 3:
-								{
-									curr = Font::rem_byte(k);
-									auto p = &ligstack->lig_char;
-									ligstack = new LigatureNode(curr);
-									ligstack->link = p;
-									break;
-								}
-								// AB -> ACB (symboles |=:|> et |=:|>>)
-								case 7:
-								case 11:
-									wrap_lig(false, t);
-									curq = t;
-									curl = Font::rem_byte(k);
-									ligaturepresent = true;
-									break;
-								// AB -> C (symbole !=)
-								default:
-									curl = Font::rem_byte(k);
-									ligaturepresent = true;
-									if (ligstack)
-									{
-										pop_lig_stack(j, t);
-										auto p = &ligstack->lig_char;
-										ligstack = dynamic_cast<LigatureNode*>(p->link);
-										delete p;
-										if (ligstack == nullptr)
-											set_cur_r(j, n, curr, currh, hchar);
-										else
-											curr = ligstack->character;
-									}
-									else 
-										if (j == n)
-										{
-											skipLoop = true;
-											continue;
-										}
-										else
-										{
-											appendAtEnd(t, new CharNode(hf, curr));
-											j++;
-											set_cur_r(j, n, curr, currh, hchar);
-										}
-							}
-							if (Font::op_byte(k) > 4 && Font::op_byte(k) != 7)
-							{
-								skipLoop = true;
-								continue;
-							}
-							recommence = true;
-							break;
-						}
-						w = fonts[hf].char_kern(k);
-						skipLoop = true;
-						continue;
-					}
+					w = fonts[hf].char_kern(k);
+					skipLoop = true;
+					continue;
+				}
 			if (Font::skip_byte(k) >= 128)
 				if (currh == 256)
 				{
@@ -410,16 +403,16 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 		if (ligstack)
 		{
 			curq = t;
-			curl = ligstack->character;
+			curl = dynamic_cast<LigatureNode*>(ligstack)->character;
 			ligaturepresent = true;
 			pop_lig_stack(j, t);
-			auto p = &ligstack->lig_char;
-			ligstack = dynamic_cast<LigatureNode*>(p->link);
+			auto p = ligstack;
+			next(ligstack);
 			delete p;
 			if (ligstack == nullptr)
 				set_cur_r(j, n, curr, currh, hchar);
 			else
-				curr = ligstack->character;
+				curr = dynamic_cast<LigatureNode*>(ligstack)->character;
 			recommence = true;
 			continue;
 		}

@@ -734,12 +734,12 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 				case ligature_node:
 				{
 					auto P = dynamic_cast<LigatureNode*>(p);
-					oss << fontandchar(&P->lig_char) << " (ligature ";
-					if (P->subtype > 1)
+					oss << fontandchar(P) << " (ligature ";
+					if (P->subtype > 1) // implicit left boundary
 						oss << "|";
-					fontinshortdisplay = P->lig_char.font;
-					oss << shortdisplay(&P->lig_char);
-					if (P->subtype%2)
+					fontinshortdisplay = P->font;
+					oss << shortdisplay(P);
+					if (P->subtype%2) // implicit right boundary
 						oss << "|";
 					oss << ")";
 					break;

@@ -55,7 +55,6 @@ inline smallnumber hn;
 inline LinkedNode *ha, *hb;
 inline internalfontnumber hf;
 inline int hu[64]; // of 0..256
-inline LigatureNode *ligstack; //!< unfinished business to the right of the cursor
 inline std::map<ASCIIcode, int> opstart; //of 0..trieopsize
 inline std::vector<TrieNode> trieNode(1);
 inline triepointer &trie_root = trieNode[0].l; //!< root of the linked trie
