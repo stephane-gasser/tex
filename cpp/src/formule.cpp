@@ -209,21 +209,17 @@ void makemathaccent(AccentNoad *Q)
 			auto &ft = fonts[f];
 				if (char_tag(ft.char_info(curc)) == lig_tag)
 			{
-				int a = ft.lig_kern_start(ft.char_info(curc));
-				if (Font::skip_byte(a) > stop_flag)
-					a = ft.lig_kern_start(Font::infos(a));
-				while (true)
+				
+				for (int a = ft.lig_kern_first(curc); true; a += Font::skip_byte(a)+1)
 				{
 					if (Font::next_char(a) == ft.skewchar)
 					{
-						if (Font::op_byte(a) >= kern_flag)
-							if (Font::skip_byte(a) <= stop_flag)
-								s = ft.char_kern(Font::infos(a));
+						if (Font::op_byte(a) >= kern_flag && Font::skip_byte(a) <= stop_flag)
+							s = ft.char_kern(a);
 						break;
 					}
 					if (Font::skip_byte(a) >= stop_flag)
 						break;
-					a += Font::skip_byte(a)+1;
 				}
 			}
 		}
@@ -295,67 +291,61 @@ void makeord(Noad *Q)
 				auto &ft = fonts[f];
 				if (char_tag(ft.char_info(curc)) == lig_tag)
 				{
-					int a = ft.lig_kern_start(ft.char_info(curc));
 					curc = p->nucleus.character;
-					if (Font::skip_byte(a) > stop_flag)
-						a = ft.lig_kern_restart(Font::infos(a));
-					while (true)
+					for (int a = ft.lig_kern_first(curc); true; a += Font::skip_byte(a)+1)
 					{
-						halfword r;
-						if (Font::next_char(a) == curc)
-							if (Font::skip_byte(a) <= stop_flag)
-								if (Font::op_byte(a) >= kern_flag)
+						if (Font::next_char(a) == curc && Font::skip_byte(a) <= stop_flag)
+							if (Font::op_byte(a) >= kern_flag)
+							{
+								appendAtStart(Q->link, new KernNode(ft.char_kern(a)));
+								return;
+							}
+							else
+							{
+								switch (Font::op_byte(a))
 								{
-									appendAtStart(Q->link, new KernNode(ft.char_kern(Font::infos(a))));
-									return;
-								}
-								else
-								{
-									switch (Font::op_byte(a))
+									// AB -> CB (symboles =:| et =:|>)
+									case 1:
+									case 5: 
+										Q->nucleus.character = rem_byte(Font::infos(a));
+										break;
+									// AB -> AC (symboles |=: et |=:>)
+									case 2:
+									case 6: 
+										p->nucleus.character = rem_byte(Font::infos(a));
+										break;
+									// AB -> ACB (symboles |=:|, |=:|> et |=:|>>)
+									case 3:
+									case 7:
+									case 11:
 									{
-										// AB -> CB (symboles =:| et =:|>)
-										case 1:
-										case 5: 
-											Q->nucleus.character = rem_byte(Font::infos(a));
-											break;
-										// AB -> AC (symboles |=: et |=:>)
-										case 2:
-										case 6: 
-											p->nucleus.character = rem_byte(Font::infos(a));
-											break;
-										// AB -> ACB (symboles |=:|, |=:|> et |=:|>>)
-										case 3:
-										case 7:
-										case 11:
-										{
-											auto r = new Noad;
-											r->nucleus.character = rem_byte(Font::infos(a));
-											r->nucleus.fam = Q->nucleus.fam;
-											appendAtStart(Q->link, r);
-											if (Font::op_byte(a) < 11) // symboles |=:| et |=:|>
-												r->nucleus.math_type = math_char;
-											else // symbole |=:|>>
-												r->nucleus.math_type = math_text_char;
-											break;
-										// AB -> C (symbole =;)
-										}
-										default:
-											Q->link = p->link;
-											Q->nucleus.character = rem_byte(Font::infos(a));
-											Q->subscr = p->subscr;
-											Q->supscr = p->supscr;
-											delete p;
+										auto r = new Noad;
+										r->nucleus.character = rem_byte(Font::infos(a));
+										r->nucleus.fam = Q->nucleus.fam;
+										appendAtStart(Q->link, r);
+										if (Font::op_byte(a) < 11) // symboles |=:| et |=:|>
+											r->nucleus.math_type = math_char;
+										else // symbole |=:|>>
+											r->nucleus.math_type = math_text_char;
+										break;
+									// AB -> C (symbole =;)
 									}
-									if (Font::op_byte(a) > 3)
-										return;
-									Q->nucleus.math_type = math_char;
-									label20 = true;
+									default:
+										Q->link = p->link;
+										Q->nucleus.character = rem_byte(Font::infos(a));
+										Q->subscr = p->subscr;
+										Q->supscr = p->supscr;
+										delete p;
 								}
+								if (Font::op_byte(a) > 3)
+									return;
+								Q->nucleus.math_type = math_char;
+								label20 = true;
+							}
 						if (label20)
 							break;
 						if (Font::skip_byte(a) >= stop_flag)
 							return;
-						a += Font::skip_byte(a)+1;
 					}
 				}
 			}

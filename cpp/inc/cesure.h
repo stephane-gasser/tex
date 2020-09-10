@@ -56,7 +56,6 @@ inline LinkedNode *ha, *hb;
 inline internalfontnumber hf;
 inline int hu[64]; // of 0..256
 inline LigatureNode *ligstack; //!< unfinished business to the right of the cursor
-inline LinkedNode * curq; //!< where a ligature should be detached
 inline std::map<ASCIIcode, int> opstart; //of 0..trieopsize
 inline std::vector<TrieNode> trieNode(1);
 inline triepointer &trie_root = trieNode[0].l; //!< root of the linked trie
@@ -66,10 +65,8 @@ inline std::vector<HyphenNode*> hyphlist(308, nullptr);
 inline std::vector<std::string> hyphword(308, "");
 inline hyphpointer hyphcount = 0;
 inline bool trienotready = true;
-inline halfword curl, curr; //!< characters before and after the cursor
 inline halfword bchar;
 inline ASCIIcode curlang;
-inline bool lfthit = false, rthit = false; //!< did we hit a ligature with a boundary character?
 
 inline void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255) ? 0 : language(); }
 

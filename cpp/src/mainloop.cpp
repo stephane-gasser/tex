@@ -24,6 +24,9 @@ static void adjust_space_factor(halfword chr)
 //static fourquarters mainj; //!<ligature/kern command
 //static fourquarters maini; //!<character information bytes for |cur_l|
 static fontindex maink; //!< index into |font_info|
+static halfword curl, curr; //!< characters before and after the cursor
+static bool lfthit = false, rthit = false; //!< did we hit a ligature with a boundary character?
+static LinkedNode *curq; //!< where a ligature should be detached
 
 //! the parameter is either |rt_hit| or |false|
 static void wrapup(bool z)
@@ -61,11 +64,22 @@ enum
 	move_1,
 	move_2,
 	wrap_up,
-	main,
+	init_main,
 	main_2,
 };
 
 static halfword falsebchar;
+
+static void next(fontindex &maink, int &cycle)
+{
+	if (cycle == main_2)
+		if (Font::skip_byte(maink) >= stop_flag)
+			cycle = wrap_up;
+		else
+			maink += Font::skip_byte(maink)+1;
+}
+
+static bool programMatches(fontindex maink, halfword curr) { return Font::next_char(maink) == curr && Font::skip_byte(maink) <= stop_flag; }
 
 //! Append character |cur_chr| and the following characters (if~any) to the current hlist in the current font; |goto reswitch| when a non-character has been fetched
 void main_loop(Token &t) //t: char_num / letter / other_char / char_given
@@ -92,79 +106,23 @@ void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 		{
 			switch (cycle)
 			{
-				case wrap_up: //! Make a ligature node, if |ligature_present|; insert a null discretionary, if appropriate
-					wrapup(rthit);
-					[[fallthrough]];
-				case move: //! If the cursor is immediately followed by the right boundary,|goto reswitch|; 
-					if (ligstack == nullptr)
-						return; // reswitch
-					curq = tail;
-					curl = ligstack->character;
-					[[fallthrough]];
-				case move_1:
-					if (!ligstack->is_char_node())
-					{
-						cycle = move_lig;
-						continue;
-					}
-					[[fallthrough]];
-				case move_2: //if it's followed by an invalid character, |goto big_switch|; 
-					if (cur_font().bc > t.chr || t.chr > cur_font().ec || !cur_font().char_exists(curl)) // invalid character
-						throw;
-					//!  otherwise move the cursor one step to the right and |goto main_lig_loop|
-					tail_append(ligstack);
-					[[fallthrough]];
-				case lookahead: //! Look ahead for another character, or leave |lig_stack| empty if there's none there
-					t = getnext();
-					if (t.cmd != letter && t.cmd != other_char && t.cmd != char_given)
-					{
-						t = xtoken(t);
-						switch (t.cmd)
-						{
-							case char_num:
-								t.chr = scancharnum();
-								break;
-							case letter:
-							case other_char:
-							case char_given:
-								break;
-							case no_boundary:
-								bchar = non_char;
-								[[fallthrough]];
-							default:
-								curr = bchar;
-								ligstack = nullptr;
-						}
-					}
-					if (t.cmd == letter || t.cmd == other_char || t.cmd == char_given || t.cmd == char_num)
-					{
-						adjust_space_factor(t.chr);
-						curr = t.chr;
-						ligstack = new LigatureNode(curFontNum(), curr, nullptr);
-						if (curr == falsebchar)
-							curr = non_char; // this prevents spurious ligatures
-					}
-					[[fallthrough]];
-				case main: //! If there's a ligature/kern command relevant to |cur_l| and |cur_r|, adjust the text appropriately; exit to |main_loop_wrapup|
+				case init_main: //! If there's a ligature/kern command relevant to |cur_l| and |cur_r|, adjust the text appropriately; exit to |main_loop_wrapup|
 					if (cur_font().char_tag(curl) != lig_tag || curr == non_char)
 					{
 						cycle = wrap_up;
 						continue;
 					}
-					maink = cur_font().lig_kern_start(cur_font().char_info(curl));
-					if (Font::skip_byte(maink) > stop_flag)
-						maink = cur_font().lig_kern_restart(Font::infos(maink));
-					[[fallthrough]];
+					maink = cur_font().lig_kern_first(curl); [[fallthrough]];
 				case main_2:
-					for (; cycle == main_2; maink += cycle == main_2 ? Font::skip_byte(maink)+1 : 0)
-					{
-						if (Font::next_char(maink) == curr && Font::skip_byte(maink) <= stop_flag) //Do ligature or kern command, returning to |main_lig_loop| or |main_loop_wrapup| or |main_loop_move|
+					// boucle sur les programmes
+					for (; cycle == main_2; next(maink, cycle))
+						if (programMatches(maink, curr)) //Do ligature or kern command, returning to |main_lig_loop| or |main_loop_wrapup| or |main_loop_move|
 						{
 							if (Font::op_byte(maink) >= kern_flag) // c'est un kern
 							{
 								wrapup(rthit);
-								tail_append(new KernNode(cur_font().char_kern(Font::infos(maink))));
-								cycle = main;
+								tail_append(new KernNode(cur_font().char_kern(maink)));
+								cycle = init_main;
 								continue;
 							}
 							if (curl == non_char)
@@ -228,16 +186,60 @@ void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 							}
 							if (curl < non_char)
 							{
-								cycle = main;
+								cycle = init_main;
 								continue;
 							}
 							maink = cur_font().bcharlabel;
-							cycle = main_2;
-							continue;
 						}
-						if (Font::skip_byte(maink) >= stop_flag)
-							cycle = wrap_up;
+					break;
+				case wrap_up: //! Make a ligature node, if |ligature_present|; insert a null discretionary, if appropriate
+					wrapup(rthit); [[fallthrough]];
+				case move: //! If the cursor is immediately followed by the right boundary,|goto reswitch|; 
+					if (ligstack == nullptr)
+						return; // reswitch
+					curq = tail;
+					curl = ligstack->character; [[fallthrough]];
+				case move_1:
+					if (!ligstack->is_char_node())
+					{
+						cycle = move_lig;
+						continue;
+					} [[fallthrough]];
+				case move_2: //if it's followed by an invalid character, |goto big_switch|; 
+					if (cur_font().bc > t.chr || t.chr > cur_font().ec || !cur_font().char_exists(curl)) // invalid character
+						throw;
+					//!  otherwise move the cursor one step to the right and |goto main_lig_loop|
+					tail_append(ligstack); [[fallthrough]];
+				case lookahead: //! Look ahead for another character, or leave |lig_stack| empty if there's none there
+					t = getnext();
+					if (t.cmd != letter && t.cmd != other_char && t.cmd != char_given)
+					{
+						t = xtoken(t);
+						switch (t.cmd)
+						{
+							case char_num:
+								t.chr = scancharnum();
+								break;
+							case letter:
+							case other_char:
+							case char_given:
+								break;
+							case no_boundary:
+								bchar = non_char; [[fallthrough]];
+							default:
+								curr = bchar;
+								ligstack = nullptr;
+						}
 					}
+					if (t.cmd == letter || t.cmd == other_char || t.cmd == char_given || t.cmd == char_num)
+					{
+						adjust_space_factor(t.chr);
+						curr = t.chr;
+						ligstack = new LigatureNode(curFontNum(), curr, nullptr);
+						if (curr == falsebchar)
+							curr = non_char; // this prevents spurious ligatures
+					}
+					cycle = init_main;
 					break;
 				case move_lig: //! Move the cursor past a pseudo-ligature, then |goto main_loop_lookahead| or |main_lig_loop|
 				{
@@ -249,12 +251,12 @@ void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 					delete temp;
 					ligaturepresent = true;
 					if (ligstack == nullptr && l)
-						{
-							cycle = lookahead;
-							continue;
-						}
+					{
+						cycle = lookahead;
+						continue;
+					}
 					curr = ligstack == nullptr ? bchar : ligstack->character;
-					cycle = main;
+					cycle = init_main;
 				}
 			}
 		}
@@ -276,7 +278,6 @@ void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 		if (g == nullptr)
 		{
 			g = new GlueSpec(zero_glue);
-			maink = cur_font().parambase+space_code;
 			g->width = cur_font().space();
 			g->stretch = cur_font().space_stretch();
 			g->shrink = cur_font().space_shrink();
@@ -306,7 +307,6 @@ void appspace(void)
 		if (g == nullptr)
 		{
 			g = new GlueSpec(zero_glue);
-			maink = space_code+cur_font().parambase;
 			g->width = cur_font().space();
 			g->stretch = cur_font().space_stretch();
 			g->shrink = cur_font().space_shrink();

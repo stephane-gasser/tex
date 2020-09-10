@@ -12,7 +12,6 @@ int curFontNum(void);
 int char_tag(fourquarters);
 quarterword skip_byte(fourquarters);
 quarterword next_char(fourquarters);
-quarterword op_byte(fourquarters); 
 quarterword rem_byte(fourquarters);
 bool char_exists(fourquarters); 
 int& param(smallnumber, internalfontnumber); 

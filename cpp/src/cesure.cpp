@@ -191,12 +191,16 @@ static void advance_major_tail(LinkedNode *majortail, int &rcount)
 }
 
 static char hyf[65]; // of 0..9 //odd values indicate discretionary hyphens
+static bool lfthit = false, rthit = false; //!< did we hit a ligature with a boundary character?
 
 static void set_cur_r(int j, int n, halfword &curr, halfword &currh, halfword hchar)
 {
 	curr = j < n ? hu[j+1] : bchar;
 	currh = hyf[j]%2 ? hchar : non_char;
 }
+
+static halfword curl, curr; //!< characters before and after the cursor
+static LinkedNode *curq; //!< where a ligature should be detached
 
 static void wrap_lig(bool test, LinkedNode *t)
 {
@@ -235,10 +239,9 @@ static smallnumber hyphenpassed;
 
 static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword hchar)
 {
-	CharNode *p;
-	halfword currh, testchar;
+	halfword currh; // hyphen character for ligature testing
+	halfword testchar; // hyphen or other character for ligature testing
 	scaled w;
-	fontindex k;
 	hyphenpassed = 0;
 	w = 0;
 	hold_head->link = nullptr;
@@ -250,7 +253,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 		ligaturepresent = initlig;
 		if (ligaturepresent)
 			lfthit = initlft;
-		for (p = initlist; p; next(p))
+		for (auto p = initlist; p; next(p))
 			appendAtEnd(t, new CharNode(hf, p->character));
 	}
 	else 
@@ -264,10 +267,11 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 	{
 		recommence = false;
 		skipLoop = false;
-		if (curl == 256)
+		fontindex k;
+		if (curl == non_char)
 		{
 			k = fonts[hf].bcharlabel;
-			if (k == 0)
+			if (k == non_address)
 				skipLoop = true;
 		}
 		else
@@ -275,15 +279,11 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 			if (fonts[hf].char_tag(curl) != lig_tag)
 				skipLoop = true;
 			else
-			{
-				k = fonts[hf].lig_kern_start(fonts[hf].char_info(curl));
-				if (Font::skip_byte(k) > stop_flag)
-					k = fonts[hf].lig_kern_restart(Font::infos(k));
-			}
+				k = fonts[hf].lig_kern_first(curl);
 		}
 		if (!skipLoop)
 			testchar = currh < non_char ? currh : curr;
-		while (!skipLoop)
+		for (; !skipLoop; k += Font::skip_byte(k)+1)
 		{
 			if (Font::next_char(k) == testchar)
 				if (Font::skip_byte(k) <= stop_flag)
@@ -328,19 +328,18 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 										if (j == n)
 											bchar = non_char;
 										else
-										{
-											p = new CharNode(hf, hu[j+1]);
-											ligstack->lig_ptr = p;
-										}
+											ligstack->lig_ptr = new CharNode(hf, hu[j+1]);
 									}
 									break;
 								// AB -> ACB (symbole |=:|)
 								case 3:
+								{
 									curr = Font::rem_byte(k);
-									p = &ligstack->lig_char;
+									auto p = &ligstack->lig_char;
 									ligstack = new LigatureNode(curr);
 									ligstack->link = p;
 									break;
+								}
 								// AB -> ACB (symboles |=:|> et |=:|>>)
 								case 7:
 								case 11:
@@ -356,7 +355,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 									if (ligstack)
 									{
 										pop_lig_stack(j, t);
-										p = &ligstack->lig_char;
+										auto p = &ligstack->lig_char;
 										ligstack = dynamic_cast<LigatureNode*>(p->link);
 										delete p;
 										if (ligstack == nullptr)
@@ -385,7 +384,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 							recommence = true;
 							break;
 						}
-						w = fonts[hf].char_kern(Font::infos(k));
+						w = fonts[hf].char_kern(k);
 						skipLoop = true;
 						continue;
 					}
@@ -401,7 +400,6 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 					recommence = true;
 					break;
 				}
-			k += Font::skip_byte(k)+1;
 		}
 		if (recommence)
 			continue;
@@ -415,7 +413,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 			curl = ligstack->character;
 			ligaturepresent = true;
 			pop_lig_stack(j, t);
-			p = &ligstack->lig_char;
+			auto p = &ligstack->lig_char;
 			ligstack = dynamic_cast<LigatureNode*>(p->link);
 			delete p;
 			if (ligstack == nullptr)
@@ -709,10 +707,6 @@ void hyphenate(LinkedNode *curp)
 
 void newpatterns(Token t)
 {
-	char k, l;
-	bool digitsensed;
-	quarterword v;
-	bool firstchild;
 	ASCIIcode c;
 	if (trienotready)
 	{
@@ -720,11 +714,9 @@ void newpatterns(Token t)
 		if (curlang <= 0 || curlang > 255)
 				curlang = 0;
 		auto t = scanleftbrace();
-		k = 0;
+		char k = 0;
 		hyf[0] = 0;
-		digitsensed = false;
-		bool keepIn = true;
-		while (keepIn)
+		for (bool keepIn = true, digitsensed = false; keepIn;)
 		{
 			auto t = getxtoken();
 			switch (t.cmd)
@@ -764,30 +756,24 @@ void newpatterns(Token t)
 							hyf[0] = 0;
 						if (hc[k] == 0)
 							hyf[k] = 0;
-						l = k;
-						v = 0;
-						while (true)
-						{
-							if (hyf[l] != 0)
-							v = newtrieop(k-l, hyf[l], v);
-							if (l > 0)
-								l--;
-							else
-								break;
-						}
+						
+						char v = 0;
+						char l;
+						for (l = k; l >= 0; l--)
+							if (hyf[l])
+								v = newtrieop(k-l, hyf[l], v);
 						auto q = 0;
 						hc[0] = curlang;
 						while (l <= k)
 						{
 							c = hc[l];
 							l++;
-							auto p = trieNode[q].l;
-							firstchild = true;
-							while (p > 0 && c > trieNode[p].c)
+							triepointer p;
+							bool firstchild = true;
+							for (p = trieNode[q].l; p > 0 && c > trieNode[p].c; p = trieNode[q].r)
 							{
-								q = p;
-								p = trieNode[q].r;
 								firstchild = false;
+								q = p;
 							}
 							if (p == 0 || c < trieNode[p].c)
 							{

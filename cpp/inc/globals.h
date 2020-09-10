@@ -733,9 +733,10 @@ class Font
 		int char_height(smallnumber) const;
 		int char_depth(smallnumber) const;
 		int char_italic(smallnumber) const;
-		int lig_kern_start(fourquarters) const; //!< beginning of lig/kern program
-		int lig_kern_restart(fourquarters) const;
-		int char_kern(fourquarters) const;
+		int lig_kern_start(smallnumber) const; //!< beginning of lig/kern program
+		int lig_kern_restart(int) const;
+		int lig_kern_first(smallnumber) const;
+		int char_kern(int) const;
 		int& param(smallnumber) const;
 		scaled heightplusdepth(quarterword) const;
 		int& slant(void) const; //!< slant to the right, per unit distance upward

@@ -20,9 +20,9 @@ int Font::char_height(smallnumber q) const { return info[heightbase+char_info(q)
 int Font::char_depth(smallnumber q) const { return info[depthbase+char_info(q).b1%16].int_; }
 scaled Font::heightplusdepth(quarterword c) const { return char_height(c)+char_depth(c); }
 int Font::char_italic(smallnumber q) const { return info[italicbase+char_info(q).b2/4].int_; }
-int Font::lig_kern_start(fourquarters i) const { return ligkernbase+::rem_byte(i); }
-int Font::lig_kern_restart(fourquarters i) const { return ligkernbase+256*::op_byte(i)+::rem_byte(i); }
-int Font::char_kern(fourquarters i) const { return info[kernbase+256*::op_byte(i)+::rem_byte(i)].int_; }
+int Font::lig_kern_start(smallnumber q) const { return ligkernbase+char_info(q).b3; }
+int Font::lig_kern_restart(int k) const { return ligkernbase+256*op_byte(k)+rem_byte(k); }
+int Font::char_kern(int k) const { return info[kernbase+256*op_byte(k)+rem_byte(k)].int_; }
 int& Font::param(smallnumber p) const { return info[parambase+p].int_; }
 int& Font::slant(void) const { return param(slant_code); }
 int& Font::extra_space(void) const { return param(extra_space_code); }
@@ -34,12 +34,20 @@ int& Font::quad(void) const { return param(quad_code); }
 int Font::char_tag(smallnumber q) { return char_info(q).b2%4; }
 bool Font::char_exists(smallnumber q) { return char_info(q).b0 > 0; }
 
+int Font::lig_kern_first(smallnumber q) const 
+{ 
+	auto k = lig_kern_start(q);
+	if (Font::skip_byte(k))
+		k = lig_kern_restart(k);
+	return k;
+}
+
+
 Font& cur_font(void) { return fonts[curFontNum()]; }
 int curFontNum(void) { return eqtb_local[cur_font_loc-local_base].int_; }  // index : Font*
 int char_tag(fourquarters q) { return q.b2%4; }
 bool char_exists(fourquarters q) { return q.b0 > 0; }
 quarterword skip_byte(fourquarters q) { return q.b0; }
-quarterword op_byte(fourquarters q) { return q.b2; }
 quarterword rem_byte(fourquarters q) { return q.b3; }
 
 constexpr char TEX_font_area[] = "TeXfonts:";
