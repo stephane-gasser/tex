@@ -9,40 +9,11 @@ constexpr int hyph_size = 307; //!<  another prime; the number of \\hyphenation 
 
 typedef int hyphpointer; //0..307
 
-class TrieNode
-{
-	public:
-		packedASCIIcode c;
-		quarterword o;
-		triepointer l;
-		triepointer r;
-		bool operator == (const TrieNode &tn) const { return std::tuple(c, o, l, r) == std::tuple(tn.c, tn.o, tn.l, tn.r); }
-		bool operator < (const TrieNode &tn) const { return std::tuple(c, o, l, r) < std::tuple(tn.c, tn.o, tn.l, tn.r); }
-};
-
-class Trie
-{
-	public:
-		bool taken;
-		twohalves hh;
-};
-
-class TrieOp
-{
-	public:
-		ASCIIcode lang;
-		quarterword val;
-		quarterword hyfnext;
-		smallnumber hyfnum;
-		smallnumber hyfdistance;
-		bool operator == (const TrieOp &to) const { return std::tuple(lang, hyfnext, hyfnum, hyfdistance) == std::tuple(to.lang, to.hyfnext, to.hyfnum, to.hyfdistance); }
-		bool operator < (const TrieOp &to) const { return std::tuple(lang, hyfnext, hyfnum, hyfdistance) < std::tuple(to.lang, to.hyfnext, to.hyfnum, to.hyfdistance); }
-};
-
 class HyphenNode : public LinkedNode
 {
 	public:
 		int pos;
+		HyphenNode(int n) : pos(n) {}
 };
 
 inline int hyfchar;
@@ -50,19 +21,12 @@ inline halfword hyfbchar;
 inline int lhyf, rhyf, initlhyf, initrhyf;
 inline std::map<ASCIIcode, quarterword> trieused;
 inline bool ligaturepresent = false; //!< should a ligature node be made for |cur_l|?
-inline int hc[66]; // of 0..256
-inline smallnumber hn;
-inline LinkedNode *ha, *hb;
-inline internalfontnumber hf;
-inline int hu[64]; // of 0..256
+inline int hc[66]; // word to be hyphenated // of 0..256
+inline int hu[64]; //like |hc|, before conversion to lowercase // of 0..256
+inline smallnumber hn; //the number of positions occupied in |hc|
+inline CharNode *ha, *hb; //nodes |ha..hb| should be replaced by the hyphenated result
+inline internalfontnumber hf; //font number of the letters in |hc|
 inline std::map<ASCIIcode, int> opstart; //of 0..trieopsize
-inline std::vector<TrieNode> trieNode(1);
-inline triepointer &trie_root = trieNode[0].l; //!< root of the linked trie
-inline std::vector<Trie> trie(1);
-inline std::vector<TrieOp> trieOp(1);
-inline std::vector<HyphenNode*> hyphlist(308, nullptr);
-inline std::vector<std::string> hyphword(308, "");
-inline hyphpointer hyphcount = 0;
 inline bool trienotready = true;
 inline halfword bchar;
 inline ASCIIcode curlang;

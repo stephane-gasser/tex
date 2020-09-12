@@ -1166,6 +1166,12 @@ void undump_four_ASCII(void)
 static int cscount = 0;
 static int varused =lo_mem_stat_max+1-mem_bot, dynused = hi_mem_stat_usage;
 static halfword avail = 0;
+static std::vector<HyphenNode*> hyphlist(308, nullptr);
+static std::vector<std::string> hyphword(308, "");
+static hyphpointer hyphcount = 0;
+
+// dummy
+std::vector<int> trie, trieOp;
 
 void loadfmtfile(void)
 {
@@ -1302,14 +1308,14 @@ void loadfmtfile(void)
 		j = undump_size(0, triesize, "trie size");
 		trie.resize(j+1);
 		for (auto t: trie)
-			undump_hh(t.hh);
+			;//undump_hh(t.hh);
 		j = undump_size(0, trieopsize, "trie op size");
 		trieOp.resize(j+1);
 		for (k = 1; k < trieOp.size(); k++)
 		{
-			trieOp[k].hyfdistance = undump(0, 63);
+			/*trieOp[k].hyfdistance = undump(0, 63);
 			trieOp[k].hyfnum = undump(0, 63);
-			trieOp[k].hyfnext = undump(0, 1<<8-1);
+			trieOp[k].hyfnext = undump(0, 1<<8-1);*/
 		}
 		for (k = 0; k <= 255; k++)
 			trieused[k] = 0;
@@ -1601,13 +1607,13 @@ void storefmtfile(void)
 		inittrie();
 	dump_int(trie.size()-1);
 	for (auto t: trie)
-		dump_hh(t.hh);
+		;//dump_hh(t.hh);
 	dump_int(trieOp.size()-1);
 	for (k = 1; k < trieOp.size(); k++)
 	{
-		dump_int(trieOp[k].hyfdistance);
+		/*dump_int(trieOp[k].hyfdistance);
 		dump_int(trieOp[k].hyfnum);
-		dump_int(trieOp[k].hyfnext);
+		dump_int(trieOp[k].hyfnext);*/
 	}
 	printnl("Hyphenation trie of length "+std::to_string(trie.size()-1)+" has "+std::to_string(trieOp.size()-1)+" op"+(trieOp.size()-1 == 1 ? "" : "s")+" out of "+std::to_string(trieopsize));
 	for (k = 255; k > -1; k--)

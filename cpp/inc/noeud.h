@@ -76,6 +76,7 @@ class CharNode : public LinkedNode
 		virtual bool is_char_node(void) { return true; }
 		CharNode(internalfontnumber f, quarterword c) : font(f), character(c) {}
 		virtual CharNode* copy(void) { return new CharNode(font, character); }
+		int width(void);
 };
 
 class TokenNode : public LinkedNode
@@ -93,12 +94,12 @@ extern std::vector<Font> fonts;
 class LigatureNode : public CharNode
 {
 	public:
-		LinkedNode *lig_ptr;
+		CharNode *lig_ptr;
 		quarterword subtype; // 0: AB, 1: A_ 2: _B 3: __
-		LigatureNode(internalfontnumber f, quarterword c, LinkedNode*q) : subtype(0), CharNode(f, c), lig_ptr(q) { type = ligature_node; }
+		LigatureNode(internalfontnumber f, quarterword c, CharNode *q) : subtype(0), CharNode(f, c), lig_ptr(q) { type = ligature_node; }
 		LigatureNode(quarterword c) : subtype(0), CharNode(null_font, c), lig_ptr(nullptr) { type = ligature_node; } //newligitem
 		~LigatureNode(void) { flushnodelist(lig_ptr); }
-		virtual LigatureNode* copy(void) { return new LigatureNode(font, character, copynodelist(lig_ptr)); }
+		virtual LigatureNode* copy(void) { return new LigatureNode(font, character, dynamic_cast<CharNode*>(copynodelist(lig_ptr))); }
 		virtual bool is_char_node(void) { return false; }
 };
 
@@ -419,7 +420,7 @@ inline LinkedNode * const align_head = dynamic_cast<LinkedNode*>(&heads[8]); //!
 inline TokenNode * omit_template = nullptr; //!< a constant token list
 inline LinkedNode *null_list = nullptr; //!< permanently empty list
 inline CharNode *lig_trick = nullptr; //!< a ligature masquerading as a \a char_node
-inline LinkedNode *garbage = nullptr; //!< used for scrap information
+//inline LinkedNode *garbage = nullptr; //!< used for scrap information
 inline LinkedNode *backup_head = nullptr; //!< head of token list built by \a scan_keyword
 inline LinkedNode *preamble = align_head->link; //!< the current preamble list
 inline TokenNode *Start;

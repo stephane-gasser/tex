@@ -334,4 +334,4 @@ LeftRightNoad::LeftRightNoad(Token t)
 	scandelimiter(delimiter, false, t);
 }
 
-
+int CharNode::width(void) { return fonts[font].char_width(character); }

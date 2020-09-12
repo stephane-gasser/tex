@@ -44,7 +44,6 @@ void Initialize(void)
 	adjust_head = new LinkedNode;
 	null_list = new LinkedNode;
 	lig_trick = new CharNode(null_font, 0);
-	garbage = new LinkedNode;
 	backup_head = new LinkedNode;
 	eqtb_cs[undefined_control_sequence-hash_base].type = undefined_cs;
 	eqtb_cs[undefined_control_sequence-hash_base].level = level_zero;
@@ -144,8 +143,6 @@ void Initialize(void)
 	fonts[null_font].parambase = -1;
 	for (auto &fi: Font::info)
 		fi.int_ = 0;
-	trie_root = 0;
-	trieNode[0].c = 0;
 	eqtb_cs[frozen_control_sequence-hash_base].text = "inaccessible";
 	eqtb_cs[end_write-hash_base].text = "endwrite";
 	eqtb_cs[end_write-hash_base].level = level_one;

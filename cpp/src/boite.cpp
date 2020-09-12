@@ -29,7 +29,7 @@ BoxNode* rebox(BoxNode *b, scaled w)
 		if (p->is_char_node() && p->link == nullptr)
 		{
 			auto P = dynamic_cast<CharNode*>(p);
-			scaled v = fonts[P->font].char_width(P->character);
+			scaled v = P->width();
 			if (v != b->width)
 				p->link = new KernNode(b->width-v);
 		}
@@ -289,10 +289,11 @@ BoxNode* charbox(internalfontnumber f, quarterword c)
 {
 	auto b = new BoxNode;
 	auto &ft = fonts[f];
-	b->width = ft.char_width(c)+ft.char_italic(c);
+	auto cn = new CharNode(f, c);
+	b->width = cn->width()+ft.char_italic(c);
 	b->height = ft.char_height(c);
 	b->depth = ft.char_depth(c);
-	b->list_ptr = new CharNode(f, c);
+	b->list_ptr = cn;
 	return b;
 }
 
@@ -508,15 +509,15 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 	scaled h = 0;
 	scaled d = 0;
 	scaled x = 0;
-	std::fill(totalstretch, totalstretch+4, 0);
-	std::fill(totalshrink, totalshrink+4, 0);
+	std::fill_n(totalstretch, 4, 0);
+	std::fill_n(totalshrink, 4, 0);
 	while (p)
 	{
 		for (;p->is_char_node(); next(p))
 		{
 			auto P = dynamic_cast<CharNode*>(p);
 			auto &ft = fonts[P->font];
-			x += ft.char_width(P->character);
+			x += P->width();
 			h = std::max(ft.char_height(P->character), h);
 			d = std::max(ft.char_depth(P->character), d);
 		}

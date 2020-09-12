@@ -37,7 +37,7 @@ static void wrapup(bool z)
 		bool insdisc = curq->link && dynamic_cast<CharNode*>(tail)->character == cur_font().hyphenchar;
 		if (ligaturepresent)
 		{
-			auto l = new LigatureNode(curFontNum(), curl, curq->link);
+			auto l = new LigatureNode(curFontNum(), curl, dynamic_cast<CharNode*>(curq->link));
 			if (lfthit)
 			{
 				l->subtype = 2; //implicit left boundary

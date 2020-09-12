@@ -1291,7 +1291,7 @@ Token getpreambletoken(void)
 
 void insthetoks(void)
 {
-	garbage->link = thetoks();
+	thetoks();
 	ins_list(dynamic_cast<TokenNode*>(temp_head->link));
 }
 
@@ -1403,29 +1403,29 @@ void convtoks(Token t)
 	switch (t.chr)
 	{
 		case number_code:
-			garbage->link = strtoks(std::to_string(scanint()));
+			strtoks(std::to_string(scanint()));
 			break;
 		case roman_numeral_code: 
-			garbage->link = strtoks(romanint(scanint()));
+			strtoks(romanint(scanint()));
 			break;
 		case font_name_code: 
 			val = scanfontident();
-			garbage->link = strtoks(fonts[val].name+(fonts[val].size != fonts[val].dsize ? " at "+asScaled(fonts[val].size)+"pt" : ""));
+			strtoks(fonts[val].name+(fonts[val].size != fonts[val].dsize ? " at "+asScaled(fonts[val].size)+"pt" : ""));
 			break;
 		case string_code:
-			garbage->link = strtoks(t.cs ? scs(t.cs) : std::string(1, t.chr));
+			strtoks(t.cs ? scs(t.cs) : std::string(1, t.chr));
 			break;
 		case meaning_code:
 			savescannerstatus = scannerstatus;
 			scannerstatus = normal;
 			t = gettoken();
 			scannerstatus = savescannerstatus;
-			garbage->link = strtoks(meaning(t));
+			strtoks(meaning(t));
 			break;
 		case job_name_code: 
 			if (jobname == "")
 				openlogfile();
-			garbage->link = strtoks(jobname);
+			strtoks(jobname);
 	}
 	ins_list(dynamic_cast<TokenNode*>(temp_head->link));
 }

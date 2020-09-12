@@ -254,7 +254,7 @@ static void hlistout(BoxNode *thisbox)
 				if (c >= 128)
 					dvi_out(set1);
 				dvi_out(c);
-				curh += fonts[f].char_width(c);
+				curh += P->width();
 			}
 			dvih = curh;
 		}

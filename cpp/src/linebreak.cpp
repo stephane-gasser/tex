@@ -341,20 +341,13 @@ static void trybreak(int pi, smallnumber breaktype)
 								t--;
 								v = v->link;
 								if (v->is_char_node())
-								{
-									auto V = dynamic_cast<CharNode*>(v);
-									breakwidth[1] += -fonts[V->font].char_width(V->character);
-								}
+									breakwidth[1] += -dynamic_cast<CharNode*>(v)->width();
 								else
 									switch (v->type)
 									{
 										case ligature_node:
-										{
-											auto c = dynamic_cast<LigatureNode*>(v)->character;
-											auto f = dynamic_cast<LigatureNode*>(v)->font;
-											breakwidth[1] += -fonts[f].char_width(c);
+											breakwidth[1] += -dynamic_cast<LigatureNode*>(v)->width();
 											break;
-										}
 										case hlist_node:
 										case vlist_node:
 										case rule_node:
@@ -369,20 +362,13 @@ static void trybreak(int pi, smallnumber breaktype)
 							}
 							for ( ;s; next(s))
 								if (s->is_char_node())
-								{
-									auto S = dynamic_cast<CharNode*>(s);
-									breakwidth[1] += fonts[S->font].char_width(S->character);
-								}
+									breakwidth[1] += dynamic_cast<CharNode*>(s)->width();
 								else
 									switch (s->type)
 									{
 										case ligature_node:
-										{
-											auto c = dynamic_cast<LigatureNode*>(s)->character;
-											auto f = dynamic_cast<LigatureNode*>(s)->font;
-											breakwidth[1] += fonts[f].char_width(c);
+											breakwidth[1] += dynamic_cast<LigatureNode*>(s)->width();
 											break;
-										}
 										case hlist_node:
 										case vlist_node:
 										case rule_node:
@@ -734,13 +720,13 @@ void linebreak(int finalwidowpenalty)
 	setRightSkip(check_shrinkage(right_skip()));
 	auto q = left_skip();
 	auto r = right_skip();
+	std::fill_n(background, 7, 0);
 	background[1] = q->width+r->width;
-	std::fill(background+2, background+6, 0);
 	background[2+q->stretch_order] = q->stretch;
 	background[2+r->stretch_order] += r->stretch;
 	background[6] = q->shrink+r->shrink;
 	minimumdemerits = max_dimen;
-	std::fill(minimaldemerits, minimaldemerits+4, max_dimen);
+	std::fill_n(minimaldemerits, 4, max_dimen);
 	if (par_shape_ptr() == nullptr)
 		if (hang_indent() == 0)
 		{
@@ -820,10 +806,7 @@ void linebreak(int finalwidowpenalty)
 			{
 				prevp = curp;
 				for (; curp->is_char_node(); next(curp))
-				{
-					auto Curp = dynamic_cast<CharNode*>(curp);
-					act_width += fonts[Curp->font].char_width(Curp->character);
-				}
+					act_width += dynamic_cast<CharNode*>(curp)->width();
 			}
 			switch (curp->type)
 			{
@@ -860,11 +843,11 @@ void linebreak(int finalwidowpenalty)
 					if (secondpass && autobreaking)
 					{
 						auto prevs = curp;
-						auto s = prevs->link;
+						auto s = dynamic_cast<CharNode*>(prevs->link);
 						if (s)
 						{
 							bool label31 = false;
-							while (true)
+							for (; true; prevs = s, next(s))
 							{
 								if (s->is_char_node())
 								{
@@ -873,45 +856,35 @@ void linebreak(int finalwidowpenalty)
 									hf = S->font;
 								}
 								else 
-									if (s->type == ligature_node)
-										if (dynamic_cast<LigatureNode*>(s)->lig_ptr == nullptr)
-										{
-											prevs = s;
-											s = prevs->link;
-											continue;
-										}
-										else
-										{
-											q = dynamic_cast<LigatureNode*>(s)->lig_ptr;
-											c = dynamic_cast<CharNode*>(q)->character;
-											hf = dynamic_cast<CharNode*>(q)->font;
-										}
-									else 
-										if (s->type == kern_node && dynamic_cast<KernNode*>(s)->subtype == normal)
-										{
-											prevs = s;
-											s = prevs->link;
-											continue;
-										}
-										else 
-											if (s->type == whatsit_node)
-											{
-												if (dynamic_cast<WhatsitNode*>(s)->subtype == language_node)
-												{
-													auto S = dynamic_cast<LanguageWhatsitNode*>(s);
-													curlang = S->what_lang;
-													lhyf = S->what_lhm;
-													rhyf = S->what_rhm;
-												}
-												prevs = s;
-												s = prevs->link;
+									switch (s->type)
+									{
+										case ligature_node:
+											if (auto q = dynamic_cast<LigatureNode*>(s)->lig_ptr; q == nullptr)
 												continue;
-											}
 											else
 											{
-												label31 = true;
-												break;
+												c = q->character;
+												hf = q->font;
 											}
+											break;
+										case kern_node:
+											if (dynamic_cast<KernNode*>(s)->subtype == normal)
+												continue;
+											break;
+										case whatsit_node:
+											if (dynamic_cast<WhatsitNode*>(s)->subtype == language_node)
+											{
+												auto S = dynamic_cast<LanguageWhatsitNode*>(s);
+												curlang = S->what_lang;
+												lhyf = S->what_lhm;
+												rhyf = S->what_rhm;
+											}
+											continue;
+										default:
+											label31 = true;
+									}
+								if (label31)
+									break;
 								if (lc_code(c))
 									if (lc_code(c) == c && uc_hyph() > 0)
 										break;
@@ -920,8 +893,6 @@ void linebreak(int finalwidowpenalty)
 										label31 = true;
 										break;
 									}
-								prevs = s;
-								s = prevs->link;
 							}
 							while (!label31)
 							{
@@ -932,7 +903,7 @@ void linebreak(int finalwidowpenalty)
 								if (lhyf+rhyf > 63)
 									break;
 								hn = 0;
-								while (true)
+								for (; true; next(s))
 								{
 									if (s->is_char_node())
 									{
@@ -949,9 +920,9 @@ void linebreak(int finalwidowpenalty)
 										hn++;
 										hu[hn] = c;
 										hc[hn] = lc_code(c);
-										hyfbchar = 256;
+										hyfbchar = non_char;
 									}
-									else 
+									else
 										if (s->type == ligature_node)
 										{
 											auto S = dynamic_cast<LigatureNode*>(s);
@@ -961,7 +932,7 @@ void linebreak(int finalwidowpenalty)
 											q = S->lig_ptr;
 											if (q)
 												hyfbchar = dynamic_cast<CharNode*>(q)->character;
-											while (q > 0)
+											for (; q > 0; next(q))
 											{
 												c = dynamic_cast<CharNode*>(q)->character;
 												if (lc_code(c) == 0)
@@ -971,14 +942,10 @@ void linebreak(int finalwidowpenalty)
 												j++;
 												hu[j] = c;
 												hc[j] = lc_code(c);
-												next(q);
 											}
 											hb = s;
 											hn = j;
-											if (S->subtype%2)
-												hyfbchar = fonts[hf].bchar;
-											else
-												hyfbchar = 256;
+											hyfbchar = S->subtype%2 ? fonts[hf].bchar : non_char;
 										}
 										else 
 											if (s->type == kern_node && dynamic_cast<KernNode*>(s)->subtype == normal)
@@ -988,7 +955,6 @@ void linebreak(int finalwidowpenalty)
 											}
 											else
 												break;
-									next(s);
 								}
 								if (hn < lhyf+rhyf)
 									break;
@@ -1039,12 +1005,8 @@ void linebreak(int finalwidowpenalty)
 					break;
 				}
 				case ligature_node:
-				{
-					auto c = dynamic_cast<LigatureNode*>(curp)->character;
-					auto f = dynamic_cast<LigatureNode*>(curp)->font;
-					act_width += fonts[f].char_width(c);
+					act_width += dynamic_cast<LigatureNode*>(curp)->width();
 					break;
-				}
 				case disc_node:
 				{
 					auto d = dynamic_cast<DiscNode*>(curp);
@@ -1057,18 +1019,13 @@ void linebreak(int finalwidowpenalty)
 						do
 						{
 							if (s->is_char_node())
-							{
-								auto S = dynamic_cast<CharNode*>(s);
-								discwidth += fonts[S->font].char_width(S->character);
-							}
+								discwidth += dynamic_cast<CharNode*>(s)->width();
 							else
 								switch (s->type)
 								{
 									case ligature_node:
 									{
-										auto c = dynamic_cast<LigatureNode*>(s)->character;
-										auto f = dynamic_cast<LigatureNode*>(s)->font;
-										discwidth += fonts[f].char_width(c);
+										discwidth += dynamic_cast<LigatureNode*>(s)->width();
 										break;
 									}
 									case hlist_node:
@@ -1093,20 +1050,13 @@ void linebreak(int finalwidowpenalty)
 					while (r > 0)
 					{
 						if (s->is_char_node())
-						{
-							auto S = dynamic_cast<CharNode*>(s);
-							act_width += fonts[S->font].char_width(S->character);
-						}
+							act_width += dynamic_cast<CharNode*>(s)->width();
 						else
 							switch (s->type)
 							{
 								case ligature_node:
-								{
-									auto c = dynamic_cast<LigatureNode*>(s)->character;
-									auto f = dynamic_cast<LigatureNode*>(s)->font;
-									act_width += fonts[f].char_width(c);
+									act_width += dynamic_cast<LigatureNode*>(s)->width();
 									break;
-								}
 								case hlist_node:
 								case vlist_node:
 								case rule_node:
