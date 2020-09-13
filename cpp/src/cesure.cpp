@@ -149,14 +149,14 @@ class TrieOp
 		bool operator < (const TrieOp &to) const { return std::tuple(lang, hyfnext, hyfnum, hyfdistance) < std::tuple(to.lang, to.hyfnext, to.hyfnum, to.hyfdistance); }
 };
 
-static std::map<TrieOp, int> tOpMap;
+static std::map<TrieOp, int> tOpMap; // indice d'un TrieOp dans le tableau trieOp
 static std::vector<TrieOp> trieOp(1);
 
 void inittrie(void)
 {
 	opstart[0] = 0;
-	for (int j = 1; j <= 255; j++)
-		opstart[j] = opstart[j-1]+trieused[j-1];
+	for (int lang = 1; lang <= 255; lang++)
+		opstart[lang] = opstart[lang-1]+trieused[lang-1];
 	for (auto &to: trieOp)
 		tOpMap[to] = opstart[to.lang]+to.val;
 	for (int j = 1; j < trieOp.size(); j++)
@@ -193,18 +193,6 @@ void inittrie(void)
 			trie.push_back(Trie());
 	trie[0].char_ = '?';
 	trienotready = false;
-}
-
-static quarterword newtrieop(smallnumber d, smallnumber n, quarterword v)
-{
-	TrieOp to(d, n, v, curlang);
-	int l = tOpMap[to];
-	if (l)
-		return trieOp[l].val;
-	to.val = ++trieused[curlang];
-	trieOp.push_back(to);
-	tOpMap[to] = trieOp.size()-1;
-	return to.val;
 }
 
 static void advance_major_tail(LinkedNode *majortail, int &rcount)
@@ -489,72 +477,63 @@ void hyphenate(LinkedNode *curp)
 	ha->link = hb->link = nullptr;
 	auto bchar = hyfbchar;
 	LinkedNode *s; 
-	int j;
-	do
+	int j = 0;
+	if (ha->is_char_node())
 	{
-		if (ha->is_char_node())
+		initlig = false;
+		auto Ha = dynamic_cast<CharNode*>(ha);
+		if (Ha->font != hf)
 		{
-			initlig = false;
-			if (ha->font != hf)
+			s = ha;
+			hu[0] = non_char;
+			initlist = nullptr;
+		}
+		else
+		{
+			initlist = Ha;
+			hu[0] = Ha->character;
+			s = curp;
+			followUntilBeforeTarget(s, ha);
+		}
+	}
+	else 
+		if (ha->type == ligature_node)
+		{
+			auto Ha = dynamic_cast<LigatureNode*>(ha);
+			initlig = Ha->font == hf;
+			if (initlig)
+			{
+				initlist = Ha->lig_ptr;
+				initlft = Ha->subtype > 1;
+				hu[0] = Ha->character;
+				if (initlist == nullptr && initlft)
+				{
+					hu[0] = non_char;
+					initlig = false;
+				}
+				s = curp;
+				followUntilBeforeTarget(s, ha);
+				delete ha;
+			}
+			else
 			{
 				s = ha;
-				j = 0;
 				hu[0] = non_char;
 				initlist = nullptr;
-				break;
-			}
-			else
-			{
-				initlist = ha;
-				hu[0] = ha->character;
 			}
 		}
-		else 
-			if (ha->type == ligature_node)
+		else //kern ?
+		{
+			initlist = nullptr;
+			s = ha;
+			if (!ha->link->is_char_node() && ha->link->type == ligature_node && dynamic_cast<LigatureNode*>(ha->link)->subtype > 1)
 			{
-				initlig = ha->font == hf;
-				if (initlig)
-				{
-					auto Ha = dynamic_cast<LigatureNode*>(ha);
-					initlist = Ha->lig_ptr;
-					initlft = Ha->subtype > 1;
-					hu[0] = ha->character;
-					if (initlist == nullptr && initlft)
-					{
-						hu[0] = non_char;
-						initlig = false;
-					}
-					delete ha;
-				}
-				else
-				{
-					s = ha;
-					j = 0;
-					hu[0] = non_char;
-					initlist = nullptr;
-					break;
-				}
+				hu[0] = 256;
+				initlig = false;
 			}
 			else
-			{
-				if (!r->is_char_node() && r->type == ligature_node && dynamic_cast<LigatureNode*>(r)->subtype > 1)
-				{
-					s = ha;
-					j = 0;
-					hu[0] = 256;
-					initlig = false;
-					initlist = nullptr;
-					break;
-				}
 				j = 1;
-				s = ha;
-				initlist = nullptr;
-				break;
-			}
-		s = curp;
-		followUntilBeforeTarget(s, ha);
-		j = 0;
-	} while (false);
+		}
 	flushnodelist(r);
 	do
 	{
@@ -584,15 +563,13 @@ void hyphenate(LinkedNode *curp)
 				hyf[i] = 0;
 				LinkedNode *minortail = nullptr;
 				dynamic_cast<DiscNode*>(r)->pre_break = nullptr;
-				CharNode *hyfnode = newcharacter(hf, hyfchar);
+				auto hyfnode = newcharacter(hf, hyfchar);
 				ASCIIcode c;
 				if (hyfnode)
 				{
 					i++;
 					c = hu[i];
 					hu[i] = hyfchar;
-					delete hyfnode;
-					hyfnode = nullptr;
 				}
 				while (l <= i)
 				{
@@ -609,6 +586,7 @@ void hyphenate(LinkedNode *curp)
 				}
 				if (hyfnode)
 				{
+					delete hyfnode;
 					hu[i] = c;
 					l = i;
 					i--;
@@ -672,6 +650,7 @@ void hyphenate(LinkedNode *curp)
 	flushnodelist(initlist);
 }
 
+//! initializes the hyphenation pattern data
 void newpatterns(Token t)
 {
 	if (!trienotready)
@@ -681,19 +660,20 @@ void newpatterns(Token t)
 		flushnodelist(defref);
 		return;
 	}
+	//Enter all of the patterns into a linked trie, until coming to a right brace
 	curlang = cur_fam();
 	if (curlang <= 0 || curlang > 255)
 			curlang = 0;
-	t = scanleftbrace();
+	t = scanleftbrace(); //a left brace must follow \\patterns
 	hyf[0] = 0;
 	std::string pattern;
-	for (bool keepIn = true, digitsensed = false; keepIn;)
+	for (bool keepIn = true, digitsensed /*should the next digit be treated as a letter?*/ = false; keepIn;)
 	{
 		t = getxtoken();
 		switch (t.cmd)
 		{
 			case letter:
-			case other_char:
+			case other_char: //Append a new letter or a hyphen level
 				if (!digitsensed && t.chr >= '0' || t.chr <= '9')
 				{
 					if (pattern.size() >= 63)
@@ -715,35 +695,55 @@ void newpatterns(Token t)
 				break;
 			case spacer:
 			case right_brace:
-				if (pattern != "")
+				if (pattern != "") //Insert a new pattern into the linked trie
 				{
+					//Compute the trie op code, |v|, and set |l:=0|
 					if (pattern[0] == '\0') // '.' = début de mot
 						hyf[0] = 0;
 					if (pattern.back() == '\0') // '.' = fin de mot
 						hyf[pattern.size()] = 0;
-					char v = 0;
+					quarterword hyfNext = 0; //trie op code
 					for (int l = pattern.size(); l >= 0; l--)
 						if (hyf[l])
-							v = newtrieop(pattern.size()-l, hyf[l], v);
+						{
+							TrieOp to(pattern.size()-l/*hyfDistance*/, hyf[l]/*hyfNum*/, hyfNext, curlang);
+							int l = tOpMap[to]; 
+							if (l == 0)
+							{
+								to.val = ++trieused[curlang];
+								trieOp.push_back(to);
+								l = tOpMap[to] = trieOp.size()-1;
+							}
+							hyfNext = trieOp[l].val;
+						}
 					auto q = 0;
 					for (int l = 0, c = curlang; l <= pattern.size(); l++, c = pattern[l])
 					{
-						bool firstchild = true;
-						for (auto p = trieNode[q].l; p > 0 && c > trieNode[p].c; p = trieNode[q].r)
+						auto p = trieNode[q].l;
+						bool firstchild = p == 0 || c <= trieNode[p].c; //is |p=trie_l[q]|?
+						if (firstchild)
 						{
-							firstchild = false;
-							q = p;
+							if (p == 0 || c < trieNode[p].c) 
+							{	//Insert a new trie node between |q| and |p|, and make |p| point to it
+								trieNode.push_back(TrieNode(q, c));
+								trieNode[q].l = p = trieNode.size()-1;
+								q = p; //now node |q| represents $p_1\ldots p_{l-1}$
+							}
 						}
-						if (q == 0 || c < trieNode[q].c)
+						else
 						{
-							trieNode.push_back(TrieNode(q, c));
-							(firstchild ? trieNode[q].l : trieNode[q].r) = trieNode.size()-1;
-							q = trieNode.size()-1;
+							for (; p > 0 && c > trieNode[p].c; q = p, p = trieNode[q].r);
+							if (p == 0 || c < trieNode[p].c) 
+							{	//Insert a new trie node between |q| and |p|, and make |p| point to it
+								trieNode.push_back(TrieNode(p, c));
+								trieNode[q].r = p = trieNode.size()-1;
+								q = p; //now node |q| represents $p_1\ldots p_{l-1}$
+							}
 						}
 					}
 					if (trieNode[q].o)
 						error("Duplicate pattern", "(See Appendix H.)");
-					trieNode[q].o = v;
+					trieNode[q].o = hyfNext;
 				}
 				if (t.cmd == right_brace)
 				{
@@ -767,12 +767,12 @@ void newhyphexceptions(void)
 	if (curlang < 0 || curlang > 255)
 		curlang = 0;
 	HyphenNode *p = nullptr;
-	t = getxtoken();
 	std::string exception;
-	while (true)
-	{
+	for (t = getxtoken(); true; t = getxtoken())
 		switch (t.cmd)
 		{
+			case char_num:
+				t.chr = scancharnum(); [[fallthrough]];
 			case letter:
 			case other_char:
 			case char_given:
@@ -788,14 +788,8 @@ void newhyphexceptions(void)
 						error("Not a letter", "Letters in \\hyphenation words must have \\lccode>0.\nProceed; I'll ignore the character I just read.");
 					else 
 						if (exception.size() < 63)
-						{
 							exception += char(lc_code(t.chr));
-						}
 				break;
-			case char_num:
-				t.chr = scancharnum();
-				t.cmd = char_given;
-				continue;
 			case spacer:
 			case right_brace:
 				if (exception.size() > 1)
@@ -810,6 +804,4 @@ void newhyphexceptions(void)
 			default:
 				error("Improper "+esc("hyphenation")+" will be flushed", "Hyphenation exceptions must contain only letters\nand hyphens. But continue; I'll forgive and forget.");
 		}
-		t = getxtoken();
-	}
 }

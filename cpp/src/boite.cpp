@@ -288,11 +288,10 @@ void beginbox(int boxcontext, Token t)
 BoxNode* charbox(internalfontnumber f, quarterword c)
 {
 	auto b = new BoxNode;
-	auto &ft = fonts[f];
 	auto cn = new CharNode(f, c);
-	b->width = cn->width()+ft.char_italic(c);
-	b->height = ft.char_height(c);
-	b->depth = ft.char_depth(c);
+	b->width = cn->width()+cn->italic();
+	b->height = cn->height();
+	b->depth = cn->depth();
 	b->list_ptr = cn;
 	return b;
 }
@@ -518,8 +517,8 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 			auto P = dynamic_cast<CharNode*>(p);
 			auto &ft = fonts[P->font];
 			x += P->width();
-			h = std::max(ft.char_height(P->character), h);
-			d = std::max(ft.char_depth(P->character), d);
+			h = std::max(P->height(), h);
+			d = std::max(P->depth(), d);
 		}
 		if (p)
 		{

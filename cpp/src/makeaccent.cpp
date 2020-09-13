@@ -9,38 +9,42 @@
 
 void makeaccent(Token t)
 {
-	LinkedNode *p = newcharacter(curFontNum(), scancharnum());
-	if (p)
+	if (auto p = newcharacter(curFontNum(), scancharnum()); p)
 	{
 		auto x = cur_font().x_height();
 		auto s = cur_font().slant()/float(unity);
-		auto a = cur_font().char_width(dynamic_cast<CharNode*>(p)->character);
+		auto a = p->width();
 		doassignments();
-		CharNode *q = nullptr;
-		if (t.cmd == letter || t.cmd == other_char || t.cmd == char_given)
-			q = newcharacter(curFontNum(), t.chr);
-		else 
-			if (t.cmd == char_num)
-				q = newcharacter(curFontNum(), scancharnum());
-			else
-				backinput(t);
-		if (q)
+		switch (t.cmd)
 		{
-			auto t = cur_font().slant()/float(unity);
-			auto w = cur_font().char_width(q->character);
-			auto h = cur_font().char_height(q->character);
-			if (h != x)
+			case char_num:
+				t.chr = scancharnum(); [[fallthrough]];
+			case letter:
+			case other_char:
+			case char_given:
 			{
-				p = hpack(p, 0, additional);
-				dynamic_cast<BoxNode*>(p)->shift_amount = x-h;
+				auto q = newcharacter(curFontNum(), t.chr);
+				auto t = cur_font().slant()/float(unity);
+				auto w = q->width();
+				auto h = q->height();
+				auto delta = round((w-a)/2.0+h*t-x*s);
+				tail_append(new KernNode(delta, acc_kern));
+				if (h != x)
+				{
+					auto P = hpack(p, 0, additional);
+					P->shift_amount = x-h;
+					tail_append(P);
+				}
+				else
+					tail_append(p);
+				tail_append(new KernNode(-a-delta, acc_kern));
+				tail_append(q);
+				break;
 			}
-			auto delta = round((w-a)/2.0+h*t-x*s);
-			tail_append(new KernNode(delta, acc_kern));
-			tail_append(p);
-			tail_append(new KernNode(-a-delta, acc_kern));
-			p = q;
+			default:
+				backinput(t);
+				tail_append(p);
 		}
-		tail_append(p);
 		space_factor = 1000;
 	}
 }

@@ -335,3 +335,7 @@ LeftRightNoad::LeftRightNoad(Token t)
 }
 
 int CharNode::width(void) { return fonts[font].char_width(character); }
+int CharNode::depth(void) { return fonts[font].char_depth(character); }
+int CharNode::height(void) { return fonts[font].char_height(character); }
+int CharNode::italic(void) { return fonts[font].char_italic(character); }
+

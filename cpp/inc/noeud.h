@@ -77,6 +77,9 @@ class CharNode : public LinkedNode
 		CharNode(internalfontnumber f, quarterword c) : font(f), character(c) {}
 		virtual CharNode* copy(void) { return new CharNode(font, character); }
 		int width(void);
+		int depth(void);
+		int height(void);
+		int italic(void);
 };
 
 class TokenNode : public LinkedNode

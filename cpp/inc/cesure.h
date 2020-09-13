@@ -24,7 +24,7 @@ inline bool ligaturepresent = false; //!< should a ligature node be made for |cu
 inline int hc[66]; // word to be hyphenated // of 0..256
 inline int hu[64]; //like |hc|, before conversion to lowercase // of 0..256
 inline smallnumber hn; //the number of positions occupied in |hc|
-inline CharNode *ha, *hb; //nodes |ha..hb| should be replaced by the hyphenated result
+inline LinkedNode *ha, *hb; //nodes |ha..hb| should be replaced by the hyphenated result
 inline internalfontnumber hf; //font number of the letters in |hc|
 inline std::map<ASCIIcode, int> opstart; //of 0..trieopsize
 inline bool trienotready = true;

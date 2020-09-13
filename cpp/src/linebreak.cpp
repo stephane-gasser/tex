@@ -843,7 +843,7 @@ void linebreak(int finalwidowpenalty)
 					if (secondpass && autobreaking)
 					{
 						auto prevs = curp;
-						auto s = dynamic_cast<CharNode*>(prevs->link);
+						auto s = prevs->link;
 						if (s)
 						{
 							bool label31 = false;
@@ -899,7 +899,7 @@ void linebreak(int finalwidowpenalty)
 								hyfchar = fonts[hf].hyphenchar;
 								if (hyfchar < 0 || hyfchar > 255)
 									break;
-								ha = dynamic_cast<LigatureNode*>(prevs);
+								ha = prevs;
 								if (lhyf+rhyf > 63)
 									break;
 								hn = 0;
@@ -910,8 +910,7 @@ void linebreak(int finalwidowpenalty)
 										auto S = dynamic_cast<CharNode*>(s);
 										if (S->font != hf)
 											break;
-										hyfbchar = S->character;
-										c = hyfbchar;
+										c = hyfbchar = S->character;
 										if (lc_code(c) == 0)
 											break;
 										if (hn == 63)
@@ -929,15 +928,12 @@ void linebreak(int finalwidowpenalty)
 											if (S->font != hf)
 												break;
 											j = hn;
-											q = S->lig_ptr;
-											if (q)
-												hyfbchar = dynamic_cast<CharNode*>(q)->character;
-											for (; q > 0; next(q))
+											if (S->lig_ptr)
+												hyfbchar = S->lig_ptr->character;
+											for (q = S->lig_ptr; q; next(q))
 											{
 												c = dynamic_cast<CharNode*>(q)->character;
-												if (lc_code(c) == 0)
-													break;
-												if (j == 63)
+												if (lc_code(c) == 0 || j == 63)
 													break;
 												j++;
 												hu[j] = c;
