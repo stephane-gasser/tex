@@ -2,9 +2,5 @@
 
 smallnumber normmin(int h)
 {
-	if (h <= 0)
-		return 1;
-	if (h >= 63)
-		return 63;
-	return h;
+	return std::max(1, std::min(63, h));
 }

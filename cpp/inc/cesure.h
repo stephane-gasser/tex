@@ -18,7 +18,7 @@ class HyphenNode : public LinkedNode
 
 inline int hyfchar;
 inline halfword hyfbchar;
-inline int lhyf, rhyf, initlhyf, initrhyf;
+inline int lhyf, rhyf, initlhyf, initrhyf; //limits on fragment sizes
 inline std::map<ASCIIcode, quarterword> trieused;
 inline bool ligaturepresent = false; //!< should a ligature node be made for |cur_l|?
 inline int hc[66]; // word to be hyphenated // of 0..256
