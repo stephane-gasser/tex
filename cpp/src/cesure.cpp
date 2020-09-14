@@ -10,33 +10,15 @@
 class PatternNode
 {
 	public:
-		quarterword o = 0;
+		std::vector<int> hyf;
 		std::map<char, PatternNode*> children;
 };
 
-std::vector<PatternNode*> patterns(256, nullptr);
+std::map<quarterword, PatternNode> patterns;
 
-/*class TrieNode
+static void savePattern(const std::string &pattern, unsigned char *hyf)
 {
-	public:
-		packedASCIIcode c; //characters to match
-		quarterword o = 0; //operations to perform
-		triepointer l = 0; //left subtrie links
-		triepointer r; //right subtrie links
-		TrieNode(triepointer p = 0, packedASCIIcode C = 0) : c(C), r(p) {}
-		bool operator == (const TrieNode &tn) const { return std::tuple(c, o, l, r) == std::tuple(tn.c, tn.o, tn.l, tn.r); }
-		bool operator < (const TrieNode &tn) const { return std::tuple(c, o, l, r) < std::tuple(tn.c, tn.o, tn.l, tn.r); }
-};
-
-static std::map<TrieNode, triepointer> tnMap;
-static std::vector<TrieNode> tn(1);
-static triepointer &trie_root = tn[0].l; //!< root of the linked tr*/
-
-static void savePattern(const std::string &pattern, quarterword hyfNext)
-{
-	auto P = patterns[curlang];
-	if (P == nullptr)
-		P = new PatternNode;
+	auto P = &patterns[curlang];
 	for (char c: pattern)
 		if (P->children.find(c) != P->children.end())
 			P = P->children[c];
@@ -45,208 +27,14 @@ static void savePattern(const std::string &pattern, quarterword hyfNext)
 			P->children[c] = new PatternNode;
 			P = P->children[c];
 		}
-	if (P->o)
+	if (pattern.size())
 		error("Duplicate pattern", "(See Appendix H.)");
-	P->o = hyfNext;
-	/*auto q = 0;
-	for (int l = 0, c = curlang; l <= pattern.size(); c = pattern[l++])
-	{
-		auto p = tn[q].l;
-		bool firstchild = p == 0 || c <= tn[p].c; //is |p=trie_l[q]|?
-		if (firstchild)
-		{
-			if (p == 0 || c < tn[p].c) 
-			{	//Insert a new tr node between |q| and |p|, and make |p| point to it
-				tn.push_back(TrieNode(q, c));
-				tn[q].l = p = tn.size()-1;
-				q = p; //now node |q| represents $p_1\ldots p_{l-1}$
-			}
-		}
-		else
-		{
-			for (; p > 0 && c > tn[p].c; q = p, p = tn[q].r);
-			if (p == 0 || c < tn[p].c) 
-			{	//Insert a new tr node between |q| and |p|, and make |p| point to it
-				tn.push_back(TrieNode(p, c));
-				tn[q].r = p = tn.size()-1;
-				q = p; //now node |q| represents $p_1\ldots p_{l-1}$
-			}
-		}
-	}
-	if (tn[q].o)
-		error("Duplicate pattern", "(See Appendix H.)");
-	tn[q].o = hyfNext;*/
+	for (size_t i = 0; i = pattern.size(); i++)
+		P->hyf.push_back(hyf[i]);
 }
-
-/*static triepointer trienode(triepointer p)
-{
-	auto q = tnMap.find(tn[p]);
-	if (q == tnMap.end())
-	{
-		tnMap[tn[p]] = p;
-		return p;
-	}
-	return q->second;
-}
-
-static triepointer compresstrie(triepointer p)
-{
-	if (p == 0)
-		return 0;
-	tn[p].l = compresstrie(tn[p].l);
-	tn[p].r = compresstrie(tn[p].r);
-	return trienode(p);
-}*/
-
-/*class Trie
-{
-	public:
-		bool taken = false; //does a family start here
-		halfword link = 0; //!< ``downward'' link in a tr
-		quarterword char_ = 0; //!< character matched at this tr location
-		quarterword op = 0; //!< program for hyphenation at this tr location
-		halfword back = 0; //!< backward links in |tr| holes
-};
-
-static std::vector<Trie> tr(1);*/
-
-/*static void triefix(triepointer p)
-{
-	auto z = tnMap[tn[p]];
-	for (; p; p = tn[p].r)
-	{
-		auto q = tn[p].l;
-		auto c = tn[p].c;
-		tr[z+c].link = tnMap[tn[q]];
-		tr[z+c].char_ = c;
-		tr[z+c].op = tn[p].o;
-		if (q > 0)
-			triefix(q);
-	}
-}*/
-
-/*static triepointer triemin[256]; //the first possible slot for each character
-
-static void firstfit(triepointer p)
-{
-	triepointer h; //candidate for |trie_ref[p]
-	ASCIIcode c = tn[p].c;
-	auto z = triemin[c];
-	while (true)
-	{
-		h = z-c;
-		if (h+256 >= triesize)
-			overflow("pattern memory", triesize);
-		while (tr.size()-1 < h+256)
-		{
-			Trie t;
-			tr.push_back(t);
-			tr.back().link = tr.size();
-			tr.back().back = tr.size()-2;
-		}
-		if (tr[h].taken)
-		{
-			z = tr[z].link;
-			continue;
-		}
-		for (auto q = tn[p].r; q > 0; q = tn[q].r)
-			if (tr[h+tn[q].c].link == 0)
-			{
-				z = tr[z].link;
-				continue;
-			}
-		break;
-	}
-	tr[h].taken = true;
-	tnMap[tn[p]] = h;
-	auto q = p;
-	do
-	{
-		z = h+tn[q].c;
-		auto l = tr[z].back;
-		auto r = tr[z].link;
-		tr[r].back = l;
-		tr[l].link = r;
-		tr[z].link = 0;
-		if (l < 256)
-		{
-			int ll = std::min(z, 256);
-			do
-			{
-				triemin[l] = r;
-				l++;
-			} while (l < ll);
-		}
-		q = tn[q].r;
-	} while (q);
-}*/
-
-/*static void triepack(triepointer p)
-{
-	for (; p; p = tn[p].r)
-		if (auto q = tn[p].l; q > 0 && tnMap[tn[q]] == 0)
-		{
-			firstfit(q);
-			triepack(q);
-		}
-}*/
-
-class TrieOp
-{
-	public:
-		ASCIIcode lang;
-		quarterword val;
-		quarterword hyfnext;
-		smallnumber hyfnum;
-		smallnumber hyfdistance;
-		TrieOp(smallnumber d = 0, smallnumber n = 0, quarterword v = 0, ASCIIcode l = 0) : hyfdistance(d), hyfnum(n), hyfnext(v), lang(l) {}
-		bool operator == (const TrieOp &to) const { return std::tuple(lang, hyfnext, hyfnum, hyfdistance) == std::tuple(to.lang, to.hyfnext, to.hyfnum, to.hyfdistance); }
-		bool operator < (const TrieOp &to) const { return std::tuple(lang, hyfnext, hyfnum, hyfdistance) < std::tuple(to.lang, to.hyfnext, to.hyfnum, to.hyfdistance); }
-};
-
-static std::map<TrieOp, int> tOpMap; // indice d'un TrieOp dans le tableau trieOp
-static std::vector<TrieOp> trieOp(1);
 
 void inittrie(void)
 {
-/*	opstart[0] = 0;
-	for (int lang = 1; lang <= 255; lang++)
-		opstart[lang] = opstart[lang-1]+trieused[lang-1];
-	for (auto &to: trieOp)
-		tOpMap[to] = opstart[to.lang]+to.val;
-	for (int j = 1; j < trieOp.size(); j++)
-		while (tOpMap[trieOp[j]] > j)
-		{
-			auto &to = trieOp[j];
-			auto &to2 = trieOp[tOpMap[to]];
-			std::swap(to2.hyfdistance, to.hyfdistance);
-			std::swap(to2.hyfnum,  to.hyfnum);
-			std::swap(to2.hyfnext, to.hyfnext);
-			std::swap(tOpMap[to], tOpMap[to2]);
-		}
-	trie_root = compresstrie(trie_root);
-	tnMap.clear();
-	for (triepointer p = 0; p <= 255; p++)
-		triemin[p] = p+1;
-	tr[0].link = 1;
-	if (trie_root)
-	{
-		firstfit(trie_root);
-		triepack(trie_root);
-	}
-	if (trie_root)
-	{
-		triefix(trie_root);
-		for (triepointer r = 0, s; r < tr.size(); r = s)
-		{
-			s = tr[r].link;
-			tr[r] = Trie();
-		}
-	}
-	else
-		for (triepointer r = 0; r < 256; r++)
-			tr.push_back(Trie());
-	tr[0].char_ = '?';*/
 	trienotready = false;
 }
 
@@ -492,42 +280,34 @@ void hyphenate(LinkedNode *curp)
 {
 	std::fill_n(hyf, hn+1, 0);
 	//Look for the word |hc[1..hn]| in the exception table, and |goto found| (with |hyf| containing the hyphens) if an entry is found
-	std::string exception;
+	std::string wordToHyphen;
 	for (int i = 1; i <= hn; i++)
-		exception += hc[i];
-	exception += char(curlang);
-	bool found = exceptionList.find(exception) != exceptionList.end();
+		wordToHyphen += hc[i];
+	wordToHyphen += char(curlang);
+	bool found = exceptionList.find(wordToHyphen) != exceptionList.end();
 	if (found)
-		for (auto s = exceptionList[exception]; s; next(s))
+		for (auto s = exceptionList[wordToHyphen]; s; next(s))
 			hyf[s->pos] = 1;
 	else
 	{
-		if (patterns[curlang] == nullptr)
+		if (patterns.find(curlang) == patterns.end())
 			return;
-/*		if (tr[curlang+1].char_ != curlang) //no patterns for |cur_lang|
-			return;*/
-		// insert delimiters
-		/*hc[0] = 0;
-		hc[hn+1] = 0;
-		hc[hn+2] = 256;*/
-		for (int debut = 0; debut+rhyf <= hn+1; debut++)
+		for (int debut = 0; debut+rhyf <= wordToHyphen.size(); debut++)
 		{
-			auto P = patterns[curlang];
-			for (int l = debut; P->children.find(hc[l+1]) != P->children.end(); P = P->children[hc[1+l++]])
-				for (auto v = P->o; v; v = trieOp[v].hyfnext) //Store maximum values in the |hyf| table
+			auto P = &patterns[curlang];
+			for (int l = debut; l < wordToHyphen.size(); l++)
+			{
+				auto c = wordToHyphen[l];
+				if (P->children.find(c) == P->children.end())
+					break;
+				P = P->children[c];
+				size_t i = debut; 
+				for (unsigned char h: P->hyf)
 				{
-					v += opstart[curlang];
-					int i = l-trieOp[v].hyfdistance;
-					hyf[i] = std::max(trieOp[v].hyfnum, hyf[i]);
+					hyf[i] = std::max(h, hyf[i]);
+					i++;
 				}
-			/*auto z = tr[curlang+1].link+hc[debut];
-			for (int l = debut; hc[l] == tr[z].char_; l++, z = tr[z].link+hc[l])
-				for (auto v = tr[z].op; v; v = trieOp[v].hyfnext) //Store maximum values in the |hyf| table
-				{
-					v += opstart[curlang];
-					int i = l-trieOp[v].hyfdistance;
-					hyf[i] = std::max(trieOp[v].hyfnum, hyf[i]);
-				}*/
+			}
 		}
 	}
 	std::fill_n(hyf, lhyf, 0);
@@ -767,21 +547,7 @@ void newpatterns(Token t)
 						hyf[0] = 0;
 					if (pattern.back() == '\0') // '.' = fin de mot
 						hyf[pattern.size()] = 0;
-					quarterword hyfNext = 0; //tr op code
-					for (int l = pattern.size(); l >= 0; l--)
-						if (hyf[l])
-						{
-							TrieOp to(pattern.size()-l/*hyfDistance*/, hyf[l]/*hyfNum*/, hyfNext, curlang);
-							int l = tOpMap[to]; 
-							if (l == 0)
-							{
-								to.val = ++trieused[curlang];
-								trieOp.push_back(to);
-								l = tOpMap[to] = trieOp.size()-1;
-							}
-							hyfNext = trieOp[l].val;
-						}
-					savePattern(pattern, hyfNext);
+					savePattern(pattern, hyf);
 				}
 				if (t.cmd == right_brace)
 				{
