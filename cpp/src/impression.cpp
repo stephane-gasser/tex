@@ -493,51 +493,51 @@ std::string shortdisplay(LinkedNode *p)
 {
 	std::ostringstream oss;
 	for (; p; next(p))
-		if (p->is_char_node())
+		switch (p->type)
 		{
-			auto pp = dynamic_cast<CharNode*>(p);
-			if (pp->font != fontinshortdisplay)
+			case char_node:
 			{
-				oss << esc(fonts[pp->font].name) << " ";
-				fontinshortdisplay = pp->font;
-			}
-			oss << pp->character;
-		}
-		else
-			switch (p->type)
-			{
-				case hlist_node:
-				case vlist_node:
-				case ins_node:
-				case whatsit_node:
-				case mark_node:
-				case adjust_node:
-				case unset_node: 
-					oss << "[]";
-					break;
-				case rule_node: 
-					oss << "|";
-					break;
-				case glue_node: 
-					if (dynamic_cast<GlueNode*>(p)->glue_ptr != /*zero_glue*/nullptr)
-						oss << " ";
-					break;
-				case math_node:
-					oss << "$";
-					break;
-				case ligature_node:
-					oss << shortdisplay(dynamic_cast<LigatureNode*>(p)->lig_ptr);
-					break;
-				case disc_node:
+				auto P = dynamic_cast<CharNode*>(p);
+				if (P->font != fontinshortdisplay)
 				{
-					auto d = dynamic_cast<DiscNode*>(p);
-					oss << shortdisplay(d->pre_break) << shortdisplay(d->post_break);
-					LinkedNode *q = d;
-					for (int n = d->replace_count; n > 0; n--)
-						if (q->link)
-							next(q);
+					oss << esc(fonts[P->font].name) << " ";
+					fontinshortdisplay = P->font;
 				}
+				oss << P->character;
+				break;
 			}
+			case hlist_node:
+			case vlist_node:
+			case ins_node:
+			case whatsit_node:
+			case mark_node:
+			case adjust_node:
+			case unset_node: 
+				oss << "[]";
+				break;
+			case rule_node: 
+				oss << "|";
+				break;
+			case glue_node: 
+				if (dynamic_cast<GlueNode*>(p)->glue_ptr != /*zero_glue*/nullptr)
+					oss << " ";
+				break;
+			case math_node:
+				oss << "$";
+				break;
+			case ligature_node:
+				oss << shortdisplay(dynamic_cast<LigatureNode*>(p)->lig_ptr);
+				break;
+			case disc_node:
+			{
+				auto d = dynamic_cast<DiscNode*>(p);
+				oss << shortdisplay(d->pre_break) << shortdisplay(d->post_break);
+				LinkedNode *q = d;
+				for (int n = d->replace_count; n > 0; n--)
+					if (q->link)
+						next(q);
+			}
+		}
 	return oss.str();
 }
 
@@ -553,330 +553,327 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 	}
 	int n = 0;
 	std::ostringstream oss;
-	while (/*p > memmin*/true)
+	for (; p; next(p))
 	{
 		oss << "\n" << symbol;
-		/*if (p > memend)
-			return oss.str()+"Bad link, display aborted.";*/
 		n++;
 		if (n > breadthmax)
 			return oss.str()+"etc.";
-		if (p->is_char_node())
-			oss << fontandchar(dynamic_cast<CharNode*>(p));
-		else
-			switch (p->type)
+		switch (p->type)
+		{
+			case char_node:
+				oss << fontandchar(dynamic_cast<CharNode*>(p));
+				break;
+			case hlist_node:
+			case vlist_node:
+			case unset_node:
 			{
-				case hlist_node:
-				case vlist_node:
-				case unset_node:
-				{
-					auto P = dynamic_cast<BoxNode*>(p);
-					if (p->type == hlist_node)
-						oss << esc("hbox");
-					else 
-						if (p->type == vlist_node)
-							oss << esc("vbox");
-						else
-							oss << esc("unsetbox");
-					oss << "(" << asScaled(P->height) << "+" << asScaled(P->depth) << ")x" << asScaled(P->width);
-					if (p->type == unset_node)
-					{
-						auto P = dynamic_cast<UnsetNode*>(p);
-						if (P->span_count)
-							oss << " (" << P->span_count+1 << " columns)";
-						if (P->glue_stretch)
-							oss << ", stretch " << glue(P->glue_stretch, P->glue_order);
-						if (P->glue_shrink)
-							oss << ", shrink " << glue(P->glue_shrink, P->glue_sign);
-					}
+				auto P = dynamic_cast<BoxNode*>(p);
+				if (p->type == hlist_node)
+					oss << esc("hbox");
+				else 
+					if (p->type == vlist_node)
+						oss << esc("vbox");
 					else
+						oss << esc("unsetbox");
+				oss << "(" << asScaled(P->height) << "+" << asScaled(P->depth) << ")x" << asScaled(P->width);
+				if (p->type == unset_node)
+				{
+					auto P = dynamic_cast<UnsetNode*>(p);
+					if (P->span_count)
+						oss << " (" << P->span_count+1 << " columns)";
+					if (P->glue_stretch)
+						oss << ", stretch " << glue(P->glue_stretch, P->glue_order);
+					if (P->glue_shrink)
+						oss << ", shrink " << glue(P->glue_shrink, P->glue_sign);
+				}
+				else
+				{
+					auto g = P->glue_set;
+					if (g && P->glue_sign)
 					{
-						auto g = P->glue_set;
-						if (g && P->glue_sign)
-						{
-							oss << ", glue set ";
-							if (P->glue_sign == shrinking)
-								oss << "- ";
-							if (!std::isfinite(P->glue_set))
-								oss << "?.?";
-							else 
-								if (abs(g) > 20000.0)
-								{
-									if (g > 0.0)
-										oss << ">";
-									else
-										oss << "< -";
-									oss << glue(20000*unity, P->glue_order);
-								}
+						oss << ", glue set ";
+						if (P->glue_sign == shrinking)
+							oss << "- ";
+						if (!std::isfinite(P->glue_set))
+							oss << "?.?";
+						else 
+							if (abs(g) > 20000.0)
+							{
+								if (g > 0.0)
+									oss << ">";
 								else
-									oss << glue(round(unity*g), P->glue_order);
-						}
-						if (P->shift_amount)
-							oss << ", shifted " << asScaled(P->shift_amount);
+									oss << "< -";
+								oss << glue(20000*unity, P->glue_order);
+							}
+							else
+								oss << glue(round(unity*g), P->glue_order);
 					}
-					shownodelist(P->list_ptr, symbol+".");
-					break;
+					if (P->shift_amount)
+						oss << ", shifted " << asScaled(P->shift_amount);
 				}
-				case rule_node:
+				shownodelist(P->list_ptr, symbol+".");
+				break;
+			}
+			case rule_node:
+			{
+				auto P = dynamic_cast<RuleNode*>(p);
+				oss << esc("rule") << "(" << ruledimen(P->width) << "+" << ruledimen(P->depth) << ")x" << ruledimen(P->width);
+				break;
+			}
+			case ins_node:
+			{
+				auto P = dynamic_cast<InsNode*>(p);
+				oss << esc("insert") << P->subtype << ", natural size " << asScaled(P->height) << "; split("
+					<< asSpec(P->split_top_ptr) << "," << asScaled(P->depth) << "); float cost " << P->float_cost
+					<< shownodelist(P->ins_ptr, symbol+".");
+				break;
+			}
+			case whatsit_node:
+				switch (dynamic_cast<WhatsitNode*>(p)->subtype)
 				{
-					auto P = dynamic_cast<RuleNode*>(p);
-					oss << esc("rule") << "(" << ruledimen(P->width) << "+" << ruledimen(P->depth) << ")x" << ruledimen(P->width);
-					break;
-				}
-				case ins_node:
-				{
-					auto P = dynamic_cast<InsNode*>(p);
-					oss << esc("insert") << P->subtype << ", natural size " << asScaled(P->height) << "; split("
-						<< asSpec(P->split_top_ptr) << "," << asScaled(P->depth) << "); float cost " << P->float_cost
-						<< shownodelist(P->ins_ptr, symbol+".");
-					break;
-				}
-				case whatsit_node:
-					switch (dynamic_cast<WhatsitNode*>(p)->subtype)
+					case open_node:
 					{
-						case open_node:
-						{
-							auto P = dynamic_cast<OpenWriteWhatsitNode*>(p);
-							oss << writewhatsit("openout", P) << "=" << asFilename(P->open_name, P->open_area, P->open_ext);
-							break;
-						}
-						case write_node:
-						{
-							auto P = dynamic_cast<NotOpenWriteWhatsitNode*>(p);
-							oss << writewhatsit("write", P) << asMark(P->write_tokens);
-							break;
-						}
-						case close_node: 
-							oss << writewhatsit("closeout", dynamic_cast<WriteWhatsitNode*>(p));
-							break;
-						case special_node:
-						{
-							auto P = dynamic_cast<NotOpenWriteWhatsitNode*>(p);
-							oss << esc("special") << asMark(P->write_tokens);
-							break;
-						}
-						case language_node:
-						{
-							auto P = dynamic_cast<LanguageWhatsitNode*>(p);
-							oss << esc("setlanguage") << P->what_lang << " (hyphenmin" << P->what_lhm << "," << P->what_rhm << ")";
-							break;
-						}
-						default: 
-							oss << "whatsit?";
+						auto P = dynamic_cast<OpenWriteWhatsitNode*>(p);
+						oss << writewhatsit("openout", P) << "=" << asFilename(P->open_name, P->open_area, P->open_ext);
+						break;
 					}
-					break;
-				case glue_node:
-				{
-					auto pp = dynamic_cast<GlueNode*>(p);
-					if (pp->subtype >= a_leaders)
-						oss << esc(pp->subtype == c_leaders ? "cleaders" : pp->subtype == x_leaders ? "xleaders" : "leaders ") 
-							<< asSpec(pp->glue_ptr) << shownodelist(pp->leader_ptr, symbol+".");
-					else
+					case write_node:
 					{
-						oss << esc("glue");
-						int n = pp->subtype-1;
-						auto &glueNames = primName[assign_glue];
-						auto &muGlueNames = primName[assign_mu_glue];
-						switch (n+1)
-						{
-							case normal:
-								oss << esc("glue") << " " << asSpec(pp->glue_ptr);
-								break;
-							case cond_math_glue:
-								oss << esc("glue") << "(" << esc("nonscript") << ")";
-								break;
-							case mu_glue:
-								oss << esc("glue") << "(" << esc("mskip") << ") " << asSpec(pp->glue_ptr, "mu");
-								break;
-							default:
-								if (glueNames.find(n) != glueNames.end())
-								{
-									oss << esc("glue") << "(" << esc(glueNames[n]) << ") " << asSpec(pp->glue_ptr);
-									break;
-								}
-								if (muGlueNames.find(n) != muGlueNames.end())
-								{
-									oss << esc("glue") << "(" << esc(muGlueNames[n]) << ") " << asSpec(pp->glue_ptr);
-									break;
-								}
-								oss << esc("glue") << "(" << "[unknown glue parameter!]" << ") " << asSpec(pp->glue_ptr);
-						}
+						auto P = dynamic_cast<NotOpenWriteWhatsitNode*>(p);
+						oss << writewhatsit("write", P) << asMark(P->write_tokens);
+						break;
 					}
-					break;
+					case close_node: 
+						oss << writewhatsit("closeout", dynamic_cast<WriteWhatsitNode*>(p));
+						break;
+					case special_node:
+					{
+						auto P = dynamic_cast<NotOpenWriteWhatsitNode*>(p);
+						oss << esc("special") << asMark(P->write_tokens);
+						break;
+					}
+					case language_node:
+					{
+						auto P = dynamic_cast<LanguageWhatsitNode*>(p);
+						oss << esc("setlanguage") << P->what_lang << " (hyphenmin" << P->what_lhm << "," << P->what_rhm << ")";
+						break;
+					}
+					default: 
+						oss << "whatsit?";
 				}
-				case kern_node:
+				break;
+			case glue_node:
+			{
+				auto pp = dynamic_cast<GlueNode*>(p);
+				if (pp->subtype >= a_leaders)
+					oss << esc(pp->subtype == c_leaders ? "cleaders" : pp->subtype == x_leaders ? "xleaders" : "leaders ") 
+						<< asSpec(pp->glue_ptr) << shownodelist(pp->leader_ptr, symbol+".");
+				else
 				{
-					auto P = dynamic_cast<KernNode*>(p);
-					switch(P->subtype)
+					oss << esc("glue");
+					int n = pp->subtype-1;
+					auto &glueNames = primName[assign_glue];
+					auto &muGlueNames = primName[assign_mu_glue];
+					switch (n+1)
 					{
 						case normal:
-							oss << esc("kern") << asScaled(P->width);
+							oss << esc("glue") << " " << asSpec(pp->glue_ptr);
+							break;
+						case cond_math_glue:
+							oss << esc("glue") << "(" << esc("nonscript") << ")";
 							break;
 						case mu_glue:
-							oss << esc("mkern") << asScaled(P->width) << "mu";
-							break;
-						case acc_kern:
-							oss << esc("kern") << " " << asScaled(P->width) << " (for accent)";
+							oss << esc("glue") << "(" << esc("mskip") << ") " << asSpec(pp->glue_ptr, "mu");
 							break;
 						default:
-							oss << esc("kern") << " " << asScaled(P->width);
+							if (glueNames.find(n) != glueNames.end())
+							{
+								oss << esc("glue") << "(" << esc(glueNames[n]) << ") " << asSpec(pp->glue_ptr);
+								break;
+							}
+							if (muGlueNames.find(n) != muGlueNames.end())
+							{
+								oss << esc("glue") << "(" << esc(muGlueNames[n]) << ") " << asSpec(pp->glue_ptr);
+								break;
+							}
+							oss << esc("glue") << "(" << "[unknown glue parameter!]" << ") " << asSpec(pp->glue_ptr);
 					}
-					break;
 				}
-				case math_node:
-				{
-					auto P = dynamic_cast<MathNode*>(p);
-					oss << esc("math") << (P->subtype == before ? "on" : "off");
-					if (P->width)
-						oss << ", surrounded " << asScaled(P->width);
-					break;
-				}
-				case ligature_node:
-				{
-					auto P = dynamic_cast<LigatureNode*>(p);
-					oss << fontandchar(P) << " (ligature ";
-					if (P->subtype > 1) // implicit left boundary
-						oss << "|";
-					fontinshortdisplay = P->font;
-					oss << shortdisplay(P);
-					if (P->subtype%2) // implicit right boundary
-						oss << "|";
-					oss << ")";
-					break;
-				}
-				case penalty_node:
-					oss << esc("penalty ") << dynamic_cast<PenaltyNode*>(p)->penalty;
-					break;
-				case disc_node:
-				{
-					auto d = dynamic_cast<DiscNode*>(p);
-					oss << esc("discretionary");
-					if (d->replace_count > 0)
-						oss << " replacing " << d->replace_count;
-					oss << shownodelist(d->pre_break, symbol+".");
-					oss << shownodelist(d->post_break, symbol+"|");
-					break;
-				}
-				case mark_node:
-				{
-					oss << esc("mark") << asMark(dynamic_cast<MarkNode*>(p)->mark_ptr);
-					break;
-				}
-				case adjust_node:
-				{
-					oss << esc("vadjust") << shownodelist(dynamic_cast<AdjustNode*>(p)->adjust_ptr, symbol+".");
-					break;
-				}
-				case style_node:
-				{
-					auto P = dynamic_cast<StyleNode*>(p);
-					if (primName[math_style].find(P->subtype) != primName[math_style].end())
-						oss << esc(primName[math_style][P->subtype]);
-					else
-						oss << "Unknown style!";
-					break;
-				}
-				case choice_node:
-				{
-					auto P = dynamic_cast<ChoiceNode*>(p);
-					oss << esc("mathchoice");
-					oss << shownodelist(P->display_mlist, symbol+"D");
-					oss << shownodelist(P->text_mlist, symbol+"T");
-					oss << shownodelist(P->script_mlist, symbol+"S");
-					oss << shownodelist(P->script_script_mlist, symbol+"s");
-					break;
-				}
-				case ord_noad:
-				case op_noad:
-				case bin_noad:
-				case rel_noad:
-				case open_noad:
-				case close_noad:
-				case punct_noad:
-				case inner_noad:
-				case radical_noad:
-				case over_noad:
-				case under_noad:
-				case vcenter_noad:
-				case accent_noad:
-				case left_noad:
-				case right_noad:
-				{
-					switch (p->type)
-					{
-						case ord_noad: 
-							oss << esc("mathord");
-							break;
-						case op_noad: 
-							oss << esc("mathop");
-							break;
-						case bin_noad: 
-							oss << esc("mathbin");
-							break;
-						case rel_noad: 
-							oss << esc("mathrel");
-							break;
-						case open_noad: 
-							oss << esc("mathopen");
-							break;
-						case close_noad: 
-							oss << esc("mathclose");
-							break;
-						case punct_noad: 
-							oss << esc("mathpunct");
-							break;
-						case inner_noad: 
-							oss << esc("mathinner");
-							break;
-						case over_noad: 
-							oss << esc("overline");
-							break;
-						case under_noad: 
-							oss << esc("underline");
-							break;
-						case vcenter_noad: 
-							oss << esc("vcenter");
-							break;
-						case radical_noad:
-							oss << esc("radical") << asDelimiter(dynamic_cast<RadicalNoad*>(p)->left_delimiter);
-							break;
-						case accent_noad:
-							oss << esc("accent") << famandchar(dynamic_cast<AccentNoad*>(p)->accent_chr);
-							break;
-						case left_noad:
-							oss << esc("left") << asDelimiter(dynamic_cast<LeftRightNoad*>(p)->delimiter);
-							break;
-						case right_noad:
-							oss << esc("right") << asDelimiter(dynamic_cast<LeftRightNoad*>(p)->delimiter);
-					}
-					auto P = dynamic_cast<Noad*>(p);
-					if (P->subtype)
-						if (P->subtype == limits)
-							oss << esc("limits");
-						else
-							oss << esc("nolimits");
-					if (p->type < left_noad)
-						oss << subsidiarydata(P->nucleus, '.', symbol);
-					oss << subsidiarydata(P->supscr, '^', symbol);
-					oss << subsidiarydata(P->subscr, '_', symbol);
-					break;
-				}
-				case fraction_noad:
-				{
-					auto P = dynamic_cast<FractionNoad*>(p);
-					oss << esc("fraction, thickness ") << (P->thickness == default_code ? "= default": asScaled(P->thickness));
-					if (P->left_delimiter.small_fam || P->left_delimiter.small_char || P->left_delimiter.large_fam || P->left_delimiter.large_char)
-						oss << ", left-delimiter " << asDelimiter(P->left_delimiter);
-					if (P->right_delimiter.small_fam || P->right_delimiter.small_char || P->right_delimiter.large_fam || P->right_delimiter.large_char)
-						oss << ", right-delimiter " << asDelimiter(P->right_delimiter);
-					oss << subsidiarydata(P->numerator, '\\', symbol);
-					oss << subsidiarydata(P->denominator, '/', symbol);
-					break;
-				}
-				default: 
-					oss << "Unknown node type!";
+				break;
 			}
-		next(p);
+			case kern_node:
+			{
+				auto P = dynamic_cast<KernNode*>(p);
+				switch(P->subtype)
+				{
+					case normal:
+						oss << esc("kern") << asScaled(P->width);
+						break;
+					case mu_glue:
+						oss << esc("mkern") << asScaled(P->width) << "mu";
+						break;
+					case acc_kern:
+						oss << esc("kern") << " " << asScaled(P->width) << " (for accent)";
+						break;
+					default:
+						oss << esc("kern") << " " << asScaled(P->width);
+				}
+				break;
+			}
+			case math_node:
+			{
+				auto P = dynamic_cast<MathNode*>(p);
+				oss << esc("math") << (P->subtype == before ? "on" : "off");
+				if (P->width)
+					oss << ", surrounded " << asScaled(P->width);
+				break;
+			}
+			case ligature_node:
+			{
+				auto P = dynamic_cast<LigatureNode*>(p);
+				oss << fontandchar(P) << " (ligature ";
+				if (P->subtype > 1) // implicit left boundary
+					oss << "|";
+				fontinshortdisplay = P->font;
+				oss << shortdisplay(P);
+				if (P->subtype%2) // implicit right boundary
+					oss << "|";
+				oss << ")";
+				break;
+			}
+			case penalty_node:
+				oss << esc("penalty ") << dynamic_cast<PenaltyNode*>(p)->penalty;
+				break;
+			case disc_node:
+			{
+				auto d = dynamic_cast<DiscNode*>(p);
+				oss << esc("discretionary");
+				if (d->replace_count > 0)
+					oss << " replacing " << d->replace_count;
+				oss << shownodelist(d->pre_break, symbol+".");
+				oss << shownodelist(d->post_break, symbol+"|");
+				break;
+			}
+			case mark_node:
+			{
+				oss << esc("mark") << asMark(dynamic_cast<MarkNode*>(p)->mark_ptr);
+				break;
+			}
+			case adjust_node:
+			{
+				oss << esc("vadjust") << shownodelist(dynamic_cast<AdjustNode*>(p)->adjust_ptr, symbol+".");
+				break;
+			}
+			case style_node:
+			{
+				auto P = dynamic_cast<StyleNode*>(p);
+				if (primName[math_style].find(P->subtype) != primName[math_style].end())
+					oss << esc(primName[math_style][P->subtype]);
+				else
+					oss << "Unknown style!";
+				break;
+			}
+			case choice_node:
+			{
+				auto P = dynamic_cast<ChoiceNode*>(p);
+				oss << esc("mathchoice");
+				oss << shownodelist(P->display_mlist, symbol+"D");
+				oss << shownodelist(P->text_mlist, symbol+"T");
+				oss << shownodelist(P->script_mlist, symbol+"S");
+				oss << shownodelist(P->script_script_mlist, symbol+"s");
+				break;
+			}
+			case ord_noad:
+			case op_noad:
+			case bin_noad:
+			case rel_noad:
+			case open_noad:
+			case close_noad:
+			case punct_noad:
+			case inner_noad:
+			case radical_noad:
+			case over_noad:
+			case under_noad:
+			case vcenter_noad:
+			case accent_noad:
+			case left_noad:
+			case right_noad:
+			{
+				switch (p->type)
+				{
+					case ord_noad: 
+						oss << esc("mathord");
+						break;
+					case op_noad: 
+						oss << esc("mathop");
+						break;
+					case bin_noad: 
+						oss << esc("mathbin");
+						break;
+					case rel_noad: 
+						oss << esc("mathrel");
+						break;
+					case open_noad: 
+						oss << esc("mathopen");
+						break;
+					case close_noad: 
+						oss << esc("mathclose");
+						break;
+					case punct_noad: 
+						oss << esc("mathpunct");
+						break;
+					case inner_noad: 
+						oss << esc("mathinner");
+						break;
+					case over_noad: 
+						oss << esc("overline");
+						break;
+					case under_noad: 
+						oss << esc("underline");
+						break;
+					case vcenter_noad: 
+						oss << esc("vcenter");
+						break;
+					case radical_noad:
+						oss << esc("radical") << asDelimiter(dynamic_cast<RadicalNoad*>(p)->left_delimiter);
+						break;
+					case accent_noad:
+						oss << esc("accent") << famandchar(dynamic_cast<AccentNoad*>(p)->accent_chr);
+						break;
+					case left_noad:
+						oss << esc("left") << asDelimiter(dynamic_cast<LeftRightNoad*>(p)->delimiter);
+						break;
+					case right_noad:
+						oss << esc("right") << asDelimiter(dynamic_cast<LeftRightNoad*>(p)->delimiter);
+				}
+				auto P = dynamic_cast<Noad*>(p);
+				if (P->subtype)
+					if (P->subtype == limits)
+						oss << esc("limits");
+					else
+						oss << esc("nolimits");
+				if (p->type < left_noad)
+					oss << subsidiarydata(P->nucleus, '.', symbol);
+				oss << subsidiarydata(P->supscr, '^', symbol);
+				oss << subsidiarydata(P->subscr, '_', symbol);
+				break;
+			}
+			case fraction_noad:
+			{
+				auto P = dynamic_cast<FractionNoad*>(p);
+				oss << esc("fraction, thickness ") << (P->thickness == default_code ? "= default": asScaled(P->thickness));
+				if (P->left_delimiter.small_fam || P->left_delimiter.small_char || P->left_delimiter.large_fam || P->left_delimiter.large_char)
+					oss << ", left-delimiter " << asDelimiter(P->left_delimiter);
+				if (P->right_delimiter.small_fam || P->right_delimiter.small_char || P->right_delimiter.large_fam || P->right_delimiter.large_char)
+					oss << ", right-delimiter " << asDelimiter(P->right_delimiter);
+				oss << subsidiarydata(P->numerator, '\\', symbol);
+				oss << subsidiarydata(P->denominator, '/', symbol);
+				break;
+			}
+			default: 
+				oss << "Unknown node type!";
+		}
 	}
 	return oss.str();
 }

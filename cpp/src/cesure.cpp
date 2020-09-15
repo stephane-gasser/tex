@@ -94,14 +94,14 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 		if (ligaturepresent)
 			lfthit = initlft;
 		for (auto p = initlist; p; next(p))
-			appendAtEnd(t, new CharNode(hf, p->character));
+			appendAtEnd(t, new CharNode(hf, p->character)); // hold_head -> t [curl] -> 0
 	}
 	else 
 		if (curl < non_char)
-			appendAtEnd(t, new CharNode(hf, curl));
+			appendAtEnd(t, new CharNode(hf, curl)); // hold_head -> t [curl] -> 0
 	ligstack = nullptr;
-	halfword currh; // hyphen character for ligature testing
 	curr = j < n ? word[j+1] : bchar;
+	halfword currh; // hyphen character for ligature testing
 	currh = hyf[j]%2 ? hchar : non_char;
 	bool skipLoop;
 	bool recommence;
@@ -193,7 +193,12 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 								ligaturepresent = true;
 								if (ligstack)
 								{
-									pop_lig_stack(j, t);
+									auto l = dynamic_cast<LigatureNode*>(ligstack)->lig_ptr;
+									if (l) //pop_lig_stack
+									{
+										appendAtEnd(t, l);
+										j++;
+									}
 									auto p = ligstack;
 									next(ligstack);
 									delete p;
@@ -252,7 +257,12 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 			curq = t;
 			curl = ligstack->character;
 			ligaturepresent = true;
-			pop_lig_stack(j, t);
+			auto l = dynamic_cast<LigatureNode*>(ligstack)->lig_ptr;
+			if (l) //pop_lig_stack
+			{
+				appendAtEnd(t, l);
+				j++;
+			}
 			auto p = ligstack;
 			next(ligstack);
 			delete p;
@@ -320,19 +330,18 @@ void hyphenate(LinkedNode *curp, std::basic_string<halfword> word)
 	initlist = nullptr;
 	initlig = false;
 	word = halfword(non_char)+word;
-	if (ha->is_char_node())
+	switch (ha->type)
 	{
-		if (auto Ha = dynamic_cast<CharNode*>(ha); Ha->font == hf)
-		{
-			initlist = Ha;
-			word[0] = Ha->character;
-			s = curp;
-			followUntilBeforeTarget(s, ha); // curp -> ... -> s -> ha
-		}
-	}
-	else
-		if (ha->type == ligature_node)
-		{
+		case char_node:
+			if (auto Ha = dynamic_cast<CharNode*>(ha); Ha->font == hf)
+			{
+				initlist = Ha;
+				word[0] = Ha->character;
+				s = curp;
+				followUntilBeforeTarget(s, ha); // curp -> ... -> s -> ha
+			}
+			break;
+		case ligature_node:
 			if (auto Ha = dynamic_cast<LigatureNode*>(ha); Ha->font == hf)
 			{
 				initlist = Ha->lig_ptr;
@@ -344,23 +353,22 @@ void hyphenate(LinkedNode *curp, std::basic_string<halfword> word)
 				followUntilBeforeTarget(s, ha); // curp -> ... -> s -> ha
 				delete ha;
 			}
-		}
-		else //kern ?
-		{
-			if (!ha->link->is_char_node() && ha->link->type == ligature_node && dynamic_cast<LigatureNode*>(ha->link)->subtype > 1)
+			break;
+		default:
+			if (ha->link->type == ligature_node && dynamic_cast<LigatureNode*>(ha->link)->subtype > 1)
 				word[0] = non_char;
 			else
 				j = 1;
-		}
+	}
 	flushnodelist(r);
-	while (j <= word.size())
+	while (j <= word.size()-1)
 	{
 		int l = j;
-		j = reconstitute(j, word.size(), bchar, hyfchar, word)+1;
+		j = reconstitute(j, word.size()-1, bchar, hyfchar, word)+1;
 		if (hyphenpassed == 0)
 		{
 			s->link = hold_head->link;
-			followUntilBeforeTarget(s); // hold->head -> ... -> s -> null
+			followUntilBeforeTarget(s); // hold_head -> ... -> s -> null
 			if (hyf[j-1]%2)
 			{
 				l = j;
@@ -423,7 +431,7 @@ void hyphenate(LinkedNode *curp, std::basic_string<halfword> word)
 				{
 					do
 					{
-						l = reconstitute(l, word.size(), bchar, non_char, word)+1;
+						l = reconstitute(l, word.size()-1, bchar, non_char, word)+1;
 						if (cloc > 0)
 						{
 							word[cloc] = c;
@@ -442,7 +450,7 @@ void hyphenate(LinkedNode *curp, std::basic_string<halfword> word)
 					} while (l < j);
 					while (l > j)
 					{
-						j = reconstitute(j, word.size(), bchar, non_char, word)+1;
+						j = reconstitute(j, word.size()-1, bchar, non_char, word)+1;
 						for (majortail = hold_head; majortail->link; next(majortail)) //advance_major_tail
 							rcount++;
 					}

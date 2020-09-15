@@ -196,7 +196,7 @@
 				val = 0;
 				lev = t.chr;
 			}
-			if (!tail->is_char_node() && mode)
+			if (tail->type != char_node && mode)
 				switch (t.chr)
 				{
 					case int_val:

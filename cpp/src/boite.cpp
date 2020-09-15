@@ -26,7 +26,7 @@ BoxNode* rebox(BoxNode *b, scaled w)
 		if (b->type == vlist_node)
 			b = hpack(b, 0, additional);
 		auto p = b->list_ptr;
-		if (p->is_char_node() && p->link == nullptr)
+		if (p->type == char_node && p->link == nullptr)
 		{
 			auto P = dynamic_cast<CharNode*>(p);
 			scaled v = P->width();
@@ -81,15 +81,15 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 		curmu = xovern(math_quad(cursize), 18);
 	} while (false);
 	BoxNode *x;
-	if (q == nullptr || q->is_char_node() || q->link || q->type > vlist_node || dynamic_cast<BoxNode*>(q)->shift_amount)
+	if (q == nullptr || q->type == char_node || q->link || q->type > vlist_node || dynamic_cast<BoxNode*>(q)->shift_amount)
 			x = hpack(q, 0, additional);
 		else
 			x = dynamic_cast<BoxNode*>(q);
 	q = x->list_ptr;
-	if (q->is_char_node())
+	if (q->type == char_node)
 	{
 		auto r = q->link;
-		if (r && r->link == nullptr && !r->is_char_node() && r->type == kern_node)
+		if (r && r->link == nullptr && r->type == kern_node)
 		{
 			delete r;
 			q->link = nullptr;
@@ -215,10 +215,10 @@ void beginbox(int boxcontext, Token t)
 					}
 					[[fallthrough]];
 				default:
-					if (!tail->is_char_node() && tail->type <= vlist_node)
+					if (tail->type <= vlist_node)
 						for (auto p = head; true; next(p)) // run through the current list
 						{
-							if (!p->is_char_node() && p->type == disc_node)
+							if (p->type == disc_node)
 							{
 								auto rep = dynamic_cast<DiscNode*>(p)->replace_count;
 								for (int m = 0; m < rep; m++)
@@ -359,54 +359,49 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 	totalshrink[2] = 0;
 	totalstretch[3] = 0;
 	totalshrink[3] = 0;
-	while (p)
-	{
-		if (p->is_char_node())
-			confusion("vpack");
-		else
-			switch (p->type)
+	for (; p; next(p))
+		switch (p->type)
+		{
+			case char_node:
+				confusion("vpack");
+				break;
+			case hlist_node:
+			case vlist_node:
 			{
-				case hlist_node:
-				case vlist_node:
-				{
-					auto P = dynamic_cast<BoxNode*>(p);
-					x += d+P->height;
-					d = P->depth;
-					w = std::max(P->width+P->shift_amount, w);
-					break;
-				}
-				case rule_node:
-				case unset_node:
-				{
-					auto P = dynamic_cast<RuleNode*>(p);
-					x += d+P->height;
-					d = P->depth;
-					w = std::max(P->width, w);
-					break;
-				}
-				case whatsit_node:
-					break;
-				case glue_node:
-				{
-					auto P = dynamic_cast<GlueNode*>(p);
-					x += d;
-					d = 0;
-					auto g = P->glue_ptr;
-					x += g->width;
-					totalstretch[g->stretch_order] += g->stretch;
-					totalshrink[g->shrink_order] += g->shrink;
-					if (P->subtype >= a_leaders && g->width > w)
-						w = g->width;
-					break;
-				}
-				case kern_node:
-				{
-					x += d+dynamic_cast<KernNode*>(p)->width;
-					d = 0;
-				}
+				auto P = dynamic_cast<BoxNode*>(p);
+				x += d+P->height;
+				d = P->depth;
+				w = std::max(P->width+P->shift_amount, w);
+				break;
 			}
-		next(p);
-	}
+			case rule_node:
+			case unset_node:
+			{
+				auto P = dynamic_cast<RuleNode*>(p);
+				x += d+P->height;
+				d = P->depth;
+				w = std::max(P->width, w);
+				break;
+			}
+			case whatsit_node:
+				break;
+			case glue_node:
+			{
+				auto P = dynamic_cast<GlueNode*>(p);
+				x += d;
+				d = 0;
+				auto g = P->glue_ptr;
+				x += g->width;
+				totalstretch[g->stretch_order] += g->stretch;
+				totalshrink[g->shrink_order] += g->shrink;
+				if (P->subtype >= a_leaders && g->width > w)
+					w = g->width;
+				break;
+			}
+			case kern_node:
+				x += d+dynamic_cast<KernNode*>(p)->width;
+				d = 0;
+		}
 	r->width = w;
 	r->depth = std::min(l, d);
 	if (d > l)
@@ -512,97 +507,95 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 	std::fill_n(totalshrink, 4, 0);
 	while (p)
 	{
-		for (;p->is_char_node(); next(p))
+		switch (p->type)
 		{
-			auto P = dynamic_cast<CharNode*>(p);
-			auto &ft = fonts[P->font];
-			x += P->width();
-			h = std::max(P->height(), h);
-			d = std::max(P->depth(), d);
-		}
-		if (p)
-		{
-			switch (p->type)
+			case char_node:
 			{
-				case hlist_node:
-				case vlist_node:
-				{
-					auto P = dynamic_cast<BoxNode*>(p);
-					x += P->width;
-					scaled s = P->shift_amount;
-					h = std::max(P->height-s, h);
-					d = std::max(P->depth+s, d);
-					break;
-				}
-				case rule_node:
-				case unset_node:
-				{
-					auto P = dynamic_cast<RuleNode*>(p);
-					x += P->width;
-					h = std::max(P->height, h);
-					d = std::max(P->depth, d);
-					break;
-				}
-				case ins_node:
-				case mark_node:
-					if (adjusttail)
-					{
-						followUntilBeforeTarget(q, p);
-						appendAtEnd(adjusttail, p);
-						next(p);
-						q->link = p;
-						p = q;
-					}
-					break;
-				case adjust_node: 
-					if (adjusttail)
-					{
-						followUntilBeforeTarget(q, p);
-						adjusttail->link = dynamic_cast<AdjustNode*>(p)->adjust_ptr;
-						followUntilBeforeTarget(adjusttail);
-						next(p);
-						delete q->link;
-						q->link = p;
-						p = q;
-					}
-					break;
-				case whatsit_node:
-					break;
-				case glue_node:
-				{
-					auto P = dynamic_cast<GlueNode*>(p);
-					auto g = P->glue_ptr;
-					x += g->width;
-					totalstretch[g->stretch_order] += g->stretch;
-					totalshrink[g->shrink_order] += g->shrink;
-					if (P->subtype >= 100)
-					{
-						auto g = dynamic_cast<RuleNode*>(P->leader_ptr);
-						if (g->height > h)
-							h = g->height;
-						if (g->depth > d)
-							d = g->depth;
-					}
-					break;
-				}
-				case kern_node:
-					x += dynamic_cast<KernNode*>(p)->width;
-					break;
-				case math_node: 
-					x += dynamic_cast<MathNode*>(p)->width;
-					break;
-				case ligature_node:
-				{
-					auto P = dynamic_cast<LigatureNode*>(p);
-					lig_trick->font = P->font;
-					lig_trick->character = P->character;
-					lig_trick->link = p->link;
-					p = lig_trick;
-					continue;
-				}
+				auto P = dynamic_cast<CharNode*>(p);
+				auto &ft = fonts[P->font];
+				x += P->width();
+				h = std::max(P->height(), h);
+				d = std::max(P->depth(), d);
+				break;
 			}
-			next(p);
+			case hlist_node:
+			case vlist_node:
+			{
+				auto P = dynamic_cast<BoxNode*>(p);
+				x += P->width;
+				scaled s = P->shift_amount;
+				h = std::max(P->height-s, h);
+				d = std::max(P->depth+s, d);
+				break;
+			}
+			case rule_node:
+			case unset_node:
+			{
+				auto P = dynamic_cast<RuleNode*>(p);
+				x += P->width;
+				h = std::max(P->height, h);
+				d = std::max(P->depth, d);
+				break;
+			}
+			case ins_node:
+			case mark_node:
+				if (adjusttail)
+				{
+					followUntilBeforeTarget(q, p);
+					appendAtEnd(adjusttail, p);
+					next(p);
+					q->link = p;
+					p = q;
+				}
+				break;
+			case adjust_node: 
+				if (adjusttail)
+				{
+					followUntilBeforeTarget(q, p);
+					adjusttail->link = dynamic_cast<AdjustNode*>(p)->adjust_ptr;
+					followUntilBeforeTarget(adjusttail);
+					next(p);
+					delete q->link;
+					q->link = p;
+					p = q;
+				}
+				break;
+			case whatsit_node:
+				break;
+			case glue_node:
+			{
+				auto P = dynamic_cast<GlueNode*>(p);
+				auto g = P->glue_ptr;
+				x += g->width;
+				totalstretch[g->stretch_order] += g->stretch;
+				totalshrink[g->shrink_order] += g->shrink;
+				if (P->subtype >= 100)
+				{
+					auto g = dynamic_cast<RuleNode*>(P->leader_ptr);
+					if (g->height > h)
+						h = g->height;
+					if (g->depth > d)
+						d = g->depth;
+				}
+				break;
+			}
+			case kern_node:
+				x += dynamic_cast<KernNode*>(p)->width;
+				break;
+			case math_node: 
+				x += dynamic_cast<MathNode*>(p)->width;
+				break;
+			case ligature_node:
+			{
+				auto P = dynamic_cast<LigatureNode*>(p);
+				lig_trick->font = P->font;
+				lig_trick->character = P->character;
+				lig_trick->link = p->link;
+				p = lig_trick;
+				continue;
+			}
 		}
+		next(p);
 	}
 	if (adjusttail)
 		adjusttail->link = nullptr;

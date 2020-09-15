@@ -227,7 +227,7 @@ void appenditaliccorrection(void)
 {
 	if (tail == head)
 		return;
-	if (!tail->is_char_node() && tail->type != ligature_node)
+	if (tail->type != char_node && tail->type != ligature_node)
 		return;
 	auto p = dynamic_cast<CharNode*>(tail);
 	tail_append(new KernNode(fonts[p->font].char_italic(p->character), explicit_));

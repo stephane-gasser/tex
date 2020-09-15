@@ -29,24 +29,22 @@ void initmath(void)
 			auto p = justbox->list_ptr;
 			while (p)
 			{
-				if (p->is_char_node())
-				{
-					d = dynamic_cast<CharNode*>(p)->width();
-					if (v < max_dimen)
-					{
-						v += d;
-						w = v;
-					}
-					else
-					{
-						w = max_dimen;
-						break;
-					}
-					next(p);
-					continue;
-				}
 				switch (p->type)
 				{
+					case char_node:
+						d = dynamic_cast<CharNode*>(p)->width();
+						if (v < max_dimen)
+						{
+							v += d;
+							w = v;
+						}
+						else
+						{
+							w = max_dimen;
+							break;
+						}
+						next(p);
+						continue;
 					case hlist_node: //0
 					case vlist_node: //1
 					case rule_node: //2

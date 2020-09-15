@@ -145,7 +145,7 @@ void aftermath(void)
 		if (e > 0 && d < 2*e)
 		{
 			d = half(z-w-e); 
-			if (p && !p->is_char_node() && p->type == glue_node)
+			if (p && p->type == glue_node)
 				d = 0;
 		}
 		tail_append(new PenaltyNode(pre_display_penalty()));

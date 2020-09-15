@@ -36,7 +36,8 @@ enum
 	accent_noad = over_noad+1, //!< \a type of a noad for accented subformulas
 	vcenter_noad = accent_noad+1, //!< \a type of a noad for \\vcenter
 	left_noad = vcenter_noad+1, //!< \a type of a noad for \\left
-	right_noad = left_noad+1 //!< \a type of a noad for \\right
+	right_noad = left_noad+1, //!< \a type of a noad for \\right
+	char_node = 255
 };
 
 
@@ -45,7 +46,6 @@ class AnyNode
 	public:
 		halfword num = 0; // bidon
 		quarterword type = 0;
-		virtual bool is_char_node(void) { return false; }
 		virtual ~AnyNode(void) {}
 };
 
@@ -57,8 +57,17 @@ class LinkedNode : public AnyNode
 {
 	public:
 		LinkedNode *link = nullptr;
-		~LinkedNode(void) { if (!is_char_node() && type > right_noad) confusion("flushing"); flushnodelist(link); }
-		virtual LinkedNode *copy(void) { confusion("copying"); return new LinkedNode; }
+		~LinkedNode(void) 
+		{ 
+			if (type != char_node && type > right_noad) 
+			confusion("flushing"); 
+			flushnodelist(link); 
+		}
+		virtual LinkedNode *copy(void) 
+		{ 
+			confusion("copying"); 
+			return new LinkedNode; 
+		}
 };
 
 class ShapeNode : public LinkedNode
@@ -73,8 +82,7 @@ class CharNode : public LinkedNode
 	public:
 		internalfontnumber font; //type
 		quarterword character; //subtype
-		virtual bool is_char_node(void) { return true; }
-		CharNode(internalfontnumber f, quarterword c) : font(f), character(c) {}
+		CharNode(internalfontnumber f, quarterword c) : font(f), character(c) { type = char_node; }
 		virtual CharNode* copy(void) { return new CharNode(font, character); }
 		int width(void);
 		int depth(void);
@@ -85,10 +93,9 @@ class CharNode : public LinkedNode
 class TokenNode : public LinkedNode
 {
 	public:
-		TokenNode(halfword t = 0) : token(t) {}
+		TokenNode(halfword t = 0) : token(t) { type = char_node; }
 		halfword token; // info
 		halfword &token_ref_count = token; // info
-		virtual bool is_char_node(void) { return true; }
 		virtual TokenNode* copy(void) { return new TokenNode(token); }
 };
 
@@ -103,7 +110,6 @@ class LigatureNode : public CharNode
 		LigatureNode(quarterword c) : subtype(0), CharNode(null_font, c), lig_ptr(nullptr) { type = ligature_node; } //newligitem
 		~LigatureNode(void) { flushnodelist(lig_ptr); }
 		virtual LigatureNode* copy(void) { return new LigatureNode(font, character, dynamic_cast<CharNode*>(copynodelist(lig_ptr))); }
-		virtual bool is_char_node(void) { return false; }
 };
 
 

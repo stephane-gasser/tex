@@ -359,7 +359,7 @@ void makescripts(Noad *q, scaled delta)
 {
 	auto p = new_hlist(q);
 	scaled shiftup, shiftdown;
-	if (p->is_char_node())
+	if (p->type == char_node)
 	{
 		shiftup = 0;
 		shiftdown = 0;

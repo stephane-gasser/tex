@@ -11,13 +11,13 @@ void deletelast(Token t)
 			error("You can't use `"+cmdchr(t)+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page."+std::string(t.chr == kern_node ? "Try `I\\kern-\\lastkern' instead." : t.chr == glue_node ? "Try `I\\vskip-\\lastskip' instead." : "Perhaps you can make the output routine do it."));
 	}
 	else 
-		if (!tail->is_char_node() && tail->type == t.chr)
+		if (tail->type == t.chr)
 		{
 			LinkedNode *q = head, *p;
 			do
 			{
 				auto p = q;
-				if (!q->is_char_node()&& q->type == disc_node) 
+				if (q->type == disc_node) 
 				{
 					for (quarterword m = 1; m <= dynamic_cast<DiscNode*>(q)->replace_count; m++)
 						next(p);

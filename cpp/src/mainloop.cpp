@@ -152,7 +152,7 @@ void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 										bchar = non_char;
 									}
 									else 
-										if (ligstack->is_char_node())
+										if (ligstack->type == char_node)
 										{
 											auto l = ligstack;
 											ligstack = new LigatureNode(curr);
@@ -191,7 +191,7 @@ void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 					curq = tail;
 					curl = ligstack->character; [[fallthrough]];
 				case move_1:
-					if (!ligstack->is_char_node())
+					if (ligstack->type != char_node)
 					{
 						cycle = move_lig;
 						continue;

@@ -471,7 +471,7 @@ static void finalign(AlignRecordNode* &loop)
 	auto s = head;
 	while (q)
 	{
-		if (!q->is_char_node())
+		if (q->type != char_node)
 			if (q->type == unset_node)
 			{
 				auto Q = dynamic_cast<UnsetNode*>(q);
