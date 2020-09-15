@@ -769,15 +769,12 @@ void linebreak(int finalwidowpenalty)
 	else
 		easyline = empty_flag;
 	threshold = pretolerance();
+	secondpass = threshold < 0;
 	if (threshold >= 0)
-	{
-		secondpass = false;
 		finalpass = false;
-	}
 	else
 	{
 		threshold = tolerance();
-		secondpass = true;
 		finalpass = emergency_stretch() <= 0;
 	}
 	while (true)
@@ -792,8 +789,7 @@ void linebreak(int finalwidowpenalty)
 			lhyf = initlhyf;
 			rhyf = initrhyf;
 		}
-		LinkedNode *q = new ActiveNode(prev_graf, active);
-		active->link = q;
+		active->link = new ActiveNode(prev_graf, active);
 		std::copy(background, background+7, activewidth);
 		passive = nullptr;
 		fontinshortdisplay = null_font;
@@ -842,12 +838,11 @@ void linebreak(int finalwidowpenalty)
 					activewidth[6] += Q->shrink;
 					if (secondpass && autobreaking)
 					{
-						auto prevs = curp;
-						auto s = prevs->link;
-						if (s)
+						if (curp->link)
 						{
-							bool label31 = false;
-							for (; true; prevs = s, next(s))
+							bool cannotHyphen = false;
+							LinkedNode *prevs, *s;
+							for (prevs = curp, s = prevs->link; true; prevs = s, next(s))
 							{
 								if (s->is_char_node())
 								{
@@ -881,20 +876,20 @@ void linebreak(int finalwidowpenalty)
 											}
 											continue;
 										default:
-											label31 = true;
+											cannotHyphen = true;
 									}
-								if (label31)
+								if (cannotHyphen)
 									break;
 								if (lc_code(c))
 									if (lc_code(c) == c && uc_hyph() > 0)
 										break;
 									else
 									{
-										label31 = true;
+										cannotHyphen = true;
 										break;
 									}
 							}
-							while (!label31)
+							while (!cannotHyphen)
 							{
 								hyfchar = fonts[hf].hyphenchar;
 								if (hyfchar < 0 || hyfchar > 255)
@@ -902,57 +897,66 @@ void linebreak(int finalwidowpenalty)
 								ha = prevs;
 								if (lhyf+rhyf > 63)
 									break;
-								hn = 0;
-								for (; true; next(s))
+								//hn = 0;
+								std::basic_string<halfword> word; //word to be hyphenated, before conversion to lowercase // of 0..256
+								bool lettersOnly = true;
+								for (; lettersOnly; next(s))
 								{
 									if (s->is_char_node())
 									{
 										auto S = dynamic_cast<CharNode*>(s);
 										if (S->font != hf)
+										{
+											lettersOnly = false;
 											break;
+										}
 										c = hyfbchar = S->character;
-										if (lc_code(c) == 0)
+										if (lc_code(c) == 0 || word.size() == 63)
+										{
+											lettersOnly = false;
 											break;
-										if (hn == 63)
-											break;
+										}
 										hb = s;
-										hn++;
-										hu[hn] = c;
-										hc[hn] = lc_code(c);
+										word += c;
 										hyfbchar = non_char;
 									}
 									else
-										if (s->type == ligature_node)
+										switch (s->type)
 										{
-											auto S = dynamic_cast<LigatureNode*>(s);
-											if (S->font != hf)
+											case ligature_node:
+												if (auto S = dynamic_cast<LigatureNode*>(s); S->font == hf)
+												{
+													std::basic_string<halfword> liga;
+													if (S->lig_ptr)
+														hyfbchar = S->lig_ptr->character;
+													for (CharNode *q = S->lig_ptr; q; next(q))
+													{
+														c = q->character;
+														if (lc_code(c) == 0 || j == 63)
+														{
+															lettersOnly = false;
+															break;
+														}
+														liga += c;
+													}
+													hb = s;
+													word += liga;
+													hyfbchar = S->subtype%2 ? fonts[hf].bchar : non_char;
+												}
+												else
+													lettersOnly = false;
 												break;
-											j = hn;
-											if (S->lig_ptr)
-												hyfbchar = S->lig_ptr->character;
-											for (q = S->lig_ptr; q; next(q))
-											{
-												c = dynamic_cast<CharNode*>(q)->character;
-												if (lc_code(c) == 0 || j == 63)
-													break;
-												j++;
-												hu[j] = c;
-												hc[j] = lc_code(c);
-											}
-											hb = s;
-											hn = j;
-											hyfbchar = S->subtype%2 ? fonts[hf].bchar : non_char;
-										}
-										else 
-											if (s->type == kern_node && dynamic_cast<KernNode*>(s)->subtype == normal)
-											{
+										case kern_node:
+											if (dynamic_cast<KernNode*>(s)->subtype != normal)
+												lettersOnly = false;
+											else
+											{	
 												hb = s;
 												hyfbchar = fonts[hf].bchar;
 											}
-											else
-												break;
+										}
 								}
-								if (hn < lhyf+rhyf)
+								if (/*hn*/word.size() < lhyf+rhyf)
 									break;
 								bool label34 = true;
 								while (label34)
@@ -978,14 +982,13 @@ void linebreak(int finalwidowpenalty)
 												label34 = false;
 												continue;
 											default: 
-												label31 = true;
-												break;
+												cannotHyphen = true;
 										}
 									next(s);
 								}
-								if (!label31)
-									hyphenate(curp);
-								break;
+								if (!cannotHyphen)
+									hyphenate(curp, word);
+								cannotHyphen = true;
 							}
 						}
 					}

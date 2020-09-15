@@ -16,7 +16,7 @@ class PatternNode
 
 std::map<quarterword, PatternNode> patterns;
 
-static void savePattern(const std::string &pattern, unsigned char *hyf)
+static void savePattern(const std::basic_string<halfword> &pattern, unsigned char *hyf)
 {
 	auto P = &patterns[curlang];
 	for (char c: pattern)
@@ -38,20 +38,8 @@ void inittrie(void)
 	trienotready = false;
 }
 
-static void advance_major_tail(LinkedNode *majortail, int &rcount)
-{
-	next(majortail);
-	rcount++;
-}
-
 static unsigned char hyf[65]; // of 0..9 //odd values indicate discretionary hyphens
 static bool lfthit = false, rthit = false; //!< did we hit a ligature with a boundary character?
-
-static void set_cur_r(int j, int n, halfword &curr, halfword &currh, halfword hchar)
-{
-	curr = j < n ? hu[j+1] : bchar;
-	currh = hyf[j]%2 ? hchar : non_char;
-}
 
 static halfword curl, curr; //!< characters before and after the cursor
 static LinkedNode *curq; //!< where a ligature should be detached
@@ -93,15 +81,11 @@ static bool initlig;
 static bool initlft;
 static smallnumber hyphenpassed;
 
-static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword hchar)
+static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword hchar, const std::basic_string<halfword> &word)
 {
-	halfword currh; // hyphen character for ligature testing
-	halfword testchar; // hyphen or other character for ligature testing
-	scaled w;
 	hyphenpassed = 0;
-	w = 0;
 	hold_head->link = nullptr;
-	curl = hu[j];
+	curl = word[j];
 	auto t = hold_head;
 	curq = hold_head;
 	if (j == 0)
@@ -116,9 +100,12 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 		if (curl < non_char)
 			appendAtEnd(t, new CharNode(hf, curl));
 	ligstack = nullptr;
-	set_cur_r(j, n, curr, currh, hchar);
+	halfword currh; // hyphen character for ligature testing
+	curr = j < n ? word[j+1] : bchar;
+	currh = hyf[j]%2 ? hchar : non_char;
 	bool skipLoop;
 	bool recommence;
+	scaled w = 0;
 	do
 	{
 		recommence = false;
@@ -137,6 +124,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 			else
 				k = fonts[hf].lig_kern_first(curl);
 		}
+		halfword testchar; // hyphen or other character for ligature testing
 		if (!skipLoop)
 			testchar = currh < non_char ? currh : curr;
 		for (; !skipLoop; k += Font::skip_byte(k)+1)
@@ -174,14 +162,15 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 							case AB_AC:
 								curr = Font::rem_byte(k);
 								if (ligstack)
-									dynamic_cast<LigatureNode*>(ligstack)->character = curr;
+									ligstack->character = curr;
 								else
 								{
-									ligstack = new LigatureNode(curr);
+									auto l = new LigatureNode(curr);
 									if (j == n)
 										bchar = non_char;
 									else
-										dynamic_cast<LigatureNode*>(ligstack)->lig_ptr = new CharNode(hf, hu[j+1]);
+										l->lig_ptr = new CharNode(hf, word[j+1]);
+									ligstack = l;
 								}
 								break;
 							case AB_ACB:
@@ -209,9 +198,12 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 									next(ligstack);
 									delete p;
 									if (ligstack == nullptr)
-										set_cur_r(j, n, curr, currh, hchar);
+									{
+										curr = j < n ? word[j+1] : bchar;
+										currh = hyf[j]%2 ? hchar : non_char;
+									}
 									else
-										curr = dynamic_cast<LigatureNode*>(ligstack)->character;
+										curr = ligstack->character;
 								}
 								else 
 									if (j == n)
@@ -223,7 +215,8 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 									{
 										appendAtEnd(t, new CharNode(hf, curr));
 										j++;
-										set_cur_r(j, n, curr, currh, hchar);
+										curr = j < n ? word[j+1] : bchar;
+										currh = hyf[j]%2 ? hchar : non_char;
 									}
 						}
 						if (skipLoop)
@@ -235,15 +228,15 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 					skipLoop = true;
 					continue;
 				}
-			if (Font::skip_byte(k) >= 128)
-				if (currh == 256)
+			if (Font::skip_byte(k) >= stop_flag)
+				if (currh == non_char)
 				{
 					skipLoop = true;
 					continue;
 				}
 				else
 				{
-					currh = 256;
+					currh = non_char;
 					recommence = true;
 					break;
 				}
@@ -257,16 +250,19 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 		if (ligstack)
 		{
 			curq = t;
-			curl = dynamic_cast<LigatureNode*>(ligstack)->character;
+			curl = ligstack->character;
 			ligaturepresent = true;
 			pop_lig_stack(j, t);
 			auto p = ligstack;
 			next(ligstack);
 			delete p;
 			if (ligstack == nullptr)
-				set_cur_r(j, n, curr, currh, hchar);
+			{
+				curr = j < n ? word[j+1] : bchar;
+				currh = hyf[j]%2 ? hchar : non_char;
+			}
 			else
-				curr = dynamic_cast<LigatureNode*>(ligstack)->character;
+				curr = ligstack->character;
 			recommence = true;
 			continue;
 		}
@@ -274,19 +270,17 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 	return j;
 }
 
-static std::map<std::string, HyphenNode*> exceptionList;
+static std::map<quarterword, std::map<std::basic_string<halfword>, HyphenNode*>> exceptionList;
 
-void hyphenate(LinkedNode *curp)
+void hyphenate(LinkedNode *curp, std::basic_string<halfword> word)
 {
-	std::fill_n(hyf, hn+1, 0);
+	std::fill_n(hyf, word.size()+1, 0);
 	//Look for the word |hc[1..hn]| in the exception table, and |goto found| (with |hyf| containing the hyphens) if an entry is found
-	std::string wordToHyphen;
-	for (int i = 1; i <= hn; i++)
-		wordToHyphen += hc[i];
-	wordToHyphen += char(curlang);
-	bool found = exceptionList.find(wordToHyphen) != exceptionList.end();
-	if (found)
-		for (auto s = exceptionList[wordToHyphen]; s; next(s))
+	std::basic_string<halfword> wordToHyphen; //word to be hyphenated // of 0..256
+	for (auto c: word)
+		wordToHyphen += lc_code(c);
+	if (exceptionList.find(curlang) != exceptionList.end() && exceptionList[curlang].find(wordToHyphen) != exceptionList[curlang].end()) //found
+		for (auto s = exceptionList[curlang][wordToHyphen]; s; next(s))
 			hyf[s->pos] = 1;
 	else
 	{
@@ -311,83 +305,62 @@ void hyphenate(LinkedNode *curp)
 		}
 	}
 	std::fill_n(hyf, lhyf, 0);
-	std::fill_n(hyf+hn-rhyf+1, rhyf, 0);
+	std::fill_n(hyf+word.size()-rhyf+1, rhyf, 0);
 	bool fini = true;
-	for (int j = lhyf; j <= hn-rhyf; j++)
-		if (hyf[j]%2)
+	for (int j = lhyf; j <= word.size()-rhyf; j++)
+		if (hyf[j]%2) // impair : césure autorisée
 			fini = false; 
-	if (fini)
+	if (fini) // pas de césure
 		return;
 	auto q = hb->link, r = ha->link;
 	ha->link = hb->link = nullptr;
 	auto bchar = hyfbchar;
-	LinkedNode *s; 
+	LinkedNode *s = ha;
 	int j = 0;
+	initlist = nullptr;
+	initlig = false;
+	word = halfword(non_char)+word;
 	if (ha->is_char_node())
 	{
-		initlig = false;
-		auto Ha = dynamic_cast<CharNode*>(ha);
-		if (Ha->font != hf)
-		{
-			s = ha;
-			hu[0] = non_char;
-			initlist = nullptr;
-		}
-		else
+		if (auto Ha = dynamic_cast<CharNode*>(ha); Ha->font == hf)
 		{
 			initlist = Ha;
-			hu[0] = Ha->character;
+			word[0] = Ha->character;
 			s = curp;
-			followUntilBeforeTarget(s, ha);
+			followUntilBeforeTarget(s, ha); // curp -> ... -> s -> ha
 		}
 	}
-	else 
+	else
 		if (ha->type == ligature_node)
 		{
-			auto Ha = dynamic_cast<LigatureNode*>(ha);
-			initlig = Ha->font == hf;
-			if (initlig)
+			if (auto Ha = dynamic_cast<LigatureNode*>(ha); Ha->font == hf)
 			{
 				initlist = Ha->lig_ptr;
 				initlft = Ha->subtype > 1;
-				hu[0] = Ha->character;
-				if (initlist == nullptr && initlft)
-				{
-					hu[0] = non_char;
-					initlig = false;
-				}
+				initlig = initlist || !initlft;
+				if (initlig)
+					word[0] = Ha->character;
 				s = curp;
-				followUntilBeforeTarget(s, ha);
+				followUntilBeforeTarget(s, ha); // curp -> ... -> s -> ha
 				delete ha;
-			}
-			else
-			{
-				s = ha;
-				hu[0] = non_char;
-				initlist = nullptr;
 			}
 		}
 		else //kern ?
 		{
-			initlist = nullptr;
-			s = ha;
 			if (!ha->link->is_char_node() && ha->link->type == ligature_node && dynamic_cast<LigatureNode*>(ha->link)->subtype > 1)
-			{
-				hu[0] = 256;
-				initlig = false;
-			}
+				word[0] = non_char;
 			else
 				j = 1;
 		}
 	flushnodelist(r);
-	do
+	while (j <= word.size())
 	{
 		int l = j;
-		j = reconstitute(j, hn, bchar, hyfchar)+1;
+		j = reconstitute(j, word.size(), bchar, hyfchar, word)+1;
 		if (hyphenpassed == 0)
 		{
 			s->link = hold_head->link;
-			followUntilBeforeTarget(s);
+			followUntilBeforeTarget(s); // hold->head -> ... -> s -> null
 			if (hyf[j-1]%2)
 			{
 				l = j;
@@ -400,10 +373,10 @@ void hyphenate(LinkedNode *curp)
 			{
 				r = new DiscNode;
 				r->link = hold_head->link;
-				auto majortail = r;
 				auto rcount = 0;
-				while (majortail->link)
-					advance_major_tail(majortail, rcount);
+				LinkedNode *majortail;
+				for (auto majortail = r; majortail->link; next(majortail)) //advance_major_tail
+					rcount++;
 				int i = hyphenpassed;
 				hyf[i] = 0;
 				LinkedNode *minortail = nullptr;
@@ -413,12 +386,12 @@ void hyphenate(LinkedNode *curp)
 				if (hyfnode)
 				{
 					i++;
-					c = hu[i];
-					hu[i] = hyfchar;
+					c = word[i];
+					word[i] = hyfchar;
 				}
 				while (l <= i)
 				{
-					l = reconstitute(l, i, fonts[hf].bchar, non_char)+1;
+					l = reconstitute(l, i, fonts[hf].bchar, non_char, word)+1;
 					if (hold_head->link)
 					{
 						if (minortail == nullptr)
@@ -432,7 +405,7 @@ void hyphenate(LinkedNode *curp)
 				if (hyfnode)
 				{
 					delete hyfnode;
-					hu[i] = c;
+					word[i] = c;
 					l = i;
 					i--;
 				}
@@ -442,18 +415,18 @@ void hyphenate(LinkedNode *curp)
 				if (fonts[hf].bcharlabel)
 				{
 					l--;
-					c = hu[l];
+					c = word[l];
 					cloc = l;
-					hu[l] = 256;
+					word[l] = non_char;
 				}
 				while (l < j)
 				{
 					do
 					{
-						l = reconstitute(l, hn, bchar, non_char)+1;
+						l = reconstitute(l, word.size(), bchar, non_char, word)+1;
 						if (cloc > 0)
 						{
-							hu[cloc] = c;
+							word[cloc] = c;
 							cloc = 0;
 						}
 						if (hold_head->link)
@@ -469,10 +442,9 @@ void hyphenate(LinkedNode *curp)
 					} while (l < j);
 					while (l > j)
 					{
-						j = reconstitute(j, hn, bchar, non_char)+1;
-						majortail->link = hold_head->link;
-						while (majortail->link)
-							advance_major_tail(majortail, rcount);
+						j = reconstitute(j, word.size(), bchar, non_char, word)+1;
+						for (majortail = hold_head; majortail->link; next(majortail)) //advance_major_tail
+							rcount++;
 					}
 				}
 				if (rcount > 127) //we have to forget the discretionary hyphen
@@ -490,7 +462,7 @@ void hyphenate(LinkedNode *curp)
 				hyphenpassed = j-1;
 				hold_head->link = nullptr;
 			} while (hyf[j-1]%2);
-	} while (j <= hn);
+	}
 	s->link = q;
 	flushnodelist(initlist);
 }
@@ -511,7 +483,7 @@ void newpatterns(Token t)
 			curlang = 0;
 	t = scanleftbrace(); //a left brace must follow \\patterns
 	hyf[0] = 0;
-	std::string pattern;
+	std::basic_string<halfword> pattern;
 	for (bool keepIn = true, digitsensed /*should the next digit be treated as a letter?*/ = false; keepIn;)
 	{
 		t = getxtoken();
@@ -540,7 +512,7 @@ void newpatterns(Token t)
 				break;
 			case spacer:
 			case right_brace:
-				if (pattern != "") //Insert a new pattern into the linked tr
+				if (pattern.size()) //Insert a new pattern into the linked tr
 				{
 					//Compute the tr op code, |v|, and set |l:=0|
 					if (pattern[0] == '\0') // '.' = début de mot
@@ -554,7 +526,7 @@ void newpatterns(Token t)
 					keepIn = false;
 					continue;
 				}
-				pattern = "";
+				pattern = std::basic_string<halfword>();
 				hyf[0] = 0;
 				digitsensed = false;
 				break;
@@ -571,7 +543,7 @@ void newhyphexceptions(void)
 	if (curlang < 0 || curlang > 255)
 		curlang = 0;
 	HyphenNode *p = nullptr;
-	std::string exception;
+	std::basic_string<halfword> exception;
 	for (t = getxtoken(); true; t = getxtoken())
 		switch (t.cmd)
 		{
@@ -597,10 +569,7 @@ void newhyphexceptions(void)
 			case spacer:
 			case right_brace:
 				if (exception.size() > 1)
-				{
-					exception += char(curlang);
-					exceptionList[exception] = p;
-				}
+					exceptionList[curlang][exception] = p;
 				if (t.cmd == right_brace)
 					return;
 				p = nullptr;
