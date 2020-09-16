@@ -431,8 +431,7 @@ void makescripts(Noad *q, scaled delta)
 		q->nucleus.info = x; // new_hlist(q) = x;
 	else
 	{
-		p = new_hlist(q);
-		followUntilBeforeTarget(p);
+		followUntilEnd(new_hlist(q), p);
 		p->link = x;
 	}
 }
@@ -724,8 +723,7 @@ void mlisttohlist(void)
 				if (p)
 				{
 					auto z = q->link;
-					q->link = p;
-					followUntilBeforeTarget(p);
+					followUntilEnd(q, p);
 					p->link = z;
 				}
 				next(q);
@@ -948,10 +946,7 @@ void mlisttohlist(void)
 			}
 		}
 		if (auto H = new_hlist(dynamic_cast<Noad*>(q)); H)
-		{
-			p->link = H;
-			followUntilBeforeTarget(p);
-		}
+			followUntilEnd(H, p);
 		if (penalties && q->link && pen < inf_penalty)
 		{
 			rtype = q->link->type;

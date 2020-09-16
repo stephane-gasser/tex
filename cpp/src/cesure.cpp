@@ -33,18 +33,13 @@ static void savePattern(const std::basic_string<halfword> &pattern, unsigned cha
 		P->hyf.push_back(hyf[i]);
 }
 
-void inittrie(void)
-{
-	trienotready = false;
-}
+void inittrie(void) { trienotready = false; }
 
-static unsigned char hyf[65]; // of 0..9 //odd values indicate discretionary hyphens
 static bool lfthit = false, rthit = false; //!< did we hit a ligature with a boundary character?
 
 static halfword curl, curr; //!< characters before and after the cursor
 static LinkedNode *curq; //!< where a ligature should be detached
 static CharNode *ligstack; //!< unfinished business to the right of the cursor
-
 
 static void wrap_lig(bool test, LinkedNode *t)
 {
@@ -61,18 +56,8 @@ static void wrap_lig(bool test, LinkedNode *t)
 			p->subtype++;
 			rthit = false;
 		}
-		curq->link = p;
-		t = p;
+		t = curq->link = p;
 		ligaturepresent = false;
-	}
-}
-
-static void pop_lig_stack(smallnumber &j, LinkedNode *t)
-{
-	if (auto l = dynamic_cast<LigatureNode*>(ligstack)->lig_ptr; l)
-	{
-		appendAtEnd(t, l);
-		j++;
 	}
 }
 
@@ -80,6 +65,7 @@ static CharNode *initlist;
 static bool initlig;
 static bool initlft;
 static smallnumber hyphenpassed;
+static unsigned char hyf[65]; // of 0..9 //odd values indicate discretionary hyphens
 
 static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, halfword hchar, const std::basic_string<halfword> &word)
 {
@@ -337,8 +323,7 @@ void hyphenate(LinkedNode *curp, std::basic_string<halfword> word)
 			{
 				initlist = Ha;
 				word[0] = Ha->character;
-				s = curp;
-				followUntilBeforeTarget(s, ha); // curp -> ... -> s -> ha
+				followUntilBeforeTarget(curp, s, ha); // curp -> ... -> s -> ha
 			}
 			break;
 		case ligature_node:
@@ -349,8 +334,7 @@ void hyphenate(LinkedNode *curp, std::basic_string<halfword> word)
 				initlig = initlist || !initlft;
 				if (initlig)
 					word[0] = Ha->character;
-				s = curp;
-				followUntilBeforeTarget(s, ha); // curp -> ... -> s -> ha
+				followUntilBeforeTarget(curp, s, ha); // curp -> ... -> s -> ha
 				delete ha;
 			}
 			break;
@@ -367,8 +351,7 @@ void hyphenate(LinkedNode *curp, std::basic_string<halfword> word)
 		j = reconstitute(j, word.size()-1, bchar, hyfchar, word)+1;
 		if (hyphenpassed == 0)
 		{
-			s->link = hold_head->link;
-			followUntilBeforeTarget(s); // hold_head -> ... -> s -> null
+			followUntilEnd(hold_head, s); // hold_head -> ... -> s -> null
 			if (hyf[j-1]%2)
 			{
 				l = j;
@@ -406,8 +389,7 @@ void hyphenate(LinkedNode *curp, std::basic_string<halfword> word)
 							dynamic_cast<DiscNode*>(r)->pre_break = hold_head->link;
 						else
 							minortail->link = hold_head->link;
-						minortail = hold_head->link;
-						followUntilBeforeTarget(minortail);
+						followUntilEnd(hold_head, minortail);
 					}
 				}
 				if (hyfnode)

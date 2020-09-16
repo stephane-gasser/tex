@@ -260,6 +260,13 @@ void followUntilBeforeTarget(LinkedNode* &running, LinkedNode *target)
 		next(running);
 }
 
+void followUntilBeforeTarget(LinkedNode* start, LinkedNode* &running, LinkedNode *target)
+{
+	running = start;
+	while (running->link != target)
+		next(running);
+}
+
 void KernNode::mathkern(scaled m)
 {
 	if (subtype == mu_glue)

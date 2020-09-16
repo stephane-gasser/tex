@@ -35,9 +35,9 @@ BoxNode* rebox(BoxNode *b, scaled w)
 		}
 		delete b;
 		auto g = new GlueNode(ss_glue);
-		g->link = p;
-		followUntilBeforeTarget(p);
-		p->link = new GlueNode(ss_glue);
+		g->link = p; // g -> b->list_ptr = p
+		followUntilEnd(b->list_ptr, p); // g -> b->list_ptr -> ... -> p -> 0
+		p->link = new GlueNode(ss_glue); // g -> b->list_ptr -> ... -> p -> GlueNode
 		return hpack(g, w, exactly);
 	}
 	b->width = w;
@@ -504,7 +504,6 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 	scaled x = 0;
 	std::fill_n(totalstretch, 4, 0);
 	std::fill_n(totalshrink, 4, 0);
-	auto q = r->list_ptr;
 	while (p)
 	{
 		switch (p->type)
@@ -541,8 +540,8 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 			case mark_node:
 				if (adjusttail)
 				{
-					auto q = r->list_ptr;
-					followUntilBeforeTarget(q, p); // r->list_ptr -> ... -> q -> p
+					LinkedNode *q;
+					followUntilBeforeTarget(r->list_ptr, q, p); // r->list_ptr -> ... -> q -> p
 					appendAtEnd(adjusttail, p);
 					next(p);
 					q->link = p;
@@ -552,10 +551,9 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 			case adjust_node: 
 				if (adjusttail)
 				{
-					adjusttail->link = dynamic_cast<AdjustNode*>(p)->adjust_ptr;
-					followUntilBeforeTarget(adjusttail); // p->adjust_ptr -> ... -> adjusttail -> 0
-					auto q = r->list_ptr;
-					followUntilBeforeTarget(q, p); // r->list_ptr -> ... -> q -> p
+					followUntilEnd(dynamic_cast<AdjustNode*>(p)->adjust_ptr, adjusttail); // p->adjust_ptr -> ... -> adjusttail -> 0
+					LinkedNode *q;
+					followUntilBeforeTarget(r->list_ptr, q, p); // r->list_ptr -> ... -> q -> p
 					next(p);
 					delete q->link;
 					q->link = p;
@@ -657,7 +655,8 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 				{
 					if (overfull_rule() > 0 && -x-totalshrink[0] > hfuzz())
 					{
-						followUntilBeforeTarget(q);
+						LinkedNode *q;
+						followUntilEnd(r->list_ptr, q);
 						auto R = new RuleNode;
 						R->width = overfull_rule();
 						q->link = R;
@@ -721,12 +720,11 @@ void unpackage(halfword c)
 		return;
 	}
 	if (c == copy_code)
-		tail->link = copynodelist(p->list_ptr);
+		followUntilEnd(copynodelist(p->list_ptr), tail);
 	else
 	{
-		tail->link = p->list_ptr;
+		followUntilEnd(p->list_ptr, tail);
 		setBox(val, nullptr);
 		delete p;
 	}
-	followUntilBeforeTarget(tail);
 }

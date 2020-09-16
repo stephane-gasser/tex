@@ -171,8 +171,8 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 					case accent_noad:
 						if (tail->type == ord_noad && n == dynamic_cast<Noad*>(tail)->nucleus)
 						{
-							auto q = head;
-							followUntilBeforeTarget(q, tail); // head -> ... -> q -> tail
+							LinkedNode *q;
+							followUntilBeforeTarget(head, q, tail); // head -> ... -> q -> tail
 							q->link = p;
 							delete tail;
 							tail = p;

@@ -473,6 +473,8 @@ void appenddiscretionary(halfword);
 void appendglue(halfword);
 void appenditaliccorrection(void);
 void appendtovlist(BoxNode*);
-void followUntilBeforeTarget(LinkedNode*&, LinkedNode* = nullptr);
+void followUntilBeforeTarget(LinkedNode*, LinkedNode*&, LinkedNode*);
+
+inline void followUntilEnd(LinkedNode *s, LinkedNode* &p) { followUntilBeforeTarget(s, p, nullptr); }
 
 #endif

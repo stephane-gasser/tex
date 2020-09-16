@@ -168,8 +168,7 @@ static void postlinebreak(int finalwidowpenalty)
 					}
 					if (Q->post_break)
 					{
-						s = Q->post_break;
-						followUntilBeforeTarget(s);
+						followUntilEnd(Q->post_break, s);
 						s->link = r;
 						r = Q->post_break;
 						Q->post_break = nullptr;
@@ -177,9 +176,8 @@ static void postlinebreak(int finalwidowpenalty)
 					}
 					if (Q->pre_break)
 					{
-						s = Q->pre_break;
-						q->link = s;
-						followUntilBeforeTarget(s);
+						q->link = Q->pre_break;
+						followUntilEnd(Q->pre_break, s);
 						Q->pre_break = nullptr;
 						q = s;
 					}
@@ -200,8 +198,7 @@ static void postlinebreak(int finalwidowpenalty)
 			}
 		else
 		{
-			q = temp_head;
-			followUntilBeforeTarget(q);
+			followUntilEnd(temp_head, q);
 			r = new GlueNode(right_skip_code);
 			r->link = q->link;
 			q->link = r;
@@ -687,16 +684,8 @@ static void flushAfterActive(void)
 	}
 }
 
-static int fewestdemerits;
-static bool secondpass;
-static int actuallooseness;
-static int linediff;
-
 void linebreak(int finalwidowpenalty)
 {
-	bool autobreaking;
-	smallnumber j;
-	unsigned char c;
 	packbeginline = mode_line;
 	temp_head->link = head->link;
 	if (tail->type == glue_node)
@@ -769,7 +758,7 @@ void linebreak(int finalwidowpenalty)
 	else
 		easyline = empty_flag;
 	threshold = pretolerance();
-	secondpass = threshold < 0;
+	bool secondpass = threshold < 0;
 	if (threshold >= 0)
 		finalpass = false;
 	else
@@ -794,7 +783,7 @@ void linebreak(int finalwidowpenalty)
 		passive = nullptr;
 		fontinshortdisplay = null_font;
 		curp = temp_head->link;
-		autobreaking = true;
+		bool autobreaking = true;
 		auto prevp = curp;
 		while (curp && active->link != active)
 		{
@@ -841,6 +830,7 @@ void linebreak(int finalwidowpenalty)
 							LinkedNode *prevs, *s;
 							for (prevs = curp, s = prevs->link; true; prevs = s, next(s))
 							{
+								quarterword c;
 								switch (s->type)
 								{
 									case char_node:
@@ -894,7 +884,6 @@ void linebreak(int finalwidowpenalty)
 								ha = prevs;
 								if (lhyf+rhyf > 63)
 									break;
-								//hn = 0;
 								std::basic_string<halfword> word; //word to be hyphenated, before conversion to lowercase // of 0..256
 								bool lettersOnly = true;
 								for (; lettersOnly; next(s))
@@ -908,7 +897,7 @@ void linebreak(int finalwidowpenalty)
 												lettersOnly = false;
 												break;
 											}
-											c = hyfbchar = S->character;
+											quarterword c = hyfbchar = S->character;
 											if (lc_code(c) == 0 || word.size() == 63)
 											{
 												lettersOnly = false;
@@ -927,8 +916,8 @@ void linebreak(int finalwidowpenalty)
 													hyfbchar = S->lig_ptr->character;
 												for (CharNode *q = S->lig_ptr; q; next(q))
 												{
-													c = q->character;
-													if (lc_code(c) == 0 || j == 63)
+													auto c = q->character;
+													if (lc_code(c) == 0 || word.size()+liga.size() == 63)
 													{
 														lettersOnly = false;
 														break;
@@ -1084,7 +1073,7 @@ void linebreak(int finalwidowpenalty)
 			trybreak(eject_penalty, hyphenated);
 			if (active->link != active)
 			{
-				fewestdemerits = max_dimen;
+				int fewestdemerits = max_dimen;
 				for (auto r = active->link; r != active; next(r))
 					if (r->type != rule_node && dynamic_cast<ActiveNode*>(r)->total_demerits < fewestdemerits)
 					{
@@ -1099,14 +1088,14 @@ void linebreak(int finalwidowpenalty)
 					packbeginline = 0;
 					return;
 				}
-				actuallooseness = 0;
+				int actuallooseness = 0;
 				auto r = active->link;
 				do
 				{
 					if (r->type != delta_node)
 					{
 						auto R = dynamic_cast<ActiveNode*>(r);
-						linediff = R->line_number-bestline;
+						int linediff = R->line_number-bestline;
 						if ((linediff < actuallooseness && looseness() <= linediff) || (linediff > actuallooseness && looseness() >= linediff))
 						{
 							bestbet = R;

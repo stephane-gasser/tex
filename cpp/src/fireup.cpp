@@ -80,14 +80,13 @@ void fireup(LinkedNode *c)
 				else
 				{
 					wait = false;
-					auto s = r->last_ins_ptr;
-					s->link = P->ins_ptr;
+					r->last_ins_ptr->link = P->ins_ptr;
 					if (r->best_ins_ptr == p)
 					{
-						if (r->type == split_up) //1
-						if (r->broken_ins == p && r->broken_ptr)
+						if (r->type == split_up && r->broken_ins == p && r->broken_ptr)
 						{
-							followUntilBeforeTarget(s, r->broken_ptr);
+							LinkedNode *s;
+							followUntilBeforeTarget(r->last_ins_ptr, s, r->broken_ptr);
 							s->link = nullptr;
 							setSplitTopSkip(P->split_top_ptr);
 							P->ins_ptr = prunepagetop(r->broken_ptr);
@@ -108,7 +107,8 @@ void fireup(LinkedNode *c)
 					}
 					else
 					{
-						followUntilBeforeTarget(s);
+						LinkedNode *s;
+						followUntilEnd(r->last_ins_ptr, s);
 						r->last_ins_ptr = s;
 					}
 				}
