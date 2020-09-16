@@ -9,7 +9,6 @@
 #include "charwarning.h"
 #include "backinput.h"
 #include "erreur.h"
-#include "insertdollarsign.h"
 #include "sauvegarde.h"
 #include "offsave.h"
 #include "handlerightbrace.h"
@@ -129,8 +128,10 @@ Token maincontrol(void)
 			case mmode+vskip:
 			case mmode+un_vbox:
 			case mmode+valign:
-			case mmode+hrule: 
-				t = insertdollarsign(t);
+			case mmode+hrule:
+				backinput(t);
+				t.tok = math_shift_token+'$';
+				inserror(t, "Missing $ inserted", "I've inserted a begin-math/end-math symbol since I think\nyou left one out. Proceed, with fingers crossed.");
 				break;
 			case vmode+hrule:
 			case hmode+vrule:
@@ -230,7 +231,7 @@ Token maincontrol(void)
 				break;
 			case ANY_MODE(mark):
 			{
-				auto _ = scantoks(false, true, t);
+				scantoks(false, true, t);
 				tail_append(new MarkNode);
 				break;
 			}

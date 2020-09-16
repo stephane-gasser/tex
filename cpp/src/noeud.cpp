@@ -164,7 +164,7 @@ void appendchoices(void)
 	m->int_ = 0;
 	savestack.push_back(m);
 	pushmath(math_choice_group);
-	auto _ = scanleftbrace();
+	(void)scanleftbrace();
 }
 
 void appenddiscretionary(halfword s)
@@ -182,7 +182,7 @@ void appenddiscretionary(halfword s)
 		m->int_ = 0;
 		savestack.push_back(m);
 		newsavelevel(disc_group);
-		auto _ = scanleftbrace();
+		(void)scanleftbrace();
 		pushnest();
 		mode = -hmode;
 		space_factor = 1000;

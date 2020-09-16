@@ -44,7 +44,6 @@ enum
 class AnyNode
 {
 	public:
-		halfword num = 0; // bidon
 		quarterword type = 0;
 		virtual ~AnyNode(void) {}
 };
@@ -59,14 +58,14 @@ class LinkedNode : public AnyNode
 		LinkedNode *link = nullptr;
 		~LinkedNode(void) 
 		{ 
-			if (type != char_node && type > right_noad) 
-			confusion("flushing"); 
-			flushnodelist(link); 
+			if (type != char_node && type > right_noad)
+				confusion("flushing"); 
+			flushnodelist(link);
 		}
 		virtual LinkedNode *copy(void) 
 		{ 
 			confusion("copying"); 
-			return new LinkedNode; 
+			return nullptr; 
 		}
 };
 

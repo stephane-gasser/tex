@@ -1293,7 +1293,7 @@ void loadfmtfile(void)
 			undump_int(ft.kernbase);
 			undump_int(ft.extenbase);
 			undump_int(ft.parambase);
-			ft.glue->num = undump(0, lomemmax);
+			/*ft.glue->num = undump(0, lomemmax);*/
 			ft.bcharlabel = undump(0, Font::info.size()-1);
 			ft.bchar = undump(0, non_char);
 			ft.falsebchar = undump(0, non_char);
@@ -1303,7 +1303,7 @@ void loadfmtfile(void)
 		{
 			j = undump(0, hyph_size);
 			hyphword[j] = undump(0, strptr);
-			hyphlist[j]->num = undump(0, 1<<16-1);
+			/*hyphlist[j]->num = undump(0, 1<<16-1);*/
 		}
 		j = undump_size(0, triesize, "trie size");
 		trie.resize(j+1);
@@ -1582,7 +1582,7 @@ void storefmtfile(void)
 		dump_int(ft.kernbase);
 		dump_int(ft.extenbase);
 		dump_int(ft.parambase);
-		dump_int(ft.glue->num);
+		/*dump_int(ft.glue->num);*/
 		dump_int(ft.bcharlabel);
 		dump_int(ft.bchar);
 		dump_int(ft.falsebchar);
@@ -1599,7 +1599,7 @@ void storefmtfile(void)
 		{
 			dump_int(k);
 			dump_int(txt(hyphword[k]));
-			dump_int(hyphlist[k]->num);
+			/*dump_int(hyphlist[k]->num);*/
 		}
 	println();
 	print(std::to_string(hyphcount)+" hyphenation exception"+(hyphcount == 1 ? "" : "s"));

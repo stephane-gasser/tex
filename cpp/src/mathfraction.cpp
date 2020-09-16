@@ -15,7 +15,7 @@ void mathfraction(halfword c, Token t)
 			scandelimiter(dummy, false, t);
 		}
 		if (c%delimited_code == 0)
-			int _ = scan_normal_dimen();
+			(void)scan_normal_dimen();
 		error("Ambiguous; you need another { and }", "I'm ignoring this fraction specification, since I don't\nknow whether a construction like `x \\over y \\over z'\nmeans `{x \\over y} \\over z' or `x \\over {y \\over z}'.");
 	}
 	else

@@ -499,12 +499,12 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 	r->subtype = 0;
 	r->shift_amount = 0;
 	r->list_ptr = p;
-	auto q = r->list_ptr;
 	scaled h = 0;
 	scaled d = 0;
 	scaled x = 0;
 	std::fill_n(totalstretch, 4, 0);
 	std::fill_n(totalshrink, 4, 0);
+	auto q = r->list_ptr;
 	while (p)
 	{
 		switch (p->type)
@@ -541,7 +541,8 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 			case mark_node:
 				if (adjusttail)
 				{
-					followUntilBeforeTarget(q, p);
+					auto q = r->list_ptr;
+					followUntilBeforeTarget(q, p); // r->list_ptr -> ... -> q -> p
 					appendAtEnd(adjusttail, p);
 					next(p);
 					q->link = p;
@@ -551,9 +552,10 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 			case adjust_node: 
 				if (adjusttail)
 				{
-					followUntilBeforeTarget(q, p);
 					adjusttail->link = dynamic_cast<AdjustNode*>(p)->adjust_ptr;
-					followUntilBeforeTarget(adjusttail);
+					followUntilBeforeTarget(adjusttail); // p->adjust_ptr -> ... -> adjusttail -> 0
+					auto q = r->list_ptr;
+					followUntilBeforeTarget(q, p); // r->list_ptr -> ... -> q -> p
 					next(p);
 					delete q->link;
 					q->link = p;

@@ -153,33 +153,31 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 		case math_group:
 		{
 			unsave();
-			auto s0 = savestack.back()->int_; //NoadContent
+			auto &n = *dynamic_cast<NoadContent*>(savestack.back()->index); //NoadContent
 			savestack.pop_back();
-			NoadContent n;
-			n.num = s0;
 			n.math_type = sub_mlist;
 			auto p = finmlist(nullptr);
 			n.info = p;
 			if (p && p->link == nullptr)
-				if (p->type == ord_noad)
+				switch (p->type)
 				{
-					auto P = dynamic_cast<Noad*>(p);
-					if (P->subscr.math_type == 0 && P->supscr.math_type == 0)
-					{
-						n = P->nucleus;
-						delete p;
-					}
-				}
-				else
-					if (p->type == accent_noad)
+					case ord_noad:
+						if (auto P = dynamic_cast<Noad*>(p); P->subscr.math_type == 0 && P->supscr.math_type == 0)
+						{
+							n = P->nucleus;
+							delete p;
+						}
+						break;
+					case accent_noad:
 						if (tail->type == ord_noad && n == dynamic_cast<Noad*>(tail)->nucleus)
 						{
 							auto q = head;
-							followUntilBeforeTarget(q, tail);
+							followUntilBeforeTarget(q, tail); // head -> ... -> q -> tail
 							q->link = p;
 							delete tail;
 							tail = p;
 						}
+				}
 			break;
 		}
 		default: 
