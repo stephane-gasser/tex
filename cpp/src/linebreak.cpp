@@ -138,21 +138,22 @@ static void postlinebreak(int finalwidowpenalty)
 		discbreak = false;
 		postdiscbreak = false;
 		if (q)
-			if (q->type == glue_node)
+			switch (q->type)
 			{
-				auto Q = dynamic_cast<GlueNode*>(q);
-				deleteglueref(Q->glue_ptr);
-				Q->glue_ptr = right_skip();
-				Q->glue_ptr->glue_ref_count++;
-				Q->subtype = right_skip_code+1;
-			}
-			else
-			{
-				if (q->type == disc_node) //Change discretionary to compulsory and set |disc_break:=true|
+				case glue_node:
+				{
+					auto Q = dynamic_cast<GlueNode*>(q);
+					deleteglueref(Q->glue_ptr);
+					Q->glue_ptr = right_skip();
+					Q->glue_ptr->glue_ref_count++;
+					Q->subtype = right_skip_code+1;
+					break;
+				}
+				case disc_node: //Change discretionary to compulsory and set |disc_break:=true|
 				{
 					auto Q = dynamic_cast<DiscNode*>(q);
 					t = Q->replace_count;
-					//Destroy the |t| nodes following |q|, and make |r| point to the following node@
+					//Destroy the |t| nodes following |q|, and make |r| point to the following node
 					if (t == 0)
 						r = q->link;
 					else
@@ -183,26 +184,28 @@ static void postlinebreak(int finalwidowpenalty)
 					}
 					q->link = r;
 					discbreak = true;
+					insertNodeAfter(q, new GlueNode(right_skip_code));
+					next(q); 
+					break;
 				}
-				else 
-				{
-					if (q->type == math_node)
-						dynamic_cast<MathNode*>(q)->width = 0;
-					if (q->type == kern_node)
-						dynamic_cast<KernNode*>(q)->width = 0;
-				}
-				r = new GlueNode(right_skip_code);
-				r->link = q->link;
-				q->link = r;
-				q = r;
+				case math_node:
+					dynamic_cast<MathNode*>(q)->width = 0;
+					insertNodeAfter(q, new GlueNode(right_skip_code));
+					next(q);
+					break;
+				case kern_node:
+					dynamic_cast<KernNode*>(q)->width = 0;
+					insertNodeAfter(q, new GlueNode(right_skip_code));
+					next(q); 
+					break;
+				default:
+					insertNodeAfter(q, new GlueNode(right_skip_code));
+					next(q); 
 			}
-		else
+		else // q == nullptr
 		{
-			followUntilEnd(temp_head, q);
-			r = new GlueNode(right_skip_code);
-			r->link = q->link;
-			q->link = r;
-			q = r;
+			followUntilEnd(temp_head, q); // temp_head -> ... -> q -> 0
+			appendAtEnd(q, new GlueNode(right_skip_code));
 		}
 		r = q->link;
 		q->link = nullptr;
@@ -509,24 +512,26 @@ static void trybreak(int pi, smallnumber breaktype)
 		else
 		{
 			if (-shortfall > curactivewidth[6])
-				b = 10001;
+				b = inf_bad+1;
 			else
 				b = badness(-shortfall, curactivewidth[6]);
-			if (b > 12)
-				fitclass = tight_fit;
-			else
-				fitclass = decent_fit;
+			fitclass = b > 12 ? tight_fit : decent_fit;
 		}
-		bool noderstaysactive;
-		if (b > 10000 || pi == -10000)
+		bool noderstaysactive = b <= 10000 && pi != -10000;
+		if (noderstaysactive)
+		{
+			prevr = r;
+			if (b > threshold)
+				continue;
+		}
+		else
 		{
 			if (finalpass && minimumdemerits == max_dimen && r->link == active && prevr == active)
 				artificialdemerits = true;
 			else 
 				if (b > threshold)
 				{
-					prevr->link = r->link;
-					delete r;
+					removeNodeAfter(prevr);
 					if (prevr == active)
 					{
 						r = active->link;
@@ -534,8 +539,7 @@ static void trybreak(int pi, smallnumber breaktype)
 						{
 							dynamic_cast<DeltaNode*>(r)->update_active();
 							std::copy(activewidth, activewidth+7, curactivewidth);
-							active->link = r->link;
-							delete r;
+							removeNodeAfter(active);
 						}
 					}
 					else 
@@ -545,29 +549,19 @@ static void trybreak(int pi, smallnumber breaktype)
 							if (r == active)
 							{
 								dynamic_cast<DeltaNode*>(prevr)->downdate_width();
-								prevprevr->link = active;
-								delete prevr;
-								prevr = prevprevr;
+								removeNodeAfter(prevprevr);
+								prevr = prevprevr; 
 							}
 							else 
 								if (r->type == delta_node)
 								{
 									dynamic_cast<DeltaNode*>(r)->update_width();
 									dynamic_cast<DeltaNode*>(prevr)->combine_two_deltas(dynamic_cast<DeltaNode*>(r));
-									prevr->link = r->link;
-									delete r;
+									removeNodeAfter(prevr);
 								}
 						}
 					continue;
 				}
-			noderstaysactive = false;
-		}
-		else
-		{
-			prevr = r;
-			if (b > threshold)
-				continue;
-			noderstaysactive = true;
 		}
 		int d = 0;
 		if (!artificialdemerits)
@@ -577,13 +571,11 @@ static void trybreak(int pi, smallnumber breaktype)
 				d = 100000000;
 			else
 				d *= d;
-			if (pi)
-				if (pi > 0)
-					d += pi*pi;
-				else 
-					if (pi > -10000)
-						d -= pi*pi;
-			if (breaktype == 1 && r->type == vlist_node)
+			if (pi > 0)
+				d += pi*pi;
+			if (pi < 0 && pi > -10000)
+				d -= pi*pi;
+			if (breaktype == hyphenated && r->type == hyphenated)
 				if (curp)
 					d += double_hyphen_demerits();
 				else
@@ -602,8 +594,7 @@ static void trybreak(int pi, smallnumber breaktype)
 		}
 		if (noderstaysactive)
 			continue;
-		prevr->link = r->link;
-		delete r;
+		removeNodeAfter(prevr);
 		if (prevr == active)
 		{
 			r = active->link;
@@ -611,8 +602,7 @@ static void trybreak(int pi, smallnumber breaktype)
 			{
 				dynamic_cast<DeltaNode*>(r)->update_active();
 				std::copy(activewidth, activewidth+7, curactivewidth);
-				active->link = r->link;
-				delete r;
+				removeNodeAfter(active);
 			}
 		}
 		else 
@@ -622,8 +612,7 @@ static void trybreak(int pi, smallnumber breaktype)
 				if (r == active)
 				{
 					dynamic_cast<DeltaNode*>(prevr)->downdate_width();
-					prevprevr->link = active;
-					delete prevr;
+					removeNodeAfter(prevprevr);
 					prevr = prevprevr;
 				}
 				else 
@@ -631,8 +620,7 @@ static void trybreak(int pi, smallnumber breaktype)
 					{
 						dynamic_cast<DeltaNode*>(r)->update_width();
 						dynamic_cast<DeltaNode*>(prevr)->combine_two_deltas(dynamic_cast<DeltaNode*>(r));
-						prevr->link = r->link;
-						delete r;
+						removeNodeAfter(prevr);
 					}
 			}
 	}
@@ -669,14 +657,13 @@ static void kern_break(bool autobreaking, int w)
 
 static void flushAfterActive(void)
 {
-	LinkedNode *q;
-	for (q = active->link; q != active; )
+	for (auto q = active->link; q != active; )
 	{
 		curp = q->link;
 		delete q;
 		q = curp;
 	}
-	for (q = passive; q; )
+	for (LinkedNode *q = passive; q; )
 	{
 		curp = q->link;
 		delete q;
@@ -689,15 +676,8 @@ void linebreak(int finalwidowpenalty)
 	packbeginline = mode_line;
 	temp_head->link = head->link;
 	if (tail->type == glue_node)
-	{
-		auto Tail = dynamic_cast<GlueNode*>(tail);
-		deleteglueref(Tail->glue_ptr);
-		flushnodelist(Tail->leader_ptr);
-		// delete tail ?
-		tail->type = penalty_node;
-		dynamic_cast<PenaltyNode*>(tail)->penalty = inf_penalty;
-	}
-	else 
+		replaceNode(tail, new PenaltyNode(inf_penalty));
+	else
 		tail_append(new PenaltyNode(inf_penalty));
 	tail->link = new GlueNode(par_fill_skip_code);
 	ASCIIcode initcurlang = prev_graf%(1<<16);

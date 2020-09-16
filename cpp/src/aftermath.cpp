@@ -39,8 +39,8 @@ void aftermath(void)
 	int m = mode; // \a mmode or \a -mmode
 	bool l = false; // `\\leqno' instead of `\\eqno'
 	auto p = finmlist(nullptr);
-	Token t;
 	BoxNode *a; // box containing equation number
+	Token t;
 	if (mode == -m)
 	{
 		t = getxtoken();
@@ -77,7 +77,7 @@ void aftermath(void)
 		p = finmlist(nullptr);
 	}
 	else
-		a = 0;
+		a = nullptr;
 	if (m < 0)
 	{
 		tail_append(new MathNode(math_surround(), before));
@@ -92,7 +92,7 @@ void aftermath(void)
 	}
 	else
 	{
-		if (a == 0)
+		if (a == nullptr)
 		{
 			t = getxtoken();
 			if (t.cmd != math_shift)

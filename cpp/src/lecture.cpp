@@ -1128,7 +1128,6 @@ void begintokenlist(TokenNode *P, quarterword t)
 	state = token_list;
 	Start = P;
 	index = t;
-	Token tk;
 	if (t < macro)
 	{
 		Loc = P;
@@ -1151,9 +1150,7 @@ void begintokenlist(TokenNode *P, quarterword t)
 				diagnostic("\r"+esc("write")+"->"+tokenshow(P));
 				break;
 			default:
-				tk.cmd = assign_toks;
-				tk.chr = t-output_text+output_routine_loc;
-				diagnostic("\r"+cmdchr(tk)+"->"+tokenshow(P));
+				diagnostic("\r"+cmdchr(make_tok(assign_toks, t-output_text+output_routine_loc))+"->"+tokenshow(P));
 		}
 }
 
@@ -1202,12 +1199,7 @@ void deletetokenref(TokenNode *p)
 		p->token_ref_count--;
 }
 
-[[nodiscard]] Token gettoken(void)
-{
-	auto t = getnext(false);
-	t.make_tok();
-	return t; 
-}
+[[nodiscard]] Token gettoken(void) { return make_tok(getnext(false)); }
 
 [[nodiscard]] Token getxtoken(void)
 {
@@ -1226,8 +1218,7 @@ void deletetokenref(TokenNode *p)
 		else
 			expand(t);
 	}
-	t.make_tok();
-	return t;
+	return make_tok(t);
 }
 
 [[nodiscard]] Token xtoken(Token t)
@@ -1237,8 +1228,7 @@ void deletetokenref(TokenNode *p)
 		expand(t);
 		t = getnext();
 	}
-	t.make_tok();
-	return t;
+	return make_tok(t);
 }
 
 Token getpreambletoken(void)

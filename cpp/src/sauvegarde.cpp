@@ -59,12 +59,8 @@ void unsave(void)
 				curboundary = m->index;
 				return;
 			case insert_token:
-			{
-				Token t;
-				t.tok = dynamic_cast<TokenNode*>(m->index)->token;
-				backinput(t);
+				backinput(make_tok(dynamic_cast<TokenNode*>(m->index)->token));
 				break;
-			}
 			case restore_old_value:
 			{
 				auto slevel = m->level;

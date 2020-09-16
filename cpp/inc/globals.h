@@ -790,14 +790,29 @@ class Token
 		halfword chr;
 		halfword cs;
 		halfword tok;
-		void make_tok(void)
-		{
-			if (cs == 0)
-				tok = (cmd<<8)+chr;
-			else
-				tok = cs+cs_token_flag;
-		}
 };
+
+inline Token make_tok(Token t)
+{
+	t.tok = t.cs == 0 ? (t.cmd<<8)+t.chr : t.cs+cs_token_flag;
+	return t;
+}
+
+inline Token make_tok(halfword tok)
+{
+	Token t;
+	t.tok = tok;
+	return t;
+}
+
+inline Token make_tok(eightbits cmd, halfword chr)
+{
+	Token t;
+	t.cmd = cmd;
+	t.chr = chr;
+	return t;
+}
+
 
 class ArithException : public std::exception 
 {

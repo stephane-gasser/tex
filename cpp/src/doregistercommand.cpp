@@ -43,10 +43,7 @@ void doregistercommand(smallnumber a, Token t)
 			break;
 		default:
 		{
-			Token tk;
-			tk.cmd = q;
-			tk.chr = 0;
-			error("You can't use `"+cmdchr(t)+"' after "+cmdchr(tk), "I'm forgetting what you said and not changing anything.");
+			error("You can't use `"+cmdchr(t)+"' after "+cmdchr(make_tok(q, 0)), "I'm forgetting what you said and not changing anything.");
 			return;
 		}
 	}

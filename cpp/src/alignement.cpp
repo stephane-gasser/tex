@@ -89,9 +89,7 @@ static void popalignment(AlignRecordNode* &loop)
 	curspan = alignptr->span;
 	preamble = alignptr->preamble;
 	curalign = alignptr->align;
-	auto p = alignptr;
-	next(alignptr);
-	delete p;
+	removeNodeAtStart(alignptr);
 }
 
 static void pushalignment(AlignRecordNode* loop)
@@ -388,10 +386,8 @@ static void finalign(AlignRecordNode* &loop)
 		{
 			//Merge the widths in the span nodes of |q| with those of |p|, destroying the span nodes of |q|
 			t = Q->width+dynamic_cast<GlueNode*>(q->link)->glue_ptr->width;
-			SpanNode *r;
-			SpanNode *s;
-			r = Q->info;
-			s = end_span;
+			SpanNode *r = Q->info;
+			SpanNode *s = end_span;
 			s->info = dynamic_cast<SpanNode*>(q->link->link);
 			n = 1;
 			do
@@ -411,7 +407,7 @@ static void finalign(AlignRecordNode* &loop)
 					r->Link--;
 					s = r;
 				}
-				else
+				else // r->Link == n
 				{
 					if (r->width > s->info->width)
 						s->info->width = r->width;

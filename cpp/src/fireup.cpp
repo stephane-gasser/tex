@@ -15,10 +15,6 @@
 
 void fireup(LinkedNode *c)
 {
-	unsigned char n;
-	bool wait;
-	int savevbadness;
-	scaled savevfuzz;
 	if (bestpagebreak->type == penalty_node) //12
 	{
 		auto Bestpagebreak = dynamic_cast<PenaltyNode*>(bestpagebreak);
@@ -49,7 +45,7 @@ void fireup(LinkedNode *c)
 		{
 			if (r->best_ins_ptr)
 			{
-				n = r->subtype;
+				auto n = r->subtype;
 				ensurevbox(n);
 				if (box(n) == nullptr)
 					setBox(n,  new BoxNode);
@@ -75,11 +71,9 @@ void fireup(LinkedNode *c)
 				auto r = dynamic_cast<PageInsNode*>(page_ins_head->link);
 				while (r->subtype != P->subtype)
 					next(r);
-				if (r->best_ins_ptr == nullptr)
-					wait = true;
-				else
+				bool wait = r->best_ins_ptr == nullptr;
+				if (!wait)
 				{
-					wait = false;
 					r->last_ins_ptr->link = P->ins_ptr;
 					if (r->best_ins_ptr == p)
 					{
@@ -100,7 +94,7 @@ void fireup(LinkedNode *c)
 							}
 						}
 						r->best_ins_ptr = nullptr;
-						n = r->subtype;
+						auto n = r->subtype;
 						auto liste = box(n)->list_ptr;
 						delete box(n);
 						setBox(n, vpack(liste, 0, additional));
@@ -153,9 +147,9 @@ void fireup(LinkedNode *c)
 		contrib_head->link = p;
 		prevp->link = nullptr;
 	}
-	savevbadness = vbadness();
+	auto savevbadness = vbadness();
 	vbadness() = inf_bad;
-	savevfuzz = vfuzz();
+	auto savevfuzz = vfuzz();
 	vfuzz() = max_dimen;
 	setBox(255, vpackage(page_head->link, bestsize, exactly, pagemaxdepth));
 	vbadness() = savevbadness;

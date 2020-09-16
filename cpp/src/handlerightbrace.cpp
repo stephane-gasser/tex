@@ -18,10 +18,6 @@
 
 void handlerightbrace(Token t, AlignRecordNode* &loop)
 {
-	BoxNode *p;
-	GlueSpec *q;
-	scaled d;
-	int f;
 	switch (curgroup)
 	{
 		case simple_group: 
@@ -53,14 +49,14 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 		case insert_group:
 		{
 			endgraf();
-			q = split_top_skip();
+			auto q = split_top_skip();
 			q->glue_ref_count++;
-			d = split_max_depth();
-			f = floating_penalty();
+			auto d = split_max_depth();
+			auto f = floating_penalty();
 			unsave();
 			auto s0 = savestack.back()->int_;
 			savestack.pop_back();
-			p = vpack(head->link, 0, additional);
+			auto p = vpack(head->link, 0, additional);
 			popnest();
 			if (s0 < 255)
 			{
@@ -138,7 +134,7 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 			savestack.pop_back();
 			auto s0 = savestack.back()->int_; //smallnumber
 			savestack.pop_back();
-			p = vpack(head->link, s1, s0);
+			auto p = vpack(head->link, s1, s0);
 			popnest();
 			auto n = new Noad;
 			n->type = vcenter_noad;
@@ -173,9 +169,9 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 						{
 							LinkedNode *q;
 							followUntilBeforeTarget(head, q, tail); // head -> ... -> q -> tail
-							q->link = p;
+							q->link = p; // head -> ... -> q -> p
 							delete tail;
-							tail = p;
+							tail = p; // head -> ... -> q -> p=tail
 						}
 				}
 			break;

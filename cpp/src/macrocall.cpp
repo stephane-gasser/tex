@@ -40,7 +40,7 @@ void macrocall(Token t)
 				matchchr = r->token-match_token;
 				s = dynamic_cast<TokenNode*>(r->link);
 				r = s;
-				p = dynamic_cast<TokenNode*>(temp_head);
+				p = temp_head;
 				m = 0;
 			}
 			TokenNode *rbraceptr;
@@ -175,9 +175,8 @@ void macrocall(Token t)
 				{
 					rbraceptr->link = nullptr;
 					delete p;
-					p = dynamic_cast<TokenNode*>(temp_head->link);
-					pstack[n] = dynamic_cast<TokenNode*>(p->link);
-					delete p;
+					pstack[n] = dynamic_cast<TokenNode*>(temp_head->link->link);
+					delete temp_head->link;
 				}
 				else
 					pstack[n] = dynamic_cast<TokenNode*>(temp_head->link);

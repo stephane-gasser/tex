@@ -92,10 +92,7 @@ void conditional(Token t)
 				r = t.tok-other_token;
 			else
 			{
-				Token tk;
-				tk.cmd = if_test;
-				tk.chr = if_int_code;
-				backerror(t, "Missing = inserted for "+cmdchr(tk), "I was expecting to see `<', `=', or `>'. Didn't.");
+				backerror(t, "Missing = inserted for "+cmdchr(make_tok(if_test, if_int_code)), "I was expecting to see `<', `=', or `>'. Didn't.");
 				r = '=';
 			}
 			switch (r)
@@ -119,10 +116,7 @@ void conditional(Token t)
 				r = t.tok-other_token;
 			else
 			{
-				Token tk;
-				tk.cmd = if_test;
-				tk.chr = if_dim_code;
-				backerror(t, "Missing = inserted for "+cmdchr(tk), "I was expecting to see `<', `=', or `>'. Didn't.");
+				backerror(t, "Missing = inserted for "+cmdchr(make_tok(if_test, if_dim_code)), "I was expecting to see `<', `=', or `>'. Didn't.");
 				r = '=';
 			}
 			switch (r)
@@ -233,12 +227,10 @@ void conditional(Token t)
 					{
 						if (t.chr == fi_code)
 						{
-							p = condptr;
-							ifline = p->if_line_field;
-							curif = p->subtype;
-							iflimit = p->type;
-							next(condptr);
-							delete p;
+							ifline = condptr->if_line_field;
+							curif = condptr->subtype;
+							iflimit = condptr->type;
+							removeNodeAtStart(condptr);
 						}
 						else
 							iflimit = fi_code;
@@ -247,12 +239,10 @@ void conditional(Token t)
 				else 
 					if (t.chr == fi_code)
 					{
-						p = condptr;
-						ifline = p->if_line_field;
-						curif = p->subtype;
-						iflimit = p->type;
-						next(condptr);
-						delete p;
+						ifline = condptr->if_line_field;
+						curif = condptr->subtype;
+						iflimit = condptr->type;
+						removeNodeAtStart(condptr);
 					}
 			}
 			changeiflimit(or_code, savecondptr);
@@ -275,12 +265,10 @@ void conditional(Token t)
 			{
 				if (t.chr == fi_code)
 				{
-					p = condptr;
-					ifline = p->if_line_field;
-					curif = p->subtype;
-					iflimit = p->type;
-					next(condptr);
-					delete p;
+					ifline = condptr->if_line_field;
+					curif = condptr->subtype;
+					iflimit = condptr->type;
+					removeNodeAtStart(condptr);
 				}
 				else
 					iflimit = fi_code;
@@ -291,12 +279,10 @@ void conditional(Token t)
 		else 
 			if (t.chr == 2)
 			{
-				p = condptr;
-				ifline = p->if_line_field;
-				curif = p->subtype;
-				iflimit = p->type;
-				next(condptr);
-				delete p;
+				ifline = condptr->if_line_field;
+				curif = condptr->subtype;
+				iflimit = condptr->type;
+				removeNodeAtStart(condptr);
 			}
 	}
 }

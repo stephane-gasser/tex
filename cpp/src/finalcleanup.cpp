@@ -28,15 +28,10 @@ void finalcleanup(Token t)
 		printnl("("+esc("end")+" occurred inside a group at level "+std::to_string(curlevel-level_one)+")");
 	while (condptr)
 	{
-		Token tk;
-		tk.cmd = if_test;
-		tk.chr = curif;
-		printnl("("+esc("end")+" occurred when "+cmdchr(tk)+(ifline ? " on line "+std::to_string(ifline) : "")+" was incomplete)");
+		printnl("("+esc("end")+" occurred when "+cmdchr(make_tok(if_test, curif))+(ifline ? " on line "+std::to_string(ifline) : "")+" was incomplete)");
 		ifline = condptr->if_line_field;
 		curif = condptr->subtype;
-		auto temp = condptr;
-		next(condptr);
-		delete temp;
+		removeNodeAtStart(condptr);
 	}
 	if (history && (history == warning_issued || interaction < error_stop_mode) && selector == term_and_log)
 	{

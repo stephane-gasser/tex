@@ -477,4 +477,33 @@ void followUntilBeforeTarget(LinkedNode*, LinkedNode*&, LinkedNode*);
 
 inline void followUntilEnd(LinkedNode *s, LinkedNode* &p) { followUntilBeforeTarget(s, p, nullptr); }
 
+inline void insertNodeAfter(LinkedNode *p, LinkedNode *q)
+{
+	q->link = p->link;
+	p->link = q;
+}
+
+template<class T> void replaceNode(T* &p, LinkedNode *q)
+{
+	auto r = p;
+	p = dynamic_cast<T*>(q);
+	delete r;
+}
+
+template<class T> void removeNodeAtStart(T* &q)
+{
+	auto p = q;
+	next(q);
+	delete p;
+}
+
+
+
+inline void removeNodeAfter(LinkedNode *prev)
+{
+	auto p = prev->link; // prev -> p -> q
+	prev->link = p->link; // prev -> q
+	delete p;
+}
+
 #endif

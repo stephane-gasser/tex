@@ -60,7 +60,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			if (t.chr == 0)
 			{
 				t = getXTokenSkipSpace();
-				if (t.tok == other_token+'=') // other_char + '='
+				if (t.tok == other_token+'=')
 				{
 					t = gettoken();
 					if (t.cmd == spacer)

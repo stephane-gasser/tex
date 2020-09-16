@@ -26,10 +26,7 @@
 	}
 	if (scannerstatus == skipping)
 	{
-		Token tk;
-		tk.cmd = if_test;
-		tk.chr = curif;
-		inserror(t, "Incomplete "+cmdchr(tk)+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
+		inserror(t, "Incomplete "+cmdchr(make_tok(if_test, curif))+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
 		t.tok = frozen_fi+cs_token_flag;
 	}
 	else

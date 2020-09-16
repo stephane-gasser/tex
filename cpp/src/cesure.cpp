@@ -185,9 +185,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 										appendAtEnd(t, l);
 										j++;
 									}
-									auto p = ligstack;
-									next(ligstack);
-									delete p;
+									removeNodeAtStart(ligstack);
 									if (ligstack == nullptr)
 									{
 										curr = j < n ? word[j+1] : bchar;
@@ -249,9 +247,7 @@ static smallnumber reconstitute(smallnumber j, smallnumber n, halfword bchar, ha
 				appendAtEnd(t, l);
 				j++;
 			}
-			auto p = ligstack;
-			next(ligstack);
-			delete p;
+			removeNodeAtStart(ligstack);
 			if (ligstack == nullptr)
 			{
 				curr = j < n ? word[j+1] : bchar;
@@ -546,8 +542,7 @@ void newhyphexceptions(void)
 				{
 					if (exception.size() >= 63)
 						break;
-					auto q = new HyphenNode(exception.size());
-					appendAtStart(p, q); // p = q -> old p
+					appendAtStart(p, new HyphenNode(exception.size())); // p = HyphenNode -> p'
 				}
 				else 
 					if (lc_code(t.chr) == 0)

@@ -280,17 +280,13 @@ void prunemovements(int l)
 	{
 		if (down_ptr->location < l)
 			break;
-		auto p = down_ptr;
-		down_ptr = dynamic_cast<MovementNode*>(p->link);
-		delete p;
+		removeNodeAtStart(down_ptr);
 	}
 	while (right_ptr)
 	{
 		if (right_ptr->location < l)
 			break;
-		auto p = right_ptr;
-		right_ptr = dynamic_cast<MovementNode*>(p->link);
-		delete p;
+		removeNodeAtStart(down_ptr);
 	}
 }
 

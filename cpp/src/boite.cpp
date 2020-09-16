@@ -554,9 +554,9 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 					followUntilEnd(dynamic_cast<AdjustNode*>(p)->adjust_ptr, adjusttail); // p->adjust_ptr -> ... -> adjusttail -> 0
 					LinkedNode *q;
 					followUntilBeforeTarget(r->list_ptr, q, p); // r->list_ptr -> ... -> q -> p
-					next(p);
-					delete q->link;
-					q->link = p;
+					next(p); //r->list_ptr -> ... -> q -> p' -> p=p'->link
+					delete q->link; 
+					q->link = p; //r->list_ptr -> ... -> q -> p=p'
 					p = q;
 				}
 				break;

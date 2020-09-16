@@ -331,11 +331,10 @@ void makeord(Noad *Q)
 									// AB -> C (symbole =;)
 									}
 									default:
-										Q->link = p->link;
 										Q->nucleus.character = rem_byte(Font::infos(a));
 										Q->subscr = p->subscr;
 										Q->supscr = p->supscr;
-										delete p;
+										removeNodeAfter(Q);
 								}
 								if (Font::op_byte(a) > 3)
 									return;
@@ -630,12 +629,9 @@ void mlisttohlist(void)
 			{
 				auto Q = dynamic_cast<FractionNoad*>(q);
 				makefraction(Q);
-				auto h = new_hlist(Q);
-				z = hpack(h, 0, additional);
-				if (z->height > maxh)
-					maxh = z->height;
-				if (z->depth > maxd)
-					maxd = z->depth;
+				z = hpack(new_hlist(Q), 0, additional);
+				maxh = std::max(z->height, maxh);
+				maxd = std::max(z->depth, maxd);
 				delete z;
 				r = q;
 				rtype = r->type;
@@ -648,12 +644,9 @@ void mlisttohlist(void)
 				delta = makeop(Q);
 				if (Q->subtype == 1)
 				{
-					auto h = new_hlist(Q);
-					z = hpack(h, 0, additional);
-					if (z->height > maxh)
-						maxh = z->height;
-					if (z->depth > maxd)
-						maxd = z->depth;
+					z = hpack(new_hlist(Q), 0, additional);
+					maxh = std::max(z->height, maxh);
+					maxd = std::max(z->depth, maxd);
 					delete z;
 					r = q;
 					rtype = r->type;
@@ -717,9 +710,7 @@ void mlisttohlist(void)
 				flushnodelist(Q->text_mlist);
 				flushnodelist(Q->script_mlist);
 				flushnodelist(Q->script_script_mlist);
-				// delete q ? q = new StyleNode ?
-				auto st = new StyleNode(curstyle);
-				q = st;
+				replaceNode(q, new StyleNode(curstyle));
 				if (p)
 				{
 					auto z = q->link;
@@ -824,12 +815,9 @@ void mlisttohlist(void)
 		Q->nucleus.info = p;
 		if (Q->subscr.math_type || Q->supscr.math_type)
 			makescripts(Q, delta);
-		auto h = new_hlist(Q);
-		z = hpack(h, 0, additional);
-		if (z->height > maxh)
-			maxh = z->height;
-		if (z->depth > maxd)
-			maxd = z->depth;
+		z = hpack(new_hlist(Q), 0, additional);
+		maxh = std::max(z->height, maxh);
+		maxd = std::max(z->depth, maxd);
 		delete z;
 		r = q;
 		rtype = r->type;
@@ -891,9 +879,7 @@ void mlisttohlist(void)
 				else
 					cursize = 16*((curstyle-2)/2);
 				curmu = xovern(math_quad(cursize), 18);
-				r = q;
-				next(q);
-				delete r;
+				replaceNode(q, q->link);
 				continue;
 			case whatsit_node:
 			case penalty_node:
