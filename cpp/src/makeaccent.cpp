@@ -9,11 +9,8 @@
 
 void makeaccent(Token t)
 {
-	if (auto p = newcharacter(curFontNum(), scancharnum()); p)
+	if (auto accent = newcharacter(curFontNum(), scancharnum()); accent)
 	{
-		auto x = cur_font().x_height();
-		auto s = cur_font().slant()/float(unity);
-		auto a = p->width();
 		doassignments();
 		switch (t.cmd)
 		{
@@ -23,27 +20,30 @@ void makeaccent(Token t)
 			case other_char:
 			case char_given:
 			{
-				auto q = newcharacter(curFontNum(), t.chr);
+				auto x = cur_font().x_height();
+				auto s = cur_font().slant()/float(unity);
+				auto a = accent->width();
+				auto lettre = newcharacter(curFontNum(), t.chr);
 				auto t = cur_font().slant()/float(unity);
-				auto w = q->width();
-				auto h = q->height();
+				auto w = lettre->width();
+				auto h = lettre->height();
 				auto delta = round((w-a)/2.0+h*t-x*s);
 				tail_append(new KernNode(delta, acc_kern));
 				if (h != x)
 				{
-					auto P = hpack(p, 0, additional);
-					P->shift_amount = x-h;
-					tail_append(P);
+					auto accentBox = hpack(accent, 0, additional);
+					accentBox->shift_amount = x-h;
+					tail_append(accentBox);
 				}
 				else
-					tail_append(p);
+					tail_append(accent);
 				tail_append(new KernNode(-a-delta, acc_kern));
-				tail_append(q);
+				tail_append(lettre);
 				break;
 			}
 			default:
+				tail_append(accent);
 				backinput(t);
-				tail_append(p);
 		}
 		space_factor = 1000;
 	}
