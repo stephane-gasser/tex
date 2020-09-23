@@ -31,8 +31,7 @@ void mathright(Token t)
 		{
 			auto p = finmlist(new LeftRightNoad(t));
 			unsave();
-			auto n = new Noad;
-			n->type = inner_noad;
+			auto n = new Noad(inner_noad);
 			n->nucleus.math_type = sub_mlist;
 			n->nucleus.info = p;
 			tail_append(n);

@@ -27,5 +27,6 @@ void overflow(const std::string &, int);
 void reportillegalcase(Token);
 bool privileged(Token);
 void confusion(const std::string &);
+void charwarning(const Font &, eightbits);
 
 #endif

@@ -253,7 +253,8 @@ class RuleNode : public LinkedNode
 		int width = -(1<<30); //null_flag
 		int depth = -(1<<30); //null_flag
 		int height = -(1<<30); //null_flag
-		RuleNode(void) { type = rule_node; } 
+		RuleNode(void) { type = rule_node; }
+		RuleNode(scaled t) : depth(0), height(t) { type = rule_node; }
 		virtual RuleNode *copy(void) { auto r = new RuleNode; r->width = width; r->depth = depth; r->height = height; return r; }
 };
 
@@ -364,6 +365,7 @@ class Noad : public LinkedNode
 		NoadContent subscr;
 		NoadContent supscr;
 		Noad(void) : subtype(normal) { type = ord_noad; }
+		Noad(quarterword t) : subtype(normal) { type = t; }
 };
 
 class Delimiter

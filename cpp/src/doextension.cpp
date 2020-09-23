@@ -4,7 +4,6 @@
 #include "outwhat.h"
 #include "backinput.h"
 #include "erreur.h"
-#include "normmin.h"
 #include "equivalent.h"
 #include "fichier.h"
 
@@ -75,8 +74,8 @@ void doextension(Token t)
 				if (clang <= 0 || clang > 255)
 						clang = 0;
 				auto w = new LanguageWhatsitNode(clang);
-				w->what_lhm = normmin(left_hyphen_min());
-				w->what_rhm = normmin(right_hyphen_min());
+				w->what_lhm = left_hyphen_min();
+				w->what_rhm = right_hyphen_min();
 				tail_append(w);
 			}
 			break;

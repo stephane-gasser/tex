@@ -7,7 +7,7 @@
 #include "getnext.h"
 #include "calcul.h"
 #include "fixlanguage.h"
-#include "charwarning.h"
+#include "erreur.h"
 
 static void adjust_space_factor(halfword chr)
 {

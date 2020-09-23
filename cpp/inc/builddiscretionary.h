@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void builddiscretionary(Token);
+void builddiscretionary(void);
 
 #endif

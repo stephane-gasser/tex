@@ -6,7 +6,6 @@
 #include "fixlanguage.h"
 #include "getnext.h"
 #include "fichier.h"
-#include "charwarning.h"
 #include "backinput.h"
 #include "erreur.h"
 #include "sauvegarde.h"
@@ -345,8 +344,7 @@ Token maincontrol(void)
 				setmathchar(scantwentysevenbitint()>>12, t);
 				break;
 			case mmode+math_comp:
-				tail_append(new Noad);
-				tail->type = t.chr;
+				tail_append(new Noad(t.chr));
 				scanmath(dynamic_cast<Noad*>(tail)->nucleus);
 				break;
 			case mmode+limit_switch: 

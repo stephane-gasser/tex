@@ -114,7 +114,8 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 			buildpage();
 			break;
 		case disc_group: 
-			builddiscretionary;
+			builddiscretionary();
+			t = scanleftbrace();
 			break;
 		case align_group:
 			backinput(t);
@@ -136,15 +137,15 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 			savestack.pop_back();
 			auto p = vpack(head->link, s1, s0);
 			popnest();
-			auto n = new Noad;
-			n->type = vcenter_noad;
+			auto n = new Noad(vcenter_noad);
 			n->nucleus.math_type = sub_box;
 			n->nucleus.info = p;
 			tail_append(n);
 			break;
 		}
 		case math_choice_group:
-			buildchoices(t);
+			buildchoices();
+			t = scanleftbrace();
 			break;
 		case math_group:
 		{

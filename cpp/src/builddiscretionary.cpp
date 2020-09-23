@@ -7,7 +7,7 @@
 #include "lecture.h"
 #include "pushnest.h"
 
-void builddiscretionary(Token t)
+void builddiscretionary(void)
 {
 	unsave();
 	// Prune the current list, if necessary, until it contains only |char_node|, |kern_node|, |hlist_node|, |vlist_node|, |rule_node|,
@@ -57,7 +57,6 @@ void builddiscretionary(Token t)
 	}
 	savestack.back()->int_++;
 	newsavelevel(disc_group);
-	t = scanleftbrace();
 	pushnest();
 	mode = -hmode;
 	space_factor = 1000;

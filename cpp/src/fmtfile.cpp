@@ -1,7 +1,6 @@
 #include "fmtfile.h"
 #include "impression.h" 
 #include "erreur.h"
-#include "jumpout.h"
 #include "equivalent.h"
 #include "chaine.h"
 #include "cesure.h"

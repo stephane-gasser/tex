@@ -1,6 +1,5 @@
 #include "erreur.h"
 #include "impression.h"
-#include "jumpout.h"
 #include "lecture.h"
 #include "backinput.h"
 #include "noeud.h"
@@ -67,7 +66,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 						printnl("You want to edit file ");
 						print(inputstack[baseptr].namefield+" at line "+std::to_string(line));
 						interaction = scroll_mode;
-						jumpout();
+						throw std::string("jumpout");
 					}
 					break;
 				case 'H':
@@ -117,7 +116,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 					return;
 				case 'X':
 					interaction = scroll_mode;
-					jumpout();
+					throw std::string("jumpout");
 					break;
 			}
 			print("Type <return> to proceed, S to scroll future error messages,");
@@ -134,7 +133,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 	{
 		printnl("(That makes 100 errors; please try again.)");
 		history = fatal_error_stop;
-		jumpout();
+		throw std::string("jumpout");
 	}
 	if (interaction > batch_mode)
 		selector--;
@@ -190,7 +189,7 @@ void fatal(const std::string &msg, const std::string &hlp)
 	else
 		print_err(msg);
 	history = fatal_error_stop;
-	jumpout();
+	throw std::string("jumpout");
 }
 
 static void normalizeselector(void)
@@ -237,3 +236,8 @@ bool privileged(Token t)
 	return false;
 }
 
+void charwarning(const Font &ft, eightbits c)
+{
+	if (tracing_lost_chars() > 0)
+		diagnostic("\rMissing character: There is no "+std::string(1, c)+" in font "+ft.name+"!");
+}

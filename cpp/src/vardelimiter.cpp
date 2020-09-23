@@ -3,7 +3,7 @@
 #include "boite.h"
 #include "police.h"
 #include "formule.h"
-#include "half.h"
+#include "calcul.h"
 #include "equivalent.h"
 
 static quarterword ext_top(fourquarters q) { return q.b0; } //!< |top| piece in a recipe
@@ -48,7 +48,7 @@ BoxNode *vardelimiter(Delimiter &d, smallnumber s, scaled v)
 						{
 							label22 = false;
 							q = ft.char_info(y);
-							if (char_exists(q))
+							if (ft.char_exists(y))
 							{
 								if (ft.char_tag(y) == ext_tag)
 								{

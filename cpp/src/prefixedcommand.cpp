@@ -6,14 +6,49 @@
 #include "trapzeroglue.h"
 #include "doregistercommand.h"
 #include "lecture.h"
-#include "alteraux.h"
-#include "alterprevgraf.h"
-#include "alterpagesofar.h"
 #include "noeud.h"
 #include "cesure.h"
 #include "police.h"
 #include "boite.h"
 #include "buildpage.h"
+
+static void alterprevgraf(void)
+{
+	nest.back() = curlist;
+	auto p = nest.size()-1;
+	while (abs(nest[p].modefield) != vmode)
+		p--;
+	scanoptionalequals();
+	int val = scanint();
+	if (val < 0)
+		interror(val, " Bad "+esc("prevgraf"), "I allow only nonnegative values here.");
+	else
+	{
+		nest[p].pgfield = val;
+		curlist = nest.back();
+	}
+}
+
+static void alteraux(Token t)
+{
+	if (t.chr != abs(mode))
+		reportillegalcase(t);
+	else
+	{
+		auto c = t.chr;
+		scanoptionalequals();
+		if (c == vmode)
+			prev_depth = scan_normal_dimen();
+		else
+		{
+			int val = scanint();
+			if (val <= 0 || val > 32767)
+				interror(val, "Bad space factor", "I allow only values in the range 1..32767 here.");
+			else
+				space_factor = val;
+		}
+	}
+}
 
 void prefixedcommand(Token t, bool setboxallowed) 
 {
@@ -254,7 +289,8 @@ void prefixedcommand(Token t, bool setboxallowed)
 			alterprevgraf();
 			break;
 		case set_page_dimen: 
-			alterpagesofar(t);
+			scanoptionalequals();
+			pagesofar[t.chr] = scan_normal_dimen();
 			break;
 		case set_page_int: 
 			scanoptionalequals();

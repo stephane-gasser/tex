@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void buildchoices(Token);
+void buildchoices(void);
 
 #endif

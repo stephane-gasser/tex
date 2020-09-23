@@ -12,5 +12,6 @@ scaled mu_mult(int, scaled, int);
 scaled mult_integers(int, scaled);
 scaled xnoverd(scaled, int, int);
 scaled xovern(scaled, int);
+int half(int);
 
 #endif

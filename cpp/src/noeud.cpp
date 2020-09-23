@@ -1,6 +1,5 @@
 #include "noeud.h"
 #include "police.h"
-#include "charwarning.h"
 #include "impression.h"
 #include "equivalent.h"
 #include "lecture.h"
@@ -9,7 +8,6 @@
 #include "calcul.h"
 #include "pushmath.h"
 #include "pushnest.h"
-#include "normmin.h"
 #include "buildpage.h"
 #include "chaine.h"
 #include "erreur.h"
@@ -126,7 +124,7 @@ void newgraf(bool indented)
 	space_factor = 1000;
 	set_cur_lang();
 	clang = curlang;
-	prev_graf = (normmin(left_hyphen_min())<<6+normmin(right_hyphen_min()))<<16+curlang;
+	prev_graf = (left_hyphen_min()<<6+right_hyphen_min())<<16+curlang;
 	if (indented)
 	{
 		auto b = new BoxNode;

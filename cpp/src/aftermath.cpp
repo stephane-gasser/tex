@@ -7,7 +7,7 @@
 #include "sauvegarde.h"
 #include "boite.h"
 #include "noeud.h"
-#include "half.h"
+#include "calcul.h"
 #include "resumeafterdisplay.h"
 #include "alignement.h"
 #include "police.h"

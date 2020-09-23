@@ -1,8 +1,6 @@
-#include "globals.h"
 #include "initialize.h"
 #include "initprim.h"
 #include "chaine.h"
-#include "fixdateandtime.h"
 #include "impression.h"
 #include "fichier.h"
 #include "fmtfile.h"
@@ -14,6 +12,14 @@
 #include "equivalent.h"
 #include "erreur.h"
 #include <iostream>
+
+static void fixdateandtime(void)
+{
+	time() = 12*60;
+	day() = 4;
+	month() = 7;
+	year() = 1776;
+}
 
 static int readyalready;
 

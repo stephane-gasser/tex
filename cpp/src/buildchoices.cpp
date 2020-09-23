@@ -4,27 +4,26 @@
 #include "pushmath.h"
 #include "lecture.h"
 
-void buildchoices(Token t)
+void buildchoices(void)
 {
 	unsave();
 	auto Tail = dynamic_cast<ChoiceNode*>(tail);
-	switch (savestack.back()->int_)
+	switch (2*savestack.back()->int_)
 	{
-		case 0: 
+		case display_style: 
 			Tail->display_mlist = finmlist(nullptr);
 			break;
-		case 1: 
+		case text_style: 
 			Tail->text_mlist = finmlist(nullptr);
 			break;
-		case 2: 
+		case script_style: 
 			Tail->script_mlist = finmlist(nullptr);
 			break;
-		case 3:
+		case script_script_style:
 			Tail->script_script_mlist = finmlist(nullptr);
 			savestack.pop_back();
 			return;
 	}
 	savestack.back()->int_++;
 	pushmath(math_choice_group);
-	t = scanleftbrace();
 }

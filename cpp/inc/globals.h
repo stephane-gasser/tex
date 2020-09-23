@@ -79,6 +79,10 @@ enum
 	// glue
 	cond_math_glue = 98, //!< special \a subtype to suppress glue in the next node
 	mu_glue = 99, //!< \a subtype for math glue
+	// leaders
+	a_leaders = 100, //!< \a subtype for aligned leaders
+	c_leaders = 101, //!< \a subtype for centered leaders
+	x_leaders = 102, //!< \a subtype for expanded leaders
 	// whatsits
 	open_node = 0, //!< \a subtype in whatsits that represent files to \\openout
 	write_node = 1, //!< \a subtype in whatsits that represent things to \\write
@@ -87,10 +91,6 @@ enum
 	language_node = 4, //!< \a subtype in whatsits that change the current language
 	immediate_code = 4, //!< command modifier for \\immediate
 	set_language_code = 5, //!< command modifier for \\setlanguage
-	// leaders
-	a_leaders = 100, //!< \a subtype for aligned leaders
-	c_leaders = 101, //!< \a subtype for centered leaders
-	x_leaders = 102, //!< \a subtype for expanded leaders
 };
 
 enum

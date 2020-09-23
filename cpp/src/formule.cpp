@@ -1,10 +1,8 @@
 #include "formule.h"
 #include "boite.h"
 #include "vardelimiter.h"
-#include "half.h"
 #include "police.h"
 #include "noeud.h"
-#include "fractionrule.h"
 #include "calcul.h"
 #include "deleteglueref.h"
 #include "erreur.h"
@@ -12,7 +10,6 @@
 #include "equivalent.h"
 #include "impression.h"
 #include "primitive.h"
-#include "charwarning.h"
 
 static int mathex(smallnumber p) { return fonts[fam_fnt(3+cursize)].param(p); }
 	static int default_rule_thickness(void) { return mathex(8); }
@@ -178,7 +175,7 @@ void makefraction(FractionNoad *Q)
 	}
 	else
 	{
-		auto y = fractionrule(Q->thickness);
+		auto y = new RuleNode(Q->thickness);
 		y->link = new KernNode((axis_height(cursize)-delta)-(z->height-shiftdown));
 		y->link->link = z;
 		x->link = new KernNode((shiftup-x->depth)-(axis_height(cursize)+delta));
@@ -352,8 +349,6 @@ void makeord(Noad *Q)
 	} while (label20);
 }
 
-
-
 void makescripts(Noad *q, scaled delta)
 {
 	auto p = new_hlist(q);
@@ -439,7 +434,7 @@ void makeunder(Noad *q)
 {
 	auto x = cleanbox(q->nucleus, curstyle);
 	x->link = new KernNode(3*default_rule_thickness());
-	x->link->link = fractionrule(default_rule_thickness());
+	x->link->link = new RuleNode(default_rule_thickness());
 	auto y = vpack(x, 0, additional);
 	scaled delta = y->height+y->depth+default_rule_thickness();
 	y->height = x->height;
@@ -468,7 +463,7 @@ void makeover(Noad *q)
 BoxNode* overbar(BoxNode *b, scaled k, scaled t)
 {
 	auto p = new KernNode(t);
-	p->link = fractionrule(t);
+	p->link = new RuleNode(t);
 	p->link->link = new KernNode(k);
 	p->link->link->link = b;
 	return vpack(p, 0, additional);

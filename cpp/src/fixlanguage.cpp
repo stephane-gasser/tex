@@ -1,6 +1,5 @@
 #include "fixlanguage.h"
 #include "noeud.h"
-#include "normmin.h"
 #include "equivalent.h"
 
 void fixlanguage(void)
@@ -12,8 +11,8 @@ void fixlanguage(void)
 	{
 		clang = l;
 		auto w = new LanguageWhatsitNode(l);
-		w->what_lhm = normmin(left_hyphen_min());
-		w->what_rhm = normmin(right_hyphen_min());
+		w->what_lhm = left_hyphen_min();
+		w->what_rhm = right_hyphen_min();
 		tail_append(w);
 	}
 }

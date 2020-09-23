@@ -6,13 +6,19 @@
 #include "chaine.h"
 #include "equivalent.h"
 #include "conditional.h"
-#include "insertrelax.h"
 #include "passtext.h"
 #include "noeud.h"
 #include "startinput.h"
 #include "macrocall.h"
 #include "getnext.h"
 #include "fichier.h"
+
+static void insertrelax(halfword cs)
+{
+	backinput(make_tok(cs_token_flag+cs));
+	backinput(make_tok(cs_token_flag+frozen_relax));
+	token_type = inserted;
+}
 
 void expand(Token tk)
 {

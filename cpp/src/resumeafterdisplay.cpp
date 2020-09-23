@@ -3,7 +3,6 @@
 #include "sauvegarde.h"
 #include "pushnest.h"
 #include "lecture.h"
-#include "normmin.h"
 #include "buildpage.h"
 #include "backinput.h"
 #include "cesure.h"
@@ -19,7 +18,7 @@ void resumeafterdisplay(Token t)
 	space_factor = 1000;
 	set_cur_lang();
 	clang = curlang;
-	prev_graf = (((normmin(left_hyphen_min())<<6)+normmin(right_hyphen_min()))<<16)+curlang;
+	prev_graf = (((left_hyphen_min()<<6)+right_hyphen_min())<<16)+curlang;
 	t = getxtoken();
 	if (t.cmd != spacer)
 		backinput(t);

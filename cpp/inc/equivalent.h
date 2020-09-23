@@ -175,8 +175,9 @@ inline std::vector<MemoryNode> eqtb_int(dimen_base-int_base); // holds the curre
 		inline int tracing_online(void) { return int_par(tracing_online_code); }
 		inline int tracing_macros(void) { return int_par(tracing_macros_code); }
 		inline int& max_dead_cycles(void) { return int_par(max_dead_cycles_code); }
-		inline int left_hyphen_min(void) { return int_par(left_hyphen_min_code); }
-		inline int right_hyphen_min(void) { return int_par(right_hyphen_min_code); }
+		inline smallnumber normmin(int h) { return std::max(1, std::min(63, h)); }
+		inline int left_hyphen_min(void) { return normmin(int_par(left_hyphen_min_code)); }
+		inline int right_hyphen_min(void) { return normmin(int_par(right_hyphen_min_code)); }
 		inline int language(void) { return int_par(language_code); }
 		inline int& end_line_char(void) { return int_par(end_line_char_code); }
 			inline bool end_line_char_inactive() { return end_line_char() < 0 || end_line_char() > 255; }

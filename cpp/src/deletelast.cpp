@@ -19,7 +19,7 @@ void deletelast(Token t)
 				auto p = q;
 				if (q->type == disc_node) 
 				{
-					for (quarterword m = 1; m <= dynamic_cast<DiscNode*>(q)->replace_count; m++)
+					for (auto m = 0; m < dynamic_cast<DiscNode*>(q)->replace_count; m++)
 						next(p);
 					if (p == tail)
 						return;

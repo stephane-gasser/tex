@@ -80,3 +80,9 @@ scaled xovern(scaled x, int n)
 	return -((-x)/n);
 }
 
+int half(int x)
+{
+	if (x%2)
+		return (x+1)/2;
+	return x/2;
+}
