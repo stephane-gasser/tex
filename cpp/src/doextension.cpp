@@ -73,10 +73,7 @@ void doextension(Token t)
 				clang = scanint();
 				if (clang <= 0 || clang > 255)
 						clang = 0;
-				auto w = new LanguageWhatsitNode(clang);
-				w->what_lhm = left_hyphen_min();
-				w->what_rhm = right_hyphen_min();
-				tail_append(w);
+				tail_append(new LanguageWhatsitNode(clang));
 			}
 			break;
 		default: 

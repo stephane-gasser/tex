@@ -344,3 +344,27 @@ int CharNode::depth(void) { return fonts[font].char_depth(character); }
 int CharNode::height(void) { return fonts[font].char_height(character); }
 int CharNode::italic(void) { return fonts[font].char_italic(character); }
 
+LanguageWhatsitNode::LanguageWhatsitNode(ASCIIcode l) : WhatsitNode(language_node), what_lang(l), what_lhm(left_hyphen_min()), what_rhm(right_hyphen_min()) {}
+
+std::string CharNode::shortDisplay(void)
+{
+	std::string s;
+	if (font != fontinshortdisplay)
+	{
+		s += esc(fonts[font].name)+" ";
+		fontinshortdisplay = font;
+	}
+	s += char(character);
+	return s;
+}
+
+std::string GlueNode::shortDisplay(void) 
+{ 
+	if (glue_ptr != zero_glue)
+		return " "; 
+	return "";
+}
+
+std::string LigatureNode::shortDisplay(void) { return shortdisplay(lig_ptr); }
+std::string DiscNode::shortDisplay(void) { return shortdisplay(pre_break)+shortdisplay(post_break); }
+

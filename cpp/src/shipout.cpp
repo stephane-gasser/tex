@@ -45,58 +45,16 @@ static void vlistout(BoxNode *thisbox)
 		switch (p->type)
 		{
 			case char_node:
-				confusion("vlistout");
+			case whatsit_node:
+			case kern_node:
+				p->vlist(0);
 				break;
 			case hlist_node:
 			case vlist_node:
-			{
-				auto P = dynamic_cast<BoxNode*>(p);
-				if (P->list_ptr == nullptr)
-					curv += P->height+P->depth;
-				else
-				{
-					curv += P->height;
-					if (curv != dviv)
-					{
-						movement(curv-dviv, down1);
-						dviv = curv;
-					}
-					auto saveh = dvih;
-					auto savev = dviv;
-					curh = leftedge+P->shift_amount;
-					if (p->type == vlist_node)
-						vlistout(P);
-					else
-						hlistout(P);
-					dvih = saveh;
-					dviv = savev;
-					curv = savev+P->depth;
-					curh = leftedge;
-				}
+				p->vlist(leftedge);
 				break;
-			}
 			case rule_node:
-			{
-				auto P = dynamic_cast<RuleNode*>(p);
-				ruleht = P->height;
-				ruledp = P->depth;
-				rulewd = P->width;
-				if (is_running(rulewd))
-					rulewd = thisbox->width;
-				ruleht += ruledp;
-				curv += ruleht;
-				if (ruleht > 0 &&rulewd > 0)
-				{
-					synch_h();
-					synch_v();
-					dvi_out(put_rule);
-					dvifour(ruleht);
-					dvifour(rulewd);
-				}
-				break;
-			}
-			case whatsit_node:
-				outwhat(dynamic_cast<WhatsitNode*>(p));
+				p->vlist(thisbox->width);
 				break;
 			case glue_node:
 			{
@@ -121,9 +79,9 @@ static void vlistout(BoxNode *thisbox)
 				ruleht += curg;
 				if (pp->subtype >= a_leaders)
 				{
-					auto leaderbox = dynamic_cast<RuleNode*>(pp->leader_ptr);
-					if (leaderbox->type == rule_node)
+					if (pp->leader_ptr->type == rule_node)
 					{
+						auto leaderbox = dynamic_cast<RuleNode*>(pp->leader_ptr);
 						rulewd = leaderbox->width;
 						ruledp = 0;
 						if (is_running(rulewd))
@@ -140,8 +98,9 @@ static void vlistout(BoxNode *thisbox)
 						}
 						break;
 					}
+					auto leaderbox = dynamic_cast<BoxNode*>(pp->leader_ptr);
 					auto leaderht = leaderbox->height+leaderbox->depth;
-					if ((leaderht > 0) and (ruleht > 0))
+					if (leaderht > 0 && ruleht > 0)
 					{
 						ruleht += 10;
 						auto edge = curv+ruleht;
@@ -167,8 +126,7 @@ static void vlistout(BoxNode *thisbox)
 						}
 						while (curv+leaderht <= edge)
 						{
-							auto Leaderbox = dynamic_cast<BoxNode*>(leaderbox);
-							curh = leftedge+Leaderbox->shift_amount;
+							curh = leftedge+leaderbox->shift_amount;
 							synch_h();
 							auto saveh = dvih;
 							curv += leaderbox->height;
@@ -176,7 +134,7 @@ static void vlistout(BoxNode *thisbox)
 							auto savev = dviv;
 							auto outerdoingleaders = doingleaders;
 							doingleaders = true;
-							(leaderbox->type == vlist_node ? vlistout : hlistout)(Leaderbox);
+							(leaderbox->type == vlist_node ? vlistout : hlistout)(leaderbox);
 							doingleaders = outerdoingleaders;
 							dviv = savev;
 							dvih = saveh;
@@ -188,10 +146,7 @@ static void vlistout(BoxNode *thisbox)
 					}
 				}
 				curv += ruleht;
-				break;
 			}
-			case kern_node: 
-				curv += dynamic_cast<KernNode*>(p)->width;
 		}
 	prunemovements(saveloc);
 	if (curs > 0)
@@ -222,85 +177,29 @@ static void hlistout(BoxNode *thisbox)
 			{
 				synch_h();
 				synch_v();
-				auto P = dynamic_cast<CharNode*>(p);
 				for (; p->type == char_node; next(p))
-				{
-					auto f = P->font;
-					auto c = P->character;
-					if (f != dvif)
-					{
-						if (!fonts[f].used)
-						{
-							dvifontdef(f);
-							fonts[f].used = true;
-						}
-						if (f <= 64+font_base)
-							dvi_out(f-font_base-1+fnt_num_0);
-						else
-						{
-							dvi_out(fnt1);
-							dvi_out(f-font_base-1);
-						}
-						dvif = f;
-					}
-					;
-					if (c >= 128)
-						dvi_out(set1);
-					dvi_out(c);
-					curh += P->width();
-				}
+					p->hlist(0, 0, 0);
 				dvih = curh;
 				continue;
 			}
 			case hlist_node:
 			case vlist_node:
-			{
-				auto P = dynamic_cast<BoxNode*>(p);
-				if (P->list_ptr == nullptr)
-					curh += P->width;
-				else
-				{
-					auto saveh = dvih;
-					auto savev = dviv;
-					curv = baseline+P->shift_amount;
-					auto edge = curh;
-					(P->type == vlist_node ? vlistout : hlistout)(P);
-					dvih = saveh;
-					dviv = savev;
-					curh = edge+P->width;
-					curv = baseline;
-				}
+				p->hlist(baseline, 0, 0);
 				break;
-			}
 			case rule_node:
+				p->hlist(baseline, thisbox->height, thisbox->depth);
+				break;
+			case whatsit_node:
+			case kern_node:
+			case math_node: 
+				p->hlist(0, 0, 0);
+				break;
+			case ligature_node:
 			{
-				auto P = dynamic_cast<RuleNode*>(p);
-				ruleht = P->height;
-				ruledp = P->depth;
-				rulewd = P->width;
-				if (is_running(ruleht))
-					ruleht = thisbox->height;
-				if (is_running(ruledp))
-					ruledp = thisbox->depth;
-				ruleht += ruledp;
-				if (ruleht > 0 && rulewd > 0)
-				{
-					synch_h();
-					curv = baseline+ruledp;
-					synch_v();
-					dvi_out(set_rule);
-					dvifour(ruleht);
-					dvifour(rulewd);
-					curv = baseline;
-					dvih = dvih+rulewd;
-				}
-				curh = curh+rulewd;
-				next(p);
+				p->hlist(0, 0, 0);
+				p = lig_trick;
 				continue;
 			}
-			case whatsit_node:
-				outwhat(dynamic_cast<WhatsitNode*>(p));
-				break;
 			case glue_node:
 			{
 				auto P = dynamic_cast<GlueNode*>(p);
@@ -346,8 +245,7 @@ static void hlistout(BoxNode *thisbox)
 							dvih = dvih+rulewd;
 						}
 						curh = curh+rulewd;
-						next(p);
-						continue;
+						break;
 					}
 					scaled leaderwd = leaderbox->width;
 					if (leaderwd > 0 && rulewd > 0)
@@ -391,28 +289,11 @@ static void hlistout(BoxNode *thisbox)
 							curh = saveh+leaderwd+lx;
 						}
 						curh = edge-10;
-						next(p);
-						continue;
+						break;
 					}
 				}
 				curh = curh+rulewd;
-				next(p);
-				continue;
-			}
-			case kern_node:
-				curh += dynamic_cast<KernNode*>(p)->width;
 				break;
-			case math_node: 
-				curh += dynamic_cast<MathNode*>(p)->width;
-				break;
-			case ligature_node:
-			{
-				auto P = dynamic_cast<LigatureNode*>(p);
-				lig_trick->font = P->font;
-				lig_trick->character = P->character;
-				lig_trick->link = p->link;
-				p = lig_trick;
-				continue;
 			}
 		}
 		next(p);
@@ -512,3 +393,125 @@ void shipout(BoxNode *p)
 	std::cout << std::flush;
 	flushnodelist(p);
 }
+
+void BoxNode::vlist(scaled leftedge)
+{
+	if (list_ptr == nullptr)
+		curv += height+depth;
+	else
+	{
+		curv += height;
+		if (curv != dviv)
+		{
+			movement(curv-dviv, down1);
+			dviv = curv;
+		}
+		auto saveh = dvih;
+		auto savev = dviv;
+		curh = leftedge+shift_amount;
+		(type == vlist_node ? vlistout : hlistout)(this);
+		dvih = saveh;
+		dviv = savev;
+		curv = savev+depth;
+		curh = leftedge;
+	}
+}
+
+void RuleNode::vlist(scaled w)
+{
+	ruleht = height;
+	ruledp = depth;
+	rulewd = width;
+	if (is_running(rulewd))
+		rulewd = w;
+	ruleht += ruledp;
+	curv += ruleht;
+	if (ruleht > 0 &&rulewd > 0)
+	{
+		synch_h();
+		synch_v();
+		dvi_out(put_rule);
+		dvifour(ruleht);
+		dvifour(rulewd);
+	}
+}
+
+void WhatsitNode::vlist(scaled) { outwhat(this); }
+void WhatsitNode::hlist(scaled, scaled, scaled) { outwhat(this); }
+void KernNode::vlist(scaled) { curv += width; }
+void KernNode::hlist(scaled, scaled, scaled) { curh += width; }
+void MathNode::hlist(scaled, scaled, scaled) { curh += width; }
+
+void CharNode::hlist(scaled, scaled, scaled)
+{
+	if (font != dvif)
+	{
+		if (!fonts[font].used)
+		{
+			dvifontdef(font);
+			fonts[font].used = true;
+		}
+		if (font <= 64+font_base)
+			dvi_out(font-font_base-1+fnt_num_0);
+		else
+		{
+			dvi_out(fnt1);
+			dvi_out(font-font_base-1);
+		}
+		dvif = font;
+	}
+	if (character >= 128)
+		dvi_out(set1);
+	dvi_out(character);
+	curh += width();
+}
+
+void BoxNode::hlist(scaled baseline, scaled, scaled)
+{
+	if (list_ptr == nullptr)
+		curh += width;
+	else
+	{
+		auto saveh = dvih;
+		auto savev = dviv;
+		curv = baseline+shift_amount;
+		auto edge = curh;
+		(type == vlist_node ? vlistout : hlistout)(this);
+		dvih = saveh;
+		dviv = savev;
+		curh = edge+width;
+		curv = baseline;
+	}
+}
+
+void RuleNode::hlist(scaled baseline, scaled h, scaled d)
+{
+	ruleht = height;
+	ruledp = depth;
+	rulewd = width;
+	if (is_running(ruleht))
+		ruleht = h;
+	if (is_running(ruledp))
+		ruledp = d;
+	ruleht += ruledp;
+	if (ruleht > 0 && rulewd > 0)
+	{
+		synch_h();
+		curv = baseline+ruledp;
+		synch_v();
+		dvi_out(set_rule);
+		dvifour(ruleht);
+		dvifour(rulewd);
+		curv = baseline;
+		dvih = dvih+rulewd;
+	}
+	curh = curh+rulewd;
+}
+
+void LigatureNode::hlist(scaled, scaled, scaled)
+{
+	lig_trick->font = font;
+	lig_trick->character = character;
+	lig_trick->link = link;
+}
+

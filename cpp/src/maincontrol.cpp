@@ -3,7 +3,6 @@
 #include "equivalent.h" 
 #include "police.h"
 #include "cesure.h"
-#include "fixlanguage.h"
 #include "getnext.h"
 #include "fichier.h"
 #include "backinput.h"
@@ -433,13 +432,9 @@ Token maincontrol(void)
 				aftertoken = t = gettoken();
 				break;
 			case ANY_MODE(after_group):
-			{
 				t = gettoken();
-				auto tk = new TokenNode;
-				tk->token = t.tok;
-				saveforafter(tk);
+				saveforafter(new TokenNode(t.tok));
 				break;
-			}
 			case ANY_MODE(in_stream):
 				openorclosein(t.chr);
 				break;

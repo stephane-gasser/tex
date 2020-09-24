@@ -6,8 +6,19 @@
 #include "lecture.h"
 #include "getnext.h"
 #include "calcul.h"
-#include "fixlanguage.h"
 #include "erreur.h"
+
+static void fixlanguage(void)
+{
+	ASCIIcode l = language();
+	if (l <= 0 || l > 255)
+		l = 0;
+	if (l != clang)
+	{
+		clang = l;
+		tail_append(new LanguageWhatsitNode(l));
+	}
+}
 
 static void adjust_space_factor(halfword chr)
 {

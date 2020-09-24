@@ -39,10 +39,10 @@ static int mathsy(smallnumber p, smallnumber c) { return fonts[fam_fnt(2+c)].par
 
 int& fam_fnt(halfword p) { return eqtb_local[p+math_font_base-local_base].int_; }
 
-[[nodiscard]] static std::tuple<internalfontnumber, quarterword> fetch(NoadContent &a)
+static void fetch(NoadContent &a, internalfontnumber &curf, quarterword &curc)
 {
-	auto curc = a.character;
-	auto curf = fam_fnt(a.fam+cursize);
+	curc = a.character;
+	curf = fam_fnt(a.fam+cursize);
 	auto &ft = fonts[curf];
 	try
 	{
@@ -62,7 +62,6 @@ int& fam_fnt(halfword p) { return eqtb_local[p+math_font_base-local_base].int_; 
 		a.fam = 0;
 		a.character = 0;
 	}
-	return std::tuple(curf, curc);
 }
 
 static GlueSpec *mathglue(GlueSpec *g, scaled m)
@@ -195,14 +194,16 @@ void makefraction(FractionNoad *Q)
 
 void makemathaccent(AccentNoad *Q)
 {
-	auto [f, curc] = fetch(Q->accent_chr);
+	internalfontnumber f;
+	quarterword curc;
+	fetch(Q->accent_chr, f, curc);
 	if (char_exists(fonts[f].char_info(curc)))
 	{
 		auto c = curc;
 		scaled s = 0;
 		if (Q->nucleus.math_type == math_char)
 		{
-			std::tie(f, curc) = fetch(Q->nucleus);
+			fetch(Q->nucleus, f, curc);
 			auto &ft = fonts[f];
 				if (char_tag(ft.char_info(curc)) == lig_tag)
 			{
@@ -284,7 +285,9 @@ void makeord(Noad *Q)
 			if (p && p->type >= ord_noad && p->type <= punct_noad && p->nucleus.math_type == math_char && p->nucleus.fam == Q->nucleus.fam)
 			{
 				Q->nucleus.math_type = math_text_char;
-				auto [f, curc] = fetch(Q->nucleus);
+				internalfontnumber f;
+				quarterword curc;
+				fetch(Q->nucleus, f, curc);
 				auto &ft = fonts[f];
 				if (char_tag(ft.char_info(curc)) == lig_tag)
 				{
@@ -476,7 +479,9 @@ scaled makeop(Noad *Q)
 	scaled delta;
 	if (Q->nucleus.math_type == math_char)
 	{
-		auto [f, curc] = fetch(Q->nucleus);
+		internalfontnumber f;
+		quarterword curc;
+		fetch(Q->nucleus, f, curc);
 		auto &ft = fonts[f];
 		if (curstyle < text_style && char_tag(ft.char_info(curc)) == list_tag)
 		{
@@ -769,7 +774,7 @@ void mlisttohlist(void)
 		{
 			case math_char:
 			case math_text_char:
-				std::tie(f, curc) = fetch(Q->nucleus);
+				fetch(Q->nucleus, f, curc);
 				if (auto &ft = fonts[f]; char_exists(ft.char_info(curc)))
 				{
 					delta = ft.char_italic(curc);

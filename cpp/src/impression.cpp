@@ -206,9 +206,9 @@ std::string scs(halfword p)
 	return esc(eqtb_cs[p-hash_base].text);
 }
 
-static std::string asDelimiter(Delimiter p)
+std::string Delimiter::print(void)
 {
-	int a = (p.small_fam<<20)+(p.small_char<<12)+(p.large_fam<<8)+p.large_char;
+	int a = (small_fam<<20)+(small_char<<12)+(large_fam<<8)+large_char;
 	return a < 0 ? std::to_string(a) : hex(a);
 }
 
@@ -354,15 +354,10 @@ static std::string ruledimen(scaled d)
 	return asScaled(d);
 }
 
-std::string asScaled(scaled s)
-{
-	return std::to_string(double(s)/unity);
-}
+std::string asScaled(scaled s) { return std::to_string(double(s)/unity); }
 
 std::string asSpec(GlueSpec *p, const std::string &s = "")
 {
-/*	if (p < memmin || p >= lomemmax)
-		return "*";*/
 	return asScaled(p->width)+s+(p->stretch ? " plus "+glue(p->stretch, p->stretch_order, s) : "")+(p->shrink ? " minus "+glue(p->shrink, p->shrink_order, s) : "");
 }
 
@@ -371,28 +366,28 @@ static std::string shownodelist(LinkedNode*, const std::string &);
 static int depththreshold;
 
 //! Display a noad field.
-static std::string subsidiarydata(const NoadContent &p, char c, const std::string &symbol)
+std::string NoadContent::subsidiarydata(char c, const std::string &symbol)
 {
 	if (cur_length() >= depththreshold)
 	{
-		if (p.math_type)
+		if (math_type)
 			return " []";
 		return "";
 	}
 	std::ostringstream oss;
-	switch (p.math_type)
+	switch (math_type)
 	{
 		case math_char:
-			oss << "\n" << symbol << c << famandchar(p);
+			oss << "\n" << symbol << c << famandchar(*this);
 			break;
 		case sub_box: 
-			oss << shownodelist(p.info, symbol+c);
+			oss << shownodelist(info, symbol+c);
 			break;
 		case sub_mlist:
-			if (p.info == nullptr)
+			if (info == nullptr)
 				oss << "\n" << symbol << c << "{}";
 			else
-				oss << shownodelist(p.info, symbol+c);
+				oss << shownodelist(info, symbol+c);
 	}
 	return oss.str();
 }
@@ -493,51 +488,13 @@ std::string shortdisplay(LinkedNode *p)
 {
 	std::ostringstream oss;
 	for (; p; next(p))
-		switch (p->type)
-		{
-			case char_node:
-			{
-				auto P = dynamic_cast<CharNode*>(p);
-				if (P->font != fontinshortdisplay)
-				{
-					oss << esc(fonts[P->font].name) << " ";
-					fontinshortdisplay = P->font;
-				}
-				oss << P->character;
-				break;
-			}
-			case hlist_node:
-			case vlist_node:
-			case ins_node:
-			case whatsit_node:
-			case mark_node:
-			case adjust_node:
-			case unset_node: 
-				oss << "[]";
-				break;
-			case rule_node: 
-				oss << "|";
-				break;
-			case glue_node: 
-				if (dynamic_cast<GlueNode*>(p)->glue_ptr != /*zero_glue*/nullptr)
-					oss << " ";
-				break;
-			case math_node:
-				oss << "$";
-				break;
-			case ligature_node:
-				oss << shortdisplay(dynamic_cast<LigatureNode*>(p)->lig_ptr);
-				break;
-			case disc_node:
-			{
-				auto d = dynamic_cast<DiscNode*>(p);
-				oss << shortdisplay(d->pre_break) << shortdisplay(d->post_break);
-				LinkedNode *q = d;
-				for (int n = d->replace_count; n > 0; n--)
-					if (q->link)
-						next(q);
-			}
-		}
+	{
+		oss << p->shortDisplay();
+		if (p->type == disc_node)
+			for (int n = dynamic_cast<DiscNode*>(p)->replace_count; n > 0; n--)
+				if (p->link)
+					next(p);
+	}
 	return oss.str();
 }
 
@@ -547,7 +504,7 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 {
 	if (cur_length() > depththreshold)
 	{
-		if (p > 0)
+		if (p)
 			return " []";
 		return "";
 	}
@@ -559,321 +516,7 @@ static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 		n++;
 		if (n > breadthmax)
 			return oss.str()+"etc.";
-		switch (p->type)
-		{
-			case char_node:
-				oss << fontandchar(dynamic_cast<CharNode*>(p));
-				break;
-			case hlist_node:
-			case vlist_node:
-			case unset_node:
-			{
-				auto P = dynamic_cast<BoxNode*>(p);
-				if (p->type == hlist_node)
-					oss << esc("hbox");
-				else 
-					if (p->type == vlist_node)
-						oss << esc("vbox");
-					else
-						oss << esc("unsetbox");
-				oss << "(" << asScaled(P->height) << "+" << asScaled(P->depth) << ")x" << asScaled(P->width);
-				if (p->type == unset_node)
-				{
-					auto P = dynamic_cast<UnsetNode*>(p);
-					if (P->span_count)
-						oss << " (" << P->span_count+1 << " columns)";
-					if (P->glue_stretch)
-						oss << ", stretch " << glue(P->glue_stretch, P->glue_order);
-					if (P->glue_shrink)
-						oss << ", shrink " << glue(P->glue_shrink, P->glue_sign);
-				}
-				else
-				{
-					auto g = P->glue_set;
-					if (g && P->glue_sign)
-					{
-						oss << ", glue set ";
-						if (P->glue_sign == shrinking)
-							oss << "- ";
-						if (!std::isfinite(P->glue_set))
-							oss << "?.?";
-						else 
-							if (abs(g) > 20000.0)
-							{
-								if (g > 0.0)
-									oss << ">";
-								else
-									oss << "< -";
-								oss << glue(20000*unity, P->glue_order);
-							}
-							else
-								oss << glue(round(unity*g), P->glue_order);
-					}
-					if (P->shift_amount)
-						oss << ", shifted " << asScaled(P->shift_amount);
-				}
-				shownodelist(P->list_ptr, symbol+".");
-				break;
-			}
-			case rule_node:
-			{
-				auto P = dynamic_cast<RuleNode*>(p);
-				oss << esc("rule") << "(" << ruledimen(P->width) << "+" << ruledimen(P->depth) << ")x" << ruledimen(P->width);
-				break;
-			}
-			case ins_node:
-			{
-				auto P = dynamic_cast<InsNode*>(p);
-				oss << esc("insert") << P->subtype << ", natural size " << asScaled(P->height) << "; split("
-					<< asSpec(P->split_top_ptr) << "," << asScaled(P->depth) << "); float cost " << P->float_cost
-					<< shownodelist(P->ins_ptr, symbol+".");
-				break;
-			}
-			case whatsit_node:
-				switch (dynamic_cast<WhatsitNode*>(p)->subtype)
-				{
-					case open_node:
-					{
-						auto P = dynamic_cast<OpenWriteWhatsitNode*>(p);
-						oss << writewhatsit("openout", P) << "=" << asFilename(P->open_name, P->open_area, P->open_ext);
-						break;
-					}
-					case write_node:
-					{
-						auto P = dynamic_cast<NotOpenWriteWhatsitNode*>(p);
-						oss << writewhatsit("write", P) << asMark(P->write_tokens);
-						break;
-					}
-					case close_node: 
-						oss << writewhatsit("closeout", dynamic_cast<WriteWhatsitNode*>(p));
-						break;
-					case special_node:
-					{
-						auto P = dynamic_cast<NotOpenWriteWhatsitNode*>(p);
-						oss << esc("special") << asMark(P->write_tokens);
-						break;
-					}
-					case language_node:
-					{
-						auto P = dynamic_cast<LanguageWhatsitNode*>(p);
-						oss << esc("setlanguage") << P->what_lang << " (hyphenmin" << P->what_lhm << "," << P->what_rhm << ")";
-						break;
-					}
-					default: 
-						oss << "whatsit?";
-				}
-				break;
-			case glue_node:
-			{
-				auto pp = dynamic_cast<GlueNode*>(p);
-				if (pp->subtype >= a_leaders)
-					oss << esc(pp->subtype == c_leaders ? "cleaders" : pp->subtype == x_leaders ? "xleaders" : "leaders ") 
-						<< asSpec(pp->glue_ptr) << shownodelist(pp->leader_ptr, symbol+".");
-				else
-				{
-					oss << esc("glue");
-					int n = pp->subtype-1;
-					auto &glueNames = primName[assign_glue];
-					auto &muGlueNames = primName[assign_mu_glue];
-					switch (n+1)
-					{
-						case normal:
-							oss << esc("glue") << " " << asSpec(pp->glue_ptr);
-							break;
-						case cond_math_glue:
-							oss << esc("glue") << "(" << esc("nonscript") << ")";
-							break;
-						case mu_glue:
-							oss << esc("glue") << "(" << esc("mskip") << ") " << asSpec(pp->glue_ptr, "mu");
-							break;
-						default:
-							if (glueNames.find(n) != glueNames.end())
-							{
-								oss << esc("glue") << "(" << esc(glueNames[n]) << ") " << asSpec(pp->glue_ptr);
-								break;
-							}
-							if (muGlueNames.find(n) != muGlueNames.end())
-							{
-								oss << esc("glue") << "(" << esc(muGlueNames[n]) << ") " << asSpec(pp->glue_ptr);
-								break;
-							}
-							oss << esc("glue") << "(" << "[unknown glue parameter!]" << ") " << asSpec(pp->glue_ptr);
-					}
-				}
-				break;
-			}
-			case kern_node:
-			{
-				auto P = dynamic_cast<KernNode*>(p);
-				switch(P->subtype)
-				{
-					case normal:
-						oss << esc("kern") << asScaled(P->width);
-						break;
-					case mu_glue:
-						oss << esc("mkern") << asScaled(P->width) << "mu";
-						break;
-					case acc_kern:
-						oss << esc("kern") << " " << asScaled(P->width) << " (for accent)";
-						break;
-					default:
-						oss << esc("kern") << " " << asScaled(P->width);
-				}
-				break;
-			}
-			case math_node:
-			{
-				auto P = dynamic_cast<MathNode*>(p);
-				oss << esc("math") << (P->subtype == before ? "on" : "off");
-				if (P->width)
-					oss << ", surrounded " << asScaled(P->width);
-				break;
-			}
-			case ligature_node:
-			{
-				auto P = dynamic_cast<LigatureNode*>(p);
-				oss << fontandchar(P) << " (ligature ";
-				if (P->subtype > 1) // implicit left boundary
-					oss << "|";
-				fontinshortdisplay = P->font;
-				oss << shortdisplay(P);
-				if (P->subtype%2) // implicit right boundary
-					oss << "|";
-				oss << ")";
-				break;
-			}
-			case penalty_node:
-				oss << esc("penalty ") << dynamic_cast<PenaltyNode*>(p)->penalty;
-				break;
-			case disc_node:
-			{
-				auto d = dynamic_cast<DiscNode*>(p);
-				oss << esc("discretionary");
-				if (d->replace_count > 0)
-					oss << " replacing " << d->replace_count;
-				oss << shownodelist(d->pre_break, symbol+".");
-				oss << shownodelist(d->post_break, symbol+"|");
-				break;
-			}
-			case mark_node:
-			{
-				oss << esc("mark") << asMark(dynamic_cast<MarkNode*>(p)->mark_ptr);
-				break;
-			}
-			case adjust_node:
-			{
-				oss << esc("vadjust") << shownodelist(dynamic_cast<AdjustNode*>(p)->adjust_ptr, symbol+".");
-				break;
-			}
-			case style_node:
-			{
-				auto P = dynamic_cast<StyleNode*>(p);
-				if (primName[math_style].find(P->subtype) != primName[math_style].end())
-					oss << esc(primName[math_style][P->subtype]);
-				else
-					oss << "Unknown style!";
-				break;
-			}
-			case choice_node:
-			{
-				auto P = dynamic_cast<ChoiceNode*>(p);
-				oss << esc("mathchoice");
-				oss << shownodelist(P->display_mlist, symbol+"D");
-				oss << shownodelist(P->text_mlist, symbol+"T");
-				oss << shownodelist(P->script_mlist, symbol+"S");
-				oss << shownodelist(P->script_script_mlist, symbol+"s");
-				break;
-			}
-			case ord_noad:
-			case op_noad:
-			case bin_noad:
-			case rel_noad:
-			case open_noad:
-			case close_noad:
-			case punct_noad:
-			case inner_noad:
-			case radical_noad:
-			case over_noad:
-			case under_noad:
-			case vcenter_noad:
-			case accent_noad:
-			case left_noad:
-			case right_noad:
-			{
-				switch (p->type)
-				{
-					case ord_noad: 
-						oss << esc("mathord");
-						break;
-					case op_noad: 
-						oss << esc("mathop");
-						break;
-					case bin_noad: 
-						oss << esc("mathbin");
-						break;
-					case rel_noad: 
-						oss << esc("mathrel");
-						break;
-					case open_noad: 
-						oss << esc("mathopen");
-						break;
-					case close_noad: 
-						oss << esc("mathclose");
-						break;
-					case punct_noad: 
-						oss << esc("mathpunct");
-						break;
-					case inner_noad: 
-						oss << esc("mathinner");
-						break;
-					case over_noad: 
-						oss << esc("overline");
-						break;
-					case under_noad: 
-						oss << esc("underline");
-						break;
-					case vcenter_noad: 
-						oss << esc("vcenter");
-						break;
-					case radical_noad:
-						oss << esc("radical") << asDelimiter(dynamic_cast<RadicalNoad*>(p)->left_delimiter);
-						break;
-					case accent_noad:
-						oss << esc("accent") << famandchar(dynamic_cast<AccentNoad*>(p)->accent_chr);
-						break;
-					case left_noad:
-						oss << esc("left") << asDelimiter(dynamic_cast<LeftRightNoad*>(p)->delimiter);
-						break;
-					case right_noad:
-						oss << esc("right") << asDelimiter(dynamic_cast<LeftRightNoad*>(p)->delimiter);
-				}
-				auto P = dynamic_cast<Noad*>(p);
-				if (P->subtype)
-					if (P->subtype == limits)
-						oss << esc("limits");
-					else
-						oss << esc("nolimits");
-				if (p->type < left_noad)
-					oss << subsidiarydata(P->nucleus, '.', symbol);
-				oss << subsidiarydata(P->supscr, '^', symbol);
-				oss << subsidiarydata(P->subscr, '_', symbol);
-				break;
-			}
-			case fraction_noad:
-			{
-				auto P = dynamic_cast<FractionNoad*>(p);
-				oss << esc("fraction, thickness ") << (P->thickness == default_code ? "= default": asScaled(P->thickness));
-				if (P->left_delimiter.small_fam || P->left_delimiter.small_char || P->left_delimiter.large_fam || P->left_delimiter.large_char)
-					oss << ", left-delimiter " << asDelimiter(P->left_delimiter);
-				if (P->right_delimiter.small_fam || P->right_delimiter.small_char || P->right_delimiter.large_fam || P->right_delimiter.large_char)
-					oss << ", right-delimiter " << asDelimiter(P->right_delimiter);
-				oss << subsidiarydata(P->numerator, '\\', symbol);
-				oss << subsidiarydata(P->denominator, '/', symbol);
-				break;
-			}
-			default: 
-				oss << "Unknown node type!";
-		}
+		oss << p->showNode(symbol);
 	}
 	return oss.str();
 }
@@ -1176,4 +819,315 @@ void showwhatever(Token t)
 			error("", "This isn't an error message; I'm just \\showing something.\nType `I\\show...' to show more (e.g., \\show\\cs,\n\\showthe\\count10, \\showbox255, \\showlists).");
 		else
 			error("", "This isn't an error message; I'm just \\showing something.\nType `I\\show...' to show more (e.g., \\show\\cs,\n\\showthe\\count10, \\showbox255, \\showlists).\nAnd type `I\\tracingonline=1\\show...' to show boxes and\nlists on your terminal as well as in the transcript file.");
+}
+
+std::string CharNode::showNode(const std::string &) { return fontandchar(this); }
+
+std::string BoxNode::showNode(const std::string &symbol)
+{
+	std::ostringstream oss;
+	oss << esc(type == hlist_node ? "hbox" : "vbox");
+	oss << "(" << asScaled(height) << "+" << asScaled(depth) << ")x" << asScaled(width);
+	auto g = glue_set;
+	if (g && glue_sign)
+	{
+		oss << ", glue set ";
+		if (glue_sign == shrinking)
+			oss << "- ";
+		if (!std::isfinite(glue_set))
+			oss << "?.?";
+		else 
+			if (abs(glue_set) > 20000.0)
+			{
+				if (glue_set > 0.0)
+					oss << ">";
+				else
+					oss << "< -";
+				oss << glue(20000*unity, glue_order);
+			}
+			else
+				oss << glue(round(unity*glue_set), glue_order);
+	}
+	if (shift_amount)
+		oss << ", shifted " << asScaled(shift_amount);
+	oss << shownodelist(list_ptr, symbol+".");
+	return oss.str();
+}
+
+std::string UnsetNode::showNode(const std::string &symbol)
+{
+	std::ostringstream oss;
+	oss << esc("unsetbox");
+	oss << "(" << asScaled(height) << "+" << asScaled(depth) << ")x" << asScaled(width);
+	if (span_count)
+		oss << " (" << span_count+1 << " columns)";
+	if (glue_stretch)
+		oss << ", stretch " << glue(glue_stretch, glue_order);
+	if (glue_shrink)
+		oss << ", shrink " << glue(glue_shrink, glue_sign);
+	oss << shownodelist(list_ptr, symbol+".");
+	return oss.str();
+}
+
+std::string RuleNode::showNode(const std::string &)
+{
+	std::ostringstream oss;
+	oss << esc("rule") << "(" << ruledimen(width) << "+" << ruledimen(depth) << ")x" << ruledimen(width);
+	return oss.str();
+}
+
+std::string InsNode::showNode(const std::string &symbol)
+{
+	std::ostringstream oss;
+	oss << esc("insert") << subtype << ", natural size " << asScaled(height) << "; split("
+		<< asSpec(split_top_ptr) << "," << asScaled(depth) << "); float cost " << float_cost
+		<< shownodelist(ins_ptr, symbol+".");
+	return oss.str();
+}
+
+std::string WhatsitNode::showNode(const std::string &) { return "whatsit?"; }
+std::string WriteWhatsitNode::showNode(const std::string &) { return writewhatsit("closeout", this); }
+
+std::string OpenWriteWhatsitNode::showNode(const std::string &)
+{
+	std::ostringstream oss;
+	oss << writewhatsit("openout", this) << "=" << asFilename(open_name, open_area, open_ext);
+	return oss.str();
+}
+
+std::string NotOpenWriteWhatsitNode::showNode(const std::string &)
+{
+	std::ostringstream oss;
+	if (subtype == special_node)
+		oss << esc("special");
+	else
+		oss << writewhatsit("write", this);
+	oss << asMark(write_tokens);
+	return oss.str();
+}
+
+std::string LanguageWhatsitNode::showNode(const std::string &)
+{
+	std::ostringstream oss;
+	oss << esc("setlanguage") << what_lang << " (hyphenmin" << what_lhm << "," << what_rhm << ")";
+	return oss.str();
+}
+
+std::string GlueNode::showNode(const std::string &symbol)
+{
+	std::ostringstream oss;
+	if (subtype >= a_leaders)
+		oss << esc(subtype == c_leaders ? "cleaders" : subtype == x_leaders ? "xleaders" : "leaders ") 
+			<< asSpec(glue_ptr) << shownodelist(leader_ptr, symbol+".");
+	else
+	{
+		oss << esc("glue");
+		auto &glueNames = primName[assign_glue];
+		auto &muGlueNames = primName[assign_mu_glue];
+		switch (subtype)
+		{
+			case normal:
+				oss << esc("glue") << " " << asSpec(glue_ptr);
+				break;
+			case cond_math_glue:
+				oss << esc("glue") << "(" << esc("nonscript") << ")";
+				break;
+			case mu_glue:
+				oss << esc("glue") << "(" << esc("mskip") << ") " << asSpec(glue_ptr, "mu");
+				break;
+			default:
+				int n = subtype-1;
+				if (glueNames.find(n) != glueNames.end())
+				{
+					oss << esc("glue") << "(" << esc(glueNames[n]) << ") " << asSpec(glue_ptr);
+					break;
+				}
+				if (muGlueNames.find(n) != muGlueNames.end())
+				{
+					oss << esc("glue") << "(" << esc(muGlueNames[n]) << ") " << asSpec(glue_ptr);
+					break;
+				}
+				oss << esc("glue") << "(" << "[unknown glue parameter!]" << ") " << asSpec(glue_ptr);
+		}
+	}
+	return oss.str();
+}
+
+std::string KernNode::showNode(const std::string &)
+{
+	switch(subtype)
+	{
+		case normal:
+			return esc("kern")+asScaled(width);
+		case mu_glue:
+			return esc("mkern")+asScaled(width)+"mu";
+		case acc_kern:
+			return esc("kern ")+asScaled(width)+" (for accent)";
+		default:
+			return esc("kern ")+asScaled(width);
+	}
+}
+
+std::string MathNode::showNode(const std::string &)
+{
+	std::ostringstream oss;
+	oss << esc("math") << (subtype == before ? "on" : "off");
+	if (width)
+		oss << ", surrounded " << asScaled(width);
+	return oss.str();
+}
+
+std::string LigatureNode::showNode(const std::string &)
+{
+	std::ostringstream oss;
+	oss << fontandchar(this) << " (ligature ";
+	if (subtype > 1) // implicit left boundary
+		oss << "|";
+	fontinshortdisplay = font;
+	oss << shortDisplay();
+	if (subtype%2) // implicit right boundary
+		oss << "|";
+	oss << ")";
+	return oss.str();
+}
+
+std::string PenaltyNode::showNode(const std::string &) { return esc("penalty ")+std::to_string(penalty); }
+
+std::string DiscNode::showNode(const std::string &symbol)
+{
+	std::ostringstream oss;
+	oss << esc("discretionary");
+	if (replace_count > 0)
+		oss << " replacing " << replace_count;
+	oss << shownodelist(pre_break, symbol+".");
+	oss << shownodelist(post_break, symbol+"|");
+	return oss.str();
+}
+
+std::string MarkNode::showNode(const std::string &) { return esc("mark")+asMark(mark_ptr); }
+std::string AdjustNode::showNode(const std::string &symbol) { return esc("vadjust")+shownodelist(adjust_ptr, symbol+"."); }
+
+std::string StyleNode::showNode(const std::string &)
+{
+	if (primName[math_style].find(subtype) != primName[math_style].end())
+		return esc(primName[math_style][subtype]);
+	return "Unknown style!";
+}
+
+std::string ChoiceNode::showNode(const std::string &symbol)
+{
+	std::ostringstream oss;
+	oss << esc("mathchoice");
+	oss << shownodelist(display_mlist, symbol+"D");
+	oss << shownodelist(text_mlist, symbol+"T");
+	oss << shownodelist(script_mlist, symbol+"S");
+	oss << shownodelist(script_script_mlist, symbol+"s");
+	return oss.str();
+}
+
+std::string FractionNoad::showNode(const std::string &symbol)
+{
+	std::ostringstream oss;
+	oss << esc("fraction, thickness ") << (thickness == default_code ? "= default": asScaled(thickness));
+	if (left_delimiter.small_fam || left_delimiter.small_char || left_delimiter.large_fam || left_delimiter.large_char)
+		oss << ", left-delimiter " << left_delimiter.print();
+	if (right_delimiter.small_fam || right_delimiter.small_char || right_delimiter.large_fam || right_delimiter.large_char)
+		oss << ", right-delimiter " << right_delimiter.print();
+	oss << numerator.subsidiarydata('\\', symbol);
+	oss << denominator.subsidiarydata('/', symbol);
+	return oss.str();
+}
+
+std::string Noad::showNode(const std::string &symbol)
+{
+	std::ostringstream oss;
+	switch (type)
+	{
+		case ord_noad: 
+			oss << esc("mathord");
+			break;
+		case op_noad: 
+			oss << esc("mathop");
+			break;
+		case bin_noad: 
+			oss << esc("mathbin");
+			break;
+		case rel_noad: 
+			oss << esc("mathrel");
+			break;
+		case open_noad: 
+			oss << esc("mathopen");
+			break;
+		case close_noad: 
+			oss << esc("mathclose");
+			break;
+		case punct_noad: 
+			oss << esc("mathpunct");
+			break;
+		case inner_noad: 
+			oss << esc("mathinner");
+			break;
+		case over_noad: 
+			oss << esc("overline");
+			break;
+		case under_noad: 
+			oss << esc("underline");
+			break;
+		case vcenter_noad: 
+			oss << esc("vcenter");
+			break;
+	}
+	if (subtype)
+		if (subtype == limits)
+			oss << esc("limits");
+		else
+			oss << esc("nolimits");
+	oss << nucleus.subsidiarydata( '.', symbol);
+	oss << supscr.subsidiarydata('^', symbol);
+	oss << subscr.subsidiarydata('_', symbol);
+	return oss.str();
+}
+
+std::string RadicalNoad::showNode(const std::string &symbol)
+{
+	std::ostringstream oss;
+	oss << esc("radical") << left_delimiter.print();
+	if (subtype)
+		if (subtype == limits)
+			oss << esc("limits");
+		else
+			oss << esc("nolimits");
+	oss << nucleus.subsidiarydata( '.', symbol);
+	oss << supscr.subsidiarydata('^', symbol);
+	oss << subscr.subsidiarydata('_', symbol);
+	return oss.str();
+}
+
+std::string AccentNoad::showNode(const std::string &symbol)
+{
+	std::ostringstream oss;
+	oss << esc("accent") << famandchar(accent_chr);
+	if (subtype)
+		if (subtype == limits)
+			oss << esc("limits");
+		else
+			oss << esc("nolimits");
+	oss << nucleus.subsidiarydata( '.', symbol);
+	oss << supscr.subsidiarydata('^', symbol);
+	oss << subscr.subsidiarydata('_', symbol);
+	return oss.str();
+}
+
+std::string LeftRightNoad::showNode(const std::string &symbol)
+{
+	std::ostringstream oss;
+	oss << esc(type == left_noad ? "left" : "right") << delimiter.print();
+	if (subtype)
+		if (subtype == limits)
+			oss << esc("limits");
+		else
+			oss << esc("nolimits");
+	oss << supscr.subsidiarydata('^', symbol);
+	oss << subscr.subsidiarydata('_', symbol);
+	return oss.str();
 }

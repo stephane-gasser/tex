@@ -67,6 +67,10 @@ class LinkedNode : public AnyNode
 			confusion("copying"); 
 			return nullptr; 
 		}
+		virtual std::string shortDisplay(void) { return ""; }
+		virtual std::string showNode(const std::string &) { return "Unknown node type!"; }
+		virtual void vlist(scaled) {}
+		virtual void hlist(scaled, scaled, scaled) {}
 };
 
 class ShapeNode : public LinkedNode
@@ -87,6 +91,10 @@ class CharNode : public LinkedNode
 		int depth(void);
 		int height(void);
 		int italic(void);
+		virtual std::string shortDisplay(void);
+		virtual std::string showNode(const std::string &);
+		virtual void vlist(scaled) { confusion("vlistout"); }
+		virtual void hlist(scaled, scaled, scaled);
 };
 
 class TokenNode : public LinkedNode
@@ -109,6 +117,9 @@ class LigatureNode : public CharNode
 		LigatureNode(quarterword c) : subtype(0), CharNode(null_font, c), lig_ptr(nullptr) { type = ligature_node; } //newligitem
 		~LigatureNode(void) { flushnodelist(lig_ptr); }
 		virtual LigatureNode* copy(void) { return new LigatureNode(font, character, dynamic_cast<CharNode*>(copynodelist(lig_ptr))); }
+		virtual std::string shortDisplay(void);
+		std::string showNode(const std::string &);
+		virtual void hlist(scaled, scaled, scaled);
 };
 
 
@@ -127,6 +138,7 @@ class ChoiceNode : public LinkedNode
 			flushnodelist(script_mlist); 
 			flushnodelist(script_script_mlist);
 		}
+		std::string showNode(const std::string &);
 };
 
 class DiscNode : public LinkedNode
@@ -144,6 +156,8 @@ class DiscNode : public LinkedNode
 			d->post_break = copynodelist(post_break); 
 			return d; 
 		}
+		virtual std::string shortDisplay(void);
+		std::string showNode(const std::string &);
 };
 
 class KernNode : public LinkedNode
@@ -154,6 +168,9 @@ class KernNode : public LinkedNode
 		KernNode(scaled w, quarterword s = 0) : width(w), subtype(s) { type = kern_node; }
 		virtual KernNode *copy(void) { return new KernNode(width, subtype); }
 		void mathkern(scaled);
+		std::string showNode(const std::string &);
+		virtual void vlist(scaled);
+		virtual void hlist(scaled, scaled, scaled);
 };
 
 class GlueSpec : public AnyNode
@@ -188,6 +205,8 @@ class InsNode : public LinkedNode
 		InsNode(void) { type = ins_node; }
 		~InsNode(void) { flushnodelist(ins_ptr); deleteglueref(split_top_ptr); }
 		virtual InsNode *copy(void) { auto i = new InsNode; i->height = height; i->depth = depth; i->split_top_ptr = split_top_ptr; i->float_cost = float_cost; split_top_ptr->glue_ref_count++; i->ins_ptr = copynodelist(ins_ptr); return i; }
+		virtual std::string shortDisplay(void) { return "[]"; }
+		virtual std::string showNode(const std::string &);
 };
 
 extern TokenNode *defref;
@@ -201,6 +220,8 @@ class MarkNode : public LinkedNode
 		MarkNode(void) { type = mark_node; }
 		~MarkNode(void) { deletetokenref(mark_ptr); }
 		virtual MarkNode *copy(void) { auto m = new MarkNode; m->mark_ptr = mark_ptr; mark_ptr->token_ref_count++; return m; }
+		virtual std::string shortDisplay(void) { return "[]"; }
+		std::string showNode(const std::string &);
 };
 
 class AdjustNode : public LinkedNode
@@ -210,6 +231,8 @@ class AdjustNode : public LinkedNode
 		AdjustNode(void) { type = adjust_node; }
 		~AdjustNode(void) { flushnodelist(adjust_ptr); }
 		virtual AdjustNode *copy(void) { auto a = new AdjustNode; a->adjust_ptr = dynamic_cast<TokenNode*>(copynodelist(adjust_ptr)); return a; }
+		virtual std::string shortDisplay(void) { return "[]"; }
+		std::string showNode(const std::string &);
 };
 
 class PageInsNode : public LinkedNode
@@ -236,6 +259,8 @@ class GlueNode : public LinkedNode
 		GlueNode(smallnumber n) : subtype(n+1) { type = glue_node; glue_ptr = glue_par(n); glue_ptr->glue_ref_count++; }
 		~GlueNode(void) { deleteglueref(glue_ptr); flushnodelist(leader_ptr); }
 		virtual GlueNode *copy(void) { auto g = new GlueNode(glue_ptr); g->leader_ptr = copynodelist(leader_ptr); return g; }
+		virtual std::string shortDisplay(void);
+		std::string showNode(const std::string &);
 };
 
 class PenaltyNode : public LinkedNode
@@ -244,6 +269,7 @@ class PenaltyNode : public LinkedNode
 		int penalty;
 		PenaltyNode(int p = 0) : penalty(p) { type = penalty_node; } 
 		virtual PenaltyNode *copy(void) { return new PenaltyNode(penalty); }
+		std::string showNode(const std::string &);
 };
 
 class RuleNode : public LinkedNode
@@ -256,6 +282,10 @@ class RuleNode : public LinkedNode
 		RuleNode(void) { type = rule_node; }
 		RuleNode(scaled t) : depth(0), height(t) { type = rule_node; }
 		virtual RuleNode *copy(void) { auto r = new RuleNode; r->width = width; r->depth = depth; r->height = height; return r; }
+		virtual std::string shortDisplay(void) { return "|"; }
+		virtual std::string showNode(const std::string &);
+		virtual void vlist(scaled);
+		virtual void hlist(scaled, scaled, scaled);
 };
 
 class BoxNode : public RuleNode
@@ -269,6 +299,10 @@ class BoxNode : public RuleNode
 		BoxNode(void) { type = hlist_node; subtype = 0; width = depth = height = 0; } 
 		~BoxNode(void) { flushnodelist(list_ptr); }
 		virtual BoxNode *copy(void) { auto r = new BoxNode; r->width = width; r->depth = depth; r->height = height; r->glue_set = glue_set; r->glue_sign = glue_sign; r->glue_order = glue_order; r->list_ptr = copynodelist(list_ptr); r->shift_amount = shift_amount; return r; }
+		virtual std::string shortDisplay(void) { return "[]"; }
+		virtual std::string showNode(const std::string &);
+		virtual void vlist(scaled);
+		virtual void hlist(scaled, scaled, scaled);
 };
 
 class UnsetNode : public BoxNode
@@ -280,6 +314,7 @@ class UnsetNode : public BoxNode
 		scaled glue_stretch;
 		UnsetNode(void) : BoxNode() { type = unset_node; span_count = 0; } 
 		virtual UnsetNode *copy(void) { auto r = new UnsetNode; r->width = width; r->depth = depth; r->height = height; r->glue_shrink = glue_shrink; r->glue_sign = glue_sign; r->glue_order = glue_order; r->list_ptr = copynodelist(list_ptr); r->glue_stretch = glue_stretch; return r; }
+		virtual std::string showNode(const std::string &);
 };
 
 class StyleNode : public LinkedNode
@@ -287,6 +322,7 @@ class StyleNode : public LinkedNode
 	public:
 		quarterword subtype;
 		StyleNode(smallnumber s) : subtype(s) { type = style_node; }
+		std::string showNode(const std::string &);
 };
 
 inline BoxNode *justbox;
@@ -299,6 +335,9 @@ class MathNode : public LinkedNode
 		int width;
 		MathNode(scaled w, smallnumber s) : subtype(s), width(w) { type = math_node; }
 		virtual MathNode *copy(void) { return new MathNode(width, subtype); }
+		virtual std::string shortDisplay(void) { return "$"; }
+		std::string showNode(const std::string &);
+		virtual void hlist(scaled, scaled, scaled);
 };
 
 class WhatsitNode : public LinkedNode
@@ -308,6 +347,10 @@ class WhatsitNode : public LinkedNode
 		WhatsitNode(smallnumber s) : subtype(s) { type = whatsit_node; }
 		~WhatsitNode(void) { if (subtype > language_node) confusion("ext3"); }
 		virtual WhatsitNode *copy(void) { confusion("ext2"); return nullptr; }
+		virtual std::string shortDisplay(void) { return "[]"; }
+		virtual std::string showNode(const std::string &);
+		virtual void vlist(scaled);
+		virtual void hlist(scaled, scaled, scaled);
 };
 
 class WriteWhatsitNode : public WhatsitNode
@@ -315,6 +358,7 @@ class WriteWhatsitNode : public WhatsitNode
 	public:
 		halfword write_stream; //!< stream number (0 to 17)
 		WriteWhatsitNode(smallnumber s) : WhatsitNode(s) {}
+		virtual std::string showNode(const std::string &);
 };
 
 class OpenWriteWhatsitNode : public WriteWhatsitNode
@@ -325,6 +369,7 @@ class OpenWriteWhatsitNode : public WriteWhatsitNode
 		std::string open_ext; //!< string number of file extension for \a open_name
 		OpenWriteWhatsitNode(void) : WriteWhatsitNode(open_node) {}
 		virtual OpenWriteWhatsitNode *copy(void) { auto w = new OpenWriteWhatsitNode; w->write_stream = write_stream; w->open_name = open_name; w->open_area = open_area; w->open_ext = open_ext; return w; }
+		virtual std::string showNode(const std::string &);
 };
 
 class NotOpenWriteWhatsitNode : public WriteWhatsitNode
@@ -334,6 +379,7 @@ class NotOpenWriteWhatsitNode : public WriteWhatsitNode
 		NotOpenWriteWhatsitNode(smallnumber s) : WriteWhatsitNode(s) {}
 		~NotOpenWriteWhatsitNode(void) { deletetokenref(write_tokens); }
 		virtual NotOpenWriteWhatsitNode *copy(void) { auto w = new NotOpenWriteWhatsitNode(subtype); w->write_stream = write_stream; w->write_tokens = write_tokens; write_tokens->token_ref_count++; return w; }
+		virtual std::string showNode(const std::string &);
 };
 
 class LanguageWhatsitNode : public WhatsitNode
@@ -342,8 +388,9 @@ class LanguageWhatsitNode : public WhatsitNode
 		halfword what_lang; //!< language number, in the range 0..255
 		quarterword what_lhm; //!< minimum left fragment, in the range 1..63
 		quarterword what_rhm; //!< minimum right fragment, in the range 1..63
-		LanguageWhatsitNode(ASCIIcode l) : WhatsitNode(language_node), what_lang(l) {}
+		LanguageWhatsitNode(ASCIIcode);
 		virtual LanguageWhatsitNode *copy(void) { auto l = new LanguageWhatsitNode(what_lang); l->what_lhm = what_lhm; l->what_rhm = what_rhm; return l; }
+		virtual std::string showNode(const std::string &);
 };
 
 class NoadContent : public AnyNode
@@ -355,6 +402,7 @@ class NoadContent : public AnyNode
 		quarterword fam = 0;
 		~NoadContent(void) { if (math_type >= sub_box) flushnodelist(info); }
 		bool operator == (const NoadContent &n) { return std::tuple(math_type, info, character, fam) == std::tuple(n.math_type, n.info, n.character, n.fam); }
+		std::string subsidiarydata(char c, const std::string &symbol);
 };
 
 class Noad : public LinkedNode
@@ -366,6 +414,7 @@ class Noad : public LinkedNode
 		NoadContent supscr;
 		Noad(void) : subtype(normal) { type = ord_noad; }
 		Noad(quarterword t) : subtype(normal) { type = t; }
+		virtual std::string showNode(const std::string &);
 };
 
 class Delimiter
@@ -375,6 +424,7 @@ class Delimiter
 		quarterword small_char; //|character| for ``small'' delimiter
 		quarterword large_fam; //|fam| for ``large'' delimiter
 		quarterword large_char; //|character| for ``large'' delimiter
+		std::string print(void);
 };
 
 class RadicalNoad : public Noad
@@ -382,6 +432,7 @@ class RadicalNoad : public Noad
 	public:
 		Delimiter left_delimiter;
 		RadicalNoad(Token);
+		virtual std::string showNode(const std::string &);
 };
 
 class FractionNoad : public Noad
@@ -393,6 +444,7 @@ class FractionNoad : public Noad
 		NoadContent &denominator = subscr; // |denominator| field in a fraction noad
 		scaled thickness; //!< \a thickness field in a fraction noad
 		FractionNoad(halfword, Token);
+		virtual std::string showNode(const std::string &);
 };
 
 class LeftRightNoad : public Noad
@@ -400,6 +452,7 @@ class LeftRightNoad : public Noad
 	public:
 		Delimiter delimiter; //!< \a delimiter field in left and right noads
 		LeftRightNoad(Token);
+		virtual std::string showNode(const std::string &);
 };
 
 class AccentNoad : public Noad
@@ -407,6 +460,7 @@ class AccentNoad : public Noad
 	public:
 		NoadContent accent_chr; //!< the \a accent_chr field of an accent noad
 		AccentNoad(void);
+		virtual std::string showNode(const std::string &);
 };
 
 //inline int &incompleat_noad = aux.int_; //!< the name of \a aux in math mode

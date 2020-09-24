@@ -21,220 +21,222 @@
 #include "runaway.h"
 #include "sauvegarde.h"
 #include "buildpage.h"
-#include <tuple>
 
-[[nodiscard]] static std::tuple<int, int, AnyNode*> scansomethinginternal(smallnumber level, bool negative, Token t)
+static void scansomethinginternal(smallnumber level, bool negative, Token t, int &val, int &lev, GlueSpec* &gl, TokenNode* &tk)
 {
 	// lev/level : tok_val/dimen_val/glue_val/ident_val/int_val/mu_val
-	int val, lev;
-	AnyNode *gl;
 	auto m = t.chr;
-	switch (t.cmd)
+	try
 	{
-		case def_code:
-			lev = int_val;
-			if (m == math_code_base)
-				val = math_code(scancharnum());
-			else 
-				if (m < math_code_base)
-					val = eqtb_local[m+scancharnum()-local_base].int_;
-				else
-					val = eqtb_int[m+scancharnum()-int_base].int_;
-			break;
-		case toks_register:
-		case assign_toks:
-			if (level != tok_val)
-			{
-				backerror(t, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
-				val = 0;
-				lev = dimen_val;
+		switch (t.cmd)
+		{
+			// int_val
+			case def_code:
+				lev = int_val;
+				val = m == math_code_base ? math_code(scancharnum()) : m < math_code_base ? eqtb_local[m+scancharnum()-local_base].int_ : eqtb_int[m+scancharnum()-int_base].int_;
 				break;
-			}
-			if (t.cmd == toks_register)
-				m = toks_base+scaneightbitint();
-			gl = eqtb_local[m-local_base].index;
-			lev = tok_val;
-			break;
-		case def_family:
-		case set_font:
-		case def_font:
-			if (level != tok_val)
-			{
-				backerror(t, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
-				val = 0;
-				lev = dimen_val;
-				break;
-			}
-			backinput(t);
-			val = scanfontident()+frozen_null_font;
-			lev = ident_val;
-			break;
-		case assign_int:
-			val = eqtb_int[m-int_base].int_;
-			lev = int_val;
-			break;
-		case assign_dimen:
-			val = eqtb_dimen[m-dimen_base].int_;
-			lev = dimen_val;
-			break;
-		case assign_glue:
-			gl = dynamic_cast<GlueSpec*>(eqtb_glue[m-glue_base].index); 
-			lev = glue_val;
-			break;
-		case assign_mu_glue:
-			gl = dynamic_cast<GlueSpec*>(eqtb_glue[m-glue_base].index);
-			lev = mu_val;
-			break;
-		case set_aux:
-			if (abs(mode) != m)
-			{
-				error("Improper "+cmdchr(t), "You can refer to \\spacefactor only in horizontal mode;\nyou can refer to \\prevdepth only in vertical mode; and\nneither of these is meaningful inside \\write. So\nI'm forgetting what you said and using zero instead.");
-				val = 0;
-				lev = level == tok_val ? int_val : dimen_val;
-				break;
-			}
-			if (m == vmode)
-			{
-				val = prev_depth;
-				lev = dimen_val;
-				break;
-			}
-			val = space_factor;
-			lev = int_val;
-			break;
-		case set_prev_graf:
-			val = 0;
-			if (mode)
-			{
-				nest.back() = curlist;
-				int p;
-				for (p = nest.size()-1; abs(nest[p].modefield) != vmode; p--);
-				val = nest[p].pgfield;
-			}
-			lev = int_val;
-			break;
-		case set_page_int:
-			val =  m == 0 ? deadcycles : insertpenalties;
-			lev = int_val;
-			break;
-		case set_page_dimen:
-			if (pagecontents == 0 && !outputactive)
-				val = m == 0 ? max_dimen : 0;
-			else
-				val = pagesofar[m];
-			lev = dimen_val;
-			break;
-		case set_shape:
-			val = 0;
-			if (par_shape_ptr())
-				val = par_shape_ptr()->values.size()/2;
-			lev = int_val;
-			break;
-		case set_box_dimen:
-			val = scaneightbitint();
-			val = 0;
-			if (box(val))
-				switch (m)
-				{
-					case width_offset:
-						val = box(val)->width;
-						break;
-					case height_offset:
-						val = box(val)->height;
-						break;
-					case depth_offset:
-						val = box(val)->depth;
-				}
-			lev = dimen_val;
-		break;
-		case char_given:
-		case math_given:
-			val = t.chr;
-			lev = int_val;
-			break;
-		case assign_font_dimen:
-			val = findfontdimen(false);
-			Font::info.back().int_ = 0;
-			val = Font::info[val].int_;
-			lev = dimen_val;
-			break;
-		case assign_font_int:
-			val = m == 0 ? fonts[scanfontident()].hyphenchar: fonts[scanfontident()].skewchar;
-			lev = int_val;
-			break;
-		case register_:
-			switch (m)
-			{
-				case int_val: 
-					val = count(scaneightbitint());
-					break;
-				case dimen_val: 
-					val = dimen(scaneightbitint());
-					break;
-				case glue_val: 
-					gl = skip(scaneightbitint());
-					break;
-				case mu_val: 
-					gl = mu_skip(scaneightbitint());
-			}
-			lev = m;
-			break;
-		case last_item:
-			if (t.chr > glue_val)
-			{
-				val = t.chr == input_line_no_code ? line : lastbadness;
+			case assign_int:
+				val = eqtb_int[m-int_base].int_;
 				lev = int_val;
 				break;
-			}
-			if (t.chr == glue_val)
-			{
-				gl = zero_glue;
-				lev = glue_val;
-			}
-			else
-			{
+			case set_prev_graf:
 				val = 0;
-				lev = t.chr;
-			}
-			if (tail->type != char_node && mode)
-				switch (t.chr)
+				if (mode)
 				{
-					case int_val:
-						if (tail->type == penalty_node)
-							val = dynamic_cast<PenaltyNode*>(tail)->penalty;
+					nest.back() = curlist;
+					int p;
+					for (p = nest.size()-1; abs(nest[p].modefield) != vmode; p--);
+					val = nest[p].pgfield;
+				}
+				lev = int_val;
+				break;
+			case set_page_int:
+				val =  m == 0 ? deadcycles : insertpenalties;
+				lev = int_val;
+				break;
+			case set_shape:
+				val = 0;
+				if (par_shape_ptr())
+					val = par_shape_ptr()->values.size()/2;
+				lev = int_val;
+				break;
+			case char_given:
+			case math_given:
+				val = t.chr;
+				lev = int_val;
+				break;
+			case assign_font_int:
+				val = m == 0 ? fonts[scanfontident()].hyphenchar: fonts[scanfontident()].skewchar;
+				lev = int_val;
+				break;
+			// tok_val
+			case toks_register:
+			case assign_toks:
+				if (level != tok_val)
+					throw 1;
+				if (t.cmd == toks_register)
+					m = toks_base+scaneightbitint();
+				tk = dynamic_cast<TokenNode*>(eqtb_local[m-local_base].index);
+				lev = tok_val;
+				break;
+			// ident_val
+			case def_family:
+			case set_font:
+			case def_font:
+				if (level != tok_val)
+					throw 1;
+				backinput(t);
+				val = scanfontident()+frozen_null_font;
+				lev = ident_val;
+				break;
+			// dimen_val
+			case assign_dimen:
+				val = eqtb_dimen[m-dimen_base].int_;
+				lev = dimen_val;
+				break;
+			case set_page_dimen:
+				if (pagecontents == 0 && !outputactive)
+					val = m == 0 ? max_dimen : 0;
+				else
+					val = pagesofar[m];
+				lev = dimen_val;
+				break;
+			case set_box_dimen:
+				val = scaneightbitint();
+				val = 0;
+				if (box(val))
+					switch (m)
+					{
+						case width_offset:
+							val = box(val)->width;
+							break;
+						case height_offset:
+							val = box(val)->height;
+							break;
+						case depth_offset:
+							val = box(val)->depth;
+					}
+				lev = dimen_val;
+			break;
+			case assign_font_dimen:
+				val = findfontdimen(false);
+				Font::info.back().int_ = 0;
+				val = Font::info[val].int_;
+				lev = dimen_val;
+				break;
+			// glue_val
+			case assign_glue:
+				gl = dynamic_cast<GlueSpec*>(eqtb_glue[m-glue_base].index); 
+				lev = glue_val;
+				break;
+			// mu_val
+			case assign_mu_glue:
+				gl = dynamic_cast<GlueSpec*>(eqtb_glue[m-glue_base].index);
+				lev = mu_val;
+				break;
+			// mixed
+			case set_aux:
+				if (abs(mode) != m)
+					throw 2;
+				if (m == vmode)
+				{
+					val = prev_depth;
+					lev = dimen_val;
+					break;
+				}
+				val = space_factor;
+				lev = int_val;
+				break;
+			case register_:
+				switch (m)
+				{
+					case int_val: 
+						val = count(scaneightbitint());
 						break;
 					case dimen_val: 
-						if (tail->type == kern_node)
-							val = dynamic_cast<KernNode*>(tail)->width;
+						val = dimen(scaneightbitint());
 						break;
 					case glue_val: 
-						if (tail->type == glue_node)
-						{
-							auto Tail = dynamic_cast<GlueNode*>(tail);
-							gl = Tail->glue_ptr;
-							if (Tail->subtype == mu_glue)
-								lev = mu_val;
-						}
+						gl = skip(scaneightbitint());
+						break;
+					case mu_val: 
+						gl = mu_skip(scaneightbitint());
 				}
-			else 
-				if (mode == vmode && tail == head)
+				lev = m;
+				break;
+			case last_item:
+				if (t.chr > glue_val)
+				{
+					val = t.chr == input_line_no_code ? line : lastbadness;
+					lev = int_val;
+					break;
+				}
+				if (t.chr == glue_val)
+				{
+					gl = zero_glue;
+					lev = glue_val;
+				}
+				else
+				{
+					val = 0;
+					lev = t.chr;
+				}
+				if (tail->type != char_node && mode)
 					switch (t.chr)
 					{
-						case int_val: 
-							val = lastpenalty;
+						case int_val: // \lastpenalty
+							if (tail->type == penalty_node) 
+								val = dynamic_cast<PenaltyNode*>(tail)->penalty;
 							break;
-						case dimen_val: 
-							val = lastkern;
+						case dimen_val: // \lastkern
+							if (tail->type == kern_node) 
+								val = dynamic_cast<KernNode*>(tail)->width;
 							break;
-						case glue_val: 
-							if (lastglue)
-								gl = lastglue;
+						case glue_val: // \lastskip
+							if (tail->type == glue_node)
+							{
+								auto Tail = dynamic_cast<GlueNode*>(tail);
+								gl = Tail->glue_ptr;
+								if (Tail->subtype == mu_glue)
+									lev = mu_val;
+							}
 					}
-			break;
-		default:
-			error("You can't use `"+cmdchr(t)+"' after "+esc("the"), "I'm forgetting what you said and using zero instead.");
-			val = 0;
-			lev = level == tok_val ? int_val : dimen_val;
+				else 
+					if (mode == vmode && tail == head)
+						switch (t.chr)
+						{
+							case int_val: 
+								val = lastpenalty;
+								break;
+							case dimen_val: 
+								val = lastkern;
+								break;
+							case glue_val: 
+								if (lastglue)
+									gl = lastglue;
+						}
+				break;
+			default:
+				throw 0;
+		}
+	}
+	catch (int e)
+	{
+		switch (e)
+		{
+			case 1:
+				backerror(t, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
+				lev = dimen_val;
+				break;
+			case 2:
+				error("Improper "+cmdchr(t), "You can refer to \\spacefactor only in horizontal mode;\nyou can refer to \\prevdepth only in vertical mode; and\nneither of these is meaningful inside \\write. So\nI'm forgetting what you said and using zero instead.");
+				lev = level == tok_val ? int_val : dimen_val;
+				break;
+			default:
+				error("You can't use `"+cmdchr(t)+"' after "+esc("the"), "I'm forgetting what you said and using zero instead.");
+				lev = level == tok_val ? int_val : dimen_val;
+		}
+		val = 0;
 	}
 	while (lev > level)
 	{
@@ -248,7 +250,7 @@
 	if (negative)
 		if (lev >= glue_val)
 		{
-			auto G = new GlueSpec(dynamic_cast<GlueSpec*>(gl));
+			auto G = new GlueSpec(gl);
 			G->width = -G->width;
 			G->stretch = -G->stretch;
 			G->shrink = -G->shrink;
@@ -258,8 +260,7 @@
 			val = -val;
 	else 
 		if (lev >= glue_val && lev <= mu_val)
-			dynamic_cast<GlueSpec*>(gl)->glue_ref_count++;
-	return {val, lev, gl};
+			gl->glue_ref_count++;
 }
 
 
@@ -368,9 +369,8 @@ static scaled rounddecimals(smallnumber k)
 			if (t.cmd >= min_internal && t.cmd <= max_internal)
 				if (mu)
 				{
-					AnyNode *g;
-					std::tie(val, lev, g) = scansomethinginternal(mu_val, false, t);
-					gl = dynamic_cast<GlueSpec*>(g);
+					TokenNode *dummy;
+					scansomethinginternal(mu_val, false, t, val, lev, gl, dummy);
 					if (lev >= glue_val)
 					{
 						auto v = gl->width;
@@ -384,9 +384,8 @@ static scaled rounddecimals(smallnumber k)
 				}
 				else
 				{
-					AnyNode *g;
-					std::tie(val, lev, g) = scansomethinginternal(dimen_val, false, t);
-					gl = dynamic_cast<GlueSpec*>(g);
+					TokenNode *dummy;
+					scansomethinginternal(dimen_val, false, t, val, lev, gl, dummy);
 					if (lev == dimen_val)
 						break;
 				}
@@ -454,9 +453,8 @@ static scaled rounddecimals(smallnumber k)
 		{
 			if (mu)
 			{
-				AnyNode *g;
-				std::tie(val, lev, g) = scansomethinginternal(mu_val, false, t);
-				gl = dynamic_cast<GlueSpec*>(g);
+				TokenNode *dummy;
+				scansomethinginternal(mu_val, false, t, val, lev,  gl, dummy);
 				if (lev >= glue_val)
 				{
 					auto v = gl->width;
@@ -468,8 +466,8 @@ static scaled rounddecimals(smallnumber k)
 			}
 			else
 			{
-				AnyNode *g;
-				std::tie(val, lev, g) = scansomethinginternal(dimen_val, false, t);
+				TokenNode *dummy;
+				scansomethinginternal(dimen_val, false, t, val, lev, gl, dummy);
 			}
 			auto v = val;
 			val = nx_plus_y(saveval, v, xnoverd(v, f, unity));
@@ -668,9 +666,9 @@ int scanfifteenbitint(void)
 	return null_font;
 }
 
-[[nodiscard]] GlueSpec* scanglue(smallnumber level)
+[[nodiscard]] GlueSpec* scanglue(smallnumber level) //glue_val/mu_val
 {
-	bool mu = level == 3;
+	bool mu = level == mu_val;
 	bool negative = false;
 	Token t;
 	do
@@ -686,9 +684,8 @@ int scanfifteenbitint(void)
 	GlueSpec *gl;
 	if (t.cmd >= min_internal && t.cmd <= max_internal)
 	{
-		AnyNode *g;
-		std::tie(val, lev, g) = scansomethinginternal(level, negative, t);
-		gl = dynamic_cast<GlueSpec*>(g);
+		TokenNode *dummy;
+		scansomethinginternal(level, negative, t, val, lev, gl, dummy);
 		if (lev >= glue_val)
 		{
 			if (lev != level)
@@ -774,9 +771,8 @@ int scanfifteenbitint(void)
 	else 
 		if (t.cmd >= min_internal && t.cmd <= max_internal)
 		{
-			AnyNode *g;
-			std::tie(val, lev, g) = scansomethinginternal(int_val, false, t);
-			gl = dynamic_cast<GlueSpec*>(g);
+			TokenNode *dummy;
+			scansomethinginternal(int_val, false, t, val, lev, gl, dummy);
 		}
 		else
 		{
@@ -1423,7 +1419,10 @@ void convtoks(Token t)
 TokenNode* thetoks(void)
 {
 	auto t = getxtoken();
-	auto [val, lev, gl] = scansomethinginternal(tok_val, false, t);
+	int val, lev;
+	GlueSpec *gl;
+	TokenNode *tk;
+	scansomethinginternal(tok_val, false, t, val, lev, gl, tk);
 	switch (lev)
 	{
 		case ident_val:
@@ -1437,8 +1436,8 @@ TokenNode* thetoks(void)
 		{
 			auto p = dynamic_cast<TokenNode*>(temp_head);
 			p->link = nullptr;
-			if (gl)
-				for (auto r = dynamic_cast<TokenNode*>(dynamic_cast<TokenNode*>(gl)->link); r; next(r))
+			if (tk)
+				for (auto r = dynamic_cast<TokenNode*>(tk->link); r; next(r))
 					store_new_token(p, r->token);
 			return p;
 		}
@@ -1448,13 +1447,13 @@ TokenNode* thetoks(void)
 			return strtoks(asScaled(val)+"pt");
 		case glue_val:
 		{
-			deleteglueref(dynamic_cast<GlueSpec*>(gl));
-			return strtoks(asSpec(dynamic_cast<GlueSpec*>(gl), "pt"));
+			deleteglueref(gl);
+			return strtoks(asSpec(gl, "pt"));
 		}
 		default: // mu_val
 		{
-			deleteglueref(dynamic_cast<GlueSpec*>(gl));
-			return strtoks(asSpec(dynamic_cast<GlueSpec*>(gl), "mu"));
+			deleteglueref(gl);
+			return strtoks(asSpec(gl, "mu"));
 		}
 	}
 }
