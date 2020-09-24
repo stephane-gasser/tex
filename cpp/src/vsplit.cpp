@@ -19,11 +19,11 @@ BoxNode* vsplit(eightbits n, scaled h)
 		split_bot_mark = nullptr;
 	}
 	if (v == nullptr)
-		return 0;
+		return nullptr;
 	if (v->type != vlist_node)
 	{
 		error(esc("vsplit")+" needs a "+esc("vbox"), "The box you are trying to split is an \\hbox.\nI can't split such a box, so I'll leave it alone.");
-		return 0;
+		return nullptr;
 	}
 	auto q = vertbreak(v->list_ptr, h, split_max_depth());
 	auto p = v->list_ptr;
@@ -32,7 +32,7 @@ BoxNode* vsplit(eightbits n, scaled h)
 	else
 		for (; p; next(p))
 		{
-			if (p->type == mark_node) //4
+			if (p->type == mark_node)
 			{
 				auto P = dynamic_cast<MarkNode*>(p);
 				if (split_first_mark == nullptr)

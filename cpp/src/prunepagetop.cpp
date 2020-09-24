@@ -5,7 +5,7 @@
 LinkedNode* prunepagetop(LinkedNode *p)
 {
 	LinkedNode *prevp = temp_head;
-	temp_head->link = p;
+	temp_head->link = p; // prevp -> p
 	while (p)
 		switch (p->type)
 		{
@@ -14,31 +14,26 @@ LinkedNode* prunepagetop(LinkedNode *p)
 			case rule_node:
 			{
 				auto q = newskipparam(split_top_skip_code);
-				auto P = dynamic_cast<RuleNode*>(p);
-				prevp->link = q;
-				q->link = p;
-				if (q->glue_ptr->width > P->height)
+				prevp->link = q; 
+				q->link = p; // prevp -> q -> p
+				if (auto P = dynamic_cast<RuleNode*>(p); q->glue_ptr->width > P->height)
 					q->glue_ptr->width -= P->height;
 				else
 					q->glue_ptr->width = 0;
-				p = nullptr;
-				break;
+				return temp_head->link;
 			}
 			case whatsit_node:
 			case mark_node:
 			case ins_node:
-				prevp = p;
-				next(p);
+				next(prevp);
+				next(p); // prevp -> p
 				break;
 			case glue_node:
 			case kern_node:
 			case penalty_node:
 			{
-				auto q = p;
-				next(p);
-				q->link = nullptr;
-				prevp->link = p;
-				flushnodelist(q);
+				removeNodeAtStart(p);
+				prevp->link = p; // prevp -> p
 				break;
 			}
 			default: 

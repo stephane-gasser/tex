@@ -58,7 +58,7 @@ void fireup(LinkedNode *c)
 		}
 	}
 	hold_head->link = nullptr;
-	auto q = hold_head;
+	LinkedNode *q = hold_head;
 	auto prevp = page_head;
 	auto p = page_head->link;
 	for (; p != bestpagebreak; prevp = p, next(p))

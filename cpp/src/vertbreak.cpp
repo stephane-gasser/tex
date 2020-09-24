@@ -28,34 +28,28 @@ LinkedNode *vertbreak(LinkedNode *p, scaled h, scaled d)
 		else
 			switch (p->type)
 			{
-				case hlist_node: //0
-				case vlist_node: //1
-				case rule_node: //2
-				{
-					auto P = dynamic_cast<RuleNode*>(p);
-					cur_height += prevdp+P->height;
-					prevdp = P->depth;
+				case hlist_node:
+				case vlist_node:
+				case rule_node: 
+					cur_height += prevdp+p->getHeight();
+					prevdp = p->getDepth();
 					break;
-				}
-				case whatsit_node: //8
+				case whatsit_node:
 					break;
-				case glue_node:  //10
+				case glue_node:
 					if (precedes_break(prevp))
 						pi = 0;
 					break;
-				case kern_node: //11
-					if (p->link == nullptr)
-						t = penalty_node; //12
-					else
-						t = p->link->type;
-					if (t == glue_node) //10
+				case kern_node:
+					t = p->link == nullptr ? penalty_node : p->link->type;
+					if (t == glue_node)
 						pi = 0;
 					break;
-				case penalty_node: //12
-					pi = dynamic_cast<PenaltyNode*>(p)->penalty;
+				case penalty_node:
+					pi = p->getPenalty();
 					break;
-				case mark_node: //4
-				case ins_node: //3
+				case mark_node:
+				case ins_node:
 					break;
 				default: 
 					confusion("vertbreak");
@@ -81,7 +75,7 @@ LinkedNode *vertbreak(LinkedNode *p, scaled h, scaled d)
 		if (p->type == kern_node)
 		{
 			q = p;
-			cur_height += prevdp+dynamic_cast<KernNode*>(q)->width;
+			cur_height += prevdp+q->getWidth();
 			prevdp = 0;
 		}
 		if (p->type == glue_node)

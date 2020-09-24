@@ -40,7 +40,7 @@ void Initialize(void)
 	page_ins_head->link = page_ins_head;
 	page_head = new GlueNode(zero_glue);
 	temp_head = new TokenNode;
-	hold_head = new LinkedNode;
+	hold_head = new TokenNode;
 	adjust_head = new LinkedNode;
 	null_list = new LinkedNode;
 	lig_trick = new CharNode(null_font, 0);

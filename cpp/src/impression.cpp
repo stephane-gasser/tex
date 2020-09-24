@@ -232,9 +232,7 @@ std::string asFilename(const std::string &n, const std::string &a, const std::st
 
 static std::string fontandchar(CharNode *p)
 {
-/*	if (p > memend)
-		return esc("CLOBBERED.");*/
-	if (&p->font == nullptr)
+	if (p->font == 0)
 		return "*"+esc("FONT")+" "+char(p->character);
 	return esc(fonts[p->font].name)+esc("FONT")+" "+char(p->character);
 }
@@ -356,9 +354,9 @@ static std::string ruledimen(scaled d)
 
 std::string asScaled(scaled s) { return std::to_string(double(s)/unity); }
 
-std::string asSpec(GlueSpec *p, const std::string &s = "")
+std::string GlueSpec::print(const std::string &s)
 {
-	return asScaled(p->width)+s+(p->stretch ? " plus "+glue(p->stretch, p->stretch_order, s) : "")+(p->shrink ? " minus "+glue(p->shrink, p->shrink_order, s) : "");
+	return asScaled(width)+s+(stretch ? " plus "+glue(stretch, stretch_order, s) : "")+(shrink ? " minus "+glue(shrink, shrink_order, s) : "");
 }
 
 static std::string shownodelist(LinkedNode*, const std::string &);
@@ -880,7 +878,7 @@ std::string InsNode::showNode(const std::string &symbol)
 {
 	std::ostringstream oss;
 	oss << esc("insert") << subtype << ", natural size " << asScaled(height) << "; split("
-		<< asSpec(split_top_ptr) << "," << asScaled(depth) << "); float cost " << float_cost
+		<< split_top_ptr->print() << "," << asScaled(depth) << "); float cost " << float_cost
 		<< shownodelist(ins_ptr, symbol+".");
 	return oss.str();
 }
@@ -918,7 +916,7 @@ std::string GlueNode::showNode(const std::string &symbol)
 	std::ostringstream oss;
 	if (subtype >= a_leaders)
 		oss << esc(subtype == c_leaders ? "cleaders" : subtype == x_leaders ? "xleaders" : "leaders ") 
-			<< asSpec(glue_ptr) << shownodelist(leader_ptr, symbol+".");
+			<< glue_ptr->print() << shownodelist(leader_ptr, symbol+".");
 	else
 	{
 		oss << esc("glue");
@@ -927,27 +925,27 @@ std::string GlueNode::showNode(const std::string &symbol)
 		switch (subtype)
 		{
 			case normal:
-				oss << esc("glue") << " " << asSpec(glue_ptr);
+				oss << esc("glue") << " " << glue_ptr->print();
 				break;
 			case cond_math_glue:
 				oss << esc("glue") << "(" << esc("nonscript") << ")";
 				break;
 			case mu_glue:
-				oss << esc("glue") << "(" << esc("mskip") << ") " << asSpec(glue_ptr, "mu");
+				oss << esc("glue") << "(" << esc("mskip") << ") " << glue_ptr->print("mu");
 				break;
 			default:
 				int n = subtype-1;
 				if (glueNames.find(n) != glueNames.end())
 				{
-					oss << esc("glue") << "(" << esc(glueNames[n]) << ") " << asSpec(glue_ptr);
+					oss << esc("glue") << "(" << esc(glueNames[n]) << ") " << glue_ptr->print();
 					break;
 				}
 				if (muGlueNames.find(n) != muGlueNames.end())
 				{
-					oss << esc("glue") << "(" << esc(muGlueNames[n]) << ") " << asSpec(glue_ptr);
+					oss << esc("glue") << "(" << esc(muGlueNames[n]) << ") " << glue_ptr->print();
 					break;
 				}
-				oss << esc("glue") << "(" << "[unknown glue parameter!]" << ") " << asSpec(glue_ptr);
+				oss << esc("glue") << "(" << "[unknown glue parameter!]" << ") " << glue_ptr->print();
 		}
 	}
 	return oss.str();

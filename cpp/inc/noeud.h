@@ -71,6 +71,11 @@ class LinkedNode : public AnyNode
 		virtual std::string showNode(const std::string &) { return "Unknown node type!"; }
 		virtual void vlist(scaled) {}
 		virtual void hlist(scaled, scaled, scaled) {}
+		virtual scaled getHeight(void) { return 0; }
+		virtual scaled getDepth(void) { return 0; }
+		virtual scaled getWidth(void) { return 0; }
+		virtual int getPenalty(void) { return 0; }
+		virtual void setWidth(scaled) {}
 };
 
 class ShapeNode : public LinkedNode
@@ -91,6 +96,7 @@ class CharNode : public LinkedNode
 		int depth(void);
 		int height(void);
 		int italic(void);
+		virtual scaled getWidth(void) { return width(); }
 		virtual std::string shortDisplay(void);
 		virtual std::string showNode(const std::string &);
 		virtual void vlist(scaled) { confusion("vlistout"); }
@@ -171,6 +177,8 @@ class KernNode : public LinkedNode
 		std::string showNode(const std::string &);
 		virtual void vlist(scaled);
 		virtual void hlist(scaled, scaled, scaled);
+		virtual scaled getWidth(void) { return width; }
+		virtual void setWidth(scaled w) { width = w; }
 };
 
 class GlueSpec : public AnyNode
@@ -189,6 +197,7 @@ class GlueSpec : public AnyNode
 			shrink_order = p->shrink_order; 
 			glue_ref_count = 0; 
 		}
+		std::string print(const std::string & = "");
 };
 
 void deleteglueref(GlueSpec *);
@@ -270,6 +279,7 @@ class PenaltyNode : public LinkedNode
 		PenaltyNode(int p = 0) : penalty(p) { type = penalty_node; } 
 		virtual PenaltyNode *copy(void) { return new PenaltyNode(penalty); }
 		std::string showNode(const std::string &);
+		virtual int getPenalty(void) { return penalty; }
 };
 
 class RuleNode : public LinkedNode
@@ -286,6 +296,9 @@ class RuleNode : public LinkedNode
 		virtual std::string showNode(const std::string &);
 		virtual void vlist(scaled);
 		virtual void hlist(scaled, scaled, scaled);
+		virtual scaled getHeight(void) { return height; }
+		virtual scaled getWidth(void) { return width; }
+		virtual scaled getDepth(void) { return depth; }
 };
 
 class BoxNode : public RuleNode
@@ -338,6 +351,8 @@ class MathNode : public LinkedNode
 		virtual std::string shortDisplay(void) { return "$"; }
 		std::string showNode(const std::string &);
 		virtual void hlist(scaled, scaled, scaled);
+		virtual scaled getWidth(void) { return width; }
+		virtual void setWidth(scaled w) { width = w; }
 };
 
 class WhatsitNode : public LinkedNode
@@ -478,7 +493,7 @@ inline PageInsNode *page_ins_head = nullptr; //!< list of insertion data for cur
 inline LinkedNode *contrib_head = nullptr; //!< vlist of items not yet on current page
 inline LinkedNode *page_head = nullptr; //!< vlist for current page
 inline TokenNode *temp_head = nullptr; //!< head of a temporary list of some kind
-inline LinkedNode *hold_head = nullptr; //!< head of a temporary list of another kind
+inline TokenNode *hold_head = nullptr; //!< head of a temporary list of another kind
 inline LinkedNode *adjust_head = nullptr; //!< head of adjustment list returned by \a hpack
 inline LinkedNode * const align_head = dynamic_cast<LinkedNode*>(&heads[8]); //!< head of preamble list for alignments
 inline TokenNode * omit_template = nullptr; //!< a constant token list

@@ -1448,12 +1448,12 @@ TokenNode* thetoks(void)
 		case glue_val:
 		{
 			deleteglueref(gl);
-			return strtoks(asSpec(gl, "pt"));
+			return strtoks(gl->print("pt"));
 		}
 		default: // mu_val
 		{
 			deleteglueref(gl);
-			return strtoks(asSpec(gl, "mu"));
+			return strtoks(gl->print("mu"));
 		}
 	}
 }

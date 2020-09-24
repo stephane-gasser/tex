@@ -189,12 +189,12 @@ static void postlinebreak(int finalwidowpenalty)
 					break;
 				}
 				case math_node:
-					dynamic_cast<MathNode*>(q)->width = 0;
+					q->setWidth(0);
 					insertNodeAfter(q, new GlueNode(right_skip_code));
 					next(q);
 					break;
 				case kern_node:
-					dynamic_cast<KernNode*>(q)->width = 0;
+					q->setWidth(0);
 					insertNodeAfter(q, new GlueNode(right_skip_code));
 					next(q); 
 					break;
@@ -343,18 +343,12 @@ static void trybreak(int pi, smallnumber breaktype)
 								switch (v->type)
 								{
 									case char_node:
-										breakwidth[1] += -dynamic_cast<CharNode*>(v)->width();
-										break;
 									case ligature_node:
-										breakwidth[1] += -dynamic_cast<LigatureNode*>(v)->width();
-										break;
 									case hlist_node:
 									case vlist_node:
 									case rule_node:
-										breakwidth[1] -= dynamic_cast<RuleNode*>(v)->width;
-										break;
 									case kern_node: 
-										breakwidth[1] -= dynamic_cast<KernNode*>(v)->width;
+										breakwidth[1] -= v->getWidth();
 										break;
 									default: 
 										confusion("disc1");
@@ -364,18 +358,12 @@ static void trybreak(int pi, smallnumber breaktype)
 								switch (s->type)
 								{
 									case char_node:
-										breakwidth[1] += dynamic_cast<CharNode*>(s)->width();
-										break;
 									case ligature_node:
-										breakwidth[1] += dynamic_cast<LigatureNode*>(s)->width();
-										break;
 									case hlist_node:
 									case vlist_node:
 									case rule_node:
-										breakwidth[1] += dynamic_cast<RuleNode*>(s)->width;
-										break;
 									case kern_node: 
-										breakwidth[1] += dynamic_cast<KernNode*>(s)->width;
+										breakwidth[1] += s->getWidth();
 										break;
 									default: 
 										confusion("disc2");
@@ -401,17 +389,13 @@ static void trybreak(int pi, smallnumber breaktype)
 							case penalty_node: 
 								break;
 							case math_node: 
-								breakwidth[1] -= dynamic_cast<MathNode*>(s)->width;
+								breakwidth[1] -= s->getWidth();
 								break;
 							case kern_node: 
-							{
-								auto S = dynamic_cast<KernNode*>(s);
-								if (S->subtype != explicit_)
+								if (dynamic_cast<KernNode*>(s)->subtype != explicit_)
 									continue;
-								else
-									breakwidth[1] -= S->width;
+								breakwidth[1] -= s->getWidth();
 								break;
-							}
 							default: 
 								continue;
 						}
@@ -769,13 +753,13 @@ void linebreak(int finalwidowpenalty)
 		{
 			if (curp->type == char_node)
 				for (prevp = curp; curp->type == char_node; next(curp))
-					act_width += dynamic_cast<CharNode*>(curp)->width();
+					act_width += curp->getWidth();
 			switch (curp->type)
 			{
 				case hlist_node:
 				case vlist_node:
 				case rule_node: 
-					act_width += dynamic_cast<RuleNode*>(curp)->width;
+					act_width += curp->getWidth();
 					break;
 				case whatsit_node:
 					if (dynamic_cast<WhatsitNode*>(curp)->subtype == language_node)
@@ -964,11 +948,11 @@ void linebreak(int finalwidowpenalty)
 					if (Curp->subtype == explicit_)
 						kern_break(autobreaking, Curp->width);
 					else
-						act_width += Curp->width;
+						act_width += curp->getWidth();
 					break;
 				}
 				case ligature_node:
-					act_width += dynamic_cast<LigatureNode*>(curp)->width();
+					act_width += curp->getWidth();
 					break;
 				case disc_node:
 				{
@@ -983,18 +967,12 @@ void linebreak(int finalwidowpenalty)
 							switch (s->type)
 							{
 								case char_node:
-									discwidth += dynamic_cast<CharNode*>(s)->width();
-									break;
 								case ligature_node:
-									discwidth += dynamic_cast<LigatureNode*>(s)->width();
-									break;
 								case hlist_node:
 								case vlist_node:
 								case rule_node:
-									discwidth += dynamic_cast<RuleNode*>(s)->width;
-									break;
 								case kern_node: 
-									discwidth += dynamic_cast<KernNode*>(s)->width;
+									discwidth += s->getWidth();
 									break;
 								default: 
 									confusion("disc3");
@@ -1008,18 +986,12 @@ void linebreak(int finalwidowpenalty)
 						switch (s->type)
 						{
 							case char_node:
-								act_width += dynamic_cast<CharNode*>(s)->width();
-								break;
 							case ligature_node:
-								act_width += dynamic_cast<LigatureNode*>(s)->width();
-								break;
 							case hlist_node:
 							case vlist_node:
 							case rule_node:
-								act_width += dynamic_cast<RuleNode*>(s)->width;
-								break;
 							case kern_node: 
-								act_width += dynamic_cast<KernNode*>(s)->width;
+								act_width += s->getWidth();
 								break;
 							default: 
 								confusion("disc4");
@@ -1036,7 +1008,7 @@ void linebreak(int finalwidowpenalty)
 					break;
 				}
 				case penalty_node: 
-					trybreak(dynamic_cast<PenaltyNode*>(curp)->penalty, unhyphenated);
+					trybreak(curp->getPenalty(), unhyphenated);
 					break;
 				case mark_node:
 				case ins_node:

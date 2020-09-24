@@ -8,7 +8,7 @@ void runaway(void)
 	if (scannerstatus > skipping)
 	{
 		printnl("Runaway ");
-		LinkedNode *p; 
+		TokenNode *p; 
 		switch (scannerstatus)
 		{
 			case defining:
@@ -27,6 +27,7 @@ void runaway(void)
 				print("text");
 				p = defref;
 		}
-		print("?\n"+tokenlist(dynamic_cast<TokenNode*>(p->link), nullptr, errorline-10));
+		next(p);
+		print("?\n"+tokenlist(p, nullptr, errorline-10));
 	}
 }
