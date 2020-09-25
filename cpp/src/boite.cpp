@@ -345,8 +345,6 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 	lastbadness = 0;
 	auto r = new BoxNode;
 	r->type = vlist_node;
-	r->subtype = 0;
-	r->shift_amount = 0;
 	r->list_ptr = p;
 	scaled w = 0;
 	scaled d = 0;
@@ -495,9 +493,6 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 {
 	lastbadness = 0;
 	auto r = new BoxNode;
-	r->type = hlist_node;
-	r->subtype = 0;
-	r->shift_amount = 0;
 	r->list_ptr = p;
 	scaled h = 0;
 	scaled d = 0;
@@ -580,10 +575,8 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 				break;
 			}
 			case kern_node:
-				x += dynamic_cast<KernNode*>(p)->width;
-				break;
 			case math_node: 
-				x += dynamic_cast<MathNode*>(p)->width;
+				x += p->getWidth();
 				break;
 			case ligature_node:
 			{

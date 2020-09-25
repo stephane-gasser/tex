@@ -18,6 +18,9 @@ class PassiveNode : public LinkedNode
 		LinkedNode *prev_break; //points to passive node that should precede this one
 		LinkedNode* &next_break = prev_break; //new name for |prev_break| after links are reversed
 //		halfword serial;
+		virtual LinkedNode *curBreak(void) { return cur_break; }
+		virtual LinkedNode *prevBreak(void) { return prev_break; }
+		virtual LinkedNode *nextBreak(void) { return prev_break; }
 };
 
 inline PassiveNode *passive;
@@ -48,6 +51,10 @@ class ActiveNode : public LinkedNode
 			type = unhyphenated;
 			link = l;
 		}
+		virtual halfword getLineNumber(void) { return line_number; }
+		virtual quarterword getFitness(void) { return fitness; }
+		virtual int getTotalDemerits(void) { return total_demerits; }
+		virtual PassiveNode *getBreak(void) { return break_node; }
 };
 
 inline ActiveNode * const active = dynamic_cast<ActiveNode*>(&heads[7]); //!< head of active list in \a line_break, needs two words
@@ -79,22 +86,22 @@ class DeltaNode : public LinkedNode
 			for (int i = 1; i <= 6; i++)
 				width[i-1] = curactivewidth[i]-breakwidth[i];
 		}
-		void update_width(void)
+		virtual void update_width(void)
 		{
 			for (int i = 1; i <= 6; i++)
 				curactivewidth[i] += width[i-1];
 		}
-		void update_active(void)
+		virtual void update_active(void)
 		{
 			for (int i = 1; i <= 6; i++)
 				activewidth[i] += width[i-1];
 		}
-		void convert_to_break_width(void)
+		virtual void convert_to_break_width(void)
 		{
 			for (int i = 1; i <= 6; i++)
 				width[i-1] += breakwidth[i]-curactivewidth[i];
 		}
-		void downdate_width(void)
+		virtual void downdate_width(void)
 		{
 			for (int i = 1; i <= 6; i++)
 				curactivewidth[i] -= width[i-1];
@@ -127,14 +134,14 @@ static void postlinebreak(int finalwidowpenalty)
 	do //Reverse the links of the relevant passive nodes, setting |cur_p| to the first breakpoint
 	{
 		r = q;
-		q = dynamic_cast<PassiveNode*>(q)->prev_break;
+		q = q->prevBreak();
 		dynamic_cast<PassiveNode*>(r)->next_break = curp;
 		curp = r;
 	} while (q);
 	curline = prev_graf+1;
 	do //Justify the line ending at breakpoint |cur_p|, and append it to the current vertical list, together with associated penalties and other insertions
 	{
-		q = dynamic_cast<PassiveNode*>(curp)->cur_break;
+		q = curp->curBreak();
 		discbreak = false;
 		postdiscbreak = false;
 		if (q)
@@ -255,7 +262,7 @@ static void postlinebreak(int finalwidowpenalty)
 			}
 		}
 		curline++;
-		curp = dynamic_cast<PassiveNode*>(curp)->next_break;
+		curp = curp->nextBreak();
 		if (curp)
 			if (!postdiscbreak)
 			{
@@ -263,14 +270,14 @@ static void postlinebreak(int finalwidowpenalty)
 				while (true)
 				{
 					q = r->link;
-					if (q == dynamic_cast<PassiveNode*>(curp)->cur_break)
+					if (q == curp->curBreak())
 						break;
 					if (q->type == char_node)
 						break;
 					if (q->type < math_node) // non_discardable
 						break;
 					if (q->type == kern_node)
-						if (dynamic_cast<KernNode*>(q)->subtype != explicit_)
+						if (q->getSubtype() != explicit_)
 							break;
 					r = q; //now |type(q)=glue_node|, |kern_node|, |math_node| or |penalty_node|
 				}
@@ -311,13 +318,13 @@ static void trybreak(int pi, smallnumber breaktype)
 		auto r = prevr->link;
 		if (r->type == delta_node)
 		{
-			dynamic_cast<DeltaNode*>(r)->update_width();
+			r->update_width();
 			prevprevr = prevr;
 			prevr = r;
 			continue;
 		}
 		char fitclass;
-		auto l = dynamic_cast<ActiveNode*>(r)->line_number;
+		auto l = r->getLineNumber();
 		scaled linewidth;
 		halfword b;
 		if (l > oldl)
@@ -392,7 +399,7 @@ static void trybreak(int pi, smallnumber breaktype)
 								breakwidth[1] -= s->getWidth();
 								break;
 							case kern_node: 
-								if (dynamic_cast<KernNode*>(s)->subtype != explicit_)
+								if (s->getSubtype() != explicit_)
 									continue;
 								breakwidth[1] -= s->getWidth();
 								break;
@@ -403,7 +410,7 @@ static void trybreak(int pi, smallnumber breaktype)
 					}
 				}
 				if (prevr->type == delta_node)
-					dynamic_cast<DeltaNode*>(prevr)->convert_to_break_width();
+					prevr->convert_to_break_width();
 				else 
 					if (prevr == active)
 						std::copy(breakwidth, breakwidth+7, activewidth);
@@ -521,7 +528,7 @@ static void trybreak(int pi, smallnumber breaktype)
 						r = active->link;
 						if (r->type == delta_node)
 						{
-							dynamic_cast<DeltaNode*>(r)->update_active();
+							r->update_active();
 							std::copy(activewidth, activewidth+7, curactivewidth);
 							removeNodeAfter(active);
 						}
@@ -532,14 +539,14 @@ static void trybreak(int pi, smallnumber breaktype)
 							r = prevr->link;
 							if (r == active)
 							{
-								dynamic_cast<DeltaNode*>(prevr)->downdate_width();
+								prevr->downdate_width();
 								removeNodeAfter(prevprevr);
 								prevr = prevprevr; 
 							}
 							else 
 								if (r->type == delta_node)
 								{
-									dynamic_cast<DeltaNode*>(r)->update_width();
+									r->update_width();
 									dynamic_cast<DeltaNode*>(prevr)->combine_two_deltas(dynamic_cast<DeltaNode*>(r));
 									removeNodeAfter(prevr);
 								}
@@ -564,14 +571,14 @@ static void trybreak(int pi, smallnumber breaktype)
 					d += double_hyphen_demerits();
 				else
 				d += final_hyphen_demerits();
-			if (abs(fitclass-dynamic_cast<ActiveNode*>(r)->fitness) > 1)
+			if (abs(fitclass-r->getFitness()) > 1)
 				d += adj_demerits();
 		}
-		d += dynamic_cast<ActiveNode*>(r)->total_demerits;
+		d += r->getTotalDemerits();
 		if (d <= minimaldemerits[fitclass])
 		{
 			minimaldemerits[fitclass] = d;
-			bestplace[fitclass] = dynamic_cast<ActiveNode*>(r)->break_node;
+			bestplace[fitclass] = r->getBreak();
 			bestplline[fitclass] = l;
 			if (d < minimumdemerits)
 				minimumdemerits = d;
@@ -584,7 +591,7 @@ static void trybreak(int pi, smallnumber breaktype)
 			r = active->link;
 			if (r->type == delta_node)
 			{
-				dynamic_cast<DeltaNode*>(r)->update_active();
+				r->update_active();
 				std::copy(activewidth, activewidth+7, curactivewidth);
 				removeNodeAfter(active);
 			}
@@ -595,14 +602,14 @@ static void trybreak(int pi, smallnumber breaktype)
 				r = prevr->link;
 				if (r == active)
 				{
-					dynamic_cast<DeltaNode*>(prevr)->downdate_width();
+					prevr->downdate_width();
 					removeNodeAfter(prevprevr);
 					prevr = prevprevr;
 				}
 				else 
 					if (r->type == delta_node)
 					{
-						dynamic_cast<DeltaNode*>(r)->update_width();
+						r->update_width();
 						dynamic_cast<DeltaNode*>(prevr)->combine_two_deltas(dynamic_cast<DeltaNode*>(r));
 						removeNodeAfter(prevr);
 					}
@@ -762,7 +769,7 @@ void linebreak(int finalwidowpenalty)
 					act_width += curp->getWidth();
 					break;
 				case whatsit_node:
-					if (dynamic_cast<WhatsitNode*>(curp)->subtype == language_node)
+					if (curp->getSubtype() == language_node)
 					{
 						auto Curp = dynamic_cast<LanguageWhatsitNode*>(curp);
 						curlang = Curp->what_lang;
@@ -779,7 +786,7 @@ void linebreak(int finalwidowpenalty)
 							if (precedes_break(prevp))
 								trybreak(0, unhyphenated);
 							else 
-								if (prevp->type == kern_node && dynamic_cast<KernNode*>(prevp)->subtype != explicit_)
+								if (prevp->type == kern_node && prevp->getSubtype() != explicit_)
 									trybreak(0, unhyphenated);
 					auto Q = dynamic_cast<GlueNode*>(curp)->glue_ptr;
 					Q = check_shrinkage(Q);
@@ -814,11 +821,11 @@ void linebreak(int finalwidowpenalty)
 										}
 										break;
 									case kern_node:
-										if (dynamic_cast<KernNode*>(s)->subtype == normal)
+										if (s->getSubtype() == normal)
 											continue;
 										break;
 									case whatsit_node:
-										if (dynamic_cast<WhatsitNode*>(s)->subtype == language_node)
+										if (s->getSubtype() == language_node)
 										{
 											auto S = dynamic_cast<LanguageWhatsitNode*>(s);
 											curlang = S->what_lang;
@@ -896,7 +903,7 @@ void linebreak(int finalwidowpenalty)
 												lettersOnly = false;
 											break;
 										case kern_node:
-											if (dynamic_cast<KernNode*>(s)->subtype != normal)
+											if (s->getSubtype() != normal)
 												lettersOnly = false;
 											else
 											{	
@@ -915,7 +922,7 @@ void linebreak(int finalwidowpenalty)
 										case ligature_node: 
 											break;
 										case kern_node: 
-											if (dynamic_cast<KernNode*>(s)->subtype != normal)
+											if (s->getSubtype() != normal)
 											{
 												label34 = false;
 												continue;
@@ -944,9 +951,8 @@ void linebreak(int finalwidowpenalty)
 				}
 				case kern_node: 
 				{
-					auto Curp = dynamic_cast<KernNode*>(curp);
-					if (Curp->subtype == explicit_)
-						kern_break(autobreaking, Curp->width);
+					if (curp->getSubtype() == explicit_)
+						kern_break(autobreaking, curp->getWidth());
 					else
 						act_width += curp->getWidth();
 					break;
@@ -1001,12 +1007,9 @@ void linebreak(int finalwidowpenalty)
 					continue;
 				}
 				case math_node:
-				{
-					auto Curp = dynamic_cast<MathNode*>(curp);
-					autobreaking = Curp->subtype == after;
-					kern_break(autobreaking, Curp->width);
+					autobreaking = curp->getSubtype() == after;
+					kern_break(autobreaking, curp->getWidth());
 					break;
-				}
 				case penalty_node: 
 					trybreak(curp->getPenalty(), unhyphenated);
 					break;
@@ -1027,7 +1030,7 @@ void linebreak(int finalwidowpenalty)
 			{
 				int fewestdemerits = max_dimen;
 				for (auto r = active->link; r != active; next(r))
-					if (r->type != rule_node && dynamic_cast<ActiveNode*>(r)->total_demerits < fewestdemerits)
+					if (r->type != rule_node && r->getTotalDemerits() < fewestdemerits)
 					{
 						bestbet = dynamic_cast<ActiveNode*>(r);
 						fewestdemerits = bestbet->total_demerits;

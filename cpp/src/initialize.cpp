@@ -32,7 +32,7 @@ void Initialize(void)
 	fil_neg_glue->stretch = -unity;
 	fil_neg_glue->stretch_order = fil;
 	omit_template = new TokenNode(end_template_token);
-	end_span->Link = 256;
+	end_span->nb = 256;
 	end_span->info = nullptr;
 	page_ins_head = new PageInsNode;
 	page_ins_head->subtype = 255;

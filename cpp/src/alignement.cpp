@@ -24,11 +24,15 @@ static SpanNode *curspan = nullptr;
 static LinkedNode *curhead = nullptr;
 static LinkedNode *curtail = nullptr;
 
+//! the current preamble list
+static GlueNode *preamble(void) { return dynamic_cast<GlueNode*>(align_head->link); }
+static void setPreamble(GlueNode *g) { align_head->link = g; }
+
 class AlignStackNode : public LinkedNode
 {
 	public:
 		AlignRecordNode *align;
-		LinkedNode *preamble;
+		GlueNode *preamble;
 		SpanNode *span;
 		AlignRecordNode *loop;
 		int state;
@@ -59,7 +63,7 @@ static void initcol(Token t)
 	else
 	{
 		backinput(t);
-		begintokenlist(dynamic_cast<TokenNode*>(curalign->u_part), u_template);
+		begintokenlist(curalign->u_part, u_template);
 	}
 }
 
@@ -71,10 +75,10 @@ static void initrow(void)
 		space_factor = 0;
 	else
 		prev_depth = 0;
-	auto G = new GlueNode(dynamic_cast<GlueNode*>(preamble)->glue_ptr);
+	auto G = new GlueNode(preamble()->glue_ptr);
 	G->subtype = tab_skip_code+1;
 	tail_append(G);
-	curalign = dynamic_cast<AlignRecordNode*>(preamble->link);
+	curalign = dynamic_cast<AlignRecordNode*>(preamble()->link);
 	curtail = curhead;
 	initspan(dynamic_cast<SpanNode*>(curalign));
 }
@@ -87,7 +91,7 @@ static void popalignment(AlignRecordNode* &loop)
 	alignstate = alignptr->state;
 	loop = alignptr->loop;
 	curspan = alignptr->span;
-	preamble = alignptr->preamble;
+	setPreamble(alignptr->preamble);
 	curalign = alignptr->align;
 	removeNodeAtStart(alignptr);
 }
@@ -97,7 +101,7 @@ static void pushalignment(AlignRecordNode* loop)
 	alignptr = new AlignStackNode;
 	alignptr->link = alignptr;
 	alignptr->align = curalign;
-	alignptr->preamble = preamble;
+	alignptr->preamble = preamble();
 	alignptr->span = curspan;
 	alignptr->loop = loop;
 	alignptr->state = alignstate;
@@ -126,7 +130,7 @@ void initalign(Token t, AlignRecordNode* &loop)
 		if (mode > 0)
 		mode = -mode;
 	t = scanspec(align_group);
-	align_head->link = nullptr;
+	setPreamble(nullptr);
 	curalign = dynamic_cast<AlignRecordNode*>(align_head);
 	loop = 0;
 	scannerstatus = aligning;
@@ -169,10 +173,10 @@ void initalign(Token t, AlignRecordNode* &loop)
 					appendAtEnd(p, new TokenNode(t.tok));
 			}
 		}
-		appendAtEnd(curalign, new BoxNode);
+		appendAtEnd(curalign, new AlignRecordNode);
 		curalign->info = end_span;
 		curalign->width = null_flag;
-		curalign->u_part = hold_head->link;
+		putAfter(curalign->u_part, hold_head);
 		hold_head->link = nullptr;
 		for (p = hold_head; true; appendAtEnd(p, new TokenNode(t.tok)))
 		{
@@ -186,7 +190,7 @@ void initalign(Token t, AlignRecordNode* &loop)
 			}
 		}
 		appendAtEnd(p, new TokenNode(end_template_token));
-		curalign->v_part = hold_head->link;
+		putAfter(curalign->v_part, hold_head);
 	}
 	scannerstatus = normal;
 	newsavelevel(align_group);
@@ -248,15 +252,15 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 			next(loop);
 			// Copy the templates from node |cur_loop| into node |p|
 			q = hold_head;
-			for (auto r = dynamic_cast<TokenNode*>(loop->u_part); r; next(r))
+			for (auto r = loop->u_part; r; next(r))
 				appendAtEnd(q, new TokenNode(r->token));
 			q->link = nullptr;
-			p->u_part = hold_head->link;
+			putAfter(p->u_part, hold_head);
 			q = hold_head;
-			for (auto r = dynamic_cast<TokenNode*>(loop->v_part); r; next(r))
+			for (auto r = loop->v_part; r; next(r))
 				appendAtEnd(q, new TokenNode(r->token));
 			q->link = nullptr;
-			p->v_part = hold_head->link;
+			putAfter(p->v_part, hold_head);
 			next(loop);
 			p->link = new GlueNode(loop->glue_ptr);
 		}
@@ -295,13 +299,13 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 			if (n > 255)
 				confusion("256 spans");
 			q = curspan;
-			while (dynamic_cast<SpanNode*>(q->link)->Link < n)
+			while (dynamic_cast<SpanNode*>(q->link)->nb < n)
 				next(q);
-			if (dynamic_cast<SpanNode*>(q->link)->Link > n)
+			if (dynamic_cast<SpanNode*>(q->link)->nb > n)
 			{
 				auto s = new SpanNode;
 				s->info = dynamic_cast<AlignRecordNode*>(q)->info;
-				s->Link = n;
+				s->nb = n;
 				dynamic_cast<AlignRecordNode*>(q)->info = s;
 				s->width = w;
 			}
@@ -364,7 +368,7 @@ static void finalign(AlignRecordNode* &loop)
 		confusion("align0"); 
 	unsave();
 	scaled o = nest[nest.size()-2].modefield == mmode ? display_indent() : 0; // shift offset for unset boxes
-	auto q = preamble->link;
+	auto q = preamble()->link;
 	do
 	{
 		// q: AlignNode ??
@@ -395,19 +399,19 @@ static void finalign(AlignRecordNode* &loop)
 				r->width -= t;
 				SpanNode *u;
 				u = r->info;
-				while (r->Link > n)
+				while (r->nb > n)
 				{
 					s = s->info;
-					n = s->info->Link+1;
+					n = s->info->nb+1;
 				}
-				if (r->Link < n)
+				if (r->nb < n)
 				{
 					r->info = s->info;
 					s->info = r;
-					r->Link--;
+					r->nb--;
 					s = r;
 				}
-				else // r->Link == n
+				else // r->nb == n
 				{
 					if (r->width > s->info->width)
 						s->info->width = r->width;
@@ -438,12 +442,12 @@ static void finalign(AlignRecordNode* &loop)
 	{
 		scaled rulesave = overfull_rule();
 		overfull_rule() = 0;
-		p = hpack(preamble, s1, s0);
+		p = hpack(preamble(), s1, s0);
 		overfull_rule() = rulesave;
 	}
 	else
 	{
-		q = preamble->link;
+		q = preamble()->link;
 		auto Q = dynamic_cast<UnsetNode*>(q);
 		do
 		{
@@ -452,8 +456,8 @@ static void finalign(AlignRecordNode* &loop)
 			next(q);
 			next(q);
 		} while (q);
-		p = vpack(preamble, s1, s0);
-		q = preamble->link;
+		p = vpack(preamble(), s1, s0);
+		q = preamble()->link;
 		do
 		{
 			Q->width = Q->height;
@@ -676,24 +680,25 @@ void alignpeek(AlignRecordNode* &loop)
 	{
 		alignstate = 1000000;
 		auto t = getXTokenSkipSpace();
-		if (t.cmd == no_align)
+		switch (t.cmd)
 		{
-			t = scanleftbrace();
-			newsavelevel(no_align_group);
-			if (mode == -vmode)
-				normalparagraph();
-		}
-		else 
-			if (t.cmd == right_brace)
+			case no_align:
+				t = scanleftbrace();
+				newsavelevel(no_align_group);
+				if (mode == -vmode)
+					normalparagraph();
+				break;
+			case right_brace:
 				finalign(loop);
-			else 
-				if (t.cmd == car_ret && t.chr == 258)
+				break;
+			case car_ret:
+				if (t.chr == cr_cr_code)
 					continue;
-				else
-				{
-					initrow();
-					initcol(t);
-				}
+				break;
+			default:
+				initrow();
+				initcol(t);
+		}
 		break;
 	}
 }

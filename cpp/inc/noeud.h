@@ -52,6 +52,8 @@ void flushnodelist(LinkedNode*);
 LinkedNode* copynodelist(LinkedNode*);
 void confusion(const std::string &);
 
+class PassiveNode;
+
 class LinkedNode : public AnyNode
 {
 	public:
@@ -69,13 +71,25 @@ class LinkedNode : public AnyNode
 		}
 		virtual std::string shortDisplay(void) { return ""; }
 		virtual std::string showNode(const std::string &) { return "Unknown node type!"; }
+		virtual quarterword getSubtype(void) { return 0; }
 		virtual void vlist(scaled) {}
 		virtual void hlist(scaled, scaled, scaled) {}
 		virtual scaled getHeight(void) { return 0; }
 		virtual scaled getDepth(void) { return 0; }
 		virtual scaled getWidth(void) { return 0; }
 		virtual int getPenalty(void) { return 0; }
+		virtual void update_width(void) {}
+		virtual void convert_to_break_width(void) {}
+		virtual void downdate_width(void) {}
+		virtual void update_active(void) {}
+		virtual halfword getLineNumber(void) { return 0; }
+		virtual quarterword getFitness(void) { return 0; }
+		virtual int getTotalDemerits(void) { return 0; }
+		virtual PassiveNode *getBreak(void) { return nullptr; }
 		virtual void setWidth(scaled) {}
+		virtual LinkedNode *curBreak(void) { return nullptr; }
+		virtual LinkedNode *prevBreak(void) { return nullptr; }
+		virtual LinkedNode *nextBreak(void) { return nullptr; }
 };
 
 class ShapeNode : public LinkedNode
@@ -175,6 +189,7 @@ class KernNode : public LinkedNode
 		virtual KernNode *copy(void) { return new KernNode(width, subtype); }
 		void mathkern(scaled);
 		std::string showNode(const std::string &);
+		virtual quarterword getSubtype(void) { return subtype; }
 		virtual void vlist(scaled);
 		virtual void hlist(scaled, scaled, scaled);
 		virtual scaled getWidth(void) { return width; }
@@ -353,6 +368,7 @@ class MathNode : public LinkedNode
 		virtual void hlist(scaled, scaled, scaled);
 		virtual scaled getWidth(void) { return width; }
 		virtual void setWidth(scaled w) { width = w; }
+		virtual quarterword getSubtype(void) { return subtype; }
 };
 
 class WhatsitNode : public LinkedNode
@@ -360,12 +376,17 @@ class WhatsitNode : public LinkedNode
 	public:
 		quarterword subtype;
 		WhatsitNode(smallnumber s) : subtype(s) { type = whatsit_node; }
-		~WhatsitNode(void) { if (subtype > language_node) confusion("ext3"); }
+		~WhatsitNode(void) 
+		{ 
+			if (subtype > language_node) 
+				confusion("ext3"); 
+		}
 		virtual WhatsitNode *copy(void) { confusion("ext2"); return nullptr; }
 		virtual std::string shortDisplay(void) { return "[]"; }
 		virtual std::string showNode(const std::string &);
 		virtual void vlist(scaled);
 		virtual void hlist(scaled, scaled, scaled);
+		virtual quarterword getSubtype(void) { return subtype; }
 };
 
 class WriteWhatsitNode : public WhatsitNode
@@ -501,7 +522,6 @@ inline LinkedNode *null_list = nullptr; //!< permanently empty list
 inline CharNode *lig_trick = nullptr; //!< a ligature masquerading as a \a char_node
 //inline LinkedNode *garbage = nullptr; //!< used for scrap information
 inline LinkedNode *backup_head = nullptr; //!< head of token list built by \a scan_keyword
-inline LinkedNode *preamble = align_head->link; //!< the current preamble list
 inline TokenNode *Start;
 inline TokenNode *Loc;
 inline LinkedNode *curmlist;
@@ -517,6 +537,8 @@ inline auto ss_glue = &glues[3]; //!< 0pt plus 1fil minus 1fil
 inline auto fil_neg_glue = &glues[4]; //!< 0pt plus -1fil minus 0pt
 
 template<class T> void next(T* &p) { p = dynamic_cast<T*>(p->link); }
+template<class T> void putAfter(T* &p, LinkedNode *q) { p = dynamic_cast<T*>(q->link); }
+
 inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }
 inline LinkedNode *new_hlist(Noad *p) { return p->nucleus.info; } //!< the translation of an mlist
 

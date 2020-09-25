@@ -7,7 +7,7 @@
 class SpanNode : public LinkedNode
 {
 	public:
-		halfword Link;
+		halfword nb; // Link
 		SpanNode *info;
 		scaled width;
 		SpanNode(void) {}
@@ -21,8 +21,8 @@ class AlignRecordNode : public LinkedNode
 	public:
 		SpanNode *info;
 		halfword extra_info;
-		LinkedNode *u_part;
-		LinkedNode *v_part;
+		TokenNode *u_part;
+		TokenNode *v_part;
 		scaled width;
 		GlueSpec *glue_ptr; //!< pointer to a glue specification
 };
