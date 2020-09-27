@@ -28,8 +28,7 @@ BoxNode* rebox(BoxNode *b, scaled w)
 		auto p = b->list_ptr;
 		if (p->type == char_node && p->link == nullptr)
 		{
-			auto P = dynamic_cast<CharNode*>(p);
-			scaled v = P->width();
+			scaled v = p->getWidth();
 			if (v != b->width)
 				p->link = new KernNode(b->width-v);
 		}
@@ -54,7 +53,7 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 			case math_char:
 			{
 				curmlist = new Noad;
-				dynamic_cast<Noad*>(curmlist)->nucleus = P;
+				curmlist->nucleus = P;
 				break;
 			}
 			case sub_box:
@@ -62,7 +61,7 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 				continue;
 				break;
 			case sub_mlist: 
-				curmlist = P.info;
+				curmlist = dynamic_cast<Noad*>(P.info);
 				break;
 			default:
 				q = new BoxNode;
@@ -163,10 +162,10 @@ void boxend(int boxcontext)
 				auto t = getXTokenSkipSpaceAndEscape();
 				if ((t.cmd == hskip && abs(mode) != vmode) || (t.cmd == vskip && abs(mode) == vmode))
 				{
-					appendglue(t.chr);
-					auto Tail = dynamic_cast<GlueNode*>(tail);
-					Tail->subtype = boxcontext-(leader_flag-a_leaders);
-					Tail->leader_ptr = curbox;
+					auto g = glueToAppend(t.chr);
+					g->subtype = boxcontext-(leader_flag-a_leaders);
+					g->leader_ptr = curbox;
+					tail_append(g);
 				}
 				else
 				{
@@ -366,19 +365,17 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 			case hlist_node:
 			case vlist_node:
 			{
-				auto P = dynamic_cast<BoxNode*>(p);
-				x += d+P->height;
-				d = P->depth;
-				w = std::max(P->width+P->shift_amount, w);
+				x += d+p->getHeight();
+				d = p->getDepth();
+				w = std::max(p->getWidth()+dynamic_cast<BoxNode*>(p)->shift_amount, w);
 				break;
 			}
 			case rule_node:
 			case unset_node:
 			{
-				auto P = dynamic_cast<RuleNode*>(p);
-				x += d+P->height;
-				d = P->depth;
-				w = std::max(P->width, w);
+				x += d+p->getHeight();
+				d = p->getDepth();
+				w = std::max(p->getWidth(), w);
 				break;
 			}
 			case whatsit_node:
@@ -397,7 +394,7 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 				break;
 			}
 			case kern_node:
-				x += d+dynamic_cast<KernNode*>(p)->width;
+				x += d+p->getWidth();
 				d = 0;
 		}
 	r->width = w;
@@ -499,38 +496,23 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 	scaled x = 0;
 	std::fill_n(totalstretch, 4, 0);
 	std::fill_n(totalshrink, 4, 0);
+	scaled s = 0;
 	while (p)
 	{
 		switch (p->type)
 		{
-			case char_node:
-			{
-				auto P = dynamic_cast<CharNode*>(p);
-				auto &ft = fonts[P->font];
-				x += P->width();
-				h = std::max(P->height(), h);
-				d = std::max(P->depth(), d);
-				break;
-			}
 			case hlist_node:
 			case vlist_node:
-			{
-				auto P = dynamic_cast<BoxNode*>(p);
-				x += P->width;
-				scaled s = P->shift_amount;
-				h = std::max(P->height-s, h);
-				d = std::max(P->depth+s, d);
-				break;
-			}
+				s = dynamic_cast<BoxNode*>(p)->shift_amount; [[fallthrough]];
+			case char_node:
 			case rule_node:
 			case unset_node:
-			{
-				auto P = dynamic_cast<RuleNode*>(p);
-				x += P->width;
-				h = std::max(P->height, h);
-				d = std::max(P->depth, d);
+				h = std::max(p->getHeight()-s, h);
+				d = std::max(p->getDepth()+s, d); [[fallthrough]];
+			case kern_node:
+			case math_node: 
+				x += p->getWidth();
 				break;
-			}
 			case ins_node:
 			case mark_node:
 				if (adjusttail)
@@ -567,17 +549,11 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 				if (P->subtype >= 100)
 				{
 					auto g = dynamic_cast<RuleNode*>(P->leader_ptr);
-					if (g->height > h)
-						h = g->height;
-					if (g->depth > d)
-						d = g->depth;
+					h = std::max(g->height, h);
+					d = std::max(g->depth, d);
 				}
 				break;
 			}
-			case kern_node:
-			case math_node: 
-				x += p->getWidth();
-				break;
 			case ligature_node:
 			{
 				auto P = dynamic_cast<LigatureNode*>(p);
@@ -690,9 +666,9 @@ void package(smallnumber c, Token t)
 		if (c == vtop_code)
 		{
 			scaled h = 0;
-			auto p = dynamic_cast<RuleNode*>(curbox->list_ptr);
+			auto p = curbox->list_ptr;
 			if (p && p->type <= rule_node)
-				h = p->height;
+				h = p->getHeight();
 			curbox->height = h;
 			curbox->depth += curbox->height-h;
 		}

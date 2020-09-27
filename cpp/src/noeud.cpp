@@ -187,36 +187,32 @@ void appenddiscretionary(halfword s)
 	}
 }
 
-void appendglue(halfword s)
+GlueNode *glueToAppend(halfword s)
 {
 	switch (s)
 	{
 		case fil_code: 
-			tail_append(new GlueNode(fil_glue));
-			break;
+			return new GlueNode(fil_glue);
 		case fill_code: 
-			tail_append(new GlueNode(fill_glue));
-			break;
+			return new GlueNode(fill_glue);
 		case ss_code: 
-			tail_append(new GlueNode(ss_glue));
-			break;
+			return new GlueNode(ss_glue);
 		case fil_neg_code:
-			tail_append(new GlueNode(fil_neg_glue));
-			break;
+			return new GlueNode(fil_neg_glue);
 		case skip_code:
 		{
 			auto g = scanglue(mu_val);
 			g->glue_ref_count--;
-			tail_append(new GlueNode(g));
-			break;
+			return new GlueNode(g);
 		}
-		case mskip_code: 
+		default:
+		//case mskip_code: 
 		{
 			auto g = scanglue(mu_val);
 			g->glue_ref_count--;
 			auto G = new GlueNode(g);
 			G->subtype = mu_glue;
-			tail_append(G);
+			return G;
 		}
 	}
 }

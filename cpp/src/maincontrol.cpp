@@ -148,7 +148,7 @@ Token maincontrol(void)
 			case hmode+hskip:
 			case mmode+hskip:
 			case mmode+mskip: 
-				appendglue(t.chr);
+				tail_append(glueToAppend(t.chr));
 				break;
 			case ANY_MODE(kern):
 			case mmode+mkern: 

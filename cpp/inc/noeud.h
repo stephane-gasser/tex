@@ -90,6 +90,11 @@ class LinkedNode : public AnyNode
 		virtual LinkedNode *curBreak(void) { return nullptr; }
 		virtual LinkedNode *prevBreak(void) { return nullptr; }
 		virtual LinkedNode *nextBreak(void) { return nullptr; }
+		virtual void mToH(void) {}
+		virtual void mToH(scaled&, scaled&) {}
+		virtual void mToH(LinkedNode*&) {}
+		virtual bool mToH(scaled&, scaled&, scaled&) { return false; }
+		virtual void mToH2(scaled&, scaled&, scaled&) {}
 };
 
 class ShapeNode : public LinkedNode
@@ -159,6 +164,7 @@ class ChoiceNode : public LinkedNode
 			flushnodelist(script_script_mlist);
 		}
 		std::string showNode(const std::string &);
+		virtual void mToH(LinkedNode*&);
 };
 
 class DiscNode : public LinkedNode
@@ -194,6 +200,7 @@ class KernNode : public LinkedNode
 		virtual void hlist(scaled, scaled, scaled);
 		virtual scaled getWidth(void) { return width; }
 		virtual void setWidth(scaled w) { width = w; }
+		virtual void mToH(void);
 };
 
 class GlueSpec : public AnyNode
@@ -285,6 +292,7 @@ class GlueNode : public LinkedNode
 		virtual GlueNode *copy(void) { auto g = new GlueNode(glue_ptr); g->leader_ptr = copynodelist(leader_ptr); return g; }
 		virtual std::string shortDisplay(void);
 		std::string showNode(const std::string &);
+		virtual void mToH(scaled&, scaled&);
 };
 
 class PenaltyNode : public LinkedNode
@@ -314,6 +322,7 @@ class RuleNode : public LinkedNode
 		virtual scaled getHeight(void) { return height; }
 		virtual scaled getWidth(void) { return width; }
 		virtual scaled getDepth(void) { return depth; }
+		virtual void mToH(scaled&, scaled&);
 };
 
 class BoxNode : public RuleNode
@@ -351,6 +360,7 @@ class StyleNode : public LinkedNode
 		quarterword subtype;
 		StyleNode(smallnumber s) : subtype(s) { type = style_node; }
 		std::string showNode(const std::string &);
+		virtual quarterword getSubtype(void) { return subtype; }
 };
 
 inline BoxNode *justbox;
@@ -451,6 +461,9 @@ class Noad : public LinkedNode
 		Noad(void) : subtype(normal) { type = ord_noad; }
 		Noad(quarterword t) : subtype(normal) { type = t; }
 		virtual std::string showNode(const std::string &);
+		virtual void mToH(scaled&, scaled&);
+		virtual bool mToH(scaled&, scaled&, scaled&);
+		virtual void mToH2(scaled&, scaled&, scaled&);
 };
 
 class Delimiter
@@ -469,6 +482,7 @@ class RadicalNoad : public Noad
 		Delimiter left_delimiter;
 		RadicalNoad(Token);
 		virtual std::string showNode(const std::string &);
+		virtual void mToH(void);
 };
 
 class FractionNoad : public Noad
@@ -481,6 +495,7 @@ class FractionNoad : public Noad
 		scaled thickness; //!< \a thickness field in a fraction noad
 		FractionNoad(halfword, Token);
 		virtual std::string showNode(const std::string &);
+		virtual void mToH(scaled&, scaled&);
 };
 
 class LeftRightNoad : public Noad
@@ -497,6 +512,7 @@ class AccentNoad : public Noad
 		NoadContent accent_chr; //!< the \a accent_chr field of an accent noad
 		AccentNoad(void);
 		virtual std::string showNode(const std::string &);
+		virtual void mToH();
 };
 
 //inline int &incompleat_noad = aux.int_; //!< the name of \a aux in math mode
@@ -524,7 +540,7 @@ inline CharNode *lig_trick = nullptr; //!< a ligature masquerading as a \a char_
 inline LinkedNode *backup_head = nullptr; //!< head of token list built by \a scan_keyword
 inline TokenNode *Start;
 inline TokenNode *Loc;
-inline LinkedNode *curmlist;
+inline Noad *curmlist;
 inline LinkedNode *bestpagebreak;
 inline GlueSpec *lastglue = nullptr;
 inline LinkedNode *adjusttail = nullptr;
@@ -563,7 +579,7 @@ void newinteraction(Token);
 GlueNode* newskipparam(smallnumber);
 void appendchoices(void);
 void appenddiscretionary(halfword);
-void appendglue(halfword);
+GlueNode *glueToAppend(halfword);
 void appenditaliccorrection(void);
 void appendtovlist(BoxNode*);
 void followUntilBeforeTarget(LinkedNode*, LinkedNode*&, LinkedNode*);

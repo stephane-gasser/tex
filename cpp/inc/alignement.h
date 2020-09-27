@@ -11,19 +11,20 @@ class SpanNode : public LinkedNode
 		SpanNode *info;
 		scaled width;
 		SpanNode(void) {}
+		SpanNode(halfword n, SpanNode *i, scaled w) : nb(n), info(i), width(w) {}
 		~SpanNode(void) { if (info) delete info; }
 };
 
 inline SpanNode * const end_span = dynamic_cast<SpanNode*>(&heads[9]); //!< tail of spanned-width lists
 
-class AlignRecordNode : public LinkedNode
+class AlignRecordNode : public SpanNode
 {
 	public:
-		SpanNode *info;
-		halfword extra_info;
+//		SpanNode *info;
+//		scaled width;
+		halfword &extra_info = SpanNode::nb;
 		TokenNode *u_part;
 		TokenNode *v_part;
-		scaled width;
 		GlueSpec *glue_ptr; //!< pointer to a glue specification
 };
 

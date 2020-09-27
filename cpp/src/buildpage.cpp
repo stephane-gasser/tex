@@ -27,7 +27,7 @@ static void freezepagespecs(smallnumber s)
 //! Append contributions to the current page.
 void buildpage(void)
 {
-	LinkedNode *p, *q, *r;
+//	LinkedNode *p, *q, *r;
 	int b, c, pi;
 	unsigned char n;
 	scaled delta, h, w;
@@ -35,7 +35,7 @@ void buildpage(void)
 		return;
 	while (contrib_head->link)
 	{
-		p = contrib_head->link;
+		auto p = contrib_head->link;
 		if (lastglue)
 		{
 			delete lastglue;
@@ -52,10 +52,10 @@ void buildpage(void)
 		{
 			lastglue = nullptr;
 			if (p->type == penalty_node) //12
-				lastpenalty = dynamic_cast<PenaltyNode*>(p)->penalty;
+				lastpenalty = p->getPenalty();
 			else 
 				if (p->type == kern_node) //11
-					lastkern = dynamic_cast<KernNode*>(p)->width;
+					lastkern = p->getWidth();
 		}
 		switch (p->type)
 		{
@@ -70,8 +70,8 @@ void buildpage(void)
 						freezepagespecs(box_there);
 					else
 						pagecontents = box_there;
-					q = newskipparam(top_skip_code);
-					auto g = dynamic_cast<GlueNode*>(q)->glue_ptr;
+					auto q = newskipparam(top_skip_code);
+					auto g = q->glue_ptr;
 					g->width = std::max(g->width-P->height, 0);
 					q->link = p;
 					contrib_head->link = q;
@@ -125,7 +125,7 @@ void buildpage(void)
 				if (pagecontents == 0)
 					freezepagespecs(inserts_only);
 				n = P->subtype;
-				r = page_ins_head;
+				auto r = page_ins_head;
 				while (n >= dynamic_cast<InsNode*>(r->link)->subtype)
 					next(r);
 				if (dynamic_cast<PageInsNode*>(r)->subtype != n)
@@ -182,7 +182,7 @@ void buildpage(void)
 						w = std::min(dimen(n)-R->height, w);
 						LinkedNode* a = P->ins_ptr;
 						halfword b;
-						q = vertbreak(P->ins_ptr, w, P->depth);
+						auto q = vertbreak(P->ins_ptr, w, P->depth);
 						R->height += bestheightplusdepth;
 						if (count(n) != 1000)
 							bestheightplusdepth = xovern(bestheightplusdepth, 1000)*count(n);
@@ -194,7 +194,7 @@ void buildpage(void)
 							insertpenalties += eject_penalty;
 						else 
 							if (q->type == penalty_node)
-								insertpenalties += dynamic_cast<PenaltyNode*>(q)->penalty;
+								insertpenalties += q->getPenalty();
 					}
 				}
 				break;
@@ -232,7 +232,7 @@ void buildpage(void)
 					bestpagebreak = p;
 					bestsize = page_goal;
 					leastpagecost = c;
-					r = page_ins_head->link;
+					auto r = page_ins_head->link;
 					while (r != page_ins_head)
 					{
 						auto R = dynamic_cast<PageInsNode*>(r);
@@ -250,8 +250,7 @@ void buildpage(void)
 			}
 		if (p->type == kern_node)
 		{
-			q = p;
-			page_total += page_depth+dynamic_cast<KernNode*>(q)->width;
+			page_total += page_depth+p->getWidth();
 			page_depth = 0;
 		}
 		if (p->type == glue_node)

@@ -80,7 +80,7 @@ static void initrow(void)
 	tail_append(G);
 	curalign = dynamic_cast<AlignRecordNode*>(preamble()->link);
 	curtail = curhead;
-	initspan(dynamic_cast<SpanNode*>(curalign));
+	initspan(curalign);
 }
 
 static void popalignment(AlignRecordNode* &loop)
@@ -229,10 +229,6 @@ static void finrow(AlignRecordNode* &loop)
 
 static bool fincol(Token t, AlignRecordNode* &loop)
 {
-	BoxNode *u;
-	scaled w;
-	glueord o;
-	halfword n;
 	if (curalign == nullptr)
 		confusion("endv");
 	auto q = curalign->link;
@@ -273,6 +269,8 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 	{
 		unsave();
 		newsavelevel(align_group);
+		scaled w;
+		BoxNode *u;
 		if (mode == -hmode)
 		{
 			adjusttail = curtail;
@@ -286,8 +284,8 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 			u = vpackage(head->link, 0, additional, 0);
 			w = u->height;
 		}
-		n = 0;
-		LinkedNode *q = curspan;
+		halfword n = 0;
+		auto q = curspan;
 		if (q != curalign)
 		{
 			do
@@ -302,21 +300,17 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 			while (dynamic_cast<SpanNode*>(q->link)->nb < n)
 				next(q);
 			if (dynamic_cast<SpanNode*>(q->link)->nb > n)
-			{
-				auto s = new SpanNode;
-				s->info = dynamic_cast<AlignRecordNode*>(q)->info;
-				s->nb = n;
-				dynamic_cast<AlignRecordNode*>(q)->info = s;
-				s->width = w;
-			}
+				q->info = new SpanNode(n, q->info, w);
 			else 
-				if (dynamic_cast<AlignRecordNode*>(q)->info->width < w)
-					dynamic_cast<AlignRecordNode*>(q)->info->width = w;
+				if (q->info->width < w)
+					q->info->width = w;
 		}
 		else 
 			curalign->width = std::max(w, curalign->width);
 		u->type = unset_node;
-		dynamic_cast<UnsetNode*>(u)->span_count = n;
+		auto U = dynamic_cast<UnsetNode*>(u);
+		U->span_count = n;
+		glueord o;
 		if (totalstretch[3])
 			o = 3;
 			else 
@@ -328,7 +322,7 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 					else
 						o = 0;
 		u->glue_order = o;
-		dynamic_cast<UnsetNode*>(u)->glue_stretch = totalstretch[o];
+		U->glue_stretch = totalstretch[o];
 		if (totalshrink[3])
 			o = 3;
 		else 
@@ -340,7 +334,7 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 				else
 					o = 0;
 		u->glue_sign = o;
-		dynamic_cast<UnsetNode*>(u)->glue_shrink = totalshrink[o];
+		U->glue_shrink = totalshrink[o];
 		popnest();
 		appendAtEnd(tail, u);
 		auto G = new GlueNode(curalign->glue_ptr);
@@ -348,11 +342,11 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 		tail_append(G);
 		if (curalign->extra_info >= cr_code)
 			return true;
-		initspan(dynamic_cast<SpanNode*>(p));
+		initspan(p);
 	}
 	alignstate = 1000000;
 	t = getXTokenSkipSpace();
-	curalign = dynamic_cast<AlignRecordNode*>(p);
+	curalign = p;
 	initcol(t);
 	return false;
 }
@@ -371,7 +365,6 @@ static void finalign(AlignRecordNode* &loop)
 	auto q = preamble()->link;
 	do
 	{
-		// q: AlignNode ??
 		auto Q = dynamic_cast<AlignRecordNode*>(q);
 		flushnodelist(Q->u_part);
 		flushnodelist(Q->v_part);

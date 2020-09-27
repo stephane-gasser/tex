@@ -281,7 +281,8 @@ void makeord(Noad *Q)
 	{
 		if (Q->subscr.math_type == 0 && Q->supscr.math_type == 0 && Q->nucleus.math_type == math_char)
 		{
-			auto p = dynamic_cast<Noad*>(Q->link);
+			auto p = Q;
+			next(p);
 			if (p && p->type >= ord_noad && p->type <= punct_noad && p->nucleus.math_type == math_char && p->nucleus.fam == Q->nucleus.fam)
 			{
 				Q->nucleus.math_type = math_text_char;
@@ -328,7 +329,7 @@ void makeord(Noad *Q)
 										else // symbole |=:|>>
 											r->nucleus.math_type = math_text_char;
 										break;
-									// AB -> C (symbole =;)
+									// AB -> C (symbole =:)
 									}
 									default:
 										Q->nucleus.character = rem_byte(Font::infos(a));
@@ -448,13 +449,12 @@ void makeunder(Noad *q)
 
 void makevcenter(Noad *q)
 {
-	auto v = q->nucleus.info;
-	if (v->type != vlist_node)
+	auto v = dynamic_cast<BoxNode*>(q->nucleus.info);
+	if (!v || v->type != vlist_node)
 		confusion("vcenter");
-	auto V = dynamic_cast<BoxNode*>(v);
-	scaled delta = V->height+V->depth;
-	V->height = axis_height(cursize)+half(delta);
-	V->depth = delta-V->height;
+	scaled delta = v->height+v->depth;
+	v->height = axis_height(cursize)+half(delta);
+	v->depth = delta-v->height;
 }
 
 void makeover(Noad *q)
@@ -569,32 +569,181 @@ smallnumber makeleftright(LeftRightNoad *q, smallnumber style, scaled maxd, scal
 	return q->type-(left_noad-open_noad);
 }
 
+static void updateMax(Noad *q, scaled &maxh, scaled &maxd)
+{
+	auto z = hpack(new_hlist(q), 0, additional);
+	maxh = std::max(z->height, maxh);
+	maxd = std::max(z->depth, maxd);
+	delete z;
+}
+
+void FractionNoad::mToH(scaled &maxh, scaled &maxd)
+{
+	makefraction(this);
+	updateMax(this, maxh, maxd);
+}
+
+void RadicalNoad::mToH(void) { makeradical(this); }
+void KernNode::mToH(void) { mathkern(curmu); }
+void AccentNoad::mToH(void) { makemathaccent(this); }
+
+void Noad::mToH(scaled &, scaled &) 
+{ 
+	switch (type)
+	{
+		case open_noad:
+		case inner_noad: 
+			break;
+		case ord_noad: 
+			makeord(this); 
+			break;
+		case over_noad:
+			makeover(this);
+			break;
+		case under_noad:
+			makeunder(this);
+			break;
+		case vcenter_noad: 
+			makevcenter(this);
+			break;
+	}
+}
+
+bool Noad::mToH(scaled &delta, scaled &maxh, scaled &maxd)
+{
+	delta = makeop(this);
+	if (subtype == 1)
+	{
+		updateMax(this, maxh, maxd);
+		return true;
+	}
+	return false;
+}
+
+void GlueNode::mToH(scaled &, scaled &) 
+{
+	if (subtype == mu_glue)
+	{
+		auto y = mathglue(glue_ptr, curmu);
+		deleteglueref(glue_ptr);
+		glue_ptr = y;
+		subtype = 0;
+		return;
+	}
+	if (cursize && subtype == cond_math_glue)
+	{
+		if (link && (link->type == glue_node || link->type == kern_node))
+		{
+			auto p = link;
+			next(link);
+			p->link = nullptr;
+			flushnodelist(p);
+		}
+	}
+}
+
+void RuleNode::mToH(scaled &maxh, scaled &maxd)
+{
+	maxh = std::max(height, maxh);
+	maxd = std::max(depth, maxd);
+}
+
+void ChoiceNode::mToH(LinkedNode* &p)
+{
+	switch (curstyle/2)
+	{
+		case 0:
+			p = display_mlist;
+			display_mlist = nullptr;
+			break;
+		case 1:
+			p = text_mlist;
+			text_mlist = nullptr;
+			break;
+		case 2:
+			p = script_mlist;
+			script_mlist = nullptr;
+			break;
+		case 3:
+			p = script_script_mlist;
+			script_script_mlist = nullptr;
+	}
+	flushnodelist(display_mlist);
+	flushnodelist(text_mlist);
+	flushnodelist(script_mlist);
+	flushnodelist(script_script_mlist);
+}
+
+void Noad::mToH2(scaled &delta, scaled &maxd, scaled &maxh)
+{
+	switch (nucleus.math_type)
+	{
+		case math_char:
+		case math_text_char:
+		{
+			quarterword curc;
+			internalfontnumber f;
+			fetch(nucleus, f, curc);
+			if (auto &ft = fonts[f]; char_exists(ft.char_info(curc)))
+			{
+				delta = ft.char_italic(curc);
+				nucleus.info = newcharacter(fam_fnt(nucleus.fam+cursize), curc);
+				if (nucleus.math_type == math_text_char && ft.space())
+					delta = 0;
+				if (subscr.math_type == 0 && delta)
+				{
+					nucleus.info->link = new KernNode(delta);
+					delta = 0;
+				}
+			}
+			else
+				nucleus.info = nullptr;
+			break;
+		}
+		case 0:
+			nucleus.info = nullptr;
+			break;
+		case sub_box: 
+			break;
+		case sub_mlist:
+		{
+			curmlist = dynamic_cast<Noad*>(nucleus.info);
+			auto savestyle = curstyle;
+			mlistpenalties = false;
+			mlisttohlist();
+			curstyle = savestyle;
+			cursize = curstyle < script_style ? text_size : 16*((curstyle-text_style)/2);
+			curmu = xovern(math_quad(cursize), 18);
+			nucleus.info = hpack(temp_head->link, 0, additional);
+			break;
+		}
+		default: 
+			confusion("mlist2");
+	}
+	if (subscr.math_type || supscr.math_type)
+		makescripts(this, delta);
+	updateMax(this, maxh, maxd);
+}
+
+
 void mlisttohlist(void)
 {
-	halfword y;
-	scaled delta;
-	smallnumber t, savestyle;
 	auto mlist = curmlist;
 	auto penalties = mlistpenalties;
 	auto style = curstyle;
-	auto q = mlist;
-	LinkedNode *r = nullptr;
-	smallnumber rtype = op_noad;
+	LinkedNode *q = mlist;
+	smallnumber prevType = op_noad;
 	scaled maxh = 0;
 	scaled maxd = 0;
 	cursize = curstyle < script_style  ? 0 : 16*((curstyle-text_style)/2);
 	curmu = xovern(math_quad(cursize), 18);
-	quarterword curc;
-	internalfontnumber f;
-	LinkedNode *p;
-	BoxNode *z;
-	while (q)
+	for (; q; next(q))
 	{
-		delta = 0;
+		scaled delta = 0;
 		switch (q->type)
 		{
 			case bin_noad: 
-				switch (rtype)
+				switch (prevType)
 				{
 					case bin_noad:
 					case op_noad:
@@ -603,241 +752,90 @@ void mlisttohlist(void)
 					case punct_noad:
 					case left_noad:
 						q->type = ord_noad;
-						continue;
+						q->mToH();
 				}
+				q->mToH2(delta, maxh, maxd);
+				prevType = q->type;
+				break;
+			case ord_noad: 
+			case over_noad: 
+			case under_noad: 
+			case vcenter_noad: 
+			case radical_noad:
+			case accent_noad: 
+			case open_noad:
+			case inner_noad: 
+				q->mToH();
+				q->mToH2(delta, maxh, maxd);
+				prevType = q->type;
 				break;
 			case rel_noad:
 			case close_noad:
 			case punct_noad:
 			case right_noad:
-				if (rtype == bin_noad)
-					r->type = ord_noad;
-				if (q->type == right_noad)
-				{
-					r = q;
-					rtype = r->type;
-					next(q);
-					continue;
-				}
+				if (q->type != right_noad)
+					q->mToH2(delta, maxh, maxd);
+				prevType = q->type;
+				break;
+			case op_noad:
+				if (!q->mToH(delta, maxh, maxd))
+					q->mToH2(delta, maxh, maxd);
+				prevType = q->type;
 				break;
 			case left_noad: 
-				r = q;
-				rtype = r->type;
-				next(q);
-				continue;
+				prevType = q->type;
+				break;
 			case fraction_noad:
-			{
-				auto Q = dynamic_cast<FractionNoad*>(q);
-				makefraction(Q);
-				z = hpack(new_hlist(Q), 0, additional);
-				maxh = std::max(z->height, maxh);
-				maxd = std::max(z->depth, maxd);
-				delete z;
-				r = q;
-				rtype = r->type;
-				next(q);
-				continue;
-			}
-			case op_noad:
-			{
-				auto Q = dynamic_cast<Noad*>(q);
-				delta = makeop(Q);
-				if (Q->subtype == 1)
-				{
-					z = hpack(new_hlist(Q), 0, additional);
-					maxh = std::max(z->height, maxh);
-					maxd = std::max(z->depth, maxd);
-					delete z;
-					r = q;
-					rtype = r->type;
-					next(q);
-					continue;
-				}
+				q->mToH(maxh, maxd);
+				prevType = q->type;
 				break;
-			}
-			case ord_noad: 
-				makeord(dynamic_cast<Noad*>(q));
-				break;
-			case open_noad:
-			case inner_noad: 
-				break;
-			case radical_noad: 
-				makeradical(dynamic_cast<RadicalNoad*>(q));
-				break;
-			case over_noad: 
-				makeover(dynamic_cast<Noad*>(q));
-				break;
-			case under_noad: 
-				makeunder(dynamic_cast<Noad*>(q));
-				break;
-			case accent_noad: 
-				makemathaccent(dynamic_cast<AccentNoad*>(q));
-				break;
-			case vcenter_noad: 
-				makevcenter(dynamic_cast<Noad*>(q));
+			case kern_node:
+				q->mToH();
 				break;
 			case style_node:
-				curstyle = dynamic_cast<StyleNode*>(q)->subtype;
-				if (curstyle < script_style)
-					cursize = text_size;
-				else
-					cursize = 16*((curstyle-2)/2);
+				curstyle = q->getSubtype();
+				cursize = curstyle < script_style ? text_size : 16*((curstyle-2)/2);
 				curmu = xovern(math_quad(cursize), 18);
-				next(q);
-				continue;
+				break;
 			case choice_node:
 			{
-				auto Q = dynamic_cast<ChoiceNode*>(q);
-				switch (curstyle/2)
-				{
-					case 0:
-						p = Q->display_mlist;
-						Q->display_mlist = nullptr;
-						break;
-					case 1:
-						p = Q->text_mlist;
-						Q->text_mlist = nullptr;
-						break;
-					case 2:
-						p = Q->script_mlist;
-						Q->script_mlist = nullptr;
-						break;
-					case 3:
-						p = Q->script_script_mlist;
-						Q->script_script_mlist = nullptr;
-				}
-				flushnodelist(Q->display_mlist);
-				flushnodelist(Q->text_mlist);
-				flushnodelist(Q->script_mlist);
-				flushnodelist(Q->script_script_mlist);
+				LinkedNode *p;
+				q->mToH(p);
 				replaceNode(q, new StyleNode(curstyle));
 				if (p)
 				{
 					auto z = q->link;
-					followUntilEnd(q, p);
+					followUntilEnd(q, p); // q -> ... -> p -> nullptr
 					p->link = z;
 				}
-				next(q);
-				continue;
+				break;
 			}
+			case rule_node:
+			case glue_node:
+				q->mToH(maxh, maxd); [[fallthrough]];
 			case ins_node:
 			case mark_node:
 			case adjust_node:
 			case whatsit_node:
 			case penalty_node:
 			case disc_node: 
-				next(q);
-				continue;
-			case rule_node:
-			{
-				auto Q = dynamic_cast<RuleNode*>(q);
-				maxh = std::max(Q->height, maxh);
-				maxd = std::max(Q->depth, maxd);
-				next(q);
-				continue;
-			}
-			case glue_node:
-			{
-				auto Q = dynamic_cast<GlueNode*>(q);
-				if (Q->subtype == mu_glue)
-				{
-					auto x = Q->glue_ptr;
-					auto y = mathglue(x, curmu);
-					deleteglueref(x);
-					Q->glue_ptr = y;
-					Q->subtype = 0;
-				}
-				else 
-					if (cursize && Q->subtype == cond_math_glue)
-					{
-						p = q->link;
-						if (p)
-							if (p->type == glue_node || p->type == kern_node)
-							{
-								q->link = p->link;
-								p->link = nullptr;
-								flushnodelist(p);
-							}
-					}
-				next(q);
-				continue;
-			}
-			case kern_node:
-				dynamic_cast<KernNode*>(q)->mathkern(curmu);
-				next(q);
-				continue;
+				break;
 			default: 
 				confusion("mlist1");
 		}
-		auto Q = dynamic_cast<Noad*>(q);
-		switch (Q->nucleus.math_type)
-		{
-			case math_char:
-			case math_text_char:
-				fetch(Q->nucleus, f, curc);
-				if (auto &ft = fonts[f]; char_exists(ft.char_info(curc)))
-				{
-					delta = ft.char_italic(curc);
-					p = newcharacter(fam_fnt(Q->nucleus.fam+cursize), curc);
-					if (Q->nucleus.math_type == math_text_char && ft.space())
-						delta = 0;
-					if (Q->subscr.math_type == 0 && delta)
-					{
-						p->link = new KernNode(delta);
-						delta = 0;
-					}
-				}
-				else
-					p = nullptr;
-				break;
-			case 0: 
-				p = nullptr;
-				break;
-			case sub_box: 
-				p = Q->nucleus.info;
-				break;
-			case sub_mlist:
-				curmlist = Q->nucleus.info;
-				savestyle = curstyle;
-				mlistpenalties = false;
-				mlisttohlist();
-				curstyle = savestyle;
-				if (curstyle < script_style)
-					cursize = text_size;
-				else
-					cursize = 16*((curstyle-text_style)/2);
-				curmu = xovern(math_quad(cursize), 18);
-				p = hpack(temp_head->link, 0, additional);
-				break;
-			default: 
-				confusion("mlist2");
-		}
-		Q->nucleus.info = p;
-		if (Q->subscr.math_type || Q->supscr.math_type)
-			makescripts(Q, delta);
-		z = hpack(new_hlist(Q), 0, additional);
-		maxh = std::max(z->height, maxh);
-		maxd = std::max(z->depth, maxd);
-		delete z;
-		r = q;
-		rtype = r->type;
-		next(q);
 	}
-	if (rtype == bin_noad)
-		r->type = ord_noad;
-	p = dynamic_cast<CharNode*>(temp_head);
+	if (prevType == bin_noad)
+		prevType = ord_noad;
 	temp_head->link = nullptr;
 	q = mlist;
-	rtype = 0;
+	prevType = 0;
 	curstyle = style;
-	if (curstyle < script_style)
-		cursize = text_size;
-	else
-		cursize = 16*((curstyle-text_style)/2);
+	cursize = curstyle < script_style ? text_size : 16*((curstyle-text_style)/2);
 	curmu = xovern(math_quad(cursize), 18);
+	LinkedNode *p = temp_head;
 	while (q)
 	{
-		t = ord_noad;
+		smallnumber t = ord_noad;
 		int pen = inf_penalty;
 		switch (q->type)
 		{
@@ -873,11 +871,8 @@ void mlisttohlist(void)
 				t = makeleftright(dynamic_cast<LeftRightNoad*>(q), style, maxd, maxh);
 				break;
 			case style_node:
-				curstyle = dynamic_cast<StyleNode*>(q)->subtype;
-				if (curstyle < script_style)
-					cursize = text_size;
-				else
-					cursize = 16*((curstyle-2)/2);
+				curstyle = q->getSubtype();
+				cursize =  curstyle < script_style ? text_size : 16*((curstyle-2)/2);
 				curmu = xovern(math_quad(cursize), 18);
 				replaceNode(q, q->link);
 				continue;
@@ -890,18 +885,19 @@ void mlisttohlist(void)
 			case mark_node:
 			case glue_node:
 			case kern_node:
-				appendAtEnd(p, q);
-				next(q);
-				p->link = nullptr;
+				appendAtEnd(p, q); // p -> q
+				next(q); // p-> ? -> q
+				delete p->link;
+				p->link = nullptr; 
 				continue;
 			default: 
 				confusion("mlist3");
 		}
-		if (rtype > 0)
+		if (prevType > 0)
 		{
 			constexpr char math_spacing[] = "0234000122*4000133**3**344*0400400*000000234000111*1111112341011";
 			halfword x;
-			switch (math_spacing[(rtype-ord_noad)*8+t-ord_noad])
+			switch (math_spacing[(prevType-ord_noad)*8+t-ord_noad])
 			{
 				case '0': 
 					x = 0;
@@ -935,11 +931,11 @@ void mlisttohlist(void)
 			followUntilEnd(H, p);
 		if (penalties && q->link && pen < inf_penalty)
 		{
-			rtype = q->link->type;
-			if (rtype != penalty_node && rtype != rel_noad)
+			prevType = q->link->type;
+			if (prevType != penalty_node && prevType != rel_noad)
 				appendAtEnd(p, new PenaltyNode(pen));
 		}
-		rtype = t;
+		prevType = t;
 	}
 }
 
