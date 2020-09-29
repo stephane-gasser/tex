@@ -40,7 +40,6 @@ enum
 	char_node = 255
 };
 
-
 class AnyNode
 {
 	public:
@@ -95,6 +94,7 @@ class LinkedNode : public AnyNode
 		virtual void mToH(LinkedNode*&) {}
 		virtual bool mToH(scaled&, scaled&, scaled&) { return false; }
 		virtual void mToH2(scaled&, scaled&, scaled&) {}
+		virtual void out(void) {}
 };
 
 class ShapeNode : public LinkedNode
@@ -413,19 +413,34 @@ class OpenWriteWhatsitNode : public WriteWhatsitNode
 		std::string open_name; //!< string number of file name to open
 		std::string open_area; //!< string number of file area for \a open_name
 		std::string open_ext; //!< string number of file extension for \a open_name
-		OpenWriteWhatsitNode(void) : WriteWhatsitNode(open_node) {}
-		virtual OpenWriteWhatsitNode *copy(void) { auto w = new OpenWriteWhatsitNode; w->write_stream = write_stream; w->open_name = open_name; w->open_area = open_area; w->open_ext = open_ext; return w; }
+		OpenWriteWhatsitNode(int s) : WriteWhatsitNode(open_node) { write_stream = s; }
+		virtual OpenWriteWhatsitNode *copy(void) { auto w = new OpenWriteWhatsitNode(write_stream); w->open_name = open_name; w->open_area = open_area; w->open_ext = open_ext; return w; }
 		virtual std::string showNode(const std::string &);
+		virtual void out(void);
 };
 
 class NotOpenWriteWhatsitNode : public WriteWhatsitNode
 {
 	public:
 		TokenNode *write_tokens; //!< reference count of token list to write
-		NotOpenWriteWhatsitNode(smallnumber s) : WriteWhatsitNode(s) {}
+		NotOpenWriteWhatsitNode(smallnumber s, int val) : WriteWhatsitNode(s)
+		{
+			val = std::min(val, 16);
+			if (val < 0)
+				val = 17;
+			write_stream = val;
+		}
 		~NotOpenWriteWhatsitNode(void) { deletetokenref(write_tokens); }
-		virtual NotOpenWriteWhatsitNode *copy(void) { auto w = new NotOpenWriteWhatsitNode(subtype); w->write_stream = write_stream; w->write_tokens = write_tokens; write_tokens->token_ref_count++; return w; }
+		virtual NotOpenWriteWhatsitNode *copy(void) 
+		{ 
+			auto w = new NotOpenWriteWhatsitNode(subtype, write_stream); 
+			w->write_tokens = write_tokens;
+			w->write_stream = write_stream; 
+			write_tokens->token_ref_count++; 
+			return w; 
+		}
 		virtual std::string showNode(const std::string &);
+		virtual void out(void);
 };
 
 class LanguageWhatsitNode : public WhatsitNode
@@ -474,6 +489,7 @@ class Delimiter
 		quarterword large_fam; //|fam| for ``large'' delimiter
 		quarterword large_char; //|character| for ``large'' delimiter
 		std::string print(void);
+		void scan(bool, Token);
 };
 
 class RadicalNoad : public Noad
@@ -605,8 +621,6 @@ template<class T> void removeNodeAtStart(T* &q)
 	next(q);
 	delete p;
 }
-
-
 
 inline void removeNodeAfter(LinkedNode *prev)
 {

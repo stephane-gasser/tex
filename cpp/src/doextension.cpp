@@ -9,15 +9,11 @@
 
 void doextension(Token t)
 {
-	int i, j;
-	TokenNode *p;
-	halfword q, r;
 	switch (t.chr)
 	{
 		case open_node:
 		{
-			auto ww = new OpenWriteWhatsitNode;
-			ww->write_stream = scanfourbitint();
+			auto ww = new OpenWriteWhatsitNode(scanfourbitint());
 			scanoptionalequals();
 			scanfilename();
 			ww->open_name = curname;
@@ -27,41 +23,76 @@ void doextension(Token t)
 			break;
 		}
 		case write_node:
+		{
+			auto ww = new NotOpenWriteWhatsitNode(write_node, scanint());
+			scantoks(false, false, t);
+			ww->write_tokens = defref;
+			tail_append(ww);
+			break;
+		}
 		case close_node:
+		{
+			auto ww = new NotOpenWriteWhatsitNode(close_node, scanint());
+			ww->write_tokens = nullptr;
+			tail_append(ww);
+			break;
+		}
 		case special_node:
 		{
-			auto ww = new NotOpenWriteWhatsitNode(t.chr);
-			ww->write_stream = 0;
-			if (t.chr != special_node)
-			{
-				int val = scanint();
-				if (val < 0)
-					val = 17;
-				else 
-					if (val > 15)
-						val = 16;
-				ww->write_stream = val;
-			}
-			ww->write_tokens = nullptr;
-			if (t.chr != close_node)
-			{
-				p = scantoks(false, t.chr == special_node, t);
-				ww->write_tokens = defref;
-			}
+			auto ww = new NotOpenWriteWhatsitNode(special_node, 0);
+			scantoks(false, true, t);
+			ww->write_tokens = defref;
 			tail_append(ww);
 			break;
 		}
 		case immediate_code:
 			t = getxtoken();
-			if (t.cmd == extension && t.chr <= 2)
-			{
-				p = dynamic_cast<TokenNode*>(tail);
-				doextension(t);
-				outwhat(dynamic_cast<WhatsitNode*>(tail));
-				flushnodelist(tail);
-				tail = p;
-				tail->link = nullptr;
-			}
+			if (t.cmd == extension)
+				switch (t.chr) // \openout / \write / \closeout
+				{
+					case open_node:
+					{
+						auto p = tail;
+						auto ww = new OpenWriteWhatsitNode(scanfourbitint());
+						scanoptionalequals();
+						scanfilename();
+						ww->open_name = curname;
+						ww->open_area = curarea;
+						ww->open_ext = curext;
+						tail_append(ww);
+						outwhat(ww);
+						flushnodelist(tail);
+						tail = p;
+						tail->link = nullptr;
+						break;
+					}
+					case write_node:
+					{
+						auto p = tail;
+						auto ww = new NotOpenWriteWhatsitNode(write_node, scanint());
+						scantoks(false, false, t);
+						ww->write_tokens = defref;
+						tail_append(ww);
+						outwhat(ww);
+						flushnodelist(tail);
+						tail = p;
+						tail->link = nullptr;
+						break;
+					}
+					case close_node:
+					{
+						auto p = tail;
+						auto ww = new NotOpenWriteWhatsitNode(close_node, scanint());
+						tail_append(ww);
+						outwhat(ww);
+						flushnodelist(tail);
+						tail = p;
+						tail->link = nullptr;
+						break;
+					}
+					default:
+						backinput(t);
+				}
 			else
 				backinput(t);
 			break;

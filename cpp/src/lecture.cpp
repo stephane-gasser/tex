@@ -25,7 +25,6 @@
 static void scansomethinginternal(smallnumber level, bool negative, Token t, int &val, int &lev, GlueSpec* &gl, TokenNode* &tk)
 {
 	// lev/level : tok_val/dimen_val/glue_val/ident_val/int_val/mu_val
-	auto m = t.chr;
 	try
 	{
 		switch (t.cmd)
@@ -33,10 +32,10 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 			// int_val
 			case def_code:
 				lev = int_val;
-				val = m == math_code_base ? math_code(scancharnum()) : m < math_code_base ? eqtb_local[m+scancharnum()-local_base].int_ : eqtb_int[m+scancharnum()-int_base].int_;
+				val = t.chr == math_code_base ? math_code(scancharnum()) : t.chr < math_code_base ? eqtb_local[t.chr+scancharnum()-local_base].int_ : eqtb_int[t.chr+scancharnum()-int_base].int_;
 				break;
 			case assign_int:
-				val = eqtb_int[m-int_base].int_;
+				val = eqtb_int[t.chr-int_base].int_;
 				lev = int_val;
 				break;
 			case set_prev_graf:
@@ -51,7 +50,7 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 				lev = int_val;
 				break;
 			case set_page_int:
-				val =  m == 0 ? deadcycles : insertpenalties;
+				val =  t.chr == 0 ? deadcycles : insertpenalties;
 				lev = int_val;
 				break;
 			case set_shape:
@@ -66,7 +65,7 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 				lev = int_val;
 				break;
 			case assign_font_int:
-				val = m == 0 ? fonts[scanfontident()].hyphenchar: fonts[scanfontident()].skewchar;
+				val = t.chr == 0 ? fonts[scanfontident()].hyphenchar: fonts[scanfontident()].skewchar;
 				lev = int_val;
 				break;
 			// tok_val
@@ -75,8 +74,8 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 				if (level != tok_val)
 					throw 1;
 				if (t.cmd == toks_register)
-					m = toks_base+scaneightbitint();
-				tk = dynamic_cast<TokenNode*>(eqtb_local[m-local_base].index);
+					t.chr = toks_base+scaneightbitint();
+				tk = dynamic_cast<TokenNode*>(eqtb_local[t.chr-local_base].index);
 				lev = tok_val;
 				break;
 			// ident_val
@@ -91,21 +90,21 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 				break;
 			// dimen_val
 			case assign_dimen:
-				val = eqtb_dimen[m-dimen_base].int_;
+				val = eqtb_dimen[t.chr-dimen_base].int_;
 				lev = dimen_val;
 				break;
 			case set_page_dimen:
 				if (pagecontents == 0 && !outputactive)
-					val = m == 0 ? max_dimen : 0;
+					val = t.chr == 0 ? max_dimen : 0;
 				else
-					val = pagesofar[m];
+					val = pagesofar[t.chr];
 				lev = dimen_val;
 				break;
 			case set_box_dimen:
 				val = scaneightbitint();
 				val = 0;
 				if (box(val))
-					switch (m)
+					switch (t.chr)
 					{
 						case width_offset:
 							val = box(val)->width;
@@ -126,19 +125,19 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 				break;
 			// glue_val
 			case assign_glue:
-				gl = dynamic_cast<GlueSpec*>(eqtb_glue[m-glue_base].index); 
+				gl = dynamic_cast<GlueSpec*>(eqtb_glue[t.chr-glue_base].index); 
 				lev = glue_val;
 				break;
 			// mu_val
 			case assign_mu_glue:
-				gl = dynamic_cast<GlueSpec*>(eqtb_glue[m-glue_base].index);
+				gl = dynamic_cast<GlueSpec*>(eqtb_glue[t.chr-glue_base].index);
 				lev = mu_val;
 				break;
 			// mixed
 			case set_aux:
-				if (abs(mode) != m)
+				if (abs(mode) != t.chr)
 					throw 2;
-				if (m == vmode)
+				if (t.chr == vmode)
 				{
 					val = prev_depth;
 					lev = dimen_val;
@@ -148,7 +147,7 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 				lev = int_val;
 				break;
 			case register_:
-				switch (m)
+				switch (t.chr)
 				{
 					case int_val: 
 						val = count(scaneightbitint());
@@ -162,7 +161,7 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 					case mu_val: 
 						gl = mu_skip(scaneightbitint());
 				}
-				lev = m;
+				lev = t.chr;
 				break;
 			case last_item:
 				if (t.chr > glue_val)
@@ -186,11 +185,11 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 					{
 						case int_val: // \lastpenalty
 							if (tail->type == penalty_node) 
-								val = dynamic_cast<PenaltyNode*>(tail)->penalty;
+								val = tail->getPenalty();
 							break;
 						case dimen_val: // \lastkern
 							if (tail->type == kern_node) 
-								val = dynamic_cast<KernNode*>(tail)->width;
+								val = tail->getWidth();
 							break;
 						case glue_val: // \lastskip
 							if (tail->type == glue_node)
@@ -241,7 +240,7 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 	while (lev > level)
 	{
 		if (lev == glue_val)
-			val = dynamic_cast<GlueSpec*>(gl)->width;
+			val = gl->width;
 		else 
 			if (lev == mu_val)
 				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
@@ -262,8 +261,6 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 		if (lev >= glue_val && lev <= mu_val)
 			gl->glue_ref_count++;
 }
-
-
 
 Token getXTokenSkipSpace(void)
 {
@@ -286,19 +283,26 @@ Token getXTokenSkipSpaceAndEscape(void)
 void scanbox(int boxcontext)
 {
 	auto t = getXTokenSkipSpaceAndEscape();
-	if (t.cmd == make_box)
-		beginbox(boxcontext, t);
-	else 
-		if (boxcontext > leader_flag && (t.cmd == hrule || t.cmd == vrule))
-		{
-			curbox = dynamic_cast<BoxNode*>(scanrulespec(t));
-			boxend(boxcontext);
-		}
-		else
+	switch (t.cmd)
+	{
+		case make_box:
+			beginbox(boxcontext, t);
+			break;
+		case hrule:
+		case vrule:
+			if (boxcontext > leader_flag)
+			{
+				curbox = dynamic_cast<BoxNode*>(scanrulespec(t));
+				boxend(boxcontext);
+				break;
+			}
+			[[fallthrough]];
+		default:
 			backerror(t, "A <box> was supposed to be here", "I was expecting to see \\hbox or \\vbox or \\copy or \\box or\nsomething like that. So you might find something missing in\nyour output. But keep trying; you can fix this later.");
+	}
 }
 
-void scandelimiter(Delimiter &p, bool r, Token t)
+void Delimiter::scan(bool r, Token t)
 {
 	int val;
 	if (r)
@@ -324,10 +328,10 @@ void scandelimiter(Delimiter &p, bool r, Token t)
 		backerror(t, "Missing delimiter (. inserted)", "I was expecting to see something like `(' or `\\{' or\n`\\}' here. If you typed, e.g., `{' instead of `\\{', you\nshould probably delete the `{' by typing `1' now, so that\nbraces don't get unbalanced. Otherwise just proceed.\nAcceptable delimiters are characters whose \\delcode is\nnonnegative, or you can use `\\delimiter <delimiter code>'.");
 		val = 0;
 	}
-	p.small_fam = (val>>20)%(1<<4);
-	p.small_char = (val>>12)%(1<<8);
-	p.large_fam = (val>>8)%(1<<4);
-	p.large_char = val%(1<<8);
+	small_fam = (val>>20)%(1<<4);
+	small_char = (val>>12)%(1<<8);
+	large_fam = (val>>8)%(1<<4);
+	large_char = val%(1<<8);
 }
 
 static char dig[23]; // of 0..15
@@ -1135,7 +1139,7 @@ void begintokenlist(TokenNode *P, quarterword t)
 		param_start = paramstack.size();
 		return;
 	}
-	Loc = dynamic_cast<TokenNode*>(P->link);
+	putAfter(Loc, P);
 	if (tracing_macros() > 1)
 		switch (t)
 		{
@@ -1258,27 +1262,35 @@ Token getpreambletoken(void)
 	}
 }
 
+static Token getTokenSkipSpace(void)
+{
+	Token t;
+	do
+		t = gettoken();
+	while (t.tok == space_token);
+	return t;
+}
+
 [[nodiscard]] halfword getrtoken(void)
 {
 	while (true)
 	{
-		Token t;
-		do
-			t = gettoken();
-		while (t.tok == space_token);
+		auto t = getTokenSkipSpace();
 		if (t.cs && t.cs <= frozen_control_sequence)
 			return t.cs;
-		inserror(t, "Missing control sequence inserted", "Please don't say `\\def cs{...}', say `\\def\\cs{...}'.\nI've inserted an inaccessible control sequence so that your\ndefinition will be completed without mixing me up too badly.\nYou can recover graciously from this error, if you're\ncareful; see exercise 27.2 in The TeXbook.");
-		if (t.cs == 0)
+		if (t.cs)
 			backinput(t);
 		t.tok = frozen_protection+cs_token_flag;
+		inserror(t, "Missing control sequence inserted", "Please don't say `\\def cs{...}', say `\\def\\cs{...}'.\nI've inserted an inaccessible control sequence so that your\ndefinition will be completed without mixing me up too badly.\nYou can recover graciously from this error, if you're\ncareful; see exercise 27.2 in The TeXbook.");
 	}
 }
 
 void insthetoks(void)
 {
 	thetoks();
-	ins_list(dynamic_cast<TokenNode*>(temp_head->link));
+	auto t = temp_head;
+	next(t);
+	ins_list(t);
 }
 
 [[nodiscard]] TokenNode* readtoks(int n, halfword r)
@@ -1369,7 +1381,7 @@ void insthetoks(void)
 
 static TokenNode* strtoks(const std::string &s)
 {
-	auto p = dynamic_cast<TokenNode*>(temp_head);
+	auto p = temp_head;
 	p->link = nullptr;
 	for (halfword t: s)
 	{
@@ -1413,7 +1425,9 @@ void convtoks(Token t)
 				openlogfile();
 			strtoks(jobname);
 	}
-	ins_list(dynamic_cast<TokenNode*>(temp_head->link));
+	auto p = temp_head;
+	next(p);
+	ins_list(p);
 }
 
 TokenNode* thetoks(void)
@@ -1427,33 +1441,28 @@ TokenNode* thetoks(void)
 	{
 		case ident_val:
 		{
-			auto p = dynamic_cast<TokenNode*>(temp_head);
-			p->link = nullptr;
-			store_new_token(p, cs_token_flag+val);
-			return p;
+			temp_head->link = nullptr;
+			store_new_token(temp_head, cs_token_flag+val);
+			return temp_head;
 		}
 		case tok_val:
 		{
-			auto p = dynamic_cast<TokenNode*>(temp_head);
-			p->link = nullptr;
+			temp_head->link = nullptr;
+			auto p = tk;
+			next(p);
 			if (tk)
-				for (auto r = dynamic_cast<TokenNode*>(tk->link); r; next(r))
-					store_new_token(p, r->token);
-			return p;
+				for (auto r = p; r; next(r))
+					store_new_token(temp_head, r->token);
+			return temp_head;
 		}
 		case int_val: 
 			return strtoks(std::to_string(val));
 		case dimen_val:
 			return strtoks(asScaled(val)+"pt");
-		case glue_val:
+		default: // glue_val / mu_val
 		{
 			deleteglueref(gl);
-			return strtoks(gl->print("pt"));
-		}
-		default: // mu_val
-		{
-			deleteglueref(gl);
-			return strtoks(gl->print("mu"));
+			return strtoks(gl->print(lev == glue_val ? "pt" : "mu"));
 		}
 	}
 }

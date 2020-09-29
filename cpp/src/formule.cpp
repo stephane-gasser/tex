@@ -11,6 +11,16 @@
 #include "impression.h"
 #include "primitive.h"
 
+static smallnumber cursize;
+static scaled curmu;
+
+void setCurSize(smallnumber style, bool setMu)
+{ 
+	cursize = style < script_style ? text_size : 16*((style-text_style)/2); 
+	if (setMu)
+		curmu = xovern(math_quad(cursize), 18);
+}
+
 static int mathex(smallnumber p) { return fonts[fam_fnt(3+cursize)].param(p); }
 	static int default_rule_thickness(void) { return mathex(8); }
 	static int big_op_spacing1(void) { return mathex(9); } //!< minimum clearance above a displayed op
@@ -87,7 +97,7 @@ static int cramped_style(int c) { return 2*(c/2)+cramped; } //!< cramp the style
 static int sub_style(int c) { return 2*(c/4)+script_style+cramped; } //!< smaller and cramped
 static int sup_style(int c) { return 2*(c/4)+script_style+c%2; } //!< smaller
 
-void makeradical(RadicalNoad *Q)
+static void makeradical(RadicalNoad *Q)
 {
 	auto x = cleanbox(Q->nucleus, cramped_style(curstyle));
 	scaled clr;
@@ -110,7 +120,7 @@ void makeradical(RadicalNoad *Q)
 static int denom_style(int c) { return 2*(c/2)+cramped+2-2*(c/6); }  //!< smaller, cramped
 static int num_style(int c) { return c+2-2*(c/6); } //!< smaller unless already script-script
 
-void makefraction(FractionNoad *Q)
+static void makefraction(FractionNoad *Q)
 {
 	if (Q->thickness == default_code)
 		Q->thickness = default_rule_thickness();
@@ -192,7 +202,7 @@ void makefraction(FractionNoad *Q)
 	Q->nucleus.info = hpack(x, 0, additional);
 }
 
-void makemathaccent(AccentNoad *Q)
+static void makemathaccent(AccentNoad *Q)
 {
 	internalfontnumber f;
 	quarterword curc;
@@ -274,7 +284,7 @@ void makemathaccent(AccentNoad *Q)
 	}
 }
 
-void makeord(Noad *Q)
+static void makeord(Noad *Q)
 {
 	bool label20 = false;
 	do
@@ -353,7 +363,7 @@ void makeord(Noad *Q)
 	} while (label20);
 }
 
-void makescripts(Noad *q, scaled delta)
+static void makescripts(Noad *q, scaled delta)
 {
 	auto p = new_hlist(q);
 	scaled shiftup, shiftdown;
@@ -434,7 +444,7 @@ void makescripts(Noad *q, scaled delta)
 	}
 }
 
-void makeunder(Noad *q)
+static void makeunder(Noad *q)
 {
 	auto x = cleanbox(q->nucleus, curstyle);
 	x->link = new KernNode(3*default_rule_thickness());
@@ -447,7 +457,7 @@ void makeunder(Noad *q)
 	q->nucleus.info = y;
 }
 
-void makevcenter(Noad *q)
+static void makevcenter(Noad *q)
 {
 	auto v = dynamic_cast<BoxNode*>(q->nucleus.info);
 	if (!v || v->type != vlist_node)
@@ -457,7 +467,7 @@ void makevcenter(Noad *q)
 	v->depth = delta-v->height;
 }
 
-void makeover(Noad *q)
+static void makeover(Noad *q)
 {
 	q->nucleus.math_type = sub_box;
 	q->nucleus.info = overbar(cleanbox(q->nucleus, cramped_style(curstyle)), 3*default_rule_thickness(), default_rule_thickness());
@@ -472,7 +482,7 @@ BoxNode* overbar(BoxNode *b, scaled k, scaled t)
 	return vpack(p, 0, additional);
 }
 
-scaled makeop(Noad *Q)
+static scaled makeop(Noad *Q)
 {
 	if (Q->subtype == normal && curstyle < text_style)
 		Q->subtype = limits;
@@ -551,20 +561,12 @@ scaled makeop(Noad *Q)
 }
 
 
-smallnumber makeleftright(LeftRightNoad *q, smallnumber style, scaled maxd, scaled maxh)
+static smallnumber makeleftright(LeftRightNoad *q, smallnumber style, scaled maxd, scaled maxh)
 {
-	if (style < 4)
-		cursize = 0;
-	else
-		cursize = 16*((style-2)/2);
+	setCurSize(style, false);
 	scaled delta2 = maxd+axis_height(cursize);
-	scaled delta1 = maxh+maxd-delta2;
-	if (delta2 > delta1)
-		delta1 = delta2;
-	scaled delta = (delta1/500)*delimiter_factor();
-	delta2 = 2*delta1-delimiter_shortfall();
-	if (delta < delta2)
-		delta = delta2;
+	scaled delta1 = std::max(delta2, maxh+maxd-delta2);
+	scaled delta = std::max(2*delta1-delimiter_shortfall(), (delta1/500)*delimiter_factor());
 	q->nucleus.info = vardelimiter(q->delimiter, cursize, delta);
 	return q->type-(left_noad-open_noad);
 }
@@ -712,8 +714,7 @@ void Noad::mToH2(scaled &delta, scaled &maxd, scaled &maxh)
 			mlistpenalties = false;
 			mlisttohlist();
 			curstyle = savestyle;
-			cursize = curstyle < script_style ? text_size : 16*((curstyle-text_style)/2);
-			curmu = xovern(math_quad(cursize), 18);
+			setCurSize(curstyle);
 			nucleus.info = hpack(temp_head->link, 0, additional);
 			break;
 		}
@@ -731,13 +732,11 @@ void mlisttohlist(void)
 	auto mlist = curmlist;
 	auto penalties = mlistpenalties;
 	auto style = curstyle;
-	LinkedNode *q = mlist;
 	smallnumber prevType = op_noad;
 	scaled maxh = 0;
 	scaled maxd = 0;
-	cursize = curstyle < script_style  ? 0 : 16*((curstyle-text_style)/2);
-	curmu = xovern(math_quad(cursize), 18);
-	for (; q; next(q))
+	setCurSize(curstyle);
+	for (LinkedNode *q = mlist; q; next(q))
 	{
 		scaled delta = 0;
 		switch (q->type)
@@ -755,7 +754,6 @@ void mlisttohlist(void)
 						q->mToH();
 				}
 				q->mToH2(delta, maxh, maxd);
-				prevType = q->type;
 				break;
 			case ord_noad: 
 			case over_noad: 
@@ -767,35 +765,28 @@ void mlisttohlist(void)
 			case inner_noad: 
 				q->mToH();
 				q->mToH2(delta, maxh, maxd);
-				prevType = q->type;
 				break;
+			case op_noad:
+				if (q->mToH(delta, maxh, maxd))
+					break; 
+				[[fallthrough]];
 			case rel_noad:
 			case close_noad:
 			case punct_noad:
-			case right_noad:
-				if (q->type != right_noad)
-					q->mToH2(delta, maxh, maxd);
-				prevType = q->type;
-				break;
-			case op_noad:
-				if (!q->mToH(delta, maxh, maxd))
-					q->mToH2(delta, maxh, maxd);
-				prevType = q->type;
+				q->mToH2(delta, maxh, maxd);
 				break;
 			case left_noad: 
-				prevType = q->type;
+			case right_noad:
 				break;
 			case fraction_noad:
 				q->mToH(maxh, maxd);
-				prevType = q->type;
 				break;
 			case kern_node:
 				q->mToH();
 				break;
 			case style_node:
 				curstyle = q->getSubtype();
-				cursize = curstyle < script_style ? text_size : 16*((curstyle-2)/2);
-				curmu = xovern(math_quad(cursize), 18);
+				setCurSize(curstyle);
 				break;
 			case choice_node:
 			{
@@ -823,17 +814,17 @@ void mlisttohlist(void)
 			default: 
 				confusion("mlist1");
 		}
+		if (q->type >= ord_noad && q-> type <= right_noad)
+			prevType = q->type;
 	}
 	if (prevType == bin_noad)
 		prevType = ord_noad;
 	temp_head->link = nullptr;
-	q = mlist;
 	prevType = 0;
 	curstyle = style;
-	cursize = curstyle < script_style ? text_size : 16*((curstyle-text_style)/2);
-	curmu = xovern(math_quad(cursize), 18);
+	setCurSize(curstyle);
 	LinkedNode *p = temp_head;
-	while (q)
+	for (LinkedNode *q = mlist; q; )
 	{
 		smallnumber t = ord_noad;
 		int pen = inf_penalty;
@@ -872,8 +863,7 @@ void mlisttohlist(void)
 				break;
 			case style_node:
 				curstyle = q->getSubtype();
-				cursize =  curstyle < script_style ? text_size : 16*((curstyle-2)/2);
-				curmu = xovern(math_quad(cursize), 18);
+				setCurSize(curstyle);
 				replaceNode(q, q->link);
 				continue;
 			case whatsit_node:
@@ -896,11 +886,10 @@ void mlisttohlist(void)
 		if (prevType > 0)
 		{
 			constexpr char math_spacing[] = "0234000122*4000133**3**344*0400400*000000234000111*1111112341011";
-			halfword x;
+			halfword x = 0;
 			switch (math_spacing[(prevType-ord_noad)*8+t-ord_noad])
 			{
 				case '0': 
-					x = 0;
 					break;
 				case '1': 
 					x = curstyle < script_style ? thin_mu_skip_code : 0;

@@ -299,7 +299,7 @@ RadicalNoad::RadicalNoad(Token t)
 	nucleus.math_type = 0; // = twohalves{0, 0};
 	subscr.math_type = 0; // = twohalves{0, 0};
 	supscr.math_type = 0; // = twohalves{0, 0};
-	scandelimiter(left_delimiter, true, t);
+	left_delimiter.scan(true, t);
 	scanmath(nucleus);
 }
 
@@ -312,8 +312,8 @@ FractionNoad::FractionNoad(halfword c, Token t)
 	denominator.math_type = 0; // = twohalves{0, 0};
 	if (c >= delimited_code)
 	{
-		scandelimiter(left_delimiter, false, t);
-		scandelimiter(right_delimiter, false, t);
+		left_delimiter.scan(false, t);
+		right_delimiter.scan(false, t);
 	}
 	switch (c%delimited_code)
 	{
@@ -332,7 +332,7 @@ FractionNoad::FractionNoad(halfword c, Token t)
 LeftRightNoad::LeftRightNoad(Token t)
 { 
 	type = t.chr; 
-	scandelimiter(delimiter, false, t);
+	delimiter.scan(false, t);
 }
 
 int CharNode::width(void) { return fonts[font].char_width(character); }

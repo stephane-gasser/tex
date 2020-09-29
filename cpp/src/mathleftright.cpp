@@ -23,7 +23,7 @@ void mathright(Token t)
 		case math_shift_group:
 		{
 			Delimiter dummy;
-			scandelimiter(dummy, false, t);
+			dummy.scan(false, t);
 			error("Extra "+esc("right"), "I'm ignoring a \\right that had no matching \\left.");
 			break;
 		}

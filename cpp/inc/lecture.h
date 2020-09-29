@@ -24,7 +24,6 @@ inline TokenNode * defref;
 [[nodiscard]] Token xtoken(Token);
 [[nodiscard]] halfword getrtoken(void);
 void scanbox(int);
-void scandelimiter(Delimiter &, bool, Token);
 bool scankeyword(const std::string &);
 [[nodiscard]] Token scanleftbrace(void);
 void scanmath(NoadContent&);

@@ -73,11 +73,7 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 		mlisttohlist();
 		q = temp_head->link;
 		curstyle = savestyle;
-		if (curstyle < 4)
-			cursize = 0;
-		else
-			cursize = 16*((curstyle-2)/2);
-		curmu = xovern(math_quad(cursize), 18);
+		setCurSize(curstyle);
 	} while (false);
 	BoxNode *x;
 	if (q == nullptr || q->type == char_node || q->link || q->type > vlist_node || dynamic_cast<BoxNode*>(q)->shift_amount)

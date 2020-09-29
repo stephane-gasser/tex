@@ -1,10 +1,49 @@
 #include "outwhat.h"
-#include "writeout.h"
 #include "fichier.h"
 #include "dvi.h"
 #include "erreur.h"
 #include "chaine.h"
 #include "impression.h"
+#include "lecture.h"
+
+constexpr int end_write_token = cs_token_flag+end_write;
+
+static void writeout(NotOpenWriteWhatsitNode *p)
+{
+	auto q = new TokenNode(right_brace_token+'}');
+	q->link = new TokenNode(end_write_token);
+	ins_list(q);
+	begintokenlist(p->write_tokens, write_text);
+	ins_list(new TokenNode(left_brace_token+'{'));
+	int oldmode = mode;
+	mode = 0;
+	Token t;
+	t.cs = writeloc;
+	q = scantoks(false, true, t);
+	t = gettoken();
+	if (t.tok != end_write_token)
+	{
+		error("Unbalanced write command", "On this page there's a \\write with fewer real {'s than }'s.\nI can't handle that very well; good luck.");
+		do
+			t = gettoken();
+		while (t.tok != end_write_token);
+	}
+	mode = oldmode;
+	endtokenlist();
+	auto oldsetting = selector;
+	auto j = p->write_stream;
+	if (writeopen[j])
+		selector = j;
+	else
+	{
+		if (j == term_only && selector == term_and_log)
+			selector = log_only;
+		printnl("");
+	}
+	print(tokenshow(defref)+"\n");
+	flushnodelist(defref);
+	selector = oldsetting;
+}
 
 static void specialout(NotOpenWriteWhatsitNode *p)
 {
@@ -20,54 +59,56 @@ static void specialout(NotOpenWriteWhatsitNode *p)
 		dvi_out(xxx4);
 		dvifour(cur_length());
 	}
-	for (auto c: tokenlist(dynamic_cast<TokenNode*>(p->write_tokens->link), 0, poolsize/*-poolptr*/))
+	auto t = p->write_tokens;
+	next(t);
+	for (auto c: tokenlist(t, 0, poolsize))
 		dvi_out(c);
 }
 
-void outwhat(WhatsitNode *P)
+void OpenWriteWhatsitNode::out(void)
 {
-	switch (P->subtype)
+	if (writeopen[write_stream])
+		aclose(writefile[write_stream]);
+	if (write_stream < 16)
 	{
-		case open_node: 
-			if (!doingleaders)
-			{
-				auto Q = dynamic_cast<OpenWriteWhatsitNode*>(P);
-				smallnumber j = Q->write_stream;
-				if (writeopen[j])
-					aclose(writefile[j]);
-				if (j < 16)
-				{
-					curname = Q->open_name;
-					curarea = Q->open_area;
-					curext = Q->open_ext;
-					if (curext == "")
-						curext = ".tex";
-					while (!aopenout(writefile[j], nameoffile = pack_cur_name()))
-						promptfilename("output file name", ".tex"); 
-					writeopen[j] = true;
-				}
-			}
-			break;
+		curname = open_name;
+		curarea = open_area;
+		curext = open_ext;
+		if (curext == "")
+			curext = ".tex";
+		while (!aopenout(writefile[write_stream], nameoffile = pack_cur_name()))
+			promptfilename("output file name", ".tex"); 
+		writeopen[write_stream] = true;
+	}
+}
+
+void NotOpenWriteWhatsitNode::out(void)
+{
+	switch (subtype)
+	{
 		case write_node:
-			if (!doingleaders)
-			{
-				auto Q = dynamic_cast<NotOpenWriteWhatsitNode*>(P);
-				smallnumber j = Q->write_stream;
-				writeout(Q);
-			}
+			writeout(this);
 			break;
 		case close_node:
-			if (!doingleaders)
-			{
-				auto Q = dynamic_cast<NotOpenWriteWhatsitNode*>(P);
-				smallnumber j = Q->write_stream;
-				if (writeopen[j])
-					aclose(writefile[j]);
-				writeopen[j] = false;
-			}
+			if (writeopen[write_stream])
+				aclose(writefile[write_stream]);
+			writeopen[write_stream] = false;
 			break;
+		case special_node:
+			specialout(this);
+	}
+}
+
+void outwhat(WhatsitNode *w)
+{
+	switch (w->subtype)
+	{
+		case open_node: 
+		case write_node:
+		case close_node:
 		case special_node: 
-			specialout(dynamic_cast<NotOpenWriteWhatsitNode*>(P));
+			if (!doingleaders)
+				w->out();
 			break;
 		case language_node:
 			break;
