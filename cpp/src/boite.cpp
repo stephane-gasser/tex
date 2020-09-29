@@ -112,16 +112,16 @@ void alterboxdimen(halfword c)
 	}
 }
 
-void boxend(int boxcontext)
+void boxend(int boxcontext, RuleNode* curbox)
 {
-	if (boxcontext < box_flag)
+	if (boxcontext < box_flag) //<Append box |cur_box| to the current list, shifted by |box_context|
 	{
 		if (curbox)
 		{
-			curbox->shift_amount = boxcontext;
+			curbox->setShift(boxcontext);
 			if (abs(mode) == vmode)
 			{
-				appendtovlist(curbox);
+				appendtovlist(dynamic_cast<BoxNode*>(curbox));
 				if (adjusttail)
 				{
 					if (adjust_head != adjusttail)
@@ -148,30 +148,32 @@ void boxend(int boxcontext)
 	}
 	else 
 		if (boxcontext < ship_out_flag) // Store (c) \a cur_box in a box register
+		{
 			if (boxcontext < box_flag+256)
 				eqdefine_(&eqtb_local[boxcontext-box_flag+box_base-local_base], box_ref, curbox);
 			else
 				geqdefine_(&eqtb_local[boxcontext-box_flag-256+box_base-local_base], box_ref, curbox);
+		}
 		else 
-			if (curbox && boxcontext > ship_out_flag) // Append a new leader node that uses \a cur_box
-			{
-				auto t = getXTokenSkipSpaceAndEscape();
-				if ((t.cmd == hskip && abs(mode) != vmode) || (t.cmd == vskip && abs(mode) == vmode))
+			if (curbox)
+				if (boxcontext > ship_out_flag) // Append a new leader node that uses \a cur_box
 				{
-					auto g = glueToAppend(t.chr);
-					g->subtype = boxcontext-(leader_flag-a_leaders);
-					g->leader_ptr = curbox;
-					tail_append(g);
+					auto t = getXTokenSkipSpaceAndEscape();
+					if ((t.cmd == hskip && abs(mode) != vmode) || (t.cmd == vskip && abs(mode) == vmode))
+					{
+						auto g = glueToAppend(t.chr);
+						g->subtype = boxcontext-(leader_flag-a_leaders);
+						g->leader_ptr = curbox;
+						tail_append(g);
+					}
+					else
+					{
+						backerror(t, "Leaders not followed by proper glue", "You should say `\\leaders <box or rule><hskip or vskip>'.\nI found the <box or rule>, but there's no suitable\n<hskip or vskip>, so I'm ignoring these leaders.");
+						flushnodelist(curbox);
+					}
 				}
 				else
-				{
-					backerror(t, "Leaders not followed by proper glue", "You should say `\\leaders <box or rule><hskip or vskip>'.\nI found the <box or rule>, but there's no suitable\n<hskip or vskip>, so I'm ignoring these leaders.");
-					flushnodelist(curbox);
-				}
-			}
-
-	else
-	shipout(curbox);
+					shipout(dynamic_cast<BoxNode*>(curbox));
 }
 
 //! Now that we can see what eventually happens to boxes, we can consider
@@ -185,17 +187,19 @@ void beginbox(int boxcontext, Token t)
 		case box_code:
 		{
 			int val = scaneightbitint();
-			curbox = box(val);
+			auto b = box(val);
 			setBox(val, nullptr); // the box becomes void, at the same level
+			boxend(boxcontext, b); //in simple cases, we use the box immediately
 			break;
 		}
 		case copy_code:
-			curbox = dynamic_cast<BoxNode*>(copynodelist(box(scaneightbitint())));
+			boxend(boxcontext, dynamic_cast<BoxNode*>(copynodelist(box(scaneightbitint())))); //in simple cases, we use the box immediately
 			break;
 		case last_box_code:
+		{
 			// If the current list ends with a box node, delete it from 
 			// the list and make |cur_box| point to it; otherwise set |cur_box:=null|
-			curbox = nullptr;
+			BoxNode *b = nullptr;
 			switch (mode)
 			{
 				case mmode:
@@ -223,21 +227,23 @@ void beginbox(int boxcontext, Token t)
 							}
 							if (p->link == tail)
 							{
-								curbox = dynamic_cast<BoxNode*>(tail);
-								curbox->shift_amount = 0;
+								b = dynamic_cast<BoxNode*>(tail);
+								b->setShift(0);
 								tail = p;
 								tail->link = nullptr;
 								break;
 							}
 						}
 			}
+			boxend(boxcontext, b); //in simple cases, we use the box immediately
 			break;
+		}
 		case vsplit_code:
 		{
 			auto n = scaneightbitint();	 // a box number
 			if (!scankeyword("to"))
 				error("Missing `to' inserted", "I'm working on `\\vsplit<box number> to <dimen>';\nwill look for the <dimen> next.");
-			curbox = vsplit(n, scan_normal_dimen());
+			boxend(boxcontext, vsplit(n, scan_normal_dimen())); //in simple cases, we use the box immediately
 			break;
 		}
 		default:
@@ -277,7 +283,6 @@ void beginbox(int boxcontext, Token t)
 			return;
 		}
 	}
-	boxend(boxcontext); //in simple cases, we use the box immediately
 }
 
 BoxNode* charbox(internalfontnumber f, quarterword c)
@@ -645,7 +650,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 	return r;
 }
 
-void package(smallnumber c, Token t)
+void package(smallnumber c, Token t) 
 {
 	unsave();
 	auto s2 = savestack.back()->int_;
@@ -654,23 +659,24 @@ void package(smallnumber c, Token t)
 	savestack.pop_back();
 	auto s0 = savestack.back()->int_;
 	savestack.pop_back();
+	BoxNode *b;
 	if (mode == -hmode)
-		curbox = hpack(head->link, s2, s1);
+		b = hpack(head->link, s2, s1);
 	else
 	{
-		curbox = vpackage(head->link, s2, s1, box_max_depth());
+		auto box = vpackage(head->link, s2, s1, box_max_depth());
 		if (c == vtop_code)
 		{
 			scaled h = 0;
-			auto p = curbox->list_ptr;
-			if (p && p->type <= rule_node)
-				h = p->getHeight();
-			curbox->height = h;
-			curbox->depth += curbox->height-h;
+			if (box->list_ptr && box->list_ptr->type <= rule_node)
+				h = box->list_ptr->getHeight();
+			box->height = h;
+			box->depth += box->height-h;
 		}
+		b = box;
 	}
 	popnest();
-	boxend(s0);
+	boxend(s0, b);
 }
 
 void unpackage(halfword c)

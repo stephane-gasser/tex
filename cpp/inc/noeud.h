@@ -323,12 +323,13 @@ class RuleNode : public LinkedNode
 		virtual scaled getWidth(void) { return width; }
 		virtual scaled getDepth(void) { return depth; }
 		virtual void mToH(scaled&, scaled&);
+		virtual void setShift(scaled s) {}
 };
 
 class BoxNode : public RuleNode
 {
 	public:
-		int shift_amount = 0; //!< repositioning distance, in sp
+		scaled shift_amount = 0; //!< repositioning distance, in sp
 		LinkedNode *list_ptr = nullptr; //!< beginning of the list inside the box
 		quarterword glue_sign = 0; //normal  //!< stretching or shrinking
 		quarterword glue_order = 0; //normal //!< applicable order of infinity
@@ -340,6 +341,7 @@ class BoxNode : public RuleNode
 		virtual std::string showNode(const std::string &);
 		virtual void vlist(scaled);
 		virtual void hlist(scaled, scaled, scaled);
+		virtual void setShift(scaled s) { shift_amount = s; }
 };
 
 class UnsetNode : public BoxNode
@@ -352,6 +354,7 @@ class UnsetNode : public BoxNode
 		UnsetNode(void) : BoxNode() { type = unset_node; span_count = 0; } 
 		virtual UnsetNode *copy(void) { auto r = new UnsetNode; r->width = width; r->depth = depth; r->height = height; r->glue_shrink = glue_shrink; r->glue_sign = glue_sign; r->glue_order = glue_order; r->list_ptr = copynodelist(list_ptr); r->glue_stretch = glue_stretch; return r; }
 		virtual std::string showNode(const std::string &);
+		virtual void setShift(scaled s) {}
 };
 
 class StyleNode : public LinkedNode
@@ -364,7 +367,7 @@ class StyleNode : public LinkedNode
 };
 
 inline BoxNode *justbox;
-inline BoxNode *curbox;
+//inline RuleNode *curbox;
 
 class MathNode : public LinkedNode
 {

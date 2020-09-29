@@ -292,8 +292,7 @@ void scanbox(int boxcontext)
 		case vrule:
 			if (boxcontext > leader_flag)
 			{
-				curbox = dynamic_cast<BoxNode*>(scanrulespec(t));
-				boxend(boxcontext);
+				boxend(boxcontext, scanrulespec(t));
 				break;
 			}
 			[[fallthrough]];
