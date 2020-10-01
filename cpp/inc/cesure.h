@@ -2,6 +2,7 @@
 #define CESURE_H
 
 #include "globals.h"
+#include "token.h"
 #include "noeud.h"
 #include "equivalent.h"
 

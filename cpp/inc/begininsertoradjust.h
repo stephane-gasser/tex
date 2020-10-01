@@ -2,6 +2,8 @@
 #define BEGININSERTORADJUST_H
 
 #include "globals.h"
+#include "token.h"
+
 
 void begininsertoradjust(Token);
 

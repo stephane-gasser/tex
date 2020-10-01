@@ -2,6 +2,7 @@
 #define NOEUD_H
 
 #include "globals.h"
+#include "token.h"
 
 enum
 {
@@ -367,7 +368,6 @@ class StyleNode : public LinkedNode
 };
 
 inline BoxNode *justbox;
-//inline RuleNode *curbox;
 
 class MathNode : public LinkedNode
 {
@@ -425,7 +425,7 @@ class OpenWriteWhatsitNode : public WriteWhatsitNode
 class NotOpenWriteWhatsitNode : public WriteWhatsitNode
 {
 	public:
-		TokenNode *write_tokens; //!< reference count of token list to write
+		TokenList *write_tokens; //!< reference count of token list to write
 		NotOpenWriteWhatsitNode(smallnumber s, int val) : WriteWhatsitNode(s)
 		{
 			val = std::min(val, 16);
@@ -433,7 +433,7 @@ class NotOpenWriteWhatsitNode : public WriteWhatsitNode
 				val = 17;
 			write_stream = val;
 		}
-		~NotOpenWriteWhatsitNode(void) { deletetokenref(write_tokens); }
+		~NotOpenWriteWhatsitNode(void) { if (write_tokens) write_tokens->deleteTokenRef(); }
 		virtual NotOpenWriteWhatsitNode *copy(void) 
 		{ 
 			auto w = new NotOpenWriteWhatsitNode(subtype, write_stream); 

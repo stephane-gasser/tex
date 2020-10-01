@@ -2,6 +2,7 @@
 #define DOASSIGNMENTS_H
 
 #include "globals.h"
+#include "token.h"
 
 Token doassignments(void);
 

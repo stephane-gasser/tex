@@ -2,6 +2,7 @@
 #define ITSALLOVER_H
 
 #include "globals.h"
+#include "token.h"
 
 bool itsallover(Token);
 

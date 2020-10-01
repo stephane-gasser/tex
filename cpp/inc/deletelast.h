@@ -2,6 +2,7 @@
 #define DELETELAST_H
 
 #include "globals.h"
+#include "token.h"
 
 void deletelast(Token);
 

@@ -32,7 +32,7 @@ void expand(Token tk)
 	{
 		case top_bot_mark:
 			if (curmark[tk.chr])
-				begintokenlist(curmark[tk.chr], mark_text);
+				beginTokenListAboveMacro(curmark[tk.chr], mark_text);
 			break;
 		case expand_after:
 		{

@@ -1008,136 +1008,32 @@ RuleNode *scanrulespec(Token t)
 	return scanspec(c);
 }
 
-static void store_new_token(TokenNode* &p, halfword t)
-{
-	p->link = new TokenNode(t);
-	next(p);
-}
-
-TokenNode* scantoks(bool macrodef, bool xpand, Token tk)
-{
-	scannerstatus = macrodef ? defining : absorbing;
-	warningindex = tk.cs;
-	defref = new TokenNode;
-	defref->token_ref_count = 0;
-	auto p = defref;
-	halfword hashbrace = 0;
-	halfword t = zero_token;
-	halfword unbalance = 0;
-	if (macrodef)
-		while (true)
-		{
-			tk = gettoken();
-			if (tk.tok < right_brace_limit)
-			{
-				store_new_token(p, end_match_token);
-				if (tk.cmd == right_brace)
-				{
-					error("Missing { inserted", "Where was the left brace? You said something like `\\def\\a}',\nwhich I'm going to interpret as `\\def\\a{}'.");
-					alignstate++;
-					unbalance = 1;
-				}
-				break;
-			}
-			if (tk.cmd == mac_param)
-			{
-				auto s = match_token+tk.chr;
-				tk = gettoken();
-				if (tk.cmd == left_brace)
-				{
-					hashbrace = tk.tok;
-					store_new_token(p, tk.tok);
-					store_new_token(p, end_match_token);
-					break;
-				}
-				if (t == zero_token+9)
-					error("You already have nine parameters", "I'm going to ignore the # sign you just used.");
-				else
-				{
-					t++;
-					if (tk.tok != t)
-						backerror(tk, "Parameters must be numbered consecutively", "I've inserted the digit you should have used after the #.\nType `1' to delete what you did use.");
-					tk.tok = s;
-				}
-			}
-			store_new_token(p, tk.tok);
-		}
-	else
-		tk = scanleftbrace();
-	while (unbalance)
-	{
-		if (xpand)
-		{
-			for (tk = getnext(); tk.cmd > max_command; tk = getnext())
-			{
-				if (tk.cmd != the)
-					expand(tk);
-				else
-				{
-					auto q = thetoks();
-					if (temp_head->link)
-					{
-						p->link = temp_head->link;
-						p = q;
-					}
-				}
-			}
-			tk = xtoken(tk);
-		}
-		else
-			tk = gettoken();
-		switch (tk.cmd)
-		{
-			case left_brace:
-				unbalance++;
-				break;
-			case right_brace:
-				unbalance--;
-				break;
-			case mac_param:
-				if (macrodef)
-				{
-					auto s = tk.tok;
-					tk = xpand ? getxtoken() : gettoken();
-					if (tk.cmd != mac_param)
-						if (tk.tok <= zero_token || tk.tok > t) 
-						{
-							backerror(tk, "Illegal parameter number in definition of "+scs(warningindex), "You meant to type ## instead of #, right?\nOr maybe a } was forgotten somewhere earlier, and things\nare all screwed up? I'm going to assume that you meant ##.");
-							tk.tok = s;
-						}
-						else
-							tk.tok = out_param_token-'0'+tk.chr;
-				}
-		}
-		if (unbalance)
-			store_new_token(p, tk.tok);
-	}
-	scannerstatus = normal;
-	if (hashbrace)
-		store_new_token(p, hashbrace);
-	return p;
-}
-
-void back_list(TokenNode *p) { begintokenlist(p, backed_up); } //!< backs up a simple token list
-void ins_list(TokenNode *p) { begintokenlist(p, inserted); } //!< inserts a simple token list
-
-void begintokenlist(TokenNode *P, quarterword t)
+void beginTokenListBelowMacro(TokenNode *P, quarterword t)
 {
 	push_input();
 	state = token_list;
 	Start = P;
 	index = t;
-	if (t < macro)
-	{
-		Loc = P;
-		return;
-	}
+	Loc = P;
+}
+
+void beginTokenListMacro(TokenNode *P)
+{
+	push_input();
+	state = token_list;
+	Start = P;
+	index = macro;
 	P->token_ref_count++; //the token list starts with a reference count
-	if (t == macro)
-	{
-		param_start = paramstack.size();
-		return;
-	}
+	param_start = paramstack.size();
+}
+
+void beginTokenListAboveMacro(TokenNode *P, quarterword t)
+{
+	push_input();
+	state = token_list;
+	Start = P;
+	index = t;
+	P->token_ref_count++; //the token list starts with a reference count
 	putAfter(Loc, P);
 	if (tracing_macros() > 1)
 		switch (t)
@@ -1296,10 +1192,9 @@ void insthetoks(void)
 {
 	scannerstatus = defining;
 	warningindex = r;
-	defref = new TokenNode;
-	defref->token_ref_count = 0;
-	auto p = defref;
-	store_new_token(p, end_match_token);
+	defRef.list.clear();
+	defRef.token_ref_count = 0;
+	defRef.list.push_back(TokenNode2(end_match_token));
 	smallnumber m = (n < 0 || n > 15) ? 16 : n;
 	auto s = alignstate;
 	alignstate = 1000000;
@@ -1367,9 +1262,7 @@ void insthetoks(void)
 				alignstate = 1000000;
 				break;
 			}
-			auto q = new TokenNode(t.tok);
-			p->link = q;
-			p = q;
+			defRef.list.push_back(TokenNode2(t.tok));
 		}
 		endfilereading();
 	} while (alignstate != 1000000);
@@ -1378,25 +1271,17 @@ void insthetoks(void)
 	return defref;
 }
 
-static TokenNode* strtoks(const std::string &s)
+static TokenNode* strtoks2(const std::string &s)
 {
 	auto p = temp_head;
 	p->link = nullptr;
-	for (halfword t: s)
-	{
-		if (t == ' ')
-			t = space_token;
-		else
-			t += other_token;
-		store_new_token(p, t);
-	}
+	for (auto c: s)
+		appendAtEnd(p, new TokenNode(c == ' ' ? space_token : other_token+c));
 	return p;
 }
 
 void convtoks(Token t)
 {
-	smallnumber savescannerstatus;
-	int val;
 	switch (t.chr)
 	{
 		case number_code:
@@ -1406,19 +1291,23 @@ void convtoks(Token t)
 			strtoks(romanint(scanint()));
 			break;
 		case font_name_code: 
-			val = scanfontident();
-			strtoks(fonts[val].name+(fonts[val].size != fonts[val].dsize ? " at "+asScaled(fonts[val].size)+"pt" : ""));
+		{
+			auto &f = fonts[scanfontident()];
+			strtoks(f.name+(f.size != f.dsize ? " at "+asScaled(f.size)+"pt" : ""));
 			break;
+		}
 		case string_code:
 			strtoks(t.cs ? scs(t.cs) : std::string(1, t.chr));
 			break;
 		case meaning_code:
-			savescannerstatus = scannerstatus;
+		{
+			auto savescannerstatus = scannerstatus;
 			scannerstatus = normal;
 			t = gettoken();
 			scannerstatus = savescannerstatus;
 			strtoks(meaning(t));
 			break;
+		}
 		case job_name_code: 
 			if (jobname == "")
 				openlogfile();
@@ -1441,7 +1330,7 @@ TokenNode* thetoks(void)
 		case ident_val:
 		{
 			temp_head->link = nullptr;
-			store_new_token(temp_head, cs_token_flag+val);
+			appendAtEnd(temp_head, new TokenNode(cs_token_flag+val));
 			return temp_head;
 		}
 		case tok_val:
@@ -1450,18 +1339,18 @@ TokenNode* thetoks(void)
 			auto p = tk;
 			next(p);
 			if (tk)
-				for (auto r = p; r; next(r))
-					store_new_token(temp_head, r->token);
+				for (; p; next(p))
+					appendAtEnd(temp_head, new TokenNode(p->token));
 			return temp_head;
 		}
 		case int_val: 
-			return strtoks(std::to_string(val));
+			return strtoks2(std::to_string(val));
 		case dimen_val:
-			return strtoks(asScaled(val)+"pt");
+			return strtoks2(asScaled(val)+"pt");
 		default: // glue_val / mu_val
 		{
 			deleteglueref(gl);
-			return strtoks(gl->print(lev == glue_val ? "pt" : "mu"));
+			return strtoks2(gl->print(lev == glue_val ? "pt" : "mu"));
 		}
 	}
 }

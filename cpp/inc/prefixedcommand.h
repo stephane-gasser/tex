@@ -2,6 +2,7 @@
 #define PREFIXEDCOMMAND_H
 
 #include "globals.h"
+#include "token.h"
 
 inline Token aftertoken;
 

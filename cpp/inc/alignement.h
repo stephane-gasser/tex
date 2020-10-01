@@ -2,6 +2,7 @@
 #define ALIGNEMENT_H
 
 #include "globals.h"
+#include "token.h"
 #include "noeud.h"
 
 class SpanNode : public LinkedNode

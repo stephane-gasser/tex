@@ -199,7 +199,7 @@ void macrocall(Token t)
 	}
 	while (state == 0 && loc == 0 && index != 2)
 		endtokenlist();
-	begintokenlist(refcount, macro);
+	beginTokenListMacro(refcount);
 	name = warningindex;
 	Loc = r;
 	next(Loc);

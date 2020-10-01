@@ -2,6 +2,7 @@
 #define GETNEXT_H
 
 #include "globals.h"
+#include "token.h"
 
 enum scanner_status
 {

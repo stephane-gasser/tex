@@ -2,6 +2,7 @@
 #define STARTEQNO_H
 
 #include "globals.h"
+#include "token.h"
 
 void starteqno(Token);
 

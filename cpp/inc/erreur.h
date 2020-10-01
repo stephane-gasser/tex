@@ -2,6 +2,7 @@
 #define ERREUR_H
 
 #include "globals.h"
+#include "token.h"
 #include <string>
 
 enum

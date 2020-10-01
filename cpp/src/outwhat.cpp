@@ -13,13 +13,13 @@ static void writeout(NotOpenWriteWhatsitNode *p)
 	auto q = new TokenNode(right_brace_token+'}');
 	q->link = new TokenNode(end_write_token);
 	ins_list(q);
-	begintokenlist(p->write_tokens, write_text);
+	beginTokenListAboveMacro(p->write_tokens, write_text);
 	ins_list(new TokenNode(left_brace_token+'{'));
 	int oldmode = mode;
 	mode = 0;
 	Token t;
 	t.cs = writeloc;
-	q = scantoks(false, true, t);
+	scanNonMacroToksExpand(t);
 	t = gettoken();
 	if (t.tok != end_write_token)
 	{
@@ -40,8 +40,8 @@ static void writeout(NotOpenWriteWhatsitNode *p)
 			selector = log_only;
 		printnl("");
 	}
-	print(tokenshow(defref)+"\n");
-	flushnodelist(defref);
+	print(tokenshow(&defRef)+"\n");
+	defRef.list.clear();
 	selector = oldsetting;
 }
 
@@ -60,7 +60,7 @@ static void specialout(NotOpenWriteWhatsitNode *p)
 		dvifour(cur_length());
 	}
 	auto t = p->write_tokens;
-	next(t);
+	//next(t);
 	for (auto c: tokenlist(t, 0, poolsize))
 		dvi_out(c);
 }

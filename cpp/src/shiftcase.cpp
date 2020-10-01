@@ -4,18 +4,15 @@
 
 void shiftcase(Token tk) // lc_code_base / uc_code_base
 {
-	auto p = scantoks(false, false, tk);
-	for (p = dynamic_cast<TokenNode*>(defref->link); p; next(p))
-	{
-		auto t = p->token;
-		if (t < single_base+cs_token_flag)
+	scanNonMacroToks(tk);
+	for (auto &p: defRef.list)
+		if (p.token < single_base+cs_token_flag)
 		{
-			eightbits c = t%(1<<8);
+			eightbits c = p.token%(1<<8);
 			if (auto subst = eqtb_local[tk.chr+c-local_base].int_; subst)
-				p->token = t-c+subst;
+				p.token += subst-c;
 		}
-	}
-	back_list(dynamic_cast<TokenNode*>(defref->link));
-	delete defref;
-	defref = nullptr;
+	back_list(defref);
+	defRef.list.clear();
+	defRef.token_ref_count = 0;
 }

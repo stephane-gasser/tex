@@ -3,6 +3,7 @@
 
 #include "globals.h"
 #include "noeud.h"
+#include "token.h"
 #include <string>
 
 inline char termoffset = 0; // 0..maxprintline
@@ -19,6 +20,7 @@ std::string asFilename(const std::string &, const std::string &, const std::stri
 std::string shortdisplay(LinkedNode *);
 std::string tokenlist(TokenNode*, TokenNode*, int);
 std::string tokenshow(TokenNode*);
+std::string tokenshow(TokenList*);
 std::string meaning(Token);
 std::string romanint(int);
 std::string twoDigits(int);

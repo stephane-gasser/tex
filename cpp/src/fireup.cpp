@@ -193,7 +193,7 @@ void fireup(LinkedNode *c)
 			mode = -vmode;
 			prev_depth = ignore_depth;
 			mode_line = -line;
-			begintokenlist(output_routine(), 6);
+			beginTokenListAboveMacro(output_routine(), output_text);
 			newsavelevel(output_group);
 			normalparagraph();
 			auto t = scanleftbrace();

@@ -459,7 +459,7 @@ static void trybreak(int pi, smallnumber breaktype)
 			if (l > easyline)
 			{
 				linewidth = secondwidth;
-				oldl = 65534;
+				oldl = (1<<16)-2;
 			}
 			else
 			{

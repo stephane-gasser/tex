@@ -11,9 +11,9 @@ static bool longhelpseen = false;
 
 void issuemessage(Token t)
 {
-	scantoks(false, true, t);
-	auto s = tokenshow(defref);
-	flushnodelist(defref);
+	scanNonMacroToksExpand(t);
+	auto s = tokenshow(&defRef);
+	defRef.list.clear();
 	if (t.chr == 0)
 	{
 		print((termoffset+s.size() > maxprintline-2 ? "\n": termoffset > 0 || fileoffset > 0 ? " " : "")+s);

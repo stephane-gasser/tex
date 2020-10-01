@@ -25,8 +25,8 @@ void doextension(Token t)
 		case write_node:
 		{
 			auto ww = new NotOpenWriteWhatsitNode(write_node, scanint());
-			scantoks(false, false, t);
-			ww->write_tokens = defref;
+			scanNonMacroToks(t);
+			ww->write_tokens = &defRef;
 			tail_append(ww);
 			break;
 		}
@@ -40,8 +40,8 @@ void doextension(Token t)
 		case special_node:
 		{
 			auto ww = new NotOpenWriteWhatsitNode(special_node, 0);
-			scantoks(false, true, t);
-			ww->write_tokens = defref;
+			scanNonMacroToksExpand(t);
+			ww->write_tokens = &defRef;
 			tail_append(ww);
 			break;
 		}
@@ -70,8 +70,8 @@ void doextension(Token t)
 					{
 						auto p = tail;
 						auto ww = new NotOpenWriteWhatsitNode(write_node, scanint());
-						scantoks(false, false, t);
-						ww->write_tokens = defref;
+						scanNonMacroToks(t);
+						ww->write_tokens = &defRef;
 						tail_append(ww);
 						outwhat(ww);
 						flushnodelist(tail);

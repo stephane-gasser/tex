@@ -144,7 +144,7 @@ void initmath(void)
 		eqworddefine(&eqtb_dimen[display_width_code], l);
 		eqworddefine(&eqtb_dimen[display_indent_code], s);
 		if (every_display())
-			begintokenlist(every_display(), 9);
+			beginTokenListAboveMacro(every_display(), every_display_text);
 		if (nest.size() == 2)
 			buildpage();
 	}
@@ -154,6 +154,6 @@ void initmath(void)
 		pushmath(math_shift_group);
 		eqworddefine(&eqtb_int[cur_fam_code], -1);
 		if (every_math())
-			begintokenlist(every_math(), 8);
+			beginTokenListAboveMacro(every_math(), every_math_text);
 	}
 }

@@ -459,8 +459,8 @@ void newpatterns(Token t)
 	if (!trienotready)
 	{
 		error("Too late for "+esc("patterns"), "All patterns must be given before typesetting begins.");
-		scantoks(false, false, t);
-		flushnodelist(defref);
+		scanNonMacroToks(t);
+		defRef.list.clear();
 		return;
 	}
 	//Enter all of the patterns into a linked tr, until coming to a right brace

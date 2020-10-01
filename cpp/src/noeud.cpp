@@ -133,7 +133,7 @@ void newgraf(bool indented)
 		head->link = tail;
 	}
 	if (every_par())
-		begintokenlist(every_par(), every_par_text);
+		beginTokenListAboveMacro(every_par(), every_par_text);
 	if (nest.size() == 2)
 		buildpage();
 }

@@ -2,6 +2,7 @@
 #define MAINLOOP_H
 
 #include "globals.h"
+#include "token.h"
 
 inline bool cancelboundary = false;
 

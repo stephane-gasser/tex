@@ -390,7 +390,7 @@ static void removeFromEnd(int &k, int d)
 							alignstate--;
 							break;
 						case out_param:
-							begintokenlist(paramstack[limit+t.chr-1], 0);
+							beginTokenListBelowMacro(paramstack[limit+t.chr-1], parameter);
 							restart = true;
 					}
 				}
@@ -406,7 +406,7 @@ static void removeFromEnd(int &k, int d)
 				fatalerror("(interwoven alignment preambles are not allowed)");
 			t.cmd = curalign->extra_info;
 			curalign->extra_info = t.chr;
-			begintokenlist(t.cmd == omit ? omit_template : curalign->v_part, v_template);
+			beginTokenListBelowMacro(t.cmd == omit ? omit_template : curalign->v_part, v_template);
 			alignstate = 1000000;
 			restart = true;
 		}

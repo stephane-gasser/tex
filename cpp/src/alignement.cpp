@@ -63,7 +63,7 @@ static void initcol(Token t)
 	else
 	{
 		backinput(t);
-		begintokenlist(curalign->u_part, u_template);
+		beginTokenListBelowMacro(curalign->u_part, u_template);
 	}
 }
 
@@ -195,7 +195,7 @@ void initalign(Token t, AlignRecordNode* &loop)
 	scannerstatus = normal;
 	newsavelevel(align_group);
 	if (every_cr())
-		begintokenlist(every_cr(), every_cr_text);
+		beginTokenListAboveMacro(every_cr(), every_cr_text);
 	alignpeek(loop);
 }
 
@@ -223,7 +223,7 @@ static void finrow(AlignRecordNode* &loop)
 	p->type = unset_node;
 	dynamic_cast<UnsetNode*>(p)->glue_stretch = 0;
 	if (every_cr())
-		begintokenlist(every_cr(), every_cr_text);
+		beginTokenListAboveMacro(every_cr(), every_cr_text);
 	alignpeek(loop);
 }
 

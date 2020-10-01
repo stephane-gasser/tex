@@ -4,8 +4,9 @@
 
 LinkedNode* prunepagetop(LinkedNode *p)
 {
-	LinkedNode *prevp = temp_head;
-	temp_head->link = p; // prevp -> p
+	LinkedNode head;
+	head.link = p; 
+	LinkedNode *prevp = &head; // prevp -> p
 	while (p)
 		switch (p->type)
 		{
@@ -20,7 +21,7 @@ LinkedNode* prunepagetop(LinkedNode *p)
 					q->glue_ptr->width -= P->height;
 				else
 					q->glue_ptr->width = 0;
-				return temp_head->link;
+				return head.link;
 			}
 			case whatsit_node:
 			case mark_node:
@@ -39,5 +40,5 @@ LinkedNode* prunepagetop(LinkedNode *p)
 			default: 
 				confusion("pruning");
 		}
-	return temp_head->link;
+	return head.link;
 }

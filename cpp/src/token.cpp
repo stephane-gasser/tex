@@ -1,0 +1,190 @@
+#include "token.h"
+#include "getnext.h"
+#include "lecture.h"
+#include "erreur.h"
+#include "alignement.h"
+#include "expand.h"
+#include "impression.h"
+#include <sstream>
+
+static std::vector<TokenNode2> tempHead;
+
+void strtoks(const std::string &s)
+{
+	for (auto c: s)
+		tempHead.push_back(TokenNode2(c == ' ' ? space_token : other_token+c));
+}
+
+static void scantoks(bool macrodef, bool xpand, Token tk)
+{
+	scannerstatus = macrodef ? defining : absorbing;
+	warningindex = tk.cs;
+	defRef.token_ref_count = 0;
+	defRef.list.clear();
+	halfword hashbrace = 0;
+	halfword t = zero_token;
+	halfword unbalance = 0;
+	if (macrodef)
+		while (true)
+		{
+			tk = gettoken();
+			if (tk.tok < right_brace_limit)
+			{
+				defRef.list.push_back(TokenNode2(end_match_token));
+				if (tk.cmd == right_brace)
+				{
+					error("Missing { inserted", "Where was the left brace? You said something like `\\def\\a}',\nwhich I'm going to interpret as `\\def\\a{}'.");
+					alignstate++;
+					unbalance = 1;
+				}
+				break;
+			}
+			if (tk.cmd == mac_param)
+			{
+				auto s = match_token+tk.chr;
+				tk = gettoken();
+				if (tk.cmd == left_brace)
+				{
+					hashbrace = tk.tok;
+					defRef.list.push_back(TokenNode2(tk.tok));
+					defRef.list.push_back(TokenNode2(end_match_token));
+					break;
+				}
+				if (t == zero_token+9)
+					error("You already have nine parameters", "I'm going to ignore the # sign you just used.");
+				else
+				{
+					t++;
+					if (tk.tok != t)
+						backerror(tk, "Parameters must be numbered consecutively", "I've inserted the digit you should have used after the #.\nType `1' to delete what you did use.");
+					tk.tok = s;
+				}
+			}
+			defRef.list.push_back(TokenNode2(tk.tok));
+		}
+	else
+		tk = scanleftbrace();
+	while (unbalance)
+	{
+		if (xpand)
+		{
+			for (tk = getnext(); tk.cmd > max_command; tk = getnext())
+			{
+				if (tk.cmd != the)
+					expand(tk);
+				else
+				{
+					/*auto q = thetoks();
+					if (temp_head->link)
+					{
+						p->link = temp_head->link;
+						p = q;
+					}*/
+				}
+			}
+			tk = xtoken(tk);
+		}
+		else
+			tk = gettoken();
+		switch (tk.cmd)
+		{
+			case left_brace:
+				unbalance++;
+				break;
+			case right_brace:
+				unbalance--;
+				break;
+			case mac_param:
+				if (macrodef)
+				{
+					auto s = tk.tok;
+					tk = xpand ? getxtoken() : gettoken();
+					if (tk.cmd != mac_param)
+						if (tk.tok <= zero_token || tk.tok > t)
+						{
+							backerror(tk, "Illegal parameter number in definition of "+scs(warningindex), "You meant to type ## instead of #, right?\nOr maybe a } was forgotten somewhere earlier, and things\nare all screwed up? I'm going to assume that you meant ##.");
+							tk.tok = s;
+						}
+						else
+							tk.tok = out_param_token-'0'+tk.chr;
+				}
+		}
+		if (unbalance)
+			defRef.list.push_back(TokenNode2(tk.tok));
+	}
+	scannerstatus = normal;
+	if (hashbrace)
+		defRef.list.push_back(TokenNode2(hashbrace));
+}
+
+void scanMacroToks(bool xpand, Token tk) { scantoks(true, xpand, tk); }
+void scanNonMacroToks(Token tk) { scantoks(false, false, tk); }
+void scanNonMacroToksExpand(Token tk) { scantoks(false, true, tk); }
+
+void beginTokenListAboveMacro(TokenList *, quarterword)
+{
+}
+
+std::string tokenlist(TokenList *list, TokenNode2 *q, int l)
+{
+	std::ostringstream oss;
+/*	ASCIIcode matchchr = '#';
+	ASCIIcode n = '0';
+	while (p && oss.str().size() < l)
+	{
+		if (p == q)
+		{
+			firstcount = oss.str().size();
+			trickcount = std::max(firstcount+1+errorline-halferrorline, errorline);
+		}
+		if (p->token >= cs_token_flag)
+			oss << cs(p->token-cs_token_flag);
+		else
+		{
+			int m = p->token>>8;
+			int c = p->token%(1<<8);
+			if (p->token < 0)
+				oss << esc("BAD.");
+			else
+				switch (m)
+				{
+					case left_brace:
+					case right_brace:
+					case math_shift:
+					case tab_mark:
+					case sup_mark:
+					case sub_mark:
+					case spacer:
+					case letter:
+					case other_char: 
+						oss << char(c);
+						break;
+					case mac_param:
+						oss << char(c) << char(c);
+						break;
+					case out_param:
+						oss << char(matchchr);
+						if (c > 9)
+							return oss.str()+char('!');
+						oss << c;
+						break;
+					case match:
+						matchchr = c;
+						oss << char(c) << char(++n);
+						if (n > '9')
+							return oss.str();
+						break;
+					case end_match: 
+						oss << "->";
+						break;
+					default:
+			  			oss << esc("BAD.");
+				}
+		}
+		p = dynamic_cast<TokenNode*>(p->link);
+	}
+	if (p)
+		oss << esc("ETC.");*/
+	return oss.str();
+}
+

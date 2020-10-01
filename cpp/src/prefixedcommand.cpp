@@ -85,7 +85,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			auto p = getrtoken();
 			Token tk;
 			tk.cs = p;
-			scantoks(true, t.chr >= 2, tk);
+			scanMacroToks(t.chr >= 2, tk);
 			define_(a, &eqtb_cs[p-hash_base], call+a%4, defref); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		}
@@ -182,18 +182,18 @@ void prefixedcommand(Token t, bool setboxallowed)
 			backinput(t);
 			Token tk;
 			tk.cs = old;
-			auto q = scantoks(false, false, tk);
-			if (defref->link == nullptr)
+			scanNonMacroToks(tk);
+			if (defRef.list.size() == 0)
 			{
 				define_(a, &eqtb_local[p-local_base], undefined_cs, nullptr);
-				delete defref;
+				defRef.token_ref_count = 0;
 			}
 			else
 			{
 				if (p == output_routine_loc) 
 				{
-					appendAtEnd(q, new TokenNode(right_brace_token+'}'));
-					appendAtStart(defref->link, new TokenNode(left_brace_token+'{'));
+					defRef.list.insert(defRef.list.begin(), TokenNode2(left_brace_token+'{'));
+					defRef.list.push_back(TokenNode2(right_brace_token+'}'));
 				}
 				define_(a, &eqtb_local[p-local_base], call, defref);
 			}

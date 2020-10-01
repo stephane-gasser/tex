@@ -1,8 +1,10 @@
 #include "headforvmode.h"
+#include "token.h"
 #include "offsave.h"
 #include "impression.h"
 #include "erreur.h"
 #include "backinput.h"
+#include "lecture.h"
 
 void headforvmode(Token t)
 {

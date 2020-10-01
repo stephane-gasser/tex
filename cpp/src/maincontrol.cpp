@@ -48,7 +48,7 @@ Token maincontrol(void)
 {
 	AlignRecordNode *loop = nullptr;
 	if (every_job())
-		begintokenlist(every_job(), every_job_text);
+		beginTokenListAboveMacro(every_job(), every_job_text);
 	auto t = getxtoken();
 	while (true)
 	{
@@ -229,7 +229,7 @@ Token maincontrol(void)
 				break;
 			case ANY_MODE(mark):
 			{
-				scantoks(false, true, t);
+				scanNonMacroToksExpand(t);
 				tail_append(new MarkNode);
 				break;
 			}
@@ -365,7 +365,7 @@ Token maincontrol(void)
 				mode = -vmode;
 				prev_depth = ignore_depth;
 				if (every_vbox())
-					begintokenlist(every_vbox(), every_vbox_text);
+					beginTokenListAboveMacro(every_vbox(), every_vbox_text);
 				break;
 			case mmode+math_style:
 				tail_append(new StyleNode(t.chr));

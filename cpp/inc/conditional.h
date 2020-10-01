@@ -2,6 +2,7 @@
 #define CONDITIONAL_H
 
 #include "globals.h"
+#include "token.h"
 #include "noeud.h"
 
 void conditional(Token);

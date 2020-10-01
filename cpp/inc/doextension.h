@@ -2,6 +2,7 @@
 #define DOEXTENSION_H
 
 #include "globals.h"
+#include "token.h"
 
 void doextension(Token);
 

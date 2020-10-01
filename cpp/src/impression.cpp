@@ -272,7 +272,13 @@ void println(void)
 
 static std::string asMark(TokenNode *p)
 {
-	return "{"+(tokenlist(dynamic_cast<TokenNode*>(p->link), nullptr, maxprintline-10))+"}";
+	return "{"+tokenlist(dynamic_cast<TokenNode*>(p->link), nullptr, maxprintline-10)+"}";
+}
+
+static std::string asMark(TokenList *p) //TODO
+{
+//	return "{"+tokenlist(dynamic_cast<TokenNode*>(p->link), nullptr, maxprintline-10)+"}";
+	return "{}";
 }
 
 std::string meaning(Token t) 
@@ -480,6 +486,11 @@ std::string tokenlist(TokenNode *p, TokenNode *q, int l)
 std::string tokenshow(TokenNode *p)
 {
 	return p ? tokenlist(dynamic_cast<TokenNode*>(p->link), 0, 10000000) : "";
+}
+
+std::string tokenshow(TokenList *p)
+{
+	return p ? tokenlist(p, 0, 10000000) : "";
 }
 
 std::string shortdisplay(LinkedNode *p)

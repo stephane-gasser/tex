@@ -11,5 +11,5 @@ void starteqno(Token t)
 	pushmath(math_shift_group);
 	eqworddefine(&eqtb_int[cur_fam_code], -1);
 	if (every_math())
-		begintokenlist(every_math(), every_math_text);
+		beginTokenListAboveMacro(every_math(), every_math_text);
 }
