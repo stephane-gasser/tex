@@ -27,7 +27,6 @@ enum token_type
 
 inline smallnumber radix = 0;
 inline glueord curorder = 0;
-inline TokenNode *defref;
 
 [[nodiscard]] int scanint(void);
 [[nodiscard]] int scancharnum(void);
@@ -39,7 +38,7 @@ inline TokenNode *defref;
 [[nodiscard]] int scan_normal_dimen(void);
 [[nodiscard]] int scanfontident(void);
 [[nodiscard]] GlueSpec *scanglue(smallnumber);
-[[nodiscard]] TokenNode* readtoks(int, halfword);
+[[nodiscard]] TokenList* readtoks(int, halfword);
 [[nodiscard]] Token gettoken(void);
 [[nodiscard]] Token getxtoken(void);
 [[nodiscard]] Token xtoken(Token);
@@ -52,13 +51,11 @@ void scanoptionalequals(void);
 RuleNode *scanrulespec(Token);
 [[nodiscard]] Token scanspec(groupcode);
 [[nodiscard]] Token scanspec(groupcode, int);
-/*TokenNode* scanMacroToks(bool, Token);
-TokenNode* scanNonMacroToks(Token);
-TokenNode* scanNonMacroToksExpand(Token);*/
 void convtoks(Token);
 void back_list(TokenNode*);
 void ins_list(TokenNode*);
 void beginTokenListBelowMacro(TokenNode*, quarterword);
+void beginTokenListBelowMacro(TokenList*, quarterword);
 void beginTokenListMacro(TokenNode*);
 void beginTokenListAboveMacro(TokenNode*, quarterword);
 void deletetokenref(TokenNode*);
@@ -70,6 +67,7 @@ Token getXTokenSkipSpace(void);
 Token getXTokenSkipSpaceAndEscape(void);
 
 inline void back_list(TokenNode *p) { beginTokenListBelowMacro(p, backed_up); } //!< backs up a simple token list
+inline void back_list(TokenList *p) { beginTokenListBelowMacro(p, backed_up); } //!< backs up a simple token list
 inline void ins_list(TokenNode *p) { beginTokenListBelowMacro(p, inserted); } //!< inserts a simple token list
 
 #endif

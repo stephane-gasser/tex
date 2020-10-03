@@ -57,8 +57,9 @@ void fireup(LinkedNode *c)
 			next(r);
 		}
 	}
-	hold_head->link = nullptr;
-	LinkedNode *q = hold_head;
+	LinkedNode head;
+	head.link = nullptr;
+	LinkedNode *q = &head;
 	auto prevp = page_head;
 	auto p = page_head->link;
 	for (; p != bestpagebreak; prevp = p, next(p))
@@ -164,9 +165,9 @@ void fireup(LinkedNode *c)
 	lastkern = 0;
 	page_depth = 0;
 	pagemaxdepth = 0;
-	if (q != hold_head)
+	if (q != &head)
 	{
-		page_head->link = hold_head->link;
+		page_head->link = head.link;
 		pagetail = q;
 	}
 	auto r = page_ins_head->link;

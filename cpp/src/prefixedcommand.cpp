@@ -86,7 +86,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			Token tk;
 			tk.cs = p;
 			scanMacroToks(t.chr >= 2, tk);
-			define_(a, &eqtb_cs[p-hash_base], call+a%4, defref); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
+			define_(a, &eqtb_cs[p-hash_base], call+a%4, &defRef); // a%4 = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		}
 		case let:
@@ -121,25 +121,25 @@ void prefixedcommand(Token t, bool setboxallowed)
 			scanoptionalequals();
 			switch (t.chr)
 			{
-				case 0:
+				case char_def_code:
 					define(a, &eqtb_cs[p-hash_base], char_given, scancharnum());
 					break;
-				case 1:
+				case math_char_def_code:
 					define(a, &eqtb_cs[p-hash_base], math_given, scanfifteenbitint());
 					break;
-				case 2: 
+				case count_def_code: 
 					define(a, &eqtb_cs[p-hash_base], assign_int, count_base+scaneightbitint());
 					break;
-				case 3: 
+				case dimen_def_code: 
 					define(a, &eqtb_cs[p-hash_base], assign_dimen, scaled_base+scaneightbitint());
 					break;
-				case 4: 
+				case skip_def_code:
 					define(a, &eqtb_cs[p-hash_base], assign_glue, skip_base+scaneightbitint());
 					break;
-				case 5: 
+				case mu_skip_def_code: 
 					define(a, &eqtb_cs[p-hash_base], assign_mu_glue, mu_skip_base+scaneightbitint());
 					break;
-				case 6: 
+				case toks_def_code: 
 					define(a, &eqtb_cs[p-hash_base], assign_toks, toks_base+scaneightbitint());
 			}
 			break;
@@ -195,7 +195,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 					defRef.list.insert(defRef.list.begin(), TokenNode2(left_brace_token+'{'));
 					defRef.list.push_back(TokenNode2(right_brace_token+'}'));
 				}
-				define_(a, &eqtb_local[p-local_base], call, defref);
+				define_(a, &eqtb_local[p-local_base], call, &defRef);
 			}
 			break;
 		}

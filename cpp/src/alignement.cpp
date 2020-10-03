@@ -63,7 +63,7 @@ static void initcol(Token t)
 	else
 	{
 		backinput(t);
-		beginTokenListBelowMacro(curalign->u_part, u_template);
+		beginTokenListBelowMacro(&curalign->uPart, u_template);
 	}
 }
 
@@ -141,8 +141,7 @@ void initalign(Token t, AlignRecordNode* &loop)
 		appendAtEnd(curalign, new GlueNode(tab_skip_code));
 		if (t.cmd == car_ret)
 			break;
-		hold_head->link = nullptr;
-		auto p = hold_head;
+		TokenList holdHead;
 		bool keepIn = true;
 		for (t = getpreambletoken(); t.cmd != mac_param && keepIn; t = getpreambletoken())
 		{
@@ -150,7 +149,7 @@ void initalign(Token t, AlignRecordNode* &loop)
 			{
 				case tab_mark:
 					if (alignstate == -1000000)
-						if (p == hold_head && loop == nullptr)
+						if (holdHead.list.size() == 0 && loop == nullptr)
 							loop = curalign;
 						else
 						{
@@ -166,19 +165,19 @@ void initalign(Token t, AlignRecordNode* &loop)
 					}
 					break;
 				case spacer:
-					if (p != hold_head)
-						appendAtEnd(p, new TokenNode(t.tok));
+					if (holdHead.list.size())
+						holdHead.list.push_back(TokenNode2(t.tok));
 					break;
 				default:
-					appendAtEnd(p, new TokenNode(t.tok));
+					holdHead.list.push_back(TokenNode2(t.tok));
 			}
 		}
 		appendAtEnd(curalign, new AlignRecordNode);
 		curalign->info = end_span;
 		curalign->width = null_flag;
-		putAfter(curalign->u_part, hold_head);
-		hold_head->link = nullptr;
-		for (p = hold_head; true; appendAtEnd(p, new TokenNode(t.tok)))
+		curalign->uPart.list = holdHead.list;
+		holdHead.list.clear();
+		for (; true; holdHead.list.push_back(TokenNode2(t.tok)))
 		{
 			t = getpreambletoken();
 			if (t.cmd <= out_param && t.cmd >= tab_mark && alignstate == -1000000)
@@ -189,8 +188,8 @@ void initalign(Token t, AlignRecordNode* &loop)
 				continue;
 			}
 		}
-		appendAtEnd(p, new TokenNode(end_template_token));
-		putAfter(curalign->v_part, hold_head);
+		holdHead.list.push_back(TokenNode2(end_template_token));
+		curalign->vPart.list = holdHead.list;
 	}
 	scannerstatus = normal;
 	newsavelevel(align_group);
@@ -247,16 +246,14 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 			p->width = null_flag;
 			next(loop);
 			// Copy the templates from node |cur_loop| into node |p|
-			q = hold_head;
+			TokenList holdHead;
 			for (auto r = loop->u_part; r; next(r))
-				appendAtEnd(q, new TokenNode(r->token));
-			q->link = nullptr;
-			putAfter(p->u_part, hold_head);
-			q = hold_head;
+				holdHead.list.push_back(TokenNode2(r->token));
+			p->uPart.list = holdHead.list;
+			holdHead.list.clear();
 			for (auto r = loop->v_part; r; next(r))
-				appendAtEnd(q, new TokenNode(r->token));
-			q->link = nullptr;
-			putAfter(p->v_part, hold_head);
+				holdHead.list.push_back(TokenNode2(r->token));
+			p->vPart.list = holdHead.list;
 			next(loop);
 			p->link = new GlueNode(loop->glue_ptr);
 		}
@@ -493,7 +490,8 @@ static void finalign(AlignRecordNode* &loop)
 					n = R->span_count;
 					t = S->width;
 					w = t;
-					auto u = hold_head;
+					LinkedNode Head;
+					auto u = &Head;
 					while (n > 0)
 					{
 						n--;
@@ -592,10 +590,10 @@ static void finalign(AlignRecordNode* &loop)
 						r->type = vlist_node;
 					}
 					dynamic_cast<BoxNode*>(r)->shift_amount = 0;
-					if (u != hold_head)
+					if (u != &Head)
 					{
 						u->link = r->link;
-						r->link = hold_head->link;
+						r->link = Head.link;
 						r = u;
 					}
 					next(r);

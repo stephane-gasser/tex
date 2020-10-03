@@ -2,31 +2,30 @@
 #include "impression.h"
 #include "lecture.h"
 #include "getnext.h"
+#include "token.h"
 
 void runaway(void)
 {
 	if (scannerstatus <= skipping)
 		return;
 	printnl("Runaway ");
-	TokenNode *p; 
 	switch (scannerstatus)
 	{
 		case defining:
-			print("definition");
-			p = defref;
+			print("definition?\n"+tokenlist(&defRef, nullptr, errorline-10));
 			break;
 		case matching:
+		{
+			TokenNode *p; 
 			print("argument");
-			p = temp_head;
+			putAfter(p, temp_head);
+			print("?\n"+tokenlist(p, nullptr, errorline-10));
 			break;
+		}
 		case aligning:
-			print("preamble");
-			p = hold_head;
+			print("preamble?\n"+tokenlist(&holdHead, nullptr, errorline-10));
 			break;
 		case absorbing:
-			print("text");
-			p = defref;
+			print("text?\n"+tokenlist(&defRef, nullptr, errorline-10));
 	}
-	next(p);
-	print("?\n"+tokenlist(p, nullptr, errorline-10));
 }

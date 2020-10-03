@@ -41,13 +41,6 @@ enum
 	char_node = 255
 };
 
-class AnyNode
-{
-	public:
-		quarterword type = 0;
-		virtual ~AnyNode(void) {}
-};
-
 void flushnodelist(LinkedNode*);
 LinkedNode* copynodelist(LinkedNode*);
 void confusion(const std::string &);
@@ -549,14 +542,14 @@ inline PageInsNode *page_ins_head = nullptr; //!< list of insertion data for cur
 inline LinkedNode *contrib_head = nullptr; //!< vlist of items not yet on current page
 inline LinkedNode *page_head = nullptr; //!< vlist for current page
 inline TokenNode *temp_head = nullptr; //!< head of a temporary list of some kind
-inline TokenNode *hold_head = nullptr; //!< head of a temporary list of another kind
+//inline TokenNode *hold_head = nullptr; //!< head of a temporary list of another kind
 inline LinkedNode *adjust_head = nullptr; //!< head of adjustment list returned by \a hpack
 inline LinkedNode * const align_head = dynamic_cast<LinkedNode*>(&heads[8]); //!< head of preamble list for alignments
 inline TokenNode * omit_template = nullptr; //!< a constant token list
 inline LinkedNode *null_list = nullptr; //!< permanently empty list
 inline CharNode *lig_trick = nullptr; //!< a ligature masquerading as a \a char_node
 //inline LinkedNode *garbage = nullptr; //!< used for scrap information
-inline LinkedNode *backup_head = nullptr; //!< head of token list built by \a scan_keyword
+//inline LinkedNode *backup_head = nullptr; //!< head of token list built by \a scan_keyword
 inline TokenNode *Start;
 inline TokenNode *Loc;
 inline Noad *curmlist;

@@ -71,7 +71,7 @@ void scanMacroToks(bool, Token);
 void scanNonMacroToks(Token);
 void scanNonMacroToksExpand(Token);
 
-class TokenList
+class TokenList : public AnyNode
 {
 	public:
 		std::vector<TokenNode2> list;
@@ -86,6 +86,7 @@ class TokenList
 };
 
 inline TokenList defRef;
+inline TokenList holdHead;
 
 void beginTokenListAboveMacro(TokenList *, quarterword);
 std::string tokenlist(TokenList *, TokenNode2 *, int);

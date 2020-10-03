@@ -744,6 +744,13 @@ class ArithException : public std::exception
 		const char * what () const throw () { return "arithmetic error"; }
 };
 
+class AnyNode
+{
+	public:
+		quarterword type = 0;
+		virtual ~AnyNode(void) {}
+};
+
 ///////////////////////////////////////////////////////////////////////////////
 // variables globales
 ///////////////////////////////////////////////////////////////////////////////

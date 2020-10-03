@@ -26,6 +26,8 @@ class AlignRecordNode : public SpanNode
 		halfword &extra_info = SpanNode::nb;
 		TokenNode *u_part;
 		TokenNode *v_part;
+		TokenList uPart;
+		TokenList vPart;
 		GlueSpec *glue_ptr; //!< pointer to a glue specification
 };
 

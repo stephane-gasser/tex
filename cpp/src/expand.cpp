@@ -24,7 +24,6 @@ void expand(Token tk)
 {
 	smallnumber radixbackup = radix;
 	smallnumber cobackup = curorder;
-	auto backupbackup = backup_head->link;
 	if (tk.cmd < call)
 		if (tracing_commands() > 1)
 			showcurcmdchr(tk);
@@ -145,5 +144,4 @@ void expand(Token tk)
 	}
 	radix = radixbackup;
 	curorder = cobackup;
-	backup_head->link = backupbackup;
 }

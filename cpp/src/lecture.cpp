@@ -839,28 +839,24 @@ int scanfifteenbitint(void)
 
 bool scankeyword(const std::string &s)
 {
-	auto p = backup_head;
-	p->link = nullptr;
+	TokenList backupHead;
 	for (size_t k = 0; k < s.size();)
 	{
 		auto t = getxtoken();
 		if (t.cs == 0 && (t.chr == s[k] || t.chr == s[k]-'a'+'A'))
 		{
-			auto q = new TokenNode(t.tok);
-			p->link = q;
-			p = q;
+			backupHead.list.push_back(TokenNode2(t.tok));
 			k++;
 		}
 		else 
-			if (t.cmd != spacer || p != backup_head)
+			if (t.cmd != spacer || backupHead.list.size())
 			{
 				backinput(t);
-				if (p != backup_head)
-					back_list(dynamic_cast<TokenNode*>(backup_head->link));
+				if (backupHead.list.size())
+					back_list(&backupHead);
 				return false;
 			}
 	}
-	flushnodelist(backup_head->link);
 	return true;
 }
 
@@ -1006,6 +1002,15 @@ RuleNode *scanrulespec(Token t)
 	m->int_ = s;
 	savestack.push_back(m);
 	return scanspec(c);
+}
+
+void beginTokenListBelowMacro(TokenList *P, quarterword t)
+{
+	push_input();
+	state = token_list;
+//	Start = P;
+	index = t;
+//	Loc = P;
 }
 
 void beginTokenListBelowMacro(TokenNode *P, quarterword t)
@@ -1188,7 +1193,7 @@ void insthetoks(void)
 	ins_list(t);
 }
 
-[[nodiscard]] TokenNode* readtoks(int n, halfword r)
+[[nodiscard]] TokenList* readtoks(int n, halfword r)
 {
 	scannerstatus = defining;
 	warningindex = r;
@@ -1268,7 +1273,7 @@ void insthetoks(void)
 	} while (alignstate != 1000000);
 	scannerstatus = normal;
 	alignstate = s;
-	return defref;
+	return &defRef;
 }
 
 static TokenNode* strtoks2(const std::string &s)
