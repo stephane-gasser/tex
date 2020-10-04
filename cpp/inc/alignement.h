@@ -21,11 +21,7 @@ inline SpanNode * const end_span = dynamic_cast<SpanNode*>(&heads[9]); //!< tail
 class AlignRecordNode : public SpanNode
 {
 	public:
-//		SpanNode *info;
-//		scaled width;
 		halfword &extra_info = SpanNode::nb;
-		TokenNode *u_part;
-		TokenNode *v_part;
 		TokenList uPart;
 		TokenList vPart;
 		GlueSpec *glue_ptr; //!< pointer to a glue specification

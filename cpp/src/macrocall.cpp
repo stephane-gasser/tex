@@ -9,20 +9,21 @@
 #include "getnext.h"
 #include "alignement.h"
 
+static TokenList pstack[9];
+
 void macrocall(Token t)
 {
 	auto savescannerstatus = scannerstatus;
 	auto savewarningindex = warningindex;
 	warningindex = t.cs;
-	TokenNode *refcount;
-	refcount->token = t.chr;
-	auto r = refcount;
-	next(r);
+	TokenList refcount;
+	refcount.token_ref_count = t.chr;
+	halfword r = 0;
 	smallnumber n = 0;
 	if (tracing_macros() > 0)
-		diagnostic("\n"+cs(warningindex)+tokenshow(refcount));
+		diagnostic("\n"+cs(warningindex)+tokenshow(&refcount));
 	ASCIIcode matchchr;
-	if (r->token != end_match_token) 
+	if (refcount.list.back() != end_match_token) 
 	{
 		scannerstatus = matching;
 		halfword unbalance = 0;
@@ -31,28 +32,23 @@ void macrocall(Token t)
 			longstate -= 2;
 		do
 		{
-			temp_head->link = nullptr;
-			TokenNode *s, *p;
+			halfword s;
 			halfword m;
-			if (r->token > match_token+255 || r->token < match_token)
-				s = nullptr;
+			if (refcount.list[r] > match_token+255 || refcount.list[r] < match_token)
+				s = 0;
 			else
 			{
-				matchchr = r->token-match_token;
-				s = r;
-				next(s);
-				r = s;
-				p = temp_head;
+				matchchr = refcount.list.back()-match_token;
+				s = ++r;
 				m = 0;
 			}
-			TokenNode *rbraceptr;
 			while (true)
 			{
 				t = gettoken();
-				if (t.tok = r->token)
+				if (t.tok == refcount.list[r])
 				{
-					next(r);
-					if (r->token >= match_token && r->token <= end_match_token)
+					r++;
+					if (refcount.list[r] >= match_token && refcount.list[r] <= end_match_token)
 					{
 						if (t.tok < left_brace_limit) 
 							alignstate--;
@@ -75,30 +71,25 @@ void macrocall(Token t)
 						bool l22 = false;
 						do
 						{
-							appendAtEnd(p, new TokenNode(tt->token));
+							tempHead.list.push_back(refcount.list[tt]);
 							m++;
-							auto u = tt;
-							next(u);
-							auto v = s;
-							while(true)
+							
+							for (halfword u = tt+1, v = s; true; u++, v++)
 							{
 								if (u == r)
-									if (t.tok != v->token)
+									if (t.tok != refcount.list[v])
 										break;
 									else
 									{
-										r = v;
-										next(r);
+										r = v+1;
 										l22 = true;
 										break;
 									}
-								if (u->token != v->token)
+								if (refcount.list[u] != refcount.list[v])
 									break;
-								next(u);
-								next(v);
 							}
 							if (!l22)
-								next(tt);
+								tt++;
 						} while (tt != r && !l22);
 						if (l22)
 							continue;
@@ -112,11 +103,10 @@ void macrocall(Token t)
 							runaway();
 							backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 						}
-						pstack[n] = temp_head;
-						next(pstack[n]);
+						pstack[n].list = tempHead.list;
 						alignstate -= unbalance;
 						for (int m = 0; m <= n; m++)
-							flushnodelist(pstack[m]);
+							pstack[m].list.clear();
 						scannerstatus = savescannerstatus;
 						warningindex = savewarningindex;
 						return;
@@ -127,7 +117,7 @@ void macrocall(Token t)
 						unbalance = 1;
 						while (unbalance)
 						{
-							appendAtEnd(p, new TokenNode(t.tok));
+							tempHead.list.push_back(t.tok);
 							t = gettoken();
 							if (t.tok == partoken)
 								if (longstate != long_call)
@@ -137,11 +127,10 @@ void macrocall(Token t)
 										runaway();
 										backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 									}
-									pstack[n] = temp_head;
-									next(pstack[n]);
+									pstack[n].list = tempHead.list;
 									alignstate -= unbalance;
 									for (int m = 0; m <= n; m++)
-										flushnodelist(pstack[m]);
+										pstack[m].list.clear();
 									scannerstatus = savescannerstatus;
 									warningindex = savewarningindex;
 									return;
@@ -152,8 +141,7 @@ void macrocall(Token t)
 								else
 									unbalance--;
 						}
-						rbraceptr = p;
-						appendAtEnd(p, new TokenNode(t.tok));
+						tempHead.list.push_back(t.tok);
 					}
 					else
 					{
@@ -166,43 +154,35 @@ void macrocall(Token t)
 					}
 				else
 				{
-					if (t.tok == space_token && r->token <= end_match_token && r->token >= match_token)
+					if (t.tok == space_token && refcount.list[r] <= end_match_token && refcount.list[r] >= match_token)
 						continue;
-					appendAtEnd(p, new TokenNode(t.tok));
+					tempHead.list.push_back(t.tok);
 				}
 				m++;
-				if (r->token > end_match_token || r->token < match_token)
+				if (refcount.list[r] > end_match_token || refcount.list[r] < match_token)
 					continue;
 				break;
 			}
 			if (s)
 			{
-				if (m == 1 && p->token < right_brace_limit && p != temp_head)
+				if (m == 1 && tempHead.list.size() && tempHead.list.back() < right_brace_limit )
 				{
-					rbraceptr->link = nullptr;
-					delete p;
-					pstack[n] = temp_head;
-					next(pstack[n]);
-					next(pstack[n]);
-					delete temp_head->link;
+					pstack[n].list = tempHead.list;
+					pstack[n].list.erase(pstack[n].list.begin());
 				}
 				else
-				{
-					pstack[n] = temp_head;
-					next(pstack[n]);
-				}
+					pstack[n].list = tempHead.list;
 				n++;
 				if (tracing_macros() > 0)
-					diagnostic(std::string(1, matchchr)+"\n"+std::to_string(n)+"<-"+tokenlist(pstack[n-1], nullptr, 1000));
+					diagnostic(std::string(1, matchchr)+"\n"+std::to_string(n)+"<-"+tokenlist(&pstack[n-1], 1000));
 			}
-		} while (r->token != end_match_token); 
+		} while (refcount.list[r] != end_match_token); 
 	}
 	while (state == 0 && loc == 0 && index != 2)
 		endtokenlist();
-	beginTokenListMacro(refcount);
+	beginTokenListMacro(&refcount);
 	name = warningindex;
-	Loc = r;
-	next(Loc);
+	Loc = r+1;
 	if (n > 0)
 	{
 		if (paramstack.size()+n > paramsize)

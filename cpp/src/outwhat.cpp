@@ -10,11 +10,14 @@ constexpr int end_write_token = cs_token_flag+end_write;
 
 static void writeout(NotOpenWriteWhatsitNode *p)
 {
-	auto q = new TokenNode(right_brace_token+'}');
-	q->link = new TokenNode(end_write_token);
-	ins_list(q);
+	TokenList head;
+	head.list.push_back(right_brace_token+'}');
+	head.list.push_back(end_write_token);
+	ins_list(&head);
 	beginTokenListAboveMacro(p->write_tokens, write_text);
-	ins_list(new TokenNode(left_brace_token+'{'));
+	head.list.clear();
+	head.list.push_back(left_brace_token+'{');
+	ins_list(&head);
 	int oldmode = mode;
 	mode = 0;
 	Token t;
@@ -59,9 +62,7 @@ static void specialout(NotOpenWriteWhatsitNode *p)
 		dvi_out(xxx4);
 		dvifour(cur_length());
 	}
-	auto t = p->write_tokens;
-	//next(t);
-	for (auto c: tokenlist(t, 0, poolsize))
+	for (auto c: tokenlist(p->write_tokens, poolsize))
 		dvi_out(c);
 }
 

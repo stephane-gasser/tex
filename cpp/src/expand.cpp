@@ -53,26 +53,23 @@ void expand(Token tk)
 			scannerstatus = savescannerstatus;
 			backinput(tk);
 			if (tk.tok >= cs_token_flag)
-			{
-				appendAtStart(Loc, new TokenNode(frozen_dont_expand+cs_token_flag));
-				Start = Loc;
-			}
+				Start.list.insert(Start.list.begin()+Loc, frozen_dont_expand+cs_token_flag);
+				//Start = Loc;
 			break;
 		}
 		case cs_name:
 		{
-			auto r = new TokenNode;
-			auto p = r;
+			TokenList l;
 			do
 			{
 				tk = getxtoken();
 				if (tk.cs == 0)
-					appendAtEnd(p, new TokenNode(tk.tok));
+					l.list.push_back(tk.tok);
 			} while (tk.cs == 0);
 			if (tk.cmd != end_cs_name)
 				backerror(tk, "Missing "+esc("endcsname")+" inserted", "The control sequence marked <to be read again> should\nnot appear between \\csname and \\endcsname.");
 			int j = First;
-			for (p = dynamic_cast<TokenNode*>(r->link); p; next(p))
+			for (auto &p: l.list)
 			{
 				if (j >= maxbufstack)
 				{
@@ -80,7 +77,7 @@ void expand(Token tk)
 					if (maxbufstack == bufsize)
 						overflow("buffer size", bufsize);
 				};
-				buffer[j++] = p->token%(1<<8);
+				buffer[j++] = p%(1<<8);
 			}
 			if (j > First+1)
 				tk.cs = idlookup(std::string(buffer+First, buffer+j+1), false);
@@ -89,7 +86,7 @@ void expand(Token tk)
 					tk.cs = null_cs;
 				else
 					tk.cs = single_base+buffer[First];
-			flushnodelist(r);
+			l.list.clear();
 			if (eqtb_active[tk.cs-active_base].type == undefined_cs)
 				eqdefine(&eqtb_active[tk.cs-active_base], relax, 256);
 			tk.tok = tk.cs+cs_token_flag;

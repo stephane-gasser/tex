@@ -726,7 +726,6 @@ void Noad::mToH2(scaled &delta, scaled &maxd, scaled &maxh)
 	updateMax(this, maxh, maxd);
 }
 
-
 void mlisttohlist(void)
 {
 	auto mlist = curmlist;

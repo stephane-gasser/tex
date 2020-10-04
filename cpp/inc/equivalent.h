@@ -105,15 +105,15 @@ inline std::vector<MemoryNode> eqtb_local(int_base-local_base); // holds the cur
 	// 1 paragraph shape
 	inline ShapeNode* par_shape_ptr(void) { return dynamic_cast<ShapeNode*>(eqtb_local[par_shape_loc-local_base].index); }
 	// 9 tokens lists
-	inline TokenNode* output_routine(void) { return dynamic_cast<TokenNode*>(eqtb_local[output_routine_loc-local_base].index); }
-	inline TokenNode* every_par(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_par_loc-local_base].index); } //!< points to token list for \\everypar
-	inline TokenNode* every_math(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_math_loc-local_base].index); }
-	inline TokenNode *every_display(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_display_loc-local_base].index); }
-	inline TokenNode* every_hbox(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_hbox_loc-local_base].index); }
-	inline TokenNode* every_vbox(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_vbox_loc-local_base].index); } //!< points to token list for \\everyvbox
-	inline TokenNode* every_job(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_job_loc-local_base].index); }
-	inline TokenNode* every_cr(void) { return dynamic_cast<TokenNode*>(eqtb_local[every_cr_loc-local_base].index); } //!< points to token list for \\everyvbox
-	inline TokenNode* err_help(void) { return dynamic_cast<TokenNode*>(eqtb_local[err_help_loc-local_base].index); }
+	inline TokenList* output_routine(void) { return dynamic_cast<TokenList*>(eqtb_local[output_routine_loc-local_base].index); }
+	inline TokenList* every_par(void) { return dynamic_cast<TokenList*>(eqtb_local[every_par_loc-local_base].index); } //!< points to token list for \\everypar
+	inline TokenList* every_math(void) { return dynamic_cast<TokenList*>(eqtb_local[every_math_loc-local_base].index); }
+	inline TokenList *every_display(void) { return dynamic_cast<TokenList*>(eqtb_local[every_display_loc-local_base].index); }
+	inline TokenList* every_hbox(void) { return dynamic_cast<TokenList*>(eqtb_local[every_hbox_loc-local_base].index); }
+	inline TokenList* every_vbox(void) { return dynamic_cast<TokenList*>(eqtb_local[every_vbox_loc-local_base].index); } //!< points to token list for \\everyvbox
+	inline TokenList* every_job(void) { return dynamic_cast<TokenList*>(eqtb_local[every_job_loc-local_base].index); }
+	inline TokenList* every_cr(void) { return dynamic_cast<TokenList*>(eqtb_local[every_cr_loc-local_base].index); } //!< points to token list for \\everyvbox
+	inline TokenList* err_help(void) { return dynamic_cast<TokenList*>(eqtb_local[err_help_loc-local_base].index); }
 	// 256 token list registers
 	// 256 box registers
 	inline BoxNode* box(halfword p) { return dynamic_cast<BoxNode*>(eqtb_local[p+box_base-local_base].index); }

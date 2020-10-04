@@ -14,26 +14,25 @@ void offsave(Token t)
 		return;
 	}
 	backinput(t);
-	TokenNode *p;
+	tempHead.list.clear();
 	switch (curgroup)
 	{
 		case semi_simple_group:
-			p = new TokenNode(cs_token_flag+frozen_end_group);
+			tempHead.list.push_back(cs_token_flag+frozen_end_group);
 			error("Missing "+esc("endgroup")+" inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
 			break;
 		case math_shift_group:
-			p = new TokenNode(math_shift_token+'$');
+			tempHead.list.push_back(math_shift_token+'$');
 			error("Missing $ inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
 			break;
 		case math_left_group:
-			p = new TokenNode(cs_token_flag+frozen_right);
-			appendAtEnd(p, new TokenNode(other_token+'.'));
+			tempHead.list.push_back(cs_token_flag+frozen_right);
+			tempHead.list.push_back(other_token+'.');
 			error("Missing right. inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
 			break;
 		default:
-			p = new TokenNode(right_brace_token+'}');
+			tempHead.list.push_back(right_brace_token+'}');
 			error("Missing } inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
 	}
-	temp_head->link = p;
-	ins_list(p);
+	ins_list(&tempHead);
 }

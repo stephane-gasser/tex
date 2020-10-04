@@ -7,12 +7,10 @@
 #include "impression.h"
 #include <sstream>
 
-static std::vector<TokenNode2> tempHead;
-
 void strtoks(const std::string &s)
 {
 	for (auto c: s)
-		tempHead.push_back(TokenNode2(c == ' ' ? space_token : other_token+c));
+		tempHead.list.push_back(c == ' ' ? space_token : other_token+c);
 }
 
 static void scantoks(bool macrodef, bool xpand, Token tk)
@@ -30,7 +28,7 @@ static void scantoks(bool macrodef, bool xpand, Token tk)
 			tk = gettoken();
 			if (tk.tok < right_brace_limit)
 			{
-				defRef.list.push_back(TokenNode2(end_match_token));
+				defRef.list.push_back(end_match_token);
 				if (tk.cmd == right_brace)
 				{
 					error("Missing { inserted", "Where was the left brace? You said something like `\\def\\a}',\nwhich I'm going to interpret as `\\def\\a{}'.");
@@ -46,8 +44,8 @@ static void scantoks(bool macrodef, bool xpand, Token tk)
 				if (tk.cmd == left_brace)
 				{
 					hashbrace = tk.tok;
-					defRef.list.push_back(TokenNode2(tk.tok));
-					defRef.list.push_back(TokenNode2(end_match_token));
+					defRef.list.push_back(tk.tok);
+					defRef.list.push_back(end_match_token);
 					break;
 				}
 				if (t == zero_token+9)
@@ -60,7 +58,7 @@ static void scantoks(bool macrodef, bool xpand, Token tk)
 					tk.tok = s;
 				}
 			}
-			defRef.list.push_back(TokenNode2(tk.tok));
+			defRef.list.push_back(tk.tok);
 		}
 	else
 		tk = scanleftbrace();
@@ -74,12 +72,10 @@ static void scantoks(bool macrodef, bool xpand, Token tk)
 					expand(tk);
 				else
 				{
-					/*auto q = thetoks();
-					if (temp_head->link)
-					{
-						p->link = temp_head->link;
-						p = q;
-					}*/
+					TokenList tempHead;
+					thetoks(tempHead);
+					if (tempHead.list.size())
+						defRef.list.insert(defRef.list.end(), tempHead.list.begin(), tempHead.list.end());
 				}
 			}
 			tk = xtoken(tk);
@@ -110,40 +106,40 @@ static void scantoks(bool macrodef, bool xpand, Token tk)
 				}
 		}
 		if (unbalance)
-			defRef.list.push_back(TokenNode2(tk.tok));
+			defRef.list.push_back(tk.tok);
 	}
 	scannerstatus = normal;
 	if (hashbrace)
-		defRef.list.push_back(TokenNode2(hashbrace));
+		defRef.list.push_back(hashbrace);
 }
 
 void scanMacroToks(bool xpand, Token tk) { scantoks(true, xpand, tk); }
 void scanNonMacroToks(Token tk) { scantoks(false, false, tk); }
 void scanNonMacroToksExpand(Token tk) { scantoks(false, true, tk); }
 
-void beginTokenListAboveMacro(TokenList *, quarterword)
-{
-}
+static int trickcount;
+static int firstcount;
 
-std::string tokenlist(TokenList *list, TokenNode2 *q, int l)
+std::string tokenlist(TokenList *tl, int l)
 {
 	std::ostringstream oss;
-/*	ASCIIcode matchchr = '#';
+	ASCIIcode matchchr = '#';
 	ASCIIcode n = '0';
-	while (p && oss.str().size() < l)
+	size_t p;
+	for (p = 0; p < tl->list.size() && oss.str().size() < l; p++)
 	{
-		if (p == q)
+		if (p == 0)
 		{
 			firstcount = oss.str().size();
 			trickcount = std::max(firstcount+1+errorline-halferrorline, errorline);
 		}
-		if (p->token >= cs_token_flag)
-			oss << cs(p->token-cs_token_flag);
+		if (tl->list[p] >= cs_token_flag)
+			oss << cs(tl->list[p]-cs_token_flag);
 		else
 		{
-			int m = p->token>>8;
-			int c = p->token%(1<<8);
-			if (p->token < 0)
+			int m = tl->list[p]>>8;
+			int c = tl->list[p]%(1<<8);
+			if (tl->list[p] < 0)
 				oss << esc("BAD.");
 			else
 				switch (m)
@@ -181,10 +177,9 @@ std::string tokenlist(TokenList *list, TokenNode2 *q, int l)
 			  			oss << esc("BAD.");
 				}
 		}
-		p = dynamic_cast<TokenNode*>(p->link);
 	}
-	if (p)
-		oss << esc("ETC.");*/
+	if (p < tl->list.size())
+		oss << esc("ETC.");
 	return oss.str();
 }
 

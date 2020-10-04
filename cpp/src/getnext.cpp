@@ -20,7 +20,11 @@
 	if (t.cs)
 	{
 		if (state == token_list || name.size() != 1 || name[0] > 17)
-			back_list(new TokenNode(cs_token_flag+t.cs));
+		{
+			TokenList tl;
+			tl.list.push_back(cs_token_flag+t.cs);
+			back_list(&tl);
+		}
 		t.cmd = spacer;
 		t.chr = ' ';
 	}
@@ -35,26 +39,39 @@
 		switch (scannerstatus)
 		{
 			case defining:
+			{
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				ins_list(new TokenNode(right_brace_token+'}'));
+				TokenList tl;
+				tl.list.push_back(right_brace_token+'}');
+				ins_list(&tl);
 				break;
+			}
 			case matching:
+			{
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				ins_list(new TokenNode(partoken));
+				TokenList tl;
+				tl.list.push_back(partoken);
+				ins_list(&tl);
 				longstate = outer_call;
 				break;
+			}
 			case aligning:
 			{
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				auto p = new TokenNode(frozen_cr+cs_token_flag);
-				p->link = new TokenNode(right_brace_token+'}');
-				ins_list(p);
+				TokenList tl;
+				tl.list.push_back(frozen_cr+cs_token_flag);
+				tl.list.push_back(right_brace_token+'}');
+				ins_list(&tl);
 				alignstate = -1000000;
 				break;
 			}
 			case absorbing:
+			{
 				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				ins_list(new TokenNode(right_brace_token+'}'));
+				TokenList tl;
+				tl.list.push_back(right_brace_token+'}');
+				ins_list(&tl);
+			}
 		}
 	}
 	t.cs = 0;
@@ -354,8 +371,8 @@ static void removeFromEnd(int &k, int d)
 		else
 			if (Loc)
 			{
-				int tt = Loc->token;
-				Loc = dynamic_cast<TokenNode*>(Loc->link);
+				auto tt = Start.list[Loc];
+				Loc++;
 				if (tt >= cs_token_flag)
 				{
 					t.cs = tt-cs_token_flag;
@@ -364,8 +381,8 @@ static void removeFromEnd(int &k, int d)
 					if (t.cmd >= outer_call)
 						if (t.cmd == dont_expand)
 						{
-							t.cs = Loc->token-cs_token_flag;
-							Loc = nullptr;
+							t.cs = Start.list[Loc]-cs_token_flag;
+							Loc = 0;
 							t.cmd = eqtb[t.cs].type;
 							t.chr = eqtb[t.cs].int_;
 							if (t.cmd > max_command)
@@ -390,7 +407,7 @@ static void removeFromEnd(int &k, int d)
 							alignstate--;
 							break;
 						case out_param:
-							beginTokenListBelowMacro(paramstack[limit+t.chr-1], parameter);
+							beginTokenListBelowMacro(&paramstack[limit+t.chr-1], parameter);
 							restart = true;
 					}
 				}
@@ -406,7 +423,7 @@ static void removeFromEnd(int &k, int d)
 				fatalerror("(interwoven alignment preambles are not allowed)");
 			t.cmd = curalign->extra_info;
 			curalign->extra_info = t.chr;
-			beginTokenListBelowMacro(t.cmd == omit ? omit_template : curalign->v_part, v_template);
+			beginTokenListBelowMacro(t.cmd == omit ? &omit_template : &curalign->vPart, v_template);
 			alignstate = 1000000;
 			restart = true;
 		}

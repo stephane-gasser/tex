@@ -433,7 +433,7 @@ Token maincontrol(void)
 				break;
 			case ANY_MODE(after_group):
 				t = gettoken();
-				saveforafter(new TokenNode(t.tok));
+				saveforafter(t.tok);
 				break;
 			case ANY_MODE(in_stream):
 				openorclosein(t.chr);

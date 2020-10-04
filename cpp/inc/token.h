@@ -57,14 +57,6 @@ inline Token make_tok(eightbits cmd, halfword chr)
 	return t;
 }
 
-class TokenNode2
-{
-	public:
-		halfword token;
-		TokenNode2(halfword t = 0) : token(t) {}
-		TokenNode2* copy(void) { return new TokenNode2(token); }
-};
-
 void strtoks(const std::string &);
 
 void scanMacroToks(bool, Token);
@@ -74,7 +66,7 @@ void scanNonMacroToksExpand(Token);
 class TokenList : public AnyNode
 {
 	public:
-		std::vector<TokenNode2> list;
+		std::vector<halfword> list;
 		halfword token_ref_count;
 		void deleteTokenRef(void) 
 		{
@@ -86,10 +78,14 @@ class TokenList : public AnyNode
 };
 
 inline TokenList defRef;
-inline TokenList holdHead;
+inline TokenList holdHead; //!< head of a temporary list of another kind
+inline TokenList tempHead; //!< head of a temporary list of some kind
+inline TokenList Start;
+inline halfword Loc;
+inline std::vector<TokenList> paramstack;
 
 void beginTokenListAboveMacro(TokenList *, quarterword);
-std::string tokenlist(TokenList *, TokenNode2 *, int);
+std::string tokenlist(TokenList *, int);
 
 #endif
 

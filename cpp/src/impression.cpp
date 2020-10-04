@@ -270,21 +270,16 @@ void println(void)
 	}
 }
 
-static std::string asMark(TokenNode *p)
+static std::string asMark(TokenList *p)
 {
-	return "{"+tokenlist(dynamic_cast<TokenNode*>(p->link), nullptr, maxprintline-10)+"}";
-}
-
-static std::string asMark(TokenList *p) //TODO
-{
-//	return "{"+tokenlist(dynamic_cast<TokenNode*>(p->link), nullptr, maxprintline-10)+"}";
-	return "{}";
+	return "{"+tokenlist(p, maxprintline-10)+"}";
 }
 
 std::string meaning(Token t) 
 {
-	TokenNode T(t.chr);
-	return cmdchr(t)+(t.cmd >= call ? ":\n"+tokenshow(&T) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); 
+	TokenList tl;
+	tl.list.push_back(t.chr);
+	return cmdchr(t)+(t.cmd >= call ? ":\n"+tokenshow(&tl) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); 
 }
 
 std::string asMode(int m)
@@ -418,79 +413,9 @@ void print_err(const std::string &s)
 static int trickcount;
 static int firstcount;
 
-std::string tokenlist(TokenNode *p, TokenNode *q, int l)
-{
-	std::ostringstream oss;
-	ASCIIcode matchchr = '#';
-	ASCIIcode n = '0';
-	while (p && oss.str().size() < l)
-	{
-		if (p == q)
-		{
-			firstcount = oss.str().size();
-			trickcount = std::max(firstcount+1+errorline-halferrorline, errorline);
-		}
-/*		if (p < himemmin || p > memend)
-			return oss.str()+esc("CLOBBERED.");*/
-		if (p->token >= cs_token_flag)
-			oss << cs(p->token-cs_token_flag);
-		else
-		{
-			int m = p->token>>8;
-			int c = p->token%(1<<8);
-			if (p->token < 0)
-				oss << esc("BAD.");
-			else
-				switch (m)
-				{
-					case left_brace:
-					case right_brace:
-					case math_shift:
-					case tab_mark:
-					case sup_mark:
-					case sub_mark:
-					case spacer:
-					case letter:
-					case other_char: 
-						oss << char(c);
-						break;
-					case mac_param:
-						oss << char(c) << char(c);
-						break;
-					case out_param:
-						oss << char(matchchr);
-						if (c > 9)
-							return oss.str()+char('!');
-						oss << c;
-						break;
-					case match:
-						matchchr = c;
-						oss << char(c) << char(++n);
-						if (n > '9')
-							return oss.str();
-						break;
-					case end_match: 
-						oss << "->";
-						break;
-					default:
-			  			oss << esc("BAD.");
-				}
-		}
-		p = dynamic_cast<TokenNode*>(p->link);
-	}
-	if (p)
-		oss << esc("ETC.");
-	return oss.str();
-}
-
-std::string tokenshow(TokenNode *p)
-{
-	return p ? tokenlist(dynamic_cast<TokenNode*>(p->link), 0, 10000000) : "";
-}
-
 std::string tokenshow(TokenList *p)
 {
-	return p ? tokenlist(p, 0, 10000000) : "";
+	return p ? tokenlist(p, 10000000) : "";
 }
 
 std::string shortdisplay(LinkedNode *p)
@@ -639,7 +564,7 @@ std::string showcontext(void)
 					l = oss.str().size()-l;
 					tally = 0;
 					trickcount = 1000000;
-					for (auto c: tokenlist(dynamic_cast<TokenNode*>(token_type < macro ? Start : Start->link), Loc, 100000))
+					for (auto c: tokenlist(&Start, 100000))
 						if (tally < trickcount)
 							trickbuf[tally%errorline] = c;
 						tally++;
@@ -813,10 +738,8 @@ void showwhatever(Token t)
 			printnl("> "+(t.cs ? scs(t.cs)+"=" : "")+meaning(t));
 			break;
 		default:
-			thetoks();
-			printnl("> "+tokenshow(dynamic_cast<TokenNode*>(temp_head)));
-			flushnodelist(temp_head->link);
-			break;
+			thetoks(tempHead);
+			printnl("> "+tokenshow(&tempHead));
 	}
 	if (interaction < error_stop_mode)
 	{

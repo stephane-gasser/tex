@@ -12,20 +12,15 @@ void runaway(void)
 	switch (scannerstatus)
 	{
 		case defining:
-			print("definition?\n"+tokenlist(&defRef, nullptr, errorline-10));
+			print("definition?\n"+tokenlist(&defRef, errorline-10));
 			break;
 		case matching:
-		{
-			TokenNode *p; 
-			print("argument");
-			putAfter(p, temp_head);
-			print("?\n"+tokenlist(p, nullptr, errorline-10));
+			print("argument?\n"+tokenlist(&tempHead, errorline-10));
 			break;
-		}
 		case aligning:
-			print("preamble?\n"+tokenlist(&holdHead, nullptr, errorline-10));
+			print("preamble?\n"+tokenlist(&holdHead, errorline-10));
 			break;
 		case absorbing:
-			print("text?\n"+tokenlist(&defRef, nullptr, errorline-10));
+			print("text?\n"+tokenlist(&defRef, errorline-10));
 	}
 }

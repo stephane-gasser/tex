@@ -22,10 +22,18 @@ void eqsave(AnyNode *p, quarterword l)
 	}
 }
 
-void saveforafter(AnyNode *t)
+class TokenNode : public AnyNode
 {
+	public:
+		halfword token;
+		TokenNode(halfword t) : token(t) {}
+};
+
+void saveforafter(halfword token)
+{
+	TokenNode t(token);
 	if (curlevel > level_one)
-		savestack.push_back(new MemoryNode(insert_token, level_zero, t));
+		savestack.push_back(new MemoryNode(insert_token, level_zero, &t));
 }
 
 static AnyNode *curboundary = nullptr; // 0..savesize

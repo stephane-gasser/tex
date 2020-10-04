@@ -52,22 +52,17 @@ RuleNode *scanrulespec(Token);
 [[nodiscard]] Token scanspec(groupcode);
 [[nodiscard]] Token scanspec(groupcode, int);
 void convtoks(Token);
-void back_list(TokenNode*);
-void ins_list(TokenNode*);
-void beginTokenListBelowMacro(TokenNode*, quarterword);
 void beginTokenListBelowMacro(TokenList*, quarterword);
-void beginTokenListMacro(TokenNode*);
-void beginTokenListAboveMacro(TokenNode*, quarterword);
-void deletetokenref(TokenNode*);
+void beginTokenListMacro(TokenList*);
+void beginTokenListAboveMacro(TokenList*, quarterword);
 void endtokenlist(void);
 Token getpreambletoken(void);
 void insthetoks(void);
-TokenNode* thetoks(void);
+void thetoks(TokenList&);
 Token getXTokenSkipSpace(void);
 Token getXTokenSkipSpaceAndEscape(void);
 
-inline void back_list(TokenNode *p) { beginTokenListBelowMacro(p, backed_up); } //!< backs up a simple token list
 inline void back_list(TokenList *p) { beginTokenListBelowMacro(p, backed_up); } //!< backs up a simple token list
-inline void ins_list(TokenNode *p) { beginTokenListBelowMacro(p, inserted); } //!< inserts a simple token list
+inline void ins_list(TokenList *p) { beginTokenListBelowMacro(p, inserted); } //!< inserts a simple token list
 
 #endif

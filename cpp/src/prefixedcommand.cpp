@@ -110,7 +110,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 				backinput(tt);
 			}
 			if (t.cmd >= call)
-				dynamic_cast<TokenNode*>(eqtb_cs[t.chr-hash_base].index)->token_ref_count++;
+				dynamic_cast<TokenList*>(eqtb_cs[t.chr-hash_base].index)->token_ref_count++;
 			define(a, &eqtb_cs[p-hash_base], t.cmd, t.chr);
 			break;
 		}
@@ -169,7 +169,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 				}
 				if (t.cmd == assign_toks)
 				{
-					if (auto q = dynamic_cast<TokenNode*>(eqtb_local[t.chr-local_base].index); q == nullptr)
+					if (auto q = dynamic_cast<TokenList*>(eqtb_local[t.chr-local_base].index); q == nullptr)
 						define_(a, &eqtb_local[p-local_base], undefined_cs, nullptr);
 					else
 					{
@@ -192,8 +192,8 @@ void prefixedcommand(Token t, bool setboxallowed)
 			{
 				if (p == output_routine_loc) 
 				{
-					defRef.list.insert(defRef.list.begin(), TokenNode2(left_brace_token+'{'));
-					defRef.list.push_back(TokenNode2(right_brace_token+'}'));
+					defRef.list.insert(defRef.list.begin(), left_brace_token+'{');
+					defRef.list.push_back(right_brace_token+'}');
 				}
 				define_(a, &eqtb_local[p-local_base], call, &defRef);
 			}

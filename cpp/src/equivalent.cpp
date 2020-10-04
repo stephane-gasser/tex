@@ -13,8 +13,11 @@ void eqdestroy(MemoryNode *w)
 		case long_call:
 		case outer_call:
 		case long_outer_call: 
-			deletetokenref(dynamic_cast<TokenNode*>(Q));
+		{
+			auto tl = dynamic_cast<TokenList*>(Q);
+			tl->deleteTokenRef();
 			break;
+		}
 		case glue_ref:
 			deleteglueref(dynamic_cast<GlueSpec*>(Q));
 			break;

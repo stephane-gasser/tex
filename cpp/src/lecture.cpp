@@ -22,7 +22,7 @@
 #include "sauvegarde.h"
 #include "buildpage.h"
 
-static void scansomethinginternal(smallnumber level, bool negative, Token t, int &val, int &lev, GlueSpec* &gl, TokenNode* &tk)
+static void scansomethinginternal(smallnumber level, bool negative, Token t, int &val, int &lev, GlueSpec* &gl, TokenList* &tk)
 {
 	// lev/level : tok_val/dimen_val/glue_val/ident_val/int_val/mu_val
 	try
@@ -75,7 +75,7 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 					throw 1;
 				if (t.cmd == toks_register)
 					t.chr = toks_base+scaneightbitint();
-				tk = dynamic_cast<TokenNode*>(eqtb_local[t.chr-local_base].index);
+				tk = dynamic_cast<TokenList*>(eqtb_local[t.chr-local_base].index);
 				lev = tok_val;
 				break;
 			// ident_val
@@ -372,7 +372,7 @@ static scaled rounddecimals(smallnumber k)
 			if (t.cmd >= min_internal && t.cmd <= max_internal)
 				if (mu)
 				{
-					TokenNode *dummy;
+					TokenList *dummy;
 					scansomethinginternal(mu_val, false, t, val, lev, gl, dummy);
 					if (lev >= glue_val)
 					{
@@ -387,7 +387,7 @@ static scaled rounddecimals(smallnumber k)
 				}
 				else
 				{
-					TokenNode *dummy;
+					TokenList *dummy;
 					scansomethinginternal(dimen_val, false, t, val, lev, gl, dummy);
 					if (lev == dimen_val)
 						break;
@@ -456,7 +456,7 @@ static scaled rounddecimals(smallnumber k)
 		{
 			if (mu)
 			{
-				TokenNode *dummy;
+				TokenList *dummy;
 				scansomethinginternal(mu_val, false, t, val, lev,  gl, dummy);
 				if (lev >= glue_val)
 				{
@@ -469,7 +469,7 @@ static scaled rounddecimals(smallnumber k)
 			}
 			else
 			{
-				TokenNode *dummy;
+				TokenList *dummy;
 				scansomethinginternal(dimen_val, false, t, val, lev, gl, dummy);
 			}
 			auto v = val;
@@ -687,7 +687,7 @@ int scanfifteenbitint(void)
 	GlueSpec *gl;
 	if (t.cmd >= min_internal && t.cmd <= max_internal)
 	{
-		TokenNode *dummy;
+		TokenList *dummy;
 		scansomethinginternal(level, negative, t, val, lev, gl, dummy);
 		if (lev >= glue_val)
 		{
@@ -774,7 +774,7 @@ int scanfifteenbitint(void)
 	else 
 		if (t.cmd >= min_internal && t.cmd <= max_internal)
 		{
-			TokenNode *dummy;
+			TokenList *dummy;
 			scansomethinginternal(int_val, false, t, val, lev, gl, dummy);
 		}
 		else
@@ -845,7 +845,7 @@ bool scankeyword(const std::string &s)
 		auto t = getxtoken();
 		if (t.cs == 0 && (t.chr == s[k] || t.chr == s[k]-'a'+'A'))
 		{
-			backupHead.list.push_back(TokenNode2(t.tok));
+			backupHead.list.push_back(t.tok);
 			k++;
 		}
 		else 
@@ -1008,49 +1008,40 @@ void beginTokenListBelowMacro(TokenList *P, quarterword t)
 {
 	push_input();
 	state = token_list;
-//	Start = P;
+	Start.list = P->list;
 	index = t;
-//	Loc = P;
+	Loc = 0;
 }
 
-void beginTokenListBelowMacro(TokenNode *P, quarterword t)
+void beginTokenListMacro(TokenList *P)
 {
 	push_input();
 	state = token_list;
-	Start = P;
-	index = t;
-	Loc = P;
-}
-
-void beginTokenListMacro(TokenNode *P)
-{
-	push_input();
-	state = token_list;
-	Start = P;
+	Start.list = P->list;
 	index = macro;
-	P->token_ref_count++; //the token list starts with a reference count
+	Start.token_ref_count++; //the token list starts with a reference count
 	param_start = paramstack.size();
 }
 
-void beginTokenListAboveMacro(TokenNode *P, quarterword t)
+void beginTokenListAboveMacro(TokenList *tl, quarterword t)
 {
 	push_input();
 	state = token_list;
-	Start = P;
+	Start.list = tl->list;
 	index = t;
-	P->token_ref_count++; //the token list starts with a reference count
-	putAfter(Loc, P);
+	tl->token_ref_count++; //the token list starts with a reference count
+	Loc = 0;
 	if (tracing_macros() > 1)
 		switch (t)
 		{
 			case mark_text: 
-				diagnostic("\r"+esc("mark")+"->"+tokenshow(P));
+				diagnostic("\r"+esc("mark")+"->"+tokenshow(tl));
 				break;
 			case write_text: 
-				diagnostic("\r"+esc("write")+"->"+tokenshow(P));
+				diagnostic("\r"+esc("write")+"->"+tokenshow(tl));
 				break;
 			default:
-				diagnostic("\r"+cmdchr(make_tok(assign_toks, t-output_text+output_routine_loc))+"->"+tokenshow(P));
+				diagnostic("\r"+cmdchr(make_tok(assign_toks, t-output_text+output_routine_loc))+"->"+tokenshow(tl));
 		}
 }
 
@@ -1069,12 +1060,12 @@ void endtokenlist(void)
 			break;
 		case backed_up:
 		case inserted:
-			flushnodelist(Start);
+			Start.list.clear();
 			break;
 		case macro:
-			deletetokenref(Start);
+			Start.deleteTokenRef();
 			for (;paramstack.size() > param_start; paramstack.pop_back())
-				flushnodelist(paramstack.back());
+				paramstack.back().list.clear();
 			break;
 		case output_text:
 		case every_par_text:
@@ -1086,17 +1077,9 @@ void endtokenlist(void)
 		case every_cr_text:
 		case mark_text:
 		case write_text:
-			deletetokenref(Start);
+			Start.deleteTokenRef();
 	}
 	pop_input();
-}
-
-void deletetokenref(TokenNode *p)
-{
-	if (p->token_ref_count == 0)
-		flushnodelist(p);
-	else
-		p->token_ref_count--;
 }
 
 [[nodiscard]] Token gettoken(void) { return make_tok(getnext(false)); }
@@ -1187,10 +1170,8 @@ static Token getTokenSkipSpace(void)
 
 void insthetoks(void)
 {
-	thetoks();
-	auto t = temp_head;
-	next(t);
-	ins_list(t);
+	thetoks(tempHead);
+	ins_list(&tempHead);
 }
 
 [[nodiscard]] TokenList* readtoks(int n, halfword r)
@@ -1199,7 +1180,7 @@ void insthetoks(void)
 	warningindex = r;
 	defRef.list.clear();
 	defRef.token_ref_count = 0;
-	defRef.list.push_back(TokenNode2(end_match_token));
+	defRef.list.push_back(end_match_token);
 	smallnumber m = (n < 0 || n > 15) ? 16 : n;
 	auto s = alignstate;
 	alignstate = 1000000;
@@ -1251,7 +1232,7 @@ void insthetoks(void)
 		else
 			buffer[limit] = end_line_char();
 		First = limit+1;
-		Loc = Start;
+		Loc = 0/*Start*/;
 		state = new_line;
 		while (true)
 		{
@@ -1267,7 +1248,7 @@ void insthetoks(void)
 				alignstate = 1000000;
 				break;
 			}
-			defRef.list.push_back(TokenNode2(t.tok));
+			defRef.list.push_back(t.tok);
 		}
 		endfilereading();
 	} while (alignstate != 1000000);
@@ -1276,13 +1257,11 @@ void insthetoks(void)
 	return &defRef;
 }
 
-static TokenNode* strtoks2(const std::string &s)
+static void strtoks2(const std::string &s, TokenList &head)
 {
-	auto p = temp_head;
-	p->link = nullptr;
+	head.list.clear();
 	for (auto c: s)
-		appendAtEnd(p, new TokenNode(c == ' ' ? space_token : other_token+c));
-	return p;
+		head.list.push_back(c == ' ' ? space_token : other_token+c);
 }
 
 void convtoks(Token t)
@@ -1318,45 +1297,32 @@ void convtoks(Token t)
 				openlogfile();
 			strtoks(jobname);
 	}
-	auto p = temp_head;
-	next(p);
-	ins_list(p);
+	ins_list(&tempHead);
 }
 
-TokenNode* thetoks(void)
+void thetoks(TokenList &head)
 {
 	auto t = getxtoken();
 	int val, lev;
 	GlueSpec *gl;
-	TokenNode *tk;
+	TokenList *tk;
 	scansomethinginternal(tok_val, false, t, val, lev, gl, tk);
 	switch (lev)
 	{
 		case ident_val:
-		{
-			temp_head->link = nullptr;
-			appendAtEnd(temp_head, new TokenNode(cs_token_flag+val));
-			return temp_head;
-		}
+			head.list.clear();
+			head.list.push_back(cs_token_flag+val);
 		case tok_val:
-		{
-			temp_head->link = nullptr;
-			auto p = tk;
-			next(p);
-			if (tk)
-				for (; p; next(p))
-					appendAtEnd(temp_head, new TokenNode(p->token));
-			return temp_head;
-		}
+			head.list.clear();
+			for (auto &p: tk->list)
+				head.list.push_back(p);
 		case int_val: 
-			return strtoks2(std::to_string(val));
+			strtoks2(std::to_string(val), head);
 		case dimen_val:
-			return strtoks2(asScaled(val)+"pt");
+			strtoks2(asScaled(val)+"pt", head);
 		default: // glue_val / mu_val
-		{
 			deleteglueref(gl);
-			return strtoks2(gl->print(lev == glue_val ? "pt" : "mu"));
-		}
+			strtoks2(gl->print(lev == glue_val ? "pt" : "mu"), head);
 	}
 }
 

@@ -116,15 +116,6 @@ class CharNode : public LinkedNode
 		virtual void hlist(scaled, scaled, scaled);
 };
 
-class TokenNode : public LinkedNode
-{
-	public:
-		TokenNode(halfword t = 0) : token(t) { type = char_node; }
-		halfword token; // info
-		halfword &token_ref_count = token; // info
-		virtual TokenNode* copy(void) { return new TokenNode(token); }
-};
-
 extern std::vector<Font> fonts;
 
 class LigatureNode : public CharNode
@@ -234,16 +225,18 @@ class InsNode : public LinkedNode
 		virtual std::string showNode(const std::string &);
 };
 
-extern TokenNode *defref;
-
-void deletetokenref(TokenNode*);
-
 class MarkNode : public LinkedNode
 {
 	public:
-		TokenNode *mark_ptr = defref;
+		TokenList *mark_ptr = &defRef;
 		MarkNode(void) { type = mark_node; }
-		~MarkNode(void) { deletetokenref(mark_ptr); }
+		~MarkNode(void) 
+		{
+			if (mark_ptr->token_ref_count)
+				mark_ptr->token_ref_count--;
+			else
+				mark_ptr->list.clear();
+		}
 		virtual MarkNode *copy(void) { auto m = new MarkNode; m->mark_ptr = mark_ptr; mark_ptr->token_ref_count++; return m; }
 		virtual std::string shortDisplay(void) { return "[]"; }
 		std::string showNode(const std::string &);
@@ -252,10 +245,10 @@ class MarkNode : public LinkedNode
 class AdjustNode : public LinkedNode
 {
 	public:
-		TokenNode *adjust_ptr;
+		LinkedNode *adjust_ptr;
 		AdjustNode(void) { type = adjust_node; }
 		~AdjustNode(void) { flushnodelist(adjust_ptr); }
-		virtual AdjustNode *copy(void) { auto a = new AdjustNode; a->adjust_ptr = dynamic_cast<TokenNode*>(copynodelist(adjust_ptr)); return a; }
+		virtual AdjustNode *copy(void) { auto a = new AdjustNode; a->adjust_ptr = copynodelist(adjust_ptr); return a; }
 		virtual std::string shortDisplay(void) { return "[]"; }
 		std::string showNode(const std::string &);
 };
@@ -529,29 +522,24 @@ class AccentNoad : public Noad
 
 //inline int &incompleat_noad = aux.int_; //!< the name of \a aux in math mode
 inline FractionNoad *incompleat_noad; //!< the name of \a aux in math mode
-inline TokenNode *pstack[9];
-inline std::vector<TokenNode*> paramstack;
-inline std::vector<TokenNode*> curmark(5, nullptr);
-inline TokenNode *top_mark = curmark[top_mark_code];
-inline TokenNode *first_mark = curmark[first_mark_code];
-inline TokenNode *bot_mark = curmark[bot_mark_code];
-inline TokenNode *split_first_mark = curmark[split_first_mark_code];
-inline TokenNode *split_bot_mark = curmark[split_bot_mark_code];
+inline std::vector<TokenList*> curmark(5, nullptr);
+inline TokenList *top_mark = curmark[top_mark_code];
+inline TokenList *first_mark = curmark[first_mark_code];
+inline TokenList *bot_mark = curmark[bot_mark_code];
+inline TokenList *split_first_mark = curmark[split_first_mark_code];
+inline TokenList *split_bot_mark = curmark[split_bot_mark_code];
 inline std::vector<AnyNode> heads;
 inline PageInsNode *page_ins_head = nullptr; //!< list of insertion data for current page
 inline LinkedNode *contrib_head = nullptr; //!< vlist of items not yet on current page
 inline LinkedNode *page_head = nullptr; //!< vlist for current page
-inline TokenNode *temp_head = nullptr; //!< head of a temporary list of some kind
-//inline TokenNode *hold_head = nullptr; //!< head of a temporary list of another kind
+inline LinkedNode *temp_head = nullptr; //!< head of a temporary list of some kind
 inline LinkedNode *adjust_head = nullptr; //!< head of adjustment list returned by \a hpack
 inline LinkedNode * const align_head = dynamic_cast<LinkedNode*>(&heads[8]); //!< head of preamble list for alignments
-inline TokenNode * omit_template = nullptr; //!< a constant token list
+inline TokenList omit_template; //!< a constant token list
 inline LinkedNode *null_list = nullptr; //!< permanently empty list
 inline CharNode *lig_trick = nullptr; //!< a ligature masquerading as a \a char_node
 //inline LinkedNode *garbage = nullptr; //!< used for scrap information
 //inline LinkedNode *backup_head = nullptr; //!< head of token list built by \a scan_keyword
-inline TokenNode *Start;
-inline TokenNode *Loc;
 inline Noad *curmlist;
 inline LinkedNode *bestpagebreak;
 inline GlueSpec *lastglue = nullptr;

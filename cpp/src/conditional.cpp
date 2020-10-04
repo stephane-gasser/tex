@@ -183,11 +183,11 @@ void conditional(Token t)
 					b = t2.chr == t.chr;
 				else
 				{
-					auto p = dynamic_cast<TokenNode*>(t2.chr < hash_base ? eqtb_active[t2.chr-active_base].index : eqtb_cs[t2.chr-hash_base].index);
-					auto q = dynamic_cast<TokenNode*>(t.chr < hash_base ? eqtb_active[t.chr-active_base].index : eqtb_cs[t.chr-hash_base].index);
-					if (p == q)
+					auto p = dynamic_cast<TokenList*>(t2.chr < hash_base ? eqtb_active[t2.chr-active_base].index : eqtb_cs[t2.chr-hash_base].index);
+					auto q = dynamic_cast<TokenList*>(t.chr < hash_base ? eqtb_active[t.chr-active_base].index : eqtb_cs[t.chr-hash_base].index);
+					if (p->list == q->list)
 						b = true;
-					else
+					/*else
 					{
 						while (p && q)
 							if (p->token != q->token)
@@ -198,7 +198,7 @@ void conditional(Token t)
 								next(q);
 							}
 						b = p == nullptr && q == nullptr;
-					}
+					}*/
 				}
 			scannerstatus = savescannerstatus;
 			break;

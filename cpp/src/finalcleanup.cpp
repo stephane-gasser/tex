@@ -43,7 +43,7 @@ void finalcleanup(Token t)
 	{
 		for (auto m: curmark)
 			if (m)
-				deletetokenref(m);
+				m->deleteTokenRef();
 		if (lastglue)
 			deleteglueref(lastglue);
 		storefmtfile();

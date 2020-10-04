@@ -166,10 +166,10 @@ void initalign(Token t, AlignRecordNode* &loop)
 					break;
 				case spacer:
 					if (holdHead.list.size())
-						holdHead.list.push_back(TokenNode2(t.tok));
+						holdHead.list.push_back(t.tok);
 					break;
 				default:
-					holdHead.list.push_back(TokenNode2(t.tok));
+					holdHead.list.push_back(t.tok);
 			}
 		}
 		appendAtEnd(curalign, new AlignRecordNode);
@@ -177,7 +177,7 @@ void initalign(Token t, AlignRecordNode* &loop)
 		curalign->width = null_flag;
 		curalign->uPart.list = holdHead.list;
 		holdHead.list.clear();
-		for (; true; holdHead.list.push_back(TokenNode2(t.tok)))
+		for (; true; holdHead.list.push_back(t.tok))
 		{
 			t = getpreambletoken();
 			if (t.cmd <= out_param && t.cmd >= tab_mark && alignstate == -1000000)
@@ -188,7 +188,7 @@ void initalign(Token t, AlignRecordNode* &loop)
 				continue;
 			}
 		}
-		holdHead.list.push_back(TokenNode2(end_template_token));
+		holdHead.list.push_back(end_template_token);
 		curalign->vPart.list = holdHead.list;
 	}
 	scannerstatus = normal;
@@ -247,12 +247,12 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 			next(loop);
 			// Copy the templates from node |cur_loop| into node |p|
 			TokenList holdHead;
-			for (auto r = loop->u_part; r; next(r))
-				holdHead.list.push_back(TokenNode2(r->token));
+			for (auto &r: loop->uPart.list)
+				holdHead.list.push_back(r);
 			p->uPart.list = holdHead.list;
 			holdHead.list.clear();
-			for (auto r = loop->v_part; r; next(r))
-				holdHead.list.push_back(TokenNode2(r->token));
+			for (auto &r: loop->vPart.list)
+				holdHead.list.push_back(r);
 			p->vPart.list = holdHead.list;
 			next(loop);
 			p->link = new GlueNode(loop->glue_ptr);
@@ -363,8 +363,8 @@ static void finalign(AlignRecordNode* &loop)
 	do
 	{
 		auto Q = dynamic_cast<AlignRecordNode*>(q);
-		flushnodelist(Q->u_part);
-		flushnodelist(Q->v_part);
+		Q->uPart.list.clear();
+		Q->vPart.list.clear();
 		if (is_running(Q->width))
 		{
 			//Nullify |width(q)| and the tabskip glue following this column

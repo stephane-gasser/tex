@@ -31,7 +31,7 @@ void Initialize(void)
 	ss_glue->shrink_order = fil;
 	fil_neg_glue->stretch = -unity;
 	fil_neg_glue->stretch_order = fil;
-	omit_template = new TokenNode(end_template_token);
+	omit_template.list.push_back(end_template_token);
 	end_span->nb = 256;
 	end_span->info = nullptr;
 	page_ins_head = new PageInsNode;
@@ -39,7 +39,6 @@ void Initialize(void)
 	page_ins_head->type = split_up;
 	page_ins_head->link = page_ins_head;
 	page_head = new GlueNode(zero_glue);
-	temp_head = new TokenNode;
 	adjust_head = new LinkedNode;
 	null_list = new LinkedNode;
 	lig_trick = new CharNode(null_font, 0);

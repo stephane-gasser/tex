@@ -26,10 +26,10 @@ void fireup(LinkedNode *c)
 	if (bot_mark)
 	{
 		if (top_mark)
-			deletetokenref(top_mark);
+			top_mark->deleteTokenRef();
 		top_mark = bot_mark;
 		top_mark->token_ref_count++;
-		deletetokenref(first_mark);
+		first_mark->deleteTokenRef();
 		first_mark = nullptr;
 	}
 	if (c == bestpagebreak)
@@ -131,7 +131,7 @@ void fireup(LinkedNode *c)
 				first_mark->token_ref_count++;
 			}
 			if (bot_mark)
-				deletetokenref(bot_mark);
+				bot_mark->deleteTokenRef();
 			bot_mark = m;
 			bot_mark->token_ref_count++;
 		}

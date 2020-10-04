@@ -10,9 +10,8 @@
 //! replaced. Some applications of TeX use this procedure a lot, so it has been slightly optimized for speed.
 void backinput(Token t)
 {
-	while (state == token_list && Loc == nullptr && token_type != v_template)
+	while (state == token_list && Start.list.size() == 0 && token_type != v_template)
 		endtokenlist();
-	auto p = new TokenNode(t.tok);
 	if (t.tok < right_brace_limit)
 		if (t.tok < left_brace_limit)
 			alignstate--;
@@ -20,6 +19,8 @@ void backinput(Token t)
 			alignstate++;
 	push_input();
 	state = token_list;
-	Start = Loc = p;
+	Start.list.clear();
+	Start.list.push_back(t.tok);
+	Loc = 0;
 	token_type = backed_up;
 }
