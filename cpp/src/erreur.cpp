@@ -63,7 +63,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 				case 'E': 
 					if (baseptr > 0)
 					{
-						printnl("You want to edit file ");
+						print("\rYou want to edit file ");
 						print(inputstack[baseptr].namefield+" at line "+std::to_string(line));
 						interaction = scroll_mode;
 						throw std::string("jumpout");
@@ -120,18 +120,18 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 					break;
 			}
 			print("Type <return> to proceed, S to scroll future error messages,");
-			printnl("R to run without stopping, Q to run quietly,");
-			printnl("I to insert something, ");
+			print("\rR to run without stopping, Q to run quietly,");
+			print("\rI to insert something, ");
 			if (baseptr > 0)
 				print("E to edit your file,");
 			if (deletionsallowed)
-				printnl("1 or ... or 9 to ignore the link 1 to 9 tokens of input,");
-			printnl("H for help, X to quit.");
+				print("\r1 or ... or 9 to ignore the link 1 to 9 tokens of input,");
+			print("\rH for help, X to quit.");
 		}
 	errorcount++;
 	if (errorcount == 100)
 	{
-		printnl("(That makes 100 errors; please try again.)");
+		print("\r(That makes 100 errors; please try again.)");
 		history = fatal_error_stop;
 		throw std::string("jumpout");
 	}
@@ -142,7 +142,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 	else
 		if (helpline != "")
 		{
-			printnl(helpline+"\n");
+			print("\r"+helpline+"\n");
 			helpline = "";
 		}
 	if (interaction > batch_mode)

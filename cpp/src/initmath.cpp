@@ -139,10 +139,10 @@ void initmath(void)
 		}
 		pushmath(math_shift_group);
 		mode = mmode;
-		eqworddefine(&eqtb_int[cur_fam_code], -1);
-		eqworddefine(&eqtb_dimen[pre_display_size_code], w);
-		eqworddefine(&eqtb_dimen[display_width_code], l);
-		eqworddefine(&eqtb_dimen[display_indent_code], s);
+		word_define(0, &eqtb_int[cur_fam_code], -1);
+		word_define(0, &eqtb_dimen[pre_display_size_code], w);
+		word_define(0, &eqtb_dimen[display_width_code], l);
+		word_define(0, &eqtb_dimen[display_indent_code], s);
 		if (every_display())
 			beginTokenListAboveMacro(every_display(), every_display_text);
 		if (nest.size() == 2)
@@ -152,7 +152,7 @@ void initmath(void)
 	{
 		backinput(t);
 		pushmath(math_shift_group);
-		eqworddefine(&eqtb_int[cur_fam_code], -1);
+		word_define(0, &eqtb_int[cur_fam_code], -1);
 		if (every_math())
 			beginTokenListAboveMacro(every_math(), every_math_text);
 	}

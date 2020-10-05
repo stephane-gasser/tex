@@ -110,7 +110,7 @@ void openlogfile(void)
 		logfile << months[k];
 	print(" "+std::to_string(year())+" "+twoDigits(time()/60)+":"+twoDigits(time()%60));
 	inputstack.back() = curinput;
-	printnl("**");
+	print("\r**");
 	int l = inputstack[0].limitfield;
 	if (buffer[l] == end_line_char())
 		l--;
@@ -224,7 +224,7 @@ std::string promptfilename(const std::string &s, const std::string &e)
 		print_err(s == "input file name" ? "I can't find file `" : "I can't write on file `"+asFilename(curname, curarea, curext)+"'.");
 	if (e == ".tex")
 		print(showcontext());
-	printnl("Please type another "+s);
+	print("\rPlease type another "+s);
 	if (interaction < scroll_mode)
 		fatalerror("*** (job aborted, file error in nonstop mode)");
 	std::cin.clear();

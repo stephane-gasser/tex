@@ -230,13 +230,7 @@ class MarkNode : public LinkedNode
 	public:
 		TokenList *mark_ptr = &defRef;
 		MarkNode(void) { type = mark_node; }
-		~MarkNode(void) 
-		{
-			if (mark_ptr->token_ref_count)
-				mark_ptr->token_ref_count--;
-			else
-				mark_ptr->list.clear();
-		}
+		~MarkNode(void) { mark_ptr->deleteTokenRef(); }
 		virtual MarkNode *copy(void) { auto m = new MarkNode; m->mark_ptr = mark_ptr; mark_ptr->token_ref_count++; return m; }
 		virtual std::string shortDisplay(void) { return "[]"; }
 		std::string showNode(const std::string &);
@@ -453,6 +447,7 @@ class NoadContent : public AnyNode
 		~NoadContent(void) { if (math_type >= sub_box) flushnodelist(info); }
 		bool operator == (const NoadContent &n) { return std::tuple(math_type, info, character, fam) == std::tuple(n.math_type, n.info, n.character, n.fam); }
 		std::string subsidiarydata(char c, const std::string &symbol);
+		std::string famandchar(void);
 };
 
 class Noad : public LinkedNode
@@ -552,26 +547,6 @@ inline auto fill_glue = &glues[2]; //!< 0pt plus 1fill minus 0pt
 inline auto ss_glue = &glues[3]; //!< 0pt plus 1fil minus 1fil
 inline auto fil_neg_glue = &glues[4]; //!< 0pt plus -1fil minus 0pt
 
-template<class T> void next(T* &p) { p = dynamic_cast<T*>(p->link); }
-template<class T> void putAfter(T* &p, LinkedNode *q) { p = dynamic_cast<T*>(q->link); }
-
-inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }
-inline LinkedNode *new_hlist(Noad *p) { return p->nucleus.info; } //!< the translation of an mlist
-
-template<class T> void appendAtEnd(T* &p, LinkedNode *q)
-{
-	p->link = q;
-	next(p);
-}
-
-inline void tail_append(LinkedNode*q) { appendAtEnd(tail, q); }
-
-template<class T> void appendAtStart(T* &p, LinkedNode *q)
-{
-	q->link = p;
-	p = dynamic_cast<T*>(q);
-}
-
 CharNode* newcharacter(internalfontnumber, eightbits);
 void newfont(smallnumber);
 void newgraf(bool);
@@ -584,6 +559,25 @@ void appenditaliccorrection(void);
 void appendtovlist(BoxNode*);
 void followUntilBeforeTarget(LinkedNode*, LinkedNode*&, LinkedNode*);
 
+inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }
+inline LinkedNode *new_hlist(Noad *p) { return p->nucleus.info; } //!< the translation of an mlist
+template<class T> void next(T* &p) { p = dynamic_cast<T*>(p->link); }
+template<class T> void putAfter(T* &p, LinkedNode *q) { p = dynamic_cast<T*>(q->link); }
+
+
+template<class T> void appendAtEnd(T* &p, LinkedNode *q)
+{
+	p->link = q;
+	next(p);
+}
+
+template<class T> void appendAtStart(T* &p, LinkedNode *q)
+{
+	q->link = p;
+	p = dynamic_cast<T*>(q);
+}
+
+inline void tail_append(LinkedNode*q) { appendAtEnd(tail, q); }
 inline void followUntilEnd(LinkedNode *s, LinkedNode* &p) { followUntilBeforeTarget(s, p, nullptr); }
 
 inline void insertNodeAfter(LinkedNode *p, LinkedNode *q)

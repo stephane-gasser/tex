@@ -150,9 +150,9 @@ void boxend(int boxcontext, RuleNode* curbox)
 		if (boxcontext < ship_out_flag) // Store (c) \a cur_box in a box register
 		{
 			if (boxcontext < box_flag+256)
-				eqdefine_(&eqtb_local[boxcontext-box_flag+box_base-local_base], box_ref, curbox);
+				define(0, &eqtb_local[boxcontext-box_flag+box_base-local_base], box_ref, curbox);
 			else
-				geqdefine_(&eqtb_local[boxcontext-box_flag-256+box_base-local_base], box_ref, curbox);
+				define(4, &eqtb_local[boxcontext-box_flag-256+box_base-local_base], box_ref, curbox);
 		}
 		else 
 			if (curbox)
@@ -600,7 +600,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 				if (lastbadness > hbadness())
 				{
 					println();
-					printnl(std::string(lastbadness > 100 ? "Underfull" : "Loose")+" \\hbox (badness "+std::to_string(lastbadness));
+					print(std::string(lastbadness > 100 ? "Underfull" : "Loose")+" \\hbox (badness "+std::to_string(lastbadness));
 					goto50h(r);
 				}
 			}

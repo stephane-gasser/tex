@@ -34,28 +34,25 @@ class Token
 		halfword chr;
 		halfword cs;
 		halfword tok;
+		Token(void) : cmd(0), chr(0), cs(0), tok(0) {}
+		Token(halfword token) : tok(token)
+		{
+			if (tok > cs_token_flag)
+			{
+				cs = tok-cs_token_flag;
+				cmd = 0;
+				chr = 0;
+			}
+			else
+			{
+				cs = 0;
+				cmd = tok>>8;
+				chr = tok%8;
+			}
+		}
+		Token(eightbits cm, halfword ch) : cmd(cm), chr(ch), cs(0), tok((cmd<<8)+chr) {}
+		Token(const Token &t) : cs(t.cs), cmd(cs ? 0 : t.cmd), chr(cs ? 0 : t.chr), tok(cs ? cs+cs_token_flag : (cmd<<8)+chr) {}
 };
-
-inline Token make_tok(Token t)
-{
-	t.tok = t.cs == 0 ? (t.cmd<<8)+t.chr : t.cs+cs_token_flag;
-	return t;
-}
-
-inline Token make_tok(halfword tok)
-{
-	Token t;
-	t.tok = tok;
-	return t;
-}
-
-inline Token make_tok(eightbits cmd, halfword chr)
-{
-	Token t;
-	t.cmd = cmd;
-	t.chr = chr;
-	return t;
-}
 
 void strtoks(const std::string &);
 

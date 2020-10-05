@@ -1041,7 +1041,7 @@ void beginTokenListAboveMacro(TokenList *tl, quarterword t)
 				diagnostic("\r"+esc("write")+"->"+tokenshow(tl));
 				break;
 			default:
-				diagnostic("\r"+cmdchr(make_tok(assign_toks, t-output_text+output_routine_loc))+"->"+tokenshow(tl));
+				diagnostic("\r"+cmdchr(Token(assign_toks, t-output_text+output_routine_loc))+"->"+tokenshow(tl));
 		}
 }
 
@@ -1082,36 +1082,38 @@ void endtokenlist(void)
 	pop_input();
 }
 
-[[nodiscard]] Token gettoken(void) { return make_tok(getnext(false)); }
+[[nodiscard]] Token gettoken(void) { return getnext(false); }
 
 [[nodiscard]] Token getxtoken(void)
 {
 	Token t;
 	for (t = getnext(); t.cmd > max_command; t = getnext())
-	{
-		if (t.cmd >= call)
-			if (t.cmd < end_template)
+		switch (t.cmd)
+		{
+			case call:
+			case long_call:
+			case outer_call:
+			case long_outer_call:
 				macrocall(t);
-			else
-			{
-				t.cs = frozen_endv;
-				t.cmd = ignore;
 				break;
-			}
-		else
-			expand(t);
-	}
-	return make_tok(t);
+			case end_template:
+			case dont_expand:
+			case glue_ref:
+			case shape_ref:
+			case box_ref:
+			case data:
+				return Token(frozen_endv+cs_token_flag);
+			default:
+				expand(t);
+		}
+	return t;
 }
 
 [[nodiscard]] Token xtoken(Token t)
 {
-	while (t.cmd > max_command)
-	{
+	for (; t.cmd > max_command; t = getnext())
 		expand(t);
-		t = getnext();
-	}
-	return make_tok(t);
+	return t;
 }
 
 Token getpreambletoken(void)
@@ -1141,7 +1143,7 @@ Token getpreambletoken(void)
 				return t;
 		}
 		scanoptionalequals();
-		(global_defs() > 0 ? geqdefine_ : eqdefine_)(&eqtb_glue[tab_skip_code], glue_ref, scanglue(glue_val));
+		define(global_defs() > 0 ? 4 : 0, &eqtb_glue[tab_skip_code], glue_ref, scanglue(glue_val));
 	}
 }
 
@@ -1221,7 +1223,7 @@ void insthetoks(void)
 					readopen[m] = closed;
 					if (alignstate != 1000000)
 					{
-						runaway();
+						runaway(scannerstatus);
 						error("File ended within "+esc("read"), "This \\read has unbalanced braces.");
 						alignstate = 1000000;
 					}
@@ -1262,6 +1264,42 @@ static void strtoks2(const std::string &s, TokenList &head)
 	head.list.clear();
 	for (auto c: s)
 		head.list.push_back(c == ' ' ? space_token : other_token+c);
+}
+
+static std::string romanint(int n)
+{
+	constexpr char s[] = "m2d5c2l5x2v5i";
+	int j = 0;
+	int v = 1000;
+	std::string roman;
+	while (true)
+	{
+		while (n >= v)
+		{
+			roman += s[j];
+			n -= v;
+		}
+		if (n <= 0)
+			return roman;
+		int k = j+2;
+		int u = v/(s[j+1]-'0');
+		if (s[j+1] == '2')
+		{
+			k += 2;
+			u /= s[j+3]-'0';
+		}
+		if (n+u >= v)
+		{
+			roman += s[k];
+			n += u;
+		}
+		else
+		{
+			j += 2;
+			v /= s[j-1]-'0';
+		}
+	}
+	return roman;
 }
 
 void convtoks(Token t)

@@ -43,7 +43,7 @@ void doregistercommand(smallnumber a, Token t)
 			break;
 		default:
 		{
-			error("You can't use `"+cmdchr(t)+"' after "+cmdchr(make_tok(q, 0)), "I'm forgetting what you said and not changing anything.");
+			error("You can't use `"+cmdchr(t)+"' after "+cmdchr(Token(q, 0)), "I'm forgetting what you said and not changing anything.");
 			return;
 		}
 	}
@@ -145,7 +145,7 @@ void doregistercommand(smallnumber a, Token t)
 					}
 				}
 				g = trapzeroglue(g);
-				define_(a, &eqtb_glue[l-glue_base], glue_ref, g);
+				define(a, &eqtb_glue[l-glue_base], glue_ref, g);
 				break;
 			case mu_val: 
 				switch (q)
@@ -202,7 +202,7 @@ void doregistercommand(smallnumber a, Token t)
 					}
 				}
 				g = trapzeroglue(g);
-				define_(a, &eqtb_glue[l-glue_base], glue_ref, g);
+				define(a, &eqtb_glue[l-glue_base], glue_ref, g);
 		}
 	}
 	catch(ArithException &e)

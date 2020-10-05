@@ -9,7 +9,7 @@ void starteqno(Token t)
 	m->int_ = t.chr;
 	savestack.push_back(m);
 	pushmath(math_shift_group);
-	eqworddefine(&eqtb_int[cur_fam_code], -1);
+	word_define(0, &eqtb_int[cur_fam_code], -1);
 	if (every_math())
 		beginTokenListAboveMacro(every_math(), every_math_text);
 }

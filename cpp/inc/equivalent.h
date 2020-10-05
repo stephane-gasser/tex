@@ -66,6 +66,7 @@ class MemoryNode : public AnyNode
 		std::string text;
 		int int_; //!< equivalent value
 		MemoryNode(quarterword t = 0, quarterword l = 0, AnyNode *i = nullptr) : type(t), level(l), index(i) {}
+		MemoryNode(quarterword t, quarterword l, int i) : type(t), level(l), int_(i) {}
 		bool operator == (const MemoryNode &m) { return std::tuple(type, level, index, int_) == std::tuple(m.type, m.level, m.index, m.int_); }
 		bool operator != (const MemoryNode &m) { return std::tuple(type, level, index, int_) != std::tuple(m.type, m.level, m.index, m.int_); }
 };
@@ -223,15 +224,9 @@ inline std::vector<MemoryNode> eqtb_dimen(eqtb_size-dimen_base); // holds the cu
 inline std::vector<MemoryNode*> savestack;
 inline quarterword curlevel = level_one;
 
-void eqworddefine(MemoryNode*, int);
 void word_define(int, MemoryNode*, int);
-void geqworddefine(MemoryNode*, int);
-void define(int a, MemoryNode*, quarterword, halfword);
-void define_(int a, MemoryNode*, quarterword, AnyNode*);
-void eqdefine(MemoryNode*, quarterword, halfword);
-void geqdefine(MemoryNode*, quarterword, halfword);
-void eqdefine_(MemoryNode*, quarterword, AnyNode*);
-void geqdefine_(MemoryNode*, quarterword, AnyNode*);
+void define(int, MemoryNode*, quarterword, halfword);
+void define(int, MemoryNode*, quarterword, AnyNode*);
 void eqdestroy(MemoryNode*);
 
 #endif

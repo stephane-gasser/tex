@@ -16,7 +16,7 @@ void headforvmode(Token t)
 	else
 	{
 		backinput(t);
-		backinput(make_tok(partoken));
+		backinput(Token(partoken));
 		token_type = inserted;
 	}
 }

@@ -18,11 +18,11 @@ void fireup(LinkedNode *c)
 	if (bestpagebreak->type == penalty_node) //12
 	{
 		auto Bestpagebreak = dynamic_cast<PenaltyNode*>(bestpagebreak);
-		geqworddefine(&eqtb_int[output_penalty_code], Bestpagebreak->penalty);
+		word_define(4, &eqtb_int[output_penalty_code], Bestpagebreak->penalty);
 		Bestpagebreak->penalty = inf_penalty;
 	}
 	else
-		geqworddefine(&eqtb_int[output_penalty_code], inf_penalty);
+		word_define(4, &eqtb_int[output_penalty_code], inf_penalty);
 	if (bot_mark)
 	{
 		if (top_mark)

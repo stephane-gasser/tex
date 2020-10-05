@@ -22,18 +22,10 @@ void eqsave(AnyNode *p, quarterword l)
 	}
 }
 
-class TokenNode : public AnyNode
-{
-	public:
-		halfword token;
-		TokenNode(halfword t) : token(t) {}
-};
-
 void saveforafter(halfword token)
 {
-	TokenNode t(token);
 	if (curlevel > level_one)
-		savestack.push_back(new MemoryNode(insert_token, level_zero, &t));
+		savestack.push_back(new MemoryNode(insert_token, level_zero, token));
 }
 
 static AnyNode *curboundary = nullptr; // 0..savesize
@@ -67,7 +59,7 @@ void unsave(void)
 				curboundary = m->index;
 				return;
 			case insert_token:
-				backinput(make_tok(dynamic_cast<TokenNode*>(m->index)->token));
+				backinput(Token(m->int_));
 				break;
 			case restore_old_value:
 			{

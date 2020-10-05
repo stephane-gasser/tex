@@ -25,10 +25,10 @@ void finalcleanup(Token t)
 		openparens--;
 	}
 	if (curlevel > level_one)
-		printnl("("+esc("end")+" occurred inside a group at level "+std::to_string(curlevel-level_one)+")");
+		print("\r("+esc("end")+" occurred inside a group at level "+std::to_string(curlevel-level_one)+")");
 	while (condptr)
 	{
-		printnl("("+esc("end")+" occurred when "+cmdchr(make_tok(if_test, curif))+(ifline ? " on line "+std::to_string(ifline) : "")+" was incomplete)");
+		print("\r("+esc("end")+" occurred when "+cmdchr(Token(if_test, curif))+(ifline ? " on line "+std::to_string(ifline) : "")+" was incomplete)");
 		ifline = condptr->if_line_field;
 		curif = condptr->subtype;
 		removeNodeAtStart(condptr);
@@ -36,7 +36,7 @@ void finalcleanup(Token t)
 	if (history && (history == warning_issued || interaction < error_stop_mode) && selector == term_and_log)
 	{
 		selector = term_only;
-		printnl("(see the transcript file for additional information)");
+		print("\r(see the transcript file for additional information)");
 		selector = term_and_log;
 	}
 	if (c == 1)

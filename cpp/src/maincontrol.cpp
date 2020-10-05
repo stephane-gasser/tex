@@ -223,9 +223,11 @@ Token maincontrol(void)
 				headforvmode(t);
 				break;
 			case ANY_MODE(insert):
+				beginInsert();
+				break;
 			case hmode+vadjust:
 			case mmode+vadjust: 
-				begininsertoradjust(t);
+				beginAdjust();
 				break;
 			case ANY_MODE(mark):
 			{

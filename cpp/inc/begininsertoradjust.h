@@ -5,6 +5,7 @@
 #include "token.h"
 
 
-void begininsertoradjust(Token);
+void beginInsert(void);
+void beginAdjust(void);
 
 #endif

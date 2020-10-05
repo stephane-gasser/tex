@@ -30,12 +30,12 @@
 	}
 	if (scannerstatus == skipping)
 	{
-		inserror(t, "Incomplete "+cmdchr(make_tok(if_test, curif))+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
+		inserror(t, "Incomplete "+cmdchr(Token(if_test, curif))+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
 		t.tok = frozen_fi+cs_token_flag;
 	}
 	else
 	{
-		runaway();
+		runaway(scannerstatus);
 		switch (scannerstatus)
 		{
 			case defining:
@@ -346,7 +346,7 @@ static void removeFromEnd(int &k, int d)
 								if (end_line_char_inactive())
 									limit++;
 								if (limit == start)
-									printnl("(Please type a command or say `\\end')");
+									print("\r(Please type a command or say `\\end')");
 								println();
 								First = start;
 								print("*");

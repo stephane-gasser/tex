@@ -1424,9 +1424,7 @@ void storefmtfile(void)
 	std::string fname;
 	while (!wopenout(fmtfile, fname = packjobname(format_extension)))
 		promptfilename("format file name", format_extension); 
-	printnl("Beginning to dump_int on file ");
-	print(fname);
-	printnl(formatident);
+	print("\rBeginning to dump_int on file "+fname+"\r"+formatident);
 	dump_int(CHECKSUM);
 	dump_int(mem_bot);
 	dump_int(mem_top);
@@ -1585,7 +1583,7 @@ void storefmtfile(void)
 		dump_int(ft.bcharlabel);
 		dump_int(ft.bchar);
 		dump_int(ft.falsebchar);
-		printnl("\\font");
+		print("\r\\font");
 		print(esc(eqtb_cs[k+font_id_base-hash_base].text)+esc("FONT")+"="+asFilename(ft.name, ft.area, ""));
 		if (ft.size != ft.dsize)
 			print(" at "+asScaled(ft.size)+"pt");
@@ -1614,11 +1612,11 @@ void storefmtfile(void)
 		dump_int(trieOp[k].hyfnum);
 		dump_int(trieOp[k].hyfnext);*/
 	}
-	printnl("Hyphenation trie of length "+std::to_string(trie.size()-1)+" has "+std::to_string(trieOp.size()-1)+" op"+(trieOp.size()-1 == 1 ? "" : "s")+" out of "+std::to_string(trieopsize));
+	print("\rHyphenation trie of length "+std::to_string(trie.size()-1)+" has "+std::to_string(trieOp.size()-1)+" op"+(trieOp.size()-1 == 1 ? "" : "s")+" out of "+std::to_string(trieopsize));
 	for (k = 255; k > -1; k--)
 		if (trieused[k] > 0)
 		{
-			printnl("    "+std::to_string(trieused[k])+" for language "+std::to_string(k));
+			print("\r    "+std::to_string(trieused[k])+" for language "+std::to_string(k));
 			dump_int(k);
 			dump_int(trieused[k]);
 		}

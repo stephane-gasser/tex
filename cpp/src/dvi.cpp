@@ -307,7 +307,7 @@ void closefilesandterminate(void)
 		curs--;
 	}
 	if (totalpages == 0)
-		printnl("No pages of output.");
+		print("\rNo pages of output.");
 	else
 	{
 		dvi_out(post);
@@ -335,7 +335,7 @@ void closefilesandterminate(void)
 			writedvi(halfbuf, dvibufsize);
 		if (dviptr > 0)
 			writedvi(0, dviptr);
-		printnl("Output written on "+outputfilename+"// ("+std::to_string(totalpages)+" page"+(totalpages == 1 ? "" : "s")+", "+std::to_string(dvioffset+dviptr)+" bytes).");
+		print("\rOutput written on "+outputfilename+"// ("+std::to_string(totalpages)+" page"+(totalpages == 1 ? "" : "s")+", "+std::to_string(dvioffset+dviptr)+" bytes).");
 		bclose(dvifile);
 	}
 	if (logopened)
@@ -344,7 +344,7 @@ void closefilesandterminate(void)
 		aclose(logfile);
 		selector -= 2;
 		if (selector == term_only)
-			printnl("Transcript written on "+logname+".");
+			print("\rTranscript written on "+logname+".");
 	}
 }
 

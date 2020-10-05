@@ -6,23 +6,32 @@
 #include "normalparagraph.h"
 #include "pushnest.h"
 
-void begininsertoradjust(Token t)
+void beginInsert(void)
 {
-	int val = 255;
-	if (t.cmd != vadjust)
+	auto val = scaneightbitint();
+	if (val == 255)
 	{
-		val = scaneightbitint();
-		if (val == 255)
-		{
-			error("You can't "+esc("insert")+"255", "I'm changing to \\insert0; box 255 is special.");
-			val = 0;
-		}
+		error("You can't "+esc("insert")+"255", "I'm changing to \\insert0; box 255 is special.");
+		val = 0;
 	}
 	auto m = new MemoryNode;
 	m->int_ = val;
 	savestack.push_back(m);
 	newsavelevel(insert_group);
-	t = scanleftbrace();
+	(void)scanleftbrace();
+	normalparagraph();
+	pushnest();
+	mode = -vmode;
+	prev_depth = ignore_depth;
+}
+
+void beginAdjust(void)
+{
+	auto m = new MemoryNode;
+	m->int_ = 255;
+	savestack.push_back(m);
+	newsavelevel(insert_group);
+	(void)scanleftbrace();
 	normalparagraph();
 	pushnest();
 	mode = -vmode;

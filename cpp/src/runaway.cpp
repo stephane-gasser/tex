@@ -4,23 +4,22 @@
 #include "getnext.h"
 #include "token.h"
 
-void runaway(void)
+void runaway(char status)
 {
-	if (scannerstatus <= skipping)
+	if (status <= skipping)
 		return;
-	printnl("Runaway ");
-	switch (scannerstatus)
+	switch (status)
 	{
 		case defining:
-			print("definition?\n"+tokenlist(&defRef, errorline-10));
+			print("\rRunaway definition?\n"+tokenlist(&defRef, errorline-10));
 			break;
 		case matching:
-			print("argument?\n"+tokenlist(&tempHead, errorline-10));
+			print("\rRunaway argument?\n"+tokenlist(&tempHead, errorline-10));
 			break;
 		case aligning:
-			print("preamble?\n"+tokenlist(&holdHead, errorline-10));
+			print("\rRunaway preamble?\n"+tokenlist(&holdHead, errorline-10));
 			break;
 		case absorbing:
-			print("text?\n"+tokenlist(&defRef, errorline-10));
+			print("\rRunaway text?\n"+tokenlist(&defRef, errorline-10));
 	}
 }

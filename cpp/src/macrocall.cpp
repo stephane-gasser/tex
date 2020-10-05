@@ -100,7 +100,7 @@ void macrocall(Token t)
 					{
 						if (longstate == call)
 						{
-							runaway();
+							runaway(scannerstatus);
 							backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 						}
 						pstack[n].list = tempHead.list;
@@ -124,7 +124,7 @@ void macrocall(Token t)
 								{
 									if (longstate == call)
 									{
-										runaway();
+										runaway(scannerstatus);
 										backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 									}
 									pstack[n].list = tempHead.list;

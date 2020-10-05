@@ -320,7 +320,7 @@ static void ensure_dvi_open(void)
 void shipout(BoxNode *p)
 {
 	if (tracing_output())
-		printnl("\nCompleted box being shipped out"+std::string(termoffset > maxprintline-9 ? "\n" : termoffset > 0 || fileoffset > 0 ? " " : ""));
+		print("\r\nCompleted box being shipped out"+std::string(termoffset > maxprintline-9 ? "\n" : termoffset > 0 || fileoffset > 0 ? " " : ""));
 	print("[");
 	int j = 9;
 	while (count(j) == 0 && j > 0)

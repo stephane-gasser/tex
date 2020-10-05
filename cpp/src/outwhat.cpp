@@ -41,7 +41,7 @@ static void writeout(NotOpenWriteWhatsitNode *p)
 	{
 		if (j == term_only && selector == term_and_log)
 			selector = log_only;
-		printnl("");
+		print("\r");
 	}
 	print(tokenshow(&defRef)+"\n");
 	defRef.list.clear();
