@@ -11,14 +11,14 @@ enum save_type
 	level_boundary = 3 //!< \a save_type corresponding to beginning of group
 };
 
-void eqsave(AnyNode *p, quarterword l)
+void MemoryNode::eqsave(quarterword l)
 {
 	if (l == level_zero)
-		savestack.push_back(new MemoryNode(restore_zero, l, p));
+		savestack.push_back(new MemoryNode(restore_zero, level_zero, this));
 	else
 	{
-		savestack.push_back(dynamic_cast<MemoryNode*>(p));
-		savestack.push_back(new MemoryNode(restore_old_value, l, p));
+		savestack.push_back(this);
+		savestack.push_back(new MemoryNode(restore_old_value, l, this));
 	}
 }
 
@@ -59,7 +59,7 @@ void unsave(void)
 				curboundary = m->index;
 				return;
 			case insert_token:
-				backinput(Token(m->int_));
+				backinput(m->int_);
 				break;
 			case restore_old_value:
 			{
@@ -75,7 +75,7 @@ void unsave(void)
 					sindex->int_ = m->int_;
 				}
 				if (sindex->index)
-					eqdestroy(sindex);
+					sindex->eqdestroy();
 				else 
 					if (sindex->level != level_one) //dans xeqlevel
 						sindex->level = slevel;//xeqlevel[p] = l;

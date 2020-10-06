@@ -4,6 +4,14 @@
 #include "globals.h"
 #include "noeud.h"
 
+enum prefix
+{
+	noPrefix = 0,
+	longPrefix = 1,
+	outerPrefix = 2,
+	globalPrefix = 4
+};
+
 enum memory
 {
 	active_base = 1, //!< beginning of region 1, for active character equivalents
@@ -69,6 +77,11 @@ class MemoryNode : public AnyNode
 		MemoryNode(quarterword t, quarterword l, int i) : type(t), level(l), int_(i) {}
 		bool operator == (const MemoryNode &m) { return std::tuple(type, level, index, int_) == std::tuple(m.type, m.level, m.index, m.int_); }
 		bool operator != (const MemoryNode &m) { return std::tuple(type, level, index, int_) != std::tuple(m.type, m.level, m.index, m.int_); }
+		void eqdestroy(void);
+		void word_define(int, int);
+		void define(int, quarterword, halfword);
+		void define(int, quarterword, AnyNode*);
+		void eqsave(quarterword);
 };
 
 inline std::vector<MemoryNode> eqtb(6107); // débute à 1
@@ -223,10 +236,5 @@ inline std::vector<MemoryNode> eqtb_dimen(eqtb_size-dimen_base); // holds the cu
 //inline quarterword xeqlevel[6107]; // débute à 5263 ; initialisé à level_one
 inline std::vector<MemoryNode*> savestack;
 inline quarterword curlevel = level_one;
-
-void word_define(int, MemoryNode*, int);
-void define(int, MemoryNode*, quarterword, halfword);
-void define(int, MemoryNode*, quarterword, AnyNode*);
-void eqdestroy(MemoryNode*);
 
 #endif

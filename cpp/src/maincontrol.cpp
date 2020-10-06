@@ -13,7 +13,6 @@
 #include "indentinhmode.h"
 #include "normalparagraph.h"
 #include "buildpage.h"
-#include "headforvmode.h"
 #include "itsallover.h"
 #include "endgraf.h"
 #include "begininsertoradjust.h"
@@ -217,10 +216,26 @@ Token maincontrol(void)
 				break;
 			case hmode+stop:
 			case hmode+vskip:
-			case hmode+hrule:
 			case hmode+un_vbox:
 			case hmode+halign: 
-				headforvmode(t);
+				if (mode < 0)
+					offsave(t);
+				else
+				{
+					backinput(t);
+					backinput(partoken);
+					token_type = inserted;
+				}
+				break;
+			case hmode+hrule:
+				if (mode < 0)
+					error("You can't use `"+esc("hrule")+"' here except with leaders", "To put a horizontal rule in an hbox or an alignment,\nyou should use \\leaders or \\hrulefill (see The TeXbook).");
+				else
+				{
+					backinput(t);
+					backinput(partoken);
+					token_type = inserted;
+				}
 				break;
 			case ANY_MODE(insert):
 				beginInsert();

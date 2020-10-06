@@ -4,62 +4,61 @@
 #include "deleteglueref.h"
 #include "noeud.h"
 
-void eqdestroy(MemoryNode *w)
+void MemoryNode::eqdestroy(void)
 {
-	auto Q = w->index;
-	switch (w->type)
+	switch (type)
 	{
 		case call:
 		case long_call:
 		case outer_call:
 		case long_outer_call: 
-			dynamic_cast<TokenList*>(Q)->deleteTokenRef();
+			dynamic_cast<TokenList*>(index)->deleteTokenRef();
 			break;
 		case glue_ref:
-			deleteglueref(dynamic_cast<GlueSpec*>(Q));
+			deleteglueref(dynamic_cast<GlueSpec*>(index));
 			break;
 		case shape_ref:
-			if (Q)
-				delete Q;
+			if (index)
+				delete index;
 			break;
 		case box_ref: 
-			flushnodelist(dynamic_cast<BoxNode*>(Q));
+			flushnodelist(dynamic_cast<BoxNode*>(index));
 	} 
 }
-void define(int a, MemoryNode *p, quarterword t, AnyNode *e) 
+void MemoryNode::define(int prefix, quarterword t, AnyNode *e) 
 {
-	if (a >= 4 || p->level == curlevel)
-		eqdestroy(p);
+	if (prefix >= globalPrefix || level == curlevel)
+		eqdestroy();
 	else 
 		if (curlevel > level_one)
-			eqsave(p, p->level);
-	p->level = a >= 4 ? level_one : curlevel;
-	p->type = t;
-	p->index = e;
+			eqsave(level);
+	level = prefix >= globalPrefix ? level_one : curlevel;
+	type = t;
+	index = e;
 }
 
-void define(int a, MemoryNode *p, quarterword t, halfword e) 
+void MemoryNode::define(int prefix, quarterword t, halfword e) 
 {
-	if (a >= 4 || p->level == curlevel)
-		eqdestroy(p);
+	if (prefix >= globalPrefix || level == curlevel)
+		eqdestroy();
 	else 
 		if (curlevel > level_one)
-			eqsave(p, p->level);
-	p->level = a >= 4 ? level_one : curlevel;
-	p->type = t;
-	p->int_ = e;
+			eqsave(level);
+	level = prefix >= globalPrefix ? level_one : curlevel;
+	type = t;
+	int_ = e;
 }
 
-void word_define(int a, MemoryNode *p, int w) 
+void MemoryNode::word_define(int prefix, int w)
 {
-	if (a >= 4)
-		p->level = level_one;
+	if (prefix >= globalPrefix)
+		level = level_one;
 	else
-		if (p->level != curlevel)
+		if (level != curlevel)
 		{
-			eqsave(p, p->level);
-			p->level = curlevel;
+			eqsave(level);
+			level = curlevel;
 		}
-	p->int_ = w;
+	int_ = w;
 }
 

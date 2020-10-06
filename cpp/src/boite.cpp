@@ -150,9 +150,9 @@ void boxend(int boxcontext, RuleNode* curbox)
 		if (boxcontext < ship_out_flag) // Store (c) \a cur_box in a box register
 		{
 			if (boxcontext < box_flag+256)
-				define(0, &eqtb_local[boxcontext-box_flag+box_base-local_base], box_ref, curbox);
+				eqtb_local[boxcontext-box_flag+box_base-local_base].define(noPrefix, box_ref, curbox);
 			else
-				define(4, &eqtb_local[boxcontext-box_flag-256+box_base-local_base], box_ref, curbox);
+				eqtb_local[boxcontext-box_flag-256+box_base-local_base].define(globalPrefix, box_ref, curbox);
 		}
 		else 
 			if (curbox)

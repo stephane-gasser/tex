@@ -95,7 +95,7 @@ class ShapeNode : public LinkedNode
 {
 	public:
 		std::vector<int> values; // info = .size()/2
-		ShapeNode(int n) : values(2*n) {}
+		ShapeNode(int);
 };
 
 class CharNode : public LinkedNode

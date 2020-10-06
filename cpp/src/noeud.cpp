@@ -50,7 +50,7 @@ CharNode* newcharacter(internalfontnumber f, eightbits c)
 	return nullptr;
 }
 
-void newfont(smallnumber a)
+void newfont(smallnumber prefix)
 {
 	std::string t;
 	if (jobname == "")
@@ -59,7 +59,7 @@ void newfont(smallnumber a)
 	if (u >= hash_base)
 	{
 		t = eqtb_cs[u-hash_base].text;
-		define(a, &eqtb_cs[u-hash_base], set_font, null_font);
+		eqtb_cs[u-hash_base].define(prefix, set_font, null_font);
 	}
 	else 
 	{
@@ -70,7 +70,7 @@ void newfont(smallnumber a)
 				t = char(u-single_base);
 		else
 			t = "FONT"+char(u-1);
-		define(a, &eqtb_active[u-active_base], set_font, null_font);
+		eqtb_active[u-active_base].define(prefix, set_font, null_font);
 	}
 	scanoptionalequals();
 	scanfilename();
@@ -364,3 +364,9 @@ std::string GlueNode::shortDisplay(void)
 std::string LigatureNode::shortDisplay(void) { return shortdisplay(lig_ptr); }
 std::string DiscNode::shortDisplay(void) { return shortdisplay(pre_break)+shortdisplay(post_break); }
 
+
+ShapeNode::ShapeNode(int n) : values(2*n)
+{
+	for (int j = 0; j < 2*n; j++)
+		values.push_back(scan_normal_dimen());
+}

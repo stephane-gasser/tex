@@ -4,7 +4,6 @@
 #include "globals.h"
 #include "equivalent.h"
 
-void eqsave(AnyNode*, quarterword);
 void saveforafter(halfword);
 void newsavelevel(groupcode);
 void unsave(void);

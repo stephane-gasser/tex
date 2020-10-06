@@ -15,8 +15,8 @@
 
 static void insertrelax(halfword cs)
 {
-	backinput(Token(cs_token_flag+cs));
-	backinput(Token(cs_token_flag+frozen_relax));
+	backinput(cs_token_flag+cs);
+	backinput(cs_token_flag+frozen_relax);
 	token_type = inserted;
 }
 
@@ -88,7 +88,7 @@ void expand(Token tk)
 					tk.cs = single_base+buffer[First];
 			l.list.clear();
 			if (eqtb_active[tk.cs-active_base].type == undefined_cs)
-				define(0, &eqtb_active[tk.cs-active_base], relax, 256);
+				eqtb_active[tk.cs-active_base].define(noPrefix, relax, 256);
 			tk.tok = tk.cs+cs_token_flag;
 			backinput(tk);
 			break;
@@ -137,7 +137,7 @@ void expand(Token tk)
 			if (tk.cmd < call)
 				error("Undefined control sequence", "The control sequence at the end of the top line\nof your error message was never \\def'ed. If you have\nmisspelled it (e.g., `\\hobx'), type `I' and the correct\nspelling (e.g., `I\\hbox'). Otherwise just continue,\nand I'll forget about whatever was undefined.");
 			else
-				backinput(Token(frozen_endv+cs_token_flag));
+				backinput(frozen_endv+cs_token_flag);
 	}
 	radix = radixbackup;
 	curorder = cobackup;

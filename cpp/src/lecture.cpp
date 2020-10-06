@@ -1143,7 +1143,7 @@ Token getpreambletoken(void)
 				return t;
 		}
 		scanoptionalequals();
-		define(global_defs() > 0 ? 4 : 0, &eqtb_glue[tab_skip_code], glue_ref, scanglue(glue_val));
+		eqtb_glue[tab_skip_code].define(global_defs() > 0 ? globalPrefix : noPrefix, glue_ref, scanglue(glue_val));
 	}
 }
 

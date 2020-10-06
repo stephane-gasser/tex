@@ -8,7 +8,7 @@
 #include "trapzeroglue.h"
 #include "equivalent.h"
 
-void doregistercommand(smallnumber a, Token t)
+void doregistercommand(smallnumber prefix, Token t)
 //t.cmd: register_ / advance /multiply / divide
 {
 	halfword l, q;
@@ -62,32 +62,32 @@ void doregistercommand(smallnumber a, Token t)
 				switch (q)
 				{
 					case register_:
-						word_define(a, &eqtb_int[l-int_base], scanint());
+						eqtb_int[l-int_base].word_define(prefix, scanint());
 						break;
 					case advance:
-						word_define(a, &eqtb_int[l-int_base], scanint()+eqtb_int[l-int_base].int_);
+						eqtb_int[l-int_base].word_define(prefix, scanint()+eqtb_int[l-int_base].int_);
 						break;
 					case multiply:
-						word_define(a, &eqtb_int[l-int_base], mult_integers(eqtb_int[l-int_base].int_, scanint()));
+						eqtb_int[l-int_base].word_define(prefix, mult_integers(eqtb_int[l-int_base].int_, scanint()));
 						break;
 					case divide:
-						word_define(a, &eqtb_int[l-int_base], xovern(eqtb_int[l-int_base].int_, scanint()));
+						eqtb_int[l-int_base].word_define(prefix, xovern(eqtb_int[l-int_base].int_, scanint()));
 				}
 				break;
 			case dimen_val: 
 				switch (q)
 				{
 					case register_:
-						word_define(a, &eqtb_dimen[l-dimen_base], scan_normal_dimen());
+						eqtb_dimen[l-dimen_base].word_define(prefix, scan_normal_dimen());
 						break;
 					case advance:
-						word_define(a, &eqtb_dimen[l-dimen_base], scan_normal_dimen()+eqtb_dimen[l-dimen_base].int_);
+						eqtb_dimen[l-dimen_base].word_define(prefix, scan_normal_dimen()+eqtb_dimen[l-dimen_base].int_);
 						break;
 					case multiply:
-						word_define(a, &eqtb_dimen[l-dimen_base], nx_plus_y(eqtb_dimen[l-dimen_base].int_, scanint(), 0));
+						eqtb_dimen[l-dimen_base].word_define(prefix, nx_plus_y(eqtb_dimen[l-dimen_base].int_, scanint(), 0));
 						break;
 					case divide:
-						word_define(a, &eqtb_dimen[l-dimen_base], xovern(eqtb_dimen[l-dimen_base].int_, scanint()));
+						eqtb_dimen[l-dimen_base].word_define(prefix, xovern(eqtb_dimen[l-dimen_base].int_, scanint()));
 				}
 				break;
 			case glue_val: 
@@ -145,7 +145,7 @@ void doregistercommand(smallnumber a, Token t)
 					}
 				}
 				g = trapzeroglue(g);
-				define(a, &eqtb_glue[l-glue_base], glue_ref, g);
+				eqtb_glue[l-glue_base].define(prefix, glue_ref, g);
 				break;
 			case mu_val: 
 				switch (q)
@@ -202,7 +202,7 @@ void doregistercommand(smallnumber a, Token t)
 					}
 				}
 				g = trapzeroglue(g);
-				define(a, &eqtb_glue[l-glue_base], glue_ref, g);
+				eqtb_glue[l-glue_base].define(prefix, glue_ref, g);
 		}
 	}
 	catch(ArithException &e)
