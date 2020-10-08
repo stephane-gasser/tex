@@ -7,7 +7,7 @@
 #include "fichier.h"
 #include "calcul.h"
 #include "pushmath.h"
-#include "pushnest.h"
+#include "etat.h"
 #include "buildpage.h"
 #include "chaine.h"
 #include "erreur.h"
@@ -17,6 +17,7 @@
 #include "runaway.h"
 #include "calcul.h"
 #include "police.h"
+#include "etat.h"
 
 LinkedNode* copynodelist(LinkedNode *p)
 {
@@ -370,3 +371,112 @@ ShapeNode::ShapeNode(int n) : values(2*n)
 	for (int j = 0; j < 2*n; j++)
 		values.push_back(scan_normal_dimen());
 }
+
+void tail_append(LinkedNode*q) { appendAtEnd(tail, q); }
+
+
+LinkedNode::~LinkedNode(void) 
+{ 
+	if (type != char_node && type > right_noad)
+		confusion("flushing"); 
+	flushnodelist(link);
+}
+
+LinkedNode *LinkedNode::copy(void)
+{ 
+	confusion("copying"); 
+	return nullptr; 
+}
+
+WhatsitNode::~WhatsitNode(void) 
+{ 
+	if (subtype > language_node) 
+		confusion("ext3"); 
+}
+
+ChoiceNode::~ChoiceNode(void) 
+{ 
+	flushnodelist(display_mlist); 
+	flushnodelist(text_mlist); 
+	flushnodelist(script_mlist); 
+	flushnodelist(script_script_mlist);
+}
+		
+DiscNode *DiscNode::copy(void) 
+{ 
+	auto d = new DiscNode; 
+	d->pre_break = copynodelist(pre_break);  
+	d->post_break = copynodelist(post_break); 
+	return d; 
+}
+
+InsNode *InsNode::copy(void) 
+{ 
+	auto i = new InsNode; 
+	i->height = height; 
+	i->depth = depth; 
+	i->split_top_ptr = split_top_ptr; 
+	i->float_cost = float_cost; 
+	split_top_ptr->glue_ref_count++; 
+	i->ins_ptr = copynodelist(ins_ptr); 
+	return i; 
+}
+
+AdjustNode *AdjustNode::copy(void) 
+{ 
+	auto a = new AdjustNode; 
+	a->adjust_ptr = copynodelist(adjust_ptr); 
+	return a; 
+}
+
+GlueNode *GlueNode::copy(void) 
+{ 
+	auto g = new GlueNode(glue_ptr); 
+	g->leader_ptr = copynodelist(leader_ptr); 
+	return g; 
+}
+
+BoxNode *BoxNode::copy(void) 
+{ 
+	auto r = new BoxNode; 
+	r->width = width; 
+	r->depth = depth; 
+	r->height = height; 
+	r->glue_set = glue_set; 
+	r->glue_sign = glue_sign; 
+	r->glue_order = glue_order; 
+	r->list_ptr = copynodelist(list_ptr); 
+	r->shift_amount = shift_amount; 
+	return r; 
+}
+
+UnsetNode *UnsetNode::copy(void) 
+{ 
+	auto r = new UnsetNode; 
+	r->width = width; 
+	r->depth = depth; 
+	r->height = height; 
+	r->glue_shrink = glue_shrink; 
+	r->glue_sign = glue_sign; 
+	r->glue_order = glue_order; 
+	r->list_ptr = copynodelist(list_ptr); 
+	r->glue_stretch = glue_stretch; 
+	return r; 
+}
+
+NoadContent::~NoadContent(void) 
+{ 
+	if (math_type >= sub_box) 
+		flushnodelist(info); 
+}
+
+BoxNode::~BoxNode(void) { flushnodelist(list_ptr); }
+AdjustNode::~AdjustNode(void) { flushnodelist(adjust_ptr); }
+LigatureNode::~LigatureNode(void) { flushnodelist(lig_ptr); }
+DiscNode::~DiscNode(void) { flushnodelist(pre_break); flushnodelist(post_break); }
+InsNode::~InsNode(void) { flushnodelist(ins_ptr); deleteglueref(split_top_ptr); }
+GlueNode::~GlueNode(void) { deleteglueref(glue_ptr); flushnodelist(leader_ptr); }
+
+void CharNode::vlist(scaled) { confusion("vlistout"); }
+WhatsitNode *WhatsitNode::copy(void) { confusion("ext2"); return nullptr; }
+LigatureNode* LigatureNode::copy(void) { return new LigatureNode(font, character, dynamic_cast<CharNode*>(copynodelist(lig_ptr))); }

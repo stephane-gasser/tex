@@ -2,9 +2,9 @@
 #include "lecture.h"
 #include "noeud.h"
 #include "doassignments.h"
-#include "backinput.h"
 #include "boite.h"
 #include "police.h"
+#include "etat.h"
 #include <cmath>
 
 void makeaccent(Token t)

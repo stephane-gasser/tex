@@ -1,11 +1,10 @@
 #include "initmath.h"
 #include "lecture.h"
-#include "popnest.h"
+#include "etat.h"
 #include "linebreak.h"
 #include "pushmath.h"
 #include "equivalent.h" 
 #include "buildpage.h"
-#include "backinput.h"
 #include "police.h"
 
 void initmath(void)

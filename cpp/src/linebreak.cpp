@@ -1,7 +1,7 @@
 #include "linebreak.h"
 #include "noeud.h"
 #include "deleteglueref.h"
-#include "popnest.h"
+#include "etat.h"
 #include "cesure.h"
 #include "erreur.h"
 #include "police.h"

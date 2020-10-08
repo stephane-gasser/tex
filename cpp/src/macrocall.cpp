@@ -3,11 +3,11 @@
 #include "equivalent.h"
 #include "noeud.h"
 #include "runaway.h"
-#include "backinput.h"
 #include "erreur.h"
 #include "lecture.h"
 #include "getnext.h"
 #include "alignement.h"
+#include "etat.h"
 
 static TokenList pstack[9];
 

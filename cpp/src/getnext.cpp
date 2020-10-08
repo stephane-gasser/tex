@@ -11,6 +11,7 @@
 #include "alignement.h"
 #include "macrocall.h"
 #include "conditional.h"
+#include "etat.h"
 #include <iostream>
 
 [[nodiscard]] static Token checkoutervalidity(Token t)

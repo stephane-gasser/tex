@@ -6,7 +6,7 @@
 #include "calcul.h"
 #include "deleteglueref.h"
 #include "erreur.h"
-#include "popnest.h"
+#include "etat.h"
 #include "equivalent.h"
 #include "impression.h"
 #include "primitive.h"

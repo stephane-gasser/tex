@@ -8,16 +8,14 @@
 #include "deleteglueref.h"
 #include "noeud.h"
 #include "boite.h"
-#include "popnest.h"
 #include "impression.h"
 #include "doassignments.h"
 #include "resumeafterdisplay.h"
 #include "buildpage.h"
-#include "backinput.h"
 #include <cmath>
 #include "equivalent.h"
 #include "flushmath.h" 
-#include "pushnest.h"
+#include "etat.h"
 #include "getnext.h"
 
 static SpanNode *curspan = nullptr; 

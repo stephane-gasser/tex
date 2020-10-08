@@ -3,6 +3,7 @@
 #include "formule.h"
 #include "pushmath.h"
 #include "lecture.h"
+#include "etat.h"
 
 void buildchoices(void)
 {

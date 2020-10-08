@@ -7,6 +7,7 @@
 #include "getnext.h"
 #include "calcul.h"
 #include "erreur.h"
+#include "etat.h"
 
 static void fixlanguage(void)
 {

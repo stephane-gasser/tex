@@ -1,6 +1,7 @@
 #include "mathlimitswitch.h"
 #include "impression.h"
 #include "erreur.h"
+#include "etat.h"
 
 void mathlimitswitch(Token t)
 {

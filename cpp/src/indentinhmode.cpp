@@ -1,6 +1,7 @@
 #include "indentinhmode.h"
 #include "equivalent.h"
 #include "noeud.h"
+#include "etat.h"
 
 void indentinhmode(Token t)
 {

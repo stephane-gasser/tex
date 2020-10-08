@@ -1,6 +1,6 @@
 #include "sauvegarde.h"
 #include "erreur.h"
-#include "backinput.h"
+#include "etat.h"
 #include "equivalent.h"
 
 enum save_type

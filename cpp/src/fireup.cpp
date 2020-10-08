@@ -6,7 +6,7 @@
 #include "prunepagetop.h"
 #include "deleteglueref.h"
 #include "erreur.h"
-#include "pushnest.h"
+#include "etat.h"
 #include "normalparagraph.h"
 #include "lecture.h"
 #include "shipout.h"

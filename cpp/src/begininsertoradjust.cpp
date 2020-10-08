@@ -4,7 +4,7 @@
 #include "erreur.h"
 #include "sauvegarde.h"
 #include "normalparagraph.h"
-#include "pushnest.h"
+#include "etat.h"
 
 void beginInsert(void)
 {

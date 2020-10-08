@@ -1,11 +1,11 @@
 #include "erreur.h"
 #include "impression.h"
 #include "lecture.h"
-#include "backinput.h"
 #include "noeud.h"
 #include "fichier.h"
 #include "equivalent.h"
 #include "alignement.h"
+#include "etat.h"
 #include <iostream>
 
 static std::string helpline;

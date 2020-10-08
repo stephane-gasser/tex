@@ -4,13 +4,13 @@
 #include "impression.h"
 #include "fichier.h"
 #include "fmtfile.h"
-#include "startinput.h"
 #include "fichier.h"
 #include "maincontrol.h"
 #include "finalcleanup.h"
 #include "dvi.h"
 #include "equivalent.h"
 #include "erreur.h"
+#include "etat.h"
 #include <iostream>
 
 static void fixdateandtime(void)

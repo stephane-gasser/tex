@@ -12,11 +12,10 @@
 #include "erreur.h"
 #include "vsplit.h"
 #include "normalparagraph.h"
-#include "pushnest.h"
+#include "etat.h"
 #include "erreur.h"
 #include "badness.h"
 #include "sauvegarde.h"
-#include "popnest.h"
 #include "fichier.h"
 
 BoxNode* rebox(BoxNode *b, scaled w)

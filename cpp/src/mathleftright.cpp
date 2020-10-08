@@ -7,6 +7,7 @@
 #include "pushmath.h"
 #include "sauvegarde.h"
 #include "formule.h"
+#include "etat.h"
 
 void mathleft(Token t)
 {

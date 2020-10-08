@@ -11,6 +11,7 @@
 #include "resumeafterdisplay.h"
 #include "alignement.h"
 #include "police.h"
+#include "etat.h"
 
 constexpr int total_mathsy_params = 22;
 constexpr int total_mathex_params = 13;

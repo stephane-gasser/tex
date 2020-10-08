@@ -2,9 +2,9 @@
 #include "noeud.h"
 #include "lecture.h"
 #include "outwhat.h"
-#include "backinput.h"
 #include "erreur.h"
 #include "equivalent.h"
+#include "etat.h"
 #include "fichier.h"
 
 void doextension(Token t)

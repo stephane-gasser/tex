@@ -5,6 +5,7 @@
 #include "chaine.h"
 #include "impression.h"
 #include "lecture.h"
+#include "etat.h"
 
 constexpr int end_write_token = cs_token_flag+end_write;
 

@@ -1,5 +1,4 @@
 #include "prunepagetop.h"
-#include "noeud.h"
 #include "erreur.h"
 
 LinkedNode* prunepagetop(LinkedNode *p)

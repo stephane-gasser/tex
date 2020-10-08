@@ -2,6 +2,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "noeud.h"
+#include "etat.h"
 
 void deletelast(Token t)
 {

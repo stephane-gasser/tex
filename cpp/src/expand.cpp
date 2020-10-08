@@ -1,6 +1,5 @@
 #include "expand.h"
 #include "lecture.h"
-#include "backinput.h"
 #include "impression.h"
 #include "erreur.h"
 #include "chaine.h"
@@ -8,10 +7,10 @@
 #include "conditional.h"
 #include "passtext.h"
 #include "noeud.h"
-#include "startinput.h"
 #include "macrocall.h"
 #include "getnext.h"
 #include "fichier.h"
+#include "etat.h"
 
 static void insertrelax(halfword cs)
 {

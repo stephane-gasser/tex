@@ -3,6 +3,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "noeud.h"
+#include "etat.h"
 
 void mathfraction(halfword c, Token t) // c: above_code/over_code/atop_code (+delimiter_code)
 {

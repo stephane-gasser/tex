@@ -5,6 +5,7 @@
 #include "token.h"
 #include "noeud.h"
 #include "equivalent.h"
+#include <map>
 
 constexpr int hyph_size = 307; //!<  another prime; the number of \\hyphenation exceptions
 

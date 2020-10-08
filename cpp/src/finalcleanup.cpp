@@ -8,6 +8,7 @@
 #include "erreur.h"
 #include "equivalent.h"
 #include "fichier.h"
+#include "etat.h"
 
 void finalcleanup(Token t)
 {

@@ -2,6 +2,7 @@
 #define BUILDPAGE_H
 
 #include "globals.h"
+#include "etat.h"
 #include "noeud.h"
 
 inline scaled pagesofar[8];

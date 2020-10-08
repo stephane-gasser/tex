@@ -4,6 +4,7 @@
 #include "equivalent.h"
 #include "alignement.h"
 #include "buildpage.h"
+#include "impression.h"
 
 void Initialize(void)
 {

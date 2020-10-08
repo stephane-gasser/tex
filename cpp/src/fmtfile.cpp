@@ -6,6 +6,7 @@
 #include "cesure.h"
 #include "police.h"
 #include "fichier.h"
+#include "etat.h"
 #include <iostream>
 #include <map>
 

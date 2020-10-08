@@ -2,7 +2,6 @@
 #define GLOBALS_H
 
 #include <fstream>
-#include <map>
 #include <vector>
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -426,7 +425,6 @@ enum
 	split_bot_mark_code = 4 //!< the last mark found by \\vsplit
 };
 
-
 enum
 {
 	pretolerance_code = 0, //!< badness tolerance before hyphenation
@@ -718,26 +716,6 @@ class Font
 		bool char_exists(smallnumber);
 };
 
-class LinkedNode;
-
-class liststaterecord
-{
-	public:
-		int modefield; // -203..203
-		LinkedNode *headfield, *tailfield;
-		int pgfield, mlfield;
-		memoryword auxfield;
-};
-
-class instaterecord
-{
-	public:
-		quarterword statefield, indexfield;
-		halfword startfield;
-		halfword locfield, limitfield;
-		std::string namefield;
-};
-
 class ArithException : public std::exception 
 {
 	public:
@@ -754,20 +732,8 @@ class AnyNode
 ///////////////////////////////////////////////////////////////////////////////
 // variables globales
 ///////////////////////////////////////////////////////////////////////////////
-inline liststaterecord curlist;
-	inline auto &aux = curlist.auxfield; //!< auxiliary data about the current list
-		inline int& prev_depth = aux.int_; //!< the name of \a aux in vertical mode
-		inline halfword& space_factor = aux.hh.lh; //!< part of \a aux in horizontal mode
-		inline halfword& clang = aux.hh.rh;  //!< the other part of \a aux in horizontal mode
-	inline auto &head = curlist.headfield; //!< header node of current list
-	inline auto &tail = curlist.tailfield; //!< final node on current list
-	inline int& mode = curlist.modefield; //!< current mode
-	inline int& prev_graf = curlist.pgfield; //!< number of paragraph lines accumulated
-	inline int& mode_line = curlist.mlfield; //!< source file line number at beginning of list
 
-inline std::map<ASCIIcode, char> xchr;
 inline char interaction = error_stop_mode; // 0..3
-inline std::vector<liststaterecord> nest(1);
 inline groupcode curgroup = 0;
 inline unsigned char baseptr; // 0..stacksize
 inline char openparens = 0; // 0..maxinopen
@@ -775,17 +741,6 @@ inline halfword parloc;
 inline halfword partoken;
 inline bool outputactive = false;
 inline halfword writeloc;
-
-inline std::vector<instaterecord> inputstack(1);
-inline instaterecord curinput;
-	inline auto &start = curinput.startfield; //!< starting position in \a buffer
-	inline auto &limit = curinput.limitfield; //!< end of current line in \a buffer
-	inline auto &param_start = limit; //!< base of macro parameters in \a param_stack
-	inline auto &loc = curinput.locfield; //!< location of first unread character in \a buffer
-	inline auto &state = curinput.statefield; //!< current scanner state
-	inline auto &index = curinput.indexfield; //!< reference for buffer information
-	inline auto &token_type = index; //!< type of current token list
-	inline auto &name = curinput.namefield; //!< name of the current file
 
 ///////////////////////////////////////////////////////////////////////////////
 // fonctions inlines

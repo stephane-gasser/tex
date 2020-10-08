@@ -2,10 +2,9 @@
 #include "sauvegarde.h"
 #include "impression.h"
 #include "erreur.h"
-#include "popnest.h"
 #include "noeud.h"
 #include "lecture.h"
-#include "pushnest.h"
+#include "etat.h"
 
 void builddiscretionary(void)
 {

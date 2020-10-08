@@ -1,5 +1,6 @@
 #include "flushmath.h"
 #include "noeud.h"
+#include "etat.h"
 
 void flushmath(void)
 {

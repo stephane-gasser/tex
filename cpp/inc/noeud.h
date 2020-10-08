@@ -3,6 +3,7 @@
 
 #include "globals.h"
 #include "token.h"
+#include <tuple>
 
 enum
 {
@@ -41,27 +42,14 @@ enum
 	char_node = 255
 };
 
-void flushnodelist(LinkedNode*);
-LinkedNode* copynodelist(LinkedNode*);
-void confusion(const std::string &);
-
 class PassiveNode;
 
 class LinkedNode : public AnyNode
 {
 	public:
 		LinkedNode *link = nullptr;
-		~LinkedNode(void) 
-		{ 
-			if (type != char_node && type > right_noad)
-				confusion("flushing"); 
-			flushnodelist(link);
-		}
-		virtual LinkedNode *copy(void) 
-		{ 
-			confusion("copying"); 
-			return nullptr; 
-		}
+		~LinkedNode(void);
+		virtual LinkedNode *copy(void);
 		virtual std::string shortDisplay(void) { return ""; }
 		virtual std::string showNode(const std::string &) { return "Unknown node type!"; }
 		virtual quarterword getSubtype(void) { return 0; }
@@ -112,7 +100,7 @@ class CharNode : public LinkedNode
 		virtual scaled getWidth(void) { return width(); }
 		virtual std::string shortDisplay(void);
 		virtual std::string showNode(const std::string &);
-		virtual void vlist(scaled) { confusion("vlistout"); }
+		virtual void vlist(scaled);
 		virtual void hlist(scaled, scaled, scaled);
 };
 
@@ -125,8 +113,8 @@ class LigatureNode : public CharNode
 		quarterword subtype; // 0: AB, 1: A_ 2: _B 3: __
 		LigatureNode(internalfontnumber f, quarterword c, CharNode *q) : subtype(0), CharNode(f, c), lig_ptr(q) { type = ligature_node; }
 		LigatureNode(quarterword c) : subtype(0), CharNode(null_font, c), lig_ptr(nullptr) { type = ligature_node; } //newligitem
-		~LigatureNode(void) { flushnodelist(lig_ptr); }
-		virtual LigatureNode* copy(void) { return new LigatureNode(font, character, dynamic_cast<CharNode*>(copynodelist(lig_ptr))); }
+		~LigatureNode(void);
+		virtual LigatureNode* copy(void);
 		virtual std::string shortDisplay(void);
 		std::string showNode(const std::string &);
 		virtual void hlist(scaled, scaled, scaled);
@@ -141,13 +129,7 @@ class ChoiceNode : public LinkedNode
 		LinkedNode *script_mlist = nullptr; //!< mlist to be used in script style
 		LinkedNode *script_script_mlist = nullptr; //!< mlist to be used in scriptscript style
 		ChoiceNode(void) { type = choice_node; }
-		~ChoiceNode(void) 
-		{ 
-			flushnodelist(display_mlist); 
-			flushnodelist(text_mlist); 
-			flushnodelist(script_mlist); 
-			flushnodelist(script_script_mlist);
-		}
+		~ChoiceNode(void);
 		std::string showNode(const std::string &);
 		virtual void mToH(LinkedNode*&);
 };
@@ -159,14 +141,8 @@ class DiscNode : public LinkedNode
 		LinkedNode *pre_break = nullptr; //!< text that precedes a discretionary break
 		LinkedNode *post_break = nullptr; //!< text that follows a discretionary break
 		DiscNode(void) { type = disc_node; }
-		~DiscNode(void) { flushnodelist(pre_break); flushnodelist(post_break); }
-		DiscNode *copy(void) 
-		{ 
-			auto d = new DiscNode; 
-			d->pre_break = copynodelist(pre_break);  
-			d->post_break = copynodelist(post_break); 
-			return d; 
-		}
+		~DiscNode(void);
+		DiscNode *copy(void);
 		virtual std::string shortDisplay(void);
 		std::string showNode(const std::string &);
 };
@@ -219,8 +195,8 @@ class InsNode : public LinkedNode
 		int float_cost; //the |floating_penalty| to be used
 		LinkedNode *ins_ptr; //the vertical list to be inserted
 		InsNode(void) { type = ins_node; }
-		~InsNode(void) { flushnodelist(ins_ptr); deleteglueref(split_top_ptr); }
-		virtual InsNode *copy(void) { auto i = new InsNode; i->height = height; i->depth = depth; i->split_top_ptr = split_top_ptr; i->float_cost = float_cost; split_top_ptr->glue_ref_count++; i->ins_ptr = copynodelist(ins_ptr); return i; }
+		~InsNode(void);
+		virtual InsNode *copy(void);
 		virtual std::string shortDisplay(void) { return "[]"; }
 		virtual std::string showNode(const std::string &);
 };
@@ -241,8 +217,8 @@ class AdjustNode : public LinkedNode
 	public:
 		LinkedNode *adjust_ptr;
 		AdjustNode(void) { type = adjust_node; }
-		~AdjustNode(void) { flushnodelist(adjust_ptr); }
-		virtual AdjustNode *copy(void) { auto a = new AdjustNode; a->adjust_ptr = copynodelist(adjust_ptr); return a; }
+		~AdjustNode(void);
+		virtual AdjustNode *copy(void);
 		virtual std::string shortDisplay(void) { return "[]"; }
 		std::string showNode(const std::string &);
 };
@@ -269,8 +245,8 @@ class GlueNode : public LinkedNode
 		GlueSpec *glue_ptr; //!< pointer to a glue specification
 		GlueNode(GlueSpec *g) : subtype(0), glue_ptr(g) { type = glue_node; g->glue_ref_count++; }
 		GlueNode(smallnumber n) : subtype(n+1) { type = glue_node; glue_ptr = glue_par(n); glue_ptr->glue_ref_count++; }
-		~GlueNode(void) { deleteglueref(glue_ptr); flushnodelist(leader_ptr); }
-		virtual GlueNode *copy(void) { auto g = new GlueNode(glue_ptr); g->leader_ptr = copynodelist(leader_ptr); return g; }
+		~GlueNode(void);
+		virtual GlueNode *copy(void);
 		virtual std::string shortDisplay(void);
 		std::string showNode(const std::string &);
 		virtual void mToH(scaled&, scaled&);
@@ -316,8 +292,8 @@ class BoxNode : public RuleNode
 		quarterword glue_order = 0; //normal //!< applicable order of infinity
 		float glue_set = 0.0;
 		BoxNode(void) { type = hlist_node; subtype = 0; width = depth = height = 0; } 
-		~BoxNode(void) { flushnodelist(list_ptr); }
-		virtual BoxNode *copy(void) { auto r = new BoxNode; r->width = width; r->depth = depth; r->height = height; r->glue_set = glue_set; r->glue_sign = glue_sign; r->glue_order = glue_order; r->list_ptr = copynodelist(list_ptr); r->shift_amount = shift_amount; return r; }
+		~BoxNode(void);
+		virtual BoxNode *copy(void);
 		virtual std::string shortDisplay(void) { return "[]"; }
 		virtual std::string showNode(const std::string &);
 		virtual void vlist(scaled);
@@ -333,7 +309,7 @@ class UnsetNode : public BoxNode
 		scaled glue_shrink;
 		scaled glue_stretch;
 		UnsetNode(void) : BoxNode() { type = unset_node; span_count = 0; } 
-		virtual UnsetNode *copy(void) { auto r = new UnsetNode; r->width = width; r->depth = depth; r->height = height; r->glue_shrink = glue_shrink; r->glue_sign = glue_sign; r->glue_order = glue_order; r->list_ptr = copynodelist(list_ptr); r->glue_stretch = glue_stretch; return r; }
+		virtual UnsetNode *copy(void);
 		virtual std::string showNode(const std::string &);
 		virtual void setShift(scaled s) {}
 };
@@ -369,12 +345,8 @@ class WhatsitNode : public LinkedNode
 	public:
 		quarterword subtype;
 		WhatsitNode(smallnumber s) : subtype(s) { type = whatsit_node; }
-		~WhatsitNode(void) 
-		{ 
-			if (subtype > language_node) 
-				confusion("ext3"); 
-		}
-		virtual WhatsitNode *copy(void) { confusion("ext2"); return nullptr; }
+		~WhatsitNode(void);
+		virtual WhatsitNode *copy(void);
 		virtual std::string shortDisplay(void) { return "[]"; }
 		virtual std::string showNode(const std::string &);
 		virtual void vlist(scaled);
@@ -444,7 +416,7 @@ class NoadContent : public AnyNode
 		LinkedNode *info = nullptr;
 		quarterword character = 0;
 		quarterword fam = 0;
-		~NoadContent(void) { if (math_type >= sub_box) flushnodelist(info); }
+		~NoadContent(void);
 		bool operator == (const NoadContent &n) { return std::tuple(math_type, info, character, fam) == std::tuple(n.math_type, n.info, n.character, n.fam); }
 		std::string subsidiarydata(char c, const std::string &symbol);
 		std::string famandchar(void);
@@ -558,6 +530,9 @@ GlueNode *glueToAppend(halfword);
 void appenditaliccorrection(void);
 void appendtovlist(BoxNode*);
 void followUntilBeforeTarget(LinkedNode*, LinkedNode*&, LinkedNode*);
+void tail_append(LinkedNode*);
+void flushnodelist(LinkedNode*);
+LinkedNode* copynodelist(LinkedNode*);
 
 inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }
 inline LinkedNode *new_hlist(Noad *p) { return p->nucleus.info; } //!< the translation of an mlist
@@ -577,7 +552,6 @@ template<class T> void appendAtStart(T* &p, LinkedNode *q)
 	p = dynamic_cast<T*>(q);
 }
 
-inline void tail_append(LinkedNode*q) { appendAtEnd(tail, q); }
 inline void followUntilEnd(LinkedNode *s, LinkedNode* &p) { followUntilBeforeTarget(s, p, nullptr); }
 
 inline void insertNodeAfter(LinkedNode *p, LinkedNode *q)

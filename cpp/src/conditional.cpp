@@ -8,6 +8,7 @@
 #include "erreur.h"
 #include "equivalent.h"
 #include "fichier.h"
+#include "etat.h"
 
 [[nodiscard]] static Token get_x_token_or_active_char(void)
 { 

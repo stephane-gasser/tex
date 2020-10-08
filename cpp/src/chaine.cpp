@@ -3,6 +3,7 @@
 #include "erreur.h"
 #include "fichier.h"
 #include <iostream>
+#include <map>
 
 int cur_length(void) { return currentString.size(); }
 void append_char(ASCIIcode c) { currentString += c; } //!< put \a ASCII_code # at the end of \a str_pool

@@ -1,5 +1,5 @@
 #include "endgraf.h"
-#include "popnest.h"
+#include "etat.h"
 #include "linebreak.h"
 #include "normalparagraph.h"
 #include "equivalent.h"

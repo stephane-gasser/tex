@@ -1,7 +1,7 @@
 #include "setmathchar.h"
 #include "lecture.h"
 #include "noeud.h"
-#include "backinput.h"
+#include "etat.h"
 #include "equivalent.h"
 
 void setmathchar(int c, Token t)

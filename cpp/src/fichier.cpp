@@ -2,10 +2,8 @@
 #include "erreur.h"
 #include "impression.h"
 #include "lecture.h"
-#include "backinput.h"
 #include "chaine.h"
-#include "popinput.h"
-#include "pushinput.h"
+#include "etat.h"
 #include <iostream>
 
 void firmuptheline(void)

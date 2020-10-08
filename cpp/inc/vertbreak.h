@@ -2,6 +2,7 @@
 #define VERTBREAK_H
 
 #include "globals.h"
+#include "noeud.h"
 
 inline scaled bestheightplusdepth;
 

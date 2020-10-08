@@ -1,10 +1,9 @@
 #include "resumeafterdisplay.h"
 #include "erreur.h"
 #include "sauvegarde.h"
-#include "pushnest.h"
+#include "etat.h"
 #include "lecture.h"
 #include "buildpage.h"
-#include "backinput.h"
 #include "cesure.h"
 
 void resumeafterdisplay(Token t)

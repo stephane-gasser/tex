@@ -1,5 +1,5 @@
 #include "pushmath.h"
-#include "pushnest.h"
+#include "etat.h"
 #include "sauvegarde.h"
 
 void pushmath(groupcode c)

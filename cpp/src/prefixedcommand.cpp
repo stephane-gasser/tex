@@ -2,7 +2,7 @@
 #include "impression.h"
 #include "erreur.h"
 #include "equivalent.h"
-#include "backinput.h"
+#include "etat.h"
 #include "trapzeroglue.h"
 #include "doregistercommand.h"
 #include "lecture.h"

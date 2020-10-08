@@ -1,6 +1,6 @@
 #include "offsave.h"
 #include "impression.h"
-#include "backinput.h"
+#include "etat.h"
 #include "erreur.h"
 #include "equivalent.h"
 #include "noeud.h"
