@@ -625,8 +625,6 @@ class AnyNode
 
 inline char interaction = error_stop_mode; // 0..3
 inline groupcode curgroup = 0;
-inline unsigned char baseptr; // 0..stacksize
-inline char openparens = 0; // 0..maxinopen
 inline halfword parloc;
 inline halfword partoken;
 inline bool outputactive = false;
@@ -635,7 +633,6 @@ inline halfword writeloc;
 ///////////////////////////////////////////////////////////////////////////////
 // fonctions inlines
 ///////////////////////////////////////////////////////////////////////////////
-inline bool is_running(int d) { return d == null_flag; } //!< tests for a running dimension
 inline bool terminal_input(const std::string &name) { return name == ""; } //!< are we reading from the terminal?
 
 #endif

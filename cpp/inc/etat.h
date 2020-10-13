@@ -45,6 +45,8 @@ inline instaterecord curinput;
 	inline auto &index = curinput.indexfield; //!< reference for buffer information
 	inline auto &token_type = index; //!< type of current token list
 	inline auto &name = curinput.namefield; //!< name of the current file
+inline unsigned char baseptr; // 0..stacksize
+inline char openparens = 0; // 0..maxinopen
 
 void popnest(void);
 void pushnest(void);

@@ -601,4 +601,6 @@ inline void removeNodeAfter(LinkedNode *prev)
 	delete p;
 }
 
+inline bool is_running(int d) { return d == null_flag; } //!< tests for a running dimension
+
 #endif

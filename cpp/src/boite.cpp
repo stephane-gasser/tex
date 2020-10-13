@@ -302,42 +302,22 @@ void ensurevbox(eightbits n)
 		boxerror(n, "Insertions can only be added to a vbox", "Tut tut: You're trying to \\insert into a\n\\box register that now contains an \\hbox.\nProceed, and I'll discard its present contents.");
 }
 
-static void goto50v(BoxNode *r)
+static void erreurV(BoxNode *r, const std::string &s)
 {
+	print(s);
 	if (outputactive)
-		print(") has occurred while \\output is active");
+		print(") has occurred while \\output is active\n");
 	else
-	{
 		if (packbeginline)
-			print(") in alignment at lines "+std::to_string(abs(packbeginline))+"--");
+			print(") in alignment at lines "+std::to_string(abs(packbeginline))+"--"+std::to_string(line)+"\n");
 		else
-			print(") detected at line ");
-		print(std::to_string(line)+"\n");
-	}
+			print(") detected at line "+std::to_string(line)+"\n");
 	diagnostic(showbox(r)+"\n");
 }
 
 //! special case of unconstrained depth
-BoxNode *vpack(LinkedNode *p, scaled h, smallnumber m)
-{
-	return vpackage(p, h, m, max_dimen);
-}
-
-static glueord getOrder(scaled *total)
-{
-	glueord o;
-	if (total[3])
-		o = 3;
-	else 
-		if (total[2])
-			o = 2;
-		else 
-			if (total[1])
-				o = 1;
-			else
-				o = 0;
-	return o;
-}
+BoxNode *vpack(LinkedNode *p, scaled h, smallnumber m) { return vpackage(p, h, m, max_dimen); }
+static glueord getOrder(scaled *total) { return total[3] ? 3 : total[2] ? 2 : total[1] ? 1 : 0; }
 
 BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 {
@@ -348,14 +328,10 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 	scaled w = 0;
 	scaled d = 0;
 	scaled x = 0;
-	totalstretch[0] = 0;
-	totalshrink[0] = 0;
-	totalstretch[1] = 0;
-	totalshrink[1] = 0;
-	totalstretch[2] = 0;
-	totalshrink[2] = 0;
-	totalstretch[3] = 0;
-	totalshrink[3] = 0;
+	totalstretch[0] = totalshrink[0] = 0;
+	totalstretch[1] = totalshrink[1] = 0;
+	totalstretch[2] = totalshrink[2] = 0;
+	totalstretch[3] = totalshrink[3] = 0;
 	for (; p; next(p))
 		switch (p->type)
 		{
@@ -424,15 +400,11 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 				r->glue_sign = normal;
 				r->glue_set = 0.0;
 			}
-			if (o == 0)
-			if (r->list_ptr)
+			if (o == 0 && r->list_ptr)
 			{
 				lastbadness = badness(x, totalstretch[0]);
 				if (lastbadness > vbadness())
-				{
-					print("\n"+std::string(lastbadness > 100 ? "Underfull": "Loose")+"\\vbox (badness "+std::to_string(lastbadness));
-					goto50v(r);
-				}
+					erreurV(r, "\n"+std::string(lastbadness > 100 ? "Underfull": "Loose")+"\\vbox (badness "+std::to_string(lastbadness));
 			}
 		}
 		else
@@ -447,40 +419,34 @@ BoxNode *vpackage(LinkedNode *p, scaled h, smallnumber m, scaled l)
 				r->glue_sign = normal;
 				r->glue_set = 0.0;
 			}
-			if (totalshrink[o] < -x && o == 0 && r->list_ptr)
-			{
-				lastbadness = 1000000;
-				r->glue_set = 1.0;
-				if (-x-totalshrink[0] > vfuzz() || vbadness() < 100)
+			if (o == 0 && r->list_ptr)
+				if (totalshrink[o] < -x)
 				{
-					print("\nOverfull \\vbox ("+asScaled(-x-totalshrink[0])+"pt too high");
-					goto50v(r);
+					lastbadness = 1000000;
+					r->glue_set = 1.0;
+					if (-x-totalshrink[0] > vfuzz() || vbadness() < 100)
+						erreurV(r, "\nOverfull \\vbox ("+asScaled(-x-totalshrink[0])+"pt too high");
 				}
-			}
-			else 
-				if (o == 0 && r->list_ptr)
+				else 
 				{
 					lastbadness = badness(-x, totalshrink[0]);
 					if (lastbadness > vbadness())
-					{
-						print("\nTight \\vbox (badness "+std::to_string(lastbadness));
-						goto50v(r);
-					}
+						erreurV(r, "\nTight \\vbox (badness "+std::to_string(lastbadness));
 				}
 		}
 	return r;
 }
 
-static void goto50h(BoxNode *r)
+static void erreurH(BoxNode *r, const std::string &s)
 {
+	print(s);
 	if (outputactive)
-		print(") has occurred while \\output is active");
+		print(") has occurred while \\output is active\n");
 	else
 		if (packbeginline)
-			print(") in "+std::string(packbeginline > 0 ? "paragraph" : "alignment")+" at lines "+std::to_string(abs(packbeginline))+"--"+std::to_string(line));
+			print(") in "+std::string(packbeginline > 0 ? "paragraph" : "alignment")+" at lines "+std::to_string(abs(packbeginline))+"--"+std::to_string(line)+"\n");
 		else
-			print(") detected at line"+std::to_string(line));
-	println();
+			print(") detected at line"+std::to_string(line)+"\n");
 	fontinshortdisplay = null_font;
 	print(shortdisplay(r->list_ptr)+"\n");
 	diagnostic(showbox(r)+"\n");
@@ -597,11 +563,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 			{
 				lastbadness = badness(x, totalstretch[0]);
 				if (lastbadness > hbadness())
-				{
-					println();
-					print(std::string(lastbadness > 100 ? "Underfull" : "Loose")+" \\hbox (badness "+std::to_string(lastbadness));
-					goto50h(r);
-				}
+					erreurH(r, "\n"+std::string(lastbadness > 100 ? "Underfull" : "Loose")+" \\hbox (badness "+std::to_string(lastbadness));
 			}
 		}
 		else
@@ -616,35 +578,30 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 				r->glue_sign = normal;
 				r->glue_set = 0.0;
 			}
-			if (totalshrink[o] < -x && o == 0 && r->list_ptr)
-			{
-				lastbadness = 1000000;
-				r->glue_set = 1.0;
-				if (-x-totalshrink[0] > hfuzz() || hbadness() < 100)
+			if (o == 0 && r->list_ptr)
+				if (totalshrink[o] < -x)
 				{
-					if (overfull_rule() > 0 && -x-totalshrink[0] > hfuzz())
+					lastbadness = 1000000;
+					r->glue_set = 1.0;
+					if (-x-totalshrink[0] > hfuzz() || hbadness() < 100)
 					{
-						LinkedNode *q;
-						followUntilEnd(r->list_ptr, q);
-						auto R = new RuleNode;
-						R->width = overfull_rule();
-						q->link = R;
-					}
-					print("\nOverfull \\hbox ("+asScaled(-x-totalshrink[0])+"pt too wide");
-					goto50h(r);
-				}
-			}
-			else 
-				if (o == 0)
-					if (r->list_ptr)
-					{
-						lastbadness = badness(-x, totalshrink[0]);
-						if (lastbadness > hbadness())
+						if (overfull_rule() > 0 && -x-totalshrink[0] > hfuzz())
 						{
-							print("\nTight \\hbox (badness "+std::to_string(lastbadness));
-							goto50h(r);
+							LinkedNode *q;
+							followUntilEnd(r->list_ptr, q);
+							auto R = new RuleNode;
+							R->width = overfull_rule();
+							q->link = R;
 						}
+						erreurH(r, "\nOverfull \\hbox ("+asScaled(-x-totalshrink[0])+"pt too wide");
 					}
+				}
+				else 
+				{
+					lastbadness = badness(-x, totalshrink[0]);
+					if (lastbadness > hbadness())
+						erreurH(r, "\nTight \\hbox (badness "+std::to_string(lastbadness));
+				}
 		}
 	return r;
 }
