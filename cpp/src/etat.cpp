@@ -22,7 +22,7 @@ void pushnest(void)
 	nest.push_back(curlist);
 	tail = head = new LinkedNode;
 	prev_graf = 0;
-	mode_line = line;
+	mode_line = line; 
 }
 
 //! leave an input level, re-enter the old
@@ -99,3 +99,4 @@ void backinput(Token t)
 	Loc = 0;
 	token_type = backed_up;
 }
+

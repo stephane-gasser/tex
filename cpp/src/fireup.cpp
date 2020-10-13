@@ -4,7 +4,7 @@
 #include "boite.h"
 #include "sauvegarde.h"
 #include "prunepagetop.h"
-#include "deleteglueref.h"
+#include "noeud.h"
 #include "erreur.h"
 #include "etat.h"
 #include "normalparagraph.h"

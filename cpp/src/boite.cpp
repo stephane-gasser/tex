@@ -496,9 +496,9 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 	scaled x = 0;
 	std::fill_n(totalstretch, 4, 0);
 	std::fill_n(totalshrink, 4, 0);
-	scaled s = 0;
 	while (p)
 	{
+		scaled s = 0;
 		switch (p->type)
 		{
 			case hlist_node:

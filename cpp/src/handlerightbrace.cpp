@@ -6,7 +6,6 @@
 #include "endgraf.h"
 #include "boite.h"
 #include "etat.h"
-#include "deleteglueref.h"
 #include "buildpage.h"
 #include "lecture.h"
 #include "buildpage.h"

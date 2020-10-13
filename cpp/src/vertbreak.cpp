@@ -3,7 +3,6 @@
 #include "impression.h"
 #include "erreur.h"
 #include "noeud.h"
-#include "deleteglueref.h"
 
 scaled active_height[7]; //=activewidth //!< new name for the six distance variables
 scaled &cur_height = active_height[1]; //!< the natural height

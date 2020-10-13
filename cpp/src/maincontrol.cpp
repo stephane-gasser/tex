@@ -20,7 +20,6 @@
 #include "alignement.h"
 #include "initmath.h"
 #include "starteqno.h"
-#include "setmathchar.h"
 #include "mathlimitswitch.h"
 #include "lecture.h"
 #include "etat.h"
@@ -36,6 +35,20 @@
 #include "doextension.h"
 #include "calcul.h"
 #include "mainloop.h"
+
+static void setmathchar(int c, Token t)
+{
+	auto type = c>>12;
+	if (type >= 8)
+	{
+		t.cs = t.chr+active_base;
+		t.cmd = eqtb_active[t.cs].type;
+		t.chr = eqtb_active[t.cs].int_;
+		backinput(xtoken(t));
+	}
+	else
+		tail_append(new Noad(c&0xFF, c >= var_code && fam_in_range() ? cur_fam() : (c&0xF00)>>8, type));
+}
 
 //! for mode-independent commands
 #define ANY_MODE(cmd) vmode+cmd: case hmode+cmd: case mmode+cmd
@@ -340,13 +353,11 @@ Token maincontrol(void)
 				backinput(t);
 				scanmath(dynamic_cast<Noad*>(tail)->nucleus);
 				break;
+			case mmode+char_num:
+				t.chr = scancharnum(); [[fallthrough]];
 			case mmode+letter:
 			case mmode+other_char:
 			case mmode+char_given: 
-				setmathchar(math_code(t.chr), t);
-				break;
-			case mmode+char_num:
-				t.chr = scancharnum();
 				setmathchar(math_code(t.chr), t);
 				break;
 			case mmode+math_char_num:

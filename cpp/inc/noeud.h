@@ -3,6 +3,7 @@
 
 #include "globals.h"
 #include "token.h"
+#include "police.h"
 #include <tuple>
 
 enum
@@ -182,8 +183,6 @@ class GlueSpec : public AnyNode
 		}
 		std::string print(const std::string & = "");
 };
-
-void deleteglueref(GlueSpec *);
 
 class InsNode : public LinkedNode
 {
@@ -431,6 +430,26 @@ class Noad : public LinkedNode
 		NoadContent supscr;
 		Noad(void) : subtype(normal) { type = ord_noad; }
 		Noad(quarterword t) : subtype(normal) { type = t; }
+		Noad(quarterword ch, quarterword fam, quarterword tp) : subtype(normal) 
+		{
+			nucleus.math_type = math_char;
+			nucleus.character = ch;
+			nucleus.fam = fam;
+			tp += ord_noad;
+			switch (tp)
+			{	
+				case op_noad:
+				case bin_noad:
+				case rel_noad:
+				case open_noad:
+				case close_noad:
+				case punct_noad:
+					type = tp;
+					break;
+				default:
+					type = ord_noad;
+			}
+		}
 		virtual std::string showNode(const std::string &);
 		virtual void mToH(scaled&, scaled&);
 		virtual bool mToH(scaled&, scaled&, scaled&);
@@ -530,9 +549,10 @@ GlueNode *glueToAppend(halfword);
 void appenditaliccorrection(void);
 void appendtovlist(BoxNode*);
 void followUntilBeforeTarget(LinkedNode*, LinkedNode*&, LinkedNode*);
-void tail_append(LinkedNode*);
 void flushnodelist(LinkedNode*);
 LinkedNode* copynodelist(LinkedNode*);
+void deleteglueref(GlueSpec *);
+GlueSpec *trapzeroglue(GlueSpec *);
 
 inline bool precedes_break(LinkedNode *p) { return p->type < math_node; }
 inline LinkedNode *new_hlist(Noad *p) { return p->nucleus.info; } //!< the translation of an mlist

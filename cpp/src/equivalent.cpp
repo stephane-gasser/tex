@@ -1,7 +1,6 @@
 #include "equivalent.h"
 #include "sauvegarde.h"
 #include "lecture.h"
-#include "deleteglueref.h"
 #include "noeud.h"
 
 void MemoryNode::eqdestroy(void)

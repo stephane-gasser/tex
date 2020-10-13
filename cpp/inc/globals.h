@@ -265,12 +265,6 @@ enum groups
 	math_left_group = 16 //!< code for `\\left...\\right'
 };
 
-enum levels
-{
-	level_zero = 0, //!< level for undefined quantities
-	level_one = level_zero+1 //!< outermost level for defined quantities
-};
-
 enum state_code
 {
 	token_list = 0, //!< \a state code when scanning a token list
@@ -291,48 +285,10 @@ enum
 
 enum
 {
-	if_char_code = 0, //!<  `\\if' 
-	if_cat_code = 1, //!<  `\\ifcat' 
-	if_int_code = 2, //!<  `\\ifnum' 
-	if_dim_code = 3, //!<  `\\ifdim' 
-	if_odd_code = 4, //!<  `\\ifodd' 
-	if_vmode_code = 5, //!<  `\\ifvmode' 
-	if_hmode_code = 6, //!<  `\\ifhmode' 
-	if_mmode_code = 7, //!<  `\\ifmmode' 
-	if_inner_code = 8, //!<  `\\ifinner' 
-	if_void_code = 9, //!<  `\\ifvoid' 
-	if_hbox_code = 10, //!<  `\\ifhbox' 
-	if_vbox_code = 11, //!<  `\\ifvbox' 
-	ifx_code = 12, //!<  `\\ifx' 
-	if_eof_code = 13, //!<  `\\ifeof' 
-	if_true_code = 14, //!<  `\\iftrue' 
-	if_false_code = 15, //!<  `\\iffalse' 
-	if_case_code = 16 //!<  `\\ifcase' 
-};
-
-enum
-{
 	no_tag = 0, //!< vanilla character
 	lig_tag = 1, //!< character has a ligature/kerning program
 	list_tag = 2, //!< character has a successor in a charlist
 	ext_tag = 3 //!< character is extensible
-};
-
-enum
-{
-	slant_code = 1,
-	space_code = 2,
-	space_stretch_code = 3,
-	space_shrink_code = 4,
-	x_height_code = 5,
-	quad_code = 6,
-	extra_space_code = 7
-};
-
-enum box_dim
-{
-	exactly = 0, //!< a box dimension is pre-specified
-	additional = 1 //!< a box dimension is increased from the natural one
 };
 
 enum math_type
@@ -368,15 +324,6 @@ enum
 	box_flag = 1<<30, //!< context code for `\\setbox0'
 	ship_out_flag = box_flag+512, //!< context code for `\\shipout'
 	leader_flag = box_flag+513 //!< context code for `\\leaders'
-};
-
-enum chr_code
-{
-	box_code = 0, //!< \a chr_code for `\\box'
-	copy_code = 1, //!< \a chr_code for `\\copy'
-	last_box_code = 2, //!< \a chr_code for `\\lastbox'
-	vsplit_code = 3, //!< \a chr_code for `\\vsplit'
-	vtop_code = 4 //!< \a chr_code for `\\vtop'
 };
 
 enum
@@ -658,63 +605,6 @@ typedef union
 	twohalves hh;
 	fourquarters qqqq;
 } memoryword;
-
-class GlueSpec;
-
-class Font
-{
-	public:
-		static std::vector<memoryword> info; //!< the big collection of font data
-		static fourquarters& infos(int);
-		static quarterword skip_byte(int);
-		static quarterword next_char(int);
-		static quarterword op_byte(int);
-		static quarterword rem_byte(int);
-		int charbase; //!< base addresses for |char_info|
-		int widthbase; //!< base addresses for widths
-		int heightbase; //!< base addresses for heights
-		int depthbase; //!< base addresses for depths
-		int italicbase; //!< base addresses for italic corrections
-		int ligkernbase; //!< base addresses for ligature/kerning programs
-		int kernbase; //!< base addresses for kerns
-		int extenbase; //!< base addresses for extensible recipes
-		int parambase; //!< base addresses for font parameters
-		std::string name; //!< name of the font
-		std::string area; //!< area of the font
-		fourquarters check; //!< check sum
-		scaled size; //!< ``at'' size
-		scaled dsize; //!< ``design'' size
-		fontindex params; //!< how many font parameters are present
-		eightbits bc; //!< beginning (smallest) character code
-		eightbits ec; //!< ending (largest) character code
-		GlueSpec *glue; //!< glue specification for interword space, |null| if not allocated
-		bool used; //!< has a character from this font actually appeared in the output?
-		int hyphenchar;//!< current \.{\\hyphenchar} values
-		int skewchar; //!< current \.{\\skewchar} values
-		fontindex bcharlabel; //!< start of |lig_kern| program for left boundary character, |non_address| if there is none
-		int bchar; //!< right boundary character, |non_char| if there is none
-		int falsebchar; //!< |font_bchar| if it doesn't exist in the font, otherwise |non_char|
-		fourquarters char_info(smallnumber) const;
-		int char_width(smallnumber) const;
-		int char_height(smallnumber) const;
-		int char_depth(smallnumber) const;
-		int char_italic(smallnumber) const;
-		int lig_kern_start(smallnumber) const; //!< beginning of lig/kern program
-		int lig_kern_restart(int) const;
-		int lig_kern_first(smallnumber) const;
-		int char_kern(int) const;
-		int& param(smallnumber) const;
-		scaled heightplusdepth(quarterword) const;
-		int& slant(void) const; //!< slant to the right, per unit distance upward
-		int& extra_space(void) const; //!< additional space at end of sentence
-		int& space(void) const; //!< normal space between words
-		int& space_stretch(void) const; //!< stretch between words
-		int& space_shrink(void) const; //!< shrink between words
-		int& x_height(void) const; //!< one ex
-		int& quad(void) const; //!< one em
-		int char_tag(smallnumber);
-		bool char_exists(smallnumber);
-};
 
 class ArithException : public std::exception 
 {

@@ -3,7 +3,6 @@
 #include "erreur.h"
 #include "equivalent.h"
 #include "etat.h"
-#include "trapzeroglue.h"
 #include "doregistercommand.h"
 #include "lecture.h"
 #include "noeud.h"

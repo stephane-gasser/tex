@@ -6,7 +6,7 @@
 #include "calcul.h"
 #include "lecture.h"
 #include "cesure.h"
-#include "deleteglueref.h"
+#include "noeud.h"
 
 fourquarters& Font::infos(int k) { return Font::info[k].qqqq; }
 quarterword Font::skip_byte(int k) { return infos(k).b0; }

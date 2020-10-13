@@ -3,7 +3,6 @@
 #include "noeud.h"
 #include "lecture.h"
 #include "fmtfile.h"
-#include "deleteglueref.h"
 #include "conditional.h"
 #include "erreur.h"
 #include "equivalent.h"

@@ -3,9 +3,8 @@
 #include "erreur.h"
 #include "lecture.h"
 #include "noeud.h"
-#include "deleteglueref.h"
 #include "calcul.h"
-#include "trapzeroglue.h"
+#include "noeud.h"
 #include "equivalent.h"
 
 void doregistercommand(smallnumber prefix, Token t)

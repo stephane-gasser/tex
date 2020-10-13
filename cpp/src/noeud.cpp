@@ -11,7 +11,6 @@
 #include "buildpage.h"
 #include "chaine.h"
 #include "erreur.h"
-#include "deleteglueref.h"
 #include "cesure.h"
 #include "sauvegarde.h"
 #include "runaway.h"
@@ -372,9 +371,6 @@ ShapeNode::ShapeNode(int n) : values(2*n)
 		values.push_back(scan_normal_dimen());
 }
 
-void tail_append(LinkedNode*q) { appendAtEnd(tail, q); }
-
-
 LinkedNode::~LinkedNode(void) 
 { 
 	if (type != char_node && type > right_noad)
@@ -480,3 +476,22 @@ GlueNode::~GlueNode(void) { deleteglueref(glue_ptr); flushnodelist(leader_ptr); 
 void CharNode::vlist(scaled) { confusion("vlistout"); }
 WhatsitNode *WhatsitNode::copy(void) { confusion("ext2"); return nullptr; }
 LigatureNode* LigatureNode::copy(void) { return new LigatureNode(font, character, dynamic_cast<CharNode*>(copynodelist(lig_ptr))); }
+
+void deleteglueref(GlueSpec *p)
+{
+	if (p->glue_ref_count == 0)
+		delete p;
+	else
+		p->glue_ref_count--;
+}
+
+GlueSpec *trapzeroglue(GlueSpec *g)
+{
+	if (g->width == 0 && g->stretch == 0 && g->shrink == 0)
+	{
+		zero_glue->glue_ref_count++;
+		deleteglueref(g);
+		return nullptr;
+	}
+	return g;
+}

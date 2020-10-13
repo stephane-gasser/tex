@@ -1,5 +1,4 @@
 #include "buildpage.h"
-#include "deleteglueref.h"
 #include "impression.h"
 #include "erreur.h"
 #include "calcul.h"

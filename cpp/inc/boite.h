@@ -5,6 +5,21 @@
 #include "token.h"
 #include "noeud.h"
 
+enum box_dim
+{
+	exactly = 0, //!< a box dimension is pre-specified
+	additional = 1 //!< a box dimension is increased from the natural one
+};
+
+enum chr_code
+{
+	box_code = 0, //!< \a chr_code for `\\box'
+	copy_code = 1, //!< \a chr_code for `\\copy'
+	last_box_code = 2, //!< \a chr_code for `\\lastbox'
+	vsplit_code = 3, //!< \a chr_code for `\\vsplit'
+	vtop_code = 4 //!< \a chr_code for `\\vtop'
+};
+
 inline int lastbadness = 0;
 
 BoxNode *rebox(BoxNode*, scaled);

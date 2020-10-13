@@ -3,8 +3,7 @@
 
 #include "globals.h"
 #include "token.h"
-
-class LinkedNode;
+#include "noeud.h"
 
 class liststaterecord
 {
@@ -13,15 +12,6 @@ class liststaterecord
 		LinkedNode *headfield, *tailfield;
 		int pgfield, mlfield;
 		memoryword auxfield;
-};
-
-class instaterecord
-{
-	public:
-		quarterword statefield, indexfield;
-		halfword startfield;
-		halfword locfield, limitfield;
-		std::string namefield;
 };
 
 inline std::vector<liststaterecord> nest(1);
@@ -35,6 +25,15 @@ inline liststaterecord curlist;
 	inline int& mode = curlist.modefield; //!< current mode
 	inline int& prev_graf = curlist.pgfield; //!< number of paragraph lines accumulated
 	inline int& mode_line = curlist.mlfield; //!< source file line number at beginning of list
+
+class instaterecord
+{
+	public:
+		quarterword statefield, indexfield;
+		halfword startfield;
+		halfword locfield, limitfield;
+		std::string namefield;
+};
 
 inline std::vector<instaterecord> inputstack(1);
 inline instaterecord curinput;
@@ -53,5 +52,7 @@ void pop_input(void);
 void push_input(void);
 void backinput(Token);
 void startinput(void);
+
+inline void tail_append(LinkedNode*q) { appendAtEnd(tail, q); }
 
 #endif

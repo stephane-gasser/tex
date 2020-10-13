@@ -1,6 +1,8 @@
 #include "initprim.h"
 #include "primitive.h"
 #include "equivalent.h"
+#include "conditional.h"
+#include "boite.h"
 
 void initprim(void)
 {

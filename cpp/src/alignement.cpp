@@ -5,7 +5,6 @@
 #include "erreur.h"
 #include "endgraf.h"
 #include "offsave.h"
-#include "deleteglueref.h"
 #include "noeud.h"
 #include "boite.h"
 #include "impression.h"
@@ -119,12 +118,12 @@ void initalign(Token t, AlignRecordNode* &loop)
 		flushmath();
 	}
 	pushnest();
-	if (mode == mmode) // Change current mode to |-vmode| for \.{\\halign}, |-hmode| for \.{\\valign}
+	if (mode == mmode)
 	{
 		mode = -vmode;
 		prev_depth = nest[nest.size()-3].auxfield.int_;
 	}
-	else 
+	else // Change current mode to |-vmode| for \halign, |-hmode| for \valign
 		if (mode > 0)
 		mode = -mode;
 	t = scanspec(align_group);

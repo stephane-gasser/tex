@@ -3,6 +3,7 @@
 
 #include "globals.h"
 #include "token.h"
+#include "police.h"
 #include <string>
 
 enum

@@ -4,6 +4,12 @@
 #include "globals.h"
 #include "noeud.h"
 
+enum levels
+{
+	level_zero = 0, //!< level for undefined quantities
+	level_one = level_zero+1 //!< outermost level for defined quantities
+};
+
 enum prefix
 {
 	noPrefix = 0,

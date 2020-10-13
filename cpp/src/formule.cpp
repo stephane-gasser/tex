@@ -4,7 +4,6 @@
 #include "police.h"
 #include "noeud.h"
 #include "calcul.h"
-#include "deleteglueref.h"
 #include "erreur.h"
 #include "etat.h"
 #include "equivalent.h"

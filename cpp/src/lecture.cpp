@@ -6,7 +6,6 @@
 #include "expand.h"
 #include "pushmath.h"
 #include "noeud.h"
-#include "deleteglueref.h"
 #include "alignement.h"
 #include "impression.h"
 #include "calcul.h"
