@@ -96,7 +96,7 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 void alterboxdimen(halfword c)
 {
 	auto b = box(scaneightbitint(scannerstatus));
-	scanoptionalequals();
+	scanoptionalequals(scannerstatus);
 	if (b == nullptr)
 		return;
 	switch (c)
@@ -158,7 +158,7 @@ void boxend(int boxcontext, RuleNode* curbox)
 			if (curbox)
 				if (boxcontext > ship_out_flag) // Append a new leader node that uses \a cur_box
 				{
-					auto t = getXTokenSkipSpaceAndEscape();
+					auto t = getXTokenSkipSpaceAndEscape(scannerstatus);
 					if ((t.cmd == hskip && abs(mode) != vmode) || (t.cmd == vskip && abs(mode) == vmode))
 					{
 						auto g = glueToAppend(t.chr);
@@ -241,7 +241,7 @@ void beginbox(int boxcontext, Token t)
 		case vsplit_code:
 		{
 			auto n = scaneightbitint(scannerstatus);	 // a box number
-			if (!scankeyword("to"))
+			if (!scankeyword(scannerstatus, "to"))
 				error("Missing `to' inserted", "I'm working on `\\vsplit<box number> to <dimen>';\nwill look for the <dimen> next.");
 			boxend(boxcontext, vsplit(n, scan_normal_dimen(scannerstatus))); //in simple cases, we use the box immediately
 			break;
@@ -253,16 +253,16 @@ void beginbox(int boxcontext, Token t)
 			{
 				case hmode:
 					if (boxcontext < box_flag && abs(mode) == vmode)
-						t = scanspec(adjusted_hbox_group, boxcontext);
+						t = scanspec(scannerstatus, adjusted_hbox_group, boxcontext);
 					else
-						t = scanspec(hbox_group, boxcontext);
+						t = scanspec(scannerstatus, hbox_group, boxcontext);
 					break;
 				case vmode:
-					t = scanspec(vbox_group, boxcontext);
+					t = scanspec(scannerstatus, vbox_group, boxcontext);
 					normalparagraph();
 					break; 
 				default:
-					t = scanspec(vtop_group, boxcontext);
+					t = scanspec(scannerstatus, vtop_group, boxcontext);
 					k = vmode;
 					normalparagraph();
 			}

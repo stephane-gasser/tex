@@ -15,7 +15,7 @@ void doregistercommand(smallnumber prefix, Token t)
 	halfword p;
 	q = t.cmd;
 	if (q != register_)
-		t = getxtoken();
+		t = getxtoken(scannerstatus);
 	switch (t.cmd)
 	{
 		case assign_int:    // assign_int+int_val
@@ -48,9 +48,9 @@ void doregistercommand(smallnumber prefix, Token t)
 		}
 	}
 	if (q == register_)
-		scanoptionalequals();
+		scanoptionalequals(scannerstatus);
 	else 
-		if (scankeyword("by"))
+		if (scankeyword(scannerstatus, "by"))
 			aritherror = false;
 	int val;
 	GlueSpec *g;

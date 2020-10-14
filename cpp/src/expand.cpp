@@ -55,7 +55,7 @@ void expand(Token tk)
 			TokenList l;
 			do
 			{
-				tk = getxtoken();
+				tk = getxtoken(scannerstatus);
 				if (tk.cs == 0)
 					l.list.push_back(tk.tok);
 			} while (tk.cs == 0);

@@ -11,7 +11,7 @@
 
 [[nodiscard]] static Token get_x_token_or_active_char(void)
 { 
-	auto t = getxtoken(); 
+	auto t = getxtoken(scannerstatus); 
 	if (t.cmd == relax && t.chr == no_expand_flag)
 	{
 		t.cmd = active_char; 
@@ -86,7 +86,7 @@ void conditional(Token t)
 		case if_int_code:
 		{
 			int n = scanint(scannerstatus);
-			t = getXTokenSkipSpace();
+			t = getXTokenSkipSpace(scannerstatus);
 			if (t.tok >= other_token+'<' && t.tok <= other_token+'>')
 				r = t.tok-other_token;
 			else
@@ -110,7 +110,7 @@ void conditional(Token t)
 		case if_dim_code:
 		{
 			int n = scan_normal_dimen(scannerstatus);
-			t = getXTokenSkipSpace();
+			t = getXTokenSkipSpace(scannerstatus);
 			if (t.tok >= other_token+'<' && t.tok <= other_token+'>')
 				r = t.tok-other_token;
 			else

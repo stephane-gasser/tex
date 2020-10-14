@@ -4,6 +4,7 @@
 #include "erreur.h"
 #include "lecture.h"
 #include "etat.h"
+#include "getnext.h"
 
 static bool scripts_allowed(LinkedNode *tail) { return tail->type >= ord_noad && tail->type < left_noad; }
 
@@ -28,5 +29,5 @@ void subsup(eightbits cmd) //sub_mark || sup_mark
 			else
 				error("Double subscript", "I treat `x_1_2' essentially like `x_1{}_2'.");
 	}
-	scanmath(*p);
+	p->scan(scannerstatus);
 }

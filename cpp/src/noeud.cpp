@@ -73,11 +73,11 @@ void newfont(smallnumber prefix)
 			t = "FONT"+char(u-1);
 		eqtb_active[u-active_base].define(prefix, set_font, null_font);
 	}
-	scanoptionalequals();
+	scanoptionalequals(scannerstatus);
 	scanfilename();
 	nameinprogress = true;
 	scaled s;
-	if (scankeyword("at"))
+	if (scankeyword(scannerstatus, "at"))
 	{
 		s = scan_normal_dimen(scannerstatus);
 		if (s <= 0 || s >= 2048*unity)
@@ -87,7 +87,7 @@ void newfont(smallnumber prefix)
 		}
 	}
 	else 
-		if (scankeyword("scaled"))
+		if (scankeyword(scannerstatus, "scaled"))
 		{
 			s = -scanint(scannerstatus);
 			if (s >= 0 || s < -(1<<15))
@@ -163,7 +163,7 @@ void appendchoices(void)
 	m->int_ = 0;
 	savestack.push_back(m);
 	pushmath(math_choice_group);
-	(void)scanleftbrace();
+	scanleftbrace(scannerstatus);
 }
 
 void appenddiscretionary(halfword s)
@@ -181,7 +181,7 @@ void appenddiscretionary(halfword s)
 		m->int_ = 0;
 		savestack.push_back(m);
 		newsavelevel(disc_group);
-		(void)scanleftbrace();
+		scanleftbrace(scannerstatus);
 		pushnest();
 		mode = -hmode;
 		space_factor = 1000;
@@ -289,7 +289,7 @@ AccentNoad::AccentNoad(void)
 	accent_chr.math_type = math_char; 
 	accent_chr.character = val%0x1'00;
 	accent_chr.fam = val >= var_code && fam_in_range() ? cur_fam() : (val>>8)%0x10;
-	scanmath(nucleus);
+	nucleus.scan(scannerstatus);
 }
 
 
@@ -300,8 +300,8 @@ RadicalNoad::RadicalNoad(Token t)
 	nucleus.math_type = 0; // = twohalves{0, 0};
 	subscr.math_type = 0; // = twohalves{0, 0};
 	supscr.math_type = 0; // = twohalves{0, 0};
-	left_delimiter.scan(true, t);
-	scanmath(nucleus);
+	left_delimiter.scan(scannerstatus, true, t);
+	nucleus.scan(scannerstatus);
 }
 
 FractionNoad::FractionNoad(halfword c, Token t) 
@@ -313,8 +313,8 @@ FractionNoad::FractionNoad(halfword c, Token t)
 	denominator.math_type = 0; // = twohalves{0, 0};
 	if (c >= delimited_code)
 	{
-		left_delimiter.scan(false, t);
-		right_delimiter.scan(false, t);
+		left_delimiter.scan(scannerstatus, false, t);
+		right_delimiter.scan(scannerstatus, false, t);
 	}
 	switch (c%delimited_code)
 	{
@@ -333,7 +333,7 @@ FractionNoad::FractionNoad(halfword c, Token t)
 LeftRightNoad::LeftRightNoad(Token t)
 { 
 	type = t.chr; 
-	delimiter.scan(false, t);
+	delimiter.scan(scannerstatus, false, t);
 }
 
 int CharNode::width(void) { return fonts[font].char_width(character); }

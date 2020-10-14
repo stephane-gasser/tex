@@ -469,12 +469,12 @@ void newpatterns(Token t)
 	curlang = cur_fam();
 	if (curlang <= 0 || curlang > 255)
 			curlang = 0;
-	t = scanleftbrace(); //a left brace must follow \\patterns
+	scanleftbrace(scannerstatus); //a left brace must follow \\patterns
 	hyf[0] = 0;
 	std::basic_string<halfword> pattern;
 	for (bool keepIn = true, digitsensed /*should the next digit be treated as a letter?*/ = false; keepIn;)
 	{
-		t = getxtoken();
+		t = getxtoken(scannerstatus);
 		switch (t.cmd)
 		{
 			case letter:
@@ -526,13 +526,13 @@ void newpatterns(Token t)
 
 void newhyphexceptions(void)
 {
-	auto t = scanleftbrace();
+	scanleftbrace(scannerstatus);
 	curlang = cur_fam();
 	if (curlang < 0 || curlang > 255)
 		curlang = 0;
 	HyphenNode *p = nullptr;
 	std::basic_string<halfword> exception;
-	for (t = getxtoken(); true; t = getxtoken())
+	for (auto t = getxtoken(scannerstatus); true; t = getxtoken(scannerstatus))
 		switch (t.cmd)
 		{
 			case char_num:

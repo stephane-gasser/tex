@@ -7,6 +7,7 @@
 #include "sauvegarde.h"
 #include "formule.h"
 #include "etat.h"
+#include "getnext.h"
 
 void mathleft(Token t)
 {
@@ -21,7 +22,7 @@ void mathright(Token t)
 		case math_shift_group:
 		{
 			Delimiter dummy;
-			dummy.scan(false, t);
+			dummy.scan(scannerstatus, false, t);
 			error("Extra "+esc("right"), "I'm ignoring a \\right that had no matching \\left.");
 			break;
 		}

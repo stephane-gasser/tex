@@ -127,7 +127,7 @@ void openorclosein(halfword c)
 	}
 	if (c)
 	{
-		scanoptionalequals();
+		scanoptionalequals(scannerstatus);
 		scanfilename();
 		if (curext == "") 
 			curext = ".tex";
@@ -247,7 +247,7 @@ void scanfilename(void)
 {
 	nameinprogress = true;
 	beginname();
-	for (auto t = getXTokenSkipSpace(); true; t = getxtoken())
+	for (auto t = getXTokenSkipSpace(scannerstatus); true; t = getxtoken(scannerstatus))
 	{
 		if (t.cmd > other_char || t.chr > 255)
 		{

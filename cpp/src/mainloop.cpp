@@ -267,7 +267,7 @@ void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 		{
 			charwarning(cur_font(), t.chr);
 			delete ligstack;
-			t = getxtoken(); // big_switch
+			t = getxtoken(scannerstatus); // big_switch
 			return;
 		}
 }
@@ -289,7 +289,7 @@ void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 	}
 	else
 		tail_append(new GlueNode(space_skip()));
-	return getxtoken();
+	return getxtoken(scannerstatus);
 }
 
 //! Handle spaces when <em> space_factor != 1000 </em>.

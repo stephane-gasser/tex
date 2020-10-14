@@ -19,7 +19,7 @@ void beginInsert(void)
 	m->int_ = val;
 	savestack.push_back(m);
 	newsavelevel(insert_group);
-	(void)scanleftbrace();
+	scanleftbrace(scannerstatus);
 	normalparagraph();
 	pushnest();
 	mode = -vmode;
@@ -32,7 +32,7 @@ void beginAdjust(void)
 	m->int_ = 255;
 	savestack.push_back(m);
 	newsavelevel(insert_group);
-	(void)scanleftbrace();
+	scanleftbrace(scannerstatus);
 	normalparagraph();
 	pushnest();
 	mode = -vmode;

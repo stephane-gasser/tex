@@ -313,7 +313,7 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 [[nodiscard]] int findfontdimen(bool writing)
 {
 	int n = scanint(scannerstatus);
-	auto &ft = fonts[scanfontident()];
+	auto &ft = fonts[scanfontident(scannerstatus)];
 	int val = Font::info.size()-1;
 	if (n > 0)
 	{

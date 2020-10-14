@@ -12,6 +12,7 @@
 #include "shipout.h"
 #include "buildpage.h"
 #include "fichier.h"
+#include "getnext.h"
 
 void fireup(LinkedNode *c)
 {
@@ -197,7 +198,7 @@ void fireup(LinkedNode *c)
 			beginTokenListAboveMacro(output_routine(), output_text);
 			newsavelevel(output_group);
 			normalparagraph();
-			(void)scanleftbrace();
+			scanleftbrace(scannerstatus);
 			return;
 		}
 	if (page_head->link)

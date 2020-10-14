@@ -22,7 +22,7 @@ static void scantoks(const char status, bool xpand, Token tk)
 	halfword t = zero_token;
 	halfword unbalance = 0;
 	if (status == absorbing)
-		tk = scanleftbrace();
+		scanleftbrace(status);
 	else
 		while (true)
 		{
@@ -93,7 +93,7 @@ static void scantoks(const char status, bool xpand, Token tk)
 				if (status == defining)
 				{
 					auto s = tk.tok;
-					tk = xpand ? getxtoken() : gettoken(defining);
+					tk = (xpand ? getxtoken : gettoken)(defining);
 					if (tk.cmd != mac_param)
 						if (tk.tok <= zero_token || tk.tok > t)
 						{

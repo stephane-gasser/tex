@@ -15,7 +15,7 @@ void doextension(Token t)
 		case open_node:
 		{
 			auto ww = new OpenWriteWhatsitNode(scanfourbitint(scannerstatus));
-			scanoptionalequals();
+			scanoptionalequals(scannerstatus);
 			scanfilename();
 			ww->open_name = curname;
 			ww->open_area = curarea;
@@ -47,7 +47,7 @@ void doextension(Token t)
 			break;
 		}
 		case immediate_code:
-			t = getxtoken();
+			t = getxtoken(scannerstatus);
 			if (t.cmd == extension)
 				switch (t.chr) // \openout / \write / \closeout
 				{
@@ -55,7 +55,7 @@ void doextension(Token t)
 					{
 						auto p = tail;
 						auto ww = new OpenWriteWhatsitNode(scanfourbitint(scannerstatus));
-						scanoptionalequals();
+						scanoptionalequals(scannerstatus);
 						scanfilename();
 						ww->open_name = curname;
 						ww->open_area = curarea;

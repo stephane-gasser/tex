@@ -18,7 +18,7 @@ static void alterprevgraf(void)
 	auto p = nest.size()-1;
 	while (abs(nest[p].modefield) != vmode)
 		p--;
-	scanoptionalequals();
+	scanoptionalequals(scannerstatus);
 	int val = scanint(scannerstatus);
 	if (val < 0)
 		interror(val, " Bad "+esc("prevgraf"), "I allow only nonnegative values here.");
@@ -35,7 +35,7 @@ static void alteraux(Token t)
 		reportillegalcase(t);
 	else
 	{
-		scanoptionalequals();
+		scanoptionalequals(scannerstatus);
 		if (t.chr == vmode)
 			prev_depth = scan_normal_dimen(scannerstatus);
 		else
@@ -56,7 +56,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 	{
 		if (pfx&t.chr == 0)
 			pfx += t.chr;
-		t = getXTokenSkipSpaceAndEscape();
+		t = getXTokenSkipSpaceAndEscape(scannerstatus);
 		if (t.cmd <= max_non_prefixed_command)
 		{
 			backerror(t, "You can't use a prefix with `"+cmdchr(t)+"\'", "I'll pretend you didn't say \\long or \\outer or \\global.");
@@ -91,7 +91,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			auto p = getrtoken();
 			if (t.chr == 0)
 			{
-				t = getXTokenSkipSpace();
+				t = getXTokenSkipSpace(scannerstatus);
 				if (t.tok == other_token+'=')
 				{
 					t = gettoken(scannerstatus);
@@ -115,7 +115,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 		{
 			auto p = getrtoken();
 			eqtb_cs[p-hash_base].define(pfx, relax, 256);
-			scanoptionalequals();
+			scanoptionalequals(scannerstatus);
 			switch (t.chr)
 			{
 				case char_def_code:
@@ -144,7 +144,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 		case read_to_cs:
 		{
 			auto n = scanint(scannerstatus);
-			if (!scankeyword("to")) 
+			if (!scankeyword(scannerstatus, "to")) 
 				error("Missing `to' inserted", "You should have said `\\read<number> to \\cs'.\nI'm going to look for the \\cs now.");
 			auto p = getrtoken();
 			eqtb_cs[p-hash_base].define(pfx, call, readtoks(n, p));
@@ -155,8 +155,8 @@ void prefixedcommand(Token t, bool setboxallowed)
 		{
 			auto old = t.cs;
 			auto p = t.cmd == toks_register ? toks_base+scaneightbitint(scannerstatus) : t.chr;
-			scanoptionalequals();
-			t = getXTokenSkipSpaceAndEscape();
+			scanoptionalequals(scannerstatus);
+			t = getXTokenSkipSpaceAndEscape(scannerstatus);
 			if (t.cmd == toks_register)
 				t = Token(assign_toks, toks_base+scaneightbitint(scannerstatus));
 			if (t.cmd == assign_toks)
@@ -192,23 +192,17 @@ void prefixedcommand(Token t, bool setboxallowed)
 			break;
 		}
 		case assign_int:
-		{
-			auto p = t.chr;
-			scanoptionalequals();
-			eqtb_int[p-int_base].word_define(pfx, scanint(scannerstatus));
+			scanoptionalequals(scannerstatus);
+			eqtb_int[t.chr-int_base].word_define(pfx, scanint(scannerstatus));
 			break;
-		}
 		case assign_dimen:
-		{
-			auto p = t.chr;
-			scanoptionalequals();
-			eqtb_dimen[p-dimen_base].word_define(pfx, scandimen(scannerstatus, false, false, false));
+			scanoptionalequals(scannerstatus);
+			eqtb_dimen[t.chr-dimen_base].word_define(pfx, scandimen(scannerstatus, false, false, false));
 			break;
-		}
 		case assign_glue:
 		case assign_mu_glue:
 		{
-			scanoptionalequals();
+			scanoptionalequals(scannerstatus);
 			auto g = trapzeroglue(scanglue(scannerstatus, t.cmd == assign_mu_glue ? mu_val : glue_val));
 			eqtb_glue[t.chr-glue_base].define(pfx, glue_ref, g);
 			break;
@@ -231,7 +225,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 					maxValue = (1<<24)-1;
 			}
 			auto p = t.chr+scancharnum(scannerstatus);
-			scanoptionalequals();
+			scanoptionalequals(scannerstatus);
 			val = scanint(scannerstatus);
 			if ((val < 0 && t.chr != del_code_base) || val > maxValue)
 			{
@@ -247,8 +241,8 @@ void prefixedcommand(Token t, bool setboxallowed)
 		case def_family:
 		{	
 			auto p = t.chr+scanfourbitint(scannerstatus);
-			scanoptionalequals();
-			eqtb_local[p-local_base].define(pfx, data, scanfontident());
+			scanoptionalequals(scannerstatus);
+			eqtb_local[p-local_base].define(pfx, data, scanfontident(scannerstatus));
 			break;
 		}
 		case register_:
@@ -262,9 +256,9 @@ void prefixedcommand(Token t, bool setboxallowed)
 			auto n = scaneightbitint(scannerstatus);
 			if (pfx >= globalPrefix)
 				n += 1<<8;
-			scanoptionalequals();
+			scanoptionalequals(scannerstatus);
 			if (setboxallowed)
-				scanbox(box_flag+n);
+				scanbox(scannerstatus, box_flag+n);
 			else
 				error("Improper "+esc("setbox"), "Sorry, \\setbox is not allowed after \\halign in a display,\nor between \\accent and an accented character.");
 			break;
@@ -276,11 +270,11 @@ void prefixedcommand(Token t, bool setboxallowed)
 			alterprevgraf();
 			break;
 		case set_page_dimen: 
-			scanoptionalequals();
+			scanoptionalequals(scannerstatus);
 			pagesofar[t.chr] = scan_normal_dimen(scannerstatus);
 			break;
 		case set_page_int: 
-			scanoptionalequals();
+			scanoptionalequals(scannerstatus);
 			(t.chr == 0 ? deadcycles : insertpenalties) = scanint(scannerstatus);
 			break;
 		case set_box_dimen: 
@@ -288,7 +282,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			break;
 		case set_shape:
 		{
-			scanoptionalequals();
+			scanoptionalequals(scannerstatus);
 			auto n = scanint(scannerstatus);
 			eqtb_local[par_shape_loc-local_base].define(pfx, shape_ref, n <= 0 ? nullptr : new ShapeNode(n));
 			break;
@@ -303,14 +297,14 @@ void prefixedcommand(Token t, bool setboxallowed)
 		{
 			fontindex k;
 			k = findfontdimen(true);
-			scanoptionalequals();
+			scanoptionalequals(scannerstatus);
 			Font::info[k].int_ = scan_normal_dimen(scannerstatus);
 			break;
 		}
 		case assign_font_int:
 		{
-			auto f = scanfontident();
-			scanoptionalequals();
+			auto f = scanfontident(scannerstatus);
+			scanoptionalequals(scannerstatus);
 			(t.chr == 0 ? fonts[f].hyphenchar : fonts[f].skewchar) = scanint(scannerstatus);
 			break;
 		}

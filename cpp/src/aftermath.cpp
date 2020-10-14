@@ -12,6 +12,7 @@
 #include "alignement.h"
 #include "police.h"
 #include "etat.h"
+#include "getnext.h"
 
 constexpr int total_mathsy_params = 22;
 constexpr int total_mathex_params = 13;
@@ -44,7 +45,7 @@ void aftermath(void)
 	Token t;
 	if (mode == -m)
 	{
-		t = getxtoken();
+		t = getxtoken(scannerstatus);
 		backerror(t, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		curmlist = p;
 		curstyle = 2;
@@ -95,7 +96,7 @@ void aftermath(void)
 	{
 		if (a == nullptr)
 		{
-			t = getxtoken();
+			t = getxtoken(scannerstatus);
 			if (t.cmd != math_shift)
 				backerror(t, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}

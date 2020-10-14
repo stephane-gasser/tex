@@ -114,7 +114,7 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 			break;
 		case disc_group: 
 			builddiscretionary();
-			t = scanleftbrace();
+			scanleftbrace(scannerstatus);
 			break;
 		case align_group:
 			backinput(t);
@@ -144,7 +144,7 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 		}
 		case math_choice_group:
 			buildchoices();
-			t = scanleftbrace();
+			scanleftbrace(scannerstatus);
 			break;
 		case math_group:
 		{

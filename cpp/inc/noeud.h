@@ -419,6 +419,7 @@ class NoadContent : public AnyNode
 		bool operator == (const NoadContent &n) { return std::tuple(math_type, info, character, fam) == std::tuple(n.math_type, n.info, n.character, n.fam); }
 		std::string subsidiarydata(char c, const std::string &symbol);
 		std::string famandchar(void);
+		void scan(char);
 };
 
 class Noad : public LinkedNode
@@ -464,7 +465,7 @@ class Delimiter
 		quarterword large_fam; //|fam| for ``large'' delimiter
 		quarterword large_char; //|character| for ``large'' delimiter
 		std::string print(void);
-		void scan(bool, Token);
+		void scan(char, bool, Token);
 };
 
 class RadicalNoad : public Noad

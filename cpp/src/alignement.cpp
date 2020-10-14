@@ -125,7 +125,7 @@ void initalign(Token t, AlignRecordNode* &loop)
 	else // Change current mode to |-vmode| for \halign, |-hmode| for \valign
 		if (mode > 0)
 		mode = -mode;
-	t = scanspec(align_group);
+	t = scanspec(scannerstatus, align_group);
 	setPreamble(nullptr);
 	curalign = dynamic_cast<AlignRecordNode*>(align_head);
 	loop = 0;
@@ -338,7 +338,7 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 		initspan(p);
 	}
 	alignstate = 1000000;
-	t = getXTokenSkipSpace();
+	t = getXTokenSkipSpace(scannerstatus);
 	curalign = p;
 	initcol(t);
 	return false;
@@ -635,7 +635,7 @@ static void finalign(AlignRecordNode* &loop)
 			backerror(tk, "Missing $$ inserted", "Displays can use special alignments (like \\eqalignno)\nonly if nothing but the alignment itself is between $$'s.");
 		else
 		{
-			tk = getxtoken();
+			tk = getxtoken(scannerstatus);
 			if (tk.cmd != math_shift)
 				backerror(tk, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
@@ -666,11 +666,11 @@ void alignpeek(AlignRecordNode* &loop)
 	while (true)
 	{
 		alignstate = 1000000;
-		auto t = getXTokenSkipSpace();
+		auto t = getXTokenSkipSpace(scannerstatus);
 		switch (t.cmd)
 		{
 			case no_align:
-				t = scanleftbrace();
+				scanleftbrace(scannerstatus);
 				newsavelevel(no_align_group);
 				if (mode == -vmode)
 					normalparagraph();

@@ -60,7 +60,7 @@ Token maincontrol(void)
 	AlignRecordNode *loop = nullptr;
 	if (every_job())
 		beginTokenListAboveMacro(every_job(), every_job_text);
-	auto t = getxtoken();
+	auto t = getxtoken(scannerstatus);
 	while (true)
 	{
 		if (tracing_commands() > 0)
@@ -76,7 +76,7 @@ Token maincontrol(void)
 				main_loop(t);
 				continue;
 			case hmode+no_boundary:
-				t = getxtoken();
+				t = getxtoken(scannerstatus);
 				if (t.cmd == letter || t.cmd == other_char || t.cmd == char_given || t.cmd == char_num)
 					cancelboundary = true;
 				continue;
@@ -97,7 +97,7 @@ Token maincontrol(void)
 			case mmode+no_boundary: 
 				break;
 			case ANY_MODE(ignore_spaces):
-				t = getXTokenSkipSpace();
+				t = getXTokenSkipSpace(scannerstatus);
 				continue;
 			case vmode+stop:
 				if (itsallover(t))
@@ -145,7 +145,7 @@ Token maincontrol(void)
 			case vmode+hrule:
 			case hmode+vrule:
 			case mmode+vrule:
-				tail_append(scanrulespec(t));
+				tail_append(scanrulespec(scannerstatus, t));
 				switch (abs(mode))
 				{
 					case vmode:
@@ -183,10 +183,10 @@ Token maincontrol(void)
 			case vmode+hmove:
 			case hmode+vmove:
 			case mmode+vmove:
-				scanbox(t.chr == 0 ? scan_normal_dimen(scannerstatus) : -scan_normal_dimen(scannerstatus));
+				scanbox(scannerstatus, t.chr == 0 ? scan_normal_dimen(scannerstatus) : -scan_normal_dimen(scannerstatus));
 				break;
 			case ANY_MODE(leader_ship):
-				scanbox(leader_flag-a_leaders+t.chr);
+				scanbox(scannerstatus, leader_flag-a_leaders+t.chr);
 				break;
 			case ANY_MODE(make_box):
 				beginbox(0, t);
@@ -351,7 +351,7 @@ Token maincontrol(void)
 			case mmode+left_brace:
 				tail_append(new Noad);
 				backinput(t);
-				scanmath(dynamic_cast<Noad*>(tail)->nucleus);
+				dynamic_cast<Noad*>(tail)->nucleus.scan(scannerstatus);
 				break;
 			case mmode+char_num:
 				t.chr = scancharnum(scannerstatus); [[fallthrough]];
@@ -371,7 +371,7 @@ Token maincontrol(void)
 				break;
 			case mmode+math_comp:
 				tail_append(new Noad(t.chr));
-				scanmath(dynamic_cast<Noad*>(tail)->nucleus);
+				dynamic_cast<Noad*>(tail)->nucleus.scan(scannerstatus);
 				break;
 			case mmode+limit_switch: 
 				mathlimitswitch(t);
@@ -386,7 +386,7 @@ Token maincontrol(void)
 				tail_append(new AccentNoad);
 				break;
 			case mmode+vcenter:
-				t = scanspec(vcenter_group);
+				t = scanspec(scannerstatus, vcenter_group);
 				normalparagraph();
 				pushnest(); 
 				mode = -vmode;
@@ -477,6 +477,6 @@ Token maincontrol(void)
 			case ANY_MODE(extension):
 				doextension(t);
 		}
-		t = getxtoken();
+		t = getxtoken(scannerstatus);
 	}
 }

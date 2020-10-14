@@ -13,8 +13,8 @@ void mathfraction(halfword c, Token t) // c: above_code/over_code/atop_code (+de
 		if (c >= delimited_code)
 		{
 			Delimiter dummy;
-			dummy.scan(false, t);
-			dummy.scan(false, t);
+			dummy.scan(scannerstatus, false, t);
+			dummy.scan(scannerstatus, false, t);
 		}
 		if (c%delimited_code == above_code)
 			(void)scan_normal_dimen(scannerstatus);
