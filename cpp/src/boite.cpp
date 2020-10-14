@@ -17,6 +17,7 @@
 #include "badness.h"
 #include "sauvegarde.h"
 #include "fichier.h"
+#include "getnext.h"
 
 BoxNode* rebox(BoxNode *b, scaled w)
 {
@@ -94,20 +95,20 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 
 void alterboxdimen(halfword c)
 {
-	auto b = box(scaneightbitint());
+	auto b = box(scaneightbitint(scannerstatus));
 	scanoptionalequals();
 	if (b == nullptr)
 		return;
 	switch (c)
 	{
 		case width_offset:
-			b->width = scan_normal_dimen();
+			b->width = scan_normal_dimen(scannerstatus);
 			break;
 		case height_offset:
-			b->height = scan_normal_dimen();
+			b->height = scan_normal_dimen(scannerstatus);
 			break;
 		case depth_offset:
-			b->depth = scan_normal_dimen();
+			b->depth = scan_normal_dimen(scannerstatus);
 	}
 }
 
@@ -185,14 +186,14 @@ void beginbox(int boxcontext, Token t)
 	{
 		case box_code:
 		{
-			int val = scaneightbitint();
+			int val = scaneightbitint(scannerstatus);
 			auto b = box(val);
 			setBox(val, nullptr); // the box becomes void, at the same level
 			boxend(boxcontext, b); //in simple cases, we use the box immediately
 			break;
 		}
 		case copy_code:
-			boxend(boxcontext, dynamic_cast<BoxNode*>(copynodelist(box(scaneightbitint())))); //in simple cases, we use the box immediately
+			boxend(boxcontext, dynamic_cast<BoxNode*>(copynodelist(box(scaneightbitint(scannerstatus))))); //in simple cases, we use the box immediately
 			break;
 		case last_box_code:
 		{
@@ -239,10 +240,10 @@ void beginbox(int boxcontext, Token t)
 		}
 		case vsplit_code:
 		{
-			auto n = scaneightbitint();	 // a box number
+			auto n = scaneightbitint(scannerstatus);	 // a box number
 			if (!scankeyword("to"))
 				error("Missing `to' inserted", "I'm working on `\\vsplit<box number> to <dimen>';\nwill look for the <dimen> next.");
-			boxend(boxcontext, vsplit(n, scan_normal_dimen())); //in simple cases, we use the box immediately
+			boxend(boxcontext, vsplit(n, scan_normal_dimen(scannerstatus))); //in simple cases, we use the box immediately
 			break;
 		}
 		default:
@@ -637,7 +638,7 @@ void package(smallnumber c, Token t)
 
 void unpackage(halfword c)
 {
-	int val = scaneightbitint();
+	int val = scaneightbitint(scannerstatus);
 	auto p = box(val);
 	if (p == nullptr)
 		return;

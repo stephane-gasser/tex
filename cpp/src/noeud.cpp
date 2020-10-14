@@ -17,6 +17,7 @@
 #include "calcul.h"
 #include "police.h"
 #include "etat.h"
+#include "getnext.h"
 
 LinkedNode* copynodelist(LinkedNode *p)
 {
@@ -78,7 +79,7 @@ void newfont(smallnumber prefix)
 	scaled s;
 	if (scankeyword("at"))
 	{
-		s = scan_normal_dimen();
+		s = scan_normal_dimen(scannerstatus);
 		if (s <= 0 || s >= 2048*unity)
 		{
 			error("Improper `at' size ("+asScaled(s)+"pt), replaced by 10pt", "I can only handle fonts at positive sizes that are\nless than 2048pt, so I've changed what you said to 10pt.");
@@ -88,7 +89,7 @@ void newfont(smallnumber prefix)
 	else 
 		if (scankeyword("scaled"))
 		{
-			s = -scanint();
+			s = -scanint(scannerstatus);
 			if (s >= 0 || s < -(1<<15))
 			{
 				interror(-s, "Illegal magnification has been changed to 1000", "The magnification ratio must be between 1 and 0x80'00.");
@@ -201,14 +202,14 @@ GlueNode *glueToAppend(halfword s)
 			return new GlueNode(fil_neg_glue);
 		case skip_code:
 		{
-			auto g = scanglue(mu_val);
+			auto g = scanglue(scannerstatus, mu_val);
 			g->glue_ref_count--;
 			return new GlueNode(g);
 		}
 		default:
 		//case mskip_code: 
 		{
-			auto g = scanglue(mu_val);
+			auto g = scanglue(scannerstatus, mu_val);
 			g->glue_ref_count--;
 			auto G = new GlueNode(g);
 			G->subtype = mu_glue;
@@ -284,7 +285,7 @@ AccentNoad::AccentNoad(void)
 	nucleus.math_type = 0; // twohalves{0, 0};
 	subscr.math_type = 0; // = twohalves{0, 0};
 	supscr.math_type = 0; // = twohalves{0, 0};
-	int val = scanfifteenbitint();
+	int val = scanfifteenbitint(scannerstatus);
 	accent_chr.math_type = math_char; 
 	accent_chr.character = val%0x1'00;
 	accent_chr.fam = val >= var_code && fam_in_range() ? cur_fam() : (val>>8)%0x10;
@@ -318,7 +319,7 @@ FractionNoad::FractionNoad(halfword c, Token t)
 	switch (c%delimited_code)
 	{
 		case above_code:
-			thickness = scan_normal_dimen();
+			thickness = scan_normal_dimen(scannerstatus);
 			break;
 		case over_code: 
 			thickness = default_code;
@@ -368,7 +369,7 @@ std::string DiscNode::shortDisplay(void) { return shortdisplay(pre_break)+shortd
 ShapeNode::ShapeNode(int n) : values(2*n)
 {
 	for (int j = 0; j < 2*n; j++)
-		values.push_back(scan_normal_dimen());
+		values.push_back(scan_normal_dimen(scannerstatus));
 }
 
 LinkedNode::~LinkedNode(void) 

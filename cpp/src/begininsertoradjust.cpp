@@ -5,10 +5,11 @@
 #include "sauvegarde.h"
 #include "normalparagraph.h"
 #include "etat.h"
+#include "getnext.h"
 
 void beginInsert(void)
 {
-	auto val = scaneightbitint();
+	auto val = scaneightbitint(scannerstatus);
 	if (val == 255)
 	{
 		error("You can't "+esc("insert")+"255", "I'm changing to \\insert0; box 255 is special.");

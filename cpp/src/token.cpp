@@ -13,19 +13,20 @@ void strtoks(const std::string &s)
 		tempHead.list.push_back(c == ' ' ? space_token : other_token+c);
 }
 
-static void scantoks(bool macrodef, bool xpand, Token tk)
+static void scantoks(const char status, bool xpand, Token tk)
 {
-	scannerstatus = macrodef ? defining : absorbing;
 	warningindex = tk.cs;
 	defRef.token_ref_count = 0;
 	defRef.list.clear();
 	halfword hashbrace = 0;
 	halfword t = zero_token;
 	halfword unbalance = 0;
-	if (macrodef)
+	if (status == absorbing)
+		tk = scanleftbrace();
+	else
 		while (true)
 		{
-			tk = gettoken();
+			tk = gettoken(defining);
 			if (tk.tok < right_brace_limit)
 			{
 				defRef.list.push_back(end_match_token);
@@ -40,7 +41,7 @@ static void scantoks(bool macrodef, bool xpand, Token tk)
 			if (tk.cmd == mac_param)
 			{
 				auto s = match_token+tk.chr;
-				tk = gettoken();
+				tk = gettoken(defining);
 				if (tk.cmd == left_brace)
 				{
 					hashbrace = tk.tok;
@@ -60,13 +61,11 @@ static void scantoks(bool macrodef, bool xpand, Token tk)
 			}
 			defRef.list.push_back(tk.tok);
 		}
-	else
-		tk = scanleftbrace();
 	while (unbalance)
 	{
 		if (xpand)
 		{
-			for (tk = getnext(); tk.cmd > max_command; tk = getnext())
+			for (tk = getnext(status); tk.cmd > max_command; tk = getnext(status))
 			{
 				if (tk.cmd != the)
 					expand(tk);
@@ -81,7 +80,7 @@ static void scantoks(bool macrodef, bool xpand, Token tk)
 			tk = xtoken(tk);
 		}
 		else
-			tk = gettoken();
+			tk = gettoken(status);
 		switch (tk.cmd)
 		{
 			case left_brace:
@@ -91,10 +90,10 @@ static void scantoks(bool macrodef, bool xpand, Token tk)
 				unbalance--;
 				break;
 			case mac_param:
-				if (macrodef)
+				if (status == defining)
 				{
 					auto s = tk.tok;
-					tk = xpand ? getxtoken() : gettoken();
+					tk = xpand ? getxtoken() : gettoken(defining);
 					if (tk.cmd != mac_param)
 						if (tk.tok <= zero_token || tk.tok > t)
 						{
@@ -108,14 +107,13 @@ static void scantoks(bool macrodef, bool xpand, Token tk)
 		if (unbalance)
 			defRef.list.push_back(tk.tok);
 	}
-	scannerstatus = normal;
 	if (hashbrace)
 		defRef.list.push_back(hashbrace);
 }
 
-void scanMacroToks(bool xpand, Token tk) { scantoks(true, xpand, tk); }
-void scanNonMacroToks(Token tk) { scantoks(false, false, tk); }
-void scanNonMacroToksExpand(Token tk) { scantoks(false, true, tk); }
+void scanMacroToks(bool xpand, Token tk) { scantoks(defining, xpand, tk); scannerstatus = normal; }
+void scanNonMacroToks(Token tk) { scantoks(absorbing, false, tk); scannerstatus = normal; }
+void scanNonMacroToksExpand(Token tk) { scantoks(absorbing, true, tk); scannerstatus = normal; }
 
 static int trickcount;
 static int firstcount;

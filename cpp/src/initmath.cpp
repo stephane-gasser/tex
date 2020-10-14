@@ -6,13 +6,14 @@
 #include "equivalent.h" 
 #include "buildpage.h"
 #include "police.h"
+#include "getnext.h"
 
 void initmath(void)
 {
 	scaled w, l, s;
 	int n;
 	scaled v, d;
-	auto t = gettoken();
+	auto t = gettoken(scannerstatus);
 	if (t.cmd == math_shift && mode > 0)
 	{
 		if (head == tail)

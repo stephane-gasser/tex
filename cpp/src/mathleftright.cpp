@@ -2,7 +2,6 @@
 #include "lecture.h"
 #include "impression.h"
 #include "erreur.h"
-#include "offsave.h"
 #include "noeud.h"
 #include "pushmath.h"
 #include "sauvegarde.h"
@@ -11,10 +10,8 @@
 
 void mathleft(Token t)
 {
-	auto p = new LeftRightNoad(t);
 	pushmath(math_left_group);
-	head->link = p;
-	tail = p;
+	tail_append(new LeftRightNoad(t));
 }
 
 void mathright(Token t)

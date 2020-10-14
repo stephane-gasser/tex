@@ -5,7 +5,6 @@
 #include "chaine.h"
 #include "equivalent.h"
 #include "conditional.h"
-#include "passtext.h"
 #include "noeud.h"
 #include "macrocall.h"
 #include "getnext.h"
@@ -34,9 +33,9 @@ void expand(Token tk)
 			break;
 		case expand_after:
 		{
-			tk = gettoken();
+			tk = gettoken(scannerstatus);
 			auto t = tk;
-			tk = gettoken();
+			tk = gettoken(scannerstatus);
 			if (tk.cmd > max_command)
 				expand(tk);
 			else
@@ -45,17 +44,12 @@ void expand(Token tk)
 			break;
 		}
 		case no_expand:
-		{
-			auto savescannerstatus = scannerstatus;
-			scannerstatus = normal;
-			tk = gettoken();
-			scannerstatus = savescannerstatus;
+			tk = gettoken(normal);
 			backinput(tk);
 			if (tk.tok >= cs_token_flag)
 				Start.list.insert(Start.list.begin()+Loc, frozen_dont_expand+cs_token_flag);
 				//Start = Loc;
 			break;
-		}
 		case cs_name:
 		{
 			TokenList l;

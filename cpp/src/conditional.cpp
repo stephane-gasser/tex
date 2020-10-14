@@ -4,7 +4,6 @@
 #include "impression.h"
 #include "lecture.h"
 #include "getnext.h"
-#include "passtext.h"
 #include "erreur.h"
 #include "equivalent.h"
 #include "fichier.h"
@@ -56,7 +55,6 @@ void conditional(Token t)
 	halfword q;
 	int r;
 	bool b;
-	smallnumber savescannerstatus;
 	switch (thisif)
 	{
 		case if_char_code:
@@ -87,7 +85,7 @@ void conditional(Token t)
 		}
 		case if_int_code:
 		{
-			int n = scanint();
+			int n = scanint(scannerstatus);
 			t = getXTokenSkipSpace();
 			if (t.tok >= other_token+'<' && t.tok <= other_token+'>')
 				r = t.tok-other_token;
@@ -99,19 +97,19 @@ void conditional(Token t)
 			switch (r)
 			{
 				case '<': 
-					b = n < scanint();
+					b = n < scanint(scannerstatus);
 					break;
 				case '=': 
-					b = n == scanint();
+					b = n == scanint(scannerstatus);
 					break;
 				case '>': 
-					b = n > scanint();
+					b = n > scanint(scannerstatus);
 			}
 			break;
 		}
 		case if_dim_code:
 		{
-			int n = scan_normal_dimen();
+			int n = scan_normal_dimen(scannerstatus);
 			t = getXTokenSkipSpace();
 			if (t.tok >= other_token+'<' && t.tok <= other_token+'>')
 				r = t.tok-other_token;
@@ -123,18 +121,18 @@ void conditional(Token t)
 			switch (r)
 			{
 				case '<': 
-					b = n < scan_normal_dimen();
+					b = n < scan_normal_dimen(scannerstatus);
 					break;
 				case '=': 
-					b = n == scan_normal_dimen();
+					b = n == scan_normal_dimen(scannerstatus);
 					break;
 				case '>': 
-					b = n > scan_normal_dimen();
+					b = n > scan_normal_dimen(scannerstatus);
 			}
 			break;
 		}
 		case if_odd_code:
-			b = scanint()%2;
+			b = scanint(scannerstatus)%2;
 			break;
 		case if_vmode_code: 
 			b = abs(mode) == vmode;
@@ -149,11 +147,11 @@ void conditional(Token t)
 			b = mode < 0;
 			break;
 		case if_void_code:
-			b = box(scaneightbitint()) == nullptr;
+			b = box(scaneightbitint(scannerstatus)) == nullptr;
 			break;
 		case if_hbox_code:
 		{
-			auto p = box(scaneightbitint());
+			auto p = box(scaneightbitint(scannerstatus));
 			if (p == nullptr)
 				b = false;
 			else 
@@ -162,7 +160,7 @@ void conditional(Token t)
 		}
 		case if_vbox_code:
 		{
-			auto p = box(scaneightbitint());
+			auto p = box(scaneightbitint(scannerstatus));
 			if (p == nullptr)
 				b = false;
 			else 
@@ -172,11 +170,9 @@ void conditional(Token t)
 		case ifx_code:
 		{
 			//Test if two tokens match
-			savescannerstatus = scannerstatus;
-			scannerstatus = normal;
-			t = getnext();
+			t = getnext(normal);
 			int n = t.cs;
-			auto t2 = getnext();
+			auto t2 = getnext(normal);
 			if (t2.cmd != t.cmd)
 				b = false;
 			else 
@@ -201,11 +197,10 @@ void conditional(Token t)
 						b = p == nullptr && q == nullptr;
 					}*/
 				}
-			scannerstatus = savescannerstatus;
 			break;
 		}
 		case if_eof_code:
-			b = readopen[scanfourbitint()] == closed;
+			b = readopen[scanfourbitint(scannerstatus)] == closed;
 			break;
 		case if_true_code: 
 			b = true;
@@ -215,7 +210,7 @@ void conditional(Token t)
 			break;
 		case if_case_code:
 		{
-			int n = scanint();
+			int n = scanint(scannerstatus);
 			if (tracing_commands() > 1)
 				diagnostic("{case "+std::to_string(n)+"}");
 			while (n)

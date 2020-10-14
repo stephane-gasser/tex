@@ -9,6 +9,18 @@
 
 constexpr int hyph_size = 307; //!<  another prime; the number of \\hyphenation exceptions
 
+enum ligatures
+{
+	AB_C = 0, // symbole != ou LIG
+	AB_CB = 1, //symbole =:| ou LIG/
+	AB_cB = 5, //symbole =:|> ou LIG/>
+	AB_AC = 2, //symbole |=: ou /LIG
+	AB_aC = 6, //symbole |=:> ou /LIG>
+	AB_ACB = 3, // symbole |=:| ou /LIG/
+	AB_aCB = 7, //symbole |=:|> ou /LIG/>
+	AB_acB = 11 //symbole |=:|>> ou /LIG/>>
+};
+
 typedef int hyphpointer; //0..307
 
 class HyphenNode : public LinkedNode

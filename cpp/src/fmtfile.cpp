@@ -7,6 +7,7 @@
 #include "police.h"
 #include "fichier.h"
 #include "etat.h"
+#include "initprim.h"
 #include <iostream>
 #include <map>
 

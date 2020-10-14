@@ -7,6 +7,7 @@
 #include "lecture.h"
 #include "cesure.h"
 #include "noeud.h"
+#include "getnext.h"
 
 fourquarters& Font::infos(int k) { return Font::info[k].qqqq; }
 quarterword Font::skip_byte(int k) { return infos(k).b0; }
@@ -311,7 +312,7 @@ internalfontnumber readfontinfo(halfword u, const std::string &nom, const std::s
 
 [[nodiscard]] int findfontdimen(bool writing)
 {
-	int n = scanint();
+	int n = scanint(scannerstatus);
 	auto &ft = fonts[scanfontident()];
 	int val = Font::info.size()-1;
 	if (n > 0)

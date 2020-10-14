@@ -29,7 +29,7 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 			// int_val
 			case def_code:
 				lev = int_val;
-				val = t.chr == math_code_base ? math_code(scancharnum()) : t.chr < math_code_base ? eqtb_local[t.chr+scancharnum()-local_base].int_ : eqtb_int[t.chr+scancharnum()-int_base].int_;
+				val = t.chr == math_code_base ? math_code(scancharnum(scannerstatus)) : t.chr < math_code_base ? eqtb_local[t.chr+scancharnum(scannerstatus)-local_base].int_ : eqtb_int[t.chr+scancharnum(scannerstatus)-int_base].int_;
 				break;
 			case assign_int:
 				val = eqtb_int[t.chr-int_base].int_;
@@ -71,7 +71,7 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 				if (level != tok_val)
 					throw 1;
 				if (t.cmd == toks_register)
-					t.chr = toks_base+scaneightbitint();
+					t.chr = toks_base+scaneightbitint(scannerstatus);
 				tk = dynamic_cast<TokenList*>(eqtb_local[t.chr-local_base].index);
 				lev = tok_val;
 				break;
@@ -98,7 +98,7 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 				lev = dimen_val;
 				break;
 			case set_box_dimen:
-				val = scaneightbitint();
+				val = scaneightbitint(scannerstatus);
 				val = 0;
 				if (box(val))
 					switch (t.chr)
@@ -147,16 +147,16 @@ static void scansomethinginternal(smallnumber level, bool negative, Token t, int
 				switch (t.chr)
 				{
 					case int_val: 
-						val = count(scaneightbitint());
+						val = count(scaneightbitint(scannerstatus));
 						break;
 					case dimen_val: 
-						val = dimen(scaneightbitint());
+						val = dimen(scaneightbitint(scannerstatus));
 						break;
 					case glue_val: 
-						gl = skip(scaneightbitint());
+						gl = skip(scaneightbitint(scannerstatus));
 						break;
 					case mu_val: 
-						gl = mu_skip(scaneightbitint());
+						gl = mu_skip(scaneightbitint(scannerstatus));
 				}
 				lev = t.chr;
 				break;
@@ -300,9 +300,9 @@ void scanbox(int boxcontext)
 
 void Delimiter::scan(bool r, Token t)
 {
-	int val;
+	int val = -1;
 	if (r)
-		val = scantwentysevenbitint();
+		val = scantwentysevenbitint(scannerstatus);
 	else
 	{
 		t = getXTokenSkipSpaceAndEscape();
@@ -313,10 +313,7 @@ void Delimiter::scan(bool r, Token t)
 				val = del_code(t.chr);
 				break;
 			case delim_num: 
-				val = scantwentysevenbitint();
-				break;
-			default: 
-				val = -1;
+				val = scantwentysevenbitint(scannerstatus);
 		}
 	}
 	if (val < 0)
@@ -343,7 +340,7 @@ static scaled rounddecimals(smallnumber k)
 	return (a+1)/2;
 }
 
-[[nodiscard]] int scandimen(bool mu, bool inf, bool shortcut)
+[[nodiscard]] int scandimen(char status, bool mu, bool inf, bool shortcut)
 {
 	int val, lev;
 	GlueSpec *gl;
@@ -395,7 +392,7 @@ static scaled rounddecimals(smallnumber k)
 				if (t.tok == continental_point_token)
 					t.tok = point_token; 
 				if (t.tok != point_token)
-					val = scanint();
+					val = scanint(status);
 				else
 				{
 					radix = 10;
@@ -405,7 +402,7 @@ static scaled rounddecimals(smallnumber k)
 					t.tok = point_token; 
 				if (radix == 10 && t.tok == point_token) 
 				{
-					t = gettoken();
+					t = gettoken(status);
 					for (int k = 0; true; k++)
 					{
 						t = getxtoken();
@@ -592,11 +589,11 @@ static scaled rounddecimals(smallnumber k)
 	return val;
 }
 
-[[nodiscard]] int scan_normal_dimen(void) { return scandimen(false, false, false); }
+[[nodiscard]] int scan_normal_dimen(char status) { return scandimen(status, false, false, false); }
 
-int scancharnum(void)
+int scancharnum(char status)
 {
-	int val = scanint();
+	int val = scanint(status);
 	if (val < 0 || val > 255)
 	{
 		interror(val, "Bad character code", "A character number must be between 0 and 255.\nI changed this one to zero.");
@@ -605,9 +602,9 @@ int scancharnum(void)
 	return val;
 }
 
-int scanfourbitint(void)
+int scanfourbitint(char status)
 {
-	int val = scanint();
+	int val = scanint(status);
 	if (val < 0 || val >= 1<<4)
 	{
 		interror(val, "Bad number", "Since I expected to read a number between 0 and 15,\nI changed this one to zero.");
@@ -616,9 +613,9 @@ int scanfourbitint(void)
 	return val;
 }
 
-int scaneightbitint(void)
+int scaneightbitint(char status)
 {
-	int val = scanint();
+	int val = scanint(status);
 	if (val < 0 || val >= 1<<8)
 	{
 		interror(val, "Bad register code", "A register number must be between 0 and 255.\nI changed this one to zero.");
@@ -627,9 +624,9 @@ int scaneightbitint(void)
 	return val;
 }
 
-int scanfifteenbitint(void)
+int scanfifteenbitint(char status)
 {
-	int val = scanint();
+	int val = scanint(status);
 	if (val < 0 || val >= 1<<15)
 	{
 		interror(val, "Bad mathchar", "A mathchar number must be between 0 and 0x7F'FF.\nI changed this one to zero.");
@@ -638,9 +635,9 @@ int scanfifteenbitint(void)
 	return val;
 }
 
-[[nodiscard]] int scantwentysevenbitint(void)
+[[nodiscard]] int scantwentysevenbitint(char status)
 {
-	int val = scanint();
+	int val = scanint(status);
 	if (val < 0 || val >= 1<<27)
 	{
 		interror(val, "Bad delimiter code", "A numeric delimiter code must be between 0 and 2^{27}-1.\nI changed this one to zero.");
@@ -660,13 +657,13 @@ int scanfifteenbitint(void)
 		case set_font:
 			return t.chr;
 		case def_family:
-			return eqtb_local[t.chr+scanfourbitint()-local_base].int_;
+			return eqtb_local[t.chr+scanfourbitint(scannerstatus)-local_base].int_;
 	}
 	backerror(t, "Missing font identifier", "I was looking for a control sequence whose\ncurrent meaning has been defined by \\font.");
 	return null_font;
 }
 
-[[nodiscard]] GlueSpec* scanglue(smallnumber level) //glue_val/mu_val
+[[nodiscard]] GlueSpec* scanglue(char status, smallnumber level) //glue_val/mu_val
 {
 	bool mu = level == mu_val;
 	bool negative = false;
@@ -693,7 +690,7 @@ int scanfifteenbitint(void)
 			return gl;
 		}
 		if (lev == int_val)
-			val = scandimen(mu, false, true);
+			val = scandimen(status, mu, false, true);
 		else 
 			if (level == mu_val)
 				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
@@ -701,7 +698,7 @@ int scanfifteenbitint(void)
 	else
 	{
 		backinput(t);
-		val = scandimen(mu, false, false);
+		val = scandimen(status, mu, false, false);
 		if (negative)
 			val = -val;
 	}
@@ -709,12 +706,12 @@ int scanfifteenbitint(void)
 	q->width = val;
 	if (scankeyword("plus"))
 	{
-		q->stretch = scandimen(mu, true, false);
+		q->stretch = scandimen(status, mu, true, false);
 		q->stretch_order = curorder;
 	}
 	if (scankeyword("minus"))
 	{
-		q->shrink = scandimen(mu, true, false);
+		q->shrink = scandimen(status, mu, true, false);
 		q->shrink_order = curorder;
 	}
 	return q;
@@ -726,7 +723,7 @@ int scanfifteenbitint(void)
 //! \a scan_int. The \a scan_dimen routine assumes that <em> cur_tok=point_token </em>
 //! after the integer part of such a fraction has been scanned by \a scan_int, 
 //! and that the decimal point has been backed up to be scanned again. 
-[[nodiscard]] int scanint(void)
+[[nodiscard]] int scanint(char status)
 {
 	int val, lev;
 	GlueSpec *gl;
@@ -745,7 +742,7 @@ int scanfifteenbitint(void)
 	} while (t.tok == other_token+'+');
 	if (t.tok == alpha_token)
 	{
-		t = gettoken();
+		t = gettoken(status);
 		if (t.tok < cs_token_flag)
 		{
 			val = t.chr;
@@ -898,18 +895,18 @@ void scanmath(NoadContent &p)
 				}
 				break;
 			case char_num:
-				t.chr = scancharnum();
+				t.chr = scancharnum(scannerstatus);
 				t.cmd = char_given;
 				another = true;
 				continue;
 			case math_char_num:
-				c = scanfifteenbitint();
+				c = scanfifteenbitint(scannerstatus);
 				break;
 			case math_given: 
 				c = t.chr;
 				break;
 			case delim_num:
-				c = scantwentysevenbitint()>>12;
+				c = scantwentysevenbitint(scannerstatus)>>12;
 				break;
 			default:
 			{
@@ -951,17 +948,17 @@ RuleNode *scanrulespec(Token t)
 	{
 		if (scankeyword("width"))
 		{
-			q->width = scan_normal_dimen();
+			q->width = scan_normal_dimen(scannerstatus);
 			continue;
 		}
 		if (scankeyword("height"))
 		{
-			q->height = scan_normal_dimen();
+			q->height = scan_normal_dimen(scannerstatus);
 			continue;
 		}
 		if (scankeyword("depth"))
 		{
-			q->depth = scan_normal_dimen();
+			q->depth = scan_normal_dimen(scannerstatus);
 			continue;
 		}
 		break;
@@ -976,12 +973,12 @@ RuleNode *scanrulespec(Token t)
 	if (scankeyword("to"))
 	{
 		speccode = exactly;
-		val = scan_normal_dimen();
+		val = scan_normal_dimen(scannerstatus);
 	}
 	else
 	{
 		speccode = additional;
-		val = scankeyword("spread") ? scan_normal_dimen() : 0;
+		val = scankeyword("spread") ? scan_normal_dimen(scannerstatus) : 0;
 	}
 	auto m = new MemoryNode;
 	m->int_ = speccode;
@@ -1079,12 +1076,10 @@ void endtokenlist(void)
 	pop_input();
 }
 
-[[nodiscard]] Token gettoken(void) { return getnext(false); }
-
 [[nodiscard]] Token getxtoken(void)
 {
 	Token t;
-	for (t = getnext(); t.cmd > max_command; t = getnext())
+	for (t = getnext(scannerstatus); t.cmd > max_command; t = getnext(scannerstatus))
 		switch (t.cmd)
 		{
 			case call:
@@ -1108,7 +1103,7 @@ void endtokenlist(void)
 
 [[nodiscard]] Token xtoken(Token t)
 {
-	for (; t.cmd > max_command; t = getnext())
+	for (; t.cmd > max_command; t = getnext(scannerstatus))
 		expand(t);
 	return t;
 }
@@ -1117,14 +1112,14 @@ Token getpreambletoken(void)
 {
 	while (true)
 	{
-		auto t = gettoken();
+		auto t = gettoken(scannerstatus);
 		while (t.chr == span_code && t.cmd == tab_mark)
 		{
-			t = gettoken();
+			t = gettoken(scannerstatus);
 			if (t.cmd > max_command)
 			{
 				expand(t);
-				t = gettoken();
+				t = gettoken(scannerstatus);
 			}
 		}
 		switch (t.cmd)
@@ -1140,7 +1135,7 @@ Token getpreambletoken(void)
 				return t;
 		}
 		scanoptionalequals();
-		eqtb_glue[tab_skip_code].define(global_defs() > 0 ? globalPrefix : noPrefix, glue_ref, scanglue(glue_val));
+		eqtb_glue[tab_skip_code].define(global_defs() > 0 ? globalPrefix : noPrefix, glue_ref, scanglue(scannerstatus, glue_val));
 	}
 }
 
@@ -1148,7 +1143,7 @@ static Token getTokenSkipSpace(void)
 {
 	Token t;
 	do
-		t = gettoken();
+		t = gettoken(scannerstatus);
 	while (t.tok == space_token);
 	return t;
 }
@@ -1236,13 +1231,13 @@ void insthetoks(void)
 		while (true)
 		{
 			Token t;
-			t = gettoken();
+			t = gettoken(scannerstatus);
 			if (t.tok == 0)
 				break;
 			if (alignstate < 1000000)
 			{
 				do
-					t = gettoken();
+					t = gettoken(scannerstatus);
 				while (t.tok);
 				alignstate = 1000000;
 				break;
@@ -1304,10 +1299,10 @@ void convtoks(Token t)
 	switch (t.chr)
 	{
 		case number_code:
-			strtoks(std::to_string(scanint()));
+			strtoks(std::to_string(scanint(scannerstatus)));
 			break;
 		case roman_numeral_code: 
-			strtoks(romanint(scanint()));
+			strtoks(romanint(scanint(scannerstatus)));
 			break;
 		case font_name_code: 
 		{
@@ -1319,14 +1314,8 @@ void convtoks(Token t)
 			strtoks(t.cs ? scs(t.cs) : std::string(1, t.chr));
 			break;
 		case meaning_code:
-		{
-			auto savescannerstatus = scannerstatus;
-			scannerstatus = normal;
-			t = gettoken();
-			scannerstatus = savescannerstatus;
-			strtoks(meaning(t));
+			strtoks(meaning(gettoken(normal)));
 			break;
-		}
 		case job_name_code: 
 			if (jobname == "")
 				openlogfile();

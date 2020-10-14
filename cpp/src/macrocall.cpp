@@ -8,6 +8,7 @@
 #include "getnext.h"
 #include "alignement.h"
 #include "etat.h"
+#include "initprim.h"
 
 static TokenList pstack[9];
 
@@ -44,7 +45,7 @@ void macrocall(Token t)
 			}
 			while (true)
 			{
-				t = gettoken();
+				t = gettoken(scannerstatus);
 				if (t.tok == refcount.list[r])
 				{
 					r++;
@@ -118,7 +119,7 @@ void macrocall(Token t)
 						while (unbalance)
 						{
 							tempHead.list.push_back(t.tok);
-							t = gettoken();
+							t = gettoken(scannerstatus);
 							if (t.tok == partoken)
 								if (longstate != long_call)
 								{

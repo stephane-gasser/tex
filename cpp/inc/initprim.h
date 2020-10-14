@@ -5,4 +5,8 @@
 
 void initprim(void);
 
+inline halfword parloc;
+inline halfword partoken;
+inline halfword writeloc;
+
 #endif

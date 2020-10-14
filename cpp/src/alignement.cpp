@@ -4,7 +4,6 @@
 #include "normalparagraph.h"
 #include "erreur.h"
 #include "endgraf.h"
-#include "offsave.h"
 #include "noeud.h"
 #include "boite.h"
 #include "impression.h"

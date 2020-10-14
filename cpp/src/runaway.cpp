@@ -3,13 +3,15 @@
 #include "lecture.h"
 #include "getnext.h"
 #include "token.h"
+#include "erreur.h"
 
 void runaway(char status)
 {
-	if (status <= skipping)
-		return;
 	switch (status)
 	{
+		case normal:
+		case skipping:
+			return;
 		case defining:
 			print("\rRunaway definition?\n"+tokenlist(&defRef, errorline-10));
 			break;

@@ -67,4 +67,6 @@ bool inputln(std::istream& f, bool bypasseoln);
 void initterminal(void);
 void firmuptheline(void);
 
+inline bool terminal_input(const std::string &name) { return name == ""; } //!< are we reading from the terminal?
+
 #endif

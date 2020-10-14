@@ -5,17 +5,18 @@
 #include "boite.h"
 #include "police.h"
 #include "etat.h"
+#include "getnext.h"
 #include <cmath>
 
 void makeaccent(Token t)
 {
-	if (auto accent = newcharacter(curFontNum(), scancharnum()); accent)
+	if (auto accent = newcharacter(curFontNum(), scancharnum(scannerstatus)); accent)
 	{
 		doassignments();
 		switch (t.cmd)
 		{
 			case char_num:
-				t.chr = scancharnum(); [[fallthrough]];
+				t.chr = scancharnum(scannerstatus); [[fallthrough]];
 			case letter:
 			case other_char:
 			case char_given:

@@ -28,18 +28,17 @@ enum token_type
 inline smallnumber radix = 0;
 inline glueord curorder = 0;
 
-[[nodiscard]] int scanint(void);
-[[nodiscard]] int scancharnum(void);
-[[nodiscard]] int scantwentysevenbitint(void);
-[[nodiscard]] int scaneightbitint(void);
-[[nodiscard]] int scanfifteenbitint(void);
-[[nodiscard]] int scanfourbitint(void);
-[[nodiscard]] int scandimen(bool, bool, bool);
-[[nodiscard]] int scan_normal_dimen(void);
+[[nodiscard]] int scanint(char);
+[[nodiscard]] int scancharnum(char);
+[[nodiscard]] int scantwentysevenbitint(char);
+[[nodiscard]] int scaneightbitint(char);
+[[nodiscard]] int scanfifteenbitint(char);
+[[nodiscard]] int scanfourbitint(char);
+[[nodiscard]] int scandimen(char, bool, bool, bool);
+[[nodiscard]] int scan_normal_dimen(char);
 [[nodiscard]] int scanfontident(void);
-[[nodiscard]] GlueSpec *scanglue(smallnumber);
+[[nodiscard]] GlueSpec *scanglue(char, smallnumber);
 [[nodiscard]] TokenList* readtoks(int, halfword);
-[[nodiscard]] Token gettoken(void);
 [[nodiscard]] Token getxtoken(void);
 [[nodiscard]] Token xtoken(Token);
 [[nodiscard]] halfword getrtoken(void);

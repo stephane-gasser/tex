@@ -214,14 +214,14 @@ void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 					//!  otherwise move the cursor one step to the right and |goto main_lig_loop|
 					tail_append(ligstack); [[fallthrough]];
 				case lookahead: //! Look ahead for another character, or leave |lig_stack| empty if there's none there
-					t = getnext();
+					t = getnext(scannerstatus);
 					if (t.cmd != letter && t.cmd != other_char && t.cmd != char_given)
 					{
 						t = xtoken(t);
 						switch (t.cmd)
 						{
 							case char_num:
-								t.chr = scancharnum();
+								t.chr = scancharnum(scannerstatus);
 								break;
 							case letter:
 							case other_char:

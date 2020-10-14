@@ -6,6 +6,7 @@
 #include "calcul.h"
 #include "noeud.h"
 #include "equivalent.h"
+#include "getnext.h"
 
 void doregistercommand(smallnumber prefix, Token t)
 //t.cmd: register_ / advance /multiply / divide
@@ -28,16 +29,16 @@ void doregistercommand(smallnumber prefix, Token t)
 			switch (p = t.chr)
 			{
 				case int_val: 
-					l = scaneightbitint()+count_base;
+					l = scaneightbitint(scannerstatus)+count_base;
 					break;
 				case dimen_val: 
-					l = scaneightbitint()+scaled_base;
+					l = scaneightbitint(scannerstatus)+scaled_base;
 					break;
 				case glue_val: 
-					l = scaneightbitint()+skip_base;
+					l = scaneightbitint(scannerstatus)+skip_base;
 					break;
 				case mu_val: 
-					l = scaneightbitint()+mu_skip_base;
+					l = scaneightbitint(scannerstatus)+mu_skip_base;
 			}
 			break;
 		default:
@@ -61,43 +62,43 @@ void doregistercommand(smallnumber prefix, Token t)
 				switch (q)
 				{
 					case register_:
-						eqtb_int[l-int_base].word_define(prefix, scanint());
+						eqtb_int[l-int_base].word_define(prefix, scanint(scannerstatus));
 						break;
 					case advance:
-						eqtb_int[l-int_base].word_define(prefix, scanint()+eqtb_int[l-int_base].int_);
+						eqtb_int[l-int_base].word_define(prefix, scanint(scannerstatus)+eqtb_int[l-int_base].int_);
 						break;
 					case multiply:
-						eqtb_int[l-int_base].word_define(prefix, mult_integers(eqtb_int[l-int_base].int_, scanint()));
+						eqtb_int[l-int_base].word_define(prefix, mult_integers(eqtb_int[l-int_base].int_, scanint(scannerstatus)));
 						break;
 					case divide:
-						eqtb_int[l-int_base].word_define(prefix, xovern(eqtb_int[l-int_base].int_, scanint()));
+						eqtb_int[l-int_base].word_define(prefix, xovern(eqtb_int[l-int_base].int_, scanint(scannerstatus)));
 				}
 				break;
 			case dimen_val: 
 				switch (q)
 				{
 					case register_:
-						eqtb_dimen[l-dimen_base].word_define(prefix, scan_normal_dimen());
+						eqtb_dimen[l-dimen_base].word_define(prefix, scan_normal_dimen(scannerstatus));
 						break;
 					case advance:
-						eqtb_dimen[l-dimen_base].word_define(prefix, scan_normal_dimen()+eqtb_dimen[l-dimen_base].int_);
+						eqtb_dimen[l-dimen_base].word_define(prefix, scan_normal_dimen(scannerstatus)+eqtb_dimen[l-dimen_base].int_);
 						break;
 					case multiply:
-						eqtb_dimen[l-dimen_base].word_define(prefix, nx_plus_y(eqtb_dimen[l-dimen_base].int_, scanint(), 0));
+						eqtb_dimen[l-dimen_base].word_define(prefix, nx_plus_y(eqtb_dimen[l-dimen_base].int_, scanint(scannerstatus), 0));
 						break;
 					case divide:
-						eqtb_dimen[l-dimen_base].word_define(prefix, xovern(eqtb_dimen[l-dimen_base].int_, scanint()));
+						eqtb_dimen[l-dimen_base].word_define(prefix, xovern(eqtb_dimen[l-dimen_base].int_, scanint(scannerstatus)));
 				}
 				break;
 			case glue_val: 
 				switch (q)
 				{
 					case register_:
-						g = scanglue(glue_val);
+						g = scanglue(scannerstatus, glue_val);
 						break;
 					case advance:
 					{
-						g = new GlueSpec(scanglue(glue_val));
+						g = new GlueSpec(scanglue(scannerstatus, glue_val));
 						auto R = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						deleteglueref(g);
 						g->width += R->width;
@@ -125,7 +126,7 @@ void doregistercommand(smallnumber prefix, Token t)
 					}
 					case multiply:
 					{
-						auto val = scanint();
+						auto val = scanint(scannerstatus);
 						auto S = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						g = new GlueSpec(S);
 						g->width = nx_plus_y(S->width, val, 0);
@@ -135,7 +136,7 @@ void doregistercommand(smallnumber prefix, Token t)
 					}
 					case divide:
 					{
-						auto val = scanint();
+						auto val = scanint(scannerstatus);
 						auto S = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						g = new GlueSpec(S);
 						g->width = xovern(S->width, val);
@@ -150,11 +151,11 @@ void doregistercommand(smallnumber prefix, Token t)
 				switch (q)
 				{
 					case register_:
-						g = scanglue(mu_val);
+						g = scanglue(scannerstatus, mu_val);
 						break;
 					case advance:
 					{
-						g = new GlueSpec(scanglue(mu_val));
+						g = new GlueSpec(scanglue(scannerstatus, mu_val));
 						auto R = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						deleteglueref(g);
 						g->width += R->width;
@@ -182,7 +183,7 @@ void doregistercommand(smallnumber prefix, Token t)
 					}
 					case multiply:
 					{
-						auto val = scanint();
+						auto val = scanint(scannerstatus);
 						auto S = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						g = new GlueSpec(S);
 						g->width = nx_plus_y(S->width, val, 0);
@@ -192,7 +193,7 @@ void doregistercommand(smallnumber prefix, Token t)
 					}
 					case divide:
 					{
-						auto val = scanint();
+						auto val = scanint(scannerstatus);
 						auto S = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						g = new GlueSpec(S);
 						g->width = xovern(S->width, val);

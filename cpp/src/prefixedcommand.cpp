@@ -10,6 +10,7 @@
 #include "police.h"
 #include "boite.h"
 #include "buildpage.h"
+#include "getnext.h"
 
 static void alterprevgraf(void)
 {
@@ -18,7 +19,7 @@ static void alterprevgraf(void)
 	while (abs(nest[p].modefield) != vmode)
 		p--;
 	scanoptionalequals();
-	int val = scanint();
+	int val = scanint(scannerstatus);
 	if (val < 0)
 		interror(val, " Bad "+esc("prevgraf"), "I allow only nonnegative values here.");
 	else
@@ -36,10 +37,10 @@ static void alteraux(Token t)
 	{
 		scanoptionalequals();
 		if (t.chr == vmode)
-			prev_depth = scan_normal_dimen();
+			prev_depth = scan_normal_dimen(scannerstatus);
 		else
 		{
-			int val = scanint();
+			int val = scanint(scannerstatus);
 			if (val <= 0 || val > 32767)
 				interror(val, "Bad space factor", "I allow only values in the range 1..32767 here.");
 			else
@@ -93,15 +94,15 @@ void prefixedcommand(Token t, bool setboxallowed)
 				t = getXTokenSkipSpace();
 				if (t.tok == other_token+'=')
 				{
-					t = gettoken();
+					t = gettoken(scannerstatus);
 					if (t.cmd == spacer)
-						t = gettoken();
+						t = gettoken(scannerstatus);
 				}
 			}
 			else
 			{
-				auto tt = gettoken();
-				t = gettoken();
+				auto tt = gettoken(scannerstatus);
+				t = gettoken(scannerstatus);
 				backinput(t);
 				backinput(tt);
 			}
@@ -118,31 +119,31 @@ void prefixedcommand(Token t, bool setboxallowed)
 			switch (t.chr)
 			{
 				case char_def_code:
-					eqtb_cs[p-hash_base].define(pfx, char_given, scancharnum());
+					eqtb_cs[p-hash_base].define(pfx, char_given, scancharnum(scannerstatus));
 					break;
 				case math_char_def_code:
-					eqtb_cs[p-hash_base].define(pfx, math_given, scanfifteenbitint());
+					eqtb_cs[p-hash_base].define(pfx, math_given, scanfifteenbitint(scannerstatus));
 					break;
 				case count_def_code: 
-					eqtb_cs[p-hash_base].define(pfx, assign_int, count_base+scaneightbitint());
+					eqtb_cs[p-hash_base].define(pfx, assign_int, count_base+scaneightbitint(scannerstatus));
 					break;
 				case dimen_def_code: 
-					eqtb_cs[p-hash_base].define(pfx, assign_dimen, scaled_base+scaneightbitint());
+					eqtb_cs[p-hash_base].define(pfx, assign_dimen, scaled_base+scaneightbitint(scannerstatus));
 					break;
 				case skip_def_code:
-					eqtb_cs[p-hash_base].define(pfx, assign_glue, skip_base+scaneightbitint());
+					eqtb_cs[p-hash_base].define(pfx, assign_glue, skip_base+scaneightbitint(scannerstatus));
 					break;
 				case mu_skip_def_code: 
-					eqtb_cs[p-hash_base].define(pfx, assign_mu_glue, mu_skip_base+scaneightbitint());
+					eqtb_cs[p-hash_base].define(pfx, assign_mu_glue, mu_skip_base+scaneightbitint(scannerstatus));
 					break;
 				case toks_def_code: 
-					eqtb_cs[p-hash_base].define(pfx, assign_toks, toks_base+scaneightbitint());
+					eqtb_cs[p-hash_base].define(pfx, assign_toks, toks_base+scaneightbitint(scannerstatus));
 			}
 			break;
 		}
 		case read_to_cs:
 		{
-			auto n = scanint();
+			auto n = scanint(scannerstatus);
 			if (!scankeyword("to")) 
 				error("Missing `to' inserted", "You should have said `\\read<number> to \\cs'.\nI'm going to look for the \\cs now.");
 			auto p = getrtoken();
@@ -153,11 +154,11 @@ void prefixedcommand(Token t, bool setboxallowed)
 		case assign_toks:
 		{
 			auto old = t.cs;
-			auto p = t.cmd == toks_register ? toks_base+scaneightbitint() : t.chr;
+			auto p = t.cmd == toks_register ? toks_base+scaneightbitint(scannerstatus) : t.chr;
 			scanoptionalequals();
 			t = getXTokenSkipSpaceAndEscape();
 			if (t.cmd == toks_register)
-				t = Token(assign_toks, toks_base+scaneightbitint());
+				t = Token(assign_toks, toks_base+scaneightbitint(scannerstatus));
 			if (t.cmd == assign_toks)
 			{
 				if (eqtb_local[t.chr-local_base].index == nullptr)
@@ -194,21 +195,21 @@ void prefixedcommand(Token t, bool setboxallowed)
 		{
 			auto p = t.chr;
 			scanoptionalequals();
-			eqtb_int[p-int_base].word_define(pfx, scanint());
+			eqtb_int[p-int_base].word_define(pfx, scanint(scannerstatus));
 			break;
 		}
 		case assign_dimen:
 		{
 			auto p = t.chr;
 			scanoptionalequals();
-			eqtb_dimen[p-dimen_base].word_define(pfx, scandimen(false, false, false));
+			eqtb_dimen[p-dimen_base].word_define(pfx, scandimen(scannerstatus, false, false, false));
 			break;
 		}
 		case assign_glue:
 		case assign_mu_glue:
 		{
 			scanoptionalequals();
-			auto g = trapzeroglue(scanglue(t.cmd == assign_mu_glue ? mu_val : glue_val));
+			auto g = trapzeroglue(scanglue(scannerstatus, t.cmd == assign_mu_glue ? mu_val : glue_val));
 			eqtb_glue[t.chr-glue_base].define(pfx, glue_ref, g);
 			break;
 		}
@@ -229,9 +230,9 @@ void prefixedcommand(Token t, bool setboxallowed)
 				case del_code_base: // \delcode
 					maxValue = (1<<24)-1;
 			}
-			auto p = t.chr+scancharnum();
+			auto p = t.chr+scancharnum(scannerstatus);
 			scanoptionalequals();
-			val = scanint();
+			val = scanint(scannerstatus);
 			if ((val < 0 && t.chr != del_code_base) || val > maxValue)
 			{
 				error("Invalid code ("+std::to_string(val)+(t.chr != del_code_base ? "), should be in the range 0.." : "//), should be at most ")+std::to_string(maxValue), "I'm going to use 0 instead of that illegal code value.");
@@ -245,7 +246,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 		}
 		case def_family:
 		{	
-			auto p = t.chr+scanfourbitint();
+			auto p = t.chr+scanfourbitint(scannerstatus);
 			scanoptionalequals();
 			eqtb_local[p-local_base].define(pfx, data, scanfontident());
 			break;
@@ -258,7 +259,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			break;
 		case set_box:
 		{
-			auto n = scaneightbitint();
+			auto n = scaneightbitint(scannerstatus);
 			if (pfx >= globalPrefix)
 				n += 1<<8;
 			scanoptionalequals();
@@ -276,11 +277,11 @@ void prefixedcommand(Token t, bool setboxallowed)
 			break;
 		case set_page_dimen: 
 			scanoptionalequals();
-			pagesofar[t.chr] = scan_normal_dimen();
+			pagesofar[t.chr] = scan_normal_dimen(scannerstatus);
 			break;
 		case set_page_int: 
 			scanoptionalequals();
-			(t.chr == 0 ? deadcycles : insertpenalties) = scanint();
+			(t.chr == 0 ? deadcycles : insertpenalties) = scanint(scannerstatus);
 			break;
 		case set_box_dimen: 
 			alterboxdimen(t.chr);
@@ -288,7 +289,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 		case set_shape:
 		{
 			scanoptionalequals();
-			auto n = scanint();
+			auto n = scanint(scannerstatus);
 			eqtb_local[par_shape_loc-local_base].define(pfx, shape_ref, n <= 0 ? nullptr : new ShapeNode(n));
 			break;
 		}
@@ -303,14 +304,14 @@ void prefixedcommand(Token t, bool setboxallowed)
 			fontindex k;
 			k = findfontdimen(true);
 			scanoptionalequals();
-			Font::info[k].int_ = scan_normal_dimen();
+			Font::info[k].int_ = scan_normal_dimen(scannerstatus);
 			break;
 		}
 		case assign_font_int:
 		{
 			auto f = scanfontident();
 			scanoptionalequals();
-			(t.chr == 0 ? fonts[f].hyphenchar : fonts[f].skewchar) = scanint();
+			(t.chr == 0 ? fonts[f].hyphenchar : fonts[f].skewchar) = scanint(scannerstatus);
 			break;
 		}
 		case def_font: 

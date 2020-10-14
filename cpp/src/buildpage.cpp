@@ -26,7 +26,6 @@ static void freezepagespecs(smallnumber s)
 //! Append contributions to the current page.
 void buildpage(void)
 {
-//	LinkedNode *p, *q, *r;
 	int b, c, pi;
 	unsigned char n;
 	scaled delta, h, w;

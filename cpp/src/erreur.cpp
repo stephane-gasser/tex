@@ -6,6 +6,7 @@
 #include "equivalent.h"
 #include "alignement.h"
 #include "etat.h"
+#include "getnext.h"
 #include <iostream>
 
 static std::string helpline;
@@ -53,7 +54,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 						if (last > First+1 && buffer[First+1] >= '0' && buffer[First+1] <= '9')
 						  c = c*10+buffer[First+1]-'0';
 						for (; c > 0; c--)
-							(void)gettoken();
+							(void)gettoken(scannerstatus);
 						alignstate = s4;
 						helpline = "I have just deleted some text, as you asked.";
 						print(showcontext());

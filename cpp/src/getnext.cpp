@@ -12,11 +12,12 @@
 #include "macrocall.h"
 #include "conditional.h"
 #include "etat.h"
+#include "initprim.h"
 #include <iostream>
 
-[[nodiscard]] static Token checkoutervalidity(Token t)
+[[nodiscard]] static Token checkoutervalidity(char status, Token t)
 {
-	if (scannerstatus == normal)
+	if (status == normal)
 		return t; 
 	if (t.cs)
 	{
@@ -29,15 +30,15 @@
 		t.cmd = spacer;
 		t.chr = ' ';
 	}
-	if (scannerstatus == skipping)
+	if (status == skipping)
 	{
 		inserror(t, "Incomplete "+cmdchr(Token(if_test, curif))+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
 		t.tok = frozen_fi+cs_token_flag;
 	}
 	else
 	{
-		runaway(scannerstatus);
-		switch (scannerstatus)
+		runaway(status);
+		switch (status)
 		{
 			case defining:
 			{
@@ -124,7 +125,7 @@ static void removeFromEnd(int &k, int d)
 #define ANY_STATE_PLUS(cmd) mid_line+cmd: case skip_blanks+cmd: case new_line+cmd
 #define ADD_DELIMS_TO(state) state+math_shift: case state+tab_mark: case state+mac_param: case state+sub_mark: case state+letter: case state+other_char 
 
-[[nodiscard]] Token getnext(bool nonewcontrolsequence)
+[[nodiscard]] Token getnext(char status, bool nonewcontrolsequence)
 {
 	Token t;
 	bool restart;
@@ -230,7 +231,7 @@ static void removeFromEnd(int &k, int d)
 									}
 								}
 								if (t.cmd >= outer_call)
-									t = checkoutervalidity(t);
+									t = checkoutervalidity(status, t);
 								break;
 							case ANY_STATE_PLUS(active_char):
 								t.cs = t.chr+active_base;
@@ -238,7 +239,7 @@ static void removeFromEnd(int &k, int d)
 								t.chr = eqtb_active[t.cs-active_base].int_;
 								state = mid_line;
 								if (t.cmd >= outer_call)
-									t = checkoutervalidity(t);
+									t = checkoutervalidity(status, t);
 								break;
 							case ANY_STATE_PLUS(sup_mark):
 								if (prochainCaractereOK(loc, t.chr))
@@ -273,7 +274,7 @@ static void removeFromEnd(int &k, int d)
 								t.cmd = eqtb[t.cs].type;
 								t.chr = eqtb[t.cs].int_;
 								if (t.cmd >= outer_call)
-									t = checkoutervalidity(t);
+									t = checkoutervalidity(status, t);
 								break;
 							case skip_blanks+left_brace:
 							case new_line+left_brace:
@@ -312,7 +313,7 @@ static void removeFromEnd(int &k, int d)
 							std::cout << std::flush;
 							forceeof = false;
 							endfilereading();
-							t = checkoutervalidity(t);
+							t = checkoutervalidity(status, t);
 							restart = true;
 						}
 						if (!restart)
@@ -393,7 +394,7 @@ static void removeFromEnd(int &k, int d)
 							}
 						}
 						else
-							t = checkoutervalidity(t);
+							t = checkoutervalidity(status, t);
 				}
 				else
 				{
@@ -420,7 +421,7 @@ static void removeFromEnd(int &k, int d)
 			}
 		if (!restart && t.cmd <= out_param && t.cmd >= tab_mark && alignstate == 0)
 		{
-			if (scannerstatus == aligning || curalign == nullptr)
+			if (status == aligning || curalign == nullptr)
 				fatalerror("(interwoven alignment preambles are not allowed)");
 			t.cmd = curalign->extra_info;
 			curalign->extra_info = t.chr;
@@ -430,4 +431,24 @@ static void removeFromEnd(int &k, int d)
 		}
 	} while (restart);
 	return t;
+}
+
+void passtext(void)
+{
+	int l = 0;
+	skipline = line;
+	while (true)
+	{
+		auto t = getnext(skipping);
+		if (t.cmd == fi_or_else)
+		{
+			if (l == 0)
+				break;
+			if (t.chr == fi_code)
+				l--;
+		}
+		else 
+			if (t.cmd == if_test)
+				l++;
+	}
 }

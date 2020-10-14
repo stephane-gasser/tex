@@ -6,6 +6,8 @@
 #include "impression.h"
 #include "lecture.h"
 #include "etat.h"
+#include "initprim.h"
+#include "getnext.h"
 
 constexpr int end_write_token = cs_token_flag+end_write;
 
@@ -24,12 +26,12 @@ static void writeout(NotOpenWriteWhatsitNode *p)
 	Token t;
 	t.cs = writeloc;
 	scanNonMacroToksExpand(t);
-	t = gettoken();
+	t = gettoken(scannerstatus);
 	if (t.tok != end_write_token)
 	{
 		error("Unbalanced write command", "On this page there's a \\write with fewer real {'s than }'s.\nI can't handle that very well; good luck.");
 		do
-			t = gettoken();
+			t = gettoken(scannerstatus);
 		while (t.tok != end_write_token);
 	}
 	mode = oldmode;

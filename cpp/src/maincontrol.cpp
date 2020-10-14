@@ -7,7 +7,6 @@
 #include "fichier.h"
 #include "erreur.h"
 #include "sauvegarde.h"
-#include "offsave.h"
 #include "handlerightbrace.h"
 #include "indentinhmode.h"
 #include "normalparagraph.h"
@@ -35,6 +34,7 @@
 #include "doextension.h"
 #include "calcul.h"
 #include "mainloop.h"
+#include "initprim.h"
 
 static void setmathchar(int c, Token t)
 {
@@ -68,7 +68,7 @@ Token maincontrol(void)
 		switch (abs(mode)+t.cmd)
 		{
 			case hmode+char_num:
-				t.chr = scancharnum();
+				t.chr = scancharnum(scannerstatus);
 				[[fallthrough]];
 			case hmode+letter:
 			case hmode+other_char:
@@ -163,7 +163,7 @@ Token maincontrol(void)
 				break;
 			case ANY_MODE(kern):
 			case mmode+mkern: 
-				tail_append(new KernNode(scandimen(t.chr == mu_glue, false, false), t.chr));
+				tail_append(new KernNode(scandimen(scannerstatus, t.chr == mu_glue, false, false), t.chr));
 				break;
 			case NON_MATH(left_brace):
 				newsavelevel(simple_group);
@@ -183,7 +183,7 @@ Token maincontrol(void)
 			case vmode+hmove:
 			case hmode+vmove:
 			case mmode+vmove:
-				scanbox(t.chr == 0 ? scan_normal_dimen() : -scan_normal_dimen());
+				scanbox(t.chr == 0 ? scan_normal_dimen(scannerstatus) : -scan_normal_dimen(scannerstatus));
 				break;
 			case ANY_MODE(leader_ship):
 				scanbox(leader_flag-a_leaders+t.chr);
@@ -263,7 +263,7 @@ Token maincontrol(void)
 				break;
 			}
 			case ANY_MODE(break_penalty):
-				tail_append(new PenaltyNode(scanint()));
+				tail_append(new PenaltyNode(scanint(scannerstatus)));
 				if (mode == vmode)
 					buildpage();
 				break;
@@ -354,20 +354,20 @@ Token maincontrol(void)
 				scanmath(dynamic_cast<Noad*>(tail)->nucleus);
 				break;
 			case mmode+char_num:
-				t.chr = scancharnum(); [[fallthrough]];
+				t.chr = scancharnum(scannerstatus); [[fallthrough]];
 			case mmode+letter:
 			case mmode+other_char:
 			case mmode+char_given: 
 				setmathchar(math_code(t.chr), t);
 				break;
 			case mmode+math_char_num:
-				setmathchar(scanfifteenbitint(), t);
+				setmathchar(scanfifteenbitint(scannerstatus), t);
 				break;
 			case mmode+math_given: 
 				setmathchar(t.chr, t);
 				break;
 			case mmode+delim_num:
-				setmathchar(scantwentysevenbitint()>>12, t);
+				setmathchar(scantwentysevenbitint(scannerstatus)>>12, t);
 				break;
 			case mmode+math_comp:
 				tail_append(new Noad(t.chr));
@@ -456,10 +456,10 @@ Token maincontrol(void)
 				prefixedcommand(t);
 				break;
 			case ANY_MODE(after_assignment):
-				aftertoken = t = gettoken();
+				aftertoken = t = gettoken(scannerstatus);
 				break;
 			case ANY_MODE(after_group):
-				t = gettoken();
+				t = gettoken(scannerstatus);
 				saveforafter(t.tok);
 				break;
 			case ANY_MODE(in_stream):

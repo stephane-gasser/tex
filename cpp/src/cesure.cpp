@@ -6,6 +6,7 @@
 #include "police.h" 
 #include "equivalent.h" 
 #include "chaine.h"
+#include "getnext.h"
 
 class PatternNode
 {
@@ -535,7 +536,7 @@ void newhyphexceptions(void)
 		switch (t.cmd)
 		{
 			case char_num:
-				t.chr = scancharnum(); [[fallthrough]];
+				t.chr = scancharnum(scannerstatus); [[fallthrough]];
 			case letter:
 			case other_char:
 			case char_given:

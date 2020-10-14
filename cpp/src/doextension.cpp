@@ -6,6 +6,7 @@
 #include "equivalent.h"
 #include "etat.h"
 #include "fichier.h"
+#include "getnext.h"
 
 void doextension(Token t)
 {
@@ -13,7 +14,7 @@ void doextension(Token t)
 	{
 		case open_node:
 		{
-			auto ww = new OpenWriteWhatsitNode(scanfourbitint());
+			auto ww = new OpenWriteWhatsitNode(scanfourbitint(scannerstatus));
 			scanoptionalequals();
 			scanfilename();
 			ww->open_name = curname;
@@ -24,7 +25,7 @@ void doextension(Token t)
 		}
 		case write_node:
 		{
-			auto ww = new NotOpenWriteWhatsitNode(write_node, scanint());
+			auto ww = new NotOpenWriteWhatsitNode(write_node, scanint(scannerstatus));
 			scanNonMacroToks(t);
 			ww->write_tokens = &defRef;
 			tail_append(ww);
@@ -32,7 +33,7 @@ void doextension(Token t)
 		}
 		case close_node:
 		{
-			auto ww = new NotOpenWriteWhatsitNode(close_node, scanint());
+			auto ww = new NotOpenWriteWhatsitNode(close_node, scanint(scannerstatus));
 			ww->write_tokens = nullptr;
 			tail_append(ww);
 			break;
@@ -53,7 +54,7 @@ void doextension(Token t)
 					case open_node:
 					{
 						auto p = tail;
-						auto ww = new OpenWriteWhatsitNode(scanfourbitint());
+						auto ww = new OpenWriteWhatsitNode(scanfourbitint(scannerstatus));
 						scanoptionalequals();
 						scanfilename();
 						ww->open_name = curname;
@@ -69,7 +70,7 @@ void doextension(Token t)
 					case write_node:
 					{
 						auto p = tail;
-						auto ww = new NotOpenWriteWhatsitNode(write_node, scanint());
+						auto ww = new NotOpenWriteWhatsitNode(write_node, scanint(scannerstatus));
 						scanNonMacroToks(t);
 						ww->write_tokens = &defRef;
 						tail_append(ww);
@@ -82,7 +83,7 @@ void doextension(Token t)
 					case close_node:
 					{
 						auto p = tail;
-						auto ww = new NotOpenWriteWhatsitNode(close_node, scanint());
+						auto ww = new NotOpenWriteWhatsitNode(close_node, scanint(scannerstatus));
 						tail_append(ww);
 						outwhat(ww);
 						flushnodelist(tail);
@@ -101,7 +102,7 @@ void doextension(Token t)
 				reportillegalcase(t);
 			else
 			{
-				clang = scanint();
+				clang = scanint(scannerstatus);
 				if (clang <= 0 || clang > 255)
 						clang = 0;
 				tail_append(new LanguageWhatsitNode(clang));

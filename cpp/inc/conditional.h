@@ -26,6 +26,14 @@ enum
 	if_case_code = 16 //!<  `\\ifcase' 
 };
 
+enum if_codes
+{
+	if_code = 1, //code for \if... being evaluated
+	fi_code = 2, //code for \fi
+	else_code = 3, //code for \else
+	or_code = 4, //code for \or
+};
+
 void conditional(Token);
 
 inline char iflimit = 0; // 0..4

@@ -5,6 +5,7 @@
 #include "chaine.h"
 #include "etat.h"
 #include <iostream>
+#include "getnext.h"
 
 void firmuptheline(void)
 {
@@ -118,7 +119,7 @@ void openlogfile(void)
 
 void openorclosein(halfword c)
 {
-	auto n = scanfourbitint();
+	auto n = scanfourbitint(scannerstatus);
 	if (readopen[n] != closed)
 	{
 		aclose(readfile[n]);

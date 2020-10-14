@@ -9,6 +9,7 @@
 #include "buildpage.h"
 #include "chaine.h"
 #include "fichier.h"
+#include "getnext.h"
 #include <sstream> 
 #include <iostream> 
 #include <cmath>
@@ -685,7 +686,7 @@ void showwhatever(Token t)
 			selector = term_and_log;
 			break;
 		case show_box_code:
-			val = scaneightbitint();
+			val = scaneightbitint(scannerstatus);
 			diagnostic("\r> \\box"+std::to_string(val)+"="+(box(val) == nullptr ? "void" : showbox(box(val)))+"\n");
 			print_err("OK");
 			if (selector == term_and_log && tracing_online() <= 0)
@@ -694,7 +695,7 @@ void showwhatever(Token t)
 			selector = term_and_log;
 			break;
 		case show_code:
-			t = gettoken();
+			t = gettoken(scannerstatus);
 			print("\r> "+(t.cs ? scs(t.cs)+"=" : "")+meaning(t));
 			break;
 		default:

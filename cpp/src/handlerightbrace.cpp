@@ -13,6 +13,7 @@
 #include "noeud.h"
 #include "buildchoices.h"
 #include "formule.h"
+#include "getnext.h"
 
 void handlerightbrace(Token t, AlignRecordNode* &loop)
 {
@@ -84,7 +85,7 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 			{
 				error("Unbalanced output routine", "Your sneaky output routine has problematic {'s and/or }'s.\nI can't handle that very well; good luck.");
 				do
-					t = gettoken();
+					t = gettoken(scannerstatus);
 				while (loc);
 			}
 			endtokenlist();

@@ -13,11 +13,18 @@ enum scanner_status
 	absorbing = 5 //!< \a scanner_status when reading a balanced text
 };
 
+class Scanner
+{
+};
+
+[[nodiscard]] Token getnext(char, bool = true);
+void passtext(void);
+
 inline char scannerstatus = normal; // 0..5
 inline halfword warningindex = 0;
 inline bool forceeof = false;
 inline int skipline;
 
-[[nodiscard]] Token getnext(bool = true);
+[[nodiscard]] inline Token gettoken(char status) { return getnext(status, false); }
 
 #endif

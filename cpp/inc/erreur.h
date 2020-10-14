@@ -6,6 +6,9 @@
 #include "police.h"
 #include <string>
 
+constexpr int errorline = 72;
+constexpr int halferrorline = 42;
+
 enum
 {
 	spotless = 0, //!< \a history value when nothing has been amiss yet
@@ -17,6 +20,7 @@ enum
 inline char history; // 0..3
 inline bool useerrhelp = false;
 inline char errorcount = 0; // -1..100
+inline char interaction = error_stop_mode; // 0..3
 
 void error(const std::string &, const std::string &, bool = true);
 void inserror(Token, const std::string &, const std::string &, bool = true);

@@ -17,14 +17,6 @@ enum command_code
 	job_name_code = 5 //command code for \jobname
 };
 
-enum if_codes
-{
-	if_code = 1, //code for \if... being evaluated
-	fi_code = 2, //code for \fi
-	else_code = 3, //code for \else
-	or_code = 4, //code for \or
-};
-
 enum selector
 {
 	no_print = 16, //!< \a selector setting that makes data disappear
@@ -478,27 +470,12 @@ enum
 	emergency_stretch_code = 20 //!< reduces badnesses on final pass of line-breaking
 };
 
-enum ligatures
-{
-	AB_C = 0, // symbole != ou LIG
-	AB_CB = 1, //symbole =:| ou LIG/
-	AB_cB = 5, //symbole =:|> ou LIG/>
-	AB_AC = 2, //symbole |=: ou /LIG
-	AB_aC = 6, //symbole |=:> ou /LIG>
-	AB_ACB = 3, // symbole |=:| ou /LIG/
-	AB_aCB = 7, //symbole |=:|> ou /LIG/>
-	AB_acB = 11 //symbole |=:|>> ou /LIG/>>
-};
-
-
 ///////////////////////////////////////////////////////////////////////////////
 // constantes
 ///////////////////////////////////////////////////////////////////////////////
 constexpr int memmax = 30000;
 constexpr int memmin = 0;
 constexpr int bufsize = 500;
-constexpr int errorline = 72;
-constexpr int halferrorline = 42;
 constexpr int maxprintline = 79;
 constexpr int stacksize = 200;
 constexpr int maxinopen = 6;
@@ -623,16 +600,10 @@ class AnyNode
 // variables globales
 ///////////////////////////////////////////////////////////////////////////////
 
-inline char interaction = error_stop_mode; // 0..3
-inline groupcode curgroup = 0;
-inline halfword parloc;
-inline halfword partoken;
 inline bool outputactive = false;
-inline halfword writeloc;
 
 ///////////////////////////////////////////////////////////////////////////////
 // fonctions inlines
 ///////////////////////////////////////////////////////////////////////////////
-inline bool terminal_input(const std::string &name) { return name == ""; } //!< are we reading from the terminal?
 
 #endif
