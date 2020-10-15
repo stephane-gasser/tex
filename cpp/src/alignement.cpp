@@ -15,6 +15,37 @@
 #include "flushmath.h" 
 #include "etat.h"
 #include "getnext.h"
+#include "expand.h"
+
+static Token getpreambletoken(char status)
+{
+	for (auto t = gettoken(status); true; t = gettoken(status))
+	{
+		while (t.chr == span_code && t.cmd == tab_mark)
+		{
+			t = gettoken(status);
+			if (t.cmd > max_command)
+			{
+				expand(status, t);
+				t = gettoken(status);
+			}
+		}
+		switch (t.cmd)
+		{
+			case endv:
+				fatalerror("(interwoven alignment preambles are not allowed)");
+				break;
+			case assign_glue:
+				if (t.chr != glue_base+tab_skip_code)
+					return t;
+				scanoptionalequals(status);
+				eqtb_glue[tab_skip_code].define(global_defs() > 0 ? globalPrefix : noPrefix, glue_ref, scanglue(status, glue_val));
+				break;
+			default:
+				return t;
+		}
+	}
+}
 
 static SpanNode *curspan = nullptr; 
 static LinkedNode *curhead = nullptr;
@@ -106,7 +137,7 @@ static void pushalignment(AlignRecordNode* loop)
 	curhead = new LinkedNode;
 }
 
-void initalign(Token t, AlignRecordNode* &loop)
+void initalign(char &status, Token t, AlignRecordNode* &loop)
 {
 	auto savecsptr = t.cs;
 	pushalignment(loop);
@@ -125,11 +156,10 @@ void initalign(Token t, AlignRecordNode* &loop)
 	else // Change current mode to |-vmode| for \halign, |-hmode| for \valign
 		if (mode > 0)
 		mode = -mode;
-	t = scanspec(scannerstatus, align_group);
+	t = scanspec(status, align_group);
 	setPreamble(nullptr);
 	curalign = dynamic_cast<AlignRecordNode*>(align_head);
 	loop = 0;
-	scannerstatus = aligning;
 	warningindex = savecsptr;
 	alignstate = -1000000;
 	while (true)
@@ -139,7 +169,7 @@ void initalign(Token t, AlignRecordNode* &loop)
 			break;
 		TokenList holdHead;
 		bool keepIn = true;
-		for (t = getpreambletoken(); t.cmd != mac_param && keepIn; t = getpreambletoken())
+		for (t = getpreambletoken(aligning); t.cmd != mac_param && keepIn; t = getpreambletoken(aligning))
 		{
 			switch (t.cmd)
 			{
@@ -175,7 +205,7 @@ void initalign(Token t, AlignRecordNode* &loop)
 		holdHead.list.clear();
 		for (; true; holdHead.list.push_back(t.tok))
 		{
-			t = getpreambletoken();
+			t = getpreambletoken(aligning);
 			if (t.cmd <= out_param && t.cmd >= tab_mark && alignstate == -1000000)
 				break;
 			if (t.cmd == mac_param)
@@ -187,14 +217,14 @@ void initalign(Token t, AlignRecordNode* &loop)
 		holdHead.list.push_back(end_template_token);
 		curalign->vPart.list = holdHead.list;
 	}
-	scannerstatus = normal;
+	status = normal;
 	newsavelevel(align_group);
 	if (every_cr())
 		beginTokenListAboveMacro(every_cr(), every_cr_text);
-	alignpeek(loop);
+	alignpeek(status, loop);
 }
 
-static void finrow(AlignRecordNode* &loop)
+static void finrow(char status, AlignRecordNode* &loop)
 {
 	BoxNode *p;
 	if (mode == -hmode)
@@ -219,10 +249,10 @@ static void finrow(AlignRecordNode* &loop)
 	dynamic_cast<UnsetNode*>(p)->glue_stretch = 0;
 	if (every_cr())
 		beginTokenListAboveMacro(every_cr(), every_cr_text);
-	alignpeek(loop);
+	alignpeek(status, loop);
 }
 
-static bool fincol(Token t, AlignRecordNode* &loop)
+static bool fincol(char status, AlignRecordNode* &loop)
 {
 	if (curalign == nullptr)
 		confusion("endv");
@@ -338,13 +368,12 @@ static bool fincol(Token t, AlignRecordNode* &loop)
 		initspan(p);
 	}
 	alignstate = 1000000;
-	t = getXTokenSkipSpace(scannerstatus);
 	curalign = p;
-	initcol(t);
+	initcol(getXTokenSkipSpace(status));
 	return false;
 }
 
-static void finalign(AlignRecordNode* &loop)
+static void finalign(char status, AlignRecordNode* &loop)
 {
 	scaled t, w; // width of column
 	halfword n; // matching span amount
@@ -630,12 +659,12 @@ static void finalign(AlignRecordNode* &loop)
 	popnest(); 
 	if (mode == mmode)
 	{
-		auto tk = doassignments();
+		auto tk = doassignments(status);
 		if (tk.cmd != math_shift)
 			backerror(tk, "Missing $$ inserted", "Displays can use special alignments (like \\eqalignno)\nonly if nothing but the alignment itself is between $$'s.");
 		else
 		{
-			tk = getxtoken(scannerstatus);
+			tk = getxtoken(status);
 			if (tk.cmd != math_shift)
 				backerror(tk, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
@@ -648,7 +677,7 @@ static void finalign(AlignRecordNode* &loop)
 		tail_append(new PenaltyNode(post_display_penalty()));
 		tail_append(new GlueNode(below_display_skip_code));
 		aux = auxsave;
-		resumeafterdisplay(tk);
+		resumeafterdisplay(status, tk);
 	}
 	else
 	{
@@ -657,26 +686,26 @@ static void finalign(AlignRecordNode* &loop)
 		if (pp)
 			tail = q;
 		if (mode == vmode)
-			buildpage();
+			buildpage(status);
 	}
 }
 
-void alignpeek(AlignRecordNode* &loop)
+void alignpeek(char status, AlignRecordNode* &loop)
 {
 	while (true)
 	{
 		alignstate = 1000000;
-		auto t = getXTokenSkipSpace(scannerstatus);
+		auto t = getXTokenSkipSpace(status);
 		switch (t.cmd)
 		{
 			case no_align:
-				scanleftbrace(scannerstatus);
+				scanleftbrace(status);
 				newsavelevel(no_align_group);
 				if (mode == -vmode)
 					normalparagraph();
 				break;
 			case right_brace:
-				finalign(loop);
+				finalign(status, loop);
 				break;
 			case car_ret:
 				if (t.chr == cr_cr_code)
@@ -690,7 +719,7 @@ void alignpeek(AlignRecordNode* &loop)
 	}
 }
 
-void doendv(Token t, AlignRecordNode* &loop)
+void doendv(char status, Token t, AlignRecordNode* &loop)
 {
 	inputstack.back() = curinput;
 	for (baseptr = inputstack.size()-1; inputstack[baseptr].indexfield != v_template && inputstack[baseptr].locfield == 0 && inputstack[baseptr].statefield == token_list; baseptr--);
@@ -699,8 +728,8 @@ void doendv(Token t, AlignRecordNode* &loop)
 	if (curgroup == align_group)
 	{
 		endgraf();
-		if (fincol(t, loop))
-			finrow(loop);
+		if (fincol(status, loop))
+			finrow(status, loop);
 	}
 	else
 		offsave(t);

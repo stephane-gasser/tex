@@ -672,7 +672,7 @@ static std::string showactivities(void)
 	return oss.str();
 }
 
-void showwhatever(Token t)
+void showwhatever(const char status, Token t)
 {
 	int val;
 	switch (t.chr)
@@ -686,7 +686,7 @@ void showwhatever(Token t)
 			selector = term_and_log;
 			break;
 		case show_box_code:
-			val = scaneightbitint(scannerstatus);
+			val = scaneightbitint(status);
 			diagnostic("\r> \\box"+std::to_string(val)+"="+(box(val) == nullptr ? "void" : showbox(box(val)))+"\n");
 			print_err("OK");
 			if (selector == term_and_log && tracing_online() <= 0)
@@ -695,11 +695,11 @@ void showwhatever(Token t)
 			selector = term_and_log;
 			break;
 		case show_code:
-			t = gettoken(scannerstatus);
+			t = gettoken(status);
 			print("\r> "+(t.cs ? scs(t.cs)+"=" : "")+meaning(t));
 			break;
 		default:
-			thetoks(tempHead);
+			thetoks(status, tempHead);
 			print("\r> "+tokenshow(&tempHead));
 	}
 	if (interaction < error_stop_mode)

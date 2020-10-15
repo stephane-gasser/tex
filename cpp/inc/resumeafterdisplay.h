@@ -4,6 +4,6 @@
 #include "globals.h"
 #include "token.h"
 
-void resumeafterdisplay(Token t);
+void resumeafterdisplay(char, Token t);
 
 #endif

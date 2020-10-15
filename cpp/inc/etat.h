@@ -53,7 +53,7 @@ void pushnest(void);
 void pop_input(void);
 void push_input(void);
 void backinput(Token);
-void startinput(void);
+void startinput(char);
 
 inline void tail_append(LinkedNode*q) { appendAtEnd(tail, q); }
 

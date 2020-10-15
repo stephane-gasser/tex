@@ -6,8 +6,8 @@
 
 inline bool cancelboundary = false;
 
-void main_loop(Token&);
+void main_loop(char, Token&);
 void appspace(void);
-[[nodiscard]] Token append_normal_space(void);
+[[nodiscard]] Token append_normal_space(char);
 
 #endif

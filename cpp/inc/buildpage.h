@@ -19,6 +19,6 @@ inline int deadcycles = 0;
 inline int insertpenalties = 0;
 inline LinkedNode *contrib_tail = nest[0].tailfield;
 
-void buildpage(void);
+void buildpage(char);
 
 #endif

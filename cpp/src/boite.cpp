@@ -93,26 +93,26 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 	return x;
 }
 
-void alterboxdimen(halfword c)
+void alterboxdimen(char status, halfword c)
 {
-	auto b = box(scaneightbitint(scannerstatus));
-	scanoptionalequals(scannerstatus);
+	auto b = box(scaneightbitint(status));
+	scanoptionalequals(status);
 	if (b == nullptr)
 		return;
 	switch (c)
 	{
 		case width_offset:
-			b->width = scan_normal_dimen(scannerstatus);
+			b->width = scan_normal_dimen(status);
 			break;
 		case height_offset:
-			b->height = scan_normal_dimen(scannerstatus);
+			b->height = scan_normal_dimen(status);
 			break;
 		case depth_offset:
-			b->depth = scan_normal_dimen(scannerstatus);
+			b->depth = scan_normal_dimen(status);
 	}
 }
 
-void boxend(int boxcontext, RuleNode* curbox)
+void boxend(char status, int boxcontext, RuleNode* curbox)
 {
 	if (boxcontext < box_flag) //<Append box |cur_box| to the current list, shifted by |box_context|
 	{
@@ -129,7 +129,7 @@ void boxend(int boxcontext, RuleNode* curbox)
 					adjusttail = nullptr;
 				}
 				if (mode > 0)
-					buildpage();
+					buildpage(status);
 			}
 			else
 			{
@@ -158,10 +158,10 @@ void boxend(int boxcontext, RuleNode* curbox)
 			if (curbox)
 				if (boxcontext > ship_out_flag) // Append a new leader node that uses \a cur_box
 				{
-					auto t = getXTokenSkipSpaceAndEscape(scannerstatus);
+					auto t = getXTokenSkipSpaceAndEscape(status);
 					if ((t.cmd == hskip && abs(mode) != vmode) || (t.cmd == vskip && abs(mode) == vmode))
 					{
-						auto g = glueToAppend(t.chr);
+						auto g = glueToAppend(status, t.chr);
 						g->subtype = boxcontext-(leader_flag-a_leaders);
 						g->leader_ptr = curbox;
 						tail_append(g);
@@ -180,20 +180,20 @@ void boxend(int boxcontext, RuleNode* curbox)
 //! the first steps in their creation. The \a begin_box routine is called when
 //! \a box_context is a context specification, \a cur_chr specifies the type of
 //! box desired, and <em> cur_cmd=make_box </em>.
-void beginbox(int boxcontext, Token t)
+void beginbox(char status, int boxcontext, Token t)
 {
 	switch (t.chr)
 	{
 		case box_code:
 		{
-			int val = scaneightbitint(scannerstatus);
+			int val = scaneightbitint(status);
 			auto b = box(val);
 			setBox(val, nullptr); // the box becomes void, at the same level
-			boxend(boxcontext, b); //in simple cases, we use the box immediately
+			boxend(status, boxcontext, b); //in simple cases, we use the box immediately
 			break;
 		}
 		case copy_code:
-			boxend(boxcontext, dynamic_cast<BoxNode*>(copynodelist(box(scaneightbitint(scannerstatus))))); //in simple cases, we use the box immediately
+			boxend(status, boxcontext, dynamic_cast<BoxNode*>(copynodelist(box(scaneightbitint(status))))); //in simple cases, we use the box immediately
 			break;
 		case last_box_code:
 		{
@@ -235,15 +235,15 @@ void beginbox(int boxcontext, Token t)
 							}
 						}
 			}
-			boxend(boxcontext, b); //in simple cases, we use the box immediately
+			boxend(status, boxcontext, b); //in simple cases, we use the box immediately
 			break;
 		}
 		case vsplit_code:
 		{
-			auto n = scaneightbitint(scannerstatus);	 // a box number
-			if (!scankeyword(scannerstatus, "to"))
+			auto n = scaneightbitint(status);	 // a box number
+			if (!scankeyword(status, "to"))
 				error("Missing `to' inserted", "I'm working on `\\vsplit<box number> to <dimen>';\nwill look for the <dimen> next.");
-			boxend(boxcontext, vsplit(n, scan_normal_dimen(scannerstatus))); //in simple cases, we use the box immediately
+			boxend(status, boxcontext, vsplit(n, scan_normal_dimen(status))); //in simple cases, we use the box immediately
 			break;
 		}
 		default:
@@ -253,16 +253,16 @@ void beginbox(int boxcontext, Token t)
 			{
 				case hmode:
 					if (boxcontext < box_flag && abs(mode) == vmode)
-						t = scanspec(scannerstatus, adjusted_hbox_group, boxcontext);
+						t = scanspec(status, adjusted_hbox_group, boxcontext);
 					else
-						t = scanspec(scannerstatus, hbox_group, boxcontext);
+						t = scanspec(status, hbox_group, boxcontext);
 					break;
 				case vmode:
-					t = scanspec(scannerstatus, vbox_group, boxcontext);
+					t = scanspec(status, vbox_group, boxcontext);
 					normalparagraph();
 					break; 
 				default:
-					t = scanspec(scannerstatus, vtop_group, boxcontext);
+					t = scanspec(status, vtop_group, boxcontext);
 					k = vmode;
 					normalparagraph();
 			}
@@ -607,7 +607,7 @@ BoxNode* hpack(LinkedNode *p, scaled w, smallnumber m)
 	return r;
 }
 
-void package(smallnumber c, Token t) 
+void package(char status, smallnumber c, Token t) 
 {
 	unsave();
 	auto s2 = savestack.back()->int_;
@@ -633,12 +633,12 @@ void package(smallnumber c, Token t)
 		b = box;
 	}
 	popnest();
-	boxend(s0, b);
+	boxend(status, s0, b);
 }
 
-void unpackage(halfword c)
+void unpackage(char status, halfword c)
 {
-	int val = scaneightbitint(scannerstatus);
+	int val = scaneightbitint(status);
 	auto p = box(val);
 	if (p == nullptr)
 		return;

@@ -84,6 +84,6 @@ quarterword rem_byte(fourquarters);
 bool char_exists(fourquarters); 
 int& param(smallnumber, internalfontnumber); 
 internalfontnumber readfontinfo(halfword, const std::string &, const std::string &, scaled);
-[[nodiscard]] int findfontdimen(bool);
+[[nodiscard]] int findfontdimen(char, bool);
 
 #endif

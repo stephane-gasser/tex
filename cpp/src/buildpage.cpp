@@ -7,6 +7,7 @@
 #include "fireup.h"
 #include "noeud.h"
 #include "boite.h"
+#include "getnext.h"
 #include "equivalent.h"
 
 static void set_page_so_far_zero(int i) { pagesofar[i] = 0; }
@@ -24,7 +25,7 @@ static void freezepagespecs(smallnumber s)
 }
 
 //! Append contributions to the current page.
-void buildpage(void)
+void buildpage(char status)
 {
 	int b, c, pi;
 	unsigned char n;
@@ -240,7 +241,7 @@ void buildpage(void)
 				}
 				if (c == awful_bad || pi <= eject_penalty)
 				{
-					fireup(p);
+					fireup(status, p);
 					if (outputactive)
 						return;
 					continue;

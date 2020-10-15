@@ -20,7 +20,6 @@ class Scanner
 [[nodiscard]] Token getnext(char, bool = true);
 void passtext(void);
 
-inline char scannerstatus = normal; // 0..5
 inline halfword warningindex = 0;
 inline bool forceeof = false;
 inline int skipline;

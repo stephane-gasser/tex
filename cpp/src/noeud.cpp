@@ -51,12 +51,12 @@ CharNode* newcharacter(internalfontnumber f, eightbits c)
 	return nullptr;
 }
 
-void newfont(smallnumber prefix)
+void newfont(char status, smallnumber prefix)
 {
 	std::string t;
 	if (jobname == "")
 		openlogfile();
-	auto u = getrtoken();
+	auto u = getrtoken(status);
 	if (u >= hash_base)
 	{
 		t = eqtb_cs[u-hash_base].text;
@@ -73,13 +73,13 @@ void newfont(smallnumber prefix)
 			t = "FONT"+char(u-1);
 		eqtb_active[u-active_base].define(prefix, set_font, null_font);
 	}
-	scanoptionalequals(scannerstatus);
-	scanfilename();
+	scanoptionalequals(status);
+	scanfilename(status);
 	nameinprogress = true;
 	scaled s;
-	if (scankeyword(scannerstatus, "at"))
+	if (scankeyword(status, "at"))
 	{
-		s = scan_normal_dimen(scannerstatus);
+		s = scan_normal_dimen(status);
 		if (s <= 0 || s >= 2048*unity)
 		{
 			error("Improper `at' size ("+asScaled(s)+"pt), replaced by 10pt", "I can only handle fonts at positive sizes that are\nless than 2048pt, so I've changed what you said to 10pt.");
@@ -87,9 +87,9 @@ void newfont(smallnumber prefix)
 		}
 	}
 	else 
-		if (scankeyword(scannerstatus, "scaled"))
+		if (scankeyword(status, "scaled"))
 		{
-			s = -scanint(scannerstatus);
+			s = -scanint(status);
 			if (s >= 0 || s < -(1<<15))
 			{
 				interror(-s, "Illegal magnification has been changed to 1000", "The magnification ratio must be between 1 and 0x80'00.");
@@ -115,7 +115,7 @@ void newfont(smallnumber prefix)
 	eqtb_cs[f+frozen_null_font-hash_base].text = t;
 }
 
-void newgraf(bool indented)
+void newgraf(char status, bool indented)
 {
 	prev_graf = 0;
 	if (mode == vmode || head != tail)
@@ -136,7 +136,7 @@ void newgraf(bool indented)
 	if (every_par())
 		beginTokenListAboveMacro(every_par(), every_par_text);
 	if (nest.size() == 2)
-		buildpage();
+		buildpage(status);
 }
 
 void newinteraction(Token t)
@@ -156,17 +156,17 @@ GlueNode* newskipparam(smallnumber n)
 	return p;
 }
 
-void appendchoices(void)
+void appendchoices(char status)
 {
 	tail_append(new ChoiceNode);
 	auto m = new MemoryNode;
 	m->int_ = 0;
 	savestack.push_back(m);
 	pushmath(math_choice_group);
-	scanleftbrace(scannerstatus);
+	scanleftbrace(status);
 }
 
-void appenddiscretionary(halfword s)
+void appenddiscretionary(char status, halfword s)
 {
 	tail_append(new DiscNode);
 	if (s == 1)
@@ -181,14 +181,14 @@ void appenddiscretionary(halfword s)
 		m->int_ = 0;
 		savestack.push_back(m);
 		newsavelevel(disc_group);
-		scanleftbrace(scannerstatus);
+		scanleftbrace(status);
 		pushnest();
 		mode = -hmode;
 		space_factor = 1000;
 	}
 }
 
-GlueNode *glueToAppend(halfword s)
+GlueNode *glueToAppend(char status, halfword s)
 {
 	switch (s)
 	{
@@ -202,14 +202,14 @@ GlueNode *glueToAppend(halfword s)
 			return new GlueNode(fil_neg_glue);
 		case skip_code:
 		{
-			auto g = scanglue(scannerstatus, mu_val);
+			auto g = scanglue(status, mu_val);
 			g->glue_ref_count--;
 			return new GlueNode(g);
 		}
 		default:
 		//case mskip_code: 
 		{
-			auto g = scanglue(scannerstatus, mu_val);
+			auto g = scanglue(status, mu_val);
 			g->glue_ref_count--;
 			auto G = new GlueNode(g);
 			G->subtype = mu_glue;
@@ -278,33 +278,33 @@ void KernNode::mathkern(scaled m)
 	}
 }
 
-AccentNoad::AccentNoad(void)
+AccentNoad::AccentNoad(char status)
 { 
 	type = accent_noad; 
 	subtype = normal; 
 	nucleus.math_type = 0; // twohalves{0, 0};
 	subscr.math_type = 0; // = twohalves{0, 0};
 	supscr.math_type = 0; // = twohalves{0, 0};
-	int val = scanfifteenbitint(scannerstatus);
+	int val = scanfifteenbitint(status);
 	accent_chr.math_type = math_char; 
 	accent_chr.character = val%0x1'00;
 	accent_chr.fam = val >= var_code && fam_in_range() ? cur_fam() : (val>>8)%0x10;
-	nucleus.scan(scannerstatus);
+	nucleus.scan(status);
 }
 
 
-RadicalNoad::RadicalNoad(Token t)
+RadicalNoad::RadicalNoad(char status, Token t)
 { 
 	type = radical_noad; 
 	subtype = normal; 
 	nucleus.math_type = 0; // = twohalves{0, 0};
 	subscr.math_type = 0; // = twohalves{0, 0};
 	supscr.math_type = 0; // = twohalves{0, 0};
-	left_delimiter.scan(scannerstatus, true, t);
-	nucleus.scan(scannerstatus);
+	left_delimiter.scan(status, true, t);
+	nucleus.scan(status);
 }
 
-FractionNoad::FractionNoad(halfword c, Token t) 
+FractionNoad::FractionNoad(char status, halfword c, Token t) 
 { 
 	type = fraction_noad; 
 	subtype = normal; 
@@ -313,13 +313,13 @@ FractionNoad::FractionNoad(halfword c, Token t)
 	denominator.math_type = 0; // = twohalves{0, 0};
 	if (c >= delimited_code)
 	{
-		left_delimiter.scan(scannerstatus, false, t);
-		right_delimiter.scan(scannerstatus, false, t);
+		left_delimiter.scan(status, false, t);
+		right_delimiter.scan(status, false, t);
 	}
 	switch (c%delimited_code)
 	{
 		case above_code:
-			thickness = scan_normal_dimen(scannerstatus);
+			thickness = scan_normal_dimen(status);
 			break;
 		case over_code: 
 			thickness = default_code;
@@ -330,10 +330,10 @@ FractionNoad::FractionNoad(halfword c, Token t)
 	}
 }
 
-LeftRightNoad::LeftRightNoad(Token t)
+LeftRightNoad::LeftRightNoad(char status, Token t)
 { 
 	type = t.chr; 
-	delimiter.scan(scannerstatus, false, t);
+	delimiter.scan(status, false, t);
 }
 
 int CharNode::width(void) { return fonts[font].char_width(character); }
@@ -366,10 +366,10 @@ std::string LigatureNode::shortDisplay(void) { return shortdisplay(lig_ptr); }
 std::string DiscNode::shortDisplay(void) { return shortdisplay(pre_break)+shortdisplay(post_break); }
 
 
-ShapeNode::ShapeNode(int n) : values(2*n)
+ShapeNode::ShapeNode(char status, int n) : values(2*n)
 {
 	for (int j = 0; j < 2*n; j++)
-		values.push_back(scan_normal_dimen(scannerstatus));
+		values.push_back(scan_normal_dimen(status));
 }
 
 LinkedNode::~LinkedNode(void) 

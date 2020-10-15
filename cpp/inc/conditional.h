@@ -34,7 +34,7 @@ enum if_codes
 	or_code = 4, //code for \or
 };
 
-void conditional(Token);
+void conditional(char, Token);
 
 inline char iflimit = 0; // 0..4
 

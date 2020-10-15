@@ -24,15 +24,15 @@ inline int lastbadness = 0;
 
 BoxNode *rebox(BoxNode*, scaled);
 BoxNode *cleanbox(NoadContent&, smallnumber);
-void alterboxdimen(halfword);
-void beginbox(int, Token);
-void boxend(int, RuleNode*);
+void alterboxdimen(char, halfword);
+void beginbox(char, int, Token);
+void boxend(char, int, RuleNode*);
 BoxNode *charbox(internalfontnumber, quarterword);
 void ensurevbox(eightbits);
 BoxNode *vpackage(LinkedNode*, scaled, smallnumber, scaled);
 BoxNode *vpack(LinkedNode*, scaled, smallnumber);
 BoxNode *hpack(LinkedNode*, scaled, smallnumber);
-void package(smallnumber, Token);
-void unpackage(halfword);
+void package(char, smallnumber, Token);
+void unpackage(char, halfword);
 
 #endif

@@ -115,7 +115,7 @@ static void scansomethinginternal(char status, smallnumber level, bool negative,
 				lev = dimen_val;
 			break;
 			case assign_font_dimen:
-				val = findfontdimen(false);
+				val = findfontdimen(status, false);
 				Font::info.back().int_ = 0;
 				val = Font::info[val].int_;
 				lev = dimen_val;
@@ -283,13 +283,13 @@ void scanbox(char status, int boxcontext)
 	switch (t.cmd)
 	{
 		case make_box:
-			beginbox(boxcontext, t);
+			beginbox(status, boxcontext, t);
 			break;
 		case hrule:
 		case vrule:
 			if (boxcontext > leader_flag)
 			{
-				boxend(boxcontext, scanrulespec(status, t));
+				boxend(status, boxcontext, scanrulespec(status, t));
 				break;
 			}
 			[[fallthrough]];
@@ -560,7 +560,7 @@ static scaled rounddecimals(smallnumber k)
 											aritherror = true;
 										else
 											val = val*unity+f;
-										t = xtoken(t);
+										t = xtoken(status, t);
 										if (t.cmd != spacer)
 											backinput(t);
 										break;
@@ -881,7 +881,7 @@ void NoadContent::scan(char status)
 					t.cs = t.chr+active_base;
 					t.cmd = eqtb_active[t.chr].type;
 					t.chr = eqtb_active[t.chr].int_;
-					t = xtoken(t);
+					t = xtoken(status, t);
 					backinput(t);
 					t = getXTokenSkipSpaceAndEscape(status);
 					another = true;
@@ -1087,63 +1087,32 @@ void endtokenlist(void)
 			case data:
 				return Token(frozen_endv+cs_token_flag);
 			default:
-				expand(t);
+				expand(status, t);
 		}
 	return t;
 }
 
-[[nodiscard]] Token xtoken(Token t)
+[[nodiscard]] Token xtoken(char status, Token t)
 {
-	for (; t.cmd > max_command; t = getnext(scannerstatus))
-		expand(t);
+	for (; t.cmd > max_command; t = getnext(status))
+		expand(status, t);
 	return t;
 }
 
-Token getpreambletoken(void)
-{
-	while (true)
-	{
-		auto t = gettoken(scannerstatus);
-		while (t.chr == span_code && t.cmd == tab_mark)
-		{
-			t = gettoken(scannerstatus);
-			if (t.cmd > max_command)
-			{
-				expand(t);
-				t = gettoken(scannerstatus);
-			}
-		}
-		switch (t.cmd)
-		{
-			case endv:
-				fatalerror("(interwoven alignment preambles are not allowed)");
-				break;
-			case assign_glue:
-				if (t.chr != glue_base+tab_skip_code)
-					return t;
-				break;
-			default:
-				return t;
-		}
-		scanoptionalequals(scannerstatus);
-		eqtb_glue[tab_skip_code].define(global_defs() > 0 ? globalPrefix : noPrefix, glue_ref, scanglue(scannerstatus, glue_val));
-	}
-}
-
-static Token getTokenSkipSpace(void)
+static Token getTokenSkipSpace(char status)
 {
 	Token t;
 	do
-		t = gettoken(scannerstatus);
+		t = gettoken(status);
 	while (t.tok == space_token);
 	return t;
 }
 
-[[nodiscard]] halfword getrtoken(void)
+[[nodiscard]] halfword getrtoken(char status)
 {
 	while (true)
 	{
-		auto t = getTokenSkipSpace();
+		auto t = getTokenSkipSpace(status);
 		if (t.cs && t.cs <= frozen_control_sequence)
 			return t.cs;
 		if (t.cs)
@@ -1153,95 +1122,6 @@ static Token getTokenSkipSpace(void)
 	}
 }
 
-void insthetoks(void)
-{
-	thetoks(tempHead);
-	ins_list(&tempHead);
-}
-
-[[nodiscard]] TokenList* readtoks(int n, halfword r)
-{
-	scannerstatus = defining;
-	warningindex = r;
-	defRef.list.clear();
-	defRef.token_ref_count = 0;
-	defRef.list.push_back(end_match_token);
-	smallnumber m = (n < 0 || n > 15) ? 16 : n;
-	auto s = alignstate;
-	alignstate = 1000000;
-	do
-	{
-		beginfilereading();
-		name = m+1;
-		if (readopen[m] == closed)
-			if (interaction > nonstop_mode)
-				if (n < 0)
-				{
-					print("");
-					terminput();
-				}
-				else
-				{
-					print("\n"+scs(r)+"=");
-					terminput();
-					n = -1;
-				}
-		else
-			fatalerror("*** (cannot \read from terminal in nonstop modes)");
-
-		else 
-			if (readopen[m] == just_open)
-				if (inputln(readfile[m], false))
-					readopen[m] = normal;
-				else
-				{
-					aclose(readfile[m]);
-					readopen[m] = closed;
-				}
-
-			else
-				if (!inputln(readfile[m], true))
-				{
-					aclose(readfile[m]);
-					readopen[m] = closed;
-					if (alignstate != 1000000)
-					{
-						runaway(scannerstatus);
-						error("File ended within "+esc("read"), "This \\read has unbalanced braces.");
-						alignstate = 1000000;
-					}
-				}
-		limit = last;
-		if (end_line_char_inactive())
-			limit--;
-		else
-			buffer[limit] = end_line_char();
-		First = limit+1;
-		Loc = 0/*Start*/;
-		state = new_line;
-		while (true)
-		{
-			Token t;
-			t = gettoken(scannerstatus);
-			if (t.tok == 0)
-				break;
-			if (alignstate < 1000000)
-			{
-				do
-					t = gettoken(scannerstatus);
-				while (t.tok);
-				alignstate = 1000000;
-				break;
-			}
-			defRef.list.push_back(t.tok);
-		}
-		endfilereading();
-	} while (alignstate != 1000000);
-	scannerstatus = normal;
-	alignstate = s;
-	return &defRef;
-}
-
 static void strtoks2(const std::string &s, TokenList &head)
 {
 	head.list.clear();
@@ -1249,79 +1129,13 @@ static void strtoks2(const std::string &s, TokenList &head)
 		head.list.push_back(c == ' ' ? space_token : other_token+c);
 }
 
-static std::string romanint(int n)
+void thetoks(char status, TokenList &head)
 {
-	constexpr char s[] = "m2d5c2l5x2v5i";
-	int j = 0;
-	int v = 1000;
-	std::string roman;
-	while (true)
-	{
-		while (n >= v)
-		{
-			roman += s[j];
-			n -= v;
-		}
-		if (n <= 0)
-			return roman;
-		int k = j+2;
-		int u = v/(s[j+1]-'0');
-		if (s[j+1] == '2')
-		{
-			k += 2;
-			u /= s[j+3]-'0';
-		}
-		if (n+u >= v)
-		{
-			roman += s[k];
-			n += u;
-		}
-		else
-		{
-			j += 2;
-			v /= s[j-1]-'0';
-		}
-	}
-	return roman;
-}
-
-void convtoks(Token t)
-{
-	switch (t.chr)
-	{
-		case number_code:
-			strtoks(std::to_string(scanint(scannerstatus)));
-			break;
-		case roman_numeral_code: 
-			strtoks(romanint(scanint(scannerstatus)));
-			break;
-		case font_name_code: 
-		{
-			auto &f = fonts[scanfontident(scannerstatus)];
-			strtoks(f.name+(f.size != f.dsize ? " at "+asScaled(f.size)+"pt" : ""));
-			break;
-		}
-		case string_code:
-			strtoks(t.cs ? scs(t.cs) : std::string(1, t.chr));
-			break;
-		case meaning_code:
-			strtoks(meaning(gettoken(normal)));
-			break;
-		case job_name_code: 
-			if (jobname == "")
-				openlogfile();
-			strtoks(jobname);
-	}
-	ins_list(&tempHead);
-}
-
-void thetoks(TokenList &head)
-{
-	auto t = getxtoken(scannerstatus);
+	auto t = getxtoken(status);
 	int val, lev;
 	GlueSpec *gl;
 	TokenList *tk;
-	scansomethinginternal(scannerstatus, tok_val, false, t, val, lev, gl, tk);
+	scansomethinginternal(status, tok_val, false, t, val, lev, gl, tk);
 	switch (lev)
 	{
 		case ident_val:

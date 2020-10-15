@@ -4,6 +4,6 @@
 #include "globals.h"
 #include "noeud.h"
 
-void fireup(LinkedNode*);
+void fireup(char, LinkedNode*);
 
 #endif

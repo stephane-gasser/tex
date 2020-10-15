@@ -32,8 +32,8 @@ inline scaled totalstretch[4], totalshrink[4];
 inline int packbeginline = 0;
 inline int alignstate = 1000000;
 
-void alignpeek(AlignRecordNode*&);
-void doendv(Token, AlignRecordNode*&);
-void initalign(Token, AlignRecordNode*&);
+void alignpeek(char, AlignRecordNode*&);
+void doendv(char, Token, AlignRecordNode*&);
+void initalign(char&, Token, AlignRecordNode*&);
 
 #endif

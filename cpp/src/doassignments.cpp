@@ -3,13 +3,13 @@
 #include "prefixedcommand.h"
 #include "getnext.h"
 
-Token doassignments(void)
+Token doassignments(char status)
 {
 	while (true)
 	{
-		auto t = getXTokenSkipSpaceAndEscape(scannerstatus);
+		auto t = getXTokenSkipSpaceAndEscape(status);
 		if (t.cmd <= max_non_prefixed_command)
 			return t;
-		prefixedcommand(t, false);
+		prefixedcommand(status, t, false);
 	}
 }

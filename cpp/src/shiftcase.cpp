@@ -1,10 +1,11 @@
 #include "shiftcase.h"
 #include "lecture.h"
 #include "equivalent.h"
+#include "getnext.h"
 
-void shiftcase(Token tk) // lc_code_base / uc_code_base
+void shiftcase(char &status, Token tk) // lc_code_base / uc_code_base
 {
-	scanNonMacroToks(tk);
+	scanNonMacroToks(status, tk);
 	for (auto &p: defRef.list)
 		if (p < single_base+cs_token_flag)
 		{

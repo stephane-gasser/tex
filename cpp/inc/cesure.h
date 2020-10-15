@@ -49,7 +49,7 @@ inline void set_cur_lang(void) { curlang = (language() <= 0 || language() > 255)
 
 void inittrie(void);
 void hyphenate(LinkedNode*, std::basic_string<halfword>);
-void newpatterns(Token);
-void newhyphexceptions(void);
+void newpatterns(char, Token);
+void newhyphexceptions(char);
 
 #endif

@@ -6,6 +6,6 @@
 
 inline Token aftertoken;
 
-void prefixedcommand(Token, bool = true);
+void prefixedcommand(char&, Token, bool = true);
 
 #endif

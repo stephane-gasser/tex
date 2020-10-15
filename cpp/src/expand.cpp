@@ -11,6 +11,72 @@
 #include "fichier.h"
 #include "etat.h"
 
+static std::string romanint(int n)
+{
+	constexpr char s[] = "m2d5c2l5x2v5i";
+	int j = 0;
+	int v = 1000;
+	std::string roman;
+	while (true)
+	{
+		while (n >= v)
+		{
+			roman += s[j];
+			n -= v;
+		}
+		if (n <= 0)
+			return roman;
+		int k = j+2;
+		int u = v/(s[j+1]-'0');
+		if (s[j+1] == '2')
+		{
+			k += 2;
+			u /= s[j+3]-'0';
+		}
+		if (n+u >= v)
+		{
+			roman += s[k];
+			n += u;
+		}
+		else
+		{
+			j += 2;
+			v /= s[j-1]-'0';
+		}
+	}
+	return roman;
+}
+
+static void convtoks(char status, Token t)
+{
+	switch (t.chr)
+	{
+		case number_code:
+			strtoks(std::to_string(scanint(status)));
+			break;
+		case roman_numeral_code: 
+			strtoks(romanint(scanint(status)));
+			break;
+		case font_name_code: 
+		{
+			auto &f = fonts[scanfontident(status)];
+			strtoks(f.name+(f.size != f.dsize ? " at "+asScaled(f.size)+"pt" : ""));
+			break;
+		}
+		case string_code:
+			strtoks(t.cs ? scs(t.cs) : std::string(1, t.chr));
+			break;
+		case meaning_code:
+			strtoks(meaning(gettoken(normal)));
+			break;
+		case job_name_code: 
+			if (jobname == "")
+				openlogfile();
+			strtoks(jobname);
+	}
+	ins_list(&tempHead);
+}
+
 static void insertrelax(halfword cs)
 {
 	backinput(cs_token_flag+cs);
@@ -18,7 +84,7 @@ static void insertrelax(halfword cs)
 	token_type = inserted;
 }
 
-void expand(Token tk)
+void expand(char status, Token tk)
 {
 	smallnumber radixbackup = radix;
 	smallnumber cobackup = curorder;
@@ -33,11 +99,11 @@ void expand(Token tk)
 			break;
 		case expand_after:
 		{
-			tk = gettoken(scannerstatus);
+			tk = gettoken(status);
 			auto t = tk;
-			tk = gettoken(scannerstatus);
+			tk = gettoken(status);
 			if (tk.cmd > max_command)
-				expand(tk);
+				expand(status, tk);
 			else
 				backinput(tk);
 			backinput(t);
@@ -55,7 +121,7 @@ void expand(Token tk)
 			TokenList l;
 			do
 			{
-				tk = getxtoken(scannerstatus);
+				tk = getxtoken(status);
 				if (tk.cs == 0)
 					l.list.push_back(tk.tok);
 			} while (tk.cs == 0);
@@ -87,13 +153,14 @@ void expand(Token tk)
 			break;
 		}
 		case convert: 
-			convtoks(tk);
+			convtoks(status, tk);
 			break;
 		case the: 
-			insthetoks();
+			thetoks(status, tempHead);
+			ins_list(&tempHead);
 			break;
 		case if_test: 
-			conditional(tk);
+			conditional(status, tk);
 			break;
 		case fi_or_else:
 			if (tk.chr > iflimit)
@@ -118,7 +185,7 @@ void expand(Token tk)
 				if (nameinprogress)
 					insertrelax(tk.cs);
 				else
-					startinput();
+					startinput(status);
 			break;
 		case call:
 		case long_call:

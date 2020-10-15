@@ -68,16 +68,16 @@ static void scantoks(const char status, bool xpand, Token tk)
 			for (tk = getnext(status); tk.cmd > max_command; tk = getnext(status))
 			{
 				if (tk.cmd != the)
-					expand(tk);
+					expand(status, tk);
 				else
 				{
 					TokenList tempHead;
-					thetoks(tempHead);
+					thetoks(status, tempHead);
 					if (tempHead.list.size())
 						defRef.list.insert(defRef.list.end(), tempHead.list.begin(), tempHead.list.end());
 				}
 			}
-			tk = xtoken(tk);
+			tk = xtoken(status, tk);
 		}
 		else
 			tk = gettoken(status);
@@ -111,9 +111,9 @@ static void scantoks(const char status, bool xpand, Token tk)
 		defRef.list.push_back(hashbrace);
 }
 
-void scanMacroToks(bool xpand, Token tk) { scantoks(defining, xpand, tk); scannerstatus = normal; }
-void scanNonMacroToks(Token tk) { scantoks(absorbing, false, tk); scannerstatus = normal; }
-void scanNonMacroToksExpand(Token tk) { scantoks(absorbing, true, tk); scannerstatus = normal; }
+void scanMacroToks(char &status, bool xpand, Token tk) { scantoks(defining, xpand, tk); status = normal; }
+void scanNonMacroToks(char &status, Token tk) { scantoks(absorbing, false, tk); status = normal; }
+void scanNonMacroToksExpand(char &status, Token tk) { scantoks(absorbing, true, tk); status = normal; }
 
 static int trickcount;
 static int firstcount;

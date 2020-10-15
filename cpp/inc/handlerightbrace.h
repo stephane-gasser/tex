@@ -5,6 +5,6 @@
 #include "token.h"
 #include "alignement.h"
 
-void handlerightbrace(Token, AlignRecordNode*&);
+void handlerightbrace(char, Token, AlignRecordNode*&);
 
 #endif

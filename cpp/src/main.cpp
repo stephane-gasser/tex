@@ -11,6 +11,7 @@
 #include "equivalent.h"
 #include "erreur.h"
 #include "etat.h"
+#include "getnext.h"
 #include <iostream>
 
 static void fixdateandtime(void)
@@ -112,7 +113,7 @@ int main()
 		fixdateandtime();
 		selector = interaction == batch_mode ? no_print : term_only;
 		if (loc < limit && cat_code(buffer[loc]))
-			startinput();
+			startinput(normal);
 		history = spotless;
 		auto t = maincontrol();
 		finalcleanup(t);

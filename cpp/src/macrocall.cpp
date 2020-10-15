@@ -14,7 +14,6 @@ static TokenList pstack[9];
 
 void macrocall(Token t)
 {
-	auto savescannerstatus = scannerstatus;
 	auto savewarningindex = warningindex;
 	warningindex = t.cs;
 	TokenList refcount;
@@ -26,7 +25,6 @@ void macrocall(Token t)
 	ASCIIcode matchchr;
 	if (refcount.list.back() != end_match_token) 
 	{
-		scannerstatus = matching;
 		halfword unbalance = 0;
 		longstate = t.cs >= hash_base ? eqtb_cs[t.cs-hash_base].type : eqtb_active[t.cs-active_base].type;
 		if (longstate >= outer_call)
@@ -45,7 +43,7 @@ void macrocall(Token t)
 			}
 			while (true)
 			{
-				t = gettoken(scannerstatus);
+				t = gettoken(matching);
 				if (t.tok == refcount.list[r])
 				{
 					r++;
@@ -62,7 +60,6 @@ void macrocall(Token t)
 					if (s == 0)
 					{
 						error("Use of "+scs(warningindex)+" doesn't match its definition", "If you say, e.g., `\\def\\a1{...}', then you must always\nput `1' after `\\a', since control sequence names are\nmade up of letters only. The macro here has not been\nfollowed by the required stuff, so I'm ignoring it.");
-						scannerstatus = savescannerstatus;
 						warningindex = savewarningindex;
 						return;
 					}
@@ -101,14 +98,13 @@ void macrocall(Token t)
 					{
 						if (longstate == call)
 						{
-							runaway(scannerstatus);
+							runaway(matching);
 							backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 						}
 						pstack[n].list = tempHead.list;
 						alignstate -= unbalance;
 						for (int m = 0; m <= n; m++)
 							pstack[m].list.clear();
-						scannerstatus = savescannerstatus;
 						warningindex = savewarningindex;
 						return;
 					}
@@ -119,20 +115,19 @@ void macrocall(Token t)
 						while (unbalance)
 						{
 							tempHead.list.push_back(t.tok);
-							t = gettoken(scannerstatus);
+							t = gettoken(matching);
 							if (t.tok == partoken)
 								if (longstate != long_call)
 								{
 									if (longstate == call)
 									{
-										runaway(scannerstatus);
+										runaway(matching);
 										backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 									}
 									pstack[n].list = tempHead.list;
 									alignstate -= unbalance;
 									for (int m = 0; m <= n; m++)
 										pstack[m].list.clear();
-									scannerstatus = savescannerstatus;
 									warningindex = savewarningindex;
 									return;
 								}
@@ -191,6 +186,5 @@ void macrocall(Token t)
 		for (int m = 0; m < n; m++)
 			paramstack.push_back(pstack[m]);
 	}
-	scannerstatus = savescannerstatus;
 	warningindex = savewarningindex;
 }

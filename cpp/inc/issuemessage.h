@@ -4,6 +4,6 @@
 #include "globals.h"
 #include "token.h"
 
-void issuemessage(Token);
+void issuemessage(char, Token);
 
 #endif

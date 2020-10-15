@@ -84,7 +84,7 @@ class ShapeNode : public LinkedNode
 {
 	public:
 		std::vector<int> values; // info = .size()/2
-		ShapeNode(int);
+		ShapeNode(char, int);
 };
 
 class CharNode : public LinkedNode
@@ -394,7 +394,7 @@ class NotOpenWriteWhatsitNode : public WriteWhatsitNode
 			return w; 
 		}
 		virtual std::string showNode(const std::string &);
-		virtual void out(void);
+		virtual void out(char);
 };
 
 class LanguageWhatsitNode : public WhatsitNode
@@ -472,7 +472,7 @@ class RadicalNoad : public Noad
 {
 	public:
 		Delimiter left_delimiter;
-		RadicalNoad(Token);
+		RadicalNoad(char, Token);
 		virtual std::string showNode(const std::string &);
 		virtual void mToH(void);
 };
@@ -485,7 +485,7 @@ class FractionNoad : public Noad
 		NoadContent &numerator = supscr; // |numerator| field in a fraction noad
 		NoadContent &denominator = subscr; // |denominator| field in a fraction noad
 		scaled thickness; //!< \a thickness field in a fraction noad
-		FractionNoad(halfword, Token);
+		FractionNoad(char, halfword, Token);
 		virtual std::string showNode(const std::string &);
 		virtual void mToH(scaled&, scaled&);
 };
@@ -494,7 +494,7 @@ class LeftRightNoad : public Noad
 {
 	public:
 		Delimiter delimiter; //!< \a delimiter field in left and right noads
-		LeftRightNoad(Token);
+		LeftRightNoad(char, Token);
 		virtual std::string showNode(const std::string &);
 };
 
@@ -502,7 +502,7 @@ class AccentNoad : public Noad
 {
 	public:
 		NoadContent accent_chr; //!< the \a accent_chr field of an accent noad
-		AccentNoad(void);
+		AccentNoad(char);
 		virtual std::string showNode(const std::string &);
 		virtual void mToH();
 };
@@ -540,13 +540,13 @@ inline auto ss_glue = &glues[3]; //!< 0pt plus 1fil minus 1fil
 inline auto fil_neg_glue = &glues[4]; //!< 0pt plus -1fil minus 0pt
 
 CharNode* newcharacter(internalfontnumber, eightbits);
-void newfont(smallnumber);
-void newgraf(bool);
+void newfont(char, smallnumber);
+void newgraf(char, bool);
 void newinteraction(Token);
 GlueNode* newskipparam(smallnumber);
-void appendchoices(void);
-void appenddiscretionary(halfword);
-GlueNode *glueToAppend(halfword);
+void appendchoices(char);
+void appenddiscretionary(char, halfword);
+GlueNode *glueToAppend(char, halfword);
 void appenditaliccorrection(void);
 void appendtovlist(BoxNode*);
 void followUntilBeforeTarget(LinkedNode*, LinkedNode*&, LinkedNode*);

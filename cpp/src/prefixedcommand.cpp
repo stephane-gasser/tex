@@ -11,15 +11,99 @@
 #include "boite.h"
 #include "buildpage.h"
 #include "getnext.h"
+#include "alignement.h"
+#include "fichier.h"
+#include "runaway.h"
 
-static void alterprevgraf(void)
+static TokenList* readtoks(int n, halfword r)
+{
+	warningindex = r;
+	defRef.list.clear();
+	defRef.token_ref_count = 0;
+	defRef.list.push_back(end_match_token);
+	smallnumber m = (n < 0 || n > 15) ? 16 : n;
+	auto s = alignstate;
+	alignstate = 1000000;
+	do
+	{
+		beginfilereading();
+		name = m+1;
+		if (readopen[m] == closed)
+			if (interaction > nonstop_mode)
+				if (n < 0)
+				{
+					print("");
+					terminput();
+				}
+				else
+				{
+					print("\n"+scs(r)+"=");
+					terminput();
+					n = -1;
+				}
+		else
+			fatalerror("*** (cannot \read from terminal in nonstop modes)");
+
+		else 
+			if (readopen[m] == just_open)
+				if (inputln(readfile[m], false))
+					readopen[m] = normal;
+				else
+				{
+					aclose(readfile[m]);
+					readopen[m] = closed;
+				}
+
+			else
+				if (!inputln(readfile[m], true))
+				{
+					aclose(readfile[m]);
+					readopen[m] = closed;
+					if (alignstate != 1000000)
+					{
+						runaway(defining);
+						error("File ended within "+esc("read"), "This \\read has unbalanced braces.");
+						alignstate = 1000000;
+					}
+				}
+		limit = last;
+		if (end_line_char_inactive())
+			limit--;
+		else
+			buffer[limit] = end_line_char();
+		First = limit+1;
+		Loc = 0/*Start*/;
+		state = new_line;
+		while (true)
+		{
+			Token t;
+			t = gettoken(defining);
+			if (t.tok == 0)
+				break;
+			if (alignstate < 1000000)
+			{
+				do
+					t = gettoken(defining);
+				while (t.tok);
+				alignstate = 1000000;
+				break;
+			}
+			defRef.list.push_back(t.tok);
+		}
+		endfilereading();
+	} while (alignstate != 1000000);
+	alignstate = s;
+	return &defRef;
+}
+
+static void alterprevgraf(char status)
 {
 	nest.back() = curlist;
 	auto p = nest.size()-1;
 	while (abs(nest[p].modefield) != vmode)
 		p--;
-	scanoptionalequals(scannerstatus);
-	int val = scanint(scannerstatus);
+	scanoptionalequals(status);
+	int val = scanint(status);
 	if (val < 0)
 		interror(val, " Bad "+esc("prevgraf"), "I allow only nonnegative values here.");
 	else
@@ -29,18 +113,18 @@ static void alterprevgraf(void)
 	}
 }
 
-static void alteraux(Token t)
+static void alteraux(char status, Token t)
 {
 	if (t.chr != abs(mode))
 		reportillegalcase(t);
 	else
 	{
-		scanoptionalequals(scannerstatus);
+		scanoptionalequals(status);
 		if (t.chr == vmode)
-			prev_depth = scan_normal_dimen(scannerstatus);
+			prev_depth = scan_normal_dimen(status);
 		else
 		{
-			int val = scanint(scannerstatus);
+			int val = scanint(status);
 			if (val <= 0 || val > 32767)
 				interror(val, "Bad space factor", "I allow only values in the range 1..32767 here.");
 			else
@@ -49,14 +133,14 @@ static void alteraux(Token t)
 	}
 }
 
-void prefixedcommand(Token t, bool setboxallowed) 
+void prefixedcommand(char &status, Token t, bool setboxallowed) 
 {
 	smallnumber pfx = noPrefix;
 	while (t.cmd == prefix)
 	{
 		if (pfx&t.chr == 0)
 			pfx += t.chr;
-		t = getXTokenSkipSpaceAndEscape(scannerstatus);
+		t = getXTokenSkipSpaceAndEscape(status);
 		if (t.cmd <= max_non_prefixed_command)
 		{
 			backerror(t, "You can't use a prefix with `"+cmdchr(t)+"\'", "I'll pretend you didn't say \\long or \\outer or \\global.");
@@ -79,30 +163,30 @@ void prefixedcommand(Token t, bool setboxallowed)
 		{
 			if ((t.chr&longPrefix) && pfx < globalPrefix && global_defs() >= 0)
 				pfx += globalPrefix;
-			auto p = getrtoken();
+			auto p = getrtoken(status);
 			Token tk;
 			tk.cs = p;
-			scanMacroToks(t.chr >= 2, tk);
+			scanMacroToks(status, t.chr >= 2, tk);
 			eqtb_cs[p-hash_base].define(pfx, call+pfx%globalPrefix, &defRef); // pfx%globalPrefix = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		}
 		case let:
 		{
-			auto p = getrtoken();
+			auto p = getrtoken(status);
 			if (t.chr == 0)
 			{
-				t = getXTokenSkipSpace(scannerstatus);
+				t = getXTokenSkipSpace(status);
 				if (t.tok == other_token+'=')
 				{
-					t = gettoken(scannerstatus);
+					t = gettoken(status);
 					if (t.cmd == spacer)
-						t = gettoken(scannerstatus);
+						t = gettoken(status);
 				}
 			}
 			else
 			{
-				auto tt = gettoken(scannerstatus);
-				t = gettoken(scannerstatus);
+				auto tt = gettoken(status);
+				t = gettoken(status);
 				backinput(t);
 				backinput(tt);
 			}
@@ -113,52 +197,53 @@ void prefixedcommand(Token t, bool setboxallowed)
 		}
 		case shorthand_def:
 		{
-			auto p = getrtoken();
+			auto p = getrtoken(status);
 			eqtb_cs[p-hash_base].define(pfx, relax, 256);
-			scanoptionalequals(scannerstatus);
+			scanoptionalequals(status);
 			switch (t.chr)
 			{
 				case char_def_code:
-					eqtb_cs[p-hash_base].define(pfx, char_given, scancharnum(scannerstatus));
+					eqtb_cs[p-hash_base].define(pfx, char_given, scancharnum(status));
 					break;
 				case math_char_def_code:
-					eqtb_cs[p-hash_base].define(pfx, math_given, scanfifteenbitint(scannerstatus));
+					eqtb_cs[p-hash_base].define(pfx, math_given, scanfifteenbitint(status));
 					break;
 				case count_def_code: 
-					eqtb_cs[p-hash_base].define(pfx, assign_int, count_base+scaneightbitint(scannerstatus));
+					eqtb_cs[p-hash_base].define(pfx, assign_int, count_base+scaneightbitint(status));
 					break;
 				case dimen_def_code: 
-					eqtb_cs[p-hash_base].define(pfx, assign_dimen, scaled_base+scaneightbitint(scannerstatus));
+					eqtb_cs[p-hash_base].define(pfx, assign_dimen, scaled_base+scaneightbitint(status));
 					break;
 				case skip_def_code:
-					eqtb_cs[p-hash_base].define(pfx, assign_glue, skip_base+scaneightbitint(scannerstatus));
+					eqtb_cs[p-hash_base].define(pfx, assign_glue, skip_base+scaneightbitint(status));
 					break;
 				case mu_skip_def_code: 
-					eqtb_cs[p-hash_base].define(pfx, assign_mu_glue, mu_skip_base+scaneightbitint(scannerstatus));
+					eqtb_cs[p-hash_base].define(pfx, assign_mu_glue, mu_skip_base+scaneightbitint(status));
 					break;
 				case toks_def_code: 
-					eqtb_cs[p-hash_base].define(pfx, assign_toks, toks_base+scaneightbitint(scannerstatus));
+					eqtb_cs[p-hash_base].define(pfx, assign_toks, toks_base+scaneightbitint(status));
 			}
 			break;
 		}
 		case read_to_cs:
 		{
-			auto n = scanint(scannerstatus);
-			if (!scankeyword(scannerstatus, "to")) 
+			auto n = scanint(status);
+			if (!scankeyword(status, "to")) 
 				error("Missing `to' inserted", "You should have said `\\read<number> to \\cs'.\nI'm going to look for the \\cs now.");
-			auto p = getrtoken();
+			auto p = getrtoken(status);
 			eqtb_cs[p-hash_base].define(pfx, call, readtoks(n, p));
+			status = normal;
 			break;
 		}
 		case toks_register:
 		case assign_toks:
 		{
 			auto old = t.cs;
-			auto p = t.cmd == toks_register ? toks_base+scaneightbitint(scannerstatus) : t.chr;
-			scanoptionalequals(scannerstatus);
-			t = getXTokenSkipSpaceAndEscape(scannerstatus);
+			auto p = t.cmd == toks_register ? toks_base+scaneightbitint(status) : t.chr;
+			scanoptionalequals(status);
+			t = getXTokenSkipSpaceAndEscape(status);
 			if (t.cmd == toks_register)
-				t = Token(assign_toks, toks_base+scaneightbitint(scannerstatus));
+				t = Token(assign_toks, toks_base+scaneightbitint(status));
 			if (t.cmd == assign_toks)
 			{
 				if (eqtb_local[t.chr-local_base].index == nullptr)
@@ -174,7 +259,7 @@ void prefixedcommand(Token t, bool setboxallowed)
 			backinput(t);
 			Token tk;
 			tk.cs = old;
-			scanNonMacroToks(tk);
+			scanNonMacroToks(status, tk);
 			if (defRef.list.size() == 0)
 			{
 				eqtb_local[p-local_base].define(pfx, undefined_cs, nullptr);
@@ -192,18 +277,18 @@ void prefixedcommand(Token t, bool setboxallowed)
 			break;
 		}
 		case assign_int:
-			scanoptionalequals(scannerstatus);
-			eqtb_int[t.chr-int_base].word_define(pfx, scanint(scannerstatus));
+			scanoptionalequals(status);
+			eqtb_int[t.chr-int_base].word_define(pfx, scanint(status));
 			break;
 		case assign_dimen:
-			scanoptionalequals(scannerstatus);
-			eqtb_dimen[t.chr-dimen_base].word_define(pfx, scandimen(scannerstatus, false, false, false));
+			scanoptionalequals(status);
+			eqtb_dimen[t.chr-dimen_base].word_define(pfx, scandimen(status, false, false, false));
 			break;
 		case assign_glue:
 		case assign_mu_glue:
 		{
-			scanoptionalequals(scannerstatus);
-			auto g = trapzeroglue(scanglue(scannerstatus, t.cmd == assign_mu_glue ? mu_val : glue_val));
+			scanoptionalequals(status);
+			auto g = trapzeroglue(scanglue(status, t.cmd == assign_mu_glue ? mu_val : glue_val));
 			eqtb_glue[t.chr-glue_base].define(pfx, glue_ref, g);
 			break;
 		}
@@ -224,9 +309,9 @@ void prefixedcommand(Token t, bool setboxallowed)
 				case del_code_base: // \delcode
 					maxValue = (1<<24)-1;
 			}
-			auto p = t.chr+scancharnum(scannerstatus);
-			scanoptionalequals(scannerstatus);
-			val = scanint(scannerstatus);
+			auto p = t.chr+scancharnum(status);
+			scanoptionalequals(status);
+			val = scanint(status);
 			if ((val < 0 && t.chr != del_code_base) || val > maxValue)
 			{
 				error("Invalid code ("+std::to_string(val)+(t.chr != del_code_base ? "), should be in the range 0.." : "//), should be at most ")+std::to_string(maxValue), "I'm going to use 0 instead of that illegal code value.");
@@ -240,76 +325,76 @@ void prefixedcommand(Token t, bool setboxallowed)
 		}
 		case def_family:
 		{	
-			auto p = t.chr+scanfourbitint(scannerstatus);
-			scanoptionalequals(scannerstatus);
-			eqtb_local[p-local_base].define(pfx, data, scanfontident(scannerstatus));
+			auto p = t.chr+scanfourbitint(status);
+			scanoptionalequals(status);
+			eqtb_local[p-local_base].define(pfx, data, scanfontident(status));
 			break;
 		}
 		case register_:
 		case advance:
 		case multiply:
 		case divide: 
-			doregistercommand(pfx, t);
+			doregistercommand(status, pfx, t);
 			break;
 		case set_box:
 		{
-			auto n = scaneightbitint(scannerstatus);
+			auto n = scaneightbitint(status);
 			if (pfx >= globalPrefix)
 				n += 1<<8;
-			scanoptionalequals(scannerstatus);
+			scanoptionalequals(status);
 			if (setboxallowed)
-				scanbox(scannerstatus, box_flag+n);
+				scanbox(status, box_flag+n);
 			else
 				error("Improper "+esc("setbox"), "Sorry, \\setbox is not allowed after \\halign in a display,\nor between \\accent and an accented character.");
 			break;
 		}
 		case set_aux: 
-			alteraux(t);
+			alteraux(status, t);
 			break;
 		case set_prev_graf: 
-			alterprevgraf();
+			alterprevgraf(status);
 			break;
 		case set_page_dimen: 
-			scanoptionalequals(scannerstatus);
-			pagesofar[t.chr] = scan_normal_dimen(scannerstatus);
+			scanoptionalequals(status);
+			pagesofar[t.chr] = scan_normal_dimen(status);
 			break;
 		case set_page_int: 
-			scanoptionalequals(scannerstatus);
-			(t.chr == 0 ? deadcycles : insertpenalties) = scanint(scannerstatus);
+			scanoptionalequals(status);
+			(t.chr == 0 ? deadcycles : insertpenalties) = scanint(status);
 			break;
 		case set_box_dimen: 
-			alterboxdimen(t.chr);
+			alterboxdimen(status, t.chr);
 			break;
 		case set_shape:
 		{
-			scanoptionalequals(scannerstatus);
-			auto n = scanint(scannerstatus);
-			eqtb_local[par_shape_loc-local_base].define(pfx, shape_ref, n <= 0 ? nullptr : new ShapeNode(n));
+			scanoptionalequals(status);
+			auto n = scanint(status);
+			eqtb_local[par_shape_loc-local_base].define(pfx, shape_ref, n <= 0 ? nullptr : new ShapeNode(status, n));
 			break;
 		}
 		case hyph_data:
 			if (t.chr == 1)
-				newpatterns(t);
+				newpatterns(status, t);
 			else
-				newhyphexceptions();
+				newhyphexceptions(status);
 			break;
 		case assign_font_dimen:
 		{
 			fontindex k;
-			k = findfontdimen(true);
-			scanoptionalequals(scannerstatus);
-			Font::info[k].int_ = scan_normal_dimen(scannerstatus);
+			k = findfontdimen(status, true);
+			scanoptionalequals(status);
+			Font::info[k].int_ = scan_normal_dimen(status);
 			break;
 		}
 		case assign_font_int:
 		{
-			auto f = scanfontident(scannerstatus);
-			scanoptionalequals(scannerstatus);
-			(t.chr == 0 ? fonts[f].hyphenchar : fonts[f].skewchar) = scanint(scannerstatus);
+			auto f = scanfontident(status);
+			scanoptionalequals(status);
+			(t.chr == 0 ? fonts[f].hyphenchar : fonts[f].skewchar) = scanint(status);
 			break;
 		}
 		case def_font: 
-			newfont(pfx);
+			newfont(status, pfx);
 			break;
 		case set_interaction: 
 			newinteraction(t);

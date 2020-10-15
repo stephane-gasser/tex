@@ -103,7 +103,7 @@ static void checkImplicitBoundary(void)
 }
 
 //! Append character |cur_chr| and the following characters (if~any) to the current hlist in the current font; |goto reswitch| when a non-character has been fetched
-void main_loop(Token &t) //t: char_num / letter / other_char / char_given
+void main_loop(char status, Token &t) //t: char_num / letter / other_char / char_given
 {
 	adjust_space_factor(t.chr);
 	bchar = cur_font().bchar;
@@ -214,14 +214,14 @@ void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 					//!  otherwise move the cursor one step to the right and |goto main_lig_loop|
 					tail_append(ligstack); [[fallthrough]];
 				case lookahead: //! Look ahead for another character, or leave |lig_stack| empty if there's none there
-					t = getnext(scannerstatus);
+					t = getnext(status);
 					if (t.cmd != letter && t.cmd != other_char && t.cmd != char_given)
 					{
-						t = xtoken(t);
+						t = xtoken(status, t);
 						switch (t.cmd)
 						{
 							case char_num:
-								t.chr = scancharnum(scannerstatus);
+								t.chr = scancharnum(status);
 								break;
 							case letter:
 							case other_char:
@@ -267,12 +267,11 @@ void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 		{
 			charwarning(cur_font(), t.chr);
 			delete ligstack;
-			t = getxtoken(scannerstatus); // big_switch
-			return;
+			t = getxtoken(status); // big_switch
 		}
 }
 
-[[nodiscard]] Token append_normal_space(void)
+[[nodiscard]] Token append_normal_space(char status)
 {
 	if (space_skip() == zero_glue)
 	{
@@ -289,7 +288,7 @@ void main_loop(Token &t) //t: char_num / letter / other_char / char_given
 	}
 	else
 		tail_append(new GlueNode(space_skip()));
-	return getxtoken(scannerstatus);
+	return getxtoken(status);
 }
 
 //! Handle spaces when <em> space_factor != 1000 </em>.

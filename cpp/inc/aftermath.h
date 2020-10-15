@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void aftermath(void);
+void aftermath(char);
 
 #endif

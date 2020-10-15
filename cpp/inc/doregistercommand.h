@@ -4,6 +4,6 @@
 #include "globals.h"
 #include "token.h"
 
-void doregistercommand(smallnumber, Token);
+void doregistercommand(char, smallnumber, Token);
 
 #endif

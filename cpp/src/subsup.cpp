@@ -8,7 +8,7 @@
 
 static bool scripts_allowed(LinkedNode *tail) { return tail->type >= ord_noad && tail->type < left_noad; }
 
-void subsup(eightbits cmd) //sub_mark || sup_mark
+void subsup(char status, eightbits cmd) //sub_mark || sup_mark
 {
 	smallnumber t = 0;
 	NoadContent *p = nullptr;
@@ -29,5 +29,5 @@ void subsup(eightbits cmd) //sub_mark || sup_mark
 			else
 				error("Double subscript", "I treat `x_1_2' essentially like `x_1{}_2'.");
 	}
-	p->scan(scannerstatus);
+	p->scan(status);
 }

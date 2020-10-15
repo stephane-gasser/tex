@@ -4,7 +4,7 @@
 #include "globals.h"
 #include "token.h"
 
-void mathleft(Token);
-void mathright(Token);
+void mathleft(char, Token);
+void mathright(char, Token);
 
 #endif

@@ -4,6 +4,6 @@
 #include "globals.h"
 #include "token.h"
 
-void mathfraction(halfword, Token);
+void mathfraction(char, halfword, Token);
 
 #endif

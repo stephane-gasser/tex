@@ -456,12 +456,12 @@ void hyphenate(LinkedNode *curp, std::basic_string<halfword> word)
 }
 
 //! initializes the hyphenation pattern data
-void newpatterns(Token t)
+void newpatterns(char status, Token t)
 {
 	if (!trienotready)
 	{
 		error("Too late for "+esc("patterns"), "All patterns must be given before typesetting begins.");
-		scanNonMacroToks(t);
+		scanNonMacroToks(status, t);
 		defRef.list.clear();
 		return;
 	}
@@ -469,12 +469,12 @@ void newpatterns(Token t)
 	curlang = cur_fam();
 	if (curlang <= 0 || curlang > 255)
 			curlang = 0;
-	scanleftbrace(scannerstatus); //a left brace must follow \\patterns
+	scanleftbrace(status); //a left brace must follow \\patterns
 	hyf[0] = 0;
 	std::basic_string<halfword> pattern;
 	for (bool keepIn = true, digitsensed /*should the next digit be treated as a letter?*/ = false; keepIn;)
 	{
-		t = getxtoken(scannerstatus);
+		t = getxtoken(status);
 		switch (t.cmd)
 		{
 			case letter:
@@ -524,19 +524,19 @@ void newpatterns(Token t)
 	}
 }
 
-void newhyphexceptions(void)
+void newhyphexceptions(char status)
 {
-	scanleftbrace(scannerstatus);
+	scanleftbrace(status);
 	curlang = cur_fam();
 	if (curlang < 0 || curlang > 255)
 		curlang = 0;
 	HyphenNode *p = nullptr;
 	std::basic_string<halfword> exception;
-	for (auto t = getxtoken(scannerstatus); true; t = getxtoken(scannerstatus))
+	for (auto t = getxtoken(status); true; t = getxtoken(status))
 		switch (t.cmd)
 		{
 			case char_num:
-				t.chr = scancharnum(scannerstatus); [[fallthrough]];
+				t.chr = scancharnum(status); [[fallthrough]];
 			case letter:
 			case other_char:
 			case char_given:

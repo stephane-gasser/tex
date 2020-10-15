@@ -42,7 +42,7 @@ inline int maxbufstack = 0; // 0..bufsize
 inline int line = 0;
 inline std::string formatident = " (INITEX)";
 
-void scanfilename(void);
+void scanfilename(char);
 std::string packfilename(const std::string &, const std::string &, const std::string &);
 std::string pack_cur_name(void);
 std::string packjobname(const std::string &);
@@ -60,7 +60,7 @@ std::string promptfilename(const std::string &, const std::string &);
 void beginfilereading(void);
 void endfilereading(void);
 alphafile& cur_file(void);
-void openorclosein(halfword);
+void openorclosein(char, halfword);
 void openlogfile(void);
 void terminput(void);
 bool inputln(std::istream& f, bool bypasseoln);

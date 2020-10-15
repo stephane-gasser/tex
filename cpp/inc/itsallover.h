@@ -4,6 +4,6 @@
 #include "globals.h"
 #include "token.h"
 
-bool itsallover(Token);
+bool itsallover(char, Token);
 
 #endif

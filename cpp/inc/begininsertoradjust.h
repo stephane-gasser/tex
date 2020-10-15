@@ -5,7 +5,7 @@
 #include "token.h"
 
 
-void beginInsert(void);
-void beginAdjust(void);
+void beginInsert(char);
+void beginAdjust(char);
 
 #endif

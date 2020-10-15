@@ -8,12 +8,12 @@
 #include "police.h"
 #include "getnext.h"
 
-void initmath(void)
+void initmath(char status)
 {
 	scaled w, l, s;
 	int n;
 	scaled v, d;
-	auto t = gettoken(scannerstatus);
+	auto t = gettoken(status);
 	if (t.cmd == math_shift && mode > 0)
 	{
 		if (head == tail)
@@ -146,7 +146,7 @@ void initmath(void)
 		if (every_display())
 			beginTokenListAboveMacro(every_display(), every_display_text);
 		if (nest.size() == 2)
-			buildpage();
+			buildpage(status);
 	}
 	else
 	{

@@ -30,6 +30,6 @@ void print(const std::string &);
 void println(void);
 void print_err(const std::string &);
 void showcurcmdchr(Token);
-void showwhatever(Token);
+void showwhatever(char, Token);
 
 #endif

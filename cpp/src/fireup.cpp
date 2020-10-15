@@ -14,7 +14,7 @@
 #include "fichier.h"
 #include "getnext.h"
 
-void fireup(LinkedNode *c)
+void fireup(char status, LinkedNode *c)
 {
 	if (bestpagebreak->type == penalty_node) //12
 	{
@@ -198,7 +198,7 @@ void fireup(LinkedNode *c)
 			beginTokenListAboveMacro(output_routine(), output_text);
 			newsavelevel(output_group);
 			normalparagraph();
-			scanleftbrace(scannerstatus);
+			scanleftbrace(status);
 			return;
 		}
 	if (page_head->link)

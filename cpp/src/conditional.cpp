@@ -9,9 +9,9 @@
 #include "fichier.h"
 #include "etat.h"
 
-[[nodiscard]] static Token get_x_token_or_active_char(void)
+[[nodiscard]] static Token get_x_token_or_active_char(char status)
 { 
-	auto t = getxtoken(scannerstatus); 
+	auto t = getxtoken(status); 
 	if (t.cmd == relax && t.chr == no_expand_flag)
 	{
 		t.cmd = active_char; 
@@ -41,7 +41,7 @@ static void changeiflimit(smallnumber l, ConditionalNode *p)
 	}
 }
 
-void conditional(Token t)
+void conditional(char status, Token t)
 {
 	auto p = new ConditionalNode(curif);
 	p->link = condptr; 
@@ -59,9 +59,9 @@ void conditional(Token t)
 	{
 		case if_char_code:
 		{
-			t = get_x_token_or_active_char();
+			t = get_x_token_or_active_char(status);
 			int n = t.cmd > active_char || t.chr > 255 ? 256 : t.chr;
-			t = get_x_token_or_active_char();
+			t = get_x_token_or_active_char(status);
 			if (t.cmd > active_char || t.chr > 255)
 			{
 				t.cmd = relax;
@@ -72,9 +72,9 @@ void conditional(Token t)
 		}
 		case if_cat_code:
 		{
-			t = get_x_token_or_active_char();
+			t = get_x_token_or_active_char(status);
 			int m = t.cmd > active_char || t.chr > 255 ? relax : t.cmd;
-			t = get_x_token_or_active_char();
+			t = get_x_token_or_active_char(status);
 			if (t.cmd > active_char || t.chr > 255)
 			{
 				t.cmd = relax;
@@ -85,8 +85,8 @@ void conditional(Token t)
 		}
 		case if_int_code:
 		{
-			int n = scanint(scannerstatus);
-			t = getXTokenSkipSpace(scannerstatus);
+			int n = scanint(status);
+			t = getXTokenSkipSpace(status);
 			if (t.tok >= other_token+'<' && t.tok <= other_token+'>')
 				r = t.tok-other_token;
 			else
@@ -97,20 +97,20 @@ void conditional(Token t)
 			switch (r)
 			{
 				case '<': 
-					b = n < scanint(scannerstatus);
+					b = n < scanint(status);
 					break;
 				case '=': 
-					b = n == scanint(scannerstatus);
+					b = n == scanint(status);
 					break;
 				case '>': 
-					b = n > scanint(scannerstatus);
+					b = n > scanint(status);
 			}
 			break;
 		}
 		case if_dim_code:
 		{
-			int n = scan_normal_dimen(scannerstatus);
-			t = getXTokenSkipSpace(scannerstatus);
+			int n = scan_normal_dimen(status);
+			t = getXTokenSkipSpace(status);
 			if (t.tok >= other_token+'<' && t.tok <= other_token+'>')
 				r = t.tok-other_token;
 			else
@@ -121,18 +121,18 @@ void conditional(Token t)
 			switch (r)
 			{
 				case '<': 
-					b = n < scan_normal_dimen(scannerstatus);
+					b = n < scan_normal_dimen(status);
 					break;
 				case '=': 
-					b = n == scan_normal_dimen(scannerstatus);
+					b = n == scan_normal_dimen(status);
 					break;
 				case '>': 
-					b = n > scan_normal_dimen(scannerstatus);
+					b = n > scan_normal_dimen(status);
 			}
 			break;
 		}
 		case if_odd_code:
-			b = scanint(scannerstatus)%2;
+			b = scanint(status)%2;
 			break;
 		case if_vmode_code: 
 			b = abs(mode) == vmode;
@@ -147,11 +147,11 @@ void conditional(Token t)
 			b = mode < 0;
 			break;
 		case if_void_code:
-			b = box(scaneightbitint(scannerstatus)) == nullptr;
+			b = box(scaneightbitint(status)) == nullptr;
 			break;
 		case if_hbox_code:
 		{
-			auto p = box(scaneightbitint(scannerstatus));
+			auto p = box(scaneightbitint(status));
 			if (p == nullptr)
 				b = false;
 			else 
@@ -160,7 +160,7 @@ void conditional(Token t)
 		}
 		case if_vbox_code:
 		{
-			auto p = box(scaneightbitint(scannerstatus));
+			auto p = box(scaneightbitint(status));
 			if (p == nullptr)
 				b = false;
 			else 
@@ -200,7 +200,7 @@ void conditional(Token t)
 			break;
 		}
 		case if_eof_code:
-			b = readopen[scanfourbitint(scannerstatus)] == closed;
+			b = readopen[scanfourbitint(status)] == closed;
 			break;
 		case if_true_code: 
 			b = true;
@@ -210,7 +210,7 @@ void conditional(Token t)
 			break;
 		case if_case_code:
 		{
-			int n = scanint(scannerstatus);
+			int n = scanint(status);
 			if (tracing_commands() > 1)
 				diagnostic("{case "+std::to_string(n)+"}");
 			while (n)

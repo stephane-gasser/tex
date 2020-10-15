@@ -8,14 +8,13 @@
 #include "etat.h"
 #include "buildpage.h"
 #include "lecture.h"
-#include "buildpage.h"
 #include "builddiscretionary.h"
 #include "noeud.h"
 #include "buildchoices.h"
 #include "formule.h"
 #include "getnext.h"
 
-void handlerightbrace(Token t, AlignRecordNode* &loop)
+void handlerightbrace(char status, Token t, AlignRecordNode* &loop)
 {
 	switch (curgroup)
 	{
@@ -31,19 +30,19 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 			extrarightbrace();
 			break;
 		case hbox_group: 
-			package(0, t);
+			package(status, box_code, t);
 			break;
 		case adjusted_hbox_group:
 			adjusttail = adjust_head;
-			package(0, t);
+			package(status, box_code, t);
 			break;
 		case vbox_group:
 			endgraf();
-			package(0, t);
+			package(status, box_code, t);
 			break;
 		case vtop_group:
 			endgraf();
-			package(vtop_code, t);
+			package(status, vtop_code, t);
 			break;
 		case insert_group:
 		{
@@ -77,7 +76,7 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 			}
 			delete p;
 			if (nest.size() == 1)
-				buildpage();
+				buildpage(status);
 			break;
 		}
 		case output_group:
@@ -85,7 +84,7 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 			{
 				error("Unbalanced output routine", "Your sneaky output routine has problematic {'s and/or }'s.\nI can't handle that very well; good luck.");
 				do
-					t = gettoken(scannerstatus);
+					t = gettoken(status);
 				while (loc);
 			}
 			endtokenlist();
@@ -110,11 +109,11 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 				pagetail = page_head;
 			}
 			popnest();
-			buildpage();
+			buildpage(status);
 			break;
 		case disc_group: 
 			builddiscretionary();
-			scanleftbrace(scannerstatus);
+			scanleftbrace(status);
 			break;
 		case align_group:
 			backinput(t);
@@ -124,7 +123,7 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 		case no_align_group:
 			endgraf();
 			unsave();
-			alignpeek(loop);
+			alignpeek(status, loop);
 			break;
 		case vcenter_group:
 		{
@@ -144,7 +143,7 @@ void handlerightbrace(Token t, AlignRecordNode* &loop)
 		}
 		case math_choice_group:
 			buildchoices();
-			scanleftbrace(scannerstatus);
+			scanleftbrace(status);
 			break;
 		case math_group:
 		{

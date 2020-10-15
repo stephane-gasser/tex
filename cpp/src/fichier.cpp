@@ -117,9 +117,9 @@ void openlogfile(void)
 	selector = oldsetting+2;
 }
 
-void openorclosein(halfword c)
+void openorclosein(char status, halfword c)
 {
-	auto n = scanfourbitint(scannerstatus);
+	auto n = scanfourbitint(status);
 	if (readopen[n] != closed)
 	{
 		aclose(readfile[n]);
@@ -127,8 +127,8 @@ void openorclosein(halfword c)
 	}
 	if (c)
 	{
-		scanoptionalequals(scannerstatus);
-		scanfilename();
+		scanoptionalequals(status);
+		scanfilename(status);
 		if (curext == "") 
 			curext = ".tex";
 		if (aopenin(readfile[n], pack_cur_name()))
@@ -243,11 +243,11 @@ std::string promptfilename(const std::string &s, const std::string &e)
 	return nameoffile;
 }
 
-void scanfilename(void)
+void scanfilename(char status)
 {
 	nameinprogress = true;
 	beginname();
-	for (auto t = getXTokenSkipSpace(scannerstatus); true; t = getxtoken(scannerstatus))
+	for (auto t = getXTokenSkipSpace(status); true; t = getxtoken(status))
 	{
 		if (t.cmd > other_char || t.chr > 255)
 		{

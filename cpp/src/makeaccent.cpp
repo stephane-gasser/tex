@@ -8,15 +8,15 @@
 #include "getnext.h"
 #include <cmath>
 
-void makeaccent(Token t)
+void makeaccent(char status)
 {
-	if (auto accent = newcharacter(curFontNum(), scancharnum(scannerstatus)); accent)
+	if (auto accent = newcharacter(curFontNum(), scancharnum(status)); accent)
 	{
-		doassignments();
+		auto t = doassignments(status);
 		switch (t.cmd)
 		{
 			case char_num:
-				t.chr = scancharnum(scannerstatus); [[fallthrough]];
+				t.chr = scancharnum(status); [[fallthrough]];
 			case letter:
 			case other_char:
 			case char_given:

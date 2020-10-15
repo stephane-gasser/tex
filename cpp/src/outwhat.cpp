@@ -11,7 +11,7 @@
 
 constexpr int end_write_token = cs_token_flag+end_write;
 
-static void writeout(NotOpenWriteWhatsitNode *p)
+static void writeout(char status, NotOpenWriteWhatsitNode *p)
 {
 	TokenList head;
 	head.list.push_back(right_brace_token+'}');
@@ -25,13 +25,13 @@ static void writeout(NotOpenWriteWhatsitNode *p)
 	mode = 0;
 	Token t;
 	t.cs = writeloc;
-	scanNonMacroToksExpand(t);
-	t = gettoken(scannerstatus);
+	scanNonMacroToksExpand(status, t);
+	t = gettoken(status);
 	if (t.tok != end_write_token)
 	{
 		error("Unbalanced write command", "On this page there's a \\write with fewer real {'s than }'s.\nI can't handle that very well; good luck.");
 		do
-			t = gettoken(scannerstatus);
+			t = gettoken(status);
 		while (t.tok != end_write_token);
 	}
 	mode = oldmode;
@@ -86,12 +86,12 @@ void OpenWriteWhatsitNode::out(void)
 	}
 }
 
-void NotOpenWriteWhatsitNode::out(void)
+void NotOpenWriteWhatsitNode::out(char status)
 {
 	switch (subtype)
 	{
 		case write_node:
-			writeout(this);
+			writeout(status, this);
 			break;
 		case close_node:
 			if (writeopen[write_stream])

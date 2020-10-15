@@ -5,13 +5,14 @@
 #include "erreur.h"
 #include "equivalent.h"
 #include "lecture.h"
+#include "getnext.h"
 #include <iostream>
 
 static bool longhelpseen = false;
 
-void issuemessage(Token t)
+void issuemessage(char status, Token t)
 {
-	scanNonMacroToksExpand(t);
+	scanNonMacroToksExpand(status, t);
 	auto s = tokenshow(&defRef);
 	defRef.list.clear();
 	if (t.chr == 0)

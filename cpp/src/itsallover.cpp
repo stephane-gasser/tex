@@ -4,8 +4,9 @@
 #include "buildpage.h"
 #include "equivalent.h"
 #include "erreur.h"
+#include "getnext.h"
 
-bool itsallover(Token t)
+bool itsallover(char status, Token t)
 {
 	if (privileged(t))
 	{
@@ -17,7 +18,7 @@ bool itsallover(Token t)
 		tail_append(b);
 		tail_append(new GlueNode(fill_glue));
 		tail_append(new PenaltyNode(null_flag));
-		buildpage();
+		buildpage(status);
 	}
 	return false;
 }

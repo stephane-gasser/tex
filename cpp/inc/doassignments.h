@@ -4,6 +4,6 @@
 #include "globals.h"
 #include "token.h"
 
-Token doassignments(void);
+Token doassignments(char);
 
 #endif

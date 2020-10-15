@@ -7,7 +7,7 @@
 #include "cesure.h"
 #include "getnext.h"
 
-void resumeafterdisplay(Token t)
+void resumeafterdisplay(char status, Token t)
 {
 	if (curgroup != math_shift_group)
 		confusion("display");
@@ -19,9 +19,9 @@ void resumeafterdisplay(Token t)
 	set_cur_lang();
 	clang = curlang;
 	prev_graf = (((left_hyphen_min()<<6)+right_hyphen_min())<<16)+curlang;
-	t = getxtoken(scannerstatus);
+	t = getxtoken(status);
 	if (t.cmd != spacer)
 		backinput(t);
 	if (nest.size() == 2)
-		buildpage();
+		buildpage(status);
 }

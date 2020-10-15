@@ -56,9 +56,9 @@ class Token
 
 void strtoks(const std::string &);
 
-void scanMacroToks(bool, Token);
-void scanNonMacroToks(Token);
-void scanNonMacroToksExpand(Token);
+void scanMacroToks(char&, bool, Token);
+void scanNonMacroToks(char&, Token);
+void scanNonMacroToksExpand(char&, Token);
 
 class TokenList : public AnyNode
 {

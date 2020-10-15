@@ -18,7 +18,7 @@ constexpr int total_mathsy_params = 22;
 constexpr int total_mathex_params = 13;
 
 //! Action procedure for use in maincontrol()
-void aftermath(void)
+void aftermath(char status)
 {
 	bool danger = false; // not enough symbol fonts are present
 	if (fonts[fam_fnt(2+text_size)].params < total_mathsy_params 
@@ -45,7 +45,7 @@ void aftermath(void)
 	Token t;
 	if (mode == -m)
 	{
-		t = getxtoken(scannerstatus);
+		t = getxtoken(status);
 		backerror(t, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		curmlist = p;
 		curstyle = 2;
@@ -96,7 +96,7 @@ void aftermath(void)
 	{
 		if (a == nullptr)
 		{
-			t = getxtoken(scannerstatus);
+			t = getxtoken(status);
 			if (t.cmd != math_shift)
 				backerror(t, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
@@ -198,6 +198,6 @@ void aftermath(void)
 		tail_append(new PenaltyNode(post_display_penalty()));
 		if (g2 > 0)
 			tail_append(new GlueNode(g2));
-		resumeafterdisplay(t);
+		resumeafterdisplay(status, t);
 	}
 }

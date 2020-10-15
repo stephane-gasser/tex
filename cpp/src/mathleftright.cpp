@@ -9,26 +9,26 @@
 #include "etat.h"
 #include "getnext.h"
 
-void mathleft(Token t)
+void mathleft(char status, Token t)
 {
 	pushmath(math_left_group);
-	tail_append(new LeftRightNoad(t));
+	tail_append(new LeftRightNoad(status, t));
 }
 
-void mathright(Token t)
+void mathright(char status, Token t)
 {
 	switch (curgroup)
 	{
 		case math_shift_group:
 		{
 			Delimiter dummy;
-			dummy.scan(scannerstatus, false, t);
+			dummy.scan(status, false, t);
 			error("Extra "+esc("right"), "I'm ignoring a \\right that had no matching \\left.");
 			break;
 		}
 		case math_left_group:
 		{
-			auto p = finmlist(new LeftRightNoad(t));
+			auto p = finmlist(new LeftRightNoad(status, t));
 			unsave();
 			auto n = new Noad(inner_noad);
 			n->nucleus.math_type = sub_mlist;

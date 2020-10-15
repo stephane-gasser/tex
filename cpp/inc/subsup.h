@@ -3,6 +3,6 @@
 
 #include "globals.h"
 
-void subsup(eightbits);
+void subsup(char, eightbits);
 
 #endif

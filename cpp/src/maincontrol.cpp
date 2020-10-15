@@ -36,7 +36,7 @@
 #include "mainloop.h"
 #include "initprim.h"
 
-static void setmathchar(int c, Token t)
+static void setmathchar(char status, int c, Token t)
 {
 	auto type = c>>12;
 	if (type >= 8)
@@ -44,7 +44,7 @@ static void setmathchar(int c, Token t)
 		t.cs = t.chr+active_base;
 		t.cmd = eqtb_active[t.cs].type;
 		t.chr = eqtb_active[t.cs].int_;
-		backinput(xtoken(t));
+		backinput(xtoken(status, t));
 	}
 	else
 		tail_append(new Noad(c&0xFF, c >= var_code && fam_in_range() ? cur_fam() : (c&0xF00)>>8, type));
@@ -57,10 +57,11 @@ static void setmathchar(int c, Token t)
 
 Token maincontrol(void)
 {
+	char status = normal;
 	AlignRecordNode *loop = nullptr;
 	if (every_job())
 		beginTokenListAboveMacro(every_job(), every_job_text);
-	auto t = getxtoken(scannerstatus);
+	auto t = getxtoken(status);
 	while (true)
 	{
 		if (tracing_commands() > 0)
@@ -68,15 +69,15 @@ Token maincontrol(void)
 		switch (abs(mode)+t.cmd)
 		{
 			case hmode+char_num:
-				t.chr = scancharnum(scannerstatus);
+				t.chr = scancharnum(status);
 				[[fallthrough]];
 			case hmode+letter:
 			case hmode+other_char:
 			case hmode+char_given:
-				main_loop(t);
+				main_loop(status, t);
 				continue;
 			case hmode+no_boundary:
-				t = getxtoken(scannerstatus);
+				t = getxtoken(status);
 				if (t.cmd == letter || t.cmd == other_char || t.cmd == char_given || t.cmd == char_num)
 					cancelboundary = true;
 				continue;
@@ -89,7 +90,7 @@ Token maincontrol(void)
 				[[fallthrough]];
 			case hmode+ex_space:
 			case mmode+ex_space: 
-				t = append_normal_space();
+				t = append_normal_space(status);
 				continue;
 			case ANY_MODE(relax):
 			case vmode+spacer:
@@ -97,10 +98,10 @@ Token maincontrol(void)
 			case mmode+no_boundary: 
 				break;
 			case ANY_MODE(ignore_spaces):
-				t = getXTokenSkipSpace(scannerstatus);
+				t = getXTokenSkipSpace(status);
 				continue;
 			case vmode+stop:
-				if (itsallover(t))
+				if (itsallover(status, t))
 					return t;
 				break;
 			case vmode+vmove:
@@ -145,7 +146,7 @@ Token maincontrol(void)
 			case vmode+hrule:
 			case hmode+vrule:
 			case mmode+vrule:
-				tail_append(scanrulespec(scannerstatus, t));
+				tail_append(scanrulespec(status, t));
 				switch (abs(mode))
 				{
 					case vmode:
@@ -159,11 +160,11 @@ Token maincontrol(void)
 			case hmode+hskip:
 			case mmode+hskip:
 			case mmode+mskip: 
-				tail_append(glueToAppend(t.chr));
+				tail_append(glueToAppend(status, t.chr));
 				break;
 			case ANY_MODE(kern):
 			case mmode+mkern: 
-				tail_append(new KernNode(scandimen(scannerstatus, t.chr == mu_glue, false, false), t.chr));
+				tail_append(new KernNode(scandimen(status, t.chr == mu_glue, false, false), t.chr));
 				break;
 			case NON_MATH(left_brace):
 				newsavelevel(simple_group);
@@ -178,21 +179,21 @@ Token maincontrol(void)
 					offsave(t);
 				break;
 			case ANY_MODE(right_brace):
-				handlerightbrace(t, loop);
+				handlerightbrace(status, t, loop);
 				break;
 			case vmode+hmove:
 			case hmode+vmove:
 			case mmode+vmove:
-				scanbox(scannerstatus, t.chr == 0 ? scan_normal_dimen(scannerstatus) : -scan_normal_dimen(scannerstatus));
+				scanbox(status, t.chr == 0 ? scan_normal_dimen(status) : -scan_normal_dimen(status));
 				break;
 			case ANY_MODE(leader_ship):
-				scanbox(scannerstatus, leader_flag-a_leaders+t.chr);
+				scanbox(status, leader_flag-a_leaders+t.chr);
 				break;
 			case ANY_MODE(make_box):
-				beginbox(0, t);
+				beginbox(status, 0, t);
 				break;
 			case vmode+start_par: 
-				newgraf(t.chr > 0);
+				newgraf(status, t.chr > 0);
 				break;
 			case vmode+letter:
 			case vmode+other_char:
@@ -208,7 +209,7 @@ Token maincontrol(void)
 			case vmode+ex_space:
 			case vmode+no_boundary:
 				backinput(t);
-				newgraf(true);
+				newgraf(status, true);
 				break;
 			case hmode+start_par:
 			case mmode+start_par: 
@@ -217,14 +218,14 @@ Token maincontrol(void)
 			case vmode+par_end:
 				normalparagraph();
 				if (mode > 0)
-					buildpage();
+					buildpage(status);
 				break;
 			case hmode+par_end:
 				if (alignstate < 0)
 					offsave(t);
 				endgraf();
 				if (mode == vmode)
-					buildpage();
+					buildpage(status);
 				break;
 			case hmode+stop:
 			case hmode+vskip:
@@ -250,22 +251,22 @@ Token maincontrol(void)
 				}
 				break;
 			case ANY_MODE(insert):
-				beginInsert();
+				beginInsert(status);
 				break;
 			case hmode+vadjust:
 			case mmode+vadjust: 
-				beginAdjust();
+				beginAdjust(status);
 				break;
 			case ANY_MODE(mark):
 			{
-				scanNonMacroToksExpand(t);
+				scanNonMacroToksExpand(status, t);
 				tail_append(new MarkNode);
 				break;
 			}
 			case ANY_MODE(break_penalty):
-				tail_append(new PenaltyNode(scanint(scannerstatus)));
+				tail_append(new PenaltyNode(scanint(status)));
 				if (mode == vmode)
-					buildpage();
+					buildpage(status);
 				break;
 			case ANY_MODE(remove_item):
 				deletelast(t);
@@ -273,7 +274,7 @@ Token maincontrol(void)
 			case vmode+un_vbox:
 			case hmode+un_hbox:
 			case mmode+un_hbox: 
-				unpackage(t.chr);
+				unpackage(status, t.chr);
 				break;
 			case hmode+ital_corr: 
 				appenditaliccorrection();
@@ -283,10 +284,10 @@ Token maincontrol(void)
 				break;
 			case hmode+discretionary:
 			case mmode+discretionary: 
-				appenddiscretionary(t.chr);
+				appenddiscretionary(status, t.chr);
 				break;
 			case hmode+accent: 
-				makeaccent(t);
+				makeaccent(status);
 				break;
 			case ANY_MODE(car_ret):
 			case ANY_MODE(tab_mark):
@@ -322,24 +323,24 @@ Token maincontrol(void)
 				break;
 			case vmode+halign:
 			case hmode+valign: 
-				initalign(t, loop);
+				initalign(status, t, loop);
 				break;
 			case mmode+halign: 
 				if (privileged(t))
 					if (curgroup == math_shift_group)
-						initalign(t, loop);
+						initalign(status, t, loop);
 					else
 						offsave(t);
 				break;
 			case vmode+endv:
 			case hmode+endv: 
-				doendv(t, loop);
+				doendv(status, t, loop);
 				break;
 			case ANY_MODE(end_cs_name):
 				error("Extra "+esc("endcsname"), "I'm ignoring this, since I wasn't doing a \\csname.");
 				break;
 			case hmode+math_shift: 
-				initmath();
+				initmath(status);
 				break;
 			case mmode+eq_no: 
 				if (privileged(t))
@@ -351,42 +352,42 @@ Token maincontrol(void)
 			case mmode+left_brace:
 				tail_append(new Noad);
 				backinput(t);
-				dynamic_cast<Noad*>(tail)->nucleus.scan(scannerstatus);
+				dynamic_cast<Noad*>(tail)->nucleus.scan(status);
 				break;
 			case mmode+char_num:
-				t.chr = scancharnum(scannerstatus); [[fallthrough]];
+				t.chr = scancharnum(status); [[fallthrough]];
 			case mmode+letter:
 			case mmode+other_char:
 			case mmode+char_given: 
-				setmathchar(math_code(t.chr), t);
+				setmathchar(status, math_code(t.chr), t);
 				break;
 			case mmode+math_char_num:
-				setmathchar(scanfifteenbitint(scannerstatus), t);
+				setmathchar(status, scanfifteenbitint(status), t);
 				break;
 			case mmode+math_given: 
-				setmathchar(t.chr, t);
+				setmathchar(status, t.chr, t);
 				break;
 			case mmode+delim_num:
-				setmathchar(scantwentysevenbitint(scannerstatus)>>12, t);
+				setmathchar(status, scantwentysevenbitint(status)>>12, t);
 				break;
 			case mmode+math_comp:
 				tail_append(new Noad(t.chr));
-				dynamic_cast<Noad*>(tail)->nucleus.scan(scannerstatus);
+				dynamic_cast<Noad*>(tail)->nucleus.scan(status);
 				break;
 			case mmode+limit_switch: 
 				mathlimitswitch(t);
 				break;
 			case mmode+radical: 
-				tail_append(new RadicalNoad(t));
+				tail_append(new RadicalNoad(status, t));
 				break;
 			case mmode+accent:
 				error("Please use "+esc("mathaccent")+" for accents in math mode", "I'm changing \\accent to \\mathaccent here; wish me luck.\n(Accents are not the same in formulas as they are in text.)");
 				[[fallthrough]];
 			case mmode+math_accent: 
-				tail_append(new AccentNoad);
+				tail_append(new AccentNoad(status));
 				break;
 			case mmode+vcenter:
-				t = scanspec(scannerstatus, vcenter_group);
+				t = scanspec(status, vcenter_group);
 				normalparagraph();
 				pushnest(); 
 				mode = -vmode;
@@ -405,21 +406,21 @@ Token maincontrol(void)
 				break;
 			}
 			case mmode+math_choice: 
-				appendchoices();
+				appendchoices(status);
 				break;
 			case mmode+sub_mark:
 			case mmode+sup_mark: 
-				subsup(t.cmd);
+				subsup(status, t.cmd);
 				break; 
 			case mmode+above: 
-				mathfraction(t.chr, t);
+				mathfraction(status, t.chr, t);
 				break;
 			case mmode+left_right: 
-				(t.chr == left_noad ? mathleft : mathright)(t);
+				(t.chr == left_noad ? mathleft : mathright)(status, t);
 				break;
 			case mmode+math_shift: 
 				if (curgroup == math_shift_group)
-					aftermath();
+					aftermath(status);
 				else
 					offsave(t);
 				break;
@@ -453,30 +454,30 @@ Token maincontrol(void)
 			case ANY_MODE(set_box):
 			case ANY_MODE(hyph_data):
 			case ANY_MODE(set_interaction):
-				prefixedcommand(t);
+				prefixedcommand(status, t);
 				break;
 			case ANY_MODE(after_assignment):
-				aftertoken = t = gettoken(scannerstatus);
+				aftertoken = t = gettoken(status);
 				break;
 			case ANY_MODE(after_group):
-				t = gettoken(scannerstatus);
+				t = gettoken(status);
 				saveforafter(t.tok);
 				break;
 			case ANY_MODE(in_stream):
-				openorclosein(t.chr);
+				openorclosein(status, t.chr);
 				break;
 			case ANY_MODE(message):
-				issuemessage(t);
+				issuemessage(status, t);
 				break;
 			case ANY_MODE(case_shift):
-				shiftcase(t);
+				shiftcase(status, t);
 				break;
 			case ANY_MODE(xray):
-				showwhatever(t);
+				showwhatever(status, t);
 				break;
 			case ANY_MODE(extension):
-				doextension(t);
+				doextension(status, t);
 		}
-		t = getxtoken(scannerstatus);
+		t = getxtoken(status);
 	}
 }

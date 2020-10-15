@@ -7,32 +7,30 @@
 #include "etat.h"
 #include "getnext.h"
 
-void beginInsert(void)
+void beginInsert(char status)
 {
-	auto val = scaneightbitint(scannerstatus);
+	auto val = scaneightbitint(status);
 	if (val == 255)
 	{
 		error("You can't "+esc("insert")+"255", "I'm changing to \\insert0; box 255 is special.");
 		val = 0;
 	}
-	auto m = new MemoryNode;
-	m->int_ = val;
+	auto m = new MemoryNode(0, 0, val);
 	savestack.push_back(m);
 	newsavelevel(insert_group);
-	scanleftbrace(scannerstatus);
+	scanleftbrace(status);
 	normalparagraph();
 	pushnest();
 	mode = -vmode;
 	prev_depth = ignore_depth;
 }
 
-void beginAdjust(void)
+void beginAdjust(char status)
 {
-	auto m = new MemoryNode;
-	m->int_ = 255;
+	auto m = new MemoryNode(0, 0, 255);
 	savestack.push_back(m);
 	newsavelevel(insert_group);
-	scanleftbrace(scannerstatus);
+	scanleftbrace(status);
 	normalparagraph();
 	pushnest();
 	mode = -vmode;

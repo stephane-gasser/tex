@@ -4,6 +4,6 @@
 #include "globals.h"
 #include "token.h"
 
-void makeaccent(Token);
+void makeaccent(char);
 
 #endif

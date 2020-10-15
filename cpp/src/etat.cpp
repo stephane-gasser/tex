@@ -6,6 +6,7 @@
 #include "equivalent.h"
 #include "alignement.h"
 #include "lecture.h"
+#include "getnext.h"
 #include <iostream>
 
 void popnest(void)
@@ -42,9 +43,9 @@ void push_input(void)
 
 constexpr char TEX_area[] = "TeXinputs:";
 
-void startinput(void)
+void startinput(char status)
 {
-	scanfilename();
+	scanfilename(status);
 	if (curext == "")
 		curext = ".tex";
 	name = pack_cur_name();
