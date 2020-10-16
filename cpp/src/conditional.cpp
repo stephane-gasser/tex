@@ -11,12 +11,9 @@
 
 [[nodiscard]] static Token get_x_token_or_active_char(char status)
 { 
-	auto t = getxtoken(status); 
+	auto t = scanner.getX(status); 
 	if (t.cmd == relax && t.chr == no_expand_flag)
-	{
-		t.cmd = active_char; 
-		t.chr = t.tok-cs_token_flag-active_base; 
-	}
+		return Token(active_char, t.tok-cs_token_flag-active_base);
 	return t;
 }
 
@@ -85,8 +82,8 @@ void conditional(char status, Token t)
 		}
 		case if_int_code:
 		{
-			int n = scanint(status);
-			t = getXTokenSkipSpace(status);
+			int n = scanner.getInt(status);
+			t = scanner.getXSkipSpace(status);
 			if (t.tok >= other_token+'<' && t.tok <= other_token+'>')
 				r = t.tok-other_token;
 			else
@@ -97,20 +94,20 @@ void conditional(char status, Token t)
 			switch (r)
 			{
 				case '<': 
-					b = n < scanint(status);
+					b = n < scanner.getInt(status);
 					break;
 				case '=': 
-					b = n == scanint(status);
+					b = n == scanner.getInt(status);
 					break;
 				case '>': 
-					b = n > scanint(status);
+					b = n > scanner.getInt(status);
 			}
 			break;
 		}
 		case if_dim_code:
 		{
-			int n = scan_normal_dimen(status);
-			t = getXTokenSkipSpace(status);
+			int n = scanner.getNormalDimen(status);
+			t = scanner.getXSkipSpace(status);
 			if (t.tok >= other_token+'<' && t.tok <= other_token+'>')
 				r = t.tok-other_token;
 			else
@@ -121,18 +118,18 @@ void conditional(char status, Token t)
 			switch (r)
 			{
 				case '<': 
-					b = n < scan_normal_dimen(status);
+					b = n < scanner.getNormalDimen(status);
 					break;
 				case '=': 
-					b = n == scan_normal_dimen(status);
+					b = n == scanner.getNormalDimen(status);
 					break;
 				case '>': 
-					b = n > scan_normal_dimen(status);
+					b = n > scanner.getNormalDimen(status);
 			}
 			break;
 		}
 		case if_odd_code:
-			b = scanint(status)%2;
+			b = scanner.getInt(status)%2;
 			break;
 		case if_vmode_code: 
 			b = abs(mode) == vmode;
@@ -147,11 +144,11 @@ void conditional(char status, Token t)
 			b = mode < 0;
 			break;
 		case if_void_code:
-			b = box(scaneightbitint(status)) == nullptr;
+			b = box(scanner.getUInt8(status)) == nullptr;
 			break;
 		case if_hbox_code:
 		{
-			auto p = box(scaneightbitint(status));
+			auto p = box(scanner.getUInt8(status));
 			if (p == nullptr)
 				b = false;
 			else 
@@ -160,7 +157,7 @@ void conditional(char status, Token t)
 		}
 		case if_vbox_code:
 		{
-			auto p = box(scaneightbitint(status));
+			auto p = box(scanner.getUInt8(status));
 			if (p == nullptr)
 				b = false;
 			else 
@@ -170,9 +167,9 @@ void conditional(char status, Token t)
 		case ifx_code:
 		{
 			//Test if two tokens match
-			t = getnext(normal);
+			t = scanner.next(normal);
 			int n = t.cs;
-			auto t2 = getnext(normal);
+			auto t2 = scanner.next(normal);
 			if (t2.cmd != t.cmd)
 				b = false;
 			else 
@@ -200,7 +197,7 @@ void conditional(char status, Token t)
 			break;
 		}
 		case if_eof_code:
-			b = readopen[scanfourbitint(status)] == closed;
+			b = readopen[scanner.getUInt4(status)] == closed;
 			break;
 		case if_true_code: 
 			b = true;
@@ -210,7 +207,7 @@ void conditional(char status, Token t)
 			break;
 		case if_case_code:
 		{
-			int n = scanint(status);
+			int n = scanner.getInt(status);
 			if (tracing_commands() > 1)
 				diagnostic("{case "+std::to_string(n)+"}");
 			while (n)

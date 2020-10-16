@@ -686,7 +686,7 @@ void showwhatever(const char status, Token t)
 			selector = term_and_log;
 			break;
 		case show_box_code:
-			val = scaneightbitint(status);
+			val = scanner.getUInt8(status);
 			diagnostic("\r> \\box"+std::to_string(val)+"="+(box(val) == nullptr ? "void" : showbox(box(val)))+"\n");
 			print_err("OK");
 			if (selector == term_and_log && tracing_online() <= 0)
@@ -695,7 +695,7 @@ void showwhatever(const char status, Token t)
 			selector = term_and_log;
 			break;
 		case show_code:
-			t = gettoken(status);
+			t = scanner.get(status);
 			print("\r> "+(t.cs ? scs(t.cs)+"=" : "")+meaning(t));
 			break;
 		default:

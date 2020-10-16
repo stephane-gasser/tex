@@ -13,7 +13,7 @@ void initmath(char status)
 	scaled w, l, s;
 	int n;
 	scaled v, d;
-	auto t = gettoken(status);
+	auto t = scanner.get(status);
 	if (t.cmd == math_shift && mode > 0)
 	{
 		if (head == tail)

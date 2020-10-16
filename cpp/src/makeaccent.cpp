@@ -10,13 +10,13 @@
 
 void makeaccent(char status)
 {
-	if (auto accent = newcharacter(curFontNum(), scancharnum(status)); accent)
+	if (auto accent = newcharacter(curFontNum(), scanner.getUChar(status)); accent)
 	{
 		auto t = doassignments(status);
 		switch (t.cmd)
 		{
 			case char_num:
-				t.chr = scancharnum(status); [[fallthrough]];
+				t.chr = scanner.getUChar(status); [[fallthrough]];
 			case letter:
 			case other_char:
 			case char_given:

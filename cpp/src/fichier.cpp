@@ -119,7 +119,7 @@ void openlogfile(void)
 
 void openorclosein(char status, halfword c)
 {
-	auto n = scanfourbitint(status);
+	auto n = scanner.getUInt4(status);
 	if (readopen[n] != closed)
 	{
 		aclose(readfile[n]);
@@ -127,7 +127,7 @@ void openorclosein(char status, halfword c)
 	}
 	if (c)
 	{
-		scanoptionalequals(status);
+		scanner.optionalEquals(status);
 		scanfilename(status);
 		if (curext == "") 
 			curext = ".tex";
@@ -247,7 +247,7 @@ void scanfilename(char status)
 {
 	nameinprogress = true;
 	beginname();
-	for (auto t = getXTokenSkipSpace(status); true; t = getxtoken(status))
+	for (auto t = scanner.getXSkipSpace(status); true; t = scanner.getX(status))
 	{
 		if (t.cmd > other_char || t.chr > 255)
 		{

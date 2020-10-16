@@ -7,7 +7,7 @@ Token doassignments(char status)
 {
 	while (true)
 	{
-		auto t = getXTokenSkipSpaceAndEscape(status);
+		auto t = scanner.getXSkipSpaceAndEscape(status);
 		if (t.cmd <= max_non_prefixed_command)
 			return t;
 		prefixedcommand(status, t, false);

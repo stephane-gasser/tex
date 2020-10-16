@@ -22,11 +22,11 @@ static void scantoks(const char status, bool xpand, Token tk)
 	halfword t = zero_token;
 	halfword unbalance = 0;
 	if (status == absorbing)
-		scanleftbrace(status);
+		scanner.leftBrace(status);
 	else
 		while (true)
 		{
-			tk = gettoken(defining);
+			tk = scanner.get(defining);
 			if (tk.tok < right_brace_limit)
 			{
 				defRef.list.push_back(end_match_token);
@@ -41,7 +41,7 @@ static void scantoks(const char status, bool xpand, Token tk)
 			if (tk.cmd == mac_param)
 			{
 				auto s = match_token+tk.chr;
-				tk = gettoken(defining);
+				tk = scanner.get(defining);
 				if (tk.cmd == left_brace)
 				{
 					hashbrace = tk.tok;
@@ -65,7 +65,7 @@ static void scantoks(const char status, bool xpand, Token tk)
 	{
 		if (xpand)
 		{
-			for (tk = getnext(status); tk.cmd > max_command; tk = getnext(status))
+			for (tk = scanner.next(status); tk.cmd > max_command; tk = scanner.next(status))
 			{
 				if (tk.cmd != the)
 					expand(status, tk);
@@ -80,7 +80,7 @@ static void scantoks(const char status, bool xpand, Token tk)
 			tk = xtoken(status, tk);
 		}
 		else
-			tk = gettoken(status);
+			tk = scanner.get(status);
 		switch (tk.cmd)
 		{
 			case left_brace:
@@ -93,7 +93,7 @@ static void scantoks(const char status, bool xpand, Token tk)
 				if (status == defining)
 				{
 					auto s = tk.tok;
-					tk = (xpand ? getxtoken : gettoken)(defining);
+					tk = xpand ? scanner.getX(defining): scanner.get(defining);
 					if (tk.cmd != mac_param)
 						if (tk.tok <= zero_token || tk.tok > t)
 						{

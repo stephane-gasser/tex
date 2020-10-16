@@ -19,7 +19,7 @@
 #include "sauvegarde.h"
 #include "buildpage.h"
 
-static void scansomethinginternal(char status, smallnumber level, bool negative, Token t, int &val, int &lev, GlueSpec* &gl, TokenList* &tk)
+void Scanner::somethingInternal(char status, smallnumber level, bool negative, Token t)
 {
 	// lev/level : tok_val/dimen_val/glue_val/ident_val/int_val/mu_val
 	try
@@ -29,7 +29,7 @@ static void scansomethinginternal(char status, smallnumber level, bool negative,
 			// int_val
 			case def_code:
 				lev = int_val;
-				val = t.chr == math_code_base ? math_code(scancharnum(status)) : t.chr < math_code_base ? eqtb_local[t.chr+scancharnum(status)-local_base].int_ : eqtb_int[t.chr+scancharnum(status)-int_base].int_;
+				val = t.chr == math_code_base ? math_code(scanner.getUChar(status)) : t.chr < math_code_base ? eqtb_local[t.chr+scanner.getUChar(status)-local_base].int_ : eqtb_int[t.chr+scanner.getUChar(status)-int_base].int_;
 				break;
 			case assign_int:
 				val = eqtb_int[t.chr-int_base].int_;
@@ -71,7 +71,7 @@ static void scansomethinginternal(char status, smallnumber level, bool negative,
 				if (level != tok_val)
 					throw 1;
 				if (t.cmd == toks_register)
-					t.chr = toks_base+scaneightbitint(status);
+					t.chr = toks_base+scanner.getUInt8(status);
 				tk = dynamic_cast<TokenList*>(eqtb_local[t.chr-local_base].index);
 				lev = tok_val;
 				break;
@@ -98,7 +98,7 @@ static void scansomethinginternal(char status, smallnumber level, bool negative,
 				lev = dimen_val;
 				break;
 			case set_box_dimen:
-				val = scaneightbitint(status);
+				val = scanner.getUInt8(status);
 				val = 0;
 				if (box(val))
 					switch (t.chr)
@@ -147,16 +147,16 @@ static void scansomethinginternal(char status, smallnumber level, bool negative,
 				switch (t.chr)
 				{
 					case int_val: 
-						val = count(scaneightbitint(status));
+						val = count(scanner.getUInt8(status));
 						break;
 					case dimen_val: 
-						val = dimen(scaneightbitint(status));
+						val = dimen(scanner.getUInt8(status));
 						break;
 					case glue_val: 
-						gl = skip(scaneightbitint(status));
+						gl = skip(scanner.getUInt8(status));
 						break;
 					case mu_val: 
-						gl = mu_skip(scaneightbitint(status));
+						gl = mu_skip(scanner.getUInt8(status));
 				}
 				lev = t.chr;
 				break;
@@ -259,27 +259,9 @@ static void scansomethinginternal(char status, smallnumber level, bool negative,
 			gl->glue_ref_count++;
 }
 
-Token getXTokenSkipSpace(char status)
-{
-	Token t;
-	do
-		t = getxtoken(status);
-	while (t.cmd == spacer);
-	return t;
-}
-
-Token getXTokenSkipSpaceAndEscape(char status)
-{
-	Token t;
-	do
-		t = getxtoken(status);
-	while (t.cmd == spacer || t.cmd == escape);
-	return t;
-}
-
 void scanbox(char status, int boxcontext)
 {
-	auto t = getXTokenSkipSpaceAndEscape(status);
+	auto t = scanner.getXSkipSpaceAndEscape(status);
 	switch (t.cmd)
 	{
 		case make_box:
@@ -302,10 +284,10 @@ void Delimiter::scan(char status, bool r, Token t)
 {
 	int val = -1;
 	if (r)
-		val = scantwentysevenbitint(status);
+		val = scanner.getUInt27(status);
 	else
 	{
-		t = getXTokenSkipSpaceAndEscape(status);
+		t = scanner.getXSkipSpaceAndEscape(status);
 		switch (t.cmd)
 		{
 			case letter:
@@ -313,7 +295,7 @@ void Delimiter::scan(char status, bool r, Token t)
 				val = del_code(t.chr);
 				break;
 			case delim_num: 
-				val = scantwentysevenbitint(status);
+				val = scanner.getUInt27(status);
 		}
 	}
 	if (val < 0)
@@ -340,34 +322,36 @@ static scaled rounddecimals(smallnumber k)
 	return (a+1)/2;
 }
 
-[[nodiscard]] int scandimen(char status, bool mu, bool inf, bool shortcut)
+void calc(bool &aritherror, int &val, int f)
 {
-	int val, lev;
-	GlueSpec *gl;
-	int f = 0;
+	if (val >= 1<<14)
+		aritherror = true;
+	else
+		val = (val<<16)+f;
+}
+
+int Scanner::getDimen(char status, bool mu, bool inf, bool shortcut)
+{
+	int decimales = 0;
 	aritherror = false;
 	curorder = 0;
 	bool negative = false;
-	Token t;
-	while (true) // label 89
+	while (true)
 	{
+		Token t;
 		if (!shortcut)
 		{
 			negative = false;
 			do
 			{
-				t = getXTokenSkipSpace(status);
+				t = getXSkipSpace(status);
 				if (t.tok == other_token+'-')
-				{
 					negative = !negative;
-					t.tok = other_token+'+';
-				}
-			} while (t.tok == other_token+'+');
+			} while (t.tok == other_token+'+' || t.tok == other_token+'-');
 			if (t.cmd >= min_internal && t.cmd <= max_internal)
 				if (mu)
 				{
-					TokenList *dummy;
-					scansomethinginternal(status, mu_val, false, t, val, lev, gl, dummy);
+					somethingInternal(status, mu_val, false, t);
 					if (lev >= glue_val)
 					{
 						auto v = gl->width;
@@ -381,34 +365,29 @@ static scaled rounddecimals(smallnumber k)
 				}
 				else
 				{
-					TokenList *dummy;
-					scansomethinginternal(status, dimen_val, false, t, val, lev, gl, dummy);
+					somethingInternal(status, dimen_val, false, t);
 					if (lev == dimen_val)
 						break;
 				}
 			else
 			{
 				backinput(t);
-				if (t.tok == continental_point_token)
-					t.tok = point_token; 
-				if (t.tok != point_token)
-					val = scanint(status);
+				if (t.tok != point_token && t.tok != continental_point_token)
+					val = getInt(status);
 				else
 				{
 					radix = 10;
 					val = 0;
 				}
-				if (t.tok == continental_point_token) 
-					t.tok = point_token; 
-				if (radix == 10 && t.tok == point_token) 
+				if (radix == 10 && (t.tok == point_token || t.tok == continental_point_token)) 
 				{
-					t = gettoken(status);
+					t = get(status);
 					for (int k = 0; true; k++)
 					{
-						t = getxtoken(status);
-						if (t.tok > zero_token+9 || t.tok < zero_token)
+						t = getX(status);
+						if (!between(zero_token, t.tok, zero_token+9))
 						{
-							f = rounddecimals(k);
+							decimales = rounddecimals(k);
 							break;
 						}
 						if (k < 17)
@@ -422,36 +401,32 @@ static scaled rounddecimals(smallnumber k)
 		if (val < 0)
 		{
 			negative = !negative;
-			val = -val;
+			val *= -1;
 		}
 		if (inf)
-			if (scankeyword(status, "fil"))
+			if (isKeyword(status, "fil"))
 			{
 				curorder = 1;
-				while (scankeyword(status, "l")) 
+				while (isKeyword(status, "l")) 
 					if (curorder == 3)
 						error("Illegal unit of measure (replaced by filll)", "I dddon't go any higher than filll.");
 					else
 						curorder++;
-				if (val >= 0x40'00)
-					aritherror = true;
-				else
-					val = (val<<16)+f;
-				t = getxtoken(status);
+				calc(aritherror, val, decimales);
+				t = getX(status);
 				if (t.cmd != spacer)
 					backinput(t);
 				break;
 			}
 		auto saveval = val;
-		t = getXTokenSkipSpace(status);
+		t = getXSkipSpace(status);
 		if (t.cmd < min_internal || t.cmd > max_internal)
 			backinput(t);
 		else
 		{
 			if (mu)
 			{
-				TokenList *dummy;
-				scansomethinginternal(status, mu_val, false, t, val, lev,  gl, dummy);
+				somethingInternal(status, mu_val, false, t);
 				if (lev >= glue_val)
 				{
 					auto v = gl->width;
@@ -462,93 +437,83 @@ static scaled rounddecimals(smallnumber k)
 					error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
 			}
 			else
-			{
-				TokenList *dummy;
-				scansomethinginternal(status, dimen_val, false, t, val, lev, gl, dummy);
-			}
-			auto v = val;
-			val = nx_plus_y(saveval, v, xnoverd(v, f, unity));
+				somethingInternal(status, dimen_val, false, t);
+			val = nx_plus_y(saveval, val, xnoverd(val, decimales, unity));
 			break;
-		}
-		if (!mu)
-		{
-			if (scankeyword(status, "em"))
-			{
-				auto v = cur_font().quad();
-				t = getxtoken(status);
-				if (t.cmd != spacer)
-					backinput(t);
-			}
-			else 
-				if (scankeyword(status, "ex"))
-				{
-					auto v = cur_font().x_height();
-					t = getxtoken(status);
-					if (t.cmd != spacer)
-						backinput(t);
-				}
 		}
 		if (mu)
 		{
-			if (!scankeyword(status, "mu"))
+			if (!isKeyword(status, "mu"))
 				error("Illegal unit of measure (mu inserted)", "The unit of measurement in math glue must be mu.\nTo recover gracefully from this error, it's best to\ndelete the erroneous units; e.g., type `2' to delete\ntwo letters. (See Chapter 27 of The TeXbook.)");
-			if (val >= 0x40'00)
-				aritherror = true;
-			else
-				val = (val<<16)+f;
-			t = getxtoken(status);
+			calc(aritherror, val, decimales);
+			t = getX(status);
 			if (t.cmd != spacer)
 				backinput(t);
 			break;
 		}
-		if (scankeyword(status, "true"))
+		else
+		{
+			if (isKeyword(status, "em"))
+			{
+				//auto v = cur_font().quad(); ??????
+				t = getX(status);
+				if (t.cmd != spacer)
+					backinput(t);
+			}
+			else 
+				if (isKeyword(status, "ex"))
+				{
+					//auto v = cur_font().x_height(); ??????
+					t = getX(status);
+					if (t.cmd != spacer)
+						backinput(t);
+				}
+		}
+		if (isKeyword(status, "true"))
 		{
 			preparemag();
 			if (mag() != 1000)
 			{
 				val = xnoverd(val, 1000, mag());
-				f = (1000*f+(remainder_<<16))/mag();
-				val += f>>16;
-				f %= 1<<16;
+				decimales = (1000*decimales+(remainder_<<16))/mag();
+				val += decimales>>16;
+				decimales %= 1<<16;
 			}
 		}
-		if (scankeyword(status, "pt"))
+		if (isKeyword(status, "pt"))
 		{
-			if (val >= 0x40'00)
-				aritherror = true;
-			else
-				val = val*unity+f;
-			t = getxtoken(status);
+			calc(aritherror, val, decimales);
+			t = getX(status);
 			if (t.cmd != spacer)
 				backinput(t);
 			break;
 		}
 		int num, denom;
 		auto set_conversion = [&num, &denom](int n, int d){ num = n; denom = d; };
-		if (scankeyword(status, "in"))
+		if (isKeyword(status, "in"))
 			set_conversion(7227, 100); // 1 inch = 72.27 pt
 		else 
-			if (scankeyword(status, "pc"))
+			if (isKeyword(status, "pc"))
 				set_conversion(12, 1); // 1 pica = 12 pt
 			else 
-				if (scankeyword(status, "cm"))
+				if (isKeyword(status, "cm"))
 					set_conversion(7227, 254); // 1 inch = 2.54 cm
 				else 
-					if (scankeyword(status, "mm"))
+					if (isKeyword(status, "mm"))
 						set_conversion(7227, 2540); // 1 cm = 10 mm
 					else 
-						if (scankeyword(status, "bp"))
+						if (isKeyword(status, "bp"))
 							set_conversion(7227, 7200); // 1 inch = 72 bp
 						else 
-							if (scankeyword(status, "dd"))
+							if (isKeyword(status, "dd"))
 								set_conversion(1238, 1157);
 							else 
-								if (scankeyword(status, "cc"))
+								if (isKeyword(status, "cc"))
 									set_conversion(14856, 1157);
 								else 
-									if (scankeyword(status, "sp"))
+									if (isKeyword(status, "sp"))
 									{
-										t = getxtoken(status);
+										t = getX(status);
 										if (t.cmd != spacer)
 											backinput(t);
 										break;
@@ -556,44 +521,36 @@ static scaled rounddecimals(smallnumber k)
 									else
 									{
 										error("Illegal unit of measure (pt inserted)", "Dimensions can be in units of em, ex, in, pt, pc,\ncm, mm, dd, cc, bp, or sp; but yours is a new one!\nI'll assume that you meant to say pt, for printer's points.\nDimension too large\nI can't work with sizes bigger than about 19 feet.\nContinue and I'll use the largest value I can.");
-										if (val >= 0x40'00)
-											aritherror = true;
-										else
-											val = val*unity+f;
+										calc(aritherror, val, decimales);
 										t = xtoken(status, t);
 										if (t.cmd != spacer)
 											backinput(t);
 										break;
 									}
 		val = xnoverd(val, num, denom);
-		f = (num*f+remainder_<<16)/denom;
-		val += f>>16;
-		f %= 1<<16;
-		if (val >= 0x40'00)
-			aritherror = true;
-		else
-			val = val*unity+f;
-		t = getxtoken(status);
+		decimales = (num*decimales+remainder_<<16)/denom;
+		val += decimales>>16;
+		decimales %= 1<<16;
+		calc(aritherror, val, decimales);
+		t = getX(status);
 		if (t.cmd != spacer)
 			backinput(t);
 		break;
 	} 
-	if (aritherror || abs(val) >= 0x40'00'00'00)
+	if (aritherror || abs(val) >= 1<<30)
 	{
 		error("Dimension too large", "I can't work with sizes bigger than about 19 feet.\nContinue and I'll use the largest value I can.");
 		val = max_dimen;
 		aritherror = false;
 	}
 	if (negative)
-		val = -val;
+		val *= -1;
 	return val;
 }
 
-[[nodiscard]] int scan_normal_dimen(char status) { return scandimen(status, false, false, false); }
-
-int scancharnum(char status)
+int Scanner::getUChar(char status)
 {
-	int val = scanint(status);
+	int val = getInt(status);
 	if (val < 0 || val > 255)
 	{
 		interror(val, "Bad character code", "A character number must be between 0 and 255.\nI changed this one to zero.");
@@ -602,9 +559,9 @@ int scancharnum(char status)
 	return val;
 }
 
-int scanfourbitint(char status)
+int Scanner::getUInt4(char status)
 {
-	int val = scanint(status);
+	int val = getInt(status);
 	if (val < 0 || val >= 1<<4)
 	{
 		interror(val, "Bad number", "Since I expected to read a number between 0 and 15,\nI changed this one to zero.");
@@ -613,9 +570,9 @@ int scanfourbitint(char status)
 	return val;
 }
 
-int scaneightbitint(char status)
+int Scanner::getUInt8(char status)
 {
-	int val = scanint(status);
+	int val = getInt(status);
 	if (val < 0 || val >= 1<<8)
 	{
 		interror(val, "Bad register code", "A register number must be between 0 and 255.\nI changed this one to zero.");
@@ -624,9 +581,9 @@ int scaneightbitint(char status)
 	return val;
 }
 
-int scanfifteenbitint(char status)
+int Scanner::getUInt15(char status)
 {
-	int val = scanint(status);
+	int val = getInt(status);
 	if (val < 0 || val >= 1<<15)
 	{
 		interror(val, "Bad mathchar", "A mathchar number must be between 0 and 0x7F'FF.\nI changed this one to zero.");
@@ -635,9 +592,9 @@ int scanfifteenbitint(char status)
 	return val;
 }
 
-[[nodiscard]] int scantwentysevenbitint(char status)
+[[nodiscard]] int Scanner::getUInt27(char status)
 {
-	int val = scanint(status);
+	int val = getInt(status);
 	if (val < 0 || val >= 1<<27)
 	{
 		interror(val, "Bad delimiter code", "A numeric delimiter code must be between 0 and 2^{27}-1.\nI changed this one to zero.");
@@ -649,7 +606,7 @@ int scanfifteenbitint(char status)
 
 [[nodiscard]] int scanfontident(char status)
 {
-	auto t = getXTokenSkipSpace(status);
+	auto t = scanner.getXSkipSpace(status);
 	switch (t.cmd)
 	{
 		case def_font:
@@ -657,7 +614,7 @@ int scanfifteenbitint(char status)
 		case set_font:
 			return t.chr;
 		case def_family:
-			return eqtb_local[t.chr+scanfourbitint(status)-local_base].int_;
+			return eqtb_local[t.chr+scanner.getUInt4(status)-local_base].int_;
 	}
 	backerror(t, "Missing font identifier", "I was looking for a control sequence whose\ncurrent meaning has been defined by \\font.");
 	return null_font;
@@ -670,27 +627,24 @@ int scanfifteenbitint(char status)
 	Token t;
 	do
 	{
-		t = getXTokenSkipSpace(status);
+		t = scanner.getXSkipSpace(status);
 		if (t.tok == other_token+'-')
 		{
 			negative = !negative;
 			t.tok = other_token+'+';
 		}
 	} while (t.tok != other_token+'+');
-	int val, lev;
-	GlueSpec *gl;
 	if (t.cmd >= min_internal && t.cmd <= max_internal)
 	{
-		TokenList *dummy;
-		scansomethinginternal(status, level, negative, t, val, lev, gl, dummy);
-		if (lev >= glue_val)
+		scanner.somethingInternal(status, level, negative, t);
+		if (scanner.lev >= glue_val)
 		{
-			if (lev != level)
+			if (scanner.lev != level)
 				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
-			return gl;
+			return scanner.gl;
 		}
-		if (lev == int_val)
-			val = scandimen(status, mu, false, true);
+		if (scanner.lev == int_val)
+			scanner.val = scanner.getDimen(status, mu, false, true);
 		else 
 			if (level == mu_val)
 				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
@@ -698,20 +652,20 @@ int scanfifteenbitint(char status)
 	else
 	{
 		backinput(t);
-		val = scandimen(status, mu, false, false);
+		scanner.val = scanner.getDimen(status, mu, false);
 		if (negative)
-			val = -val;
+			scanner.val *= -1;
 	}
 	auto q = new GlueSpec(zero_glue);
-	q->width = val;
-	if (scankeyword(status, "plus"))
+	q->width = scanner.val;
+	if (scanner.isKeyword(status, "plus"))
 	{
-		q->stretch = scandimen(status, mu, true, false);
+		q->stretch = scanner.getDimen(status, mu, true);
 		q->stretch_order = curorder;
 	}
-	if (scankeyword(status, "minus"))
+	if (scanner.isKeyword(status, "minus"))
 	{
-		q->shrink = scandimen(status, mu, true, false);
+		q->shrink = scanner.getDimen(status, mu, true);
 		q->shrink_order = curorder;
 	}
 	return q;
@@ -723,7 +677,7 @@ int scanfifteenbitint(char status)
 //! \a scan_int. The \a scan_dimen routine assumes that <em> cur_tok=point_token </em>
 //! after the integer part of such a fraction has been scanned by \a scan_int, 
 //! and that the decimal point has been backed up to be scanned again. 
-[[nodiscard]] int scanint(char status)
+int Scanner::getInt(char status)
 {
 	int val, lev;
 	GlueSpec *gl;
@@ -733,7 +687,7 @@ int scanfifteenbitint(char status)
 	Token t;
 	do
 	{
-		t = getXTokenSkipSpace(status);
+		t = getXSkipSpace(status);
 		if (t.tok == other_token+'-')
 		{
 			negative = !negative;
@@ -742,7 +696,7 @@ int scanfifteenbitint(char status)
 	} while (t.tok == other_token+'+');
 	if (t.tok == alpha_token)
 	{
-		t = gettoken(status);
+		t = get(status);
 		if (t.tok < cs_token_flag)
 		{
 			val = t.chr;
@@ -760,28 +714,25 @@ int scanfifteenbitint(char status)
 		}
 		else
 		{
-			t = getxtoken(status);
+			t = getX(status);
 			if (t.cmd != spacer)
 				backinput(t);
 		}
 	}
 	else 
 		if (t.cmd >= min_internal && t.cmd <= max_internal)
-		{
-			TokenList *dummy;
-			scansomethinginternal(status, int_val, false, t, val, lev, gl, dummy);
-		}
+			somethingInternal(status, int_val, false, t);
 		else
 		{
 			switch (t.tok)
 			{
 				case octal_token:
 					radix = 8;
-					t = getxtoken(status);
+					t = getX(status);
 					break;
 				case hex_token:
 					radix = 16;
-					t = getxtoken(status);
+					t = getX(status);
 				default:
 					radix = 10;
 			}
@@ -816,7 +767,7 @@ int scanfifteenbitint(char status)
 				}
 				else
 					val = val*radix+d;
-				t = getxtoken(status);
+				t = getX(status);
 			}
 			if (vacuous)
 				backerror(t, "Missing number, treated as zero", "A number should have been here; I inserted `0'.\n(If you can't figure out why I needed to see a number,\nlook up `weird error' in the index to The TeXbook.)");
@@ -829,12 +780,12 @@ int scanfifteenbitint(char status)
 	return val;
 }
 
-bool scankeyword(char status, const std::string &s)
+bool Scanner::isKeyword(char status, const std::string &s)
 {
 	TokenList backupHead;
 	for (size_t k = 0; k < s.size();)
 	{
-		auto t = getxtoken(status);
+		auto t = getX(status);
 		if (t.cs == 0 && (t.chr == s[k] || t.chr == s[k]-'a'+'A'))
 		{
 			backupHead.list.push_back(t.tok);
@@ -852,9 +803,9 @@ bool scankeyword(char status, const std::string &s)
 	return true;
 }
 
-void scanleftbrace(char status)
+void Scanner::leftBrace(char status)
 {
-	auto t = getXTokenSkipSpaceAndEscape(status);
+	auto t = getXSkipSpaceAndEscape(status);
 	if (t.cmd != left_brace)
 	{
 		backerror(t, "Missing { inserted", "A left brace was mandatory here, so I've put one in.\nYou might want to delete and/or insert some corrections\nso that I will find a matching right brace soon.\n(If you're confused by all this, try typing `I}' now.)");
@@ -864,7 +815,7 @@ void scanleftbrace(char status)
 
 void NoadContent::scan(char status)
 {
-	auto t = getXTokenSkipSpaceAndEscape(status);
+	auto t = scanner.getXSkipSpaceAndEscape(status);
 	bool another;
 	int c;
 	do
@@ -883,28 +834,28 @@ void NoadContent::scan(char status)
 					t.chr = eqtb_active[t.chr].int_;
 					t = xtoken(status, t);
 					backinput(t);
-					t = getXTokenSkipSpaceAndEscape(status);
+					t = scanner.getXSkipSpaceAndEscape(status);
 					another = true;
 					continue;
 				}
 				break;
 			case char_num:
-				t.chr = scancharnum(status);
+				t.chr = scanner.getUChar(status);
 				t.cmd = char_given;
 				another = true;
 				continue;
 			case math_char_num:
-				c = scanfifteenbitint(status);
+				c = scanner.getUInt15(status);
 				break;
 			case math_given: 
 				c = t.chr;
 				break;
 			case delim_num:
-				c = scantwentysevenbitint(status)>>12;
+				c = scanner.getUInt27(status)>>12;
 				break;
 			default:
 				backinput(t);
-				scanleftbrace(status);
+				scanner.leftBrace(status);
 				savestack.push_back(new MemoryNode(0, 0, this));
 				pushmath(math_group);
 				return;
@@ -915,9 +866,9 @@ void NoadContent::scan(char status)
 	fam = (c >= var_code && fam_in_range() ? cur_fam() : (c>>8)%(1<<4));
 }
 
-void scanoptionalequals(char status)
+void Scanner::optionalEquals(char status)
 {
-	auto t = getXTokenSkipSpace(status);
+	auto t = getXSkipSpace(status);
 	if (t.tok != other_token+'=') // other_char + '='
 		backinput(t);
 }
@@ -936,19 +887,19 @@ RuleNode *scanrulespec(char status, Token t)
 	}
 	while (true)
 	{
-		if (scankeyword(status, "width"))
+		if (scanner.isKeyword(status, "width"))
 		{
-			q->width = scan_normal_dimen(status);
+			q->width = scanner.getNormalDimen(status);
 			continue;
 		}
-		if (scankeyword(status, "height"))
+		if (scanner.isKeyword(status, "height"))
 		{
-			q->height = scan_normal_dimen(status);
+			q->height = scanner.getNormalDimen(status);
 			continue;
 		}
-		if (scankeyword(status, "depth"))
+		if (scanner.isKeyword(status, "depth"))
 		{
-			q->depth = scan_normal_dimen(status);
+			q->depth = scanner.getNormalDimen(status);
 			continue;
 		}
 		break;
@@ -956,64 +907,53 @@ RuleNode *scanrulespec(char status, Token t)
 	return q;
 }
 
-[[nodiscard]] Token scanspec(char status, groupcode c)
+Token Scanner::getBoxSpec(char status, groupcode c)
 {
-	int speccode;
-	int val;
-	if (scankeyword(status, "to"))
+	if (isKeyword(status, "to"))
 	{
-		speccode = exactly;
-		val = scan_normal_dimen(status);
+		savestack.push_back(new MemoryNode(0, 0, exactly));
+		savestack.push_back(new MemoryNode(0, 0, getNormalDimen(status)));
 	}
 	else
 	{
-		speccode = additional;
-		val = scankeyword(status, "spread") ? scan_normal_dimen(status) : 0;
+		savestack.push_back(new MemoryNode(0, 0, additional));
+		savestack.push_back(new MemoryNode(0, 0, isKeyword(status, "spread") ? getNormalDimen(status) : 0));
 	}
-	auto m = new MemoryNode;
-	m->int_ = speccode;
-	savestack.push_back(m);
-	m = new MemoryNode;
-	m->int_ = val;
-	savestack.push_back(m);
 	newsavelevel(c);
-	scanleftbrace(status);
+	leftBrace(status);
 	return left_brace_token+'{';
 }
 
-[[nodiscard]] Token scanspec(char status, groupcode c, int s)
+Token Scanner::getBoxSpec(char status, groupcode c, int s)
 {
-	auto m = new MemoryNode;
-	m->int_ = s;
-	savestack.push_back(m);
-	return scanspec(status, c);
+	savestack.push_back(new MemoryNode(0, 0, s));
+	return getBoxSpec(status, c);
 }
 
-void beginTokenListBelowMacro(TokenList *P, quarterword t)
+static void beginTokenListCommon(TokenList *tl, quarterword t)
 {
 	push_input();
 	state = token_list;
-	Start.list = P->list;
-	index = t;
+	Start.list = tl->list;
+	token_type = t;
+}
+
+void beginTokenListBelowMacro(TokenList *tl, quarterword t)
+{
+	beginTokenListCommon(tl, t);
 	Loc = 0;
 }
 
-void beginTokenListMacro(TokenList *P)
+void beginTokenListMacro(TokenList *tl)
 {
-	push_input();
-	state = token_list;
-	Start.list = P->list;
-	index = macro;
+	beginTokenListCommon(tl, macro);
 	Start.token_ref_count++; //the token list starts with a reference count
 	param_start = paramstack.size();
 }
 
 void beginTokenListAboveMacro(TokenList *tl, quarterword t)
 {
-	push_input();
-	state = token_list;
-	Start.list = tl->list;
-	index = t;
+	beginTokenListCommon(tl, t);
 	tl->token_ref_count++; //the token list starts with a reference count
 	Loc = 0;
 	if (tracing_macros() > 1)
@@ -1067,10 +1007,9 @@ void endtokenlist(void)
 	pop_input();
 }
 
-[[nodiscard]] Token getxtoken(char status)
+Token Scanner::getX(char status)
 {
-	Token t;
-	for (t = getnext(status); t.cmd > max_command; t = getnext(status))
+	for (auto t = next(status); true; t = next(status))
 		switch (t.cmd)
 		{
 			case call:
@@ -1078,6 +1017,18 @@ void endtokenlist(void)
 			case outer_call:
 			case long_outer_call:
 				macrocall(t);
+				break;
+			case undefined_cs:
+			case expand_after:
+			case no_expand:
+			case input:
+			case if_test:
+			case fi_or_else:
+			case cs_name:
+			case convert:
+			case the:
+			case top_bot_mark:
+				expand(status, t);
 				break;
 			case end_template:
 			case dont_expand:
@@ -1087,24 +1038,14 @@ void endtokenlist(void)
 			case data:
 				return Token(frozen_endv+cs_token_flag);
 			default:
-				expand(status, t);
+				return t;
 		}
-	return t;
 }
 
 [[nodiscard]] Token xtoken(char status, Token t)
 {
-	for (; t.cmd > max_command; t = getnext(status))
+	for (; t.cmd > max_command; t = scanner.next(status))
 		expand(status, t);
-	return t;
-}
-
-static Token getTokenSkipSpace(char status)
-{
-	Token t;
-	do
-		t = gettoken(status);
-	while (t.tok == space_token);
 	return t;
 }
 
@@ -1112,7 +1053,7 @@ static Token getTokenSkipSpace(char status)
 {
 	while (true)
 	{
-		auto t = getTokenSkipSpace(status);
+		auto t = scanner.getSkipSpace(status);
 		if (t.cs && t.cs <= frozen_control_sequence)
 			return t.cs;
 		if (t.cs)
@@ -1131,27 +1072,24 @@ static void strtoks2(const std::string &s, TokenList &head)
 
 void thetoks(char status, TokenList &head)
 {
-	auto t = getxtoken(status);
-	int val, lev;
-	GlueSpec *gl;
-	TokenList *tk;
-	scansomethinginternal(status, tok_val, false, t, val, lev, gl, tk);
-	switch (lev)
+	auto t = scanner.getX(status);
+	scanner.somethingInternal(status, tok_val, false, t);
+	switch (scanner.lev)
 	{
 		case ident_val:
 			head.list.clear();
-			head.list.push_back(cs_token_flag+val);
+			head.list.push_back(cs_token_flag+scanner.val);
 		case tok_val:
 			head.list.clear();
-			for (auto &p: tk->list)
+			for (auto &p: scanner.tk->list)
 				head.list.push_back(p);
 		case int_val: 
-			strtoks2(std::to_string(val), head);
+			strtoks2(std::to_string(scanner.val), head);
 		case dimen_val:
-			strtoks2(asScaled(val)+"pt", head);
+			strtoks2(asScaled(scanner.val)+"pt", head);
 		default: // glue_val / mu_val
-			deleteglueref(gl);
-			strtoks2(gl->print(lev == glue_val ? "pt" : "mu"), head);
+			deleteglueref(scanner.gl);
+			strtoks2(scanner.gl->print(scanner.lev == glue_val ? "pt" : "mu"), head);
 	}
 }
 

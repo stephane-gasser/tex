@@ -14,8 +14,8 @@ void doextension(char status, Token t)
 	{
 		case open_node:
 		{
-			auto ww = new OpenWriteWhatsitNode(scanfourbitint(status));
-			scanoptionalequals(status);
+			auto ww = new OpenWriteWhatsitNode(scanner.getUInt4(status));
+			scanner.optionalEquals(status);
 			scanfilename(status);
 			ww->open_name = curname;
 			ww->open_area = curarea;
@@ -25,7 +25,7 @@ void doextension(char status, Token t)
 		}
 		case write_node:
 		{
-			auto ww = new NotOpenWriteWhatsitNode(write_node, scanint(status));
+			auto ww = new NotOpenWriteWhatsitNode(write_node, scanner.getInt(status));
 			scanNonMacroToks(status, t);
 			ww->write_tokens = &defRef;
 			tail_append(ww);
@@ -33,7 +33,7 @@ void doextension(char status, Token t)
 		}
 		case close_node:
 		{
-			auto ww = new NotOpenWriteWhatsitNode(close_node, scanint(status));
+			auto ww = new NotOpenWriteWhatsitNode(close_node, scanner.getInt(status));
 			ww->write_tokens = nullptr;
 			tail_append(ww);
 			break;
@@ -47,15 +47,15 @@ void doextension(char status, Token t)
 			break;
 		}
 		case immediate_code:
-			t = getxtoken(status);
+			t = scanner.getX(status);
 			if (t.cmd == extension)
 				switch (t.chr) // \openout / \write / \closeout
 				{
 					case open_node:
 					{
 						auto p = tail;
-						auto ww = new OpenWriteWhatsitNode(scanfourbitint(status));
-						scanoptionalequals(status);
+						auto ww = new OpenWriteWhatsitNode(scanner.getUInt4(status));
+						scanner.optionalEquals(status);
 						scanfilename(status);
 						ww->open_name = curname;
 						ww->open_area = curarea;
@@ -70,7 +70,7 @@ void doextension(char status, Token t)
 					case write_node:
 					{
 						auto p = tail;
-						auto ww = new NotOpenWriteWhatsitNode(write_node, scanint(status));
+						auto ww = new NotOpenWriteWhatsitNode(write_node, scanner.getInt(status));
 						scanNonMacroToks(status, t);
 						ww->write_tokens = &defRef;
 						tail_append(ww);
@@ -83,7 +83,7 @@ void doextension(char status, Token t)
 					case close_node:
 					{
 						auto p = tail;
-						auto ww = new NotOpenWriteWhatsitNode(close_node, scanint(status));
+						auto ww = new NotOpenWriteWhatsitNode(close_node, scanner.getInt(status));
 						tail_append(ww);
 						outwhat(ww);
 						flushnodelist(tail);
@@ -102,7 +102,7 @@ void doextension(char status, Token t)
 				reportillegalcase(t);
 			else
 			{
-				clang = scanint(status);
+				clang = scanner.getInt(status);
 				if (clang <= 0 || clang > 255)
 						clang = 0;
 				tail_append(new LanguageWhatsitNode(clang));

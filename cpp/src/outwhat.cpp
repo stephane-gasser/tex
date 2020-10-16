@@ -26,12 +26,12 @@ static void writeout(char status, NotOpenWriteWhatsitNode *p)
 	Token t;
 	t.cs = writeloc;
 	scanNonMacroToksExpand(status, t);
-	t = gettoken(status);
+	t = scanner.get(status);
 	if (t.tok != end_write_token)
 	{
 		error("Unbalanced write command", "On this page there's a \\write with fewer real {'s than }'s.\nI can't handle that very well; good luck.");
 		do
-			t = gettoken(status);
+			t = scanner.get(status);
 		while (t.tok != end_write_token);
 	}
 	mode = oldmode;

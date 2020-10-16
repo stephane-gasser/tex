@@ -19,7 +19,7 @@ void resumeafterdisplay(char status, Token t)
 	set_cur_lang();
 	clang = curlang;
 	prev_graf = (((left_hyphen_min()<<6)+right_hyphen_min())<<16)+curlang;
-	t = getxtoken(status);
+	t = scanner.getX(status);
 	if (t.cmd != spacer)
 		backinput(t);
 	if (nest.size() == 2)

@@ -19,76 +19,54 @@
 {
 	if (status == normal)
 		return t; 
-	if (t.cs)
+	if (t.cs && (state == token_list || name.size() != 1 || name[0] > 17))
 	{
-		if (state == token_list || name.size() != 1 || name[0] > 17)
-		{
-			TokenList tl;
-			tl.list.push_back(cs_token_flag+t.cs);
-			back_list(&tl);
-		}
-		t.cmd = spacer;
-		t.chr = ' ';
+		TokenList tl;
+		tl.list.push_back(cs_token_flag+t.cs);
+		back_list(&tl);
 	}
 	if (status == skipping)
 	{
 		inserror(t, "Incomplete "+cmdchr(Token(if_test, curif))+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
-		t.tok = frozen_fi+cs_token_flag;
+		return frozen_fi+cs_token_flag;
 	}
-	else
+	runaway(status);
+	TokenList tl;
+	switch (status)
 	{
-		runaway(status);
-		switch (status)
+		case defining:
 		{
-			case defining:
-			{
-				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				TokenList tl;
-				tl.list.push_back(right_brace_token+'}');
-				ins_list(&tl);
-				break;
-			}
-			case matching:
-			{
-				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				TokenList tl;
-				tl.list.push_back(partoken);
-				ins_list(&tl);
-				longstate = outer_call;
-				break;
-			}
-			case aligning:
-			{
-				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				TokenList tl;
-				tl.list.push_back(frozen_cr+cs_token_flag);
-				tl.list.push_back(right_brace_token+'}');
-				ins_list(&tl);
-				alignstate = -1000000;
-				break;
-			}
-			case absorbing:
-			{
-				error(t.cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-				TokenList tl;
-				tl.list.push_back(right_brace_token+'}');
-				ins_list(&tl);
-			}
+			error(t.cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+			tl.list.push_back(right_brace_token+'}');
+			break;
+		}
+		case matching:
+		{
+			error(t.cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+			tl.list.push_back(partoken);
+			longstate = outer_call;
+			break;
+		}
+		case aligning:
+		{
+			error(t.cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+			tl.list.push_back(frozen_cr+cs_token_flag);
+			tl.list.push_back(right_brace_token+'}');
+			alignstate = -1000000;
+			break;
+		}
+		case absorbing:
+		{
+			error(t.cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
+			tl.list.push_back(right_brace_token+'}');
 		}
 	}
-	t.cs = 0;
-	return t;
+	ins_list(&tl);
+	return t.cs ? Token(spacer, ' ') : t;
 }
 
-static bool is_hex(ASCIIcode c)
-{
-	return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f');
-}
-
-static int toHex(ASCIIcode c)
-{
-	return c <= '9' ? c -'0' : c-'a'+10;
-}
+static bool is_hex(ASCIIcode c) { return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f'); }
+static int toHex(ASCIIcode c) { return c <= '9' ? c -'0' : c-'a'+10; }
 
 static int intFromTwoHexDigit(ASCIIcode c, int pos)
 {
@@ -125,7 +103,7 @@ static void removeFromEnd(int &k, int d)
 #define ANY_STATE_PLUS(cmd) mid_line+cmd: case skip_blanks+cmd: case new_line+cmd
 #define ADD_DELIMS_TO(state) state+math_shift: case state+tab_mark: case state+mac_param: case state+sub_mark: case state+letter: case state+other_char 
 
-[[nodiscard]] Token getnext(char status, bool nonewcontrolsequence)
+Token Scanner::next(char status, bool nonewcontrolsequence)
 {
 	Token t;
 	bool restart;
@@ -373,8 +351,7 @@ static void removeFromEnd(int &k, int d)
 		else
 			if (Loc)
 			{
-				auto tt = Start.list[Loc];
-				Loc++;
+				auto tt = Start.list[Loc++];
 				if (tt >= cs_token_flag)
 				{
 					t.cs = tt-cs_token_flag;
@@ -439,7 +416,7 @@ void passtext(void)
 	skipline = line;
 	while (true)
 	{
-		auto t = getnext(skipping);
+		auto t = scanner.next(skipping);
 		if (t.cmd == fi_or_else)
 		{
 			if (l == 0)

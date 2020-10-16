@@ -606,4 +606,6 @@ inline bool outputactive = false;
 // fonctions inlines
 ///////////////////////////////////////////////////////////////////////////////
 
+inline bool between(int min, int val, int max) { return min <= val && val <= max; }
+
 #endif

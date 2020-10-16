@@ -95,20 +95,20 @@ BoxNode *cleanbox(NoadContent &P, smallnumber s)
 
 void alterboxdimen(char status, halfword c)
 {
-	auto b = box(scaneightbitint(status));
-	scanoptionalequals(status);
+	auto b = box(scanner.getUInt8(status));
+	scanner.optionalEquals(status);
 	if (b == nullptr)
 		return;
 	switch (c)
 	{
 		case width_offset:
-			b->width = scan_normal_dimen(status);
+			b->width = scanner.getNormalDimen(status);
 			break;
 		case height_offset:
-			b->height = scan_normal_dimen(status);
+			b->height = scanner.getNormalDimen(status);
 			break;
 		case depth_offset:
-			b->depth = scan_normal_dimen(status);
+			b->depth = scanner.getNormalDimen(status);
 	}
 }
 
@@ -158,7 +158,7 @@ void boxend(char status, int boxcontext, RuleNode* curbox)
 			if (curbox)
 				if (boxcontext > ship_out_flag) // Append a new leader node that uses \a cur_box
 				{
-					auto t = getXTokenSkipSpaceAndEscape(status);
+					auto t = scanner.getXSkipSpaceAndEscape(status);
 					if ((t.cmd == hskip && abs(mode) != vmode) || (t.cmd == vskip && abs(mode) == vmode))
 					{
 						auto g = glueToAppend(status, t.chr);
@@ -186,14 +186,14 @@ void beginbox(char status, int boxcontext, Token t)
 	{
 		case box_code:
 		{
-			int val = scaneightbitint(status);
+			int val = scanner.getUInt8(status);
 			auto b = box(val);
 			setBox(val, nullptr); // the box becomes void, at the same level
 			boxend(status, boxcontext, b); //in simple cases, we use the box immediately
 			break;
 		}
 		case copy_code:
-			boxend(status, boxcontext, dynamic_cast<BoxNode*>(copynodelist(box(scaneightbitint(status))))); //in simple cases, we use the box immediately
+			boxend(status, boxcontext, dynamic_cast<BoxNode*>(copynodelist(box(scanner.getUInt8(status))))); //in simple cases, we use the box immediately
 			break;
 		case last_box_code:
 		{
@@ -240,10 +240,10 @@ void beginbox(char status, int boxcontext, Token t)
 		}
 		case vsplit_code:
 		{
-			auto n = scaneightbitint(status);	 // a box number
-			if (!scankeyword(status, "to"))
+			auto n = scanner.getUInt8(status);	 // a box number
+			if (!scanner.isKeyword(status, "to"))
 				error("Missing `to' inserted", "I'm working on `\\vsplit<box number> to <dimen>';\nwill look for the <dimen> next.");
-			boxend(status, boxcontext, vsplit(n, scan_normal_dimen(status))); //in simple cases, we use the box immediately
+			boxend(status, boxcontext, vsplit(n, scanner.getNormalDimen(status))); //in simple cases, we use the box immediately
 			break;
 		}
 		default:
@@ -253,16 +253,16 @@ void beginbox(char status, int boxcontext, Token t)
 			{
 				case hmode:
 					if (boxcontext < box_flag && abs(mode) == vmode)
-						t = scanspec(status, adjusted_hbox_group, boxcontext);
+						t = scanner.getBoxSpec(status, adjusted_hbox_group, boxcontext);
 					else
-						t = scanspec(status, hbox_group, boxcontext);
+						t = scanner.getBoxSpec(status, hbox_group, boxcontext);
 					break;
 				case vmode:
-					t = scanspec(status, vbox_group, boxcontext);
+					t = scanner.getBoxSpec(status, vbox_group, boxcontext);
 					normalparagraph();
 					break; 
 				default:
-					t = scanspec(status, vtop_group, boxcontext);
+					t = scanner.getBoxSpec(status, vtop_group, boxcontext);
 					k = vmode;
 					normalparagraph();
 			}
@@ -638,7 +638,7 @@ void package(char status, smallnumber c, Token t)
 
 void unpackage(char status, halfword c)
 {
-	int val = scaneightbitint(status);
+	int val = scanner.getUInt8(status);
 	auto p = box(val);
 	if (p == nullptr)
 		return;

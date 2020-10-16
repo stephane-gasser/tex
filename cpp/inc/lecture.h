@@ -28,24 +28,11 @@ enum token_type
 inline smallnumber radix = 0;
 inline glueord curorder = 0;
 
-[[nodiscard]] int scanint(char);
-[[nodiscard]] int scancharnum(char);
-[[nodiscard]] int scantwentysevenbitint(char);
-[[nodiscard]] int scaneightbitint(char);
-[[nodiscard]] int scanfifteenbitint(char);
-[[nodiscard]] int scanfourbitint(char);
-[[nodiscard]] int scandimen(char, bool, bool, bool);
-[[nodiscard]] int scan_normal_dimen(char);
 [[nodiscard]] int scanfontident(char);
 [[nodiscard]] GlueSpec *scanglue(char, smallnumber);
-[[nodiscard]] Token getxtoken(char);
 [[nodiscard]] Token xtoken(char, Token);
 [[nodiscard]] halfword getrtoken(char);
 void scanbox(char, int);
-bool scankeyword(char, const std::string &);
-void scanleftbrace(char);
-void scanmath(NoadContent&);
-void scanoptionalequals(char);
 RuleNode *scanrulespec(char, Token);
 [[nodiscard]] Token scanspec(char, groupcode);
 [[nodiscard]] Token scanspec(char, groupcode, int);
@@ -54,8 +41,6 @@ void beginTokenListMacro(TokenList*);
 void beginTokenListAboveMacro(TokenList*, quarterword);
 void endtokenlist(void);
 void thetoks(char, TokenList&);
-Token getXTokenSkipSpace(char);
-Token getXTokenSkipSpaceAndEscape(char);
 
 inline void back_list(TokenList *p) { beginTokenListBelowMacro(p, backed_up); } //!< backs up a simple token list
 inline void ins_list(TokenList *p) { beginTokenListBelowMacro(p, inserted); } //!< inserts a simple token list

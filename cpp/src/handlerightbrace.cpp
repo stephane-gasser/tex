@@ -84,7 +84,7 @@ void handlerightbrace(char status, Token t, AlignRecordNode* &loop)
 			{
 				error("Unbalanced output routine", "Your sneaky output routine has problematic {'s and/or }'s.\nI can't handle that very well; good luck.");
 				do
-					t = gettoken(status);
+					t = scanner.get(status);
 				while (loc);
 			}
 			endtokenlist();
@@ -113,7 +113,7 @@ void handlerightbrace(char status, Token t, AlignRecordNode* &loop)
 			break;
 		case disc_group: 
 			builddiscretionary();
-			scanleftbrace(status);
+			scanner.leftBrace(status);
 			break;
 		case align_group:
 			backinput(t);
@@ -143,7 +143,7 @@ void handlerightbrace(char status, Token t, AlignRecordNode* &loop)
 		}
 		case math_choice_group:
 			buildchoices();
-			scanleftbrace(status);
+			scanner.leftBrace(status);
 			break;
 		case math_group:
 		{

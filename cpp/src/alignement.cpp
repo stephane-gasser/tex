@@ -19,15 +19,15 @@
 
 static Token getpreambletoken(char status)
 {
-	for (auto t = gettoken(status); true; t = gettoken(status))
+	for (auto t = scanner.get(status); true; t = scanner.get(status))
 	{
 		while (t.chr == span_code && t.cmd == tab_mark)
 		{
-			t = gettoken(status);
+			t = scanner.get(status);
 			if (t.cmd > max_command)
 			{
 				expand(status, t);
-				t = gettoken(status);
+				t = scanner.get(status);
 			}
 		}
 		switch (t.cmd)
@@ -38,7 +38,7 @@ static Token getpreambletoken(char status)
 			case assign_glue:
 				if (t.chr != glue_base+tab_skip_code)
 					return t;
-				scanoptionalequals(status);
+				scanner.optionalEquals(status);
 				eqtb_glue[tab_skip_code].define(global_defs() > 0 ? globalPrefix : noPrefix, glue_ref, scanglue(status, glue_val));
 				break;
 			default:
@@ -156,7 +156,7 @@ void initalign(char &status, Token t, AlignRecordNode* &loop)
 	else // Change current mode to |-vmode| for \halign, |-hmode| for \valign
 		if (mode > 0)
 		mode = -mode;
-	t = scanspec(status, align_group);
+	t = scanner.getBoxSpec(status, align_group);
 	setPreamble(nullptr);
 	curalign = dynamic_cast<AlignRecordNode*>(align_head);
 	loop = 0;
@@ -369,7 +369,7 @@ static bool fincol(char status, AlignRecordNode* &loop)
 	}
 	alignstate = 1000000;
 	curalign = p;
-	initcol(getXTokenSkipSpace(status));
+	initcol(scanner.getXSkipSpace(status));
 	return false;
 }
 
@@ -664,7 +664,7 @@ static void finalign(char status, AlignRecordNode* &loop)
 			backerror(tk, "Missing $$ inserted", "Displays can use special alignments (like \\eqalignno)\nonly if nothing but the alignment itself is between $$'s.");
 		else
 		{
-			tk = getxtoken(status);
+			tk = scanner.getX(status);
 			if (tk.cmd != math_shift)
 				backerror(tk, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}
@@ -695,11 +695,11 @@ void alignpeek(char status, AlignRecordNode* &loop)
 	while (true)
 	{
 		alignstate = 1000000;
-		auto t = getXTokenSkipSpace(status);
+		auto t = scanner.getXSkipSpace(status);
 		switch (t.cmd)
 		{
 			case no_align:
-				scanleftbrace(status);
+				scanner.leftBrace(status);
 				newsavelevel(no_align_group);
 				if (mode == -vmode)
 					normalparagraph();

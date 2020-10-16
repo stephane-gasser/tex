@@ -61,7 +61,7 @@ Token maincontrol(void)
 	AlignRecordNode *loop = nullptr;
 	if (every_job())
 		beginTokenListAboveMacro(every_job(), every_job_text);
-	auto t = getxtoken(status);
+	auto t = scanner.getX(normal);
 	while (true)
 	{
 		if (tracing_commands() > 0)
@@ -69,7 +69,7 @@ Token maincontrol(void)
 		switch (abs(mode)+t.cmd)
 		{
 			case hmode+char_num:
-				t.chr = scancharnum(status);
+				t.chr = scanner.getUChar(status);
 				[[fallthrough]];
 			case hmode+letter:
 			case hmode+other_char:
@@ -77,7 +77,7 @@ Token maincontrol(void)
 				main_loop(status, t);
 				continue;
 			case hmode+no_boundary:
-				t = getxtoken(status);
+				t = scanner.getX(status);
 				if (t.cmd == letter || t.cmd == other_char || t.cmd == char_given || t.cmd == char_num)
 					cancelboundary = true;
 				continue;
@@ -98,7 +98,7 @@ Token maincontrol(void)
 			case mmode+no_boundary: 
 				break;
 			case ANY_MODE(ignore_spaces):
-				t = getXTokenSkipSpace(status);
+				t = scanner.getXSkipSpace(status);
 				continue;
 			case vmode+stop:
 				if (itsallover(status, t))
@@ -164,7 +164,7 @@ Token maincontrol(void)
 				break;
 			case ANY_MODE(kern):
 			case mmode+mkern: 
-				tail_append(new KernNode(scandimen(status, t.chr == mu_glue, false, false), t.chr));
+				tail_append(new KernNode(scanner.getDimen(status, t.chr == mu_glue, false), t.chr));
 				break;
 			case NON_MATH(left_brace):
 				newsavelevel(simple_group);
@@ -184,7 +184,7 @@ Token maincontrol(void)
 			case vmode+hmove:
 			case hmode+vmove:
 			case mmode+vmove:
-				scanbox(status, t.chr == 0 ? scan_normal_dimen(status) : -scan_normal_dimen(status));
+				scanbox(status, (t.chr == 0 ? 1 : -1)*scanner.getNormalDimen(status));
 				break;
 			case ANY_MODE(leader_ship):
 				scanbox(status, leader_flag-a_leaders+t.chr);
@@ -264,7 +264,7 @@ Token maincontrol(void)
 				break;
 			}
 			case ANY_MODE(break_penalty):
-				tail_append(new PenaltyNode(scanint(status)));
+				tail_append(new PenaltyNode(scanner.getInt(status)));
 				if (mode == vmode)
 					buildpage(status);
 				break;
@@ -355,20 +355,20 @@ Token maincontrol(void)
 				dynamic_cast<Noad*>(tail)->nucleus.scan(status);
 				break;
 			case mmode+char_num:
-				t.chr = scancharnum(status); [[fallthrough]];
+				t.chr = scanner.getUChar(status); [[fallthrough]];
 			case mmode+letter:
 			case mmode+other_char:
 			case mmode+char_given: 
 				setmathchar(status, math_code(t.chr), t);
 				break;
 			case mmode+math_char_num:
-				setmathchar(status, scanfifteenbitint(status), t);
+				setmathchar(status, scanner.getUInt15(status), t);
 				break;
 			case mmode+math_given: 
 				setmathchar(status, t.chr, t);
 				break;
 			case mmode+delim_num:
-				setmathchar(status, scantwentysevenbitint(status)>>12, t);
+				setmathchar(status, scanner.getUInt27(status)>>12, t);
 				break;
 			case mmode+math_comp:
 				tail_append(new Noad(t.chr));
@@ -387,7 +387,7 @@ Token maincontrol(void)
 				tail_append(new AccentNoad(status));
 				break;
 			case mmode+vcenter:
-				t = scanspec(status, vcenter_group);
+				t = scanner.getBoxSpec(status, vcenter_group);
 				normalparagraph();
 				pushnest(); 
 				mode = -vmode;
@@ -457,10 +457,10 @@ Token maincontrol(void)
 				prefixedcommand(status, t);
 				break;
 			case ANY_MODE(after_assignment):
-				aftertoken = t = gettoken(status);
+				aftertoken = t = scanner.get(status);
 				break;
 			case ANY_MODE(after_group):
-				t = gettoken(status);
+				t = scanner.get(status);
 				saveforafter(t.tok);
 				break;
 			case ANY_MODE(in_stream):
@@ -478,6 +478,6 @@ Token maincontrol(void)
 			case ANY_MODE(extension):
 				doextension(status, t);
 		}
-		t = getxtoken(status);
+		t = scanner.getX(status);
 	}
 }

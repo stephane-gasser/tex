@@ -93,11 +93,8 @@ void backinput(Token t)
 			alignstate--;
 		else
 			alignstate++;
-	push_input();
-	state = token_list;
-	Start.list.clear();
-	Start.list.push_back(t.tok);
-	Loc = 0;
-	token_type = backed_up;
+	TokenList tl;
+	tl.list.push_back(t.tok);
+	back_list(&tl);
 }
 

@@ -198,7 +198,7 @@ void fireup(char status, LinkedNode *c)
 			beginTokenListAboveMacro(output_routine(), output_text);
 			newsavelevel(output_group);
 			normalparagraph();
-			scanleftbrace(status);
+			scanner.leftBrace(status);
 			return;
 		}
 	if (page_head->link)

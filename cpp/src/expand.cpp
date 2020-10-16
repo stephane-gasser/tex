@@ -52,10 +52,10 @@ static void convtoks(char status, Token t)
 	switch (t.chr)
 	{
 		case number_code:
-			strtoks(std::to_string(scanint(status)));
+			strtoks(std::to_string(scanner.getInt(status)));
 			break;
 		case roman_numeral_code: 
-			strtoks(romanint(scanint(status)));
+			strtoks(romanint(scanner.getInt(status)));
 			break;
 		case font_name_code: 
 		{
@@ -67,7 +67,7 @@ static void convtoks(char status, Token t)
 			strtoks(t.cs ? scs(t.cs) : std::string(1, t.chr));
 			break;
 		case meaning_code:
-			strtoks(meaning(gettoken(normal)));
+			strtoks(meaning(scanner.get(normal)));
 			break;
 		case job_name_code: 
 			if (jobname == "")
@@ -99,9 +99,9 @@ void expand(char status, Token tk)
 			break;
 		case expand_after:
 		{
-			tk = gettoken(status);
+			tk = scanner.get(status);
 			auto t = tk;
-			tk = gettoken(status);
+			tk = scanner.get(status);
 			if (tk.cmd > max_command)
 				expand(status, tk);
 			else
@@ -110,7 +110,7 @@ void expand(char status, Token tk)
 			break;
 		}
 		case no_expand:
-			tk = gettoken(normal);
+			tk = scanner.get(normal);
 			backinput(tk);
 			if (tk.tok >= cs_token_flag)
 				Start.list.insert(Start.list.begin()+Loc, frozen_dont_expand+cs_token_flag);
@@ -121,7 +121,7 @@ void expand(char status, Token tk)
 			TokenList l;
 			do
 			{
-				tk = getxtoken(status);
+				tk = scanner.getX(status);
 				if (tk.cs == 0)
 					l.list.push_back(tk.tok);
 			} while (tk.cs == 0);

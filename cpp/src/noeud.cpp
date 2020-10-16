@@ -73,13 +73,13 @@ void newfont(char status, smallnumber prefix)
 			t = "FONT"+char(u-1);
 		eqtb_active[u-active_base].define(prefix, set_font, null_font);
 	}
-	scanoptionalequals(status);
+	scanner.optionalEquals(status);
 	scanfilename(status);
 	nameinprogress = true;
 	scaled s;
-	if (scankeyword(status, "at"))
+	if (scanner.isKeyword(status, "at"))
 	{
-		s = scan_normal_dimen(status);
+		s = scanner.getNormalDimen(status);
 		if (s <= 0 || s >= 2048*unity)
 		{
 			error("Improper `at' size ("+asScaled(s)+"pt), replaced by 10pt", "I can only handle fonts at positive sizes that are\nless than 2048pt, so I've changed what you said to 10pt.");
@@ -87,9 +87,9 @@ void newfont(char status, smallnumber prefix)
 		}
 	}
 	else 
-		if (scankeyword(status, "scaled"))
+		if (scanner.isKeyword(status, "scaled"))
 		{
-			s = -scanint(status);
+			s = -scanner.getInt(status);
 			if (s >= 0 || s < -(1<<15))
 			{
 				interror(-s, "Illegal magnification has been changed to 1000", "The magnification ratio must be between 1 and 0x80'00.");
@@ -163,7 +163,7 @@ void appendchoices(char status)
 	m->int_ = 0;
 	savestack.push_back(m);
 	pushmath(math_choice_group);
-	scanleftbrace(status);
+	scanner.leftBrace(status);
 }
 
 void appenddiscretionary(char status, halfword s)
@@ -181,7 +181,7 @@ void appenddiscretionary(char status, halfword s)
 		m->int_ = 0;
 		savestack.push_back(m);
 		newsavelevel(disc_group);
-		scanleftbrace(status);
+		scanner.leftBrace(status);
 		pushnest();
 		mode = -hmode;
 		space_factor = 1000;
@@ -285,7 +285,7 @@ AccentNoad::AccentNoad(char status)
 	nucleus.math_type = 0; // twohalves{0, 0};
 	subscr.math_type = 0; // = twohalves{0, 0};
 	supscr.math_type = 0; // = twohalves{0, 0};
-	int val = scanfifteenbitint(status);
+	int val = scanner.getUInt15(status);
 	accent_chr.math_type = math_char; 
 	accent_chr.character = val%0x1'00;
 	accent_chr.fam = val >= var_code && fam_in_range() ? cur_fam() : (val>>8)%0x10;
@@ -319,7 +319,7 @@ FractionNoad::FractionNoad(char status, halfword c, Token t)
 	switch (c%delimited_code)
 	{
 		case above_code:
-			thickness = scan_normal_dimen(status);
+			thickness = scanner.getNormalDimen(status);
 			break;
 		case over_code: 
 			thickness = default_code;
@@ -369,7 +369,7 @@ std::string DiscNode::shortDisplay(void) { return shortdisplay(pre_break)+shortd
 ShapeNode::ShapeNode(char status, int n) : values(2*n)
 {
 	for (int j = 0; j < 2*n; j++)
-		values.push_back(scan_normal_dimen(status));
+		values.push_back(scanner.getNormalDimen(status));
 }
 
 LinkedNode::~LinkedNode(void) 

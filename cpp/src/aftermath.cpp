@@ -45,7 +45,7 @@ void aftermath(char status)
 	Token t;
 	if (mode == -m)
 	{
-		t = getxtoken(status);
+		t = scanner.getX(status);
 		backerror(t, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		curmlist = p;
 		curstyle = 2;
@@ -96,7 +96,7 @@ void aftermath(char status)
 	{
 		if (a == nullptr)
 		{
-			t = getxtoken(status);
+			t = scanner.getX(status);
 			if (t.cmd != math_shift)
 				backerror(t, "Display math should end with $$", "The `$' that I just saw supposedly matches a previous `$$'.\nSo I shall assume that you typed `$$' both times.");
 		}

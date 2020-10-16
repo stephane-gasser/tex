@@ -214,14 +214,14 @@ void main_loop(char status, Token &t) //t: char_num / letter / other_char / char
 					//!  otherwise move the cursor one step to the right and |goto main_lig_loop|
 					tail_append(ligstack); [[fallthrough]];
 				case lookahead: //! Look ahead for another character, or leave |lig_stack| empty if there's none there
-					t = getnext(status);
+					t = scanner.next(status);
 					if (t.cmd != letter && t.cmd != other_char && t.cmd != char_given)
 					{
 						t = xtoken(status, t);
 						switch (t.cmd)
 						{
 							case char_num:
-								t.chr = scancharnum(status);
+								t.chr = scanner.getUChar(status);
 								break;
 							case letter:
 							case other_char:
@@ -267,7 +267,7 @@ void main_loop(char status, Token &t) //t: char_num / letter / other_char / char
 		{
 			charwarning(cur_font(), t.chr);
 			delete ligstack;
-			t = getxtoken(status); // big_switch
+			t = scanner.getX(status); // big_switch
 		}
 }
 
@@ -288,7 +288,7 @@ void main_loop(char status, Token &t) //t: char_num / letter / other_char / char
 	}
 	else
 		tail_append(new GlueNode(space_skip()));
-	return getxtoken(status);
+	return scanner.getX(status);
 }
 
 //! Handle spaces when <em> space_factor != 1000 </em>.
