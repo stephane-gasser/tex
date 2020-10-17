@@ -39,7 +39,7 @@ static Token getpreambletoken(char status)
 				if (t.chr != glue_base+tab_skip_code)
 					return t;
 				scanner.optionalEquals(status);
-				eqtb_glue[tab_skip_code].define(global_defs() > 0 ? globalPrefix : noPrefix, glue_ref, scanglue(status, glue_val));
+				eqtb_glue[tab_skip_code].define(global_defs() > 0 ? globalPrefix : noPrefix, glue_ref, scanner.getGlue(status, glue_val));
 				break;
 			default:
 				return t;

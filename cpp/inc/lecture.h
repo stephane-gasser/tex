@@ -28,14 +28,10 @@ enum token_type
 inline smallnumber radix = 0;
 inline glueord curorder = 0;
 
-[[nodiscard]] int scanfontident(char);
-[[nodiscard]] GlueSpec *scanglue(char, smallnumber);
 [[nodiscard]] Token xtoken(char, Token);
 [[nodiscard]] halfword getrtoken(char);
 void scanbox(char, int);
 RuleNode *scanrulespec(char, Token);
-[[nodiscard]] Token scanspec(char, groupcode);
-[[nodiscard]] Token scanspec(char, groupcode, int);
 void beginTokenListBelowMacro(TokenList*, quarterword);
 void beginTokenListMacro(TokenList*);
 void beginTokenListAboveMacro(TokenList*, quarterword);

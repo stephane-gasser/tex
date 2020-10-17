@@ -94,11 +94,11 @@ void doregistercommand(char status, smallnumber prefix, Token t)
 				switch (q)
 				{
 					case register_:
-						g = scanglue(status, glue_val);
+						g = scanner.getGlue(status, glue_val);
 						break;
 					case advance:
 					{
-						g = new GlueSpec(scanglue(status, glue_val));
+						g = new GlueSpec(scanner.getGlue(status, glue_val));
 						auto R = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						deleteglueref(g);
 						g->width += R->width;
@@ -151,11 +151,11 @@ void doregistercommand(char status, smallnumber prefix, Token t)
 				switch (q)
 				{
 					case register_:
-						g = scanglue(status, mu_val);
+						g = scanner.getGlue(status, mu_val);
 						break;
 					case advance:
 					{
-						g = new GlueSpec(scanglue(status, mu_val));
+						g = new GlueSpec(scanner.getGlue(status, mu_val));
 						auto R = dynamic_cast<GlueSpec*>(eqtb_glue[l-glue_base].index);
 						deleteglueref(g);
 						g->width += R->width;

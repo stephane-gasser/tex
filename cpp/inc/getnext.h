@@ -64,6 +64,8 @@ class Scanner
 		int getNormalDimen(char status) { return getDimen(status, false, false); }
 		bool isKeyword(char, const std::string &);
 		void optionalEquals(char);
+		int getFontIdent(char);
+		GlueSpec *getGlue(char, smallnumber);
 };
 
 

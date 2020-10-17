@@ -202,14 +202,14 @@ GlueNode *glueToAppend(char status, halfword s)
 			return new GlueNode(fil_neg_glue);
 		case skip_code:
 		{
-			auto g = scanglue(status, mu_val);
+			auto g = scanner.getGlue(status, mu_val);
 			g->glue_ref_count--;
 			return new GlueNode(g);
 		}
 		default:
 		//case mskip_code: 
 		{
-			auto g = scanglue(status, mu_val);
+			auto g = scanner.getGlue(status, mu_val);
 			g->glue_ref_count--;
 			auto G = new GlueNode(g);
 			G->subtype = mu_glue;

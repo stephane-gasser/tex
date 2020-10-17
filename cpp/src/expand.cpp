@@ -59,7 +59,7 @@ static void convtoks(char status, Token t)
 			break;
 		case font_name_code: 
 		{
-			auto &f = fonts[scanfontident(status)];
+			auto &f = fonts[scanner.getFontIdent(status)];
 			strtoks(f.name+(f.size != f.dsize ? " at "+asScaled(f.size)+"pt" : ""));
 			break;
 		}

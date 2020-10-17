@@ -288,7 +288,7 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 		case assign_mu_glue:
 		{
 			scanner.optionalEquals(status);
-			auto g = trapzeroglue(scanglue(status, t.cmd == assign_mu_glue ? mu_val : glue_val));
+			auto g = trapzeroglue(scanner.getGlue(status, t.cmd == assign_mu_glue ? mu_val : glue_val));
 			eqtb_glue[t.chr-glue_base].define(pfx, glue_ref, g);
 			break;
 		}
@@ -327,7 +327,7 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 		{	
 			auto p = t.chr+scanner.getUInt4(status);
 			scanner.optionalEquals(status);
-			eqtb_local[p-local_base].define(pfx, data, scanfontident(status));
+			eqtb_local[p-local_base].define(pfx, data, scanner.getFontIdent(status));
 			break;
 		}
 		case register_:
@@ -388,7 +388,7 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 		}
 		case assign_font_int:
 		{
-			auto f = scanfontident(status);
+			auto f = scanner.getFontIdent(status);
 			scanner.optionalEquals(status);
 			(t.chr == 0 ? fonts[f].hyphenchar : fonts[f].skewchar) = scanner.getInt(status);
 			break;

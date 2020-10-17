@@ -62,7 +62,7 @@ void Scanner::somethingInternal(char status, smallnumber level, bool negative, T
 				lev = int_val;
 				break;
 			case assign_font_int:
-				val = t.chr == 0 ? fonts[scanfontident(status)].hyphenchar: fonts[scanfontident(status)].skewchar;
+				val = t.chr == 0 ? fonts[scanner.getFontIdent(status)].hyphenchar : fonts[scanner.getFontIdent(status)].skewchar;
 				lev = int_val;
 				break;
 			// tok_val
@@ -82,7 +82,7 @@ void Scanner::somethingInternal(char status, smallnumber level, bool negative, T
 				if (level != tok_val)
 					throw 1;
 				backinput(t);
-				val = scanfontident(status)+frozen_null_font;
+				val = scanner.getFontIdent(status)+frozen_null_font;
 				lev = ident_val;
 				break;
 			// dimen_val
@@ -604,9 +604,9 @@ int Scanner::getUInt15(char status)
 }
 
 
-[[nodiscard]] int scanfontident(char status)
+int Scanner::getFontIdent(char status)
 {
-	auto t = scanner.getXSkipSpace(status);
+	auto t = getXSkipSpace(status);
 	switch (t.cmd)
 	{
 		case def_font:
@@ -614,58 +614,61 @@ int Scanner::getUInt15(char status)
 		case set_font:
 			return t.chr;
 		case def_family:
-			return eqtb_local[t.chr+scanner.getUInt4(status)-local_base].int_;
+			return eqtb_local[t.chr+getUInt4(status)-local_base].int_;
 	}
 	backerror(t, "Missing font identifier", "I was looking for a control sequence whose\ncurrent meaning has been defined by \\font.");
 	return null_font;
 }
 
-[[nodiscard]] GlueSpec* scanglue(char status, smallnumber level) //glue_val/mu_val
+GlueSpec* Scanner::getGlue(char status, smallnumber level) //glue_val/mu_val
 {
 	bool mu = level == mu_val;
 	bool negative = false;
 	Token t;
 	do
 	{
-		t = scanner.getXSkipSpace(status);
+		t = getXSkipSpace(status);
 		if (t.tok == other_token+'-')
 		{
 			negative = !negative;
 			t.tok = other_token+'+';
 		}
 	} while (t.tok != other_token+'+');
-	if (t.cmd >= min_internal && t.cmd <= max_internal)
+	if (between(min_internal, t.cmd, max_internal))
 	{
-		scanner.somethingInternal(status, level, negative, t);
-		if (scanner.lev >= glue_val)
+		somethingInternal(status, level, negative, t);
+		switch (lev)
 		{
-			if (scanner.lev != level)
-				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
-			return scanner.gl;
+			case int_val:
+				val = getDimen(status, mu, false, true);
+				break;
+			case dimen_val:
+				if (level == mu_val)
+					error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
+				break;
+			default:
+				if (lev != level)
+					error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
+				return gl;
 		}
-		if (scanner.lev == int_val)
-			scanner.val = scanner.getDimen(status, mu, false, true);
-		else 
-			if (level == mu_val)
-				error("Incompatible glue units", "I'm going to assume that 1mu=1pt when they're mixed.");
 	}
 	else
 	{
 		backinput(t);
-		scanner.val = scanner.getDimen(status, mu, false);
+		val = getDimen(status, mu, false);
 		if (negative)
-			scanner.val *= -1;
+			val *= -1;
 	}
 	auto q = new GlueSpec(zero_glue);
-	q->width = scanner.val;
-	if (scanner.isKeyword(status, "plus"))
+	q->width = val;
+	if (isKeyword(status, "plus"))
 	{
-		q->stretch = scanner.getDimen(status, mu, true);
+		q->stretch = getDimen(status, mu, true);
 		q->stretch_order = curorder;
 	}
-	if (scanner.isKeyword(status, "minus"))
+	if (isKeyword(status, "minus"))
 	{
-		q->shrink = scanner.getDimen(status, mu, true);
+		q->shrink = getDimen(status, mu, true);
 		q->shrink_order = curorder;
 	}
 	return q;
@@ -1053,13 +1056,13 @@ Token Scanner::getX(char status)
 {
 	while (true)
 	{
-		auto t = scanner.getSkipSpace(status);
-		if (t.cs && t.cs <= frozen_control_sequence)
-			return t.cs;
-		if (t.cs)
+		if (auto t = scanner.getSkipSpace(status); t.cs)
+		{ 
+			if (t.cs <= frozen_control_sequence)
+				return t.cs;
 			backinput(t);
-		t.tok = frozen_protection+cs_token_flag;
-		inserror(t, "Missing control sequence inserted", "Please don't say `\\def cs{...}', say `\\def\\cs{...}'.\nI've inserted an inaccessible control sequence so that your\ndefinition will be completed without mixing me up too badly.\nYou can recover graciously from this error, if you're\ncareful; see exercise 27.2 in The TeXbook.");
+		}
+		inserror(frozen_protection+cs_token_flag, "Missing control sequence inserted", "Please don't say `\\def cs{...}', say `\\def\\cs{...}'.\nI've inserted an inaccessible control sequence so that your\ndefinition will be completed without mixing me up too badly.\nYou can recover graciously from this error, if you're\ncareful; see exercise 27.2 in The TeXbook.");
 	}
 }
 
