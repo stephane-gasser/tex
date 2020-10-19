@@ -77,7 +77,7 @@ static void scantoks(const char status, bool xpand, Token tk)
 						defRef.list.insert(defRef.list.end(), tempHead.list.begin(), tempHead.list.end());
 				}
 			}
-			tk = xtoken(status, tk);
+			tk = scanner.xpand(status, tk);
 		}
 		else
 			tk = scanner.get(status);

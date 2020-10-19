@@ -270,7 +270,15 @@ class RuleNode : public LinkedNode
 		int height = null_flag;
 		RuleNode(void) { type = rule_node; }
 		RuleNode(scaled t) : depth(0), height(t) { type = rule_node; }
-		virtual RuleNode *copy(void) { auto r = new RuleNode; r->width = width; r->depth = depth; r->height = height; return r; }
+		RuleNode(char, Token);
+		virtual RuleNode *copy(void) 
+		{ 
+			auto r = new RuleNode; 
+			r->width = width; 
+			r->depth = depth; 
+			r->height = height; 
+			return r; 
+		}
 		virtual std::string shortDisplay(void) { return "|"; }
 		virtual std::string showNode(const std::string &);
 		virtual void vlist(scaled);

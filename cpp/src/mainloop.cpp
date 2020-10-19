@@ -217,7 +217,7 @@ void main_loop(char status, Token &t) //t: char_num / letter / other_char / char
 					t = scanner.next(status);
 					if (t.cmd != letter && t.cmd != other_char && t.cmd != char_given)
 					{
-						t = xtoken(status, t);
+						t = scanner.xpand(status, t);
 						switch (t.cmd)
 						{
 							case char_num:

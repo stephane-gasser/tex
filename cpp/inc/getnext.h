@@ -66,6 +66,9 @@ class Scanner
 		void optionalEquals(char);
 		int getFontIdent(char);
 		GlueSpec *getGlue(char, smallnumber);
+		Token xpand(char, Token);
+		halfword getR(char);
+		void getBox(char, int);
 };
 
 

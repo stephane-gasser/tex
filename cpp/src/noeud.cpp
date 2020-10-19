@@ -56,7 +56,7 @@ void newfont(char status, smallnumber prefix)
 	std::string t;
 	if (jobname == "")
 		openlogfile();
-	auto u = getrtoken(status);
+	auto u = scanner.getR(status);
 	if (u >= hash_base)
 	{
 		t = eqtb_cs[u-hash_base].text;
@@ -80,7 +80,7 @@ void newfont(char status, smallnumber prefix)
 	if (scanner.isKeyword(status, "at"))
 	{
 		s = scanner.getNormalDimen(status);
-		if (s <= 0 || s >= 2048*unity)
+		if (!between(1, s, (unity<<11)-1))
 		{
 			error("Improper `at' size ("+asScaled(s)+"pt), replaced by 10pt", "I can only handle fonts at positive sizes that are\nless than 2048pt, so I've changed what you said to 10pt.");
 			s = 10*unity;
@@ -90,7 +90,7 @@ void newfont(char status, smallnumber prefix)
 		if (scanner.isKeyword(status, "scaled"))
 		{
 			s = -scanner.getInt(status);
-			if (s >= 0 || s < -(1<<15))
+			if (!between(-(1<<15), s, -1))
 			{
 				interror(-s, "Illegal magnification has been changed to 1000", "The magnification ratio must be between 1 and 0x80'00.");
 				s = -1000;
@@ -287,8 +287,8 @@ AccentNoad::AccentNoad(char status)
 	supscr.math_type = 0; // = twohalves{0, 0};
 	int val = scanner.getUInt15(status);
 	accent_chr.math_type = math_char; 
-	accent_chr.character = val%0x1'00;
-	accent_chr.fam = val >= var_code && fam_in_range() ? cur_fam() : (val>>8)%0x10;
+	accent_chr.character = val&0xFF;
+	accent_chr.fam = getFam(val);
 	nucleus.scan(status);
 }
 

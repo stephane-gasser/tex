@@ -28,10 +28,6 @@ enum token_type
 inline smallnumber radix = 0;
 inline glueord curorder = 0;
 
-[[nodiscard]] Token xtoken(char, Token);
-[[nodiscard]] halfword getrtoken(char);
-void scanbox(char, int);
-RuleNode *scanrulespec(char, Token);
 void beginTokenListBelowMacro(TokenList*, quarterword);
 void beginTokenListMacro(TokenList*);
 void beginTokenListAboveMacro(TokenList*, quarterword);

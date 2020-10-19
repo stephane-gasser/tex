@@ -259,9 +259,9 @@ void Scanner::somethingInternal(char status, smallnumber level, bool negative, T
 			gl->glue_ref_count++;
 }
 
-void scanbox(char status, int boxcontext)
+void Scanner::getBox(char status, int boxcontext)
 {
-	auto t = scanner.getXSkipSpaceAndEscape(status);
+	auto t = getXSkipSpaceAndEscape(status);
 	switch (t.cmd)
 	{
 		case make_box:
@@ -271,7 +271,7 @@ void scanbox(char status, int boxcontext)
 		case vrule:
 			if (boxcontext > leader_flag)
 			{
-				boxend(status, boxcontext, scanrulespec(status, t));
+				boxend(status, boxcontext, new RuleNode(status, t));
 				break;
 			}
 			[[fallthrough]];
@@ -522,7 +522,7 @@ int Scanner::getDimen(char status, bool mu, bool inf, bool shortcut)
 									{
 										error("Illegal unit of measure (pt inserted)", "Dimensions can be in units of em, ex, in, pt, pc,\ncm, mm, dd, cc, bp, or sp; but yours is a new one!\nI'll assume that you meant to say pt, for printer's points.\nDimension too large\nI can't work with sizes bigger than about 19 feet.\nContinue and I'll use the largest value I can.");
 										calc(aritherror, val, decimales);
-										t = xtoken(status, t);
+										t = xpand(status, t);
 										if (t.cmd != spacer)
 											backinput(t);
 										break;
@@ -835,7 +835,7 @@ void NoadContent::scan(char status)
 					t.cs = t.chr+active_base;
 					t.cmd = eqtb_active[t.chr].type;
 					t.chr = eqtb_active[t.chr].int_;
-					t = xtoken(status, t);
+					t = scanner.xpand(status, t);
 					backinput(t);
 					t = scanner.getXSkipSpaceAndEscape(status);
 					another = true;
@@ -865,8 +865,8 @@ void NoadContent::scan(char status)
 		}
 	} while (another);
 	math_type = math_char;
-	character = c%(1<<8);
-	fam = (c >= var_code && fam_in_range() ? cur_fam() : (c>>8)%(1<<4));
+	character = c&0xFF;
+	fam = getFam(c);
 }
 
 void Scanner::optionalEquals(char status)
@@ -878,36 +878,34 @@ void Scanner::optionalEquals(char status)
 
 constexpr int default_rule = 26214; //0.4\thinspace pt
 
-RuleNode *scanrulespec(char status, Token t)
+RuleNode::RuleNode(char status, Token t)
 {
-	auto q = new RuleNode;
 	if (t.cmd == vrule)
-		q->width = default_rule;
+		width = default_rule;
 	else
 	{
-		q->height = default_rule;
-		q->depth = 0;
+		height = default_rule;
+		depth = 0;
 	}
 	while (true)
 	{
 		if (scanner.isKeyword(status, "width"))
 		{
-			q->width = scanner.getNormalDimen(status);
+			width = scanner.getNormalDimen(status);
 			continue;
 		}
 		if (scanner.isKeyword(status, "height"))
 		{
-			q->height = scanner.getNormalDimen(status);
+			height = scanner.getNormalDimen(status);
 			continue;
 		}
 		if (scanner.isKeyword(status, "depth"))
 		{
-			q->depth = scanner.getNormalDimen(status);
+			depth = scanner.getNormalDimen(status);
 			continue;
 		}
 		break;
 	}
-	return q;
 }
 
 Token Scanner::getBoxSpec(char status, groupcode c)
@@ -1045,14 +1043,14 @@ Token Scanner::getX(char status)
 		}
 }
 
-[[nodiscard]] Token xtoken(char status, Token t)
+Token Scanner::xpand(char status, Token t)
 {
 	for (; t.cmd > max_command; t = scanner.next(status))
 		expand(status, t);
 	return t;
 }
 
-[[nodiscard]] halfword getrtoken(char status)
+halfword Scanner::getR(char status)
 {
 	while (true)
 	{

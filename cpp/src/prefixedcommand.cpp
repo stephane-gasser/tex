@@ -103,8 +103,7 @@ static void alterprevgraf(char status)
 	while (abs(nest[p].modefield) != vmode)
 		p--;
 	scanner.optionalEquals(status);
-	int val = scanner.getInt(status);
-	if (val < 0)
+	if (int val = scanner.getInt(status); val < 0)
 		interror(val, " Bad "+esc("prevgraf"), "I allow only nonnegative values here.");
 	else
 	{
@@ -116,24 +115,23 @@ static void alterprevgraf(char status)
 static void alteraux(char status, Token t)
 {
 	if (t.chr != abs(mode))
-		reportillegalcase(t);
-	else
 	{
-		scanner.optionalEquals(status);
-		if (t.chr == vmode)
-			prev_depth = scanner.getNormalDimen(status);
-		else
-		{
-			int val = scanner.getInt(status);
-			if (val <= 0 || val > 32767)
-				interror(val, "Bad space factor", "I allow only values in the range 1..32767 here.");
-			else
-				space_factor = val;
-		}
+		reportillegalcase(t);
+		return;
 	}
+	scanner.optionalEquals(status);
+	if (t.chr == vmode)
+	{
+		prev_depth = scanner.getNormalDimen(status);
+		return;
+	}
+	if (int val = scanner.getInt(status); between(1, val, 32767))
+		space_factor = val;
+	else
+		interror(val, "Bad space factor", "I allow only values in the range 1..32767 here.");
 }
 
-void prefixedcommand(char &status, Token t, bool setboxallowed) 
+static smallnumber getPrefix(char status, Token t)
 {
 	smallnumber pfx = noPrefix;
 	while (t.cmd == prefix)
@@ -144,7 +142,7 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 		if (t.cmd <= max_non_prefixed_command)
 		{
 			backerror(t, "You can't use a prefix with `"+cmdchr(t)+"\'", "I'll pretend you didn't say \\long or \\outer or \\global.");
-			return;
+			throw;
 		}
 	}
 	if (t.cmd != def && pfx%globalPrefix)
@@ -153,7 +151,29 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 		pfx -= globalPrefix;
 	if (global_defs() > 0 && pfx < globalPrefix)
 		pfx += globalPrefix;
-	int val;
+	return pfx;
+}
+
+void afterPrefixedCommand(Token &aftertoken)
+{
+	if (aftertoken.tok)
+		{
+			backinput(aftertoken);
+			aftertoken.tok = 0;
+		}
+}
+
+void prefixedcommand(char &status, Token t, bool setboxallowed) 
+{
+	smallnumber pfx;
+	try
+	{	
+		smallnumber pfx = getPrefix(status, t);
+	}
+	catch (...)
+	{
+		return;
+	}
 	switch (t.cmd)
 	{
 		case set_font:
@@ -163,16 +183,14 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 		{
 			if ((t.chr&longPrefix) && pfx < globalPrefix && global_defs() >= 0)
 				pfx += globalPrefix;
-			auto p = getrtoken(status);
-			Token tk;
-			tk.cs = p;
-			scanMacroToks(status, t.chr >= 2, tk);
+			auto p = scanner.getR(status);
+			scanMacroToks(status, t.chr >= 2, p+cs_token_flag);
 			eqtb_cs[p-hash_base].define(pfx, call+pfx%globalPrefix, &defRef); // pfx%globalPrefix = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		}
 		case let:
 		{
-			auto p = getrtoken(status);
+			auto p = scanner.getR(status);
 			if (t.chr == 0)
 			{
 				t = scanner.getXSkipSpace(status);
@@ -197,7 +215,7 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 		}
 		case shorthand_def:
 		{
-			auto p = getrtoken(status);
+			auto p = scanner.getR(status);
 			eqtb_cs[p-hash_base].define(pfx, relax, 256);
 			scanner.optionalEquals(status);
 			switch (t.chr)
@@ -230,36 +248,20 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 			auto n = scanner.getInt(status);
 			if (!scanner.isKeyword(status, "to")) 
 				error("Missing `to' inserted", "You should have said `\\read<number> to \\cs'.\nI'm going to look for the \\cs now.");
-			auto p = getrtoken(status);
+			auto p = scanner.getR(status);
 			eqtb_cs[p-hash_base].define(pfx, call, readtoks(n, p));
 			status = normal;
 			break;
 		}
 		case toks_register:
-		case assign_toks:
 		{
 			auto old = t.cs;
-			auto p = t.cmd == toks_register ? toks_base+scanner.getUInt8(status) : t.chr;
+			auto p = toks_base+scanner.getUInt8(status);
 			scanner.optionalEquals(status);
-			t = scanner.getXSkipSpaceAndEscape(status);
-			if (t.cmd == toks_register)
-				t = Token(assign_toks, toks_base+scanner.getUInt8(status));
-			if (t.cmd == assign_toks)
-			{
-				if (eqtb_local[t.chr-local_base].index == nullptr)
-					eqtb_local[p-local_base].define(pfx, undefined_cs, nullptr);
-				else
-				{
-					auto q = dynamic_cast<TokenList*>(eqtb_local[t.chr-local_base].index);
-					q->token_ref_count++;
-					eqtb_local[p-local_base].define(pfx, call, q);
-				}
-				break;
-			}
+			scanner.getXSkipSpaceAndEscape(status);
+			t = Token(assign_toks, toks_base+scanner.getUInt8(status));
 			backinput(t);
-			Token tk;
-			tk.cs = old;
-			scanNonMacroToks(status, tk);
+			scanNonMacroToks(status, old+cs_token_flag);
 			if (defRef.list.size() == 0)
 			{
 				eqtb_local[p-local_base].define(pfx, undefined_cs, nullptr);
@@ -267,7 +269,7 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 			}
 			else
 			{
-				if (p == output_routine_loc) 
+				if (p == output_routine_loc)
 				{
 					defRef.list.insert(defRef.list.begin(), left_brace_token+'{');
 					defRef.list.push_back(right_brace_token+'}');
@@ -276,6 +278,18 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 			}
 			break;
 		}
+		case assign_toks:
+			scanner.optionalEquals(status);
+			t = scanner.getXSkipSpaceAndEscape(status);
+			if (eqtb_local[t.chr-local_base].index == nullptr)
+				eqtb_local[t.chr-local_base].define(pfx, undefined_cs, nullptr);
+			else
+			{
+				auto q = dynamic_cast<TokenList*>(eqtb_local[t.chr-local_base].index);
+				q->token_ref_count++;
+				eqtb_local[t.chr-local_base].define(pfx, call, q);
+			}
+			break;
 		case assign_int:
 			scanner.optionalEquals(status);
 			eqtb_int[t.chr-int_base].word_define(pfx, scanner.getInt(status));
@@ -311,7 +325,7 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 			}
 			auto p = t.chr+scanner.getUChar(status);
 			scanner.optionalEquals(status);
-			val = scanner.getInt(status);
+			auto val = scanner.getInt(status);
 			if ((val < 0 && t.chr != del_code_base) || val > maxValue)
 			{
 				error("Invalid code ("+std::to_string(val)+(t.chr != del_code_base ? "), should be in the range 0.." : "//), should be at most ")+std::to_string(maxValue), "I'm going to use 0 instead of that illegal code value.");
@@ -343,7 +357,7 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 				n += 1<<8;
 			scanner.optionalEquals(status);
 			if (setboxallowed)
-				scanbox(status, box_flag+n);
+				scanner.getBox(status, box_flag+n);
 			else
 				error("Improper "+esc("setbox"), "Sorry, \\setbox is not allowed after \\halign in a display,\nor between \\accent and an accented character.");
 			break;
@@ -402,9 +416,5 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 		default: 
 			confusion("prefix");
 	}
-	if (aftertoken.tok)
-	{
-		backinput(aftertoken);
-		aftertoken.tok = 0;
-	}
+	afterPrefixedCommand(aftertoken);
 }

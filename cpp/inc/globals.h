@@ -511,7 +511,6 @@ constexpr int inf_penalty = inf_bad; //!< ``infinite'' penalty value
 constexpr int eject_penalty = -inf_penalty; //!< ``negatively infinite'' penalty value
 constexpr int ignore_depth = -65536000; //!< \a prev_depth value that is ignored
 constexpr int null_font = font_base;
-constexpr int var_code = 28672;  //!< math code meaning ``use the current family''
 constexpr int input_line_no_code = glue_val+1; //!< code for \\inputlineno
 constexpr int badness_code = glue_val+2; //!< code for \\badness
 constexpr int max_dimen = (1<<30)-1; //!< \f$2^{30}-1\f$

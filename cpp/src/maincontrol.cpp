@@ -44,10 +44,10 @@ static void setmathchar(char status, int c, Token t)
 		t.cs = t.chr+active_base;
 		t.cmd = eqtb_active[t.cs].type;
 		t.chr = eqtb_active[t.cs].int_;
-		backinput(xtoken(status, t));
+		backinput(scanner.xpand(status, t));
 	}
 	else
-		tail_append(new Noad(c&0xFF, c >= var_code && fam_in_range() ? cur_fam() : (c&0xF00)>>8, type));
+		tail_append(new Noad(c&0xFF, getFam(c), type));
 }
 
 //! for mode-independent commands
@@ -146,7 +146,7 @@ Token maincontrol(void)
 			case vmode+hrule:
 			case hmode+vrule:
 			case mmode+vrule:
-				tail_append(scanrulespec(status, t));
+				tail_append(new RuleNode(status, t));
 				switch (abs(mode))
 				{
 					case vmode:
@@ -184,10 +184,10 @@ Token maincontrol(void)
 			case vmode+hmove:
 			case hmode+vmove:
 			case mmode+vmove:
-				scanbox(status, (t.chr == 0 ? 1 : -1)*scanner.getNormalDimen(status));
+				scanner.getBox(status, (t.chr == 0 ? 1 : -1)*scanner.getNormalDimen(status));
 				break;
 			case ANY_MODE(leader_ship):
-				scanbox(status, leader_flag-a_leaders+t.chr);
+				scanner.getBox(status, leader_flag-a_leaders+t.chr);
 				break;
 			case ANY_MODE(make_box):
 				beginbox(status, 0, t);

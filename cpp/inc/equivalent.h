@@ -4,6 +4,8 @@
 #include "globals.h"
 #include "noeud.h"
 
+constexpr int var_code = 28672;  //!< math code meaning ``use the current family''
+
 enum levels
 {
 	level_zero = 0, //!< level for undefined quantities
@@ -206,6 +208,7 @@ inline std::vector<MemoryNode> eqtb_int(dimen_base-int_base); // holds the curre
 		inline int& escape_char(void) { return int_par(escape_char_code); }
 		inline int cur_fam(void) { return int_par(cur_fam_code); }
 		inline bool fam_in_range(void) { return cur_fam() >= 0 && cur_fam() < 16; }
+		inline quarterword getFam(int val) { return val >= var_code && fam_in_range() ? cur_fam() : (val>>8)&0xFF; }
 		inline int& new_line_char(void) { return int_par(new_line_char_code); }
 		inline int default_hyphen_char(void) { return int_par(default_hyphen_char_code); }
 	// 256 count registers
