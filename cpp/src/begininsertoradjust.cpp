@@ -9,7 +9,7 @@
 
 static void beginCommon(char status, int val)
 {
-	savestack.push_back(new MemoryNode(0, 0, val));
+	savestack.push_back(new MemoryNode(val));
 	newsavelevel(insert_group);
 	scanner.leftBrace(status);
 	normalparagraph();

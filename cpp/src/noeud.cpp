@@ -159,9 +159,7 @@ GlueNode* newskipparam(smallnumber n)
 void appendchoices(char status)
 {
 	tail_append(new ChoiceNode);
-	auto m = new MemoryNode;
-	m->int_ = 0;
-	savestack.push_back(m);
+	savestack.push_back(new MemoryNode(0));
 	pushmath(math_choice_group);
 	scanner.leftBrace(status);
 }
@@ -177,9 +175,7 @@ void appenddiscretionary(char status, halfword s)
 	}
 	else
 	{
-		auto m = new MemoryNode;
-		m->int_ = 0;
-		savestack.push_back(m);
+		savestack.push_back(new MemoryNode(0));
 		newsavelevel(disc_group);
 		scanner.leftBrace(status);
 		pushnest();

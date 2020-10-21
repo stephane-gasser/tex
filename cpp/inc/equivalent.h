@@ -81,8 +81,8 @@ class MemoryNode : public AnyNode
 		AnyNode *index; //!< equivalent value
 		std::string text;
 		int int_; //!< equivalent value
-		MemoryNode(quarterword t = 0, quarterword l = 0, AnyNode *i = nullptr) : type(t), level(l), index(i) {}
-		MemoryNode(quarterword t, quarterword l, int i) : type(t), level(l), int_(i) {}
+		MemoryNode(AnyNode *i = nullptr, quarterword t = 0, quarterword l = 0) : type(t), level(l), index(i) {}
+		MemoryNode(int i, quarterword t = 0, quarterword l = 0) : type(t), level(l), int_(i) {}
 		bool operator == (const MemoryNode &m) { return std::tuple(type, level, index, int_) == std::tuple(m.type, m.level, m.index, m.int_); }
 		bool operator != (const MemoryNode &m) { return std::tuple(type, level, index, int_) != std::tuple(m.type, m.level, m.index, m.int_); }
 		void eqdestroy(void);

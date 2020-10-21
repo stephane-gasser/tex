@@ -859,7 +859,7 @@ void NoadContent::scan(char status)
 			default:
 				backinput(t);
 				scanner.leftBrace(status);
-				savestack.push_back(new MemoryNode(0, 0, this));
+				savestack.push_back(new MemoryNode(this));
 				pushmath(math_group);
 				return;
 		}
@@ -912,13 +912,13 @@ Token Scanner::getBoxSpec(char status, groupcode c)
 {
 	if (isKeyword(status, "to"))
 	{
-		savestack.push_back(new MemoryNode(0, 0, exactly));
-		savestack.push_back(new MemoryNode(0, 0, getNormalDimen(status)));
+		savestack.push_back(new MemoryNode(exactly));
+		savestack.push_back(new MemoryNode(getNormalDimen(status)));
 	}
 	else
 	{
-		savestack.push_back(new MemoryNode(0, 0, additional));
-		savestack.push_back(new MemoryNode(0, 0, isKeyword(status, "spread") ? getNormalDimen(status) : 0));
+		savestack.push_back(new MemoryNode(additional));
+		savestack.push_back(new MemoryNode(isKeyword(status, "spread") ? getNormalDimen(status) : 0));
 	}
 	newsavelevel(c);
 	leftBrace(status);
@@ -927,7 +927,7 @@ Token Scanner::getBoxSpec(char status, groupcode c)
 
 Token Scanner::getBoxSpec(char status, groupcode c, int s)
 {
-	savestack.push_back(new MemoryNode(0, 0, s));
+	savestack.push_back(new MemoryNode(s));
 	return getBoxSpec(status, c);
 }
 

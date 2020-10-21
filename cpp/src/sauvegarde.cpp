@@ -16,18 +16,18 @@ enum save_type
 void MemoryNode::eqsave(quarterword l)
 {
 	if (l == level_zero)
-		savestack.push_back(new MemoryNode(restore_zero, level_zero, this));
+		savestack.push_back(new MemoryNode(this, restore_zero, level_zero));
 	else
 	{
 		savestack.push_back(this);
-		savestack.push_back(new MemoryNode(restore_old_value, l, this));
+		savestack.push_back(new MemoryNode(this, restore_old_value, l));
 	}
 }
 
 void saveforafter(halfword token)
 {
 	if (curlevel > level_one)
-		savestack.push_back(new MemoryNode(insert_token, level_zero, token));
+		savestack.push_back(new MemoryNode(token, insert_token, level_zero));
 }
 
 static AnyNode *curboundary = nullptr; // 0..savesize
@@ -36,7 +36,7 @@ void newsavelevel(groupcode c)
 {
 	if (curlevel == 255)
 		overflow("grouping levels", 255);
-	savestack.push_back(new MemoryNode(level_boundary, curgroup, curboundary));
+	savestack.push_back(new MemoryNode(curboundary, level_boundary, curgroup));
 	curboundary = savestack.back();
 	curlevel++;
 	curgroup = c;
