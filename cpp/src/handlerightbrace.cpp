@@ -2,7 +2,6 @@
 #include "sauvegarde.h"
 #include "impression.h"
 #include "erreur.h"
-#include "extrarightbrace.h"
 #include "endgraf.h"
 #include "boite.h"
 #include "etat.h"
@@ -25,19 +24,24 @@ void handlerightbrace(char status, Token t, AlignRecordNode* &loop)
 			error("Too many }'s", "You've closed more groups than you opened.\nSuch booboos are generally harmless, so keep going.");
 			break;
 		case semi_simple_group:
-		case math_shift_group:
-		case math_left_group: 
-			extrarightbrace();
+			error("Extra }, or forgotten "+esc("endgroup"), "I've deleted a group-closing symbol because it seems to be\nspurious, as in `$x}$'. But perhaps the } is legitimate and\nyou forgot something else, as in `\\hbox{$x}'. In such cases\nthe way to recover is to insert both the forgotten and the\ndeleted material, e.g., by typing `I$}'.");
+			alignstate++;
 			break;
-		case hbox_group: 
-			package(status, box_code, t);
+		case math_shift_group:
+			error("Extra }, or forgotten $", "I've deleted a group-closing symbol because it seems to be\nspurious, as in `$x}$'. But perhaps the } is legitimate and\nyou forgot something else, as in `\\hbox{$x}'. In such cases\nthe way to recover is to insert both the forgotten and the\ndeleted material, e.g., by typing `I$}'.");
+			alignstate++;
+			break;
+		case math_left_group: 
+			error("Extra }, or forgotten "+esc("right"), "I've deleted a group-closing symbol because it seems to be\nspurious, as in `$x}$'. But perhaps the } is legitimate and\nyou forgot something else, as in `\\hbox{$x}'. In such cases\nthe way to recover is to insert both the forgotten and the\ndeleted material, e.g., by typing `I$}'.");
+			alignstate++;
 			break;
 		case adjusted_hbox_group:
 			adjusttail = adjust_head;
 			package(status, box_code, t);
 			break;
 		case vbox_group:
-			endgraf();
+			endgraf(); [[fallthrough]];
+		case hbox_group: 
 			package(status, box_code, t);
 			break;
 		case vtop_group:
@@ -47,10 +51,6 @@ void handlerightbrace(char status, Token t, AlignRecordNode* &loop)
 		case insert_group:
 		{
 			endgraf();
-			auto q = split_top_skip();
-			q->glue_ref_count++;
-			auto d = split_max_depth();
-			auto f = floating_penalty();
 			unsave();
 			auto s0 = savestack.back()->int_;
 			savestack.pop_back();
@@ -58,22 +58,11 @@ void handlerightbrace(char status, Token t, AlignRecordNode* &loop)
 			popnest();
 			if (s0 < 255)
 			{
-				auto ins = new InsNode;
-				ins->subtype = s0;
-				ins->height = p->height+p->depth;
-				ins->ins_ptr = p->list_ptr;
-				ins->split_top_ptr = q;
-				ins->depth = d;
-				ins->float_cost = f;
-				tail_append(ins);
+				split_top_skip()->glue_ref_count++;
+				tail_append(new InsNode(s0, p->height+p->depth, split_max_depth(), split_top_skip(), floating_penalty(), p->list_ptr));
 			}
 			else
-			{
-				auto a = new AdjustNode;
-				a->adjust_ptr = p->list_ptr;
-				tail_append(a);
-				deleteglueref(q);
-			}
+				tail_append(new AdjustNode(p->list_ptr));
 			delete p;
 			if (nest.size() == 1)
 				buildpage(status);
@@ -117,8 +106,7 @@ void handlerightbrace(char status, Token t, AlignRecordNode* &loop)
 			break;
 		case align_group:
 			backinput(t);
-			t.tok = cs_token_flag+frozen_cr;
-			inserror(t, "Missing "+esc("cr")+" inserted", "I'm guessing that you meant to end an alignment here.");
+			inserror(cs_token_flag+frozen_cr, "Missing "+esc("cr")+" inserted", "I'm guessing that you meant to end an alignment here.");
 			break;
 		case no_align_group:
 			endgraf();

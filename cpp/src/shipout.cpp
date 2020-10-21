@@ -16,11 +16,7 @@
 float vet_glue(float g)
 {
 	constexpr float billion = 1000000000.;
-	if (g > billion)
-		return billion;
-	if (g < -billion)
-		return -billion;
-	return g; 
+	return g > billion ? billion : g < -billion ? -billion : g; 
 }
 
 static void hlistout(BoxNode*);
@@ -31,17 +27,15 @@ static void vlistout(BoxNode *thisbox)
 	float curglue = 0.0;
 	glueord gorder = thisbox->glue_order;
 	char gsign = thisbox->glue_sign;
-	auto p = thisbox->list_ptr;
 	curs++;
 	if (curs > 0)
 		dvi_out(push);
-	if (curs > maxpush)
-		maxpush = curs;
+	maxpush = std::max(curs, maxpush);
 	int saveloc = dvioffset+dviptr;
 	auto leftedge = curh;
 	curv -= thisbox->height;
 	auto topedge = curv;
-	for (; p; next(p))
+	for (auto p = thisbox->list_ptr; p; next(p))
 		switch (p->type)
 		{
 			case char_node:
@@ -58,8 +52,8 @@ static void vlistout(BoxNode *thisbox)
 				break;
 			case glue_node:
 			{
-				auto pp = dynamic_cast<GlueNode*>(p);
-				auto g = pp->glue_ptr;
+				auto P = dynamic_cast<GlueNode*>(p);
+				auto g = P->glue_ptr;
 				ruleht = g->width-curg;
 				if (gsign)
 					if (gsign == 1)
@@ -77,11 +71,11 @@ static void vlistout(BoxNode *thisbox)
 							curg = round(vet_glue(thisbox->glue_set*curglue));
 						}
 				ruleht += curg;
-				if (pp->subtype >= a_leaders)
+				if (P->subtype >= a_leaders)
 				{
-					if (pp->leader_ptr->type == rule_node)
+					if (P->leader_ptr->type == rule_node)
 					{
-						auto leaderbox = dynamic_cast<RuleNode*>(pp->leader_ptr);
+						auto leaderbox = dynamic_cast<RuleNode*>(P->leader_ptr);
 						rulewd = leaderbox->width;
 						ruledp = 0;
 						if (is_running(rulewd))
@@ -98,14 +92,14 @@ static void vlistout(BoxNode *thisbox)
 						}
 						break;
 					}
-					auto leaderbox = dynamic_cast<BoxNode*>(pp->leader_ptr);
+					auto leaderbox = dynamic_cast<BoxNode*>(P->leader_ptr);
 					auto leaderht = leaderbox->height+leaderbox->depth;
 					if (leaderht > 0 && ruleht > 0)
 					{
 						ruleht += 10;
 						auto edge = curv+ruleht;
 						scaled lx = 0;
-						if (pp->subtype == a_leaders)
+						if (P->subtype == a_leaders)
 						{
 							auto savev = curv;
 							curv = topedge+leaderht*((curv-topedge)/leaderht);
@@ -116,7 +110,7 @@ static void vlistout(BoxNode *thisbox)
 						{
 							lq = ruleht/leaderht;
 							lr = ruleht%leaderht;
-							if (pp->subtype == c_leaders)
+							if (P->subtype == c_leaders)
 								curv += lr/2;
 							else
 							{

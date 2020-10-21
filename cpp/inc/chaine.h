@@ -4,6 +4,8 @@
 #include "globals.h"
 #include "equivalent.h"
 
+constexpr int hash_prime = 1777; //!<  a prime number equal to about 85% of \a hash_size
+
 inline std::vector<std::string> strings;
 inline std::string currentString;
 inline halfword hashused = frozen_control_sequence;

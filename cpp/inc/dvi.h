@@ -5,6 +5,7 @@
 
 typedef int dviindex; // 0..dvibufsize
 
+constexpr int id_byte = 2; //!< identifies the kind of DVI files described here
 constexpr int dvibufsize = 800;
 
 enum

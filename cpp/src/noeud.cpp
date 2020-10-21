@@ -405,22 +405,11 @@ DiscNode *DiscNode::copy(void)
 
 InsNode *InsNode::copy(void) 
 { 
-	auto i = new InsNode; 
-	i->height = height; 
-	i->depth = depth; 
-	i->split_top_ptr = split_top_ptr; 
-	i->float_cost = float_cost; 
 	split_top_ptr->glue_ref_count++; 
-	i->ins_ptr = copynodelist(ins_ptr); 
-	return i; 
+	return new InsNode(subtype, height, depth, split_top_ptr, float_cost, copynodelist(ins_ptr)); 
 }
 
-AdjustNode *AdjustNode::copy(void) 
-{ 
-	auto a = new AdjustNode; 
-	a->adjust_ptr = copynodelist(adjust_ptr); 
-	return a; 
-}
+AdjustNode *AdjustNode::copy(void) { return new AdjustNode(copynodelist(adjust_ptr)); }
 
 GlueNode *GlueNode::copy(void) 
 { 

@@ -3,6 +3,8 @@
 
 #include "globals.h"
 
+constexpr int null_font = 0;
+
 enum
 {
 	slant_code = 1,

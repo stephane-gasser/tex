@@ -193,7 +193,7 @@ class InsNode : public LinkedNode
 		GlueSpec *split_top_ptr; //the |split_top_skip| to be used
 		int float_cost; //the |floating_penalty| to be used
 		LinkedNode *ins_ptr; //the vertical list to be inserted
-		InsNode(void) { type = ins_node; }
+		InsNode(quarterword st, scaled h, scaled d, GlueSpec *stp, int fc, LinkedNode *ip) : subtype(st), height(h), depth(d), split_top_ptr(stp), float_cost(fc), ins_ptr(ip) { type = ins_node; }
 		~InsNode(void);
 		virtual InsNode *copy(void);
 		virtual std::string shortDisplay(void) { return "[]"; }
@@ -215,7 +215,7 @@ class AdjustNode : public LinkedNode
 {
 	public:
 		LinkedNode *adjust_ptr;
-		AdjustNode(void) { type = adjust_node; }
+		AdjustNode(LinkedNode *ptr) : adjust_ptr(ptr) { type = adjust_node; }
 		~AdjustNode(void);
 		virtual AdjustNode *copy(void);
 		virtual std::string shortDisplay(void) { return "[]"; }

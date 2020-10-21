@@ -5,6 +5,8 @@
 #include "noeud.h"
 
 constexpr int var_code = 28672;  //!< math code meaning ``use the current family''
+constexpr int hash_size = 2100; //!<  maximum number of control sequences; it should be at most about |(mem_max-mem_min)/10|}
+constexpr int font_base = 0; //!<  smallest internal font number; must not be less
 
 enum levels
 {
