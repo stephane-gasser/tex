@@ -42,7 +42,6 @@ void Initialize(void)
 	page_head = new GlueNode(zero_glue);
 	adjust_head = new LinkedNode;
 	null_list = new LinkedNode;
-	lig_trick = new CharNode(null_font, 0);
 	eqtb_cs[undefined_control_sequence-hash_base].type = undefined_cs;
 	eqtb_cs[undefined_control_sequence-hash_base].level = level_zero;
 	eqtb_cs[undefined_control_sequence-hash_base].index = /*0*/nullptr;

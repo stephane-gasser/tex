@@ -129,15 +129,7 @@ void expand(char status, Token tk)
 				backerror(tk, "Missing "+esc("endcsname")+" inserted", "The control sequence marked <to be read again> should\nnot appear between \\csname and \\endcsname.");
 			int j = First;
 			for (auto &p: l.list)
-			{
-				if (j >= maxbufstack)
-				{
-					maxbufstack = j+1;
-					if (maxbufstack == bufsize)
-						overflow("buffer size", bufsize);
-				};
 				buffer[j++] = p%(1<<8);
-			}
 			if (j > First+1)
 				tk.cs = idlookup(std::string(buffer+First, buffer+j+1), false);
 			else
@@ -170,7 +162,7 @@ void expand(char status, Token tk)
 					error("Extra "+cmdchr(tk), "I'm ignoring this; it doesn't match any \\if.");
 			else
 			{
-				while (tk.chr != 2)
+				while (tk.chr != fi_code)
 					passtext();
 				ifline = condptr->if_line_field;
 				curif = condptr->subtype;

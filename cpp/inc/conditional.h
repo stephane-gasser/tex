@@ -35,6 +35,7 @@ enum if_codes
 };
 
 void conditional(char, Token);
+void passtext(void);
 
 inline char iflimit = 0; // 0..4
 

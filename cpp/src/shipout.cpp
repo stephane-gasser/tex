@@ -10,13 +10,12 @@
 #include "police.h"
 #include "chaine.h"
 #include "buildpage.h"
-#include <iostream>
 #include <cmath>
 
 float vet_glue(float g)
 {
 	constexpr float billion = 1000000000.;
-	return g > billion ? billion : g < -billion ? -billion : g; 
+	return round(g > billion ? billion : g < -billion ? -billion : g); 
 }
 
 static void hlistout(BoxNode*);
@@ -61,14 +60,14 @@ static void vlistout(BoxNode *thisbox)
 						if (g->stretch_order == gorder)
 						{
 							curglue += g->stretch;
-							curg = round(vet_glue(thisbox->glue_set*curglue));
+							curg = vet_glue(thisbox->glue_set*curglue);
 						}
 					}
 					else 
 						if (g->shrink_order == gorder)
 						{
 							curglue -= g->shrink;
-							curg = round(vet_glue(thisbox->glue_set*curglue));
+							curg = vet_glue(thisbox->glue_set*curglue);
 						}
 				ruleht += curg;
 				if (P->subtype >= a_leaders)
@@ -158,8 +157,7 @@ static void hlistout(BoxNode *thisbox)
 	curs++;
 	if (curs > 0)
 		dvi_out(push);
-	if (curs > maxpush)
-		maxpush = curs;
+	maxpush = std::max(curs, maxpush);
 	int saveloc = dvioffset+dviptr;
 	scaled baseline = curv;
 	scaled leftedge = curh;
@@ -299,7 +297,6 @@ static void hlistout(BoxNode *thisbox)
 	curs--;
 }
 
-
 static void ensure_dvi_open(void)
 {
 	if (outputfilename == "")
@@ -316,16 +313,11 @@ void shipout(BoxNode *p)
 	if (tracing_output())
 		print("\r\nCompleted box being shipped out"+std::string(termoffset > maxprintline-9 ? "\n" : termoffset > 0 || fileoffset > 0 ? " " : ""));
 	print("[");
-	int j = 9;
-	while (count(j) == 0 && j > 0)
-		j--;
-	for (int k = 0; k <= j; k++)
-	{
-		print(std::to_string(count(k)));
-		if (k < j)
-			print(".");
-	}
-	std::cout << std::flush;
+	int j;
+	for (j = 9; count(j) == 0 && j > 0; j--);
+	for (int k = 0; k < j; k++)
+		print(std::to_string(count(k))+".");
+	print(std::to_string(count(j))+"\n");
 	if (tracing_output() > 0)
 	{
 		print("]");
@@ -342,7 +334,7 @@ void shipout(BoxNode *p)
 			print("]");
 		}
 		deadcycles = 0;
-		std::cout << std::flush;
+		print("\n");
 		flushnodelist(p);
 		return;
 	}
@@ -374,17 +366,14 @@ void shipout(BoxNode *p)
 	dvifour(lastbop);
 	lastbop = pageloc;
 	curv = p->height+v_offset();
-	if (p->type == vlist_node)
-		vlistout(p);
-	else
-		hlistout(p);
+	(p->type == vlist_node ? vlistout : hlistout)(p);
 	dvi_out(eop);
 	totalpages++;
 	curs = -1;
 	if (tracing_output() <= 0)
 		print("]");
 	deadcycles = 0;
-	std::cout << std::flush;
+	print("\n");
 	flushnodelist(p);
 }
 
@@ -462,32 +451,25 @@ void CharNode::hlist(scaled, scaled, scaled)
 
 void BoxNode::hlist(scaled baseline, scaled, scaled)
 {
-	if (list_ptr == nullptr)
-		curh += width;
-	else
+	auto edge = curh;
+	if (list_ptr)
 	{
 		auto saveh = dvih;
 		auto savev = dviv;
 		curv = baseline+shift_amount;
-		auto edge = curh;
 		(type == vlist_node ? vlistout : hlistout)(this);
 		dvih = saveh;
 		dviv = savev;
-		curh = edge+width;
 		curv = baseline;
 	}
+	curh = edge+width;
 }
 
 void RuleNode::hlist(scaled baseline, scaled h, scaled d)
 {
-	ruleht = height;
-	ruledp = depth;
 	rulewd = width;
-	if (is_running(ruleht))
-		ruleht = h;
-	if (is_running(ruledp))
-		ruledp = d;
-	ruleht += ruledp;
+	ruledp = is_running(ruledp) ? d : depth;
+	ruleht = (is_running(ruleht) ? h : height)+ruledp;
 	if (ruleht > 0 && rulewd > 0)
 	{
 		synch_h();
@@ -497,9 +479,9 @@ void RuleNode::hlist(scaled baseline, scaled h, scaled d)
 		dvifour(ruleht);
 		dvifour(rulewd);
 		curv = baseline;
-		dvih = dvih+rulewd;
+		dvih += rulewd;
 	}
-	curh = curh+rulewd;
+	curh += rulewd;
 }
 
 void LigatureNode::hlist(scaled, scaled, scaled)

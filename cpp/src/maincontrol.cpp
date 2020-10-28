@@ -327,11 +327,13 @@ Token maincontrol(void)
 				initalign(status, t, loop);
 				break;
 			case mmode+halign: 
-				if (privileged(t))
+				if (mode > 0)
 					if (curgroup == math_shift_group)
 						initalign(status, t, loop);
 					else
 						offsave(t);
+				else
+					reportillegalcase(t);
 				break;
 			case vmode+endv:
 			case hmode+endv: 
@@ -344,7 +346,7 @@ Token maincontrol(void)
 				initmath(status);
 				break;
 			case mmode+eq_no: 
-				if (privileged(t))
+				if (mode > 0)
 					if (curgroup == math_shift_group)
 					{
 						savestack.push_back(new MemoryNode(t.chr));
@@ -355,6 +357,8 @@ Token maincontrol(void)
 					}
 					else
 						offsave(t);
+				else
+					reportillegalcase(t);
 				break;
 			case mmode+left_brace:
 				tail_append(new Noad);

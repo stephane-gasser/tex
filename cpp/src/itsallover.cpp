@@ -8,7 +8,7 @@
 
 bool itsallover(char status, Token t)
 {
-	if (privileged(t))
+	if (mode > 0)
 	{
 		if (page_head == pagetail && head == tail && deadcycles == 0)
 			return true;
@@ -20,5 +20,7 @@ bool itsallover(char status, Token t)
 		tail_append(new PenaltyNode(null_flag));
 		buildpage(status);
 	}
+	else
+		reportillegalcase(t);
 	return false;
 }

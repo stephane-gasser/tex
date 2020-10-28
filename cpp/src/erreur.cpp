@@ -22,19 +22,14 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 	if (interaction == error_stop_mode)
 		while (true)
 		{
-			// clearforerrorprompt
 			while (state != token_list && terminal_input(name) && inputstack.size() > 1 && loc > limit)
 				endfilereading();
-			println();
+			print("\n? ");
 			std::cin.clear();
-			print("? ");
 			terminput();
 			if (last == First)
 				return;
-			ASCIIcode c = buffer[First];
-		  	if (c >= 'a') // minuscule
-				c -= 'a'-'A'; // conversion en majuscule
-			switch (c)
+			switch (buffer[First])
 			{
 				case '0':
 				case '1':
@@ -48,19 +43,20 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 				case '9':
 					if (deletionsallowed)
 					{
-						auto s4 = alignstate;
-						alignstate = 1000000;
-						c -= '0';
-						if (last > First+1 && buffer[First+1] >= '0' && buffer[First+1] <= '9')
+						auto c = buffer[First]-'0';
+						if (last > First+1 && between('0',buffer[First+1], '9'))
 						  c = c*10+buffer[First+1]-'0';
+						auto save = alignstate;
+						alignstate = 1000000;
 						for (; c > 0; c--)
 							(void)scanner.get(normal);
-						alignstate = s4;
+						alignstate = save;
 						helpline = "I have just deleted some text, as you asked.";
 						print(showcontext());
 						return;
 					}
 					break;
+				case 'e': 
 				case 'E': 
 					if (baseptr > 0)
 					{
@@ -70,6 +66,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 						throw std::string("jumpout");
 					}
 					break;
+				case 'h':
 				case 'H':
 					if (useerrhelp)
 						print(tokenshow(err_help()));
@@ -78,6 +75,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 					useerrhelp = false;
 					helpline = "Sorry, I already gave what help I could...\nMaybe you should try asking a human?\nAn error might have occurred before I noticed any problems.\n``If all else fails, read the instructions.''";
 					continue;
+				case 'i':
 				case 'I':
 					beginfilereading();
 					if (last > First+1)
@@ -94,25 +92,26 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 					First = last;
 					limit = last-1;
 					return;
+				case 'q':
 				case 'Q':
+					errorcount = 0;
+					interaction = batch_mode;
+					print("OK, entering "+esc("batchmode")+" ...\n");
+					selector--;
+					std::cout << std::flush;
+					return;
+				case 'r':
 				case 'R':
+					errorcount = 0;
+					interaction = nonstop_mode;
+					print("OK, entering "+esc("nonstopmode")+" ...\n");
+					std::cout << std::flush;
+					return;
+				case 's':
 				case 'S':
 					errorcount = 0;
-					interaction = c-'Q';
-					print("OK, entering ");
-					switch (c)
-					{
-						case 'Q':
-							print(esc("batchmode"));
-							selector--;
-						  	break;
-						case 'R': 
-							print(esc("nonstopmode"));
-							break;
-						case 'S':
-							print(esc("scrollmode"));
-					}
-					print(" ...\n");
+					interaction = scroll_mode;
+					print("OK, entering "+esc("scrollmode")+" ...\n");
 					std::cout << std::flush;
 					return;
 				case 'X':
@@ -120,17 +119,14 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 					throw std::string("jumpout");
 					break;
 			}
-			print("Type <return> to proceed, S to scroll future error messages,");
-			print("\rR to run without stopping, Q to run quietly,");
-			print("\rI to insert something, ");
+			print("Type <return> to proceed, S to scroll future error messages,\rR to run without stopping, Q to run quietly,\rI to insert something, ");
 			if (baseptr > 0)
 				print("E to edit your file,");
 			if (deletionsallowed)
 				print("\r1 or ... or 9 to ignore the link 1 to 9 tokens of input,");
 			print("\rH for help, X to quit.");
 		}
-	errorcount++;
-	if (errorcount == 100)
+	if (++errorcount == 100)
 	{
 		print("\r(That makes 100 errors; please try again.)");
 		history = fatal_error_stop;
@@ -195,10 +191,7 @@ void fatal(const std::string &msg, const std::string &hlp)
 
 static void normalizeselector(void)
 {
-	if (logopened)
-		selector = term_and_log;
-	else
-	selector = term_only;
+	selector = logopened ? term_and_log : term_only;
 	if (jobname == "")
 		openlogfile();
 	if (interaction == batch_mode)
@@ -228,14 +221,6 @@ void fatalerror(const std::string &s)
 
 void interror(int n, const std::string &msg, const std::string &hlp) { error(msg+" ("+std::to_string(n)+")", hlp); }
 void reportillegalcase(Token t) { error("You can't use `"+cmdchr(t)+"' in "+asMode(mode), "Sorry, but I'm not programmed to handle this case;\nI'll just pretend that you didn't ask for it.\nIf you're in the wrong mode, you might be able to\nreturn to the right one by typing `I}' or `I$' or `I\\par'."); }
-
-bool privileged(Token t)
-{
-	if (mode > 0)
-		return true;
-	reportillegalcase(t);
-	return false;
-}
 
 void charwarning(const Font &ft, eightbits c)
 {

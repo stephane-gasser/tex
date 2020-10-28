@@ -71,9 +71,6 @@ class Scanner
 		void getBox(char, int);
 };
 
-
-void passtext(void);
-
 inline Scanner scanner;
 inline halfword warningindex = 0;
 inline bool forceeof = false;

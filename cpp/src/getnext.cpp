@@ -65,7 +65,7 @@
 	return t.cs ? Token(spacer, ' ') : t;
 }
 
-static bool is_hex(ASCIIcode c) { return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f'); }
+static bool is_hex(ASCIIcode c) { return between('0', c, '9') || between('a', c, 'f'); }
 static int toHex(ASCIIcode c) { return c <= '9' ? c -'0' : c-'a'+10; }
 
 static int intFromTwoHexDigit(ASCIIcode c, int pos)
@@ -74,15 +74,12 @@ static int intFromTwoHexDigit(ASCIIcode c, int pos)
 	{
 		auto &cc = buffer[pos];
 		if (is_hex(cc))
-			return 16*toHex(c)+toHex(cc);
+			return (toHex(c)<<4)+toHex(cc);
 	}
 	return -1;
 }
 
-static bool prochainCaractereOK(int pos, halfword chr)
-{
-	return buffer[pos] == chr && pos < limit && buffer[pos+1] < 128;
-}
+static bool prochainCaractereOK(int pos, halfword chr) { return buffer[pos] == chr && pos < limit && buffer[pos+1] < 128; }
 
 template<class T> static int processBuffer(int k, T &var)
 {
@@ -96,7 +93,7 @@ static void removeFromEnd(int &k, int d)
 {
 	limit -= d;
 	First -= d;
-	for (;k <= limit; k++)
+	for (; k <= limit; k++)
 		buffer[k] = buffer[k+d];
 }
 
@@ -349,34 +346,42 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 			} while (skip && !restart);
 		}
 		else
-			if (Loc)
+			if (!Loc)
 			{
-				auto tt = Start.list[Loc++];
-				if (tt >= cs_token_flag)
+				endtokenlist();
+				restart = true;
+			}
+			else
+			{
+				Loc++;
+				if (Start.list[Loc] >= cs_token_flag)
 				{
-					t.cs = tt-cs_token_flag;
-					t.cmd = eqtb[t.cs].type;
-					t.chr = eqtb[t.cs].int_;
-					if (t.cmd >= outer_call)
-						if (t.cmd == dont_expand)
+					t.cs = Start.list[Loc]-cs_token_flag;
+					t = Token(eqtb[t.cs].type, eqtb[t.cs].int_);
+					switch (t.cmd)
+					{
+						case outer_call:
+						case long_outer_call:
+						case end_template:
+						case glue_ref:
+						case shape_ref:
+						case box_ref:
+						case data:
+							t = checkoutervalidity(status, t);
+							break;
+						case dont_expand:
 						{
 							t.cs = Start.list[Loc]-cs_token_flag;
 							Loc = 0;
-							t.cmd = eqtb[t.cs].type;
-							t.chr = eqtb[t.cs].int_;
+							t = Token(eqtb[t.cs].type, eqtb[t.cs].int_);
 							if (t.cmd > max_command)
-							{
-								t.cmd = relax;
-								t.chr = no_expand_flag;
-							}
+								t = Token(relax, no_expand_flag);
 						}
-						else
-							t = checkoutervalidity(status, t);
+					}
 				}
 				else
 				{
-					t.cmd = tt>>8;
-					t.chr = tt%(1<<8);
+					t = Token(Start.list[Loc]>>8, Start.list[Loc]%(1<<8));
 					switch (t.cmd)
 					{
 						case left_brace: 
@@ -391,11 +396,6 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 					}
 				}
 			}
-			else
-			{
-				endtokenlist();
-				restart = true;
-			}
 		if (!restart && t.cmd <= out_param && t.cmd >= tab_mark && alignstate == 0)
 		{
 			if (status == aligning || curalign == nullptr)
@@ -408,24 +408,4 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 		}
 	} while (restart);
 	return t;
-}
-
-void passtext(void)
-{
-	int l = 0;
-	skipline = line;
-	while (true)
-	{
-		auto t = scanner.next(skipping);
-		if (t.cmd == fi_or_else)
-		{
-			if (l == 0)
-				break;
-			if (t.chr == fi_code)
-				l--;
-		}
-		else 
-			if (t.cmd == if_test)
-				l++;
-	}
 }

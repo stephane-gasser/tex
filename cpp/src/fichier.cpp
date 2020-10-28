@@ -55,23 +55,7 @@ bool inputln(std::istream& f, bool bypasseoln)
 	int lastnonblank = First;
 	for (char c: line)
 	{
-		if (last >= maxbufstack)
-		{
-			maxbufstack = last+1;
-			if (maxbufstack == bufsize)
-				if (formatident == "")
-				{
-					std::cout << "Buffer size exceeded!\n";
-					throw std::string();
-				}
-				else
-				{
-					loc = First;
-					limit = last-1;
-					overflow("buffer size", bufsize); 
-				}
-		}
-		buffer[last++] = 32 <= c && c < 127 ? c : 127;
+		buffer[last++] = between(' ', c,  '~') ? c : '\x7f';
 		if (buffer[last-1] != ' ')
 			lastnonblank = last;
 	}

@@ -279,3 +279,24 @@ void conditional(char status, Token t)
 			}
 	}
 }
+
+
+void passtext(void)
+{
+	int l = 0;
+	skipline = line;
+	while (true)
+	{
+		auto t = scanner.next(skipping);
+		if (t.cmd == fi_or_else)
+		{
+			if (l == 0)
+				break;
+			if (t.chr == fi_code)
+				l--;
+		}
+		else 
+			if (t.cmd == if_test)
+				l++;
+	}
+}
