@@ -35,7 +35,7 @@ inline std::vector<bool> writeopen(18, false);
 inline bool logopened = false;
 inline char inopen = 0; // 0..maxinopen
 inline std::string nameoffile;// char[filenamesize+1]; // débute à 1
-inline ASCIIcode buffer[bufsize+1]; // débute à 0
+inline std::string buffer;
 inline int First = 1;// 0..bufsize
 inline int last; // 0..bufsize
 inline int line = 0;

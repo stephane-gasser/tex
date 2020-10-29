@@ -16,11 +16,11 @@ static void writeout(char status, NotOpenWriteWhatsitNode *p)
 	TokenList head;
 	head.list.push_back(right_brace_token+'}');
 	head.list.push_back(end_write_token);
-	ins_list(&head);
-	beginTokenListAboveMacro(p->write_tokens, write_text);
+	head.beginBelowMacro(inserted);
+	p->write_tokens->beginAboveMacro(write_text);
 	head.list.clear();
 	head.list.push_back(left_brace_token+'{');
-	ins_list(&head);
+	head.beginBelowMacro(inserted);
 	int oldmode = mode;
 	mode = 0;
 	Token t;
@@ -65,7 +65,7 @@ static void specialout(NotOpenWriteWhatsitNode *p)
 		dvi_out(xxx4);
 		dvifour(cur_length());
 	}
-	for (auto c: tokenlist(p->write_tokens, poolsize))
+	for (auto c: p->write_tokens->toString(poolsize))
 		dvi_out(c);
 }
 

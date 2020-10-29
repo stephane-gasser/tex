@@ -61,7 +61,7 @@ Token maincontrol(void)
 	char status = normal;
 	AlignRecordNode *loop = nullptr;
 	if (every_job())
-		beginTokenListAboveMacro(every_job(), every_job_text);
+		every_job()->beginAboveMacro(every_job_text);
 	auto t = scanner.getX(normal);
 	while (true)
 	{
@@ -177,7 +177,7 @@ Token maincontrol(void)
 				if (curgroup == semi_simple_group)
 					unsave();
 				else
-					offsave(t);
+					offsave(t); //erreur curgroup
 				break;
 			case ANY_MODE(right_brace):
 				handlerightbrace(status, t, loop);
@@ -223,7 +223,7 @@ Token maincontrol(void)
 				break;
 			case hmode+par_end:
 				if (alignstate < 0)
-					offsave(t);
+					offsave(t); //erreur curgroup
 				endgraf();
 				if (mode == vmode)
 					buildpage(status);
@@ -233,7 +233,7 @@ Token maincontrol(void)
 			case hmode+un_vbox:
 			case hmode+halign: 
 				if (mode < 0)
-					offsave(t);
+					offsave(t); //erreur curgroup
 				else
 				{
 					backinput(t);
@@ -331,7 +331,7 @@ Token maincontrol(void)
 					if (curgroup == math_shift_group)
 						initalign(status, t, loop);
 					else
-						offsave(t);
+						offsave(t); //erreur curgroup
 				else
 					reportillegalcase(t);
 				break;
@@ -353,10 +353,10 @@ Token maincontrol(void)
 						pushmath(math_shift_group);
 						eqtb_int[cur_fam_code].word_define(noPrefix, -1);
 						if (every_math())
-							beginTokenListAboveMacro(every_math(), every_math_text);
+							every_math()->beginAboveMacro(every_math_text);
 					}
 					else
-						offsave(t);
+						offsave(t); //erreur curgroup
 				else
 					reportillegalcase(t);
 				break;
@@ -404,7 +404,7 @@ Token maincontrol(void)
 				mode = -vmode;
 				prev_depth = ignore_depth;
 				if (every_vbox())
-					beginTokenListAboveMacro(every_vbox(), every_vbox_text);
+					every_vbox()->beginAboveMacro(every_vbox_text);
 				break;
 			case mmode+math_style:
 				tail_append(new StyleNode(t.chr));
@@ -433,7 +433,7 @@ Token maincontrol(void)
 				if (curgroup == math_shift_group)
 					aftermath(status);
 				else
-					offsave(t);
+					offsave(t); //erreur curgroup
 				break;
 			case ANY_MODE(toks_register):
 			case ANY_MODE(assign_toks):

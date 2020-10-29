@@ -62,8 +62,12 @@ void scanNonMacroToksExpand(char&, Token);
 
 class TokenList : public AnyNode
 {
+	private:
+		void beginCommon(quarterword);
 	public:
 		std::vector<halfword> list;
+		TokenList(void) {}
+		TokenList(const std::vector<halfword> &tl) : list(tl) {}
 		halfword token_ref_count;
 		void deleteTokenRef(void) 
 		{
@@ -72,6 +76,10 @@ class TokenList : public AnyNode
 			else
 				list.clear();
 		}
+		std::string toString(int l);
+		void beginBelowMacro(quarterword);
+		void beginMacro(void);
+		void beginAboveMacro(quarterword);
 };
 
 inline TokenList defRef;
@@ -82,7 +90,6 @@ inline halfword Loc;
 inline std::vector<TokenList> paramstack;
 
 void beginTokenListAboveMacro(TokenList *, quarterword);
-std::string tokenlist(TokenList *, int);
 
 #endif
 

@@ -93,8 +93,6 @@ void backinput(Token t)
 			alignstate--;
 		else
 			alignstate++;
-	TokenList tl;
-	tl.list.push_back(t.tok);
-	back_list(&tl);
+	TokenList({t.tok}).beginBelowMacro(backed_up);
 }
 

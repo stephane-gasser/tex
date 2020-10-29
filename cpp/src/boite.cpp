@@ -272,13 +272,13 @@ void beginbox(char status, int boxcontext, Token t)
 			{
 				prev_depth = ignore_depth;
 				if (every_vbox())
-					beginTokenListAboveMacro(every_vbox(), every_vbox_text);
+					every_vbox()->beginAboveMacro(every_vbox_text);
 			}
 			else
 			{
 				space_factor = 1000;
 				if (every_hbox())
-					beginTokenListAboveMacro(every_hbox(), every_hbox_text);
+					every_hbox()->beginAboveMacro(every_hbox_text);
 			}
 			return;
 		}

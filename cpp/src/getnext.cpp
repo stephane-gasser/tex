@@ -5,7 +5,6 @@
 #include "lecture.h"
 #include "chaine.h"
 #include "noeud.h"
-#include "runaway.h"
 #include "police.h"
 #include "equivalent.h" 
 #include "alignement.h"
@@ -20,48 +19,44 @@
 	if (status == normal)
 		return t; 
 	if (t.cs && (state == token_list || name.size() != 1 || name[0] > 17))
-	{
-		TokenList tl;
-		tl.list.push_back(cs_token_flag+t.cs);
-		back_list(&tl);
-	}
+		TokenList({cs_token_flag+t.cs}).beginBelowMacro(backed_up);
 	if (status == skipping)
 	{
 		inserror(t, "Incomplete "+cmdchr(Token(if_test, curif))+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
 		return frozen_fi+cs_token_flag;
 	}
-	runaway(status);
-	TokenList tl;
 	switch (status)
 	{
 		case defining:
 		{
+			print("\rRunaway definition?\n"+defRef.toString(errorline-10));
 			error(t.cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-			tl.list.push_back(right_brace_token+'}');
+			TokenList({right_brace_token+'}'}).beginBelowMacro(inserted);
 			break;
 		}
 		case matching:
 		{
+			print("\rRunaway argument?\n"+tempHead.toString(errorline-10));
 			error(t.cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-			tl.list.push_back(partoken);
 			longstate = outer_call;
+			TokenList({partoken}).beginBelowMacro(inserted);
 			break;
 		}
 		case aligning:
 		{
+			print("\rRunaway preamble?\n"+holdHead.toString(errorline-10));
 			error(t.cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-			tl.list.push_back(frozen_cr+cs_token_flag);
-			tl.list.push_back(right_brace_token+'}');
+			TokenList({frozen_cr+cs_token_flag, right_brace_token+'}'}).beginBelowMacro(inserted);
 			alignstate = -1000000;
 			break;
 		}
 		case absorbing:
 		{
+			print("\rRunaway text?\n"+defRef.toString(errorline-10));
 			error(t.cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
-			tl.list.push_back(right_brace_token+'}');
+			TokenList({right_brace_token+'}'}).beginBelowMacro(inserted);
 		}
 	}
-	ins_list(&tl);
 	return t.cs ? Token(spacer, ' ') : t;
 }
 
@@ -96,6 +91,8 @@ static void removeFromEnd(int &k, int d)
 	for (; k <= limit; k++)
 		buffer[k] = buffer[k+d];
 }
+
+static TokenList omit_template({end_template_token}); //!< a constant token list
 
 #define ANY_STATE_PLUS(cmd) mid_line+cmd: case skip_blanks+cmd: case new_line+cmd
 #define ADD_DELIMS_TO(state) state+math_shift: case state+tab_mark: case state+mac_param: case state+sub_mark: case state+letter: case state+other_char 
@@ -391,7 +388,7 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 							alignstate--;
 							break;
 						case out_param:
-							beginTokenListBelowMacro(&paramstack[limit+t.chr-1], parameter);
+							paramstack[limit+t.chr-1].beginBelowMacro(parameter);
 							restart = true;
 					}
 				}
@@ -402,7 +399,7 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 				fatalerror("(interwoven alignment preambles are not allowed)");
 			t.cmd = curalign->extra_info;
 			curalign->extra_info = t.chr;
-			beginTokenListBelowMacro(t.cmd == omit ? &omit_template : &curalign->vPart, v_template);
+			t.cmd == omit ? omit_template.beginBelowMacro(v_template) : curalign->vPart.beginBelowMacro(v_template);
 			alignstate = 1000000;
 			restart = true;
 		}

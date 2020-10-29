@@ -1092,7 +1092,7 @@ static void openfmtfile(void)
 		loc++;
 		buffer[last] = ' ';
 		for (j = loc; buffer[j] != ' '; j++); //trim à droite
-		auto fname = std::string(buffer+loc, buffer+j);
+		auto fname = buffer.substr(loc, j-loc);
 		if (wopenin(fmtfile, packbufferedname(none, fname)))
 		{
 			loc = j;

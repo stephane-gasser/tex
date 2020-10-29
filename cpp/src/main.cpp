@@ -91,7 +91,7 @@ int main()
 		print("\n"+(formatident == "" ? " (no format preloaded)'" : formatident)+"\n");
 		std::cout << std::flush;
 		nameinprogress = false;
-		std::fill_n(buffer, bufsize+1, '\0');
+		buffer = "";
 		state = new_line;
 		start = 1;
 		index = 0;

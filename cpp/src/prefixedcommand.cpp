@@ -13,7 +13,6 @@
 #include "getnext.h"
 #include "alignement.h"
 #include "fichier.h"
-#include "runaway.h"
 
 static TokenList* readtoks(int n, halfword r)
 {
@@ -61,7 +60,7 @@ static TokenList* readtoks(int n, halfword r)
 					readopen[m] = closed;
 					if (alignstate != 1000000)
 					{
-						runaway(defining);
+						print("\rRunaway definition?\n"+defRef.toString(errorline-10));
 						error("File ended within "+esc("read"), "This \\read has unbalanced braces.");
 						alignstate = 1000000;
 					}

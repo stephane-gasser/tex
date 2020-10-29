@@ -530,7 +530,6 @@ inline LinkedNode *page_head = nullptr; //!< vlist for current page
 inline LinkedNode *temp_head = nullptr; //!< head of a temporary list of some kind
 inline LinkedNode *adjust_head = nullptr; //!< head of adjustment list returned by \a hpack
 inline LinkedNode * const align_head = dynamic_cast<LinkedNode*>(&heads[8]); //!< head of preamble list for alignments
-inline TokenList omit_template; //!< a constant token list
 inline LinkedNode *null_list = nullptr; //!< permanently empty list
 inline CharNode *lig_trick = new CharNode(null_font, 0); //!< a ligature masquerading as a \a char_node
 //inline LinkedNode *garbage = nullptr; //!< used for scrap information

@@ -14,8 +14,6 @@
 #include <iostream> 
 #include <cmath>
 
-static int tally = 0;
-
 static void printchar(ASCIIcode s)
 {
 	if (s == new_line_char())
@@ -58,7 +56,6 @@ static void printchar(ASCIIcode s)
 		default: 
 			writefile[selector] << xchr[s];
 	}
-	tally++;
 }
 
 static std::string hex(int t)
@@ -273,15 +270,10 @@ void println(void)
 
 static std::string asMark(TokenList *p)
 {
-	return "{"+tokenlist(p, maxprintline-10)+"}";
+	return "{"+p->toString(maxprintline-10)+"}";
 }
 
-std::string meaning(Token t) 
-{
-	TokenList tl;
-	tl.list.push_back(t.chr);
-	return cmdchr(t)+(t.cmd >= call ? ":\n"+tokenshow(&tl) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); 
-}
+std::string meaning(Token t) { return cmdchr(t)+(t.cmd >= call ? ":\n"+TokenList({t.chr}).toString(10000000) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); }
 
 std::string asMode(int m)
 {
@@ -371,12 +363,9 @@ static std::string writewhatsit(const std::string &s, WriteWhatsitNode *p)
 
 void print_err(const std::string &s) { print("\r! "+s); }
 
-static int trickcount;
-static int firstcount;
-
 std::string tokenshow(TokenList *p)
 {
-	return p ? tokenlist(p, 10000000) : "";
+	return p ? p->toString(10000000) : "";
 }
 
 std::string shortdisplay(LinkedNode *p)
@@ -425,149 +414,100 @@ std::string showbox(BoxNode *p)
 	return shownodelist(p, "")+"\n";
 }
 
-static ASCIIcode trickbuf[errorline+1];
+static bool isFile(void) { return name.size() == 1 && name[0] <= 17; }
 
 std::string showcontext(void)
 {
 	inputstack.back() = curinput; 
 	int nn = -1;
 	bool bottomline = false;
-	std::ostringstream oss;
+	std::ostringstream OSS;
 	for (baseptr = inputstack.size()-1; !bottomline; baseptr--) 
 	{
 		curinput = inputstack[baseptr];
-		if (state && (name.size() != 1 || name[0] > 17 || baseptr == 0))
-			bottomline = true;
-		if (baseptr == inputstack.size()-1 || bottomline || nn < error_context_lines())
+		bottomline = state != token_list && (!isFile() || baseptr == 0);
+		if (baseptr != inputstack.size()-1 && bottomline && nn >= error_context_lines())
+		{
+			if (nn == error_context_lines())
+			{
+				OSS << "\r...";
+				nn++;
+			}
+		}
+		else
 		{
 			if (baseptr == inputstack.size()-1 || state != token_list || token_type != backed_up || loc)
 			{
-				int l = oss.str().size();
-				if (state)
+				std::ostringstream oss;
+				std::string trickbuf;
+				int trickcount;
+				int firstcount;
+				int m;
+				if (state != token_list)
 				{
 					if (terminal_input(name))
 						oss << (baseptr == 0 ? "\r<*> " : "\r<insert>  ");
 					else 
-						if (name.size() == 1 && name[0] <= 17)
+						if (isFile())
 							oss << "\r<read " << (name[0] == 17 ? "*" : std::to_string(name[0]-1))+"> ";
 						else
 							oss << "\rl."+std::to_string(line) << " ";
-					l = oss.str().size()-l;
-					tally = 0;
-					trickcount = 1000000;
-					int j = limit+(buffer[limit] == end_line_char() ? 0 : 1);
-					if (j > 0)
-						for (int i = start; i < j; i++)
-						{
-							if (i == loc)
-							{
-								firstcount = tally; 
-								trickcount = std::max(firstcount+1+errorline-halferrorline, errorline);
-							}
-							if (tally < trickcount)
-								trickbuf[tally%errorline] = buffer[i];
-							tally++;
-						}
+					int j = buffer[limit] == end_line_char() ? limit-start : limit+1-start;
+					firstcount = std::min(loc-start, j);
+					trickcount = std::max(firstcount+1+errorline-halferrorline, errorline);
+					m = std::min(j, trickcount);
+					trickbuf = buffer.substr(start, m);
+					m -= firstcount;
 				}
 				else
 				{
+					static std::map<int, std::string> text = 
+					{
+						{parameter, "argument"}, {u_template, "template"}, {v_template, "template"}, 
+						{inserted, "inserted text"}, {output_text, "output"}, {every_par_text, "everypar"},
+						{every_math_text, "everymath"}, {every_display_text, "everydisplay"}, 
+						{every_hbox_text, "everyhbox"}, {every_vbox_text, "everyvbox"},
+						{every_job_text, "everyjob"}, {every_cr_text, "everycr"}, {mark_text, "mark"}, 
+						{write_text, "write"}
+					};
 					switch (token_type)
 					{
-						case parameter: 
-							oss << "\r<argument> ";
-							break;
-						case u_template:
-						case v_template:
-							oss << "\r<template> ";
-							break;
 						case backed_up: 
-							oss << (loc == 0 ? "\r<recently read> ": "\r<to be read again> ");
-							break;
-						case inserted: 
-							oss << "\r<inserted text> ";
+							oss << (Loc == 0 ? "\r<recently read> ": "\r<to be read again> ");
 							break;
 						case macro:
 							oss << "\n" << name;
 							break;
-						case output_text:
-							oss << "\r<output> ";
-							break;
-						case every_par_text:
-							oss << "\r<everypar> ";
-							break;
-						case every_math_text: 
-							oss << "\r<everymath> ";
-							break;
-						case every_display_text: 
-							oss << "\r<everydisplay> ";
-							break;
-						case every_hbox_text: 
-							oss << "\r<everyhbox> ";
-							break;
-						case every_vbox_text: 
-							oss << "\r<everyvbox> ";
-							break;
-						case every_job_text: 
-							oss << "\r<everyjob> ";
-							break;
-						case every_cr_text: 
-							oss << "\r<everycr> ";
-							break;
-						case mark_text: 
-							oss << "\r<mark> ";
-							break;
-						case write_text: 
-							oss << "\r<write> ";
-							break;
-						default: 
-							oss << "\r?";
+						default:
+							if (text.find(token_type) == text.end())
+								oss << "\r?";
+							else
+								oss << "\r<"+text[token_type]+"> ";
 					}
-					l = oss.str().size()-l;
-					tally = 0;
-					trickcount = 1000000;
-					for (auto c: tokenlist(&Start, 100000))
-						if (tally < trickcount)
-							trickbuf[tally%errorline] = c;
-						tally++;
+					trickbuf = Start.toString(100000);
+					firstcount = trickbuf.size();
+					trickcount = std::max(firstcount+1+errorline-halferrorline, errorline);
+					m = 0;
 				}
-				if (trickcount == 1000000)
-				{
-					firstcount = tally; 
-					trickcount = std::max(tally+1+errorline-halferrorline, errorline);
-				}
-				int m = tally < trickcount ? tally-firstcount : trickcount-firstcount;
-				int p, n;
-				if (l+firstcount <= halferrorline)
-				{
-					p = 0;
-					n = l+firstcount;
-				}
-				else
+				int p = 0, n = oss.str().size()+firstcount;
+				if (n > halferrorline)
 				{
 					oss << "...";
-					p = l+firstcount-halferrorline+3;
+					p = n-halferrorline+3;
 					n = halferrorline;
 				}
-				for (int q = p; q < firstcount; q++)
-					oss << trickbuf[q%errorline];
-				oss << "\n" << std::string(n, ' ');
-				p = firstcount+(m + n <= errorline ? m : errorline-n-3);
-				for (int q = firstcount; q < p; q++)
-					oss << trickbuf[q%errorline];
-				if (m+n > errorline)
-					oss << "...";
+				oss << trickbuf.substr(p, firstcount-p) << "\n" << std::string(n, ' ');
+				if (m+n <= errorline)
+					oss << trickbuf.substr(firstcount, m);
+				else
+					oss << trickbuf.substr(firstcount, errorline-n-3) << "...";
 				nn++;
+				OSS << oss.str();
 			}
 		}
-		else 
-			if (nn == error_context_lines())
-			{
-				oss << "\r...";
-				nn++;
-			}
 	}
 	curinput = inputstack.back();
-	return oss.str();
+	return OSS.str();
 }
 
 //! Do some tracing.

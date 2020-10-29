@@ -74,7 +74,7 @@ static void convtoks(char status, Token t)
 				openlogfile();
 			strtoks(jobname);
 	}
-	ins_list(&tempHead);
+	tempHead.beginBelowMacro(inserted);
 }
 
 static void insertrelax(halfword cs)
@@ -95,7 +95,7 @@ void expand(char status, Token tk)
 	{
 		case top_bot_mark:
 			if (curmark[tk.chr])
-				beginTokenListAboveMacro(curmark[tk.chr], mark_text);
+				curmark[tk.chr]->beginAboveMacro(mark_text);
 			break;
 		case expand_after:
 		{
@@ -131,7 +131,7 @@ void expand(char status, Token tk)
 			for (auto &p: l.list)
 				buffer[j++] = p%(1<<8);
 			if (j > First+1)
-				tk.cs = idlookup(std::string(buffer+First, buffer+j+1), false);
+				tk.cs = idlookup(buffer.substr(First, j+1-First), false);
 			else
 				if (j == First)
 					tk.cs = null_cs;
@@ -149,7 +149,7 @@ void expand(char status, Token tk)
 			break;
 		case the: 
 			thetoks(status, tempHead);
-			ins_list(&tempHead);
+			tempHead.beginBelowMacro(inserted);
 			break;
 		case if_test: 
 			conditional(status, tk);

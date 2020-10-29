@@ -28,13 +28,10 @@ enum token_type
 inline smallnumber radix = 0;
 inline glueord curorder = 0;
 
-void beginTokenListBelowMacro(TokenList*, quarterword);
-void beginTokenListMacro(TokenList*);
-void beginTokenListAboveMacro(TokenList*, quarterword);
 void endtokenlist(void);
 void thetoks(char, TokenList&);
 
-inline void back_list(TokenList *p) { beginTokenListBelowMacro(p, backed_up); } //!< backs up a simple token list
-inline void ins_list(TokenList *p) { beginTokenListBelowMacro(p, inserted); } //!< inserts a simple token list
+//inline void back_list(TokenList *p) { p->beginBelowMacro(backed_up); } //!< backs up a simple token list
+//inline void ins_list(TokenList *p) { p->beginBelowMacro(inserted); } //!< inserts a simple token list
 
 #endif

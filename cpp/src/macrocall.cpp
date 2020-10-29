@@ -2,7 +2,6 @@
 #include "impression.h"
 #include "equivalent.h"
 #include "noeud.h"
-#include "runaway.h"
 #include "erreur.h"
 #include "lecture.h"
 #include "getnext.h"
@@ -98,7 +97,7 @@ void macrocall(Token t)
 					{
 						if (longstate == call)
 						{
-							runaway(matching);
+							print("\rRunaway argument?\n"+tempHead.toString(errorline-10));
 							backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 						}
 						pstack[n].list = tempHead.list;
@@ -121,7 +120,7 @@ void macrocall(Token t)
 								{
 									if (longstate == call)
 									{
-										runaway(matching);
+										print("\rRunaway argument?\n"+tempHead.toString(errorline-10));
 										backerror(t, "Paragraph ended before "+scs(warningindex)+" was complete", "I suspect you've forgotten a `}', causing me to apply this\ncontrol sequence to too much text. How can we recover?\nMy plan is to forget the whole thing and hope for the best.");
 									}
 									pstack[n].list = tempHead.list;
@@ -170,13 +169,13 @@ void macrocall(Token t)
 					pstack[n].list = tempHead.list;
 				n++;
 				if (tracing_macros() > 0)
-					diagnostic(std::string(1, matchchr)+"\n"+std::to_string(n)+"<-"+tokenlist(&pstack[n-1], 1000));
+					diagnostic(std::string(1, matchchr)+"\n"+std::to_string(n)+"<-"+pstack[n-1].toString(1000));
 			}
 		} while (refcount.list[r] != end_match_token); 
 	}
 	while (state == 0 && loc == 0 && index != 2)
 		endtokenlist();
-	beginTokenListMacro(&refcount);
+	refcount.beginMacro();
 	name = warningindex;
 	Loc = r+1;
 	if (n > 0)

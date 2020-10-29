@@ -115,32 +115,21 @@ void scanMacroToks(char &status, bool xpand, Token tk) { scantoks(defining, xpan
 void scanNonMacroToks(char &status, Token tk) { scantoks(absorbing, false, tk); status = normal; }
 void scanNonMacroToksExpand(char &status, Token tk) { scantoks(absorbing, true, tk); status = normal; }
 
-static int trickcount;
-static int firstcount;
-
-std::string tokenlist(TokenList *tl, int l)
+std::string TokenList::toString(int l)
 {
 	std::ostringstream oss;
-	ASCIIcode matchchr = '#';
-	ASCIIcode n = '0';
-	size_t p;
-	for (p = 0; p < tl->list.size() && oss.str().size() < l; p++)
+	char matchchr = '#';
+	char n = '1';
+	for (auto &tk: list)
 	{
-		if (p == 0)
-		{
-			firstcount = oss.str().size();
-			trickcount = std::max(firstcount+1+errorline-halferrorline, errorline);
-		}
-		if (tl->list[p] >= cs_token_flag)
-			oss << cs(tl->list[p]-cs_token_flag);
+		if (tk >= cs_token_flag)
+			oss << cs(tk-cs_token_flag);
 		else
 		{
-			int m = tl->list[p]>>8;
-			int c = tl->list[p]%(1<<8);
-			if (tl->list[p] < 0)
+			if (tk < 0)
 				oss << esc("BAD.");
 			else
-				switch (m)
+				switch (tk>>8)
 				{
 					case left_brace:
 					case right_brace:
@@ -151,21 +140,21 @@ std::string tokenlist(TokenList *tl, int l)
 					case spacer:
 					case letter:
 					case other_char: 
-						oss << char(c);
+						oss << char(tk%(1<<8));
 						break;
 					case mac_param:
-						oss << char(c) << char(c);
+						oss << std::string(2, tk%(1<<8));
 						break;
 					case out_param:
-						oss << char(matchchr);
-						if (c > 9)
-							return oss.str()+char('!');
-						oss << c;
+						oss << matchchr;
+						if (tk%(1<<8) > 9)
+							return oss.str()+"!";
+						oss << tk%(1<<8);
 						break;
 					case match:
-						matchchr = c;
-						oss << char(c) << char(++n);
-						if (n > '9')
+						matchchr = tk%(1<<8);
+						oss << matchchr << n;
+						if (++n > '9')
 							return oss.str();
 						break;
 					case end_match: 
@@ -175,9 +164,9 @@ std::string tokenlist(TokenList *tl, int l)
 			  			oss << esc("BAD.");
 				}
 		}
+		if (oss.str().size() >= l)
+			return oss.str()+esc("ETC.");
 	}
-	if (p < tl->list.size())
-		oss << esc("ETC.");
 	return oss.str();
 }
 

@@ -19,13 +19,6 @@ void mathright(char status, Token t)
 {
 	switch (curgroup)
 	{
-		case math_shift_group:
-		{
-			Delimiter dummy;
-			dummy.scan(status, false, t);
-			error("Extra "+esc("right"), "I'm ignoring a \\right that had no matching \\left.");
-			break;
-		}
 		case math_left_group:
 		{
 			auto p = finmlist(new LeftRightNoad(status, t));
@@ -36,7 +29,14 @@ void mathright(char status, Token t)
 			tail_append(n);
 			break;
 		}
+		case math_shift_group:
+		{
+			Delimiter dummy;
+			dummy.scan(status, false, t);
+			error("Extra "+esc("right"), "I'm ignoring a \\right that had no matching \\left.");
+			break;
+		}
 		default:
-			offsave(t);
+			offsave(t); //erreur curgroup
 	}
 }

@@ -69,7 +69,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 				case 'h':
 				case 'H':
 					if (useerrhelp)
-						print(tokenshow(err_help()));
+						print(err_help()->toString(10000000));
 					else
 						print((helpline == "" ? "Sorry, I don't know how to help in this situation.\nMaybe you should try asking a human?" : helpline)+"\n");
 					useerrhelp = false;
@@ -135,7 +135,7 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 	if (interaction > batch_mode)
 		selector--;
 	if (useerrhelp)
-		print("\n"+tokenshow(err_help())+"\n");
+		print("\n"+err_help()->toString(10000000)+"\n");
 	else
 		if (helpline != "")
 		{

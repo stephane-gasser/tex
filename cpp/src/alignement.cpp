@@ -90,7 +90,7 @@ static void initcol(Token t)
 	else
 	{
 		backinput(t);
-		beginTokenListBelowMacro(&curalign->uPart, u_template);
+		curalign->uPart.beginBelowMacro(u_template);
 	}
 }
 
@@ -167,7 +167,9 @@ void initalign(char &status, Token t, AlignRecordNode* &loop)
 		appendAtEnd(curalign, new GlueNode(tab_skip_code));
 		if (t.cmd == car_ret)
 			break;
-		TokenList holdHead;
+		appendAtEnd(curalign, new AlignRecordNode);
+		curalign->info = end_span;
+		curalign->width = null_flag;
 		bool keepIn = true;
 		for (t = getpreambletoken(aligning); t.cmd != mac_param && keepIn; t = getpreambletoken(aligning))
 		{
@@ -175,7 +177,7 @@ void initalign(char &status, Token t, AlignRecordNode* &loop)
 			{
 				case tab_mark:
 					if (alignstate == -1000000)
-						if (holdHead.list.size() == 0 && loop == nullptr)
+						if (curalign->uPart.list.size() == 0 && loop == nullptr)
 							loop = curalign;
 						else
 						{
@@ -191,19 +193,14 @@ void initalign(char &status, Token t, AlignRecordNode* &loop)
 					}
 					break;
 				case spacer:
-					if (holdHead.list.size())
-						holdHead.list.push_back(t.tok);
+					if (curalign->uPart.list.size())
+						curalign->uPart.list.push_back(t.tok);
 					break;
 				default:
-					holdHead.list.push_back(t.tok);
+					curalign->uPart.list.push_back(t.tok);
 			}
 		}
-		appendAtEnd(curalign, new AlignRecordNode);
-		curalign->info = end_span;
-		curalign->width = null_flag;
-		curalign->uPart.list = holdHead.list;
-		holdHead.list.clear();
-		for (; true; holdHead.list.push_back(t.tok))
+		for (; true; curalign->vPart.list.push_back(t.tok))
 		{
 			t = getpreambletoken(aligning);
 			if (t.cmd <= out_param && t.cmd >= tab_mark && alignstate == -1000000)
@@ -214,13 +211,12 @@ void initalign(char &status, Token t, AlignRecordNode* &loop)
 				continue;
 			}
 		}
-		holdHead.list.push_back(end_template_token);
-		curalign->vPart.list = holdHead.list;
+		curalign->vPart.list.push_back(end_template_token);
 	}
 	status = normal;
 	newsavelevel(align_group);
 	if (every_cr())
-		beginTokenListAboveMacro(every_cr(), every_cr_text);
+		every_cr()->beginAboveMacro(every_cr_text);
 	alignpeek(status, loop);
 }
 
@@ -248,7 +244,7 @@ static void finrow(char status, AlignRecordNode* &loop)
 	p->type = unset_node;
 	dynamic_cast<UnsetNode*>(p)->glue_stretch = 0;
 	if (every_cr())
-		beginTokenListAboveMacro(every_cr(), every_cr_text);
+		every_cr()->beginAboveMacro(every_cr_text);
 	alignpeek(status, loop);
 }
 
@@ -272,14 +268,8 @@ static bool fincol(char status, AlignRecordNode* &loop)
 			p->width = null_flag;
 			next(loop);
 			// Copy the templates from node |cur_loop| into node |p|
-			TokenList holdHead;
-			for (auto &r: loop->uPart.list)
-				holdHead.list.push_back(r);
-			p->uPart.list = holdHead.list;
-			holdHead.list.clear();
-			for (auto &r: loop->vPart.list)
-				holdHead.list.push_back(r);
-			p->vPart.list = holdHead.list;
+			p->uPart.list = loop->uPart.list;
+			p->vPart.list = loop->vPart.list;
 			next(loop);
 			p->link = new GlueNode(loop->glue_ptr);
 		}
@@ -732,5 +722,5 @@ void doendv(char status, Token t, AlignRecordNode* &loop)
 			finrow(status, loop);
 	}
 	else
-		offsave(t);
+		offsave(t); //erreur
 }

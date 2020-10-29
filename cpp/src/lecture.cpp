@@ -15,7 +15,6 @@
 #include "equivalent.h"
 #include "macrocall.h" 
 #include "fichier.h"
-#include "runaway.h"
 #include "sauvegarde.h"
 #include "buildpage.h"
 
@@ -799,7 +798,7 @@ bool Scanner::isKeyword(char status, const std::string &s)
 			{
 				backinput(t);
 				if (backupHead.list.size())
-					back_list(&backupHead);
+					backupHead.beginBelowMacro(backed_up);
 				return false;
 			}
 	}
@@ -931,43 +930,43 @@ Token Scanner::getBoxSpec(char status, groupcode c, int s)
 	return getBoxSpec(status, c);
 }
 
-static void beginTokenListCommon(TokenList *tl, quarterword t)
+void TokenList::beginCommon(quarterword t)
 {
 	push_input();
 	state = token_list;
-	Start.list = tl->list;
+	Start.list = list;
 	token_type = t;
 }
 
-void beginTokenListBelowMacro(TokenList *tl, quarterword t)
+void TokenList::beginBelowMacro(quarterword t)
 {
-	beginTokenListCommon(tl, t);
+	beginCommon(t);
 	Loc = 0;
 }
 
-void beginTokenListMacro(TokenList *tl)
+void TokenList::beginMacro(void)
 {
-	beginTokenListCommon(tl, macro);
+	beginCommon(macro);
 	Start.token_ref_count++; //the token list starts with a reference count
 	param_start = paramstack.size();
 }
 
-void beginTokenListAboveMacro(TokenList *tl, quarterword t)
+void TokenList::beginAboveMacro(quarterword t)
 {
-	beginTokenListCommon(tl, t);
-	tl->token_ref_count++; //the token list starts with a reference count
+	beginCommon(t);
+	token_ref_count++; //the token list starts with a reference count
 	Loc = 0;
 	if (tracing_macros() > 1)
 		switch (t)
 		{
 			case mark_text: 
-				diagnostic("\r"+esc("mark")+"->"+tokenshow(tl));
+				diagnostic("\r"+esc("mark")+"->"+toString(10000000));
 				break;
 			case write_text: 
-				diagnostic("\r"+esc("write")+"->"+tokenshow(tl));
+				diagnostic("\r"+esc("write")+"->"+toString(10000000));
 				break;
 			default:
-				diagnostic("\r"+cmdchr(Token(assign_toks, t-output_text+output_routine_loc))+"->"+tokenshow(tl));
+				diagnostic("\r"+cmdchr(Token(assign_toks, t-output_text+output_routine_loc))+"->"+toString(10000000));
 		}
 }
 

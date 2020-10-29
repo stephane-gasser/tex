@@ -13,7 +13,7 @@ static bool longhelpseen = false;
 void issuemessage(char status, Token t)
 {
 	scanNonMacroToksExpand(status, t);
-	auto s = tokenshow(&defRef);
+	auto s = defRef.toString(10000000);
 	defRef.list.clear();
 	if (t.chr == 0)
 	{
@@ -28,6 +28,7 @@ void issuemessage(char status, Token t)
 			useerrhelp = true;
 		}
 		else 
+		{
 			if (longhelpseen)
 				error(s, "(That was another \\errmessage.)");
 			else
@@ -36,6 +37,7 @@ void issuemessage(char status, Token t)
 				if (interaction < error_stop_mode)
 					longhelpseen = true;
 			}
-		useerrhelp = false;
+			useerrhelp = false;
+		}
 	}
 }

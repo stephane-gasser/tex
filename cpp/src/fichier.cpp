@@ -12,7 +12,7 @@ void firmuptheline(void)
 	limit = last;
 	if (pausing() > 0 && interaction > nonstop_mode)
 	{
-		print("\n"+std::string(buffer+start, buffer+limit)+"=>");
+		print("\n"+buffer.substr(start, limit-start)+"=>");
 		First = limit;
 		terminput();
 		if (last > First)
@@ -70,7 +70,7 @@ void terminput(void)
 		fatalerror("End of file on the terminal!");
 	termoffset = 0;
 	selector--;
-	print(std::string(buffer+First, buffer+last)+"\n");
+	print(buffer.substr(First, last-First)+"\n");
 	selector++;
 }
 
@@ -97,7 +97,7 @@ void openlogfile(void)
 	int l = inputstack[0].limitfield;
 	if (buffer[l] == end_line_char())
 		l--;
-	print(std::string(buffer+1, buffer+l+1)+"\n");
+	print(buffer.substr(1, l)+"\n");
 	selector = oldsetting+2;
 }
 
@@ -143,8 +143,6 @@ void beginfilereading(void)
 {
 	if (inopen == maxinopen)
 		overflow("text input levels", maxinopen); 
-	if (First == bufsize)
-		overflow("buffer size", bufsize);
 	inopen++;
 	push_input();
 	index = inopen;

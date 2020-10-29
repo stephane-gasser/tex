@@ -144,7 +144,7 @@ void initmath(char status)
 		eqtb_dimen[display_width_code].word_define(noPrefix, l);
 		eqtb_dimen[display_indent_code].word_define(noPrefix, s);
 		if (every_display())
-			beginTokenListAboveMacro(every_display(), every_display_text);
+			every_display()->beginAboveMacro(every_display_text);
 		if (nest.size() == 2)
 			buildpage(status);
 	}
@@ -154,6 +154,6 @@ void initmath(char status)
 		pushmath(math_shift_group);
 		eqtb_int[cur_fam_code].word_define(noPrefix, -1);
 		if (every_math())
-			beginTokenListAboveMacro(every_math(), every_math_text);
+			every_math()->beginAboveMacro(every_math_text);
 	}
 }

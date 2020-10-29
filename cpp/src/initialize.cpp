@@ -32,7 +32,6 @@ void Initialize(void)
 	ss_glue->shrink_order = fil;
 	fil_neg_glue->stretch = -unity;
 	fil_neg_glue->stretch_order = fil;
-	omit_template.list.push_back(end_template_token);
 	end_span->nb = 256;
 	end_span->info = nullptr;
 	page_ins_head = new PageInsNode;

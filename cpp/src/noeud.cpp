@@ -13,7 +13,6 @@
 #include "erreur.h"
 #include "cesure.h"
 #include "sauvegarde.h"
-#include "runaway.h"
 #include "calcul.h"
 #include "police.h"
 #include "etat.h"
@@ -134,7 +133,7 @@ void newgraf(char status, bool indented)
 		head->link = tail;
 	}
 	if (every_par())
-		beginTokenListAboveMacro(every_par(), every_par_text);
+		every_par()->beginAboveMacro(every_par_text);
 	if (nest.size() == 2)
 		buildpage(status);
 }
