@@ -52,29 +52,28 @@ static void convtoks(char status, Token t)
 	switch (t.chr)
 	{
 		case number_code:
-			strtoks(std::to_string(scanner.getInt(status)));
+			insList(std::to_string(scanner.getInt(status)));
 			break;
 		case roman_numeral_code: 
-			strtoks(romanint(scanner.getInt(status)));
+			insList(romanint(scanner.getInt(status)));
 			break;
 		case font_name_code: 
 		{
 			auto &f = fonts[scanner.getFontIdent(status)];
-			strtoks(f.name+(f.size != f.dsize ? " at "+asScaled(f.size)+"pt" : ""));
+			insList(f.name+(f.size != f.dsize ? " at "+asScaled(f.size)+"pt" : ""));
 			break;
 		}
 		case string_code:
-			strtoks(t.cs ? scs(t.cs) : std::string(1, t.chr));
+			insList(t.cs ? scs(t.cs) : std::string(1, t.chr));
 			break;
 		case meaning_code:
-			strtoks(meaning(scanner.get(normal)));
+			insList(meaning(scanner.get(normal)));
 			break;
 		case job_name_code: 
 			if (jobname == "")
 				openlogfile();
-			strtoks(jobname);
+			insList(jobname);
 	}
-	tempHead.beginBelowMacro(inserted);
 }
 
 static void insertrelax(halfword cs)
@@ -148,8 +147,7 @@ void expand(char status, Token tk)
 			convtoks(status, tk);
 			break;
 		case the: 
-			thetoks(status, tempHead);
-			tempHead.beginBelowMacro(inserted);
+			insList(thetoks(status));
 			break;
 		case if_test: 
 			conditional(status, tk);
@@ -159,7 +157,7 @@ void expand(char status, Token tk)
 				if (iflimit == 1)
 					insertrelax(tk.cs);
 				else
-					error("Extra "+cmdchr(tk), "I'm ignoring this; it doesn't match any \\if.");
+					error("Extra "+tk.cmdchr(), "I'm ignoring this; it doesn't match any \\if.");
 			else
 			{
 				while (tk.chr != fi_code)

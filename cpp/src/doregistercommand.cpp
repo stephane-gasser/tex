@@ -43,7 +43,7 @@ void doregistercommand(char status, smallnumber prefix, Token t)
 			break;
 		default:
 		{
-			error("You can't use `"+cmdchr(t)+"' after "+cmdchr(Token(q, 0)), "I'm forgetting what you said and not changing anything.");
+			error("You can't use `"+t.cmdchr()+"' after "+Token(q, 0).cmdchr(), "I'm forgetting what you said and not changing anything.");
 			return;
 		}
 	}

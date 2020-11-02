@@ -10,7 +10,6 @@
 #include "chaine.h"
 #include "fichier.h"
 #include "getnext.h"
-#include <sstream> 
 #include <iostream> 
 #include <cmath>
 
@@ -58,116 +57,10 @@ static void printchar(ASCIIcode s)
 	}
 }
 
-static std::string hex(int t)
-{
-  std::ostringstream oss;
-  oss << "\"" << std::hex << t;
-  return oss.str();
-}
-
 void print(const std::string &s)
 {
 	for (auto c: s)
 		printchar(c);
-}
-
-std::string cmdchr(Token t)
-{
-	static std::map<quarterword, std::string> echap;
-	static std::map<quarterword, std::string> caract;
-	if (!echap.size())
-	{
-		echap[long_call] = "long macro";
-		echap[outer_call] = "outer macro";
-		echap[long_outer_call] = "long"+esc("outer macro");
-		echap[end_template] = "outer endtemplate";
-		caract[left_brace] = "begin-group character ";
-		caract[right_brace] = "end-group character ";
-		caract[math_shift] = "math shift character ";
-		caract[mac_param] = "macro parameter character ";
-		caract[sup_mark] = "superscript character ";
-		caract[sub_mark] = "subscript character ";
-		caract[spacer] = "blank space ";
-		caract[letter] = "the letter ";
-		caract[other_char] = "the character ";
-		caract[tab_mark] = "alignment tab character ";
-	}
-	if (primName.find(t.cmd) != primName.end())
-	{
-		int n = t.chr;
-		switch (t.cmd)
-		{
-			case assign_glue:
-			case assign_mu_glue:
-				n -= glue_base;
-				break;
-			case assign_int:
-				n -= int_base;
-				break;
-			case assign_dimen:
-				n -= dimen_base;
-				break;
-			case def_family:
-				n -= math_font_base;
-		}
-		auto &cmdNames = primName[t.cmd];
-		if (cmdNames.find(n) != cmdNames.end())
-			return esc(cmdNames[n]);
-	}
-	switch (t.cmd)
-	{
-		case long_call: 
-		case outer_call: 
-		case long_outer_call:
-		case end_template: 
-			return esc(echap[t.cmd]);
-		case assign_glue:
-			if (t.chr < skip_base)
-				return "[unknown glue parameter!]";
-			return esc("skip")+std::to_string(t.chr-skip_base);
-		case assign_mu_glue:
-			if (t.chr < mu_skip_base)
-				return "[unknown glue parameter!]";
-			return esc("muskip")+std::to_string(t.chr-mu_skip_base);
-		case assign_toks:
-			return esc("toks")+std::to_string(t.chr-toks_base);
-		case assign_int: 
-			if (t.chr < count_base)
-				return "[unknown integer parameter!]";
-			return esc("count")+std::to_string(t.chr-count_base);
-		case assign_dimen:
-			if (t.chr < scaled_base)
-				return "[unknown dimen parameter!]";
-			return esc("dimen")+std::to_string(t.chr-scaled_base);
-		case char_given:
-			return esc("char")+hex(t.chr);
-		case math_given:
-			return esc("mathchar")+hex(t.chr); 
-		case set_font:
-			return "select font "+fonts[t.chr].name+(fonts[t.chr].size == fonts[t.chr].dsize ? "" : " at "+std::to_string(double(fonts[t.chr].size)/unity)+"pt");
-		case tab_mark:
-		case left_brace:
-		case right_brace:
-		case math_shift:
-		case mac_param:
-		case sup_mark:
-		case sub_mark:
-		case spacer:
-		case letter:
-		case other_char:
-			return caract[t.cmd]+char(t.chr);
-		case math_style:
-			return "Unknown style!";
-		case extension: 
-			return "[unknown extension!]";
-		case endv:
-			return "end of alignment template";
-		case undefined_cs:
-			return "undefined";
-		case call: 
-			return "macro";
-	}
-	return "[unknown command code!]";
 }
 
 std::string cs(int p)
@@ -273,7 +166,7 @@ static std::string asMark(TokenList *p)
 	return "{"+p->toString(maxprintline-10)+"}";
 }
 
-std::string meaning(Token t) { return cmdchr(t)+(t.cmd >= call ? ":\n"+TokenList({t.chr}).toString(10000000) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); }
+std::string meaning(Token t) { return t.cmdchr()+(t.cmd >= call ? ":\n"+TokenList(t.chr).toString(10000000) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); }
 
 std::string asMode(int m)
 {
@@ -528,7 +421,7 @@ void diagnostic(const std::string &s)
 void showcurcmdchr(Token t)
 {
 	static int shownmode = 0; //-203..203
-	diagnostic("\r{"+(mode != shownmode ? asMode(mode)+": " : "")+cmdchr(t)+"}");
+	diagnostic("\r{"+(mode != shownmode ? asMode(mode)+": " : "")+t.cmdchr()+"}");
 	shownmode = mode;
 }
 
@@ -639,8 +532,7 @@ void showwhatever(const char status, Token t)
 			print("\r> "+(t.cs ? scs(t.cs)+"=" : "")+meaning(t));
 			break;
 		default:
-			thetoks(status, tempHead);
-			print("\r> "+tokenshow(&tempHead));
+			print("\r> "+thetoks(status).toString(10000000));
 	}
 	if (interaction < error_stop_mode)
 	{

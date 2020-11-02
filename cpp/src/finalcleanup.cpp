@@ -28,7 +28,7 @@ void finalcleanup(Token t)
 		print("\r("+esc("end")+" occurred inside a group at level "+std::to_string(curlevel-level_one)+")");
 	while (condptr)
 	{
-		print("\r("+esc("end")+" occurred when "+cmdchr(Token(if_test, curif))+(ifline ? " on line "+std::to_string(ifline) : "")+" was incomplete)");
+		print("\r("+esc("end")+" occurred when "+Token(if_test, curif).cmdchr()+(ifline ? " on line "+std::to_string(ifline) : "")+" was incomplete)");
 		ifline = condptr->if_line_field;
 		curif = condptr->subtype;
 		removeNodeAtStart(condptr);

@@ -11,7 +11,6 @@ inline char termoffset = 0; // 0..maxprintline
 inline char fileoffset = 0; // 0..maxprintline
 inline std::map<ASCIIcode, char> xchr;
 
-std::string cmdchr(Token);
 std::string esc(const std::string &);
 std::string asScaled(scaled);
 std::string cs(int);

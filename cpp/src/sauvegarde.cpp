@@ -103,22 +103,22 @@ void offsave(Token t)
 	switch (curgroup)
 	{
 		case bottom_level:
-			error("Extra "+cmdchr(t), "Things are pretty mixed up, but I think the worst is over.");
+			error("Extra "+t.cmdchr(), "Things are pretty mixed up, but I think the worst is over.");
 			break;
 		case semi_simple_group:
 			backerror(t, "Missing "+esc("endgroup")+" inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
-			TokenList({cs_token_flag+frozen_end_group}).beginBelowMacro(inserted);
+			insList(cs_token_flag+frozen_end_group);
 			break;
 		case math_shift_group:
 			backerror(t, "Missing $ inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
-			TokenList({math_shift_token+'$'}).beginBelowMacro(inserted);
+			insList(math_shift_token+'$');
 			break;
 		case math_left_group:
 			backerror(t, "Missing right. inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
-			TokenList({cs_token_flag+frozen_right, other_token+'.'}).beginBelowMacro(inserted);
+			insList(std::vector<halfword>{cs_token_flag+frozen_right, other_token+'.'});
 			break;
 		default:
 			backerror(t, "Missing } inserted", "I've inserted something that you may have forgotten.\n(See the <inserted text> above.)\nWith luck, this will get me unwedged. But if you\nreally didn't forget anything, try typing `2' now; then\nmy insertion and my current dilemma will both disappear.");
-			TokenList({right_brace_token+'}'}).beginBelowMacro(inserted);
+			insList(right_brace_token+'}');
 	}
 }

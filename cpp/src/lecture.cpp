@@ -224,11 +224,11 @@ void Scanner::somethingInternal(char status, smallnumber level, bool negative, T
 				lev = dimen_val;
 				break;
 			case 2:
-				error("Improper "+cmdchr(t), "You can refer to \\spacefactor only in horizontal mode;\nyou can refer to \\prevdepth only in vertical mode; and\nneither of these is meaningful inside \\write. So\nI'm forgetting what you said and using zero instead.");
+				error("Improper "+t.cmdchr(), "You can refer to \\spacefactor only in horizontal mode;\nyou can refer to \\prevdepth only in vertical mode; and\nneither of these is meaningful inside \\write. So\nI'm forgetting what you said and using zero instead.");
 				lev = level == tok_val ? int_val : dimen_val;
 				break;
 			default:
-				error("You can't use `"+cmdchr(t)+"' after "+esc("the"), "I'm forgetting what you said and using zero instead.");
+				error("You can't use `"+t.cmdchr()+"' after "+esc("the"), "I'm forgetting what you said and using zero instead.");
 				lev = level == tok_val ? int_val : dimen_val;
 		}
 		val = 0;
@@ -798,7 +798,7 @@ bool Scanner::isKeyword(char status, const std::string &s)
 			{
 				backinput(t);
 				if (backupHead.list.size())
-					backupHead.beginBelowMacro(backed_up);
+					backList(backupHead);
 				return false;
 			}
 	}
@@ -930,7 +930,7 @@ Token Scanner::getBoxSpec(char status, groupcode c, int s)
 	return getBoxSpec(status, c);
 }
 
-void TokenList::beginCommon(quarterword t)
+void TokenList::beginCommon(quarterword t) const
 {
 	push_input();
 	state = token_list;
@@ -938,20 +938,20 @@ void TokenList::beginCommon(quarterword t)
 	token_type = t;
 }
 
-void TokenList::beginBelowMacro(quarterword t)
+void TokenList::beginBelowMacro(quarterword t) const
 {
 	beginCommon(t);
 	Loc = 0;
 }
 
-void TokenList::beginMacro(void)
+void TokenList::beginMacro(void) const
 {
 	beginCommon(macro);
 	Start.token_ref_count++; //the token list starts with a reference count
 	param_start = paramstack.size();
 }
 
-void TokenList::beginAboveMacro(quarterword t)
+void TokenList::beginAboveMacro(quarterword t) 
 {
 	beginCommon(t);
 	token_ref_count++; //the token list starts with a reference count
@@ -966,7 +966,7 @@ void TokenList::beginAboveMacro(quarterword t)
 				diagnostic("\r"+esc("write")+"->"+toString(10000000));
 				break;
 			default:
-				diagnostic("\r"+cmdchr(Token(assign_toks, t-output_text+output_routine_loc))+"->"+toString(10000000));
+				diagnostic("\r"+Token(assign_toks, t-output_text+output_routine_loc).cmdchr()+"->"+toString(10000000));
 		}
 }
 
@@ -1063,33 +1063,23 @@ halfword Scanner::getR(char status)
 	}
 }
 
-static void strtoks2(const std::string &s, TokenList &head)
-{
-	head.list.clear();
-	for (auto c: s)
-		head.list.push_back(c == ' ' ? space_token : other_token+c);
-}
-
-void thetoks(char status, TokenList &head)
+TokenList thetoks(char status)
 {
 	auto t = scanner.getX(status);
 	scanner.somethingInternal(status, tok_val, false, t);
 	switch (scanner.lev)
 	{
 		case ident_val:
-			head.list.clear();
-			head.list.push_back(cs_token_flag+scanner.val);
+			return TokenList(cs_token_flag+scanner.val);
 		case tok_val:
-			head.list.clear();
-			for (auto &p: scanner.tk->list)
-				head.list.push_back(p);
+			return scanner.tk->list;
 		case int_val: 
-			strtoks2(std::to_string(scanner.val), head);
+			return std::to_string(scanner.val);
 		case dimen_val:
-			strtoks2(asScaled(scanner.val)+"pt", head);
+			return asScaled(scanner.val)+"pt";
 		default: // glue_val / mu_val
 			deleteglueref(scanner.gl);
-			strtoks2(scanner.gl->print(scanner.lev == glue_val ? "pt" : "mu"), head);
+			return scanner.gl->print(scanner.lev == glue_val ? "pt" : "mu");
 	}
 }
 

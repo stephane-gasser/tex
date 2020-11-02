@@ -140,12 +140,12 @@ static smallnumber getPrefix(char status, Token t)
 		t = scanner.getXSkipSpaceAndEscape(status);
 		if (t.cmd <= max_non_prefixed_command)
 		{
-			backerror(t, "You can't use a prefix with `"+cmdchr(t)+"\'", "I'll pretend you didn't say \\long or \\outer or \\global.");
+			backerror(t, "You can't use a prefix with `"+t.cmdchr()+"\'", "I'll pretend you didn't say \\long or \\outer or \\global.");
 			throw;
 		}
 	}
 	if (t.cmd != def && pfx%globalPrefix)
-		error("You can't use `"+esc("long")+"' or `"+esc("outer")+"' with `"+cmdchr(t)+"\'", "I'll pretend you didn't say \\long or \\outer here.");
+		error("You can't use `"+esc("long")+"' or `"+esc("outer")+"' with `"+t.cmdchr()+"\'", "I'll pretend you didn't say \\long or \\outer here.");
 	if (global_defs() < 0 && pfx >= globalPrefix)
 		pfx -= globalPrefix;
 	if (global_defs() > 0 && pfx < globalPrefix)
@@ -183,7 +183,8 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 			if ((t.chr&longPrefix) && pfx < globalPrefix && global_defs() >= 0)
 				pfx += globalPrefix;
 			auto p = scanner.getR(status);
-			scanMacroToks(status, t.chr >= 2, p+cs_token_flag);
+			scanMacroToks(t.chr >= 2, p+cs_token_flag);
+			status = normal;
 			eqtb_cs[p-hash_base].define(pfx, call+pfx%globalPrefix, &defRef); // pfx%globalPrefix = 0:call 1:long_call 2:outer_call 3:long_outer_call
 			break;
 		}
@@ -260,7 +261,8 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 			scanner.getXSkipSpaceAndEscape(status);
 			t = Token(assign_toks, toks_base+scanner.getUInt8(status));
 			backinput(t);
-			scanNonMacroToks(status, old+cs_token_flag);
+			scanNonMacroToks(old+cs_token_flag);
+			status = normal;
 			if (defRef.list.size() == 0)
 			{
 				eqtb_local[p-local_base].define(pfx, undefined_cs, nullptr);

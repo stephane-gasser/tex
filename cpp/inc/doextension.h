@@ -4,6 +4,6 @@
 #include "globals.h"
 #include "token.h"
 
-void doextension(char, Token);
+void doextension(char&, Token);
 
 #endif

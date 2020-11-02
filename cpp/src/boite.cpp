@@ -204,12 +204,12 @@ void beginbox(char status, int boxcontext, Token t)
 			{
 				case mmode:
 				case -mmode:
-					error("You can't use `"+cmdchr(t)+"' in "+asMode(mode), "Sorry; this \\lastbox will be void.");
+					error("You can't use `"+t.cmdchr()+"' in "+asMode(mode), "Sorry; this \\lastbox will be void.");
 					break;
 				case vmode:
 					if (head == tail)
 					{
-						error("You can't use `"+cmdchr(t)+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page.\nThis \\lastbox will therefore be void.");
+						error("You can't use `"+t.cmdchr()+"' in "+asMode(mode), "Sorry...I usually can't take things from the current page.\nThis \\lastbox will therefore be void.");
 						break;
 					}
 					[[fallthrough]];

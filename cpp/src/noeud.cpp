@@ -480,3 +480,27 @@ GlueSpec *trapzeroglue(GlueSpec *g)
 	}
 	return g;
 }
+
+OpenWriteWhatsitNode::OpenWriteWhatsitNode(char status) : WriteWhatsitNode(open_node)
+{ 
+	write_stream = scanner.getUInt4(status); 
+	scanner.optionalEquals(status);
+	scanfilename(status);
+	open_name = curname;
+	open_area = curarea;
+	open_ext = curext;
+}
+
+
+WriteNodeWhatsitNode::WriteNodeWhatsitNode(char status, Token t) : NotOpenWriteWhatsitNode(write_node, scanner.getInt(status)) 
+{
+	scanNonMacroToks(t);
+	write_tokens  = &defRef;
+}
+
+SpecialNodeWhatsitNode::SpecialNodeWhatsitNode(Token t) : NotOpenWriteWhatsitNode(special_node, 0) 
+{
+	scanNonMacroToksExpand(t);
+	write_tokens  = &defRef;
+}
+

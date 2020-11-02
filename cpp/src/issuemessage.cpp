@@ -10,9 +10,9 @@
 
 static bool longhelpseen = false;
 
-void issuemessage(char status, Token t)
+void issuemessage(Token t)
 {
-	scanNonMacroToksExpand(status, t);
+	scanNonMacroToksExpand(t);
 	auto s = defRef.toString(10000000);
 	defRef.list.clear();
 	if (t.chr == 0)

@@ -52,22 +52,27 @@ class Token
 		}
 		Token(eightbits cm, halfword ch) : cmd(cm), chr(ch), cs(0), tok((cmd<<8)+chr) {}
 		Token(const Token &t) : cs(t.cs), cmd(cs ? 0 : t.cmd), chr(cs ? 0 : t.chr), tok(cs ? cs+cs_token_flag : (cmd<<8)+chr) {}
+		std::string cmdchr(void);
 };
 
-void strtoks(const std::string &);
-
-void scanMacroToks(char&, bool, Token);
-void scanNonMacroToks(char&, Token);
-void scanNonMacroToksExpand(char&, Token);
+void scanMacroToks(bool, Token);
+void scanNonMacroToks(Token);
+void scanNonMacroToksExpand(Token);
 
 class TokenList : public AnyNode
 {
 	private:
-		void beginCommon(quarterword);
+		void beginCommon(quarterword) const;
 	public:
 		std::vector<halfword> list;
 		TokenList(void) {}
+		TokenList(halfword c) { list.push_back(c); }
 		TokenList(const std::vector<halfword> &tl) : list(tl) {}
+		TokenList(const std::string &s) 
+		{
+			for (auto c: s)
+				list.push_back(c == ' ' ? space_token : other_token+c);
+		}
 		halfword token_ref_count;
 		void deleteTokenRef(void) 
 		{
@@ -77,8 +82,8 @@ class TokenList : public AnyNode
 				list.clear();
 		}
 		std::string toString(int l);
-		void beginBelowMacro(quarterword);
-		void beginMacro(void);
+		void beginBelowMacro(quarterword) const;
+		void beginMacro(void) const;
 		void beginAboveMacro(quarterword);
 };
 

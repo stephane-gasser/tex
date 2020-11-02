@@ -8,89 +8,39 @@
 #include "fichier.h"
 #include "getnext.h"
 
-void doextension(char status, Token t)
+void doextension(char &status, Token t)
 {
 	switch (t.chr)
 	{
 		case open_node:
-		{
-			auto ww = new OpenWriteWhatsitNode(scanner.getUInt4(status));
-			scanner.optionalEquals(status);
-			scanfilename(status);
-			ww->open_name = curname;
-			ww->open_area = curarea;
-			ww->open_ext = curext;
-			tail_append(ww);
+			tail_append(new OpenWriteWhatsitNode(status));
 			break;
-		}
 		case write_node:
-		{
-			auto ww = new NotOpenWriteWhatsitNode(write_node, scanner.getInt(status));
-			scanNonMacroToks(status, t);
-			ww->write_tokens = &defRef;
-			tail_append(ww);
+			tail_append(new WriteNodeWhatsitNode(status, t));
+			status = normal;
 			break;
-		}
 		case close_node:
-		{
-			auto ww = new NotOpenWriteWhatsitNode(close_node, scanner.getInt(status));
-			ww->write_tokens = nullptr;
-			tail_append(ww);
+			tail_append(new NotOpenWriteWhatsitNode(close_node, scanner.getInt(status)));
 			break;
-		}
 		case special_node:
-		{
-			auto ww = new NotOpenWriteWhatsitNode(special_node, 0);
-			scanNonMacroToksExpand(status, t);
-			ww->write_tokens = &defRef;
-			tail_append(ww);
+			tail_append(new SpecialNodeWhatsitNode(t));
+			status = normal;
 			break;
-		}
 		case immediate_code:
 			t = scanner.getX(status);
 			if (t.cmd == extension)
 				switch (t.chr) // \openout / \write / \closeout
 				{
 					case open_node:
-					{
-						auto p = tail;
-						auto ww = new OpenWriteWhatsitNode(scanner.getUInt4(status));
-						scanner.optionalEquals(status);
-						scanfilename(status);
-						ww->open_name = curname;
-						ww->open_area = curarea;
-						ww->open_ext = curext;
-						tail_append(ww);
-						outwhat(ww);
-						flushnodelist(tail);
-						tail = p;
-						tail->link = nullptr;
+						OpenWriteWhatsitNode(status).outWhat();
 						break;
-					}
 					case write_node:
-					{
-						auto p = tail;
-						auto ww = new NotOpenWriteWhatsitNode(write_node, scanner.getInt(status));
-						scanNonMacroToks(status, t);
-						ww->write_tokens = &defRef;
-						tail_append(ww);
-						outwhat(ww);
-						flushnodelist(tail);
-						tail = p;
-						tail->link = nullptr;
+						WriteNodeWhatsitNode(status, t).outWhat();
+						status = normal;
 						break;
-					}
 					case close_node:
-					{
-						auto p = tail;
-						auto ww = new NotOpenWriteWhatsitNode(close_node, scanner.getInt(status));
-						tail_append(ww);
-						outwhat(ww);
-						flushnodelist(tail);
-						tail = p;
-						tail->link = nullptr;
+						NotOpenWriteWhatsitNode(close_node, scanner.getInt(status)).outWhat();
 						break;
-					}
 					default:
 						backinput(t);
 				}

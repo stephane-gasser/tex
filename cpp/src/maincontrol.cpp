@@ -260,7 +260,8 @@ Token maincontrol(void)
 				break;
 			case ANY_MODE(mark):
 			{
-				scanNonMacroToksExpand(status, t);
+				scanNonMacroToksExpand(t);
+				status = normal;
 				tail_append(new MarkNode);
 				break;
 			}
@@ -295,9 +296,9 @@ Token maincontrol(void)
 				if (abs(alignstate) > 2)
 				{
 					if (t.tok == tab_token+'&')
-						error("Misplaced "+cmdchr(t), "I can't figure out why you would want to use a tab mark\nhere. If you just want an ampersand, the remedy is\nsimple: Just type `I\\&' now. But if some right brace\nup above has ended a previous alignment prematurely,\nyou're probably due for more error messages, and you\nmight try typing `S' now just to see what is salvageable.");
+						error("Misplaced "+t.cmdchr(), "I can't figure out why you would want to use a tab mark\nhere. If you just want an ampersand, the remedy is\nsimple: Just type `I\\&' now. But if some right brace\nup above has ended a previous alignment prematurely,\nyou're probably due for more error messages, and you\nmight try typing `S' now just to see what is salvageable.");
 					else
-						error("Misplaced "+cmdchr(t), "I can't figure out why you would want to use a tab mark\nor \\cr or \\span just now. If something like a right brace\nup above has ended a previous alignment prematurely,\nyou're probably due for more error messages, and you\nmight try typing `S' now just to see what is salvageable.");
+						error("Misplaced "+t.cmdchr(), "I can't figure out why you would want to use a tab mark\nor \\cr or \\span just now. If something like a right brace\nup above has ended a previous alignment prematurely,\nyou're probably due for more error messages, and you\nmight try typing `S' now just to see what is salvageable.");
 				}
 				else
 				{
@@ -478,7 +479,8 @@ Token maincontrol(void)
 				openorclosein(status, t.chr);
 				break;
 			case ANY_MODE(message):
-				issuemessage(status, t);
+				issuemessage(t);
+				status = normal;
 				break;
 			case ANY_MODE(case_shift):
 				shiftcase(status, t);

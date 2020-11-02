@@ -3,7 +3,6 @@
 
 #include "globals.h"
 #include "token.h"
-#include "noeud.h"
 
 enum token_type
 {
@@ -29,9 +28,10 @@ inline smallnumber radix = 0;
 inline glueord curorder = 0;
 
 void endtokenlist(void);
-void thetoks(char, TokenList&);
+TokenList thetoks(char);
 
-//inline void back_list(TokenList *p) { p->beginBelowMacro(backed_up); } //!< backs up a simple token list
-//inline void ins_list(TokenList *p) { p->beginBelowMacro(inserted); } //!< inserts a simple token list
+
+inline void backList(const TokenList &tl) { tl.beginBelowMacro(backed_up); } //!< backs up a simple token list
+inline void insList(const TokenList &tl) { tl.beginBelowMacro(inserted); } //!< inserts a simple token list
 
 #endif

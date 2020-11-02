@@ -419,8 +419,8 @@ void RuleNode::vlist(scaled w)
 	}
 }
 
-void WhatsitNode::vlist(scaled) { outwhat(this); }
-void WhatsitNode::hlist(scaled, scaled, scaled) { outwhat(this); }
+void WhatsitNode::vlist(scaled) { outWhat(); }
+void WhatsitNode::hlist(scaled, scaled, scaled) { outWhat(); }
 void KernNode::vlist(scaled) { curv += width; }
 void KernNode::hlist(scaled, scaled, scaled) { curh += width; }
 void MathNode::hlist(scaled, scaled, scaled) { curh += width; }

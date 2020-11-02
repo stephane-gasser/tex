@@ -359,6 +359,7 @@ class WhatsitNode : public LinkedNode
 		virtual void vlist(scaled);
 		virtual void hlist(scaled, scaled, scaled);
 		virtual quarterword getSubtype(void) { return subtype; }
+		virtual void outWhat(void);
 };
 
 class WriteWhatsitNode : public WhatsitNode
@@ -375,7 +376,8 @@ class OpenWriteWhatsitNode : public WriteWhatsitNode
 		std::string open_name; //!< string number of file name to open
 		std::string open_area; //!< string number of file area for \a open_name
 		std::string open_ext; //!< string number of file extension for \a open_name
-		OpenWriteWhatsitNode(int s) : WriteWhatsitNode(open_node) { write_stream = s; }
+		OpenWriteWhatsitNode(char);
+		OpenWriteWhatsitNode(halfword s) : WriteWhatsitNode(open_node) { write_stream = s; }
 		virtual OpenWriteWhatsitNode *copy(void) { auto w = new OpenWriteWhatsitNode(write_stream); w->open_name = open_name; w->open_area = open_area; w->open_ext = open_ext; return w; }
 		virtual std::string showNode(const std::string &);
 		virtual void out(void);
@@ -384,7 +386,7 @@ class OpenWriteWhatsitNode : public WriteWhatsitNode
 class NotOpenWriteWhatsitNode : public WriteWhatsitNode
 {
 	public:
-		TokenList *write_tokens; //!< reference count of token list to write
+		TokenList *write_tokens = nullptr; //!< reference count of token list to write
 		NotOpenWriteWhatsitNode(smallnumber s, int val) : WriteWhatsitNode(s)
 		{
 			val = std::min(val, 16);
@@ -402,7 +404,19 @@ class NotOpenWriteWhatsitNode : public WriteWhatsitNode
 			return w; 
 		}
 		virtual std::string showNode(const std::string &);
-		virtual void out(char);
+		virtual void out(void);
+};
+
+class WriteNodeWhatsitNode : public NotOpenWriteWhatsitNode
+{
+	public:
+		WriteNodeWhatsitNode(char, Token);
+};
+
+class SpecialNodeWhatsitNode : public NotOpenWriteWhatsitNode
+{
+	public:
+		SpecialNodeWhatsitNode(Token);
 };
 
 class LanguageWhatsitNode : public WhatsitNode

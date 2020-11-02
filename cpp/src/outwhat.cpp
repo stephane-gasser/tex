@@ -11,27 +11,22 @@
 
 constexpr int end_write_token = cs_token_flag+end_write;
 
-static void writeout(char status, NotOpenWriteWhatsitNode *p)
+static void writeout(NotOpenWriteWhatsitNode *p)
 {
-	TokenList head;
-	head.list.push_back(right_brace_token+'}');
-	head.list.push_back(end_write_token);
-	head.beginBelowMacro(inserted);
+	insList(std::vector<halfword>({right_brace_token+'}', end_write_token}));
 	p->write_tokens->beginAboveMacro(write_text);
-	head.list.clear();
-	head.list.push_back(left_brace_token+'{');
-	head.beginBelowMacro(inserted);
+	insList(left_brace_token+'{');
 	int oldmode = mode;
 	mode = 0;
 	Token t;
 	t.cs = writeloc;
-	scanNonMacroToksExpand(status, t);
-	t = scanner.get(status);
+	scanNonMacroToksExpand(t);
+	t = scanner.get(normal);
 	if (t.tok != end_write_token)
 	{
 		error("Unbalanced write command", "On this page there's a \\write with fewer real {'s than }'s.\nI can't handle that very well; good luck.");
 		do
-			t = scanner.get(status);
+			t = scanner.get(normal);
 		while (t.tok != end_write_token);
 	}
 	mode = oldmode;
@@ -86,12 +81,12 @@ void OpenWriteWhatsitNode::out(void)
 	}
 }
 
-void NotOpenWriteWhatsitNode::out(char status)
+void NotOpenWriteWhatsitNode::out(void)
 {
 	switch (subtype)
 	{
 		case write_node:
-			writeout(status, this);
+			writeout(this);
 			break;
 		case close_node:
 			if (writeopen[write_stream])
@@ -103,16 +98,16 @@ void NotOpenWriteWhatsitNode::out(char status)
 	}
 }
 
-void outwhat(WhatsitNode *w)
+void WhatsitNode::outWhat(void)
 {
-	switch (w->subtype)
+	switch (subtype)
 	{
 		case open_node: 
 		case write_node:
 		case close_node:
 		case special_node: 
 			if (!doingleaders)
-				w->out();
+				out();
 			break;
 		case language_node:
 			break;

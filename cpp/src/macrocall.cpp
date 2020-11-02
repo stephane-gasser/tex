@@ -30,13 +30,12 @@ void macrocall(Token t)
 			longstate -= 2;
 		do
 		{
-			halfword s;
+			tempHead.list.clear();
+			halfword s = 0;
 			halfword m;
-			if (refcount.list[r] > match_token+255 || refcount.list[r] < match_token)
-				s = 0;
-			else
+			if (between(match_token, refcount.list[r], match_token+255))
 			{
-				matchchr = refcount.list.back()-match_token;
+				matchchr = refcount.list[r]-match_token;
 				s = ++r;
 				m = 0;
 			}
@@ -70,7 +69,6 @@ void macrocall(Token t)
 						{
 							tempHead.list.push_back(refcount.list[tt]);
 							m++;
-							
 							for (halfword u = tt+1, v = s; true; u++, v++)
 							{
 								if (u == r)
@@ -160,13 +158,9 @@ void macrocall(Token t)
 			}
 			if (s)
 			{
+				pstack[n].list = tempHead.list;
 				if (m == 1 && tempHead.list.size() && tempHead.list.back() < right_brace_limit )
-				{
-					pstack[n].list = tempHead.list;
 					pstack[n].list.erase(pstack[n].list.begin());
-				}
-				else
-					pstack[n].list = tempHead.list;
 				n++;
 				if (tracing_macros() > 0)
 					diagnostic(std::string(1, matchchr)+"\n"+std::to_string(n)+"<-"+pstack[n-1].toString(1000));

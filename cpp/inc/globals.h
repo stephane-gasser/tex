@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <vector>
+#include <sstream>
 
 ///////////////////////////////////////////////////////////////////////////////
 // énumérations
@@ -601,5 +602,14 @@ inline bool outputactive = false;
 ///////////////////////////////////////////////////////////////////////////////
 
 inline bool between(int min, int val, int max) { return min <= val && val <= max; }
+
+inline std::string hex(int t)
+{
+	std::ostringstream oss;
+	oss << "\"" << std::hex << t;
+	return oss.str();
+}
+
+
 
 #endif

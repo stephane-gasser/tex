@@ -88,7 +88,7 @@ void conditional(char status, Token t)
 				r = t.tok-other_token;
 			else
 			{
-				backerror(t, "Missing = inserted for "+cmdchr(Token(if_test, if_int_code)), "I was expecting to see `<', `=', or `>'. Didn't.");
+				backerror(t, "Missing = inserted for "+Token(if_test, if_int_code).cmdchr(), "I was expecting to see `<', `=', or `>'. Didn't.");
 				r = '=';
 			}
 			switch (r)
@@ -112,7 +112,7 @@ void conditional(char status, Token t)
 				r = t.tok-other_token;
 			else
 			{
-				backerror(t, "Missing = inserted for "+cmdchr(Token(if_test, if_dim_code)), "I was expecting to see `<', `=', or `>'. Didn't.");
+				backerror(t, "Missing = inserted for "+Token(if_test, if_dim_code).cmdchr(), "I was expecting to see `<', `=', or `>'. Didn't.");
 				r = '=';
 			}
 			switch (r)
