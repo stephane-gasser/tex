@@ -53,8 +53,8 @@ void doextension(char &status, Token t)
 			else
 			{
 				clang = scanner.getInt(status);
-				if (clang <= 0 || clang > 255)
-						clang = 0;
+				if (!between(1, clang, 255))
+					clang = 0;
 				tail_append(new LanguageWhatsitNode(clang));
 			}
 			break;

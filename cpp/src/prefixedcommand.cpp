@@ -17,47 +17,37 @@
 static TokenList* readtoks(int n, halfword r)
 {
 	warningindex = r;
-	defRef.list.clear();
-	defRef.token_ref_count = 0;
-	defRef.list.push_back(end_match_token);
-	smallnumber m = (n < 0 || n > 15) ? 16 : n;
+	defRef = TokenList(end_match_token);
+	smallnumber m = between(0, n, 15) ? n : 16;
 	auto s = alignstate;
 	alignstate = 1000000;
 	do
 	{
 		beginfilereading();
 		name = m+1;
-		if (readopen[m] == closed)
-			if (interaction > nonstop_mode)
-				if (n < 0)
+		switch (readopen[m])
+		{
+			case closed:
+				if (interaction > nonstop_mode)
 				{
-					print("");
-					terminput();
-				}
-				else
-				{
+					if (n >= 0)
 					print("\n"+scs(r)+"=");
-					terminput();
 					n = -1;
+					terminput();
 				}
-		else
-			fatalerror("*** (cannot \read from terminal in nonstop modes)");
-
-		else 
-			if (readopen[m] == just_open)
-				if (inputln(readfile[m], false))
-					readopen[m] = normal;
 				else
+					fatalerror("*** (cannot \read from terminal in nonstop modes)");
+				break;
+			case just_open:
+				readopen[m] = inputln(readfile[m], false) ? opened : closed;
+				if (readopen[m] == closed)
+					aclose(readfile[m]);
+				break;
+			default: // opened
+				readopen[m] = inputln(readfile[m], true) ? opened : closed;
+				if (readopen[m] == closed)
 				{
 					aclose(readfile[m]);
-					readopen[m] = closed;
-				}
-
-			else
-				if (!inputln(readfile[m], true))
-				{
-					aclose(readfile[m]);
-					readopen[m] = closed;
 					if (alignstate != 1000000)
 					{
 						print("\rRunaway definition?\n"+defRef.toString(errorline-10));
@@ -65,6 +55,7 @@ static TokenList* readtoks(int n, halfword r)
 						alignstate = 1000000;
 					}
 				}
+		}
 		limit = last;
 		if (end_line_char_inactive())
 			limit--;
@@ -73,13 +64,10 @@ static TokenList* readtoks(int n, halfword r)
 		First = limit+1;
 		Loc = 0/*Start*/;
 		state = new_line;
-		while (true)
-		{
-			Token t;
-			t = scanner.get(defining);
-			if (t.tok == 0)
-				break;
-			if (alignstate < 1000000)
+		for (auto t = scanner.get(defining); t.tok; t = scanner.get(defining))
+			if (alignstate >= 1000000)
+				defRef.list.push_back(t.tok);
+			else
 			{
 				do
 					t = scanner.get(defining);
@@ -87,8 +75,6 @@ static TokenList* readtoks(int n, halfword r)
 				alignstate = 1000000;
 				break;
 			}
-			defRef.list.push_back(t.tok);
-		}
 		endfilereading();
 	} while (alignstate != 1000000);
 	alignstate = s;
@@ -153,26 +139,20 @@ static smallnumber getPrefix(char status, Token t)
 	return pfx;
 }
 
-void afterPrefixedCommand(Token &aftertoken)
+static void afterPrefixedCommand(Token &aftertoken)
 {
 	if (aftertoken.tok)
-		{
-			backinput(aftertoken);
-			aftertoken.tok = 0;
-		}
+	{
+		backinput(aftertoken);
+		aftertoken.tok = 0;
+	}
 }
 
 void prefixedcommand(char &status, Token t, bool setboxallowed) 
 {
 	smallnumber pfx;
-	try
-	{	
-		smallnumber pfx = getPrefix(status, t);
-	}
-	catch (...)
-	{
-		return;
-	}
+	try { pfx = getPrefix(status, t); } 
+	catch (...) { return; }
 	switch (t.cmd)
 	{
 		case set_font:
@@ -255,13 +235,11 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 		}
 		case toks_register:
 		{
-			auto old = t.cs;
 			auto p = toks_base+scanner.getUInt8(status);
 			scanner.optionalEquals(status);
 			scanner.getXSkipSpaceAndEscape(status);
-			t = Token(assign_toks, toks_base+scanner.getUInt8(status));
-			backinput(t);
-			scanNonMacroToks(old+cs_token_flag);
+			backinput(Token(assign_toks, toks_base+scanner.getUInt8(status)));
+			scanNonMacroToks(t.cs+cs_token_flag);
 			status = normal;
 			if (defRef.list.size() == 0)
 			{
@@ -363,7 +341,7 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 				error("Improper "+esc("setbox"), "Sorry, \\setbox is not allowed after \\halign in a display,\nor between \\accent and an accented character.");
 			break;
 		}
-		case set_aux: 
+		case set_aux:
 			alteraux(status, t);
 			break;
 		case set_prev_graf: 
@@ -389,7 +367,17 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 		}
 		case hyph_data:
 			if (t.chr == 1)
-				newpatterns(status, t);
+			{
+				if (trienotready)
+				{
+					newpatterns(status, t);
+					break;
+				}
+				error("Too late for "+esc("patterns"), "All patterns must be given before typesetting begins.");
+				scanNonMacroToks(t);
+				defRef.list.clear();
+				status = normal;
+			}
 			else
 				newhyphexceptions(status);
 			break;

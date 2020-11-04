@@ -88,40 +88,35 @@ std::string Token::cmdchr(void)
 	return "[unknown command code!]";
 }
 
-static void scantoks(const char status, bool xpand, Token tk)
+static void scantoks(bool xpand, Token tk)
 {
 	warningindex = tk.cs;
-	defRef.token_ref_count = 0;
-	defRef.list.clear();
+	defRef = TokenList();
 	halfword hashbrace = 0;
 	halfword t = zero_token;
-	halfword unbalance = 0;
-	if (status == absorbing)
-		scanner.leftBrace(status);
-	else
-		while (true)
+	for (bool fin = false; !fin; defRef.list.push_back(tk.tok))
+	{
+		tk = scanner.get(defining);
+		switch (tk.cmd)
 		{
-			tk = scanner.get(defining);
-			if (tk.tok < right_brace_limit)
-			{
+			case right_brace:
+				error("Missing { inserted", "Where was the left brace? You said something like `\\def\\a}',\nwhich I'm going to interpret as `\\def\\a{}'.");
+				alignstate++;
+				[[fallthrough]];
+			case left_brace:
 				defRef.list.push_back(end_match_token);
-				if (tk.cmd == right_brace)
-				{
-					error("Missing { inserted", "Where was the left brace? You said something like `\\def\\a}',\nwhich I'm going to interpret as `\\def\\a{}'.");
-					alignstate++;
-					unbalance = 1;
-				}
+				fin = true;
 				break;
-			}
-			if (tk.cmd == mac_param)
+			case mac_param:
 			{
 				auto s = match_token+tk.chr;
 				tk = scanner.get(defining);
 				if (tk.cmd == left_brace)
 				{
 					hashbrace = tk.tok;
-					defRef.list.push_back(tk.tok);
+					defRef.list.push_back(hashbrace);
 					defRef.list.push_back(end_match_token);
+					fin = true;						
 					break;
 				}
 				if (t == zero_token+9)
@@ -134,26 +129,24 @@ static void scantoks(const char status, bool xpand, Token tk)
 					tk.tok = s;
 				}
 			}
-			defRef.list.push_back(tk.tok);
 		}
-	while (unbalance)
+	}
+	for (halfword unbalance = 1; unbalance;)
 	{
 		if (xpand)
 		{
-			for (tk = scanner.next(status); tk.cmd > max_command; tk = scanner.next(status))
-			{
-				if (tk.cmd != the)
-					expand(status, tk);
-				else
+			for (tk = scanner.next(defining); tk.cmd > max_command; tk = scanner.next(defining))
+				if (tk.cmd == the)
 				{
-					auto l = thetoks(status).list;
+					auto l = thetoks(defining).list;
 					defRef.list.insert(defRef.list.end(), l.begin(), l.end());
 				}
-			}
-			tk = scanner.xpand(status, tk);
+				else
+					expand(defining, tk);
+			tk = scanner.xpand(defining, tk);
 		}
 		else
-			tk = scanner.get(status);
+			tk = scanner.get(defining);
 		switch (tk.cmd)
 		{
 			case left_brace:
@@ -163,19 +156,18 @@ static void scantoks(const char status, bool xpand, Token tk)
 				unbalance--;
 				break;
 			case mac_param:
-				if (status == defining)
-				{
-					auto s = tk.tok;
-					tk = xpand ? scanner.getX(defining): scanner.get(defining);
-					if (tk.cmd != mac_param)
-						if (tk.tok <= zero_token || tk.tok > t)
-						{
-							backerror(tk, "Illegal parameter number in definition of "+scs(warningindex), "You meant to type ## instead of #, right?\nOr maybe a } was forgotten somewhere earlier, and things\nare all screwed up? I'm going to assume that you meant ##.");
-							tk.tok = s;
-						}
-						else
-							tk.tok = out_param_token-'0'+tk.chr;
-				}
+			{
+				auto s = tk.tok;
+				tk = xpand ? scanner.getX(defining): scanner.get(defining);
+				if (tk.cmd != mac_param)
+					if (tk.tok <= zero_token || tk.tok > t)
+					{
+						backerror(tk, "Illegal parameter number in definition of "+scs(warningindex), "You meant to type ## instead of #, right?\nOr maybe a } was forgotten somewhere earlier, and things\nare all screwed up? I'm going to assume that you meant ##.");
+						tk.tok = s;
+					}
+					else
+						tk.tok = out_param_token-'0'+tk.chr;
+			}
 		}
 		if (unbalance)
 			defRef.list.push_back(tk.tok);
@@ -184,9 +176,43 @@ static void scantoks(const char status, bool xpand, Token tk)
 		defRef.list.push_back(hashbrace);
 }
 
-void scanMacroToks(bool xpand, Token tk) { scantoks(defining, xpand, tk); }
-void scanNonMacroToks(Token tk) { scantoks(absorbing, false, tk); }
-void scanNonMacroToksExpand(Token tk) { scantoks(absorbing, true, tk); }
+static void scantoks2(bool xpand, Token tk)
+{
+	warningindex = tk.cs;
+	defRef = TokenList();
+	scanner.leftBrace(absorbing);
+	for (halfword unbalance = 1; unbalance;)
+	{
+		if (xpand)
+		{
+			for (tk = scanner.next(absorbing); tk.cmd > max_command; tk = scanner.next(absorbing))
+				if (tk.cmd == the)
+				{
+					auto l = thetoks(absorbing).list;
+					defRef.list.insert(defRef.list.end(), l.begin(), l.end());
+				}
+				else
+					expand(absorbing, tk);
+			tk = scanner.xpand(absorbing, tk);
+		}
+		else
+			tk = scanner.get(absorbing);
+		switch (tk.cmd)
+		{
+			case left_brace:
+				unbalance++;
+				break;
+			case right_brace:
+				unbalance--;
+		}
+		if (unbalance)
+			defRef.list.push_back(tk.tok);
+	}
+}
+
+void scanMacroToks(bool xpand, Token tk) { scantoks(xpand, tk); }
+void scanNonMacroToks(Token tk) { scantoks2(false, tk); }
+void scanNonMacroToksExpand(Token tk) { scantoks2(true, tk); }
 
 std::string TokenList::toString(int l)
 {

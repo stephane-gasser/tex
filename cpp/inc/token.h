@@ -81,7 +81,7 @@ class TokenList : public AnyNode
 			else
 				list.clear();
 		}
-		std::string toString(int l);
+		std::string toString(int l = 10000000);
 		void beginBelowMacro(quarterword) const;
 		void beginMacro(void) const;
 		void beginAboveMacro(quarterword);
@@ -90,8 +90,6 @@ class TokenList : public AnyNode
 inline TokenList defRef;
 inline TokenList holdHead; //!< head of a temporary list of another kind
 inline TokenList tempHead; //!< head of a temporary list of some kind
-inline TokenList Start;
-inline halfword Loc;
 inline std::vector<TokenList> paramstack;
 
 void beginTokenListAboveMacro(TokenList *, quarterword);

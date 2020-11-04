@@ -3,10 +3,9 @@
 #include "equivalent.h"
 #include "getnext.h"
 
-void shiftcase(char &status, Token t) // lc_code_base / uc_code_base
+void shiftcase(Token t) // lc_code_base / uc_code_base
 {
 	scanNonMacroToks(t);
-	status = normal;
 	for (auto &p: defRef.list)
 		if (p < single_base+cs_token_flag)
 		{

@@ -4,6 +4,6 @@
 #include "globals.h"
 #include "token.h"
 
-void shiftcase(char&, Token);
+void shiftcase(Token);
 
 #endif

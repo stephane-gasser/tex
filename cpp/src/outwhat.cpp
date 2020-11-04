@@ -18,10 +18,10 @@ static void writeout(NotOpenWriteWhatsitNode *p)
 	insList(left_brace_token+'{');
 	int oldmode = mode;
 	mode = 0;
-	Token t;
-	t.cs = writeloc;
-	scanNonMacroToksExpand(t);
-	t = scanner.get(normal);
+	scanNonMacroToksExpand(writeloc+cs_token_flag);
+	auto s = defRef.toString()+"\n";
+	defRef.list.clear();
+	auto t = scanner.get(normal);
 	if (t.tok != end_write_token)
 	{
 		error("Unbalanced write command", "On this page there's a \\write with fewer real {'s than }'s.\nI can't handle that very well; good luck.");
@@ -41,8 +41,7 @@ static void writeout(NotOpenWriteWhatsitNode *p)
 			selector = log_only;
 		print("\r");
 	}
-	print(tokenshow(&defRef)+"\n");
-	defRef.list.clear();
+	print(s);
 	selector = oldsetting;
 }
 

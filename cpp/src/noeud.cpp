@@ -495,12 +495,12 @@ OpenWriteWhatsitNode::OpenWriteWhatsitNode(char status) : WriteWhatsitNode(open_
 WriteNodeWhatsitNode::WriteNodeWhatsitNode(char status, Token t) : NotOpenWriteWhatsitNode(write_node, scanner.getInt(status)) 
 {
 	scanNonMacroToks(t);
-	write_tokens  = &defRef;
+	write_tokens = &defRef;
 }
 
 SpecialNodeWhatsitNode::SpecialNodeWhatsitNode(Token t) : NotOpenWriteWhatsitNode(special_node, 0) 
 {
 	scanNonMacroToksExpand(t);
-	write_tokens  = &defRef;
+	write_tokens = &defRef;
 }
 

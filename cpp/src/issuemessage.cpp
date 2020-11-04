@@ -8,27 +8,24 @@
 #include "getnext.h"
 #include <iostream>
 
-static bool longhelpseen = false;
-
 void issuemessage(Token t)
 {
 	scanNonMacroToksExpand(t);
-	auto s = defRef.toString(10000000);
+	auto s = defRef.toString();
 	defRef.list.clear();
-	if (t.chr == 0)
+	if (t.chr == 0) // \message
 	{
 		print((termoffset+s.size() > maxprintline-2 ? "\n": termoffset > 0 || fileoffset > 0 ? " " : "")+s);
 		std::cout << std::flush;
 	}
-	else
+	else // \errmessage
 	{
-		if (err_help())
-		{
+		useerrhelp = err_help() ? true : false;
+		if (useerrhelp)
 			error(s, "");
-			useerrhelp = true;
-		}
 		else 
 		{
+			static bool longhelpseen = false;
 			if (longhelpseen)
 				error(s, "(That was another \\errmessage.)");
 			else
@@ -37,7 +34,6 @@ void issuemessage(Token t)
 				if (interaction < error_stop_mode)
 					longhelpseen = true;
 			}
-			useerrhelp = false;
 		}
 	}
 }

@@ -36,19 +36,14 @@
 #include "mainloop.h"
 #include "initprim.h"
 
-static void setMathCharNoActive(char status, int c) {	tail_append(new Noad(c&0xFF, getFam(c), c>>12)); }
+static void setMathCharNoActive(int c) { tail_append(new Noad(c&0xFF, getFam(c), c>>12)); }
 
 static void setmathchar(char status, int c, Token t)
 {
 	if (auto type = c>>12; type >= 8)
-	{
-		t.cs = t.chr+active_base;
-		t.cmd = eqtb_active[t.cs].type;
-		t.chr = eqtb_active[t.cs].int_;
-		backinput(scanner.xpand(status, t));
-	}
+		backinput(scanner.xpand(status, Token(eqtb_active[t.chr+active_base].type, eqtb_active[t.chr+active_base].int_)));
 	else
-		setMathCharNoActive(status, c);
+		setMathCharNoActive(c);
 }
 
 //! for mode-independent commands
@@ -326,6 +321,7 @@ Token maincontrol(void)
 			case vmode+halign:
 			case hmode+valign: 
 				initalign(status, t, loop);
+				status = normal;
 				break;
 			case mmode+halign: 
 				if (mode > 0)
@@ -374,13 +370,13 @@ Token maincontrol(void)
 				setmathchar(status, math_code(t.chr), t);
 				break;
 			case mmode+math_char_num:
-				setMathCharNoActive(status, scanner.getUInt15(status));
+				setMathCharNoActive(scanner.getUInt15(status));
 				break;
 			case mmode+math_given: 
 				setmathchar(status, t.chr, t);
 				break;
 			case mmode+delim_num:
-				setMathCharNoActive(status, scanner.getUInt27(status)>>12);
+				setMathCharNoActive(scanner.getUInt27(status)>>12);
 				break;
 			case mmode+math_comp:
 				tail_append(new Noad(t.chr));
@@ -483,7 +479,8 @@ Token maincontrol(void)
 				status = normal;
 				break;
 			case ANY_MODE(case_shift):
-				shiftcase(status, t);
+				shiftcase(t);
+				status = normal;
 				break;
 			case ANY_MODE(xray):
 				showwhatever(status, t);

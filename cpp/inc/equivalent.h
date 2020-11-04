@@ -248,4 +248,13 @@ inline std::vector<MemoryNode> eqtb_dimen(eqtb_size-dimen_base); // holds the cu
 inline std::vector<MemoryNode*> savestack;
 inline quarterword curlevel = level_one;
 
+inline Token equivToken(int pos, std::vector<MemoryNode>&eq)
+{
+	auto t = Token(eq[pos].type, eq[pos].int_);
+	t.cs = pos;
+	return t;
+}
+
+
+
 #endif

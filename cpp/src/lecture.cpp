@@ -66,11 +66,10 @@ void Scanner::somethingInternal(char status, smallnumber level, bool negative, T
 				break;
 			// tok_val
 			case toks_register:
+				t.chr = toks_base+scanner.getUInt8(status); [[fallthrough]];
 			case assign_toks:
 				if (level != tok_val)
 					throw 1;
-				if (t.cmd == toks_register)
-					t.chr = toks_base+scanner.getUInt8(status);
 				tk = dynamic_cast<TokenList*>(eqtb_local[t.chr-local_base].index);
 				lev = tok_val;
 				break;
@@ -817,35 +816,23 @@ void Scanner::leftBrace(char status)
 
 void NoadContent::scan(char status)
 {
-	auto t = scanner.getXSkipSpaceAndEscape(status);
-	bool another;
-	int c;
-	do
+	for (auto t = scanner.getXSkipSpaceAndEscape(status); true; t = scanner.getXSkipSpaceAndEscape(status))
 	{
-		another = false;
+		int c;
 		switch (t.cmd)
 		{
+			case char_num:
+				t.chr = scanner.getUChar(status); [[fallthrough]];
 			case letter:
 			case other_char:
 			case char_given:
 				c = math_code(t.chr);
 				if (c == 1<<15)
 				{
-					t.cs = t.chr+active_base;
-					t.cmd = eqtb_active[t.chr].type;
-					t.chr = eqtb_active[t.chr].int_;
-					t = scanner.xpand(status, t);
-					backinput(t);
-					t = scanner.getXSkipSpaceAndEscape(status);
-					another = true;
+					backinput(scanner.xpand(status, equivToken(t.chr, eqtb_active)));
 					continue;
 				}
 				break;
-			case char_num:
-				t.chr = scanner.getUChar(status);
-				t.cmd = char_given;
-				another = true;
-				continue;
 			case math_char_num:
 				c = scanner.getUInt15(status);
 				break;
@@ -862,10 +849,11 @@ void NoadContent::scan(char status)
 				pushmath(math_group);
 				return;
 		}
-	} while (another);
-	math_type = math_char;
-	character = c&0xFF;
-	fam = getFam(c);
+		math_type = math_char;
+		character = c&0xFF;
+		fam = getFam(c);
+		return;
+	}
 }
 
 void Scanner::optionalEquals(char status)
@@ -960,13 +948,13 @@ void TokenList::beginAboveMacro(quarterword t)
 		switch (t)
 		{
 			case mark_text: 
-				diagnostic("\r"+esc("mark")+"->"+toString(10000000));
+				diagnostic("\r"+esc("mark")+"->"+toString());
 				break;
 			case write_text: 
-				diagnostic("\r"+esc("write")+"->"+toString(10000000));
+				diagnostic("\r"+esc("write")+"->"+toString());
 				break;
 			default:
-				diagnostic("\r"+Token(assign_toks, t-output_text+output_routine_loc).cmdchr()+"->"+toString(10000000));
+				diagnostic("\r"+Token(assign_toks, t-output_text+output_routine_loc).cmdchr()+"->"+toString());
 		}
 }
 

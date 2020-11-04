@@ -34,6 +34,6 @@ inline int alignstate = 1000000;
 
 void alignpeek(char, AlignRecordNode*&);
 void doendv(char, Token, AlignRecordNode*&);
-void initalign(char&, Token, AlignRecordNode*&);
+void initalign(char, Token, AlignRecordNode*&);
 
 #endif

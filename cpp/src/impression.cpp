@@ -166,7 +166,7 @@ static std::string asMark(TokenList *p)
 	return "{"+p->toString(maxprintline-10)+"}";
 }
 
-std::string meaning(Token t) { return t.cmdchr()+(t.cmd >= call ? ":\n"+TokenList(t.chr).toString(10000000) : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); }
+std::string meaning(Token t) { return t.cmdchr()+(t.cmd >= call ? ":\n"+TokenList(t.chr).toString() : t.cmd == top_bot_mark ?":\n"+tokenshow(curmark[t.chr]) : ""); }
 
 std::string asMode(int m)
 {
@@ -256,10 +256,7 @@ static std::string writewhatsit(const std::string &s, WriteWhatsitNode *p)
 
 void print_err(const std::string &s) { print("\r! "+s); }
 
-std::string tokenshow(TokenList *p)
-{
-	return p ? p->toString(10000000) : "";
-}
+std::string tokenshow(TokenList *p) { return p ? p->toString() : ""; }
 
 std::string shortdisplay(LinkedNode *p)
 {
@@ -280,18 +277,12 @@ static int breadthmax;
 static std::string shownodelist(LinkedNode *p, const std::string &symbol)
 {
 	if (cur_length() > depththreshold)
-	{
-		if (p)
-			return " []";
-		return "";
-	}
-	int n = 0;
+		return p ? " []" : "";
 	std::ostringstream oss;
-	for (; p; next(p))
+	for (int n = 0; p; next(p))
 	{
 		oss << "\n" << symbol;
-		n++;
-		if (n > breadthmax)
+		if (++n > breadthmax)
 			return oss.str()+"etc.";
 		oss << p->showNode(symbol);
 	}
@@ -306,8 +297,6 @@ std::string showbox(BoxNode *p)
 		breadthmax = 5;
 	return shownodelist(p, "")+"\n";
 }
-
-static bool isFile(void) { return name.size() == 1 && name[0] <= 17; }
 
 std::string showcontext(void)
 {
@@ -507,7 +496,6 @@ static std::string showactivities(void)
 
 void showwhatever(const char status, Token t)
 {
-	int val;
 	switch (t.chr)
 	{
 		case show_lists:
@@ -519,7 +507,8 @@ void showwhatever(const char status, Token t)
 			selector = term_and_log;
 			break;
 		case show_box_code:
-			val = scanner.getUInt8(status);
+		{
+			auto val = scanner.getUInt8(status);
 			diagnostic("\r> \\box"+std::to_string(val)+"="+(box(val) == nullptr ? "void" : showbox(box(val)))+"\n");
 			print_err("OK");
 			if (selector == term_and_log && tracing_online() <= 0)
@@ -527,12 +516,13 @@ void showwhatever(const char status, Token t)
 			print(" (see the transcript file)");
 			selector = term_and_log;
 			break;
+		}
 		case show_code:
 			t = scanner.get(status);
 			print("\r> "+(t.cs ? scs(t.cs)+"=" : "")+meaning(t));
 			break;
 		default:
-			print("\r> "+thetoks(status).toString(10000000));
+			print("\r> "+thetoks(status).toString());
 	}
 	if (interaction < error_stop_mode)
 	{

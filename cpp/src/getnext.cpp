@@ -14,48 +14,38 @@
 #include "initprim.h"
 #include <iostream>
 
-[[nodiscard]] static Token checkoutervalidity(char status, Token t)
+static Token checkoutervalidity(char status, Token t)
 {
 	if (status == normal)
-		return t; 
-	if (t.cs && (state == token_list || name.size() != 1 || name[0] > 17))
+		return t;
+	if (t.cs && (state == token_list || !isFile()))
 		backList(cs_token_flag+t.cs);
-	if (status == skipping)
-	{
-		inserror(t, "Incomplete "+Token(if_test, curif).cmdchr()+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
-		return frozen_fi+cs_token_flag;
-	}
 	switch (status)
 	{
+		case skipping:
+			inserror(t, "Incomplete "+Token(if_test, curif).cmdchr()+"; all text was ignored after line "+std::to_string(skipline), std::string(cs ? "A forbidden control sequence occurred in skipped text." : "The file ended while I was skipping conditional text.")+"This kind of error happens when you say `\\if...' and forget\nthe matching `\\fi'. I've inserted a `\\fi'; this might work.", false);
+			return frozen_fi+cs_token_flag;
 		case defining:
-		{
 			print("\rRunaway definition?\n"+defRef.toString(errorline-10));
 			error(t.cs ? "Forbidden control sequence found" : "File ended while scanning definition of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
 			insList(right_brace_token+'}');
 			break;
-		}
 		case matching:
-		{
 			print("\rRunaway argument?\n"+tempHead.toString(errorline-10));
 			error(t.cs ? "Forbidden control sequence found" : "File ended while scanning use of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
 			longstate = outer_call;
 			insList(partoken);
 			break;
-		}
 		case aligning:
-		{
 			print("\rRunaway preamble?\n"+holdHead.toString(errorline-10));
 			error(t.cs ? "Forbidden control sequence found" : "File ended while scanning preamble of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
 			insList(std::vector<halfword>{frozen_cr+cs_token_flag, right_brace_token+'}'});
 			alignstate = -1000000;
 			break;
-		}
 		case absorbing:
-		{
 			print("\rRunaway text?\n"+defRef.toString(errorline-10));
 			error(t.cs ? "Forbidden control sequence found" : "File ended while scanning text of "+scs(warningindex), "I suspect you have forgotten a `}', causing me\nto read past where you wanted me to stop.\nI'll try to recover; but if the error is serious,\nyou'd better type `E' or `X' now and fix your file.", false);
 			insList(right_brace_token+'}');
-		}
 	}
 	return t.cs ? Token(spacer, ' ') : t;
 }
@@ -92,6 +82,25 @@ static void removeFromEnd(int &k, int d)
 		buffer[k] = buffer[k+d];
 }
 
+static bool testDoubleSup(int k, Token &tk)
+{
+	if (k >= limit)
+		return false;
+	if (buffer[k] == tk.chr /* ^^ */ && buffer[k+1] < 128)
+	{
+		auto &c = buffer[k+1];
+		auto t = intFromTwoHexDigit(c, k+2);
+		tk.chr = buffer[k-1] = t >= 0 ? t : c < 64 ? c + 64 : c - 64;
+		if (t >= 0) // ^^xx avec xx hexadécimal
+			removeFromEnd(k, 3);
+		else // ^^c avec c caractère
+			removeFromEnd(k, 2);
+		return true;
+	}
+	return false;
+}
+
+
 static TokenList omit_template(end_template_token); //!< a constant token list
 
 #define ANY_STATE_PLUS(cmd) mid_line+cmd: case skip_blanks+cmd: case new_line+cmd
@@ -99,12 +108,10 @@ static TokenList omit_template(end_template_token); //!< a constant token list
 
 Token Scanner::next(char status, bool nonewcontrolsequence)
 {
-	Token t;
-	bool restart;
-	do 
+	while (true)
 	{
-		restart = false;
-		t.cs = 0;
+		bool restart = false;
+		Token t;
 		if (state != token_list)
 		{
 			bool skip;
@@ -113,12 +120,11 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 				skip = false;
 				if (loc <= limit)
 				{
-					t.chr = buffer[loc];
-					loc++;
-					bool superscript2;
+					t.chr = buffer[loc++];
+					bool doubleSup2;
 					do
 					{
-						superscript2 = false;
+						doubleSup2 = false;
 						t.cmd = cat_code(t.chr);
 						switch (state+t.cmd)
 						{
@@ -129,95 +135,62 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 								break;
 							case ANY_STATE_PLUS(escape):
 								if (loc > limit)
-								{
-									t.cs = null_cs;
-									t.cmd = eqtb_active[null_cs-active_base].type;
-									t.chr = eqtb_active[null_cs-active_base].int_;
-								}
+									t = equivToken(null_cs-active_base, eqtb_active);
 								else
-								{
-									bool superscript, identifiant;
-									do
+								{   // loc <= limit
+									bool identifiant = false;
+									for (bool doubleSup = true; doubleSup && !identifiant;)
 									{
-										superscript = false;
-										identifiant = false;
-										t.chr = buffer[loc];
-										int cat = cat_code(t.chr);
-										int k = loc+1;
-										state = (cat == letter || cat == spacer) ? skip_blanks : mid_line;
-										if (cat == letter && k <= limit)
+										doubleSup = false;
+										switch (int cat = cat_code(t.chr = buffer[loc]); cat)
 										{
-											do
-											{
-												t.chr = buffer[k];
-												cat = cat_code(t.chr);
-												k++;
-											} while (cat == letter && k <= limit);
-											if (cat == sup_mark && prochainCaractereOK(k, t.chr))
-											{
-												if (processBuffer(k, buffer[k-1]) == 3)
+											case letter:
+												if (loc < limit)
 												{
-													t.chr = buffer[k-1];
-													removeFromEnd(k, 3);
-												}
-												else
-													removeFromEnd(k, 2);
-												superscript = true;
-											}
-											else
-											{
-												if (cat != letter)
-													k--;
-												if (k > loc+1)
-												{
-													std::string s;
-													for (int i = loc; i <= k; i++)
-														s += buffer[i];
-													t.cs = idlookup(s, nonewcontrolsequence);
-													t.cmd = eqtb_cs[t.cs-hash_base].type;
-													t.chr = eqtb_cs[t.cs-hash_base].int_;
-													loc = k;
-													identifiant = true;
-												}
-											}
+													int k;
+													for (k = loc+1; cat == letter && k <= limit; k++)
+														cat = cat_code(t.chr = buffer[k]);
+													if (cat == sup_mark && testDoubleSup(k, t)) // "^^" 
+														doubleSup = true;
+													else
+													{
+														if (cat != letter)
+															k--;
+														if (k-loc >= 1)
+														{
+															t = equivToken(idlookup(buffer.substr(loc, k-loc+1), nonewcontrolsequence)-hash_base, eqtb_cs);
+															loc = k;
+															identifiant = true;
+														}
+													}
+												} [[fallthrough]];
+											case spacer:
+												state = skip_blanks;
+												break;
+											case sup_mark:
+												if (testDoubleSup(loc+1, t))
+													doubleSup = true; [[fallthrough]];
+											default:
+												state = mid_line;
 										}
-										else
-											if (cat == sup_mark && prochainCaractereOK(k, t.chr))
-											{
-												if (processBuffer(k, buffer[k-1]) == 3)
-												{
-													t.chr = buffer[k-1];
-													removeFromEnd(k, 3);
-												}
-												else
-													removeFromEnd(k, 2);
-												superscript = true;
-											}
-									} while (superscript && !identifiant);
-									if (!identifiant)
-									{
-										t.cs = single_base+buffer[loc];
-										t.cmd = eqtb_active[t.cs-active_base].type;
-										t.chr = eqtb_active[t.cs-active_base].int_;
-										loc++;
 									}
+									if (!identifiant)
+										t = equivToken(buffer[loc++]+single_base-active_base, eqtb_active);
 								}
 								if (t.cmd >= outer_call)
 									t = checkoutervalidity(status, t);
 								break;
 							case ANY_STATE_PLUS(active_char):
-								t.cs = t.chr+active_base;
-								t.cmd = eqtb_active[t.cs-active_base].type;
-								t.chr = eqtb_active[t.cs-active_base].int_;
+								t = equivToken(t.chr, eqtb_active);
 								state = mid_line;
 								if (t.cmd >= outer_call)
 									t = checkoutervalidity(status, t);
 								break;
 							case ANY_STATE_PLUS(sup_mark):
-								if (prochainCaractereOK(loc, t.chr))
+								if (prochainCaractereOK(loc, t.chr)) 
 								{
 									loc += processBuffer(loc, t.chr);
-									superscript2 = true;
+									doubleSup2 = true;
 								}
 								else
 									state = mid_line;
@@ -242,9 +215,7 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 								break;
 							case new_line+car_ret:
 								loc = limit+1;
-								t.cs = parloc;
-								t.cmd = eqtb[t.cs].type;
-								t.chr = eqtb[t.cs].int_;
+								t = equivToken(parloc, eqtb);
 								if (t.cmd >= outer_call)
 									t = checkoutervalidity(status, t);
 								break;
@@ -264,48 +235,15 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 							case ADD_DELIMS_TO(new_line):
 								state = mid_line;
 						}
-					} while (superscript2 && !skip && !restart);
+					} while (doubleSup2 && !skip && !restart);
 				}
-				else
+				else // loc > limit
 				{
 					state = new_line;
-					if (name.size() != 1 || name[0] > 17)
-					{
-						line++;
-						First = start;
-						if (!forceeof)
-							if (inputln(cur_file(), true))
-								firmuptheline();
-							else
-								forceeof = true;
-						if (forceeof)
-						{
-							print(")");
-							openparens--;
-							std::cout << std::flush;
-							forceeof = false;
-							endfilereading();
-							t = checkoutervalidity(status, t);
-							restart = true;
-						}
-						if (!restart)
-						{
-							if (end_line_char_inactive())
-								limit--;
-							else
-								buffer[limit] = end_line_char();
-							First = limit+1;
-							loc = start;
-						}
-					}
-					else
+					if (isFile())
 					{
 						if (!terminal_input(name))
-						{
-							t.cmd = 0;
-							t.chr = 0;
-							return t;
-						}
+							return Token(0, 0);
 						if (inputstack.size() > 1)
 						{
 							endfilereading();
@@ -337,6 +275,34 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 								fatalerror("*** (job aborted, no legal \end found)");
 						}
 					}
+					else
+					{
+						line++;
+						First = start;
+						if (!forceeof && inputln(cur_file(), true))
+						{
+							firmuptheline();
+							if (!restart)
+							{
+								if (end_line_char_inactive())
+									limit--;
+								else
+									buffer[limit] = end_line_char();
+								First = limit+1;
+								loc = start;
+							}
+						}
+						else
+						{
+							print(")");
+							openparens--;
+							std::cout << std::flush;
+							forceeof = false;
+							endfilereading();
+							t = checkoutervalidity(status, t);
+							restart = true;
+						}
+					}
 					if (!restart)
 						skip = true;
 				}
@@ -353,8 +319,7 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 				Loc++;
 				if (Start.list[Loc] >= cs_token_flag)
 				{
-					t.cs = Start.list[Loc]-cs_token_flag;
-					t = Token(eqtb[t.cs].type, eqtb[t.cs].int_);
+					t = equivToken(Start.list[Loc]-cs_token_flag, eqtb);
 					switch (t.cmd)
 					{
 						case outer_call:
@@ -368,18 +333,15 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 							break;
 						case dont_expand:
 						{
-							t.cs = Start.list[Loc]-cs_token_flag;
+							t = equivToken(Start.list[Loc]-cs_token_flag, eqtb);
 							Loc = 0;
-							t = Token(eqtb[t.cs].type, eqtb[t.cs].int_);
 							if (t.cmd > max_command)
 								t = Token(relax, no_expand_flag);
 						}
 					}
 				}
 				else
-				{
-					t = Token(Start.list[Loc]>>8, Start.list[Loc]%(1<<8));
-					switch (t.cmd)
+					switch (t = Token(Start.list[Loc]>>8, Start.list[Loc]%(1<<8)); t.cmd)
 					{
 						case left_brace: 
 							alignstate++;
@@ -391,18 +353,20 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 							paramstack[limit+t.chr-1].beginBelowMacro(parameter);
 							restart = true;
 					}
-				}
 			}
-		if (!restart && t.cmd <= out_param && t.cmd >= tab_mark && alignstate == 0)
-		{
-			if (status == aligning || curalign == nullptr)
-				fatalerror("(interwoven alignment preambles are not allowed)");
-			t.cmd = curalign->extra_info;
-			curalign->extra_info = t.chr;
-			t.cmd == omit ? omit_template.beginBelowMacro(v_template) : curalign->vPart.beginBelowMacro(v_template);
-			alignstate = 1000000;
-			restart = true;
+		if (!restart)
+		{ 
+			if (between(tab_mark, t.cmd, out_param) && alignstate == 0)
+			{
+				if (status == aligning || curalign == nullptr)
+					fatalerror("(interwoven alignment preambles are not allowed)");
+				t.cmd = curalign->extra_info;
+				curalign->extra_info = t.chr;
+				t.cmd == omit ? omit_template.beginBelowMacro(v_template) : curalign->vPart.beginBelowMacro(v_template);
+				alignstate = 1000000;
+				restart = true;
+			}
+			return t;
 		}
-	} while (restart);
-	return t;
+	}
 }

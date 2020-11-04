@@ -137,7 +137,7 @@ static void pushalignment(AlignRecordNode* loop)
 	curhead = new LinkedNode;
 }
 
-void initalign(char &status, Token t, AlignRecordNode* &loop)
+void initalign(char status, Token t, AlignRecordNode* &loop)
 {
 	auto savecsptr = t.cs;
 	pushalignment(loop);
@@ -213,11 +213,10 @@ void initalign(char &status, Token t, AlignRecordNode* &loop)
 		}
 		curalign->vPart.list.push_back(end_template_token);
 	}
-	status = normal;
 	newsavelevel(align_group);
 	if (every_cr())
 		every_cr()->beginAboveMacro(every_cr_text);
-	alignpeek(status, loop);
+	alignpeek(normal, loop);
 }
 
 static void finrow(char status, AlignRecordNode* &loop)

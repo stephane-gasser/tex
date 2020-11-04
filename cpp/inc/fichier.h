@@ -12,6 +12,7 @@ enum
 
 enum
 {
+	opened = 0,
 	just_open = 1, //!< newly opened, first line not yet read
 	closed = 2 //!< not open, or at end of file
 };

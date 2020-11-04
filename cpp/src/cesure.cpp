@@ -456,16 +456,8 @@ void hyphenate(LinkedNode *curp, std::basic_string<halfword> word)
 }
 
 //! initializes the hyphenation pattern data
-void newpatterns(char &status, Token t)
+void newpatterns(char status, Token t)
 {
-	if (!trienotready)
-	{
-		error("Too late for "+esc("patterns"), "All patterns must be given before typesetting begins.");
-		scanNonMacroToks(t);
-		status = normal;
-		defRef.list.clear();
-		return;
-	}
 	//Enter all of the patterns into a linked tr, until coming to a right brace
 	curlang = cur_fam();
 	if (curlang <= 0 || curlang > 255)
