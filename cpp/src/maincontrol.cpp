@@ -35,6 +35,7 @@
 #include "calcul.h"
 #include "mainloop.h"
 #include "initprim.h"
+#include "tampon.h"
 
 static void setMathCharNoActive(int c) { tail_append(new Noad(c&0xFF, getFam(c), c>>12)); }
 
@@ -53,6 +54,7 @@ static void setmathchar(char status, int c, Token t)
 
 Token maincontrol(void)
 {
+	First = curinput.limit+1;
 	char status = normal;
 	AlignRecordNode *loop = nullptr;
 	if (every_job())
@@ -462,8 +464,11 @@ Token maincontrol(void)
 			case ANY_MODE(set_box):
 			case ANY_MODE(hyph_data):
 			case ANY_MODE(set_interaction):
-				prefixedcommand(status, t);
+			{
+				int dummy;
+				prefixedcommand(status, t, First, dummy);
 				break;
+			}
 			case ANY_MODE(after_assignment):
 				aftertoken = t = scanner.get(status);
 				break;

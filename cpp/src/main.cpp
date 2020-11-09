@@ -12,6 +12,7 @@
 #include "erreur.h"
 #include "etat.h"
 #include "getnext.h"
+#include "tampon.h"
 #include <iostream>
 
 static void fixdateandtime(void)
@@ -91,29 +92,24 @@ int main()
 		print("\n"+(formatident == "" ? " (no format preloaded)'" : formatident)+"\n");
 		std::cout << std::flush;
 		nameinprogress = false;
-		buffer = "";
 		state = new_line;
-		start = 1;
 		index = 0;
 		name = "";
-		initterminal();
-		limit = last;
-		First = last+1;
-		if (formatident == "" || buffer[loc] == '&')
+		curinput.start = 1;
+		curinput.limit = initterminal(1);
+		if (formatident == "" || currentBuf() == '&')
 		{
 			if (formatident != "")
 				Initialize();
 			loadfmtfile();
-			for (; loc < limit && buffer[loc] == ' '; loc++); // trim à droite
+			for (; atLeastTwoInBuf() && currentBuf() == ' '; bufNext())
+				{} // trim à droite
 		}
-		if (end_line_char_inactive())
-			limit--;
-		else
-			buffer[limit] = end_line_char();
+		removeLastBuf();
 		fixdateandtime();
 		selector = interaction == batch_mode ? no_print : term_only;
-		if (loc < limit && cat_code(buffer[loc]))
-			startinput(normal);
+		if (atLeastTwoInBuf() && cat_code(currentBuf()))
+			startinput(normal, curinput.limit+1);
 		history = spotless;
 		auto t = maincontrol();
 		finalcleanup(t);

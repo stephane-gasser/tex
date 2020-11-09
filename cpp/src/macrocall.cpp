@@ -167,7 +167,7 @@ void macrocall(Token t)
 			}
 		} while (refcount.list[r] != end_match_token); 
 	}
-	while (state == 0 && loc == 0 && index != 2)
+	while (state == 0 && curinput.loc == 0 && index != 2)
 		endtokenlist();
 	refcount.beginMacro();
 	name = warningindex;

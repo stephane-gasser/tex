@@ -4,77 +4,69 @@
 #include "lecture.h"
 #include "chaine.h"
 #include "etat.h"
-#include <iostream>
+#include "tampon.h"
 #include "getnext.h"
+#include <iostream>
+#include <algorithm>
 
-void firmuptheline(void)
+int inputln(std::istream& f, bool bypasseoln, int first)
 {
-	limit = last;
-	if (pausing() > 0 && interaction > nonstop_mode)
-	{
-		print("\n"+buffer.substr(start, limit-start)+"=>");
-		First = limit;
-		terminput();
-		if (last > First)
-		{
-			for (int k = First; k < last; k++)
-				buffer[k+start-First] = buffer[k];
-			limit = start+last-First;
-		}
-	}
+	if (bypasseoln && !f.eof())
+		f.get();
+	if (f.eof())
+		return -1;
+	std::string line;
+	getline(f, line);
+	int lst = first+find_if(line.begin(), line.end(), [](char c) { return c == ' '; })-line.begin();
+	setBufChangeBadChar(line, first);
+	return lst;
 }
 
-void initterminal(void)
+int terminput(int first)
+{
+	std::cout << std::flush;
+	int lst = inputln(std::cin, true, first);
+	if (lst < 0)
+		fatalerror("End of file on the terminal!");
+	termoffset = 0;
+	selector--;
+	print(readBuf(first, lst-1)+"\n");
+	selector++;
+	return lst;
+}
+
+int firmuptheline(void)
+{
+	print("\n"+readAllBuf()+"=>");
+	int lst = terminput(curinput.limit);
+	if (lst > curinput.limit)
+	{
+		shiftBuf(curinput.limit, lst, curinput.start);
+		setBufSize(lst-curinput.limit+1);
+	}
+	return lst;
+}
+
+int initterminal(int first)
 {
 	while (true)
 	{
 		std::cout << "**" << std::flush;
 		std::cin.clear();
-		if (!inputln(std::cin, false))
+		int lst = inputln(std::cin, false, first);
+		if (lst < 0)
 		{
 			std::cout << std::endl;
 			std::cout << "! End of file on the terminal... why?'";
 			throw std::string();
 		}
-		for (loc = First; loc < last && buffer[loc] == ' '; loc++); // trim à droite
-		if (loc < last)
-			return;
+		if (first < lst)
+			return lst;
 		std::cout << "Please type the name of your input file.\n";
 	}
 }
 
-bool inputln(std::istream& f, bool bypasseoln)
-{
-	if (bypasseoln && !f.eof())
-		f.get();
-	last = First;
-	if (f.eof())
-		return false;
-	std::string line;
-	getline(f, line);
-	int lastnonblank = First;
-	for (char c: line)
-	{
-		buffer[last++] = between(' ', c,  '~') ? c : '\x7f';
-		if (buffer[last-1] != ' ')
-			lastnonblank = last;
-	}
-	last = lastnonblank;
-	return true;
-}
-
-void terminput(void)
-{
-	std::cout << std::flush;
-	if (!inputln(std::cin, true))
-		fatalerror("End of file on the terminal!");
-	termoffset = 0;
-	selector--;
-	print(buffer.substr(First, last-First)+"\n");
-	selector++;
-}
-
-void openlogfile(void)
+void openlogfile(int first)
 {
 	auto oldsetting = selector;
 	if (jobname == "") 
@@ -82,7 +74,7 @@ void openlogfile(void)
 	while (!aopenout(logfile, logname = packjobname(".log")))
 	{
 		selector = term_only;
-		promptfilename(" transcript file name", ".log");
+		promptfilename(" transcript file name", ".log", first);
 	}
 	selector = log_only;
 	logopened = true;
@@ -94,10 +86,10 @@ void openlogfile(void)
 	print(" "+std::to_string(year())+" "+twoDigits(time()/60)+":"+twoDigits(time()%60));
 	inputstack.back() = curinput;
 	print("\r**");
-	int l = inputstack[0].limitfield;
-	if (buffer[l] == end_line_char())
+	int l = inputstack[0].limit;
+	if (getBuf(l) == end_line_char())
 		l--;
-	print(buffer.substr(1, l)+"\n");
+	print(readBuf(1, l)+"\n");
 	selector = oldsetting+2;
 }
 
@@ -127,7 +119,6 @@ static int linestack[maxinopen+1]; // commence à 1
 
 void endfilereading(void)
 {
-	First = start;
 	line = linestack[index];
 	if (name.size() != 1 || name[0] > 17)
 		aclose(cur_file());
@@ -147,7 +138,6 @@ void beginfilereading(void)
 	push_input();
 	index = inopen;
 	linestack[index] = line;
-	start = First;
 	state = mid_line;
 	name = "";
 	// \a terminal_input is now \a true
@@ -161,6 +151,10 @@ static void beginname(void)
 	areadelimiter = 0;
 	extdelimiter = 0;
 }
+
+static std::string currentString;
+int cur_length(void) { return currentString.size(); }
+static void append_char(ASCIIcode c) { currentString += c; } //!< put \a ASCII_code # at the end of \a str_pool
 
 static void morename(ASCIIcode c)
 {
@@ -199,7 +193,7 @@ static void endname(void)
 }
 
 
-std::string promptfilename(const std::string &s, const std::string &e)
+std::string promptfilename(const std::string &s, const std::string &e, int first)
 {
 	if (interaction == scroll_mode)
 		print_err(s == "input file name" ? "I can't find file `" : "I can't write on file `"+asFilename(curname, curarea, curext)+"'.");
@@ -210,14 +204,10 @@ std::string promptfilename(const std::string &s, const std::string &e)
 		fatalerror("*** (job aborted, file error in nonstop mode)");
 	std::cin.clear();
 	print(": ");
-	terminput();
+	int lst = terminput(first);
 	beginname();
-	// trim gauche
-	int k;
-	for (k = First; buffer[k] == ' '  && k < last; k++);
-	// trim droite
-	for (; buffer[k] != ' ' && k < last; k++)
-		morename(buffer[k]);
+	for (int k = first; k < lst; k++)
+		morename(getBuf(k));
 	endname();
 	if (curext == "")
 		curext = e;

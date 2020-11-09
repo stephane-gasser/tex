@@ -8,6 +8,7 @@
 #include "fichier.h"
 #include "etat.h"
 #include "initprim.h"
+#include "tampon.h"
 #include <iostream>
 #include <map>
 
@@ -1086,28 +1087,29 @@ static halfword& llink(halfword p) { return info(p+1); }
 
 static void openfmtfile(void)
 {
-	auto j = loc;
-	if (buffer[loc] == '&')
+	auto j = curinput.loc;
+	if (currentBuf() == '&')
 	{
-		loc++;
-		buffer[last] = ' ';
-		for (j = loc; buffer[j] != ' '; j++); //trim à droite
-		auto fname = buffer.substr(loc, j-loc);
+		bufNext();
+		getBuf(curinput.limit) = ' ';
+		for (j = curinput.loc; getBuf(j) != ' '; j++)
+			{} //trim à droite
+		auto fname = readBufUpTo(j-1);
 		if (wopenin(fmtfile, packbufferedname(none, fname)))
 		{
-			loc = j;
+			curinput.loc = j;
 			return;
 		}
 		if (wopenin(fmtfile, packbufferedname(area, fname)))
 		{
-			loc = j;
+			curinput.loc = j;
 			return;
 		}
 		std::cout << "Sorry, I can't find that format;\n will try PLAIN.\n" << std::flush;
 	}
 	if (wopenin(fmtfile, packbufferedname(area_name, "")))
 	{
-		loc = j;
+		curinput.loc = j;
 		return;
 	}
 	std::cout << "I can't find the PLAIN format file!\n";
@@ -1425,7 +1427,7 @@ void storefmtfile(void)
 	selector = interaction == batch_mode ? log_only : term_and_log;
 	std::string fname;
 	while (!wopenout(fmtfile, fname = packjobname(format_extension)))
-		promptfilename("format file name", format_extension); 
+		promptfilename("format file name", format_extension, First); 
 	print("\rBeginning to dump_int on file "+fname+"\r"+formatident);
 	dump_int(CHECKSUM);
 	dump_int(mem_bot);

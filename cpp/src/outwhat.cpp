@@ -8,6 +8,7 @@
 #include "etat.h"
 #include "initprim.h"
 #include "getnext.h"
+#include "tampon.h"
 
 constexpr int end_write_token = cs_token_flag+end_write;
 
@@ -49,7 +50,7 @@ static void specialout(NotOpenWriteWhatsitNode *p)
 {
 	synch_h();
 	synch_v();
-	if (cur_length() < 256)
+	if (cur_length() < 256) // TODO remplacer cur_length
 	{
 		dvi_out(xxx1);
 		dvi_out(cur_length());
@@ -75,7 +76,7 @@ void OpenWriteWhatsitNode::out(void)
 		if (curext == "")
 			curext = ".tex";
 		while (!aopenout(writefile[write_stream], nameoffile = pack_cur_name()))
-			promptfilename("output file name", ".tex"); 
+			promptfilename("output file name", ".tex", First);
 		writeopen[write_stream] = true;
 	}
 }

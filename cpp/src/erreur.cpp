@@ -7,6 +7,7 @@
 #include "alignement.h"
 #include "etat.h"
 #include "getnext.h"
+#include "tampon.h"
 #include <iostream>
 
 static std::string helpline;
@@ -22,14 +23,18 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 	if (interaction == error_stop_mode)
 		while (true)
 		{
-			while (state != token_list && terminal_input(name) && inputstack.size() > 1 && loc > limit)
+			int first;
+			while (state != token_list && terminal_input(name) && inputstack.size() > 1 && isBufFull())
+			{
+				first = curinput.start;
 				endfilereading();
+			}
 			print("\n? ");
 			std::cin.clear();
-			terminput();
-			if (last == First)
+			int lst = terminput(first);
+			if (lst == first)
 				return;
-			switch (buffer[First])
+			switch (getBuf(first))
 			{
 				case '0':
 				case '1':
@@ -43,9 +48,9 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 				case '9':
 					if (deletionsallowed)
 					{
-						auto c = buffer[First]-'0';
-						if (last > First+1 && between('0',buffer[First+1], '9'))
-						  c = c*10+buffer[First+1]-'0';
+						auto c = getBuf(first)-'0';
+						if (lst > first+1 && between('0', getBuf(first+1), '9'))
+							c = c*10+getBuf(first+1)-'0';
 						auto save = alignstate;
 						alignstate = 1000000;
 						for (; c > 0; c--)
@@ -78,19 +83,20 @@ void error(const std::string &msg, const std::string &hlp, bool deletionsallowed
 				case 'i':
 				case 'I':
 					beginfilereading();
-					if (last > First+1)
+					curinput.start = first;
+					if (lst > first+1)
 					{
-						loc = First+1;
-						buffer[First] = ' ';
+						curinput.loc = first+1;
+						getBuf(first) = ' ';
 					}
 					else
 					{
 						print("insert>");
-						terminput();
-						loc = First;
+						lst = terminput(first);
+						curinput.loc = first;
 					}
-					First = last;
-					limit = last-1;
+					first = lst;
+					curinput.limit = lst-1;
 					return;
 				case 'q':
 				case 'Q':
@@ -193,7 +199,7 @@ static void normalizeselector(void)
 {
 	selector = logopened ? term_and_log : term_only;
 	if (jobname == "")
-		openlogfile();
+		openlogfile(First);
 	if (interaction == batch_mode)
 		selector--;
 }

@@ -10,6 +10,7 @@
 #include "getnext.h"
 #include "fichier.h"
 #include "etat.h"
+#include "tampon.h"
 
 static std::string romanint(int n)
 {
@@ -71,7 +72,10 @@ static void convtoks(char status, Token t)
 			break;
 		case job_name_code: 
 			if (jobname == "")
-				openlogfile();
+			{
+				int dummy;
+				openlogfile(First);
+			}
 			insList(jobname);
 	}
 }
@@ -128,14 +132,8 @@ void expand(char status, Token tk)
 				backerror(tk, "Missing "+esc("endcsname")+" inserted", "The control sequence marked <to be read again> should\nnot appear between \\csname and \\endcsname.");
 			int j = First;
 			for (auto &p: l.list)
-				buffer[j++] = p%(1<<8);
-			if (j > First+1)
-				tk.cs = idlookup(buffer.substr(First, j+1-First), false);
-			else
-				if (j == First)
-					tk.cs = null_cs;
-				else
-					tk.cs = single_base+buffer[First];
+				getBuf(j++) = p%(1<<8);
+			tk.cs = j > First+1 ? idlookup(readBuf(First, j), false) : j == First ? null_cs : single_base+getBuf(First);
 			l.list.clear();
 			if (eqtb_active[tk.cs-active_base].type == undefined_cs)
 				eqtb_active[tk.cs-active_base].define(noPrefix, relax, 256);
@@ -169,13 +167,16 @@ void expand(char status, Token tk)
 			}
 			break;
 		case input:
-			if (tk.chr > 0)
+			if (tk.chr > 0) // \endinput
 				forceeof = true;
-			else 
+			else  // \input
 				if (nameinprogress)
 					insertrelax(tk.cs);
 				else
-					startinput(status);
+				{
+					startinput(status, First);
+					First = curinput.limit+1;
+				}
 			break;
 		case call:
 		case long_call:

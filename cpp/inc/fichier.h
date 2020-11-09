@@ -36,9 +36,6 @@ inline std::vector<bool> writeopen(18, false);
 inline bool logopened = false;
 inline char inopen = 0; // 0..maxinopen
 inline std::string nameoffile;// char[filenamesize+1]; // débute à 1
-inline std::string buffer;
-inline int First = 1;// 0..bufsize
-inline int last; // 0..bufsize
 inline int line = 0;
 inline std::string formatident = " (INITEX)";
 
@@ -56,16 +53,16 @@ bool bopenin(bytefile& f, const std::string&);
 bool bopenout(bytefile& f, const std::string&);
 bool wopenin(wordfile& f, const std::string&);
 bool wopenout(wordfile& f, const std::string&);
-std::string promptfilename(const std::string &, const std::string &);
-void beginfilereading(void);
-void endfilereading(void);
+std::string promptfilename(const std::string &, const std::string &, int);
+void beginfilereading();
+void endfilereading();
 alphafile& cur_file(void);
 void openorclosein(char, halfword);
-void openlogfile(void);
-void terminput(void);
-bool inputln(std::istream& f, bool bypasseoln);
-void initterminal(void);
-void firmuptheline(void);
+void openlogfile(int);
+int terminput(int);
+int inputln(std::istream& f, bool bypasseoln, int);
+int initterminal(int);
+int firmuptheline(void);
 
 inline bool terminal_input(const std::string &name) { return name == ""; } //!< are we reading from the terminal?
 

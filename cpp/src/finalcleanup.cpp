@@ -8,17 +8,21 @@
 #include "equivalent.h"
 #include "fichier.h"
 #include "etat.h"
+#include "tampon.h"
 
 void finalcleanup(Token t)
 {
 	smallnumber c = t.chr;
 	if (jobname == "")
-		openlogfile();
+		openlogfile(First);
 	while (inputstack.size() > 1)
 		if (state == token_list)
 			endtokenlist();
 		else
+		{
+			First = curinput.start;
 			endfilereading();
+		}
 	while (openparens > 0)
 	{
 		print(" )");

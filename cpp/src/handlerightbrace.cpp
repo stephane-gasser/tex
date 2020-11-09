@@ -69,12 +69,12 @@ void handlerightbrace(char status, Token t, AlignRecordNode* &loop)
 			break;
 		}
 		case output_group:
-			if (loc || (token_type != output_text && token_type != backed_up))
+			if (curinput.loc || (token_type != output_text && token_type != backed_up))
 			{
 				error("Unbalanced output routine", "Your sneaky output routine has problematic {'s and/or }'s.\nI can't handle that very well; good luck.");
 				do
 					t = scanner.get(status);
-				while (loc);
+				while (curinput.loc);
 			}
 			endtokenlist();
 			endgraf();

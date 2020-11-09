@@ -711,8 +711,8 @@ void alignpeek(char status, AlignRecordNode* &loop)
 void doendv(char status, Token t, AlignRecordNode* &loop)
 {
 	inputstack.back() = curinput;
-	for (baseptr = inputstack.size()-1; inputstack[baseptr].indexfield != v_template && inputstack[baseptr].locfield == 0 && inputstack[baseptr].statefield == token_list; baseptr--);
-	if (inputstack[baseptr].indexfield != v_template || inputstack[baseptr].locfield || inputstack[baseptr].statefield != token_list)
+	for (baseptr = inputstack.size()-1; inputstack[baseptr].indexfield != v_template && inputstack[baseptr].loc == 0 && inputstack[baseptr].statefield == token_list; baseptr--);
+	if (inputstack[baseptr].indexfield != v_template || inputstack[baseptr].loc || inputstack[baseptr].statefield != token_list)
 		fatalerror("(interwoven alignment preambles are not allowed)");
 	if (curgroup == align_group)
 	{

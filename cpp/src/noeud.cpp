@@ -17,6 +17,7 @@
 #include "police.h"
 #include "etat.h"
 #include "getnext.h"
+#include "tampon.h"
 
 LinkedNode* copynodelist(LinkedNode *p)
 {
@@ -54,7 +55,7 @@ void newfont(char status, smallnumber prefix)
 {
 	std::string t;
 	if (jobname == "")
-		openlogfile();
+		openlogfile(First);
 	auto u = scanner.getR(status);
 	if (u >= hash_base)
 	{

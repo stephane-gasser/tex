@@ -7,6 +7,7 @@
 #include "alignement.h"
 #include "lecture.h"
 #include "getnext.h"
+#include "tampon.h"
 #include <iostream>
 
 void popnest(void)
@@ -43,41 +44,43 @@ void push_input(void)
 
 constexpr char TEX_area[] = "TeXinputs:";
 
-void startinput(char status)
+void startinput(char status, int first)
 {
 	scanfilename(status);
 	if (curext == "")
 		curext = ".tex";
-	name = pack_cur_name();
+	auto fname = pack_cur_name();
 	while (true)
 	{
 		beginfilereading();
-		if (aopenin(cur_file(), name))
+		curinput.start = first;
+		if (aopenin(cur_file(), fname))
 			break;
-		if (curarea == "" && aopenin(cur_file(), packfilename(curname, TEX_area, curext)))
+		if (curarea == "" && aopenin(cur_file(), fname = packfilename(curname, TEX_area, curext)))
 			break;
+		first = curinput.start;
 		endfilereading();
-		name = promptfilename("input file name", ".tex");
+		fname = promptfilename("input file name", ".tex", first);
 	}
 	if (jobname == "")
 	{
 		jobname = curname;
-		openlogfile();
+		openlogfile(curinput.start);
 	}
-	print(std::string(termoffset+name.size() > maxprintline-2 ? "\n" : termoffset > 0 || fileoffset > 0 ? " " : "")+"(");
+	print(std::string(termoffset+fname.size() > maxprintline-2 ? "\n" : termoffset > 0 || fileoffset > 0 ? " " : "")+"(");
 	openparens++;
-	print(name);
+	print(fname);
 	std::cout << std::flush;
 	state = new_line;
 	line = 1;
-	if (inputln(cur_file(), false))
-		firmuptheline();
-	if (end_line_char_inactive())
-		limit--;
-	else
-		buffer[limit] = end_line_char();
-	First = limit+1;
-	loc = start;
+	if (int lst = inputln(cur_file(), false, curinput.start); lst >= 0)
+	{
+		curinput.limit = lst;
+		if (pausing() > 0 && interaction > nonstop_mode)
+			lst = firmuptheline();
+	} // else EOF
+	removeLastBuf();
+	bufBegin();
 }
 
 //! Undoes one token of input.

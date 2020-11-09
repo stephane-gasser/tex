@@ -52,7 +52,7 @@ class LinkedNode : public AnyNode
 		~LinkedNode(void);
 		virtual LinkedNode *copy(void);
 		virtual std::string shortDisplay(void) { return ""; }
-		virtual std::string showNode(const std::string &) { return "Unknown node type!"; }
+		virtual void showNode(const std::string &, std::ostringstream &oss) { oss << "Unknown node type!"; }
 		virtual quarterword getSubtype(void) { return 0; }
 		virtual void vlist(scaled) {}
 		virtual void hlist(scaled, scaled, scaled) {}
@@ -100,7 +100,7 @@ class CharNode : public LinkedNode
 		int italic(void);
 		virtual scaled getWidth(void) { return width(); }
 		virtual std::string shortDisplay(void);
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void vlist(scaled);
 		virtual void hlist(scaled, scaled, scaled);
 };
@@ -117,7 +117,7 @@ class LigatureNode : public CharNode
 		~LigatureNode(void);
 		virtual LigatureNode* copy(void);
 		virtual std::string shortDisplay(void);
-		std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void hlist(scaled, scaled, scaled);
 };
 
@@ -131,7 +131,7 @@ class ChoiceNode : public LinkedNode
 		LinkedNode *script_script_mlist = nullptr; //!< mlist to be used in scriptscript style
 		ChoiceNode(void) { type = choice_node; }
 		~ChoiceNode(void);
-		std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void mToH(LinkedNode*&);
 };
 
@@ -145,7 +145,7 @@ class DiscNode : public LinkedNode
 		~DiscNode(void);
 		DiscNode *copy(void);
 		virtual std::string shortDisplay(void);
-		std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 };
 
 class KernNode : public LinkedNode
@@ -156,7 +156,7 @@ class KernNode : public LinkedNode
 		KernNode(scaled w, quarterword s = 0) : width(w), subtype(s) { type = kern_node; }
 		virtual KernNode *copy(void) { return new KernNode(width, subtype); }
 		void mathkern(scaled);
-		std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual quarterword getSubtype(void) { return subtype; }
 		virtual void vlist(scaled);
 		virtual void hlist(scaled, scaled, scaled);
@@ -197,7 +197,7 @@ class InsNode : public LinkedNode
 		~InsNode(void);
 		virtual InsNode *copy(void);
 		virtual std::string shortDisplay(void) { return "[]"; }
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 };
 
 class MarkNode : public LinkedNode
@@ -208,7 +208,7 @@ class MarkNode : public LinkedNode
 		~MarkNode(void) { mark_ptr->deleteTokenRef(); }
 		virtual MarkNode *copy(void) { auto m = new MarkNode; m->mark_ptr = mark_ptr; mark_ptr->token_ref_count++; return m; }
 		virtual std::string shortDisplay(void) { return "[]"; }
-		std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 };
 
 class AdjustNode : public LinkedNode
@@ -219,7 +219,7 @@ class AdjustNode : public LinkedNode
 		~AdjustNode(void);
 		virtual AdjustNode *copy(void);
 		virtual std::string shortDisplay(void) { return "[]"; }
-		std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 };
 
 class PageInsNode : public LinkedNode
@@ -247,7 +247,7 @@ class GlueNode : public LinkedNode
 		~GlueNode(void);
 		virtual GlueNode *copy(void);
 		virtual std::string shortDisplay(void);
-		std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void mToH(scaled&, scaled&);
 };
 
@@ -257,7 +257,7 @@ class PenaltyNode : public LinkedNode
 		int penalty;
 		PenaltyNode(int p = 0) : penalty(p) { type = penalty_node; } 
 		virtual PenaltyNode *copy(void) { return new PenaltyNode(penalty); }
-		std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual int getPenalty(void) { return penalty; }
 };
 
@@ -280,7 +280,7 @@ class RuleNode : public LinkedNode
 			return r; 
 		}
 		virtual std::string shortDisplay(void) { return "|"; }
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void vlist(scaled);
 		virtual void hlist(scaled, scaled, scaled);
 		virtual scaled getHeight(void) { return height; }
@@ -302,7 +302,7 @@ class BoxNode : public RuleNode
 		~BoxNode(void);
 		virtual BoxNode *copy(void);
 		virtual std::string shortDisplay(void) { return "[]"; }
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void vlist(scaled);
 		virtual void hlist(scaled, scaled, scaled);
 		virtual void setShift(scaled s) { shift_amount = s; }
@@ -317,7 +317,7 @@ class UnsetNode : public BoxNode
 		scaled glue_stretch;
 		UnsetNode(void) : BoxNode() { type = unset_node; span_count = 0; } 
 		virtual UnsetNode *copy(void);
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void setShift(scaled s) {}
 };
 
@@ -326,7 +326,7 @@ class StyleNode : public LinkedNode
 	public:
 		quarterword subtype;
 		StyleNode(smallnumber s) : subtype(s) { type = style_node; }
-		std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual quarterword getSubtype(void) { return subtype; }
 };
 
@@ -340,7 +340,7 @@ class MathNode : public LinkedNode
 		MathNode(scaled w, smallnumber s) : subtype(s), width(w) { type = math_node; }
 		virtual MathNode *copy(void) { return new MathNode(width, subtype); }
 		virtual std::string shortDisplay(void) { return "$"; }
-		std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void hlist(scaled, scaled, scaled);
 		virtual scaled getWidth(void) { return width; }
 		virtual void setWidth(scaled w) { width = w; }
@@ -355,7 +355,7 @@ class WhatsitNode : public LinkedNode
 		~WhatsitNode(void);
 		virtual WhatsitNode *copy(void);
 		virtual std::string shortDisplay(void) { return "[]"; }
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void vlist(scaled);
 		virtual void hlist(scaled, scaled, scaled);
 		virtual quarterword getSubtype(void) { return subtype; }
@@ -367,7 +367,7 @@ class WriteWhatsitNode : public WhatsitNode
 	public:
 		halfword write_stream; //!< stream number (0 to 17)
 		WriteWhatsitNode(smallnumber s) : WhatsitNode(s) {}
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 };
 
 class OpenWriteWhatsitNode : public WriteWhatsitNode
@@ -379,7 +379,7 @@ class OpenWriteWhatsitNode : public WriteWhatsitNode
 		OpenWriteWhatsitNode(char);
 		OpenWriteWhatsitNode(halfword s) : WriteWhatsitNode(open_node) { write_stream = s; }
 		virtual OpenWriteWhatsitNode *copy(void) { auto w = new OpenWriteWhatsitNode(write_stream); w->open_name = open_name; w->open_area = open_area; w->open_ext = open_ext; return w; }
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void out(void);
 };
 
@@ -403,7 +403,7 @@ class NotOpenWriteWhatsitNode : public WriteWhatsitNode
 			write_tokens->token_ref_count++; 
 			return w; 
 		}
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void out(void);
 };
 
@@ -427,7 +427,7 @@ class LanguageWhatsitNode : public WhatsitNode
 		quarterword what_rhm; //!< minimum right fragment, in the range 1..63
 		LanguageWhatsitNode(ASCIIcode);
 		virtual LanguageWhatsitNode *copy(void) { auto l = new LanguageWhatsitNode(what_lang); l->what_lhm = what_lhm; l->what_rhm = what_rhm; return l; }
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 };
 
 class NoadContent : public AnyNode
@@ -439,7 +439,7 @@ class NoadContent : public AnyNode
 		quarterword fam = 0;
 		~NoadContent(void);
 		bool operator == (const NoadContent &n) { return std::tuple(math_type, info, character, fam) == std::tuple(n.math_type, n.info, n.character, n.fam); }
-		std::string subsidiarydata(char c, const std::string &symbol);
+		void subsidiarydata(char, const std::string&, std::ostringstream&);
 		std::string famandchar(void);
 		void scan(char);
 };
@@ -473,7 +473,7 @@ class Noad : public LinkedNode
 					type = ord_noad;
 			}
 		}
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void mToH(scaled&, scaled&);
 		virtual bool mToH(scaled&, scaled&, scaled&);
 		virtual void mToH2(scaled&, scaled&, scaled&);
@@ -495,7 +495,7 @@ class RadicalNoad : public Noad
 	public:
 		Delimiter left_delimiter;
 		RadicalNoad(char, Token);
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void mToH(void);
 };
 
@@ -508,7 +508,7 @@ class FractionNoad : public Noad
 		NoadContent &denominator = subscr; // |denominator| field in a fraction noad
 		scaled thickness; //!< \a thickness field in a fraction noad
 		FractionNoad(char, halfword, Token);
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void mToH(scaled&, scaled&);
 };
 
@@ -517,7 +517,7 @@ class LeftRightNoad : public Noad
 	public:
 		Delimiter delimiter; //!< \a delimiter field in left and right noads
 		LeftRightNoad(char, Token);
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 };
 
 class AccentNoad : public Noad
@@ -525,7 +525,7 @@ class AccentNoad : public Noad
 	public:
 		NoadContent accent_chr; //!< the \a accent_chr field of an accent noad
 		AccentNoad(char);
-		virtual std::string showNode(const std::string &);
+		virtual void showNode(const std::string &, std::ostringstream&);
 		virtual void mToH();
 };
 

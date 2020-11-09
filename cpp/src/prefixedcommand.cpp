@@ -12,9 +12,10 @@
 #include "buildpage.h"
 #include "getnext.h"
 #include "alignement.h"
+#include "tampon.h"
 #include "fichier.h"
 
-static TokenList* readtoks(int n, halfword r)
+static TokenList* readtoks(int n, halfword r, int &first, int &lst)
 {
 	warningindex = r;
 	defRef = TokenList(end_match_token);
@@ -24,6 +25,7 @@ static TokenList* readtoks(int n, halfword r)
 	do
 	{
 		beginfilereading();
+		curinput.start = first;
 		name = m+1;
 		switch (readopen[m])
 		{
@@ -33,18 +35,20 @@ static TokenList* readtoks(int n, halfword r)
 					if (n >= 0)
 					print("\n"+scs(r)+"=");
 					n = -1;
-					terminput();
+					lst = terminput(first);
 				}
 				else
 					fatalerror("*** (cannot \read from terminal in nonstop modes)");
 				break;
 			case just_open:
-				readopen[m] = inputln(readfile[m], false) ? opened : closed;
+				lst = inputln(readfile[m], false, first);
+				readopen[m] = lst >= 0 ? opened : closed;
 				if (readopen[m] == closed)
 					aclose(readfile[m]);
 				break;
 			default: // opened
-				readopen[m] = inputln(readfile[m], true) ? opened : closed;
+				lst = inputln(readfile[m], true, first);
+				readopen[m] = lst >= 0 ? opened : closed;
 				if (readopen[m] == closed)
 				{
 					aclose(readfile[m]);
@@ -56,12 +60,9 @@ static TokenList* readtoks(int n, halfword r)
 					}
 				}
 		}
-		limit = last;
-		if (end_line_char_inactive())
-			limit--;
-		else
-			buffer[limit] = end_line_char();
-		First = limit+1;
+		curinput.limit = lst;
+		removeLastBuf();
+		first = curinput.limit+1;
 		Loc = 0/*Start*/;
 		state = new_line;
 		for (auto t = scanner.get(defining); t.tok; t = scanner.get(defining))
@@ -75,6 +76,7 @@ static TokenList* readtoks(int n, halfword r)
 				alignstate = 1000000;
 				break;
 			}
+		first = curinput.start;
 		endfilereading();
 	} while (alignstate != 1000000);
 	alignstate = s;
@@ -148,7 +150,7 @@ static void afterPrefixedCommand(Token &aftertoken)
 	}
 }
 
-void prefixedcommand(char &status, Token t, bool setboxallowed) 
+void prefixedcommand(char &status, Token t, int &first, int &lst, bool setboxallowed) 
 {
 	smallnumber pfx;
 	try { pfx = getPrefix(status, t); } 
@@ -229,7 +231,7 @@ void prefixedcommand(char &status, Token t, bool setboxallowed)
 			if (!scanner.isKeyword(status, "to")) 
 				error("Missing `to' inserted", "You should have said `\\read<number> to \\cs'.\nI'm going to look for the \\cs now.");
 			auto p = scanner.getR(status);
-			eqtb_cs[p-hash_base].define(pfx, call, readtoks(n, p));
+			eqtb_cs[p-hash_base].define(pfx, call, readtoks(n, p, first, lst));
 			status = normal;
 			break;
 		}

@@ -2,6 +2,7 @@
 #include "lecture.h"
 #include "prefixedcommand.h"
 #include "getnext.h"
+#include "tampon.h"
 
 Token doassignments(char status)
 {
@@ -10,6 +11,7 @@ Token doassignments(char status)
 		auto t = scanner.getXSkipSpaceAndEscape(status);
 		if (t.cmd <= max_non_prefixed_command)
 			return t;
-		prefixedcommand(status, t, false);
+		int dummy;
+		prefixedcommand(status, t, First, dummy, false);
 	}
 }

@@ -10,12 +10,13 @@
 #include "police.h"
 #include "chaine.h"
 #include "buildpage.h"
+#include "tampon.h"
 #include <cmath>
 
 float vet_glue(float g)
 {
 	constexpr float billion = 1000000000.;
-	return round(g > billion ? billion : g < -billion ? -billion : g); 
+	return g > billion ? billion : g < -billion ? -billion : round(g); 
 }
 
 static void hlistout(BoxNode*);
@@ -302,9 +303,9 @@ static void ensure_dvi_open(void)
 	if (outputfilename == "")
 	{
 		if (jobname == "")
-			openlogfile();
+			openlogfile(First);
 		while (!bopenout(dvifile, outputfilename = packjobname(".dvi")))
-			promptfilename("file name for output", ".dvi");
+			promptfilename("file name for output", ".dvi", First);
 	}
 }
 
@@ -355,7 +356,7 @@ void shipout(BoxNode *p)
 		dvifour(473628672);
 		preparemag();
 		dvifour(mag());
-		dvi_out(cur_length());
+		dvi_out(cur_length()); // TODO remplacer cur_length
 		for (char c: " TeX output "+std::to_string(year())+"."+twoDigits(month())+"."+twoDigits(day())+":"+twoDigits(time()/60)+twoDigits(time()%60))
 			dvi_out(c);
 	}

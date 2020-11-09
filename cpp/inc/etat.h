@@ -30,19 +30,19 @@ class instaterecord
 {
 	public:
 		quarterword statefield, indexfield;
-		halfword startfield;
-		halfword locfield, limitfield;
+		halfword start;
+		halfword loc, limit;
 		std::string namefield;
 		TokenList StartField;
 };
 
 inline std::vector<instaterecord> inputstack(1);
 inline instaterecord curinput;
-	inline auto &start = curinput.startfield; //!< starting position in \a buffer
-	inline auto &limit = curinput.limitfield; //!< end of current line in \a buffer
-	inline auto &param_start = limit; //!< base of macro parameters in \a param_stack
-	inline auto &loc = curinput.locfield; //!< location of first unread character in \a buffer
-	inline auto &Loc = loc;
+//	inline auto &start = curinput.startfield; //!< starting position in \a buffer
+//	inline auto &limit = curinput.limitfield; //!< end of current line in \a buffer
+	inline auto &param_start = curinput.limit; //!< base of macro parameters in \a param_stack
+//	inline auto &loc = curinput.locfield; //!< location of first unread character in \a buffer
+	inline auto &Loc = curinput.loc;
 	inline auto &Start = curinput.StartField;
 	inline auto &state = curinput.statefield; //!< current scanner state
 	inline auto &index = curinput.indexfield; //!< reference for buffer information
@@ -56,7 +56,7 @@ void pushnest(void);
 void pop_input(void);
 void push_input(void);
 void backinput(Token);
-void startinput(char);
+void startinput(char, int);
 
 inline void tail_append(LinkedNode*q) { appendAtEnd(tail, q); }
 inline bool isFile(void) { return name.size() == 1 && name[0] <= 17; }

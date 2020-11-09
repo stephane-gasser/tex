@@ -12,6 +12,7 @@
 #include "conditional.h"
 #include "etat.h"
 #include "initprim.h"
+#include "tampon.h"
 #include <iostream>
 
 static Token checkoutervalidity(char status, Token t)
@@ -55,20 +56,20 @@ static int toHex(ASCIIcode c) { return c <= '9' ? c -'0' : c-'a'+10; }
 
 static int intFromTwoHexDigit(ASCIIcode c, int pos)
 {
-	if (is_hex(c) && pos <= limit)
+	if (is_hex(c) && pos <= curinput.limit)
 	{
-		auto &cc = buffer[pos];
+		auto &cc = getBuf(pos);
 		if (is_hex(cc))
 			return (toHex(c)<<4)+toHex(cc);
 	}
 	return -1;
 }
 
-static bool prochainCaractereOK(int pos, halfword chr) { return buffer[pos] == chr && pos < limit && buffer[pos+1] < 128; }
+static bool prochainCaractereOK(int pos, halfword chr) { return getBuf(pos) == chr && pos < curinput.limit && getBuf(pos+1) < 128; }
 
 template<class T> static int processBuffer(int k, T &var)
 {
-	auto &c = buffer[k+1];
+	auto &c = getBuf(k+1);
 	auto t = intFromTwoHexDigit(c, k+2);
 	var = t >= 0 ? t : c < 64 ? c + 64 : c - 64;
 	return t >= 0 ? 3 : 2;
@@ -76,21 +77,21 @@ template<class T> static int processBuffer(int k, T &var)
 
 static void removeFromEnd(int &k, int d)
 {
-	limit -= d;
+	curinput.limit -= d;
 	First -= d;
-	for (; k <= limit; k++)
-		buffer[k] = buffer[k+d];
+	shiftBuf(k+d, curinput.limit+1+d, k);
+	k = curinput.limit+1;
 }
 
 static bool testDoubleSup(int k, Token &tk)
 {
-	if (k >= limit)
+	if (k >= curinput.limit)
 		return false;
-	if (buffer[k] == tk.chr /* ^^ */ && buffer[k+1] < 128)
+	if (getBuf(k) == tk.chr /* ^^ */ && getBuf(k+1) < 128)
 	{
-		auto &c = buffer[k+1];
+		auto &c = getBuf(k+1);
 		auto t = intFromTwoHexDigit(c, k+2);
-		tk.chr = buffer[k-1] = t >= 0 ? t : c < 64 ? c + 64 : c - 64;
+		tk.chr = getBuf(k-1) = t >= 0 ? t : c < 64 ? c + 64 : c - 64;
 		if (t >= 0) // ^^xx avec xx hexadécimal
 			removeFromEnd(k, 3);
 		else // ^^c avec c caractère
@@ -118,9 +119,10 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 			do
 			{
 				skip = false;
-				if (loc <= limit)
+				if (!isBufFull())
 				{
-					t.chr = buffer[loc++];
+					t.chr = currentBuf();
+					bufNext();
 					bool doubleSup2;
 					do
 					{
@@ -134,7 +136,7 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 								skip = true;
 								break;
 							case ANY_STATE_PLUS(escape):
-								if (loc > limit)
+								if (isBufFull())
 									t = equivToken(null_cs-active_base, eqtb_active);
 								else
 								{   // loc <= limit
@@ -142,24 +144,24 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 									for (bool doubleSup = true; doubleSup && !identifiant;)
 									{
 										doubleSup = false;
-										switch (int cat = cat_code(t.chr = buffer[loc]); cat)
+										switch (int cat = cat_code(t.chr = currentBuf()); cat)
 										{
 											case letter:
-												if (loc < limit)
+												if (atLeastTwoInBuf())
 												{
 													int k;
-													for (k = loc+1; cat == letter && k <= limit; k++)
-														cat = cat_code(t.chr = buffer[k]);
+													for (k = curinput.loc+1; cat == letter && k <= curinput.limit; k++)
+														cat = cat_code(t.chr = getBuf(k));
 													if (cat == sup_mark && testDoubleSup(k, t)) // "^^" 
 														doubleSup = true;
 													else
 													{
 														if (cat != letter)
 															k--;
-														if (k-loc >= 1)
+														if (k-curinput.loc >= 1)
 														{
-															t = equivToken(idlookup(buffer.substr(loc, k-loc+1), nonewcontrolsequence)-hash_base, eqtb_cs);
-															loc = k;
+															t = equivToken(idlookup(readBufUpTo(k), nonewcontrolsequence)-hash_base, eqtb_cs);
+															curinput.loc = k;
 															identifiant = true;
 														}
 													}
@@ -168,14 +170,17 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 												state = skip_blanks;
 												break;
 											case sup_mark:
-												if (testDoubleSup(loc+1, t))
+												if (testDoubleSup(curinput.loc+1, t))
 													doubleSup = true; [[fallthrough]];
 											default:
 												state = mid_line;
 										}
 									}
 									if (!identifiant)
-										t = equivToken(buffer[loc++]+single_base-active_base, eqtb_active);
+									{
+										t = equivToken(currentBuf()+single_base-active_base, eqtb_active);
+										bufNext();
+									}
 								}
 								if (t.cmd >= outer_call)
 									t = checkoutervalidity(status, t);
@@ -187,9 +192,9 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 									t = checkoutervalidity(status, t);
 								break;
 							case ANY_STATE_PLUS(sup_mark):
-								if (prochainCaractereOK(loc, t.chr)) 
+								if (prochainCaractereOK(curinput.loc, t.chr)) 
 								{
-									loc += processBuffer(loc, t.chr);
+									curinput.loc += processBuffer(curinput.loc, t.chr);
 									doubleSup2 = true;
 								}
 								else
@@ -204,17 +209,17 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 								t.chr = ' ';
 								break;
 							case mid_line+car_ret:
-								loc = limit+1;
+								bufEnd();
 								t.cmd = spacer;
 								t.chr = ' ';
 								break;
 							case skip_blanks+car_ret:
 							case ANY_STATE_PLUS(comment):
-								loc = limit+1;
+								bufEnd();
 								skip = true;
 								break;
 							case new_line+car_ret:
-								loc = limit+1;
+								bufEnd();
 								t = equivToken(parloc, eqtb);
 								if (t.cmd >= outer_call)
 									t = checkoutervalidity(status, t);
@@ -246,30 +251,26 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 							return Token(0, 0);
 						if (inputstack.size() > 1)
 						{
+							First = curinput.start;
 							endfilereading();
 							restart = true;
 						}
 						if (!restart)
 						{
 							if (selector < log_only)
-								openlogfile();
+								openlogfile(First);
 							if (interaction > nonstop_mode)
 							{
 								if (end_line_char_inactive())
-									limit++;
-								if (limit == start)
+									curinput.limit++;
+								if (sizeBuf() == 1)
 									print("\r(Please type a command or say `\\end')");
 								println();
-								First = start;
 								print("*");
-								terminput();
-								limit = last;
-								if (end_line_char_inactive())
-									limit--;
-								else
-									buffer[limit] = end_line_char();
-								First = limit+1;
-								loc = start;
+								curinput.limit = terminput(curinput.start);
+								removeLastBuf();
+								First = curinput.limit+1;
+								bufBegin();
 							}
 							else
 								fatalerror("*** (job aborted, no legal \end found)");
@@ -278,18 +279,20 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 					else
 					{
 						line++;
-						First = start;
-						if (!forceeof && inputln(cur_file(), true))
+						First = curinput.start;
+						if (int lst = inputln(cur_file(), true, curinput.start); !forceeof && lst >= 0)
 						{
-							firmuptheline();
+							curinput.limit = lst;
+							if (pausing() > 0 && interaction > nonstop_mode)
+							{
+								lst = firmuptheline();
+								First = curinput.limit;
+							}
 							if (!restart)
 							{
-								if (end_line_char_inactive())
-									limit--;
-								else
-									buffer[limit] = end_line_char();
-								First = limit+1;
-								loc = start;
+								removeLastBuf();
+								First = curinput.limit+1;
+								bufBegin();
 							}
 						}
 						else
@@ -298,6 +301,7 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 							openparens--;
 							std::cout << std::flush;
 							forceeof = false;
+							First = curinput.start;
 							endfilereading();
 							t = checkoutervalidity(status, t);
 							restart = true;
@@ -350,7 +354,7 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 							alignstate--;
 							break;
 						case out_param:
-							paramstack[limit+t.chr-1].beginBelowMacro(parameter);
+							paramstack[curinput.limit+t.chr-1].beginBelowMacro(parameter);
 							restart = true;
 					}
 			}
