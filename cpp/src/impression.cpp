@@ -210,40 +210,85 @@ std::string GlueSpec::print(const std::string &s)
 	return asScaled(width)+s+(stretch ? " plus "+glue(stretch, stretch_order, s) : "")+(shrink ? " minus "+glue(shrink, shrink_order, s) : "");
 }
 
-static void shownodelist(LinkedNode*, const std::string &, std::ostringstream&);
-
 static int depththreshold;
+static int breadthmax;
+
+static void shownodelist(LinkedNode *p, const std::string &symbol, std::ostringstream &oss)
+{
+	if (oss.str().size() > depththreshold)
+		oss << p ? " []" : "";
+	for (int n = 0; p; next(p))
+	{
+		oss << "\n" << symbol;
+		if (++n > breadthmax)
+		{
+			oss << "etc.";
+			return;
+		}
+		p->showNode(symbol, oss);
+	}
+}
+
+class showNL
+{
+		std::string _symbol;
+		LinkedNode *_p;
+	public:
+		explicit showNL(LinkedNode *p, const std::string &s) : _symbol(s), _p(p) {}
+		friend std::ostream& operator<<(std::ostream &os, const showNL &obj)
+		{
+			auto &oss = dynamic_cast<std::ostringstream&>(os);
+			if (oss.str().size() > depththreshold)
+			{
+				os << obj._p ? " []" : "";
+				return os;
+			}
+			int n = 0;
+			for (auto p = obj._p; p; next(p))
+			{
+				os << "\n" << obj._symbol;
+				if (++n > breadthmax)
+				{
+					oss << "etc.";
+					return oss;
+				}
+				p->showNode(obj._symbol, oss);
+			}
+			return os;
+		}
+};
 
 //! Display a noad field.
-void NoadContent::subsidiarydata(char c, const std::string &symbol, std::ostringstream &oss)
+void NoadContent::subsidiarydata(char c, const std::string &symbol, std::ostream &os)
 {
+	auto &oss = dynamic_cast<std::ostringstream&>(os);
 	if (oss.str().size() >= depththreshold) 
 	{
-		oss << math_type ? " []" : "";
+		os << math_type ? " []" : "";
 		return;
 	}
 	switch (math_type)
 	{
 		case math_char:
-			oss << "\n" << symbol << c << famandchar();
+			os << "\n" << symbol << c << famandchar();
 			break;
 		case sub_box: 
-			shownodelist(info, symbol+c, oss);
+			os << showNL(info, symbol+c);
 			break;
 		case sub_mlist:
 			if (info == nullptr)
-				oss << "\n" << symbol << c << "{}";
+				os << "\n" << symbol << c << "{}";
 			else
-				shownodelist(info, symbol+c, oss);
+				os << showNL(info, symbol+c);
 	}
 }
 
 std::string twoDigits(int n)
 {
 	n = abs(n)%100;
-	std::string s;
-	s += '0'+n/10;
-	s += '0'+n%10;
+	std::string s = "00";
+	s[0] += n/10;
+	s[1] += n%10;
 	return s;
 }
 
@@ -265,24 +310,6 @@ std::string shortdisplay(LinkedNode *p)
 	return oss.str();
 }
 
-static int breadthmax;
-
-static void shownodelist(LinkedNode *p, const std::string &symbol, std::ostringstream &oss)
-{
-	if (oss.str().size() > depththreshold)
-		oss << p ? " []" : "";
-	for (int n = 0; p; next(p))
-	{
-		oss << "\n" << symbol;
-		if (++n > breadthmax)
-		{
-			oss << "etc.";
-			return;
-		}
-		p->showNode(symbol, oss);
-	}
-}
-
 std::string showbox(BoxNode *p)
 {  
 	depththreshold = show_box_depth();
@@ -290,7 +317,7 @@ std::string showbox(BoxNode *p)
 	if (breadthmax <= 0)
 		breadthmax = 5;
 	std::ostringstream oss;
-	shownodelist(p, "", oss);
+	oss << showNL(p, "");
 	return oss.str()+"\n";
 }
 
@@ -532,9 +559,9 @@ void showwhatever(const char status, Token t)
 			error("", "This isn't an error message; I'm just \\showing something.\nType `I\\show...' to show more (e.g., \\show\\cs,\n\\showthe\\count10, \\showbox255, \\showlists).\nAnd type `I\\tracingonline=1\\show...' to show boxes and\nlists on your terminal as well as in the transcript file.");
 }
 
-void CharNode::showNode(const std::string &, std::ostringstream &oss) { oss << fontandchar(this); }
+void CharNode::showNode(const std::string &, std::ostream &oss) { oss << fontandchar(this); }
 
-void BoxNode::showNode(const std::string &symbol, std::ostringstream &oss)
+void BoxNode::showNode(const std::string &symbol, std::ostream &oss)
 {
 	oss << esc(type == hlist_node ? "hbox" : "vbox");
 	oss << "(" << asScaled(height) << "+" << asScaled(depth) << ")x" << asScaled(width);
@@ -560,10 +587,10 @@ void BoxNode::showNode(const std::string &symbol, std::ostringstream &oss)
 	}
 	if (shift_amount)
 		oss << ", shifted " << asScaled(shift_amount);
-	shownodelist(list_ptr, symbol+".", oss);
+	oss << showNL(list_ptr, symbol+".");
 }
 
-void UnsetNode::showNode(const std::string &symbol, std::ostringstream &oss)
+void UnsetNode::showNode(const std::string &symbol, std::ostream &oss)
 {
 	oss << esc("unsetbox");
 	oss << "(" << asScaled(height) << "+" << asScaled(depth) << ")x" << asScaled(width);
@@ -573,23 +600,23 @@ void UnsetNode::showNode(const std::string &symbol, std::ostringstream &oss)
 		oss << ", stretch " << glue(glue_stretch, glue_order);
 	if (glue_shrink)
 		oss << ", shrink " << glue(glue_shrink, glue_sign);
-	shownodelist(list_ptr, symbol+".", oss);
+	oss << showNL(list_ptr, symbol+".");
 }
 
-void RuleNode::showNode(const std::string &, std::ostringstream &oss) { oss << esc("rule") << "(" << ruledimen(height) << "+" << ruledimen(depth) << ")x" << ruledimen(width); }
+void RuleNode::showNode(const std::string &, std::ostream &oss) { oss << esc("rule") << "(" << ruledimen(height) << "+" << ruledimen(depth) << ")x" << ruledimen(width); }
 
-void InsNode::showNode(const std::string &symbol, std::ostringstream &oss)
+void InsNode::showNode(const std::string &symbol, std::ostream &oss)
 {
 	oss << esc("insert") << subtype << ", natural size " << asScaled(height) << "; split("
-		<< split_top_ptr->print() << "," << asScaled(depth) << "); float cost " << float_cost;
-	shownodelist(ins_ptr, symbol+".", oss);
+		<< split_top_ptr->print() << "," << asScaled(depth) << "); float cost " << float_cost
+		<< showNL(ins_ptr, symbol+".");
 }
 
-void WhatsitNode::showNode(const std::string &, std::ostringstream &oss) { oss << "whatsit?"; }
-void WriteWhatsitNode::showNode(const std::string &, std::ostringstream &oss) { oss << writewhatsit("closeout", this); }
-void OpenWriteWhatsitNode::showNode(const std::string &, std::ostringstream &oss) { oss << writewhatsit("openout", this) << "=" << asFilename(open_name, open_area, open_ext); }
+void WhatsitNode::showNode(const std::string &, std::ostream &oss) { oss << "whatsit?"; }
+void WriteWhatsitNode::showNode(const std::string &, std::ostream &oss) { oss << writewhatsit("closeout", this); }
+void OpenWriteWhatsitNode::showNode(const std::string &, std::ostream &oss) { oss << writewhatsit("openout", this) << "=" << asFilename(open_name, open_area, open_ext); }
 
-void NotOpenWriteWhatsitNode::showNode(const std::string&, std::ostringstream &oss)
+void NotOpenWriteWhatsitNode::showNode(const std::string&, std::ostream &oss)
 {
 	if (subtype == special_node)
 		oss << esc("special");
@@ -598,16 +625,13 @@ void NotOpenWriteWhatsitNode::showNode(const std::string&, std::ostringstream &o
 	oss << asMark(write_tokens);
 }
 
-void LanguageWhatsitNode::showNode(const std::string&, std::ostringstream &oss) { oss << esc("setlanguage") << what_lang << " (hyphenmin" << what_lhm << "," << what_rhm << ")"; }
+void LanguageWhatsitNode::showNode(const std::string&, std::ostream &oss) { oss << esc("setlanguage") << what_lang << " (hyphenmin" << what_lhm << "," << what_rhm << ")"; }
 
-void GlueNode::showNode(const std::string &symbol, std::ostringstream &oss)
+void GlueNode::showNode(const std::string &symbol, std::ostream &oss)
 {
 	if (subtype >= a_leaders)
-	{
 		oss << esc(subtype == c_leaders ? "cleaders" : subtype == x_leaders ? "xleaders" : "leaders ") 
-			<< glue_ptr->print();
-		shownodelist(leader_ptr, symbol+".", oss);
-	}
+			<< glue_ptr->print() << showNL(leader_ptr, symbol+".");
 	else
 	{
 		oss << esc("glue");
@@ -641,7 +665,7 @@ void GlueNode::showNode(const std::string &symbol, std::ostringstream &oss)
 	}
 }
 
-void KernNode::showNode(const std::string&, std::ostringstream &oss)
+void KernNode::showNode(const std::string&, std::ostream &oss)
 {
 	switch(subtype)
 	{
@@ -659,14 +683,14 @@ void KernNode::showNode(const std::string&, std::ostringstream &oss)
 	}
 }
 
-void MathNode::showNode(const std::string&, std::ostringstream &oss)
+void MathNode::showNode(const std::string&, std::ostream &oss)
 {
 	oss << esc("math") << (subtype == before ? "on" : "off");
 	if (width)
 		oss << ", surrounded " << asScaled(width);
 }
 
-void LigatureNode::showNode(const std::string&, std::ostringstream &oss)
+void LigatureNode::showNode(const std::string&, std::ostream &oss)
 {
 	oss << fontandchar(this) << " (ligature ";
 	if (subtype > 1) // implicit left boundary
@@ -678,26 +702,20 @@ void LigatureNode::showNode(const std::string&, std::ostringstream &oss)
 	oss << ")";
 }
 
-void PenaltyNode::showNode(const std::string &, std::ostringstream &oss) { oss << esc("penalty ") << penalty; }
+void PenaltyNode::showNode(const std::string &, std::ostream &oss) { oss << esc("penalty ") << penalty; }
 
-void DiscNode::showNode(const std::string &symbol, std::ostringstream &oss)
+void DiscNode::showNode(const std::string &symbol, std::ostream &oss)
 {
 	oss << esc("discretionary");
 	if (replace_count > 0)
 		oss << " replacing " << replace_count;
-	shownodelist(pre_break, symbol+".", oss);
-	shownodelist(post_break, symbol+"|", oss);
+	oss << showNL(pre_break, symbol+".") << showNL(post_break, symbol+"|");
 }
 
-void MarkNode::showNode(const std::string&, std::ostringstream &oss) { oss << esc("mark") << asMark(mark_ptr); }
+void MarkNode::showNode(const std::string&, std::ostream &oss) { oss << esc("mark") << asMark(mark_ptr); }
+void AdjustNode::showNode(const std::string &symbol, std::ostream &oss) { oss << esc("vadjust") << showNL(adjust_ptr, symbol+"."); }
 
-void AdjustNode::showNode(const std::string &symbol, std::ostringstream &oss) 
-{
-	oss << esc("vadjust");
-	shownodelist(adjust_ptr, symbol+".", oss);
-}
-
-void StyleNode::showNode(const std::string &, std::ostringstream &oss)
+void StyleNode::showNode(const std::string &, std::ostream &oss)
 {
 	if (primName[math_style].find(subtype) != primName[math_style].end())
 		oss << esc(primName[math_style][subtype]);
@@ -705,16 +723,13 @@ void StyleNode::showNode(const std::string &, std::ostringstream &oss)
 		oss << "Unknown style!";
 }
 
-void ChoiceNode::showNode(const std::string &symbol, std::ostringstream &oss)
+void ChoiceNode::showNode(const std::string &symbol, std::ostream &oss)
 {
-	oss << esc("mathchoice");
-	shownodelist(display_mlist, symbol+"D", oss);
-	shownodelist(text_mlist, symbol+"T", oss);
-	shownodelist(script_mlist, symbol+"S", oss);
-	shownodelist(script_script_mlist, symbol+"s", oss);
+	oss << esc("mathchoice") << showNL(display_mlist, symbol+"D") << showNL(text_mlist, symbol+"T")
+		<< showNL(script_mlist, symbol+"S") << showNL(script_script_mlist, symbol+"s");
 }
 
-void FractionNoad::showNode(const std::string &symbol, std::ostringstream &oss)
+void FractionNoad::showNode(const std::string &symbol, std::ostream &oss)
 {
 	oss << esc("fraction, thickness ") << (thickness == default_code ? "= default": asScaled(thickness));
 	if (left_delimiter.small_fam || left_delimiter.small_char || left_delimiter.large_fam || left_delimiter.large_char)
@@ -725,7 +740,7 @@ void FractionNoad::showNode(const std::string &symbol, std::ostringstream &oss)
 	denominator.subsidiarydata('/', symbol, oss);
 }
 
-void Noad::showNode(const std::string &symbol, std::ostringstream &oss)
+void Noad::showNode(const std::string &symbol, std::ostream &oss)
 {
 	switch (type)
 	{
@@ -778,7 +793,7 @@ void Noad::showNode(const std::string &symbol, std::ostringstream &oss)
 	subscr.subsidiarydata('_', symbol, oss);
 }
 
-void RadicalNoad::showNode(const std::string &symbol, std::ostringstream &oss)
+void RadicalNoad::showNode(const std::string &symbol, std::ostream &oss)
 {
 	oss << esc("radical") << left_delimiter.print();
 	switch (subtype)
@@ -796,7 +811,7 @@ void RadicalNoad::showNode(const std::string &symbol, std::ostringstream &oss)
 	subscr.subsidiarydata('_', symbol, oss);
 }
 
-void AccentNoad::showNode(const std::string &symbol, std::ostringstream &oss)
+void AccentNoad::showNode(const std::string &symbol, std::ostream &oss)
 {
 	oss << esc("accent") << accent_chr.famandchar();
 	switch (subtype)
@@ -814,7 +829,7 @@ void AccentNoad::showNode(const std::string &symbol, std::ostringstream &oss)
 	subscr.subsidiarydata('_', symbol, oss);
 }
 
-void LeftRightNoad::showNode(const std::string &symbol, std::ostringstream &oss)
+void LeftRightNoad::showNode(const std::string &symbol, std::ostream &oss)
 {
 	oss << esc(type == left_noad ? "left" : "right") << delimiter.print();
 	switch (subtype)
