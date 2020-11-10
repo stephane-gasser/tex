@@ -195,7 +195,7 @@ void fireup(char status, LinkedNode *c)
 			mode = -vmode;
 			prev_depth = ignore_depth;
 			mode_line = -line;
-			output_routine()->beginAboveMacro(output_text);
+			outputRoutine();
 			newsavelevel(output_group);
 			normalparagraph();
 			scanner.leftBrace(status);

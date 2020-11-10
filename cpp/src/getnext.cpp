@@ -102,8 +102,6 @@ static bool testDoubleSup(int k, Token &tk)
 }
 
 
-static TokenList omit_template(end_template_token); //!< a constant token list
-
 #define ANY_STATE_PLUS(cmd) mid_line+cmd: case skip_blanks+cmd: case new_line+cmd
 #define ADD_DELIMS_TO(state) state+math_shift: case state+tab_mark: case state+mac_param: case state+sub_mark: case state+letter: case state+other_char 
 
@@ -359,18 +357,18 @@ Token Scanner::next(char status, bool nonewcontrolsequence)
 					}
 			}
 		if (!restart)
-		{ 
 			if (between(tab_mark, t.cmd, out_param) && alignstate == 0)
 			{
 				if (status == aligning || curalign == nullptr)
 					fatalerror("(interwoven alignment preambles are not allowed)");
 				t.cmd = curalign->extra_info;
 				curalign->extra_info = t.chr;
+				static TokenList omit_template(end_template_token); //!< a constant token list
 				t.cmd == omit ? omit_template.beginBelowMacro(v_template) : curalign->vPart.beginBelowMacro(v_template);
 				alignstate = 1000000;
 				restart = true;
 			}
-			return t;
-		}
+			else
+				return t;
 	}
 }

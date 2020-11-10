@@ -77,6 +77,8 @@ constexpr int end_template_token = cs_token_flag+frozen_end_template;
 
 class MemoryNode : public AnyNode
 {
+	private:
+		void defineCommon(int, quarterword);
 	public:
 		quarterword type; //!< command code for equivalent
 		quarterword level; //!< level of definition
@@ -130,13 +132,14 @@ inline std::vector<MemoryNode> eqtb_local(int_base-local_base); // holds the cur
 	inline ShapeNode* par_shape_ptr(void) { return dynamic_cast<ShapeNode*>(eqtb_local[par_shape_loc-local_base].index); }
 	// 9 tokens lists
 	inline TokenList* output_routine(void) { return dynamic_cast<TokenList*>(eqtb_local[output_routine_loc-local_base].index); }
-	inline TokenList* every_par(void) { return dynamic_cast<TokenList*>(eqtb_local[every_par_loc-local_base].index); } //!< points to token list for \\everypar
-	inline TokenList* every_math(void) { return dynamic_cast<TokenList*>(eqtb_local[every_math_loc-local_base].index); }
-	inline TokenList *every_display(void) { return dynamic_cast<TokenList*>(eqtb_local[every_display_loc-local_base].index); }
-	inline TokenList* every_hbox(void) { return dynamic_cast<TokenList*>(eqtb_local[every_hbox_loc-local_base].index); }
-	inline TokenList* every_vbox(void) { return dynamic_cast<TokenList*>(eqtb_local[every_vbox_loc-local_base].index); } //!< points to token list for \\everyvbox
-	inline TokenList* every_job(void) { return dynamic_cast<TokenList*>(eqtb_local[every_job_loc-local_base].index); }
-	inline TokenList* every_cr(void) { return dynamic_cast<TokenList*>(eqtb_local[every_cr_loc-local_base].index); } //!< points to token list for \\everyvbox
+	void outputRoutine(void);
+	void everyJob(void);
+	void everyHBox(void);
+	void everyVBox(void);
+	void everyDisplay(void);
+	void everyCr(void);
+	void everyPar(void);
+	void everyMath(void);
 	inline TokenList* err_help(void) { return dynamic_cast<TokenList*>(eqtb_local[err_help_loc-local_base].index); }
 	// 256 token list registers
 	// 256 box registers
@@ -255,6 +258,13 @@ inline Token equivToken(int pos, std::vector<MemoryNode>&eq)
 	return t;
 }
 
-
+inline std::vector<TokenList*> curmark(5, nullptr);
+inline TokenList *top_mark = curmark[top_mark_code];
+inline TokenList *first_mark = curmark[first_mark_code];
+inline TokenList *bot_mark = curmark[bot_mark_code];
+inline TokenList *split_first_mark = curmark[split_first_mark_code];
+inline TokenList *split_bot_mark = curmark[split_bot_mark_code];
+void markRoutine(int);
+void writeRoutine(TokenList*);
 
 #endif

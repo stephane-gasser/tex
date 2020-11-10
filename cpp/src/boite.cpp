@@ -271,14 +271,12 @@ void beginbox(char status, int boxcontext, Token t)
 			if (k == vmode)
 			{
 				prev_depth = ignore_depth;
-				if (every_vbox())
-					every_vbox()->beginAboveMacro(every_vbox_text);
+				everyVBox();
 			}
 			else
 			{
 				space_factor = 1000;
-				if (every_hbox())
-					every_hbox()->beginAboveMacro(every_hbox_text);
+				everyHBox();
 			}
 			return;
 		}

@@ -531,12 +531,6 @@ class AccentNoad : public Noad
 
 //inline int &incompleat_noad = aux.int_; //!< the name of \a aux in math mode
 inline FractionNoad *incompleat_noad; //!< the name of \a aux in math mode
-inline std::vector<TokenList*> curmark(5, nullptr);
-inline TokenList *top_mark = curmark[top_mark_code];
-inline TokenList *first_mark = curmark[first_mark_code];
-inline TokenList *bot_mark = curmark[bot_mark_code];
-inline TokenList *split_first_mark = curmark[split_first_mark_code];
-inline TokenList *split_bot_mark = curmark[split_bot_mark_code];
 inline std::vector<AnyNode> heads;
 inline PageInsNode *page_ins_head = nullptr; //!< list of insertion data for current page
 inline LinkedNode *contrib_head = nullptr; //!< vlist of items not yet on current page

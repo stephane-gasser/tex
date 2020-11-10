@@ -97,8 +97,7 @@ void expand(char status, Token tk)
 	switch (tk.cmd)
 	{
 		case top_bot_mark:
-			if (curmark[tk.chr])
-				curmark[tk.chr]->beginAboveMacro(mark_text);
+			markRoutine(tk.chr);
 			break;
 		case expand_after:
 		{

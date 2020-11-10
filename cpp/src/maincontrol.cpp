@@ -57,8 +57,7 @@ Token maincontrol(void)
 	First = curinput.limit+1;
 	char status = normal;
 	AlignRecordNode *loop = nullptr;
-	if (every_job())
-		every_job()->beginAboveMacro(every_job_text);
+	everyJob();
 	auto t = scanner.getX(normal);
 	while (true)
 	{
@@ -351,8 +350,7 @@ Token maincontrol(void)
 						savestack.push_back(new MemoryNode(t.chr));
 						pushmath(math_shift_group);
 						eqtb_int[cur_fam_code].word_define(noPrefix, -1);
-						if (every_math())
-							every_math()->beginAboveMacro(every_math_text);
+						everyMath();
 					}
 					else
 						offsave(t); //erreur curgroup
@@ -402,8 +400,7 @@ Token maincontrol(void)
 				pushnest(); 
 				mode = -vmode;
 				prev_depth = ignore_depth;
-				if (every_vbox())
-					every_vbox()->beginAboveMacro(every_vbox_text);
+				everyVBox();
 				break;
 			case mmode+math_style:
 				tail_append(new StyleNode(t.chr));

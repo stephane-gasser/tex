@@ -15,7 +15,7 @@ constexpr int end_write_token = cs_token_flag+end_write;
 static void writeout(NotOpenWriteWhatsitNode *p)
 {
 	insList(std::vector<halfword>({right_brace_token+'}', end_write_token}));
-	p->write_tokens->beginAboveMacro(write_text);
+	writeRoutine(p->write_tokens);
 	insList(left_brace_token+'{');
 	int oldmode = mode;
 	mode = 0;

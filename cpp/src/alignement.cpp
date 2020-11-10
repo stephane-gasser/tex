@@ -214,8 +214,7 @@ void initalign(char status, Token t, AlignRecordNode* &loop)
 		curalign->vPart.list.push_back(end_template_token);
 	}
 	newsavelevel(align_group);
-	if (every_cr())
-		every_cr()->beginAboveMacro(every_cr_text);
+	everyCr();
 	alignpeek(normal, loop);
 }
 
@@ -242,8 +241,7 @@ static void finrow(char status, AlignRecordNode* &loop)
 	}
 	p->type = unset_node;
 	dynamic_cast<UnsetNode*>(p)->glue_stretch = 0;
-	if (every_cr())
-		every_cr()->beginAboveMacro(every_cr_text);
+	everyCr();
 	alignpeek(status, loop);
 }
 

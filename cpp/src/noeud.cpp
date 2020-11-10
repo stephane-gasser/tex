@@ -133,8 +133,7 @@ void newgraf(char status, bool indented)
 		tail = b;
 		head->link = tail;
 	}
-	if (every_par())
-		every_par()->beginAboveMacro(every_par_text);
+	everyPar();
 	if (nest.size() == 2)
 		buildpage(status);
 }
